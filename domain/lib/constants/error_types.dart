@@ -1,0 +1,21 @@
+enum ErrorType {
+  IOEXCEPTION,
+  UI,
+
+  //Network Error
+  NETWORK,
+  NET_SERVER_MESSAGE,
+  NET_NO_INTERNET_CONNECTION,
+
+  //DB ERROR
+  DATABASE,
+  DATABASE_NOT_SUPPORTED,
+  DB_ERROR1,
+  DB_USER_NOT_FOUND,
+
+  //ui
+  INVALID_PIN,
+
+  // Scanner Error
+  NO_DOCUMENT_FOUND,
+}

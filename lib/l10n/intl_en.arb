@@ -1,0 +1,7 @@
+{
+  "appName": "Neo Bank",
+  "accountRegistration": "ACCOUNT REGISTRATION",
+  "selectCountryHeader": "Hello! Which country\nare you from?",
+  "addMobileHeader": "What’s your\nmobile number?",
+  "enterOtpHeader": "Enter 6-digit OTP sent to"
+}
