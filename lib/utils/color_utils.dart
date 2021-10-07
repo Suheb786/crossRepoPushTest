@@ -15,4 +15,6 @@ class AppColor {
   static const dark_gray = const Color(0xff959595);
   static const very_dark_gray = const Color(0xff333333);
   static const vivid_orange = const Color(0xffFFA125);
+  static const very_light_gray = const Color(0xffFAFAFA);
+  static const very_dark_blue = const Color(0xff060030);
 }

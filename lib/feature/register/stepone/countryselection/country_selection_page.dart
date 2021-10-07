@@ -18,6 +18,11 @@ class CountrySelectionPageState
   }
 
   @override
+  void onModelReady(CountrySelectionViewModel model) {
+    model.fetchCountries(context);
+  }
+
+  @override
   Widget buildView(BuildContext context, CountrySelectionViewModel model) {
     return CountrySelectionPageView(provideBase());
   }

@@ -1,10 +1,14 @@
+import 'package:domain/model/country/country.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/stepone/countryselection/country_selection_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/country/country_list_item.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
 
 class CountrySelectionPageView
     extends BasePageViewWidget<CountrySelectionViewModel> {
@@ -38,6 +42,7 @@ class CountrySelectionPageView
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
             clipBehavior: Clip.antiAliasWithSaveLayer,
             elevation: 2,
+            margin: EdgeInsets.zero,
             shadowColor: AppColor.black.withOpacity(0.32),
             child: Container(
                 decoration: BoxDecoration(
@@ -49,11 +54,26 @@ class CountrySelectionPageView
                         ],
                         begin: Alignment.bottomCenter,
                         end: Alignment.topCenter)),
-                child: Center(
-                    child: Text(
-                  "Step One",
-                  style: TextStyle(color: AppColor.white),
-                ))),
+                child: AppStreamBuilder<Resource<List<Country>>>(
+                  stream: model.countries,
+                  initialData: Resource.none(),
+                  dataBuilder: (context, data) {
+                    return ListWheelScrollView.useDelegate(
+                        itemExtent: 72,
+                        onSelectedItemChanged: (int index) {
+                          model.selectCountry(index);
+                        },
+                        physics: FixedExtentScrollPhysics(),
+                        perspective: 0.0000000001,
+                        childDelegate: ListWheelChildBuilderDelegate(
+                            childCount: data!.data!.length,
+                            builder: (BuildContext context, int index) {
+                              return CountryListItem(
+                                item: data.data![index],
+                              );
+                            }));
+                  },
+                )),
           ),
         ),
       ],
