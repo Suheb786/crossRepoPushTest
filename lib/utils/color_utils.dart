@@ -17,4 +17,11 @@ class AppColor {
   static const vivid_orange = const Color(0xffFFA125);
   static const very_light_gray = const Color(0xffFAFAFA);
   static const very_dark_blue = const Color(0xff060030);
+  static const very_pale_blue = const Color(0xfff2f8ff);
+  static const soft_violet = const Color(0xff7a55db);
+  static const dark_moderate_magenta = const Color(0xffaa42b1);
+  static const very_light_gray1 = const Color(0xfff2f2f2);
+  static const light_grayish_violet = const Color(0xfff9f7fc);
+  static const light_grayish_violet1 = const Color(0xffe5dced);
+  static const dark_grayish_violet = const Color(0xff7c7394);
 }

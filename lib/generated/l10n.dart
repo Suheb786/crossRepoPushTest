@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -98,6 +97,26 @@ class S {
       name: 'enterOtpHeader',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Change My Number`
+  String get changeMyNumber {
+    return Intl.message(
+      'Change My Number',
+      name: 'changeMyNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend in {resendTime}`
+  String resendIn(Object resendTime) {
+    return Intl.message(
+      'Resend in $resendTime',
+      name: 'resendIn',
+      desc: 'resendTime',
+      args: [resendTime],
     );
   }
 }

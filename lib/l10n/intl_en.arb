@@ -3,5 +3,11 @@
   "accountRegistration": "ACCOUNT REGISTRATION",
   "selectCountryHeader": "Hello! Which country\nare you from?",
   "addMobileHeader": "What’s your\nmobile number?",
-  "enterOtpHeader": "Enter 6-digit OTP sent to"
+  "enterOtpHeader": "Enter 6-digit OTP sent to",
+  "changeMyNumber": "Change My Number",
+  "resendIn": "Resend in {resendTime}",
+  "@resendIn": {
+    "description": "resendTime",
+    "type": "string"
+  }
 }
