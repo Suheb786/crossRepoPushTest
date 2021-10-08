@@ -27,9 +27,9 @@ class AppViewModel extends BaseViewModel {
               iconTheme: IconThemeData(color: AppColor.dark_moderate_blue)),
           primaryColorDark: AppColor.dark_moderate_blue,
           textSelectionTheme: TextSelectionThemeData(
-            cursorColor: AppColor.dark_moderate_blue,
-            selectionHandleColor: AppColor.dark_moderate_blue,
-            selectionColor: AppColor.dark_moderate_blue,
+            cursorColor: AppColor.very_light_grey,
+            selectionHandleColor: AppColor.very_light_grey,
+            selectionColor: AppColor.very_light_grey,
           ),
           inputDecorationTheme: InputDecorationTheme(
               hintStyle: TextStyle(
@@ -41,14 +41,8 @@ class AppViewModel extends BaseViewModel {
               ),
               //contentPadding: EdgeInsets.zero,
               filled: false,
-              enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppColor.white, width: 1)),
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppColor.white, width: 1)),
-              errorBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppColor.white, width: 1)),
-              focusedErrorBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: AppColor.white, width: 1)),
+              border: InputBorder.none,
+              isCollapsed: true,
               errorStyle: TextStyle(
                 fontFamily: "Montserrat",
                 color: AppColor.white,
@@ -56,7 +50,6 @@ class AppViewModel extends BaseViewModel {
                 fontWeight: FontWeight.w400,
                 fontStyle: FontStyle.normal,
               ),
-              disabledBorder: InputBorder.none,
               labelStyle: TextStyle(
                 fontFamily: "Montserrat",
                 color: AppColor.black,

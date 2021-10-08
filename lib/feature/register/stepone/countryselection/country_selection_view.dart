@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/stepone/countryselection/country_selection_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/country/country_list_item.dart';
@@ -37,43 +38,58 @@ class CountrySelectionPageView
           ),
         ),
         Expanded(
-          child: Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            elevation: 2,
-            margin: EdgeInsets.zero,
-            shadowColor: AppColor.black.withOpacity(0.32),
-            child: Container(
-                decoration: BoxDecoration(
-                    color: AppColor.very_soft_violet,
-                    gradient: LinearGradient(
-                        colors: [
-                          AppColor.dark_violet,
-                          AppColor.dark_moderate_blue
-                        ],
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter)),
-                child: AppStreamBuilder<Resource<List<Country>>>(
-                  stream: model.countries,
-                  initialData: Resource.none(),
-                  dataBuilder: (context, data) {
-                    return ListWheelScrollView.useDelegate(
-                        itemExtent: 72,
-                        onSelectedItemChanged: (int index) {
-                          model.selectCountry(index);
-                        },
-                        physics: FixedExtentScrollPhysics(),
-                        perspective: 0.0000000001,
-                        childDelegate: ListWheelChildBuilderDelegate(
-                            childCount: data!.data!.length,
-                            builder: (BuildContext context, int index) {
-                              return CountryListItem(
-                                item: data.data![index],
-                              );
-                            }));
-                  },
-                )),
+          child: GestureDetector(
+            onHorizontalDragUpdate: (details) {
+              if (details.primaryDelta!.isNegative) {
+                ProviderScope.containerOf(context)
+                    .read(registerStepOneViewModelProvider)
+                    .pageController
+                    .nextPage(
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.easeInOut);
+              }
+            },
+            child: Card(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16)),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              elevation: 2,
+              margin: EdgeInsets.zero,
+              shadowColor: AppColor.black.withOpacity(0.32),
+              child: Container(
+                  decoration: BoxDecoration(
+                      color: AppColor.very_soft_violet,
+                      gradient: LinearGradient(
+                          colors: [
+                            AppColor.dark_violet,
+                            AppColor.dark_moderate_blue
+                          ],
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter)),
+                  child: AppStreamBuilder<Resource<List<Country>>>(
+                    stream: model.countries,
+                    initialData: Resource.none(),
+                    dataBuilder: (context, data) {
+                      return ListWheelScrollView.useDelegate(
+                          itemExtent: 72,
+                          onSelectedItemChanged: (int index) {
+                            model.selectCountry(index);
+                            ProviderScope.containerOf(context)
+                                .read(addNumberViewModelProvider)
+                                .notify();
+                          },
+                          physics: FixedExtentScrollPhysics(),
+                          perspective: 0.0000000001,
+                          childDelegate: ListWheelChildBuilderDelegate(
+                              childCount: data!.data!.length,
+                              builder: (BuildContext context, int index) {
+                                return CountryListItem(
+                                  item: data.data![index],
+                                );
+                              }));
+                    },
+                  )),
+            ),
           ),
         ),
       ],

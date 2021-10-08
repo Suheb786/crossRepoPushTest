@@ -15,6 +15,7 @@ enum ErrorType {
 
   //ui
   INVALID_PIN,
+  INVALID_MOBILE,
 
   // Scanner Error
   NO_DOCUMENT_FOUND,

@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -95,6 +96,36 @@ class S {
     return Intl.message(
       'Enter 6-digit OTP sent to',
       name: 'enterOtpHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile Number`
+  String get mobileNumber {
+    return Intl.message(
+      'Mobile Number',
+      name: 'mobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `000 0000`
+  String get mobileNumberHint {
+    return Intl.message(
+      '000 0000',
+      name: 'mobileNumberHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid mobile number`
+  String get enterValidMobileNumber {
+    return Intl.message(
+      'Please enter valid mobile number',
+      name: 'enterValidMobileNumber',
       desc: '',
       args: [],
     );

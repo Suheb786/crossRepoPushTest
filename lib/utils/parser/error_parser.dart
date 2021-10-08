@@ -6,8 +6,8 @@ class ErrorParser {
   ErrorParser._();
 
   static String getLocalisedStringError(
-      {required AppError error, required S localisedHelper}) {
-    switch (error.type) {
+      {AppError? error, required S localisedHelper}) {
+    switch (error?.type) {
       case ErrorType.IOEXCEPTION:
         return localisedHelper.appName;
       case ErrorType.UI:
@@ -30,6 +30,8 @@ class ErrorParser {
         return localisedHelper.appName;
       case ErrorType.NO_DOCUMENT_FOUND:
         return localisedHelper.appName;
+      case ErrorType.INVALID_MOBILE:
+        return localisedHelper.enterValidMobileNumber;
       default:
         return "";
     }

@@ -8,8 +8,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-import '../../../../generated/l10n.dart';
-
 class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
   ValidateOtpPageView(ProviderBase model) : super(model);
 

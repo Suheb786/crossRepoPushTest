@@ -1,5 +1,5 @@
 import 'package:domain/model/country/country.dart';
-import 'package:domain/usecase/country/fetch_countries_usecase.dart';
+import 'package:domain/usecase/user/fetch_countries_usecase.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -17,6 +17,8 @@ class CountrySelectionViewModel extends BasePageViewModel {
 
   Stream<Resource<List<Country>>> get countries =>
       _fetchCountriesResponse.stream;
+
+  Country? selectedCountry = Country();
 
   CountrySelectionViewModel(this._fetchCountriesUseCase) {
     _fetchCountriesRequest.listen((value) {
@@ -40,6 +42,7 @@ class CountrySelectionViewModel extends BasePageViewModel {
       element.isSelected = false;
     });
     countryList?.elementAt(index).isSelected = true;
+    selectedCountry = countryList?.firstWhere((element) => element.isSelected);
     _fetchCountriesResponse.safeAdd(Resource.success(data: countryList));
   }
 

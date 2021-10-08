@@ -32,6 +32,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change My Number"),
         "enterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
+        "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
+            "Please enter valid mobile number"),
+        "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
+        "mobileNumberHint": MessageLookupByLibrary.simpleMessage("000 0000"),
         "resendIn": m0,
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?")

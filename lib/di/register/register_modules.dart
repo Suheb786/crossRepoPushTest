@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/stepone/addnumber/add_number_model.dart';
 import 'package:neo_bank/feature/register/stepone/countryselection/country_selection_model.dart';
@@ -25,7 +25,7 @@ final countrySelectionViewModelProvider =
 
 final addNumberViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddNumberViewModel>(
-  (ref) => AddNumberViewModel(),
+          (ref) => AddNumberViewModel(ref.read(registerNumberUseCaseProvider)),
 );
 
 final validateOtpViewModelProvider =

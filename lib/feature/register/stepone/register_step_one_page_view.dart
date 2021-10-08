@@ -33,6 +33,7 @@ class RegisterStepOnePageView
             enableInfiniteScroll: false,
             viewportFraction: 0.8,
             enlargeCenterPage: true,
+            scrollPhysics: NeverScrollableScrollPhysics(),
             onPageChanged: (index, reason) {
               model.currentPage = index;
             },

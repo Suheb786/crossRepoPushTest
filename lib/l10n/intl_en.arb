@@ -4,6 +4,9 @@
   "selectCountryHeader": "Hello! Which country\nare you from?",
   "addMobileHeader": "What’s your\nmobile number?",
   "enterOtpHeader": "Enter 6-digit OTP sent to",
+  "mobileNumber": "Mobile Number",
+  "mobileNumberHint": "000 0000",
+  "enterValidMobileNumber": "Please enter valid mobile number",
   "changeMyNumber": "Change My Number",
   "resendIn": "Resend in {resendTime}",
   "@resendIn": {
