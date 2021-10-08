@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -148,6 +147,16 @@ class S {
       name: 'resendIn',
       desc: 'resendTime',
       args: [resendTime],
+    );
+  }
+
+  /// `Please enter valid otp`
+  String get enterValidOtp {
+    return Intl.message(
+      'Please enter valid otp',
+      name: 'enterValidOtp',
+      desc: '',
+      args: [],
     );
   }
 }

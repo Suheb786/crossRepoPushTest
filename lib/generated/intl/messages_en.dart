@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter valid mobile number"),
+        "enterValidOtp":
+            MessageLookupByLibrary.simpleMessage("Please enter valid otp"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("000 0000"),
         "resendIn": m0,

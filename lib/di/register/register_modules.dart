@@ -25,10 +25,11 @@ final countrySelectionViewModelProvider =
 
 final addNumberViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddNumberViewModel>(
-          (ref) => AddNumberViewModel(ref.read(registerNumberUseCaseProvider)),
+  (ref) => AddNumberViewModel(ref.read(registerNumberUseCaseProvider)),
 );
 
+///[ValidateOtpViewModel] provider
 final validateOtpViewModelProvider =
     ChangeNotifierProvider.autoDispose<ValidateOtpViewModel>(
-  (ref) => ValidateOtpViewModel(),
+  (ref) => ValidateOtpViewModel(ref.read(verifyOtpUseCaseProvider)),
 );
