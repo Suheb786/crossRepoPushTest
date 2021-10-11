@@ -12,5 +12,6 @@
   "@resendIn": {
     "description": "resendTime",
     "type": "string"
-  }
+  },
+  "enterValidOtp": "Please enter valid otp"
 }

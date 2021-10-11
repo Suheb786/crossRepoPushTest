@@ -32,6 +32,8 @@ class ErrorParser {
         return localisedHelper.appName;
       case ErrorType.INVALID_MOBILE:
         return localisedHelper.enterValidMobileNumber;
+      case ErrorType.INVALID_OTP:
+        return localisedHelper.enterValidOtp;
       default:
         return "";
     }
