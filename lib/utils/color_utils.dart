@@ -25,4 +25,7 @@ class AppColor {
   static const very_light_gray1 = const Color(0xfff2f2f2);
   static const light_grayish_violet1 = const Color(0xffe5dced);
   static const dark_grayish_violet = const Color(0xff7c7394);
+
+  static const text_color = const Color(0xffF8F8F8);
+
 }

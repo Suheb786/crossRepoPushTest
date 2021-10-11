@@ -15,5 +15,15 @@
   },
   "enterValidOtp": "Please enter valid otp",
   "personalDetails": "PERSONAL DETAILS",
-  "tellUsAboutYourJob": "Next, tell us about\nyour job"
+  "tellUsAboutYourJob": "Next, tell us about\nyour job",
+  "tellUsAboutYourProfile":  "Tell us a bit about your\nprofile status",
+  "profileDetailsQ1": "Are you married?",
+  "profileDetailsQ2": "Are you a special need person?",
+  "profileDetailsQ3": "Are you or any first degree relatives a PEP?",
+  "spouseName": "SPOUSE NAME",
+  "natureOfSpecialNeed": "NATURE OF SPECIAL NEEDS",
+  "pleaseSelect": "Please select",
+  "relationShipWithPep": "RELATIONSHIP WITH PEP",
+  "personName": "PERSON’S NAME",
+  "personRole": "PERSON’S ROLE"
 }

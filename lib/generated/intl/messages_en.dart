@@ -38,12 +38,28 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter valid otp"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("000 0000"),
+        "natureOfSpecialNeed":
+            MessageLookupByLibrary.simpleMessage("NATURE OF SPECIAL NEEDS"),
+        "personName": MessageLookupByLibrary.simpleMessage("PERSON’S NAME"),
+        "personRole": MessageLookupByLibrary.simpleMessage("PERSON’S ROLE"),
         "personalDetails":
             MessageLookupByLibrary.simpleMessage("PERSONAL DETAILS"),
+        "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
+        "profileDetailsQ1":
+            MessageLookupByLibrary.simpleMessage("Are you married?"),
+        "profileDetailsQ2": MessageLookupByLibrary.simpleMessage(
+            "Are you a special need person?"),
+        "profileDetailsQ3": MessageLookupByLibrary.simpleMessage(
+            "Are you or any first degree relatives a PEP?"),
+        "relationShipWithPep":
+            MessageLookupByLibrary.simpleMessage("RELATIONSHIP WITH PEP"),
         "resendIn": m0,
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
+        "spouseName": MessageLookupByLibrary.simpleMessage("SPOUSE NAME"),
         "tellUsAboutYourJob": MessageLookupByLibrary.simpleMessage(
-            "Next, tell us about\nyour job")
+            "Next, tell us about\nyour job"),
+        "tellUsAboutYourProfile": MessageLookupByLibrary.simpleMessage(
+            "Tell us a bit about your\nprofile status")
       };
 }

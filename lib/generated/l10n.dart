@@ -179,6 +179,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Tell us a bit about your\nprofile status`
+  String get tellUsAboutYourProfile {
+    return Intl.message(
+      'Tell us a bit about your\nprofile status',
+      name: 'tellUsAboutYourProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you married?`
+  String get profileDetailsQ1 {
+    return Intl.message(
+      'Are you married?',
+      name: 'profileDetailsQ1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you a special need person?`
+  String get profileDetailsQ2 {
+    return Intl.message(
+      'Are you a special need person?',
+      name: 'profileDetailsQ2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you or any first degree relatives a PEP?`
+  String get profileDetailsQ3 {
+    return Intl.message(
+      'Are you or any first degree relatives a PEP?',
+      name: 'profileDetailsQ3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SPOUSE NAME`
+  String get spouseName {
+    return Intl.message(
+      'SPOUSE NAME',
+      name: 'spouseName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NATURE OF SPECIAL NEEDS`
+  String get natureOfSpecialNeed {
+    return Intl.message(
+      'NATURE OF SPECIAL NEEDS',
+      name: 'natureOfSpecialNeed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select`
+  String get pleaseSelect {
+    return Intl.message(
+      'Please select',
+      name: 'pleaseSelect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RELATIONSHIP WITH PEP`
+  String get relationShipWithPep {
+    return Intl.message(
+      'RELATIONSHIP WITH PEP',
+      name: 'relationShipWithPep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PERSON’S NAME`
+  String get personName {
+    return Intl.message(
+      'PERSON’S NAME',
+      name: 'personName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PERSON’S ROLE`
+  String get personRole {
+    return Intl.message(
+      'PERSON’S ROLE',
+      name: 'personRole',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_three/employment_status/employment_status_page.dart';
+import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
 
 class RegisterStepThreePageView
@@ -12,7 +13,7 @@ class RegisterStepThreePageView
 
   List<Widget> pages = [
     ///TODO: Add pages here
-    EmploymentStatusPage(),
+    ProfileDetailsPage(),
     EmploymentStatusPage(),
   ];
 

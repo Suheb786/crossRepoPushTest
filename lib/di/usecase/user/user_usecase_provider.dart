@@ -2,6 +2,7 @@ import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/user/fetch_countries_usecase.dart';
 import 'package:domain/usecase/user/register_number_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
+import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final fetchCountriesUseCaseProvider =
@@ -19,4 +20,9 @@ final registerNumberUseCaseProvider =
 ///[VerifyOtpUseCase] provider
 final verifyOtpUseCaseProvider = Provider.autoDispose<VerifyOtpUseCase>(
   (ref) => VerifyOtpUseCase(),
+);
+
+///[ProfileDetailsUseCase] provider
+final profileDetailsUseCaseProvider = Provider.autoDispose<ProfileDetailsUseCase>(
+      (ref) => ProfileDetailsUseCase(),
 );
