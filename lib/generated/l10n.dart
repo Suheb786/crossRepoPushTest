@@ -159,6 +159,26 @@ class S {
       args: [],
     );
   }
+
+  /// `PERSONAL DETAILS`
+  String get personalDetails {
+    return Intl.message(
+      'PERSONAL DETAILS',
+      name: 'personalDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next, tell us about\nyour job`
+  String get tellUsAboutYourJob {
+    return Intl.message(
+      'Next, tell us about\nyour job',
+      name: 'tellUsAboutYourJob',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

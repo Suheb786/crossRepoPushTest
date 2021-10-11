@@ -13,5 +13,7 @@
     "description": "resendTime",
     "type": "string"
   },
-  "enterValidOtp": "Please enter valid otp"
+  "enterValidOtp": "Please enter valid otp",
+  "personalDetails": "PERSONAL DETAILS",
+  "tellUsAboutYourJob": "Next, tell us about\nyour job"
 }

@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
+import 'package:neo_bank/feature/register/step_three/register_step_three_page.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
@@ -12,7 +13,7 @@ class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
 
   List pages = [
     RegisterStepOnePage(),
-    RegisterStepOnePage(),
+    RegisterStepThreePage(),
     RegisterStepOnePage(),
     RegisterStepOnePage()
   ];
