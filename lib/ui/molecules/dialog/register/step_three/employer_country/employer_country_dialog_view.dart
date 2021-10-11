@@ -30,86 +30,82 @@ class EmployerCountryDialogView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWidget<EmployerCountryDialogViewModel>(
         builder: (context, model, child) {
-          return ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Dialog(
-                insetPadding:
-                    EdgeInsets.symmetric(horizontal: 24, vertical: 50),
-                child: AppStreamBuilder<int>(
-                  stream: model!.currentIndexStream,
-                  initialData: 0,
-                  dataBuilder: (context, currentIndex) {
-                    return AppStreamBuilder<Resource<List<Country>>>(
-                      stream: model.getEmployerCountryStream,
-                      initialData: Resource.none(),
-                      dataBuilder: (context, data) {
-                        return Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 32.0),
-                              child: Center(
-                                child: Text(
-                                  S.of(context).purposeOfOpeningAccount,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600),
-                                ),
+          return Dialog(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0)),
+              insetPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 50),
+              child: AppStreamBuilder<int>(
+                stream: model!.currentIndexStream,
+                initialData: 0,
+                dataBuilder: (context, currentIndex) {
+                  return AppStreamBuilder<Resource<List<Country>>>(
+                    stream: model.getEmployerCountryStream,
+                    initialData: Resource.none(),
+                    dataBuilder: (context, data) {
+                      return Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 32.0),
+                            child: Center(
+                              child: Text(
+                                S.of(context).purposeOfOpeningAccount,
+                                style: TextStyle(
+                                    fontSize: 16, fontWeight: FontWeight.w600),
                               ),
                             ),
-                            Expanded(
-                                child: ListWheelScrollView.useDelegate(
-                                    itemExtent: 72,
-                                    onSelectedItemChanged: (int index) {
-                                      model.selectCountry(index);
-                                    },
-                                    physics: FixedExtentScrollPhysics(),
-                                    perspective: 0.0000000001,
-                                    childDelegate:
-                                        ListWheelChildBuilderDelegate(
-                                            childCount: data!.data!.length,
-                                            builder: (BuildContext context,
-                                                int index) {
-                                              return EmployerCountryListWidget(
-                                                item: data.data![index],
-                                              );
-                                            }))),
-                            InkWell(
-                              onTap: () {
-                                onSelected!
-                                    .call(model.selectedCountry!.countryName!);
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(16),
-                                height: 57,
-                                width: 57,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColor.dark_violet_4),
-                                child: AppSvg.asset(AssetUtils.tick),
+                          ),
+                          Expanded(
+                              child: ListWheelScrollView.useDelegate(
+                                  itemExtent: 72,
+                                  onSelectedItemChanged: (int index) {
+                                    model.selectCountry(index);
+                                  },
+                                  physics: FixedExtentScrollPhysics(),
+                                  perspective: 0.0000000001,
+                                  childDelegate: ListWheelChildBuilderDelegate(
+                                      childCount: data!.data!.length,
+                                      builder:
+                                          (BuildContext context, int index) {
+                                        return EmployerCountryListWidget(
+                                          item: data.data![index],
+                                        );
+                                      }))),
+                          InkWell(
+                            onTap: () {
+                              onSelected!
+                                  .call(model.selectedCountry!.countryName!);
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(16),
+                              height: 57,
+                              width: 57,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: AppColor.dark_violet_4),
+                              child: AppSvg.asset(AssetUtils.tick),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 8.0, bottom: 16),
+                            child: Center(
+                              child: Text(
+                                S.of(context).swipeDownToCancel,
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColor.dark_gray_1),
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 8.0, bottom: 16),
-                              child: Center(
-                                child: Text(
-                                  S.of(context).swipeDownToCancel,
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColor.dark_gray_1),
-                                ),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  },
-                )),
-          );
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ));
         },
         onModelReady: (model) {
           model.getEmployerCountryList(context);
