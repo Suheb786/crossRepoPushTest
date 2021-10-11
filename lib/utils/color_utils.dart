@@ -25,4 +25,12 @@ class AppColor {
   static const very_light_gray1 = const Color(0xfff2f2f2);
   static const light_grayish_violet1 = const Color(0xffe5dced);
   static const dark_grayish_violet = const Color(0xff7c7394);
+  static const very_light_gray_white = const Color(0xfff8f8f8);
+  static const very_pale_blue_white = const Color(0xfff3f2ff);
+  static const dark_violet_1 = const Color(0xff4b25af);
+  static const dark_violet_2 = const Color(0xff481EAF);
+  static const dark_violet_3 = const Color(0xff4a22b0);
+  static const dark_gray_1 = const Color(0xff8b8b8b);
+  static const dark_violet_4 = const Color(0xff412098);
+  static const very_dark_violet = const Color(0xff272331);
 }

@@ -1,5 +1,7 @@
 import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
+import 'package:data/source/register/register_datasource.dart';
+import 'package:data/source/register/remote/register_remote_ds_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -34,4 +36,8 @@ final dioProvider = Provider<Dio>(
 final apiServiceProvider = Provider<ApiService>(
   (ref) =>
       ApiService(ref.read(dioProvider), baseUrl: NetworkProperties.BASE_URL),
+);
+
+final registerRemoteDS = Provider<RegisterRemoteDataSource>(
+  (ref) => RegisterRemoteDataSourceImpl(),
 );

@@ -13,7 +13,9 @@ class RegisterStepThreePageView
   List<Widget> pages = [
     ///TODO: Add pages here
     EmploymentStatusPage(),
-    EmploymentStatusPage(),
+    //EmploymentStatusPage(),
+    //EmploymentStatusPage(),
+    //EmploymentStatusPage(),
   ];
 
   @override

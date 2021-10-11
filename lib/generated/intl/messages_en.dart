@@ -23,27 +23,58 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
         "accountRegistration":
             MessageLookupByLibrary.simpleMessage("ACCOUNT REGISTRATION"),
         "addMobileHeader":
             MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
+        "additionIncomeSource":
+            MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
+        "additionalSourceOfIncome":
+            MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
+        "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
         "appName": MessageLookupByLibrary.simpleMessage("Neo Bank"),
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
+        "employerCity": MessageLookupByLibrary.simpleMessage("EMPLOYER CITY"),
+        "employerContact":
+            MessageLookupByLibrary.simpleMessage("EMPLOYER CONTACT"),
+        "employerCountry":
+            MessageLookupByLibrary.simpleMessage("EMPLOYER COUNTRY"),
+        "employerName": MessageLookupByLibrary.simpleMessage("EMPLOYER NAME"),
+        "employmentStatus":
+            MessageLookupByLibrary.simpleMessage("EMPLOYMENT STATUS"),
+        "employmentStatusSmall":
+            MessageLookupByLibrary.simpleMessage("Employment Status"),
         "enterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter valid mobile number"),
         "enterValidOtp":
             MessageLookupByLibrary.simpleMessage("Please enter valid otp"),
+        "mainSourceOfIncome":
+            MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("000 0000"),
+        "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
+        "occupation": MessageLookupByLibrary.simpleMessage("OCCUPATION"),
+        "occupationSmall": MessageLookupByLibrary.simpleMessage("Occupation"),
         "personalDetails":
             MessageLookupByLibrary.simpleMessage("PERSONAL DETAILS"),
+        "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
+        "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
+        "purposeOfAccountOpening":
+            MessageLookupByLibrary.simpleMessage("PURPOSE OF ACCOUNT OPENING"),
+        "purposeOfOpeningAccount":
+            MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
         "resendIn": m0,
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
+        "swipeDownToCancel":
+            MessageLookupByLibrary.simpleMessage("Swipe down to cancel"),
         "tellUsAboutYourJob": MessageLookupByLibrary.simpleMessage(
-            "Next, tell us about\nyour job")
+            "Next, tell us about\nyour job"),
+        "totalAdditionalIncome":
+            MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME")
       };
 }

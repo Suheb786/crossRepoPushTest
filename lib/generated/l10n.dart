@@ -179,6 +179,206 @@ class S {
       args: [],
     );
   }
+
+  /// `EMPLOYMENT STATUS`
+  String get employmentStatus {
+    return Intl.message(
+      'EMPLOYMENT STATUS',
+      name: 'employmentStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OCCUPATION`
+  String get occupation {
+    return Intl.message(
+      'OCCUPATION',
+      name: 'occupation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select`
+  String get pleaseSelect {
+    return Intl.message(
+      'Please select',
+      name: 'pleaseSelect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MAIN SOURCE OF INCOME`
+  String get mainSourceOfIncome {
+    return Intl.message(
+      'MAIN SOURCE OF INCOME',
+      name: 'mainSourceOfIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter`
+  String get pleaseEnter {
+    return Intl.message(
+      'Please enter',
+      name: 'pleaseEnter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MONTHLY INCOME`
+  String get monthlyIncome {
+    return Intl.message(
+      'MONTHLY INCOME',
+      name: 'monthlyIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ANNUAL INCOME`
+  String get annualIncome {
+    return Intl.message(
+      'ANNUAL INCOME',
+      name: 'annualIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PURPOSE OF ACCOUNT OPENING`
+  String get purposeOfAccountOpening {
+    return Intl.message(
+      'PURPOSE OF ACCOUNT OPENING',
+      name: 'purposeOfAccountOpening',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `JOD`
+  String get JOD {
+    return Intl.message(
+      'JOD',
+      name: 'JOD',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EMPLOYER NAME`
+  String get employerName {
+    return Intl.message(
+      'EMPLOYER NAME',
+      name: 'employerName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EMPLOYER COUNTRY`
+  String get employerCountry {
+    return Intl.message(
+      'EMPLOYER COUNTRY',
+      name: 'employerCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EMPLOYER CITY`
+  String get employerCity {
+    return Intl.message(
+      'EMPLOYER CITY',
+      name: 'employerCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EMPLOYER CONTACT`
+  String get employerContact {
+    return Intl.message(
+      'EMPLOYER CONTACT',
+      name: 'employerContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ADDITIONAL SOURCE OF INCOME`
+  String get additionalSourceOfIncome {
+    return Intl.message(
+      'ADDITIONAL SOURCE OF INCOME',
+      name: 'additionalSourceOfIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TOTAL ADDITIONAL INCOME`
+  String get totalAdditionalIncome {
+    return Intl.message(
+      'TOTAL ADDITIONAL INCOME',
+      name: 'totalAdditionalIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employment Status`
+  String get employmentStatusSmall {
+    return Intl.message(
+      'Employment Status',
+      name: 'employmentStatusSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe down to cancel`
+  String get swipeDownToCancel {
+    return Intl.message(
+      'Swipe down to cancel',
+      name: 'swipeDownToCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Occupation`
+  String get occupationSmall {
+    return Intl.message(
+      'Occupation',
+      name: 'occupationSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purpose of Account Opening`
+  String get purposeOfOpeningAccount {
+    return Intl.message(
+      'Purpose of Account Opening',
+      name: 'purposeOfOpeningAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Source of Income`
+  String get additionIncomeSource {
+    return Intl.message(
+      'Additional Source of Income',
+      name: 'additionIncomeSource',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

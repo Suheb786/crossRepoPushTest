@@ -15,5 +15,26 @@
   },
   "enterValidOtp": "Please enter valid otp",
   "personalDetails": "PERSONAL DETAILS",
-  "tellUsAboutYourJob": "Next, tell us about\nyour job"
+  "tellUsAboutYourJob": "Next, tell us about\nyour job",
+  "employmentStatus": "EMPLOYMENT STATUS",
+  "occupation": "OCCUPATION",
+  "pleaseSelect": "Please select",
+  "mainSourceOfIncome": "MAIN SOURCE OF INCOME",
+  "pleaseEnter": "Please enter",
+  "monthlyIncome": "MONTHLY INCOME",
+  "annualIncome": "ANNUAL INCOME",
+  "purposeOfAccountOpening": "PURPOSE OF ACCOUNT OPENING",
+  "JOD": "JOD",
+  "employerName": "EMPLOYER NAME",
+  "employerCountry": "EMPLOYER COUNTRY",
+  "employerCity": "EMPLOYER CITY",
+  "employerContact": "EMPLOYER CONTACT",
+  "additionalSourceOfIncome": "ADDITIONAL SOURCE OF INCOME",
+  "totalAdditionalIncome": "TOTAL ADDITIONAL INCOME",
+  "employmentStatusSmall": "Employment Status",
+  "swipeDownToCancel": "Swipe down to cancel",
+  "occupationSmall":"Occupation",
+  "purposeOfOpeningAccount": "Purpose of Account Opening",
+  "additionIncomeSource": "Additional Source of Income"
+
 }
