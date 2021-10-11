@@ -30,16 +30,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "appName": MessageLookupByLibrary.simpleMessage("Neo Bank"),
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
+        "emailAddress": MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
         "enterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter valid mobile number"),
         "enterValidOtp":
             MessageLookupByLibrary.simpleMessage("Please enter valid otp"),
+        "iHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("I have an account"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("000 0000"),
+        "orContinueWith":
+            MessageLookupByLibrary.simpleMessage("or continue with"),
+        "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
         "resendIn": m0,
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
-            "Hello! Which country\nare you from?")
+            "Hello! Which country\nare you from?"),
+        "welcomeToNeuBank":
+            MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank.")
       };
 }
