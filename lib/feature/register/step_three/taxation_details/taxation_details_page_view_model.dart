@@ -56,7 +56,8 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
   void validateTaxationDetails() {
     if (_declarationSelected.stream.value) {
       _taxationDetailsRequest.add(TaxationDetailsUseCaseParams());
+    } else {
+      showErrorState();
     }
-    showErrorState();
   }
 }

@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change My Number"),
         "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage(
             "Do you have TIN No available?"),
+        "emailAddress": MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
         "employerCity": MessageLookupByLibrary.simpleMessage("EMPLOYER CITY"),
         "employerContact":
             MessageLookupByLibrary.simpleMessage("EMPLOYER CONTACT"),
@@ -56,13 +57,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("EMPLOYMENT STATUS"),
         "employmentStatusSmall":
             MessageLookupByLibrary.simpleMessage("Employment Status"),
+        "emptyEmailMessage": MessageLookupByLibrary.simpleMessage(
+            "Please enter your email address"),
         "enterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
+        "enterValidEmail": MessageLookupByLibrary.simpleMessage(
+            "please enter valid email address"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter valid mobile number"),
         "enterValidOtp":
             MessageLookupByLibrary.simpleMessage("Please enter valid otp"),
         "explainReason": MessageLookupByLibrary.simpleMessage("EXPLAIN REASON"),
+        "iHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("I have an account"),
         "invalidAdditionSourceIncome": MessageLookupByLibrary.simpleMessage(
             "Select Additional Source Income"),
         "invalidAnnualIncome":
@@ -95,6 +102,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("NO"),
         "occupation": MessageLookupByLibrary.simpleMessage("OCCUPATION"),
         "occupationSmall": MessageLookupByLibrary.simpleMessage("Occupation"),
+        "orContinueWith":
+            MessageLookupByLibrary.simpleMessage("or continue with"),
         "personalDetails":
             MessageLookupByLibrary.simpleMessage("PERSONAL DETAILS"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
@@ -124,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "totalAdditionalIncome":
             MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),
+        "welcomeToNeuBank":
+            MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank."),
         "wereBornInUS":
             MessageLookupByLibrary.simpleMessage("Were you born in the US?"),
         "yes": MessageLookupByLibrary.simpleMessage("YES")

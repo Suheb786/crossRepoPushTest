@@ -659,6 +659,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Welcome to\nNeuBank.`
+  String get welcomeToNeuBank {
+    return Intl.message(
+      'Welcome to\nNeuBank.',
+      name: 'welcomeToNeuBank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EMAIL ADDRESS`
+  String get emailAddress {
+    return Intl.message(
+      'EMAIL ADDRESS',
+      name: 'emailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or continue with`
+  String get orContinueWith {
+    return Intl.message(
+      'or continue with',
+      name: 'orContinueWith',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I have an account`
+  String get iHaveAnAccount {
+    return Intl.message(
+      'I have an account',
+      name: 'iHaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your email address`
+  String get emptyEmailMessage {
+    return Intl.message(
+      'Please enter your email address',
+      name: 'emptyEmailMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please enter valid email address`
+  String get enterValidEmail {
+    return Intl.message(
+      'please enter valid email address',
+      name: 'enterValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

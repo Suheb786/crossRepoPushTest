@@ -63,12 +63,9 @@
   "invalidEmployerCity": "Enter employer city",
   "invalidEmployerContact": "Enter employer Contact",
   "invalidAdditionSourceIncome": "Select Additional Source Income",
-  "invalidTotalAdditionalIncome": "Enter total additional income"
-
-  "enterValidOtp": "Please enter valid otp",
+  "invalidTotalAdditionalIncome": "Enter total additional income",
   "welcomeToNeuBank": "Welcome to\nNeuBank.",
   "emailAddress": "EMAIL ADDRESS",
-  "pleaseEnter": "Please enter",
   "orContinueWith": "or continue with",
   "iHaveAnAccount": "I have an account",
   "emptyEmailMessage": "Please enter your email address",
