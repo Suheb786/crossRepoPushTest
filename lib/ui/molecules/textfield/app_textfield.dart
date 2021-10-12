@@ -89,7 +89,7 @@ class AppTextField extends StatefulWidget {
 class AppTextFieldState extends State<AppTextField> {
   late bool _secureText;
   FocusNode _focusNode = FocusNode();
-  bool _isValid = true;
+  bool _isValid = false;
 
   @override
   void initState() {
@@ -137,6 +137,7 @@ class AppTextFieldState extends State<AppTextField> {
                                 ? AppColor.vivid_orange
                                 : AppColor.soft_violet)),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     RichText(
                       text: TextSpan(children: [

@@ -7,6 +7,13 @@ class AssetUtils {
 
   static const String splashCircle = svg + "splash_logo.svg";
   static const String check = svg + "check.svg";
+  static const String info = svg + "info.svg";
+  static const String sunny = svg + "sunny.svg";
+  static const String scan = svg + "scan.svg";
+  static const String correct = svg + "correct.svg";
+  static const String ellipse = svg + "ellipse.svg";
+  static const String dropDown = svg + "dropdown.svg";
+  static const String checkBox = svg + "checkbox.svg";
 
   /// DRAWLABLES
   static const String transferSuccessBg = drawable + "transfer_success.webp";

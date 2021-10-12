@@ -159,6 +159,326 @@ class S {
       args: [],
     );
   }
+
+  /// `Next, let's create your\nlogin password`
+  String get createPasswordHeader {
+    return Intl.message(
+      'Next, let\'s create your\nlogin password',
+      name: 'createPasswordHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CREATE PASSWORD`
+  String get createPassword {
+    return Intl.message(
+      'CREATE PASSWORD',
+      name: 'createPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter`
+  String get pleaseEnter {
+    return Intl.message(
+      'Please enter',
+      name: 'pleaseEnter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CONFIRM PASSWORD`
+  String get confirmPassword {
+    return Intl.message(
+      'CONFIRM PASSWORD',
+      name: 'confirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PERSONAL DETAILS`
+  String get personalDetails {
+    return Intl.message(
+      'PERSONAL DETAILS',
+      name: 'personalDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please get your ID ready\nto be scanned`
+  String get idVerificationInfoHeader {
+    return Intl.message(
+      'Please get your ID ready\nto be scanned',
+      name: 'idVerificationInfoHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make sure you’re in bright place and surrounding`
+  String get idVerificationPlaceInfo {
+    return Intl.message(
+      'Make sure you’re in bright place and surrounding',
+      name: 'idVerificationPlaceInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place your ID inside the frame`
+  String get idScanInfo {
+    return Intl.message(
+      'Place your ID inside the frame',
+      name: 'idScanInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Once fit, your ID will be scanned automatically`
+  String get onIdFit {
+    return Intl.message(
+      'Once fit, your ID will be scanned automatically',
+      name: 'onIdFit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I agree for the bank to retrieve my AHWAL data necessarily.`
+  String get termsAndConditions {
+    return Intl.message(
+      'I agree for the bank to retrieve my AHWAL data necessarily.',
+      name: 'termsAndConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm your\ndetails below`
+  String get confirmDetailsHeader {
+    return Intl.message(
+      'Please confirm your\ndetails below',
+      name: 'confirmDetailsHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NAME AS PER ID`
+  String get name {
+    return Intl.message(
+      'NAME AS PER ID',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Name`
+  String get nameHint {
+    return Intl.message(
+      'Please Enter Name',
+      name: 'nameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID NUMBER`
+  String get idNumber {
+    return Intl.message(
+      'ID NUMBER',
+      name: 'idNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter ID Number`
+  String get idHint {
+    return Intl.message(
+      'Please Enter ID Number',
+      name: 'idHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DATE OF BIRTH`
+  String get dob {
+    return Intl.message(
+      'DATE OF BIRTH',
+      name: 'dob',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Date Of Birth`
+  String get dobHint {
+    return Intl.message(
+      'Please Enter Date Of Birth',
+      name: 'dobHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NATIONALITY`
+  String get nationality {
+    return Intl.message(
+      'NATIONALITY',
+      name: 'nationality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Nationality`
+  String get nationalityHint {
+    return Intl.message(
+      'Please Enter Nationality',
+      name: 'nationalityHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXPIRY DATE`
+  String get expiryDate {
+    return Intl.message(
+      'EXPIRY DATE',
+      name: 'expiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Expiry Date`
+  String get expiryDateHint {
+    return Intl.message(
+      'Please Enter Expiry Date',
+      name: 'expiryDateHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GENDER`
+  String get gender {
+    return Intl.message(
+      'GENDER',
+      name: 'gender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Gender`
+  String get genderHint {
+    return Intl.message(
+      'Please Enter Gender',
+      name: 'genderHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Where do you\ncurrently live?`
+  String get enterAddressHeader {
+    return Intl.message(
+      'Where do you\ncurrently live?',
+      name: 'enterAddressHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RESIDENT COUNTRY`
+  String get residentCountry {
+    return Intl.message(
+      'RESIDENT COUNTRY',
+      name: 'residentCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Resident Country`
+  String get residentCountryHint {
+    return Intl.message(
+      'Please Enter Resident Country',
+      name: 'residentCountryHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `HOME ADDRESS`
+  String get homeAddress {
+    return Intl.message(
+      'HOME ADDRESS',
+      name: 'homeAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Home Address`
+  String get homeAddressHint {
+    return Intl.message(
+      'Please Enter Home Address',
+      name: 'homeAddressHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `STREET ADDRESS`
+  String get streetAddress {
+    return Intl.message(
+      'STREET ADDRESS',
+      name: 'streetAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Street Address`
+  String get streetAddressHint {
+    return Intl.message(
+      'Please Enter Street Address',
+      name: 'streetAddressHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BUILDING NAME/NO`
+  String get buildingNameOrNo {
+    return Intl.message(
+      'BUILDING NAME/NO',
+      name: 'buildingNameOrNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Building Name/Number.`
+  String get buildingNameOrNoHint {
+    return Intl.message(
+      'Please Enter Building Name/Number.',
+      name: 'buildingNameOrNoHint',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
