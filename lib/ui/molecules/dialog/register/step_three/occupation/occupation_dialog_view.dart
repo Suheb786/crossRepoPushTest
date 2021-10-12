@@ -34,7 +34,7 @@ class OccupationDialogView extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0)),
               insetPadding:
-                  EdgeInsets.symmetric(horizontal: 24, vertical: 50),
+              EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,

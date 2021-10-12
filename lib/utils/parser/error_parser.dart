@@ -34,6 +34,30 @@ class ErrorParser {
         return localisedHelper.enterValidMobileNumber;
       case ErrorType.INVALID_OTP:
         return localisedHelper.enterValidOtp;
+      case ErrorType.INVALID_EMPLOYMENT_STATUS:
+        return localisedHelper.invalidEmploymentStatus;
+      case ErrorType.INVALID_OCCUPATION:
+        return localisedHelper.invalidOccupation;
+      case ErrorType.INVALID_SOURCE_INCOME:
+        return localisedHelper.invalidMainSourceIncome;
+      case ErrorType.INVALID_MONTHLY_INCOME:
+        return localisedHelper.invalidMonthlyIncome;
+      case ErrorType.INVALID_ANNUAL_INCOME:
+        return localisedHelper.invalidAnnualIncome;
+      case ErrorType.INVALID_PURPOSE_OF_ACCOUNT_OPENING:
+        return localisedHelper.invalidPurposeOfOpeningAccount;
+      case ErrorType.INVALID_EMPLOYER_NAME:
+        return localisedHelper.invalidEmployerName;
+      case ErrorType.INVALID_EMPLOYER_COUNTRY:
+        return localisedHelper.invalidEmployerCountry;
+      case ErrorType.INVALID_EMPLOYER_CITY:
+        return localisedHelper.employerCity;
+      case ErrorType.INVALID_EMPLOYER_CONTACT:
+        return localisedHelper.invalidEmployerContact;
+      case ErrorType.INVALID_ADDITIONAL_SOURCE_INCOME:
+        return localisedHelper.invalidAdditionSourceIncome;
+      case ErrorType.INVALID_TOTAL_ADDITIONAL_INCOME:
+        return localisedHelper.invalidTotalAdditionalIncome;
       default:
         return "";
     }

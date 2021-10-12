@@ -33,4 +33,5 @@ class AppColor {
   static const dark_gray_1 = const Color(0xff8b8b8b);
   static const dark_violet_4 = const Color(0xff412098);
   static const very_dark_violet = const Color(0xff272331);
+  static const mostly_desaturated_dark_violet = const Color(0xff8270af);
 }

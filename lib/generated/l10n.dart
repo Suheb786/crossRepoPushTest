@@ -379,6 +379,286 @@ class S {
       args: [],
     );
   }
+
+  /// `By law, you are needed to declare your taxation details`
+  String get taxationDetailsDescription {
+    return Intl.message(
+      'By law, you are needed to declare your taxation details',
+      name: 'taxationDetailsDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `YES`
+  String get yes {
+    return Intl.message(
+      'YES',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NO`
+  String get no {
+    return Intl.message(
+      'NO',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you U.S. citizen?`
+  String get areYouUSCitizen {
+    return Intl.message(
+      'Are you U.S. citizen?',
+      name: 'areYouUSCitizen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you a US Tax Resident?`
+  String get areYouUSTaxResident {
+    return Intl.message(
+      'Are you a US Tax Resident?',
+      name: 'areYouUSTaxResident',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(e.g. Green Card Holder)`
+  String get areYouUSTaxResidentHint {
+    return Intl.message(
+      '(e.g. Green Card Holder)',
+      name: 'areYouUSTaxResidentHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Were you born in the US?`
+  String get wereBornInUS {
+    return Intl.message(
+      'Were you born in the US?',
+      name: 'wereBornInUS',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you Tax Resident in any other country than US or Jordan?`
+  String get anyOtherCountryTaxResident {
+    return Intl.message(
+      'Are you Tax Resident in any other country than US or Jordan?',
+      name: 'anyOtherCountryTaxResident',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I confirm that my tax residency is accurate and agree to the Terms and Conditions of the bank.`
+  String get taxationDeclaration {
+    return Intl.message(
+      'I confirm that my tax residency is accurate and agree to the Terms and Conditions of the bank.',
+      name: 'taxationDeclaration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete your tax report information below`
+  String get taxReportInfoDesc {
+    return Intl.message(
+      'Complete your tax report information below',
+      name: 'taxReportInfoDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TAX COUNTRY`
+  String get taxCountry {
+    return Intl.message(
+      'TAX COUNTRY',
+      name: 'taxCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you have TIN No available?`
+  String get doYouHaveTinAvailable {
+    return Intl.message(
+      'Do you have TIN No available?',
+      name: 'doYouHaveTinAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TIN NO.`
+  String get tinNo {
+    return Intl.message(
+      'TIN NO.',
+      name: 'tinNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REASON OF UNAVAILABILITY`
+  String get reasonOfUnavailability {
+    return Intl.message(
+      'REASON OF UNAVAILABILITY',
+      name: 'reasonOfUnavailability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXPLAIN REASON`
+  String get explainReason {
+    return Intl.message(
+      'EXPLAIN REASON',
+      name: 'explainReason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe to proceed`
+  String get swipeToProceed {
+    return Intl.message(
+      'Swipe to proceed',
+      name: 'swipeToProceed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Employment Status`
+  String get invalidEmploymentStatus {
+    return Intl.message(
+      'Select Employment Status',
+      name: 'invalidEmploymentStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Occupation`
+  String get invalidOccupation {
+    return Intl.message(
+      'Select Occupation',
+      name: 'invalidOccupation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter source of income.`
+  String get invalidMainSourceIncome {
+    return Intl.message(
+      'Enter source of income.',
+      name: 'invalidMainSourceIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter monthly income`
+  String get invalidMonthlyIncome {
+    return Intl.message(
+      'Enter monthly income',
+      name: 'invalidMonthlyIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Annual income`
+  String get invalidAnnualIncome {
+    return Intl.message(
+      'Enter Annual income',
+      name: 'invalidAnnualIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select purpose of account opening`
+  String get invalidPurposeOfOpeningAccount {
+    return Intl.message(
+      'Select purpose of account opening',
+      name: 'invalidPurposeOfOpeningAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter employer Name`
+  String get invalidEmployerName {
+    return Intl.message(
+      'Enter employer Name',
+      name: 'invalidEmployerName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select employer country `
+  String get invalidEmployerCountry {
+    return Intl.message(
+      'Select employer country ',
+      name: 'invalidEmployerCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter employer city`
+  String get invalidEmployerCity {
+    return Intl.message(
+      'Enter employer city',
+      name: 'invalidEmployerCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter employer Contact`
+  String get invalidEmployerContact {
+    return Intl.message(
+      'Enter employer Contact',
+      name: 'invalidEmployerContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Additional Source Income`
+  String get invalidAdditionSourceIncome {
+    return Intl.message(
+      'Select Additional Source Income',
+      name: 'invalidAdditionSourceIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter total additional income`
+  String get invalidTotalAdditionalIncome {
+    return Intl.message(
+      'Enter total additional income',
+      name: 'invalidTotalAdditionalIncome',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

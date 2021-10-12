@@ -14,7 +14,13 @@ class AppDialog {
         context: context,
         barrierLabel: '',
         barrierDismissible: isDismissible,
-        transitionDuration: Duration(milliseconds: 100),
+        transitionBuilder: (context, a1, a2, widget) {
+          return SlideTransition(
+            position: Tween(begin: Offset(0, 1), end: Offset(0, 0)).animate(a1),
+            child: widget,
+          );
+        },
+        transitionDuration: Duration(milliseconds: 300),
         barrierColor: AppColor.very_pale_blue_white.withOpacity(0.9),
         pageBuilder: (ctx, anim1, anim2) => builder(ctx));
   }

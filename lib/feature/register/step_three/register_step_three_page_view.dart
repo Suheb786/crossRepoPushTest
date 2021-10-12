@@ -5,9 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_three/employment_status/employment_status_page.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
-import 'package:neo_bank/feature/register/stepone/addnumber/add_number_page.dart';
-import 'package:neo_bank/feature/register/stepone/countryselection/country_selection_page.dart';
-import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_page.dart';
+import 'package:neo_bank/feature/register/step_three/tax_report_information/tax_report_information_page.dart';
+import 'package:neo_bank/feature/register/step_three/taxation_details/taxation_details_page.dart';
 
 class RegisterStepThreePageView
     extends BasePageViewWidget<RegisterStepThreeViewModel> {
@@ -16,9 +15,8 @@ class RegisterStepThreePageView
   List<Widget> pages = [
     ///TODO: Add pages here
     EmploymentStatusPage(),
-    //EmploymentStatusPage(),
-    //EmploymentStatusPage(),
-    //EmploymentStatusPage(),
+    TaxationDetailsPage(),
+    TaxReportInformationPage(),
   ];
 
   @override
