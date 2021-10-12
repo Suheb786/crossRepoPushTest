@@ -28,6 +28,10 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
   final TextEditingController personNameController = TextEditingController();
   final TextEditingController personRoleController = TextEditingController();
 
+  bool isMarried = false;
+  bool isPerson = false;
+  bool isRelative = false;
+
   BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
@@ -56,11 +60,15 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
 
   void validateTextFields() {
     _profileDetailsRequest.safeAdd(ProfileDetailsUseCaseParams(
-        spouseName: spouseNameController.text,
-        natureOfNeeds: natureController.text,
-        relationShipPEP: relationShipController.text,
-        personName: personNameController.text,
-        personRole: personRoleController.text));
+      isMarried: isMarried,
+      isPerson: isPerson,
+      isRelative: isRelative,
+      spouseName: spouseNameController.text,
+      natureOfNeeds: natureController.text,
+      relationShipPEP: relationShipController.text,
+      personName: personNameController.text,
+      personRole: personRoleController.text,
+    ));
   }
 
   void showErrorState() {
@@ -76,16 +84,4 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
     _errorDetectorSubject.close();
     super.dispose();
   }
-
-// void validateTextFields() {
-//   bool isValid = false;
-//   if (spouseNameController.text.isNotEmpty &&
-//       relationShipController.text.isNotEmpty &&
-//       natureController.text.isNotEmpty &&
-//       (personNameController.text.isNotEmpty &&
-//           personRoleController.text.isNotEmpty)) {
-//     isValid = true;
-//   }
-//   _errorDetectorSubject.add(isValid);
-// }
 }

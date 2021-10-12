@@ -34,6 +34,17 @@ class ErrorParser {
         return localisedHelper.enterValidMobileNumber;
       case ErrorType.INVALID_OTP:
         return localisedHelper.enterValidOtp;
+
+      case ErrorType.INVALID_NAME:
+        return localisedHelper.enterValidSpouseName;
+      case ErrorType.INVALID_NATURE:
+        return localisedHelper.enterValidNature;
+      case ErrorType.INVALID_RELATIONSHIP:
+        return localisedHelper.enterValidRelationshipWithPEP;
+      case ErrorType.INVALID_PERSON_NAME:
+        return localisedHelper.enterValidPersonsName;
+      case ErrorType.INVALID_PERSON_ROLE:
+        return localisedHelper.enterValidPersonsRole;
       default:
         return "";
     }

@@ -1,5 +1,6 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -59,38 +60,41 @@ class ProfileDetailsPageView
                       stream: model.profileDetailsStream,
                       initialData: Resource.none(),
                       onData: (data) {
-                         if (data.status == Status.SUCCESS) {
-                           model.spouseNameKey.currentState!.isValid = true;
-                        //   model.natureOfSpecialNeedKey.currentState!.isValid = true;
-                        //   model.relationShipWithPepKey.currentState!.isValid = true;
-                        //   model.personNameKey.currentState!.isValid = true;
-                        //   model.personRoleKey.currentState!.isValid = true;
-                        //
-                        } else if (data.status == Status.ERROR) {
-                           model.spouseNameKey.currentState!.isValid = false;
-                        //   model.natureOfSpecialNeedKey.currentState!.isValid = false;
-                        //   model.relationShipWithPepKey.currentState!.isValid = false;
-                        //   model.personNameKey.currentState!.isValid = false;
-                        //   model.personRoleKey.currentState!.isValid = false;
+                        if (data.status == Status.SUCCESS) {
+                          model.spouseNameKey.currentState!.isValid = true;
+                          model.natureOfSpecialNeedKey.currentState!.isValid = true;
+                          model.relationShipWithPepKey.currentState!.isValid = true;
+                          model.personNameKey.currentState!.isValid = true;
+                          model.personRoleKey.currentState!.isValid = true;
+
+                          ProviderScope.containerOf(context)
+                              .read(registerStepThreeViewModelProvider)
+                              .pageController
+                              .nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeInOut);
+
+                        }else if(data.status == Status.ERROR){
+                          if(data.appError!.type == ErrorType.INVALID_NAME){
+                            model.spouseNameKey.currentState!.isValid = false;
+                          }else if(data.appError!.type == ErrorType.INVALID_NATURE){
+                            model.natureOfSpecialNeedKey.currentState!.isValid = false;
+                          }else if(data.appError!.type == ErrorType.INVALID_RELATIONSHIP){
+                            model.relationShipWithPepKey.currentState!.isValid = false;
+                          }else if(data.appError!.type == ErrorType.INVALID_PERSON_NAME){
+                            model.personNameKey.currentState!.isValid = false;
+                          }else if(data.appError!.type == ErrorType.INVALID_PERSON_ROLE){
+                            model.personRoleKey.currentState!.isValid = false;
+                          }
                         }
                       },
                       dataBuilder: (context, data) {
                         return GestureDetector(
                           onHorizontalDragUpdate: (details) {
-                            if (details.primaryDelta!.isNegative) {
-                              // ProviderScope.containerOf(context)
-                              //     .read(registerStepThreeViewModelProvider)
-                              //     .pageController
-                              //     .nextPage(
-                              //     duration: Duration(milliseconds: 500),
-                              //     curve: Curves.easeInOut);
-                            } else {
-                              ProviderScope.containerOf(context)
-                                  .read(registerStepThreeViewModelProvider)
-                                  .pageController
-                                  .nextPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                           if (details.primaryDelta!.isNegative) {
+                             model.validateTextFields();
+                           } else {
+
                             }
                           },
                           child: Card(
@@ -117,15 +121,17 @@ class ProfileDetailsPageView
                                         title: S.of(context).profileDetailsQ1,
                                         providerBase: profileQ1ViewModelProvider,
                                         onToggle: (isActive) {
+                                          model.isMarried = isActive;
                                           return Visibility(
                                             visible: isActive,
                                             child: Padding(padding: EdgeInsets.only(top: 16.0),
                                               child: AppTextField(
-                                                labelText:S.of(context).spouseName,
+                                                labelText:S.of(context).spouseNameCaps,
                                                 hintText: "",
                                                 inputType: TextInputType.text,
                                                 controller: model.spouseNameController,
                                                 key: model.spouseNameKey,
+
                                                 textHintWidget: (hasFocus, isValid, value) {
                                                   return Visibility(
                                                     visible: !isValid,
@@ -151,6 +157,7 @@ class ProfileDetailsPageView
                                         title: S.of(context).profileDetailsQ2,
                                         providerBase: profileQ2ViewModelProvider,
                                         onToggle: (isActive) {
+                                          model.isPerson = isActive;
                                           return Visibility(
                                             visible: isActive,
                                             child: Padding(
@@ -161,7 +168,7 @@ class ProfileDetailsPageView
                                                 inputType: TextInputType.text,
                                                 controller: model.natureController,
                                                 key: model.natureOfSpecialNeedKey,
-                                                readOnly: true,
+                                                //readOnly: true,
                                                 suffixIcon: (enabled, value) {
                                                   return InkWell(
                                                       onTap: () async {
@@ -194,6 +201,7 @@ class ProfileDetailsPageView
                                       ProfileRowItem(title: S.of(context).profileDetailsQ3,
                                         providerBase: profileQ3ViewModelProvider,
                                         onToggle: (isActive) {
+                                          model.isRelative = isActive;
                                           return Visibility(
                                             visible: isActive,
                                             child: Column(
@@ -201,12 +209,12 @@ class ProfileDetailsPageView
                                                 Padding(
                                                   padding: EdgeInsets.only(top: 16.0),
                                                   child: AppTextField(
-                                                    labelText: S.of(context).relationShipWithPep,
+                                                    labelText: S.of(context).relationShipWithPepCaps,
                                                     hintText: S.of(context).pleaseSelect,
                                                     inputType: TextInputType.text,
                                                     controller: model.relationShipController,
                                                     key: model.relationShipWithPepKey,
-                                                    readOnly: true,
+                                                    //readOnly: true,
                                                     suffixIcon: (enabled, value) {
                                                       return InkWell(
                                                           onTap: () async {

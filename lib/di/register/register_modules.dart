@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
+import 'package:neo_bank/feature/register/step_four/register_step_four_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_four/review_application/review_application_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/employment_status/employment_status_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
@@ -9,6 +11,7 @@ import 'package:neo_bank/feature/register/stepone/countryselection/country_selec
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_model.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
+import 'package:neo_bank/ui/molecules/review_application/review_item_view_model.dart';
 
 final registerViewModelProvider =
     ChangeNotifierProvider.autoDispose<RegisterViewModel>(
@@ -69,4 +72,22 @@ ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
 final profileQ3ViewModelProvider =
 ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
         (ref) => ProfileItemViewModel(),
+);
+
+///step four page view model provider
+final registerStepFourViewModelProvider =
+ChangeNotifierProvider.autoDispose<RegisterStepFourViewModel>(
+        (ref) => RegisterStepFourViewModel(),
+);
+
+///review application page
+final reviewApplicationPageViewModelProvider =
+ChangeNotifierProvider.autoDispose<ReviewApplicationPageViewModel>(
+        (ref) => ReviewApplicationPageViewModel(),
+);
+
+///review T & C page
+final reviewTCPageViewModelProvider =
+ChangeNotifierProvider.autoDispose<ReviewItemViewModel>(
+        (ref) => ReviewItemViewModel(),
 );

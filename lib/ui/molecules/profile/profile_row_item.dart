@@ -5,6 +5,7 @@ import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 class ProfileRowItem extends StatelessWidget {
   final String title;
@@ -44,16 +45,25 @@ class ProfileRowItem extends StatelessWidget {
                               color: AppColor.text_color),
                         ),
                       ),
-                      Padding(
-                          padding: EdgeInsets.only(left: 24.0),
-                          child: CupertinoSwitch(
-                            onChanged: (value) {
-                              model.updateState(value);
-                            },
-                            value: isActive!,
-                            activeColor: AppColor.vivid_orange,
-                            trackColor: AppColor.white,
-                          )),
+                      FlutterSwitch(
+                        value: isActive!,
+                        onToggle: (value) {
+                          model.updateState(value);
+                        },
+                        activeText: 'YES',
+                        activeTextColor: AppColor.vivid_orange,
+                        activeSwitchBorder: Border.all(color: AppColor.border_color),
+                        activeTextFontWeight:FontWeight.w500,
+                        showOnOff: true,
+                        valueFontSize: 10,
+                        activeToggleColor: AppColor.vivid_orange,
+                        inactiveText: 'NO',
+                        inactiveColor: Colors.transparent,
+                        inactiveToggleColor: AppColor.white,
+                        inactiveTextFontWeight:FontWeight.w500,
+                        inactiveSwitchBorder: Border.all(color: AppColor.border_color),
+                        activeColor: Colors.transparent,
+                      ),
                     ],
                   ),
                   onToggle?.call(isActive)

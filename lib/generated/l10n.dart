@@ -221,10 +221,10 @@ class S {
   }
 
   /// `SPOUSE NAME`
-  String get spouseName {
+  String get spouseNameCaps {
     return Intl.message(
       'SPOUSE NAME',
-      name: 'spouseName',
+      name: 'spouseNameCaps',
       desc: '',
       args: [],
     );
@@ -251,10 +251,10 @@ class S {
   }
 
   /// `RELATIONSHIP WITH PEP`
-  String get relationShipWithPep {
+  String get relationShipWithPepCaps {
     return Intl.message(
       'RELATIONSHIP WITH PEP',
-      name: 'relationShipWithPep',
+      name: 'relationShipWithPepCaps',
       desc: '',
       args: [],
     );
@@ -275,6 +275,306 @@ class S {
     return Intl.message(
       'PERSON’S ROLE',
       name: 'personRole',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REVIEW APPLICATION`
+  String get reviewApplication {
+    return Intl.message(
+      'REVIEW APPLICATION',
+      name: 'reviewApplication',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please swipe through and confirm your information`
+  String get confirmYourInformation {
+    return Intl.message(
+      'Please swipe through and confirm your information',
+      name: 'confirmYourInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email Address`
+  String get emailAddress {
+    return Intl.message(
+      'Email Address',
+      name: 'emailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident Country`
+  String get residentCountry {
+    return Intl.message(
+      'Resident Country',
+      name: 'residentCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home Address`
+  String get homeAddress {
+    return Intl.message(
+      'Home Address',
+      name: 'homeAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Street Address`
+  String get streetAddress {
+    return Intl.message(
+      'Street Address',
+      name: 'streetAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Building Name / No`
+  String get buildingNameNo {
+    return Intl.message(
+      'Building Name / No',
+      name: 'buildingNameNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nature of Special Needs`
+  String get natureSpecialNeeds {
+    return Intl.message(
+      'Nature of Special Needs',
+      name: 'natureSpecialNeeds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spouse Name`
+  String get spouseName {
+    return Intl.message(
+      'Spouse Name',
+      name: 'spouseName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Relationship with PEP`
+  String get relationshipWithPEP {
+    return Intl.message(
+      'Relationship with PEP',
+      name: 'relationshipWithPEP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Person’s Name`
+  String get personsName {
+    return Intl.message(
+      'Person’s Name',
+      name: 'personsName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Person’s Role`
+  String get personsRole {
+    return Intl.message(
+      'Person’s Role',
+      name: 'personsRole',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employment Status`
+  String get employmentStatus {
+    return Intl.message(
+      'Employment Status',
+      name: 'employmentStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Occupation`
+  String get occupation {
+    return Intl.message(
+      'Occupation',
+      name: 'occupation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main Source of Income`
+  String get mainSourceIncome {
+    return Intl.message(
+      'Main Source of Income',
+      name: 'mainSourceIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monthly Income`
+  String get monthlyIncome {
+    return Intl.message(
+      'Monthly Income',
+      name: 'monthlyIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Annual Income`
+  String get annualIncome {
+    return Intl.message(
+      'Annual Income',
+      name: 'annualIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purpose of Account Opening`
+  String get purposeOfAccount {
+    return Intl.message(
+      'Purpose of Account Opening',
+      name: 'purposeOfAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employer Name`
+  String get employerName {
+    return Intl.message(
+      'Employer Name',
+      name: 'employerName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employer Country`
+  String get employerCountry {
+    return Intl.message(
+      'Employer Country',
+      name: 'employerCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employer City`
+  String get employerCity {
+    return Intl.message(
+      'Employer City',
+      name: 'employerCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employer Contact`
+  String get employerContact {
+    return Intl.message(
+      'Employer Contact',
+      name: 'employerContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Source of Income`
+  String get additionalSourceIncome {
+    return Intl.message(
+      'Additional Source of Income',
+      name: 'additionalSourceIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Additional Income`
+  String get totalAdditionalIncome {
+    return Intl.message(
+      'Total Additional Income',
+      name: 'totalAdditionalIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I confirm that information above is correct and agree to the bank’s Terms and Conditions.`
+  String get termsAndConditions {
+    return Intl.message(
+      'I confirm that information above is correct and agree to the bank’s Terms and Conditions.',
+      name: 'termsAndConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid spouse name`
+  String get enterValidSpouseName {
+    return Intl.message(
+      'Please enter valid spouse name',
+      name: 'enterValidSpouseName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select nature of special needs`
+  String get enterValidNature {
+    return Intl.message(
+      'Please select nature of special needs',
+      name: 'enterValidNature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid relationship with PEP`
+  String get enterValidRelationshipWithPEP {
+    return Intl.message(
+      'Please enter valid relationship with PEP',
+      name: 'enterValidRelationshipWithPEP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid person’s name`
+  String get enterValidPersonsName {
+    return Intl.message(
+      'Please enter valid person’s name',
+      name: 'enterValidPersonsName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid person’s role`
+  String get enterValidPersonsRole {
+    return Intl.message(
+      'Please enter valid person’s role',
+      name: 'enterValidPersonsRole',
       desc: '',
       args: [],
     );
