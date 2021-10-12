@@ -45,10 +45,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "dob": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dobHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Date Of Birth"),
+        "emailAddress": MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
+        "emptyEmailMessage": MessageLookupByLibrary.simpleMessage(
+            "Please enter your email address"),
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
         "enterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
+        "enterValidEmail": MessageLookupByLibrary.simpleMessage(
+            "please enter valid email address"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter valid mobile number"),
         "enterValidOtp":
@@ -62,6 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
         "homeAddressHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
+        "iHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("I have an account"),
         "idHint":
             MessageLookupByLibrary.simpleMessage("Please Enter ID Number"),
         "idNumber": MessageLookupByLibrary.simpleMessage("ID NUMBER"),
@@ -80,6 +87,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Enter Nationality"),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "Once fit, your ID will be scanned automatically"),
+        "orContinueWith":
+            MessageLookupByLibrary.simpleMessage("or continue with"),
         "personalDetails":
             MessageLookupByLibrary.simpleMessage("PERSONAL DETAILS"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
@@ -94,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "streetAddressHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Street Address"),
         "termsAndConditions": MessageLookupByLibrary.simpleMessage(
-            "I agree for the bank to retrieve my AHWAL data necessarily.")
+            "I agree for the bank to retrieve my AHWAL data necessarily."),
+        "welcomeToNeuBank":
+            MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank.")
       };
 }
