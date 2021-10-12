@@ -51,5 +51,7 @@
   "orContinueWith": "or continue with",
   "iHaveAnAccount": "I have an account",
   "emptyEmailMessage": "Please enter your email address",
-  "enterValidEmail": "please enter valid email address"
+  "enterValidEmail": "please enter valid email address",
+  "enterPassword": "Password cannot be empty",
+  "passwordmismatch": "Password did not match"
 }

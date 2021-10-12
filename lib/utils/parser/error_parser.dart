@@ -38,6 +38,10 @@ class ErrorParser {
         return localisedHelper.emptyEmailMessage;
       case ErrorType.INVALID_EMAIL:
         return localisedHelper.enterValidEmail;
+      case ErrorType.EMPTY_PASSWORD:
+        return localisedHelper.enterPassword;
+      case ErrorType.PASSWORD_MISMATCH:
+        return localisedHelper.passwordmismatch;
       default:
         return "";
     }

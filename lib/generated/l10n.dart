@@ -539,6 +539,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Password cannot be empty`
+  String get enterPassword {
+    return Intl.message(
+      'Password cannot be empty',
+      name: 'enterPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password did not match`
+  String get passwordmismatch {
+    return Intl.message(
+      'Password did not match',
+      name: 'passwordmismatch',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

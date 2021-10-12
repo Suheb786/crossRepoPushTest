@@ -52,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Where do you\ncurrently live?"),
         "enterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
+        "enterPassword":
+            MessageLookupByLibrary.simpleMessage("Password cannot be empty"),
         "enterValidEmail": MessageLookupByLibrary.simpleMessage(
             "please enter valid email address"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
@@ -89,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Once fit, your ID will be scanned automatically"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
+        "passwordmismatch":
+            MessageLookupByLibrary.simpleMessage("Password did not match"),
         "personalDetails":
             MessageLookupByLibrary.simpleMessage("PERSONAL DETAILS"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),

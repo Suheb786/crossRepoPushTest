@@ -62,12 +62,17 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                     initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
+                          model.passwordKey.currentState!.isValid = true;
+                          model.confirmPasswordKey.currentState!.isValid = true;
                           ProviderScope.containerOf(context)
                               .read(registerStepOneViewModelProvider)
                               .pageController
                               .nextPage(
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOut);
+                        } else if (data.status == Status.ERROR) {
+                          model.passwordKey.currentState!.isValid = false;
+                          model.confirmPasswordKey.currentState!.isValid = false;
                         }
                       },
                     dataBuilder: (context, data) {
@@ -111,6 +116,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                         labelText: S
                                             .of(context)
                                             .createPassword,
+                                        obscureText: true,
                                         hintText: S
                                             .of(context)
                                             .pleaseEnter,
@@ -125,21 +131,28 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                   AssetUtils.info, height: 13.33,
                                                   width: 13.33),
                                             ),
-                                        textHintWidget: (hasFocus, isValid, value) {
+                                        textHintWidget:
+                                            (hasFocus, isValid, value) {
                                           return Visibility(
                                             visible: !isValid,
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
-                                                  horizontal: 16, vertical: 8),
+                                                  horizontal: 16,
+                                                  vertical: 8),
                                               child: Text(
-                                                ErrorParser.getLocalisedStringError(
-                                                    error: data!.appError,
-                                                    localisedHelper: S.of(context)),
+                                                ErrorParser
+                                                    .getLocalisedStringError(
+                                                    error:
+                                                    data!.appError,
+                                                    localisedHelper:
+                                                    S.of(context)),
                                                 textAlign: TextAlign.start,
                                                 style: TextStyle(
                                                     fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor.vivid_red),
+                                                    fontWeight:
+                                                    FontWeight.w600,
+                                                    color:
+                                                    AppColor.vivid_red),
                                               ),
                                             ),
                                           );
@@ -157,6 +170,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                             .of(context)
                                             .pleaseEnter,
                                         inputType: TextInputType.text,
+                                        obscureText: true,
                                         onChanged: (value) =>
                                             model.validatePassword(),
                                         controller: model.confirmPasswordController,
@@ -168,21 +182,28 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                   AssetUtils.info, height: 13.33,
                                                   width: 13.33),
                                             ),
-                                        textHintWidget: (hasFocus, isValid, value) {
+                                        textHintWidget:
+                                            (hasFocus, isValid, value) {
                                           return Visibility(
                                             visible: !isValid,
                                             child: Padding(
                                               padding: EdgeInsets.symmetric(
-                                                  horizontal: 16, vertical: 8),
+                                                  horizontal: 16,
+                                                  vertical: 8),
                                               child: Text(
-                                                ErrorParser.getLocalisedStringError(
-                                                    error: data!.appError,
-                                                    localisedHelper: S.of(context)),
+                                                ErrorParser
+                                                    .getLocalisedStringError(
+                                                    error:
+                                                    data!.appError,
+                                                    localisedHelper:
+                                                    S.of(context)),
                                                 textAlign: TextAlign.start,
                                                 style: TextStyle(
                                                     fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor.vivid_red),
+                                                    fontWeight:
+                                                    FontWeight.w600,
+                                                    color:
+                                                    AppColor.vivid_red),
                                               ),
                                             ),
                                           );
