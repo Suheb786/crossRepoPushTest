@@ -5,7 +5,6 @@ class AssetUtils {
   static const String svg = "assets/svg/";
   static const String drawable = "assets/drawable/";
 
-  static const String splashCircle = svg + "splash_logo.svg";
   static const String check = svg + "check.svg";
   static const String info = svg + "info.svg";
   static const String sunny = svg + "sunny.svg";
@@ -14,9 +13,10 @@ class AssetUtils {
   static const String ellipse = svg + "ellipse.svg";
   static const String dropDown = svg + "dropdown.svg";
   static const String checkBox = svg + "checkbox.svg";
+  static const String apple = svg + "apple.svg";
+  static const String google = svg + "google.svg";
 
-  /// DRAWLABLES
-  static const String transferSuccessBg = drawable + "transfer_success.webp";
-  static const String onBoardingBg1 = drawable + "onboarding_bg1.webp";
-  static const String onBoardingBg2 = drawable + "onboarding_bg2.webp";
+  /// DRAWABLES
+  static const String splashLogo = drawable + "splash_logo.png";
+  static const String loginCard = drawable + "login_card.png";
 }

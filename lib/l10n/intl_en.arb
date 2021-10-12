@@ -45,5 +45,11 @@
   "streetAddress": "STREET ADDRESS",
   "streetAddressHint": "Please Enter Street Address",
   "buildingNameOrNo": "BUILDING NAME/NO",
-  "buildingNameOrNoHint": "Please Enter Building Name/Number."
+  "buildingNameOrNoHint": "Please Enter Building Name/Number.",
+  "welcomeToNeuBank": "Welcome to\nNeuBank.",
+  "emailAddress": "EMAIL ADDRESS",
+  "orContinueWith": "or continue with",
+  "iHaveAnAccount": "I have an account",
+  "emptyEmailMessage": "Please enter your email address",
+  "enterValidEmail": "please enter valid email address"
 }
