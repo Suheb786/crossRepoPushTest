@@ -112,7 +112,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 64),
+              padding: EdgeInsets.only(bottom: 32),
               child: Text(
                 S.of(context).iHaveAnAccount,
                 style: TextStyle(
