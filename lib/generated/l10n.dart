@@ -210,6 +210,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Please enter your email address`
+  String get emptyEmailMessage {
+    return Intl.message(
+      'Please enter your email address',
+      name: 'emptyEmailMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please enter valid email address`
+  String get enterValidEmail {
+    return Intl.message(
+      'please enter valid email address',
+      name: 'enterValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

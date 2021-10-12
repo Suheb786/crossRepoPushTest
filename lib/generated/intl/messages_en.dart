@@ -31,8 +31,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
+        "emptyEmailMessage": MessageLookupByLibrary.simpleMessage(
+            "Please enter your email address"),
         "enterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
+        "enterValidEmail": MessageLookupByLibrary.simpleMessage(
+            "please enter valid email address"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter valid mobile number"),
         "enterValidOtp":

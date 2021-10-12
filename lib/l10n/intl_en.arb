@@ -18,5 +18,7 @@
   "emailAddress": "EMAIL ADDRESS",
   "pleaseEnter": "Please enter",
   "orContinueWith": "or continue with",
-  "iHaveAnAccount": "I have an account"
+  "iHaveAnAccount": "I have an account",
+  "emptyEmailMessage": "Please enter your email address",
+  "enterValidEmail": "please enter valid email address"
 }
