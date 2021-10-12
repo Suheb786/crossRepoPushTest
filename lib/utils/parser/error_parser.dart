@@ -34,6 +34,10 @@ class ErrorParser {
         return localisedHelper.enterValidMobileNumber;
       case ErrorType.INVALID_OTP:
         return localisedHelper.enterValidOtp;
+      case ErrorType.EMPTY_EMAIL:
+        return localisedHelper.emptyEmailMessage;
+      case ErrorType.INVALID_EMAIL:
+        return localisedHelper.enterValidEmail;
       default:
         return "";
     }

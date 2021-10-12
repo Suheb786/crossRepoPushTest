@@ -21,10 +21,6 @@ class AddNumberViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get registerNumberStream =>
       _registerNumberResponse.stream;
 
-  BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
-
-  Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
-
   AddNumberViewModel(this._registerNumberUseCase) {
     _registerNumberRequest.listen((value) {
       RequestManager(value,
@@ -44,18 +40,10 @@ class AddNumberViewModel extends BasePageViewModel {
         countryCode: dialCode, mobileNumber: mobileNumberController.text));
   }
 
-  void showErrorState() {
-    _errorDetectorSubject.safeAdd(true);
-    Future.delayed(Duration(milliseconds: 500), () {
-      _errorDetectorSubject.safeAdd(false);
-    });
-  }
-
   @override
   void dispose() {
     _registerNumberRequest.close();
     _registerNumberResponse.close();
-    _errorDetectorSubject.close();
     super.dispose();
   }
 }

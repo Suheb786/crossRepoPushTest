@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -11,6 +12,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => SplashPage(),
             settings: RouteSettings(name: RoutePaths.Splash));
+
+      case RoutePaths.Login:
+        return CupertinoPageRoute(
+            builder: (context) => LoginPage(),
+            settings: RouteSettings(name: RoutePaths.Login));
 
       case RoutePaths.Registration:
         return CupertinoPageRoute(
