@@ -51,7 +51,7 @@ class AppSvg {
     );
   }
 
-  static ImageProvider provider(String assetName, {Color? color}) {
-    return SvgProvider.Svg(assetName, color: color);
+  static ImageProvider provider(String assetName, {Color? color, Size? size}) {
+    return SvgProvider.Svg(assetName, color: color, size: size);
   }
 }

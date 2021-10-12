@@ -58,6 +58,10 @@ class ErrorParser {
         return localisedHelper.invalidAdditionSourceIncome;
       case ErrorType.INVALID_TOTAL_ADDITIONAL_INCOME:
         return localisedHelper.invalidTotalAdditionalIncome;
+      case ErrorType.EMPTY_EMAIL:
+        return localisedHelper.emptyEmailMessage;
+      case ErrorType.INVALID_EMAIL:
+        return localisedHelper.enterValidEmail;
       default:
         return "";
     }
