@@ -61,51 +61,29 @@ class ProfileDetailsPageView
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                          if(model.isMarried){
-                            model.spouseNameKey.currentState!.isValid = true;
-                          }
-                          if(model.isPerson){
-                            model.natureOfSpecialNeedKey.currentState!.isValid = true;
-                          }
-
-                          if(model.isRelative){
-                            model.relationShipWithPepKey.currentState!.isValid = true;
-                            model.personNameKey.currentState!.isValid = true;
-                            model.personRoleKey.currentState!.isValid = true;
-                          }
+                          model.setKeysStatusValid();
                           ProviderScope.containerOf(context)
                               .read(registerStepThreeViewModelProvider)
                               .pageController
                               .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
-
-                        }else if(data.status == Status.ERROR){
-                          if(data.appError!.type == ErrorType.INVALID_NAME){
-                            model.spouseNameKey.currentState!.isValid = false;
-                          }else if(data.appError!.type == ErrorType.INVALID_NATURE){
-                            model.natureOfSpecialNeedKey.currentState!.isValid = false;
-                          }else if(data.appError!.type == ErrorType.INVALID_RELATIONSHIP){
-                            model.relationShipWithPepKey.currentState!.isValid = false;
-                          }else if(data.appError!.type == ErrorType.INVALID_PERSON_NAME){
-                            model.personNameKey.currentState!.isValid = false;
-                          }else if(data.appError!.type == ErrorType.INVALID_PERSON_ROLE){
-                            model.personRoleKey.currentState!.isValid = false;
-                          }
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut);
+                        } else if (data.status == Status.ERROR) {
+                          model.checkKeyStatus(data.appError!.type);
                         }
                       },
                       dataBuilder: (context, data) {
                         return GestureDetector(
                           onHorizontalDragUpdate: (details) {
                             if (details.primaryDelta!.isNegative) {
-                             model.validateTextFields();
-                           }else {
+                              model.validateTextFields();
+                            } else {
                               ProviderScope.containerOf(context)
                                   .read(registerViewModelProvider)
                                   .pageController
                                   .previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                                      duration: Duration(milliseconds: 500),
+                                      curve: Curves.easeInOut);
                             }
                           },
                           child: Card(
@@ -130,31 +108,51 @@ class ProfileDetailsPageView
                                     children: [
                                       ProfileRowItem(
                                         title: S.of(context).profileDetailsQ1,
-                                        providerBase: profileQ1ViewModelProvider,
+                                        activeText: S.of(context).yes,
+                                        inactiveText: S.of(context).no,
+                                        providerBase:
+                                            profileQ1ViewModelProvider,
                                         onToggle: (isActive) {
                                           model.isMarried = isActive;
                                           return Visibility(
                                             visible: isActive,
-                                            child: Padding(padding: EdgeInsets.only(top: 16.0),
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(top: 16.0),
                                               child: AppTextField(
-                                                labelText:S.of(context).spouseNameCaps,
+                                                labelText: S
+                                                    .of(context)
+                                                    .spouseNameCaps,
                                                 hintText: "",
                                                 inputType: TextInputType.text,
-                                                controller: model.spouseNameController,
+                                                controller:
+                                                    model.spouseNameController,
                                                 key: model.spouseNameKey,
-
-                                                textHintWidget: (hasFocus, isValid, value) {
+                                                textHintWidget:
+                                                    (hasFocus, isValid, value) {
                                                   return Visibility(
                                                     visible: !isValid,
                                                     child: Padding(
-                                                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                                      child: Text(ErrorParser.getLocalisedStringError(
-                                                                error: data!.appError,
-                                                                localisedHelper: S.of(context)),
-                                                        textAlign: TextAlign.start,
-                                                        style: TextStyle(fontSize: 12,
-                                                            fontWeight: FontWeight.w600,
-                                                            color: AppColor.vivid_red),
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 16,
+                                                              vertical: 8),
+                                                      child: Text(
+                                                        ErrorParser
+                                                            .getLocalisedStringError(
+                                                                error: data!
+                                                                    .appError,
+                                                                localisedHelper:
+                                                                    S.of(
+                                                                        context)),
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: AppColor
+                                                                .vivid_red),
                                                       ),
                                                     ),
                                                   );
@@ -166,40 +164,62 @@ class ProfileDetailsPageView
                                       ),
                                       ProfileRowItem(
                                         title: S.of(context).profileDetailsQ2,
-                                        providerBase: profileQ2ViewModelProvider,
+                                        providerBase:
+                                            profileQ2ViewModelProvider,
+                                        activeText: S.of(context).yes,
+                                        inactiveText: S.of(context).no,
                                         onToggle: (isActive) {
                                           model.isPerson = isActive;
                                           return Visibility(
                                             visible: isActive,
                                             child: Padding(
-                                              padding: EdgeInsets.only(top: 16.0),
+                                              padding:
+                                                  EdgeInsets.only(top: 16.0),
                                               child: AppTextField(
-                                                labelText: S.of(context).natureOfSpecialNeed,
-                                                hintText: S.of(context).pleaseSelect,
+                                                labelText: S
+                                                    .of(context)
+                                                    .natureOfSpecialNeed,
+                                                hintText:
+                                                    S.of(context).pleaseSelect,
                                                 inputType: TextInputType.text,
-                                                controller: model.natureController,
-                                                key: model.natureOfSpecialNeedKey,
+                                                controller:
+                                                    model.natureController,
+                                                key: model
+                                                    .natureOfSpecialNeedKey,
                                                 //readOnly: true,
                                                 suffixIcon: (enabled, value) {
                                                   return InkWell(
-                                                      onTap: () async {
-
-                                                      },
-                                                      child: AppSvg.asset(AssetUtils.dropDown,
-                                                          width: 16, height: 16));
+                                                      onTap: () async {},
+                                                      child: AppSvg.asset(
+                                                          AssetUtils.dropDown,
+                                                          width: 16,
+                                                          height: 16));
                                                 },
-                                                textHintWidget: (hasFocus, isValid, value) {
+                                                textHintWidget:
+                                                    (hasFocus, isValid, value) {
                                                   return Visibility(
                                                     visible: !isValid,
                                                     child: Padding(
-                                                      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                                      child: Text(ErrorParser.getLocalisedStringError(
-                                                                error: data!.appError,
-                                                                localisedHelper: S.of(context)),
-                                                        textAlign: TextAlign.start,
-                                                        style: TextStyle(fontSize: 12,
-                                                            fontWeight: FontWeight.w600,
-                                                            color: AppColor.vivid_red),
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 16,
+                                                              vertical: 8),
+                                                      child: Text(
+                                                        ErrorParser
+                                                            .getLocalisedStringError(
+                                                                error: data!
+                                                                    .appError,
+                                                                localisedHelper:
+                                                                    S.of(
+                                                                        context)),
+                                                        textAlign:
+                                                            TextAlign.start,
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: AppColor
+                                                                .vivid_red),
                                                       ),
                                                     ),
                                                   );
@@ -209,8 +229,12 @@ class ProfileDetailsPageView
                                           );
                                         },
                                       ),
-                                      ProfileRowItem(title: S.of(context).profileDetailsQ3,
-                                        providerBase: profileQ3ViewModelProvider,
+                                      ProfileRowItem(
+                                        title: S.of(context).profileDetailsQ3,
+                                        providerBase:
+                                            profileQ3ViewModelProvider,
+                                        activeText: S.of(context).yes,
+                                        inactiveText: S.of(context).no,
                                         onToggle: (isActive) {
                                           model.isRelative = isActive;
                                           return Visibility(
@@ -218,34 +242,58 @@ class ProfileDetailsPageView
                                             child: Column(
                                               children: [
                                                 Padding(
-                                                  padding: EdgeInsets.only(top: 16.0),
+                                                  padding: EdgeInsets.only(
+                                                      top: 16.0),
                                                   child: AppTextField(
-                                                    labelText: S.of(context).relationShipWithPepCaps,
-                                                    hintText: S.of(context).pleaseSelect,
-                                                    inputType: TextInputType.text,
-                                                    controller: model.relationShipController,
-                                                    key: model.relationShipWithPepKey,
+                                                    labelText: S
+                                                        .of(context)
+                                                        .relationShipWithPepCaps,
+                                                    hintText: S
+                                                        .of(context)
+                                                        .pleaseSelect,
+                                                    inputType:
+                                                        TextInputType.text,
+                                                    controller: model
+                                                        .relationShipController,
+                                                    key: model
+                                                        .relationShipWithPepKey,
                                                     //readOnly: true,
-                                                    suffixIcon: (enabled, value) {
+                                                    suffixIcon:
+                                                        (enabled, value) {
                                                       return InkWell(
-                                                          onTap: () async {
-
-                                                          },
-                                                          child: AppSvg.asset(AssetUtils.dropDown,
-                                                              width: 16, height: 16));
+                                                          onTap: () async {},
+                                                          child: AppSvg.asset(
+                                                              AssetUtils
+                                                                  .dropDown,
+                                                              width: 16,
+                                                              height: 16));
                                                     },
-                                                    textHintWidget: (hasFocus, isValid, value) {
+                                                    textHintWidget: (hasFocus,
+                                                        isValid, value) {
                                                       return Visibility(
                                                         visible: !isValid,
                                                         child: Padding(
-                                                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                                          child: Text(ErrorParser.getLocalisedStringError(
-                                                                error: data!.appError,
-                                                                localisedHelper: S.of(context)),
-                                                            textAlign: TextAlign.start,
-                                                            style: TextStyle(fontSize: 12,
-                                                                fontWeight: FontWeight.w600,
-                                                                color: AppColor.vivid_red),
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      16,
+                                                                  vertical: 8),
+                                                          child: Text(
+                                                            ErrorParser.getLocalisedStringError(
+                                                                error: data!
+                                                                    .appError,
+                                                                localisedHelper:
+                                                                    S.of(
+                                                                        context)),
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: TextStyle(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: AppColor
+                                                                    .vivid_red),
                                                           ),
                                                         ),
                                                       );
@@ -253,24 +301,44 @@ class ProfileDetailsPageView
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsets.only(top: 16.0),
-                                                  child: AppTextField(labelText: S.of(context).personName,
+                                                  padding: EdgeInsets.only(
+                                                      top: 16.0),
+                                                  child: AppTextField(
+                                                    labelText: S
+                                                        .of(context)
+                                                        .personName,
                                                     hintText: "",
-                                                    inputType: TextInputType.text,
-                                                    controller: model.personNameController,
+                                                    inputType:
+                                                        TextInputType.text,
+                                                    controller: model
+                                                        .personNameController,
                                                     key: model.personNameKey,
-                                                    textHintWidget: (hasFocus, isValid, value) {
+                                                    textHintWidget: (hasFocus,
+                                                        isValid, value) {
                                                       return Visibility(
                                                         visible: !isValid,
                                                         child: Padding(
-                                                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                                          child: Text(ErrorParser.getLocalisedStringError(
-                                                                error: data!.appError,
-                                                                localisedHelper: S.of(context)),
-                                                            textAlign: TextAlign.start,
-                                                            style: TextStyle(fontSize: 12,
-                                                                fontWeight: FontWeight.w600,
-                                                                color: AppColor.vivid_red),
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      16,
+                                                                  vertical: 8),
+                                                          child: Text(
+                                                            ErrorParser.getLocalisedStringError(
+                                                                error: data!
+                                                                    .appError,
+                                                                localisedHelper:
+                                                                    S.of(
+                                                                        context)),
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: TextStyle(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: AppColor
+                                                                    .vivid_red),
                                                           ),
                                                         ),
                                                       );
@@ -278,24 +346,44 @@ class ProfileDetailsPageView
                                                   ),
                                                 ),
                                                 Padding(
-                                                  padding: EdgeInsets.only(top: 16.0),
-                                                  child: AppTextField(labelText: S.of(context).personRole,
+                                                  padding: EdgeInsets.only(
+                                                      top: 16.0),
+                                                  child: AppTextField(
+                                                    labelText: S
+                                                        .of(context)
+                                                        .personRole,
                                                     hintText: "",
-                                                    inputType: TextInputType.text,
-                                                    controller: model.personRoleController,
+                                                    inputType:
+                                                        TextInputType.text,
+                                                    controller: model
+                                                        .personRoleController,
                                                     key: model.personRoleKey,
-                                                    textHintWidget: (hasFocus, isValid, value) {
+                                                    textHintWidget: (hasFocus,
+                                                        isValid, value) {
                                                       return Visibility(
                                                         visible: !isValid,
                                                         child: Padding(
-                                                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                                          child: Text(ErrorParser.getLocalisedStringError(
-                                                                error: data!.appError,
-                                                                localisedHelper: S.of(context)),
-                                                            textAlign: TextAlign.start,
-                                                            style: TextStyle(fontSize: 12,
-                                                                fontWeight: FontWeight.w600,
-                                                                color: AppColor.vivid_red),
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      16,
+                                                                  vertical: 8),
+                                                          child: Text(
+                                                            ErrorParser.getLocalisedStringError(
+                                                                error: data!
+                                                                    .appError,
+                                                                localisedHelper:
+                                                                    S.of(
+                                                                        context)),
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: TextStyle(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: AppColor
+                                                                    .vivid_red),
                                                           ),
                                                         ),
                                                       );

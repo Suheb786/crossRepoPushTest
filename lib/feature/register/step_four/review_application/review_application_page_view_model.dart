@@ -17,7 +17,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
 
   ///update declaration selection function
   void updateDeclarationSelection(bool value) {
-    _declarationSelected.safeAdd(value);
+    _declarationSelected.add(value);
   }
 
   ///review request subject holder
@@ -46,7 +46,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
 
   void validateReviewDetails() {
     if (_declarationSelected.stream.value) {
-      _reviewAppRequest.add(ReviewApplicationUseCaseParams());
+      _reviewAppRequest.safeAdd(ReviewApplicationUseCaseParams());
     } else {
       showErrorState();
     }

@@ -3,17 +3,17 @@ import 'package:rxdart/rxdart.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 
 class ProfileItemViewModel extends BaseViewModel {
-  final PublishSubject<bool> _switchSubject = PublishSubject();
+  final PublishSubject<bool> _switchState = PublishSubject();
 
-  Stream<bool> get switchState => _switchSubject.stream;
+  Stream<bool> get switchState => _switchState.stream;
 
   void updateState(bool value) {
-    _switchSubject.safeAdd(value);
+    _switchState.safeAdd(value);
   }
 
   @override
   void dispose() {
-    _switchSubject.close();
+    _switchState.close();
     super.dispose();
   }
 }

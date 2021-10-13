@@ -400,10 +400,10 @@ class S {
     );
   }
 
-  /// `NO`
+  /// `No`
   String get no {
     return Intl.message(
-      'NO',
+      'No',
       name: 'no',
       desc: '',
       args: [],

@@ -20,7 +20,7 @@ class ReviewApplicationItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Expanded(
+          Flexible(
             child: Text(
               title,
               softWrap: true,
@@ -30,7 +30,7 @@ class ReviewApplicationItem extends StatelessWidget {
                   color: AppColor.gray),
             ),
           ),
-          Expanded(
+          Flexible(
             child: Text(
               details,
               softWrap: true,

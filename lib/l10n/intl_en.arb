@@ -115,5 +115,7 @@
   "proofOfAddress": "Proof of Address",
   "proofOfAddressDesc": "Please provide your latest electricity bill to proof your address",
   "upload": "Upload",
-  "confirmTermsCondError":"Confirm to the terms and conditions."
+  "confirmTermsCondError":"Confirm to the terms and conditions.",
+  "yes": "YES",
+  "no": "No"
 }

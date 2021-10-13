@@ -86,6 +86,8 @@ class ReviewApplicationPageView
                                     end: Alignment.topCenter),
                               ),
                               child: SingleChildScrollView(
+                                padding: EdgeInsets.only(bottom: 114),
+                                physics: ClampingScrollPhysics(),
                                 child: Column(
                                   children: [
                                     ReviewApplicationItem(
@@ -96,14 +98,12 @@ class ReviewApplicationPageView
                                       title: S.of(context).mobileNumber,
                                       details: "+962 79 332 8080",
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 16.0, bottom: 8.0),
-                                      child: AppDivider(
-                                        height: 1,
-                                        color: AppColor.light_gray,
-                                      ),
+                                    SizedBox(height: 16),
+                                    Container(
+                                      height: 1,
+                                      color: AppColor.light_gray,
                                     ),
+                                    SizedBox(height: 16),
                                     ReviewApplicationItem(
                                       title: S.of(context).residentCountry,
                                       details: "Jordan",
@@ -120,14 +120,12 @@ class ReviewApplicationPageView
                                       title: S.of(context).buildingNameNo,
                                       details: "W Amman",
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 16.0, bottom: 8.0),
-                                      child: AppDivider(
-                                        height: 1,
-                                        color: AppColor.light_gray,
-                                      ),
+                                    SizedBox(height: 16),
+                                    Container(
+                                      height: 1,
+                                      color: AppColor.light_gray,
                                     ),
+                                    SizedBox(height: 16),
                                     ReviewApplicationItem(
                                       title: S.of(context).spouseName,
                                       details: "Ameena Rasheed",
@@ -148,14 +146,12 @@ class ReviewApplicationPageView
                                       title: S.of(context).personsRole,
                                       details: "Minister of Health",
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 16.0, bottom: 8.0),
-                                      child: AppDivider(
-                                        height: 1,
-                                        color: AppColor.light_gray,
-                                      ),
+                                    SizedBox(height: 16),
+                                    Container(
+                                      height: 1,
+                                      color: AppColor.light_gray,
                                     ),
+                                    SizedBox(height: 8),
                                     ReviewApplicationItem(
                                       title:
                                           S.of(context).employmentStatusSmall,

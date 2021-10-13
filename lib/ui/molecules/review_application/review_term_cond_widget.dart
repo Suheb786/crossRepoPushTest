@@ -12,13 +12,17 @@ class ReviewTCWidget extends StatelessWidget {
   final Function? onTap;
 
   const ReviewTCWidget(
-      {Key? key, required this.title, this.subTitle, this.isSelected: false, this.onTap})
+      {Key? key,
+      required this.title,
+      this.subTitle,
+      this.isSelected: false,
+      this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 32.0, bottom: 114),
+      padding: const EdgeInsets.only(top: 32.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -34,16 +38,18 @@ class ReviewTCWidget extends StatelessWidget {
                   border: Border.all(
                       color: AppColor.mostly_desaturated_dark_violet),
                   shape: BoxShape.circle,
-                  color: isSelected!?AppColor.dark_violet_4:Colors.transparent),
+                  color: isSelected!
+                      ? AppColor.dark_violet_4
+                      : Colors.transparent),
               child: (isSelected!)
                   ? AppSvg.asset(AssetUtils.tick, height: 7.33, width: 10.67)
                   : null,
             ),
           ),
           SizedBox(width: 15),
-          Expanded(
+          Flexible(
             child: Text.rich(TextSpan(
-                text:title,
+                text: title,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 12,

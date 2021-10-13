@@ -6,6 +6,7 @@ import 'package:domain/usecase/base/params.dart';
 
 class ReviewApplicationUseCase
     extends BaseUseCase<LocalError, ReviewApplicationUseCaseParams, bool> {
+
   @override
   Future<Either<LocalError, bool>> execute(
       {required ReviewApplicationUseCaseParams params}) {

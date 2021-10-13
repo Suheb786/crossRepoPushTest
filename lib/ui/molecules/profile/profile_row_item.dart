@@ -11,10 +11,14 @@ class ProfileRowItem extends StatelessWidget {
   final String title;
   final ProviderBase providerBase;
   final Function(bool)? onToggle;
+  final String activeText;
+  final String inactiveText;
 
   const ProfileRowItem(
       {Key? key,
       required this.title,
+      required this.activeText,
+      required this.inactiveText,
       required this.providerBase,
       this.onToggle})
       : super(key: key);
@@ -50,18 +54,20 @@ class ProfileRowItem extends StatelessWidget {
                         onToggle: (value) {
                           model.updateState(value);
                         },
-                        activeText: 'YES',
+                        activeText: activeText,
                         activeTextColor: AppColor.vivid_orange,
-                        activeSwitchBorder: Border.all(color: AppColor.border_color),
-                        activeTextFontWeight:FontWeight.w500,
+                        activeSwitchBorder:
+                            Border.all(color: AppColor.border_color),
+                        activeTextFontWeight: FontWeight.w500,
                         showOnOff: true,
                         valueFontSize: 10,
                         activeToggleColor: AppColor.vivid_orange,
-                        inactiveText: 'NO',
+                        inactiveText: inactiveText,
                         inactiveColor: Colors.transparent,
                         inactiveToggleColor: AppColor.white,
-                        inactiveTextFontWeight:FontWeight.w500,
-                        inactiveSwitchBorder: Border.all(color: AppColor.border_color),
+                        inactiveTextFontWeight: FontWeight.w500,
+                        inactiveSwitchBorder:
+                            Border.all(color: AppColor.border_color),
                         activeColor: Colors.transparent,
                       ),
                     ],

@@ -54,19 +54,13 @@ class UploadDocumentsPageView
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-
-
                         }else if(data.status == Status.ERROR){
-
                         }
                       },
                       dataBuilder: (context, data) {
                         return GestureDetector(
                           onHorizontalDragUpdate: (details) {
                             if (details.primaryDelta!.isNegative) {
-                             // model.validateTextFields();
-                            } else {
-
                             }
                           },
                           child: Card(

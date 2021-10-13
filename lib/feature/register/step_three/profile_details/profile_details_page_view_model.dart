@@ -1,3 +1,4 @@
+import 'package:domain/constants/error_types.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -10,20 +11,6 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 
 class ProfileDetailsPageViewModel extends BasePageViewModel {
   final ProfileDetailsUseCase _profileUseCase;
-
-  ProfileDetailsPageViewModel(this._profileUseCase) {
-    _profileDetailsRequest.listen((value) {
-      RequestManager(value,
-          createCall: () => _profileUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        _profileDetailsResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-        }
-      });
-    });
-  }
 
   final GlobalKey<AppTextFieldState> spouseNameKey =
       GlobalKey(debugLabel: "spouseName");
@@ -55,6 +42,48 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get profileDetailsStream =>
       _profileDetailsResponse.stream;
+
+  ProfileDetailsPageViewModel(this._profileUseCase) {
+    _profileDetailsRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _profileUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _profileDetailsResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+        }
+      });
+    });
+  }
+
+  void checkKeyStatus(ErrorType type) {
+    if (type == ErrorType.INVALID_NAME) {
+      spouseNameKey.currentState!.isValid = false;
+    } else if (type == ErrorType.INVALID_NATURE) {
+      natureOfSpecialNeedKey.currentState!.isValid = false;
+    } else if (type == ErrorType.INVALID_RELATIONSHIP) {
+      relationShipWithPepKey.currentState!.isValid = false;
+    } else if (type == ErrorType.INVALID_PERSON_NAME) {
+      personNameKey.currentState!.isValid = false;
+    } else if (type == ErrorType.INVALID_PERSON_ROLE) {
+      personRoleKey.currentState!.isValid = false;
+    }
+  }
+
+  void setKeysStatusValid() {
+    if (isMarried) {
+      spouseNameKey.currentState!.isValid = true;
+    }
+    if (isPerson) {
+      natureOfSpecialNeedKey.currentState!.isValid = true;
+    }
+    if (isRelative) {
+      relationShipWithPepKey.currentState!.isValid = true;
+      personNameKey.currentState!.isValid = true;
+      personRoleKey.currentState!.isValid = true;
+    }
+  }
 
   void validateTextFields() {
     _profileDetailsRequest.safeAdd(ProfileDetailsUseCaseParams(

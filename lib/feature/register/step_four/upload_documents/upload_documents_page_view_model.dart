@@ -9,6 +9,13 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 class UploadDocumentsPageViewModel extends BasePageViewModel {
   final UploadDocumentsUseCase _documentsUseCase;
 
+  PublishSubject<UploadDocumentsUseCaseParams> _documentsRequest =
+  PublishSubject();
+
+  PublishSubject<Resource<bool>> _documentsResponse = PublishSubject();
+
+  Stream<Resource<bool>> get documentsStream => _documentsResponse.stream;
+
   UploadDocumentsPageViewModel(this._documentsUseCase) {
     _documentsRequest.listen((value) {
       RequestManager(value,
@@ -23,18 +30,5 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
     });
   }
 
-  PublishSubject<UploadDocumentsUseCaseParams> _documentsRequest =
-      PublishSubject();
-
-  PublishSubject<Resource<bool>> _documentsResponse = PublishSubject();
-
-  Stream<Resource<bool>> get documentsStream => _documentsResponse.stream;
-
-  void validateTextFields() {
-    // _documentsRequest.safeAdd(UploadDocumentsUseCaseParams(
-    //   incomeProof: "incomeProof",
-    //   addressProof: "addressProof",
-    // ));
-  }
 
 }
