@@ -719,6 +719,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Employer Country`
+  String get employerCountrySmall {
+    return Intl.message(
+      'Employer Country',
+      name: 'employerCountrySmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tax Country`
+  String get taxCountrySmall {
+    return Intl.message(
+      'Tax Country',
+      name: 'taxCountrySmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason of Unavailability`
+  String get reasonOfUnavailabilitySmall {
+    return Intl.message(
+      'Reason of Unavailability',
+      name: 'reasonOfUnavailabilitySmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select tax country`
+  String get invalidTaxCountry {
+    return Intl.message(
+      'Select tax country',
+      name: 'invalidTaxCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter correct tin number`
+  String get invalidTinNumber {
+    return Intl.message(
+      'Enter correct tin number',
+      name: 'invalidTinNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Reason of Unavailability`
+  String get invalidReasonUnavailability {
+    return Intl.message(
+      'Select Reason of Unavailability',
+      name: 'invalidReasonUnavailability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter reason for unavailability`
+  String get invalidExplanationForUnavailability {
+    return Intl.message(
+      'Enter reason for unavailability',
+      name: 'invalidExplanationForUnavailability',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

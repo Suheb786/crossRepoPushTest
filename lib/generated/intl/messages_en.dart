@@ -52,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("EMPLOYER CONTACT"),
         "employerCountry":
             MessageLookupByLibrary.simpleMessage("EMPLOYER COUNTRY"),
+        "employerCountrySmall":
+            MessageLookupByLibrary.simpleMessage("Employer Country"),
         "employerName": MessageLookupByLibrary.simpleMessage("EMPLOYER NAME"),
         "employmentStatus":
             MessageLookupByLibrary.simpleMessage("EMPLOYMENT STATUS"),
@@ -84,6 +86,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter employer Name"),
         "invalidEmploymentStatus":
             MessageLookupByLibrary.simpleMessage("Select Employment Status"),
+        "invalidExplanationForUnavailability":
+            MessageLookupByLibrary.simpleMessage(
+                "Enter reason for unavailability"),
         "invalidMainSourceIncome":
             MessageLookupByLibrary.simpleMessage("Enter source of income."),
         "invalidMonthlyIncome":
@@ -92,6 +97,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select Occupation"),
         "invalidPurposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage(
             "Select purpose of account opening"),
+        "invalidReasonUnavailability": MessageLookupByLibrary.simpleMessage(
+            "Select Reason of Unavailability"),
+        "invalidTaxCountry":
+            MessageLookupByLibrary.simpleMessage("Select tax country"),
+        "invalidTinNumber":
+            MessageLookupByLibrary.simpleMessage("Enter correct tin number"),
         "invalidTotalAdditionalIncome": MessageLookupByLibrary.simpleMessage(
             "Enter total additional income"),
         "mainSourceOfIncome":
@@ -114,6 +125,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
         "reasonOfUnavailability":
             MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
+        "reasonOfUnavailabilitySmall":
+            MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
         "resendIn": m0,
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
@@ -122,6 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "swipeToProceed":
             MessageLookupByLibrary.simpleMessage("Swipe to proceed"),
         "taxCountry": MessageLookupByLibrary.simpleMessage("TAX COUNTRY"),
+        "taxCountrySmall": MessageLookupByLibrary.simpleMessage("Tax Country"),
         "taxReportInfoDesc": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
         "taxationDeclaration": MessageLookupByLibrary.simpleMessage(

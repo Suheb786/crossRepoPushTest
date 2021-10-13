@@ -62,6 +62,14 @@ class ErrorParser {
         return localisedHelper.emptyEmailMessage;
       case ErrorType.INVALID_EMAIL:
         return localisedHelper.enterValidEmail;
+      case ErrorType.INVALID_TAX_COUNTRY:
+        return localisedHelper.invalidTaxCountry;
+      case ErrorType.INVALID_TIN_NUMBER:
+        return localisedHelper.invalidTinNumber;
+      case ErrorType.INVALID_REASON_OF_UNAVAILABILITY:
+        return localisedHelper.invalidReasonUnavailability;
+      case ErrorType.INVALID_EXPLANATION_FOR_UNAVAILABILITY:
+        return localisedHelper.invalidExplanationForUnavailability;
       default:
         return "";
     }

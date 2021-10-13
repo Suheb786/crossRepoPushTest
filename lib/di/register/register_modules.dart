@@ -11,10 +11,11 @@ import 'package:neo_bank/feature/register/stepone/countryselection/country_selec
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/employer_country/employer_country_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_account_opening/purpose_of_account_opening_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/reason_of_unavailability/reason_of_unavailability_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget_model.dart';
 
 final registerViewModelProvider =
@@ -76,9 +77,8 @@ final purposeOfAccountOpeningDialogViwModelProvider =
 
 ///get employer Country dialog view model provider
 final employerCountryDialogViwModelProvider =
-    ChangeNotifierProvider.autoDispose<EmployerCountryDialogViewModel>((ref) =>
-        EmployerCountryDialogViewModel(
-            ref.read(fetchCountriesUseCaseProvider)));
+    ChangeNotifierProvider.autoDispose<CountryDialogViewModel>((ref) =>
+        CountryDialogViewModel(ref.read(fetchCountriesUseCaseProvider)));
 
 ///additional income source dialog view model provider
 final additionalIncomeSourceDialogViwModelProvider =
@@ -123,4 +123,10 @@ final taxReportInformationPageViewModelProvider =
 final tinAvailableViewModelProvider =
     ChangeNotifierProvider.autoDispose<TaxationSwitchWidgetViewModel>(
   (ref) => TaxationSwitchWidgetViewModel(),
+);
+
+///reason of unavailability dialog view model provider
+final reasonOfUnavailabilityDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ReasonOfUnavailabilityDialogViewModel>(
+  (ref) => ReasonOfUnavailabilityDialogViewModel(),
 );

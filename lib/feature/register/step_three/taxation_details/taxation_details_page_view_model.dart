@@ -51,4 +51,12 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
       showErrorState();
     }
   }
+
+  @override
+  void dispose() {
+    _taxationDetailsRequest.close();
+    _taxationDetailsResponse.close();
+    _declarationSelected.close();
+    super.dispose();
+  }
 }

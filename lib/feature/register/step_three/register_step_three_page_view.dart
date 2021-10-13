@@ -14,9 +14,9 @@ class RegisterStepThreePageView
 
   List<Widget> pages = [
     ///TODO: Add pages here
+    TaxReportInformationPage(),
     EmploymentStatusPage(),
     TaxationDetailsPage(),
-    TaxReportInformationPage(),
   ];
 
   @override

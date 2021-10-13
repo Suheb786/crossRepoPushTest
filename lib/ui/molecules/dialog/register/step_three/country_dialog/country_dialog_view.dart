@@ -6,21 +6,19 @@ import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/employer_country/employer_country_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/employer_country_list_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 
-class EmployerCountryDialogView extends StatelessWidget {
+class CountryDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(String)? onSelected;
+  final String? title;
 
-  const EmployerCountryDialogView({
-    this.onDismissed,
-    this.onSelected,
-  });
+  const CountryDialogView({this.onDismissed, this.onSelected, this.title});
 
   ProviderBase providerBase() {
     return employerCountryDialogViwModelProvider;
@@ -28,19 +26,19 @@ class EmployerCountryDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<EmployerCountryDialogViewModel>(
+    return BaseWidget<CountryDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0)),
               insetPadding:
-              EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
                 dataBuilder: (context, currentIndex) {
                   return AppStreamBuilder<Resource<List<Country>>>(
-                    stream: model.getEmployerCountryStream,
+                    stream: model.getCountryStream,
                     initialData: Resource.none(),
                     dataBuilder: (context, data) {
                       return Column(
@@ -51,7 +49,7 @@ class EmployerCountryDialogView extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 32.0),
                             child: Center(
                               child: Text(
-                                S.of(context).purposeOfOpeningAccount,
+                                title!,
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.w600),
                               ),
@@ -109,7 +107,7 @@ class EmployerCountryDialogView extends StatelessWidget {
               ));
         },
         onModelReady: (model) {
-          model.getEmployerCountryList(context);
+          model.getCountryList(context);
         },
         providerBase: providerBase());
   }

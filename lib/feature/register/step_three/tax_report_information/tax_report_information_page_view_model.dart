@@ -1,9 +1,12 @@
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:domain/usecase/register/tax_report_information_usecase.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
+import 'package:domain/constants/enum/reason_unavailability_enum.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
@@ -34,21 +37,11 @@ class TaxReportInformationPageViewModel extends BasePageViewModel {
     _switchSubject.safeAdd(value);
   }
 
-  void setCountryText(String text) {
-    countrySelectorController.text = text;
-    notifyListeners();
-  }
+  ///validate  fields
+  PublishSubject<bool> _taxReportFieldValidateSubject = PublishSubject();
 
-  void setReasonText(String text) {
-    reasonController.text = text;
-    notifyListeners();
-  }
-
-  ///validate  pin
-  PublishSubject<bool> _taxResidencySubject = PublishSubject();
-
-  Stream<bool> get taxResidencyStream => _taxResidencySubject.stream;
-
+  Stream<bool> get taxReportFieldValidateStream =>
+      _taxReportFieldValidateSubject.stream;
 
   ///tax report information request subject holder
   PublishSubject<TaxReportInformationUseCaseParams>
@@ -62,6 +55,51 @@ class TaxReportInformationPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get taxReportInformationStream =>
       _taxReportInformationResponse.stream;
 
+  ///update reasonControllerText text field
+  void updateReasonControllerField(String value) {
+    reasonController.text = value;
+    if (reasonController.text.fromValue() ==
+        ReasonUnavailabilityEnum.REASON_B) {
+      updateExplainReasonVisibility(true);
+    }
+  }
+
+  ///explain Reason visibility
+  PublishSubject<bool> _explainReasonSubject = PublishSubject();
+
+  Stream<bool> get explainReasonStream => _explainReasonSubject.stream;
+
+  void updateExplainReasonVisibility(bool value) {
+    _explainReasonSubject.safeAdd(value);
+  }
+
+  void validateFields() {
+    bool isValid = false;
+    if (_switchSubject.value) {
+      print('switch value:${_switchSubject.value}');
+      if (!Validator.isEmpty(countrySelectorController.text) &&
+          !Validator.isEmpty(tinController.text)) {
+        isValid = true;
+      }
+    } else {
+      print('switch value:${_switchSubject.value}');
+      if (reasonController.text.fromValue() ==
+          ReasonUnavailabilityEnum.REASON_B) {
+        if (!Validator.isEmpty(countrySelectorController.text) &&
+            !Validator.isEmpty(reasonController.text) &&
+            !Validator.isEmpty(explainReasonController.text)) {
+          isValid = true;
+        }
+      } else {
+        if (!Validator.isEmpty(reasonController.text) &&
+            !Validator.isEmpty(countrySelectorController.text)) {
+          isValid = true;
+        }
+      }
+    }
+    updateValidateFieldValue(isValid);
+  }
+
   TaxReportInformationPageViewModel(this._taxReportInformationUseCase) {
     _taxReportInformationRequest.listen((value) {
       RequestManager(value,
@@ -69,22 +107,68 @@ class TaxReportInformationPageViewModel extends BasePageViewModel {
                   _taxReportInformationUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _taxReportInformationResponse.add(event);
+        _taxReportInformationResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          getError(event);
           showErrorState();
         }
       });
     });
   }
 
+  void getError(Resource<bool> event) {
+    print(event.appError!.type);
+    switch (event.appError!.type) {
+      case ErrorType.INVALID_TAX_COUNTRY:
+        countrySelectorKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_TIN_NUMBER:
+        tinKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_REASON_OF_UNAVAILABILITY:
+        reasonSelectorKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_EXPLANATION_FOR_UNAVAILABILITY:
+        explainReasonKey.currentState!.isValid = false;
+    }
+  }
+
   void validateTaxReportInformation() {
-    _taxReportInformationRequest.add(TaxReportInformationUseCaseParams());
+    if (_switchSubject.value) {
+      _taxReportInformationRequest.safeAdd(TaxReportInformationUseCaseParams(
+          tinNumber: tinController.text,
+          explainReason: 'no',
+          reasonOfUnavailability: 'no',
+          taxCountry: countrySelectorController.text));
+    } else {
+      if (reasonController.text.fromValue() ==
+          ReasonUnavailabilityEnum.REASON_B) {
+        _taxReportInformationRequest.safeAdd(TaxReportInformationUseCaseParams(
+            tinNumber: 'tinController.text',
+            explainReason: explainReasonController.text,
+            reasonOfUnavailability: reasonController.text,
+            taxCountry: countrySelectorController.text));
+      } else {
+        _taxReportInformationRequest.safeAdd(TaxReportInformationUseCaseParams(
+            tinNumber: "tinController.text",
+            explainReason: 'no',
+            reasonOfUnavailability: reasonController.text,
+            taxCountry: countrySelectorController.text));
+      }
+    }
+  }
+
+  void updateValidateFieldValue(bool value) {
+    _taxReportFieldValidateSubject.safeAdd(value);
   }
 
   @override
   void dispose() {
-    _taxResidencySubject.close();
+    _taxReportFieldValidateSubject.close();
     _switchSubject.close();
+    _explainReasonSubject.close();
+    _taxReportInformationRequest.close();
+    _taxReportInformationResponse.close();
     super.dispose();
   }
 }

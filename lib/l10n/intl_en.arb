@@ -69,5 +69,12 @@
   "orContinueWith": "or continue with",
   "iHaveAnAccount": "I have an account",
   "emptyEmailMessage": "Please enter your email address",
-  "enterValidEmail": "please enter valid email address"
+  "enterValidEmail": "please enter valid email address",
+  "employerCountrySmall": "Employer Country",
+  "taxCountrySmall": "Tax Country",
+  "reasonOfUnavailabilitySmall": "Reason of Unavailability",
+  "invalidTaxCountry": "Select tax country",
+  "invalidTinNumber": "Enter correct tin number",
+  "invalidReasonUnavailability": "Select Reason of Unavailability",
+  "invalidExplanationForUnavailability": "Enter reason for unavailability"
 }
