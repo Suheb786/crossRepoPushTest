@@ -6,6 +6,8 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_three/employment_status/employment_status_page.dart';
 import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_three/tax_report_information/tax_report_information_page.dart';
+import 'package:neo_bank/feature/register/step_three/taxation_details/taxation_details_page.dart';
 
 class RegisterStepThreePageView
     extends BasePageViewWidget<RegisterStepThreeViewModel> {
@@ -15,6 +17,8 @@ class RegisterStepThreePageView
     ///TODO: Add pages here
     ProfileDetailsPage(),
     EmploymentStatusPage(),
+    TaxationDetailsPage(),
+    TaxReportInformationPage(),
   ];
 
   @override

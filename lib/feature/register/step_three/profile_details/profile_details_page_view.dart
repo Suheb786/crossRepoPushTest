@@ -60,8 +60,6 @@ class ProfileDetailsPageView
                       stream: model.profileDetailsStream,
                       initialData: Resource.none(),
                       onData: (data) {
-                        print("data.status:${data.status}");
-
                         if (data.status == Status.SUCCESS) {
                           if(model.isMarried){
                             model.spouseNameKey.currentState!.isValid = true;
@@ -76,7 +74,7 @@ class ProfileDetailsPageView
                             model.personRoleKey.currentState!.isValid = true;
                           }
                           ProviderScope.containerOf(context)
-                              .read(registerViewModelProvider)
+                              .read(registerStepThreeViewModelProvider)
                               .pageController
                               .nextPage(
                               duration: Duration(milliseconds: 500),
@@ -101,7 +99,14 @@ class ProfileDetailsPageView
                           onHorizontalDragUpdate: (details) {
                             if (details.primaryDelta!.isNegative) {
                              model.validateTextFields();
-                           }
+                           }else {
+                              ProviderScope.containerOf(context)
+                                  .read(registerStepThreeViewModelProvider)
+                                  .pageController
+                                  .previousPage(
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut);
+                            }
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(

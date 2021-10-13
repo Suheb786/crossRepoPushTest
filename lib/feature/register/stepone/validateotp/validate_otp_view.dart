@@ -82,13 +82,18 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                         onHorizontalDragUpdate: (details) {
                           if (details.primaryDelta!.isNegative) {
                             model.validateOtp();
-                            ///TODO: put it on swipe button
-                            ProviderScope.containerOf(context)
-                                .read(registerViewModelProvider)
-                                .pageController
-                                .nextPage(
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.easeInOut);
+
+                            if (isOtpVerified!.data != null) {
+                              if (isOtpVerified.data!) {
+                                ///TODO: put it on swipe button
+                                ProviderScope.containerOf(context)
+                                    .read(registerViewModelProvider)
+                                    .pageController
+                                    .animateToPage(1,
+                                        duration: Duration(milliseconds: 500),
+                                        curve: Curves.easeInOut);
+                              }
+                            }
                           } else {
                             ProviderScope.containerOf(context)
                                 .read(registerStepOneViewModelProvider)

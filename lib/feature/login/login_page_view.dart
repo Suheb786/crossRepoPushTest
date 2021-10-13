@@ -92,7 +92,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                               horizontal: 24),
                                           child: AppTextField(
                                             labelText:
-                                                S.of(context).emailAddressCaps,
+                                                S.of(context).emailAddress,
                                             hintText: S.of(context).pleaseEnter,
                                             key: model.emailKey,
                                             controller: model.emailController,

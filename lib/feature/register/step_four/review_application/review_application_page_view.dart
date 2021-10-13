@@ -9,8 +9,9 @@ import 'package:neo_bank/feature/register/step_four/review_application/review_ap
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/register/declaration_widget.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_item.dart';
-import 'package:neo_bank/ui/molecules/review_application/review_term_cond_item.dart';
+import 'package:neo_bank/ui/molecules/review_application/review_term_cond_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
@@ -83,7 +84,7 @@ class ReviewApplicationPageView
                               child: SingleChildScrollView(
                                 child: Column(
                                   children: [
-                                    ReviewApplicationItem(title: S.of(context).emailAddress, details: "salam@email.com",),
+                                    ReviewApplicationItem(title: S.of(context).emailAddressSmall, details: "salam@email.com",),
                                     ReviewApplicationItem(title: S.of(context).mobileNumber, details: "+962 79 332 8080",),
                                     Padding(
                                       padding: EdgeInsets.only(top:16.0, bottom: 8.0),
@@ -115,20 +116,32 @@ class ReviewApplicationPageView
                                         color: AppColor.light_gray,
                                       ),
                                     ),
-                                    ReviewApplicationItem(title: S.of(context).employmentStatus, details: "Employed",),
-                                    ReviewApplicationItem(title: S.of(context).occupation, details: "Accountant",),
+                                    ReviewApplicationItem(title: S.of(context).employmentStatusSmall, details: "Employed",),
+                                    ReviewApplicationItem(title: S.of(context).occupationSmall, details: "Accountant",),
 
                                     ReviewApplicationItem(title: S.of(context).mainSourceIncome, details: "Salary",),
-                                    ReviewApplicationItem(title: S.of(context).monthlyIncome, details: "JOD 4,950",),
-                                    ReviewApplicationItem(title: S.of(context).annualIncome, details: "JOD 59,400",),
+                                    ReviewApplicationItem(title: S.of(context).monthlyIncomeSmall, details: "JOD 4,950",),
+                                    ReviewApplicationItem(title: S.of(context).annualIncomeSmall, details: "JOD 59,400",),
                                     ReviewApplicationItem(title: S.of(context).purposeOfAccount, details: "Salary",),
-                                    ReviewApplicationItem(title: S.of(context).employerName, details: "Jordan Insurance Company",),
-                                    ReviewApplicationItem(title: S.of(context).employerCountry, details: "Jordan",),
-                                    ReviewApplicationItem(title: S.of(context).employerCity, details: "Amman",),
-                                    ReviewApplicationItem(title: S.of(context).employerContact, details: "79 333 8089",),
+                                    ReviewApplicationItem(title: S.of(context).employerNameSmall, details: "Jordan Insurance Company",),
+                                    ReviewApplicationItem(title: S.of(context).employerCountrySmall, details: "Jordan",),
+                                    ReviewApplicationItem(title: S.of(context).employerCitySmall, details: "Amman",),
+                                    ReviewApplicationItem(title: S.of(context).employerContactSmall, details: "79 333 8089",),
                                     ReviewApplicationItem(title: S.of(context).additionalSourceIncome, details: "Freelance Designer",),
-                                    ReviewApplicationItem(title: S.of(context).totalAdditionalIncome, details: "JOD 2,000",),
-
+                                    ReviewApplicationItem(title: S.of(context).totalAdditionalIncomeSmall, details: "JOD 2,000",),
+                                    AppStreamBuilder<bool>(
+                                      stream: model.declarationSelectedStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isSelected) {
+                                        return ReviewTCWidget(
+                                          isSelected: isSelected,
+                                          onTap: () {
+                                            model.updateDeclarationSelection(
+                                                !(isSelected!));
+                                          },
+                                        );
+                                      },
+                                    ),
                                   ],
                                 ),
                               )),
