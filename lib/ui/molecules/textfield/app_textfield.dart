@@ -47,7 +47,7 @@ class AppTextField extends StatefulWidget {
       this.child,
       this.onPressed,
       this.controller,
-      this.inputAction: TextInputAction.next,
+      this.inputAction: TextInputAction.done,
       this.inputType,
       required this.labelText,
       required this.hintText,

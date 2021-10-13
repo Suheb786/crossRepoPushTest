@@ -70,23 +70,25 @@ class CountrySelectionPageView
                     stream: model.countries,
                     initialData: Resource.none(),
                     dataBuilder: (context, data) {
-                      return ListWheelScrollView.useDelegate(
-                          itemExtent: 72,
-                          onSelectedItemChanged: (int index) {
-                            model.selectCountry(index);
-                            ProviderScope.containerOf(context)
-                                .read(addNumberViewModelProvider)
-                                .notify();
-                          },
-                          physics: FixedExtentScrollPhysics(),
-                          perspective: 0.0000000001,
-                          childDelegate: ListWheelChildBuilderDelegate(
-                              childCount: data!.data!.length,
-                              builder: (BuildContext context, int index) {
-                                return CountryListItem(
-                                  item: data.data![index],
-                                );
-                              }));
+                      return Scrollbar(
+                        child: ListWheelScrollView.useDelegate(
+                            itemExtent: 72,
+                            onSelectedItemChanged: (int index) {
+                              model.selectCountry(index);
+                              ProviderScope.containerOf(context)
+                                  .read(addNumberViewModelProvider)
+                                  .notify();
+                            },
+                            physics: FixedExtentScrollPhysics(),
+                            perspective: 0.0000000001,
+                            childDelegate: ListWheelChildBuilderDelegate(
+                                childCount: data!.data!.length,
+                                builder: (BuildContext context, int index) {
+                                  return CountryListItem(
+                                    item: data.data![index],
+                                  );
+                                })),
+                      );
                     },
                   )),
             ),

@@ -16,8 +16,8 @@ class AppOtpFields extends StatelessWidget {
   const AppOtpFields(
       {Key? key,
       @required this.length,
-      this.fieldHeight: 52,
-      this.fieldWidth: 39.72,
+      this.fieldHeight: 50,
+      this.fieldWidth: 35,
       this.onCompleted,
       this.controller,
       this.onChanged,
@@ -41,6 +41,7 @@ class AppOtpFields extends StatelessWidget {
         keyboardType: TextInputType.number,
         blinkWhenObscuring: true,
         errorTextSpace: 20,
+        useHapticFeedback: true,
         showCursor: false,
         pinTheme: PinTheme(
             shape: PinCodeFieldShape.box,
@@ -63,7 +64,6 @@ class AppOtpFields extends StatelessWidget {
         ),
         textStyle: TextStyle(
             color: AppColor.very_pale_blue,
-            fontFamily: 'Montserrat',
             fontWeight: FontWeight.w600,
             fontSize: 19),
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

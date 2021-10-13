@@ -28,7 +28,7 @@ class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
           PageView.builder(
             itemCount: pages.length,
             physics: NeverScrollableScrollPhysics(),
-            controller: model.pageController,
+            controller: model.registrationStepsController,
             itemBuilder: (context, index) {
               return pages[index];
             },
@@ -41,8 +41,8 @@ class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
               padding: EdgeInsets.symmetric(horizontal: 24),
               child: DotsIndicator(
                 dotsCount: pages.length,
-                position: model.pageController.positions.isNotEmpty
-                    ? model.pageController.page!
+                position: model.registrationStepsController.positions.isNotEmpty
+                    ? model.registrationStepsController.page!
                     : 0,
                 decorator: DotsDecorator(
                     shape: RoundedRectangleBorder(

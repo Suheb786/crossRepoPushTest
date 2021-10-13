@@ -48,6 +48,7 @@ dependencies:
   animated_widgets: ^1.1.0
   pin_code_fields: ^7.3.0
   flutter_countdown_timer: ^4.1.0
+  another_transformer_page_view: ^1.0.1
   flutter_switch: ^0.3.2
 
   # The following adds the Cupertino Icons font to your application.

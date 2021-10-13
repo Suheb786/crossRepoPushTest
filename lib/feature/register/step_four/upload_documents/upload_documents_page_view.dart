@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/upload_documents/upload_documents_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -54,13 +55,19 @@ class UploadDocumentsPageView
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
-                        }else if(data.status == Status.ERROR){
-                        }
+                        } else if (data.status == Status.ERROR) {}
                       },
                       dataBuilder: (context, data) {
                         return GestureDetector(
                           onHorizontalDragUpdate: (details) {
                             if (details.primaryDelta!.isNegative) {
+                            } else {
+                              ProviderScope.containerOf(context)
+                                  .read(registerStepFourViewModelProvider)
+                                  .registrationStepFourPageController
+                                  .previousPage(
+                                      duration: Duration(milliseconds: 500),
+                                      curve: Curves.easeInOut);
                             }
                           },
                           child: Card(
@@ -80,9 +87,8 @@ class UploadDocumentsPageView
                                       begin: Alignment.bottomCenter,
                                       end: Alignment.topCenter),
                                 ),
-                                child: SingleChildScrollView(
-                                  child: Container()
-                                )),
+                                child:
+                                    SingleChildScrollView(child: Container())),
                           ),
                         );
                       },
