@@ -17,7 +17,6 @@ class AssetUtils {
   static const String tick = svg + "tick.svg";
   static const String apple = svg + "apple.svg";
   static const String google = svg + "google.svg";
-  static const String dropDown = svg + "drop_down.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash_logo.png";

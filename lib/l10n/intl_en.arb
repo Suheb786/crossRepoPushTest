@@ -146,7 +146,6 @@
   "confirmTermsCondError":"Confirm to the terms and conditions.",
   "yes": "YES",
   "no": "No",
-  "enterValidEmail": "please enter valid email address",
   "enterPassword": "Password field cannot be empty",
   "enterConfirmPassword": "Confirm password field cannot be empty",
   "passwordMismatch": "Password did not match",
