@@ -48,4 +48,17 @@ enum ErrorType {
 
   // Scanner Error
   NO_DOCUMENT_FOUND,
+
+  //profile
+  INVALID_NAME,
+  INVALID_NATURE,
+  INVALID_RELATIONSHIP,
+  INVALID_PERSON_ROLE,
+  INVALID_PERSON_NAME,
+
+  //upload
+  EMPTY_INCOME_PROOF,
+  EMPTY_ADDRESS_PROOF,
+
+
 }

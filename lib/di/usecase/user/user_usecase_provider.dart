@@ -6,8 +6,11 @@ import 'package:domain/usecase/user/register_number_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
+import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/enter_address_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:domain/usecase/user/upload_documents_usecase.dart';
+import 'package:domain/usecase/register/review_app_usecase.dart';
 
 ///[FetchCountriesUseCase] provider
 final fetchCountriesUseCaseProvider =
@@ -33,6 +36,20 @@ final verifyOtpUseCaseProvider = Provider.autoDispose<VerifyOtpUseCase>(
   (ref) => VerifyOtpUseCase(),
 );
 
+///[ProfileDetailsUseCase] provider
+final profileDetailsUseCaseProvider = Provider.autoDispose<ProfileDetailsUseCase>(
+      (ref) => ProfileDetailsUseCase(),
+);
+
+///[UploadDocumentsUseCase] provider
+final uploadDocumentsUseCaseProvider = Provider.autoDispose<UploadDocumentsUseCase>(
+      (ref) => UploadDocumentsUseCase(),
+);
+
+///[ReviewApplicationUseCase] provider
+final reviewApplicationUseCaseProvider = Provider.autoDispose<ReviewApplicationUseCase>(
+      (ref) => ReviewApplicationUseCase(),
+);
 ///[CreatePasswordUseCase] provider
 final createPasswordUseCaseProvider = Provider.autoDispose<CreatePasswordUseCase>(
     (ref) => CreatePasswordUseCase(),

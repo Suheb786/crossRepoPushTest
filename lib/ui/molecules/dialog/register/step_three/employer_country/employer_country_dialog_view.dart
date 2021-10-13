@@ -51,7 +51,7 @@ class EmployerCountryDialogView extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 32.0),
                             child: Center(
                               child: Text(
-                                S.of(context).purposeOfOpeningAccount,
+                                S.of(context).employerCountrySmall,
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.w600),
                               ),
