@@ -6,6 +6,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/stepone/countryselection/country_selection_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/country/country_list_item.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -70,24 +71,36 @@ class CountrySelectionPageView
                     stream: model.countries,
                     initialData: Resource.none(),
                     dataBuilder: (context, data) {
-                      return Scrollbar(
-                        child: ListWheelScrollView.useDelegate(
-                            itemExtent: 72,
-                            onSelectedItemChanged: (int index) {
-                              model.selectCountry(index);
-                              ProviderScope.containerOf(context)
-                                  .read(addNumberViewModelProvider)
-                                  .notify();
-                            },
-                            physics: FixedExtentScrollPhysics(),
-                            perspective: 0.0000000001,
-                            childDelegate: ListWheelChildBuilderDelegate(
-                                childCount: data!.data!.length,
-                                builder: (BuildContext context, int index) {
-                                  return CountryListItem(
-                                    item: data.data![index],
-                                  );
-                                })),
+                      return Stack(
+                        children: [
+                          Scrollbar(
+                            child: ListWheelScrollView.useDelegate(
+                                itemExtent: 72,
+                                onSelectedItemChanged: (int index) {
+                                  model.selectCountry(index);
+                                  ProviderScope.containerOf(context)
+                                      .read(addNumberViewModelProvider)
+                                      .notify();
+                                },
+                                physics: FixedExtentScrollPhysics(),
+                                perspective: 0.0000000001,
+                                childDelegate: ListWheelChildBuilderDelegate(
+                                    childCount: data!.data!.length,
+                                    builder: (BuildContext context, int index) {
+                                      return CountryListItem(
+                                        item: data.data![index],
+                                      );
+                                    })),
+                          ),
+                          Positioned(
+                            bottom:24,
+                            left:69,
+                            right:69,
+                            child: AnimatedButton(
+                              buttonText: "Swipe to proceed",
+                            ),
+                          )
+                        ],
                       );
                     },
                   )),

@@ -9,6 +9,7 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/stepone/addnumber/add_number_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -105,70 +106,92 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                       begin: Alignment.bottomCenter,
                                       end: Alignment.topCenter),
                                 ),
-                                child: AppTextField(
-                                  labelText: S.of(context).mobileNumber,
-                                  hintText: S.of(context).mobileNumberHint,
-                                  inputType: TextInputType.number,
-                                  inputAction: TextInputAction.done,
-                                  controller: model.mobileNumberController,
-                                  key: model.mobileNumberKey,
-                                  prefixIcon: () {
-                                    Country? country = ProviderScope
-                                            .containerOf(context)
-                                        .read(countrySelectionViewModelProvider)
-                                        .selectedCountry;
-                                    return Padding(
-                                      padding: EdgeInsets.only(top: 8.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: <Widget>[
-                                          Container(
-                                              height: 16,
-                                              width: 16,
-                                              decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  image: DecorationImage(
-                                                      image: AssetImage(
-                                                          country!.countryFlag ??
-                                                              "",
-                                                          package:
-                                                              "country_calling_code_picker"),
-                                                      fit: BoxFit.cover))),
-                                          Padding(
+                                child: Stack(
+                                  children: [
+                                    AppTextField(
+                                      labelText: S.of(context).mobileNumber,
+                                      hintText: S.of(context).mobileNumberHint,
+                                      inputType: TextInputType.number,
+                                      inputAction: TextInputAction.done,
+                                      controller: model.mobileNumberController,
+                                      key: model.mobileNumberKey,
+                                      onChanged: (value)=> model.validate(),
+                                      prefixIcon: () {
+                                        Country? country = ProviderScope
+                                                .containerOf(context)
+                                            .read(countrySelectionViewModelProvider)
+                                            .selectedCountry;
+                                        return Padding(
+                                          padding: EdgeInsets.only(top: 8.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: <Widget>[
+                                              Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      image: DecorationImage(
+                                                          image: AssetImage(
+                                                              country!.countryFlag ??
+                                                                  "",
+                                                              package:
+                                                                  "country_calling_code_picker"),
+                                                          fit: BoxFit.cover))),
+                                              Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 8.0),
+                                                child: Text(
+                                                  country.countryCallingCode ?? "",
+                                                  style: TextStyle(
+                                                    color: AppColor.very_light_gray,
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                      textHintWidget: (hasFocus, isValid, value) {
+                                        return Visibility(
+                                          visible: !isValid,
+                                          child: Padding(
                                             padding: EdgeInsets.symmetric(
-                                                horizontal: 8.0),
+                                                horizontal: 16, vertical: 8),
                                             child: Text(
-                                              country.countryCallingCode ?? "",
+                                              ErrorParser.getLocalisedStringError(
+                                                  error: data!.appError,
+                                                  localisedHelper: S.of(context)),
+                                              textAlign: TextAlign.start,
                                               style: TextStyle(
-                                                color: AppColor.very_light_gray,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: AppColor.vivid_red),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    AppStreamBuilder<bool>(
+                                        stream: model.showButtonStream,
+                                        initialData: false,
+                                        dataBuilder: (context, isValid) {
+                                          return Visibility(
+                                            visible: isValid!,
+                                            child: Positioned(
+                                              bottom:0,
+                                              left:45,
+                                              right:45,
+                                              child: AnimatedButton(
+                                                buttonText: "Swipe to proceed",
                                               ),
                                             ),
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                  textHintWidget: (hasFocus, isValid, value) {
-                                    return Visibility(
-                                      visible: !isValid,
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 16, vertical: 8),
-                                        child: Text(
-                                          ErrorParser.getLocalisedStringError(
-                                              error: data!.appError,
-                                              localisedHelper: S.of(context)),
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w600,
-                                              color: AppColor.vivid_red),
-                                        ),
-                                      ),
-                                    );
-                                  },
+                                          );
+                                        }
+                                    )
+                                  ],
                                 )),
                           ),
                         );

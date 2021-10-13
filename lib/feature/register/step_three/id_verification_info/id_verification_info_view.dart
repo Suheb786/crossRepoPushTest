@@ -100,114 +100,116 @@ class IdVerificationInfoView
                                         begin: Alignment.bottomCenter,
                                         end: Alignment.topCenter),
                                   ),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        IdVerificationInfoText(
-                                            image: AssetUtils.sunny,
-                                            title: S
-                                                .of(context)
-                                                .idVerificationPlaceInfo),
-                                        SizedBox(
-                                          height: 32,
-                                        ),
-                                        IdVerificationInfoText(
-                                            image: AssetUtils.scan,
-                                            title: S.of(context).idScanInfo),
-                                        SizedBox(
-                                          height: 32,
-                                        ),
-                                        IdVerificationInfoText(
-                                            image: AssetUtils.correct,
-                                            title: S.of(context).onIdFit),
-                                        SizedBox(
-                                          height: 144,
-                                        ),
-                                        Row(
+                                  child: Stack(
+                                    children: [
+                                      SingleChildScrollView(
+                                        child: Column(
                                           children: [
-                                            AppStreamBuilder<bool>(
-                                                stream: model
-                                                    .isRetrievedConditionStream,
-                                                initialData: false,
-                                                dataBuilder:
-                                                    (context, isChecked) {
-                                                  return InkWell(
-                                                    onTap: () {
-                                                      if (isChecked == false) {
-                                                        model
-                                                            .updateIsRetrievedConditionStream(
-                                                                true);
-                                                      } else {
-                                                        model
-                                                            .updateIsRetrievedConditionStream(
-                                                                false);
-                                                      }
-                                                    },
-                                                    child: isChecked == false
-                                                        ? AppSvg.asset(
-                                                            AssetUtils.ellipse)
-                                                        : AppSvg.asset(
-                                                            AssetUtils
-                                                                .checkBox),
-                                                  );
-                                                }),
-                                            SizedBox(
-                                              width: 16,
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                S
+                                            IdVerificationInfoText(
+                                                image: AssetUtils.sunny,
+                                                title: S
                                                     .of(context)
-                                                    .termsAndConditions,
-                                                style: TextStyle(
-                                                    color: AppColor.white,
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 14),
+                                                    .idVerificationPlaceInfo),
+                                            SizedBox(
+                                              height: 32,
+                                            ),
+                                            IdVerificationInfoText(
+                                                image: AssetUtils.scan,
+                                                title: S.of(context).idScanInfo),
+                                            SizedBox(
+                                              height: 32,
+                                            ),
+                                            IdVerificationInfoText(
+                                                image: AssetUtils.correct,
+                                                title: S.of(context).onIdFit),
+                                            SizedBox(
+                                              height: 144,
+                                            ),
+                                            Row(
+                                              children: [
+                                                AppStreamBuilder<bool>(
+                                                    stream: model
+                                                        .isRetrievedConditionStream,
+                                                    initialData: false,
+                                                    dataBuilder:
+                                                        (context, isChecked) {
+                                                      return InkWell(
+                                                        onTap: () {
+                                                          if (isChecked == false) {
+                                                            model
+                                                                .updateIsRetrievedConditionStream(
+                                                                    true);
+                                                          } else {
+                                                            model
+                                                                .updateIsRetrievedConditionStream(
+                                                                    false);
+                                                          }
+                                                        },
+                                                        child: isChecked == false
+                                                            ? AppSvg.asset(
+                                                                AssetUtils.ellipse)
+                                                            : AppSvg.asset(
+                                                                AssetUtils
+                                                                    .checkBox),
+                                                      );
+                                                    }),
+                                                SizedBox(
+                                                  width: 16,
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    S
+                                                        .of(context)
+                                                        .termsAndConditions,
+                                                    style: TextStyle(
+                                                        color: AppColor.white,
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: 14),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                            Visibility(
+                                              visible: model.showError!,
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 16, vertical: 8),
+                                                child: Text(
+                                                  ErrorParser
+                                                      .getLocalisedStringError(
+                                                          error: data!.appError,
+                                                          localisedHelper:
+                                                              S.of(context)),
+                                                  textAlign: TextAlign.start,
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight: FontWeight.w600,
+                                                      color: AppColor.vivid_red),
+                                                ),
                                               ),
-                                            )
+                                            ),
                                           ],
                                         ),
-                                        Visibility(
-                                          visible: model.showError!,
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 16, vertical: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: data!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: 34,
-                                        ),
-                                        AppStreamBuilder<bool>(
+                                      ),
+                                      Positioned(
+                                        bottom:0,
+                                        left:45,
+                                        right:45,
+                                        child: AppStreamBuilder<bool>(
                                             stream: model
                                                 .isRetrievedConditionStream,
                                             initialData: false,
                                             dataBuilder: (context, isChecked) {
                                               return Visibility(
                                                 visible: isChecked!,
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 45.0, right: 45),
-                                                  child: AnimatedButton(
-                                                    buttonText:
-                                                        "Swipe to proceed",
-                                                  ),
+                                                child: AnimatedButton(
+                                                  buttonText:
+                                                  "Swipe to proceed",
                                                 ),
                                               );
-                                            })
-                                      ],
-                                    ),
+                                            }),
+                                      )
+                                    ],
                                   )),
                             ),
                           );
