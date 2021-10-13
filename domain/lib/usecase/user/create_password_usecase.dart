@@ -35,7 +35,7 @@ class CreatePasswordUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_CONFIRM_PASSWORD,
           cause: Exception()));
-    } else if(!Validator.isEqual(confirmPassword, createPassword)) {
+    } else if (!Validator.isEqual(confirmPassword, createPassword)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.PASSWORD_MISMATCH,

@@ -30,22 +30,22 @@ class EnterAddressUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    if(Validator.isEmpty(residentCountry!)) {
+    if (Validator.isEmpty(residentCountry!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_RESIDENT_COUNTRY,
           cause: Exception()));
-    } else if(Validator.isEmpty(homeAddress!)) {
+    } else if (Validator.isEmpty(homeAddress!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_HOME_ADDRESS,
           cause: Exception()));
-    } else if(Validator.isEmpty(streetAddress!)) {
+    } else if (Validator.isEmpty(streetAddress!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_STREET_ADDRESS,
           cause: Exception()));
-    } else if(Validator.isEmpty(buildingNameOrNo!)) {
+    } else if (Validator.isEmpty(buildingNameOrNo!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_BUILDING_NAME_OR_NUMBER,

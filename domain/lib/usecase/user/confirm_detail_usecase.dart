@@ -7,9 +7,11 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class ConfirmDetailUseCase extends BaseUseCase<LocalError, ConfirmDetailUseCaseParams, bool> {
+class ConfirmDetailUseCase
+    extends BaseUseCase<LocalError, ConfirmDetailUseCaseParams, bool> {
   @override
-  Future<Either<LocalError, bool>> execute({required ConfirmDetailUseCaseParams params}) {
+  Future<Either<LocalError, bool>> execute(
+      {required ConfirmDetailUseCaseParams params}) {
     return Future.value(Right(true));
   }
 }
@@ -32,7 +34,7 @@ class ConfirmDetailUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    if(Validator.isEmpty(name!)) {
+    if (Validator.isEmpty(name!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_NAME,
@@ -52,12 +54,12 @@ class ConfirmDetailUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_NATIONALITY,
           cause: Exception()));
-    } else if(Validator.isEmpty(expiryDate!)) {
+    } else if (Validator.isEmpty(expiryDate!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_EXPIRY_DATE,
           cause: Exception()));
-    } else if(Validator.isEmpty(gender!)) {
+    } else if (Validator.isEmpty(gender!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_GENDER,

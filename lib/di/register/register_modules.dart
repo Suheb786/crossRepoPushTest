@@ -50,24 +50,26 @@ final validateOtpViewModelProvider =
 );
 
 ///[CreatePasswordViewModel] provider
-final createPasswordViewModelProvider = ChangeNotifierProvider.autoDispose<CreatePasswordViewModel>(
-    (ref) => CreatePasswordViewModel(ref.read(createPasswordUseCaseProvider))
-);
+final createPasswordViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CreatePasswordViewModel>((ref) =>
+        CreatePasswordViewModel(ref.read(createPasswordUseCaseProvider)));
 
 ///[IdVerificationInfoViewModel] provider
-final idVerificationInfoViewModelProvider = ChangeNotifierProvider.autoDispose<IdVerificationInfoViewModel>(
-        (ref) => IdVerificationInfoViewModel(ref.read(idVerificationInfoUseCaseProvider))
-);
+final idVerificationInfoViewModelProvider =
+    ChangeNotifierProvider.autoDispose<IdVerificationInfoViewModel>((ref) =>
+        IdVerificationInfoViewModel(
+            ref.read(idVerificationInfoUseCaseProvider)));
 
 ///[ConfirmDetailViewModel] provider
-final confirmDetailViewModelProvider = ChangeNotifierProvider.autoDispose<ConfirmDetailViewModel>(
-        (ref) => ConfirmDetailViewModel(ref.read(confirmDetailUseCaseProvider))
-);
+final confirmDetailViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ConfirmDetailViewModel>((ref) =>
+        ConfirmDetailViewModel(ref.read(confirmDetailUseCaseProvider)));
 
 ///[EnterAddressViewModel] provider
-final enterAddressViewModelProvider = ChangeNotifierProvider.autoDispose<EnterAddressViewModel>(
-        (ref) => EnterAddressViewModel(ref.read(enterAddressUseCaseProvider))
-);
+final enterAddressViewModelProvider =
+    ChangeNotifierProvider.autoDispose<EnterAddressViewModel>(
+        (ref) => EnterAddressViewModel(ref.read(enterAddressUseCaseProvider)));
+
 ///step three page view model provider
 final registerStepThreeViewModelProvider =
     ChangeNotifierProvider.autoDispose<RegisterStepThreeViewModel>(
