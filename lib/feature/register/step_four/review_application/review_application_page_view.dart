@@ -7,7 +7,6 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/review_application/review_application_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_item.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_term_cond_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -58,7 +57,7 @@ class ReviewApplicationPageView
                       if (data.status == Status.SUCCESS) {
                         ProviderScope.containerOf(context)
                             .read(registerStepFourViewModelProvider)
-                            .pageController
+                            .registrationStepFourPageController
                             .nextPage(
                                 duration: Duration(milliseconds: 500),
                                 curve: Curves.easeInOut);

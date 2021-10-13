@@ -61,13 +61,13 @@ class TaxationDetailsPageView
                       model.anyOtherCountryResident
                           ? ProviderScope.containerOf(context)
                               .read(registerStepThreeViewModelProvider)
-                              .pageController
+                              .registrationStepThreePageController
                               .nextPage(
                                   duration: Duration(milliseconds: 500),
                                   curve: Curves.easeInOut)
                           : ProviderScope.containerOf(context)
                               .read(registerViewModelProvider)
-                              .pageController
+                              .registrationStepsController
                               .nextPage(
                                   duration: Duration(milliseconds: 500),
                                   curve: Curves.easeInOut);
@@ -81,7 +81,7 @@ class TaxationDetailsPageView
                         } else {
                           ProviderScope.containerOf(context)
                               .read(registerStepThreeViewModelProvider)
-                              .pageController
+                              .registrationStepThreePageController
                               .previousPage(
                                   duration: Duration(milliseconds: 500),
                                   curve: Curves.easeInOut);

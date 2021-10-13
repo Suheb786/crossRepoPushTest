@@ -70,7 +70,7 @@ class EmploymentStatusPageView
                           if (data.status == Status.SUCCESS) {
                             ProviderScope.containerOf(context)
                                 .read(registerStepThreeViewModelProvider)
-                                .pageController
+                                .registrationStepThreePageController
                                 .nextPage(
                                     duration: Duration(milliseconds: 500),
                                     curve: Curves.easeInOut);
@@ -84,7 +84,7 @@ class EmploymentStatusPageView
                               } else {
                                 ProviderScope.containerOf(context)
                                     .read(registerStepThreeViewModelProvider)
-                                    .pageController
+                                    .registrationStepThreePageController
                                     .previousPage(
                                         duration: Duration(milliseconds: 500),
                                         curve: Curves.easeInOut);
