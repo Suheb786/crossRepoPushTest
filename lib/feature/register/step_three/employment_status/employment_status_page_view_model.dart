@@ -145,48 +145,53 @@ class EmploymentStatusPageViewModel extends BasePageViewModel {
           .listen((event) {
         _employmentDetailsResponse.add(event);
         if (event.status == Status.ERROR) {
-          switch (event.appError!.type) {
-            case ErrorType.INVALID_EMPLOYMENT_STATUS:
-              employmentStatusKey.currentState!.isValid = false;
-              break;
-            case ErrorType.INVALID_OCCUPATION:
-              occupationKey.currentState!.isValid = false;
-              break;
-            case ErrorType.INVALID_SOURCE_INCOME:
-              sourceKey.currentState!.isValid = false;
-              break;
-            case ErrorType.INVALID_MONTHLY_INCOME:
-              monthlyIncomeKey.currentState!.isValid = false;
-              break;
-            case ErrorType.INVALID_ANNUAL_INCOME:
-              annualIncomeKey.currentState!.isValid = false;
-              break;
-            case ErrorType.INVALID_PURPOSE_OF_ACCOUNT_OPENING:
-              purposeOfAccountOpeningKey.currentState!.isValid = false;
-              break;
-            case ErrorType.INVALID_EMPLOYER_NAME:
-              employerNameKey.currentState!.isValid = false;
-              break;
-            case ErrorType.INVALID_EMPLOYER_COUNTRY:
-              employerCountryKey.currentState!.isValid = false;
-              break;
-            case ErrorType.INVALID_EMPLOYER_CITY:
-              employerCityKey.currentState!.isValid = false;
-              break;
-            case ErrorType.INVALID_EMPLOYER_CONTACT:
-              employerContactKey.currentState!.isValid = false;
-              break;
-            case ErrorType.INVALID_ADDITIONAL_SOURCE_INCOME:
-              additionalSourceIncomeKey.currentState!.isValid = false;
-              break;
-            case ErrorType.INVALID_TOTAL_ADDITIONAL_INCOME:
-              totalAdditionalIncomeKey.currentState!.isValid = false;
-          }
+          getError(event);
           showErrorState();
         }
       });
     });
   }
+
+  void getError(Resource<bool> event) {
+    switch (event.appError!.type) {
+      case ErrorType.INVALID_EMPLOYMENT_STATUS:
+        employmentStatusKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_OCCUPATION:
+        occupationKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_SOURCE_INCOME:
+        sourceKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_MONTHLY_INCOME:
+        monthlyIncomeKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_ANNUAL_INCOME:
+        annualIncomeKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_PURPOSE_OF_ACCOUNT_OPENING:
+        purposeOfAccountOpeningKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_EMPLOYER_NAME:
+        employerNameKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_EMPLOYER_COUNTRY:
+        employerCountryKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_EMPLOYER_CITY:
+        employerCityKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_EMPLOYER_CONTACT:
+        employerContactKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_ADDITIONAL_SOURCE_INCOME:
+        additionalSourceIncomeKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_TOTAL_ADDITIONAL_INCOME:
+        totalAdditionalIncomeKey.currentState!.isValid = false;
+    }
+  }
+
   void validateEmploymentDetails() {
     _employmentDetailsRequest.add(EmploymentStatusUseCaseParams(
         additionalSourceIncome: additionalSourceIncomeController.text,
