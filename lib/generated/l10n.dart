@@ -160,11 +160,321 @@ class S {
     );
   }
 
+  /// `Next, let's create your\nlogin password`
+  String get createPasswordHeader {
+    return Intl.message(
+      'Next, let\'s create your\nlogin password',
+      name: 'createPasswordHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CREATE PASSWORD`
+  String get createPassword {
+    return Intl.message(
+      'CREATE PASSWORD',
+      name: 'createPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter`
+  String get pleaseEnter {
+    return Intl.message(
+      'Please enter',
+      name: 'pleaseEnter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CONFIRM PASSWORD`
+  String get confirmPassword {
+    return Intl.message(
+      'CONFIRM PASSWORD',
+      name: 'confirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `PERSONAL DETAILS`
   String get personalDetails {
     return Intl.message(
       'PERSONAL DETAILS',
       name: 'personalDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please get your ID ready\nto be scanned`
+  String get idVerificationInfoHeader {
+    return Intl.message(
+      'Please get your ID ready\nto be scanned',
+      name: 'idVerificationInfoHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make sure you’re in bright place and surrounding`
+  String get idVerificationPlaceInfo {
+    return Intl.message(
+      'Make sure you’re in bright place and surrounding',
+      name: 'idVerificationPlaceInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place your ID inside the frame`
+  String get idScanInfo {
+    return Intl.message(
+      'Place your ID inside the frame',
+      name: 'idScanInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Once fit, your ID will be scanned automatically`
+  String get onIdFit {
+    return Intl.message(
+      'Once fit, your ID will be scanned automatically',
+      name: 'onIdFit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I agree for the bank to retrieve my AHWAL data necessarily.`
+  String get termsAndConditions {
+    return Intl.message(
+      'I agree for the bank to retrieve my AHWAL data necessarily.',
+      name: 'termsAndConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm your\ndetails below`
+  String get confirmDetailsHeader {
+    return Intl.message(
+      'Please confirm your\ndetails below',
+      name: 'confirmDetailsHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NAME AS PER ID`
+  String get name {
+    return Intl.message(
+      'NAME AS PER ID',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Name`
+  String get nameHint {
+    return Intl.message(
+      'Please Enter Name',
+      name: 'nameHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID NUMBER`
+  String get idNumber {
+    return Intl.message(
+      'ID NUMBER',
+      name: 'idNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter ID Number`
+  String get idHint {
+    return Intl.message(
+      'Please Enter ID Number',
+      name: 'idHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DATE OF BIRTH`
+  String get dob {
+    return Intl.message(
+      'DATE OF BIRTH',
+      name: 'dob',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Date Of Birth`
+  String get dobHint {
+    return Intl.message(
+      'Please Enter Date Of Birth',
+      name: 'dobHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NATIONALITY`
+  String get nationality {
+    return Intl.message(
+      'NATIONALITY',
+      name: 'nationality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Nationality`
+  String get nationalityHint {
+    return Intl.message(
+      'Please Enter Nationality',
+      name: 'nationalityHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXPIRY DATE`
+  String get expiryDate {
+    return Intl.message(
+      'EXPIRY DATE',
+      name: 'expiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Expiry Date`
+  String get expiryDateHint {
+    return Intl.message(
+      'Please Enter Expiry Date',
+      name: 'expiryDateHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `GENDER`
+  String get gender {
+    return Intl.message(
+      'GENDER',
+      name: 'gender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Gender`
+  String get genderHint {
+    return Intl.message(
+      'Please Enter Gender',
+      name: 'genderHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Where do you\ncurrently live?`
+  String get enterAddressHeader {
+    return Intl.message(
+      'Where do you\ncurrently live?',
+      name: 'enterAddressHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident Country`
+  String get residentCountry {
+    return Intl.message(
+      'Resident Country',
+      name: 'residentCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Resident Country`
+  String get residentCountryHint {
+    return Intl.message(
+      'Please Enter Resident Country',
+      name: 'residentCountryHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home Address`
+  String get homeAddress {
+    return Intl.message(
+      'Home Address',
+      name: 'homeAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Home Address`
+  String get homeAddressHint {
+    return Intl.message(
+      'Please Enter Home Address',
+      name: 'homeAddressHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Street Address`
+  String get streetAddress {
+    return Intl.message(
+      'Street Address',
+      name: 'streetAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Street Address`
+  String get streetAddressHint {
+    return Intl.message(
+      'Please Enter Street Address',
+      name: 'streetAddressHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BUILDING NAME/NO`
+  String get buildingNameOrNo {
+    return Intl.message(
+      'BUILDING NAME/NO',
+      name: 'buildingNameOrNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Building Name/Number.`
+  String get buildingNameOrNoHint {
+    return Intl.message(
+      'Please Enter Building Name/Number.',
+      name: 'buildingNameOrNoHint',
       desc: '',
       args: [],
     );
@@ -215,16 +525,6 @@ class S {
     return Intl.message(
       'MAIN SOURCE OF INCOME',
       name: 'mainSourceOfIncome',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Please enter`
-  String get pleaseEnter {
-    return Intl.message(
-      'Please enter',
-      name: 'pleaseEnter',
       desc: '',
       args: [],
     );
@@ -385,26 +685,6 @@ class S {
     return Intl.message(
       'By law, you are needed to declare your taxation details',
       name: 'taxationDetailsDescription',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `YES`
-  String get yes {
-    return Intl.message(
-      'YES',
-      name: 'yes',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `NO`
-  String get no {
-    return Intl.message(
-      'NO',
-      name: 'no',
       desc: '',
       args: [],
     );
@@ -720,6 +1000,236 @@ class S {
     );
   }
 
+  /// `Tell us a bit about your\nprofile status`
+  String get tellUsAboutYourProfile {
+    return Intl.message(
+      'Tell us a bit about your\nprofile status',
+      name: 'tellUsAboutYourProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you married?`
+  String get profileDetailsQ1 {
+    return Intl.message(
+      'Are you married?',
+      name: 'profileDetailsQ1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you a special need person?`
+  String get profileDetailsQ2 {
+    return Intl.message(
+      'Are you a special need person?',
+      name: 'profileDetailsQ2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you or any first degree relatives a PEP?`
+  String get profileDetailsQ3 {
+    return Intl.message(
+      'Are you or any first degree relatives a PEP?',
+      name: 'profileDetailsQ3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SPOUSE NAME`
+  String get spouseNameCaps {
+    return Intl.message(
+      'SPOUSE NAME',
+      name: 'spouseNameCaps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NATURE OF SPECIAL NEEDS`
+  String get natureOfSpecialNeed {
+    return Intl.message(
+      'NATURE OF SPECIAL NEEDS',
+      name: 'natureOfSpecialNeed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `RELATIONSHIP WITH PEP`
+  String get relationShipWithPepCaps {
+    return Intl.message(
+      'RELATIONSHIP WITH PEP',
+      name: 'relationShipWithPepCaps',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PERSON’S NAME`
+  String get personName {
+    return Intl.message(
+      'PERSON’S NAME',
+      name: 'personName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PERSON’S ROLE`
+  String get personRole {
+    return Intl.message(
+      'PERSON’S ROLE',
+      name: 'personRole',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REVIEW APPLICATION`
+  String get reviewApplication {
+    return Intl.message(
+      'REVIEW APPLICATION',
+      name: 'reviewApplication',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please swipe through and confirm your information`
+  String get confirmYourInformation {
+    return Intl.message(
+      'Please swipe through and confirm your information',
+      name: 'confirmYourInformation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email Address`
+  String get emailAddressSmall {
+    return Intl.message(
+      'Email Address',
+      name: 'emailAddressSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Building Name / No`
+  String get buildingNameNo {
+    return Intl.message(
+      'Building Name / No',
+      name: 'buildingNameNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nature of Special Needs`
+  String get natureSpecialNeeds {
+    return Intl.message(
+      'Nature of Special Needs',
+      name: 'natureSpecialNeeds',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spouse Name`
+  String get spouseName {
+    return Intl.message(
+      'Spouse Name',
+      name: 'spouseName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Relationship with PEP`
+  String get relationshipWithPEP {
+    return Intl.message(
+      'Relationship with PEP',
+      name: 'relationshipWithPEP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Person’s Name`
+  String get personsName {
+    return Intl.message(
+      'Person’s Name',
+      name: 'personsName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Person’s Role`
+  String get personsRole {
+    return Intl.message(
+      'Person’s Role',
+      name: 'personsRole',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Main Source of Income`
+  String get mainSourceIncome {
+    return Intl.message(
+      'Main Source of Income',
+      name: 'mainSourceIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Monthly Income`
+  String get monthlyIncomeSmall {
+    return Intl.message(
+      'Monthly Income',
+      name: 'monthlyIncomeSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Annual Income`
+  String get annualIncomeSmall {
+    return Intl.message(
+      'Annual Income',
+      name: 'annualIncomeSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purpose of Account Opening`
+  String get purposeOfAccount {
+    return Intl.message(
+      'Purpose of Account Opening',
+      name: 'purposeOfAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employer Name`
+  String get employerNameSmall {
+    return Intl.message(
+      'Employer Name',
+      name: 'employerNameSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Employer Country`
   String get employerCountrySmall {
     return Intl.message(
@@ -730,61 +1240,351 @@ class S {
     );
   }
 
-  /// `Tax Country`
-  String get taxCountrySmall {
+  /// `Employer City`
+  String get employerCitySmall {
     return Intl.message(
-      'Tax Country',
-      name: 'taxCountrySmall',
+      'Employer City',
+      name: 'employerCitySmall',
       desc: '',
       args: [],
     );
   }
 
-  /// `Reason of Unavailability`
-  String get reasonOfUnavailabilitySmall {
+  /// `Employer Contact`
+  String get employerContactSmall {
     return Intl.message(
-      'Reason of Unavailability',
-      name: 'reasonOfUnavailabilitySmall',
+      'Employer Contact',
+      name: 'employerContactSmall',
       desc: '',
       args: [],
     );
   }
 
-  /// `Select tax country`
-  String get invalidTaxCountry {
+  /// `Additional Source of Income`
+  String get additionalSourceIncome {
     return Intl.message(
-      'Select tax country',
-      name: 'invalidTaxCountry',
+      'Additional Source of Income',
+      name: 'additionalSourceIncome',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enter correct tin number`
-  String get invalidTinNumber {
+  /// `Total Additional Income`
+  String get totalAdditionalIncomeSmall {
     return Intl.message(
-      'Enter correct tin number',
-      name: 'invalidTinNumber',
+      'Total Additional Income',
+      name: 'totalAdditionalIncomeSmall',
       desc: '',
       args: [],
     );
   }
 
-  /// `Select Reason of Unavailability`
-  String get invalidReasonUnavailability {
+  /// `I confirm that information above is correct and agree to the bank’s `
+  String get confirmInfoTC {
     return Intl.message(
-      'Select Reason of Unavailability',
-      name: 'invalidReasonUnavailability',
+      'I confirm that information above is correct and agree to the bank’s ',
+      name: 'confirmInfoTC',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enter reason for unavailability`
-  String get invalidExplanationForUnavailability {
+  /// `Terms and Conditions.`
+  String get termsAndCondition {
     return Intl.message(
-      'Enter reason for unavailability',
-      name: 'invalidExplanationForUnavailability',
+      'Terms and Conditions.',
+      name: 'termsAndCondition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid spouse name`
+  String get enterValidSpouseName {
+    return Intl.message(
+      'Please enter valid spouse name',
+      name: 'enterValidSpouseName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select nature of special needs`
+  String get enterValidNature {
+    return Intl.message(
+      'Please select nature of special needs',
+      name: 'enterValidNature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid relationship with PEP`
+  String get enterValidRelationshipWithPEP {
+    return Intl.message(
+      'Please enter valid relationship with PEP',
+      name: 'enterValidRelationshipWithPEP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid person’s name`
+  String get enterValidPersonsName {
+    return Intl.message(
+      'Please enter valid person’s name',
+      name: 'enterValidPersonsName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter valid person’s role`
+  String get enterValidPersonsRole {
+    return Intl.message(
+      'Please enter valid person’s role',
+      name: 'enterValidPersonsRole',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `UPLOAD DOCUMENTS`
+  String get uploadDocuments {
+    return Intl.message(
+      'UPLOAD DOCUMENTS',
+      name: 'uploadDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete your tax report information below`
+  String get completeTaxReportInfo {
+    return Intl.message(
+      'Complete your tax report information below',
+      name: 'completeTaxReportInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proof of Income`
+  String get proofOfIncome {
+    return Intl.message(
+      'Proof of Income',
+      name: 'proofOfIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For salaried individuals, please provide either one of Job Certificate / Salary Slip`
+  String get proofOfIncomeDesc {
+    return Intl.message(
+      'For salaried individuals, please provide either one of Job Certificate / Salary Slip',
+      name: 'proofOfIncomeDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proof of Address`
+  String get proofOfAddress {
+    return Intl.message(
+      'Proof of Address',
+      name: 'proofOfAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide your latest electricity bill to proof your address`
+  String get proofOfAddressDesc {
+    return Intl.message(
+      'Please provide your latest electricity bill to proof your address',
+      name: 'proofOfAddressDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload`
+  String get upload {
+    return Intl.message(
+      'Upload',
+      name: 'upload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm to the terms and conditions.`
+  String get confirmTermsCondError {
+    return Intl.message(
+      'Confirm to the terms and conditions.',
+      name: 'confirmTermsCondError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `YES`
+  String get yes {
+    return Intl.message(
+      'YES',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password field cannot be empty`
+  String get enterPassword {
+    return Intl.message(
+      'Password field cannot be empty',
+      name: 'enterPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password field cannot be empty`
+  String get enterConfirmPassword {
+    return Intl.message(
+      'Confirm password field cannot be empty',
+      name: 'enterConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password did not match`
+  String get passwordMismatch {
+    return Intl.message(
+      'Password did not match',
+      name: 'passwordMismatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please accept the above terms and conditions`
+  String get retrieveConditionNotChecked {
+    return Intl.message(
+      'Please accept the above terms and conditions',
+      name: 'retrieveConditionNotChecked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name field cannot be empty`
+  String get emptyName {
+    return Intl.message(
+      'Name field cannot be empty',
+      name: 'emptyName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Id Number field cannot be empty`
+  String get emptyIdNumber {
+    return Intl.message(
+      'Id Number field cannot be empty',
+      name: 'emptyIdNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of birth field cannot be empty`
+  String get emptyDob {
+    return Intl.message(
+      'Date of birth field cannot be empty',
+      name: 'emptyDob',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nationality field cannot be empty`
+  String get emptyNationality {
+    return Intl.message(
+      'Nationality field cannot be empty',
+      name: 'emptyNationality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expiry date field cannot be empty`
+  String get emptyExpiryDate {
+    return Intl.message(
+      'Expiry date field cannot be empty',
+      name: 'emptyExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gender filed cannot be empty`
+  String get emptyGender {
+    return Intl.message(
+      'Gender filed cannot be empty',
+      name: 'emptyGender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident country field cannot be empty`
+  String get emptyResidentCountry {
+    return Intl.message(
+      'Resident country field cannot be empty',
+      name: 'emptyResidentCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home address field cannot be empty`
+  String get emptyHomeAddress {
+    return Intl.message(
+      'Home address field cannot be empty',
+      name: 'emptyHomeAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Street address field cannot be empty`
+  String get emptyStreetAddress {
+    return Intl.message(
+      'Street address field cannot be empty',
+      name: 'emptyStreetAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Building name or number field cannot be empty`
+  String get emptyBuildingNameOrNo {
+    return Intl.message(
+      'Building name or number field cannot be empty',
+      name: 'emptyBuildingNameOrNo',
       desc: '',
       args: [],
     );

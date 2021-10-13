@@ -30,9 +30,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
         "additionIncomeSource":
             MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
+        "additionalSourceIncome":
+            MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
         "additionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
         "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
+        "annualIncomeSmall":
+            MessageLookupByLibrary.simpleMessage("Annual Income"),
         "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than US or Jordan?"),
         "appName": MessageLookupByLibrary.simpleMessage("Neo Bank"),
@@ -42,36 +46,123 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Are you a US Tax Resident?"),
         "areYouUSTaxResidentHint":
             MessageLookupByLibrary.simpleMessage("(e.g. Green Card Holder)"),
+        "buildingNameNo":
+            MessageLookupByLibrary.simpleMessage("Building Name / No"),
+        "buildingNameOrNo":
+            MessageLookupByLibrary.simpleMessage("BUILDING NAME/NO"),
+        "buildingNameOrNoHint": MessageLookupByLibrary.simpleMessage(
+            "Please Enter Building Name/Number."),
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
+        "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
+            "Complete your tax report information below"),
+        "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage(
+            "Please confirm your\ndetails below"),
+        "confirmInfoTC": MessageLookupByLibrary.simpleMessage(
+            "I confirm that information above is correct and agree to the bank’s "),
+        "confirmPassword":
+            MessageLookupByLibrary.simpleMessage("CONFIRM PASSWORD"),
+        "confirmTermsCondError": MessageLookupByLibrary.simpleMessage(
+            "Confirm to the terms and conditions."),
+        "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
+            "Please swipe through and confirm your information"),
+        "createPassword":
+            MessageLookupByLibrary.simpleMessage("CREATE PASSWORD"),
+        "createPasswordHeader": MessageLookupByLibrary.simpleMessage(
+            "Next, let\'s create your\nlogin password"),
         "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage(
             "Do you have TIN No available?"),
+        "dob": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
+        "dobHint":
+            MessageLookupByLibrary.simpleMessage("Please Enter Date Of Birth"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
+        "emailAddressSmall":
+            MessageLookupByLibrary.simpleMessage("Email Address"),
         "employerCity": MessageLookupByLibrary.simpleMessage("EMPLOYER CITY"),
+        "employerCitySmall":
+            MessageLookupByLibrary.simpleMessage("Employer City"),
         "employerContact":
             MessageLookupByLibrary.simpleMessage("EMPLOYER CONTACT"),
+        "employerContactSmall":
+            MessageLookupByLibrary.simpleMessage("Employer Contact"),
         "employerCountry":
             MessageLookupByLibrary.simpleMessage("EMPLOYER COUNTRY"),
         "employerCountrySmall":
             MessageLookupByLibrary.simpleMessage("Employer Country"),
         "employerName": MessageLookupByLibrary.simpleMessage("EMPLOYER NAME"),
+        "employerNameSmall":
+            MessageLookupByLibrary.simpleMessage("Employer Name"),
         "employmentStatus":
             MessageLookupByLibrary.simpleMessage("EMPLOYMENT STATUS"),
         "employmentStatusSmall":
             MessageLookupByLibrary.simpleMessage("Employment Status"),
+        "emptyBuildingNameOrNo": MessageLookupByLibrary.simpleMessage(
+            "Building name or number field cannot be empty"),
+        "emptyDob": MessageLookupByLibrary.simpleMessage(
+            "Date of birth field cannot be empty"),
         "emptyEmailMessage": MessageLookupByLibrary.simpleMessage(
             "Please enter your email address"),
+        "emptyExpiryDate": MessageLookupByLibrary.simpleMessage(
+            "Expiry date field cannot be empty"),
+        "emptyGender": MessageLookupByLibrary.simpleMessage(
+            "Gender filed cannot be empty"),
+        "emptyHomeAddress": MessageLookupByLibrary.simpleMessage(
+            "Home address field cannot be empty"),
+        "emptyIdNumber": MessageLookupByLibrary.simpleMessage(
+            "Id Number field cannot be empty"),
+        "emptyName":
+            MessageLookupByLibrary.simpleMessage("Name field cannot be empty"),
+        "emptyNationality": MessageLookupByLibrary.simpleMessage(
+            "Nationality field cannot be empty"),
+        "emptyResidentCountry": MessageLookupByLibrary.simpleMessage(
+            "Resident country field cannot be empty"),
+        "emptyStreetAddress": MessageLookupByLibrary.simpleMessage(
+            "Street address field cannot be empty"),
+        "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
+            "Where do you\ncurrently live?"),
+        "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
+            "Confirm password field cannot be empty"),
         "enterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
+        "enterPassword": MessageLookupByLibrary.simpleMessage(
+            "Password field cannot be empty"),
         "enterValidEmail": MessageLookupByLibrary.simpleMessage(
             "please enter valid email address"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter valid mobile number"),
+        "enterValidNature": MessageLookupByLibrary.simpleMessage(
+            "Please select nature of special needs"),
         "enterValidOtp":
             MessageLookupByLibrary.simpleMessage("Please enter valid otp"),
+        "enterValidPersonsName": MessageLookupByLibrary.simpleMessage(
+            "Please enter valid person’s name"),
+        "enterValidPersonsRole": MessageLookupByLibrary.simpleMessage(
+            "Please enter valid person’s role"),
+        "enterValidRelationshipWithPEP": MessageLookupByLibrary.simpleMessage(
+            "Please enter valid relationship with PEP"),
+        "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
+            "Please enter valid spouse name"),
+        "expiryDate": MessageLookupByLibrary.simpleMessage("EXPIRY DATE"),
+        "expiryDateHint":
+            MessageLookupByLibrary.simpleMessage("Please Enter Expiry Date"),
         "explainReason": MessageLookupByLibrary.simpleMessage("EXPLAIN REASON"),
+        "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
+        "genderHint":
+            MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
+        "homeAddress": MessageLookupByLibrary.simpleMessage("Home Address"),
+        "homeAddressHint":
+            MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
         "iHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("I have an account"),
+        "idHint":
+            MessageLookupByLibrary.simpleMessage("Please Enter ID Number"),
+        "idNumber": MessageLookupByLibrary.simpleMessage("ID NUMBER"),
+        "idScanInfo": MessageLookupByLibrary.simpleMessage(
+            "Place your ID inside the frame"),
+        "idVerificationInfoHeader": MessageLookupByLibrary.simpleMessage(
+            "Please get your ID ready\nto be scanned"),
+        "idVerificationPlaceInfo": MessageLookupByLibrary.simpleMessage(
+            "Make sure you’re in bright place and surrounding"),
         "invalidAdditionSourceIncome": MessageLookupByLibrary.simpleMessage(
             "Select Additional Source Income"),
         "invalidAnnualIncome":
@@ -86,9 +177,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter employer Name"),
         "invalidEmploymentStatus":
             MessageLookupByLibrary.simpleMessage("Select Employment Status"),
-        "invalidExplanationForUnavailability":
-            MessageLookupByLibrary.simpleMessage(
-                "Enter reason for unavailability"),
         "invalidMainSourceIncome":
             MessageLookupByLibrary.simpleMessage("Enter source of income."),
         "invalidMonthlyIncome":
@@ -97,45 +185,90 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select Occupation"),
         "invalidPurposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage(
             "Select purpose of account opening"),
-        "invalidReasonUnavailability": MessageLookupByLibrary.simpleMessage(
-            "Select Reason of Unavailability"),
-        "invalidTaxCountry":
-            MessageLookupByLibrary.simpleMessage("Select tax country"),
-        "invalidTinNumber":
-            MessageLookupByLibrary.simpleMessage("Enter correct tin number"),
         "invalidTotalAdditionalIncome": MessageLookupByLibrary.simpleMessage(
             "Enter total additional income"),
+        "mainSourceIncome":
+            MessageLookupByLibrary.simpleMessage("Main Source of Income"),
         "mainSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("000 0000"),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
-        "no": MessageLookupByLibrary.simpleMessage("NO"),
+        "monthlyIncomeSmall":
+            MessageLookupByLibrary.simpleMessage("Monthly Income"),
+        "name": MessageLookupByLibrary.simpleMessage("NAME AS PER ID"),
+        "nameHint": MessageLookupByLibrary.simpleMessage("Please Enter Name"),
+        "nationality": MessageLookupByLibrary.simpleMessage("NATIONALITY"),
+        "nationalityHint":
+            MessageLookupByLibrary.simpleMessage("Please Enter Nationality"),
+        "natureOfSpecialNeed":
+            MessageLookupByLibrary.simpleMessage("NATURE OF SPECIAL NEEDS"),
+        "natureSpecialNeeds":
+            MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "occupation": MessageLookupByLibrary.simpleMessage("OCCUPATION"),
         "occupationSmall": MessageLookupByLibrary.simpleMessage("Occupation"),
+        "onIdFit": MessageLookupByLibrary.simpleMessage(
+            "Once fit, your ID will be scanned automatically"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
+        "passwordMismatch":
+            MessageLookupByLibrary.simpleMessage("Password did not match"),
+        "personName": MessageLookupByLibrary.simpleMessage("PERSON’S NAME"),
+        "personRole": MessageLookupByLibrary.simpleMessage("PERSON’S ROLE"),
         "personalDetails":
             MessageLookupByLibrary.simpleMessage("PERSONAL DETAILS"),
+        "personsName": MessageLookupByLibrary.simpleMessage("Person’s Name"),
+        "personsRole": MessageLookupByLibrary.simpleMessage("Person’s Role"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
+        "profileDetailsQ1":
+            MessageLookupByLibrary.simpleMessage("Are you married?"),
+        "profileDetailsQ2": MessageLookupByLibrary.simpleMessage(
+            "Are you a special need person?"),
+        "profileDetailsQ3": MessageLookupByLibrary.simpleMessage(
+            "Are you or any first degree relatives a PEP?"),
+        "proofOfAddress":
+            MessageLookupByLibrary.simpleMessage("Proof of Address"),
+        "proofOfAddressDesc": MessageLookupByLibrary.simpleMessage(
+            "Please provide your latest electricity bill to proof your address"),
+        "proofOfIncome":
+            MessageLookupByLibrary.simpleMessage("Proof of Income"),
+        "proofOfIncomeDesc": MessageLookupByLibrary.simpleMessage(
+            "For salaried individuals, please provide either one of Job Certificate / Salary Slip"),
+        "purposeOfAccount":
+            MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
         "purposeOfAccountOpening":
             MessageLookupByLibrary.simpleMessage("PURPOSE OF ACCOUNT OPENING"),
         "purposeOfOpeningAccount":
             MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
         "reasonOfUnavailability":
             MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
-        "reasonOfUnavailabilitySmall":
-            MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
+        "relationShipWithPepCaps":
+            MessageLookupByLibrary.simpleMessage("RELATIONSHIP WITH PEP"),
+        "relationshipWithPEP":
+            MessageLookupByLibrary.simpleMessage("Relationship with PEP"),
         "resendIn": m0,
+        "residentCountry":
+            MessageLookupByLibrary.simpleMessage("Resident Country"),
+        "residentCountryHint": MessageLookupByLibrary.simpleMessage(
+            "Please Enter Resident Country"),
+        "retrieveConditionNotChecked": MessageLookupByLibrary.simpleMessage(
+            "Please accept the above terms and conditions"),
+        "reviewApplication":
+            MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
+        "spouseName": MessageLookupByLibrary.simpleMessage("Spouse Name"),
+        "spouseNameCaps": MessageLookupByLibrary.simpleMessage("SPOUSE NAME"),
+        "streetAddress": MessageLookupByLibrary.simpleMessage("Street Address"),
+        "streetAddressHint":
+            MessageLookupByLibrary.simpleMessage("Please Enter Street Address"),
         "swipeDownToCancel":
             MessageLookupByLibrary.simpleMessage("Swipe down to cancel"),
         "swipeToProceed":
             MessageLookupByLibrary.simpleMessage("Swipe to proceed"),
         "taxCountry": MessageLookupByLibrary.simpleMessage("TAX COUNTRY"),
-        "taxCountrySmall": MessageLookupByLibrary.simpleMessage("Tax Country"),
         "taxReportInfoDesc": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
         "taxationDeclaration": MessageLookupByLibrary.simpleMessage(
@@ -144,9 +277,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "By law, you are needed to declare your taxation details"),
         "tellUsAboutYourJob": MessageLookupByLibrary.simpleMessage(
             "Next, tell us about\nyour job"),
+        "tellUsAboutYourProfile": MessageLookupByLibrary.simpleMessage(
+            "Tell us a bit about your\nprofile status"),
+        "termsAndCondition":
+            MessageLookupByLibrary.simpleMessage("Terms and Conditions."),
+        "termsAndConditions": MessageLookupByLibrary.simpleMessage(
+            "I agree for the bank to retrieve my AHWAL data necessarily."),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "totalAdditionalIncome":
             MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),
+        "totalAdditionalIncomeSmall":
+            MessageLookupByLibrary.simpleMessage("Total Additional Income"),
+        "upload": MessageLookupByLibrary.simpleMessage("Upload"),
+        "uploadDocuments":
+            MessageLookupByLibrary.simpleMessage("UPLOAD DOCUMENTS"),
         "welcomeToNeuBank":
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank."),
         "wereBornInUS":

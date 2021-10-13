@@ -3,21 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/register/stepone/addnumber/add_number_page.dart';
-import 'package:neo_bank/feature/register/stepone/countryselection/country_selection_page.dart';
-import 'package:neo_bank/feature/register/stepone/createPassword/create_password_page.dart';
-import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
-import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_page.dart';
+import 'package:neo_bank/feature/register/step_four/register_step_four_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_four/review_application/review_application_page.dart';
+import 'package:neo_bank/feature/register/step_four/upload_documents/upload_documents_page.dart';
 
-class RegisterStepOnePageView
-    extends BasePageViewWidget<RegisterStepOneViewModel> {
-  RegisterStepOnePageView(ProviderBase model) : super(model);
+class RegisterStepFourPageView
+    extends BasePageViewWidget<RegisterStepFourViewModel> {
+  RegisterStepFourPageView(ProviderBase model) : super(model);
 
   List<Widget> pages = [
-    CountrySelectionPage(),
-    AddNumberPage(),
-    ValidateOtpPage(),
-    CreatePasswordPage(),
+    ReviewApplicationPage(),
+    UploadDocumentsPage(),
   ];
 
   @override

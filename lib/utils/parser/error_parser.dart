@@ -70,6 +70,44 @@ class ErrorParser {
         return localisedHelper.invalidReasonUnavailability;
       case ErrorType.INVALID_EXPLANATION_FOR_UNAVAILABILITY:
         return localisedHelper.invalidExplanationForUnavailability;
+      case ErrorType.INVALID_NAME:
+        return localisedHelper.enterValidSpouseName;
+      case ErrorType.INVALID_NATURE:
+        return localisedHelper.enterValidNature;
+      case ErrorType.INVALID_RELATIONSHIP:
+        return localisedHelper.enterValidRelationshipWithPEP;
+      case ErrorType.INVALID_PERSON_NAME:
+        return localisedHelper.enterValidPersonsName;
+      case ErrorType.INVALID_PERSON_ROLE:
+        return localisedHelper.enterValidPersonsRole;
+      case ErrorType.EMPTY_PASSWORD:
+        return localisedHelper.enterPassword;
+      case ErrorType.EMPTY_CONFIRM_PASSWORD:
+        return localisedHelper.enterConfirmPassword;
+      case ErrorType.PASSWORD_MISMATCH:
+        return localisedHelper.passwordMismatch;
+      case ErrorType.CONDITION_NOT_CHECKED:
+        return localisedHelper.retrieveConditionNotChecked;
+      case ErrorType.EMPTY_NAME:
+        return localisedHelper.emptyName;
+      case ErrorType.EMPTY_ID_NUMBER:
+        return localisedHelper.emptyIdNumber;
+      case ErrorType.EMPTY_DATE_OF_BIRTH:
+        return localisedHelper.emptyDob;
+      case ErrorType.EMPTY_NATIONALITY:
+        return localisedHelper.emptyNationality;
+      case ErrorType.EMPTY_EXPIRY_DATE:
+        return localisedHelper.emptyExpiryDate;
+      case ErrorType.EMPTY_GENDER:
+        return localisedHelper.emptyGender;
+      case ErrorType.EMPTY_RESIDENT_COUNTRY:
+        return localisedHelper.emptyResidentCountry;
+      case ErrorType.EMPTY_HOME_ADDRESS:
+        return localisedHelper.emptyHomeAddress;
+      case ErrorType.EMPTY_STREET_ADDRESS:
+        return localisedHelper.emptyStreetAddress;
+      case ErrorType.EMPTY_BUILDING_NAME_OR_NUMBER:
+        return localisedHelper.emptyBuildingNameOrNo;
       default:
         return "";
     }
