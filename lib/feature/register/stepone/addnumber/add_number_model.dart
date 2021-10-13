@@ -21,6 +21,11 @@ class AddNumberViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get registerNumberStream =>
       _registerNumberResponse.stream;
 
+  /// button subject
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get showButtonStream => _showButtonSubject.stream;
+
   AddNumberViewModel(this._registerNumberUseCase) {
     _registerNumberRequest.listen((value) {
       RequestManager(value,
@@ -40,10 +45,19 @@ class AddNumberViewModel extends BasePageViewModel {
         countryCode: dialCode, mobileNumber: mobileNumberController.text));
   }
 
+  void validate() {
+    if(mobileNumberController.text.isNotEmpty) {
+      _showButtonSubject.safeAdd(true);
+    } else {
+      _showButtonSubject.safeAdd(false);
+    }
+  }
+
   @override
   void dispose() {
     _registerNumberRequest.close();
     _registerNumberResponse.close();
+    _showButtonSubject.close();
     super.dispose();
   }
 }
