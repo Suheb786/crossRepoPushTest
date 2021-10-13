@@ -53,9 +53,15 @@ class ReviewApplicationPageView
                       curve: Curves.easeInOutSine,
                       child: GestureDetector(
                         onHorizontalDragUpdate: (details) {
-                          // if (details.primaryDelta!.isNegative) {
-                          // } else {
-                          // }
+                          if (details.primaryDelta!.isNegative) {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFourViewModelProvider)
+                                .pageController
+                                .nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeInOut);
+                          } else {
+                          }
                         },
                         child: Card(
                           shape: RoundedRectangleBorder(

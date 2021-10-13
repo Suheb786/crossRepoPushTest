@@ -55,7 +55,14 @@
   "enterValidNature": "Please select nature of special needs",
   "enterValidRelationshipWithPEP": "Please enter valid relationship with PEP",
   "enterValidPersonsName": "Please enter valid person’s name",
-  "enterValidPersonsRole": "Please enter valid person’s role"
+  "enterValidPersonsRole": "Please enter valid person’s role",
+  "uploadDocuments": "UPLOAD DOCUMENTS",
+  "completeTaxReportInfo": "Complete your tax report information below",
+  "proofOfIncome": "Proof of Income",
+  "proofOfIncomeDesc": "For salaried individuals, please provide either one of Job Certificate / Salary Slip",
+  "proofOfAddress": "Proof of Address",
+  "proofOfAddressDesc": "Please provide your latest electricity bill to proof your address",
+  "upload": "Upload"
 
 
 

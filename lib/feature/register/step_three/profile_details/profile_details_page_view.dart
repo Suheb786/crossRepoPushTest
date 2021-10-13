@@ -60,15 +60,23 @@ class ProfileDetailsPageView
                       stream: model.profileDetailsStream,
                       initialData: Resource.none(),
                       onData: (data) {
-                        if (data.status == Status.SUCCESS) {
-                          model.spouseNameKey.currentState!.isValid = true;
-                          model.natureOfSpecialNeedKey.currentState!.isValid = true;
-                          model.relationShipWithPepKey.currentState!.isValid = true;
-                          model.personNameKey.currentState!.isValid = true;
-                          model.personRoleKey.currentState!.isValid = true;
+                        print("data.status:${data.status}");
 
+                        if (data.status == Status.SUCCESS) {
+                          if(model.isMarried){
+                            model.spouseNameKey.currentState!.isValid = true;
+                          }
+                          if(model.isPerson){
+                            model.natureOfSpecialNeedKey.currentState!.isValid = true;
+                          }
+
+                          if(model.isRelative){
+                            model.relationShipWithPepKey.currentState!.isValid = true;
+                            model.personNameKey.currentState!.isValid = true;
+                            model.personRoleKey.currentState!.isValid = true;
+                          }
                           ProviderScope.containerOf(context)
-                              .read(registerStepThreeViewModelProvider)
+                              .read(registerViewModelProvider)
                               .pageController
                               .nextPage(
                               duration: Duration(milliseconds: 500),
@@ -91,11 +99,9 @@ class ProfileDetailsPageView
                       dataBuilder: (context, data) {
                         return GestureDetector(
                           onHorizontalDragUpdate: (details) {
-                           if (details.primaryDelta!.isNegative) {
+                            if (details.primaryDelta!.isNegative) {
                              model.validateTextFields();
-                           } else {
-
-                            }
+                           }
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(

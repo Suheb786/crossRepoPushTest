@@ -11,6 +11,20 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 class ProfileDetailsPageViewModel extends BasePageViewModel {
   final ProfileDetailsUseCase _profileUseCase;
 
+  ProfileDetailsPageViewModel(this._profileUseCase) {
+    _profileDetailsRequest.listen((value) {
+      RequestManager(value,
+          createCall: () => _profileUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _profileDetailsResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+        }
+      });
+    });
+  }
+
   final GlobalKey<AppTextFieldState> spouseNameKey =
       GlobalKey(debugLabel: "spouseName");
   final GlobalKey<AppTextFieldState> natureOfSpecialNeedKey =
@@ -32,6 +46,8 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
   bool isPerson = false;
   bool isRelative = false;
 
+  List<String> natureNeedsList = ["Communication", "Movement", "Self-care"];
+
   BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
@@ -43,20 +59,6 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get profileDetailsStream =>
       _profileDetailsResponse.stream;
-
-  ProfileDetailsPageViewModel(this._profileUseCase) {
-    _profileDetailsRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _profileUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        _profileDetailsResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-        }
-      });
-    });
-  }
 
   void validateTextFields() {
     _profileDetailsRequest.safeAdd(ProfileDetailsUseCaseParams(

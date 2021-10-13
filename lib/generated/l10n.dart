@@ -579,6 +579,76 @@ class S {
       args: [],
     );
   }
+
+  /// `UPLOAD DOCUMENTS`
+  String get uploadDocuments {
+    return Intl.message(
+      'UPLOAD DOCUMENTS',
+      name: 'uploadDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete your tax report information below`
+  String get completeTaxReportInfo {
+    return Intl.message(
+      'Complete your tax report information below',
+      name: 'completeTaxReportInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proof of Income`
+  String get proofOfIncome {
+    return Intl.message(
+      'Proof of Income',
+      name: 'proofOfIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For salaried individuals, please provide either one of Job Certificate / Salary Slip`
+  String get proofOfIncomeDesc {
+    return Intl.message(
+      'For salaried individuals, please provide either one of Job Certificate / Salary Slip',
+      name: 'proofOfIncomeDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proof of Address`
+  String get proofOfAddress {
+    return Intl.message(
+      'Proof of Address',
+      name: 'proofOfAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide your latest electricity bill to proof your address`
+  String get proofOfAddressDesc {
+    return Intl.message(
+      'Please provide your latest electricity bill to proof your address',
+      name: 'proofOfAddressDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload`
+  String get upload {
+    return Intl.message(
+      'Upload',
+      name: 'upload',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

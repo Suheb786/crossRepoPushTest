@@ -4,6 +4,7 @@ import 'package:domain/usecase/user/register_number_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:domain/usecase/user/upload_documents_usecase.dart';
 
 final fetchCountriesUseCaseProvider =
     Provider.autoDispose<FetchCountriesUseCase>(
@@ -25,4 +26,9 @@ final verifyOtpUseCaseProvider = Provider.autoDispose<VerifyOtpUseCase>(
 ///[ProfileDetailsUseCase] provider
 final profileDetailsUseCaseProvider = Provider.autoDispose<ProfileDetailsUseCase>(
       (ref) => ProfileDetailsUseCase(),
+);
+
+///[UploadDocumentsUseCase] provider
+final uploadDocumentsUseCaseProvider = Provider.autoDispose<UploadDocumentsUseCase>(
+      (ref) => UploadDocumentsUseCase(),
 );

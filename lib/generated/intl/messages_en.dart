@@ -35,6 +35,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Building Name / No"),
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
+        "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
+            "Complete your tax report information below"),
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
             "Please swipe through and confirm your information"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
@@ -86,6 +88,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you a special need person?"),
         "profileDetailsQ3": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a PEP?"),
+        "proofOfAddress":
+            MessageLookupByLibrary.simpleMessage("Proof of Address"),
+        "proofOfAddressDesc": MessageLookupByLibrary.simpleMessage(
+            "Please provide your latest electricity bill to proof your address"),
+        "proofOfIncome":
+            MessageLookupByLibrary.simpleMessage("Proof of Income"),
+        "proofOfIncomeDesc": MessageLookupByLibrary.simpleMessage(
+            "For salaried individuals, please provide either one of Job Certificate / Salary Slip"),
         "purposeOfAccount":
             MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
         "relationShipWithPepCaps":
@@ -109,6 +119,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "termsAndConditions": MessageLookupByLibrary.simpleMessage(
             "I confirm that information above is correct and agree to the bank’s Terms and Conditions."),
         "totalAdditionalIncome":
-            MessageLookupByLibrary.simpleMessage("Total Additional Income")
+            MessageLookupByLibrary.simpleMessage("Total Additional Income"),
+        "upload": MessageLookupByLibrary.simpleMessage("Upload"),
+        "uploadDocuments":
+            MessageLookupByLibrary.simpleMessage("UPLOAD DOCUMENTS")
       };
 }

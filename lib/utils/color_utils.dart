@@ -31,6 +31,7 @@ class AppColor {
   static const gray = const Color(0xff8B8B8B);
   static const gray_black = const Color(0xff101010);
   static const light_gray = const Color(0xffF5F5F5);
+  static const light_blue = const Color(0xff572BCC);
 
 
 }
