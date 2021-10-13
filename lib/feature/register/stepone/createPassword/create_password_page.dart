@@ -18,10 +18,6 @@ class CreatePasswordPageState
   }
 
   @override
-  void onModelReady(CreatePasswordViewModel model) {
-  }
-
-  @override
   Widget buildView(BuildContext context, CreatePasswordViewModel model) {
     return CreatePasswordView(provideBase());
   }

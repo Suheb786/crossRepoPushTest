@@ -27,17 +27,13 @@ class CreatePasswordViewModel extends BasePageViewModel {
   /// create password response subject holder
   PublishSubject<Resource<bool>> _createPasswordResponse = PublishSubject();
 
-  Stream<Resource<bool>> get createPasswordStream => _createPasswordResponse.stream;
+  Stream<Resource<bool>> get createPasswordStream =>
+      _createPasswordResponse.stream;
 
   /// show button Subject holder
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
-
-  ///error detector subject holder
-  BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
-
-  Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
 
   CreatePasswordViewModel(this._createPasswordUseCase) {
     _createPasswordRequest.listen((value) {
@@ -66,12 +62,5 @@ class CreatePasswordViewModel extends BasePageViewModel {
     } else {
       _showButtonSubject.safeAdd(false);
     }
-  }
-
-  void showErrorState() {
-    _errorDetectorSubject.safeAdd(true);
-    Future.delayed(Duration(milliseconds: 800), () {
-      _errorDetectorSubject.safeAdd(false);
-    });
   }
 }

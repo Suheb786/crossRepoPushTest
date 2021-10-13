@@ -8,9 +8,14 @@ import 'package:rxdart/rxdart.dart';
 
 class IdVerificationInfoViewModel extends BasePageViewModel {
   final IdVerificationInfoUseCase _idVerificationInfoUseCase;
-  bool? _isRetrieveConditionChecked = false;
 
-  bool? get isRetrieveConditionChecked => _isRetrieveConditionChecked;
+  // retrieve condition check subject holder
+  // ignore: close_sinks
+  BehaviorSubject<bool> _isRetrievedConditionSubject =
+      BehaviorSubject.seeded(false);
+
+  Stream<bool> get isRetrievedConditionStream =>
+      _isRetrievedConditionSubject.stream;
 
   bool? _showError = false;
 
@@ -31,18 +36,12 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get idVerificationResponseStream =>
       _idVerificationInfoResponse.stream;
 
-  /// error detector subject holder
-  // ignore: close_sinks
-  BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
-
-  Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
-
-  void setIsRetrieveConditionChecked(bool value) {
-    _isRetrieveConditionChecked = value;
-  }
-
   void setShowError(bool value) {
     _showError = value;
+  }
+
+  void updateIsRetrievedConditionStream(bool value) {
+    _isRetrievedConditionSubject.safeAdd(value);
   }
 
   IdVerificationInfoViewModel(this._idVerificationInfoUseCase) {
@@ -54,20 +53,14 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
           .listen((event) {
         _idVerificationInfoResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          _showErrorState();
+          showErrorState();
         }
       });
     });
   }
 
   void idVerificationInfo() {
-    _idVerificationInfoRequest.safeAdd(IdVerificationInfoUseCaseParams(isRetrieveConditionChecked: isRetrieveConditionChecked));
-  }
-
-  void _showErrorState() {
-    _errorDetectorSubject.safeAdd(true);
-    Future.delayed(Duration(milliseconds: 800), () {
-      _errorDetectorSubject.safeAdd(false);
-    });
+    _idVerificationInfoRequest.safeAdd(IdVerificationInfoUseCaseParams(
+        isRetrieveConditionChecked: _isRetrievedConditionSubject.value));
   }
 }

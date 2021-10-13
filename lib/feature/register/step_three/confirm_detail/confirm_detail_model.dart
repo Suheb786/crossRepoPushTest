@@ -1,12 +1,12 @@
+import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:neo_bank/utils/extension/stream_extention.dart';
 
 class ConfirmDetailViewModel extends BasePageViewModel {
   final ConfirmDetailUseCase _confirmDetailUseCase;
@@ -17,48 +17,42 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   TextEditingController expiryDateController = new TextEditingController();
   TextEditingController genderController = new TextEditingController();
 
-  final GlobalKey<AppTextFieldState> nameKey =
-  GlobalKey(debugLabel: "name");
+  final GlobalKey<AppTextFieldState> nameKey = GlobalKey(debugLabel: "name");
 
   final GlobalKey<AppTextFieldState> idNumberKey =
-  GlobalKey(debugLabel: "idNumber");
+      GlobalKey(debugLabel: "idNumber");
 
-  final GlobalKey<AppTextFieldState> dobKey =
-  GlobalKey(debugLabel: "dob");
+  final GlobalKey<AppTextFieldState> dobKey = GlobalKey(debugLabel: "dob");
 
   final GlobalKey<AppTextFieldState> nationalityKey =
-  GlobalKey(debugLabel: "nationality");
+      GlobalKey(debugLabel: "nationality");
 
   final GlobalKey<AppTextFieldState> expiryDateKey =
-  GlobalKey(debugLabel: "expiryDate");
+      GlobalKey(debugLabel: "expiryDate");
 
   final GlobalKey<AppTextFieldState> genderKey =
-  GlobalKey(debugLabel: "gender");
+      GlobalKey(debugLabel: "gender");
 
   /// confirm detail request subject holder
   PublishSubject<ConfirmDetailUseCaseParams> _confirmDetailRequest =
-  PublishSubject();
+      PublishSubject();
 
   /// confirm detail response subject holder
   // ignore: close_sinks
   PublishSubject<Resource<bool>> _confirmDetailResponse = PublishSubject();
 
-  Stream<Resource<bool>> get confirmDetailResponseStream => _confirmDetailResponse.stream;
+  Stream<Resource<bool>> get confirmDetailResponseStream =>
+      _confirmDetailResponse.stream;
 
   /// show button Subject holder
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  ///error detector subject holder
-  BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
-
-  Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
-
   ConfirmDetailViewModel(this._confirmDetailUseCase) {
     _confirmDetailRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _confirmDetailUseCase.execute(params: value))
+              createCall: () => _confirmDetailUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _confirmDetailResponse.safeAdd(event);
@@ -81,21 +75,14 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   void validateDetails() {
     if (nameController.text.isNotEmpty &&
-        idNumberController.text.isNotEmpty&&
-        dobController.text.isNotEmpty&&
-        nationalityController.text.isNotEmpty&&
-        expiryDateController.text.isNotEmpty&&
+        idNumberController.text.isNotEmpty &&
+        dobController.text.isNotEmpty &&
+        nationalityController.text.isNotEmpty &&
+        expiryDateController.text.isNotEmpty &&
         genderController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);
     }
-  }
-
-  void showErrorState() {
-    _errorDetectorSubject.safeAdd(true);
-    Future.delayed(Duration(milliseconds: 800), () {
-      _errorDetectorSubject.safeAdd(false);
-    });
   }
 }

@@ -2,25 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
-import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_view.dart';
-import 'package:neo_bank/feature/register/steptwo/id_verification_info/id_verification_info_model.dart';
-import 'package:neo_bank/feature/register/steptwo/id_verification_info/id_verification_info_view.dart';
+import 'package:neo_bank/feature/register/step_three/id_verification_info/id_verification_info_model.dart';
+import 'package:neo_bank/feature/register/step_three/id_verification_info/id_verification_info_view.dart';
 
 class IdVerificationInfoPage extends BasePage<IdVerificationInfoViewModel> {
   @override
   IdVerificationInfoPageState createState() => IdVerificationInfoPageState();
 }
 
-class IdVerificationInfoPageState
-    extends BaseStatefulPage<IdVerificationInfoViewModel, IdVerificationInfoPage>
-    with TickerProviderStateMixin {
+class IdVerificationInfoPageState extends BaseStatefulPage<
+    IdVerificationInfoViewModel,
+    IdVerificationInfoPage> with TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return idVerificationInfoViewModelProvider;
-  }
-
-  @override
-  void onModelReady(IdVerificationInfoViewModel model) {
   }
 
   @override

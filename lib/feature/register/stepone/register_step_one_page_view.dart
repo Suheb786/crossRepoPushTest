@@ -8,9 +8,6 @@ import 'package:neo_bank/feature/register/stepone/countryselection/country_selec
 import 'package:neo_bank/feature/register/stepone/createPassword/create_password_page.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_page.dart';
-import 'package:neo_bank/feature/register/steptwo/confirm_detail/confirm_detail_page.dart';
-import 'package:neo_bank/feature/register/steptwo/enter_address/enter_address_page.dart';
-import 'package:neo_bank/feature/register/steptwo/id_verification_info/id_verification_info_page.dart';
 
 class RegisterStepOnePageView
     extends BasePageViewWidget<RegisterStepOneViewModel> {
@@ -21,9 +18,6 @@ class RegisterStepOnePageView
     AddNumberPage(),
     ValidateOtpPage(),
     CreatePasswordPage(),
-    IdVerificationInfoPage(),
-    ConfirmDetailPage(),
-    EnterAddressPage()
   ];
 
   @override

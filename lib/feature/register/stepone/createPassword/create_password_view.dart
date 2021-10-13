@@ -27,9 +27,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
       child: Column(
         children: [
           Text(
-            S
-                .of(context)
-                .accountRegistration,
+            S.of(context).accountRegistration,
             style: TextStyle(
                 color: AppColor.dark_gray,
                 fontSize: 10,
@@ -38,9 +36,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
           Padding(
             padding: EdgeInsets.only(top: 36.0, bottom: 32),
             child: Text(
-              S
-                  .of(context)
-                  .addMobileHeader,
+              S.of(context).addMobileHeader,
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: AppColor.very_dark_gray,
@@ -50,199 +46,205 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
           ),
           Expanded(
             child: AppStreamBuilder<bool>(
-              stream: model.errorDetectorStream,
-              initialData: false,
-              dataBuilder: (context, isError) {
-                return ShakeAnimatedWidget(
-                  enabled: isError ?? false,
-                  duration: Duration(milliseconds: 100),
-                  shakeAngle: Rotation.deg(z: 1),
-                  curve: Curves.easeInOutSine,
-                  child: AppStreamBuilder<Resource<bool>>(
-                    stream: model.createPasswordStream,
-                    initialData: Resource.none(),
-                      onData: (data) {
-                        if (data.status == Status.SUCCESS) {
-                          model.passwordKey.currentState!.isValid = true;
-                          model.confirmPasswordKey.currentState!.isValid = true;
-                          ProviderScope.containerOf(context)
-                              .read(registerStepOneViewModelProvider)
-                              .pageController
-                              .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
-                        } else if (data.status == Status.ERROR) {
-                          if(data.appError!.type == ErrorType.PASSWORD_MISMATCH) {
-                            model.passwordKey.currentState!.isValid = false;
-                            model.confirmPasswordKey.currentState!.isValid = false;
-                          } else if (data.appError!.type == ErrorType.EMPTY_PASSWORD) {
-                            model.passwordKey.currentState!.isValid = false;
-                          } else  if(data.appError!.type == ErrorType.EMPTY_CONFIRM_PASSWORD){
-                            model.confirmPasswordKey.currentState!.isValid = false;
-                          }
-                        }
-                      },
-                    dataBuilder: (context, data) {
-                      return GestureDetector(
-                        onHorizontalDragUpdate: (details) {
-                          if (details.primaryDelta!.isNegative) {
-                            model.createPassword();
-                          } else {
-                            ProviderScope
-                                .containerOf(context)
-                                .read(registerStepOneViewModelProvider)
-                                .pageController
-                                .previousPage(
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.easeInOut);
+                stream: model.errorDetectorStream,
+                initialData: false,
+                dataBuilder: (context, isError) {
+                  return ShakeAnimatedWidget(
+                    enabled: isError ?? false,
+                    duration: Duration(milliseconds: 100),
+                    shakeAngle: Rotation.deg(z: 1),
+                    curve: Curves.easeInOutSine,
+                    child: AppStreamBuilder<Resource<bool>>(
+                        stream: model.createPasswordStream,
+                        initialData: Resource.none(),
+                        onData: (data) {
+                          if (data.status == Status.SUCCESS) {
+                            model.passwordKey.currentState!.isValid = true;
+                            model.confirmPasswordKey.currentState!.isValid =
+                                true;
+                          } else if (data.status == Status.ERROR) {
+                            if (data.appError!.type ==
+                                ErrorType.PASSWORD_MISMATCH) {
+                              model.passwordKey.currentState!.isValid = false;
+                              model.confirmPasswordKey.currentState!.isValid =
+                                  false;
+                            } else if (data.appError!.type ==
+                                ErrorType.EMPTY_PASSWORD) {
+                              model.passwordKey.currentState!.isValid = false;
+                            } else if (data.appError!.type ==
+                                ErrorType.EMPTY_CONFIRM_PASSWORD) {
+                              model.confirmPasswordKey.currentState!.isValid =
+                                  false;
+                            }
                           }
                         },
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16)),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: Container(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 32, horizontal: 24),
-                              decoration: BoxDecoration(
-                                color: AppColor.very_soft_violet,
-                                gradient: LinearGradient(
-                                    colors: [
-                                      AppColor.dark_violet,
-                                      AppColor.dark_moderate_blue
-                                    ],
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topCenter),
-                              ),
-                              child: Stack(
-                                children: [
-                                  Column(
-                                    children: [
-                                      AppTextField(
-                                        key: model.passwordKey,
-                                        labelText: S
-                                            .of(context)
-                                            .createPassword,
-                                        obscureText: true,
-                                        hintText: S
-                                            .of(context)
-                                            .pleaseEnter,
-                                        inputType: TextInputType.text,
-                                        controller: model.createPasswordController,
-                                        onChanged: (value) => model.validatePassword(),
-                                        labelIcon: () =>
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5.33),
-                                              child: AppSvg.asset(
-                                                  AssetUtils.info, height: 13.33,
-                                                  width: 13.33),
-                                            ),
-                                        textHintWidget:
-                                            (hasFocus, isValid, value) {
-                                          return Visibility(
-                                            visible: !isValid,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 16,
-                                                  vertical: 8),
-                                              child: Text(
-                                                ErrorParser
-                                                    .getLocalisedStringError(
-                                                    error:
-                                                    data!.appError,
-                                                    localisedHelper:
-                                                    S.of(context)),
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                    FontWeight.w600,
-                                                    color:
-                                                    AppColor.vivid_red),
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
-                                      AppTextField(
-                                        key: model.confirmPasswordKey,
-                                        labelText: S
-                                            .of(context)
-                                            .confirmPassword,
-                                        hintText: S
-                                            .of(context)
-                                            .pleaseEnter,
-                                        inputType: TextInputType.text,
-                                        obscureText: true,
-                                        onChanged: (value) =>
-                                            model.validatePassword(),
-                                        controller: model.confirmPasswordController,
-                                        labelIcon: () =>
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5.33),
-                                              child: AppSvg.asset(
-                                                  AssetUtils.info, height: 13.33,
-                                                  width: 13.33),
-                                            ),
-                                        textHintWidget:
-                                            (hasFocus, isValid, value) {
-                                          return Visibility(
-                                            visible: !isValid,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 16,
-                                                  vertical: 8),
-                                              child: Text(
-                                                ErrorParser
-                                                    .getLocalisedStringError(
-                                                    error:
-                                                    data!.appError,
-                                                    localisedHelper:
-                                                    S.of(context)),
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                    FontWeight.w600,
-                                                    color:
-                                                    AppColor.vivid_red),
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ],
+                        dataBuilder: (context, data) {
+                          return GestureDetector(
+                            onHorizontalDragUpdate: (details) {
+                              if (details.primaryDelta!.isNegative) {
+                                model.createPassword();
+                                if (data!.data != null) {
+                                  if (data.data!) {
+                                    ProviderScope.containerOf(context)
+                                        .read(registerViewModelProvider)
+                                        .pageController
+                                        .animateToPage(1,
+                                            duration:
+                                                Duration(milliseconds: 500),
+                                            curve: Curves.easeInOut);
+                                  }
+                                }
+                              } else {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepOneViewModelProvider)
+                                    .pageController
+                                    .previousPage(
+                                        duration: Duration(milliseconds: 500),
+                                        curve: Curves.easeInOut);
+                              }
+                            },
+                            child: Card(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16)),
+                              clipBehavior: Clip.antiAliasWithSaveLayer,
+                              child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 32, horizontal: 24),
+                                  decoration: BoxDecoration(
+                                    color: AppColor.very_soft_violet,
+                                    gradient: LinearGradient(
+                                        colors: [
+                                          AppColor.dark_violet,
+                                          AppColor.dark_moderate_blue
+                                        ],
+                                        begin: Alignment.bottomCenter,
+                                        end: Alignment.topCenter),
                                   ),
-                                  Positioned(
-                                    bottom: 251,
-                                    left:45,
-                                    right: 45,
-                                    child: AppStreamBuilder<bool>(
-                                        stream: model.showButtonStream,
-                                        initialData: false,
-                                        dataBuilder: (context, isValid) {
-                                         if(isValid!){
-                                          return
-                                          AnimatedButton(buttonText: "Swipe to proceed");
-                                         } else {
-                                           return Container();
-                                         }
-                                        }),
-                                  )
-                                ],
-                              )),
-                        ),
-                      );
-                    }
-                  ),
-                );
-              }
-            ),
+                                  child: Stack(
+                                    children: [
+                                      Column(
+                                        children: [
+                                          AppTextField(
+                                            key: model.passwordKey,
+                                            labelText:
+                                                S.of(context).createPassword,
+                                            obscureText: true,
+                                            hintText: S.of(context).pleaseEnter,
+                                            inputType: TextInputType.text,
+                                            controller:
+                                                model.createPasswordController,
+                                            onChanged: (value) =>
+                                                model.validatePassword(),
+                                            labelIcon: () => Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5.33),
+                                              child: AppSvg.asset(
+                                                  AssetUtils.info,
+                                                  height: 13.33,
+                                                  width: 13.33),
+                                            ),
+                                            textHintWidget:
+                                                (hasFocus, isValid, value) {
+                                              return Visibility(
+                                                visible: !isValid,
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 16,
+                                                      vertical: 8),
+                                                  child: Text(
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error:
+                                                                data!.appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
+                                                    textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            AppColor.vivid_red),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 16,
+                                          ),
+                                          AppTextField(
+                                            key: model.confirmPasswordKey,
+                                            labelText:
+                                                S.of(context).confirmPassword,
+                                            hintText: S.of(context).pleaseEnter,
+                                            inputType: TextInputType.text,
+                                            obscureText: true,
+                                            onChanged: (value) =>
+                                                model.validatePassword(),
+                                            controller:
+                                                model.confirmPasswordController,
+                                            labelIcon: () => Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 5.33),
+                                              child: AppSvg.asset(
+                                                  AssetUtils.info,
+                                                  height: 13.33,
+                                                  width: 13.33),
+                                            ),
+                                            textHintWidget:
+                                                (hasFocus, isValid, value) {
+                                              return Visibility(
+                                                visible: !isValid,
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 16,
+                                                      vertical: 8),
+                                                  child: Text(
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error:
+                                                                data!.appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
+                                                    textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            AppColor.vivid_red),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                      Positioned(
+                                        bottom: 251,
+                                        left: 45,
+                                        right: 45,
+                                        child: AppStreamBuilder<bool>(
+                                            stream: model.showButtonStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              if (isValid!) {
+                                                return AnimatedButton(
+                                                    buttonText:
+                                                        "Swipe to proceed");
+                                              } else {
+                                                return Container();
+                                              }
+                                            }),
+                                      )
+                                    ],
+                                  )),
+                            ),
+                          );
+                        }),
+                  );
+                }),
           ),
         ],
       ),

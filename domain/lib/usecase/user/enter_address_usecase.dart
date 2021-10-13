@@ -5,6 +5,7 @@ import 'package:domain/error/local_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
+import 'package:domain/utils/validator.dart';
 
 class EnterAddressUseCase
     extends BaseUseCase<LocalError, EnterAddressUseCaseParams, bool> {
@@ -29,22 +30,22 @@ class EnterAddressUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    if(residentCountry!.isEmpty) {
+    if(Validator.isEmpty(residentCountry!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_RESIDENT_COUNTRY,
           cause: Exception()));
-    } else if(homeAddress!.isEmpty) {
+    } else if(Validator.isEmpty(homeAddress!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_HOME_ADDRESS,
           cause: Exception()));
-    } else if(streetAddress!.isEmpty) {
+    } else if(Validator.isEmpty(streetAddress!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_STREET_ADDRESS,
           cause: Exception()));
-    } else if(buildingNameOrNo!.isEmpty) {
+    } else if(Validator.isEmpty(buildingNameOrNo!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_BUILDING_NAME_OR_NUMBER,

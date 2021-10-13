@@ -5,6 +5,7 @@ import 'package:domain/error/local_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
+import 'package:domain/utils/validator.dart';
 
 class CreatePasswordUseCase
     extends BaseUseCase<LocalError, CreatePasswordUseCaseParams, bool> {
@@ -24,17 +25,17 @@ class CreatePasswordUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    if (createPassword.isEmpty) {
+    if (Validator.isEmpty(createPassword)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_PASSWORD,
           cause: Exception()));
-    } else if (confirmPassword.isEmpty) {
+    } else if (Validator.isEmpty(confirmPassword)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_CONFIRM_PASSWORD,
           cause: Exception()));
-    } else if(createPassword != confirmPassword) {
+    } else if(!Validator.isEqual(confirmPassword, createPassword)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.PASSWORD_MISMATCH,
