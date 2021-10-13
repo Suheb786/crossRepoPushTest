@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
             "Please swipe through and confirm your information"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("Email Address"),
+        "emailAddressCaps":
+            MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
         "employerCity": MessageLookupByLibrary.simpleMessage("Employer City"),
         "employerContact":
             MessageLookupByLibrary.simpleMessage("Employer Contact"),
@@ -48,8 +50,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "employerName": MessageLookupByLibrary.simpleMessage("Employer Name"),
         "employmentStatus":
             MessageLookupByLibrary.simpleMessage("Employment Status"),
+        "emptyEmailMessage": MessageLookupByLibrary.simpleMessage(
+            "Please enter your email address"),
         "enterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
+        "enterValidEmail": MessageLookupByLibrary.simpleMessage(
+            "please enter valid email address"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter valid mobile number"),
         "enterValidNature": MessageLookupByLibrary.simpleMessage(
@@ -65,6 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
             "Please enter valid spouse name"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("Home Address"),
+        "iHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("I have an account"),
         "mainSourceIncome":
             MessageLookupByLibrary.simpleMessage("Main Source of Income"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
@@ -75,12 +83,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
         "occupation": MessageLookupByLibrary.simpleMessage("Occupation"),
+        "orContinueWith":
+            MessageLookupByLibrary.simpleMessage("or continue with"),
         "personName": MessageLookupByLibrary.simpleMessage("PERSON’S NAME"),
         "personRole": MessageLookupByLibrary.simpleMessage("PERSON’S ROLE"),
         "personalDetails":
             MessageLookupByLibrary.simpleMessage("PERSONAL DETAILS"),
         "personsName": MessageLookupByLibrary.simpleMessage("Person’s Name"),
         "personsRole": MessageLookupByLibrary.simpleMessage("Person’s Role"),
+        "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
         "profileDetailsQ1":
             MessageLookupByLibrary.simpleMessage("Are you married?"),
@@ -122,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Total Additional Income"),
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "uploadDocuments":
-            MessageLookupByLibrary.simpleMessage("UPLOAD DOCUMENTS")
+            MessageLookupByLibrary.simpleMessage("UPLOAD DOCUMENTS"),
+        "welcomeToNeuBank":
+            MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank.")
       };
 }

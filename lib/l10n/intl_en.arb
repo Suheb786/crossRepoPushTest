@@ -14,6 +14,13 @@
     "type": "string"
   },
   "enterValidOtp": "Please enter valid otp",
+  "welcomeToNeuBank": "Welcome to\nNeuBank.",
+  "emailAddressCaps": "EMAIL ADDRESS",
+  "pleaseEnter": "Please enter",
+  "orContinueWith": "or continue with",
+  "iHaveAnAccount": "I have an account",
+  "emptyEmailMessage": "Please enter your email address",
+  "enterValidEmail": "please enter valid email address",
   "personalDetails": "PERSONAL DETAILS",
   "tellUsAboutYourJob": "Next, tell us about\nyour job",
   "tellUsAboutYourProfile":  "Tell us a bit about your\nprofile status",

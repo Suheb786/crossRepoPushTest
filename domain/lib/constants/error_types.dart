@@ -17,6 +17,8 @@ enum ErrorType {
   INVALID_PIN,
   INVALID_MOBILE,
   INVALID_OTP,
+  EMPTY_EMAIL,
+  INVALID_EMAIL,
 
   // Scanner Error
   NO_DOCUMENT_FOUND,
