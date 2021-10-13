@@ -3,6 +3,7 @@ import 'package:domain/usecase/register/taxation_details_usecase.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class TaxationDetailsPageViewModel extends BasePageViewModel {
@@ -14,9 +15,11 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
   ///declaration selected stream
   Stream<bool> get declarationSelectedStream => _declarationSelected.stream;
 
+  bool anyOtherCountryResident = false;
+
   ///update declaration selection function
   void updateDeclarationSelection(bool value) {
-    _declarationSelected.add(value);
+    _declarationSelected.safeAdd(value);
   }
 
   ///taxation details request subject holder
@@ -36,7 +39,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
               createCall: () => _taxationDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _taxationDetailsResponse.add(event);
+        _taxationDetailsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
         }
@@ -46,7 +49,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
 
   void validateTaxationDetails() {
     if (_declarationSelected.stream.value) {
-      _taxationDetailsRequest.add(TaxationDetailsUseCaseParams());
+      _taxationDetailsRequest.safeAdd(TaxationDetailsUseCaseParams());
     } else {
       showErrorState();
     }
