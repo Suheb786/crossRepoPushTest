@@ -59,8 +59,8 @@ class TaxReportInformationPageView
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       ProviderScope.containerOf(context)
-                          .read(registerStepThreeViewModelProvider)
-                          .pageController
+                          .read(registerViewModelProvider)
+                          .registrationStepsController
                           .nextPage(
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOut);
@@ -74,7 +74,7 @@ class TaxReportInformationPageView
                         } else {
                           ProviderScope.containerOf(context)
                               .read(registerStepThreeViewModelProvider)
-                              .pageController
+                              .registrationStepThreePageController
                               .previousPage(
                                   duration: Duration(milliseconds: 500),
                                   curve: Curves.easeInOut);

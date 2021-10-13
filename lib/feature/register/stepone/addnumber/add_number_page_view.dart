@@ -109,6 +109,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                   labelText: S.of(context).mobileNumber,
                                   hintText: S.of(context).mobileNumberHint,
                                   inputType: TextInputType.number,
+                                  inputAction: TextInputAction.done,
                                   controller: model.mobileNumberController,
                                   key: model.mobileNumberKey,
                                   prefixIcon: () {

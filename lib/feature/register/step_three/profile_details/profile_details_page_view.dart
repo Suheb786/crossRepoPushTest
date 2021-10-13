@@ -1,6 +1,5 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
-import 'package:domain/constants/error_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -64,7 +63,7 @@ class ProfileDetailsPageView
                           model.setKeysStatusValid();
                           ProviderScope.containerOf(context)
                               .read(registerStepThreeViewModelProvider)
-                              .pageController
+                              .registrationStepThreePageController
                               .nextPage(
                                   duration: Duration(milliseconds: 500),
                                   curve: Curves.easeInOut);
@@ -79,8 +78,8 @@ class ProfileDetailsPageView
                               model.validateTextFields();
                             } else {
                               ProviderScope.containerOf(context)
-                                  .read(registerViewModelProvider)
-                                  .pageController
+                                  .read(registerStepThreeViewModelProvider)
+                                  .registrationStepThreePageController
                                   .previousPage(
                                       duration: Duration(milliseconds: 500),
                                       curve: Curves.easeInOut);
