@@ -13,6 +13,8 @@ class AssetUtils {
   static const String ellipse = svg + "ellipse.svg";
   static const String dropDown = svg + "dropdown.svg";
   static const String checkBox = svg + "checkbox.svg";
+  static const String downArrow = svg + "down_arrow.svg";
+  static const String tick = svg + "tick.svg";
   static const String apple = svg + "apple.svg";
   static const String google = svg + "google.svg";
 
