@@ -8,9 +8,14 @@ import 'package:neo_bank/feature/register/steptwo/id_verification_info/id_verifi
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/id_verification/id_verification_info_text.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/parser/error_parser.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 
 class IdVerificationInfoView
     extends BasePageViewWidget<IdVerificationInfoViewModel> {
@@ -18,10 +23,10 @@ class IdVerificationInfoView
 
   @override
   Widget build(BuildContext context, IdVerificationInfoViewModel model) {
-    bool? isChecked = ProviderScope
+    bool? isRetrieveConditionChecked = ProviderScope
         .containerOf(context)
         .read(idVerificationInfoViewModelProvider)
-        .isChecked;
+        .isRetrieveConditionChecked;
     return AppKeyBoardHide(
       child: Column(
         children: [
@@ -48,121 +53,175 @@ class IdVerificationInfoView
             ),
           ),
           Expanded(
-            child: ShakeAnimatedWidget(
-              enabled: false,
-              duration: Duration(milliseconds: 100),
-              shakeAngle: Rotation.deg(z: 1),
-              curve: Curves.easeInOutSine,
-              child: GestureDetector(
-                onHorizontalDragUpdate: (details) {
-                  if (details.primaryDelta!.isNegative) {
-                    ProviderScope
-                        .containerOf(context)
-                        .read(registerStepOneViewModelProvider)
-                        .pageController
-                        .nextPage(
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.easeInOut);
-                  } else {
-                    ProviderScope
-                        .containerOf(context)
-                        .read(registerStepOneViewModelProvider)
-                        .pageController
-                        .previousPage(
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.easeInOut);
-                  }
-                },
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  child: Container(
-                      padding:
-                      EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                      decoration: BoxDecoration(
-                        color: AppColor.very_soft_violet,
-                        gradient: LinearGradient(
-                            colors: [
-                              AppColor.dark_violet,
-                              AppColor.dark_moderate_blue
-                            ],
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter),
-                      ),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            IdVerificationInfoText(image: AssetUtils.sunny,
-                                title: S
-                                    .of(context)
-                                    .idVerificationPlaceInfo),
-                            SizedBox(
-                              height: 32,
-                            ),
-                            IdVerificationInfoText(image: AssetUtils.scan,
-                                title: S
-                                    .of(context)
-                                    .idScanInfo),
-                            SizedBox(
-                              height: 32,
-                            ),
-                            IdVerificationInfoText(image: AssetUtils.correct,
-                                title: S
-                                    .of(context)
-                                    .onIdFit),
-                            SizedBox(
-                              height: 144,
-                            ),
-                            Row(
-                              children: [
-                                InkWell(
-                                  onTap: () {
-                                    bool value = ProviderScope
-                                        .containerOf(
-                                        context)
-                                        .read(
-                                        idVerificationInfoViewModelProvider)
-                                        .isChecked!;
-                                    if (value == false) {
-                                      model.changeValue(true);
-                                      ProviderScope.containerOf(context)
-                                          .read(
-                                          idVerificationInfoViewModelProvider)
-                                          .notify();
-                                    } else {
-                                      model.changeValue(false);
-                                      ProviderScope.containerOf(context)
-                                          .read(
-                                          idVerificationInfoViewModelProvider)
-                                          .notify();
-                                    }
-                                  },
-                                  child: isChecked! == false
-                                      ? AppSvg.asset(AssetUtils.ellipse)
-                                      : AppSvg.asset(AssetUtils.checkBox),
+            child: AppStreamBuilder<bool>(
+              stream: model.errorDetectorStream,
+              initialData: false,
+              dataBuilder: (context, isError) {
+                return ShakeAnimatedWidget(
+                  enabled: isError ?? false,
+                  duration: Duration(milliseconds: 100),
+                  shakeAngle: Rotation.deg(z: 1),
+                  curve: Curves.easeInOutSine,
+                  child: AppStreamBuilder<Resource<bool>>(
+                    stream: model.idVerificationResponseStream,
+                    initialData: Resource.none(),
+                    onData: (data) {
+                      if(data.status == Status.SUCCESS) {
+                        ProviderScope
+                            .containerOf(context)
+                            .read(registerStepOneViewModelProvider)
+                            .pageController
+                            .nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOut);
+                      } else if (data.status == Status.ERROR) {
+                        model.setShowError(true);
+                      }
+                    },
+                    dataBuilder: (context, data) {
+                      return GestureDetector(
+                        onHorizontalDragUpdate: (details) {
+                          if (details.primaryDelta!.isNegative) {
+                            model.idVerificationInfo();
+                          } else {
+                            ProviderScope
+                                .containerOf(context)
+                                .read(registerStepOneViewModelProvider)
+                                .pageController
+                                .previousPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeInOut);
+                          }
+                        },
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16)),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          child: Container(
+                              padding:
+                              EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                              decoration: BoxDecoration(
+                                color: AppColor.very_soft_violet,
+                                gradient: LinearGradient(
+                                    colors: [
+                                      AppColor.dark_violet,
+                                      AppColor.dark_moderate_blue
+                                    ],
+                                    begin: Alignment.bottomCenter,
+                                    end: Alignment.topCenter),
+                              ),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  children: [
+                                    IdVerificationInfoText(image: AssetUtils.sunny,
+                                        title: S
+                                            .of(context)
+                                            .idVerificationPlaceInfo),
+                                    SizedBox(
+                                      height: 32,
+                                    ),
+                                    IdVerificationInfoText(image: AssetUtils.scan,
+                                        title: S
+                                            .of(context)
+                                            .idScanInfo),
+                                    SizedBox(
+                                      height: 32,
+                                    ),
+                                    IdVerificationInfoText(image: AssetUtils.correct,
+                                        title: S
+                                            .of(context)
+                                            .onIdFit),
+                                    SizedBox(
+                                      height: 144,
+                                    ),
+                                    Row(
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            bool value = ProviderScope
+                                                .containerOf(
+                                                context)
+                                                .read(
+                                                idVerificationInfoViewModelProvider)
+                                                .isRetrieveConditionChecked!;
+                                            if (value == false) {
+                                              model.setIsRetrieveConditionChecked(true);
+                                              ProviderScope.containerOf(context)
+                                                  .read(
+                                                  idVerificationInfoViewModelProvider)
+                                                  .notify();
+                                            } else {
+                                              model.setIsRetrieveConditionChecked(false);
+                                              ProviderScope.containerOf(context)
+                                                  .read(
+                                                  idVerificationInfoViewModelProvider)
+                                                  .notify();
+                                            }
+                                          },
+                                          child: isRetrieveConditionChecked! == false
+                                              ? AppSvg.asset(AssetUtils.ellipse)
+                                              : AppSvg.asset(AssetUtils.checkBox),
+                                        ),
+                                        SizedBox(
+                                          width: 16,
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            S
+                                                .of(context)
+                                                .termsAndConditions,
+                                            style: TextStyle(
+                                                color: AppColor.white,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Visibility(
+                                      visible: model.showError!,
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 16,
+                                            vertical: 8),
+                                        child: Text(
+                                          ErrorParser
+                                              .getLocalisedStringError(
+                                              error:
+                                              data!.appError,
+                                              localisedHelper:
+                                              S.of(context)),
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight:
+                                              FontWeight.w600,
+                                              color:
+                                              AppColor.vivid_red),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 34,
+                                    ),
+                                    Visibility(
+                                      visible: model.isRetrieveConditionChecked!,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(left:45.0,right: 45),
+                                        child: AnimatedButton(
+                                          buttonText: "Swipe to proceed",
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
-                                SizedBox(
-                                  width: 16,
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    S
-                                        .of(context)
-                                        .termsAndConditions,
-                                    style: TextStyle(
-                                        color: AppColor.white,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 14),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
+                              )),
                         ),
-                      )),
-                ),
-              ),
+                      );
+                    }
+                  ),
+                );
+              }
             ),
           ),
         ],

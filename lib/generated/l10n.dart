@@ -540,21 +540,141 @@ class S {
     );
   }
 
-  /// `Password cannot be empty`
+  /// `Password field cannot be empty`
   String get enterPassword {
     return Intl.message(
-      'Password cannot be empty',
+      'Password field cannot be empty',
       name: 'enterPassword',
       desc: '',
       args: [],
     );
   }
 
+  /// `Confirm password field cannot be empty`
+  String get enterConfirmPassword {
+    return Intl.message(
+      'Confirm password field cannot be empty',
+      name: 'enterConfirmPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Password did not match`
-  String get passwordmismatch {
+  String get passwordMismatch {
     return Intl.message(
       'Password did not match',
-      name: 'passwordmismatch',
+      name: 'passwordMismatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please accept the above terms and conditions`
+  String get retrieveConditionNotChecked {
+    return Intl.message(
+      'Please accept the above terms and conditions',
+      name: 'retrieveConditionNotChecked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name field cannot be empty`
+  String get emptyName {
+    return Intl.message(
+      'Name field cannot be empty',
+      name: 'emptyName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Id Number field cannot be empty`
+  String get emptyIdNumber {
+    return Intl.message(
+      'Id Number field cannot be empty',
+      name: 'emptyIdNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of birth field cannot be empty`
+  String get emptyDob {
+    return Intl.message(
+      'Date of birth field cannot be empty',
+      name: 'emptyDob',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nationality field cannot be empty`
+  String get emptyNationality {
+    return Intl.message(
+      'Nationality field cannot be empty',
+      name: 'emptyNationality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expiry date field cannot be empty`
+  String get emptyExpiryDate {
+    return Intl.message(
+      'Expiry date field cannot be empty',
+      name: 'emptyExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gender filed cannot be empty`
+  String get emptyGender {
+    return Intl.message(
+      'Gender filed cannot be empty',
+      name: 'emptyGender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident country field cannot be empty`
+  String get emptyResidentCountry {
+    return Intl.message(
+      'Resident country field cannot be empty',
+      name: 'emptyResidentCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home address field cannot be empty`
+  String get emptyHomeAddress {
+    return Intl.message(
+      'Home address field cannot be empty',
+      name: 'emptyHomeAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Street address field cannot be empty`
+  String get emptyStreetAddress {
+    return Intl.message(
+      'Street address field cannot be empty',
+      name: 'emptyStreetAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Building name or number field cannot be empty`
+  String get emptyBuildingNameOrNo {
+    return Intl.message(
+      'Building name or number field cannot be empty',
+      name: 'emptyBuildingNameOrNo',
       desc: '',
       args: [],
     );

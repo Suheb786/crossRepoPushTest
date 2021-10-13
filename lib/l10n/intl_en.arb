@@ -52,6 +52,18 @@
   "iHaveAnAccount": "I have an account",
   "emptyEmailMessage": "Please enter your email address",
   "enterValidEmail": "please enter valid email address",
-  "enterPassword": "Password cannot be empty",
-  "passwordmismatch": "Password did not match"
+  "enterPassword": "Password field cannot be empty",
+  "enterConfirmPassword": "Confirm password field cannot be empty",
+  "passwordMismatch": "Password did not match",
+  "retrieveConditionNotChecked": "Please accept the above terms and conditions",
+  "emptyName": "Name field cannot be empty",
+  "emptyIdNumber": "Id Number field cannot be empty",
+  "emptyDob": "Date of birth field cannot be empty",
+  "emptyNationality": "Nationality field cannot be empty",
+  "emptyExpiryDate": "Expiry date field cannot be empty",
+  "emptyGender": "Gender filed cannot be empty",
+  "emptyResidentCountry": "Resident country field cannot be empty",
+  "emptyHomeAddress": "Home address field cannot be empty",
+  "emptyStreetAddress": "Street address field cannot be empty",
+  "emptyBuildingNameOrNo": "Building name or number field cannot be empty"
 }

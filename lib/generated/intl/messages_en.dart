@@ -46,14 +46,36 @@ class MessageLookup extends MessageLookupByLibrary {
         "dobHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Date Of Birth"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
+        "emptyBuildingNameOrNo": MessageLookupByLibrary.simpleMessage(
+            "Building name or number field cannot be empty"),
+        "emptyDob": MessageLookupByLibrary.simpleMessage(
+            "Date of birth field cannot be empty"),
         "emptyEmailMessage": MessageLookupByLibrary.simpleMessage(
             "Please enter your email address"),
+        "emptyExpiryDate": MessageLookupByLibrary.simpleMessage(
+            "Expiry date field cannot be empty"),
+        "emptyGender": MessageLookupByLibrary.simpleMessage(
+            "Gender filed cannot be empty"),
+        "emptyHomeAddress": MessageLookupByLibrary.simpleMessage(
+            "Home address field cannot be empty"),
+        "emptyIdNumber": MessageLookupByLibrary.simpleMessage(
+            "Id Number field cannot be empty"),
+        "emptyName":
+            MessageLookupByLibrary.simpleMessage("Name field cannot be empty"),
+        "emptyNationality": MessageLookupByLibrary.simpleMessage(
+            "Nationality field cannot be empty"),
+        "emptyResidentCountry": MessageLookupByLibrary.simpleMessage(
+            "Resident country field cannot be empty"),
+        "emptyStreetAddress": MessageLookupByLibrary.simpleMessage(
+            "Street address field cannot be empty"),
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
+        "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
+            "Confirm password field cannot be empty"),
         "enterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
-        "enterPassword":
-            MessageLookupByLibrary.simpleMessage("Password cannot be empty"),
+        "enterPassword": MessageLookupByLibrary.simpleMessage(
+            "Password field cannot be empty"),
         "enterValidEmail": MessageLookupByLibrary.simpleMessage(
             "please enter valid email address"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
@@ -91,7 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Once fit, your ID will be scanned automatically"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
-        "passwordmismatch":
+        "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Password did not match"),
         "personalDetails":
             MessageLookupByLibrary.simpleMessage("PERSONAL DETAILS"),
@@ -101,6 +123,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("RESIDENT COUNTRY"),
         "residentCountryHint": MessageLookupByLibrary.simpleMessage(
             "Please Enter Resident Country"),
+        "retrieveConditionNotChecked": MessageLookupByLibrary.simpleMessage(
+            "Please accept the above terms and conditions"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
         "streetAddress": MessageLookupByLibrary.simpleMessage("STREET ADDRESS"),

@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -71,8 +72,14 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOut);
                         } else if (data.status == Status.ERROR) {
-                          model.passwordKey.currentState!.isValid = false;
-                          model.confirmPasswordKey.currentState!.isValid = false;
+                          if(data.appError!.type == ErrorType.PASSWORD_MISMATCH) {
+                            model.passwordKey.currentState!.isValid = false;
+                            model.confirmPasswordKey.currentState!.isValid = false;
+                          } else if (data.appError!.type == ErrorType.EMPTY_PASSWORD) {
+                            model.passwordKey.currentState!.isValid = false;
+                          } else  if(data.appError!.type == ErrorType.EMPTY_CONFIRM_PASSWORD){
+                            model.confirmPasswordKey.currentState!.isValid = false;
+                          }
                         }
                       },
                     dataBuilder: (context, data) {

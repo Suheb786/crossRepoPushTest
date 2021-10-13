@@ -24,11 +24,15 @@ class CreatePasswordUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
-    if (createPassword.isEmpty ||
-        confirmPassword.isEmpty) {
+    if (createPassword.isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_PASSWORD,
+          cause: Exception()));
+    } else if (confirmPassword.isEmpty) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.EMPTY_CONFIRM_PASSWORD,
           cause: Exception()));
     } else if(createPassword != confirmPassword) {
       return Left(AppError(

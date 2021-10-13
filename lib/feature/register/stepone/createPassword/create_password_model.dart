@@ -24,18 +24,17 @@ class CreatePasswordViewModel extends BasePageViewModel {
   PublishSubject<CreatePasswordUseCaseParams> _createPasswordRequest =
       PublishSubject();
 
-  // ignore: close_sinks
+  /// create password response subject holder
   PublishSubject<Resource<bool>> _createPasswordResponse = PublishSubject();
 
   Stream<Resource<bool>> get createPasswordStream => _createPasswordResponse.stream;
 
-  // ignore: close_sinks
-  BehaviorSubject<bool> _showButton = BehaviorSubject.seeded(false);
+  /// show button Subject holder
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
-  Stream<bool> get showButtonStream => _showButton.stream;
+  Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  ///error detector subject
-  // ignore: close_sinks
+  ///error detector subject holder
   BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
@@ -63,9 +62,9 @@ class CreatePasswordViewModel extends BasePageViewModel {
   void validatePassword() {
     if (createPasswordController.text.isNotEmpty &&
         confirmPasswordController.text.isNotEmpty) {
-      _showButton.safeAdd(true);
+      _showButtonSubject.safeAdd(true);
     } else {
-      _showButton.safeAdd(false);
+      _showButtonSubject.safeAdd(false);
     }
   }
 

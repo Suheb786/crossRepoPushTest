@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
@@ -59,8 +61,10 @@ class _AnimatedButtonState extends State<AnimatedButton>
         .animate(fadeAnimationController!);
     animationController!.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        Future.delayed(Duration(seconds: 1)).then((value) {
-          fadeAnimationController!.reverse();
+        Timer(Duration(seconds: 1), () {
+          if(mounted) {
+            fadeAnimationController!.reverse();
+          }
         });
       }
     });
@@ -75,9 +79,11 @@ class _AnimatedButtonState extends State<AnimatedButton>
   }
 
   startAnimation() async {
-    Future.delayed(Duration(seconds: 1)).then((value) {
-      animationController!.forward();
-      fadeAnimationController!.forward();
+    Timer(Duration(seconds: 1), () {
+      if(mounted) {
+        animationController!.forward();
+        fadeAnimationController!.forward();
+      }
     });
   }
 
@@ -125,6 +131,13 @@ class _AnimatedButtonState extends State<AnimatedButton>
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    animationController!.dispose();
+    fadeAnimationController!.dispose();
+    super.dispose();
   }
 }
 

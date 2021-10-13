@@ -89,7 +89,7 @@ class AppTextField extends StatefulWidget {
 class AppTextFieldState extends State<AppTextField> {
   late bool _secureText;
   FocusNode _focusNode = FocusNode();
-  bool _isValid = false;
+  bool _isValid = true;
 
   @override
   void initState() {
