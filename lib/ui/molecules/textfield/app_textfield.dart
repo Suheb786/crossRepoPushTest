@@ -137,6 +137,7 @@ class AppTextFieldState extends State<AppTextField> {
                                 ? AppColor.vivid_orange
                                 : AppColor.soft_violet)),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     RichText(
                       text: TextSpan(children: [
