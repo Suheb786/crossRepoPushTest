@@ -101,7 +101,7 @@ class ProfileDetailsPageView
                              model.validateTextFields();
                            }else {
                               ProviderScope.containerOf(context)
-                                  .read(registerStepThreeViewModelProvider)
+                                  .read(registerViewModelProvider)
                                   .pageController
                                   .previousPage(
                                   duration: Duration(milliseconds: 500),

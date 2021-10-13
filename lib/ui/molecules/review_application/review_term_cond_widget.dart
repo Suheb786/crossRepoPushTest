@@ -6,18 +6,19 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class ReviewTCWidget extends StatelessWidget {
-  final String? title;
+  final String title;
+  final String? subTitle;
   final bool? isSelected;
   final Function? onTap;
 
   const ReviewTCWidget(
-      {Key? key, this.title, this.isSelected: false, this.onTap})
+      {Key? key, required this.title, this.subTitle, this.isSelected: false, this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 52.0),
+      padding: const EdgeInsets.only(top: 32.0, bottom: 114),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -33,26 +34,25 @@ class ReviewTCWidget extends StatelessWidget {
                   border: Border.all(
                       color: AppColor.mostly_desaturated_dark_violet),
                   shape: BoxShape.circle,
-                  color: AppColor.dark_violet_4),
+                  color: isSelected!?AppColor.dark_violet_4:Colors.transparent),
               child: (isSelected!)
                   ? AppSvg.asset(AssetUtils.tick, height: 7.33, width: 10.67)
                   : null,
             ),
           ),
           SizedBox(width: 15),
-          Flexible(
+          Expanded(
             child: Text.rich(TextSpan(
-                text:
-                    'I confirm that information above is correct and agree to the bank’s ',
+                text:title,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 12,
                   fontFamily: 'Montserrat',
-                  color: AppColor.very_light_gray_white,
+                  color: AppColor.gray,
                 ),
                 children: [
                   TextSpan(
-                    text: 'Terms and Conditions.',
+                    text: subTitle,
                     style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 12,

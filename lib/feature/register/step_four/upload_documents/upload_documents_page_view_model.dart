@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -25,10 +23,6 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
     });
   }
 
-  BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
-
-  Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
-
   PublishSubject<UploadDocumentsUseCaseParams> _documentsRequest =
       PublishSubject();
 
@@ -43,10 +37,4 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
     // ));
   }
 
-  void showErrorState() {
-    _errorDetectorSubject.safeAdd(true);
-    Future.delayed(Duration(milliseconds: 500), () {
-      _errorDetectorSubject.safeAdd(false);
-    });
-  }
 }

@@ -101,7 +101,8 @@
   "employerContactSmall": "Employer Contact",
   "additionalSourceIncome": "Additional Source of Income",
   "totalAdditionalIncomeSmall": "Total Additional Income",
-  "termsAndConditions": "I confirm that information above is correct and agree to the bank’s Terms and Conditions.",
+  "confirmInfoTC": "I confirm that information above is correct and agree to the bank’s ",
+  "termsAndCondition": "Terms and Conditions.",
   "enterValidSpouseName": "Please enter valid spouse name",
   "enterValidNature": "Please select nature of special needs",
   "enterValidRelationshipWithPEP": "Please enter valid relationship with PEP",
@@ -113,5 +114,6 @@
   "proofOfIncomeDesc": "For salaried individuals, please provide either one of Job Certificate / Salary Slip",
   "proofOfAddress": "Proof of Address",
   "proofOfAddressDesc": "Please provide your latest electricity bill to proof your address",
-  "upload": "Upload"
+  "upload": "Upload",
+  "confirmTermsCondError":"Confirm to the terms and conditions."
 }

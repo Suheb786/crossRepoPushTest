@@ -48,10 +48,6 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
 
   List<String> natureNeedsList = ["Communication", "Movement", "Self-care"];
 
-  BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
-
-  Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
-
   PublishSubject<ProfileDetailsUseCaseParams> _profileDetailsRequest =
       PublishSubject();
 
@@ -73,17 +69,9 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
     ));
   }
 
-  void showErrorState() {
-    _errorDetectorSubject.safeAdd(true);
-    Future.delayed(Duration(milliseconds: 500), () {
-      _errorDetectorSubject.safeAdd(false);
-    });
-  }
-
   @override
   void dispose() {
     _profileDetailsRequest.close();
-    _errorDetectorSubject.close();
     super.dispose();
   }
 }

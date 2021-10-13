@@ -42,4 +42,9 @@ enum ErrorType {
   INVALID_PERSON_ROLE,
   INVALID_PERSON_NAME,
 
+  //upload
+  EMPTY_INCOME_PROOF,
+  EMPTY_ADDRESS_PROOF,
+
+
 }

@@ -160,7 +160,7 @@ ChangeNotifierProvider.autoDispose<RegisterStepFourViewModel>(
 ///review application page
 final reviewApplicationPageViewModelProvider =
 ChangeNotifierProvider.autoDispose<ReviewApplicationPageViewModel>(
-        (ref) => ReviewApplicationPageViewModel(),
+        (ref) => ReviewApplicationPageViewModel(ref.read(reviewApplicationUseCaseProvider)),
 );
 
 ///upload documents page

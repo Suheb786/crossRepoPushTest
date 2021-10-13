@@ -29,17 +29,6 @@ class UploadDocumentsUseCaseParams extends Params {
   @override
   Either<AppError, bool> verify() {
     //To do: change validation msg
-    if (incomeProof!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_NAME,
-          cause: Exception()));
-    } else if (addressProof!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_NATURE,
-          cause: Exception()));
-    }
     return Right(true);
   }
 }

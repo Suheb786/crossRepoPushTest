@@ -52,6 +52,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change My Number"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
+        "confirmInfoTC": MessageLookupByLibrary.simpleMessage(
+            "I confirm that information above is correct and agree to the bank’s "),
+        "confirmTermsCondError": MessageLookupByLibrary.simpleMessage(
+            "Confirm to the terms and conditions."),
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
             "Please swipe through and confirm your information"),
         "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage(
@@ -202,8 +206,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Next, tell us about\nyour job"),
         "tellUsAboutYourProfile": MessageLookupByLibrary.simpleMessage(
             "Tell us a bit about your\nprofile status"),
-        "termsAndConditions": MessageLookupByLibrary.simpleMessage(
-            "I confirm that information above is correct and agree to the bank’s Terms and Conditions."),
+        "termsAndCondition":
+            MessageLookupByLibrary.simpleMessage("Terms and Conditions."),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "totalAdditionalIncome":
             MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),

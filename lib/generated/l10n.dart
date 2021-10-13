@@ -1030,11 +1030,21 @@ class S {
     );
   }
 
-  /// `I confirm that information above is correct and agree to the bank’s Terms and Conditions.`
-  String get termsAndConditions {
+  /// `I confirm that information above is correct and agree to the bank’s `
+  String get confirmInfoTC {
     return Intl.message(
-      'I confirm that information above is correct and agree to the bank’s Terms and Conditions.',
-      name: 'termsAndConditions',
+      'I confirm that information above is correct and agree to the bank’s ',
+      name: 'confirmInfoTC',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms and Conditions.`
+  String get termsAndCondition {
+    return Intl.message(
+      'Terms and Conditions.',
+      name: 'termsAndCondition',
       desc: '',
       args: [],
     );
@@ -1155,6 +1165,16 @@ class S {
     return Intl.message(
       'Upload',
       name: 'upload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm to the terms and conditions.`
+  String get confirmTermsCondError {
+    return Intl.message(
+      'Confirm to the terms and conditions.',
+      name: 'confirmTermsCondError',
       desc: '',
       args: [],
     );
