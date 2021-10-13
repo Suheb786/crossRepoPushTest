@@ -79,4 +79,12 @@ class EnterAddressViewModel extends BasePageViewModel {
       _showButtonSubject.safeAdd(false);
     }
   }
+
+  @override
+  void dispose() {
+    _showButtonSubject.close();
+    _enterAddressRequest.close();
+    _enterAddressResponse.close();
+    super.dispose();
+  }
 }

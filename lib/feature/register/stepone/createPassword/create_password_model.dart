@@ -63,4 +63,12 @@ class CreatePasswordViewModel extends BasePageViewModel {
       _showButtonSubject.safeAdd(false);
     }
   }
+
+  @override
+  void dispose() {
+    _showButtonSubject.close();
+    _createPasswordResponse.close();
+    _createPasswordRequest.close();
+    super.dispose();
+  }
 }

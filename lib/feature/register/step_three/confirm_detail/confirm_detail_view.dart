@@ -98,7 +98,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                 model.confirmDetail();
                               } else {
                                 ProviderScope.containerOf(context)
-                                    .read(registerStepOneViewModelProvider)
+                                    .read(registerStepThreeViewModelProvider)
                                     .pageController
                                     .previousPage(
                                         duration: Duration(milliseconds: 500),

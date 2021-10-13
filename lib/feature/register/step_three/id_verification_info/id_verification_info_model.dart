@@ -63,4 +63,12 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
     _idVerificationInfoRequest.safeAdd(IdVerificationInfoUseCaseParams(
         isRetrieveConditionChecked: _isRetrievedConditionSubject.value));
   }
+
+  @override
+  void dispose() {
+    _isRetrievedConditionSubject.close();
+    _idVerificationInfoRequest.close();
+    _idVerificationInfoResponse.close();
+    super.dispose();
+  }
 }

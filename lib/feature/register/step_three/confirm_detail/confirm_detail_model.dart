@@ -85,4 +85,12 @@ class ConfirmDetailViewModel extends BasePageViewModel {
       _showButtonSubject.safeAdd(false);
     }
   }
+
+  @override
+  void dispose() {
+    _confirmDetailRequest.close();
+    _showButtonSubject.close();
+    _confirmDetailResponse.close();
+    super.dispose();
+  }
 }

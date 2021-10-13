@@ -76,7 +76,7 @@ class IdVerificationInfoView
                                 model.idVerificationInfo();
                               } else {
                                 ProviderScope.containerOf(context)
-                                    .read(registerStepOneViewModelProvider)
+                                    .read(registerStepThreeViewModelProvider)
                                     .pageController
                                     .previousPage(
                                         duration: Duration(milliseconds: 500),
