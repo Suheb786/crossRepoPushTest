@@ -7,25 +7,16 @@ import 'package:rxdart/rxdart.dart';
 
 class TaxationDetailsPageViewModel extends BasePageViewModel {
   final TaxationDetailsUseCase _taxationDetailsUseCase;
+
+  ///declaration selected  subject
   BehaviorSubject<bool> _declarationSelected = BehaviorSubject.seeded(false);
 
+  ///declaration selected stream
   Stream<bool> get declarationSelectedStream => _declarationSelected.stream;
 
+  ///update declaration selection function
   void updateDeclarationSelection(bool value) {
     _declarationSelected.add(value);
-  }
-
-  ///error detector subject
-  BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
-
-  ///error detector stream
-  Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
-
-  void showErrorState() {
-    _errorDetectorSubject.add(true);
-    Future.delayed(Duration(milliseconds: 500), () {
-      _errorDetectorSubject.add(false);
-    });
   }
 
   ///taxation details request subject holder

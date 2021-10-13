@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -143,31 +144,24 @@ class EmploymentStatusPageView
                                             );
                                           },
                                           onChanged: (value) {
-                                            if (value.isNotEmpty &&
-                                                value.length > 3) {
-                                              model.employmentStatusKey
-                                                  .currentState!.isValid = true;
-                                            } else {
-                                              model
-                                                  .employmentStatusKey
-                                                  .currentState!
-                                                  .isValid = false;
-                                            }
                                             model.isValid();
                                           },
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
                                             return Visibility(
-                                              visible: hasFocus,
+                                              visible: !isValid,
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
                                                 child: Padding(
                                                   padding:
                                                       EdgeInsets.only(top: 8),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .invalidEmploymentStatus,
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                         fontSize: 12,
@@ -213,16 +207,19 @@ class EmploymentStatusPageView
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
                                             return Visibility(
-                                              visible: hasFocus,
+                                              visible: !isValid,
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
                                                 child: Padding(
                                                   padding:
                                                       EdgeInsets.only(top: 8),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .invalidOccupation,
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                         fontSize: 12,
@@ -237,14 +234,6 @@ class EmploymentStatusPageView
                                           },
                                           readOnly: true,
                                           onChanged: (value) {
-                                            if (value.isNotEmpty &&
-                                                value.length > 3) {
-                                              model.occupationKey.currentState!
-                                                  .isValid = true;
-                                            } else {
-                                              model.occupationKey.currentState!
-                                                  .isValid = false;
-                                            }
                                             model.isValid();
                                           },
                                         ),
@@ -268,9 +257,12 @@ class EmploymentStatusPageView
                                                   padding:
                                                       EdgeInsets.only(top: 8),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .invalidMainSourceIncome,
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                         fontSize: 12,
@@ -298,14 +290,6 @@ class EmploymentStatusPageView
                                             );
                                           },
                                           onChanged: (value) {
-                                            if (value.isNotEmpty &&
-                                                value.length > 3) {
-                                              model.sourceKey.currentState!
-                                                  .isValid = true;
-                                            } else {
-                                              model.sourceKey.currentState!
-                                                  .isValid = false;
-                                            }
                                             model.isValid();
                                           },
                                         ),
@@ -330,9 +314,12 @@ class EmploymentStatusPageView
                                                   padding:
                                                       EdgeInsets.only(top: 8),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .invalidMonthlyIncome,
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                         fontSize: 12,
@@ -360,16 +347,6 @@ class EmploymentStatusPageView
                                             );
                                           },
                                           onChanged: (value) {
-                                            if (value.isNotEmpty &&
-                                                value.length > 3) {
-                                              model.monthlyIncomeKey
-                                                  .currentState!.isValid = true;
-                                            } else {
-                                              model
-                                                  .monthlyIncomeKey
-                                                  .currentState!
-                                                  .isValid = false;
-                                            }
                                             model.isValid();
                                           },
                                         ),
@@ -393,9 +370,12 @@ class EmploymentStatusPageView
                                                   padding:
                                                       EdgeInsets.only(top: 8),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .invalidAnnualIncome,
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                         fontSize: 12,
@@ -423,16 +403,6 @@ class EmploymentStatusPageView
                                             );
                                           },
                                           onChanged: (value) {
-                                            if (value.isNotEmpty &&
-                                                value.length > 3) {
-                                              model.annualIncomeKey
-                                                  .currentState!.isValid = true;
-                                            } else {
-                                              model
-                                                  .annualIncomeKey
-                                                  .currentState!
-                                                  .isValid = false;
-                                            }
                                             model.isValid();
                                           },
                                         ),
@@ -451,16 +421,19 @@ class EmploymentStatusPageView
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
                                             return Visibility(
-                                              visible: hasFocus,
+                                              visible: !isValid,
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
                                                 child: Padding(
                                                   padding:
                                                       EdgeInsets.only(top: 8),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .invalidPurposeOfOpeningAccount,
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                         fontSize: 12,
@@ -474,16 +447,6 @@ class EmploymentStatusPageView
                                             );
                                           },
                                           onChanged: (value) {
-                                            if (value.isNotEmpty &&
-                                                value.length > 3) {
-                                              model.purposeOfAccountOpeningKey
-                                                  .currentState!.isValid = true;
-                                            } else {
-                                              model
-                                                  .purposeOfAccountOpeningKey
-                                                  .currentState!
-                                                  .isValid = false;
-                                            }
                                             model.isValid();
                                           },
                                           suffixIcon: (value, data) {
@@ -530,9 +493,12 @@ class EmploymentStatusPageView
                                                   padding:
                                                       EdgeInsets.only(top: 8),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .invalidEmployerName,
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                         fontSize: 12,
@@ -546,16 +512,6 @@ class EmploymentStatusPageView
                                             );
                                           },
                                           onChanged: (value) {
-                                            if (value.isNotEmpty &&
-                                                value.length > 3) {
-                                              model.employerNameKey
-                                                  .currentState!.isValid = true;
-                                            } else {
-                                              model
-                                                  .employerNameKey
-                                                  .currentState!
-                                                  .isValid = false;
-                                            }
                                             model.isValid();
                                           },
                                         ),
@@ -573,16 +529,19 @@ class EmploymentStatusPageView
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
                                             return Visibility(
-                                              visible: hasFocus,
+                                              visible: !isValid,
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
                                                 child: Padding(
                                                   padding:
                                                       EdgeInsets.only(top: 8),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .invalidEmployerCountry,
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                         fontSize: 12,
@@ -596,16 +555,6 @@ class EmploymentStatusPageView
                                             );
                                           },
                                           onChanged: (value) {
-                                            if (value.isNotEmpty &&
-                                                value.length > 3) {
-                                              model.employerCountryKey
-                                                  .currentState!.isValid = true;
-                                            } else {
-                                              model
-                                                  .employerCountryKey
-                                                  .currentState!
-                                                  .isValid = false;
-                                            }
                                             model.isValid();
                                           },
                                           suffixIcon: (value, data) {
@@ -650,9 +599,12 @@ class EmploymentStatusPageView
                                                   padding:
                                                       EdgeInsets.only(top: 8),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .invalidEmployerCity,
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                         fontSize: 12,
@@ -666,16 +618,6 @@ class EmploymentStatusPageView
                                             );
                                           },
                                           onChanged: (value) {
-                                            if (value.isNotEmpty &&
-                                                value.length > 3) {
-                                              model.employerCityKey
-                                                  .currentState!.isValid = true;
-                                            } else {
-                                              model
-                                                  .employerCityKey
-                                                  .currentState!
-                                                  .isValid = false;
-                                            }
                                             model.isValid();
                                           },
                                         ),
@@ -697,9 +639,12 @@ class EmploymentStatusPageView
                                                   padding:
                                                       EdgeInsets.only(top: 8),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .invalidEmployerContact,
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                         fontSize: 12,
@@ -716,16 +661,6 @@ class EmploymentStatusPageView
                                               model.employerContactController,
                                           key: model.employerContactKey,
                                           onChanged: (value) {
-                                            if (value.isNotEmpty &&
-                                                value.length > 3) {
-                                              model.employerContactKey
-                                                  .currentState!.isValid = true;
-                                            } else {
-                                              model
-                                                  .employerContactKey
-                                                  .currentState!
-                                                  .isValid = false;
-                                            }
                                             model.isValid();
                                           },
                                         ),
@@ -744,16 +679,19 @@ class EmploymentStatusPageView
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
                                             return Visibility(
-                                              visible: hasFocus,
+                                              visible: !isValid,
                                               child: Align(
                                                 alignment: Alignment.centerLeft,
                                                 child: Padding(
                                                   padding:
                                                       EdgeInsets.only(top: 8),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .invalidAdditionSourceIncome,
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                         fontSize: 12,
@@ -767,16 +705,6 @@ class EmploymentStatusPageView
                                             );
                                           },
                                           onChanged: (value) {
-                                            if (value.isNotEmpty &&
-                                                value.length > 3) {
-                                              model.additionalSourceIncomeKey
-                                                  .currentState!.isValid = true;
-                                            } else {
-                                              model
-                                                  .additionalSourceIncomeKey
-                                                  .currentState!
-                                                  .isValid = false;
-                                            }
                                             model.isValid();
                                           },
                                           suffixIcon: (value, data) {
@@ -824,9 +752,12 @@ class EmploymentStatusPageView
                                                   padding:
                                                       EdgeInsets.only(top: 8),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .invalidTotalAdditionalIncome,
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
                                                     textAlign: TextAlign.start,
                                                     style: TextStyle(
                                                         fontSize: 12,
@@ -840,16 +771,6 @@ class EmploymentStatusPageView
                                             );
                                           },
                                           onChanged: (value) {
-                                            if (value.isNotEmpty &&
-                                                value.length > 3) {
-                                              model.totalAdditionalIncomeKey
-                                                  .currentState!.isValid = true;
-                                            } else {
-                                              model
-                                                  .totalAdditionalIncomeKey
-                                                  .currentState!
-                                                  .isValid = false;
-                                            }
                                             model.isValid();
                                           },
                                           prefixIcon: () {

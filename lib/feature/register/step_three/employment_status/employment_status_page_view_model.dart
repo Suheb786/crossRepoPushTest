@@ -1,3 +1,4 @@
+import 'package:domain/constants/error_types.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -9,6 +10,8 @@ import 'package:rxdart/rxdart.dart';
 
 class EmploymentStatusPageViewModel extends BasePageViewModel {
   final EmploymentStatusUseCase _employmentDetailsUseCase;
+
+  ///controllers and keys
   final TextEditingController employmentStatusController =
       TextEditingController();
   final GlobalKey<AppTextFieldState> employmentStatusKey =
@@ -63,29 +66,29 @@ class EmploymentStatusPageViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> totalAdditionalIncomeKey =
       GlobalKey(debugLabel: "totalAdditional");
 
+  ///update employment status textfield value
   void updateEmploymentStatus(String value) {
     employmentStatusController.text = value;
-    notifyListeners();
   }
 
+  ///update occupation  textfield value
   void updateOccupation(String value) {
     occupationController.text = value;
-    notifyListeners();
   }
 
+  ///update purpose of account opening textfield value
   void updatePurposeOfAccountOpening(String value) {
     purposeOfAccountOpeningController.text = value;
-    notifyListeners();
   }
 
+  ///update employer country textfield value
   void updateEmployerCountry(String value) {
     employerCountryController.text = value;
-    notifyListeners();
   }
 
+  ///update additional income source textfield value
   void updateAdditionalIncome(String value) {
     additionalSourceIncomeController.text = value;
-    notifyListeners();
   }
 
   ///employment details request subject holder
@@ -107,35 +110,11 @@ class EmploymentStatusPageViewModel extends BasePageViewModel {
     _animatedSubject.add(value);
   }
 
+  ///all filed validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();
 
+  ///all filed validate stream
   Stream<bool> get allFieldValidatorStream => _allFieldValidatorSubject.stream;
-
-  ///error detector subject
-  BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
-
-  ///error detector stream
-  Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
-
-  // bool isValid() {
-  //   bool valid = false;
-  //   if (employmentStatusKey.currentState!.isValid &&
-  //       occupationKey.currentState!.isValid &&
-  //       sourceKey.currentState!.isValid &&
-  //       monthlyIncomeKey.currentState!.isValid &&
-  //       annualIncomeKey.currentState!.isValid &&
-  //       purposeOfAccountOpeningKey.currentState!.isValid &&
-  //       employerNameKey.currentState!.isValid &&
-  //       employerCountryKey.currentState!.isValid &&
-  //       employerCityKey.currentState!.isValid &&
-  //       employerContactKey.currentState!.isValid &&
-  //       additionalSourceIncomeKey.currentState!.isValid &&
-  //       totalAdditionalIncomeKey.currentState!.isValid) {
-  //     valid = true;
-  //   }
-  //   _allFieldValidatorSubject.add(valid);
-  //   return valid;
-  // }
 
   bool isValid() {
     bool valid = false;
@@ -166,6 +145,43 @@ class EmploymentStatusPageViewModel extends BasePageViewModel {
           .listen((event) {
         _employmentDetailsResponse.add(event);
         if (event.status == Status.ERROR) {
+          switch (event.appError!.type) {
+            case ErrorType.INVALID_EMPLOYMENT_STATUS:
+              employmentStatusKey.currentState!.isValid = false;
+              break;
+            case ErrorType.INVALID_OCCUPATION:
+              occupationKey.currentState!.isValid = false;
+              break;
+            case ErrorType.INVALID_SOURCE_INCOME:
+              sourceKey.currentState!.isValid = false;
+              break;
+            case ErrorType.INVALID_MONTHLY_INCOME:
+              monthlyIncomeKey.currentState!.isValid = false;
+              break;
+            case ErrorType.INVALID_ANNUAL_INCOME:
+              annualIncomeKey.currentState!.isValid = false;
+              break;
+            case ErrorType.INVALID_PURPOSE_OF_ACCOUNT_OPENING:
+              purposeOfAccountOpeningKey.currentState!.isValid = false;
+              break;
+            case ErrorType.INVALID_EMPLOYER_NAME:
+              employerNameKey.currentState!.isValid = false;
+              break;
+            case ErrorType.INVALID_EMPLOYER_COUNTRY:
+              employerCountryKey.currentState!.isValid = false;
+              break;
+            case ErrorType.INVALID_EMPLOYER_CITY:
+              employerCityKey.currentState!.isValid = false;
+              break;
+            case ErrorType.INVALID_EMPLOYER_CONTACT:
+              employerContactKey.currentState!.isValid = false;
+              break;
+            case ErrorType.INVALID_ADDITIONAL_SOURCE_INCOME:
+              additionalSourceIncomeKey.currentState!.isValid = false;
+              break;
+            case ErrorType.INVALID_TOTAL_ADDITIONAL_INCOME:
+              totalAdditionalIncomeKey.currentState!.isValid = false;
+          }
           showErrorState();
         }
       });
@@ -185,12 +201,5 @@ class EmploymentStatusPageViewModel extends BasePageViewModel {
         occupation: occupationController.text,
         purposeOfAccountOpening: purposeOfAccountOpeningController.text,
         totalAdditionalIncome: totalAdditionalIncomeController.text));
-  }
-
-  void showErrorState() {
-    _errorDetectorSubject.add(true);
-    Future.delayed(Duration(milliseconds: 500), () {
-      _errorDetectorSubject.add(false);
-    });
   }
 }

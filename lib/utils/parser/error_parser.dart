@@ -51,7 +51,7 @@ class ErrorParser {
       case ErrorType.INVALID_EMPLOYER_COUNTRY:
         return localisedHelper.invalidEmployerCountry;
       case ErrorType.INVALID_EMPLOYER_CITY:
-        return localisedHelper.employerCity;
+        return localisedHelper.invalidEmployerCity;
       case ErrorType.INVALID_EMPLOYER_CONTACT:
         return localisedHelper.invalidEmployerContact;
       case ErrorType.INVALID_ADDITIONAL_SOURCE_INCOME:

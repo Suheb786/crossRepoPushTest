@@ -139,6 +139,23 @@ class TaxationDetailsPageView
                                         },
                                       );
                                     },
+                                  ),
+                                  Visibility(
+                                    visible: error!,
+                                    child: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 8),
+                                        child: Text(
+                                          'Confirm to the terms and conditions.',
+                                          textAlign: TextAlign.start,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
+                                              color: AppColor.vivid_red),
+                                        ),
+                                      ),
+                                    ),
                                   )
                                 ],
                               ),

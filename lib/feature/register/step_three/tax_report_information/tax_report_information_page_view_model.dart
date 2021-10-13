@@ -49,18 +49,6 @@ class TaxReportInformationPageViewModel extends BasePageViewModel {
 
   Stream<bool> get taxResidencyStream => _taxResidencySubject.stream;
 
-  ///error detector subject
-  BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
-
-  ///error detector stream
-  Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
-
-  void showErrorState() {
-    _errorDetectorSubject.add(true);
-    Future.delayed(Duration(milliseconds: 500), () {
-      _errorDetectorSubject.add(false);
-    });
-  }
 
   ///tax report information request subject holder
   PublishSubject<TaxReportInformationUseCaseParams>
