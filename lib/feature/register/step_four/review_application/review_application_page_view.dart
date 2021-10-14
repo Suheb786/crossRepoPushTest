@@ -72,7 +72,7 @@ class ReviewApplicationPageView
                           }else{
                             ProviderScope.containerOf(context)
                                 .read(registerViewModelProvider)
-                                .pageController
+                                .registrationStepsController
                                 .previousPage(
                                 duration: Duration(milliseconds: 500),
                                 curve: Curves.easeInOut);

@@ -70,7 +70,7 @@ class ProfileDetailsPageView
                               model.setKeysStatusValid();
                               ProviderScope.containerOf(context)
                                   .read(registerStepThreeViewModelProvider)
-                                  .pageController
+                                  .registrationStepThreePageController
                                   .nextPage(
                                       duration: Duration(milliseconds: 500),
                                       curve: Curves.easeInOut);
@@ -86,7 +86,7 @@ class ProfileDetailsPageView
                                 } else {
                                   ProviderScope.containerOf(context)
                                       .read(registerStepThreeViewModelProvider)
-                                      .pageController
+                                      .registrationStepThreePageController
                                       .previousPage(
                                           duration: Duration(milliseconds: 500),
                                           curve: Curves.easeInOut);
