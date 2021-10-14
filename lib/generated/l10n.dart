@@ -400,10 +400,10 @@ class S {
     );
   }
 
-  /// `Resident Country`
+  /// `RESIDENT COUNTRY`
   String get residentCountry {
     return Intl.message(
-      'Resident Country',
+      'RESIDENT COUNTRY',
       name: 'residentCountry',
       desc: '',
       args: [],
@@ -420,10 +420,10 @@ class S {
     );
   }
 
-  /// `Home Address`
+  /// `HOME ADDRESS`
   String get homeAddress {
     return Intl.message(
-      'Home Address',
+      'HOME ADDRESS',
       name: 'homeAddress',
       desc: '',
       args: [],
@@ -440,10 +440,10 @@ class S {
     );
   }
 
-  /// `Street Address`
+  /// `STREET ADDRESS`
   String get streetAddress {
     return Intl.message(
-      'Street Address',
+      'STREET ADDRESS',
       name: 'streetAddress',
       desc: '',
       args: [],
@@ -990,16 +990,6 @@ class S {
     );
   }
 
-  /// `please enter valid email address`
-  String get enterValidEmail {
-    return Intl.message(
-      'please enter valid email address',
-      name: 'enterValidEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Tell us a bit about your\nprofile status`
   String get tellUsAboutYourProfile {
     return Intl.message(
@@ -1115,6 +1105,36 @@ class S {
     return Intl.message(
       'Email Address',
       name: 'emailAddressSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident Country`
+  String get residentCountrySmall {
+    return Intl.message(
+      'Resident Country',
+      name: 'residentCountrySmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home Address`
+  String get homeAddressSmall {
+    return Intl.message(
+      'Home Address',
+      name: 'homeAddressSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Street Address`
+  String get streetAddressSmall {
+    return Intl.message(
+      'Street Address',
+      name: 'streetAddressSmall',
       desc: '',
       args: [],
     );
@@ -1665,6 +1685,76 @@ class S {
     return Intl.message(
       'to card personalization',
       name: 'cardPersonalization',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please enter valid email address`
+  String get enterValidEmail {
+    return Intl.message(
+      'please enter valid email address',
+      name: 'enterValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tax Country`
+  String get taxCountrySmall {
+    return Intl.message(
+      'Tax Country',
+      name: 'taxCountrySmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason of Unavailability`
+  String get reasonOfUnavailabilitySmall {
+    return Intl.message(
+      'Reason of Unavailability',
+      name: 'reasonOfUnavailabilitySmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select tax country`
+  String get invalidTaxCountry {
+    return Intl.message(
+      'Select tax country',
+      name: 'invalidTaxCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter correct tin number`
+  String get invalidTinNumber {
+    return Intl.message(
+      'Enter correct tin number',
+      name: 'invalidTinNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Reason of Unavailability`
+  String get invalidReasonUnavailability {
+    return Intl.message(
+      'Select Reason of Unavailability',
+      name: 'invalidReasonUnavailability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter reason for unavailability`
+  String get invalidExplanationForUnavailability {
+    return Intl.message(
+      'Enter reason for unavailability',
+      name: 'invalidExplanationForUnavailability',
       desc: '',
       args: [],
     );
