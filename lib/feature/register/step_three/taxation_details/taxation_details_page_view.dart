@@ -7,6 +7,7 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_three/taxation_details/taxation_details_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/register/declaration_widget.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -56,12 +57,20 @@ class TaxationDetailsPageView
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
-                      ProviderScope.containerOf(context)
-                          .read(registerStepThreeViewModelProvider)
-                          .registrationStepThreePageController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                      print(model.anyOtherCountryResident);
+                      model.anyOtherCountryResident
+                          ? ProviderScope.containerOf(context)
+                              .read(registerStepThreeViewModelProvider)
+                              .registrationStepThreePageController
+                              .nextPage(
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut)
+                          : ProviderScope.containerOf(context)
+                              .read(registerViewModelProvider)
+                              .registrationStepsController
+                              .nextPage(
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut);
                     }
                   },
                   dataBuilder: (context, response) {
@@ -122,7 +131,9 @@ class TaxationDetailsPageView
                                   TaxationSwitchWidget(
                                     providerBase:
                                         taxResidentOtherViewModelProvider,
-                                    onToggle: (value) {},
+                                    onToggle: (value) {
+                                      model.anyOtherCountryResident = value;
+                                    },
                                     title: S
                                         .of(context)
                                         .anyOtherCountryTaxResident,
@@ -155,6 +166,26 @@ class TaxationDetailsPageView
                                               color: AppColor.vivid_red),
                                         ),
                                       ),
+                                    ),
+                                  ),
+                                  Center(
+                                    child: Padding(
+                                      padding:
+                                          EdgeInsets.only(top: 32, right: 32),
+                                      child: AppStreamBuilder<bool>(
+                                          stream:
+                                              model.declarationSelectedStream,
+                                          initialData: false,
+                                          dataBuilder: (context, isValid) {
+                                            return (isValid!)
+                                                ? AnimatedButton(
+                                                    buttonText: S
+                                                        .of(context)
+                                                        .swipeToProceed,
+                                                    buttonHeight: 50,
+                                                  )
+                                                : Container();
+                                          }),
                                     ),
                                   )
                                 ],

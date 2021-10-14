@@ -8,21 +8,25 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 class AdditionIncomeSourceDialogViewModel extends BasePageViewModel {
   final GetAdditionalIncomeSourceUseCase _getAdditionIncomeSourceUseCase;
 
-  int currentIndex = 0;
+  ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();
 
+  ///current selected index stream
   Stream<int> get currentIndexStream => _currentSelectIndex.stream;
 
   void currentIndexUpdate(int index) {
     _currentSelectIndex.add(index);
   }
 
+  ///get additional income source request subject
   PublishSubject<GetAdditionalIncomeSourceUseCaseParams>
       _getAdditionIncomeSourceRequest = PublishSubject();
 
+  ///get additional income source response holder
   PublishSubject<Resource<List<String>>> _getAdditionIncomeSourceResponse =
       PublishSubject();
 
+  ///get additional income source stream
   Stream<Resource<List<String>>> get getAdditionIncomeSourceStream =>
       _getAdditionIncomeSourceResponse.stream;
 
@@ -42,5 +46,13 @@ class AdditionIncomeSourceDialogViewModel extends BasePageViewModel {
   void getAdditionIncomeSourceList() {
     _getAdditionIncomeSourceRequest
         .safeAdd(GetAdditionalIncomeSourceUseCaseParams());
+  }
+
+  @override
+  void dispose() {
+    _currentSelectIndex.close();
+    _getAdditionIncomeSourceRequest.close();
+    _getAdditionIncomeSourceResponse.close();
+    super.dispose();
   }
 }
