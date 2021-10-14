@@ -7,6 +7,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/review_application/review_application_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_item.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_term_cond_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -235,10 +236,31 @@ class ReviewApplicationPageView
                                           ),
                                         ),
                                       ),
+                                    ),
+                                    SizedBox(
+                                      height: 32,
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 45,right: 45),
+                                      child: AppStreamBuilder<bool>(
+                                          stream: model
+                                              .declarationSelectedStream,
+                                          initialData: false,
+                                          dataBuilder: (context, isChecked) {
+                                            return Visibility(
+                                              visible: isChecked!,
+                                              child: AnimatedButton(
+                                                buttonText:
+                                                "Swipe to proceed",
+                                                textColor: AppColor.light_violet,
+                                                borderColor: AppColor.light_violet,
+                                              ),
+                                            );
+                                          }),
                                     )
                                   ],
                                 ),
-                              )),
+                              ),),
                         ),
                       );
                     },

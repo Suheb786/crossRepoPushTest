@@ -36,7 +36,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
           Padding(
             padding: EdgeInsets.only(top: 36.0, bottom: 32),
             child: Text(
-              S.of(context).addMobileHeader,
+              S.of(context).createPasswordHeader,
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: AppColor.very_dark_gray,
@@ -116,133 +116,130 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                         begin: Alignment.bottomCenter,
                                         end: Alignment.topCenter),
                                   ),
-                                  child: Stack(
-                                    children: [
-                                      SingleChildScrollView(
-                                        child: Column(
-                                          children: [
-                                            AppTextField(
-                                              key: model.passwordKey,
-                                              labelText:
-                                                  S.of(context).createPassword,
-                                              obscureText: true,
-                                              hintText:
-                                                  S.of(context).pleaseEnter,
-                                              inputType: TextInputType.text,
-                                              controller: model
-                                                  .createPasswordController,
-                                              onChanged: (value) =>
-                                                  model.validatePassword(),
-                                              labelIcon: () => Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5.33),
-                                                child: AppSvg.asset(
-                                                    AssetUtils.info,
-                                                    height: 13.33,
-                                                    width: 13.33),
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        AppTextField(
+                                          key: model.passwordKey,
+                                          labelText:
+                                              S.of(context).createPassword,
+                                          obscureText: true,
+                                          hintText:
+                                              S.of(context).pleaseEnter,
+                                          inputType: TextInputType.text,
+                                          controller: model
+                                              .createPasswordController,
+                                          onChanged: (value) =>
+                                              model.validatePassword(),
+                                          labelIcon: () => Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 5.33),
+                                            child: AppSvg.asset(
+                                                AssetUtils.info,
+                                                height: 13.33,
+                                                width: 13.33),
+                                          ),
+                                          textHintWidget:
+                                              (hasFocus, isValid, value) {
+                                            return Visibility(
+                                              visible: !isValid,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 8),
+                                                child: Text(
+                                                  ErrorParser
+                                                      .getLocalisedStringError(
+                                                          error: data!
+                                                              .appError,
+                                                          localisedHelper: S
+                                                              .of(context)),
+                                                  textAlign:
+                                                      TextAlign.start,
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: AppColor
+                                                          .vivid_red),
+                                                ),
                                               ),
-                                              textHintWidget:
-                                                  (hasFocus, isValid, value) {
-                                                return Visibility(
-                                                  visible: !isValid,
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 16,
-                                                            vertical: 8),
-                                                    child: Text(
-                                                      ErrorParser
-                                                          .getLocalisedStringError(
-                                                              error: data!
-                                                                  .appError,
-                                                              localisedHelper: S
-                                                                  .of(context)),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: AppColor
-                                                              .vivid_red),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                            SizedBox(
-                                              height: 16,
-                                            ),
-                                            AppTextField(
-                                              key: model.confirmPasswordKey,
-                                              labelText:
-                                                  S.of(context).confirmPassword,
-                                              hintText:
-                                                  S.of(context).pleaseEnter,
-                                              inputType: TextInputType.text,
-                                              obscureText: true,
-                                              onChanged: (value) =>
-                                                  model.validatePassword(),
-                                              controller: model
-                                                  .confirmPasswordController,
-                                              labelIcon: () => Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5.33),
-                                                child: AppSvg.asset(
-                                                    AssetUtils.info,
-                                                    height: 13.33,
-                                                    width: 13.33),
-                                              ),
-                                              textHintWidget:
-                                                  (hasFocus, isValid, value) {
-                                                return Visibility(
-                                                  visible: !isValid,
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 16,
-                                                            vertical: 8),
-                                                    child: Text(
-                                                      ErrorParser
-                                                          .getLocalisedStringError(
-                                                              error: data!
-                                                                  .appError,
-                                                              localisedHelper: S
-                                                                  .of(context)),
-                                                      textAlign:
-                                                          TextAlign.start,
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: AppColor
-                                                              .vivid_red),
-                                                    ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
-                                          ],
+                                            );
+                                          },
                                         ),
-                                      ),
-                                      Positioned(
-                                        bottom: 251,
-                                        left: 45,
-                                        right: 45,
-                                        child: AppStreamBuilder<bool>(
-                                            stream: model.showButtonStream,
-                                            initialData: false,
-                                            dataBuilder: (context, isValid) {
-                                              if (isValid!) {
-                                                return AnimatedButton(
-                                                    buttonText:
-                                                        "Swipe to proceed");
-                                              } else {
-                                                return Container();
-                                              }
-                                            }),
-                                      )
-                                    ],
+                                        SizedBox(
+                                          height: 16,
+                                        ),
+                                        AppTextField(
+                                          key: model.confirmPasswordKey,
+                                          labelText:
+                                              S.of(context).confirmPassword,
+                                          hintText:
+                                              S.of(context).pleaseEnter,
+                                          inputType: TextInputType.text,
+                                          obscureText: true,
+                                          onChanged: (value) =>
+                                              model.validatePassword(),
+                                          controller: model
+                                              .confirmPasswordController,
+                                          labelIcon: () => Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 5.33),
+                                            child: AppSvg.asset(
+                                                AssetUtils.info,
+                                                height: 13.33,
+                                                width: 13.33),
+                                          ),
+                                          textHintWidget:
+                                              (hasFocus, isValid, value) {
+                                            return Visibility(
+                                              visible: !isValid,
+                                              child: Padding(
+                                                padding:
+                                                    EdgeInsets.symmetric(
+                                                        horizontal: 16,
+                                                        vertical: 8),
+                                                child: Text(
+                                                  ErrorParser
+                                                      .getLocalisedStringError(
+                                                          error: data!
+                                                              .appError,
+                                                          localisedHelper: S
+                                                              .of(context)),
+                                                  textAlign:
+                                                      TextAlign.start,
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: AppColor
+                                                          .vivid_red),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                        SizedBox(
+                                          height: 67,
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left:45, right:45),
+                                          child: AppStreamBuilder<bool>(
+                                              stream: model.showButtonStream,
+                                              initialData: false,
+                                              dataBuilder: (context, isValid) {
+                                                if (isValid!) {
+                                                  return AnimatedButton(
+                                                      buttonText:
+                                                      "Swipe to proceed");
+                                                } else {
+                                                  return Container();
+                                                }
+                                              }),
+                                        )
+                                      ],
+                                    ),
                                   )),
                             ),
                           );

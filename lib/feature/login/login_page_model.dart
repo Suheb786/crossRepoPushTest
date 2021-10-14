@@ -20,6 +20,10 @@ class LoginViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get loginStream => _loginResponse.stream;
 
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get showButtonStream => _showButtonSubject.stream;
+
   LoginViewModel(this._loginUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value,
@@ -38,10 +42,19 @@ class LoginViewModel extends BasePageViewModel {
     _loginRequest.safeAdd(LoginUseCaseParams(email: emailController.text));
   }
 
+  void validate() {
+    if(emailController.text.isNotEmpty) {
+      _showButtonSubject.safeAdd(true);
+    } else {
+      _showButtonSubject.safeAdd(false);
+    }
+  }
+
   @override
   void dispose() {
     _loginRequest.close();
     _loginResponse.close();
+    _showButtonSubject.close();
     super.dispose();
   }
 }

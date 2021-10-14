@@ -40,6 +40,11 @@ class ValidateOtpViewModel extends BasePageViewModel {
   ///error detector stream
   Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
 
+  /// button subject
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get showButtonStream => _showButtonSubject.stream;
+
   ValidateOtpViewModel(this._verifyOtpUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value,
@@ -58,6 +63,14 @@ class ValidateOtpViewModel extends BasePageViewModel {
     _verifyOtpRequest.safeAdd(VerifyOtpUseCaseParams(otp: otpController.text));
   }
 
+  void validate() {
+    if(otpController.text.isNotEmpty && otpController.text.length >= 6) {
+      _showButtonSubject.safeAdd(true);
+    } else {
+      _showButtonSubject.safeAdd(false);
+    }
+  }
+
   void showErrorState() {
     _errorDetectorSubject.safeAdd(true);
     Future.delayed(Duration(milliseconds: 800), () {
@@ -71,6 +84,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
     _verifyOtpResponse.close();
     _errorDetectorSubject.close();
     countDownController.disposeTimer();
+    _showButtonSubject.close();
     super.dispose();
   }
 }
