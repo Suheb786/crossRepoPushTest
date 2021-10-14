@@ -1589,6 +1589,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Select any Option`
+  String get selectAnyOption {
+    return Intl.message(
+      'Select any Option',
+      name: 'selectAnyOption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Storage`
+  String get storage {
+    return Intl.message(
+      'Storage',
+      name: 'storage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera`
+  String get camera {
+    return Intl.message(
+      'Camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -159,5 +159,9 @@
   "emptyResidentCountry": "Resident country field cannot be empty",
   "emptyHomeAddress": "Home address field cannot be empty",
   "emptyStreetAddress": "Street address field cannot be empty",
-  "emptyBuildingNameOrNo": "Building name or number field cannot be empty"
+  "emptyBuildingNameOrNo": "Building name or number field cannot be empty",
+  "selectAnyOption": "Select any Option",
+  "storage": "Storage",
+  "camera": "Camera",
+  "cancel": "Cancel"
 }

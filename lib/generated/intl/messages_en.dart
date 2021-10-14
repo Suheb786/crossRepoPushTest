@@ -52,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("BUILDING NAME/NO"),
         "buildingNameOrNoHint": MessageLookupByLibrary.simpleMessage(
             "Please Enter Building Name/Number."),
+        "camera": MessageLookupByLibrary.simpleMessage("Camera"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
@@ -257,10 +259,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please accept the above terms and conditions"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
+        "selectAnyOption":
+            MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
         "spouseName": MessageLookupByLibrary.simpleMessage("Spouse Name"),
         "spouseNameCaps": MessageLookupByLibrary.simpleMessage("SPOUSE NAME"),
+        "storage": MessageLookupByLibrary.simpleMessage("Storage"),
         "streetAddress": MessageLookupByLibrary.simpleMessage("Street Address"),
         "streetAddressHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Street Address"),

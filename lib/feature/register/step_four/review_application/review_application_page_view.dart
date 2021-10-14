@@ -7,7 +7,6 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/review_application/review_application_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_item.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_term_cond_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -69,6 +68,13 @@ class ReviewApplicationPageView
                         onHorizontalDragUpdate: (details) {
                           if (details.primaryDelta!.isNegative) {
                             model.validateReviewDetails();
+                          }else{
+                            ProviderScope.containerOf(context)
+                                .read(registerViewModelProvider)
+                                .pageController
+                                .previousPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeInOut);
                           }
                         },
                         child: Card(
@@ -98,12 +104,14 @@ class ReviewApplicationPageView
                                       title: S.of(context).mobileNumber,
                                       details: "+962 79 332 8080",
                                     ),
-                                    SizedBox(height: 16),
-                                    Container(
-                                      height: 1,
-                                      color: AppColor.light_gray,
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 16.0),
+                                      child: Container(
+                                        height: 1,
+                                        color: AppColor.light_gray,
+                                      ),
                                     ),
-                                    SizedBox(height: 16),
                                     ReviewApplicationItem(
                                       title: S.of(context).residentCountry,
                                       details: "Jordan",
@@ -120,12 +128,14 @@ class ReviewApplicationPageView
                                       title: S.of(context).buildingNameNo,
                                       details: "W Amman",
                                     ),
-                                    SizedBox(height: 16),
-                                    Container(
-                                      height: 1,
-                                      color: AppColor.light_gray,
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 16.0),
+                                      child: Container(
+                                        height: 1,
+                                        color: AppColor.light_gray,
+                                      ),
                                     ),
-                                    SizedBox(height: 16),
                                     ReviewApplicationItem(
                                       title: S.of(context).spouseName,
                                       details: "Ameena Rasheed",
@@ -146,12 +156,14 @@ class ReviewApplicationPageView
                                       title: S.of(context).personsRole,
                                       details: "Minister of Health",
                                     ),
-                                    SizedBox(height: 16),
-                                    Container(
-                                      height: 1,
-                                      color: AppColor.light_gray,
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 16.0),
+                                      child: Container(
+                                        height: 1,
+                                        color: AppColor.light_gray,
+                                      ),
                                     ),
-                                    SizedBox(height: 8),
                                     ReviewApplicationItem(
                                       title:
                                           S.of(context).employmentStatusSmall,

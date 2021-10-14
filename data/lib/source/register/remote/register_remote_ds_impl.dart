@@ -44,4 +44,23 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
       'Part Time Lecturer'
     ]);
   }
+
+  @override
+  Future<List<String>> getNatureOfSpecialNeedsList() {
+    return Future.value(["Communication", "Movement", "Self-care"]);
+  }
+
+  @override
+  Future<List<String>> getRelationshipWithPEPList() {
+    return Future.value([
+      "Father",
+      "Mother",
+      "Sister",
+      "Brother",
+      "Daughter",
+      "Son",
+      "Father-in-Law",
+      "Mother-in-Law"
+    ]);
+  }
 }

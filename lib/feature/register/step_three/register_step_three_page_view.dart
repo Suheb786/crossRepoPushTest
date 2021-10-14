@@ -17,7 +17,6 @@ class RegisterStepThreePageView
   RegisterStepThreePageView(ProviderBase model) : super(model);
 
   List<Widget> pages = [
-    ///TODO: Add pages here
     IdVerificationInfoPage(),
     ConfirmDetailPage(),
     EnterAddressPage(),
