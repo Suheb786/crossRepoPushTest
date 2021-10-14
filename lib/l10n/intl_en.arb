@@ -159,5 +159,13 @@
   "emptyResidentCountry": "Resident country field cannot be empty",
   "emptyHomeAddress": "Home address field cannot be empty",
   "emptyStreetAddress": "Street address field cannot be empty",
-  "emptyBuildingNameOrNo": "Building name or number field cannot be empty"
+  "emptyBuildingNameOrNo": "Building name or number field cannot be empty",
+  "awesome": "Awesome!",
+  "accountReady": "Your account is up and ready. Let’s get you the Neu Debit Card.",
+  "refTitle": "Ref No.",
+  "refNumber": "984893922",
+  "iban": "IBAN",
+  "ibanNumber": "84118220000022123444",
+  "cardLater": "I’ll get my card later",
+  "cardPersonalization": "to card personalization"
 }

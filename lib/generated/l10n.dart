@@ -1589,6 +1589,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Awesome!`
+  String get awesome {
+    return Intl.message(
+      'Awesome!',
+      name: 'awesome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account is up and ready. Let’s get you the Neu Debit Card.`
+  String get accountReady {
+    return Intl.message(
+      'Your account is up and ready. Let’s get you the Neu Debit Card.',
+      name: 'accountReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ref No.`
+  String get refTitle {
+    return Intl.message(
+      'Ref No.',
+      name: 'refTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `984893922`
+  String get refNumber {
+    return Intl.message(
+      '984893922',
+      name: 'refNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN`
+  String get iban {
+    return Intl.message(
+      'IBAN',
+      name: 'iban',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `84118220000022123444`
+  String get ibanNumber {
+    return Intl.message(
+      '84118220000022123444',
+      name: 'ibanNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I’ll get my card later`
+  String get cardLater {
+    return Intl.message(
+      'I’ll get my card later',
+      name: 'cardLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to card personalization`
+  String get cardPersonalization {
+    return Intl.message(
+      'to card personalization',
+      name: 'cardPersonalization',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

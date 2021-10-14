@@ -21,4 +21,5 @@ class AssetUtils {
   /// DRAWABLES
   static const String splashLogo = drawable + "splash_logo.png";
   static const String loginCard = drawable + "login_card.png";
+  static const String complete = drawable + "complete.png";
 }
