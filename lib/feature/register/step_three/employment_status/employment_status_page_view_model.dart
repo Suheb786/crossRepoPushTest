@@ -207,4 +207,12 @@ class EmploymentStatusPageViewModel extends BasePageViewModel {
         purposeOfAccountOpening: purposeOfAccountOpeningController.text,
         totalAdditionalIncome: totalAdditionalIncomeController.text));
   }
+
+  @override
+  void dispose() {
+    _employmentDetailsRequest.close();
+    _employmentDetailsResponse.close();
+    _allFieldValidatorSubject.close();
+    super.dispose();
+  }
 }

@@ -8,21 +8,25 @@ import 'package:domain/usecase/register/get_purpose_of_account_opening_usecase.d
 class PurposeOfAccountOpeningDialogViewModel extends BasePageViewModel {
   final GetPurposeOfAccountOpeningUseCase _getPurposeOfAccountOpeningUseCase;
 
-  int currentIndex = 0;
+  ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();
 
+  ///current selected index stream
   Stream<int> get currentIndexStream => _currentSelectIndex.stream;
 
   void currentIndexUpdate(int index) {
     _currentSelectIndex.add(index);
   }
 
+  ///get purpose of account opening request holder
   PublishSubject<GetPurposeOfAccountOpeningUseCaseParams>
       _getPurposeOfAccountOpeningRequest = PublishSubject();
 
+  ///get purpose of account opening response holder
   PublishSubject<Resource<List<String>>> _getPurposeOfAccountOpeningResponse =
       PublishSubject();
 
+  ///get purpose of account opening stream
   Stream<Resource<List<String>>> get getPurposeOfAccountOpeningStream =>
       _getPurposeOfAccountOpeningResponse.stream;
 
@@ -43,5 +47,13 @@ class PurposeOfAccountOpeningDialogViewModel extends BasePageViewModel {
   void getPurposeOfAccountOpeningList() {
     _getPurposeOfAccountOpeningRequest
         .safeAdd(GetPurposeOfAccountOpeningUseCaseParams());
+  }
+
+  @override
+  void dispose() {
+    _currentSelectIndex.close();
+    _getPurposeOfAccountOpeningRequest.close();
+    _getPurposeOfAccountOpeningResponse.close();
+    super.dispose();
   }
 }
