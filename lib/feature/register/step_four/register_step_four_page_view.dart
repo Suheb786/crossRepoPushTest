@@ -22,7 +22,7 @@ class RegisterStepFourPageView
       padding: EdgeInsets.symmetric(vertical: 36),
       child: CarouselSlider.builder(
         itemCount: pages.length,
-        carouselController: model.pageController,
+        carouselController: model.registrationStepFourPageController,
         itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
             pages[itemIndex],
         options: CarouselOptions(

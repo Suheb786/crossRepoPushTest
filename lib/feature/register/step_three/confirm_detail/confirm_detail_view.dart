@@ -65,7 +65,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                             model.genderKey.currentState!.isValid = true;
                             ProviderScope.containerOf(context)
                                 .read(registerStepThreeViewModelProvider)
-                                .pageController
+                                .registrationStepThreePageController
                                 .nextPage(
                                     duration: Duration(milliseconds: 500),
                                     curve: Curves.easeInOut);
@@ -99,7 +99,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                               } else {
                                 ProviderScope.containerOf(context)
                                     .read(registerStepThreeViewModelProvider)
-                                    .pageController
+                                    .registrationStepThreePageController
                                     .previousPage(
                                         duration: Duration(milliseconds: 500),
                                         curve: Curves.easeInOut);

@@ -110,9 +110,9 @@
   "reviewApplication": "REVIEW APPLICATION",
   "confirmYourInformation":"Please swipe through and confirm your information",
   "emailAddressSmall": "Email Address",
-  "residentCountry": "Resident Country",
-  "homeAddress": "Home Address",
-  "streetAddress": "Street Address",
+  "residentCountrySmall": "Resident Country",
+  "homeAddressSmall": "Home Address",
+  "streetAddressSmall": "Street Address",
   "buildingNameNo": "Building Name / No",
   "natureSpecialNeeds": "Nature of Special Needs",
   "spouseName": "Spouse Name",
@@ -163,5 +163,11 @@
   "selectAnyOption": "Select any Option",
   "storage": "Storage",
   "camera": "Camera",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "taxCountrySmall": "Tax Country",
+  "reasonOfUnavailabilitySmall": "Reason of Unavailability",
+  "invalidTaxCountry": "Select tax country",
+  "invalidTinNumber": "Enter correct tin number",
+  "invalidReasonUnavailability": "Select Reason of Unavailability",
+  "invalidExplanationForUnavailability": "Enter reason for unavailability"
 }

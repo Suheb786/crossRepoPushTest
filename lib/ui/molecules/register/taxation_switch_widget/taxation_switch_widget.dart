@@ -55,6 +55,7 @@ class TaxationSwitchWidget extends StatelessWidget {
                       FlutterSwitch(
                         value: isActive!,
                         onToggle: (value) {
+                          onToggle.call(value);
                           model.updateSwitchValue(value);
                         },
                         activeText: S.of(context).yes,

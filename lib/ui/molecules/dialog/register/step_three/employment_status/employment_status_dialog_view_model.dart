@@ -3,12 +3,20 @@ import 'package:rxdart/rxdart.dart';
 
 class EmploymentStatusDialogViewModel extends BasePageViewModel {
   List<String> employmentStatusList = ['Employed', 'Unemployed'];
-  int currentIndex = 0;
+
+  ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();
 
+  ///current selected index stream
   Stream<int> get currentIndexStream => _currentSelectIndex.stream;
 
   void currentIndexUpdate(int index) {
     _currentSelectIndex.add(index);
+  }
+
+  @override
+  void dispose() {
+    _currentSelectIndex.close();
+    super.dispose();
   }
 }

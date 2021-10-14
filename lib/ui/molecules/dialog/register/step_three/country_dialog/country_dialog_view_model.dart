@@ -7,51 +7,62 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 
-class EmployerCountryDialogViewModel extends BasePageViewModel {
+class CountryDialogViewModel extends BasePageViewModel {
   final FetchCountriesUseCase _fetchCountriesUseCase;
 
   Country? selectedCountry = Country();
-  int currentIndex = 0;
+
+  ///current selected index subject holder
   PublishSubject<int> _currentSelectIndex = PublishSubject();
 
+  ///current selected index stream
   Stream<int> get currentIndexStream => _currentSelectIndex.stream;
 
   void currentIndexUpdate(int index) {
     _currentSelectIndex.add(index);
   }
 
-  PublishSubject<FetchCountriesUseParams> _getEmployerCountryRequest =
-      PublishSubject();
+  ///get country request holder
+  PublishSubject<FetchCountriesUseParams> _getCountryRequest = PublishSubject();
 
-  BehaviorSubject<Resource<List<Country>>> _getEmployerCountryResponse =
+  ///get country response holder
+  BehaviorSubject<Resource<List<Country>>> _getCountryResponse =
       BehaviorSubject();
 
-  Stream<Resource<List<Country>>> get getEmployerCountryStream =>
-      _getEmployerCountryResponse.stream;
+  ///get country response stream
+  Stream<Resource<List<Country>>> get getCountryStream =>
+      _getCountryResponse.stream;
 
-  EmployerCountryDialogViewModel(this._fetchCountriesUseCase) {
-    _getEmployerCountryRequest.listen((value) {
+  CountryDialogViewModel(this._fetchCountriesUseCase) {
+    _getCountryRequest.listen((value) {
       RequestManager(value,
               createCall: () => _fetchCountriesUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _getEmployerCountryResponse.safeAdd(event);
+        _getCountryResponse.safeAdd(event);
       });
     });
   }
 
-  void getEmployerCountryList(BuildContext context) {
-    _getEmployerCountryRequest
-        .safeAdd(FetchCountriesUseParams(context: context));
+  void getCountryList(BuildContext context) {
+    _getCountryRequest.safeAdd(FetchCountriesUseParams(context: context));
   }
 
   void selectCountry(int index) {
-    List<Country>? countryList = _getEmployerCountryResponse.value.data;
+    List<Country>? countryList = _getCountryResponse.value.data;
     countryList?.forEach((element) {
       element.isSelected = false;
     });
     countryList?.elementAt(index).isSelected = true;
     selectedCountry = countryList?.firstWhere((element) => element.isSelected);
-    _getEmployerCountryResponse.safeAdd(Resource.success(data: countryList));
+    _getCountryResponse.safeAdd(Resource.success(data: countryList));
+  }
+
+  @override
+  void dispose() {
+    _currentSelectIndex.close();
+    _getCountryRequest.close();
+    _getCountryResponse.close();
+    super.dispose();
   }
 }

@@ -7,6 +7,7 @@ import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/step_four/register_step_four_page.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
@@ -28,7 +29,10 @@ class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
           PageView.builder(
             itemCount: pages.length,
             physics: NeverScrollableScrollPhysics(),
-            controller: model.pageController,
+            controller: model.registrationStepsController,
+            onPageChanged: (currentPage) {
+              model.changeCurrentPage(currentPage);
+            },
             itemBuilder: (context, index) {
               return pages[index];
             },
@@ -39,21 +43,27 @@ class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
             top: 0,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24),
-              child: DotsIndicator(
-                dotsCount: pages.length,
-                position: model.pageController.positions.isNotEmpty
-                    ? model.pageController.page!
-                    : 0,
-                decorator: DotsDecorator(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    activeSize: Size(MediaQuery.of(context).size.width / 5, 4),
-                    size: Size(MediaQuery.of(context).size.width / 5, 4),
-                    spacing: EdgeInsets.symmetric(horizontal: 1),
-                    activeShape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5)),
-                    activeColor: AppColor.dark_blue,
-                    color: AppColor.very_soft_violet.withOpacity(0.3)),
+              child: AppStreamBuilder<int>(
+                initialData: 0,
+                stream: model.currentPageSubject,
+                dataBuilder: (context, currentPage) {
+                  return DotsIndicator(
+                    dotsCount: pages.length,
+                    position: currentPage!.toDouble(),
+                    mainAxisSize: MainAxisSize.max,
+                    decorator: DotsDecorator(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        activeSize:
+                            Size(MediaQuery.of(context).size.width / 5, 4),
+                        size: Size(MediaQuery.of(context).size.width / 5, 4),
+                        spacing: EdgeInsets.symmetric(horizontal: 1),
+                        activeShape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        activeColor: AppColor.dark_blue,
+                        color: AppColor.very_soft_violet.withOpacity(0.3)),
+                  );
+                },
               ),
             ),
           ),

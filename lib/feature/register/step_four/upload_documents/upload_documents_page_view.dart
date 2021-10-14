@@ -57,19 +57,21 @@ class UploadDocumentsPageView
                     child: AppStreamBuilder<Resource<bool>>(
                       stream: model.documentsStream,
                       initialData: Resource.none(),
-                      onData: (data) {},
+                      onData: (data) {
+                        if (data.status == Status.SUCCESS) {
+                        } else if (data.status == Status.ERROR) {}
+                      },
                       dataBuilder: (context, data) {
                         return GestureDetector(
                           onHorizontalDragUpdate: (details) {
                             if (details.primaryDelta!.isNegative) {
-
-                            }else{
+                            } else {
                               ProviderScope.containerOf(context)
                                   .read(registerStepFourViewModelProvider)
-                                  .pageController
+                                  .registrationStepFourPageController
                                   .previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                                      duration: Duration(milliseconds: 500),
+                                      curve: Curves.easeInOut);
                             }
                           },
                           child: Card(

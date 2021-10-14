@@ -10,7 +10,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/employer_country/employer_country_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_account_opening/purpose_of_account_opening_dialog.dart';
@@ -70,7 +70,7 @@ class EmploymentStatusPageView
                           if (data.status == Status.SUCCESS) {
                             ProviderScope.containerOf(context)
                                 .read(registerStepThreeViewModelProvider)
-                                .pageController
+                                .registrationStepThreePageController
                                 .nextPage(
                                     duration: Duration(milliseconds: 500),
                                     curve: Curves.easeInOut);
@@ -84,7 +84,7 @@ class EmploymentStatusPageView
                               } else {
                                 ProviderScope.containerOf(context)
                                     .read(registerStepThreeViewModelProvider)
-                                    .pageController
+                                    .registrationStepThreePageController
                                     .previousPage(
                                         duration: Duration(milliseconds: 500),
                                         curve: Curves.easeInOut);
@@ -560,8 +560,11 @@ class EmploymentStatusPageView
                                           suffixIcon: (value, data) {
                                             return InkWell(
                                               onTap: () async {
-                                                EmployerCountryDialog.show(
-                                                    context, onDismissed: () {
+                                                CountryDialog.show(context,
+                                                    title: S
+                                                        .of(context)
+                                                        .employerCountrySmall,
+                                                    onDismissed: () {
                                                   Navigator.pop(context);
                                                 }, onSelected: (value) {
                                                   Navigator.pop(context);

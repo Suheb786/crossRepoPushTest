@@ -7,6 +7,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
+import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 import '../../../../di/register/register_modules.dart';
@@ -82,12 +83,6 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                         onHorizontalDragUpdate: (details) {
                           if (details.primaryDelta!.isNegative) {
                             model.validateOtp();
-                            ProviderScope.containerOf(context)
-                                .read(registerStepOneViewModelProvider)
-                                .pageController
-                                .nextPage(
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.easeInOut);
                           } else {
                             ProviderScope.containerOf(context)
                                 .read(registerStepOneViewModelProvider)
@@ -115,87 +110,109 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                       ],
                                       begin: Alignment.bottomCenter,
                                       end: Alignment.topCenter)),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                              child: Stack(
                                 children: [
-                                  SingleChildScrollView(
-                                    physics: ClampingScrollPhysics(),
-                                    child: Column(
-                                      children: [
-                                        AppOtpFields(
-                                          length: 6,
-                                          controller: model.otpController,
-                                        ),
-                                        Visibility(
-                                          visible: isValid!,
-                                          child: Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: isOtpVerified!
-                                                          .appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      SingleChildScrollView(
+                                        physics: ClampingScrollPhysics(),
+                                        child: Column(
+                                          children: [
+                                            AppOtpFields(
+                                              length: 6,
+                                              controller: model.otpController,
+                                              onChanged: (val) => model.validate(),
                                             ),
-                                          ),
-                                        ),
-                                        Center(
-                                            child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 32.0),
-                                          child: InkWell(
-                                            onTap: () {},
-                                            child: Text(
-                                              S.of(context).changeMyNumber,
-                                              style: TextStyle(
-                                                color: AppColor.vivid_orange,
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
+                                            Visibility(
+                                              visible: isValid!,
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Text(
+                                                  ErrorParser
+                                                      .getLocalisedStringError(
+                                                          error: isOtpVerified!
+                                                              .appError,
+                                                          localisedHelper:
+                                                              S.of(context)),
+                                                  textAlign: TextAlign.start,
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      fontWeight: FontWeight.w600,
+                                                      color: AppColor.vivid_red),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        )),
-                                        SizedBox(
-                                          height: 30,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  CountdownTimer(
-                                    controller: model.countDownController,
-                                    onEnd: () {},
-                                    endTime: model.endTime,
-                                    textStyle: TextStyle(
-                                        fontSize: 16, color: AppColor.white),
-                                    widgetBuilder:
-                                        (context, currentTimeRemaining) {
-                                      return currentTimeRemaining == null
-                                          ? TextButton(
-                                              onPressed: () {
-                                                model.updateTime();
-                                              },
-                                              child: Text(
-                                                'Resend Code',
-                                                style: TextStyle(
+                                            Center(
+                                                child: Padding(
+                                              padding:
+                                                  const EdgeInsets.only(top: 32.0),
+                                              child: InkWell(
+                                                onTap: () {},
+                                                child: Text(
+                                                  S.of(context).changeMyNumber,
+                                                  style: TextStyle(
+                                                    color: AppColor.vivid_orange,
                                                     fontSize: 14,
-                                                    color: AppColor.white),
-                                              ))
-                                          : Text(
-                                              S.of(context).resendIn(
-                                                  '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  color: AppColor.soft_violet),
-                                            );
-                                    },
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ),
+                                            )),
+                                            SizedBox(
+                                              height: 30,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      CountdownTimer(
+                                        controller: model.countDownController,
+                                        onEnd: () {},
+                                        endTime: model.endTime,
+                                        textStyle: TextStyle(
+                                            fontSize: 16, color: AppColor.white),
+                                        widgetBuilder:
+                                            (context, currentTimeRemaining) {
+                                          return currentTimeRemaining == null
+                                              ? TextButton(
+                                                  onPressed: () {
+                                                    model.updateTime();
+                                                  },
+                                                  child: Text(
+                                                    'Resend Code',
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        color: AppColor.white),
+                                                  ))
+                                              : Text(
+                                                  S.of(context).resendIn(
+                                                      '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      color: AppColor.soft_violet),
+                                                );
+                                        },
+                                      ),
+                                    ],
                                   ),
+                                  AppStreamBuilder<bool>(
+                                    stream: model.showButtonStream,
+                                    initialData: false,
+                                    dataBuilder: (context, isValid) {
+                                      return Visibility(
+                                        visible: isValid!,
+                                        child: Positioned(
+                                          bottom:0,
+                                          left:45,
+                                          right:45,
+                                          child: AnimatedButton(
+                                            buttonText: "Swipe to proceed",
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  )
                                 ],
                               )),
                         ),

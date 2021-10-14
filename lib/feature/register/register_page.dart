@@ -19,7 +19,7 @@ class RegisterPageState
 
   @override
   void onModelReady(RegisterViewModel model) {
-    model.pageController = PageController();
+    // model.registrationStepsController = PageController();
     super.onModelReady(model);
   }
 
