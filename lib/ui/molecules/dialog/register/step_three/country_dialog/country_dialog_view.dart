@@ -56,21 +56,22 @@ class CountryDialogView extends StatelessWidget {
                             ),
                           ),
                           Expanded(
-                              child: ListWheelScrollView.useDelegate(
-                                  itemExtent: 72,
-                                  onSelectedItemChanged: (int index) {
-                                    model.selectCountry(index);
-                                  },
-                                  physics: FixedExtentScrollPhysics(),
-                                  perspective: 0.0000000001,
-                                  childDelegate: ListWheelChildBuilderDelegate(
-                                      childCount: data!.data!.length,
-                                      builder:
-                                          (BuildContext context, int index) {
-                                        return EmployerCountryListWidget(
-                                          item: data.data![index],
-                                        );
-                                      }))),
+                              child: Scrollbar(
+                            child: ListWheelScrollView.useDelegate(
+                                itemExtent: 72,
+                                onSelectedItemChanged: (int index) {
+                                  model.selectCountry(index);
+                                },
+                                physics: FixedExtentScrollPhysics(),
+                                perspective: 0.0000000001,
+                                childDelegate: ListWheelChildBuilderDelegate(
+                                    childCount: data!.data!.length,
+                                    builder: (BuildContext context, int index) {
+                                      return EmployerCountryListWidget(
+                                        item: data.data![index],
+                                      );
+                                    })),
+                          )),
                           InkWell(
                             onTap: () {
                               onSelected!

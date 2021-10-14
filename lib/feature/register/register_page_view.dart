@@ -13,7 +13,7 @@ class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
   RegisterPageView(ProviderBase model) : super(model);
 
   List pages = [
-    RegisterStepOnePage(),
+    //RegisterStepOnePage(),
     RegisterStepThreePage(),
     RegisterStepFourPage(),
     RegisterStepOnePage()

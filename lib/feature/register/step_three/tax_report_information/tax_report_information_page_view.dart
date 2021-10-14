@@ -128,6 +128,7 @@ class TaxReportInformationPageView
                                               Navigator.pop(context);
                                               model.countrySelectorController
                                                   .text = value;
+                                              model.validateFields();
                                             });
                                           },
                                           child: Container(
@@ -163,9 +164,6 @@ class TaxReportInformationPageView
                                             ),
                                           ),
                                         );
-                                      },
-                                      onChanged: (value) {
-                                        model.validateFields();
                                       },
                                     ),
                                     AppStreamBuilder<bool>(
@@ -301,6 +299,7 @@ class TaxReportInformationPageView
                                                         model
                                                             .updateReasonControllerField(
                                                                 value);
+                                                        model.validateFields();
                                                       });
                                                     },
                                                     child: Container(
@@ -313,9 +312,6 @@ class TaxReportInformationPageView
                                                             AssetUtils
                                                                 .downArrow)),
                                                   );
-                                                },
-                                                onChanged: (value) {
-                                                  model.validateFields();
                                                 },
                                               ),
                                             ),

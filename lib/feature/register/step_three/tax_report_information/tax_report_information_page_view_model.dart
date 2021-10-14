@@ -76,13 +76,11 @@ class TaxReportInformationPageViewModel extends BasePageViewModel {
   void validateFields() {
     bool isValid = false;
     if (_switchSubject.value) {
-      print('switch value:${_switchSubject.value}');
       if (!Validator.isEmpty(countrySelectorController.text) &&
           !Validator.isEmpty(tinController.text)) {
         isValid = true;
       }
     } else {
-      print('switch value:${_switchSubject.value}');
       if (reasonController.text.fromValue() ==
           ReasonUnavailabilityEnum.REASON_B) {
         if (!Validator.isEmpty(countrySelectorController.text) &&
@@ -144,13 +142,13 @@ class TaxReportInformationPageViewModel extends BasePageViewModel {
       if (reasonController.text.fromValue() ==
           ReasonUnavailabilityEnum.REASON_B) {
         _taxReportInformationRequest.safeAdd(TaxReportInformationUseCaseParams(
-            tinNumber: 'tinController.text',
+            tinNumber: 'text',
             explainReason: explainReasonController.text,
             reasonOfUnavailability: reasonController.text,
             taxCountry: countrySelectorController.text));
       } else {
         _taxReportInformationRequest.safeAdd(TaxReportInformationUseCaseParams(
-            tinNumber: "tinController.text",
+            tinNumber: "text",
             explainReason: 'no',
             reasonOfUnavailability: reasonController.text,
             taxCountry: countrySelectorController.text));
