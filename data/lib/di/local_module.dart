@@ -1,5 +1,7 @@
 import 'package:data/source/country/country_datasource.dart';
 import 'package:data/source/country/local/country_local_ds_impl.dart';
+import 'package:data/source/upload_document/local/upload_document_local_ds.dart';
+import 'package:data/source/upload_document/upload_document_datasource.dart';
 import 'package:device_info/device_info.dart';
 import 'package:riverpod/riverpod.dart';
 
@@ -10,3 +12,6 @@ var deviceInfoPluginProvider = Provider<DeviceInfoPlugin>(
 var countryLocalDataProvider = Provider<CountryLocalDs>(
   (ref) => CountryLocalDsImpl(),
 );
+
+var uploadDocumentDataSourceProvider =
+Provider<UploadDocumentLocalDS>((ref) => UploadDocumentLocalDSImpl());

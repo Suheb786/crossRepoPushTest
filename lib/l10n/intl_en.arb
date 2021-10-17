@@ -97,6 +97,7 @@
   "orContinueWith": "or continue with",
   "iHaveAnAccount": "I have an account",
   "emptyEmailMessage": "Please enter your email address",
+  "enterValidEmail": "please enter valid email address",
   "tellUsAboutYourProfile":  "Tell us a bit about your\nprofile status",
   "profileDetailsQ1": "Are you married?",
   "profileDetailsQ2": "Are you a special need person?",
@@ -167,11 +168,15 @@
   "ibanNumber": "84118220000022123444",
   "cardLater": "I’ll get my card later",
   "cardPersonalization": "to card personalization",
-  "enterValidEmail": "please enter valid email address",
+  "selectAnyOption": "Select any Option",
+  "storage": "Storage",
+  "camera": "Camera",
+  "cancel": "Cancel",
   "taxCountrySmall": "Tax Country",
   "reasonOfUnavailabilitySmall": "Reason of Unavailability",
   "invalidTaxCountry": "Select tax country",
   "invalidTinNumber": "Enter correct tin number",
   "invalidReasonUnavailability": "Select Reason of Unavailability",
   "invalidExplanationForUnavailability": "Enter reason for unavailability"
+
 }

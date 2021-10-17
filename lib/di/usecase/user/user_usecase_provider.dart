@@ -9,9 +9,9 @@ import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_number_usecase.dart';
-import 'package:domain/usecase/user/upload_documents_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:domain/usecase/user/send_documents_usecase.dart';
 
 ///[FetchCountriesUseCase] provider
 final fetchCountriesUseCaseProvider =
@@ -44,9 +44,9 @@ final profileDetailsUseCaseProvider =
 );
 
 ///[UploadDocumentsUseCase] provider
-final uploadDocumentsUseCaseProvider =
-    Provider.autoDispose<UploadDocumentsUseCase>(
-  (ref) => UploadDocumentsUseCase(),
+final sendDocumentsUseCaseUseCaseProvider =
+    Provider.autoDispose<SendDocumentsUseCase>(
+  (ref) => SendDocumentsUseCase(),
 );
 
 ///[ReviewApplicationUseCase] provider

@@ -6,6 +6,8 @@ import 'package:domain/usecase/register/employment_status_usecase.dart';
 import 'package:domain/usecase/register/taxation_details_usecase.dart';
 import 'package:domain/usecase/register/tax_report_information_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:domain/usecase/register/nature_of_special_needs_usecase.dart';
+import 'package:domain/usecase/register/relationship_with_pep_usecase.dart';
 
 ///[GetOccupationUseCase] provider
 final getOccupationUseCaseProvider = Provider.autoDispose<GetOccupationUseCase>(
@@ -40,4 +42,16 @@ final taxationDetailsUseCaseProvider =
 final taxReportInformationUseCaseProvider =
     Provider.autoDispose<TaxReportInformationUseCase>(
   (ref) => TaxReportInformationUseCase(),
+);
+
+///[NatureOfSpecialNeedsUseCase] provider
+final natureOfSpecialNeedsUseCaseProvider =
+Provider.autoDispose<NatureOfSpecialNeedsUseCase>(
+        (ref) => NatureOfSpecialNeedsUseCase(ref.read(registerRepoProvider)),
+);
+
+///[RelationshipWithPEPUseCase] provider
+final relationshipWithPEPUseCaseProvider =
+Provider.autoDispose<RelationshipWithPEPUseCase>(
+        (ref) => RelationshipWithPEPUseCase(ref.read(registerRepoProvider)),
 );
