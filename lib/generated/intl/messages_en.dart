@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
+        "accountReady": MessageLookupByLibrary.simpleMessage(
+            "Your account is up and ready. Let’s get you the Neu Debit Card."),
         "accountRegistration":
             MessageLookupByLibrary.simpleMessage("ACCOUNT REGISTRATION"),
         "addMobileHeader":
@@ -46,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Are you a US Tax Resident?"),
         "areYouUSTaxResidentHint":
             MessageLookupByLibrary.simpleMessage("(e.g. Green Card Holder)"),
+        "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
         "buildingNameNo":
             MessageLookupByLibrary.simpleMessage("Building Name / No"),
         "buildingNameOrNo":
@@ -54,6 +57,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please Enter Building Name/Number."),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cardLater":
+            MessageLookupByLibrary.simpleMessage("I’ll get my card later"),
+        "cardPersonalization":
+            MessageLookupByLibrary.simpleMessage("to card personalization"),
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
@@ -158,6 +165,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Home Address"),
         "iHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("I have an account"),
+        "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
+        "ibanNumber":
+            MessageLookupByLibrary.simpleMessage("84118220000022123444"),
         "idHint":
             MessageLookupByLibrary.simpleMessage("Please Enter ID Number"),
         "idNumber": MessageLookupByLibrary.simpleMessage("ID NUMBER"),
@@ -259,6 +269,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
         "reasonOfUnavailabilitySmall":
             MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
+        "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
+        "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
         "relationShipWithPepCaps":
             MessageLookupByLibrary.simpleMessage("RELATIONSHIP WITH PEP"),
         "relationshipWithPEP":

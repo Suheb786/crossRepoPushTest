@@ -71,7 +71,7 @@ class UploadDocumentItem extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
-                                  color: isUploaded?AppColor.white:AppColor.vivid_orange),
+                                  color: isUploaded?AppColor.vivid_orange:AppColor.white),
                             ),
                           ),
                         ),
@@ -90,15 +90,15 @@ class UploadDocumentItem extends StatelessWidget {
                             width: 34,
                             decoration: BoxDecoration(
                               color: isUploaded
-                                  ? Colors.transparent
-                                  : AppColor.strong_violet,
+                                  ? AppColor.strong_violet
+                                  : Colors.transparent,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Center(
                               child: AppSvg.asset(
                                   isUploaded
-                                      ? AssetUtils.upload
-                                      : AssetUtils.delete,
+                                      ? AssetUtils.delete
+                                      : AssetUtils.upload,
                                   width: 16,
                                   height: 16),
                             )),

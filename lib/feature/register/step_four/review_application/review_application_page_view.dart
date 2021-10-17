@@ -70,12 +70,12 @@ class ReviewApplicationPageView
                           if (details.primaryDelta!.isNegative) {
                             model.validateReviewDetails();
                           }else{
-                            ProviderScope.containerOf(context)
-                                .read(registerViewModelProvider)
-                                .registrationStepsController
-                                .previousPage(
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.easeInOut);
+                            // ProviderScope.containerOf(context)
+                            //     .read(registerViewModelProvider)
+                            //     .registrationStepsController
+                            //     .previousPage(
+                            //     duration: Duration(milliseconds: 500),
+                            //     curve: Curves.easeInOut);
                           }
                         },
                         child: Card(

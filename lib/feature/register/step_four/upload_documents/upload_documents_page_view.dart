@@ -7,8 +7,8 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/upload_documents/upload_documents_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/review_application/review_item.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/upload_document/upload_document_bottom_sheet.dart';
 import 'package:neo_bank/ui/molecules/upload_document/upload_document_item.dart';
@@ -59,11 +59,16 @@ class UploadDocumentsPageView
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
+                          Navigator.pushReplacementNamed(
+                              context, RoutePaths.AccountReady);
                         } else if (data.status == Status.ERROR) {}
                       },
                       dataBuilder: (context, data) {
                         return GestureDetector(
                           onHorizontalDragUpdate: (details) {
+                            Navigator.pushReplacementNamed(
+                                context, RoutePaths.AccountReady);
+
                             if (details.primaryDelta!.isNegative) {
                             } else {
                               ProviderScope.containerOf(context)
@@ -117,6 +122,9 @@ class UploadDocumentsPageView
                                                 isUploaded:
                                                     model.incomeFileUploaded,
                                                 onTap: () {
+                                                  model.incomeFileUploaded =
+                                                      !model.incomeFileUploaded;
+
                                                   if (model.incomeFileStr !=
                                                       S.of(context).upload) {
                                                     model.updateIncomeFileName(
@@ -192,6 +200,9 @@ class UploadDocumentsPageView
                                                 isUploaded:
                                                     model.addressFileUploaded,
                                                 onTap: () {
+                                                  model.addressFileUploaded =
+                                                      !model
+                                                          .addressFileUploaded;
                                                   if (model.addressFileStr !=
                                                       S.of(context).upload) {
                                                     model.updateAddressFileName(
@@ -236,7 +247,7 @@ class UploadDocumentsPageView
                                                   }
                                                 },
                                               );
-                                            })
+                                            }),
                                       ],
                                     ))),
                           ),

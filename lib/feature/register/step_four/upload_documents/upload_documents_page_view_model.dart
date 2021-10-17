@@ -92,4 +92,12 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
     _uploadAddressPoofRequest
         .safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
+
+  @override
+  void dispose() {
+    _documentsRequest.close();
+    _uploadIncomePoofRequest.close();
+    _uploadAddressPoofRequest.close();
+    super.dispose();
+  }
 }

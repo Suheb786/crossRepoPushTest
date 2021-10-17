@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/register/step_four/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/step_four/register_step_four_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/review_application/review_application_page.dart';
 import 'package:neo_bank/feature/register/step_four/upload_documents/upload_documents_page.dart';

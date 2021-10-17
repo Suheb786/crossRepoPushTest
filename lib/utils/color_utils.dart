@@ -6,9 +6,12 @@ class AppColor {
   AppColor._();
 
   static const white = const Color(0xffffffff);
+  static const white1 = const Color(0xffFAFAFA);
   static const black = const Color(0xff000000);
   static const very_light_grey = const Color(0xffF3F3F3);
   static const dark_blue = const Color(0xff3516A4);
+  static const dark_blue1 = const Color(0xff06002C);
+  static const very_light_violet = const Color(0xffD3C7F3);
   static const dark_violet = const Color(0xff4417AE);
   static const dark_violet1 = const Color(0xff442399);
   static const dark_violet2 = const Color(0xff412098);
@@ -36,6 +39,7 @@ class AppColor {
   static const dark_violet_3 = const Color(0xff4a22b0);
   static const dark_gray_1 = const Color(0xff8b8b8b);
   static const dark_violet_4 = const Color(0xff412098);
+  static const very_light_violet1 = const Color(0xffa389e6);
   static const very_dark_violet = const Color(0xff272331);
   static const mostly_desaturated_dark_violet = const Color(0xff8270af);
   static const dark_grayish_violet1 = const Color(0xff9C93B2);
@@ -43,6 +47,7 @@ class AppColor {
   static const text_color = const Color(0xffF8F8F8);
   static const border_color = const Color(0xff8270AF);
   static const gray = const Color(0xff8B8B8B);
+  static const light_gray1 = const Color(0xfff2f2f2);
   static const gray_black = const Color(0xff101010);
   static const light_gray = const Color(0xffF5F5F5);
   static const light_blue = const Color(0xff572BCC);

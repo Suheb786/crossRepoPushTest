@@ -198,7 +198,7 @@ class ProfileDetailsPageView
                                                         model.natureController,
                                                     key: model
                                                         .natureOfSpecialNeedKey,
-                                                    //readOnly: true,
+                                                    readOnly: true,
                                                     suffixIcon:
                                                         (enabled, value) {
                                                       return InkWell(
@@ -294,7 +294,7 @@ class ProfileDetailsPageView
                                                             .relationShipController,
                                                         key: model
                                                             .relationShipWithPepKey,
-                                                        //readOnly: true,
+                                                        readOnly: true,
                                                         suffixIcon:
                                                             (enabled, value) {
                                                           return InkWell(
