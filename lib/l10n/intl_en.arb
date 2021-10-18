@@ -81,7 +81,7 @@
   "explainReason": "EXPLAIN REASON",
   "swipeToProceed": "Swipe to proceed",
   "invalidEmploymentStatus": "Select Employment Status",
-  "invalidOccupation": "Select Occupation",
+  "invalidOccupation": "Enter Occupation",
   "invalidMainSourceIncome": "Enter source of income.",
   "invalidMonthlyIncome": "Enter monthly income",
   "invalidAnnualIncome": "Enter Annual income",
@@ -177,6 +177,20 @@
   "invalidTaxCountry": "Select tax country",
   "invalidTinNumber": "Enter correct tin number",
   "invalidReasonUnavailability": "Select Reason of Unavailability",
-  "invalidExplanationForUnavailability": "Enter reason for unavailability"
-
+  "invalidExplanationForUnavailability": "Enter reason for unavailability",
+  "jobAndIncome": "JOB & INCOME",
+  "tellUsHowDoMakeLiving": "Next, tell us how do\nmake a living",
+  "mainAnnualIncome": "MAIN ANNUAL INCOME",
+  "doYouHaveAdditionalSourceOfIncome": "Do you have additional\nsource of income",
+  "addIncome": "Add Income",
+  "searchCountry": "Search country",
+  "noCountriesFound": "No matching country found",
+  "invalidTypesOfTransaction": "Please Enter transaction type",
+  "invalidExpectedMonthlyTransaction": "Enter expected monthly transaction",
+  "invalidExpectedAnnualTransaction": "Enter expected annual transaction",
+  "accountOpeningPurpose": "ACCOUNT OPENING PURPOSE",
+  "accountRelatedQuestions": "Almost there! We have few account related questions",
+  "typeOfTransactions": "TYPE OF TRANSACTIONS",
+  "expectedMonthlyTransactions": "EXPECTED MONTHLY TRANSACTIONS",
+  "expectedAnnualTransactions": "EXPECTED ANNUAL TRANSACTIONS"
 }

@@ -10,6 +10,8 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 class CountryDialogViewModel extends BasePageViewModel {
   final FetchCountriesUseCase _fetchCountriesUseCase;
 
+  final TextEditingController countrySearchController = TextEditingController();
+
   Country? selectedCountry = Country();
 
   ///current selected index subject holder
@@ -17,6 +19,8 @@ class CountryDialogViewModel extends BasePageViewModel {
 
   ///current selected index stream
   Stream<int> get currentIndexStream => _currentSelectIndex.stream;
+
+  List<Country>? searchResult = [];
 
   void currentIndexUpdate(int index) {
     _currentSelectIndex.add(index);
@@ -31,7 +35,11 @@ class CountryDialogViewModel extends BasePageViewModel {
 
   ///get country response stream
   Stream<Resource<List<Country>>> get getCountryStream =>
-      _getCountryResponse.stream;
+      _searchCountryResponse.stream;
+
+  ///search country response holder
+  BehaviorSubject<Resource<List<Country>>> _searchCountryResponse =
+      BehaviorSubject();
 
   CountryDialogViewModel(this._fetchCountriesUseCase) {
     _getCountryRequest.listen((value) {
@@ -40,6 +48,7 @@ class CountryDialogViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _getCountryResponse.safeAdd(event);
+        _searchCountryResponse.safeAdd(event);
       });
     });
   }
@@ -49,13 +58,32 @@ class CountryDialogViewModel extends BasePageViewModel {
   }
 
   void selectCountry(int index) {
-    List<Country>? countryList = _getCountryResponse.value.data;
+    List<Country>? countryList = _searchCountryResponse.value.data;
     countryList?.forEach((element) {
       element.isSelected = false;
     });
     countryList?.elementAt(index).isSelected = true;
     selectedCountry = countryList?.firstWhere((element) => element.isSelected);
-    _getCountryResponse.safeAdd(Resource.success(data: countryList));
+    _searchCountryResponse.safeAdd(Resource.success(data: countryList));
+  }
+
+  void searchCountry(String? searchText) {
+    searchResult!.clear();
+    List<Country>? countryList = _getCountryResponse.value.data;
+    if (searchText!.isNotEmpty) {
+      for (int i = 0; i < countryList!.length; i++) {
+        Country country = countryList[i];
+        if (country.countryName!
+            .toLowerCase()
+            .contains(searchText.toLowerCase())) {
+          searchResult!.add(country);
+        }
+      }
+      _searchCountryResponse.safeAdd(Resource.success(data: searchResult));
+    } else {
+      _searchCountryResponse
+          .safeAdd(Resource.success(data: _getCountryResponse.value.data));
+    }
   }
 
   @override
@@ -63,6 +91,7 @@ class CountryDialogViewModel extends BasePageViewModel {
     _currentSelectIndex.close();
     _getCountryRequest.close();
     _getCountryResponse.close();
+    _searchCountryResponse.close();
     super.dispose();
   }
 }

@@ -11,7 +11,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/reason_of_unavailability/reason_of_unavailability_dialog.dart';
-import 'package:neo_bank/ui/molecules/register/tin_availability_switch_widget.dart';
+import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -177,7 +177,7 @@ class TaxReportInformationPageView
                                                   const EdgeInsets.symmetric(
                                                       vertical: 28.0),
                                               child:
-                                                  TinAvailabilitySwitchWidget(
+                                              AppSwitchLabelWidget(
                                                 label: S
                                                     .of(context)
                                                     .doYouHaveTinAvailable,

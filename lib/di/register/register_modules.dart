@@ -8,11 +8,11 @@ import 'package:neo_bank/feature/register/step_four/register_step_four_page_view
 import 'package:neo_bank/feature/register/step_four/review_application/review_application_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/upload_documents/upload_documents_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/confirm_detail/confirm_detail_model.dart';
-import 'package:neo_bank/feature/register/step_three/employment_status/employment_status_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_three/job_and_income/job_and_income_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/enter_address/enter_address_model.dart';
 import 'package:neo_bank/feature/register/step_three/id_verification_info/id_verification_info_model.dart';
-import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_three/purpose_of_account_opening/purpose_of_account_opening_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/tax_report_information/tax_report_information_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/taxation_details/taxation_details_page_view_model.dart';
@@ -30,7 +30,6 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_stat
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_account_opening/purpose_of_account_opening_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/reason_of_unavailability/reason_of_unavailability_dialog_view_model.dart';
-import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget_model.dart';
 
 final registerViewModelProvider =
@@ -88,11 +87,10 @@ final registerStepThreeViewModelProvider =
   (ref) => RegisterStepThreeViewModel(),
 );
 
-///employment Status page view model provider
-final employmentStatusPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EmploymentStatusPageViewModel>(
-  (ref) =>
-      EmploymentStatusPageViewModel(ref.read(employmentDetailsUseCaseProvider)),
+///job and income page view model provider
+final jobAndIncomePageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<JobAndIncomePageViewModel>(
+  (ref) => JobAndIncomePageViewModel(ref.read(jobAndIncomeUseCaseProvider)),
 );
 
 ///employment status dialog view model provider
@@ -226,3 +224,9 @@ final accountReadyPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountReadyViewModel>(
   (ref) => AccountReadyViewModel(ref.read(accountReadyUseCaseProvider)),
 );
+
+/// purpose of account opening  view model provider
+final purposeOfAccountOpeningViewModelProvider =
+    ChangeNotifierProvider.autoDispose<PurposeOfAccountOpeningPageViewModel>(
+        (ref) => PurposeOfAccountOpeningPageViewModel(
+            ref.read(purposeOfAccountsOpeningUseCaseProvider)));

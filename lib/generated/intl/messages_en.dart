@@ -24,10 +24,15 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
+        "accountOpeningPurpose":
+            MessageLookupByLibrary.simpleMessage("ACCOUNT OPENING PURPOSE"),
         "accountReady": MessageLookupByLibrary.simpleMessage(
             "Your account is up and ready. Let’s get you the Neu Debit Card."),
         "accountRegistration":
             MessageLookupByLibrary.simpleMessage("ACCOUNT REGISTRATION"),
+        "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
+            "Almost there! We have few account related questions"),
+        "addIncome": MessageLookupByLibrary.simpleMessage("Add Income"),
         "addMobileHeader":
             MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
         "additionIncomeSource":
@@ -79,6 +84,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CREATE PASSWORD"),
         "createPasswordHeader": MessageLookupByLibrary.simpleMessage(
             "Next, let\'s create your\nlogin password"),
+        "doYouHaveAdditionalSourceOfIncome":
+            MessageLookupByLibrary.simpleMessage(
+                "Do you have additional\nsource of income"),
         "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage(
             "Do you have TIN No available?"),
         "dob": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
@@ -151,6 +159,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter valid relationship with PEP"),
         "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
             "Please enter valid spouse name"),
+        "expectedAnnualTransactions": MessageLookupByLibrary.simpleMessage(
+            "EXPECTED ANNUAL TRANSACTIONS"),
+        "expectedMonthlyTransactions": MessageLookupByLibrary.simpleMessage(
+            "EXPECTED MONTHLY TRANSACTIONS"),
         "expiryDate": MessageLookupByLibrary.simpleMessage("EXPIRY DATE"),
         "expiryDateHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Expiry Date"),
@@ -191,6 +203,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter employer Name"),
         "invalidEmploymentStatus":
             MessageLookupByLibrary.simpleMessage("Select Employment Status"),
+        "invalidExpectedAnnualTransaction":
+            MessageLookupByLibrary.simpleMessage(
+                "Enter expected annual transaction"),
+        "invalidExpectedMonthlyTransaction":
+            MessageLookupByLibrary.simpleMessage(
+                "Enter expected monthly transaction"),
         "invalidExplanationForUnavailability":
             MessageLookupByLibrary.simpleMessage(
                 "Enter reason for unavailability"),
@@ -199,7 +217,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidMonthlyIncome":
             MessageLookupByLibrary.simpleMessage("Enter monthly income"),
         "invalidOccupation":
-            MessageLookupByLibrary.simpleMessage("Select Occupation"),
+            MessageLookupByLibrary.simpleMessage("Enter Occupation"),
         "invalidPurposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage(
             "Select purpose of account opening"),
         "invalidReasonUnavailability": MessageLookupByLibrary.simpleMessage(
@@ -210,6 +228,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter correct tin number"),
         "invalidTotalAdditionalIncome": MessageLookupByLibrary.simpleMessage(
             "Enter total additional income"),
+        "invalidTypesOfTransaction": MessageLookupByLibrary.simpleMessage(
+            "Please Enter transaction type"),
+        "jobAndIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
+        "mainAnnualIncome":
+            MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
         "mainSourceIncome":
             MessageLookupByLibrary.simpleMessage("Main Source of Income"),
         "mainSourceOfIncome":
@@ -229,6 +252,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "noCountriesFound":
+            MessageLookupByLibrary.simpleMessage("No matching country found"),
         "occupation": MessageLookupByLibrary.simpleMessage("OCCUPATION"),
         "occupationSmall": MessageLookupByLibrary.simpleMessage("Occupation"),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
@@ -286,6 +311,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please accept the above terms and conditions"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
+        "searchCountry": MessageLookupByLibrary.simpleMessage("Search country"),
         "selectAnyOption":
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
@@ -314,6 +340,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Next, tell us about\nyour job"),
         "tellUsAboutYourProfile": MessageLookupByLibrary.simpleMessage(
             "Tell us a bit about your\nprofile status"),
+        "tellUsHowDoMakeLiving": MessageLookupByLibrary.simpleMessage(
+            "Next, tell us how do\nmake a living"),
         "termsAndCondition":
             MessageLookupByLibrary.simpleMessage("Terms and Conditions."),
         "termsAndConditions": MessageLookupByLibrary.simpleMessage(
@@ -323,6 +351,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),
         "totalAdditionalIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Total Additional Income"),
+        "typeOfTransactions":
+            MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "uploadDocuments":
             MessageLookupByLibrary.simpleMessage("UPLOAD DOCUMENTS"),

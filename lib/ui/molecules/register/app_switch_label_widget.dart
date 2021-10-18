@@ -2,14 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class TinAvailabilitySwitchWidget extends StatelessWidget {
+class AppSwitchLabelWidget extends StatelessWidget {
   final String? label;
   final bool? isActive;
   final Function(bool)? onToggle;
   final String? activeText;
   final String? inActiveText;
 
-  const TinAvailabilitySwitchWidget(
+  const AppSwitchLabelWidget(
       {Key? key,
       this.onToggle,
       this.label,

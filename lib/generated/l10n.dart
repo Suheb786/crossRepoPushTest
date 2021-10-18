@@ -830,10 +830,10 @@ class S {
     );
   }
 
-  /// `Select Occupation`
+  /// `Enter Occupation`
   String get invalidOccupation {
     return Intl.message(
-      'Select Occupation',
+      'Enter Occupation',
       name: 'invalidOccupation',
       desc: '',
       args: [],
@@ -1795,6 +1795,156 @@ class S {
     return Intl.message(
       'Enter reason for unavailability',
       name: 'invalidExplanationForUnavailability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `JOB & INCOME`
+  String get jobAndIncome {
+    return Intl.message(
+      'JOB & INCOME',
+      name: 'jobAndIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next, tell us how do\nmake a living`
+  String get tellUsHowDoMakeLiving {
+    return Intl.message(
+      'Next, tell us how do\nmake a living',
+      name: 'tellUsHowDoMakeLiving',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MAIN ANNUAL INCOME`
+  String get mainAnnualIncome {
+    return Intl.message(
+      'MAIN ANNUAL INCOME',
+      name: 'mainAnnualIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you have additional\nsource of income`
+  String get doYouHaveAdditionalSourceOfIncome {
+    return Intl.message(
+      'Do you have additional\nsource of income',
+      name: 'doYouHaveAdditionalSourceOfIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Income`
+  String get addIncome {
+    return Intl.message(
+      'Add Income',
+      name: 'addIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search country`
+  String get searchCountry {
+    return Intl.message(
+      'Search country',
+      name: 'searchCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No matching country found`
+  String get noCountriesFound {
+    return Intl.message(
+      'No matching country found',
+      name: 'noCountriesFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter transaction type`
+  String get invalidTypesOfTransaction {
+    return Intl.message(
+      'Please Enter transaction type',
+      name: 'invalidTypesOfTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter expected monthly transaction`
+  String get invalidExpectedMonthlyTransaction {
+    return Intl.message(
+      'Enter expected monthly transaction',
+      name: 'invalidExpectedMonthlyTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter expected annual transaction`
+  String get invalidExpectedAnnualTransaction {
+    return Intl.message(
+      'Enter expected annual transaction',
+      name: 'invalidExpectedAnnualTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ACCOUNT OPENING PURPOSE`
+  String get accountOpeningPurpose {
+    return Intl.message(
+      'ACCOUNT OPENING PURPOSE',
+      name: 'accountOpeningPurpose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Almost there! We have few account related questions`
+  String get accountRelatedQuestions {
+    return Intl.message(
+      'Almost there! We have few account related questions',
+      name: 'accountRelatedQuestions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TYPE OF TRANSACTIONS`
+  String get typeOfTransactions {
+    return Intl.message(
+      'TYPE OF TRANSACTIONS',
+      name: 'typeOfTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXPECTED MONTHLY TRANSACTIONS`
+  String get expectedMonthlyTransactions {
+    return Intl.message(
+      'EXPECTED MONTHLY TRANSACTIONS',
+      name: 'expectedMonthlyTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXPECTED ANNUAL TRANSACTIONS`
+  String get expectedAnnualTransactions {
+    return Intl.message(
+      'EXPECTED ANNUAL TRANSACTIONS',
+      name: 'expectedAnnualTransactions',
       desc: '',
       args: [],
     );

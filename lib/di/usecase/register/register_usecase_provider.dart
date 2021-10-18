@@ -2,12 +2,13 @@ import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/register/get_occupation_list_usecase.dart';
 import 'package:domain/usecase/register/get_purpose_of_account_opening_usecase.dart';
 import 'package:domain/usecase/register/get_additional_income_source_usecase.dart';
-import 'package:domain/usecase/register/employment_status_usecase.dart';
+import 'package:domain/usecase/register/job_and_income_usecase.dart';
 import 'package:domain/usecase/register/taxation_details_usecase.dart';
 import 'package:domain/usecase/register/tax_report_information_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:domain/usecase/register/nature_of_special_needs_usecase.dart';
 import 'package:domain/usecase/register/relationship_with_pep_usecase.dart';
+import 'package:domain/usecase/register/purpose_of_account_opening_usecase.dart';
 
 ///[GetOccupationUseCase] provider
 final getOccupationUseCaseProvider = Provider.autoDispose<GetOccupationUseCase>(
@@ -26,10 +27,9 @@ final additionalIncomeSourceUseCaseProvider =
   (ref) => GetAdditionalIncomeSourceUseCase(ref.read(registerRepoProvider)),
 );
 
-///[EmploymentDetailsUseCase] provider
-final employmentDetailsUseCaseProvider =
-    Provider.autoDispose<EmploymentStatusUseCase>(
-  (ref) => EmploymentStatusUseCase(),
+///[JobAndIncomeUseCase] provider
+final jobAndIncomeUseCaseProvider = Provider.autoDispose<JobAndIncomeUseCase>(
+  (ref) => JobAndIncomeUseCase(),
 );
 
 ///[TaxationDetailsUseCase] provider
@@ -46,12 +46,17 @@ final taxReportInformationUseCaseProvider =
 
 ///[NatureOfSpecialNeedsUseCase] provider
 final natureOfSpecialNeedsUseCaseProvider =
-Provider.autoDispose<NatureOfSpecialNeedsUseCase>(
-        (ref) => NatureOfSpecialNeedsUseCase(ref.read(registerRepoProvider)),
+    Provider.autoDispose<NatureOfSpecialNeedsUseCase>(
+  (ref) => NatureOfSpecialNeedsUseCase(ref.read(registerRepoProvider)),
 );
 
 ///[RelationshipWithPEPUseCase] provider
 final relationshipWithPEPUseCaseProvider =
-Provider.autoDispose<RelationshipWithPEPUseCase>(
-        (ref) => RelationshipWithPEPUseCase(ref.read(registerRepoProvider)),
+    Provider.autoDispose<RelationshipWithPEPUseCase>(
+  (ref) => RelationshipWithPEPUseCase(ref.read(registerRepoProvider)),
 );
+
+///[PurposeOfAccountOpeningUseCase] provider
+final purposeOfAccountsOpeningUseCaseProvider =
+    Provider.autoDispose<PurposeOfAccountOpeningUseCase>(
+        (ref) => PurposeOfAccountOpeningUseCase());

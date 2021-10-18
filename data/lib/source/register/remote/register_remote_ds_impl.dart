@@ -30,7 +30,6 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
       'Savings',
       'Salary',
       'Investment',
-      'Agricultural Consultant',
       'Loan Repayment',
     ]);
   }

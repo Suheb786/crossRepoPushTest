@@ -108,6 +108,13 @@ class ErrorParser {
         return localisedHelper.emptyStreetAddress;
       case ErrorType.EMPTY_BUILDING_NAME_OR_NUMBER:
         return localisedHelper.emptyBuildingNameOrNo;
+      case ErrorType.INVALID_EXPECTED_ANNUAL_TRANSACTION:
+        return localisedHelper.invalidExpectedAnnualTransaction;
+      case ErrorType.INVALID_EXPECTED_MONTHLY_TRANSACTION:
+        return localisedHelper.invalidExpectedMonthlyTransaction;
+      case ErrorType.INVALID_TYPES_OF_TRANSACTION:
+        return localisedHelper.invalidTypesOfTransaction;
+
       default:
         return "";
     }
