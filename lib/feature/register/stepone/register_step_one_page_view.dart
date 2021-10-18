@@ -8,6 +8,7 @@ import 'package:neo_bank/feature/register/stepone/countryselection/country_selec
 import 'package:neo_bank/feature/register/stepone/createPassword/create_password_page.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_page.dart';
+import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 
 class RegisterStepOnePageView
     extends BasePageViewWidget<RegisterStepOneViewModel> {
@@ -28,7 +29,10 @@ class RegisterStepOnePageView
         itemCount: pages.length,
         carouselController: model.pageController,
         itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
-            pages[itemIndex],
+            AppTiltCard(
+                pageViewIndex: pageViewIndex,
+                currentPage: model.currentPage,
+                child: pages[itemIndex]),
         options: CarouselOptions(
             height: double.maxFinite,
             pageSnapping: true,
