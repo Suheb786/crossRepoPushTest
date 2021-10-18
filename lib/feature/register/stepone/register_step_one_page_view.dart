@@ -1,3 +1,4 @@
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -27,8 +28,16 @@ class RegisterStepOnePageView
       child: CarouselSlider.builder(
         itemCount: pages.length,
         carouselController: model.pageController,
-        itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
-            pages[itemIndex],
+        itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
+          return Transform.rotate(
+            angle: pageViewIndex == model.currentPage
+                ? 0
+                : pageViewIndex < model.currentPage
+                    ? -0.03491
+                    : 0.03491,
+            child: pages[itemIndex],
+          );
+        },
         options: CarouselOptions(
             height: double.maxFinite,
             pageSnapping: true,

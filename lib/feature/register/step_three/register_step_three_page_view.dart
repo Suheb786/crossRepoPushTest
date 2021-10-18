@@ -34,7 +34,14 @@ class RegisterStepThreePageView
         itemCount: pages.length,
         carouselController: model.registrationStepThreePageController,
         itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
-            pages[itemIndex],
+            Transform.rotate(
+          angle: pageViewIndex == model.currentPage
+              ? 0
+              : pageViewIndex < model.currentPage
+                  ? -0.03491
+                  : 0.03491,
+          child: pages[itemIndex],
+        ),
         options: CarouselOptions(
             height: double.maxFinite,
             pageSnapping: true,
