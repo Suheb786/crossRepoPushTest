@@ -29,13 +29,16 @@ class RegisterStepOnePageView
         itemCount: pages.length,
         carouselController: model.pageController,
         itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-          return Transform.rotate(
-            angle: pageViewIndex == model.currentPage
-                ? 0
-                : pageViewIndex < model.currentPage
-                    ? -0.03491
-                    : 0.03491,
-            child: pages[itemIndex],
+          return Opacity(
+            opacity: pageViewIndex == model.currentPage ? 1 : 0.4,
+            child: Transform.rotate(
+              angle: pageViewIndex == model.currentPage
+                  ? 0
+                  : pageViewIndex < model.currentPage
+                      ? -0.03491
+                      : 0.03491,
+              child: pages[itemIndex],
+            ),
           );
         },
         options: CarouselOptions(

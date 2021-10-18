@@ -25,14 +25,17 @@ class RegisterStepFourPageView
         itemCount: pages.length,
         carouselController: model.registrationStepFourPageController,
         itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
-            Transform.rotate(
+            Opacity(
+              opacity: pageViewIndex == model.currentPage ? 1 : 0.4,
+              child: Transform.rotate(
           angle: pageViewIndex == model.currentPage
-              ? 0
-              : pageViewIndex < model.currentPage
-                  ? -0.03491
-                  : 0.03491,
+                ? 0
+                : pageViewIndex < model.currentPage
+                    ? -0.03491
+                    : 0.03491,
           child: pages[itemIndex],
         ),
+            ),
         options: CarouselOptions(
             height: double.maxFinite,
             pageSnapping: true,
