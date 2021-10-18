@@ -990,6 +990,16 @@ class S {
     );
   }
 
+  /// `please enter valid email address`
+  String get enterValidEmail {
+    return Intl.message(
+      'please enter valid email address',
+      name: 'enterValidEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Tell us a bit about your\nprofile status`
   String get tellUsAboutYourProfile {
     return Intl.message(
@@ -1690,11 +1700,41 @@ class S {
     );
   }
 
-  /// `please enter valid email address`
-  String get enterValidEmail {
+  /// `Select any Option`
+  String get selectAnyOption {
     return Intl.message(
-      'please enter valid email address',
-      name: 'enterValidEmail',
+      'Select any Option',
+      name: 'selectAnyOption',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Storage`
+  String get storage {
+    return Intl.message(
+      'Storage',
+      name: 'storage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera`
+  String get camera {
+    return Intl.message(
+      'Camera',
+      name: 'camera',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
       desc: '',
       args: [],
     );

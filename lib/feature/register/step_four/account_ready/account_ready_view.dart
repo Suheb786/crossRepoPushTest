@@ -73,10 +73,25 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                             fontWeight: FontWeight.w600,
                             fontSize: 14),
                       ),
-                      SizedBox(
-                        height: 157,
-                      ),
-                      Text(
+
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                bottom: 80,
+                left: 130,
+                right: 130,
+                child: Column(
+                  children: [
+                    AnimatedButton(
+                      buttonText: "Swipe to proceed",
+                      textColor: AppColor.white,
+                      borderColor: AppColor.light_violet,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top:14.0),
+                      child: Text(
                         S.of(context).cardPersonalization,
                         style: TextStyle(
                           color: AppColor.very_light_violet1,
@@ -84,18 +99,8 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                           fontSize: 12,
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                bottom: 24,
-                left: 69,
-                right: 69,
-                child: AnimatedButton(
-                  buttonText: "Swipe to proceed",
-                  textColor: AppColor.white,
-                  borderColor: AppColor.light_violet,
+                    ),
+                  ],
                 ),
               )
             ],

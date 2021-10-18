@@ -25,4 +25,17 @@ class RegisterRepositoryImpl with RegisterRepository {
     final result = await _registerRemoteDS.getAdditionalIncomeSourceList();
     return Right(result);
   }
+
+  //get nature of special needs list
+  @override
+  Future<Either<LocalError, List<String>>> getNatureOfSpecialNeedsList() async{
+    final result = await _registerRemoteDS.getNatureOfSpecialNeedsList();
+    return Right(result);
+  }
+  //get relationship with pep list
+  @override
+  Future<Either<LocalError, List<String>>> getRelationshipWithPEPList() async{
+    final result = await _registerRemoteDS.getRelationshipWithPEPList();
+    return Right(result);
+  }
 }

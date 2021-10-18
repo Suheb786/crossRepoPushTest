@@ -15,7 +15,6 @@ class RegisterStepFourPageView
   List<Widget> pages = [
     ReviewApplicationPage(),
     UploadDocumentsPage(),
-    AccountReadyPage()
   ];
 
   @override

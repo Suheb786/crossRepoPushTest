@@ -7,11 +7,15 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/upload_documents/upload_documents_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/ui/molecules/upload_document/upload_document_bottom_sheet.dart';
+import 'package:neo_bank/ui/molecules/upload_document/upload_document_item.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:domain/constants/enum/document_type_enum.dart';
 
 class UploadDocumentsPageView
     extends BasePageViewWidget<UploadDocumentsPageViewModel> {
@@ -55,11 +59,16 @@ class UploadDocumentsPageView
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
+                          Navigator.pushReplacementNamed(
+                              context, RoutePaths.AccountReady);
                         } else if (data.status == Status.ERROR) {}
                       },
                       dataBuilder: (context, data) {
                         return GestureDetector(
                           onHorizontalDragUpdate: (details) {
+                            Navigator.pushReplacementNamed(
+                                context, RoutePaths.AccountReady);
+
                             if (details.primaryDelta!.isNegative) {
                             } else {
                               ProviderScope.containerOf(context)
@@ -87,8 +96,160 @@ class UploadDocumentsPageView
                                       begin: Alignment.bottomCenter,
                                       end: Alignment.topCenter),
                                 ),
-                                child:
-                                    SingleChildScrollView(child: Container())),
+                                child: SingleChildScrollView(
+                                    padding: EdgeInsets.only(bottom: 114),
+                                    physics: ClampingScrollPhysics(),
+                                    child: Column(
+                                      children: [
+                                        AppStreamBuilder<String>(
+                                            stream:
+                                                model.uploadIncomePoofStream,
+                                            initialData: "",
+                                            onData: (data) {
+                                              model.updateIncomeFileName(
+                                                  data.split("/").last);
+                                            },
+                                            dataBuilder: (context, data) {
+                                              return UploadDocumentItem(
+                                                title:
+                                                    S.of(context).proofOfIncome,
+                                                desc: S
+                                                    .of(context)
+                                                    .proofOfIncomeDesc,
+                                                uploadText:
+                                                    model.incomeFileStr ??
+                                                        S.of(context).upload,
+                                                isUploaded:
+                                                    model.incomeFileUploaded,
+                                                onTap: () {
+                                                  model.incomeFileUploaded =
+                                                      !model.incomeFileUploaded;
+
+                                                  if (model.incomeFileStr !=
+                                                      S.of(context).upload) {
+                                                    model.updateIncomeFileName(
+                                                        S.of(context).upload);
+                                                  } else {
+                                                    showModalBottomSheet(
+                                                        context: context,
+                                                        builder: (builder) =>
+                                                            UploadDocumentBottomSheetWidget(
+                                                              title: S
+                                                                  .of(context)
+                                                                  .selectAnyOption,
+                                                              firstOptionText: S
+                                                                  .of(context)
+                                                                  .storage,
+                                                              secondOptionText: S
+                                                                  .of(context)
+                                                                  .camera,
+                                                              buttonText: S
+                                                                  .of(context)
+                                                                  .cancel,
+                                                              onCameraTap: () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                                model.pickIncomePoofDocument(
+                                                                    DocumentTypeEnum
+                                                                        .CAMERA);
+                                                              },
+                                                              onPhotoLibraryTap:
+                                                                  () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                                model.pickIncomePoofDocument(
+                                                                    DocumentTypeEnum
+                                                                        .GALLERY);
+                                                              },
+                                                              onCancelTap: () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              },
+                                                            ));
+                                                  }
+                                                },
+                                              );
+                                            }),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 16.0, bottom: 16),
+                                          child: Container(
+                                            height: 1,
+                                            color: AppColor.strong_violet,
+                                          ),
+                                        ),
+                                        AppStreamBuilder<String>(
+                                            stream:
+                                                model.uploadAddressPoofStream,
+                                            initialData: "",
+                                            onData: (data) {
+                                              model.updateAddressFileName(
+                                                  data.split("/").last);
+                                            },
+                                            dataBuilder: (context, data) {
+                                              return UploadDocumentItem(
+                                                title: S
+                                                    .of(context)
+                                                    .proofOfAddress,
+                                                desc: S
+                                                    .of(context)
+                                                    .proofOfAddressDesc,
+                                                uploadText:
+                                                    (model.addressFileStr) ??
+                                                        S.of(context).upload,
+                                                isUploaded:
+                                                    model.addressFileUploaded,
+                                                onTap: () {
+                                                  model.addressFileUploaded =
+                                                      !model
+                                                          .addressFileUploaded;
+                                                  if (model.addressFileStr !=
+                                                      S.of(context).upload) {
+                                                    model.updateAddressFileName(
+                                                        S.of(context).upload);
+                                                  } else {
+                                                    showModalBottomSheet(
+                                                        context: context,
+                                                        builder: (builder) =>
+                                                            UploadDocumentBottomSheetWidget(
+                                                              title: S
+                                                                  .of(context)
+                                                                  .selectAnyOption,
+                                                              firstOptionText: S
+                                                                  .of(context)
+                                                                  .storage,
+                                                              secondOptionText: S
+                                                                  .of(context)
+                                                                  .camera,
+                                                              buttonText: S
+                                                                  .of(context)
+                                                                  .cancel,
+                                                              onCameraTap: () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                                model.pickAddressPoofDocument(
+                                                                    DocumentTypeEnum
+                                                                        .CAMERA);
+                                                              },
+                                                              onPhotoLibraryTap:
+                                                                  () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                                model.pickAddressPoofDocument(
+                                                                    DocumentTypeEnum
+                                                                        .GALLERY);
+                                                              },
+                                                              onCancelTap: () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              },
+                                                            ));
+                                                  }
+                                                },
+                                              );
+                                            }),
+                                      ],
+                                    ))),
                           ),
                         );
                       },

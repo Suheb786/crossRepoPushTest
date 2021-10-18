@@ -69,6 +69,13 @@ class ReviewApplicationPageView
                         onHorizontalDragUpdate: (details) {
                           if (details.primaryDelta!.isNegative) {
                             model.validateReviewDetails();
+                          }else{
+                            // ProviderScope.containerOf(context)
+                            //     .read(registerViewModelProvider)
+                            //     .registrationStepsController
+                            //     .previousPage(
+                            //     duration: Duration(milliseconds: 500),
+                            //     curve: Curves.easeInOut);
                           }
                         },
                         child: Card(
@@ -98,12 +105,14 @@ class ReviewApplicationPageView
                                       title: S.of(context).mobileNumber,
                                       details: "+962 79 332 8080",
                                     ),
-                                    SizedBox(height: 16),
-                                    Container(
-                                      height: 1,
-                                      color: AppColor.light_gray,
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 16.0),
+                                      child: Container(
+                                        height: 1,
+                                        color: AppColor.light_gray,
+                                      ),
                                     ),
-                                    SizedBox(height: 16),
                                     ReviewApplicationItem(
                                       title: S.of(context).residentCountry,
                                       details: "Jordan",
@@ -120,12 +129,14 @@ class ReviewApplicationPageView
                                       title: S.of(context).buildingNameNo,
                                       details: "W Amman",
                                     ),
-                                    SizedBox(height: 16),
-                                    Container(
-                                      height: 1,
-                                      color: AppColor.light_gray,
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 16.0),
+                                      child: Container(
+                                        height: 1,
+                                        color: AppColor.light_gray,
+                                      ),
                                     ),
-                                    SizedBox(height: 16),
                                     ReviewApplicationItem(
                                       title: S.of(context).spouseName,
                                       details: "Ameena Rasheed",
@@ -146,12 +157,14 @@ class ReviewApplicationPageView
                                       title: S.of(context).personsRole,
                                       details: "Minister of Health",
                                     ),
-                                    SizedBox(height: 16),
-                                    Container(
-                                      height: 1,
-                                      color: AppColor.light_gray,
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 16.0),
+                                      child: Container(
+                                        height: 1,
+                                        color: AppColor.light_gray,
+                                      ),
                                     ),
-                                    SizedBox(height: 8),
                                     ReviewApplicationItem(
                                       title:
                                           S.of(context).employmentStatusSmall,

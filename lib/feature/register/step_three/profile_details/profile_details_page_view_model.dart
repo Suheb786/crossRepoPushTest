@@ -33,8 +33,6 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
   bool isPerson = false;
   bool isRelative = false;
 
-  List<String> natureNeedsList = ["Communication", "Movement", "Self-care"];
-
   PublishSubject<ProfileDetailsUseCaseParams> _profileDetailsRequest =
       PublishSubject();
 
@@ -42,6 +40,23 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get profileDetailsStream =>
       _profileDetailsResponse.stream;
+
+  PublishSubject<bool> _animatedSubject = PublishSubject();
+
+  Stream<bool> get animatedStream => _animatedSubject.stream;
+
+  void updateAnimatedValue(bool value) {
+    _animatedSubject.add(value);
+  }
+
+  ///nature of special needs text field value
+  void updateNatureOfNeeds(String value) {
+    natureController.text = value;
+  }
+
+  void updateRelationShipWithPEP(String value) {
+    relationShipController.text = value;
+  }
 
   ProfileDetailsPageViewModel(this._profileUseCase) {
     _profileDetailsRequest.listen((value) {

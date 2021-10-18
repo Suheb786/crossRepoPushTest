@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/step_four/account_ready/account_ready_model.dart';
@@ -8,6 +9,7 @@ import 'package:neo_bank/feature/register/step_four/review_application/review_ap
 import 'package:neo_bank/feature/register/step_four/upload_documents/upload_documents_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/confirm_detail/confirm_detail_model.dart';
 import 'package:neo_bank/feature/register/step_three/employment_status/employment_status_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/enter_address/enter_address_model.dart';
 import 'package:neo_bank/feature/register/step_three/id_verification_info/id_verification_info_model.dart';
 import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page_view_model.dart';
@@ -19,6 +21,9 @@ import 'package:neo_bank/feature/register/stepone/countryselection/country_selec
 import 'package:neo_bank/feature/register/stepone/createPassword/create_password_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/relationship_with_pep/relationship_with_pep_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog_view_model.dart';
@@ -183,6 +188,18 @@ final profileQ3ViewModelProvider =
   (ref) => ProfileItemViewModel(),
 );
 
+///employment status dialog view model provider
+final natureSpecialNeedsDialogViwModelProvider =
+    ChangeNotifierProvider.autoDispose<NatureSpecialNeedsDialogViewModel>(
+        (ref) => NatureSpecialNeedsDialogViewModel(
+            ref.read(natureOfSpecialNeedsUseCaseProvider)));
+
+///relationship with pep dialog view model provider
+final relationshipWithPEPDialogViwModelProvider =
+    ChangeNotifierProvider.autoDispose<RelationshipWithPEPDialogViewModel>(
+        (ref) => RelationshipWithPEPDialogViewModel(
+            ref.read(relationshipWithPEPUseCaseProvider)));
+
 ///step four page view model provider
 final registerStepFourViewModelProvider =
     ChangeNotifierProvider.autoDispose<RegisterStepFourViewModel>(
@@ -199,8 +216,9 @@ final reviewApplicationPageViewModelProvider =
 ///upload documents page
 final uploadDocumentsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<UploadDocumentsPageViewModel>(
-  (ref) =>
-      UploadDocumentsPageViewModel(ref.read(uploadDocumentsUseCaseProvider)),
+  (ref) => UploadDocumentsPageViewModel(
+      ref.read(sendDocumentsUseCaseUseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider)),
 );
 
 ///account ready page
