@@ -11,6 +11,7 @@ import 'package:neo_bank/feature/register/step_three/profile_details/profile_det
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/tax_report_information/tax_report_information_page.dart';
 import 'package:neo_bank/feature/register/step_three/taxation_details/taxation_details_page.dart';
+import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 
 class RegisterStepThreePageView
     extends BasePageViewWidget<RegisterStepThreeViewModel> {
@@ -34,17 +35,10 @@ class RegisterStepThreePageView
         itemCount: pages.length,
         carouselController: model.registrationStepThreePageController,
         itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
-            Opacity(
-          opacity: pageViewIndex == model.currentPage ? 1 : 0.4,
-          child: Transform.rotate(
-            angle: pageViewIndex == model.currentPage
-                ? 0
-                : pageViewIndex < model.currentPage
-                    ? -0.03491
-                    : 0.03491,
-            child: pages[itemIndex],
-          ),
-        ),
+            AppTiltCard(
+                pageViewIndex: pageViewIndex,
+                currentPage: model.currentPage,
+                child: pages[itemIndex]),
         options: CarouselOptions(
             height: double.maxFinite,
             pageSnapping: true,

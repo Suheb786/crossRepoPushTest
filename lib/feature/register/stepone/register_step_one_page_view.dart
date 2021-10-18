@@ -1,4 +1,3 @@
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,6 +8,7 @@ import 'package:neo_bank/feature/register/stepone/countryselection/country_selec
 import 'package:neo_bank/feature/register/stepone/createPassword/create_password_page.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_page.dart';
+import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 
 class RegisterStepOnePageView
     extends BasePageViewWidget<RegisterStepOneViewModel> {
@@ -28,19 +28,11 @@ class RegisterStepOnePageView
       child: CarouselSlider.builder(
         itemCount: pages.length,
         carouselController: model.pageController,
-        itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-          return Opacity(
-            opacity: pageViewIndex == model.currentPage ? 1 : 0.4,
-            child: Transform.rotate(
-              angle: pageViewIndex == model.currentPage
-                  ? 0
-                  : pageViewIndex < model.currentPage
-                      ? -0.03491
-                      : 0.03491,
-              child: pages[itemIndex],
-            ),
-          );
-        },
+        itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) =>
+            AppTiltCard(
+                pageViewIndex: pageViewIndex,
+                currentPage: model.currentPage,
+                child: pages[itemIndex]),
         options: CarouselOptions(
             height: double.maxFinite,
             pageSnapping: true,
