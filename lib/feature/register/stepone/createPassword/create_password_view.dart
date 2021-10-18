@@ -123,45 +123,55 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                           labelText:
                                               S.of(context).createPassword,
                                           obscureText: true,
-                                          hintText:
-                                              S.of(context).pleaseEnter,
+                                          hintText: S.of(context).pleaseEnter,
                                           inputType: TextInputType.text,
-                                          controller: model
-                                              .createPasswordController,
+                                          controller:
+                                              model.createPasswordController,
                                           onChanged: (value) =>
                                               model.validatePassword(),
+                                          suffixIcon: (isChecked, value) {
+                                            return InkWell(
+                                              onTap: () {
+                                                model.passwordKey.currentState!
+                                                        .secureText =
+                                                    !model
+                                                        .passwordKey
+                                                        .currentState!
+                                                        .secureText;
+                                              },
+                                              child: model.passwordKey
+                                                      .currentState!.secureText
+                                                  ? Image.asset(AssetUtils.eye)
+                                                  : Icon(Icons.person),
+                                            );
+                                          },
                                           labelIcon: () => Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 5.33),
-                                            child: AppSvg.asset(
-                                                AssetUtils.info,
-                                                height: 13.33,
-                                                width: 13.33),
+                                            child: AppSvg.asset(AssetUtils.info,
+                                                height: 13.33, width: 13.33),
                                           ),
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
                                             return Visibility(
                                               visible: !isValid,
                                               child: Padding(
-                                                padding:
-                                                    EdgeInsets.symmetric(
-                                                        horizontal: 16,
-                                                        vertical: 8),
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 16,
+                                                    vertical: 8),
                                                 child: Text(
                                                   ErrorParser
                                                       .getLocalisedStringError(
-                                                          error: data!
-                                                              .appError,
-                                                          localisedHelper: S
-                                                              .of(context)),
-                                                  textAlign:
-                                                      TextAlign.start,
+                                                          error: data!.appError,
+                                                          localisedHelper:
+                                                              S.of(context)),
+                                                  textAlign: TextAlign.start,
                                                   style: TextStyle(
                                                       fontSize: 12,
                                                       fontWeight:
                                                           FontWeight.w600,
-                                                      color: AppColor
-                                                          .vivid_red),
+                                                      color:
+                                                          AppColor.vivid_red),
                                                 ),
                                               ),
                                             );
@@ -174,46 +184,43 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                           key: model.confirmPasswordKey,
                                           labelText:
                                               S.of(context).confirmPassword,
-                                          hintText:
-                                              S.of(context).pleaseEnter,
+                                          hintText: S.of(context).pleaseEnter,
                                           inputType: TextInputType.text,
                                           obscureText: true,
                                           onChanged: (value) =>
                                               model.validatePassword(),
-                                          controller: model
-                                              .confirmPasswordController,
+                                          controller:
+                                              model.confirmPasswordController,
+                                          suffixIcon: (isChecked, value) {
+                                            return Image.asset(AssetUtils.eye);
+                                          },
                                           labelIcon: () => Padding(
                                             padding: const EdgeInsets.only(
                                                 left: 5.33),
-                                            child: AppSvg.asset(
-                                                AssetUtils.info,
-                                                height: 13.33,
-                                                width: 13.33),
+                                            child: AppSvg.asset(AssetUtils.info,
+                                                height: 13.33, width: 13.33),
                                           ),
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
                                             return Visibility(
                                               visible: !isValid,
                                               child: Padding(
-                                                padding:
-                                                    EdgeInsets.symmetric(
-                                                        horizontal: 16,
-                                                        vertical: 8),
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 16,
+                                                    vertical: 8),
                                                 child: Text(
                                                   ErrorParser
                                                       .getLocalisedStringError(
-                                                          error: data!
-                                                              .appError,
-                                                          localisedHelper: S
-                                                              .of(context)),
-                                                  textAlign:
-                                                      TextAlign.start,
+                                                          error: data!.appError,
+                                                          localisedHelper:
+                                                              S.of(context)),
+                                                  textAlign: TextAlign.start,
                                                   style: TextStyle(
                                                       fontSize: 12,
                                                       fontWeight:
                                                           FontWeight.w600,
-                                                      color: AppColor
-                                                          .vivid_red),
+                                                      color:
+                                                          AppColor.vivid_red),
                                                 ),
                                               ),
                                             );
@@ -223,7 +230,8 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                           height: 67,
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.only(left:45, right:45),
+                                          padding: EdgeInsets.only(
+                                              left: 45, right: 45),
                                           child: AppStreamBuilder<bool>(
                                               stream: model.showButtonStream,
                                               initialData: false,
@@ -231,7 +239,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                 if (isValid!) {
                                                   return AnimatedButton(
                                                       buttonText:
-                                                      "Swipe to proceed");
+                                                          "Swipe to proceed");
                                                 } else {
                                                   return Container();
                                                 }
