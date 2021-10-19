@@ -72,6 +72,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("to card personalization"),
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
+        "city": MessageLookupByLibrary.simpleMessage("CITY"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
         "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage(
@@ -84,6 +85,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Confirm to the terms and conditions."),
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
             "Please swipe through and confirm your information"),
+        "country": MessageLookupByLibrary.simpleMessage("COUNTRY"),
         "countryOfCitizenship":
             MessageLookupByLibrary.simpleMessage("COUNTRY OF CITIZENSHIP"),
         "createPassword":
@@ -203,6 +205,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Annual income"),
         "invalidCitizenship":
             MessageLookupByLibrary.simpleMessage("Enter citizenship"),
+        "invalidCity": MessageLookupByLibrary.simpleMessage("Select City"),
+        "invalidCountry":
+            MessageLookupByLibrary.simpleMessage("Select Country"),
         "invalidDOB":
             MessageLookupByLibrary.simpleMessage("Enter Date Of Birth "),
         "invalidDeclarationSelection": MessageLookupByLibrary.simpleMessage(
@@ -234,10 +239,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter name as per tax return"),
         "invalidOccupation":
             MessageLookupByLibrary.simpleMessage("Enter Occupation"),
+        "invalidPermanentAddress": MessageLookupByLibrary.simpleMessage(
+            "Enter Permanent Residence Address"),
+        "invalidPostCode":
+            MessageLookupByLibrary.simpleMessage("Select Post Code"),
         "invalidPurposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage(
             "Select purpose of account opening"),
         "invalidReasonUnavailability": MessageLookupByLibrary.simpleMessage(
             "Select Reason of Unavailability"),
+        "invalidState": MessageLookupByLibrary.simpleMessage("Select State"),
         "invalidTaxCountry":
             MessageLookupByLibrary.simpleMessage("Select tax country"),
         "invalidTinNumber":
@@ -247,6 +257,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidTypesOfTransaction": MessageLookupByLibrary.simpleMessage(
             "Please Enter transaction type"),
         "jobAndIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
+        "mailingAddressDifferentFromResidence":
+            MessageLookupByLibrary.simpleMessage(
+                "Mailing address different from residence address?"),
         "mainAnnualIncome":
             MessageLookupByLibrary.simpleMessage("MAIN ANNUAL INCOME"),
         "mainSourceIncome":
@@ -282,6 +295,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("or you can upload"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Password did not match"),
+        "permanentResidentAddressLine": MessageLookupByLibrary.simpleMessage(
+            "Permanent residence address Line"),
         "personName": MessageLookupByLibrary.simpleMessage("PERSON’S NAME"),
         "personRole": MessageLookupByLibrary.simpleMessage("PERSON’S ROLE"),
         "personalDetails":
@@ -289,7 +304,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "personsName": MessageLookupByLibrary.simpleMessage("Person’s Name"),
         "personsRole": MessageLookupByLibrary.simpleMessage("Person’s Role"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
+        "pleaseProvideInformationIfAppliesToYou":
+            MessageLookupByLibrary.simpleMessage(
+                "Please provide information below, if applies to you"),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
+        "postCode": MessageLookupByLibrary.simpleMessage("POST CODE"),
         "profileDetailsQ1":
             MessageLookupByLibrary.simpleMessage("Are you married?"),
         "profileDetailsQ2": MessageLookupByLibrary.simpleMessage(
@@ -338,6 +357,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hello! Which country\nare you from?"),
         "spouseName": MessageLookupByLibrary.simpleMessage("Spouse Name"),
         "spouseNameCaps": MessageLookupByLibrary.simpleMessage("SPOUSE NAME"),
+        "state": MessageLookupByLibrary.simpleMessage("STATE"),
         "storage": MessageLookupByLibrary.simpleMessage("Storage"),
         "streetAddress": MessageLookupByLibrary.simpleMessage("STREET ADDRESS"),
         "streetAddressHint":

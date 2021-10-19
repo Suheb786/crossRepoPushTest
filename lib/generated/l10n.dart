@@ -2119,6 +2119,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Please provide information below, if applies to you`
+  String get pleaseProvideInformationIfAppliesToYou {
+    return Intl.message(
+      'Please provide information below, if applies to you',
+      name: 'pleaseProvideInformationIfAppliesToYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent residence address Line`
+  String get permanentResidentAddressLine {
+    return Intl.message(
+      'Permanent residence address Line',
+      name: 'permanentResidentAddressLine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `STATE`
+  String get state {
+    return Intl.message(
+      'STATE',
+      name: 'state',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CITY`
+  String get city {
+    return Intl.message(
+      'CITY',
+      name: 'city',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `COUNTRY`
+  String get country {
+    return Intl.message(
+      'COUNTRY',
+      name: 'country',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `POST CODE`
+  String get postCode {
+    return Intl.message(
+      'POST CODE',
+      name: 'postCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mailing address different from residence address?`
+  String get mailingAddressDifferentFromResidence {
+    return Intl.message(
+      'Mailing address different from residence address?',
+      name: 'mailingAddressDifferentFromResidence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Permanent Residence Address`
+  String get invalidPermanentAddress {
+    return Intl.message(
+      'Enter Permanent Residence Address',
+      name: 'invalidPermanentAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Country`
+  String get invalidCountry {
+    return Intl.message(
+      'Select Country',
+      name: 'invalidCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select State`
+  String get invalidState {
+    return Intl.message(
+      'Select State',
+      name: 'invalidState',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select City`
+  String get invalidCity {
+    return Intl.message(
+      'Select City',
+      name: 'invalidCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Post Code`
+  String get invalidPostCode {
+    return Intl.message(
+      'Select Post Code',
+      name: 'invalidPostCode',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

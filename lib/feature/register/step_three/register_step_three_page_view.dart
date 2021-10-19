@@ -15,6 +15,8 @@ import 'package:neo_bank/feature/register/step_three/tax_report_information/tax_
 import 'package:neo_bank/feature/register/step_three/taxation_details/taxation_details_page.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 
+import 'fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page.dart';
+
 class RegisterStepThreePageView
     extends BasePageViewWidget<RegisterStepThreeViewModel> {
   RegisterStepThreePageView(ProviderBase model) : super(model);
@@ -28,6 +30,7 @@ class RegisterStepThreePageView
     PurposeOfAccountOpeningPage(),
     TaxationDetailsPage(),
     FatcaUSRelevantW8Page(),
+    FatcaUSRelevantW8AddressDetailsPage(),
     TaxReportInformationPage(),
   ];
 

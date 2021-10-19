@@ -209,5 +209,18 @@
   "uploadDocumentsSmall": "Upload Document",
   "invalidNameAsPerTaxReturn": "Enter name as per tax return",
   "invalidDOB": "Enter Date Of Birth ",
-  "invalidCitizenship": "Enter citizenship"
+  "invalidCitizenship": "Enter citizenship",
+  "pleaseProvideInformationIfAppliesToYou": "Please provide information below, if applies to you",
+  "permanentResidentAddressLine": "Permanent residence address Line",
+  "state": "STATE",
+  "city": "CITY",
+  "country": "COUNTRY",
+  "postCode": "POST CODE",
+  "mailingAddressDifferentFromResidence": "Mailing address different from residence address?",
+  "invalidPermanentAddress": "Enter Permanent Residence Address",
+  "invalidCountry": "Select Country",
+  "invalidState": "Select State",
+  "invalidCity": "Select City",
+  "invalidPostCode": "Select Post Code"
+
 }

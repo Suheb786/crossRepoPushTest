@@ -122,6 +122,16 @@ class ErrorParser {
         return localisedHelper.invalidDOB;
       case ErrorType.INVALID_CITIZENSHIP:
         return localisedHelper.invalidCitizenship;
+      case ErrorType.INVALID_PERMANENT_ADDRESS_LINE:
+        return localisedHelper.invalidPermanentAddress;
+      case ErrorType.INVALID_COUNTRY:
+        return localisedHelper.invalidCountry;
+      case ErrorType.INVALID_STATE:
+        return localisedHelper.invalidState;
+      case ErrorType.INVALID_CITY:
+        return localisedHelper.invalidCity;
+      case ErrorType.INVALID_POSTCODE:
+        return localisedHelper.invalidPostCode;
 
       default:
         return "";

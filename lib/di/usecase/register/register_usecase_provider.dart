@@ -1,16 +1,16 @@
 import 'package:data/di/repository_module.dart';
+import 'package:domain/usecase/register/fatca_us_relevant_w8_address_details_usecase.dart';
+import 'package:domain/usecase/register/fatca_us_relevant_w8_useCase.dart';
+import 'package:domain/usecase/register/get_additional_income_source_usecase.dart';
 import 'package:domain/usecase/register/get_occupation_list_usecase.dart';
 import 'package:domain/usecase/register/get_purpose_of_account_opening_usecase.dart';
-import 'package:domain/usecase/register/get_additional_income_source_usecase.dart';
 import 'package:domain/usecase/register/job_and_income_usecase.dart';
-import 'package:domain/usecase/register/taxation_details_usecase.dart';
-import 'package:domain/usecase/register/tax_report_information_usecase.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:domain/usecase/register/nature_of_special_needs_usecase.dart';
-import 'package:domain/usecase/register/relationship_with_pep_usecase.dart';
 import 'package:domain/usecase/register/purpose_of_account_opening_usecase.dart';
-import 'package:domain/usecase/register/fatca_and_pep_details_usecase.dart';
-import 'package:domain/usecase/register/fatca_us_relevant_w8_useCase.dart';
+import 'package:domain/usecase/register/relationship_with_pep_usecase.dart';
+import 'package:domain/usecase/register/tax_report_information_usecase.dart';
+import 'package:domain/usecase/register/taxation_details_usecase.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[GetOccupationUseCase] provider
 final getOccupationUseCaseProvider = Provider.autoDispose<GetOccupationUseCase>(
@@ -63,12 +63,12 @@ final purposeOfAccountsOpeningUseCaseProvider =
     Provider.autoDispose<PurposeOfAccountOpeningUseCase>(
         (ref) => PurposeOfAccountOpeningUseCase());
 
-///[FatcaAndPEPDetailsUseCase] provider
-final fatcaAndPEPDetailsUseCaseProvider =
-    Provider.autoDispose<FatcaAndPEPDetailsUseCase>(
-        (ref) => FatcaAndPEPDetailsUseCase());
-
-///[FatcaAndPEPDetailsUseCase] provider
+///[FatcaUSRelevantW8UseCase] provider
 final fatcaUSRelevantW8UseCaseProvider =
     Provider.autoDispose<FatcaUSRelevantW8UseCase>(
         (ref) => FatcaUSRelevantW8UseCase());
+
+///[FatcaUSRelevantW8AddressDetailsUseCase] provider
+final fatcaUSRelevantW8AddressDetailsUseCaseProvider =
+    Provider.autoDispose<FatcaUSRelevantW8AddressDetailsUseCase>(
+        (ref) => FatcaUSRelevantW8AddressDetailsUseCase());
