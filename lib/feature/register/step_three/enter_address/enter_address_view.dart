@@ -176,6 +176,8 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                           key: model.homeAddressrKey,
                                           onChanged: (value) =>
                                               model.validateAddress(),
+                                          suffixIcon: (isValid, value) =>
+                                              Image.asset(AssetUtils.location),
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
                                             return Visibility(

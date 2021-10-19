@@ -9,6 +9,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_one/create_password_info_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -115,138 +116,184 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                         begin: Alignment.bottomCenter,
                                         end: Alignment.topCenter),
                                   ),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        AppTextField(
-                                          key: model.passwordKey,
-                                          labelText:
-                                              S.of(context).createPassword,
-                                          obscureText: true,
-                                          hintText: S.of(context).pleaseEnter,
-                                          inputType: TextInputType.text,
-                                          controller:
-                                              model.createPasswordController,
-                                          onChanged: (value) =>
-                                              model.validatePassword(),
-                                          suffixIcon: (isChecked, value) {
-                                            return InkWell(
-                                              onTap: () {
-                                                model.passwordKey.currentState!
-                                                        .secureText =
-                                                    !model
-                                                        .passwordKey
-                                                        .currentState!
-                                                        .secureText;
+                                  child: Stack(
+                                    children: [
+                                      SingleChildScrollView(
+                                        child: Column(
+                                          children: [
+                                            AppTextField(
+                                              key: model.passwordKey,
+                                              labelText:
+                                                  S.of(context).createPassword,
+                                              obscureText: true,
+                                              hintText:
+                                                  S.of(context).pleaseEnter,
+                                              inputType: TextInputType.text,
+                                              controller: model
+                                                  .createPasswordController,
+                                              onChanged: (value) =>
+                                                  model.validatePassword(),
+                                              suffixIcon: (isChecked, value) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    model
+                                                            .passwordKey
+                                                            .currentState!
+                                                            .secureText =
+                                                        !model
+                                                            .passwordKey
+                                                            .currentState!
+                                                            .secureText;
+                                                  },
+                                                  child: model
+                                                          .passwordKey
+                                                          .currentState!
+                                                          .secureText
+                                                      ? Image.asset(
+                                                          AssetUtils.eye)
+                                                      : Icon(
+                                                          Icons.visibility_off,
+                                                          color: AppColor
+                                                              .very_light_violet,
+                                                        ),
+                                                );
                                               },
-                                              child: model.passwordKey
-                                                      .currentState!.secureText
-                                                  ? Image.asset(AssetUtils.eye)
-                                                  : Icon(Icons.person),
-                                            );
-                                          },
-                                          labelIcon: () => Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5.33),
-                                            child: AppSvg.asset(AssetUtils.info,
-                                                height: 13.33, width: 13.33),
-                                          ),
-                                          textHintWidget:
-                                              (hasFocus, isValid, value) {
-                                            return Visibility(
-                                              visible: !isValid,
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 16,
-                                                    vertical: 8),
-                                                child: Text(
-                                                  ErrorParser
-                                                      .getLocalisedStringError(
-                                                          error: data!.appError,
-                                                          localisedHelper:
-                                                              S.of(context)),
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color:
-                                                          AppColor.vivid_red),
+                                              labelIcon: () => Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 5.33),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    CreatePasswordInfoDialog
+                                                        .show(context);
+                                                  },
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.info,
+                                                      height: 13.33,
+                                                      width: 13.33),
                                                 ),
                                               ),
-                                            );
-                                          },
+                                              textHintWidget:
+                                                  (hasFocus, isValid, value) {
+                                                return Visibility(
+                                                  visible: !isValid,
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 16,
+                                                            vertical: 8),
+                                                    child: Text(
+                                                      ErrorParser
+                                                          .getLocalisedStringError(
+                                                              error: data!
+                                                                  .appError,
+                                                              localisedHelper: S
+                                                                  .of(context)),
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: TextStyle(
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: AppColor
+                                                              .vivid_red),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 16,
+                                            ),
+                                            AppTextField(
+                                              key: model.confirmPasswordKey,
+                                              labelText:
+                                                  S.of(context).confirmPassword,
+                                              hintText:
+                                                  S.of(context).pleaseEnter,
+                                              inputType: TextInputType.text,
+                                              obscureText: true,
+                                              onChanged: (value) =>
+                                                  model.validatePassword(),
+                                              controller: model
+                                                  .confirmPasswordController,
+                                              suffixIcon: (isChecked, value) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    model
+                                                            .confirmPasswordKey
+                                                            .currentState!
+                                                            .secureText =
+                                                        !model
+                                                            .confirmPasswordKey
+                                                            .currentState!
+                                                            .secureText;
+                                                  },
+                                                  child: model
+                                                          .confirmPasswordKey
+                                                          .currentState!
+                                                          .secureText
+                                                      ? Image.asset(
+                                                          AssetUtils.eye)
+                                                      : Icon(
+                                                          Icons.visibility_off,
+                                                          color: AppColor
+                                                              .very_light_violet,
+                                                        ),
+                                                );
+                                              },
+                                              textHintWidget:
+                                                  (hasFocus, isValid, value) {
+                                                return Visibility(
+                                                  visible: !isValid,
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 16,
+                                                            vertical: 8),
+                                                    child: Text(
+                                                      ErrorParser
+                                                          .getLocalisedStringError(
+                                                              error: data!
+                                                                  .appError,
+                                                              localisedHelper: S
+                                                                  .of(context)),
+                                                      textAlign:
+                                                          TextAlign.start,
+                                                      style: TextStyle(
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: AppColor
+                                                              .vivid_red),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 67,
+                                            ),
+                                          ],
                                         ),
-                                        SizedBox(
-                                          height: 16,
-                                        ),
-                                        AppTextField(
-                                          key: model.confirmPasswordKey,
-                                          labelText:
-                                              S.of(context).confirmPassword,
-                                          hintText: S.of(context).pleaseEnter,
-                                          inputType: TextInputType.text,
-                                          obscureText: true,
-                                          onChanged: (value) =>
-                                              model.validatePassword(),
-                                          controller:
-                                              model.confirmPasswordController,
-                                          suffixIcon: (isChecked, value) {
-                                            return Image.asset(AssetUtils.eye);
-                                          },
-                                          labelIcon: () => Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5.33),
-                                            child: AppSvg.asset(AssetUtils.info,
-                                                height: 13.33, width: 13.33),
-                                          ),
-                                          textHintWidget:
-                                              (hasFocus, isValid, value) {
-                                            return Visibility(
-                                              visible: !isValid,
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 16,
-                                                    vertical: 8),
-                                                child: Text(
-                                                  ErrorParser
-                                                      .getLocalisedStringError(
-                                                          error: data!.appError,
-                                                          localisedHelper:
-                                                              S.of(context)),
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color:
-                                                          AppColor.vivid_red),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 67,
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 45, right: 45),
-                                          child: AppStreamBuilder<bool>(
-                                              stream: model.showButtonStream,
-                                              initialData: false,
-                                              dataBuilder: (context, isValid) {
-                                                if (isValid!) {
-                                                  return AnimatedButton(
-                                                      buttonText:
-                                                          "Swipe to proceed");
-                                                } else {
-                                                  return Container();
-                                                }
-                                              }),
-                                        )
-                                      ],
-                                    ),
+                                      ),
+                                      Positioned(
+                                        left: 45,
+                                        right: 45,
+                                        bottom: 0,
+                                        child: AppStreamBuilder<bool>(
+                                            stream: model.showButtonStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              if (isValid!) {
+                                                return AnimatedButton(
+                                                    buttonText:
+                                                        "Swipe to proceed");
+                                              } else {
+                                                return Container();
+                                              }
+                                            }),
+                                      ),
+                                    ],
                                   )),
                             ),
                           );

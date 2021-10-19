@@ -100,6 +100,8 @@ class ErrorParser {
         return localisedHelper.emptyExpiryDate;
       case ErrorType.EMPTY_GENDER:
         return localisedHelper.emptyGender;
+      case ErrorType.EMPTY_MOTHER_NAME:
+        return localisedHelper.emptyMotherName;
       case ErrorType.EMPTY_RESIDENT_COUNTRY:
         return localisedHelper.emptyResidentCountry;
       case ErrorType.EMPTY_HOME_ADDRESS:
