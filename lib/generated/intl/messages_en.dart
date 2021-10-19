@@ -114,11 +114,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyExpiryDate": MessageLookupByLibrary.simpleMessage(
             "Expiry date field cannot be empty"),
         "emptyGender": MessageLookupByLibrary.simpleMessage(
-            "Gender filed cannot be empty"),
+            "Gender field cannot be empty"),
         "emptyHomeAddress": MessageLookupByLibrary.simpleMessage(
             "Home address field cannot be empty"),
         "emptyIdNumber": MessageLookupByLibrary.simpleMessage(
             "Id Number field cannot be empty"),
+        "emptyMotherName": MessageLookupByLibrary.simpleMessage(
+            "Mother\'s name field cannot be empty"),
         "emptyName":
             MessageLookupByLibrary.simpleMessage("Name field cannot be empty"),
         "emptyNationality": MessageLookupByLibrary.simpleMessage(
@@ -219,6 +221,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
         "monthlyIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Monthly Income"),
+        "motherName": MessageLookupByLibrary.simpleMessage("MOTHER’S NAME"),
+        "motherNameHint":
+            MessageLookupByLibrary.simpleMessage("Please enter mother\'s name"),
         "name": MessageLookupByLibrary.simpleMessage("NAME AS PER ID"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Please Enter Name"),
         "nationality": MessageLookupByLibrary.simpleMessage("NATIONALITY"),
@@ -235,6 +240,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Once fit, your ID will be scanned automatically"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
+        "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
+            "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
+        "passwordDialogHeader":
+            MessageLookupByLibrary.simpleMessage("Create Password"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Password did not match"),
         "personName": MessageLookupByLibrary.simpleMessage("PERSON’S NAME"),

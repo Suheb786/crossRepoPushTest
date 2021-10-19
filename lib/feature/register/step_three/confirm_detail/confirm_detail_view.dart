@@ -62,6 +62,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                             model.nationalityKey.currentState!.isValid = true;
                             model.expiryDateKey.currentState!.isValid = true;
                             model.genderKey.currentState!.isValid = true;
+                            model.motherNameKey.currentState!.isValid = true;
                             ProviderScope.containerOf(context)
                                 .read(registerStepThreeViewModelProvider)
                                 .registrationStepThreePageController
@@ -85,6 +86,9 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                             } else if (data.appError!.type ==
                                 ErrorType.EMPTY_EXPIRY_DATE) {
                               model.expiryDateKey.currentState!.isValid = false;
+                            } else if (data.appError!.type ==
+                                ErrorType.EMPTY_MOTHER_NAME) {
+                              model.motherNameKey.currentState!.isValid = false;
                             } else {
                               model.genderKey.currentState!.isValid = false;
                             }
@@ -300,6 +304,40 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         inputType: TextInputType.text,
                                         controller: model.genderController,
                                         key: model.genderKey,
+                                        onChanged: (value) =>
+                                            model.validateDetails(),
+                                        textHintWidget:
+                                            (hasFocus, isValid, value) {
+                                          return Visibility(
+                                            visible: !isValid,
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 16, vertical: 8),
+                                              child: Text(
+                                                ErrorParser
+                                                    .getLocalisedStringError(
+                                                        error: data!.appError,
+                                                        localisedHelper:
+                                                            S.of(context)),
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: AppColor.vivid_red),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                      AppTextField(
+                                        labelText: S.of(context).motherName,
+                                        hintText: S.of(context).motherNameHint,
+                                        inputType: TextInputType.text,
+                                        controller: model.motherNameController,
+                                        key: model.motherNameKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
                                         textHintWidget:

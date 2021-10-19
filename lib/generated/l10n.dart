@@ -1570,11 +1570,21 @@ class S {
     );
   }
 
-  /// `Gender filed cannot be empty`
+  /// `Gender field cannot be empty`
   String get emptyGender {
     return Intl.message(
-      'Gender filed cannot be empty',
+      'Gender field cannot be empty',
       name: 'emptyGender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mother's name field cannot be empty`
+  String get emptyMotherName {
+    return Intl.message(
+      'Mother\'s name field cannot be empty',
+      name: 'emptyMotherName',
       desc: '',
       args: [],
     );
@@ -1795,6 +1805,46 @@ class S {
     return Intl.message(
       'Enter reason for unavailability',
       name: 'invalidExplanationForUnavailability',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create Password`
+  String get passwordDialogHeader {
+    return Intl.message(
+      'Create Password',
+      name: 'passwordDialogHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol.`
+  String get passwordDialogContent {
+    return Intl.message(
+      'Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol.',
+      name: 'passwordDialogContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MOTHER’S NAME`
+  String get motherName {
+    return Intl.message(
+      'MOTHER’S NAME',
+      name: 'motherName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter mother's name`
+  String get motherNameHint {
+    return Intl.message(
+      'Please enter mother\'s name',
+      name: 'motherNameHint',
       desc: '',
       args: [],
     );

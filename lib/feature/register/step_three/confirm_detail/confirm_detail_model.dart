@@ -16,6 +16,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   TextEditingController nationalityController = new TextEditingController();
   TextEditingController expiryDateController = new TextEditingController();
   TextEditingController genderController = new TextEditingController();
+  TextEditingController motherNameController = new TextEditingController();
 
   final GlobalKey<AppTextFieldState> nameKey = GlobalKey(debugLabel: "name");
 
@@ -32,6 +33,9 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   final GlobalKey<AppTextFieldState> genderKey =
       GlobalKey(debugLabel: "gender");
+
+  final GlobalKey<AppTextFieldState> motherNameKey =
+      GlobalKey(debugLabel: "mother's name");
 
   /// confirm detail request subject holder
   PublishSubject<ConfirmDetailUseCaseParams> _confirmDetailRequest =
@@ -70,7 +74,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         dateOfBirth: dobController.text,
         nationality: nationalityController.text,
         expiryDate: expiryDateController.text,
-        gender: genderController.text));
+        gender: genderController.text,
+        motherName: motherNameController.text));
   }
 
   void validateDetails() {
@@ -79,7 +84,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         dobController.text.isNotEmpty &&
         nationalityController.text.isNotEmpty &&
         expiryDateController.text.isNotEmpty &&
-        genderController.text.isNotEmpty) {
+        genderController.text.isNotEmpty &&
+        motherNameController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);
