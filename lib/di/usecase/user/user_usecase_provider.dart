@@ -5,6 +5,7 @@ import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/create_password_usecase.dart';
 import 'package:domain/usecase/user/enter_address_usecase.dart';
 import 'package:domain/usecase/user/fetch_countries_usecase.dart';
+import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
@@ -80,4 +81,12 @@ final enterAddressUseCaseProvider = Provider.autoDispose<EnterAddressUseCase>(
 ///[EnterAddressUseCase] provider
 final accountReadyUseCaseProvider = Provider.autoDispose<AccountReadyUseCase>(
   (ref) => AccountReadyUseCase(),
+);
+
+///[HomeAddressDialogUseCase] provider
+final homeAddressDialogUseCaseProvider =
+Provider.autoDispose<HomeAddressDialogUseCase>(
+        (ref) => HomeAddressDialogUseCase(
+        ref.read(homeAddressDialogRepositoryProvider),
+    ),
 );

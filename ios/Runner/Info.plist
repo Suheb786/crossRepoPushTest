@@ -48,6 +48,8 @@
     	</array>
     <key>NSPhotoLibraryUsageDescription</key>
     <string>App allows you to upload photos.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>The app needs location permission</string>
     <key>LSSupportsOpeningDocumentsInPlace</key>
     <true/>
 </dict>

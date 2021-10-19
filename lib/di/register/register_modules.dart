@@ -21,6 +21,7 @@ import 'package:neo_bank/feature/register/stepone/countryselection/country_selec
 import 'package:neo_bank/feature/register/stepone/createPassword/create_password_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/home_address_dialog/home_address_dialog_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/relationship_with_pep/relationship_with_pep_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
@@ -226,3 +227,8 @@ final accountReadyPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountReadyViewModel>(
   (ref) => AccountReadyViewModel(ref.read(accountReadyUseCaseProvider)),
 );
+
+///get home address dialog view model provider
+final homeAddressDialogViwModelProvider =
+ChangeNotifierProvider.autoDispose<HomeAddressDialogViewModel>((ref) =>
+    HomeAddressDialogViewModel(ref.read(homeAddressDialogUseCaseProvider)));

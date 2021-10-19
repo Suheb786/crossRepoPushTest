@@ -9,6 +9,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/home_address_dialog/home_address_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -177,7 +178,12 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                           onChanged: (value) =>
                                               model.validateAddress(),
                                           suffixIcon: (isValid, value) =>
-                                              Image.asset(AssetUtils.location),
+                                              InkWell(
+                                                  onTap: () =>
+                                                      HomeAddressDialog.show(
+                                                          context),
+                                                  child: Image.asset(
+                                                      AssetUtils.location)),
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
                                             return Visibility(
