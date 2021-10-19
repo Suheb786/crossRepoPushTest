@@ -2239,6 +2239,46 @@ class S {
       args: [],
     );
   }
+
+  /// `BUSINESS NAME (OPTIONAL)`
+  String get businessNameOptional {
+    return Intl.message(
+      'BUSINESS NAME (OPTIONAL)',
+      name: 'businessNameOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter if only the business name is different from the name above`
+  String get isBusinessNameDifferent {
+    return Intl.message(
+      'Please enter if only the business name is different from the name above',
+      name: 'isBusinessNameDifferent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `W9 Form`
+  String get w9Form {
+    return Intl.message(
+      'W9 Form',
+      name: 'w9Form',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you already have a physical pre-filled W9 form please upload below.`
+  String get w9FormDesc {
+    return Intl.message(
+      'If you already have a physical pre-filled W9 form please upload below.',
+      name: 'w9FormDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

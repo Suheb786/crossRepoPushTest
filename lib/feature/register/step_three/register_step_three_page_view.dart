@@ -6,6 +6,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_three/confirm_detail/confirm_detail_page.dart';
 import 'package:neo_bank/feature/register/step_three/enter_address/enter_address_page.dart';
 import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w8/fatca_us_relevant_w8_page.dart';
+import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w9/fatca_us_relevant_w9_page.dart';
 import 'package:neo_bank/feature/register/step_three/id_verification_info/id_verification_info_page.dart';
 import 'package:neo_bank/feature/register/step_three/job_and_income/job_and_income_page.dart';
 import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page.dart';
@@ -31,6 +32,7 @@ class RegisterStepThreePageView
     TaxationDetailsPage(),
     FatcaUSRelevantW8Page(),
     FatcaUSRelevantW8AddressDetailsPage(),
+    FatcaUSRelevantW9Page(),
     TaxReportInformationPage(),
   ];
 

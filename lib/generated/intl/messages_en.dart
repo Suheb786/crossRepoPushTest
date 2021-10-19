@@ -64,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("BUILDING NAME/NO"),
         "buildingNameOrNoHint": MessageLookupByLibrary.simpleMessage(
             "Please Enter Building Name/Number."),
+        "businessNameOptional":
+            MessageLookupByLibrary.simpleMessage("BUSINESS NAME (OPTIONAL)"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cardLater":
@@ -256,6 +258,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter total additional income"),
         "invalidTypesOfTransaction": MessageLookupByLibrary.simpleMessage(
             "Please Enter transaction type"),
+        "isBusinessNameDifferent": MessageLookupByLibrary.simpleMessage(
+            "Please enter if only the business name is different from the name above"),
         "jobAndIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
         "mailingAddressDifferentFromResidence":
             MessageLookupByLibrary.simpleMessage(
@@ -406,6 +410,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "w8Form": MessageLookupByLibrary.simpleMessage("W8 Form"),
         "w8FormDesc": MessageLookupByLibrary.simpleMessage(
             "If you already have a physical pre-filled W8 form please upload below."),
+        "w9Form": MessageLookupByLibrary.simpleMessage("W9 Form"),
+        "w9FormDesc": MessageLookupByLibrary.simpleMessage(
+            "If you already have a physical pre-filled W9 form please upload below."),
         "weNeedToMatchNamesONTaxReturn": MessageLookupByLibrary.simpleMessage(
             "We need to match the names on your tax return"),
         "welcomeToNeuBank":
