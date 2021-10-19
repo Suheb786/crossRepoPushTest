@@ -9,7 +9,10 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
+import 'package:neo_bank/ui/molecules/register/add_income_widget.dart';
+import 'package:neo_bank/ui/molecules/register/additional_income_source_widget.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -416,46 +419,76 @@ class JobAndIncomePageView
                                             height: 8,
                                           ),
                                           Visibility(
-                                              visible: isActive!,
-                                              child: InkWell(
-                                                child: Container(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 16),
-                                                  height: 50,
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8),
-                                                      border: Border.all(
-                                                          color: AppColor
-                                                              .soft_violet,
-                                                          width: 1)),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
+                                            visible: isActive!,
+                                            child: AppStreamBuilder<
+                                                List<
+                                                    AdditionalIncomeSourceParams>>(
+                                              stream: model
+                                                  .additionalSourceIncomeListStream,
+                                              initialData: [],
+                                              dataBuilder: (context, dataList) {
+                                                if (dataList!.isNotEmpty) {
+                                                  return ListView.builder(
+                                                      itemCount:
+                                                          dataList.length + 1,
+                                                      shrinkWrap: true,
+                                                      itemBuilder:
+                                                          (context, index) {
+                                                        if (index ==
+                                                            dataList.length) {
+                                                          return AddIncomeWidget(
+                                                            label: S
+                                                                .of(context)
+                                                                .addIncome,
+                                                            onTap: () {
+                                                              AdditionalIncomeSourceDialog
+                                                                  .show(context,
+                                                                      onDismissed:
+                                                                          () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              }, onSelected:
+                                                                          (value) {
+                                                                Navigator.pop(
+                                                                    context);
+                                                                model
+                                                                    .addAdditionalIncomeList(
+                                                                        value);
+                                                              });
+                                                            },
+                                                          );
+                                                        }
+                                                        return AdditionalIncomeSourceWidget(
+                                                          additionalIncomeSourceParams:
+                                                              dataList[index],
+                                                          onTap: () {
+                                                            model
+                                                                .removeAdditionalItem(
+                                                                    index);
+                                                          },
+                                                        );
+                                                      });
+                                                } else {
+                                                  return AddIncomeWidget(
+                                                    label:
                                                         S.of(context).addIncome,
-                                                        style: TextStyle(
-                                                            color: AppColor
-                                                                .vivid_orange,
-                                                            fontSize: 12,
-                                                            fontFamily:
-                                                                'Montserrat',
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
-                                                      ),
-                                                      Icon(
-                                                        Icons.add,
-                                                        size: 16,
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              ))
+                                                    onTap: () {
+                                                      AdditionalIncomeSourceDialog
+                                                          .show(context,
+                                                              onDismissed: () {
+                                                        Navigator.pop(context);
+                                                      }, onSelected: (value) {
+                                                        Navigator.pop(context);
+                                                        model
+                                                            .addAdditionalIncomeList(
+                                                                value);
+                                                      });
+                                                    },
+                                                  );
+                                                }
+                                              },
+                                            ),
+                                          )
                                         ],
                                       );
                                     },

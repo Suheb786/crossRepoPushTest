@@ -192,5 +192,7 @@
   "accountRelatedQuestions": "Almost there! We have few account related questions",
   "typeOfTransactions": "TYPE OF TRANSACTIONS",
   "expectedMonthlyTransactions": "EXPECTED MONTHLY TRANSACTIONS",
-  "expectedAnnualTransactions": "EXPECTED ANNUAL TRANSACTIONS"
+  "expectedAnnualTransactions": "EXPECTED ANNUAL TRANSACTIONS",
+  "additionalIncome": "Additional Income",
+  "totalAnnualIncome": "TOTAL ANNUAL INCOME"
 }

@@ -44,6 +44,7 @@ class AppTextField extends StatefulWidget {
   final Color? textFieldBorderColor;
   final Color? hintTextColor;
   final Color? textColor;
+  final Color? labelColor;
 
   AppTextField(
       {this.height,
@@ -87,6 +88,7 @@ class AppTextField extends StatefulWidget {
       this.textFieldFocusBorderColor,
       this.hintTextColor,
       this.textColor,
+      this.labelColor,
       this.textHintWidget})
       : super(key: key);
 
@@ -154,7 +156,8 @@ class AppTextFieldState extends State<AppTextField> {
                         TextSpan(
                             text: widget.labelText,
                             style: DefaultTextStyle.of(context).style.copyWith(
-                                  color: AppColor.light_grayish_violet,
+                                  color: widget.labelColor ??
+                                      AppColor.light_grayish_violet,
                                   fontSize: 10,
                                   fontFamily: "Montserrat",
                                 )),

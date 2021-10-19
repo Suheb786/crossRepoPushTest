@@ -1949,6 +1949,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Additional Income`
+  String get additionalIncome {
+    return Intl.message(
+      'Additional Income',
+      name: 'additionalIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TOTAL ANNUAL INCOME`
+  String get totalAnnualIncome {
+    return Intl.message(
+      'TOTAL ANNUAL INCOME',
+      name: 'totalAnnualIncome',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

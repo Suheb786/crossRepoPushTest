@@ -37,6 +37,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
         "additionIncomeSource":
             MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
+        "additionalIncome":
+            MessageLookupByLibrary.simpleMessage("Additional Income"),
         "additionalSourceIncome":
             MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
         "additionalSourceOfIncome":
@@ -351,6 +353,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),
         "totalAdditionalIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Total Additional Income"),
+        "totalAnnualIncome":
+            MessageLookupByLibrary.simpleMessage("TOTAL ANNUAL INCOME"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),

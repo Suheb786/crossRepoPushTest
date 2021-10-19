@@ -1,6 +1,7 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -78,6 +79,17 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     _switchSubject.safeAdd(value);
   }
 
+  List<AdditionalIncomeSourceParams> additionalSourceIncome = [];
+
+  ///additional income source list holder
+  final BehaviorSubject<List<AdditionalIncomeSourceParams>>
+      _additionalIncomeSourceSubject = BehaviorSubject.seeded([]);
+
+  ///additional income source response stream
+  Stream<List<AdditionalIncomeSourceParams>>
+      get additionalSourceIncomeListStream =>
+          _additionalIncomeSourceSubject.stream;
+
   bool isValid() {
     bool valid = false;
     if (occupationController.text.isNotEmpty &&
@@ -134,6 +146,18 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     }
   }
 
+  ///add items to list
+  void addAdditionalIncomeList(AdditionalIncomeSourceParams value) {
+    additionalSourceIncome.add(value);
+    _additionalIncomeSourceSubject.safeAdd(additionalSourceIncome);
+  }
+
+  ///remove item from list
+  void removeAdditionalItem(int index) {
+    additionalSourceIncome.removeAt(index);
+    _additionalIncomeSourceSubject.safeAdd(additionalSourceIncome);
+  }
+
   void validateJobAndIncomeDetails() {
     _jobAndIncomeRequest.safeAdd(JobAndIncomeUseCaseParams(
       annualIncome: annualIncomeController.text,
@@ -151,6 +175,7 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     _jobAndIncomeRequest.close();
     _jobAndIncomeResponse.close();
     _allFieldValidatorSubject.close();
+    _additionalIncomeSourceSubject.close();
     super.dispose();
   }
 }

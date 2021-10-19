@@ -20,6 +20,7 @@ class AssetUtils {
   static const String delete = svg + "delete.svg";
   static const String upload = svg + "upload.svg";
   static const String search = svg + "search.svg";
+  static const String radioButton = svg + "radio_button.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash_logo.png";

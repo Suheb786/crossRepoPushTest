@@ -1,4 +1,5 @@
 import 'package:data/source/register/register_datasource.dart';
+import 'package:domain/model/register/additional_income.dart';
 
 class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
   @override
@@ -35,12 +36,14 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
   }
 
   @override
-  Future<List<String>> getAdditionalIncomeSourceList() {
+  Future<List<AdditionalIncome>> getAdditionalIncomeSourceList() {
     return Future.value([
-      'Freelance Designer',
-      'Investment',
-      'Rental Income',
-      'Part Time Lecturer'
+      AdditionalIncome(type: 'Additional Salary'),
+      AdditionalIncome(type: 'Bonus, Incentive & Commission'),
+      AdditionalIncome(type: 'Rental Income'),
+      AdditionalIncome(type: 'Investments'),
+      AdditionalIncome(type: 'Own Business'),
+      AdditionalIncome(type: 'Other'),
     ]);
   }
 
