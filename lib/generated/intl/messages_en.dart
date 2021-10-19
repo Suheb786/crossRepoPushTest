@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than US or Jordan?"),
         "appName": MessageLookupByLibrary.simpleMessage("Neo Bank"),
+        "areYouFirstDegreeRelativePEP": MessageLookupByLibrary.simpleMessage(
+            "Are you or any first degree relatives a Political Exposed Person?"),
         "areYouUSCitizen":
             MessageLookupByLibrary.simpleMessage("Are you U.S. citizen?"),
         "areYouUSTaxResident":
@@ -82,10 +84,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Confirm to the terms and conditions."),
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
             "Please swipe through and confirm your information"),
+        "countryOfCitizenship":
+            MessageLookupByLibrary.simpleMessage("COUNTRY OF CITIZENSHIP"),
         "createPassword":
             MessageLookupByLibrary.simpleMessage("CREATE PASSWORD"),
         "createPasswordHeader": MessageLookupByLibrary.simpleMessage(
             "Next, let\'s create your\nlogin password"),
+        "dateOfBirth": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "doYouHaveAdditionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage(
                 "Do you have additional\nsource of income"),
@@ -169,6 +174,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "expiryDateHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Expiry Date"),
         "explainReason": MessageLookupByLibrary.simpleMessage("EXPLAIN REASON"),
+        "fatcaandPep": MessageLookupByLibrary.simpleMessage("FATCA & PEP"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
         "genderHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
@@ -195,6 +201,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select Additional Source Income"),
         "invalidAnnualIncome":
             MessageLookupByLibrary.simpleMessage("Enter Annual income"),
+        "invalidCitizenship":
+            MessageLookupByLibrary.simpleMessage("Enter citizenship"),
+        "invalidDOB":
+            MessageLookupByLibrary.simpleMessage("Enter Date Of Birth "),
+        "invalidDeclarationSelection": MessageLookupByLibrary.simpleMessage(
+            "Confirm to the terms and condition to proceed."),
         "invalidEmployerCity":
             MessageLookupByLibrary.simpleMessage("Enter employer city"),
         "invalidEmployerContact":
@@ -218,6 +230,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter source of income."),
         "invalidMonthlyIncome":
             MessageLookupByLibrary.simpleMessage("Enter monthly income"),
+        "invalidNameAsPerTaxReturn": MessageLookupByLibrary.simpleMessage(
+            "Enter name as per tax return"),
         "invalidOccupation":
             MessageLookupByLibrary.simpleMessage("Enter Occupation"),
         "invalidPurposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage(
@@ -245,6 +259,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "monthlyIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Monthly Income"),
         "name": MessageLookupByLibrary.simpleMessage("NAME AS PER ID"),
+        "nameAsPerIncomeTaxReturn": MessageLookupByLibrary.simpleMessage(
+            "NAME AS PER INCOME TAX RETURN"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Please Enter Name"),
         "nationality": MessageLookupByLibrary.simpleMessage("NATIONALITY"),
         "nationalityHint":
@@ -253,7 +269,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("NATURE OF SPECIAL NEEDS"),
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
-        "no": MessageLookupByLibrary.simpleMessage("No"),
+        "no": MessageLookupByLibrary.simpleMessage("NO"),
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("No matching country found"),
         "occupation": MessageLookupByLibrary.simpleMessage("OCCUPATION"),
@@ -262,6 +278,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Once fit, your ID will be scanned automatically"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
+        "orYouCanUpload":
+            MessageLookupByLibrary.simpleMessage("or you can upload"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Password did not match"),
         "personName": MessageLookupByLibrary.simpleMessage("PERSON’S NAME"),
@@ -338,6 +356,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "I confirm that my tax residency is accurate and agree to the Terms and Conditions of the bank."),
         "taxationDetailsDescription": MessageLookupByLibrary.simpleMessage(
             "By law, you are needed to declare your taxation details"),
+        "tellUsAboutImportantInformations":
+            MessageLookupByLibrary.simpleMessage(
+                "Next, please tell us about these important informations"),
         "tellUsAboutYourJob": MessageLookupByLibrary.simpleMessage(
             "Next, tell us about\nyour job"),
         "tellUsAboutYourProfile": MessageLookupByLibrary.simpleMessage(
@@ -360,6 +381,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "uploadDocuments":
             MessageLookupByLibrary.simpleMessage("UPLOAD DOCUMENTS"),
+        "uploadDocumentsSmall":
+            MessageLookupByLibrary.simpleMessage("Upload Document"),
+        "w8Form": MessageLookupByLibrary.simpleMessage("W8 Form"),
+        "w8FormDesc": MessageLookupByLibrary.simpleMessage(
+            "If you already have a physical pre-filled W8 form please upload below."),
+        "weNeedToMatchNamesONTaxReturn": MessageLookupByLibrary.simpleMessage(
+            "We need to match the names on your tax return"),
         "welcomeToNeuBank":
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank."),
         "wereBornInUS":

@@ -9,6 +9,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:domain/usecase/register/nature_of_special_needs_usecase.dart';
 import 'package:domain/usecase/register/relationship_with_pep_usecase.dart';
 import 'package:domain/usecase/register/purpose_of_account_opening_usecase.dart';
+import 'package:domain/usecase/register/fatca_and_pep_details_usecase.dart';
+import 'package:domain/usecase/register/fatca_us_relevant_w8_useCase.dart';
 
 ///[GetOccupationUseCase] provider
 final getOccupationUseCaseProvider = Provider.autoDispose<GetOccupationUseCase>(
@@ -60,3 +62,13 @@ final relationshipWithPEPUseCaseProvider =
 final purposeOfAccountsOpeningUseCaseProvider =
     Provider.autoDispose<PurposeOfAccountOpeningUseCase>(
         (ref) => PurposeOfAccountOpeningUseCase());
+
+///[FatcaAndPEPDetailsUseCase] provider
+final fatcaAndPEPDetailsUseCaseProvider =
+    Provider.autoDispose<FatcaAndPEPDetailsUseCase>(
+        (ref) => FatcaAndPEPDetailsUseCase());
+
+///[FatcaAndPEPDetailsUseCase] provider
+final fatcaUSRelevantW8UseCaseProvider =
+    Provider.autoDispose<FatcaUSRelevantW8UseCase>(
+        (ref) => FatcaUSRelevantW8UseCase());

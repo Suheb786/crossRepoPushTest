@@ -1470,10 +1470,10 @@ class S {
     );
   }
 
-  /// `No`
+  /// `NO`
   String get no {
     return Intl.message(
-      'No',
+      'NO',
       name: 'no',
       desc: '',
       args: [],
@@ -1965,6 +1965,156 @@ class S {
     return Intl.message(
       'TOTAL ANNUAL INCOME',
       name: 'totalAnnualIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FATCA & PEP`
+  String get fatcaandPep {
+    return Intl.message(
+      'FATCA & PEP',
+      name: 'fatcaandPep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next, please tell us about these important informations`
+  String get tellUsAboutImportantInformations {
+    return Intl.message(
+      'Next, please tell us about these important informations',
+      name: 'tellUsAboutImportantInformations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you or any first degree relatives a Political Exposed Person?`
+  String get areYouFirstDegreeRelativePEP {
+    return Intl.message(
+      'Are you or any first degree relatives a Political Exposed Person?',
+      name: 'areYouFirstDegreeRelativePEP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm to the terms and condition to proceed.`
+  String get invalidDeclarationSelection {
+    return Intl.message(
+      'Confirm to the terms and condition to proceed.',
+      name: 'invalidDeclarationSelection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We need to match the names on your tax return`
+  String get weNeedToMatchNamesONTaxReturn {
+    return Intl.message(
+      'We need to match the names on your tax return',
+      name: 'weNeedToMatchNamesONTaxReturn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NAME AS PER INCOME TAX RETURN`
+  String get nameAsPerIncomeTaxReturn {
+    return Intl.message(
+      'NAME AS PER INCOME TAX RETURN',
+      name: 'nameAsPerIncomeTaxReturn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DATE OF BIRTH`
+  String get dateOfBirth {
+    return Intl.message(
+      'DATE OF BIRTH',
+      name: 'dateOfBirth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `COUNTRY OF CITIZENSHIP`
+  String get countryOfCitizenship {
+    return Intl.message(
+      'COUNTRY OF CITIZENSHIP',
+      name: 'countryOfCitizenship',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or you can upload`
+  String get orYouCanUpload {
+    return Intl.message(
+      'or you can upload',
+      name: 'orYouCanUpload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `W8 Form`
+  String get w8Form {
+    return Intl.message(
+      'W8 Form',
+      name: 'w8Form',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you already have a physical pre-filled W8 form please upload below.`
+  String get w8FormDesc {
+    return Intl.message(
+      'If you already have a physical pre-filled W8 form please upload below.',
+      name: 'w8FormDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Document`
+  String get uploadDocumentsSmall {
+    return Intl.message(
+      'Upload Document',
+      name: 'uploadDocumentsSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter name as per tax return`
+  String get invalidNameAsPerTaxReturn {
+    return Intl.message(
+      'Enter name as per tax return',
+      name: 'invalidNameAsPerTaxReturn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Date Of Birth `
+  String get invalidDOB {
+    return Intl.message(
+      'Enter Date Of Birth ',
+      name: 'invalidDOB',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter citizenship`
+  String get invalidCitizenship {
+    return Intl.message(
+      'Enter citizenship',
+      name: 'invalidCitizenship',
       desc: '',
       args: [],
     );

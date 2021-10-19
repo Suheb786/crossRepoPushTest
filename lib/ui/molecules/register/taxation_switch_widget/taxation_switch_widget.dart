@@ -52,6 +52,7 @@ class TaxationSwitchWidget extends StatelessWidget {
                               fontSize: 14),
                         ),
                       ),
+                      SizedBox(width: 16,),
                       FlutterSwitch(
                         value: isActive!,
                         onToggle: (value) {

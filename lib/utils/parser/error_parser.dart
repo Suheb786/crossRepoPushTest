@@ -114,6 +114,14 @@ class ErrorParser {
         return localisedHelper.invalidExpectedMonthlyTransaction;
       case ErrorType.INVALID_TYPES_OF_TRANSACTION:
         return localisedHelper.invalidTypesOfTransaction;
+      case ErrorType.INVALID_DECLARATION_SELECTION:
+        return localisedHelper.invalidDeclarationSelection;
+      case ErrorType.INVALID_NAME_AS_PER_TAX_RETURN:
+        return localisedHelper.invalidNameAsPerTaxReturn;
+      case ErrorType.INVALID_DOB:
+        return localisedHelper.invalidDOB;
+      case ErrorType.INVALID_CITIZENSHIP:
+        return localisedHelper.invalidCitizenship;
 
       default:
         return "";

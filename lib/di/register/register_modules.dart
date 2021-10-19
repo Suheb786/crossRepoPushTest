@@ -8,6 +8,7 @@ import 'package:neo_bank/feature/register/step_four/register_step_four_page_view
 import 'package:neo_bank/feature/register/step_four/review_application/review_application_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/upload_documents/upload_documents_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/confirm_detail/confirm_detail_model.dart';
+import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w8/fatca_us_relevant_w8_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/job_and_income/job_and_income_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/enter_address/enter_address_model.dart';
@@ -147,6 +148,11 @@ final taxResidentOtherViewModelProvider =
   (ref) => TaxationSwitchWidgetViewModel(),
 );
 
+final areYouFirstDegreeRelativeViewModelProvider =
+    ChangeNotifierProvider.autoDispose<TaxationSwitchWidgetViewModel>(
+  (ref) => TaxationSwitchWidgetViewModel(),
+);
+
 ///tax report information page view model provider
 final taxReportInformationPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<TaxReportInformationPageViewModel>(
@@ -230,3 +236,11 @@ final purposeOfAccountOpeningViewModelProvider =
     ChangeNotifierProvider.autoDispose<PurposeOfAccountOpeningPageViewModel>(
         (ref) => PurposeOfAccountOpeningPageViewModel(
             ref.read(purposeOfAccountsOpeningUseCaseProvider)));
+
+///fatca us relevant w8 page view model provider
+final fatcaUSRelevantW8PageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<FatcaUSRelevantW8PageViewModel>(
+  (ref) => FatcaUSRelevantW8PageViewModel(
+      ref.read(fatcaUSRelevantW8UseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider)),
+);
