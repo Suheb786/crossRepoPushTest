@@ -322,6 +322,11 @@ class TaxationDetailsPageView
                                     dataBuilder: (context, isSelected) {
                                       return DeclarationWidget(
                                         isSelected: isSelected,
+                                        title1: S
+                                            .of(context)
+                                            .confirmThatTaxResidency,
+                                        title2: S.of(context).termAndCondition,
+                                        title3: S.of(context).ofTheBank,
                                         onTap: () {
                                           model.updateDeclarationSelection(
                                               !(isSelected!));

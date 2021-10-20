@@ -91,6 +91,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CONFIRM PASSWORD"),
         "confirmTermsCondError": MessageLookupByLibrary.simpleMessage(
             "Confirm to the terms and conditions."),
+        "confirmThatTaxResidency": MessageLookupByLibrary.simpleMessage(
+            "\'I confirm that my tax residency is accurate and agree to the "),
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
             "Please swipe through and confirm your information"),
         "country": MessageLookupByLibrary.simpleMessage("COUNTRY"),
@@ -101,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "createPasswordHeader": MessageLookupByLibrary.simpleMessage(
             "Next, let\'s create your\nlogin password"),
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
+        "declarationIsTrueAndCorrect": MessageLookupByLibrary.simpleMessage(
+            "declaration is true and correct."),
         "doYouHaveAdditionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage(
                 "Do you have additional\nsource of income"),
@@ -186,6 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "expiryDateHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Expiry Date"),
         "explainReason": MessageLookupByLibrary.simpleMessage("EXPLAIN REASON"),
+        "fatca": MessageLookupByLibrary.simpleMessage("FATCA "),
         "fatcaandPep": MessageLookupByLibrary.simpleMessage("FATCA & PEP"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
         "genderHint":
@@ -195,6 +200,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
         "homeAddressSmall":
             MessageLookupByLibrary.simpleMessage("Home Address"),
+        "iConfirmThatMy":
+            MessageLookupByLibrary.simpleMessage("I confirm that my "),
         "iHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("I have an account"),
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
@@ -258,9 +265,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select purpose of account opening"),
         "invalidReasonUnavailability": MessageLookupByLibrary.simpleMessage(
             "Select Reason of Unavailability"),
+        "invalidSocialSecurityNumber": MessageLookupByLibrary.simpleMessage(
+            "Enter social security number"),
         "invalidState": MessageLookupByLibrary.simpleMessage("Select State"),
         "invalidTaxCountry":
             MessageLookupByLibrary.simpleMessage("Select tax country"),
+        "invalidTaxPayer":
+            MessageLookupByLibrary.simpleMessage("Select Tax Payer"),
         "invalidTinNumber":
             MessageLookupByLibrary.simpleMessage("Enter correct tin number"),
         "invalidTotalAdditionalIncome": MessageLookupByLibrary.simpleMessage(
@@ -300,6 +311,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No matching country found"),
         "occupation": MessageLookupByLibrary.simpleMessage("OCCUPATION"),
         "occupationSmall": MessageLookupByLibrary.simpleMessage("Occupation"),
+        "ofTheBank": MessageLookupByLibrary.simpleMessage("of the bank."),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "Once fit, your ID will be scanned automatically"),
         "orContinueWith":
@@ -370,6 +382,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
+        "socialSecurityNUmber":
+            MessageLookupByLibrary.simpleMessage("SOCIAL SECURITY NUMBER"),
         "spouseName": MessageLookupByLibrary.simpleMessage("Spouse Name"),
         "spouseNameCaps": MessageLookupByLibrary.simpleMessage("SPOUSE NAME"),
         "state": MessageLookupByLibrary.simpleMessage("STATE"),
@@ -400,6 +414,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Tell us a bit about your\nprofile status"),
         "tellUsHowDoMakeLiving": MessageLookupByLibrary.simpleMessage(
             "Next, tell us how do\nmake a living"),
+        "termAndCondition":
+            MessageLookupByLibrary.simpleMessage("Terms and Conditions "),
         "termsAndCondition":
             MessageLookupByLibrary.simpleMessage("Terms and Conditions."),
         "termsAndConditions": MessageLookupByLibrary.simpleMessage(
@@ -430,6 +446,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank."),
         "wereBornInUS":
             MessageLookupByLibrary.simpleMessage("Were you born in the US?"),
+        "whichTaxPayerAreYou":
+            MessageLookupByLibrary.simpleMessage("WHICH TAX PAYER ARE YOU?"),
+        "whichTaxPayerAreYouSmall":
+            MessageLookupByLibrary.simpleMessage("Which Tax Payer Are You?"),
         "yes": MessageLookupByLibrary.simpleMessage("YES")
       };
 }

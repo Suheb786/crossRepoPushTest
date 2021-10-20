@@ -231,6 +231,18 @@
   "exemptPayeeOptional": "EXEMPT PAYEE CODE (OPTIONAL)",
   "additionalRequester": "Additional Requester",
   "invalidAddress": "Enter Address",
-  "requesterName": "requester’s name"
+  "requesterName": "requester’s name",
+  "whichTaxPayerAreYou": "WHICH TAX PAYER ARE YOU?",
+  "socialSecurityNUmber": "SOCIAL SECURITY NUMBER",
+  "iConfirmThatMy": "I confirm that my ",
+  "fatca": "FATCA ",
+  "declarationIsTrueAndCorrect": "declaration is true and correct.",
+  "confirmThatTaxResidency": "'I confirm that my tax residency is accurate and agree to the ",
+  "termAndCondition": "Terms and Conditions ",
+  "ofTheBank": "of the bank.",
+  "invalidTaxPayer": "Select Tax Payer",
+  "invalidSocialSecurityNumber": "Enter social security number",
+  "whichTaxPayerAreYouSmall": "Which Tax Payer Are You?"
+
 
 }

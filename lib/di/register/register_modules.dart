@@ -13,6 +13,7 @@ import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w8/fatca_
 import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w9/fatca_us_relevant_w9_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w9_address_details/fatca_us_relevant_w9_address_details_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_three/fatca_us_w9_tax_payer_details/fatca_us_w9_tax_payer_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/id_verification_info/id_verification_info_model.dart';
 import 'package:neo_bank/feature/register/step_three/job_and_income/job_and_income_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page_view_model.dart';
@@ -25,6 +26,7 @@ import 'package:neo_bank/feature/register/stepone/countryselection/country_selec
 import 'package:neo_bank/feature/register/stepone/createPassword/create_password_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_payer_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog_view_model.dart';
@@ -269,3 +271,15 @@ final fatcaUSRelevantW9AddressPageViewModelProvider = ChangeNotifierProvider
   (ref) => FatcaUSRelevantW9AddressDetailsPageViewModel(
       ref.read(fatcaUSRelevantW9AddressDetailsUseCaseProvider)),
 );
+
+///fatca us w9 tax payer details page view model provider
+final fatcaUSW9TaxPayerDetailsPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<FatcaUSW9TaxPayersDetailsPageViewModel>(
+  (ref) => FatcaUSW9TaxPayersDetailsPageViewModel(
+      ref.read(fatcaUSW9TaxPayerDetailsUseCaseProvider)),
+);
+
+///tax payer dialog view model provider
+final taxPayerDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<TaxPayerDialogViewModel>(
+        (ref) => TaxPayerDialogViewModel());

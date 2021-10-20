@@ -2339,6 +2339,116 @@ class S {
       args: [],
     );
   }
+
+  /// `WHICH TAX PAYER ARE YOU?`
+  String get whichTaxPayerAreYou {
+    return Intl.message(
+      'WHICH TAX PAYER ARE YOU?',
+      name: 'whichTaxPayerAreYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SOCIAL SECURITY NUMBER`
+  String get socialSecurityNUmber {
+    return Intl.message(
+      'SOCIAL SECURITY NUMBER',
+      name: 'socialSecurityNUmber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I confirm that my `
+  String get iConfirmThatMy {
+    return Intl.message(
+      'I confirm that my ',
+      name: 'iConfirmThatMy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FATCA `
+  String get fatca {
+    return Intl.message(
+      'FATCA ',
+      name: 'fatca',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `declaration is true and correct.`
+  String get declarationIsTrueAndCorrect {
+    return Intl.message(
+      'declaration is true and correct.',
+      name: 'declarationIsTrueAndCorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'I confirm that my tax residency is accurate and agree to the `
+  String get confirmThatTaxResidency {
+    return Intl.message(
+      '\'I confirm that my tax residency is accurate and agree to the ',
+      name: 'confirmThatTaxResidency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms and Conditions `
+  String get termAndCondition {
+    return Intl.message(
+      'Terms and Conditions ',
+      name: 'termAndCondition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `of the bank.`
+  String get ofTheBank {
+    return Intl.message(
+      'of the bank.',
+      name: 'ofTheBank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Tax Payer`
+  String get invalidTaxPayer {
+    return Intl.message(
+      'Select Tax Payer',
+      name: 'invalidTaxPayer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter social security number`
+  String get invalidSocialSecurityNumber {
+    return Intl.message(
+      'Enter social security number',
+      name: 'invalidSocialSecurityNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Which Tax Payer Are You?`
+  String get whichTaxPayerAreYouSmall {
+    return Intl.message(
+      'Which Tax Payer Are You?',
+      name: 'whichTaxPayerAreYouSmall',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

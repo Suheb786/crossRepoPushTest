@@ -144,6 +144,10 @@ class ErrorParser {
         return localisedHelper.invalidCity;
       case ErrorType.INVALID_REQUESTER_POSTCODE:
         return localisedHelper.invalidPostCode;
+      case ErrorType.INVALID_TAX_PAYER:
+        return localisedHelper.invalidTaxPayer;
+      case ErrorType.INVALID_SECURITY_NUMBER:
+        return localisedHelper.invalidSocialSecurityNumber;
 
       default:
         return "";
