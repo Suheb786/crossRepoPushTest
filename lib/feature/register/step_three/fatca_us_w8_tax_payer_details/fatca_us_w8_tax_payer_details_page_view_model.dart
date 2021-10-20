@@ -1,4 +1,4 @@
-import 'package:domain/constants/enum/tax_payer_enum.dart';
+import 'package:domain/constants/enum/us_relevant_w8_tax_payer_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/register/fatca_us_w8_tax_payer_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -136,6 +136,7 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
     return valid;
   }
 
+  ///TODO: check for error on declaration
   FatcaUSW8TaxPayersDetailsPageViewModel(
       this._fatcaUSW8taxPayerDetailsUseCase) {
     _fatcaUSW8taxPayerDetailsRequest.listen((value) {
@@ -196,7 +197,7 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
 
   void updateTaxPayerTypeField(String value) {
     taxPayerTypeController.text = value;
-    if (value.fromValue() == TaxPayerEnum.SOCIAL_SECURITY) {
+    if (value.fromValue() == USRelevantW8TaxPayerEnum.US) {
       updateVisibilityValue(true);
     } else {
       updateVisibilityValue(false);

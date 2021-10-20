@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/enum/tax_payer_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -139,7 +140,8 @@ class FatcaUSW8TaxPayersDetailsPageView
                                       return InkWell(
                                         onTap: () async {
                                           TaxPayerDialog.show(context,
-                                              onDismissed: () {
+                                              taxPayerTypeEnum: TaxPayerTypeEnum
+                                                  .W8, onDismissed: () {
                                             Navigator.pop(context);
                                           }, onSelected: (value) {
                                             Navigator.pop(context);

@@ -26,7 +26,6 @@ class RegisterStepThreePageView
   RegisterStepThreePageView(ProviderBase model) : super(model);
 
   List<Widget> pages = [
-    TaxReportInformationPage(),
     IdVerificationInfoPage(),
     ConfirmDetailPage(),
     EnterAddressPage(),
@@ -40,7 +39,7 @@ class RegisterStepThreePageView
     FatcaUSW9TaxPayersDetailsPage(),
     FatcaUSW8TaxPayersDetailsPage(),
     FatcaUSRelevantW9Page(),
-
+    TaxReportInformationPage(),
   ];
 
   @override

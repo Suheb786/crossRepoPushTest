@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/tax_payer_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,11 +15,10 @@ import 'package:neo_bank/utils/color_utils.dart';
 class TaxPayerDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(String)? onSelected;
+  final TaxPayerTypeEnum? taxPayerTypeEnum;
 
-  const TaxPayerDialogView({
-    this.onDismissed,
-    this.onSelected,
-  });
+  const TaxPayerDialogView(
+      {this.onDismissed, this.onSelected, this.taxPayerTypeEnum});
 
   ProviderBase providerBase() {
     return taxPayerDialogViewModelProvider;
@@ -60,10 +60,12 @@ class TaxPayerDialogView extends StatelessWidget {
                               physics: FixedExtentScrollPhysics(),
                               perspective: 0.0000000001,
                               childDelegate: ListWheelChildBuilderDelegate(
-                                  childCount: model.taxPayerList.length,
+                                  childCount:
+                                      model.getList(taxPayerTypeEnum!).length,
                                   builder: (BuildContext context, int index) {
                                     return ListScrollWheelListWidget(
-                                      label: model.taxPayerList[index],
+                                      label: model
+                                          .getList(taxPayerTypeEnum!)[index],
                                       textColor: currentIndex == index
                                           ? AppColor.white
                                           : AppColor.dark_gray_1,
@@ -74,7 +76,8 @@ class TaxPayerDialogView extends StatelessWidget {
                                   }))),
                       InkWell(
                         onTap: () {
-                          onSelected!.call(model.taxPayerList[currentIndex!]);
+                          onSelected!.call(
+                              model.getList(taxPayerTypeEnum!)[currentIndex!]);
                         },
                         child: Container(
                           padding: EdgeInsets.all(16),

@@ -1,4 +1,4 @@
-import 'package:domain/constants/enum/tax_payer_enum.dart';
+import 'package:domain/constants/enum/us_relevant_w9_tax_payer_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/register/fatca_us_w9_tax_payer_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -134,7 +134,7 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
 
   void updateTaxPayerTypeField(String value) {
     taxPayerTypeController.text = value;
-    if (value.fromValue() == TaxPayerEnum.SOCIAL_SECURITY) {
+    if (value.fromValue() == USRelevantW9TaxPayerEnum.SOCIAL_SECURITY) {
       updateVisibilityValue(true);
     } else {
       updateVisibilityValue(false);

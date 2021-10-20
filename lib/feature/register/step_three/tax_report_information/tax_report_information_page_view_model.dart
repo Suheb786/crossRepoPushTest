@@ -61,7 +61,7 @@ class TaxReportInformationPageViewModel extends BasePageViewModel {
     if (reasonController.text.fromValue() ==
         ReasonUnavailabilityEnum.REASON_B) {
       updateExplainReasonVisibility(true);
-    }else{
+    } else {
       updateExplainReasonVisibility(false);
     }
   }
