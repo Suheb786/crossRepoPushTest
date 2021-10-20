@@ -19,6 +19,9 @@ class AssetUtils {
   static const String google = svg + "google.svg";
   static const String delete = svg + "delete.svg";
   static const String upload = svg + "upload.svg";
+  static const String world = svg + "world.svg";
+  static const String gift = svg + "gift.svg";
+  static const String earphone = svg + "earphone.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash_logo.png";
@@ -26,4 +29,7 @@ class AssetUtils {
   static const String complete = drawable + "complete.png";
   static const String eye = drawable + "eye.png";
   static const String location = drawable + "location.png";
+  static const String locationBlack = drawable + "location_black.png";
+  static const String marker = drawable + "marker.png";
+  static const String card = drawable + "card.png";
 }

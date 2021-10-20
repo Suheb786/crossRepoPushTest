@@ -1,30 +1,31 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/local_error.dart';
-import 'package:domain/model/country/country.dart';
-import 'package:domain/repository/country/country_repository.dart';
+import 'package:domain/model/enter_address/home_address.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
-import 'package:flutter/widgets.dart';
 
-class HomeAddressDialogUseCase
-    extends BaseUseCase<LocalError, FetchCountriesUseParams, bool> {
+class HomeAddressDialogUseCase extends BaseUseCase<LocalError,
+    HomeAddressDialogUseCaseParams, HomeAddress> {
   final HomeAddressDialogRepository _homeAddressDialogRepository;
 
   HomeAddressDialogUseCase(this._homeAddressDialogRepository);
 
   @override
-  Future<Either<LocalError, bool>> execute(
-      {required FetchCountriesUseParams params}) {
-    return _homeAddressDialogRepository.homeAddress(context: params.context);
+  Future<Either<LocalError, HomeAddress>> execute(
+      {required HomeAddressDialogUseCaseParams params}) {
+    return _homeAddressDialogRepository.getHomeAddress(
+        latitude: params.latitude, longitude: params.longitude);
   }
 }
 
-class FetchCountriesUseParams extends Params {
-  final BuildContext context;
+class HomeAddressDialogUseCaseParams extends Params {
+  final double latitude;
+  final double longitude;
 
-  FetchCountriesUseParams({required this.context});
+  HomeAddressDialogUseCaseParams(
+      {required this.latitude, required this.longitude});
 
   @override
   Either<AppError, bool> verify() {

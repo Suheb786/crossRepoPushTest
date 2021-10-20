@@ -26,5 +26,5 @@ var uploadDocumentRepositoryProvider = Provider<UploadDocumentRepository>(
         ref.read(uploadDocumentDataSourceProvider)));
 
 var homeAddressDialogRepositoryProvider = Provider<HomeAddressDialogRepository>(
-    (ref) => HomeAddressDialogRepositoryImpl()
-);
+    (ref) => HomeAddressDialogRepositoryImpl(
+        ref.read(homeAddressDialogDataSourceProvider)));

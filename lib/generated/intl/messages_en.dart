@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
+        "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
+            "Accepted worldwide with no hidden charges"),
         "accountReady": MessageLookupByLibrary.simpleMessage(
             "Your account is up and ready. Let’s get you the Neu Debit Card."),
         "accountRegistration":
@@ -79,6 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CREATE PASSWORD"),
         "createPasswordHeader": MessageLookupByLibrary.simpleMessage(
             "Next, let\'s create your\nlogin password"),
+        "customerService": MessageLookupByLibrary.simpleMessage(
+            "24/7 Customer Service Service"),
         "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage(
             "Do you have TIN No available?"),
         "dob": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
@@ -212,6 +216,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter correct tin number"),
         "invalidTotalAdditionalIncome": MessageLookupByLibrary.simpleMessage(
             "Enter total additional income"),
+        "loyaltyRewards": MessageLookupByLibrary.simpleMessage(
+            "Enjoy loyalty rewards with great multiplier"),
         "mainSourceIncome":
             MessageLookupByLibrary.simpleMessage("Main Source of Income"),
         "mainSourceOfIncome":
@@ -238,6 +244,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "occupationSmall": MessageLookupByLibrary.simpleMessage("Occupation"),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "Once fit, your ID will be scanned automatically"),
+        "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
@@ -254,6 +261,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "personsRole": MessageLookupByLibrary.simpleMessage("Person’s Role"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
+        "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
+            "Great! Now, here’s what Neu has to offer for you"),
         "profileDetailsQ1":
             MessageLookupByLibrary.simpleMessage("Are you married?"),
         "profileDetailsQ2": MessageLookupByLibrary.simpleMessage(

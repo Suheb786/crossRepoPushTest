@@ -182,5 +182,10 @@
   "passwordDialogHeader": "Create Password",
   "passwordDialogContent": "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol.",
   "motherName" : "MOTHER’S NAME",
-  "motherNameHint": "Please enter mother's name"
+  "motherNameHint": "Please enter mother's name",
+  "openAccount":  "OPEN AN ACCOUNT",
+  "productSelectorHeader": "Great! Now, here’s what Neu has to offer for you",
+  "acceptedWorldWide": "Accepted worldwide with no hidden charges",
+  "loyaltyRewards": "Enjoy loyalty rewards with great multiplier",
+  "customerService": "24/7 Customer Service Service"
 }

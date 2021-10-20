@@ -8,7 +8,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/id_verification/id_verification_info_text.dart';
+import 'package:neo_bank/ui/molecules/information_text.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -104,7 +104,7 @@ class IdVerificationInfoView
                                       SingleChildScrollView(
                                         child: Column(
                                           children: [
-                                            IdVerificationInfoText(
+                                            InformationText(
                                                 image: AssetUtils.sunny,
                                                 title: S
                                                     .of(context)
@@ -112,13 +112,14 @@ class IdVerificationInfoView
                                             SizedBox(
                                               height: 32,
                                             ),
-                                            IdVerificationInfoText(
+                                            InformationText(
                                                 image: AssetUtils.scan,
-                                                title: S.of(context).idScanInfo),
+                                                title:
+                                                    S.of(context).idScanInfo),
                                             SizedBox(
                                               height: 32,
                                             ),
-                                            IdVerificationInfoText(
+                                            InformationText(
                                                 image: AssetUtils.correct,
                                                 title: S.of(context).onIdFit),
                                             SizedBox(
@@ -134,7 +135,8 @@ class IdVerificationInfoView
                                                         (context, isChecked) {
                                                       return InkWell(
                                                         onTap: () {
-                                                          if (isChecked == false) {
+                                                          if (isChecked ==
+                                                              false) {
                                                             model
                                                                 .updateIsRetrievedConditionStream(
                                                                     true);
@@ -144,9 +146,11 @@ class IdVerificationInfoView
                                                                     false);
                                                           }
                                                         },
-                                                        child: isChecked == false
+                                                        child: isChecked ==
+                                                                false
                                                             ? AppSvg.asset(
-                                                                AssetUtils.ellipse)
+                                                                AssetUtils
+                                                                    .ellipse)
                                                             : AppSvg.asset(
                                                                 AssetUtils
                                                                     .checkBox),
@@ -162,7 +166,8 @@ class IdVerificationInfoView
                                                         .termsAndConditions,
                                                     style: TextStyle(
                                                         color: AppColor.white,
-                                                        fontWeight: FontWeight.w600,
+                                                        fontWeight:
+                                                            FontWeight.w600,
                                                         fontSize: 14),
                                                   ),
                                                 )
@@ -172,7 +177,8 @@ class IdVerificationInfoView
                                               visible: model.showError!,
                                               child: Padding(
                                                 padding: EdgeInsets.symmetric(
-                                                    horizontal: 16, vertical: 8),
+                                                    horizontal: 16,
+                                                    vertical: 8),
                                                 child: Text(
                                                   ErrorParser
                                                       .getLocalisedStringError(
@@ -182,8 +188,10 @@ class IdVerificationInfoView
                                                   textAlign: TextAlign.start,
                                                   style: TextStyle(
                                                       fontSize: 12,
-                                                      fontWeight: FontWeight.w600,
-                                                      color: AppColor.vivid_red),
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color:
+                                                          AppColor.vivid_red),
                                                 ),
                                               ),
                                             ),
@@ -191,9 +199,9 @@ class IdVerificationInfoView
                                         ),
                                       ),
                                       Positioned(
-                                        bottom:0,
-                                        left:45,
-                                        right:45,
+                                        bottom: 0,
+                                        left: 45,
+                                        right: 45,
                                         child: AppStreamBuilder<bool>(
                                             stream: model
                                                 .isRetrievedConditionStream,
@@ -203,7 +211,7 @@ class IdVerificationInfoView
                                                 visible: isChecked!,
                                                 child: AnimatedButton(
                                                   buttonText:
-                                                  "Swipe to proceed",
+                                                      "Swipe to proceed",
                                                 ),
                                               );
                                             }),

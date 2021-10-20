@@ -8,11 +8,12 @@ import 'package:domain/usecase/user/fetch_countries_usecase.dart';
 import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
+import 'package:domain/usecase/user/product_selector_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_number_usecase.dart';
+import 'package:domain/usecase/user/send_documents_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:domain/usecase/user/send_documents_usecase.dart';
 
 ///[FetchCountriesUseCase] provider
 final fetchCountriesUseCaseProvider =
@@ -85,8 +86,14 @@ final accountReadyUseCaseProvider = Provider.autoDispose<AccountReadyUseCase>(
 
 ///[HomeAddressDialogUseCase] provider
 final homeAddressDialogUseCaseProvider =
-Provider.autoDispose<HomeAddressDialogUseCase>(
-        (ref) => HomeAddressDialogUseCase(
-        ref.read(homeAddressDialogRepositoryProvider),
-    ),
+    Provider.autoDispose<HomeAddressDialogUseCase>(
+  (ref) => HomeAddressDialogUseCase(
+    ref.read(homeAddressDialogRepositoryProvider),
+  ),
+);
+
+///[ProductSelectorUseCase] provider
+final productSelectorUseCaseProvider =
+    Provider.autoDispose<ProductSelectorUseCase>(
+  (ref) => ProductSelectorUseCase(),
 );

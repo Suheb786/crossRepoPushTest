@@ -1849,6 +1849,56 @@ class S {
       args: [],
     );
   }
+
+  /// `OPEN AN ACCOUNT`
+  String get openAccount {
+    return Intl.message(
+      'OPEN AN ACCOUNT',
+      name: 'openAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Great! Now, here’s what Neu has to offer for you`
+  String get productSelectorHeader {
+    return Intl.message(
+      'Great! Now, here’s what Neu has to offer for you',
+      name: 'productSelectorHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Accepted worldwide with no hidden charges`
+  String get acceptedWorldWide {
+    return Intl.message(
+      'Accepted worldwide with no hidden charges',
+      name: 'acceptedWorldWide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enjoy loyalty rewards with great multiplier`
+  String get loyaltyRewards {
+    return Intl.message(
+      'Enjoy loyalty rewards with great multiplier',
+      name: 'loyaltyRewards',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `24/7 Customer Service Service`
+  String get customerService {
+    return Intl.message(
+      '24/7 Customer Service Service',
+      name: 'customerService',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
