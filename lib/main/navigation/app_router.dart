@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
+import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_four/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
@@ -18,6 +19,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => LoginPage(),
             settings: RouteSettings(name: RoutePaths.Login));
+
+      case RoutePaths.OnBoarding:
+        return CupertinoPageRoute(
+            builder: (context) => OnBoardingPage(),
+            settings: RouteSettings(name: RoutePaths.OnBoarding));
 
       case RoutePaths.Registration:
         return CupertinoPageRoute(

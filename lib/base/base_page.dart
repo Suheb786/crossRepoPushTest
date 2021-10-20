@@ -69,7 +69,7 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
               drawerEnableOpenDragGesture: drawerEnableOpenDragGesture(),
               bottomNavigationBar: buildBottomNavigationBar(),
               bottomSheet: buildBottomSheet(),
-              resizeToAvoidBottomInset: true,
+              resizeToAvoidBottomInset: false,
             ),
           );
         });

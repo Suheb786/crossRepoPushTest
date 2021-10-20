@@ -24,47 +24,44 @@ class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
   Widget build(BuildContext context, model) {
     return Padding(
       padding: EdgeInsets.only(top: 56),
-      child: Stack(
+      child: Column(
         children: [
-          PageView.builder(
-            itemCount: pages.length,
-            physics: NeverScrollableScrollPhysics(),
-            controller: model.registrationStepsController,
-            onPageChanged: (currentPage) {
-              model.changeCurrentPage(currentPage);
-            },
-            itemBuilder: (context, index) {
-              return pages[index];
-            },
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24),
+            child: AppStreamBuilder<int>(
+              initialData: 0,
+              stream: model.currentPageSubject,
+              dataBuilder: (context, currentPage) {
+                return DotsIndicator(
+                  dotsCount: pages.length,
+                  position: currentPage!.toDouble(),
+                  mainAxisSize: MainAxisSize.max,
+                  decorator: DotsDecorator(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      activeSize:
+                          Size(MediaQuery.of(context).size.width / 5, 4),
+                      size: Size(MediaQuery.of(context).size.width / 5, 4),
+                      spacing: EdgeInsets.symmetric(horizontal: 1),
+                      activeShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      activeColor: AppColor.dark_blue,
+                      color: AppColor.very_soft_violet.withOpacity(0.3)),
+                );
+              },
+            ),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24),
-              child: AppStreamBuilder<int>(
-                initialData: 0,
-                stream: model.currentPageSubject,
-                dataBuilder: (context, currentPage) {
-                  return DotsIndicator(
-                    dotsCount: pages.length,
-                    position: currentPage!.toDouble(),
-                    mainAxisSize: MainAxisSize.max,
-                    decorator: DotsDecorator(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        activeSize:
-                            Size(MediaQuery.of(context).size.width / 5, 4),
-                        size: Size(MediaQuery.of(context).size.width / 5, 4),
-                        spacing: EdgeInsets.symmetric(horizontal: 1),
-                        activeShape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5)),
-                        activeColor: AppColor.dark_blue,
-                        color: AppColor.very_soft_violet.withOpacity(0.3)),
-                  );
-                },
-              ),
+          Expanded(
+            child: PageView.builder(
+              itemCount: pages.length,
+              physics: NeverScrollableScrollPhysics(),
+              controller: model.registrationStepsController,
+              onPageChanged: (currentPage) {
+                model.changeCurrentPage(currentPage);
+              },
+              itemBuilder: (context, index) {
+                return pages[index];
+              },
             ),
           ),
         ],
