@@ -148,6 +148,16 @@ class ErrorParser {
         return localisedHelper.invalidTaxPayer;
       case ErrorType.INVALID_SECURITY_NUMBER:
         return localisedHelper.invalidSocialSecurityNumber;
+      case ErrorType.INVALID_IDENTIFICATION_NUMBER:
+        return localisedHelper.invalidIdentificationNumber;
+      case ErrorType.INVALID_BENEFICIAL_ADDRESS:
+        return localisedHelper.invalidCountry;
+      case ErrorType.INVALID_BENEFICIAL_IDENTIFICATION_NUMBER:
+        return localisedHelper.invalidIdentificationNumber;
+      case ErrorType.INVALID_INCOME_TYPE:
+        return localisedHelper.invalidIncomeType;
+      case ErrorType.INVALID_EXPLANATION:
+        return localisedHelper.invalidExplanation;
 
       default:
         return "";

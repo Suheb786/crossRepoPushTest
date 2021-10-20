@@ -30,7 +30,7 @@ class TaxReportInformationPageView
         child: Column(
       children: [
         Text(
-          S.of(context).personalDetails,
+          S.of(context).fatcaandPep,
           style: TextStyle(
               color: AppColor.dark_gray,
               fontSize: 10,

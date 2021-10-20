@@ -242,7 +242,15 @@
   "ofTheBank": "of the bank.",
   "invalidTaxPayer": "Select Tax Payer",
   "invalidSocialSecurityNumber": "Enter social security number",
-  "whichTaxPayerAreYouSmall": "Which Tax Payer Are You?"
+  "whichTaxPayerAreYouSmall": "Which Tax Payer Are You?",
+  "wantToClaimTaxTreatyBenefits": "Do you want to Claim of Tax Treaty Benefits?",
+  "invalidIdentificationNumber": "Enter identification number",
+  "invalidIncomeType": "Enter income type",
+  "invalidExplanation": "These field cannot be empty",
+  "beneficialOwnerIsAResidenceOf": "Beneficial owner is a resident of",
+  "usIDNumber": "U.S. tax payer identification number ",
+  "typeOfIncome": "Type of Income",
+  "explanation": "EXPLANATION"
 
 
 }

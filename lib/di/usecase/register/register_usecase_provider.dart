@@ -3,6 +3,7 @@ import 'package:domain/usecase/register/fatca_us_relevant_w8_address_details_use
 import 'package:domain/usecase/register/fatca_us_relevant_w8_useCase.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w9_address_details_usecase.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w9_usecase.dart';
+import 'package:domain/usecase/register/fatca_us_w8_tax_payer_details_usecase.dart';
 import 'package:domain/usecase/register/fatca_us_w9_tax_payer_details_usecase.dart';
 import 'package:domain/usecase/register/get_additional_income_source_usecase.dart';
 import 'package:domain/usecase/register/get_occupation_list_usecase.dart';
@@ -90,3 +91,8 @@ final fatcaUSRelevantW9AddressDetailsUseCaseProvider =
 final fatcaUSW9TaxPayerDetailsUseCaseProvider =
     Provider.autoDispose<FatcaUSW9TaxPayerDetailsUseCase>(
         (ref) => FatcaUSW9TaxPayerDetailsUseCase());
+
+///[FatcaUSW9TaxPayerDetailsUseCase] provider
+final fatcaUSW8TaxPayerDetailsUseCaseProvider =
+    Provider.autoDispose<FatcaUSW8TaxPayerDetailsUseCase>(
+        (ref) => FatcaUSW8TaxPayerDetailsUseCase());

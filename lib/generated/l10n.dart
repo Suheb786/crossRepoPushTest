@@ -2449,6 +2449,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Do you want to Claim of Tax Treaty Benefits?`
+  String get wantToClaimTaxTreatyBenefits {
+    return Intl.message(
+      'Do you want to Claim of Tax Treaty Benefits?',
+      name: 'wantToClaimTaxTreatyBenefits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter identification number`
+  String get invalidIdentificationNumber {
+    return Intl.message(
+      'Enter identification number',
+      name: 'invalidIdentificationNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter income type`
+  String get invalidIncomeType {
+    return Intl.message(
+      'Enter income type',
+      name: 'invalidIncomeType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `These field cannot be empty`
+  String get invalidExplanation {
+    return Intl.message(
+      'These field cannot be empty',
+      name: 'invalidExplanation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Beneficial owner is a resident of`
+  String get beneficialOwnerIsAResidenceOf {
+    return Intl.message(
+      'Beneficial owner is a resident of',
+      name: 'beneficialOwnerIsAResidenceOf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `U.S. tax payer identification number `
+  String get usIDNumber {
+    return Intl.message(
+      'U.S. tax payer identification number ',
+      name: 'usIDNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type of Income`
+  String get typeOfIncome {
+    return Intl.message(
+      'Type of Income',
+      name: 'typeOfIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXPLANATION`
+  String get explanation {
+    return Intl.message(
+      'EXPLANATION',
+      name: 'explanation',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

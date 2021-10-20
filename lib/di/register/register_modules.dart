@@ -13,6 +13,7 @@ import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w8/fatca_
 import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w9/fatca_us_relevant_w9_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w9_address_details/fatca_us_relevant_w9_address_details_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_three/fatca_us_w8_tax_payer_details/fatca_us_w8_tax_payer_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/fatca_us_w9_tax_payer_details/fatca_us_w9_tax_payer_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/id_verification_info/id_verification_info_model.dart';
 import 'package:neo_bank/feature/register/step_three/job_and_income/job_and_income_page_view_model.dart';
@@ -283,3 +284,10 @@ final fatcaUSW9TaxPayerDetailsPageViewModelProvider =
 final taxPayerDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<TaxPayerDialogViewModel>(
         (ref) => TaxPayerDialogViewModel());
+
+///fatca us w8 tax payer details page view model provider
+final fatcaUSW8TaxPayerDetailsPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<FatcaUSW8TaxPayersDetailsPageViewModel>(
+  (ref) => FatcaUSW8TaxPayersDetailsPageViewModel(
+      ref.read(fatcaUSW8TaxPayerDetailsUseCaseProvider)),
+);
