@@ -5,8 +5,4 @@ abstract class RegisterRemoteDataSource {
 
   Future<List<String>> getAdditionalIncomeSourceList();
 
-  Future<List<String>> getNatureOfSpecialNeedsList();
-
-  Future<List<String>> getRelationshipWithPEPList();
-
 }

@@ -49,12 +49,6 @@ final sendDocumentsUseCaseUseCaseProvider =
   (ref) => SendDocumentsUseCase(),
 );
 
-///[ReviewApplicationUseCase] provider
-final reviewApplicationUseCaseProvider =
-    Provider.autoDispose<ReviewApplicationUseCase>(
-  (ref) => ReviewApplicationUseCase(),
-);
-
 ///[CreatePasswordUseCase] provider
 final createPasswordUseCaseProvider =
     Provider.autoDispose<CreatePasswordUseCase>(

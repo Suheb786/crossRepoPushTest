@@ -25,10 +25,11 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
       PublishSubject();
 
   ///review response holder
-  PublishSubject<Resource<bool>> _reviewAppResponse = PublishSubject();
+  PublishSubject<Resource<List<String>>> _reviewAppResponse = PublishSubject();
 
   ///review stream
-  Stream<Resource<bool>> get reviewAppStream => _reviewAppResponse.stream;
+  Stream<Resource<List<String>>> get reviewAppStream =>
+      _reviewAppResponse.stream;
 
   ReviewApplicationPageViewModel(this._reviewAppUseCase) {
     _reviewAppRequest.listen((value) {

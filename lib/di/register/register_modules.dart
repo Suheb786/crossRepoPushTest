@@ -97,8 +97,9 @@ final employmentStatusPageViewModelProvider =
 
 ///employment status dialog view model provider
 final employmentStatusDialogViwModelProvider =
-    ChangeNotifierProvider.autoDispose<EmploymentStatusDialogViewModel>(
-        (ref) => EmploymentStatusDialogViewModel());
+    ChangeNotifierProvider.autoDispose<EmploymentStatusDialogViewModel>((ref) =>
+        EmploymentStatusDialogViewModel(
+            ref.read(employmentStatusDialogUseCaseProvider)));
 
 ///occupation dialog view model provider
 final occupationDialogViwModelProvider =

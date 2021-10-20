@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/ui/molecules/app_dialog.dart';
-
 import 'employment_status_dialog_view.dart';
 
 class EmploymentStatusDialog {
