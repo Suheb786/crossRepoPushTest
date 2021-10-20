@@ -1,5 +1,7 @@
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -12,6 +14,15 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   final SendDocumentsUseCase _documentsUseCase;
   final UploadDocumentUseCase _uploadDocumentUseCase;
 
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController incomeController = TextEditingController();
+
+  final GlobalKey<AppTextFieldState> addressDocumentKey =
+      GlobalKey(debugLabel: "addressDocument");
+  final GlobalKey<AppTextFieldState> incomeDocumentKey =
+      GlobalKey(debugLabel: "incomeDocument");
+
+  ///documents
   PublishSubject<SendDocumentsUseCaseParams> _documentsRequest =
       PublishSubject();
 
@@ -19,6 +30,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get documentsStream => _documentsResponse.stream;
 
+  ///upload income proof
   PublishSubject<UploadDocumentUseCaseParams> _uploadIncomePoofRequest =
       PublishSubject();
 
@@ -26,12 +38,24 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   Stream<String> get uploadIncomePoofStream => _uploadIncomePoofResponse.stream;
 
+  ///is address document uploaded
+  Stream<bool> get documentIncomeStream => _documentIncomeRequest.stream;
+
+  PublishSubject<bool> _documentIncomeRequest = PublishSubject();
+
+  ///upload address proof
   PublishSubject<UploadDocumentUseCaseParams> _uploadAddressPoofRequest =
       PublishSubject();
+
   PublishSubject<String> _uploadAddressPoofResponse = PublishSubject();
 
   Stream<String> get uploadAddressPoofStream =>
       _uploadAddressPoofResponse.stream;
+
+  ///is address document uploaded
+  Stream<bool> get documentAddressStream => _documentAddressRequest.stream;
+
+  PublishSubject<bool> _documentAddressRequest = PublishSubject();
 
   UploadDocumentsPageViewModel(
       this._documentsUseCase, this._uploadDocumentUseCase) {
@@ -66,31 +90,32 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
     });
   }
 
-  void updateIncomeFileName(String fileName) {
-    incomeFileStr = fileName;
-    incomeFileUploaded = !(incomeFileUploaded);
-    notifyListeners();
-  }
-
-  void updateAddressFileName(String fileName) {
-    addressFileStr = fileName;
-    addressFileUploaded = !(addressFileUploaded);
-    notifyListeners();
-  }
-
-  String? incomeFileStr;
-  String? addressFileStr;
-  bool incomeFileUploaded = false;
-  bool addressFileUploaded = false;
-
-  void pickIncomePoofDocument(DocumentTypeEnum type) {
+  void uploadIncomeDocument(DocumentTypeEnum type) {
     _uploadIncomePoofRequest
         .safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
 
-  void pickAddressPoofDocument(DocumentTypeEnum type) {
+  void updateIncomeDocumentField(String value) {
+    incomeController.text = value.split("/").last;
+    updateIncomeUploadedStream(true);
+  }
+
+  void updateIncomeUploadedStream(bool value) {
+    _documentIncomeRequest.safeAdd(value);
+  }
+
+  void uploadAddressDocument(DocumentTypeEnum type) {
     _uploadAddressPoofRequest
         .safeAdd(UploadDocumentUseCaseParams(documentType: type));
+  }
+
+  void updateAddressDocumentField(String value) {
+    addressController.text = value.split("/").last;
+    updateAddressUploadedStream(true);
+  }
+
+  void updateAddressUploadedStream(bool value) {
+    _documentAddressRequest.safeAdd(value);
   }
 
   @override
@@ -98,6 +123,8 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
     _documentsRequest.close();
     _uploadIncomePoofRequest.close();
     _uploadAddressPoofRequest.close();
+    _documentAddressRequest.close();
+    _documentIncomeRequest.close();
     super.dispose();
   }
 }
