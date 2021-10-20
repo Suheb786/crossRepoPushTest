@@ -225,6 +225,12 @@
   "businessNameOptional": "BUSINESS NAME (OPTIONAL)",
   "isBusinessNameDifferent": "Please enter if only the business name is different from the name above",
   "w9Form": "W9 Form",
-  "w9FormDesc": "If you already have a physical pre-filled W9 form please upload below."
+  "w9FormDesc": "If you already have a physical pre-filled W9 form please upload below.",
+  "addressInUnitedStates": "ADDRESS IN UNITED STATES",
+  "accountNumberOptional": "ACCOUNT NUMBER (OPTIONAL)",
+  "exemptPayeeOptional": "EXEMPT PAYEE CODE (OPTIONAL)",
+  "additionalRequester": "Additional Requester",
+  "invalidAddress": "Enter Address",
+  "requesterName": "requester’s name"
 
 }

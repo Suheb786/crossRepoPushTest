@@ -132,6 +132,18 @@ class ErrorParser {
         return localisedHelper.invalidCity;
       case ErrorType.INVALID_POSTCODE:
         return localisedHelper.invalidPostCode;
+      case ErrorType.INVALID_ADDRESS:
+        return localisedHelper.invalidAddress;
+      case ErrorType.INVALID_REQUESTER_NAME:
+        return localisedHelper.nameHint;
+      case ErrorType.INVALID_REQUESTER_ADDRESS:
+        return localisedHelper.invalidAddress;
+      case ErrorType.INVALID_REQUESTER_STATE:
+        return localisedHelper.invalidState;
+      case ErrorType.INVALID_REQUESTER_CITY:
+        return localisedHelper.invalidCity;
+      case ErrorType.INVALID_REQUESTER_POSTCODE:
+        return localisedHelper.invalidPostCode;
 
       default:
         return "";

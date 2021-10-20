@@ -12,6 +12,7 @@ import 'package:neo_bank/feature/register/step_three/enter_address/enter_address
 import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w8/fatca_us_relevant_w8_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w9/fatca_us_relevant_w9_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w9_address_details/fatca_us_relevant_w9_address_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/id_verification_info/id_verification_info_model.dart';
 import 'package:neo_bank/feature/register/step_three/job_and_income/job_and_income_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page_view_model.dart';
@@ -260,4 +261,11 @@ final fatcaUSRelevantW9PageViewModelProvider =
   (ref) => FatcaUSRelevantW9PageViewModel(
       ref.read(fatcaUSRelevantW9UseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider)),
+);
+
+///fatca us relevant w9 address details page view model provider
+final fatcaUSRelevantW9AddressPageViewModelProvider = ChangeNotifierProvider
+    .autoDispose<FatcaUSRelevantW9AddressDetailsPageViewModel>(
+  (ref) => FatcaUSRelevantW9AddressDetailsPageViewModel(
+      ref.read(fatcaUSRelevantW9AddressDetailsUseCaseProvider)),
 );

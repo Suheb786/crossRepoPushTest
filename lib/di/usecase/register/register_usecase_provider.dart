@@ -1,6 +1,7 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w8_address_details_usecase.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w8_useCase.dart';
+import 'package:domain/usecase/register/fatca_us_relevant_w9_address_details_usecase.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w9_usecase.dart';
 import 'package:domain/usecase/register/get_additional_income_source_usecase.dart';
 import 'package:domain/usecase/register/get_occupation_list_usecase.dart';
@@ -78,3 +79,8 @@ final fatcaUSRelevantW8AddressDetailsUseCaseProvider =
 final fatcaUSRelevantW9UseCaseProvider =
     Provider.autoDispose<FatcaUSRelevantW9UseCase>(
         (ref) => FatcaUSRelevantW9UseCase());
+
+///[FatcaUSRelevantW9AddressDetailsUseCase] provider
+final fatcaUSRelevantW9AddressDetailsUseCaseProvider =
+    Provider.autoDispose<FatcaUSRelevantW9AddressDetailsUseCase>(
+        (ref) => FatcaUSRelevantW9AddressDetailsUseCase());

@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
+        "accountNumberOptional":
+            MessageLookupByLibrary.simpleMessage("ACCOUNT NUMBER (OPTIONAL)"),
         "accountOpeningPurpose":
             MessageLookupByLibrary.simpleMessage("ACCOUNT OPENING PURPOSE"),
         "accountReady": MessageLookupByLibrary.simpleMessage(
@@ -39,10 +41,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
         "additionalIncome":
             MessageLookupByLibrary.simpleMessage("Additional Income"),
+        "additionalRequester":
+            MessageLookupByLibrary.simpleMessage("Additional Requester"),
         "additionalSourceIncome":
             MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
         "additionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
+        "addressInUnitedStates":
+            MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
         "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
         "annualIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Annual Income"),
@@ -170,6 +176,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter valid relationship with PEP"),
         "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
             "Please enter valid spouse name"),
+        "exemptPayeeOptional": MessageLookupByLibrary.simpleMessage(
+            "EXEMPT PAYEE CODE (OPTIONAL)"),
         "expectedAnnualTransactions": MessageLookupByLibrary.simpleMessage(
             "EXPECTED ANNUAL TRANSACTIONS"),
         "expectedMonthlyTransactions": MessageLookupByLibrary.simpleMessage(
@@ -203,6 +211,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Make sure you’re in bright place and surrounding"),
         "invalidAdditionSourceIncome": MessageLookupByLibrary.simpleMessage(
             "Select Additional Source Income"),
+        "invalidAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),
         "invalidAnnualIncome":
             MessageLookupByLibrary.simpleMessage("Enter Annual income"),
         "invalidCitizenship":
@@ -343,6 +352,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("RELATIONSHIP WITH PEP"),
         "relationshipWithPEP":
             MessageLookupByLibrary.simpleMessage("Relationship with PEP"),
+        "requesterName":
+            MessageLookupByLibrary.simpleMessage("requester’s name"),
         "resendIn": m0,
         "residentCountry":
             MessageLookupByLibrary.simpleMessage("RESIDENT COUNTRY"),

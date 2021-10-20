@@ -17,12 +17,14 @@ import 'package:neo_bank/feature/register/step_three/taxation_details/taxation_d
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 
 import 'fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page.dart';
+import 'fatca_us_relevant_w9_address_details/fatca_us_relevant_w9_address_details_page.dart';
 
 class RegisterStepThreePageView
     extends BasePageViewWidget<RegisterStepThreeViewModel> {
   RegisterStepThreePageView(ProviderBase model) : super(model);
 
   List<Widget> pages = [
+    FatcaUSRelevantW9AddressDetailsPage(),
     IdVerificationInfoPage(),
     ConfirmDetailPage(),
     EnterAddressPage(),

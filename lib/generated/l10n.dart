@@ -2279,6 +2279,66 @@ class S {
       args: [],
     );
   }
+
+  /// `ADDRESS IN UNITED STATES`
+  String get addressInUnitedStates {
+    return Intl.message(
+      'ADDRESS IN UNITED STATES',
+      name: 'addressInUnitedStates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ACCOUNT NUMBER (OPTIONAL)`
+  String get accountNumberOptional {
+    return Intl.message(
+      'ACCOUNT NUMBER (OPTIONAL)',
+      name: 'accountNumberOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXEMPT PAYEE CODE (OPTIONAL)`
+  String get exemptPayeeOptional {
+    return Intl.message(
+      'EXEMPT PAYEE CODE (OPTIONAL)',
+      name: 'exemptPayeeOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Requester`
+  String get additionalRequester {
+    return Intl.message(
+      'Additional Requester',
+      name: 'additionalRequester',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Address`
+  String get invalidAddress {
+    return Intl.message(
+      'Enter Address',
+      name: 'invalidAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `requester’s name`
+  String get requesterName {
+    return Intl.message(
+      'requester’s name',
+      name: 'requesterName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

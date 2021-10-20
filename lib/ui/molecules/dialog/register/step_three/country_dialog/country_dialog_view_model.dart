@@ -49,6 +49,7 @@ class CountryDialogViewModel extends BasePageViewModel {
           .listen((event) {
         _getCountryResponse.safeAdd(event);
         _searchCountryResponse.safeAdd(event);
+        selectCountry(0);
       });
     });
   }
