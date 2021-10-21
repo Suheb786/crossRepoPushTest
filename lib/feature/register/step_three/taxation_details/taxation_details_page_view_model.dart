@@ -31,6 +31,9 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
   Stream<bool> get declarationSelectedStream => _declarationSelected.stream;
 
   bool anyOtherCountryResident = false;
+  bool usTaxResident = false;
+  bool bornInUS = false;
+  bool isUSCitizen = false;
 
   ///update declaration selection function
   void updateDeclarationSelection(bool value) {

@@ -135,12 +135,17 @@ class CountryDialogView extends StatelessWidget {
                               padding:
                                   const EdgeInsets.only(top: 8.0, bottom: 16),
                               child: Center(
-                                child: Text(
-                                  S.of(context).swipeDownToCancel,
-                                  style: TextStyle(
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColor.dark_gray_1),
+                                child: InkWell(
+                                  onTap: (){
+                                    onDismissed?.call();
+                                  },
+                                  child: Text(
+                                    S.of(context).swipeDownToCancel,
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColor.dark_gray_1),
+                                  ),
                                 ),
                               ),
                             ),

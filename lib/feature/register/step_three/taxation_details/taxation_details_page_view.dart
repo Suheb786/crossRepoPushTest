@@ -116,20 +116,26 @@ class TaxationDetailsPageView
                                   TaxationSwitchWidget(
                                     providerBase:
                                         areYouUSCitizenViewModelProvider,
-                                    onToggle: (value) {},
+                                    onToggle: (value) {
+                                      model.isUSCitizen = value;
+                                    },
                                     title: S.of(context).areYouUSCitizen,
                                   ),
                                   TaxationSwitchWidget(
                                     providerBase:
                                         areYouUSTaxResidentViewModelProvider,
-                                    onToggle: (value) {},
+                                    onToggle: (value) {
+                                      model.usTaxResident = value;
+                                    },
                                     title: S.of(context).areYouUSTaxResident,
                                     hintText:
                                         S.of(context).areYouUSTaxResidentHint,
                                   ),
                                   TaxationSwitchWidget(
                                     providerBase: bornInUSViewModelProvider,
-                                    onToggle: (value) {},
+                                    onToggle: (value) {
+                                      model.bornInUS = value;
+                                    },
                                     title: S.of(context).wereBornInUS,
                                   ),
                                   TaxationSwitchWidget(
