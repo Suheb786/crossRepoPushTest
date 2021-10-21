@@ -1,6 +1,5 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
-import 'package:domain/constants/error_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,7 +11,6 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/relationship_with_pep/relationship_with_pep_dialog.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_row_item.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -21,6 +19,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:domain/constants/enum/nature_of_special_needs_enum.dart';
 
 class ProfileDetailsPageView
     extends BasePageViewWidget<ProfileDetailsPageViewModel> {
@@ -290,9 +289,9 @@ class ProfileDetailsPageView
                                                     inputType:
                                                         TextInputType.text,
                                                     controller: model
-                                                        .relationShipController,
+                                                        .employeeStatusController,
                                                     key: model
-                                                        .relationShipWithPepKey,
+                                                        .employeeStatusKey,
                                                     readOnly: true,
                                                     suffixIcon:
                                                         (enabled, value) {
@@ -301,14 +300,13 @@ class ProfileDetailsPageView
                                                             model
                                                                 .updateAnimatedValue(
                                                                     true);
-                                                            EmploymentStatusDialog
-                                                                .show(context,
-                                                                    onDismissed:
-                                                                        () {
+                                                            EmploymentStatusDialog.show(
+                                                                context, onDismissed:
+                                                                    () {
                                                               Navigator.pop(
                                                                   context);
                                                             }, onSelected:
-                                                                        (value) {
+                                                                    (value) {
                                                               Navigator.pop(
                                                                   context);
                                                               model
@@ -317,7 +315,15 @@ class ProfileDetailsPageView
                                                               model
                                                                   .updateRelationShipWithPEP(
                                                                       value);
-                                                            });
+                                                            },
+                                                                natureOfNeedsEnum: (model
+                                                                            .isPerson && model.natureController!=null&&
+                                                                        model.natureController.text ==
+                                                                            "Sensory")
+                                                                    ? NatureOfSpecialNeedsEnum
+                                                                        .SENSORY
+                                                                    : NatureOfSpecialNeedsEnum
+                                                                        .PHYSICAL);
                                                           },
                                                           child: AppSvg.asset(
                                                               AssetUtils

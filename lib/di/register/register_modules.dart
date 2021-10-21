@@ -14,6 +14,7 @@ import 'package:neo_bank/feature/register/step_three/enter_address/enter_address
 import 'package:neo_bank/feature/register/step_three/id_verification_info/id_verification_info_model.dart';
 import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_three/student_job_income/student_job_income_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/tax_report_information/tax_report_information_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/taxation_details/taxation_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/stepone/addnumber/add_number_model.dart';
@@ -98,8 +99,7 @@ final employmentStatusPageViewModelProvider =
 ///employment status dialog view model provider
 final employmentStatusDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<EmploymentStatusDialogViewModel>((ref) =>
-        EmploymentStatusDialogViewModel(
-            ref.read(employmentStatusDialogUseCaseProvider)));
+        EmploymentStatusDialogViewModel());
 
 ///occupation dialog view model provider
 final occupationDialogViwModelProvider =
@@ -189,6 +189,11 @@ final profileQ3ViewModelProvider =
   (ref) => ProfileItemViewModel(),
 );
 
+final studentIncomeViewModelProvider =
+ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
+        (ref) => ProfileItemViewModel(),
+);
+
 ///employment status dialog view model provider
 final natureSpecialNeedsDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<NatureSpecialNeedsDialogViewModel>(
@@ -226,4 +231,10 @@ final uploadDocumentsPageViewModelProvider =
 final accountReadyPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountReadyViewModel>(
   (ref) => AccountReadyViewModel(ref.read(accountReadyUseCaseProvider)),
+);
+
+///student income page
+final studentIncomePageViewModelProvider =
+ChangeNotifierProvider.autoDispose<StudentJobIncomePageViewModel>(
+        (ref) => StudentJobIncomePageViewModel(ref.read(studentJobIncomeUseCaseProvider),ref.read(uploadDocumentUseCaseProvider)),
 );

@@ -1360,6 +1360,16 @@ class S {
     );
   }
 
+  /// `Please select valid employee status`
+  String get enterValidEmployeeStatus {
+    return Intl.message(
+      'Please select valid employee status',
+      name: 'enterValidEmployeeStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter valid person’s name`
   String get enterValidPersonsName {
     return Intl.message(
@@ -2015,6 +2025,36 @@ class S {
     return Intl.message(
       'Are you or any first degree relatives a Political Exposed Person?',
       name: 'areYouAnyFirstDegreeQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `JOB & INCOME`
+  String get jobIncome {
+    return Intl.message(
+      'JOB & INCOME',
+      name: 'jobIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next, tell us how do\nmake a living`
+  String get jobIncomeMsg {
+    return Intl.message(
+      'Next, tell us how do\nmake a living',
+      name: 'jobIncomeMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you have additional source of income`
+  String get additionalSourceIncomeQ1 {
+    return Intl.message(
+      'Do you have additional source of income',
+      name: 'additionalSourceIncomeQ1',
       desc: '',
       args: [],
     );

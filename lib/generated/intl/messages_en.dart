@@ -36,6 +36,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
         "additionalSourceIncome":
             MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
+        "additionalSourceIncomeQ1": MessageLookupByLibrary.simpleMessage(
+            "Do you have additional source of income"),
         "additionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
         "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
@@ -148,6 +150,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Password field cannot be empty"),
         "enterValidEmail": MessageLookupByLibrary.simpleMessage(
             "please enter valid email address"),
+        "enterValidEmployeeStatus": MessageLookupByLibrary.simpleMessage(
+            "Please select valid employee status"),
         "enterValidMobileNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter valid mobile number"),
         "enterValidNature": MessageLookupByLibrary.simpleMessage(
@@ -228,6 +232,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter correct tin number"),
         "invalidTotalAdditionalIncome": MessageLookupByLibrary.simpleMessage(
             "Enter total additional income"),
+        "jobIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
+        "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
+            "Next, tell us how do\nmake a living"),
         "mainAnnualIncome":
             MessageLookupByLibrary.simpleMessage("Main Annual Income"),
         "mainSourceIncome":

@@ -134,6 +134,7 @@
   "enterValidSpouseName": "Please enter valid spouse name",
   "enterValidNature": "Please select nature of special needs",
   "enterValidRelationshipWithPEP": "Please enter valid relationship with PEP",
+  "enterValidEmployeeStatus": "Please select valid employee status",
   "enterValidPersonsName": "Please enter valid person’s name",
   "enterValidPersonsRole": "Please enter valid person’s role",
   "uploadDocuments": "UPLOAD DOCUMENTS",
@@ -199,6 +200,8 @@
   "expAnnualTransactions": "Expected Annual Transactions",
   "areYouUSCitizen": "Are you U.S. Citizen?",
   "areYouTaxResidentQ": "Are you Tax Resident in any other country than U.S. or Jordan?",
-  "areYouAnyFirstDegreeQ":"Are you or any first degree relatives a Political Exposed Person?"
-
+  "areYouAnyFirstDegreeQ":"Are you or any first degree relatives a Political Exposed Person?",
+  "jobIncome": "JOB & INCOME",
+  "jobIncomeMsg": "Next, tell us how do\nmake a living",
+  "additionalSourceIncomeQ1":"Do you have additional source of income"
 }

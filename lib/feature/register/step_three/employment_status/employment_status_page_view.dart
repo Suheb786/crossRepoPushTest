@@ -21,6 +21,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:domain/constants/enum/nature_of_special_needs_enum.dart';
 
 class EmploymentStatusPageView
     extends BasePageViewWidget<EmploymentStatusPageViewModel> {
@@ -132,7 +133,9 @@ class EmploymentStatusPageView
                                                       false);
                                                   model.updateEmploymentStatus(
                                                       value);
-                                                });
+                                                },
+                                                    natureOfNeedsEnum: NatureOfSpecialNeedsEnum.PHYSICAL);
+
                                               },
                                               child: Container(
                                                   height: 16,

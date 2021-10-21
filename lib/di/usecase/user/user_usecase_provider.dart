@@ -11,6 +11,7 @@ import 'package:domain/usecase/user/register_number_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:domain/usecase/user/send_documents_usecase.dart';
+import 'package:domain/usecase/register/student_job_income_usecase.dart';
 
 ///[FetchCountriesUseCase] provider
 final fetchCountriesUseCaseProvider =
@@ -73,4 +74,10 @@ final enterAddressUseCaseProvider = Provider.autoDispose<EnterAddressUseCase>(
 ///[EnterAddressUseCase] provider
 final accountReadyUseCaseProvider = Provider.autoDispose<AccountReadyUseCase>(
   (ref) => AccountReadyUseCase(),
+);
+
+
+///[StudentJobIncomeUseCase] provider
+final studentJobIncomeUseCaseProvider = Provider.autoDispose<StudentJobIncomeUseCase>(
+        (ref) => StudentJobIncomeUseCase(),
 );
