@@ -53,7 +53,7 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
       if (beneficialAddress!.isEmpty) {
         return Left(AppError(
             error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_ADDRESS,
+            type: ErrorType.INVALID_BENEFICIAL_ADDRESS,
             cause: Exception()));
       } else if (beneficialIdentificationNumber!.isEmpty) {
         return Left(AppError(
@@ -69,6 +69,11 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
         return Left(AppError(
             error: ErrorInfo(message: ''),
             type: ErrorType.INVALID_EXPLANATION,
+            cause: Exception()));
+      } else if (!declarationSelected) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_DECLARATION_SELECTION,
             cause: Exception()));
       }
     } else if (!declarationSelected) {

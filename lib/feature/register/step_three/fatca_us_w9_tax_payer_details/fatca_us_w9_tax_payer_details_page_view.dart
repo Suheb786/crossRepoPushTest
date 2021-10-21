@@ -101,81 +101,22 @@ class FatcaUSW9TaxPayersDetailsPageView
                                   begin: Alignment.bottomCenter,
                                   end: Alignment.topCenter),
                             ),
-                            child: SingleChildScrollView(
-                              physics: ClampingScrollPhysics(),
-                              child: Column(
-                                children: [
-                                  AppTextField(
-                                    labelText:
-                                        S.of(context).whichTaxPayerAreYou,
-                                    hintText: S.of(context).pleaseSelect,
-                                    controller: model.taxPayerTypeController,
-                                    key: model.taxPayerTypeKey,
-                                    readOnly: true,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    suffixIcon: (value, data) {
-                                      return InkWell(
-                                        onTap: () async {
-                                          TaxPayerDialog.show(context,
-                                              taxPayerTypeEnum: TaxPayerTypeEnum
-                                                  .W9, onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model
-                                                .updateTaxPayerTypeField(value);
-                                            model.isValid();
-                                          });
-                                        },
-                                        child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow)),
-                                      );
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  AppStreamBuilder<bool>(
-                                    stream:
-                                        model.socialSecurityVisibilityStream,
-                                    initialData: false,
-                                    dataBuilder: (context, isVisible) {
-                                      return Visibility(
-                                        visible: isVisible!,
-                                        child: AppTextField(
-                                          labelText: S
-                                              .of(context)
-                                              .socialSecurityNUmber,
-                                          hintText: S.of(context).pleaseEnter,
-                                          controller: model
-                                              .socialSecurityNumberController,
-                                          key: model.socialSecurityNumberKey,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    physics: ClampingScrollPhysics(),
+                                    child: Column(
+                                      children: [
+                                        AppTextField(
+                                          labelText:
+                                              S.of(context).whichTaxPayerAreYou,
+                                          hintText: S.of(context).pleaseSelect,
+                                          controller:
+                                              model.taxPayerTypeController,
+                                          key: model.taxPayerTypeKey,
+                                          readOnly: true,
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
                                             return Visibility(
@@ -204,89 +145,170 @@ class FatcaUSW9TaxPayersDetailsPageView
                                               ),
                                             );
                                           },
-                                          inputAction: TextInputAction.go,
-                                          onChanged: (value) {
-                                            model.isValid();
+                                          suffixIcon: (value, data) {
+                                            return InkWell(
+                                              onTap: () async {
+                                                TaxPayerDialog.show(context,
+                                                    taxPayerTypeEnum:
+                                                        TaxPayerTypeEnum.W9,
+                                                    onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: (value) {
+                                                  Navigator.pop(context);
+                                                  model.updateTaxPayerTypeField(
+                                                      value);
+                                                  model.isValid();
+                                                });
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding:
+                                                      EdgeInsets.only(right: 8),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.downArrow)),
+                                            );
                                           },
                                         ),
-                                      );
-                                    },
+                                        SizedBox(
+                                          height: 16,
+                                        ),
+                                        AppStreamBuilder<bool>(
+                                          stream: model
+                                              .socialSecurityVisibilityStream,
+                                          initialData: false,
+                                          dataBuilder: (context, isVisible) {
+                                            return Visibility(
+                                              visible: isVisible!,
+                                              child: AppTextField(
+                                                labelText: S
+                                                    .of(context)
+                                                    .socialSecurityNUmber,
+                                                hintText:
+                                                    S.of(context).pleaseEnter,
+                                                controller: model
+                                                    .socialSecurityNumberController,
+                                                key: model
+                                                    .socialSecurityNumberKey,
+                                                textHintWidget:
+                                                    (hasFocus, isValid, value) {
+                                                  return Visibility(
+                                                    visible: !isValid,
+                                                    child: Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 8),
+                                                        child: Text(
+                                                          ErrorParser.getLocalisedStringError(
+                                                              error: response!
+                                                                  .appError,
+                                                              localisedHelper: S
+                                                                  .of(context)),
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: AppColor
+                                                                  .vivid_red),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                inputAction: TextInputAction.go,
+                                                onChanged: (value) {
+                                                  model.isValid();
+                                                },
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                              .viewInsets
+                                              .bottom,
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context)
-                                        .viewInsets
-                                        .bottom,
-                                  ),
-
-                                  ///TODO: place declaration at end of page
-                                  AppStreamBuilder<bool>(
-                                    stream: model.declarationSelectedStream,
-                                    initialData: false,
-                                    dataBuilder: (context, isSelected) {
-                                      return DeclarationWidget(
-                                        isSelected: isSelected,
-                                        title1: S.of(context).iConfirmThatMy,
-                                        title2: S.of(context).fatca,
-                                        title3: S
-                                            .of(context)
-                                            .declarationIsTrueAndCorrect,
-                                        onTap: () {
-                                          model.updateDeclarationSelection(
-                                              !(isSelected!));
-                                          model.updateDeclarationErrorValue(
-                                              false);
-                                          model.isValid();
-                                        },
-                                      );
-                                    },
-                                  ),
-                                  AppStreamBuilder<bool>(
-                                    stream: model.showDeclarationError,
-                                    initialData: false,
-                                    dataBuilder: (context, data) {
-                                      return Visibility(
-                                        visible: data!,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                                top: 8, bottom: 8),
-                                            child: Text(
-                                              S
-                                                  .of(context)
-                                                  .invalidDeclarationSelection,
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
+                                ),
+                                Column(
+                                  children: [
+                                    AppStreamBuilder<bool>(
+                                      stream: model.declarationSelectedStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isSelected) {
+                                        return DeclarationWidget(
+                                          isSelected: isSelected,
+                                          title1: S.of(context).iConfirmThatMy,
+                                          title2: S.of(context).fatca,
+                                          title3: S
+                                              .of(context)
+                                              .declarationIsTrueAndCorrect,
+                                          onTap: () {
+                                            model.updateDeclarationSelection(
+                                                !(isSelected!));
+                                            model.updateDeclarationErrorValue(
+                                                false);
+                                            model.isValid();
+                                          },
+                                        );
+                                      },
+                                    ),
+                                    AppStreamBuilder<bool>(
+                                      stream: model.showDeclarationError,
+                                      initialData: false,
+                                      dataBuilder: (context, data) {
+                                        return Visibility(
+                                          visible: data!,
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(top: 8),
+                                              child: Text(
+                                                S
+                                                    .of(context)
+                                                    .invalidDeclarationSelection,
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: AppColor.vivid_red),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  Center(
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 32, right: 32),
-                                      child: AppStreamBuilder<bool>(
-                                          stream: model.allFieldValidatorStream,
-                                          initialData: false,
-                                          dataBuilder: (context, isValid) {
-                                            return (isValid!)
-                                                ? AnimatedButton(
-                                                    buttonText: S
-                                                        .of(context)
-                                                        .swipeToProceed,
-                                                    buttonHeight: 50,
-                                                  )
-                                                : Container();
-                                          }),
+                                        );
+                                      },
                                     ),
-                                  )
-                                ],
-                              ),
+                                    Center(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.only(top: 26, right: 32),
+                                        child: AppStreamBuilder<bool>(
+                                            stream:
+                                                model.allFieldValidatorStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              return (isValid!)
+                                                  ? AnimatedButton(
+                                                      buttonText: S
+                                                          .of(context)
+                                                          .swipeToProceed,
+                                                      buttonHeight: 50,
+                                                    )
+                                                  : Container();
+                                            }),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
                             )),
                       ),
                     );

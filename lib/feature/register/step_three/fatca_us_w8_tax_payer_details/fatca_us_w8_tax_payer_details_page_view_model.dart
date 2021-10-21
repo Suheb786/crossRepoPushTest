@@ -24,7 +24,7 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
       GlobalKey(debugLabel: "identificationNumber");
 
   final TextEditingController beneficialCountryController =
-      TextEditingController(text: 'hello');
+      TextEditingController();
   final GlobalKey<AppTextFieldState> beneficialCountryKey =
       GlobalKey(debugLabel: "beneficialCountry");
 
@@ -136,7 +136,6 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  ///TODO: check for error on declaration
   FatcaUSW8TaxPayersDetailsPageViewModel(
       this._fatcaUSW8taxPayerDetailsUseCase) {
     _fatcaUSW8taxPayerDetailsRequest.listen((value) {

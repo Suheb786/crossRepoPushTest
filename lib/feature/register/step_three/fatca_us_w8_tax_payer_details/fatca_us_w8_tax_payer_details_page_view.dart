@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_payer_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
 import 'package:neo_bank/ui/molecules/register/declaration_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -102,82 +103,22 @@ class FatcaUSW8TaxPayersDetailsPageView
                                   begin: Alignment.bottomCenter,
                                   end: Alignment.topCenter),
                             ),
-                            child: SingleChildScrollView(
-                              physics: ClampingScrollPhysics(),
-                              child: Column(
-                                children: [
-                                  AppTextField(
-                                    labelText:
-                                        S.of(context).whichTaxPayerAreYou,
-                                    hintText: S.of(context).pleaseSelect,
-                                    controller: model.taxPayerTypeController,
-                                    key: model.taxPayerTypeKey,
-                                    readOnly: true,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    suffixIcon: (value, data) {
-                                      return InkWell(
-                                        onTap: () async {
-                                          TaxPayerDialog.show(context,
-                                              taxPayerTypeEnum: TaxPayerTypeEnum
-                                                  .W8, onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model
-                                                .updateTaxPayerTypeField(value);
-                                            model.isValid();
-                                          });
-                                        },
-                                        child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow)),
-                                      );
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  AppStreamBuilder<bool>(
-                                    stream:
-                                        model.identificationVisibilityStream,
-                                    initialData: false,
-                                    dataBuilder: (context, isVisible) {
-                                      return Visibility(
-                                        visible: isVisible!,
-                                        child: AppTextField(
-                                          labelText: S
-                                              .of(context)
-                                              .usIDNumber
-                                              .toUpperCase(),
-                                          hintText: S.of(context).pleaseEnter,
-                                          controller: model
-                                              .identificationNumberController,
-                                          key: model.identificationNumberKey,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    physics: ClampingScrollPhysics(),
+                                    child: Column(
+                                      children: [
+                                        AppTextField(
+                                          labelText:
+                                              S.of(context).whichTaxPayerAreYou,
+                                          hintText: S.of(context).pleaseSelect,
+                                          controller:
+                                              model.taxPayerTypeController,
+                                          key: model.taxPayerTypeKey,
+                                          readOnly: true,
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
                                             return Visibility(
@@ -206,347 +147,472 @@ class FatcaUSW8TaxPayersDetailsPageView
                                               ),
                                             );
                                           },
-                                          inputAction: TextInputAction.go,
-                                          onChanged: (value) {
-                                            model.isValid();
+                                          suffixIcon: (value, data) {
+                                            return InkWell(
+                                              onTap: () async {
+                                                TaxPayerDialog.show(context,
+                                                    taxPayerTypeEnum:
+                                                        TaxPayerTypeEnum.W8,
+                                                    onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: (value) {
+                                                  Navigator.pop(context);
+                                                  model.updateTaxPayerTypeField(
+                                                      value);
+                                                  model.isValid();
+                                                });
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding:
+                                                      EdgeInsets.only(right: 8),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.downArrow)),
+                                            );
                                           },
                                         ),
-                                      );
-                                    },
-                                  ),
-                                  AppStreamBuilder<bool>(
-                                    stream: model.taxTreatyBenefitsValue,
-                                    initialData: false,
-                                    dataBuilder: (context, isActive) {
-                                      return Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 32.0),
-                                        child: Column(
-                                          children: [
-                                            AppSwitchLabelWidget(
-                                              label: S
-                                                  .of(context)
-                                                  .wantToClaimTaxTreatyBenefits,
-                                              inActiveText: S.of(context).no,
-                                              activeText: S.of(context).yes,
-                                              onToggle: (value) {
-                                                model
-                                                    .updateTaxTreatyBenefitsValue(
-                                                        value);
-                                              },
-                                              isActive: isActive,
-                                            ),
-                                            SizedBox(
-                                              height: 16,
-                                            ),
-                                            Visibility(
-                                              visible: isActive!,
+                                        SizedBox(
+                                          height: 16,
+                                        ),
+                                        AppStreamBuilder<bool>(
+                                          stream: model
+                                              .identificationVisibilityStream,
+                                          initialData: false,
+                                          dataBuilder: (context, isVisible) {
+                                            return Visibility(
+                                              visible: isVisible!,
+                                              child: AppTextField(
+                                                labelText: S
+                                                    .of(context)
+                                                    .usIDNumber
+                                                    .toUpperCase(),
+                                                hintText:
+                                                    S.of(context).pleaseEnter,
+                                                controller: model
+                                                    .identificationNumberController,
+                                                key: model
+                                                    .identificationNumberKey,
+                                                textHintWidget:
+                                                    (hasFocus, isValid, value) {
+                                                  return Visibility(
+                                                    visible: !isValid,
+                                                    child: Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 8),
+                                                        child: Text(
+                                                          ErrorParser.getLocalisedStringError(
+                                                              error: response!
+                                                                  .appError,
+                                                              localisedHelper: S
+                                                                  .of(context)),
+                                                          textAlign:
+                                                              TextAlign.start,
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: AppColor
+                                                                  .vivid_red),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                                inputAction: TextInputAction.go,
+                                                onChanged: (value) {
+                                                  model.isValid();
+                                                },
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                        AppStreamBuilder<bool>(
+                                          stream: model.taxTreatyBenefitsValue,
+                                          initialData: false,
+                                          dataBuilder: (context, isActive) {
+                                            return Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 32.0),
                                               child: Column(
                                                 children: [
-                                                  AppTextField(
-                                                    labelText: S
+                                                  AppSwitchLabelWidget(
+                                                    label: S
                                                         .of(context)
-                                                        .beneficialOwnerIsAResidenceOf
-                                                        .toUpperCase(),
-                                                    hintText: S
-                                                        .of(context)
-                                                        .pleaseSelect,
-                                                    controller: model
-                                                        .beneficialCountryController,
-                                                    key: model
-                                                        .beneficialCountryKey,
-                                                    readOnly: true,
-                                                    textHintWidget: (hasFocus,
-                                                        isValid, value) {
-                                                      return Visibility(
-                                                        visible: !isValid,
-                                                        child: Align(
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 8),
-                                                            child: Text(
-                                                              ErrorParser.getLocalisedStringError(
-                                                                  error: response!
-                                                                      .appError,
-                                                                  localisedHelper:
-                                                                      S.of(
-                                                                          context)),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .start,
-                                                              style: TextStyle(
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: AppColor
-                                                                      .vivid_red),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      );
+                                                        .wantToClaimTaxTreatyBenefits,
+                                                    inActiveText:
+                                                        S.of(context).no,
+                                                    activeText:
+                                                        S.of(context).yes,
+                                                    onToggle: (value) {
+                                                      model
+                                                          .updateTaxTreatyBenefitsValue(
+                                                              value);
                                                     },
-                                                    suffixIcon: (value, data) {
-                                                      return InkWell(
-                                                        onTap: () async {},
-                                                        child: Container(
-                                                            height: 16,
-                                                            width: 16,
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    right: 8),
-                                                            child: AppSvg.asset(
-                                                                AssetUtils
-                                                                    .downArrow)),
-                                                      );
-                                                    },
+                                                    isActive: isActive,
                                                   ),
                                                   SizedBox(
                                                     height: 16,
                                                   ),
-                                                  AppTextField(
-                                                    labelText: S
-                                                        .of(context)
-                                                        .usIDNumber
-                                                        .toUpperCase(),
-                                                    hintText: S
-                                                        .of(context)
-                                                        .pleaseEnter,
-                                                    controller: model
-                                                        .beneficialIdentificationNumberController,
-                                                    key: model
-                                                        .beneficialIdentificationNumberKey,
-                                                    textHintWidget: (hasFocus,
-                                                        isValid, value) {
-                                                      return Visibility(
-                                                        visible: !isValid,
-                                                        child: Align(
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 8),
-                                                            child: Text(
-                                                              ErrorParser.getLocalisedStringError(
-                                                                  error: response!
-                                                                      .appError,
-                                                                  localisedHelper:
-                                                                      S.of(
-                                                                          context)),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .start,
-                                                              style: TextStyle(
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: AppColor
-                                                                      .vivid_red),
-                                                            ),
-                                                          ),
+                                                  Visibility(
+                                                    visible: isActive!,
+                                                    child: Column(
+                                                      children: [
+                                                        AppTextField(
+                                                          labelText: S
+                                                              .of(context)
+                                                              .beneficialOwnerIsAResidenceOf
+                                                              .toUpperCase(),
+                                                          hintText: S
+                                                              .of(context)
+                                                              .pleaseSelect,
+                                                          controller: model
+                                                              .beneficialCountryController,
+                                                          key: model
+                                                              .beneficialCountryKey,
+                                                          readOnly: true,
+                                                          textHintWidget:
+                                                              (hasFocus,
+                                                                  isValid,
+                                                                  value) {
+                                                            return Visibility(
+                                                              visible: !isValid,
+                                                              child: Align(
+                                                                alignment: Alignment
+                                                                    .centerLeft,
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 8),
+                                                                  child: Text(
+                                                                    ErrorParser.getLocalisedStringError(
+                                                                        error: response!
+                                                                            .appError,
+                                                                        localisedHelper:
+                                                                            S.of(context)),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w600,
+                                                                        color: AppColor
+                                                                            .vivid_red),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                          suffixIcon:
+                                                              (value, data) {
+                                                            return InkWell(
+                                                              onTap: () async {
+                                                                CountryDialog.show(
+                                                                    context,
+                                                                    title: S
+                                                                        .of(
+                                                                            context)
+                                                                        .beneficialOwnerIsAResidenceOf,
+                                                                    onDismissed:
+                                                                        () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                }, onSelected:
+                                                                        (value) {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                  model.beneficialCountryController
+                                                                          .text =
+                                                                      value;
+                                                                  model
+                                                                      .isValid();
+                                                                });
+                                                              },
+                                                              child: Container(
+                                                                  height: 16,
+                                                                  width: 16,
+                                                                  padding: EdgeInsets
+                                                                      .only(
+                                                                          right:
+                                                                              8),
+                                                                  child: AppSvg.asset(
+                                                                      AssetUtils
+                                                                          .downArrow)),
+                                                            );
+                                                          },
                                                         ),
-                                                      );
-                                                    },
-                                                    inputAction:
-                                                        TextInputAction.go,
-                                                    onChanged: (value) {
-                                                      model.isValid();
-                                                    },
-                                                  ),
-                                                  SizedBox(
-                                                    height: 16,
-                                                  ),
-                                                  AppTextField(
-                                                    labelText: S
-                                                        .of(context)
-                                                        .typeOfIncome
-                                                        .toUpperCase(),
-                                                    hintText: S
-                                                        .of(context)
-                                                        .pleaseEnter,
-                                                    controller: model
-                                                        .incomeTypeController,
-                                                    key: model.incomeTypeKey,
-                                                    textHintWidget: (hasFocus,
-                                                        isValid, value) {
-                                                      return Visibility(
-                                                        visible: !isValid,
-                                                        child: Align(
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 8),
-                                                            child: Text(
-                                                              ErrorParser.getLocalisedStringError(
-                                                                  error: response!
-                                                                      .appError,
-                                                                  localisedHelper:
-                                                                      S.of(
-                                                                          context)),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .start,
-                                                              style: TextStyle(
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: AppColor
-                                                                      .vivid_red),
-                                                            ),
-                                                          ),
+                                                        SizedBox(
+                                                          height: 16,
                                                         ),
-                                                      );
-                                                    },
-                                                    inputAction:
-                                                        TextInputAction.go,
-                                                    onChanged: (value) {
-                                                      model.isValid();
-                                                    },
-                                                  ),
-                                                  SizedBox(
-                                                    height: 16,
-                                                  ),
-                                                  AppTextField(
-                                                    labelText: S
-                                                        .of(context)
-                                                        .explanation,
-                                                    hintText: S
-                                                        .of(context)
-                                                        .pleaseEnter,
-                                                    controller: model
-                                                        .explanationController,
-                                                    key: model.explanationKey,
-                                                    textHintWidget: (hasFocus,
-                                                        isValid, value) {
-                                                      return Visibility(
-                                                        visible: !isValid,
-                                                        child: Align(
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 8),
-                                                            child: Text(
-                                                              ErrorParser.getLocalisedStringError(
-                                                                  error: response!
-                                                                      .appError,
-                                                                  localisedHelper:
-                                                                      S.of(
-                                                                          context)),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .start,
-                                                              style: TextStyle(
-                                                                  fontSize: 12,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                  color: AppColor
-                                                                      .vivid_red),
-                                                            ),
-                                                          ),
+                                                        AppTextField(
+                                                          labelText: S
+                                                              .of(context)
+                                                              .usIDNumber
+                                                              .toUpperCase(),
+                                                          hintText: S
+                                                              .of(context)
+                                                              .pleaseEnter,
+                                                          controller: model
+                                                              .beneficialIdentificationNumberController,
+                                                          key: model
+                                                              .beneficialIdentificationNumberKey,
+                                                          textHintWidget:
+                                                              (hasFocus,
+                                                                  isValid,
+                                                                  value) {
+                                                            return Visibility(
+                                                              visible: !isValid,
+                                                              child: Align(
+                                                                alignment: Alignment
+                                                                    .centerLeft,
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 8),
+                                                                  child: Text(
+                                                                    ErrorParser.getLocalisedStringError(
+                                                                        error: response!
+                                                                            .appError,
+                                                                        localisedHelper:
+                                                                            S.of(context)),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w600,
+                                                                        color: AppColor
+                                                                            .vivid_red),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                          inputAction:
+                                                              TextInputAction
+                                                                  .go,
+                                                          onChanged: (value) {
+                                                            model.isValid();
+                                                          },
                                                         ),
-                                                      );
-                                                    },
-                                                    inputAction:
-                                                        TextInputAction.go,
-                                                    onChanged: (value) {
-                                                      model.isValid();
-                                                    },
-                                                  ),
-                                                  SizedBox(
-                                                    height:
-                                                        MediaQuery.of(context)
-                                                            .viewInsets
-                                                            .bottom,
-                                                  ),
+                                                        SizedBox(
+                                                          height: 16,
+                                                        ),
+                                                        AppTextField(
+                                                          labelText: S
+                                                              .of(context)
+                                                              .typeOfIncome
+                                                              .toUpperCase(),
+                                                          hintText: S
+                                                              .of(context)
+                                                              .pleaseEnter,
+                                                          controller: model
+                                                              .incomeTypeController,
+                                                          key: model
+                                                              .incomeTypeKey,
+                                                          textHintWidget:
+                                                              (hasFocus,
+                                                                  isValid,
+                                                                  value) {
+                                                            return Visibility(
+                                                              visible: !isValid,
+                                                              child: Align(
+                                                                alignment: Alignment
+                                                                    .centerLeft,
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 8),
+                                                                  child: Text(
+                                                                    ErrorParser.getLocalisedStringError(
+                                                                        error: response!
+                                                                            .appError,
+                                                                        localisedHelper:
+                                                                            S.of(context)),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w600,
+                                                                        color: AppColor
+                                                                            .vivid_red),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                          inputAction:
+                                                              TextInputAction
+                                                                  .go,
+                                                          onChanged: (value) {
+                                                            model.isValid();
+                                                          },
+                                                        ),
+                                                        SizedBox(
+                                                          height: 16,
+                                                        ),
+                                                        AppTextField(
+                                                          labelText: S
+                                                              .of(context)
+                                                              .explanation,
+                                                          hintText: S
+                                                              .of(context)
+                                                              .pleaseEnter,
+                                                          controller: model
+                                                              .explanationController,
+                                                          key: model
+                                                              .explanationKey,
+                                                          textHintWidget:
+                                                              (hasFocus,
+                                                                  isValid,
+                                                                  value) {
+                                                            return Visibility(
+                                                              visible: !isValid,
+                                                              child: Align(
+                                                                alignment: Alignment
+                                                                    .centerLeft,
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 8),
+                                                                  child: Text(
+                                                                    ErrorParser.getLocalisedStringError(
+                                                                        error: response!
+                                                                            .appError,
+                                                                        localisedHelper:
+                                                                            S.of(context)),
+                                                                    textAlign:
+                                                                        TextAlign
+                                                                            .start,
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12,
+                                                                        fontWeight:
+                                                                            FontWeight
+                                                                                .w600,
+                                                                        color: AppColor
+                                                                            .vivid_red),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                          inputAction:
+                                                              TextInputAction
+                                                                  .go,
+                                                          onChanged: (value) {
+                                                            model.isValid();
+                                                          },
+                                                        ),
+                                                        SizedBox(
+                                                          height: MediaQuery.of(
+                                                                  context)
+                                                              .viewInsets
+                                                              .bottom,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  )
                                                 ],
                                               ),
-                                            )
-                                          ],
+                                            );
+                                          },
                                         ),
-                                      );
-                                    },
+                                      ],
+                                    ),
                                   ),
-
-                                  ///TODO: place declaration at end of page
-                                  AppStreamBuilder<bool>(
-                                    stream: model.declarationSelectedStream,
-                                    initialData: false,
-                                    dataBuilder: (context, isSelected) {
-                                      return DeclarationWidget(
-                                        isSelected: isSelected,
-                                        title1: S.of(context).iConfirmThatMy,
-                                        title2: S.of(context).fatca,
-                                        title3: S
-                                            .of(context)
-                                            .declarationIsTrueAndCorrect,
-                                        onTap: () {
-                                          model.updateDeclarationSelection(
-                                              !(isSelected!));
-                                          model.updateDeclarationErrorValue(
-                                              false);
-                                          model.isValid();
-                                        },
-                                      );
-                                    },
-                                  ),
-                                  AppStreamBuilder<bool>(
-                                    stream: model.showDeclarationError,
-                                    initialData: false,
-                                    dataBuilder: (context, data) {
-                                      return Visibility(
-                                        visible: data!,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                                top: 8, bottom: 8),
-                                            child: Text(
-                                              S
-                                                  .of(context)
-                                                  .invalidDeclarationSelection,
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
+                                ),
+                                Column(
+                                  children: [
+                                    AppStreamBuilder<bool>(
+                                      stream: model.declarationSelectedStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isSelected) {
+                                        return DeclarationWidget(
+                                          isSelected: isSelected,
+                                          title1: S.of(context).iConfirmThatMy,
+                                          title2: S.of(context).fatca,
+                                          title3: S
+                                              .of(context)
+                                              .declarationIsTrueAndCorrect,
+                                          onTap: () {
+                                            model.updateDeclarationSelection(
+                                                !(isSelected!));
+                                            model.updateDeclarationErrorValue(
+                                                false);
+                                            model.isValid();
+                                          },
+                                        );
+                                      },
+                                    ),
+                                    AppStreamBuilder<bool>(
+                                      stream: model.showDeclarationError,
+                                      initialData: false,
+                                      dataBuilder: (context, data) {
+                                        return Visibility(
+                                          visible: data!,
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 8, bottom: 8),
+                                              child: Text(
+                                                S
+                                                    .of(context)
+                                                    .invalidDeclarationSelection,
+                                                textAlign: TextAlign.start,
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: AppColor.vivid_red),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  Center(
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 32, right: 32),
-                                      child: AppStreamBuilder<bool>(
-                                          stream: model.allFieldValidatorStream,
-                                          initialData: false,
-                                          dataBuilder: (context, isValid) {
-                                            return (isValid!)
-                                                ? AnimatedButton(
-                                                    buttonText: S
-                                                        .of(context)
-                                                        .swipeToProceed,
-                                                    buttonHeight: 50,
-                                                  )
-                                                : Container();
-                                          }),
+                                        );
+                                      },
                                     ),
-                                  )
-                                ],
-                              ),
+                                    Center(
+                                      child: Padding(
+                                        padding:
+                                            EdgeInsets.only(top: 32, right: 32),
+                                        child: AppStreamBuilder<bool>(
+                                            stream:
+                                                model.allFieldValidatorStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              return (isValid!)
+                                                  ? AnimatedButton(
+                                                      buttonText: S
+                                                          .of(context)
+                                                          .swipeToProceed,
+                                                      buttonHeight: 50,
+                                                    )
+                                                  : Container();
+                                            }),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
                             )),
                       ),
                     );

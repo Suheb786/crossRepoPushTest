@@ -21,10 +21,10 @@ class AssetUtils {
   static const String upload = svg + "upload.svg";
   static const String search = svg + "search.svg";
   static const String radioButton = svg + "radio_button.svg";
+  static const String saveAndExit = svg + "save_and_exit.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash_logo.png";
   static const String loginCard = drawable + "login_card.png";
   static const String complete = drawable + "complete.png";
-  static const String saveAndExit = drawable + "save_and_exit.png";
 }

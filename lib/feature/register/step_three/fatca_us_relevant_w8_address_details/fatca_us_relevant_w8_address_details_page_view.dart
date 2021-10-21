@@ -9,6 +9,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -174,7 +175,18 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                     },
                                     suffixIcon: (value, data) {
                                       return InkWell(
-                                        onTap: () async {},
+                                        onTap: () async {
+                                          CountryDialog.show(context,
+                                              title:
+                                                  S.of(context).taxCountrySmall,
+                                              onDismissed: () {
+                                            Navigator.pop(context);
+                                          }, onSelected: (value) {
+                                            Navigator.pop(context);
+                                            model.countryController.text = value;
+                                            model.isValid();
+                                          });
+                                        },
                                         child: Container(
                                             height: 16,
                                             width: 16,

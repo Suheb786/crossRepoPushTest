@@ -35,10 +35,10 @@ class RegisterStepThreePageView
     TaxationDetailsPage(),
     FatcaUSRelevantW8Page(),
     FatcaUSRelevantW8AddressDetailsPage(),
-    FatcaUSRelevantW9AddressDetailsPage(),
-    FatcaUSW9TaxPayersDetailsPage(),
     FatcaUSW8TaxPayersDetailsPage(),
     FatcaUSRelevantW9Page(),
+    FatcaUSRelevantW9AddressDetailsPage(),
+    FatcaUSW9TaxPayersDetailsPage(),
     TaxReportInformationPage(),
   ];
 
