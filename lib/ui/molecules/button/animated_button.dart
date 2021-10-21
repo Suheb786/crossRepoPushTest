@@ -29,7 +29,7 @@ class AnimatedButton extends StatefulWidget {
     this.borderColor,
     this.onTap,
     required this.buttonText,
-    this.buttonHeight = 40,
+    this.buttonHeight = 50,
   })
       : super(key: key);
 

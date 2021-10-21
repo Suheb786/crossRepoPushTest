@@ -4,9 +4,11 @@ import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_prov
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/step_four/account_ready/account_ready_model.dart';
+import 'package:neo_bank/feature/register/step_four/agent_selection/agent_selection_model.dart';
 import 'package:neo_bank/feature/register/step_four/register_step_four_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/review_application/review_application_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/upload_documents/upload_documents_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_four/video_call_info/video_call_info_model.dart';
 import 'package:neo_bank/feature/register/step_three/confirm_detail/confirm_detail_model.dart';
 import 'package:neo_bank/feature/register/step_three/employment_status/employment_status_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/enter_address/enter_address_model.dart';
@@ -243,3 +245,15 @@ final homeAddressDialogViwModelProvider =
 final productSelectorViwModelProvider =
     ChangeNotifierProvider.autoDispose<ProductSelectorViewModel>((ref) =>
         ProductSelectorViewModel(ref.read(productSelectorUseCaseProvider)));
+
+///video call info view model provider
+final videoCallInfoViewModelProvider =
+    ChangeNotifierProvider.autoDispose<VideoCallInfoViewModel>(
+  (ref) => VideoCallInfoViewModel(ref.read(videoCallInfoUseCaseProvider)),
+);
+
+///agent selection view model provider
+final agentSelectionViewModelProvider =
+    ChangeNotifierProvider.autoDispose<AgentSelectionViewModel>(
+  (ref) => AgentSelectionViewModel(ref.read(agentSelectionUseCaseProvider)),
+);

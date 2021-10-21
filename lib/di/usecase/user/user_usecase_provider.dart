@@ -1,6 +1,7 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/register/review_app_usecase.dart';
 import 'package:domain/usecase/user/account_ready_usecase.dart';
+import 'package:domain/usecase/user/agent_selection_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/create_password_usecase.dart';
 import 'package:domain/usecase/user/enter_address_usecase.dart';
@@ -13,6 +14,7 @@ import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_number_usecase.dart';
 import 'package:domain/usecase/user/send_documents_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
+import 'package:domain/usecase/user/video_call_info_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[FetchCountriesUseCase] provider
@@ -96,4 +98,15 @@ final homeAddressDialogUseCaseProvider =
 final productSelectorUseCaseProvider =
     Provider.autoDispose<ProductSelectorUseCase>(
   (ref) => ProductSelectorUseCase(),
+);
+
+///[VideoCallInfoUseCase] provider
+final videoCallInfoUseCaseProvider = Provider.autoDispose<VideoCallInfoUseCase>(
+  (ref) => VideoCallInfoUseCase(),
+);
+
+///[AgentSelectionUseCase] provider
+final agentSelectionUseCaseProvider =
+    Provider.autoDispose<AgentSelectionUseCase>(
+  (ref) => AgentSelectionUseCase(),
 );

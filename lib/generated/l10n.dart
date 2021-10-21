@@ -1899,6 +1899,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Get ready to verify yourself \nvia video call`
+  String get videoCallInfoHeader {
+    return Intl.message(
+      'Get ready to verify yourself \nvia video call',
+      name: 'videoCallInfoHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make sure you’re in bright place and surrounding`
+  String get brightPlace {
+    return Intl.message(
+      'Make sure you’re in bright place and surrounding',
+      name: 'brightPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Best if your surrounding is quiet and private`
+  String get quietSurrounding {
+    return Intl.message(
+      'Best if your surrounding is quiet and private',
+      name: 'quietSurrounding',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You may select your preferred agent to chat with`
+  String get preferredAgent {
+    return Intl.message(
+      'You may select your preferred agent to chat with',
+      name: 'preferredAgent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Schedule for later`
+  String get scheduleLater {
+    return Intl.message(
+      'Schedule for later',
+      name: 'scheduleLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select your preferred agent for a video call`
+  String get agentSelectionHeader {
+    return Intl.message(
+      'Please select your preferred agent for a video call',
+      name: 'agentSelectionHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Male Agent`
+  String get maleAgent {
+    return Intl.message(
+      'Male Agent',
+      name: 'maleAgent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Any Agent`
+  String get anyAgent {
+    return Intl.message(
+      'Any Agent',
+      name: 'anyAgent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Female Agent`
+  String get femaleAgent {
+    return Intl.message(
+      'Female Agent',
+      name: 'femaleAgent',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
