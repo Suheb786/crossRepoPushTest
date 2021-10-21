@@ -74,12 +74,8 @@ class ErrorParser {
         return localisedHelper.enterValidSpouseName;
       case ErrorType.INVALID_NATURE:
         return localisedHelper.enterValidNature;
-      case ErrorType.INVALID_RELATIONSHIP:
-        return localisedHelper.enterValidRelationshipWithPEP;
-      case ErrorType.INVALID_PERSON_NAME:
-        return localisedHelper.enterValidPersonsName;
-      case ErrorType.INVALID_PERSON_ROLE:
-        return localisedHelper.enterValidPersonsRole;
+      case ErrorType.INVALID_EMPLOYEE_STATUS:
+        return localisedHelper.enterValidEmployeeStatus;
       case ErrorType.EMPTY_PASSWORD:
         return localisedHelper.enterPassword;
       case ErrorType.EMPTY_CONFIRM_PASSWORD:

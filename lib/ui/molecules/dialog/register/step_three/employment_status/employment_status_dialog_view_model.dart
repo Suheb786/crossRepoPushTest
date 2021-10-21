@@ -1,8 +1,20 @@
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:domain/constants/enum/nature_of_special_needs_enum.dart';
 
 class EmploymentStatusDialogViewModel extends BasePageViewModel {
-  List<String> employmentStatusList = ['Employed', 'Unemployed'];
+  List<String> employmentStatusList = [
+    "Retired",
+    "Student",
+    "Unemployed",
+    "Other"
+  ];
+  List<String> sensoryEmploymentStatusList = [
+    "Business Owner",
+    "Full-Time Employee",
+    "Part-Time Employee",
+    "Freelance"
+  ];
 
   ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();
@@ -12,6 +24,15 @@ class EmploymentStatusDialogViewModel extends BasePageViewModel {
 
   void currentIndexUpdate(int index) {
     _currentSelectIndex.add(index);
+  }
+
+  List<String> getStatusList(NatureOfSpecialNeedsEnum typeEnum) {
+    switch (typeEnum) {
+      case NatureOfSpecialNeedsEnum.SENSORY:
+        return sensoryEmploymentStatusList;
+      default:
+        return employmentStatusList;
+    }
   }
 
   @override
