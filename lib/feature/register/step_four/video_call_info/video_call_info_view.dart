@@ -48,6 +48,12 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
               child: GestureDetector(
                 onHorizontalDragUpdate: (details) {
                   if (details.primaryDelta!.isNegative) {
+                    ProviderScope.containerOf(context)
+                        .read(registerStepFourViewModelProvider)
+                        .registrationStepFourPageController
+                        .nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOut);
                   } else {
                     ProviderScope.containerOf(context)
                         .read(registerStepFourViewModelProvider)
@@ -110,7 +116,7 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                             padding:
                                 const EdgeInsets.only(left: 45.0, right: 45),
                             child: AnimatedButton(
-                              buttonText: "Swipe to proceed",
+                              buttonText: S.of(context).swipeToProceed,
                             ),
                           ),
                         ],

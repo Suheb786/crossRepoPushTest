@@ -123,7 +123,8 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                             AppOtpFields(
                                               length: 6,
                                               controller: model.otpController,
-                                              onChanged: (val) => model.validate(),
+                                              onChanged: (val) =>
+                                                  model.validate(),
                                             ),
                                             Visibility(
                                               visible: isValid!,
@@ -139,21 +140,24 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                   textAlign: TextAlign.start,
                                                   style: TextStyle(
                                                       fontSize: 12,
-                                                      fontWeight: FontWeight.w600,
-                                                      color: AppColor.vivid_red),
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color:
+                                                          AppColor.vivid_red),
                                                 ),
                                               ),
                                             ),
                                             Center(
                                                 child: Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 32.0),
+                                              padding: const EdgeInsets.only(
+                                                  top: 32.0),
                                               child: InkWell(
                                                 onTap: () {},
                                                 child: Text(
                                                   S.of(context).changeMyNumber,
                                                   style: TextStyle(
-                                                    color: AppColor.vivid_orange,
+                                                    color:
+                                                        AppColor.vivid_orange,
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w600,
                                                   ),
@@ -171,7 +175,8 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                         onEnd: () {},
                                         endTime: model.endTime,
                                         textStyle: TextStyle(
-                                            fontSize: 16, color: AppColor.white),
+                                            fontSize: 16,
+                                            color: AppColor.white),
                                         widgetBuilder:
                                             (context, currentTimeRemaining) {
                                           return currentTimeRemaining == null
@@ -190,29 +195,30 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                       '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
                                                   style: TextStyle(
                                                       fontSize: 14,
-                                                      color: AppColor.soft_violet),
+                                                      color:
+                                                          AppColor.soft_violet),
                                                 );
                                         },
                                       ),
                                     ],
                                   ),
                                   AppStreamBuilder<bool>(
-                                    stream: model.showButtonStream,
-                                    initialData: false,
-                                    dataBuilder: (context, isValid) {
-                                      return Visibility(
-                                        visible: isValid!,
-                                        child: Positioned(
-                                          bottom:0,
-                                          left:45,
-                                          right:45,
-                                          child: AnimatedButton(
-                                            buttonText: "Swipe to proceed",
+                                      stream: model.showButtonStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isValid) {
+                                        return Visibility(
+                                          visible: isValid!,
+                                          child: Positioned(
+                                            bottom: 0,
+                                            left: 45,
+                                            right: 45,
+                                            child: AnimatedButton(
+                                              buttonText:
+                                                  S.of(context).swipeToProceed,
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    }
-                                  )
+                                        );
+                                      })
                                 ],
                               )),
                         ),

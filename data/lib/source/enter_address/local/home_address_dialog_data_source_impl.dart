@@ -1,8 +1,8 @@
-import 'package:data/source/enter_address/home_address_dialog_data_source.dart';
+import 'package:data/source/enter_address/home_address_dialog_ds.dart';
 import 'package:domain/model/enter_address/home_address.dart';
 import 'package:geocoding/geocoding.dart';
 
-class HomeAddressDialogDataSourceImpl with HomeAddressDialogDataSource {
+class HomeAddressDialogDSImpl with HomeAddressDialogDS {
   @override
   Future<HomeAddress> getHomeAddress(
       {double? latitude, double? longitude}) async {

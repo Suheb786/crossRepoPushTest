@@ -210,8 +210,9 @@ class IdVerificationInfoView
                                               return Visibility(
                                                 visible: isChecked!,
                                                 child: AnimatedButton(
-                                                  buttonText:
-                                                      "Swipe to proceed",
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed,
                                                 ),
                                               );
                                             }),

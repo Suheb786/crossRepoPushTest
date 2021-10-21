@@ -7,6 +7,7 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/agent_selection/agent_selection_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/agent_selection_list_widget.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:riverpod/src/framework.dart';
@@ -46,6 +47,12 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
               child: GestureDetector(
                 onHorizontalDragUpdate: (details) {
                   if (details.primaryDelta!.isNegative) {
+                    ProviderScope.containerOf(context)
+                        .read(registerStepFourViewModelProvider)
+                        .registrationStepFourPageController
+                        .nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOut);
                   } else {
                     ProviderScope.containerOf(context)
                         .read(registerStepFourViewModelProvider)
@@ -72,24 +79,36 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                             begin: Alignment.bottomCenter,
                             end: Alignment.topCenter),
                       ),
-                      child: Scrollbar(
-                        child: ListWheelScrollView.useDelegate(
-                            itemExtent: 72,
-                            onSelectedItemChanged: (int index) {
-                              model.selectAgent(index);
-                              ProviderScope.containerOf(context)
-                                  .read(agentSelectionViewModelProvider)
-                                  .notify();
-                            },
-                            physics: FixedExtentScrollPhysics(),
-                            perspective: 0.0000000001,
-                            childDelegate: ListWheelChildBuilderDelegate(
-                                childCount: model.agentList.length,
-                                builder: (BuildContext context, int index) {
-                                  return AgentSelectionListWidget(
-                                    item: model.agentList[index],
-                                  );
-                                })),
+                      child: Stack(
+                        children: [
+                          Scrollbar(
+                            child: ListWheelScrollView.useDelegate(
+                                itemExtent: 72,
+                                onSelectedItemChanged: (int index) {
+                                  model.selectAgent(index);
+                                  ProviderScope.containerOf(context)
+                                      .read(agentSelectionViewModelProvider)
+                                      .notify();
+                                },
+                                physics: FixedExtentScrollPhysics(),
+                                perspective: 0.0000000001,
+                                childDelegate: ListWheelChildBuilderDelegate(
+                                    childCount: model.agentList.length,
+                                    builder: (BuildContext context, int index) {
+                                      return AgentSelectionListWidget(
+                                        item: model.agentList[index],
+                                      );
+                                    })),
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            left: 45,
+                            right: 45,
+                            child: AnimatedButton(
+                              buttonText: S.of(context).swipeToProceed,
+                            ),
+                          )
+                        ],
                       )),
                 ),
               ),

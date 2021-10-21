@@ -327,8 +327,9 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                 padding: EdgeInsets.only(
                                                     left: 45, right: 45),
                                                 child: AnimatedButton(
-                                                  buttonText:
-                                                      "Swipe to proceed",
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed,
                                                 ),
                                               ),
                                             );
