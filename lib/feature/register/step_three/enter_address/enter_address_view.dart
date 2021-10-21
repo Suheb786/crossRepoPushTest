@@ -34,7 +34,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                 fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 36.0, bottom: 32),
+            padding: EdgeInsets.only(top: 8.0, bottom: 32),
             child: Text(
               S.of(context).confirmDetailsHeader,
               textAlign: TextAlign.center,
@@ -172,6 +172,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                           SizedBox(
                                             height: 16,
                                           ),
+                                          ///TODO: map dialog fix
                                           AppTextField(
                                             labelText:
                                                 S.of(context).homeAddress,
@@ -323,14 +324,10 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                           dataBuilder: (context, isValid) {
                                             return Visibility(
                                               visible: isValid!,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 45, right: 45),
-                                                child: AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed,
-                                                ),
+                                              child: AnimatedButton(
+                                                buttonText: S
+                                                    .of(context)
+                                                    .swipeToProceed,
                                               ),
                                             );
                                           }),

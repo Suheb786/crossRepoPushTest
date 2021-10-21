@@ -136,7 +136,7 @@ class CountryDialogView extends StatelessWidget {
                                   const EdgeInsets.only(top: 8.0, bottom: 16),
                               child: Center(
                                 child: InkWell(
-                                  onTap: (){
+                                  onTap: () {
                                     onDismissed?.call();
                                   },
                                   child: Text(

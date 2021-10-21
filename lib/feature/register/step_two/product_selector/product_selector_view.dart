@@ -29,7 +29,7 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                 fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 36.0, bottom: 32),
+            padding: EdgeInsets.only(top: 8.0, bottom: 32),
             child: Text(
               S.of(context).productSelectorHeader,
               textAlign: TextAlign.center,
@@ -84,6 +84,7 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                                     image: AssetUtils.earphone,
                                     title: S.of(context).customerService),
                                 SizedBox(height: 17),
+                                ///TODO: border radius to check icon
                                 InkWell(
                                   onTap: () {
                                     ProviderScope.containerOf(context)

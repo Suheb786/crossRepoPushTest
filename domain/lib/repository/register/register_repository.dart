@@ -9,8 +9,4 @@ abstract class RegisterRepository {
 
   Future<Either<LocalError, List<AdditionalIncome>>>
       getAdditionalIncomeSourceList();
-
-  Future<Either<LocalError, List<String>>> getNatureOfSpecialNeedsList();
-
-  Future<Either<LocalError, List<String>>> getRelationshipWithPEPList();
 }
