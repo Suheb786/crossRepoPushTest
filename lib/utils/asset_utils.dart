@@ -22,6 +22,7 @@ class AssetUtils {
   static const String search = svg + "search.svg";
   static const String radioButton = svg + "radio_button.svg";
   static const String saveAndExit = svg + "save_and_exit.svg";
+  static const String calendar = svg + "calendar.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash_logo.png";

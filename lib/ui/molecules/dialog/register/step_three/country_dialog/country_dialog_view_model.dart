@@ -2,10 +2,10 @@ import 'package:domain/model/country/country.dart';
 import 'package:domain/usecase/user/fetch_countries_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:neo_bank/utils/extension/stream_extention.dart';
 
 class CountryDialogViewModel extends BasePageViewModel {
   final FetchCountriesUseCase _fetchCountriesUseCase;
@@ -81,6 +81,7 @@ class CountryDialogViewModel extends BasePageViewModel {
         }
       }
       _searchCountryResponse.safeAdd(Resource.success(data: searchResult));
+      selectCountry(0);
     } else {
       _searchCountryResponse
           .safeAdd(Resource.success(data: _getCountryResponse.value.data));

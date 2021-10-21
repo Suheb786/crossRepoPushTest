@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_four/register_step_four_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/review_application/review_application_page.dart';
+import 'package:neo_bank/feature/register/step_four/schedule_video_call/schedule_video_call_page.dart';
 import 'package:neo_bank/feature/register/step_four/upload_documents/upload_documents_page.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 
@@ -15,6 +16,7 @@ class RegisterStepFourPageView
   List<Widget> pages = [
     ReviewApplicationPage(),
     UploadDocumentsPage(),
+    ScheduleVideoCallPage(),
   ];
 
   @override

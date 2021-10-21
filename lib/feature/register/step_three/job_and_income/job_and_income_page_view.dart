@@ -141,7 +141,7 @@ class JobAndIncomePageView
                                     },
                                   ),
                                   SizedBox(
-                                    height: 20,
+                                    height: 16,
                                   ),
                                   AppTextField(
                                     labelText: S.of(context).mainSourceOfIncome,
@@ -178,7 +178,7 @@ class JobAndIncomePageView
                                     },
                                   ),
                                   SizedBox(
-                                    height: 20,
+                                    height: 16,
                                   ),
                                   AppTextField(
                                     labelText: S.of(context).mainAnnualIncome,
@@ -229,7 +229,7 @@ class JobAndIncomePageView
                                     },
                                   ),
                                   SizedBox(
-                                    height: 20,
+                                    height: 16,
                                   ),
                                   AppTextField(
                                     labelText: S.of(context).employerName,
@@ -266,7 +266,7 @@ class JobAndIncomePageView
                                     },
                                   ),
                                   SizedBox(
-                                    height: 20,
+                                    height: 16,
                                   ),
                                   AppTextField(
                                     labelText: S.of(context).employerCountry,
@@ -322,7 +322,7 @@ class JobAndIncomePageView
                                     },
                                   ),
                                   SizedBox(
-                                    height: 20,
+                                    height: 16,
                                   ),
                                   AppTextField(
                                     labelText: S.of(context).employerCity,
@@ -359,7 +359,7 @@ class JobAndIncomePageView
                                     },
                                   ),
                                   SizedBox(
-                                    height: 20,
+                                    height: 16,
                                   ),
                                   AppTextField(
                                     labelText: S.of(context).employerContact,

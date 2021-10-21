@@ -270,6 +270,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter Permanent Residence Address"),
         "invalidPostCode":
             MessageLookupByLibrary.simpleMessage("Select Post Code"),
+        "invalidPreferredDate":
+            MessageLookupByLibrary.simpleMessage("Select date"),
+        "invalidPreferredTime":
+            MessageLookupByLibrary.simpleMessage("Select time"),
         "invalidPurposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage(
             "Select purpose of account opening"),
         "invalidReasonUnavailability": MessageLookupByLibrary.simpleMessage(
@@ -342,7 +346,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Please provide information below, if applies to you"),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
+        "pleaseSelectPreferredAgentForVideoCall":
+            MessageLookupByLibrary.simpleMessage(
+                "Please select your preferred agent for a video call"),
         "postCode": MessageLookupByLibrary.simpleMessage("POST CODE"),
+        "preferredDate": MessageLookupByLibrary.simpleMessage("PREFERRED DATE"),
+        "preferredTime": MessageLookupByLibrary.simpleMessage("PREFERRED TIME"),
         "profileDetailsQ1":
             MessageLookupByLibrary.simpleMessage("Are you married?"),
         "profileDetailsQ2": MessageLookupByLibrary.simpleMessage(

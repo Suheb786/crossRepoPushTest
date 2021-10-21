@@ -4,12 +4,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
-import 'package:neo_bank/feature/register/step_three/purpose_of_account_opening/purpose_of_account_opening_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_four/schedule_video_call/schedule_video_call_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_account_opening/purpose_of_account_opening_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -18,9 +17,9 @@ import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
-class PurposeOfAccountOpeningPageView
-    extends BasePageViewWidget<PurposeOfAccountOpeningPageViewModel> {
-  PurposeOfAccountOpeningPageView(ProviderBase model) : super(model);
+class ScheduleVideoCallPageView
+    extends BasePageViewWidget<ScheduleVideoCallPageViewModel> {
+  ScheduleVideoCallPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -28,7 +27,7 @@ class PurposeOfAccountOpeningPageView
         child: Column(
       children: [
         Text(
-          S.of(context).accountOpeningPurpose,
+          S.of(context).personalDetails,
           style: TextStyle(
               color: AppColor.dark_gray,
               fontSize: 10,
@@ -37,7 +36,7 @@ class PurposeOfAccountOpeningPageView
         Padding(
           padding: EdgeInsets.only(top: 8.0, bottom: 32),
           child: Text(
-            S.of(context).accountRelatedQuestions,
+            S.of(context).pleaseSelectPreferredAgentForVideoCall,
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: AppColor.very_dark_gray,
@@ -56,7 +55,7 @@ class PurposeOfAccountOpeningPageView
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
                 child: AppStreamBuilder<Resource<bool>>(
-                  stream: model.purposeOfAccountOpeningStream,
+                  stream: model.scheduleVideoCallStream,
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
@@ -72,7 +71,7 @@ class PurposeOfAccountOpeningPageView
                     return GestureDetector(
                       onHorizontalDragUpdate: (details) {
                         if (details.primaryDelta!.isNegative) {
-                          model.validatePurposeOfAccountOpening();
+                          model.validateScheduleVideoCallDetails();
                         } else {
                           ProviderScope.containerOf(context)
                               .read(registerStepThreeViewModelProvider)
@@ -100,7 +99,6 @@ class PurposeOfAccountOpeningPageView
                                   end: Alignment.topCenter),
                             ),
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                   child: SingleChildScrollView(
@@ -108,14 +106,13 @@ class PurposeOfAccountOpeningPageView
                                     child: Column(
                                       children: [
                                         AppTextField(
-                                          labelText: S
-                                              .of(context)
-                                              .purposeOfAccountOpening,
+                                          labelText:
+                                              S.of(context).preferredDate,
                                           hintText: S.of(context).pleaseSelect,
-                                          controller: model
-                                              .purposeOfAccountOpeningController,
-                                          key: model.purposeOfAccountOpeningKey,
+                                          controller:
+                                              model.preferredDateController,
                                           readOnly: true,
+                                          key: model.preferredDateKey,
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
                                             return Visibility(
@@ -147,17 +144,63 @@ class PurposeOfAccountOpeningPageView
                                           suffixIcon: (value, data) {
                                             return InkWell(
                                               onTap: () async {
-                                                PurposeOfAccountOpeningDialog
-                                                    .show(context,
-                                                        onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (value) {
-                                                  Navigator.pop(context);
-                                                  model
-                                                      .updatePurposeOfAccountOpening(
-                                                          value);
-                                                  model.isValid();
-                                                });
+                                                ///TODO: move after dialog integration
+                                                model.isValid();
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.calendar)),
+                                            );
+                                          },
+                                        ),
+                                        SizedBox(
+                                          height: 16,
+                                        ),
+                                        AppTextField(
+                                          labelText:
+                                              S.of(context).preferredTime,
+                                          hintText: S.of(context).pleaseSelect,
+                                          controller:
+                                              model.preferredTimeController,
+                                          readOnly: true,
+                                          key: model.preferredTimeKey,
+                                          textHintWidget:
+                                              (hasFocus, isValid, value) {
+                                            return Visibility(
+                                              visible: !isValid,
+                                              child: Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Padding(
+                                                  padding:
+                                                      EdgeInsets.only(top: 8),
+                                                  child: Text(
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error: response!
+                                                                .appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
+                                                    textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            AppColor.vivid_red),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                          suffixIcon: (value, data) {
+                                            return InkWell(
+                                              onTap: () async {
+                                                ///TODO: move after dialog integration
+                                                model.isValid();
                                               },
                                               child: Container(
                                                   height: 16,
@@ -167,170 +210,6 @@ class PurposeOfAccountOpeningPageView
                                                   child: AppSvg.asset(
                                                       AssetUtils.downArrow)),
                                             );
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 16,
-                                        ),
-                                        AppTextField(
-                                          labelText:
-                                              S.of(context).typeOfTransactions,
-                                          hintText: S.of(context).pleaseEnter,
-                                          controller:
-                                              model.transactionTypeController,
-                                          inputType: TextInputType.text,
-                                          inputAction: TextInputAction.go,
-                                          key: model.transactionTypeKey,
-                                          textHintWidget:
-                                              (hasFocus, isValid, value) {
-                                            return Visibility(
-                                              visible: !isValid,
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 8),
-                                                  child: Text(
-                                                    ErrorParser
-                                                        .getLocalisedStringError(
-                                                            error: response!
-                                                                .appError,
-                                                            localisedHelper:
-                                                                S.of(context)),
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color:
-                                                            AppColor.vivid_red),
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                          onChanged: (value) {
-                                            model.isValid();
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 16,
-                                        ),
-                                        AppTextField(
-                                          labelText: S
-                                              .of(context)
-                                              .expectedMonthlyTransactions,
-                                          hintText: '',
-                                          controller: model
-                                              .expectedMonthlyTransactionController,
-                                          key: model
-                                              .expectedMonthlyTransactionKey,
-                                          inputType: TextInputType.number,
-                                          inputAction: TextInputAction.done,
-                                          textHintWidget:
-                                              (hasFocus, isValid, value) {
-                                            return Visibility(
-                                              visible: !isValid,
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 8),
-                                                  child: Text(
-                                                    ErrorParser
-                                                        .getLocalisedStringError(
-                                                            error: response!
-                                                                .appError,
-                                                            localisedHelper:
-                                                                S.of(context)),
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color:
-                                                            AppColor.vivid_red),
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                          prefixIcon: () {
-                                            return Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 8.0, right: 8),
-                                              child: Text(
-                                                S.of(context).JOD,
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor
-                                                        .very_light_gray_white),
-                                              ),
-                                            );
-                                          },
-                                          onChanged: (value) {
-                                            model.isValid();
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 16,
-                                        ),
-                                        AppTextField(
-                                          labelText: S
-                                              .of(context)
-                                              .expectedAnnualTransactions,
-                                          hintText: '',
-                                          controller: model
-                                              .expectedAnnualTransactionController,
-                                          key: model
-                                              .expectedAnnualTransactionKey,
-                                          inputType: TextInputType.number,
-                                          inputAction: TextInputAction.done,
-                                          textHintWidget:
-                                              (hasFocus, isValid, value) {
-                                            return Visibility(
-                                              visible: !isValid,
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 8),
-                                                  child: Text(
-                                                    ErrorParser
-                                                        .getLocalisedStringError(
-                                                            error: response!
-                                                                .appError,
-                                                            localisedHelper:
-                                                                S.of(context)),
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color:
-                                                            AppColor.vivid_red),
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                          prefixIcon: () {
-                                            return Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 8.0, right: 8),
-                                              child: Text(
-                                                S.of(context).JOD,
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor
-                                                        .very_light_gray_white),
-                                              ),
-                                            );
-                                          },
-                                          onChanged: (value) {
-                                            model.isValid();
                                           },
                                         ),
                                         SizedBox(

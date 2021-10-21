@@ -26,10 +26,10 @@ class RegisterStepThreePageView
   RegisterStepThreePageView(ProviderBase model) : super(model);
 
   List<Widget> pages = [
-    IdVerificationInfoPage(),
-    ConfirmDetailPage(),
-    EnterAddressPage(),
-    ProfileDetailsPage(),
+    // IdVerificationInfoPage(),
+    // ConfirmDetailPage(),
+    // EnterAddressPage(),
+    // ProfileDetailsPage(),
     JobAndIncomePage(),
     PurposeOfAccountOpeningPage(),
     TaxationDetailsPage(),

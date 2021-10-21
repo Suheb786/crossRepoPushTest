@@ -158,6 +158,10 @@ class ErrorParser {
         return localisedHelper.invalidIncomeType;
       case ErrorType.INVALID_EXPLANATION:
         return localisedHelper.invalidExplanation;
+      case ErrorType.INVALID_PREFERRED_DATE:
+        return localisedHelper.invalidPreferredDate;
+      case ErrorType.INVALID_PREFERRED_TIME:
+        return localisedHelper.invalidPreferredTime;
 
       default:
         return "";

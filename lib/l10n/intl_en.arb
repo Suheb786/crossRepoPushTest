@@ -250,7 +250,12 @@
   "beneficialOwnerIsAResidenceOf": "Beneficial owner is a resident of",
   "usIDNumber": "U.S. tax payer identification number ",
   "typeOfIncome": "Type of Income",
-  "explanation": "EXPLANATION"
+  "explanation": "EXPLANATION",
+  "invalidPreferredDate": "Select date",
+  "invalidPreferredTime": "Select time",
+  "pleaseSelectPreferredAgentForVideoCall": "Please select your preferred agent for a video call",
+  "preferredDate": "PREFERRED DATE",
+  "preferredTime": "PREFERRED TIME"
 
 
 }

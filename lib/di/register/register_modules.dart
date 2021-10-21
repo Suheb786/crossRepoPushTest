@@ -6,6 +6,7 @@ import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/step_four/account_ready/account_ready_model.dart';
 import 'package:neo_bank/feature/register/step_four/register_step_four_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/review_application/review_application_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_four/schedule_video_call/schedule_video_call_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/upload_documents/upload_documents_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/confirm_detail/confirm_detail_model.dart';
 import 'package:neo_bank/feature/register/step_three/enter_address/enter_address_model.dart';
@@ -290,4 +291,11 @@ final fatcaUSW8TaxPayerDetailsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<FatcaUSW8TaxPayersDetailsPageViewModel>(
   (ref) => FatcaUSW8TaxPayersDetailsPageViewModel(
       ref.read(fatcaUSW8TaxPayerDetailsUseCaseProvider)),
+);
+
+///schedule video call page view model provider
+final scheduleVideoCallPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ScheduleVideoCallPageViewModel>(
+  (ref) => ScheduleVideoCallPageViewModel(
+      ref.read(scheduleVideoCallUseCaseProvider)),
 );

@@ -12,6 +12,7 @@ import 'package:domain/usecase/register/job_and_income_usecase.dart';
 import 'package:domain/usecase/register/nature_of_special_needs_usecase.dart';
 import 'package:domain/usecase/register/purpose_of_account_opening_usecase.dart';
 import 'package:domain/usecase/register/relationship_with_pep_usecase.dart';
+import 'package:domain/usecase/register/schedule_video_call_usecase.dart';
 import 'package:domain/usecase/register/tax_report_information_usecase.dart';
 import 'package:domain/usecase/register/taxation_details_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -96,3 +97,9 @@ final fatcaUSW9TaxPayerDetailsUseCaseProvider =
 final fatcaUSW8TaxPayerDetailsUseCaseProvider =
     Provider.autoDispose<FatcaUSW8TaxPayerDetailsUseCase>(
         (ref) => FatcaUSW8TaxPayerDetailsUseCase());
+
+///[ScheduleVideoCallUseCase] provider
+final scheduleVideoCallUseCaseProvider =
+    Provider.autoDispose<ScheduleVideoCallUseCase>(
+  (ref) => ScheduleVideoCallUseCase(),
+);

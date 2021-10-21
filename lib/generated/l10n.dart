@@ -2529,6 +2529,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Select date`
+  String get invalidPreferredDate {
+    return Intl.message(
+      'Select date',
+      name: 'invalidPreferredDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select time`
+  String get invalidPreferredTime {
+    return Intl.message(
+      'Select time',
+      name: 'invalidPreferredTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select your preferred agent for a video call`
+  String get pleaseSelectPreferredAgentForVideoCall {
+    return Intl.message(
+      'Please select your preferred agent for a video call',
+      name: 'pleaseSelectPreferredAgentForVideoCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PREFERRED DATE`
+  String get preferredDate {
+    return Intl.message(
+      'PREFERRED DATE',
+      name: 'preferredDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PREFERRED TIME`
+  String get preferredTime {
+    return Intl.message(
+      'PREFERRED TIME',
+      name: 'preferredTime',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
