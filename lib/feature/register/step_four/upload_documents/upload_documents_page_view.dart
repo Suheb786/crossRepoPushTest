@@ -9,9 +9,11 @@ import 'package:neo_bank/feature/register/step_four/upload_documents/upload_docu
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/ui/molecules/upload_document/upload_document_bottom_sheet.dart';
-import 'package:neo_bank/ui/molecules/upload_document/upload_document_item.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -100,154 +102,241 @@ class UploadDocumentsPageView
                                     padding: EdgeInsets.only(bottom: 114),
                                     physics: ClampingScrollPhysics(),
                                     child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        AppStreamBuilder<String>(
-                                            stream:
-                                                model.uploadIncomePoofStream,
-                                            initialData: "",
-                                            onData: (data) {
-                                              model.updateIncomeFileName(
-                                                  data.split("/").last);
-                                            },
-                                            dataBuilder: (context, data) {
-                                              return UploadDocumentItem(
-                                                title:
-                                                    S.of(context).proofOfIncome,
-                                                desc: S
-                                                    .of(context)
-                                                    .proofOfIncomeDesc,
-                                                uploadText:
-                                                    model.incomeFileStr ??
-                                                        S.of(context).upload,
-                                                isUploaded:
-                                                    model.incomeFileUploaded,
-                                                onTap: () {
-                                                  model.incomeFileUploaded =
-                                                      !model.incomeFileUploaded;
-
-                                                  if (model.incomeFileStr !=
-                                                      S.of(context).upload) {
-                                                    model.updateIncomeFileName(
-                                                        S.of(context).upload);
-                                                  } else {
-                                                    showModalBottomSheet(
-                                                        context: context,
-                                                        builder: (builder) =>
-                                                            UploadDocumentBottomSheetWidget(
-                                                              title: S
-                                                                  .of(context)
-                                                                  .selectAnyOption,
-                                                              firstOptionText: S
-                                                                  .of(context)
-                                                                  .storage,
-                                                              secondOptionText: S
-                                                                  .of(context)
-                                                                  .camera,
-                                                              buttonText: S
-                                                                  .of(context)
-                                                                  .cancel,
-                                                              onCameraTap: () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.pickIncomePoofDocument(
-                                                                    DocumentTypeEnum
-                                                                        .CAMERA);
-                                                              },
-                                                              onPhotoLibraryTap:
-                                                                  () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.pickIncomePoofDocument(
-                                                                    DocumentTypeEnum
-                                                                        .GALLERY);
-                                                              },
-                                                              onCancelTap: () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              },
-                                                            ));
-                                                  }
-                                                },
-                                              );
-                                            }),
+                                        Text(
+                                          S.of(context).proofOfIncome,
+                                          softWrap: true,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: AppColor.white),
+                                        ),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              top: 16.0, bottom: 16),
+                                              top: 8.0, bottom: 16),
+                                          child: Text(
+                                            S.of(context).proofOfIncomeDesc,
+                                            softWrap: true,
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                                color: AppColor.white),
+                                          ),
+                                        ),
+                                        AppStreamBuilder<String>(
+                                          stream: model.uploadIncomePoofStream,
+                                          initialData: '',
+                                          onData: (documentResponse) {
+                                            if (documentResponse.isNotEmpty) {
+                                              model.updateIncomeDocumentField(
+                                                  documentResponse);
+                                            }
+                                          },
+                                          dataBuilder: (context, document) {
+                                            return AppStreamBuilder<bool>(
+                                              stream:
+                                                  model.documentIncomeStream,
+                                              initialData: false,
+                                              dataBuilder:
+                                                  (context, isUploaded) {
+                                                return AppTextField(
+                                                  labelText: '',
+                                                  hintText:
+                                                      S.of(context).upload,
+                                                  controller:
+                                                      model.incomeController,
+                                                  key: model.incomeDocumentKey,
+                                                  readOnly: true,
+                                                  // hintTextColor: isUploaded!
+                                                  //     ? AppColor.vivid_orange
+                                                  //     : AppColor.white,
+                                                  suffixIcon: (value, data) {
+                                                    return InkWell(
+                                                      onTap: !(isUploaded!)
+                                                          ? () async {
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (builder) =>
+                                                                          UploadDocumentBottomSheetWidget(
+                                                                            title:
+                                                                                S.of(context).selectAnyOption,
+                                                                            firstOptionText:
+                                                                                S.of(context).storage,
+                                                                            secondOptionText:
+                                                                                S.of(context).camera,
+                                                                            buttonText:
+                                                                                S.of(context).cancel,
+                                                                            onCameraTap:
+                                                                                () {
+                                                                              Navigator.pop(context);
+                                                                              model.uploadIncomeDocument(DocumentTypeEnum.CAMERA);
+                                                                            },
+                                                                            onPhotoLibraryTap:
+                                                                                () {
+                                                                              Navigator.pop(context);
+                                                                              model.uploadIncomeDocument(DocumentTypeEnum.GALLERY);
+                                                                            },
+                                                                            onCancelTap:
+                                                                                () {
+                                                                              Navigator.pop(context);
+                                                                            },
+                                                                          ));
+                                                            }
+                                                          : () {
+                                                              model
+                                                                  .incomeController
+                                                                  .clear();
+                                                              model
+                                                                  .updateIncomeUploadedStream(
+                                                                      false);
+                                                            },
+                                                      child: Container(
+                                                          height: 16,
+                                                          width: 16,
+                                                          padding:
+                                                              EdgeInsets.all(5),
+                                                          child: isUploaded
+                                                              ? AppSvg.asset(
+                                                                  AssetUtils
+                                                                      .delete)
+                                                              : AppSvg.asset(
+                                                                  AssetUtils
+                                                                      .upload)),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 24.0, bottom: 24),
                                           child: Container(
                                             height: 1,
                                             color: AppColor.strong_violet,
                                           ),
                                         ),
+                                        Text(
+                                          S.of(context).proofOfAddress,
+                                          softWrap: true,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: AppColor.white),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 8.0, bottom: 16),
+                                          child: Text(
+                                            S.of(context).proofOfAddressDesc,
+                                            softWrap: true,
+                                            style: TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400,
+                                                color: AppColor.white),
+                                          ),
+                                        ),
                                         AppStreamBuilder<String>(
-                                            stream:
-                                                model.uploadAddressPoofStream,
-                                            initialData: "",
-                                            onData: (data) {
-                                              model.updateAddressFileName(
-                                                  data.split("/").last);
-                                            },
-                                            dataBuilder: (context, data) {
-                                              return UploadDocumentItem(
-                                                title: S
-                                                    .of(context)
-                                                    .proofOfAddress,
-                                                desc: S
-                                                    .of(context)
-                                                    .proofOfAddressDesc,
-                                                uploadText:
-                                                    (model.addressFileStr) ??
-                                                        S.of(context).upload,
-                                                isUploaded:
-                                                    model.addressFileUploaded,
-                                                onTap: () {
-                                                  model.addressFileUploaded =
-                                                      !model
-                                                          .addressFileUploaded;
-                                                  if (model.addressFileStr !=
-                                                      S.of(context).upload) {
-                                                    model.updateAddressFileName(
-                                                        S.of(context).upload);
-                                                  } else {
-                                                    showModalBottomSheet(
-                                                        context: context,
-                                                        builder: (builder) =>
-                                                            UploadDocumentBottomSheetWidget(
-                                                              title: S
-                                                                  .of(context)
-                                                                  .selectAnyOption,
-                                                              firstOptionText: S
-                                                                  .of(context)
-                                                                  .storage,
-                                                              secondOptionText: S
-                                                                  .of(context)
-                                                                  .camera,
-                                                              buttonText: S
-                                                                  .of(context)
-                                                                  .cancel,
-                                                              onCameraTap: () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.pickAddressPoofDocument(
-                                                                    DocumentTypeEnum
-                                                                        .CAMERA);
-                                                              },
-                                                              onPhotoLibraryTap:
-                                                                  () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.pickAddressPoofDocument(
-                                                                    DocumentTypeEnum
-                                                                        .GALLERY);
-                                                              },
-                                                              onCancelTap: () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              },
-                                                            ));
-                                                  }
-                                                },
-                                              );
-                                            }),
+                                          stream: model.uploadAddressPoofStream,
+                                          initialData: '',
+                                          onData: (documentResponse) {
+                                            if (documentResponse.isNotEmpty) {
+                                              model.updateAddressDocumentField(
+                                                  documentResponse);
+                                            }
+                                          },
+                                          dataBuilder: (context, document) {
+                                            return AppStreamBuilder<bool>(
+                                              stream:
+                                                  model.documentAddressStream,
+                                              initialData: false,
+                                              dataBuilder:
+                                                  (context, isUploaded) {
+                                                return AppTextField(
+                                                  labelText: '',
+                                                  hintText:
+                                                      S.of(context).upload,
+                                                  controller:
+                                                      model.addressController,
+                                                  key: model.addressDocumentKey,
+                                                  readOnly: true,
+                                                  // hintTextColor: isUploaded!
+                                                  //     ? AppColor.vivid_orange
+                                                  //     : AppColor.white,
+                                                  suffixIcon: (value, data) {
+                                                    return InkWell(
+                                                      onTap: !(isUploaded!)
+                                                          ? () async {
+                                                              showModalBottomSheet(
+                                                                  context:
+                                                                      context,
+                                                                  builder:
+                                                                      (builder) =>
+                                                                          UploadDocumentBottomSheetWidget(
+                                                                            title:
+                                                                                S.of(context).selectAnyOption,
+                                                                            firstOptionText:
+                                                                                S.of(context).storage,
+                                                                            secondOptionText:
+                                                                                S.of(context).camera,
+                                                                            buttonText:
+                                                                                S.of(context).cancel,
+                                                                            onCameraTap:
+                                                                                () {
+                                                                              Navigator.pop(context);
+                                                                              model.uploadAddressDocument(DocumentTypeEnum.CAMERA);
+                                                                            },
+                                                                            onPhotoLibraryTap:
+                                                                                () {
+                                                                              Navigator.pop(context);
+                                                                              model.uploadAddressDocument(DocumentTypeEnum.GALLERY);
+                                                                            },
+                                                                            onCancelTap:
+                                                                                () {
+                                                                              Navigator.pop(context);
+                                                                            },
+                                                                          ));
+                                                            }
+                                                          : () {
+                                                              model
+                                                                  .addressController
+                                                                  .clear();
+                                                              model
+                                                                  .updateAddressUploadedStream(
+                                                                      false);
+                                                            },
+                                                      child: Container(
+                                                          height: 16,
+                                                          width: 16,
+                                                          padding:
+                                                              EdgeInsets.all(5),
+                                                          child: isUploaded
+                                                              ? AppSvg.asset(
+                                                                  AssetUtils
+                                                                      .delete)
+                                                              : AppSvg.asset(
+                                                                  AssetUtils
+                                                                      .upload)),
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 24.0, bottom: 16),
+                                          child: Container(
+                                            height: 1,
+                                            color: AppColor.strong_violet,
+                                          ),
+                                        ),
                                       ],
                                     ))),
                           ),

@@ -690,16 +690,6 @@ class S {
     );
   }
 
-  /// `Are you U.S. citizen?`
-  String get areYouUSCitizen {
-    return Intl.message(
-      'Are you U.S. citizen?',
-      name: 'areYouUSCitizen',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Are you a US Tax Resident?`
   String get areYouUSTaxResident {
     return Intl.message(
@@ -720,10 +710,10 @@ class S {
     );
   }
 
-  /// `Were you born in the US?`
+  /// `Were you born in the U.S.?`
   String get wereBornInUS {
     return Intl.message(
-      'Were you born in the US?',
+      'Were you born in the U.S.?',
       name: 'wereBornInUS',
       desc: '',
       args: [],
@@ -1030,10 +1020,10 @@ class S {
     );
   }
 
-  /// `Are you or any first degree relatives a PEP?`
+  /// `Are you employed?`
   String get profileDetailsQ3 {
     return Intl.message(
-      'Are you or any first degree relatives a PEP?',
+      'Are you employed?',
       name: 'profileDetailsQ3',
       desc: '',
       args: [],
@@ -1220,6 +1210,16 @@ class S {
     );
   }
 
+  /// `Main Annual Income`
+  String get mainAnnualIncome {
+    return Intl.message(
+      'Main Annual Income',
+      name: 'mainAnnualIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Monthly Income`
   String get monthlyIncomeSmall {
     return Intl.message(
@@ -1360,6 +1360,16 @@ class S {
     );
   }
 
+  /// `Please select valid employee status`
+  String get enterValidEmployeeStatus {
+    return Intl.message(
+      'Please select valid employee status',
+      name: 'enterValidEmployeeStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter valid person’s name`
   String get enterValidPersonsName {
     return Intl.message(
@@ -1470,10 +1480,10 @@ class S {
     );
   }
 
-  /// `No`
+  /// `NO`
   String get no {
     return Intl.message(
-      'No',
+      'NO',
       name: 'no',
       desc: '',
       args: [],
@@ -1850,141 +1860,201 @@ class S {
     );
   }
 
-  /// `OPEN AN ACCOUNT`
-  String get openAccount {
+  /// `Edit Information`
+  String get editInformation {
     return Intl.message(
-      'OPEN AN ACCOUNT',
-      name: 'openAccount',
+      'Edit Information',
+      name: 'editInformation',
       desc: '',
       args: [],
     );
   }
 
-  /// `Great! Now, here’s what Neu has to offer for you`
-  String get productSelectorHeader {
+  /// `Name as per ID`
+  String get nameAsPerID {
     return Intl.message(
-      'Great! Now, here’s what Neu has to offer for you',
-      name: 'productSelectorHeader',
+      'Name as per ID',
+      name: 'nameAsPerID',
       desc: '',
       args: [],
     );
   }
 
-  /// `Accepted worldwide with no hidden charges`
-  String get acceptedWorldWide {
+  /// `ID Number`
+  String get iDNumber {
     return Intl.message(
-      'Accepted worldwide with no hidden charges',
-      name: 'acceptedWorldWide',
+      'ID Number',
+      name: 'iDNumber',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enjoy loyalty rewards with great multiplier`
-  String get loyaltyRewards {
+  /// `Date of Birth`
+  String get dateOfBirth {
     return Intl.message(
-      'Enjoy loyalty rewards with great multiplier',
-      name: 'loyaltyRewards',
+      'Date of Birth',
+      name: 'dateOfBirth',
       desc: '',
       args: [],
     );
   }
 
-  /// `24/7 Customer Service Service`
-  String get customerService {
+  /// `Nationality`
+  String get nationalitySmall {
     return Intl.message(
-      '24/7 Customer Service Service',
-      name: 'customerService',
+      'Nationality',
+      name: 'nationalitySmall',
       desc: '',
       args: [],
     );
   }
 
-  /// `Get ready to verify yourself \nvia video call`
-  String get videoCallInfoHeader {
+  /// `Expiry Date`
+  String get expiryDateSmall {
     return Intl.message(
-      'Get ready to verify yourself \nvia video call',
-      name: 'videoCallInfoHeader',
+      'Expiry Date',
+      name: 'expiryDateSmall',
       desc: '',
       args: [],
     );
   }
 
-  /// `Make sure you’re in bright place and surrounding`
-  String get brightPlace {
+  /// `Gender`
+  String get genderSmall {
     return Intl.message(
-      'Make sure you’re in bright place and surrounding',
-      name: 'brightPlace',
+      'Gender',
+      name: 'genderSmall',
       desc: '',
       args: [],
     );
   }
 
-  /// `Best if your surrounding is quiet and private`
-  String get quietSurrounding {
+  /// `Mother’s Name`
+  String get mothersName {
     return Intl.message(
-      'Best if your surrounding is quiet and private',
-      name: 'quietSurrounding',
+      'Mother’s Name',
+      name: 'mothersName',
       desc: '',
       args: [],
     );
   }
 
-  /// `You may select your preferred agent to chat with`
-  String get preferredAgent {
+  /// `Mother’s Birthplace`
+  String get mothersBirthplace {
     return Intl.message(
-      'You may select your preferred agent to chat with',
-      name: 'preferredAgent',
+      'Mother’s Birthplace',
+      name: 'mothersBirthplace',
       desc: '',
       args: [],
     );
   }
 
-  /// `Schedule for later`
-  String get scheduleLater {
+  /// `Add. Income 1`
+  String get addIncome1 {
     return Intl.message(
-      'Schedule for later',
-      name: 'scheduleLater',
+      'Add. Income 1',
+      name: 'addIncome1',
       desc: '',
       args: [],
     );
   }
 
-  /// `Please select your preferred agent for a video call`
-  String get agentSelectionHeader {
+  /// `Add. Income 2`
+  String get addIncome2 {
     return Intl.message(
-      'Please select your preferred agent for a video call',
-      name: 'agentSelectionHeader',
+      'Add. Income 2',
+      name: 'addIncome2',
       desc: '',
       args: [],
     );
   }
 
-  /// `Male Agent`
-  String get maleAgent {
+  /// `Type of Transactions`
+  String get typeOfTransactions {
     return Intl.message(
-      'Male Agent',
-      name: 'maleAgent',
+      'Type of Transactions',
+      name: 'typeOfTransactions',
       desc: '',
       args: [],
     );
   }
 
-  /// `Any Agent`
-  String get anyAgent {
+  /// `Expected Monthly Transactions`
+  String get expMonthlyTransactions {
     return Intl.message(
-      'Any Agent',
-      name: 'anyAgent',
+      'Expected Monthly Transactions',
+      name: 'expMonthlyTransactions',
       desc: '',
       args: [],
     );
   }
 
-  /// `Female Agent`
-  String get femaleAgent {
+  /// `Expected Annual Transactions`
+  String get expAnnualTransactions {
     return Intl.message(
-      'Female Agent',
-      name: 'femaleAgent',
+      'Expected Annual Transactions',
+      name: 'expAnnualTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you U.S. Citizen?`
+  String get areYouUSCitizen {
+    return Intl.message(
+      'Are you U.S. Citizen?',
+      name: 'areYouUSCitizen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you Tax Resident in any other country than U.S. or Jordan?`
+  String get areYouTaxResidentQ {
+    return Intl.message(
+      'Are you Tax Resident in any other country than U.S. or Jordan?',
+      name: 'areYouTaxResidentQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you or any first degree relatives a Political Exposed Person?`
+  String get areYouAnyFirstDegreeQ {
+    return Intl.message(
+      'Are you or any first degree relatives a Political Exposed Person?',
+      name: 'areYouAnyFirstDegreeQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `JOB & INCOME`
+  String get jobIncome {
+    return Intl.message(
+      'JOB & INCOME',
+      name: 'jobIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next, tell us how do\nmake a living`
+  String get jobIncomeMsg {
+    return Intl.message(
+      'Next, tell us how do\nmake a living',
+      name: 'jobIncomeMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you have additional source of income`
+  String get additionalSourceIncomeQ1 {
+    return Intl.message(
+      'Do you have additional source of income',
+      name: 'additionalSourceIncomeQ1',
       desc: '',
       args: [],
     );

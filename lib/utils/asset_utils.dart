@@ -24,6 +24,7 @@ class AssetUtils {
   static const String earphone = svg + "earphone.svg";
   static const String sunlight = svg + "sunlight.svg";
   static const String record = svg + "record.svg";
+  static const String edit = svg + "edit.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash_logo.png";

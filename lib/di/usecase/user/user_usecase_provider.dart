@@ -1,5 +1,4 @@
 import 'package:data/di/repository_module.dart';
-import 'package:domain/usecase/register/review_app_usecase.dart';
 import 'package:domain/usecase/user/account_ready_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
@@ -16,6 +15,8 @@ import 'package:domain/usecase/user/send_documents_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:domain/usecase/user/video_call_info_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:domain/usecase/user/send_documents_usecase.dart';
+import 'package:domain/usecase/register/student_job_income_usecase.dart';
 
 ///[FetchCountriesUseCase] provider
 final fetchCountriesUseCaseProvider =
@@ -51,12 +52,6 @@ final profileDetailsUseCaseProvider =
 final sendDocumentsUseCaseUseCaseProvider =
     Provider.autoDispose<SendDocumentsUseCase>(
   (ref) => SendDocumentsUseCase(),
-);
-
-///[ReviewApplicationUseCase] provider
-final reviewApplicationUseCaseProvider =
-    Provider.autoDispose<ReviewApplicationUseCase>(
-  (ref) => ReviewApplicationUseCase(),
 );
 
 ///[CreatePasswordUseCase] provider
@@ -109,4 +104,10 @@ final videoCallInfoUseCaseProvider = Provider.autoDispose<VideoCallInfoUseCase>(
 final agentSelectionUseCaseProvider =
     Provider.autoDispose<AgentSelectionUseCase>(
   (ref) => AgentSelectionUseCase(),
+);
+
+
+///[StudentJobIncomeUseCase] provider
+final studentJobIncomeUseCaseProvider = Provider.autoDispose<StudentJobIncomeUseCase>(
+        (ref) => StudentJobIncomeUseCase(),
 );
