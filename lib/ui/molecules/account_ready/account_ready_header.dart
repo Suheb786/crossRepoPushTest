@@ -10,28 +10,31 @@ class AccountReadyHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          title!,
-          style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontSize: 24,
-              color: AppColor.very_light_violet),
-        ),
-        SizedBox(
-          height: 4,
-        ),
-        Text(
-          subTitle!,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-              fontWeight: FontWeight.w400,
-              fontSize: 16,
-              color: AppColor.very_light_violet),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal:24.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text(
+            title!,
+            style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 24,
+                color: AppColor.very_light_violet),
+          ),
+          SizedBox(
+            height: 4,
+          ),
+          Text(
+            subTitle!,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 16,
+                color: AppColor.very_light_violet),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -58,7 +58,7 @@ class RegisterStepThreePageView
             height: double.maxFinite,
             pageSnapping: true,
             enableInfiniteScroll: false,
-            viewportFraction: 0.8,
+            viewportFraction: 0.9,
             enlargeCenterPage: true,
             scrollPhysics: NeverScrollableScrollPhysics(),
             onPageChanged: (index, reason) {

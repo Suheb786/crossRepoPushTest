@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/register/step_two/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/step_two/register_step_two_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 
@@ -11,7 +12,7 @@ class RegisterStepTwoPageView
   RegisterStepTwoPageView(ProviderBase model) : super(model);
 
   List<Widget> pages = [
-    ///TODO: Add step two pages here
+    ProductSelectorPage(),
   ];
 
   @override
@@ -30,7 +31,7 @@ class RegisterStepTwoPageView
             height: double.maxFinite,
             pageSnapping: true,
             enableInfiniteScroll: false,
-            viewportFraction: 0.8,
+            viewportFraction: 0.9,
             enlargeCenterPage: true,
             scrollPhysics: NeverScrollableScrollPhysics(),
             onPageChanged: (index, reason) {

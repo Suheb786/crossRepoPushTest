@@ -93,11 +93,11 @@ class CountrySelectionPageView
                                     })),
                           ),
                           Positioned(
-                            bottom:24,
-                            left:69,
-                            right:69,
+                            bottom: 24,
+                            left: 69,
+                            right: 69,
                             child: AnimatedButton(
-                              buttonText: "Swipe to proceed",
+                              buttonText: S.of(context).swipeToProceed,
                             ),
                           )
                         ],

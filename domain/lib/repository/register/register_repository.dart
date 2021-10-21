@@ -4,6 +4,7 @@ import 'package:domain/model/register/additional_income.dart';
 
 abstract class RegisterRepository {
   Future<Either<LocalError, List<String>>> getOccupationList();
+
   Future<Either<LocalError, List<String>>> getPurposeOfAccountOpeningList();
 
   Future<Either<LocalError, List<AdditionalIncome>>>

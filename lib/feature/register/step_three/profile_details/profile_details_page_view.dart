@@ -1,6 +1,5 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
-import 'package:domain/constants/error_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,8 +9,8 @@ import 'package:neo_bank/feature/register/step_three/profile_details/profile_det
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/relationship_with_pep/relationship_with_pep_dialog.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_row_item.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -20,6 +19,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:domain/constants/enum/nature_of_special_needs_enum.dart';
 
 class ProfileDetailsPageView
     extends BasePageViewWidget<ProfileDetailsPageViewModel> {
@@ -276,191 +276,92 @@ class ProfileDetailsPageView
                                               model.isRelative = isActive;
                                               return Visibility(
                                                 visible: isActive,
-                                                child: Column(
-                                                  children: [
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 16.0),
-                                                      child: AppTextField(
-                                                        labelText: S
-                                                            .of(context)
-                                                            .relationShipWithPepCaps,
-                                                        hintText: S
-                                                            .of(context)
-                                                            .pleaseSelect,
-                                                        inputType:
-                                                            TextInputType.text,
-                                                        controller: model
-                                                            .relationShipController,
-                                                        key: model
-                                                            .relationShipWithPepKey,
-                                                        readOnly: true,
-                                                        suffixIcon:
-                                                            (enabled, value) {
-                                                          return InkWell(
-                                                              onTap: () async {
-                                                                model
-                                                                    .updateAnimatedValue(
-                                                                        true);
-                                                                RelationshipWithPEPDialog.show(
-                                                                    context,
-                                                                    onDismissed:
-                                                                        () {
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                }, onSelected:
-                                                                        (value) {
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                  model.updateAnimatedValue(
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 16.0),
+                                                  child: AppTextField(
+                                                    labelText: S
+                                                        .of(context)
+                                                        .employmentStatus,
+                                                    hintText: S
+                                                        .of(context)
+                                                        .pleaseSelect,
+                                                    inputType:
+                                                        TextInputType.text,
+                                                    controller: model
+                                                        .employeeStatusController,
+                                                    key: model
+                                                        .employeeStatusKey,
+                                                    readOnly: true,
+                                                    suffixIcon:
+                                                        (enabled, value) {
+                                                      return InkWell(
+                                                          onTap: () async {
+                                                            model
+                                                                .updateAnimatedValue(
+                                                                    true);
+                                                            EmploymentStatusDialog.show(
+                                                                context, onDismissed:
+                                                                    () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            }, onSelected:
+                                                                    (value) {
+                                                              Navigator.pop(
+                                                                  context);
+                                                              model
+                                                                  .updateAnimatedValue(
                                                                       false);
-                                                                  model.updateRelationShipWithPEP(
+                                                              model
+                                                                  .updateRelationShipWithPEP(
                                                                       value);
-                                                                });
-                                                              },
-                                                              child: AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .dropDown,
-                                                                  width: 16,
-                                                                  height: 16));
-                                                        },
-                                                        textHintWidget:
-                                                            (hasFocus, isValid,
-                                                                value) {
-                                                          return Visibility(
-                                                            visible: !isValid,
-                                                            child: Padding(
-                                                              padding: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          16,
-                                                                      vertical:
-                                                                          8),
-                                                              child: Text(
-                                                                ErrorParser.getLocalisedStringError(
-                                                                    error: data!
-                                                                        .appError,
-                                                                    localisedHelper:
-                                                                        S.of(
-                                                                            context)),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .start,
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    color: AppColor
-                                                                        .vivid_red),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 16.0),
-                                                      child: AppTextField(
-                                                        labelText: S
-                                                            .of(context)
-                                                            .personName,
-                                                        hintText: "",
-                                                        inputType:
-                                                            TextInputType.text,
-                                                        controller: model
-                                                            .personNameController,
-                                                        key:
-                                                            model.personNameKey,
-                                                        textHintWidget:
-                                                            (hasFocus, isValid,
-                                                                value) {
-                                                          return Visibility(
-                                                            visible: !isValid,
-                                                            child: Padding(
-                                                              padding: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          16,
-                                                                      vertical:
-                                                                          8),
-                                                              child: Text(
-                                                                ErrorParser.getLocalisedStringError(
-                                                                    error: data!
-                                                                        .appError,
-                                                                    localisedHelper:
-                                                                        S.of(
-                                                                            context)),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .start,
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    color: AppColor
-                                                                        .vivid_red),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 16.0),
-                                                      child: AppTextField(
-                                                        labelText: S
-                                                            .of(context)
-                                                            .personRole,
-                                                        hintText: "",
-                                                        inputType:
-                                                            TextInputType.text,
-                                                        controller: model
-                                                            .personRoleController,
-                                                        key:
-                                                            model.personRoleKey,
-                                                        textHintWidget:
-                                                            (hasFocus, isValid,
-                                                                value) {
-                                                          return Visibility(
-                                                            visible: !isValid,
-                                                            child: Padding(
-                                                              padding: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          16,
-                                                                      vertical:
-                                                                          8),
-                                                              child: Text(
-                                                                ErrorParser.getLocalisedStringError(
-                                                                    error: data!
-                                                                        .appError,
-                                                                    localisedHelper:
-                                                                        S.of(
-                                                                            context)),
-                                                                textAlign:
-                                                                    TextAlign
-                                                                        .start,
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        12,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    color: AppColor
-                                                                        .vivid_red),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                      ),
-                                                    )
-                                                  ],
+                                                            },
+                                                                natureOfNeedsEnum: (model
+                                                                            .isPerson && model.natureController!=null&&
+                                                                        model.natureController.text ==
+                                                                            "Sensory")
+                                                                    ? NatureOfSpecialNeedsEnum
+                                                                        .SENSORY
+                                                                    : NatureOfSpecialNeedsEnum
+                                                                        .PHYSICAL);
+                                                          },
+                                                          child: AppSvg.asset(
+                                                              AssetUtils
+                                                                  .dropDown,
+                                                              width: 16,
+                                                              height: 16));
+                                                    },
+                                                    textHintWidget: (hasFocus,
+                                                        isValid, value) {
+                                                      return Visibility(
+                                                        visible: !isValid,
+                                                        child: Padding(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      16,
+                                                                  vertical: 8),
+                                                          child: Text(
+                                                            ErrorParser.getLocalisedStringError(
+                                                                error: data!
+                                                                    .appError,
+                                                                localisedHelper:
+                                                                    S.of(
+                                                                        context)),
+                                                            textAlign:
+                                                                TextAlign.start,
+                                                            style: TextStyle(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color: AppColor
+                                                                    .vivid_red),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
                                                 ),
                                               );
                                             },
