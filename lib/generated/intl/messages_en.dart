@@ -24,6 +24,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
+        "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
+            "Accepted worldwide with no hidden charges"),
         "accountReady": MessageLookupByLibrary.simpleMessage(
             "Your account is up and ready. Let’s get you the Neu Debit Card."),
         "accountRegistration":
@@ -40,9 +42,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you have additional source of income"),
         "additionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("ADDITIONAL SOURCE OF INCOME"),
+        "agentSelectionHeader": MessageLookupByLibrary.simpleMessage(
+            "Please select your preferred agent for a video call"),
         "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
         "annualIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Annual Income"),
+        "anyAgent": MessageLookupByLibrary.simpleMessage("Any Agent"),
         "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than US or Jordan?"),
         "appName": MessageLookupByLibrary.simpleMessage("Neo Bank"),
@@ -57,6 +62,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouUSTaxResidentHint":
             MessageLookupByLibrary.simpleMessage("(e.g. Green Card Holder)"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
+        "brightPlace": MessageLookupByLibrary.simpleMessage(
+            "Make sure you’re in bright place and surrounding"),
         "buildingNameNo":
             MessageLookupByLibrary.simpleMessage("Building Name / No"),
         "buildingNameOrNo":
@@ -87,6 +94,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CREATE PASSWORD"),
         "createPasswordHeader": MessageLookupByLibrary.simpleMessage(
             "Next, let\'s create your\nlogin password"),
+        "customerService": MessageLookupByLibrary.simpleMessage(
+            "24/7 Customer Service Service"),
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("Date of Birth"),
         "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage(
             "Do you have TIN No available?"),
@@ -175,6 +184,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Enter Expiry Date"),
         "expiryDateSmall": MessageLookupByLibrary.simpleMessage("Expiry Date"),
         "explainReason": MessageLookupByLibrary.simpleMessage("EXPLAIN REASON"),
+        "femaleAgent": MessageLookupByLibrary.simpleMessage("Female Agent"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
         "genderHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
@@ -235,12 +245,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "jobIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
         "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
             "Next, tell us how do\nmake a living"),
+        "loyaltyRewards": MessageLookupByLibrary.simpleMessage(
+            "Enjoy loyalty rewards with great multiplier"),
         "mainAnnualIncome":
             MessageLookupByLibrary.simpleMessage("Main Annual Income"),
         "mainSourceIncome":
             MessageLookupByLibrary.simpleMessage("Main Source of Income"),
         "mainSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
+        "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("000 0000"),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
@@ -268,6 +281,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "occupationSmall": MessageLookupByLibrary.simpleMessage("Occupation"),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "Once fit, your ID will be scanned automatically"),
+        "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
@@ -284,6 +298,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "personsRole": MessageLookupByLibrary.simpleMessage("Person’s Role"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
+        "preferredAgent": MessageLookupByLibrary.simpleMessage(
+            "You may select your preferred agent to chat with"),
+        "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
+            "Great! Now, here’s what Neu has to offer for you"),
         "profileDetailsQ1":
             MessageLookupByLibrary.simpleMessage("Are you married?"),
         "profileDetailsQ2": MessageLookupByLibrary.simpleMessage(
@@ -304,6 +322,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("PURPOSE OF ACCOUNT OPENING"),
         "purposeOfOpeningAccount":
             MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
+        "quietSurrounding": MessageLookupByLibrary.simpleMessage(
+            "Best if your surrounding is quiet and private"),
         "reasonOfUnavailability":
             MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
         "reasonOfUnavailabilitySmall":
@@ -325,6 +345,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please accept the above terms and conditions"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
+        "scheduleLater":
+            MessageLookupByLibrary.simpleMessage("Schedule for later"),
         "selectAnyOption":
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
@@ -367,6 +389,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "uploadDocuments":
             MessageLookupByLibrary.simpleMessage("UPLOAD DOCUMENTS"),
+        "videoCallInfoHeader": MessageLookupByLibrary.simpleMessage(
+            "Get ready to verify yourself \nvia video call"),
         "welcomeToNeuBank":
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank."),
         "wereBornInUS":

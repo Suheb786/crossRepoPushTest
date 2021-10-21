@@ -364,6 +364,11 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         },
                                       ),
                                       SizedBox(
+                                        height: MediaQuery.of(context)
+                                            .viewInsets
+                                            .bottom,
+                                      ),
+                                      SizedBox(
                                         height: 32,
                                       ),
                                       AppStreamBuilder<bool>(
@@ -376,8 +381,9 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                 padding: EdgeInsets.only(
                                                     left: 45, right: 45),
                                                 child: AnimatedButton(
-                                                    buttonText:
-                                                        "Swipe to proceed"),
+                                                    buttonText: S
+                                                        .of(context)
+                                                        .swipeToProceed),
                                               ),
                                             );
                                           })

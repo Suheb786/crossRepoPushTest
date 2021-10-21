@@ -271,8 +271,10 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                               },
                                             ),
                                             SizedBox(
-                                              height: 67,
-                                            ),
+                                              height: MediaQuery.of(context)
+                                                  .viewInsets
+                                                  .bottom,
+                                            )
                                           ],
                                         ),
                                       ),
@@ -286,8 +288,9 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                             dataBuilder: (context, isValid) {
                                               if (isValid!) {
                                                 return AnimatedButton(
-                                                    buttonText:
-                                                        "Swipe to proceed");
+                                                    buttonText: S
+                                                        .of(context)
+                                                        .swipeToProceed);
                                               } else {
                                                 return Container();
                                               }

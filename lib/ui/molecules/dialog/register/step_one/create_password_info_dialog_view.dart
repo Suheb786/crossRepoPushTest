@@ -28,15 +28,16 @@ class CreatePasswordInfoDialogView extends StatelessWidget {
             ),
             SizedBox(height: 315),
             InkWell(
-                onTap: () => Navigator.of(context).pop(),
-                child: Container(
-                  padding: EdgeInsets.all(16),
-                  height: 57,
-                  width: 57,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: AppColor.dark_violet_4),
-                  child: AppSvg.asset(AssetUtils.tick),
-                ))
+              onTap: () => Navigator.of(context).pop(),
+              child: Container(
+                padding: EdgeInsets.all(16),
+                height: 57,
+                width: 57,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle, color: AppColor.dark_violet_4),
+                child: AppSvg.asset(AssetUtils.tick),
+              ),
+            )
           ],
         ),
       ),

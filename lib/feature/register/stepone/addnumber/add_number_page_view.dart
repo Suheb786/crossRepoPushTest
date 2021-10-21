@@ -115,11 +115,12 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                       inputAction: TextInputAction.done,
                                       controller: model.mobileNumberController,
                                       key: model.mobileNumberKey,
-                                      onChanged: (value)=> model.validate(),
+                                      onChanged: (value) => model.validate(),
                                       prefixIcon: () {
                                         Country? country = ProviderScope
                                                 .containerOf(context)
-                                            .read(countrySelectionViewModelProvider)
+                                            .read(
+                                                countrySelectionViewModelProvider)
                                             .selectedCountry;
                                         return Padding(
                                           padding: EdgeInsets.only(top: 8.0),
@@ -142,9 +143,11 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                 padding: EdgeInsets.symmetric(
                                                     horizontal: 8.0),
                                                 child: Text(
-                                                  country.countryCallingCode ?? "",
+                                                  country.countryCallingCode ??
+                                                      "",
                                                   style: TextStyle(
-                                                    color: AppColor.very_light_gray,
+                                                    color: AppColor
+                                                        .very_light_gray,
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w600,
                                                   ),
@@ -154,16 +157,19 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                           ),
                                         );
                                       },
-                                      textHintWidget: (hasFocus, isValid, value) {
+                                      textHintWidget:
+                                          (hasFocus, isValid, value) {
                                         return Visibility(
                                           visible: !isValid,
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: 16, vertical: 8),
                                             child: Text(
-                                              ErrorParser.getLocalisedStringError(
-                                                  error: data!.appError,
-                                                  localisedHelper: S.of(context)),
+                                              ErrorParser
+                                                  .getLocalisedStringError(
+                                                      error: data!.appError,
+                                                      localisedHelper:
+                                                          S.of(context)),
                                               textAlign: TextAlign.start,
                                               style: TextStyle(
                                                   fontSize: 12,
@@ -181,16 +187,17 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                           return Visibility(
                                             visible: isValid!,
                                             child: Positioned(
-                                              bottom:0,
-                                              left:45,
-                                              right:45,
+                                              bottom: 0,
+                                              left: 45,
+                                              right: 45,
                                               child: AnimatedButton(
-                                                buttonText: "Swipe to proceed",
+                                                buttonText: S
+                                                    .of(context)
+                                                    .swipeToProceed,
                                               ),
                                             ),
                                           );
-                                        }
-                                    )
+                                        })
                                   ],
                                 )),
                           ),

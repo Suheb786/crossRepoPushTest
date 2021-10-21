@@ -5,6 +5,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 class AppTextField extends StatefulWidget {
   final double? height;
   final double? width;
+  final Color? labelColor;
   final Widget? child;
   final Function()? onPressed;
   final TextEditingController? controller;
@@ -20,6 +21,7 @@ class AppTextField extends StatefulWidget {
   final Function(String)? onFieldSubmitted;
   final bool? readOnly;
   final int? maxLength;
+  final Color? textColor;
   final bool? obscureText;
   final String obscuringCharacter;
   final Widget Function(bool enabled, String value)? suffixIcon;
@@ -75,11 +77,13 @@ class AppTextField extends StatefulWidget {
       this.filledColor: AppColor.white,
       this.onFieldSubmitted,
       this.labelIcon,
+      this.labelColor,
       this.dividerPadding:
           const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
       this.floatingLabelBehavior: FloatingLabelBehavior.never,
       this.textAlign: TextAlign.start,
-      this.textHintWidget})
+      this.textHintWidget,
+      this.textColor})
       : super(key: key);
 
   @override
@@ -144,7 +148,8 @@ class AppTextFieldState extends State<AppTextField> {
                         TextSpan(
                             text: widget.labelText,
                             style: DefaultTextStyle.of(context).style.copyWith(
-                                  color: AppColor.light_grayish_violet,
+                                  color: widget.labelColor ??
+                                      AppColor.light_grayish_violet,
                                   fontSize: 10,
                                   fontFamily: "Montserrat",
                                 )),
@@ -157,7 +162,7 @@ class AppTextFieldState extends State<AppTextField> {
                       maxLength: widget.maxLength,
                       textAlign: widget.textAlign,
                       style: TextStyle(
-                        color: AppColor.very_light_gray,
+                        color: widget.textColor ?? AppColor.very_light_gray,
                         fontSize: widget.fontSize,
                         fontWeight: FontWeight.w600,
                       ),

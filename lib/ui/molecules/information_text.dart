@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class IdVerificationInfoText extends StatelessWidget {
+class InformationText extends StatelessWidget {
   String? image;
   String? title;
 
-  IdVerificationInfoText({required this.image, required this.title});
+  InformationText({required this.image, required this.title});
 
   @override
   Widget build(BuildContext context) {
