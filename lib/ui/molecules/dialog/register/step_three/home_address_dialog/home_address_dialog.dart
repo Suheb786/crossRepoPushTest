@@ -9,6 +9,9 @@ class HomeAddressDialog {
       {Function? onDismissed, Function(String)? onSelected}) {
     AppDialog.show(mContext,
         isDismissible: true,
-        builder: (context) => HomeAddressDialogView());
+        builder: (context) => HomeAddressDialogView(
+              onDismissed: onDismissed,
+              onSelected: onSelected,
+            ));
   }
 }

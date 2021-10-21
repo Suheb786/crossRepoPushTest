@@ -271,8 +271,10 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                               },
                                             ),
                                             SizedBox(
-                                              height: 67,
-                                            ),
+                                              height: MediaQuery.of(context)
+                                                  .viewInsets
+                                                  .bottom,
+                                            )
                                           ],
                                         ),
                                       ),

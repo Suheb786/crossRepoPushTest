@@ -12,7 +12,7 @@ class RegisterStepTwoPageView
   RegisterStepTwoPageView(ProviderBase model) : super(model);
 
   List<Widget> pages = [
-    ProductSelectorPage()
+    ProductSelectorPage(),
   ];
 
   @override

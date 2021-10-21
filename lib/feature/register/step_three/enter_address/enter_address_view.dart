@@ -109,210 +109,234 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                   borderRadius: BorderRadius.circular(16)),
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 32, horizontal: 24),
-                                  decoration: BoxDecoration(
-                                    color: AppColor.very_soft_violet,
-                                    gradient: LinearGradient(
-                                        colors: [
-                                          AppColor.dark_violet,
-                                          AppColor.dark_moderate_blue
-                                        ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter),
-                                  ),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        AppTextField(
-                                          labelText:
-                                              S.of(context).residentCountry,
-                                          hintText:
-                                              S.of(context).residentCountryHint,
-                                          inputType: TextInputType.text,
-                                          controller:
-                                              model.residentCountryController,
-                                          suffixIcon: (dropDownEnabled,
-                                                  value) =>
-                                              AppSvg.asset(AssetUtils.dropDown),
-                                          key: model.residentCountryKey,
-                                          onChanged: (value) =>
-                                              model.validateAddress(),
-                                          textHintWidget:
-                                              (hasFocus, isValid, value) {
-                                            return Visibility(
-                                              visible: !isValid,
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 16,
-                                                    vertical: 8),
-                                                child: Text(
-                                                  ErrorParser
-                                                      .getLocalisedStringError(
-                                                          error: data!.appError,
-                                                          localisedHelper:
-                                                              S.of(context)),
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color:
-                                                          AppColor.vivid_red),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 16,
-                                        ),
-                                        AppTextField(
-                                          labelText: S.of(context).homeAddress,
-                                          hintText:
-                                              S.of(context).homeAddressHint,
-                                          inputType: TextInputType.text,
-                                          controller:
-                                              model.homeAddressController,
-                                          key: model.homeAddressrKey,
-                                          onChanged: (value) =>
-                                              model.validateAddress(),
-                                          suffixIcon: (isValid, value) =>
-                                              InkWell(
-                                                  onTap: () =>
-                                                      HomeAddressDialog.show(
-                                                          context),
-                                                  child: Image.asset(
-                                                      AssetUtils.location)),
-                                          textHintWidget:
-                                              (hasFocus, isValid, value) {
-                                            return Visibility(
-                                              visible: !isValid,
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 16,
-                                                    vertical: 8),
-                                                child: Text(
-                                                  ErrorParser
-                                                      .getLocalisedStringError(
-                                                          error: data!.appError,
-                                                          localisedHelper:
-                                                              S.of(context)),
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color:
-                                                          AppColor.vivid_red),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 16,
-                                        ),
-                                        AppTextField(
-                                          labelText:
-                                              S.of(context).streetAddress,
-                                          hintText:
-                                              S.of(context).streetAddressHint,
-                                          inputType: TextInputType.text,
-                                          controller:
-                                              model.streetAddressController,
-                                          key: model.streetAddressKey,
-                                          onChanged: (value) =>
-                                              model.validateAddress(),
-                                          textHintWidget:
-                                              (hasFocus, isValid, value) {
-                                            return Visibility(
-                                              visible: !isValid,
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 16,
-                                                    vertical: 8),
-                                                child: Text(
-                                                  ErrorParser
-                                                      .getLocalisedStringError(
-                                                          error: data!.appError,
-                                                          localisedHelper:
-                                                              S.of(context)),
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color:
-                                                          AppColor.vivid_red),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 16,
-                                        ),
-                                        AppTextField(
-                                          labelText:
-                                              S.of(context).buildingNameOrNo,
-                                          hintText: S
-                                              .of(context)
-                                              .buildingNameOrNoHint,
-                                          inputType: TextInputType.text,
-                                          controller: model
-                                              .buildingNameOrNumberController,
-                                          key: model.buildingNameOrNumberKey,
-                                          onChanged: (value) =>
-                                              model.validateAddress(),
-                                          textHintWidget:
-                                              (hasFocus, isValid, value) {
-                                            return Visibility(
-                                              visible: !isValid,
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 16,
-                                                    vertical: 8),
-                                                child: Text(
-                                                  ErrorParser
-                                                      .getLocalisedStringError(
-                                                          error: data!.appError,
-                                                          localisedHelper:
-                                                              S.of(context)),
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color:
-                                                          AppColor.vivid_red),
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: 32,
-                                        ),
-                                        AppStreamBuilder<bool>(
-                                            stream: model.showButtonStream,
-                                            initialData: false,
-                                            dataBuilder: (context, isValid) {
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 32, horizontal: 24),
+                                decoration: BoxDecoration(
+                                  color: AppColor.very_soft_violet,
+                                  gradient: LinearGradient(
+                                      colors: [
+                                        AppColor.dark_violet,
+                                        AppColor.dark_moderate_blue
+                                      ],
+                                      begin: Alignment.bottomCenter,
+                                      end: Alignment.topCenter),
+                                ),
+                                child: Stack(
+                                  children: [
+                                    SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          AppTextField(
+                                            labelText:
+                                                S.of(context).residentCountry,
+                                            hintText: S
+                                                .of(context)
+                                                .residentCountryHint,
+                                            inputType: TextInputType.text,
+                                            controller:
+                                                model.residentCountryController,
+                                            suffixIcon:
+                                                (dropDownEnabled, value) =>
+                                                    AppSvg.asset(
+                                                        AssetUtils.dropDown),
+                                            key: model.residentCountryKey,
+                                            onChanged: (value) =>
+                                                model.validateAddress(),
+                                            textHintWidget:
+                                                (hasFocus, isValid, value) {
                                               return Visibility(
-                                                visible: isValid!,
+                                                visible: !isValid,
                                                 child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      left: 45, right: 45),
-                                                  child: AnimatedButton(
-                                                    buttonText:
-                                                        "Swipe to proceed",
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 16,
+                                                      vertical: 8),
+                                                  child: Text(
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error:
+                                                                data!.appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
+                                                    textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            AppColor.vivid_red),
                                                   ),
                                                 ),
                                               );
-                                            })
-                                      ],
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 16,
+                                          ),
+                                          AppTextField(
+                                            labelText:
+                                                S.of(context).homeAddress,
+                                            hintText:
+                                                S.of(context).homeAddressHint,
+                                            inputType: TextInputType.text,
+                                            controller:
+                                                model.homeAddressController,
+                                            key: model.homeAddressrKey,
+                                            onChanged: (value) =>
+                                                model.validateAddress(),
+                                            suffixIcon: (isValid, value) =>
+                                                InkWell(
+                                                    onTap: () =>
+                                                        HomeAddressDialog.show(
+                                                            context, onSelected:
+                                                                (value) {
+                                                          model
+                                                              .homeAddressController
+                                                              .text = value;
+                                                        }),
+                                                    child: Image.asset(
+                                                        AssetUtils.location)),
+                                            textHintWidget:
+                                                (hasFocus, isValid, value) {
+                                              return Visibility(
+                                                visible: !isValid,
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 16,
+                                                      vertical: 8),
+                                                  child: Text(
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error:
+                                                                data!.appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
+                                                    textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            AppColor.vivid_red),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 16,
+                                          ),
+                                          AppTextField(
+                                            labelText:
+                                                S.of(context).streetAddress,
+                                            hintText:
+                                                S.of(context).streetAddressHint,
+                                            inputType: TextInputType.text,
+                                            controller:
+                                                model.streetAddressController,
+                                            key: model.streetAddressKey,
+                                            onChanged: (value) =>
+                                                model.validateAddress(),
+                                            textHintWidget:
+                                                (hasFocus, isValid, value) {
+                                              return Visibility(
+                                                visible: !isValid,
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 16,
+                                                      vertical: 8),
+                                                  child: Text(
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error:
+                                                                data!.appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
+                                                    textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            AppColor.vivid_red),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 16,
+                                          ),
+                                          AppTextField(
+                                            labelText:
+                                                S.of(context).buildingNameOrNo,
+                                            hintText: S
+                                                .of(context)
+                                                .buildingNameOrNoHint,
+                                            inputType: TextInputType.text,
+                                            controller: model
+                                                .buildingNameOrNumberController,
+                                            key: model.buildingNameOrNumberKey,
+                                            onChanged: (value) =>
+                                                model.validateAddress(),
+                                            textHintWidget:
+                                                (hasFocus, isValid, value) {
+                                              return Visibility(
+                                                visible: !isValid,
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 16,
+                                                      vertical: 8),
+                                                  child: Text(
+                                                    ErrorParser
+                                                        .getLocalisedStringError(
+                                                            error:
+                                                                data!.appError,
+                                                            localisedHelper:
+                                                                S.of(context)),
+                                                    textAlign: TextAlign.start,
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color:
+                                                            AppColor.vivid_red),
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  )),
+                                    Positioned(
+                                      left: 45,
+                                      right: 45,
+                                      bottom: 0,
+                                      child: AppStreamBuilder<bool>(
+                                          stream: model.showButtonStream,
+                                          initialData: false,
+                                          dataBuilder: (context, isValid) {
+                                            return Visibility(
+                                              visible: isValid!,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 45, right: 45),
+                                                child: AnimatedButton(
+                                                  buttonText:
+                                                      "Swipe to proceed",
+                                                ),
+                                              ),
+                                            );
+                                          }),
+                                    )
+                                  ],
+                                ),
+                              ),
                             ),
                           );
                         }),

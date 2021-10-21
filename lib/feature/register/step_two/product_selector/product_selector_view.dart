@@ -1,7 +1,9 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_two/product_selector/product_selector_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -44,9 +46,7 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
               shakeAngle: Rotation.deg(z: 1),
               curve: Curves.easeInOutSine,
               child: GestureDetector(
-                onHorizontalDragUpdate: (details) {
-                  print("Hello");
-                },
+                onHorizontalDragUpdate: (details) {},
                 child: Stack(
                   clipBehavior: Clip.none,
                   children: [
@@ -85,7 +85,15 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                                     title: S.of(context).customerService),
                                 SizedBox(height: 17),
                                 InkWell(
-                                  onTap: () => Navigator.of(context).pop(),
+                                  onTap: () {
+                                    ProviderScope.containerOf(context)
+                                        .read(registerViewModelProvider)
+                                        .registrationStepsController
+                                        .animateToPage(2,
+                                            duration:
+                                                Duration(milliseconds: 500),
+                                            curve: Curves.easeInOut);
+                                  },
                                   child: Container(
                                     padding: EdgeInsets.all(16),
                                     height: 57,

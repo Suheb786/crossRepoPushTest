@@ -13,7 +13,13 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 
 class HomeAddressDialogView extends StatelessWidget {
-  const HomeAddressDialogView({Key? key}) : super(key: key);
+  final Function? onDismissed;
+  final Function(String)? onSelected;
+
+  const HomeAddressDialogView({
+    this.onDismissed,
+    this.onSelected,
+  });
 
   ProviderBase providerBase() {
     return homeAddressDialogViwModelProvider;
@@ -113,7 +119,10 @@ class HomeAddressDialogView extends StatelessWidget {
                   height: 21,
                 ),
                 InkWell(
-                  onTap: () => Navigator.of(context).pop(),
+                  onTap: () {
+                    onSelected!.call(model.addressController.text);
+                    Navigator.of(context).pop();
+                  },
                   child: Container(
                     padding: EdgeInsets.all(16),
                     height: 57,

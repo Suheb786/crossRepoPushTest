@@ -364,6 +364,11 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         },
                                       ),
                                       SizedBox(
+                                        height: MediaQuery.of(context)
+                                            .viewInsets
+                                            .bottom,
+                                      ),
+                                      SizedBox(
                                         height: 32,
                                       ),
                                       AppStreamBuilder<bool>(
