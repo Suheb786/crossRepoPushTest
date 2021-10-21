@@ -23,6 +23,7 @@ class ConfirmDetailUseCaseParams extends Params {
   final String? nationality;
   final String? expiryDate;
   final String? gender;
+  final String? motherName;
 
   ConfirmDetailUseCaseParams(
       {required this.name,
@@ -30,7 +31,8 @@ class ConfirmDetailUseCaseParams extends Params {
       required this.dateOfBirth,
       required this.nationality,
       required this.expiryDate,
-      required this.gender});
+      required this.gender,
+      this.motherName});
 
   @override
   Either<AppError, bool> verify() {
@@ -63,6 +65,11 @@ class ConfirmDetailUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_GENDER,
+          cause: Exception()));
+    } else if (Validator.isEmpty(motherName!)) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.EMPTY_MOTHER_NAME,
           cause: Exception()));
     }
     return Right(true);

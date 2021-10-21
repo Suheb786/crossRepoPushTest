@@ -690,10 +690,20 @@ class S {
     );
   }
 
-  /// `Are you a U.S. tax Resident?`
+  /// `Are you U.S. citizen?`
+  String get areYouUSCitizen {
+    return Intl.message(
+      'Are you U.S. citizen?',
+      name: 'areYouUSCitizen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you a US Tax Resident?`
   String get areYouUSTaxResident {
     return Intl.message(
-      'Are you a U.S. tax Resident?',
+      'Are you a US Tax Resident?',
       name: 'areYouUSTaxResident',
       desc: '',
       args: [],
@@ -710,10 +720,10 @@ class S {
     );
   }
 
-  /// `Were you born in the U.S.?`
+  /// `Were you born in the US?`
   String get wereBornInUS {
     return Intl.message(
-      'Were you born in the U.S.?',
+      'Were you born in the US?',
       name: 'wereBornInUS',
       desc: '',
       args: [],
@@ -1020,10 +1030,10 @@ class S {
     );
   }
 
-  /// `Are you employed?`
+  /// `Are you or any first degree relatives a PEP?`
   String get profileDetailsQ3 {
     return Intl.message(
-      'Are you employed?',
+      'Are you or any first degree relatives a PEP?',
       name: 'profileDetailsQ3',
       desc: '',
       args: [],
@@ -1205,16 +1215,6 @@ class S {
     return Intl.message(
       'Main Source of Income',
       name: 'mainSourceIncome',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Main Annual Income`
-  String get mainAnnualIncome {
-    return Intl.message(
-      'Main Annual Income',
-      name: 'mainAnnualIncome',
       desc: '',
       args: [],
     );
@@ -1470,10 +1470,10 @@ class S {
     );
   }
 
-  /// `NO`
+  /// `No`
   String get no {
     return Intl.message(
-      'NO',
+      'No',
       name: 'no',
       desc: '',
       args: [],
@@ -1570,11 +1570,21 @@ class S {
     );
   }
 
-  /// `Gender filed cannot be empty`
+  /// `Gender field cannot be empty`
   String get emptyGender {
     return Intl.message(
-      'Gender filed cannot be empty',
+      'Gender field cannot be empty',
       name: 'emptyGender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mother's name field cannot be empty`
+  String get emptyMotherName {
+    return Intl.message(
+      'Mother\'s name field cannot be empty',
+      name: 'emptyMotherName',
       desc: '',
       args: [],
     );
@@ -1800,171 +1810,41 @@ class S {
     );
   }
 
-  /// `Edit Information`
-  String get editInformation {
+  /// `Create Password`
+  String get passwordDialogHeader {
     return Intl.message(
-      'Edit Information',
-      name: 'editInformation',
+      'Create Password',
+      name: 'passwordDialogHeader',
       desc: '',
       args: [],
     );
   }
 
-  /// `Name as per ID`
-  String get nameAsPerID {
+  /// `Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol.`
+  String get passwordDialogContent {
     return Intl.message(
-      'Name as per ID',
-      name: 'nameAsPerID',
+      'Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol.',
+      name: 'passwordDialogContent',
       desc: '',
       args: [],
     );
   }
 
-  /// `ID Number`
-  String get iDNumber {
+  /// `MOTHER’S NAME`
+  String get motherName {
     return Intl.message(
-      'ID Number',
-      name: 'iDNumber',
+      'MOTHER’S NAME',
+      name: 'motherName',
       desc: '',
       args: [],
     );
   }
 
-  /// `Date of Birth`
-  String get dateOfBirth {
+  /// `Please enter mother's name`
+  String get motherNameHint {
     return Intl.message(
-      'Date of Birth',
-      name: 'dateOfBirth',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Nationality`
-  String get nationalitySmall {
-    return Intl.message(
-      'Nationality',
-      name: 'nationalitySmall',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Expiry Date`
-  String get expiryDateSmall {
-    return Intl.message(
-      'Expiry Date',
-      name: 'expiryDateSmall',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Gender`
-  String get genderSmall {
-    return Intl.message(
-      'Gender',
-      name: 'genderSmall',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Mother’s Name`
-  String get mothersName {
-    return Intl.message(
-      'Mother’s Name',
-      name: 'mothersName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Mother’s Birthplace`
-  String get mothersBirthplace {
-    return Intl.message(
-      'Mother’s Birthplace',
-      name: 'mothersBirthplace',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Add. Income 1`
-  String get addIncome1 {
-    return Intl.message(
-      'Add. Income 1',
-      name: 'addIncome1',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Add. Income 2`
-  String get addIncome2 {
-    return Intl.message(
-      'Add. Income 2',
-      name: 'addIncome2',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Type of Transactions`
-  String get typeOfTransactions {
-    return Intl.message(
-      'Type of Transactions',
-      name: 'typeOfTransactions',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Expected Monthly Transactions`
-  String get expMonthlyTransactions {
-    return Intl.message(
-      'Expected Monthly Transactions',
-      name: 'expMonthlyTransactions',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Expected Annual Transactions`
-  String get expAnnualTransactions {
-    return Intl.message(
-      'Expected Annual Transactions',
-      name: 'expAnnualTransactions',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Are you U.S. Citizen?`
-  String get areYouUSCitizen {
-    return Intl.message(
-      'Are you U.S. Citizen?',
-      name: 'areYouUSCitizen',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Are you Tax Resident in any other country than U.S. or Jordan?`
-  String get areYouTaxResidentQ {
-    return Intl.message(
-      'Are you Tax Resident in any other country than U.S. or Jordan?',
-      name: 'areYouTaxResidentQ',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Are you or any first degree relatives a Political Exposed Person?`
-  String get areYouAnyFirstDegreeQ {
-    return Intl.message(
-      'Are you or any first degree relatives a Political Exposed Person?',
-      name: 'areYouAnyFirstDegreeQ',
+      'Please enter mother\'s name',
+      name: 'motherNameHint',
       desc: '',
       args: [],
     );
