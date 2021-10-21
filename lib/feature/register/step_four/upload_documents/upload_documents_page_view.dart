@@ -130,7 +130,7 @@ class UploadDocumentsPageView
                                           initialData: '',
                                           onData: (documentResponse) {
                                             if (documentResponse.isNotEmpty) {
-                                              model.updateAddressDocumentField(
+                                              model.updateIncomeDocumentField(
                                                   documentResponse);
                                             }
                                           },
@@ -146,7 +146,7 @@ class UploadDocumentsPageView
                                                   hintText:
                                                       S.of(context).upload,
                                                   controller:
-                                                      model.addressController,
+                                                      model.incomeController,
                                                   key: model.incomeDocumentKey,
                                                   readOnly: true,
                                                   // hintTextColor: isUploaded!

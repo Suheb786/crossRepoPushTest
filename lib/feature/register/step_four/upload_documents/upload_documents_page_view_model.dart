@@ -38,7 +38,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   Stream<String> get uploadIncomePoofStream => _uploadIncomePoofResponse.stream;
 
-  ///is address document uploaded
+  ///is income document uploaded
   Stream<bool> get documentIncomeStream => _documentIncomeRequest.stream;
 
   PublishSubject<bool> _documentIncomeRequest = PublishSubject();

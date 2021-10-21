@@ -70,13 +70,6 @@ class ReviewApplicationPageView
                         onHorizontalDragUpdate: (details) {
                           if (details.primaryDelta!.isNegative) {
                             model.validateReviewDetails();
-                          } else {
-                            // ProviderScope.containerOf(context)
-                            //     .read(registerViewModelProvider)
-                            //     .registrationStepsController
-                            //     .previousPage(
-                            //     duration: Duration(milliseconds: 500),
-                            //     curve: Curves.easeInOut);
                           }
                         },
                         child: Card(
@@ -94,7 +87,6 @@ class ReviewApplicationPageView
                                   end: Alignment.topCenter),
                             ),
                             child: SingleChildScrollView(
-                              //padding: EdgeInsets.only(bottom: 20),
                               physics: ClampingScrollPhysics(),
                               child: Column(
                                 children: [
