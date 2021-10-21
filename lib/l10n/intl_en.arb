@@ -197,8 +197,7 @@
   "agentSelectionHeader": "Please select your preferred agent for a video call",
   "maleAgent": "Male Agent",
   "anyAgent": "Any Agent",
-  "femaleAgent": "Female Agent"
-  "motherNameHint": "Please enter mother's name",
+  "femaleAgent": "Female Agent",
   "editInformation": "Edit Information",
   "nameAsPerID": "Name as per ID",
   "iDNumber": "ID Number",
