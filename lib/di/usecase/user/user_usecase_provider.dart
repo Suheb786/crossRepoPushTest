@@ -1,5 +1,4 @@
 import 'package:data/di/repository_module.dart';
-import 'package:domain/usecase/register/review_app_usecase.dart';
 import 'package:domain/usecase/user/account_ready_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/create_password_usecase.dart';
