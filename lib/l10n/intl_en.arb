@@ -302,5 +302,11 @@
   "searchCity": "Search city",
   "whatYourEmailAndMobileNumber": "What’s your email and mobile number?",
   "pleaseConfirmYourIDDetailsBelow": "Please confirm and complete your ID details below",
-  "whereDoYouCurrentlyLive": "Where do you \ncurrently live?"
+  "whereDoYouCurrentlyLive": "Where do you \ncurrently live?",
+  "accountOpeningDescription": "Account opening is only available for Jordanian citizen, for now. Hey, don’t be fret. We’ll expand to other countries, soon!",
+  "notifyMeExC": "Notify me!",
+  "notifyMe": "NOTIFY ME",
+  "pleaseEnterLatestEmail": "Please enter your latest email. You’ll hear from us, soon!",
+  "thankYouForInterestWillSendUpdate": "Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available.",
+  "toWelcomePage": "to Welcome Page"
 }

@@ -12,7 +12,7 @@ class CountryListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16),
+      //margin: EdgeInsets.symmetric(horizontal: 16),
       padding: EdgeInsets.only(left: 24, right: 20, top: 20, bottom: 20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),

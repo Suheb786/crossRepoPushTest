@@ -28,6 +28,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Accepted worldwide with no hidden charges"),
         "accountNumberOptional":
             MessageLookupByLibrary.simpleMessage("ACCOUNT NUMBER (OPTIONAL)"),
+        "accountOpeningDescription": MessageLookupByLibrary.simpleMessage(
+            "Account opening is only available for Jordanian citizen, for now. Hey, don’t be fret. We’ll expand to other countries, soon!"),
         "accountOpeningPurpose":
             MessageLookupByLibrary.simpleMessage("ACCOUNT OPENING PURPOSE"),
         "accountReady": MessageLookupByLibrary.simpleMessage(
@@ -372,6 +374,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("NO"),
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("No matching country found"),
+        "notifyMe": MessageLookupByLibrary.simpleMessage("NOTIFY ME"),
+        "notifyMeExC": MessageLookupByLibrary.simpleMessage("Notify me!"),
         "occupation": MessageLookupByLibrary.simpleMessage("OCCUPATION"),
         "occupationSmall": MessageLookupByLibrary.simpleMessage("Occupation"),
         "ofTheBank": MessageLookupByLibrary.simpleMessage("of the bank."),
@@ -399,6 +403,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
             "Please confirm and complete your ID details below"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
+        "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
+            "Please enter your latest email. You’ll hear from us, soon!"),
         "pleaseProvideInformationIfAppliesToYou":
             MessageLookupByLibrary.simpleMessage(
                 "Please provide information below, if applies to you"),
@@ -506,7 +512,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Terms and Conditions."),
         "termsAndConditions": MessageLookupByLibrary.simpleMessage(
             "I agree for the bank to retrieve my AHWAL data necessarily."),
+        "thankYouForInterestWillSendUpdate": MessageLookupByLibrary.simpleMessage(
+            "Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available."),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
+        "toWelcomePage":
+            MessageLookupByLibrary.simpleMessage("to Welcome Page"),
         "totalAdditionalIncome":
             MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),
         "totalAdditionalIncomeSmall":

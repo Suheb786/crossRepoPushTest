@@ -3049,6 +3049,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Account opening is only available for Jordanian citizen, for now. Hey, don’t be fret. We’ll expand to other countries, soon!`
+  String get accountOpeningDescription {
+    return Intl.message(
+      'Account opening is only available for Jordanian citizen, for now. Hey, don’t be fret. We’ll expand to other countries, soon!',
+      name: 'accountOpeningDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notify me!`
+  String get notifyMeExC {
+    return Intl.message(
+      'Notify me!',
+      name: 'notifyMeExC',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NOTIFY ME`
+  String get notifyMe {
+    return Intl.message(
+      'NOTIFY ME',
+      name: 'notifyMe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your latest email. You’ll hear from us, soon!`
+  String get pleaseEnterLatestEmail {
+    return Intl.message(
+      'Please enter your latest email. You’ll hear from us, soon!',
+      name: 'pleaseEnterLatestEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available.`
+  String get thankYouForInterestWillSendUpdate {
+    return Intl.message(
+      'Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available.',
+      name: 'thankYouForInterestWillSendUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Welcome Page`
+  String get toWelcomePage {
+    return Intl.message(
+      'to Welcome Page',
+      name: 'toWelcomePage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
