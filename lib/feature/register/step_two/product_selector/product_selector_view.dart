@@ -84,6 +84,7 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                                     image: AssetUtils.earphone,
                                     title: S.of(context).customerService),
                                 SizedBox(height: 17),
+
                                 ///TODO: border radius to check icon
                                 InkWell(
                                   onTap: () {
@@ -100,6 +101,9 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                                     height: 57,
                                     width: 57,
                                     decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: 1,
+                                            color: AppColor.white_gray),
                                         shape: BoxShape.circle,
                                         color: AppColor.dark_violet_4),
                                     child: AppSvg.asset(AssetUtils.tick),

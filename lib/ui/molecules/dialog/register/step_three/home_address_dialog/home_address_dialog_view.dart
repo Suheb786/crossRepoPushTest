@@ -121,7 +121,6 @@ class HomeAddressDialogView extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     onSelected!.call(model.addressController.text);
-                    Navigator.of(context).pop();
                   },
                   child: Container(
                     padding: EdgeInsets.all(16),
@@ -132,9 +131,23 @@ class HomeAddressDialogView extends StatelessWidget {
                     child: AppSvg.asset(AssetUtils.tick),
                   ),
                 ),
-                SizedBox(
-                  height: 32,
-                )
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                  child: Center(
+                    child: InkWell(
+                      onTap: () {
+                        onDismissed?.call();
+                      },
+                      child: Text(
+                        "Swipe down to cancel",
+                        style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.w400,
+                            color: AppColor.dark_gray_1),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),

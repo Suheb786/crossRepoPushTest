@@ -295,5 +295,12 @@
   "areYouAnyFirstDegreeQ":"Are you or any first degree relatives a Political Exposed Person?",
   "jobIncome": "JOB & INCOME",
   "jobIncomeMsg": "Next, tell us how do\nmake a living",
-  "additionalSourceIncomeQ1":"Do you have additional source of income"
+  "additionalSourceIncomeQ1":"Do you have additional source of income",
+  "stateSmall": "State",
+  "citySmall": "City",
+  "searchState": "Search state",
+  "searchCity": "Search city",
+  "whatYourEmailAndMobileNumber": "What’s your email and mobile number?",
+  "pleaseConfirmYourIDDetailsBelow": "Please confirm and complete your ID details below",
+  "whereDoYouCurrentlyLive": "Where do you \ncurrently live?"
 }

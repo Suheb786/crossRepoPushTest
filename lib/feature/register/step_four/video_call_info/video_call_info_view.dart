@@ -29,7 +29,7 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                 fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 36.0, bottom: 32),
+            padding: EdgeInsets.only(top: 8.0, bottom: 32),
             child: Text(
               S.of(context).videoCallInfoHeader,
               textAlign: TextAlign.center,
@@ -104,11 +104,16 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                 SizedBox(
                                   height: 56,
                                 ),
-                                Text(S.of(context).scheduleLater,
-                                    style: TextStyle(
-                                        color: AppColor.vivid_orange,
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600)),
+                                InkWell(
+                                  onTap: (){
+                                    ///TODO: route to video schedule page
+                                  },
+                                  child: Text(S.of(context).scheduleLater,
+                                      style: TextStyle(
+                                          color: AppColor.vivid_orange,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600)),
+                                ),
                               ],
                             ),
                           ),

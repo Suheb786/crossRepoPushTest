@@ -149,8 +149,14 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                           .passwordKey
                                                           .currentState!
                                                           .secureText
-                                                      ? Image.asset(
-                                                          AssetUtils.eye)
+                                                      ? Container(
+                                                          width: 16,
+                                                          height: 16,
+                                                          padding:
+                                                              EdgeInsets.all(4),
+                                                          child: AppSvg.asset(
+                                                              AssetUtils.eye),
+                                                        )
                                                       : Icon(
                                                           Icons.visibility_off,
                                                           color: AppColor
@@ -164,7 +170,10 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                 child: InkWell(
                                                   onTap: () {
                                                     CreatePasswordInfoDialog
-                                                        .show(context);
+                                                        .show(context,
+                                                            onDismissed: () {
+                                                      Navigator.pop(context);
+                                                    });
                                                   },
                                                   child: AppSvg.asset(
                                                       AssetUtils.info,
@@ -232,8 +241,14 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                           .confirmPasswordKey
                                                           .currentState!
                                                           .secureText
-                                                      ? Image.asset(
-                                                          AssetUtils.eye)
+                                                      ? Container(
+                                                          width: 16,
+                                                          height: 16,
+                                                          padding:
+                                                              EdgeInsets.all(4),
+                                                          child: AppSvg.asset(
+                                                              AssetUtils.eye),
+                                                        )
                                                       : Icon(
                                                           Icons.visibility_off,
                                                           color: AppColor

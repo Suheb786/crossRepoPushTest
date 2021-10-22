@@ -6,7 +6,9 @@ import 'package:neo_bank/utils/asset_utils.dart';
 class AgentSelectionViewModel extends BasePageViewModel {
   final AgentSelectionUseCase _agentSelectionUseCase;
 
-  AgentSelectionViewModel(this._agentSelectionUseCase);
+  AgentSelectionViewModel(this._agentSelectionUseCase) {
+    selectAgent(0);
+  }
 
   Agent? selectedAgent = Agent();
 

@@ -33,11 +33,11 @@ import 'package:neo_bank/feature/register/stepone/countryselection/country_selec
 import 'package:neo_bank/feature/register/stepone/createPassword/create_password_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_payer_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/home_address_dialog/home_address_dialog_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog_view_model.dart';
@@ -116,8 +116,8 @@ final jobAndIncomePageViewModelProvider =
 
 ///employment status dialog view model provider
 final employmentStatusDialogViwModelProvider =
-    ChangeNotifierProvider.autoDispose<EmploymentStatusDialogViewModel>((ref) =>
-        EmploymentStatusDialogViewModel());
+    ChangeNotifierProvider.autoDispose<EmploymentStatusDialogViewModel>(
+        (ref) => EmploymentStatusDialogViewModel());
 
 ///occupation dialog view model provider
 final occupationDialogViwModelProvider =
@@ -213,8 +213,8 @@ final profileQ3ViewModelProvider =
 );
 
 final studentIncomeViewModelProvider =
-ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
-        (ref) => ProfileItemViewModel(),
+    ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
+  (ref) => ProfileItemViewModel(),
 );
 
 ///employment status dialog view model provider
@@ -342,6 +342,13 @@ final agentSelectionViewModelProvider =
 
 ///student income page
 final studentIncomePageViewModelProvider =
-ChangeNotifierProvider.autoDispose<StudentJobIncomePageViewModel>(
-        (ref) => StudentJobIncomePageViewModel(ref.read(studentJobIncomeUseCaseProvider),ref.read(uploadDocumentUseCaseProvider)),
+    ChangeNotifierProvider.autoDispose<StudentJobIncomePageViewModel>(
+  (ref) => StudentJobIncomePageViewModel(
+      ref.read(studentJobIncomeUseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider)),
 );
+
+///state city dialog view model provider
+final stateCityDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<StateCityDialogViewModel>(
+        (ref) => StateCityDialogViewModel());

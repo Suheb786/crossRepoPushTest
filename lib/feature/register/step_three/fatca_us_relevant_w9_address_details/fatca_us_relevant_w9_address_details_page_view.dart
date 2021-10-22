@@ -9,6 +9,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -171,7 +172,19 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                     },
                                     suffixIcon: (value, data) {
                                       return InkWell(
-                                        onTap: () async {},
+                                        onTap: () async {
+                                          StateCityDialog.show(context,
+                                              title: S.of(context).stateSmall,
+                                              onDismissed: () {
+                                            Navigator.pop(context);
+                                          }, onSelected: (value) {
+                                            Navigator.pop(context);
+                                            model.stateController.text = value;
+                                            model.isValid();
+                                          },
+                                              stateCityTypeEnum:
+                                                  StateCityTypeEnum.STATE);
+                                        },
                                         child: Container(
                                             height: 16,
                                             width: 16,
@@ -215,7 +228,19 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                     },
                                     suffixIcon: (value, data) {
                                       return InkWell(
-                                        onTap: () async {},
+                                        onTap: () async {
+                                          StateCityDialog.show(context,
+                                              title: S.of(context).citySmall,
+                                              onDismissed: () {
+                                            Navigator.pop(context);
+                                          }, onSelected: (value) {
+                                            Navigator.pop(context);
+                                            model.cityController.text = value;
+                                            model.isValid();
+                                          },
+                                              stateCityTypeEnum:
+                                                  StateCityTypeEnum.CITY);
+                                        },
                                         child: Container(
                                             height: 16,
                                             width: 16,
@@ -542,7 +567,19 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                     },
                                                     suffixIcon: (value, data) {
                                                       return InkWell(
-                                                        onTap: () async {},
+                                                        onTap: () async {
+                                                          StateCityDialog.show(context,
+                                                              title: S.of(context).stateSmall,
+                                                              onDismissed: () {
+                                                                Navigator.pop(context);
+                                                              }, onSelected: (value) {
+                                                                Navigator.pop(context);
+                                                                model.additionalRequesterStateController.text = value;
+                                                                model.isValid();
+                                                              },
+                                                              stateCityTypeEnum:
+                                                              StateCityTypeEnum.STATE);
+                                                        },
                                                         child: Container(
                                                             height: 16,
                                                             width: 16,
@@ -604,7 +641,19 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                     },
                                                     suffixIcon: (value, data) {
                                                       return InkWell(
-                                                        onTap: () async {},
+                                                        onTap: () async {
+                                                          StateCityDialog.show(context,
+                                                              title: S.of(context).citySmall,
+                                                              onDismissed: () {
+                                                                Navigator.pop(context);
+                                                              }, onSelected: (value) {
+                                                                Navigator.pop(context);
+                                                                model.additionalRequesterCityController.text = value;
+                                                                model.isValid();
+                                                              },
+                                                              stateCityTypeEnum:
+                                                              StateCityTypeEnum.CITY);
+                                                        },
                                                         child: Container(
                                                             height: 16,
                                                             width: 16,

@@ -28,7 +28,7 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                 fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 36.0, bottom: 32),
+            padding: EdgeInsets.only(top: 8.0, bottom: 32),
             child: Text(
               S.of(context).agentSelectionHeader,
               textAlign: TextAlign.center,
@@ -68,7 +68,7 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   child: Container(
                       padding:
-                          EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                          EdgeInsets.symmetric(vertical: 32, horizontal: 16),
                       decoration: BoxDecoration(
                         color: AppColor.very_soft_violet,
                         gradient: LinearGradient(

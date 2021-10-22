@@ -2979,6 +2979,76 @@ class S {
       args: [],
     );
   }
+
+  /// `State`
+  String get stateSmall {
+    return Intl.message(
+      'State',
+      name: 'stateSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `City`
+  String get citySmall {
+    return Intl.message(
+      'City',
+      name: 'citySmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search state`
+  String get searchState {
+    return Intl.message(
+      'Search state',
+      name: 'searchState',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search city`
+  String get searchCity {
+    return Intl.message(
+      'Search city',
+      name: 'searchCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What’s your email and mobile number?`
+  String get whatYourEmailAndMobileNumber {
+    return Intl.message(
+      'What’s your email and mobile number?',
+      name: 'whatYourEmailAndMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm and complete your ID details below`
+  String get pleaseConfirmYourIDDetailsBelow {
+    return Intl.message(
+      'Please confirm and complete your ID details below',
+      name: 'pleaseConfirmYourIDDetailsBelow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Where do you \ncurrently live?`
+  String get whereDoYouCurrentlyLive {
+    return Intl.message(
+      'Where do you \ncurrently live?',
+      name: 'whereDoYouCurrentlyLive',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

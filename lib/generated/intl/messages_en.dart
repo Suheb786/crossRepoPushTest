@@ -98,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
         "city": MessageLookupByLibrary.simpleMessage("CITY"),
+        "citySmall": MessageLookupByLibrary.simpleMessage("City"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
         "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage(
@@ -395,6 +396,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("PERSONAL DETAILS"),
         "personsName": MessageLookupByLibrary.simpleMessage("Person’s Name"),
         "personsRole": MessageLookupByLibrary.simpleMessage("Person’s Role"),
+        "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
+            "Please confirm and complete your ID details below"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
         "pleaseProvideInformationIfAppliesToYou":
             MessageLookupByLibrary.simpleMessage(
@@ -457,7 +460,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("Schedule for later"),
+        "searchCity": MessageLookupByLibrary.simpleMessage("Search city"),
         "searchCountry": MessageLookupByLibrary.simpleMessage("Search country"),
+        "searchState": MessageLookupByLibrary.simpleMessage("Search state"),
         "selectAnyOption":
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
@@ -467,6 +472,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "spouseName": MessageLookupByLibrary.simpleMessage("Spouse Name"),
         "spouseNameCaps": MessageLookupByLibrary.simpleMessage("SPOUSE NAME"),
         "state": MessageLookupByLibrary.simpleMessage("STATE"),
+        "stateSmall": MessageLookupByLibrary.simpleMessage("State"),
         "storage": MessageLookupByLibrary.simpleMessage("Storage"),
         "streetAddress": MessageLookupByLibrary.simpleMessage("STREET ADDRESS"),
         "streetAddressHint":
@@ -535,6 +541,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank."),
         "wereBornInUS":
             MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
+        "whatYourEmailAndMobileNumber": MessageLookupByLibrary.simpleMessage(
+            "What’s your email and mobile number?"),
+        "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage(
+            "Where do you \ncurrently live?"),
         "whichTaxPayerAreYou":
             MessageLookupByLibrary.simpleMessage("WHICH TAX PAYER ARE YOU?"),
         "whichTaxPayerAreYouSmall":

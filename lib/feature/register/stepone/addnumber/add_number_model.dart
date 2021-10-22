@@ -1,3 +1,4 @@
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/user/register_number_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -10,9 +11,15 @@ import 'package:rxdart/rxdart.dart';
 
 class AddNumberViewModel extends BasePageViewModel {
   final RegisterNumberUseCase _registerNumberUseCase;
+
+  ///controllers and keys
   final TextEditingController mobileNumberController = TextEditingController();
   final GlobalKey<AppTextFieldState> mobileNumberKey =
       GlobalKey(debugLabel: "mobileNumber");
+
+  final TextEditingController emailController = TextEditingController();
+  final GlobalKey<AppTextFieldState> emailKey = GlobalKey(debugLabel: "email");
+
   PublishSubject<RegisterNumberUseCaseParams> _registerNumberRequest =
       PublishSubject();
 
@@ -34,19 +41,37 @@ class AddNumberViewModel extends BasePageViewModel {
           .listen((event) {
         _registerNumberResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          getError(event);
           showErrorState();
         }
       });
     });
   }
 
+  void getError(Resource<bool> event) {
+    switch (event.appError!.type) {
+      case ErrorType.EMPTY_EMAIL:
+        emailKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_EMAIL:
+        emailKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_MOBILE:
+        mobileNumberKey.currentState!.isValid = false;
+        break;
+    }
+  }
+
   void validateNumber({required String dialCode}) {
     _registerNumberRequest.safeAdd(RegisterNumberUseCaseParams(
-        countryCode: dialCode, mobileNumber: mobileNumberController.text));
+        emailAddress: emailController.text,
+        countryCode: dialCode,
+        mobileNumber: mobileNumberController.text));
   }
 
   void validate() {
-    if(mobileNumberController.text.isNotEmpty) {
+    if (mobileNumberController.text.isNotEmpty &&
+        emailController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);
