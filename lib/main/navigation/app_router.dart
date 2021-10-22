@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
-import 'package:neo_bank/feature/register/step_four/account_ready/account_ready_page.dart';
+import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/stepone/notify_success/notify_success_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';

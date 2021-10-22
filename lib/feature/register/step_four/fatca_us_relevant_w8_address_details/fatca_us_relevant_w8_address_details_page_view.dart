@@ -4,15 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
-import 'package:neo_bank/feature/register/step_three/job_and_income/job_and_income_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
-import 'package:neo_bank/ui/molecules/register/add_income_widget.dart';
-import 'package:neo_bank/ui/molecules/register/additional_income_source_widget.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -22,9 +20,9 @@ import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
-class JobAndIncomePageView
-    extends BasePageViewWidget<JobAndIncomePageViewModel> {
-  JobAndIncomePageView(ProviderBase model) : super(model);
+class FatcaUSRelevantW8AddressDetailsPageView
+    extends BasePageViewWidget<FatcaUSRelevantW8AddressDetailsPageViewModel> {
+  FatcaUSRelevantW8AddressDetailsPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -32,7 +30,7 @@ class JobAndIncomePageView
         child: Column(
       children: [
         Text(
-          S.of(context).jobAndIncome,
+          S.of(context).fatcaandPep,
           style: TextStyle(
               color: AppColor.dark_gray,
               fontSize: 10,
@@ -41,7 +39,7 @@ class JobAndIncomePageView
         Padding(
           padding: EdgeInsets.only(top: 8.0, bottom: 32),
           child: Text(
-            S.of(context).tellUsHowDoMakeLiving,
+            S.of(context).pleaseProvideInformationIfAppliesToYou,
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: AppColor.very_dark_gray,
@@ -60,13 +58,13 @@ class JobAndIncomePageView
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
                 child: AppStreamBuilder<Resource<bool>>(
-                  stream: model.jobAndIncomeStream,
+                  stream: model.fatcaUSRelevantW8AddressDetailsStream,
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       ProviderScope.containerOf(context)
-                          .read(registerStepThreeViewModelProvider)
-                          .registrationStepThreePageController
+                          .read(registerStepFourViewModelProvider)
+                          .registrationStepFourPageController
                           .nextPage(
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOut);
@@ -76,11 +74,11 @@ class JobAndIncomePageView
                     return GestureDetector(
                       onHorizontalDragUpdate: (details) {
                         if (details.primaryDelta!.isNegative) {
-                          model.validateJobAndIncomeDetails();
+                          model.validateFatcaUSRelevantW8AddressDetails();
                         } else {
                           ProviderScope.containerOf(context)
-                              .read(registerStepThreeViewModelProvider)
-                              .registrationStepThreePageController
+                              .read(registerStepFourViewModelProvider)
+                              .registrationStepFourPageController
                               .previousPage(
                                   duration: Duration(milliseconds: 500),
                                   curve: Curves.easeInOut);
@@ -108,10 +106,14 @@ class JobAndIncomePageView
                               child: Column(
                                 children: [
                                   AppTextField(
-                                    labelText: S.of(context).occupation,
+                                    labelText: S
+                                        .of(context)
+                                        .permanentResidentAddressLine
+                                        .toUpperCase(),
                                     hintText: S.of(context).pleaseEnter,
-                                    controller: model.occupationController,
-                                    key: model.occupationKey,
+                                    controller:
+                                        model.permanentAddressController,
+                                    key: model.permanentAddressKey,
                                     textHintWidget: (hasFocus, isValid, value) {
                                       return Visibility(
                                         visible: !isValid,
@@ -144,136 +146,11 @@ class JobAndIncomePageView
                                     height: 16,
                                   ),
                                   AppTextField(
-                                    labelText: S.of(context).mainSourceOfIncome,
-                                    hintText: S.of(context).pleaseEnter,
-                                    controller: model.sourceController,
-                                    inputType: TextInputType.text,
-                                    inputAction: TextInputAction.go,
-                                    key: model.sourceKey,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    onChanged: (value) {
-                                      model.isValid();
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  AppTextField(
-                                    labelText: S.of(context).mainAnnualIncome,
-                                    hintText: '',
-                                    controller: model.annualIncomeController,
-                                    key: model.annualIncomeKey,
-                                    inputType: TextInputType.number,
-                                    inputAction: TextInputAction.done,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    prefixIcon: () {
-                                      return Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 8.0, right: 8),
-                                        child: Text(
-                                          S.of(context).JOD,
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                              color: AppColor
-                                                  .very_light_gray_white),
-                                        ),
-                                      );
-                                    },
-                                    onChanged: (value) {
-                                      model.isValid();
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  AppTextField(
-                                    labelText: S.of(context).employerName,
-                                    hintText: S.of(context).pleaseEnter,
-                                    controller: model.employerNameController,
-                                    inputType: TextInputType.text,
-                                    inputAction: TextInputAction.go,
-                                    key: model.employerNameKey,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    onChanged: (value) {
-                                      model.isValid();
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  AppTextField(
-                                    labelText: S.of(context).employerCountry,
+                                    labelText: S.of(context).country,
                                     hintText: S.of(context).pleaseSelect,
-                                    controller: model.employerCountryController,
+                                    controller: model.countryController,
+                                    key: model.countryKey,
                                     readOnly: true,
-                                    key: model.employerCountryKey,
                                     textHintWidget: (hasFocus, isValid, value) {
                                       return Visibility(
                                         visible: !isValid,
@@ -301,14 +178,14 @@ class JobAndIncomePageView
                                       return InkWell(
                                         onTap: () async {
                                           CountryDialog.show(context,
-                                              title: S
-                                                  .of(context)
-                                                  .employerCountrySmall,
+                                              title:
+                                                  S.of(context).taxCountrySmall,
                                               onDismissed: () {
                                             Navigator.pop(context);
                                           }, onSelected: (value) {
                                             Navigator.pop(context);
-                                            model.updateEmployerCountry(value);
+                                            model.countryController.text =
+                                                value;
                                             model.isValid();
                                           });
                                         },
@@ -325,12 +202,11 @@ class JobAndIncomePageView
                                     height: 16,
                                   ),
                                   AppTextField(
-                                    labelText: S.of(context).employerCity,
-                                    hintText: S.of(context).pleaseEnter,
-                                    controller: model.employerCityController,
-                                    inputType: TextInputType.text,
-                                    inputAction: TextInputAction.go,
-                                    key: model.employerCityKey,
+                                    labelText: S.of(context).state,
+                                    hintText: S.of(context).pleaseSelect,
+                                    controller: model.stateController,
+                                    key: model.stateKey,
+                                    readOnly: true,
                                     textHintWidget: (hasFocus, isValid, value) {
                                       return Visibility(
                                         visible: !isValid,
@@ -354,18 +230,39 @@ class JobAndIncomePageView
                                         ),
                                       );
                                     },
-                                    onChanged: (value) {
-                                      model.isValid();
+                                    suffixIcon: (value, data) {
+                                      return InkWell(
+                                        onTap: () async {
+                                          StateCityDialog.show(context,
+                                              title: S.of(context).stateSmall,
+                                              onDismissed: () {
+                                            Navigator.pop(context);
+                                          }, onSelected: (value) {
+                                            Navigator.pop(context);
+                                            model.stateController.text = value;
+                                            model.isValid();
+                                          },
+                                              stateCityTypeEnum:
+                                                  StateCityTypeEnum.STATE);
+                                        },
+                                        child: Container(
+                                            height: 16,
+                                            width: 16,
+                                            padding: EdgeInsets.only(right: 8),
+                                            child: AppSvg.asset(
+                                                AssetUtils.downArrow)),
+                                      );
                                     },
                                   ),
                                   SizedBox(
                                     height: 16,
                                   ),
                                   AppTextField(
-                                    labelText: S.of(context).employerContact,
-                                    hintText: S.of(context).pleaseEnter,
-                                    inputType: TextInputType.number,
-                                    inputAction: TextInputAction.done,
+                                    labelText: S.of(context).city,
+                                    hintText: S.of(context).pleaseSelect,
+                                    controller: model.cityController,
+                                    key: model.cityKey,
+                                    readOnly: true,
                                     textHintWidget: (hasFocus, isValid, value) {
                                       return Visibility(
                                         visible: !isValid,
@@ -389,8 +286,62 @@ class JobAndIncomePageView
                                         ),
                                       );
                                     },
-                                    controller: model.employerContactController,
-                                    key: model.employerContactKey,
+                                    suffixIcon: (value, data) {
+                                      return InkWell(
+                                        onTap: () async {
+                                          StateCityDialog.show(context,
+                                              title: S.of(context).citySmall,
+                                              onDismissed: () {
+                                            Navigator.pop(context);
+                                          }, onSelected: (value) {
+                                            Navigator.pop(context);
+                                            model.cityController.text = value;
+                                            model.isValid();
+                                          },
+                                              stateCityTypeEnum:
+                                                  StateCityTypeEnum.CITY);
+                                        },
+                                        child: Container(
+                                            height: 16,
+                                            width: 16,
+                                            padding: EdgeInsets.only(right: 8),
+                                            child: AppSvg.asset(
+                                                AssetUtils.downArrow)),
+                                      );
+                                    },
+                                  ),
+                                  SizedBox(
+                                    height: 16,
+                                  ),
+                                  AppTextField(
+                                    labelText: S.of(context).postCode,
+                                    hintText: S.of(context).pleaseEnter,
+                                    controller: model.postCodeController,
+                                    key: model.postCodeKey,
+                                    textHintWidget: (hasFocus, isValid, value) {
+                                      return Visibility(
+                                        visible: !isValid,
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Padding(
+                                            padding: EdgeInsets.only(top: 8),
+                                            child: Text(
+                                              ErrorParser
+                                                  .getLocalisedStringError(
+                                                      error: response!.appError,
+                                                      localisedHelper:
+                                                          S.of(context)),
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: AppColor.vivid_red),
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    inputAction: TextInputAction.go,
                                     onChanged: (value) {
                                       model.isValid();
                                     },
@@ -401,104 +352,22 @@ class JobAndIncomePageView
                                         .bottom,
                                   ),
                                   AppStreamBuilder<bool>(
-                                    stream: model.switchValue,
+                                    stream: model.mailingAddressDifferentStream,
                                     initialData: false,
                                     dataBuilder: (context, isActive) {
                                       return Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 32.0),
-                                        child: Column(
-                                          children: [
-                                            AppSwitchLabelWidget(
-                                              label: S
-                                                  .of(context)
-                                                  .doYouHaveAdditionalSourceOfIncome,
-                                              inActiveText: S.of(context).no,
-                                              activeText: S.of(context).yes,
-                                              onToggle: (value) {
-                                                model.updateSwitchValue(value);
-                                              },
-                                              isActive: isActive,
-                                            ),
-                                            SizedBox(
-                                              height: 8,
-                                            ),
-                                            Visibility(
-                                              visible: isActive!,
-                                              child: AppStreamBuilder<
-                                                  List<
-                                                      AdditionalIncomeSourceParams>>(
-                                                stream: model
-                                                    .additionalSourceIncomeListStream,
-                                                initialData: [],
-                                                dataBuilder:
-                                                    (context, dataList) {
-                                                  if (dataList!.isNotEmpty) {
-                                                    return ListView.builder(
-                                                        itemCount:
-                                                            dataList.length + 1,
-                                                        shrinkWrap: true,
-                                                        itemBuilder:
-                                                            (context, index) {
-                                                          if (index ==
-                                                              dataList.length) {
-                                                            return AddIncomeWidget(
-                                                              label: S
-                                                                  .of(context)
-                                                                  .addIncome,
-                                                              onTap: () {
-                                                                AdditionalIncomeSourceDialog.show(
-                                                                    context,
-                                                                    onDismissed:
-                                                                        () {
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                }, onSelected:
-                                                                        (value) {
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                  model.addAdditionalIncomeList(
-                                                                      value);
-                                                                });
-                                                              },
-                                                            );
-                                                          }
-                                                          return AdditionalIncomeSourceWidget(
-                                                            additionalIncomeSourceParams:
-                                                                dataList[index],
-                                                            onTap: () {
-                                                              model
-                                                                  .removeAdditionalItem(
-                                                                      index);
-                                                            },
-                                                          );
-                                                        });
-                                                  } else {
-                                                    return AddIncomeWidget(
-                                                      label: S
-                                                          .of(context)
-                                                          .addIncome,
-                                                      onTap: () {
-                                                        AdditionalIncomeSourceDialog
-                                                            .show(context,
-                                                                onDismissed:
-                                                                    () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        }, onSelected: (value) {
-                                                          Navigator.pop(
-                                                              context);
-                                                          model
-                                                              .addAdditionalIncomeList(
-                                                                  value);
-                                                        });
-                                                      },
-                                                    );
-                                                  }
-                                                },
-                                              ),
-                                            )
-                                          ],
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 32.0),
+                                        child: AppSwitchLabelWidget(
+                                          label: S
+                                              .of(context)
+                                              .mailingAddressDifferentFromResidence,
+                                          inActiveText: S.of(context).no,
+                                          activeText: S.of(context).yes,
+                                          onToggle: (value) {
+                                            model.updateSwitchValue(value);
+                                          },
+                                          isActive: isActive,
                                         ),
                                       );
                                     },

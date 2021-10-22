@@ -308,5 +308,8 @@
   "notifyMe": "NOTIFY ME",
   "pleaseEnterLatestEmail": "Please enter your latest email. You’ll hear from us, soon!",
   "thankYouForInterestWillSendUpdate": "Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available.",
-  "toWelcomePage": "to Welcome Page"
+  "toWelcomePage": "to Welcome Page",
+  "invalidRelationship": "Select relationship",
+  "invalidName": "Enter name",
+  "invalidRole": "Enter role"
 }

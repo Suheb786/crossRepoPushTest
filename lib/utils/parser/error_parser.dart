@@ -160,6 +160,12 @@ class ErrorParser {
         return localisedHelper.invalidPreferredDate;
       case ErrorType.INVALID_PREFERRED_TIME:
         return localisedHelper.invalidPreferredTime;
+      case ErrorType.INVALID_RELATIONSHIP:
+        return localisedHelper.invalidRelationship;
+      case ErrorType.INVALID_PERSON_NAME:
+        return localisedHelper.invalidName;
+      case ErrorType.INVALID_PERSON_ROLE:
+        return localisedHelper.invalidRole;
 
       default:
         return "";

@@ -3,29 +3,30 @@ import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
-import 'package:neo_bank/feature/register/step_four/account_ready/account_ready_model.dart';
-import 'package:neo_bank/feature/register/step_four/agent_selection/agent_selection_model.dart';
+import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_model.dart';
+import 'package:neo_bank/feature/register/step_five/agent_selection/agent_selection_model.dart';
+import 'package:neo_bank/feature/register/step_five/register_step_five_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_five/review_application/review_application_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_five/schedule_video_call/schedule_video_call_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_five/upload_documents/upload_documents_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_five/video_call_info/video_call_info_model.dart';
+import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8/fatca_us_relevant_w8_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w9/fatca_us_relevant_w9_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w9_address_details/fatca_us_relevant_w9_address_details_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_four/fatca_us_w8_tax_payer_details/fatca_us_w8_tax_payer_details_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_four/fatca_us_w9_tax_payer_details/fatca_us_w9_tax_payer_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/register_step_four_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_four/review_application/review_application_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_four/schedule_video_call/schedule_video_call_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_four/upload_documents/upload_documents_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_four/video_call_info/video_call_info_model.dart';
+import 'package:neo_bank/feature/register/step_four/tax_report_information/tax_report_information_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_four/taxation_details/taxation_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/confirm_detail/confirm_detail_model.dart';
 import 'package:neo_bank/feature/register/step_three/enter_address/enter_address_model.dart';
-import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w8/fatca_us_relevant_w8_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w9/fatca_us_relevant_w9_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_three/fatca_us_relevant_w9_address_details/fatca_us_relevant_w9_address_details_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_three/fatca_us_w8_tax_payer_details/fatca_us_w8_tax_payer_details_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_three/fatca_us_w9_tax_payer_details/fatca_us_w9_tax_payer_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/id_verification_info/id_verification_info_model.dart';
 import 'package:neo_bank/feature/register/step_three/job_and_income/job_and_income_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/purpose_of_account_opening/purpose_of_account_opening_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/student_job_income/student_job_income_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_three/tax_report_information/tax_report_information_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_three/taxation_details/taxation_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_two/product_selector/product_selector_model.dart';
 import 'package:neo_bank/feature/register/step_two/register_step_two_page_view_model.dart';
 import 'package:neo_bank/feature/register/stepone/addnumber/add_number_model.dart';
@@ -352,3 +353,8 @@ final studentIncomePageViewModelProvider =
 final stateCityDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<StateCityDialogViewModel>(
         (ref) => StateCityDialogViewModel());
+
+final registerStepFiveViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RegisterStepFiveViewModel>(
+  (ref) => RegisterStepFiveViewModel(),
+);

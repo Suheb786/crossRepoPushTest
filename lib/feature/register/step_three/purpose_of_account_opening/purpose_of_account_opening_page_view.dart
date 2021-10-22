@@ -61,8 +61,8 @@ class PurposeOfAccountOpeningPageView
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       ProviderScope.containerOf(context)
-                          .read(registerStepThreeViewModelProvider)
-                          .registrationStepThreePageController
+                          .read(registerViewModelProvider)
+                          .registrationStepsController
                           .nextPage(
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOut);
@@ -344,7 +344,7 @@ class PurposeOfAccountOpeningPageView
                                 ),
                                 Center(
                                   child: Padding(
-                                    padding: EdgeInsets.only(right: 32),
+                                    padding: EdgeInsets.only(right: 45),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.allFieldValidatorStream,
                                         initialData: false,

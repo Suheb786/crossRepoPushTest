@@ -31,8 +31,7 @@ class RegisterStepTwoPageView
             height: double.maxFinite,
             pageSnapping: true,
             enableInfiniteScroll: false,
-            viewportFraction: 0.9,
-            enlargeCenterPage: true,
+            viewportFraction: 0.92,
             scrollPhysics: NeverScrollableScrollPhysics(),
             onPageChanged: (index, reason) {
               model.currentPage = index;

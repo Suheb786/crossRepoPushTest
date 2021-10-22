@@ -3109,6 +3109,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Select relationship`
+  String get invalidRelationship {
+    return Intl.message(
+      'Select relationship',
+      name: 'invalidRelationship',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter name`
+  String get invalidName {
+    return Intl.message(
+      'Enter name',
+      name: 'invalidName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter role`
+  String get invalidRole {
+    return Intl.message(
+      'Enter role',
+      name: 'invalidRole',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

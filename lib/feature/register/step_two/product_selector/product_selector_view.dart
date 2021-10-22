@@ -84,8 +84,6 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                                     image: AssetUtils.earphone,
                                     title: S.of(context).customerService),
                                 SizedBox(height: 17),
-
-                                ///TODO: border radius to check icon
                                 InkWell(
                                   onTap: () {
                                     ProviderScope.containerOf(context)

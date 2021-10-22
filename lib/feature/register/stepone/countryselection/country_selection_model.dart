@@ -1,9 +1,7 @@
 import 'package:domain/model/country/country.dart';
 import 'package:domain/usecase/user/fetch_countries_usecase.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';

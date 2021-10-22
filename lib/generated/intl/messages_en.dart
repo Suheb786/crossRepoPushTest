@@ -298,6 +298,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter source of income."),
         "invalidMonthlyIncome":
             MessageLookupByLibrary.simpleMessage("Enter monthly income"),
+        "invalidName": MessageLookupByLibrary.simpleMessage("Enter name"),
         "invalidNameAsPerTaxReturn": MessageLookupByLibrary.simpleMessage(
             "Enter name as per tax return"),
         "invalidOccupation":
@@ -314,6 +315,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Select purpose of account opening"),
         "invalidReasonUnavailability": MessageLookupByLibrary.simpleMessage(
             "Select Reason of Unavailability"),
+        "invalidRelationship":
+            MessageLookupByLibrary.simpleMessage("Select relationship"),
+        "invalidRole": MessageLookupByLibrary.simpleMessage("Enter role"),
         "invalidSocialSecurityNumber": MessageLookupByLibrary.simpleMessage(
             "Enter social security number"),
         "invalidState": MessageLookupByLibrary.simpleMessage("Select State"),
