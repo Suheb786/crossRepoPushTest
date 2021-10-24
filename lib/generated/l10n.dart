@@ -3139,6 +3139,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Please upload income document`
+  String get emptyIncomeDocument {
+    return Intl.message(
+      'Please upload income document',
+      name: 'emptyIncomeDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please upload address document`
+  String get emptyAddressDocument {
+    return Intl.message(
+      'Please upload address document',
+      name: 'emptyAddressDocument',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

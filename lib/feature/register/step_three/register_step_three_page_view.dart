@@ -10,6 +10,7 @@ import 'package:neo_bank/feature/register/step_three/job_and_income/job_and_inco
 import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page.dart';
 import 'package:neo_bank/feature/register/step_three/purpose_of_account_opening/purpose_of_account_opening_page.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_three/student_job_income/student_job_income_page.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 
 class RegisterStepThreePageView
@@ -21,6 +22,7 @@ class RegisterStepThreePageView
     ConfirmDetailPage(),
     EnterAddressPage(),
     ProfileDetailsPage(),
+    StudentJobIncomePage(),
     JobAndIncomePage(),
     PurposeOfAccountOpeningPage(),
   ];

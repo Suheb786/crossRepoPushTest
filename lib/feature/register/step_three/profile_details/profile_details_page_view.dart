@@ -68,12 +68,19 @@ class ProfileDetailsPageView
                           onData: (data) {
                             if (data.status == Status.SUCCESS) {
                               model.setKeysStatusValid();
-                              ProviderScope.containerOf(context)
-                                  .read(registerStepThreeViewModelProvider)
-                                  .registrationStepThreePageController
-                                  .nextPage(
-                                      duration: Duration(milliseconds: 500),
-                                      curve: Curves.easeInOut);
+                              if (model.employeeStatusController.text == "Student"){
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepThreeViewModelProvider)
+                                    .registrationStepThreePageController
+                                    .nextPage(
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.easeInOut);
+                              } else {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepThreeViewModelProvider)
+                                    .registrationStepThreePageController
+                                    .jumpToPage(5);
+                              }
                             } else if (data.status == Status.ERROR) {
                               model.checkKeyStatus(data.appError!.type);
                             }

@@ -118,6 +118,12 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
     _documentAddressRequest.safeAdd(value);
   }
 
+  void validateDocuments() {
+    _documentsRequest.safeAdd(SendDocumentsUseCaseParams(
+        incomeProof: incomeController.text,
+        addressProof: addressController.text));
+  }
+
   @override
   void dispose() {
     _documentsRequest.close();
