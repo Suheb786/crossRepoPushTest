@@ -42,14 +42,6 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get profileDetailsStream =>
       _profileDetailsResponse.stream;
 
-  PublishSubject<bool> _animatedSubject = PublishSubject();
-
-  Stream<bool> get animatedStream => _animatedSubject.stream;
-
-  void updateAnimatedValue(bool value) {
-    _animatedSubject.add(value);
-  }
-
   ///nature of special needs text field value
   void updateNatureOfNeeds(String value) {
     natureController.text = value;
