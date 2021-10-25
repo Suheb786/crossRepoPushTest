@@ -68,6 +68,13 @@ class StudentJobIncomePageView
                                 .read(registerStepThreeViewModelProvider)
                                 .registrationStepThreePageController
                                 .jumpToPage(6);
+                          } else {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepThreeViewModelProvider)
+                                .registrationStepThreePageController
+                                .previousPage(
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.easeInOut);
                           }
                         },
                         child: Card(

@@ -96,38 +96,45 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                               child: AppTextField(
                                                 labelText:
                                                     S.of(context).emailAddress,
-                                                hintText: S.of(context).pleaseEnter,
+                                                hintText:
+                                                    S.of(context).pleaseEnter,
                                                 key: model.emailKey,
-                                                controller: model.emailController,
+                                                controller:
+                                                    model.emailController,
                                                 inputType:
                                                     TextInputType.emailAddress,
-                                                inputAction: TextInputAction.done,
+                                                inputAction:
+                                                    TextInputAction.done,
                                                 onSaved: (value) {
                                                   model.validateEmail();
                                                 },
-                                                onChanged: (value) => model.validate(),
+                                                onChanged: (value) =>
+                                                    model.validate(),
                                                 textHintWidget:
                                                     (hasFocus, isValid, value) {
                                                   return Visibility(
                                                     visible: !isValid,
                                                     child: Padding(
-                                                      padding: EdgeInsets.symmetric(
-                                                          horizontal: 16,
-                                                          vertical: 8),
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              horizontal: 16,
+                                                              vertical: 8),
                                                       child: Text(
                                                         ErrorParser
                                                             .getLocalisedStringError(
-                                                                error:
-                                                                    data!.appError,
+                                                                error: data!
+                                                                    .appError,
                                                                 localisedHelper:
-                                                                    S.of(context)),
-                                                        textAlign: TextAlign.start,
+                                                                    S.of(
+                                                                        context)),
+                                                        textAlign:
+                                                            TextAlign.start,
                                                         style: TextStyle(
                                                             fontSize: 12,
                                                             fontWeight:
                                                                 FontWeight.w600,
-                                                            color:
-                                                                AppColor.vivid_red),
+                                                            color: AppColor
+                                                                .vivid_red),
                                                       ),
                                                     ),
                                                   );
@@ -150,7 +157,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                     endIndent: 12,
                                                   ),
                                                   Text(
-                                                    S.of(context).orContinueWith,
+                                                    S
+                                                        .of(context)
+                                                        .orContinueWith,
                                                     style: TextStyle(
                                                         color: AppColor
                                                             .dark_grayish_violet1,
@@ -167,7 +176,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                             ),
                                             Container(
                                               margin: EdgeInsets.only(
-                                                  bottom: 40, left: 24, right: 24),
+                                                  bottom: 40,
+                                                  left: 24,
+                                                  right: 24),
                                               child: Row(
                                                 children: <Widget>[
                                                   Expanded(
@@ -198,16 +209,16 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                         return Visibility(
                                           visible: isValid!,
                                           child: Positioned(
-                                            bottom:24,
-                                            left:93,
-                                            right:93,
+                                            bottom: 24,
+                                            left: 93,
+                                            right: 93,
                                             child: AnimatedButton(
-                                              buttonText: "Swipe to proceed",
+                                              buttonText:
+                                                  S.of(context).swipeToProceed,
                                             ),
                                           ),
                                         );
-                                      }
-                                  )
+                                      })
                                 ],
                               ),
                             ),

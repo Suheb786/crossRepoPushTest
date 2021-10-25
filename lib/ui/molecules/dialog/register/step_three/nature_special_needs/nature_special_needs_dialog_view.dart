@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+
 import 'nature_special_needs_dialog_view_model.dart';
 
 class NatureSpecialNeedsDialogView extends StatelessWidget {
@@ -50,7 +51,7 @@ class NatureSpecialNeedsDialogView extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 32.0),
                             child: Center(
                               child: Text(
-                                S.of(context).employmentStatusSmall,
+                                S.of(context).natureSpecialNeeds,
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.w600),
                               ),

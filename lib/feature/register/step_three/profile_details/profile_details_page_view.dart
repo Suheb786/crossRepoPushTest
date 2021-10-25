@@ -137,7 +137,7 @@ class ProfileDetailsPageView
                                                     labelText: S
                                                         .of(context)
                                                         .spouseNameCaps,
-                                                    hintText: "",
+                                                    hintText: S.of(context).pleaseEnter,
                                                     inputType:
                                                         TextInputType.text,
                                                     controller: model

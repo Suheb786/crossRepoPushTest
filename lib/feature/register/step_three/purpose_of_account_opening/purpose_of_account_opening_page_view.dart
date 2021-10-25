@@ -77,9 +77,7 @@ class PurposeOfAccountOpeningPageView
                           ProviderScope.containerOf(context)
                               .read(registerStepThreeViewModelProvider)
                               .registrationStepThreePageController
-                              .previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                              .jumpToPage(3);
                         }
                       },
                       child: Card(
