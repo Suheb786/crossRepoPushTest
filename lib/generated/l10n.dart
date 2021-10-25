@@ -820,10 +820,10 @@ class S {
     );
   }
 
-  /// `Select Occupation`
+  /// `Enter Occupation`
   String get invalidOccupation {
     return Intl.message(
-      'Select Occupation',
+      'Enter Occupation',
       name: 'invalidOccupation',
       desc: '',
       args: [],
@@ -1211,10 +1211,10 @@ class S {
   }
 
   /// `Main Annual Income`
-  String get mainAnnualIncome {
+  String get mainAnnualIncomeSmall {
     return Intl.message(
       'Main Annual Income',
-      name: 'mainAnnualIncome',
+      name: 'mainAnnualIncomeSmall',
       desc: '',
       args: [],
     );
@@ -1810,6 +1810,786 @@ class S {
     );
   }
 
+  /// `JOB & INCOME`
+  String get jobAndIncome {
+    return Intl.message(
+      'JOB & INCOME',
+      name: 'jobAndIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next, tell us how do\nmake a living`
+  String get tellUsHowDoMakeLiving {
+    return Intl.message(
+      'Next, tell us how do\nmake a living',
+      name: 'tellUsHowDoMakeLiving',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MAIN ANNUAL INCOME`
+  String get mainAnnualIncome {
+    return Intl.message(
+      'MAIN ANNUAL INCOME',
+      name: 'mainAnnualIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you have additional\nsource of income`
+  String get doYouHaveAdditionalSourceOfIncome {
+    return Intl.message(
+      'Do you have additional\nsource of income',
+      name: 'doYouHaveAdditionalSourceOfIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Income`
+  String get addIncome {
+    return Intl.message(
+      'Add Income',
+      name: 'addIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search country`
+  String get searchCountry {
+    return Intl.message(
+      'Search country',
+      name: 'searchCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No matching country found`
+  String get noCountriesFound {
+    return Intl.message(
+      'No matching country found',
+      name: 'noCountriesFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter transaction type`
+  String get invalidTypesOfTransaction {
+    return Intl.message(
+      'Please Enter transaction type',
+      name: 'invalidTypesOfTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter expected monthly transaction`
+  String get invalidExpectedMonthlyTransaction {
+    return Intl.message(
+      'Enter expected monthly transaction',
+      name: 'invalidExpectedMonthlyTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter expected annual transaction`
+  String get invalidExpectedAnnualTransaction {
+    return Intl.message(
+      'Enter expected annual transaction',
+      name: 'invalidExpectedAnnualTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ACCOUNT OPENING PURPOSE`
+  String get accountOpeningPurpose {
+    return Intl.message(
+      'ACCOUNT OPENING PURPOSE',
+      name: 'accountOpeningPurpose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Almost there! We have few account related questions`
+  String get accountRelatedQuestions {
+    return Intl.message(
+      'Almost there! We have few account related questions',
+      name: 'accountRelatedQuestions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TYPE OF TRANSACTIONS`
+  String get typeOfTransactions {
+    return Intl.message(
+      'TYPE OF TRANSACTIONS',
+      name: 'typeOfTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXPECTED MONTHLY TRANSACTIONS`
+  String get expectedMonthlyTransactions {
+    return Intl.message(
+      'EXPECTED MONTHLY TRANSACTIONS',
+      name: 'expectedMonthlyTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXPECTED ANNUAL TRANSACTIONS`
+  String get expectedAnnualTransactions {
+    return Intl.message(
+      'EXPECTED ANNUAL TRANSACTIONS',
+      name: 'expectedAnnualTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Income`
+  String get additionalIncome {
+    return Intl.message(
+      'Additional Income',
+      name: 'additionalIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TOTAL ANNUAL INCOME`
+  String get totalAnnualIncome {
+    return Intl.message(
+      'TOTAL ANNUAL INCOME',
+      name: 'totalAnnualIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FATCA & PEP`
+  String get fatcaandPep {
+    return Intl.message(
+      'FATCA & PEP',
+      name: 'fatcaandPep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next, please tell us about these important informations`
+  String get tellUsAboutImportantInformations {
+    return Intl.message(
+      'Next, please tell us about these important informations',
+      name: 'tellUsAboutImportantInformations',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you or any first degree relatives a Political Exposed Person?`
+  String get areYouFirstDegreeRelativePEP {
+    return Intl.message(
+      'Are you or any first degree relatives a Political Exposed Person?',
+      name: 'areYouFirstDegreeRelativePEP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm to the terms and condition to proceed.`
+  String get invalidDeclarationSelection {
+    return Intl.message(
+      'Confirm to the terms and condition to proceed.',
+      name: 'invalidDeclarationSelection',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We need to match the names on your tax return`
+  String get weNeedToMatchNamesONTaxReturn {
+    return Intl.message(
+      'We need to match the names on your tax return',
+      name: 'weNeedToMatchNamesONTaxReturn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NAME AS PER INCOME TAX RETURN`
+  String get nameAsPerIncomeTaxReturn {
+    return Intl.message(
+      'NAME AS PER INCOME TAX RETURN',
+      name: 'nameAsPerIncomeTaxReturn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DATE OF BIRTH`
+  String get dateOfBirth {
+    return Intl.message(
+      'DATE OF BIRTH',
+      name: 'dateOfBirth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `COUNTRY OF CITIZENSHIP`
+  String get countryOfCitizenship {
+    return Intl.message(
+      'COUNTRY OF CITIZENSHIP',
+      name: 'countryOfCitizenship',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `or you can upload`
+  String get orYouCanUpload {
+    return Intl.message(
+      'or you can upload',
+      name: 'orYouCanUpload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `W8 Form`
+  String get w8Form {
+    return Intl.message(
+      'W8 Form',
+      name: 'w8Form',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you already have a physical pre-filled W8 form please upload below.`
+  String get w8FormDesc {
+    return Intl.message(
+      'If you already have a physical pre-filled W8 form please upload below.',
+      name: 'w8FormDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Document`
+  String get uploadDocumentsSmall {
+    return Intl.message(
+      'Upload Document',
+      name: 'uploadDocumentsSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter name as per tax return`
+  String get invalidNameAsPerTaxReturn {
+    return Intl.message(
+      'Enter name as per tax return',
+      name: 'invalidNameAsPerTaxReturn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Date Of Birth `
+  String get invalidDOB {
+    return Intl.message(
+      'Enter Date Of Birth ',
+      name: 'invalidDOB',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter citizenship`
+  String get invalidCitizenship {
+    return Intl.message(
+      'Enter citizenship',
+      name: 'invalidCitizenship',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide information below, if applies to you`
+  String get pleaseProvideInformationIfAppliesToYou {
+    return Intl.message(
+      'Please provide information below, if applies to you',
+      name: 'pleaseProvideInformationIfAppliesToYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent residence address Line`
+  String get permanentResidentAddressLine {
+    return Intl.message(
+      'Permanent residence address Line',
+      name: 'permanentResidentAddressLine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `STATE`
+  String get state {
+    return Intl.message(
+      'STATE',
+      name: 'state',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CITY`
+  String get city {
+    return Intl.message(
+      'CITY',
+      name: 'city',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `COUNTRY`
+  String get country {
+    return Intl.message(
+      'COUNTRY',
+      name: 'country',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `POST CODE`
+  String get postCode {
+    return Intl.message(
+      'POST CODE',
+      name: 'postCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mailing address different from residence address?`
+  String get mailingAddressDifferentFromResidence {
+    return Intl.message(
+      'Mailing address different from residence address?',
+      name: 'mailingAddressDifferentFromResidence',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Permanent Residence Address`
+  String get invalidPermanentAddress {
+    return Intl.message(
+      'Enter Permanent Residence Address',
+      name: 'invalidPermanentAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Country`
+  String get invalidCountry {
+    return Intl.message(
+      'Select Country',
+      name: 'invalidCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select State`
+  String get invalidState {
+    return Intl.message(
+      'Select State',
+      name: 'invalidState',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select City`
+  String get invalidCity {
+    return Intl.message(
+      'Select City',
+      name: 'invalidCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Post Code`
+  String get invalidPostCode {
+    return Intl.message(
+      'Select Post Code',
+      name: 'invalidPostCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BUSINESS NAME (OPTIONAL)`
+  String get businessNameOptional {
+    return Intl.message(
+      'BUSINESS NAME (OPTIONAL)',
+      name: 'businessNameOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter if only the business name is different from the name above`
+  String get isBusinessNameDifferent {
+    return Intl.message(
+      'Please enter if only the business name is different from the name above',
+      name: 'isBusinessNameDifferent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `W9 Form`
+  String get w9Form {
+    return Intl.message(
+      'W9 Form',
+      name: 'w9Form',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you already have a physical pre-filled W9 form please upload below.`
+  String get w9FormDesc {
+    return Intl.message(
+      'If you already have a physical pre-filled W9 form please upload below.',
+      name: 'w9FormDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ADDRESS IN UNITED STATES`
+  String get addressInUnitedStates {
+    return Intl.message(
+      'ADDRESS IN UNITED STATES',
+      name: 'addressInUnitedStates',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ACCOUNT NUMBER (OPTIONAL)`
+  String get accountNumberOptional {
+    return Intl.message(
+      'ACCOUNT NUMBER (OPTIONAL)',
+      name: 'accountNumberOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXEMPT PAYEE CODE (OPTIONAL)`
+  String get exemptPayeeOptional {
+    return Intl.message(
+      'EXEMPT PAYEE CODE (OPTIONAL)',
+      name: 'exemptPayeeOptional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Requester`
+  String get additionalRequester {
+    return Intl.message(
+      'Additional Requester',
+      name: 'additionalRequester',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Address`
+  String get invalidAddress {
+    return Intl.message(
+      'Enter Address',
+      name: 'invalidAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `requester’s name`
+  String get requesterName {
+    return Intl.message(
+      'requester’s name',
+      name: 'requesterName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WHICH TAX PAYER ARE YOU?`
+  String get whichTaxPayerAreYou {
+    return Intl.message(
+      'WHICH TAX PAYER ARE YOU?',
+      name: 'whichTaxPayerAreYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SOCIAL SECURITY NUMBER`
+  String get socialSecurityNUmber {
+    return Intl.message(
+      'SOCIAL SECURITY NUMBER',
+      name: 'socialSecurityNUmber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I confirm that my `
+  String get iConfirmThatMy {
+    return Intl.message(
+      'I confirm that my ',
+      name: 'iConfirmThatMy',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FATCA `
+  String get fatca {
+    return Intl.message(
+      'FATCA ',
+      name: 'fatca',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `declaration is true and correct.`
+  String get declarationIsTrueAndCorrect {
+    return Intl.message(
+      'declaration is true and correct.',
+      name: 'declarationIsTrueAndCorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `'I confirm that my tax residency is accurate and agree to the `
+  String get confirmThatTaxResidency {
+    return Intl.message(
+      '\'I confirm that my tax residency is accurate and agree to the ',
+      name: 'confirmThatTaxResidency',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms and Conditions `
+  String get termAndCondition {
+    return Intl.message(
+      'Terms and Conditions ',
+      name: 'termAndCondition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `of the bank.`
+  String get ofTheBank {
+    return Intl.message(
+      'of the bank.',
+      name: 'ofTheBank',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Tax Payer`
+  String get invalidTaxPayer {
+    return Intl.message(
+      'Select Tax Payer',
+      name: 'invalidTaxPayer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter social security number`
+  String get invalidSocialSecurityNumber {
+    return Intl.message(
+      'Enter social security number',
+      name: 'invalidSocialSecurityNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Which Tax Payer Are You?`
+  String get whichTaxPayerAreYouSmall {
+    return Intl.message(
+      'Which Tax Payer Are You?',
+      name: 'whichTaxPayerAreYouSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to Claim of Tax Treaty Benefits?`
+  String get wantToClaimTaxTreatyBenefits {
+    return Intl.message(
+      'Do you want to Claim of Tax Treaty Benefits?',
+      name: 'wantToClaimTaxTreatyBenefits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter identification number`
+  String get invalidIdentificationNumber {
+    return Intl.message(
+      'Enter identification number',
+      name: 'invalidIdentificationNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter income type`
+  String get invalidIncomeType {
+    return Intl.message(
+      'Enter income type',
+      name: 'invalidIncomeType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `These field cannot be empty`
+  String get invalidExplanation {
+    return Intl.message(
+      'These field cannot be empty',
+      name: 'invalidExplanation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Beneficial owner is a resident of`
+  String get beneficialOwnerIsAResidenceOf {
+    return Intl.message(
+      'Beneficial owner is a resident of',
+      name: 'beneficialOwnerIsAResidenceOf',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `U.S. tax payer identification number `
+  String get usIDNumber {
+    return Intl.message(
+      'U.S. tax payer identification number ',
+      name: 'usIDNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type of Income`
+  String get typeOfIncome {
+    return Intl.message(
+      'Type of Income',
+      name: 'typeOfIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EXPLANATION`
+  String get explanation {
+    return Intl.message(
+      'EXPLANATION',
+      name: 'explanation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select date`
+  String get invalidPreferredDate {
+    return Intl.message(
+      'Select date',
+      name: 'invalidPreferredDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select time`
+  String get invalidPreferredTime {
+    return Intl.message(
+      'Select time',
+      name: 'invalidPreferredTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select your preferred agent for a video call`
+  String get pleaseSelectPreferredAgentForVideoCall {
+    return Intl.message(
+      'Please select your preferred agent for a video call',
+      name: 'pleaseSelectPreferredAgentForVideoCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PREFERRED DATE`
+  String get preferredDate {
+    return Intl.message(
+      'PREFERRED DATE',
+      name: 'preferredDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PREFERRED TIME`
+  String get preferredTime {
+    return Intl.message(
+      'PREFERRED TIME',
+      name: 'preferredTime',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Enter reason for unavailability`
   String get invalidExplanationForUnavailability {
     return Intl.message(
@@ -2031,10 +2811,10 @@ class S {
   }
 
   /// `Date of Birth`
-  String get dateOfBirth {
+  String get dateOfBirthSmall {
     return Intl.message(
       'Date of Birth',
-      name: 'dateOfBirth',
+      name: 'dateOfBirthSmall',
       desc: '',
       args: [],
     );
@@ -2111,10 +2891,10 @@ class S {
   }
 
   /// `Type of Transactions`
-  String get typeOfTransactions {
+  String get typeOfTransactionsSmall {
     return Intl.message(
       'Type of Transactions',
-      name: 'typeOfTransactions',
+      name: 'typeOfTransactionsSmall',
       desc: '',
       args: [],
     );
@@ -2195,6 +2975,166 @@ class S {
     return Intl.message(
       'Do you have additional source of income',
       name: 'additionalSourceIncomeQ1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `State`
+  String get stateSmall {
+    return Intl.message(
+      'State',
+      name: 'stateSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `City`
+  String get citySmall {
+    return Intl.message(
+      'City',
+      name: 'citySmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search state`
+  String get searchState {
+    return Intl.message(
+      'Search state',
+      name: 'searchState',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search city`
+  String get searchCity {
+    return Intl.message(
+      'Search city',
+      name: 'searchCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What’s your email and mobile number?`
+  String get whatYourEmailAndMobileNumber {
+    return Intl.message(
+      'What’s your email and mobile number?',
+      name: 'whatYourEmailAndMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm and complete your ID details below`
+  String get pleaseConfirmYourIDDetailsBelow {
+    return Intl.message(
+      'Please confirm and complete your ID details below',
+      name: 'pleaseConfirmYourIDDetailsBelow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Where do you \ncurrently live?`
+  String get whereDoYouCurrentlyLive {
+    return Intl.message(
+      'Where do you \ncurrently live?',
+      name: 'whereDoYouCurrentlyLive',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account opening is only available for Jordanian citizen, for now. Hey, don’t be fret. We’ll expand to other countries, soon!`
+  String get accountOpeningDescription {
+    return Intl.message(
+      'Account opening is only available for Jordanian citizen, for now. Hey, don’t be fret. We’ll expand to other countries, soon!',
+      name: 'accountOpeningDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notify me!`
+  String get notifyMeExC {
+    return Intl.message(
+      'Notify me!',
+      name: 'notifyMeExC',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NOTIFY ME`
+  String get notifyMe {
+    return Intl.message(
+      'NOTIFY ME',
+      name: 'notifyMe',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your latest email. You’ll hear from us, soon!`
+  String get pleaseEnterLatestEmail {
+    return Intl.message(
+      'Please enter your latest email. You’ll hear from us, soon!',
+      name: 'pleaseEnterLatestEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available.`
+  String get thankYouForInterestWillSendUpdate {
+    return Intl.message(
+      'Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available.',
+      name: 'thankYouForInterestWillSendUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Welcome Page`
+  String get toWelcomePage {
+    return Intl.message(
+      'to Welcome Page',
+      name: 'toWelcomePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select relationship`
+  String get invalidRelationship {
+    return Intl.message(
+      'Select relationship',
+      name: 'invalidRelationship',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter name`
+  String get invalidName {
+    return Intl.message(
+      'Enter name',
+      name: 'invalidName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter role`
+  String get invalidRole {
+    return Intl.message(
+      'Enter role',
+      name: 'invalidRole',
       desc: '',
       args: [],
     );

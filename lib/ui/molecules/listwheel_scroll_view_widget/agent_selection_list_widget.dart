@@ -12,10 +12,9 @@ class AgentSelectionListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("got item");
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 16),
-      padding: EdgeInsets.only(left: 24, right: 20, top: 20, bottom: 20),
+      padding: EdgeInsets.only(left: 28, right: 20, top: 20, bottom: 20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           color: item.isSelected! ? AppColor.very_light_gray : null),

@@ -9,6 +9,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/home_address_dialog/home_address_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -34,9 +35,9 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                 fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 36.0, bottom: 32),
+            padding: EdgeInsets.only(top: 8.0, bottom: 32),
             child: Text(
-              S.of(context).confirmDetailsHeader,
+              S.of(context).whereDoYouCurrentlyLive,
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: AppColor.very_dark_gray,
@@ -77,11 +78,11 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                               model.residentCountryKey.currentState!.isValid =
                                   false;
                             } else if (data.appError!.type ==
-                                ErrorType.EMPTY_RESIDENT_COUNTRY) {
+                                ErrorType.EMPTY_HOME_ADDRESS) {
                               model.homeAddressrKey.currentState!.isValid =
                                   false;
                             } else if (data.appError!.type ==
-                                ErrorType.EMPTY_RESIDENT_COUNTRY) {
+                                ErrorType.EMPTY_STREET_ADDRESS) {
                               model.streetAddressKey.currentState!.isValid =
                                   false;
                             } else {
@@ -132,16 +133,36 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                             hintText: S
                                                 .of(context)
                                                 .residentCountryHint,
-                                            inputType: TextInputType.text,
+                                            readOnly: true,
                                             controller:
                                                 model.residentCountryController,
-                                            suffixIcon:
-                                                (dropDownEnabled, value) =>
-                                                    AppSvg.asset(
-                                                        AssetUtils.dropDown),
+                                            suffixIcon: (value, data) {
+                                              return InkWell(
+                                                onTap: () async {
+                                                  CountryDialog.show(context,
+                                                      title: S
+                                                          .of(context)
+                                                          .residentCountrySmall,
+                                                      onDismissed: () {
+                                                    Navigator.pop(context);
+                                                  }, onSelected: (value) {
+                                                    Navigator.pop(context);
+                                                    model
+                                                        .residentCountryController
+                                                        .text = value;
+                                                    model.validateAddress();
+                                                  });
+                                                },
+                                                child: Container(
+                                                    height: 16,
+                                                    width: 16,
+                                                    padding: EdgeInsets.only(
+                                                        right: 8),
+                                                    child: AppSvg.asset(
+                                                        AssetUtils.downArrow)),
+                                              );
+                                            },
                                             key: model.residentCountryKey,
-                                            onChanged: (value) =>
-                                                model.validateAddress(),
                                             textHintWidget:
                                                 (hasFocus, isValid, value) {
                                               return Visibility(
@@ -189,9 +210,14 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                         HomeAddressDialog.show(
                                                             context, onSelected:
                                                                 (value) {
+                                                          Navigator.of(context)
+                                                              .pop();
                                                           model
                                                               .homeAddressController
                                                               .text = value;
+                                                        }, onDismissed: () {
+                                                          Navigator.pop(
+                                                              context);
                                                         }),
                                                     child: Image.asset(
                                                         AssetUtils.location)),
@@ -323,14 +349,10 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                           dataBuilder: (context, isValid) {
                                             return Visibility(
                                               visible: isValid!,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 45, right: 45),
-                                                child: AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed,
-                                                ),
+                                              child: AnimatedButton(
+                                                buttonText: S
+                                                    .of(context)
+                                                    .swipeToProceed,
                                               ),
                                             );
                                           }),

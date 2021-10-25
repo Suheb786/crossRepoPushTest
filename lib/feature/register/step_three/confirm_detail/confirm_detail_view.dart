@@ -31,9 +31,9 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                 fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 36.0, bottom: 32),
+            padding: EdgeInsets.only(top: 8.0, bottom: 32),
             child: Text(
-              S.of(context).confirmDetailsHeader,
+              S.of(context).pleaseConfirmYourIDDetailsBelow,
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: AppColor.very_dark_gray,

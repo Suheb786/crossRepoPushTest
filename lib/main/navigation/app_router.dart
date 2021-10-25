@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
-import 'package:neo_bank/feature/register/step_four/account_ready/account_ready_page.dart';
+import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
+import 'package:neo_bank/feature/register/stepone/notify_success/notify_success_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 
@@ -28,6 +29,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => AccountReadyPage(),
             settings: RouteSettings(name: RoutePaths.AccountReady));
+
+      case RoutePaths.NotifySuccess:
+        return CupertinoPageRoute(
+            builder: (context) => NotifySuccessPage(),
+            settings: RouteSettings(name: RoutePaths.NotifySuccess));
 
       default:
         return CupertinoPageRoute(

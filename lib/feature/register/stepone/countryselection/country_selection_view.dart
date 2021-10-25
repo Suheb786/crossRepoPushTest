@@ -8,6 +8,7 @@ import 'package:neo_bank/feature/register/stepone/countryselection/country_selec
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/country/country_list_item.dart';
+import 'package:neo_bank/ui/molecules/register/notify_me_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -28,7 +29,7 @@ class CountrySelectionPageView
               fontWeight: FontWeight.w600),
         ),
         Padding(
-          padding: EdgeInsets.only(top: 36.0, bottom: 32),
+          padding: EdgeInsets.only(top: 8.0, bottom: 32),
           child: Text(
             S.of(context).selectCountryHeader,
             textAlign: TextAlign.center,
@@ -42,6 +43,9 @@ class CountrySelectionPageView
           child: GestureDetector(
             onHorizontalDragUpdate: (details) {
               if (details.primaryDelta!.isNegative) {
+                ProviderScope.containerOf(context)
+                    .read(addNumberViewModelProvider)
+                    .notify();
                 ProviderScope.containerOf(context)
                     .read(registerStepOneViewModelProvider)
                     .pageController
@@ -58,6 +62,7 @@ class CountrySelectionPageView
               margin: EdgeInsets.zero,
               shadowColor: AppColor.black.withOpacity(0.32),
               child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                   decoration: BoxDecoration(
                       color: AppColor.very_soft_violet,
                       gradient: LinearGradient(
@@ -73,24 +78,28 @@ class CountrySelectionPageView
                     dataBuilder: (context, data) {
                       return Stack(
                         children: [
-                          Scrollbar(
-                            child: ListWheelScrollView.useDelegate(
-                                itemExtent: 72,
-                                onSelectedItemChanged: (int index) {
-                                  model.selectCountry(index);
-                                  ProviderScope.containerOf(context)
-                                      .read(addNumberViewModelProvider)
-                                      .notify();
+                          Column(
+                            children: [
+                              NotifyMeWidget(
+                                onTap: () {
+                                  // ProviderScope
+                                  //     .containerOf(context)
+                                  //     .read(registerStepOneViewModelProvider)
+                                  //     .pageController
+                                  //     .nextPage(
+                                  //     duration: Duration(milliseconds: 500),
+                                  //     curve: Curves.easeInOut);
                                 },
-                                physics: FixedExtentScrollPhysics(),
-                                perspective: 0.0000000001,
-                                childDelegate: ListWheelChildBuilderDelegate(
-                                    childCount: data!.data!.length,
-                                    builder: (BuildContext context, int index) {
-                                      return CountryListItem(
-                                        item: data.data![index],
-                                      );
-                                    })),
+                                title: S.of(context).accountOpeningDescription,
+                                labelText: S.of(context).notifyMe,
+                              ),
+                              SizedBox(
+                                height: 18,
+                              ),
+                              CountryListItem(
+                                item: model.getSpecifiedCountry(),
+                              )
+                            ],
                           ),
                           Positioned(
                             bottom: 24,

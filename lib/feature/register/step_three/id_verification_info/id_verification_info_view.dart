@@ -33,7 +33,7 @@ class IdVerificationInfoView
                 fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 36.0, bottom: 32),
+            padding: EdgeInsets.only(top: 8.0, bottom: 32),
             child: Text(
               S.of(context).idVerificationInfoHeader,
               textAlign: TextAlign.center,

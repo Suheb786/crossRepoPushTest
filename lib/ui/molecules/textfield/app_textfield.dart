@@ -5,7 +5,6 @@ import 'package:neo_bank/utils/color_utils.dart';
 class AppTextField extends StatefulWidget {
   final double? height;
   final double? width;
-  final Color? labelColor;
   final Widget? child;
   final Function()? onPressed;
   final TextEditingController? controller;
@@ -21,7 +20,6 @@ class AppTextField extends StatefulWidget {
   final Function(String)? onFieldSubmitted;
   final bool? readOnly;
   final int? maxLength;
-  final Color? textColor;
   final bool? obscureText;
   final String obscuringCharacter;
   final Widget Function(bool enabled, String value)? suffixIcon;
@@ -42,6 +40,11 @@ class AppTextField extends StatefulWidget {
   final Function(bool hasFocus, bool isValid, String value)? textHintWidget;
   final EdgeInsets dividerPadding;
   final Function? labelIcon;
+  final Color? textFieldFocusBorderColor;
+  final Color? textFieldBorderColor;
+  final Color? hintTextColor;
+  final Color? textColor;
+  final Color? labelColor;
 
   AppTextField(
       {this.height,
@@ -77,13 +80,16 @@ class AppTextField extends StatefulWidget {
       this.filledColor: AppColor.white,
       this.onFieldSubmitted,
       this.labelIcon,
-      this.labelColor,
       this.dividerPadding:
           const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
       this.floatingLabelBehavior: FloatingLabelBehavior.never,
       this.textAlign: TextAlign.start,
-      this.textHintWidget,
-      this.textColor})
+      this.textFieldBorderColor,
+      this.textFieldFocusBorderColor,
+      this.hintTextColor,
+      this.textColor,
+      this.labelColor,
+      this.textHintWidget})
       : super(key: key);
 
   @override
@@ -138,8 +144,10 @@ class AppTextFieldState extends State<AppTextField> {
                         color: _focusNode.hasFocus && !isValid
                             ? AppColor.vivid_red
                             : _focusNode.hasFocus
-                                ? AppColor.vivid_orange
-                                : AppColor.soft_violet)),
+                                ? (widget.textFieldFocusBorderColor ??
+                                    AppColor.vivid_orange)
+                                : (widget.textFieldBorderColor ??
+                                    AppColor.soft_violet))),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -175,19 +183,13 @@ class AppTextFieldState extends State<AppTextField> {
                       maxLines: widget.maxLines,
                       minLines: widget.minLines,
                       obscureText: secureText,
+                      cursorColor: widget.hintTextColor ?? AppColor.white,
                       obscuringCharacter: widget.obscuringCharacter,
                       decoration: InputDecoration(
                           prefix: widget.prefix?.call(),
                           prefixIcon: widget.prefixIcon?.call(),
                           prefixIconConstraints:
                               BoxConstraints.tightForFinite(),
-                          // labelText: widget.labelText,
-                          // labelStyle: TextStyle(
-                          //   fontSize: widget.labelFontSize,
-                          //   color: AppColor.black,
-                          //   fontWeight: FontWeight.w400,
-                          //   fontStyle: FontStyle.normal,
-                          // ),
                           contentPadding: EdgeInsets.only(top: 8),
                           hintText: widget.hintText,
                           hintMaxLines: 1,
@@ -197,7 +199,8 @@ class AppTextFieldState extends State<AppTextField> {
                           filled: widget.filled,
                           fillColor: widget.filledColor,
                           hintStyle: TextStyle(
-                            color: AppColor.very_soft_violet,
+                            color: widget.hintTextColor ??
+                                AppColor.very_soft_violet,
                             fontSize: widget.fontSize,
                             fontWeight: FontWeight.w600,
                           ),

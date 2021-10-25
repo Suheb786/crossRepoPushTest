@@ -5,7 +5,10 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class CreatePasswordInfoDialogView extends StatelessWidget {
-  const CreatePasswordInfoDialogView({Key? key}) : super(key: key);
+  final Function? onDismissed;
+
+  const CreatePasswordInfoDialogView({Key? key, this.onDismissed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,20 +19,33 @@ class CreatePasswordInfoDialogView extends StatelessWidget {
         padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 32.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              S.of(context).passwordDialogHeader,
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+            Column(
+              children: [
+                Text(
+                  S.of(context).passwordDialogHeader,
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: AppColor.gray_black),
+                ),
+                SizedBox(height: 32),
+                Text(
+                  S.of(context).passwordDialogContent,
+                  style: TextStyle(
+                      fontSize: 14,
+                      color: AppColor.gray_black,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
             ),
-            SizedBox(height: 32),
-            Text(
-              S.of(context).passwordDialogContent,
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-            ),
-            SizedBox(height: 315),
             InkWell(
-              onTap: () => Navigator.of(context).pop(),
+              onTap: () {
+                onDismissed?.call();
+              },
               child: Container(
+                margin: EdgeInsets.only(bottom: 36),
                 padding: EdgeInsets.all(16),
                 height: 57,
                 width: 57,

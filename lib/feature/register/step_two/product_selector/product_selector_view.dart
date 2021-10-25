@@ -29,7 +29,7 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                 fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 36.0, bottom: 32),
+            padding: EdgeInsets.only(top: 8.0, bottom: 32),
             child: Text(
               S.of(context).productSelectorHeader,
               textAlign: TextAlign.center,
@@ -99,6 +99,9 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                                     height: 57,
                                     width: 57,
                                     decoration: BoxDecoration(
+                                        border: Border.all(
+                                          width: 1,
+                                            color: AppColor.white_gray),
                                         shape: BoxShape.circle,
                                         color: AppColor.dark_violet_4),
                                     child: AppSvg.asset(AssetUtils.tick),
