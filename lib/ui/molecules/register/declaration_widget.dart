@@ -6,18 +6,25 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class DeclarationWidget extends StatelessWidget {
-  final String? title;
+  final String? title1;
+  final String? title2;
+  final String? title3;
   final bool? isSelected;
   final Function? onTap;
 
   const DeclarationWidget(
-      {Key? key, this.title, this.isSelected: false, this.onTap})
+      {Key? key,
+      this.title1,
+      this.title2,
+      this.title3,
+      this.isSelected: false,
+      this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 52.0),
+      padding: const EdgeInsets.only(top: 40.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -43,7 +50,7 @@ class DeclarationWidget extends StatelessWidget {
           Flexible(
             child: Text.rich(TextSpan(
                 text:
-                    'I confirm that my tax residency is accurate and agree to the ',
+                    title1,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 12,
@@ -52,7 +59,7 @@ class DeclarationWidget extends StatelessWidget {
                 ),
                 children: [
                   TextSpan(
-                      text: 'Terms and Conditions ',
+                      text: title2,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 12,
@@ -61,7 +68,7 @@ class DeclarationWidget extends StatelessWidget {
                       ),
                       children: [
                         TextSpan(
-                          text: 'of the bank.',
+                          text: title3,
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 12,

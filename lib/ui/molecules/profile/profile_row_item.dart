@@ -49,26 +49,29 @@ class ProfileRowItem extends StatelessWidget {
                               color: AppColor.text_color),
                         ),
                       ),
-                      FlutterSwitch(
-                        value: isActive!,
-                        onToggle: (value) {
-                          model.updateState(value);
-                        },
-                        activeText: activeText,
-                        activeTextColor: AppColor.vivid_orange,
-                        activeSwitchBorder:
-                            Border.all(color: AppColor.border_color),
-                        activeTextFontWeight: FontWeight.w500,
-                        showOnOff: true,
-                        valueFontSize: 10,
-                        activeToggleColor: AppColor.vivid_orange,
-                        inactiveText: inactiveText,
-                        inactiveColor: Colors.transparent,
-                        inactiveToggleColor: AppColor.white,
-                        inactiveTextFontWeight: FontWeight.w500,
-                        inactiveSwitchBorder:
-                            Border.all(color: AppColor.border_color),
-                        activeColor: Colors.transparent,
+                      Padding(
+                        padding: EdgeInsets.only(left:10.0),
+                        child: FlutterSwitch(
+                          value: isActive!,
+                          onToggle: (value) {
+                            model.updateState(value);
+                          },
+                          activeText: activeText,
+                          activeTextColor: AppColor.vivid_orange,
+                          activeSwitchBorder:
+                              Border.all(color: AppColor.border_color),
+                          activeTextFontWeight: FontWeight.w500,
+                          showOnOff: true,
+                          valueFontSize: 10,
+                          activeToggleColor: AppColor.vivid_orange,
+                          inactiveText: inactiveText,
+                          inactiveColor: Colors.transparent,
+                          inactiveToggleColor: AppColor.white,
+                          inactiveTextFontWeight: FontWeight.w500,
+                          inactiveSwitchBorder:
+                              Border.all(color: AppColor.border_color),
+                          activeColor: Colors.transparent,
+                        ),
                       ),
                     ],
                   ),

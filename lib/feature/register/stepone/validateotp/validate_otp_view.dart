@@ -33,7 +33,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                 fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 36.0, bottom: 32),
+            padding: EdgeInsets.only(top: 8.0, bottom: 32),
             child: Column(
               children: [
                 Text(
@@ -110,68 +110,66 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                       ],
                                       begin: Alignment.bottomCenter,
                                       end: Alignment.topCenter)),
-                              child: Stack(
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SingleChildScrollView(
-                                        physics: ClampingScrollPhysics(),
-                                        child: Column(
-                                          children: [
-                                            AppOtpFields(
-                                              length: 6,
-                                              controller: model.otpController,
-                                              onChanged: (val) => model.validate(),
-                                            ),
-                                            Visibility(
-                                              visible: isValid!,
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Text(
-                                                  ErrorParser
-                                                      .getLocalisedStringError(
-                                                          error: isOtpVerified!
-                                                              .appError,
-                                                          localisedHelper:
-                                                              S.of(context)),
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight: FontWeight.w600,
-                                                      color: AppColor.vivid_red),
-                                                ),
-                                              ),
-                                            ),
-                                            Center(
-                                                child: Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 32.0),
-                                              child: InkWell(
-                                                onTap: () {},
-                                                child: Text(
-                                                  S.of(context).changeMyNumber,
-                                                  style: TextStyle(
-                                                    color: AppColor.vivid_orange,
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
-                                                  ),
-                                                ),
-                                              ),
-                                            )),
-                                            SizedBox(
-                                              height: 30,
-                                            ),
-                                          ],
+                                  SingleChildScrollView(
+                                    physics: ClampingScrollPhysics(),
+                                    child: Column(
+                                      children: [
+                                        AppOtpFields(
+                                          length: 6,
+                                          controller: model.otpController,
+                                          onChanged: (val) => model.validate(),
                                         ),
-                                      ),
+                                        Visibility(
+                                          visible: isValid!,
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              ErrorParser
+                                                  .getLocalisedStringError(
+                                                      error: isOtpVerified!
+                                                          .appError,
+                                                      localisedHelper:
+                                                          S.of(context)),
+                                              textAlign: TextAlign.start,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: AppColor.vivid_red),
+                                            ),
+                                          ),
+                                        ),
+                                        Center(
+                                            child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 32.0),
+                                          child: InkWell(
+                                            onTap: () {},
+                                            child: Text(
+                                              S.of(context).changeMyNumber,
+                                              style: TextStyle(
+                                                color: AppColor.vivid_orange,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                          ),
+                                        )),
+                                      ],
+                                    ),
+                                  ),
+                                  Column(
+                                    children: [
                                       CountdownTimer(
                                         controller: model.countDownController,
                                         onEnd: () {},
                                         endTime: model.endTime,
                                         textStyle: TextStyle(
-                                            fontSize: 16, color: AppColor.white),
+                                            fontSize: 16,
+                                            color: AppColor.white),
                                         widgetBuilder:
                                             (context, currentTimeRemaining) {
                                           return currentTimeRemaining == null
@@ -190,29 +188,31 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                                       '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
                                                   style: TextStyle(
                                                       fontSize: 14,
-                                                      color: AppColor.soft_violet),
+                                                      color:
+                                                          AppColor.soft_violet),
                                                 );
                                         },
                                       ),
+                                      AppStreamBuilder<bool>(
+                                          stream: model.showButtonStream,
+                                          initialData: false,
+                                          dataBuilder: (context, isValid) {
+                                            return Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 16.0, right: 43),
+                                              child: Visibility(
+                                                visible: isValid!,
+                                                child: AnimatedButton(
+                                                  buttonHeight: 50,
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed,
+                                                ),
+                                              ),
+                                            );
+                                          })
                                     ],
                                   ),
-                                  AppStreamBuilder<bool>(
-                                    stream: model.showButtonStream,
-                                    initialData: false,
-                                    dataBuilder: (context, isValid) {
-                                      return Visibility(
-                                        visible: isValid!,
-                                        child: Positioned(
-                                          bottom:0,
-                                          left:45,
-                                          right:45,
-                                          child: AnimatedButton(
-                                            buttonText: "Swipe to proceed",
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                  )
                                 ],
                               )),
                         ),

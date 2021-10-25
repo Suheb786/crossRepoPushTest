@@ -34,7 +34,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                 fontWeight: FontWeight.w600),
           ),
           Padding(
-            padding: EdgeInsets.only(top: 36.0, bottom: 32),
+            padding: EdgeInsets.only(top: 8.0, bottom: 32),
             child: Text(
               S.of(context).createPasswordHeader,
               textAlign: TextAlign.center,
@@ -149,8 +149,14 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                           .passwordKey
                                                           .currentState!
                                                           .secureText
-                                                      ? Image.asset(
-                                                          AssetUtils.eye)
+                                                      ? Container(
+                                                          width: 16,
+                                                          height: 16,
+                                                          padding:
+                                                              EdgeInsets.all(4),
+                                                          child: AppSvg.asset(
+                                                              AssetUtils.eye),
+                                                        )
                                                       : Icon(
                                                           Icons.visibility_off,
                                                           color: AppColor
@@ -164,7 +170,10 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                 child: InkWell(
                                                   onTap: () {
                                                     CreatePasswordInfoDialog
-                                                        .show(context);
+                                                        .show(context,
+                                                            onDismissed: () {
+                                                      Navigator.pop(context);
+                                                    });
                                                   },
                                                   child: AppSvg.asset(
                                                       AssetUtils.info,
@@ -232,8 +241,14 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                           .confirmPasswordKey
                                                           .currentState!
                                                           .secureText
-                                                      ? Image.asset(
-                                                          AssetUtils.eye)
+                                                      ? Container(
+                                                          width: 16,
+                                                          height: 16,
+                                                          padding:
+                                                              EdgeInsets.all(4),
+                                                          child: AppSvg.asset(
+                                                              AssetUtils.eye),
+                                                        )
                                                       : Icon(
                                                           Icons.visibility_off,
                                                           color: AppColor
@@ -271,8 +286,10 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                               },
                                             ),
                                             SizedBox(
-                                              height: 67,
-                                            ),
+                                              height: MediaQuery.of(context)
+                                                  .viewInsets
+                                                  .bottom,
+                                            )
                                           ],
                                         ),
                                       ),
@@ -286,8 +303,9 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                             dataBuilder: (context, isValid) {
                                               if (isValid!) {
                                                 return AnimatedButton(
-                                                    buttonText:
-                                                        "Swipe to proceed");
+                                                    buttonText: S
+                                                        .of(context)
+                                                        .swipeToProceed);
                                               } else {
                                                 return Container();
                                               }

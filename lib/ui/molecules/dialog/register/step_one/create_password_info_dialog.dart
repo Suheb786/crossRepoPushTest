@@ -5,10 +5,10 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_one/create_password_i
 class CreatePasswordInfoDialog {
   CreatePasswordInfoDialog._();
 
-  static show(BuildContext mContext,
-      {Function? onDismissed, Function(String)? onSelected}) {
+  static show(BuildContext mContext, {Function? onDismissed}) {
     AppDialog.show(mContext,
         isDismissible: true,
-        builder: (context) => CreatePasswordInfoDialogView());
+        builder: (context) =>
+            CreatePasswordInfoDialogView(onDismissed: onDismissed));
   }
 }

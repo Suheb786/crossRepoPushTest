@@ -36,6 +36,15 @@ class CountrySelectionViewModel extends BasePageViewModel {
     _fetchCountriesRequest.safeAdd(FetchCountriesUseParams(context: context));
   }
 
+  Country getSpecifiedCountry() {
+    List<Country>? countryList = _fetchCountriesResponse.value.data;
+    Country? country =
+        countryList?.firstWhere((element) => element.countryName == 'Jordan');
+    selectedCountry = country;
+    country!.isSelected = true;
+    return country;
+  }
+
   void selectCountry(int index) {
     List<Country>? countryList = _fetchCountriesResponse.value.data;
     countryList?.forEach((element) {

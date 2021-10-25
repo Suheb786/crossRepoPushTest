@@ -40,6 +40,11 @@ class AppTextField extends StatefulWidget {
   final Function(bool hasFocus, bool isValid, String value)? textHintWidget;
   final EdgeInsets dividerPadding;
   final Function? labelIcon;
+  final Color? textFieldFocusBorderColor;
+  final Color? textFieldBorderColor;
+  final Color? hintTextColor;
+  final Color? textColor;
+  final Color? labelColor;
 
   AppTextField(
       {this.height,
@@ -79,6 +84,11 @@ class AppTextField extends StatefulWidget {
           const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
       this.floatingLabelBehavior: FloatingLabelBehavior.never,
       this.textAlign: TextAlign.start,
+      this.textFieldBorderColor,
+      this.textFieldFocusBorderColor,
+      this.hintTextColor,
+      this.textColor,
+      this.labelColor,
       this.textHintWidget})
       : super(key: key);
 
@@ -134,8 +144,10 @@ class AppTextFieldState extends State<AppTextField> {
                         color: _focusNode.hasFocus && !isValid
                             ? AppColor.vivid_red
                             : _focusNode.hasFocus
-                                ? AppColor.vivid_orange
-                                : AppColor.soft_violet)),
+                                ? (widget.textFieldFocusBorderColor ??
+                                    AppColor.vivid_orange)
+                                : (widget.textFieldBorderColor ??
+                                    AppColor.soft_violet))),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -144,7 +156,8 @@ class AppTextFieldState extends State<AppTextField> {
                         TextSpan(
                             text: widget.labelText,
                             style: DefaultTextStyle.of(context).style.copyWith(
-                                  color: AppColor.light_grayish_violet,
+                                  color: widget.labelColor ??
+                                      AppColor.light_grayish_violet,
                                   fontSize: 10,
                                   fontFamily: "Montserrat",
                                 )),
@@ -157,7 +170,7 @@ class AppTextFieldState extends State<AppTextField> {
                       maxLength: widget.maxLength,
                       textAlign: widget.textAlign,
                       style: TextStyle(
-                        color: AppColor.very_light_gray,
+                        color: widget.textColor ?? AppColor.very_light_gray,
                         fontSize: widget.fontSize,
                         fontWeight: FontWeight.w600,
                       ),
@@ -170,19 +183,13 @@ class AppTextFieldState extends State<AppTextField> {
                       maxLines: widget.maxLines,
                       minLines: widget.minLines,
                       obscureText: secureText,
+                      cursorColor: widget.hintTextColor ?? AppColor.white,
                       obscuringCharacter: widget.obscuringCharacter,
                       decoration: InputDecoration(
                           prefix: widget.prefix?.call(),
                           prefixIcon: widget.prefixIcon?.call(),
                           prefixIconConstraints:
                               BoxConstraints.tightForFinite(),
-                          // labelText: widget.labelText,
-                          // labelStyle: TextStyle(
-                          //   fontSize: widget.labelFontSize,
-                          //   color: AppColor.black,
-                          //   fontWeight: FontWeight.w400,
-                          //   fontStyle: FontStyle.normal,
-                          // ),
                           contentPadding: EdgeInsets.only(top: 8),
                           hintText: widget.hintText,
                           hintMaxLines: 1,
@@ -192,7 +199,8 @@ class AppTextFieldState extends State<AppTextField> {
                           filled: widget.filled,
                           fillColor: widget.filledColor,
                           hintStyle: TextStyle(
-                            color: AppColor.very_soft_violet,
+                            color: widget.hintTextColor ??
+                                AppColor.very_soft_violet,
                             fontSize: widget.fontSize,
                             fontWeight: FontWeight.w600,
                           ),

@@ -1,7 +1,11 @@
 import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:data/source/register/register_datasource.dart';
+import 'package:data/source/register/register_step_four_datasource.dart';
+import 'package:data/source/register/register_step_three_datasource.dart';
 import 'package:data/source/register/remote/register_remote_ds_impl.dart';
+import 'package:data/source/register/remote/register_step_four_remote_ds_impl.dart';
+import 'package:data/source/register/remote/register_step_three_remote_ds_impl.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
@@ -40,4 +44,12 @@ final apiServiceProvider = Provider<ApiService>(
 
 final registerRemoteDS = Provider<RegisterRemoteDataSource>(
   (ref) => RegisterRemoteDataSourceImpl(),
+);
+
+final registerStepThreeRemoteDS = Provider<RegisterStepThreeRemoteDataSource>(
+  (ref) => RegisterStepThreeRemoteDataSourceImpl(),
+);
+
+final registerStepFourRemoteDS = Provider<RegisterStepFourRemoteDataSource>(
+  (ref) => RegisterStepFourRemoteDataSourceImpl(),
 );

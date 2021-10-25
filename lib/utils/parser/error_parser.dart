@@ -74,12 +74,8 @@ class ErrorParser {
         return localisedHelper.enterValidSpouseName;
       case ErrorType.INVALID_NATURE:
         return localisedHelper.enterValidNature;
-      case ErrorType.INVALID_RELATIONSHIP:
-        return localisedHelper.enterValidRelationshipWithPEP;
-      case ErrorType.INVALID_PERSON_NAME:
-        return localisedHelper.enterValidPersonsName;
-      case ErrorType.INVALID_PERSON_ROLE:
-        return localisedHelper.enterValidPersonsRole;
+      case ErrorType.INVALID_EMPLOYEE_STATUS:
+        return localisedHelper.enterValidEmployeeStatus;
       case ErrorType.EMPTY_PASSWORD:
         return localisedHelper.enterPassword;
       case ErrorType.EMPTY_CONFIRM_PASSWORD:
@@ -110,6 +106,73 @@ class ErrorParser {
         return localisedHelper.emptyStreetAddress;
       case ErrorType.EMPTY_BUILDING_NAME_OR_NUMBER:
         return localisedHelper.emptyBuildingNameOrNo;
+      case ErrorType.INVALID_EXPECTED_ANNUAL_TRANSACTION:
+        return localisedHelper.invalidExpectedAnnualTransaction;
+      case ErrorType.INVALID_EXPECTED_MONTHLY_TRANSACTION:
+        return localisedHelper.invalidExpectedMonthlyTransaction;
+      case ErrorType.INVALID_TYPES_OF_TRANSACTION:
+        return localisedHelper.invalidTypesOfTransaction;
+      case ErrorType.INVALID_DECLARATION_SELECTION:
+        return localisedHelper.invalidDeclarationSelection;
+      case ErrorType.INVALID_NAME_AS_PER_TAX_RETURN:
+        return localisedHelper.invalidNameAsPerTaxReturn;
+      case ErrorType.INVALID_DOB:
+        return localisedHelper.invalidDOB;
+      case ErrorType.INVALID_CITIZENSHIP:
+        return localisedHelper.invalidCitizenship;
+      case ErrorType.INVALID_PERMANENT_ADDRESS_LINE:
+        return localisedHelper.invalidPermanentAddress;
+      case ErrorType.INVALID_COUNTRY:
+        return localisedHelper.invalidCountry;
+      case ErrorType.INVALID_STATE:
+        return localisedHelper.invalidState;
+      case ErrorType.INVALID_CITY:
+        return localisedHelper.invalidCity;
+      case ErrorType.INVALID_POSTCODE:
+        return localisedHelper.invalidPostCode;
+      case ErrorType.INVALID_ADDRESS:
+        return localisedHelper.invalidAddress;
+      case ErrorType.INVALID_REQUESTER_NAME:
+        return localisedHelper.nameHint;
+      case ErrorType.INVALID_REQUESTER_ADDRESS:
+        return localisedHelper.invalidAddress;
+      case ErrorType.INVALID_REQUESTER_STATE:
+        return localisedHelper.invalidState;
+      case ErrorType.INVALID_REQUESTER_CITY:
+        return localisedHelper.invalidCity;
+      case ErrorType.INVALID_REQUESTER_POSTCODE:
+        return localisedHelper.invalidPostCode;
+      case ErrorType.INVALID_TAX_PAYER:
+        return localisedHelper.invalidTaxPayer;
+      case ErrorType.INVALID_SECURITY_NUMBER:
+        return localisedHelper.invalidSocialSecurityNumber;
+      case ErrorType.INVALID_IDENTIFICATION_NUMBER:
+        return localisedHelper.invalidIdentificationNumber;
+      case ErrorType.INVALID_BENEFICIAL_ADDRESS:
+        return localisedHelper.invalidCountry;
+      case ErrorType.INVALID_BENEFICIAL_IDENTIFICATION_NUMBER:
+        return localisedHelper.invalidIdentificationNumber;
+      case ErrorType.INVALID_INCOME_TYPE:
+        return localisedHelper.invalidIncomeType;
+      case ErrorType.INVALID_EXPLANATION:
+        return localisedHelper.invalidExplanation;
+      case ErrorType.INVALID_PREFERRED_DATE:
+        return localisedHelper.invalidPreferredDate;
+      case ErrorType.INVALID_PREFERRED_TIME:
+        return localisedHelper.invalidPreferredTime;
+      case ErrorType.INVALID_RELATIONSHIP:
+        return localisedHelper.invalidRelationship;
+      case ErrorType.INVALID_PERSON_NAME:
+        return localisedHelper.invalidName;
+      case ErrorType.INVALID_PERSON_ROLE:
+        return localisedHelper.invalidRole;
+      case ErrorType.EMPTY_INCOME_PROOF:
+        return localisedHelper.invalidRole;
+      case ErrorType.EMPTY_INCOME_DOCUMENT:
+        return localisedHelper.emptyIncomeDocument;
+      case ErrorType.EMPTY_ADDRESS_DOCUMENT:
+        return localisedHelper.emptyAddressDocument;
+
       default:
         return "";
     }
