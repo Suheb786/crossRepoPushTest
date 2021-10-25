@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppTiltCard extends StatelessWidget {
-  int? pageViewIndex;
-  int? currentPage;
-  Widget? child;
+  final int? pageViewIndex;
+  final int? currentPage;
+  final Widget? child;
 
   AppTiltCard(
       {required this.pageViewIndex,
@@ -18,8 +18,8 @@ class AppTiltCard extends StatelessWidget {
         angle: pageViewIndex! == currentPage!
             ? 0
             : pageViewIndex! < currentPage!
-                ? -0.03491
-                : 0.03491,
+                ? -0.02
+                : 0.02,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: child!,

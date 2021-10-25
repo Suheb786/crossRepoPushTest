@@ -1,3 +1,4 @@
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -11,8 +12,12 @@ import 'package:rxdart/rxdart.dart';
 class LoginViewModel extends BasePageViewModel {
   final LoginUseCase _loginUseCase;
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final ScrollController scrollController = ScrollController();
   final GlobalKey<AppTextFieldState> emailKey =
       GlobalKey(debugLabel: "login_email");
+  final GlobalKey<AppTextFieldState> passwordKey =
+      GlobalKey(debugLabel: "login_password");
 
   PublishSubject<LoginUseCaseParams> _loginRequest = PublishSubject();
 
@@ -32,6 +37,13 @@ class LoginViewModel extends BasePageViewModel {
           .listen((event) {
         _loginResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
+          if (event.appError!.type == ErrorType.EMPTY_EMAIL ||
+              event.appError!.type == ErrorType.INVALID_EMAIL) {
+            emailKey.currentState!.isValid = false;
+          }
+          if (event.appError!.type == ErrorType.EMPTY_PASSWORD) {
+            passwordKey.currentState!.isValid = false;
+          }
           showErrorState();
         }
       });
@@ -39,11 +51,12 @@ class LoginViewModel extends BasePageViewModel {
   }
 
   void validateEmail() {
-    _loginRequest.safeAdd(LoginUseCaseParams(email: emailController.text));
+    _loginRequest.safeAdd(LoginUseCaseParams(
+        email: emailController.text, password: passwordController.text));
   }
 
   void validate() {
-    if(emailController.text.isNotEmpty) {
+    if (emailController.text.isNotEmpty && passwordController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);

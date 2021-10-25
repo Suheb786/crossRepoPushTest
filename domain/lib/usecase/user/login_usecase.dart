@@ -19,8 +19,9 @@ class LoginUseCase extends BaseUseCase<LocalError, LoginUseCaseParams, bool> {
 
 class LoginUseCaseParams extends Params {
   final String email;
+  final String password;
 
-  LoginUseCaseParams({required this.email});
+  LoginUseCaseParams({required this.email, required this.password});
 
   @override
   Either<AppError, bool> verify() {
@@ -33,6 +34,12 @@ class LoginUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_EMAIL,
+          cause: Exception()));
+    }
+    if (Validator.isEmpty(password)) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.EMPTY_PASSWORD,
           cause: Exception()));
     }
     return Right(true);
