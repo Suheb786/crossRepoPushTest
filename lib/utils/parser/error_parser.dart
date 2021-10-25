@@ -166,6 +166,12 @@ class ErrorParser {
         return localisedHelper.invalidName;
       case ErrorType.INVALID_PERSON_ROLE:
         return localisedHelper.invalidRole;
+      case ErrorType.EMPTY_INCOME_PROOF:
+        return localisedHelper.invalidRole;
+      case ErrorType.EMPTY_INCOME_DOCUMENT:
+        return localisedHelper.emptyIncomeDocument;
+      case ErrorType.EMPTY_ADDRESS_DOCUMENT:
+        return localisedHelper.emptyAddressDocument;
 
       default:
         return "";
