@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -175,6 +176,16 @@ class S {
     return Intl.message(
       'CREATE PASSWORD',
       name: 'createPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PASSWORD`
+  String get password {
+    return Intl.message(
+      'PASSWORD',
+      name: 'password',
       desc: '',
       args: [],
     );
@@ -2615,6 +2626,56 @@ class S {
     return Intl.message(
       'Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol.',
       name: 'passwordDialogContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe up to register`
+  String get swipeUpToRegister {
+    return Intl.message(
+      'Swipe up to register',
+      name: 'swipeUpToRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let’s create\nyour account`
+  String get letsCreateYourAccount {
+    return Intl.message(
+      'Let’s create\nyour account',
+      name: 'letsCreateYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe down to login`
+  String get swipeDownToLogin {
+    return Intl.message(
+      'Swipe down to login',
+      name: 'swipeDownToLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register via Email`
+  String get registerViaEmail {
+    return Intl.message(
+      'Register via Email',
+      name: 'registerViaEmail',
       desc: '',
       args: [],
     );

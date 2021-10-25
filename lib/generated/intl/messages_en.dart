@@ -214,6 +214,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter valid relationship with PEP"),
         "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
             "Please enter valid spouse name"),
+        "error": MessageLookupByLibrary.simpleMessage("Error"),
         "exemptPayeeOptional": MessageLookupByLibrary.simpleMessage(
             "EXEMPT PAYEE CODE (OPTIONAL)"),
         "expAnnualTransactions": MessageLookupByLibrary.simpleMessage(
@@ -341,6 +342,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "jobIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
         "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
             "Next, tell us how do\nmake a living"),
+        "letsCreateYourAccount":
+            MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
         "loyaltyRewards": MessageLookupByLibrary.simpleMessage(
             "Enjoy loyalty rewards with great multiplier"),
         "mailingAddressDifferentFromResidence":
@@ -394,6 +397,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("or continue with"),
         "orYouCanUpload":
             MessageLookupByLibrary.simpleMessage("or you can upload"),
+        "password": MessageLookupByLibrary.simpleMessage("PASSWORD"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
         "passwordDialogHeader":
@@ -455,6 +459,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
+        "registerViaEmail":
+            MessageLookupByLibrary.simpleMessage("Register via Email"),
         "relationShipWithPepCaps":
             MessageLookupByLibrary.simpleMessage("RELATIONSHIP WITH PEP"),
         "relationshipWithPEP":
@@ -495,8 +501,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Street Address"),
         "swipeDownToCancel":
             MessageLookupByLibrary.simpleMessage("Swipe down to cancel"),
+        "swipeDownToLogin":
+            MessageLookupByLibrary.simpleMessage("Swipe down to login"),
         "swipeToProceed":
             MessageLookupByLibrary.simpleMessage("Swipe to proceed"),
+        "swipeUpToRegister":
+            MessageLookupByLibrary.simpleMessage("Swipe up to register"),
         "taxCountry": MessageLookupByLibrary.simpleMessage("TAX COUNTRY"),
         "taxCountrySmall": MessageLookupByLibrary.simpleMessage("Tax Country"),
         "taxReportInfoDesc": MessageLookupByLibrary.simpleMessage(

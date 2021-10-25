@@ -24,7 +24,7 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> {
 
   @override
   Color scaffoldBackgroundColor() {
-    return AppColor.very_dark_blue;
+    return AppColor.white.withOpacity(0);
   }
 
   @override
