@@ -121,27 +121,6 @@ class StudentJobIncomePageView
                                                   return Padding(
                                                     padding: EdgeInsets.only(
                                                         top: 16.0),
-                                                    // child: AppTextField(
-                                                    //   labelText: '',
-                                                    //   hintText:
-                                                    //       S.of(context).addIncome,
-                                                    //   hintTextColor: AppColor.vivid_orange,
-                                                    //   controller: model
-                                                    //       .studentIncomeController,
-                                                    //   key: model
-                                                    //       .studentIncomeKey,
-                                                    //   readOnly: true,
-                                                    //   // hintTextColor: AppColor.vivid_orange,
-                                                    //   suffixIcon:
-                                                    //       (value, data) {
-                                                    //     return InkWell(
-                                                    //       onTap: (){
-                                                    //         print("hello");
-                                                    //       },
-                                                    //       child: Image.asset(AssetUtils.add),
-                                                    //     );
-                                                    //   },
-                                                    // ),
                                                     child: Visibility(
                                                       visible: isActive,
                                                       child: AppStreamBuilder<

@@ -187,9 +187,6 @@ class UploadDocumentsPageView
                                                       ),
                                                     );
                                                   },
-                                                  // hintTextColor: isUploaded!
-                                                  //     ? AppColor.vivid_orange
-                                                  //     : AppColor.white,
                                                   suffixIcon: (value, data) {
                                                     return InkWell(
                                                       onTap: !(isUploaded!)
@@ -303,9 +300,6 @@ class UploadDocumentsPageView
                                                       model.addressController,
                                                   key: model.addressDocumentKey,
                                                   readOnly: true,
-                                                  // hintTextColor: isUploaded!
-                                                  //     ? AppColor.vivid_orange
-                                                  //     : AppColor.white,
                                                   textHintWidget: (hasFocus,
                                                       isValid, value) {
                                                     return Visibility(
