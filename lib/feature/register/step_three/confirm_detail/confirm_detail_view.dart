@@ -7,9 +7,11 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_three/confirm_detail/confirm_detail_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -204,6 +206,17 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         key: model.dobKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
+                                        suffixIcon: (isvalid, value) {
+                                          return InkWell(
+                                              onTap: () {},
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.calendar)));
+                                        },
                                         textHintWidget:
                                             (hasFocus, isValid, value) {
                                           return Visibility(
@@ -272,6 +285,17 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         key: model.expiryDateKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
+                                        suffixIcon: (isvalid, value) {
+                                          return InkWell(
+                                              onTap: () {},
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.calendar)));
+                                        },
                                         textHintWidget:
                                             (hasFocus, isValid, value) {
                                           return Visibility(

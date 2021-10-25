@@ -311,5 +311,7 @@
   "toWelcomePage": "to Welcome Page",
   "invalidRelationship": "Select relationship",
   "invalidName": "Enter name",
-  "invalidRole": "Enter role"
+  "invalidRole": "Enter role",
+  "emptyIncomeDocument": "Please upload income document",
+  "emptyAddressDocument": "Please upload address document"
 }

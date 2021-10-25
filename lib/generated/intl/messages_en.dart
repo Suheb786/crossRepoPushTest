@@ -160,6 +160,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("EMPLOYMENT STATUS"),
         "employmentStatusSmall":
             MessageLookupByLibrary.simpleMessage("Employment Status"),
+        "emptyAddressDocument": MessageLookupByLibrary.simpleMessage(
+            "Please upload address document"),
         "emptyBuildingNameOrNo": MessageLookupByLibrary.simpleMessage(
             "Building name or number field cannot be empty"),
         "emptyDob": MessageLookupByLibrary.simpleMessage(
@@ -174,6 +176,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Home address field cannot be empty"),
         "emptyIdNumber": MessageLookupByLibrary.simpleMessage(
             "Id Number field cannot be empty"),
+        "emptyIncomeDocument": MessageLookupByLibrary.simpleMessage(
+            "Please upload income document"),
         "emptyMotherName": MessageLookupByLibrary.simpleMessage(
             "Mother\'s name field cannot be empty"),
         "emptyName":
