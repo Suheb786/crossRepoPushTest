@@ -165,8 +165,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     visible: isValid!,
                                     child: Positioned(
                                       bottom: 24,
-                                      left: 93,
-                                      right: 93,
+                                      left: 45,
+                                      right: 45,
                                       child: AnimatedButton(
                                         buttonText: "Swipe to proceed",
                                       ),

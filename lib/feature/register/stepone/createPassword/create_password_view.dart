@@ -24,44 +24,22 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
   @override
   Widget build(BuildContext context, CreatePasswordViewModel model) {
     return AppKeyBoardHide(
-      child: Column(
-        children: [
-          Text(
-            S.of(context).accountRegistration,
-            style: TextStyle(
-                color: AppColor.dark_gray,
-                fontSize: 10,
-                fontWeight: FontWeight.w600),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 8.0, bottom: 32),
-            child: Text(
-              S.of(context).createPasswordHeader,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColor.very_dark_gray,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          Expanded(
-            child: AppStreamBuilder<bool>(
-                stream: model.errorDetectorStream,
-                initialData: false,
-                dataBuilder: (context, isError) {
-                  return ShakeAnimatedWidget(
-                    enabled: isError ?? false,
-                    duration: Duration(milliseconds: 100),
-                    shakeAngle: Rotation.deg(z: 1),
-                    curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<bool>>(
-                        stream: model.createPasswordStream,
-                        initialData: Resource.none(),
-                        onData: (data) {
-                          if (data.status == Status.SUCCESS) {
-                            model.passwordKey.currentState!.isValid = true;
-                            model.confirmPasswordKey.currentState!.isValid =
-                                true;
+      child: AppStreamBuilder<bool>(
+          stream: model.errorDetectorStream,
+          initialData: false,
+          dataBuilder: (context, isError) {
+            return ShakeAnimatedWidget(
+              enabled: isError ?? false,
+              duration: Duration(milliseconds: 100),
+              shakeAngle: Rotation.deg(z: 1),
+              curve: Curves.easeInOutSine,
+              child: AppStreamBuilder<Resource<bool>>(
+                  stream: model.createPasswordStream,
+                  initialData: Resource.none(),
+                  onData: (data) {
+                    if (data.status == Status.SUCCESS) {
+                      model.passwordKey.currentState!.isValid = true;
+                      model.confirmPasswordKey.currentState!.isValid = true;
 
                             ProviderScope.containerOf(context)
                                 .read(registerViewModelProvider)
