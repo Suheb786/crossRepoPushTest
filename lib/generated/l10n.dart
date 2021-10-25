@@ -2631,6 +2631,56 @@ class S {
     );
   }
 
+  /// `Swipe up to register`
+  String get swipeUpToRegister {
+    return Intl.message(
+      'Swipe up to register',
+      name: 'swipeUpToRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error`
+  String get error {
+    return Intl.message(
+      'Error',
+      name: 'error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let’s create\nyour account`
+  String get letsCreateYourAccount {
+    return Intl.message(
+      'Let’s create\nyour account',
+      name: 'letsCreateYourAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe down to login`
+  String get swipeDownToLogin {
+    return Intl.message(
+      'Swipe down to login',
+      name: 'swipeDownToLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register via Email`
+  String get registerViaEmail {
+    return Intl.message(
+      'Register via Email',
+      name: 'registerViaEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `MOTHER’S NAME`
   String get motherName {
     return Intl.message(
@@ -3166,56 +3216,6 @@ class S {
     return Intl.message(
       'Please upload address document',
       name: 'emptyAddressDocument',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Swipe up to register`
-  String get swipeUpToRegister {
-    return Intl.message(
-      'Swipe up to register',
-      name: 'swipeUpToRegister',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Error`
-  String get error {
-    return Intl.message(
-      'Error',
-      name: 'error',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Let’s create\nyour account`
-  String get letsCreateYourAccount {
-    return Intl.message(
-      'Let’s create\nyour account',
-      name: 'letsCreateYourAccount',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Swipe down to login`
-  String get swipeDownToLogin {
-    return Intl.message(
-      'Swipe down to login',
-      name: 'swipeDownToLogin',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Register via Email`
-  String get registerViaEmail {
-    return Intl.message(
-      'Register via Email',
-      name: 'registerViaEmail',
       desc: '',
       args: [],
     );
