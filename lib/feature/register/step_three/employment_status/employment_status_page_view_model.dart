@@ -1,11 +1,11 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/usecase/register/employment_status_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
-import 'package:domain/usecase/register/employment_status_usecase.dart';
 import 'package:rxdart/rxdart.dart';
 
 class EmploymentStatusPageViewModel extends BasePageViewModel {
@@ -189,6 +189,9 @@ class EmploymentStatusPageViewModel extends BasePageViewModel {
         break;
       case ErrorType.INVALID_TOTAL_ADDITIONAL_INCOME:
         totalAdditionalIncomeKey.currentState!.isValid = false;
+        break;
+      default:
+        return;
     }
   }
 

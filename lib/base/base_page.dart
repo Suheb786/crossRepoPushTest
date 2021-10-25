@@ -118,12 +118,10 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
   void _onBaseModelReady(VM model) {
     _viewModel = model;
     model.error.listen((event) {
-      showShortToast(
-        ErrorParser.getLocalisedStringError(
-          error: event,
-          localisedHelper: S.of(context),
-        ),
-      );
+      showTopError(ErrorParser.getLocalisedStringError(
+        error: event,
+        localisedHelper: S.of(context),
+      ));
     });
     model.toast.listen((message) {
       showShortToast(message);

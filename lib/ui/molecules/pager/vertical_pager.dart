@@ -366,6 +366,8 @@ class CardControllerWidget extends StatelessWidget {
       case ALIGN.RIGHT:
         position = cardViewPagerWidth! - cardWidth;
         break;
+      default:
+        position = (cardViewPagerWidth! / 2) - (cardWidth / 2);
     }
 
     return position;

@@ -16,6 +16,7 @@
   "enterValidOtp": "Please enter valid otp",
   "createPasswordHeader": "Next, let's create your\nlogin password",
   "createPassword": "CREATE PASSWORD",
+  "password": "PASSWORD",
   "pleaseEnter": "Please enter",
   "confirmPassword": "CONFIRM PASSWORD",
   "personalDetails": "PERSONAL DETAILS",
@@ -181,6 +182,11 @@
   "invalidExplanationForUnavailability": "Enter reason for unavailability",
   "passwordDialogHeader": "Create Password",
   "passwordDialogContent": "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol.",
-  "motherName" : "MOTHER’S NAME",
-  "motherNameHint": "Please enter mother's name"
+  "motherName": "MOTHER’S NAME",
+  "motherNameHint": "Please enter mother's name",
+  "swipeUpToRegister": "Swipe up to register",
+  "error": "Error",
+  "letsCreateYourAccount": "Let’s create\nyour account",
+  "swipeDownToLogin": "Swipe down to login",
+  "registerViaEmail": "Register via Email"
 }
