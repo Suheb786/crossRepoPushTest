@@ -1,15 +1,17 @@
+import 'package:domain/model/register/additional_income.dart';
+import 'package:domain/usecase/register/get_additional_income_source_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/usecase/register/get_additional_income_source_usecase.dart';
-import 'package:neo_bank/utils/extension/stream_extention.dart';
-import 'package:domain/model/register/additional_income.dart';
 
 class AdditionIncomeSourceDialogViewModel extends BasePageViewModel {
   final GetAdditionalIncomeSourceUseCase _getAdditionIncomeSourceUseCase;
+
+  ScrollController scrollController = ScrollController();
 
   final TextEditingController totalAnnualIncomeController =
       TextEditingController();

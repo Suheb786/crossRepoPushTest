@@ -13,7 +13,6 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -94,6 +93,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                             } else {
                               model.genderKey.currentState!.isValid = false;
                             }
+                            model.showToastWithError(data.appError!);
                           }
                         },
                         dataBuilder: (context, data) {
@@ -138,28 +138,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         key: model.nameKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
-                                        textHintWidget:
-                                            (hasFocus, isValid, value) {
-                                          return Visibility(
-                                            visible: !isValid,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 16, vertical: 8),
-                                              child: Text(
-                                                ErrorParser
-                                                    .getLocalisedStringError(
-                                                        error: data!.appError,
-                                                        localisedHelper:
-                                                            S.of(context)),
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor.vivid_red),
-                                              ),
-                                            ),
-                                          );
-                                        },
                                       ),
                                       SizedBox(
                                         height: 16,
@@ -172,28 +150,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         key: model.idNumberKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
-                                        textHintWidget:
-                                            (hasFocus, isValid, value) {
-                                          return Visibility(
-                                            visible: !isValid,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 16, vertical: 8),
-                                              child: Text(
-                                                ErrorParser
-                                                    .getLocalisedStringError(
-                                                        error: data!.appError,
-                                                        localisedHelper:
-                                                            S.of(context)),
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor.vivid_red),
-                                              ),
-                                            ),
-                                          );
-                                        },
                                       ),
                                       SizedBox(
                                         height: 16,
@@ -217,28 +173,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   child: AppSvg.asset(
                                                       AssetUtils.calendar)));
                                         },
-                                        textHintWidget:
-                                            (hasFocus, isValid, value) {
-                                          return Visibility(
-                                            visible: !isValid,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 16, vertical: 8),
-                                              child: Text(
-                                                ErrorParser
-                                                    .getLocalisedStringError(
-                                                        error: data!.appError,
-                                                        localisedHelper:
-                                                            S.of(context)),
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor.vivid_red),
-                                              ),
-                                            ),
-                                          );
-                                        },
                                       ),
                                       SizedBox(
                                         height: 16,
@@ -251,28 +185,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         key: model.nationalityKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
-                                        textHintWidget:
-                                            (hasFocus, isValid, value) {
-                                          return Visibility(
-                                            visible: !isValid,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 16, vertical: 8),
-                                              child: Text(
-                                                ErrorParser
-                                                    .getLocalisedStringError(
-                                                        error: data!.appError,
-                                                        localisedHelper:
-                                                            S.of(context)),
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor.vivid_red),
-                                              ),
-                                            ),
-                                          );
-                                        },
                                       ),
                                       SizedBox(
                                         height: 16,
@@ -296,28 +208,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   child: AppSvg.asset(
                                                       AssetUtils.calendar)));
                                         },
-                                        textHintWidget:
-                                            (hasFocus, isValid, value) {
-                                          return Visibility(
-                                            visible: !isValid,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 16, vertical: 8),
-                                              child: Text(
-                                                ErrorParser
-                                                    .getLocalisedStringError(
-                                                        error: data!.appError,
-                                                        localisedHelper:
-                                                            S.of(context)),
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor.vivid_red),
-                                              ),
-                                            ),
-                                          );
-                                        },
                                       ),
                                       SizedBox(
                                         height: 16,
@@ -330,28 +220,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         key: model.genderKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
-                                        textHintWidget:
-                                            (hasFocus, isValid, value) {
-                                          return Visibility(
-                                            visible: !isValid,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 16, vertical: 8),
-                                              child: Text(
-                                                ErrorParser
-                                                    .getLocalisedStringError(
-                                                        error: data!.appError,
-                                                        localisedHelper:
-                                                            S.of(context)),
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor.vivid_red),
-                                              ),
-                                            ),
-                                          );
-                                        },
                                       ),
                                       SizedBox(
                                         height: 16,
@@ -364,28 +232,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         key: model.motherNameKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
-                                        textHintWidget:
-                                            (hasFocus, isValid, value) {
-                                          return Visibility(
-                                            visible: !isValid,
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 16, vertical: 8),
-                                              child: Text(
-                                                ErrorParser
-                                                    .getLocalisedStringError(
-                                                        error: data!.appError,
-                                                        localisedHelper:
-                                                            S.of(context)),
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor.vivid_red),
-                                              ),
-                                            ),
-                                          );
-                                        },
                                       ),
                                       SizedBox(
                                         height: MediaQuery.of(context)

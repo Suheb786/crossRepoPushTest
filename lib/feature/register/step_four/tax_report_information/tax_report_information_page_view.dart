@@ -16,7 +16,6 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -68,6 +67,8 @@ class TaxReportInformationPageView
                           .nextPage(
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOut);
+                    } else if (data.status == Status.ERROR) {
+                      model.showToastWithError(data.appError!);
                     }
                   },
                   dataBuilder: (context, response) {
@@ -102,302 +103,188 @@ class TaxReportInformationPageView
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SingleChildScrollView(
-                                  physics: ClampingScrollPhysics(),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      AppTextField(
-                                        labelText: S.of(context).taxCountry,
-                                        hintText: S.of(context).pleaseSelect,
-                                        controller:
-                                            model.countrySelectorController,
-                                        key: model.countrySelectorKey,
-                                        readOnly: true,
-                                        suffixIcon: (value, data) {
-                                          return InkWell(
-                                            onTap: () async {
-                                              CountryDialog.show(context,
-                                                  title: S
-                                                      .of(context)
-                                                      .taxCountrySmall,
-                                                  onDismissed: () {
-                                                Navigator.pop(context);
-                                              }, onSelected: (value) {
-                                                Navigator.pop(context);
-                                                model.countrySelectorController
-                                                    .text = value;
-                                                model.validateFields();
-                                              });
-                                            },
-                                            child: Container(
-                                                height: 16,
-                                                width: 16,
-                                                padding:
-                                                    EdgeInsets.only(right: 8),
-                                                child: AppSvg.asset(
-                                                    AssetUtils.downArrow)),
-                                          );
-                                        },
-                                        textHintWidget:
-                                            (hasFocus, isValid, value) {
-                                          return Visibility(
-                                            visible: !isValid,
-                                            child: Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 8),
-                                                child: Text(
-                                                  ErrorParser
-                                                      .getLocalisedStringError(
-                                                          error: response!
-                                                              .appError,
-                                                          localisedHelper:
-                                                              S.of(context)),
-                                                  textAlign: TextAlign.start,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color:
-                                                          AppColor.vivid_red),
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    physics: ClampingScrollPhysics(),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        AppTextField(
+                                          labelText: S.of(context).taxCountry,
+                                          hintText: S.of(context).pleaseSelect,
+                                          controller:
+                                              model.countrySelectorController,
+                                          key: model.countrySelectorKey,
+                                          readOnly: true,
+                                          suffixIcon: (value, data) {
+                                            return InkWell(
+                                              onTap: () async {
+                                                CountryDialog.show(context,
+                                                    title: S
+                                                        .of(context)
+                                                        .taxCountrySmall,
+                                                    onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: (value) {
+                                                  Navigator.pop(context);
+                                                  model
+                                                      .countrySelectorController
+                                                      .text = value;
+                                                  model.validateFields();
+                                                });
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding:
+                                                      EdgeInsets.only(right: 8),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.downArrow)),
+                                            );
+                                          },
+                                        ),
+                                        AppStreamBuilder<bool>(
+                                          stream: model.switchValue,
+                                          initialData: true,
+                                          dataBuilder: (context, isActive) {
+                                            return Column(
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      vertical: 28.0),
+                                                  child: AppSwitchLabelWidget(
+                                                    label: S
+                                                        .of(context)
+                                                        .doYouHaveTinAvailable,
+                                                    inActiveText:
+                                                        S.of(context).no,
+                                                    activeText:
+                                                        S.of(context).yes,
+                                                    onToggle: (value) {
+                                                      model.updateSwitchValue(
+                                                          value);
+                                                      model.reasonController
+                                                          .clear();
+                                                      model
+                                                          .explainReasonController
+                                                          .clear();
+                                                      model.tinController
+                                                          .clear();
+                                                      model
+                                                          .updateExplainReasonVisibility(
+                                                              false);
+                                                      model
+                                                          .updateValidateFieldValue(
+                                                              false);
+                                                    },
+                                                    isActive: isActive,
+                                                  ),
                                                 ),
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                      AppStreamBuilder<bool>(
-                                        stream: model.switchValue,
-                                        initialData: true,
-                                        dataBuilder: (context, isActive) {
-                                          return Column(
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 28.0),
-                                                child: AppSwitchLabelWidget(
-                                                  label: S
-                                                      .of(context)
-                                                      .doYouHaveTinAvailable,
-                                                  inActiveText:
-                                                      S.of(context).no,
-                                                  activeText: S.of(context).yes,
-                                                  onToggle: (value) {
-                                                    model.updateSwitchValue(
-                                                        value);
-                                                    model.reasonController
-                                                        .clear();
-                                                    model
-                                                        .explainReasonController
-                                                        .clear();
-                                                    model.tinController.clear();
-                                                    model
-                                                        .updateExplainReasonVisibility(
-                                                            false);
-                                                    model
-                                                        .updateValidateFieldValue(
-                                                            false);
-                                                  },
-                                                  isActive: isActive,
+                                                Visibility(
+                                                  visible: isActive!,
+                                                  child: AppTextField(
+                                                    key: model.tinKey,
+                                                    labelText:
+                                                        S.of(context).tinNo,
+                                                    hintText: S
+                                                        .of(context)
+                                                        .pleaseEnter,
+                                                    controller:
+                                                        model.tinController,
+                                                    onChanged: (value) {
+                                                      model.validateFields();
+                                                    },
+                                                  ),
                                                 ),
-                                              ),
-                                              Visibility(
-                                                visible: isActive!,
-                                                child: AppTextField(
-                                                  key: model.tinKey,
-                                                  labelText:
-                                                      S.of(context).tinNo,
-                                                  hintText:
-                                                      S.of(context).pleaseEnter,
-                                                  controller:
-                                                      model.tinController,
-                                                  onChanged: (value) {
-                                                    model.validateFields();
-                                                  },
-                                                  textHintWidget: (hasFocus,
-                                                      isValid, value) {
+                                                Visibility(
+                                                  visible: !isActive,
+                                                  child: AppTextField(
+                                                    labelText: S
+                                                        .of(context)
+                                                        .reasonOfUnavailability,
+                                                    hintText: S
+                                                        .of(context)
+                                                        .pleaseSelect,
+                                                    controller:
+                                                        model.reasonController,
+                                                    key:
+                                                        model.reasonSelectorKey,
+                                                    readOnly: true,
+                                                    suffixIcon: (value, data) {
+                                                      return InkWell(
+                                                        onTap: () async {
+                                                          ReasonOfUnavailabilityDialog
+                                                              .show(context,
+                                                                  onSelected:
+                                                                      (value) {
+                                                            Navigator.pop(
+                                                                context);
+                                                            model
+                                                                .updateReasonControllerField(
+                                                                    value);
+                                                            model
+                                                                .validateFields();
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                            height: 16,
+                                                            width: 16,
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    right: 8),
+                                                            child: AppSvg.asset(
+                                                                AssetUtils
+                                                                    .downArrow)),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                                AppStreamBuilder<bool>(
+                                                  stream:
+                                                      model.explainReasonStream,
+                                                  initialData: false,
+                                                  dataBuilder:
+                                                      (context, isVisible) {
                                                     return Visibility(
-                                                      visible: !isValid,
-                                                      child: Align(
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  top: 8),
-                                                          child: Text(
-                                                            ErrorParser.getLocalisedStringError(
-                                                                error: response!
-                                                                    .appError,
-                                                                localisedHelper:
-                                                                    S.of(
-                                                                        context)),
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: TextStyle(
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                color: AppColor
-                                                                    .vivid_red),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                              Visibility(
-                                                visible: !isActive,
-                                                child: AppTextField(
-                                                  labelText: S
-                                                      .of(context)
-                                                      .reasonOfUnavailability,
-                                                  hintText: S
-                                                      .of(context)
-                                                      .pleaseSelect,
-                                                  controller:
-                                                      model.reasonController,
-                                                  key: model.reasonSelectorKey,
-                                                  readOnly: true,
-                                                  textHintWidget: (hasFocus,
-                                                      isValid, value) {
-                                                    return Visibility(
-                                                      visible: !isValid,
-                                                      child: Align(
-                                                        alignment: Alignment
-                                                            .centerLeft,
-                                                        child: Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  top: 8),
-                                                          child: Text(
-                                                            ErrorParser.getLocalisedStringError(
-                                                                error: response!
-                                                                    .appError,
-                                                                localisedHelper:
-                                                                    S.of(
-                                                                        context)),
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: TextStyle(
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                color: AppColor
-                                                                    .vivid_red),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                  suffixIcon: (value, data) {
-                                                    return InkWell(
-                                                      onTap: () async {
-                                                        ReasonOfUnavailabilityDialog
-                                                            .show(context,
-                                                                onSelected:
-                                                                    (value) {
-                                                          Navigator.pop(
-                                                              context);
-                                                          model
-                                                              .updateReasonControllerField(
-                                                                  value);
-                                                          model
-                                                              .validateFields();
-                                                        });
-                                                      },
-                                                      child: Container(
-                                                          height: 16,
-                                                          width: 16,
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  right: 8),
-                                                          child: AppSvg.asset(
-                                                              AssetUtils
-                                                                  .downArrow)),
-                                                    );
-                                                  },
-                                                ),
-                                              ),
-                                              AppStreamBuilder<bool>(
-                                                stream:
-                                                    model.explainReasonStream,
-                                                initialData: false,
-                                                dataBuilder:
-                                                    (context, isVisible) {
-                                                  return Visibility(
-                                                    visible: isVisible!,
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 16.0),
-                                                      child: AppTextField(
-                                                        labelText: S
-                                                            .of(context)
-                                                            .explainReason,
-                                                        hintText: S
-                                                            .of(context)
-                                                            .pleaseEnter,
-                                                        key: model
-                                                            .explainReasonKey,
-                                                        controller: model
-                                                            .explainReasonController,
-                                                        textHintWidget:
-                                                            (hasFocus, isValid,
-                                                                value) {
-                                                          return Visibility(
-                                                            visible: !isValid,
-                                                            child: Align(
-                                                              alignment: Alignment
-                                                                  .centerLeft,
-                                                              child: Padding(
-                                                                padding: EdgeInsets
+                                                      visible: isVisible!,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
                                                                     .only(
-                                                                        top: 8),
-                                                                child: Text(
-                                                                  ErrorParser.getLocalisedStringError(
-                                                                      error: response!
-                                                                          .appError,
-                                                                      localisedHelper:
-                                                                          S.of(
-                                                                              context)),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .start,
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          12,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      color: AppColor
-                                                                          .vivid_red),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                        onChanged: (value) {
-                                                          model
-                                                              .validateFields();
-                                                        },
+                                                                top: 16.0),
+                                                        child: AppTextField(
+                                                          labelText: S
+                                                              .of(context)
+                                                              .explainReason,
+                                                          hintText: S
+                                                              .of(context)
+                                                              .pleaseEnter,
+                                                          key: model
+                                                              .explainReasonKey,
+                                                          controller: model
+                                                              .explainReasonController,
+                                                          onChanged: (value) {
+                                                            model
+                                                                .validateFields();
+                                                          },
+                                                        ),
                                                       ),
-                                                    ),
-                                                  );
-                                                },
-                                              ),
-                                            ],
-                                          );
-                                        },
-                                      ),
-                                    ],
+                                                    );
+                                                  },
+                                                ),
+                                                SizedBox(
+                                                  height: MediaQuery.of(context)
+                                                      .viewInsets
+                                                      .bottom,
+                                                ),
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 Column(

@@ -17,7 +17,6 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/ui/molecules/upload_document/upload_document_bottom_sheet.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -75,6 +74,7 @@ class UploadDocumentsPageView
                             model.addressDocumentKey.currentState!.isValid =
                                 false;
                           }
+                          model.showToastWithError(data.appError!);
                         }
                       },
                       dataBuilder: (context, data) {
@@ -157,36 +157,6 @@ class UploadDocumentsPageView
                                                       model.incomeController,
                                                   key: model.incomeDocumentKey,
                                                   readOnly: true,
-                                                  textHintWidget: (hasFocus,
-                                                      isValid, value) {
-                                                    return Visibility(
-                                                      visible: !isValid,
-                                                      child: Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal: 16,
-                                                                vertical: 8),
-                                                        child: Text(
-                                                          ErrorParser
-                                                              .getLocalisedStringError(
-                                                                  error: data!
-                                                                      .appError,
-                                                                  localisedHelper:
-                                                                      S.of(
-                                                                          context)),
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              color: AppColor
-                                                                  .vivid_red),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
                                                   suffixIcon: (value, data) {
                                                     return InkWell(
                                                       onTap: !(isUploaded!)
@@ -300,36 +270,6 @@ class UploadDocumentsPageView
                                                       model.addressController,
                                                   key: model.addressDocumentKey,
                                                   readOnly: true,
-                                                  textHintWidget: (hasFocus,
-                                                      isValid, value) {
-                                                    return Visibility(
-                                                      visible: !isValid,
-                                                      child: Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal: 16,
-                                                                vertical: 8),
-                                                        child: Text(
-                                                          ErrorParser
-                                                              .getLocalisedStringError(
-                                                                  error: data!
-                                                                      .appError,
-                                                                  localisedHelper:
-                                                                      S.of(
-                                                                          context)),
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              color: AppColor
-                                                                  .vivid_red),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
                                                   suffixIcon: (value, data) {
                                                     return InkWell(
                                                       onTap: !(isUploaded!)

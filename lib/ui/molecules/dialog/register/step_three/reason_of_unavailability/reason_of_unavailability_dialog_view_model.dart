@@ -1,9 +1,13 @@
-import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:domain/model/register/reason_of_unavailability.dart';
 import 'package:domain/constants/enum/reason_unavailability_enum.dart';
+import 'package:domain/model/register/reason_of_unavailability.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ReasonOfUnavailabilityDialogViewModel extends BasePageViewModel {
+  final FixedExtentScrollController scrollController =
+      FixedExtentScrollController();
+
   ///reason list
   List<ReasonOfUnavailability> reasonOfUnavailabilityList = [
     ReasonOfUnavailability(

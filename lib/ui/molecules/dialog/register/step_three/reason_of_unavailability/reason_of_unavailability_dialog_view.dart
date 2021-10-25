@@ -1,3 +1,4 @@
+import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -52,31 +53,56 @@ class ReasonOfUnavailabilityDialogView extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                          child: ListWheelScrollView.useDelegate(
-                              itemExtent: 110,
-                              onSelectedItemChanged: (int index) {
-                                model.currentIndexUpdate(index);
-                              },
-                              physics: FixedExtentScrollPhysics(),
-                              perspective: 0.0000000001,
-                              childDelegate: ListWheelChildBuilderDelegate(
-                                  childCount:
-                                      model.reasonOfUnavailabilityList.length,
-                                  builder: (BuildContext context, int index) {
-                                    return ReasonUnavailabilityListWidget(
-                                      reasonOfUnavailability: model
-                                          .reasonOfUnavailabilityList[index],
-                                      labelColor: currentIndex == index
-                                          ? AppColor.white
-                                          : AppColor.very_dark_violet,
-                                      descriptionColor: currentIndex == index
-                                          ? AppColor.very_light_gray_white
-                                          : AppColor.very_dark_violet,
-                                      widgetColor: currentIndex == index
-                                          ? AppColor.dark_violet_3
-                                          : AppColor.white,
-                                    );
-                                  }))),
+                          child: Stack(
+                            alignment: Alignment.center,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Container(
+                              height: 110,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                color: AppColor.dark_violet_3,
+                              ),
+                            ),
+                          ),
+                          Scrollbar(
+                            child: FadingEdgeScrollView.fromListWheelScrollView(
+                              gradientFractionOnStart: 0.3,
+                              gradientFractionOnEnd: 0.3,
+                              child: ListWheelScrollView.useDelegate(
+                                  controller: model.scrollController,
+                                  itemExtent: 110,
+                                  onSelectedItemChanged: (int index) {
+                                    model.currentIndexUpdate(index);
+                                  },
+                                  physics: FixedExtentScrollPhysics(),
+                                  perspective: 0.0000000001,
+                                  childDelegate: ListWheelChildBuilderDelegate(
+                                      childCount: model
+                                          .reasonOfUnavailabilityList.length,
+                                      builder:
+                                          (BuildContext context, int index) {
+                                        return ReasonUnavailabilityListWidget(
+                                          reasonOfUnavailability:
+                                              model.reasonOfUnavailabilityList[
+                                                  index],
+                                          labelColor: currentIndex == index
+                                              ? AppColor.white
+                                              : AppColor.very_dark_violet,
+                                          descriptionColor: currentIndex ==
+                                                  index
+                                              ? AppColor.very_light_gray_white
+                                              : AppColor.very_dark_violet,
+                                          widgetColor: Colors.transparent,
+                                        );
+                                      })),
+                            ),
+                          ),
+                        ],
+                      )),
                       InkWell(
                         onTap: () {
                           onSelected!.call(model

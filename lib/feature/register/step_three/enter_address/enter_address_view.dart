@@ -15,7 +15,6 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -89,6 +88,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                               model.buildingNameOrNumberKey.currentState!
                                   .isValid = false;
                             }
+                            model.showToastWithError(data.appError!);
                           }
                         },
                         dataBuilder: (context, data) {
@@ -163,32 +163,6 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                               );
                                             },
                                             key: model.residentCountryKey,
-                                            textHintWidget:
-                                                (hasFocus, isValid, value) {
-                                              return Visibility(
-                                                visible: !isValid,
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 16,
-                                                      vertical: 8),
-                                                  child: Text(
-                                                    ErrorParser
-                                                        .getLocalisedStringError(
-                                                            error:
-                                                                data!.appError,
-                                                            localisedHelper:
-                                                                S.of(context)),
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color:
-                                                            AppColor.vivid_red),
-                                                  ),
-                                                ),
-                                              );
-                                            },
                                           ),
                                           SizedBox(
                                             height: 16,
@@ -221,32 +195,6 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                         }),
                                                     child: Image.asset(
                                                         AssetUtils.location)),
-                                            textHintWidget:
-                                                (hasFocus, isValid, value) {
-                                              return Visibility(
-                                                visible: !isValid,
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 16,
-                                                      vertical: 8),
-                                                  child: Text(
-                                                    ErrorParser
-                                                        .getLocalisedStringError(
-                                                            error:
-                                                                data!.appError,
-                                                            localisedHelper:
-                                                                S.of(context)),
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color:
-                                                            AppColor.vivid_red),
-                                                  ),
-                                                ),
-                                              );
-                                            },
                                           ),
                                           SizedBox(
                                             height: 16,
@@ -262,32 +210,6 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                             key: model.streetAddressKey,
                                             onChanged: (value) =>
                                                 model.validateAddress(),
-                                            textHintWidget:
-                                                (hasFocus, isValid, value) {
-                                              return Visibility(
-                                                visible: !isValid,
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 16,
-                                                      vertical: 8),
-                                                  child: Text(
-                                                    ErrorParser
-                                                        .getLocalisedStringError(
-                                                            error:
-                                                                data!.appError,
-                                                            localisedHelper:
-                                                                S.of(context)),
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color:
-                                                            AppColor.vivid_red),
-                                                  ),
-                                                ),
-                                              );
-                                            },
                                           ),
                                           SizedBox(
                                             height: 16,
@@ -304,32 +226,6 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                             key: model.buildingNameOrNumberKey,
                                             onChanged: (value) =>
                                                 model.validateAddress(),
-                                            textHintWidget:
-                                                (hasFocus, isValid, value) {
-                                              return Visibility(
-                                                visible: !isValid,
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 16,
-                                                      vertical: 8),
-                                                  child: Text(
-                                                    ErrorParser
-                                                        .getLocalisedStringError(
-                                                            error:
-                                                                data!.appError,
-                                                            localisedHelper:
-                                                                S.of(context)),
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color:
-                                                            AppColor.vivid_red),
-                                                  ),
-                                                ),
-                                              );
-                                            },
                                           ),
                                           SizedBox(
                                             height: MediaQuery.of(context)

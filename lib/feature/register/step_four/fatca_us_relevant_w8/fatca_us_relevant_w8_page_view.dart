@@ -16,7 +16,6 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/ui/molecules/upload_document/upload_document_bottom_sheet.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -68,6 +67,8 @@ class FatcaUSRelevantW8PageView
                           .nextPage(
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOut);
+                    } else if (data.status == Status.ERROR) {
+                      model.showToastWithError(data.appError!);
                     }
                   },
                   dataBuilder: (context, response) {
@@ -112,29 +113,6 @@ class FatcaUSRelevantW8PageView
                                     controller:
                                         model.nameAsPerTaxReturnController,
                                     key: model.nameAsPerTaxReturnKey,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
                                     inputAction: TextInputAction.go,
                                     onChanged: (value) {
                                       model.isValid();
@@ -150,29 +128,6 @@ class FatcaUSRelevantW8PageView
                                     inputType: TextInputType.text,
                                     inputAction: TextInputAction.go,
                                     key: model.dateOfBirthKey,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
                                     onChanged: (value) {
                                       model.isValid();
                                     },
@@ -189,29 +144,6 @@ class FatcaUSRelevantW8PageView
                                     inputType: TextInputType.text,
                                     inputAction: TextInputAction.go,
                                     key: model.countryOfCitizenshipKey,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
                                     onChanged: (value) {
                                       model.isValid();
                                     },

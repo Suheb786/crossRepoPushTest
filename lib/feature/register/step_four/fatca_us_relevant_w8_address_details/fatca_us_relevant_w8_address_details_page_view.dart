@@ -16,7 +16,6 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -68,6 +67,8 @@ class FatcaUSRelevantW8AddressDetailsPageView
                           .nextPage(
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOut);
+                    } else if (data.status == Status.ERROR) {
+                      model.showToastWithError(data.appError!);
                     }
                   },
                   dataBuilder: (context, response) {
@@ -114,29 +115,6 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                     controller:
                                         model.permanentAddressController,
                                     key: model.permanentAddressKey,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
                                     inputAction: TextInputAction.go,
                                     onChanged: (value) {
                                       model.isValid();
@@ -151,29 +129,6 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                     controller: model.countryController,
                                     key: model.countryKey,
                                     readOnly: true,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
                                     suffixIcon: (value, data) {
                                       return InkWell(
                                         onTap: () async {
@@ -207,29 +162,6 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                     controller: model.stateController,
                                     key: model.stateKey,
                                     readOnly: true,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
                                     suffixIcon: (value, data) {
                                       return InkWell(
                                         onTap: () async {
@@ -263,29 +195,6 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                     controller: model.cityController,
                                     key: model.cityKey,
                                     readOnly: true,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
                                     suffixIcon: (value, data) {
                                       return InkWell(
                                         onTap: () async {
@@ -318,29 +227,6 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                     hintText: S.of(context).pleaseEnter,
                                     controller: model.postCodeController,
                                     key: model.postCodeKey,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: response!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
                                     inputAction: TextInputAction.go,
                                     onChanged: (value) {
                                       model.isValid();

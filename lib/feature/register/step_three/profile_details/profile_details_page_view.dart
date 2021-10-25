@@ -18,7 +18,6 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -81,6 +80,7 @@ class ProfileDetailsPageView
                           }
                         } else if (data.status == Status.ERROR) {
                           model.checkKeyStatus(data.appError!.type);
+                          model.showToastWithError(data.appError!);
                         }
                       },
                       dataBuilder: (context, data) {
@@ -137,42 +137,14 @@ class ProfileDetailsPageView
                                                     labelText: S
                                                         .of(context)
                                                         .spouseNameCaps,
-                                                    hintText: S.of(context).pleaseEnter,
+                                                    hintText: S
+                                                        .of(context)
+                                                        .pleaseEnter,
                                                     inputType:
                                                         TextInputType.text,
                                                     controller: model
                                                         .spouseNameController,
                                                     key: model.spouseNameKey,
-                                                    textHintWidget: (hasFocus,
-                                                        isValid, value) {
-                                                      return Visibility(
-                                                        visible: !isValid,
-                                                        child: Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      16,
-                                                                  vertical: 8),
-                                                          child: Text(
-                                                            ErrorParser.getLocalisedStringError(
-                                                                error: data!
-                                                                    .appError,
-                                                                localisedHelper:
-                                                                    S.of(
-                                                                        context)),
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: TextStyle(
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                color: AppColor
-                                                                    .vivid_red),
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
                                                   ),
                                                 ),
                                               );
@@ -230,36 +202,6 @@ class ProfileDetailsPageView
                                                                   .dropDown,
                                                               width: 16,
                                                               height: 16));
-                                                    },
-                                                    textHintWidget: (hasFocus,
-                                                        isValid, value) {
-                                                      return Visibility(
-                                                        visible: !isValid,
-                                                        child: Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      16,
-                                                                  vertical: 8),
-                                                          child: Text(
-                                                            ErrorParser.getLocalisedStringError(
-                                                                error: data!
-                                                                    .appError,
-                                                                localisedHelper:
-                                                                    S.of(
-                                                                        context)),
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: TextStyle(
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                color: AppColor
-                                                                    .vivid_red),
-                                                          ),
-                                                        ),
-                                                      );
                                                     },
                                                   ),
                                                 ),
@@ -327,36 +269,6 @@ class ProfileDetailsPageView
                                                                   .dropDown,
                                                               width: 16,
                                                               height: 16));
-                                                    },
-                                                    textHintWidget: (hasFocus,
-                                                        isValid, value) {
-                                                      return Visibility(
-                                                        visible: !isValid,
-                                                        child: Padding(
-                                                          padding: EdgeInsets
-                                                              .symmetric(
-                                                                  horizontal:
-                                                                      16,
-                                                                  vertical: 8),
-                                                          child: Text(
-                                                            ErrorParser.getLocalisedStringError(
-                                                                error: data!
-                                                                    .appError,
-                                                                localisedHelper:
-                                                                    S.of(
-                                                                        context)),
-                                                            textAlign:
-                                                                TextAlign.start,
-                                                            style: TextStyle(
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                color: AppColor
-                                                                    .vivid_red),
-                                                          ),
-                                                        ),
-                                                      );
                                                     },
                                                   ),
                                                 ),

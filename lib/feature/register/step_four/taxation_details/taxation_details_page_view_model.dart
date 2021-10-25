@@ -96,7 +96,6 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
   }
 
   void getError(Resource<bool> event) {
-    print(event.appError!.type);
     switch (event.appError!.type) {
       case ErrorType.INVALID_RELATIONSHIP:
         relationShipWithPepKey.currentState!.isValid = false;
@@ -108,7 +107,6 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         personRoleKey.currentState!.isValid = false;
         break;
       case ErrorType.INVALID_DECLARATION_SELECTION:
-        updateDeclarationErrorValue(true);
         break;
     }
   }
@@ -121,17 +119,6 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
 
   void updatePEPSwitchValue(bool value) {
     _pepSwitchSubject.safeAdd(value);
-  }
-
-  ///show Declaration Error Subject holder
-  final BehaviorSubject<bool> _showDeclarationErrorSubject =
-      BehaviorSubject.seeded(false);
-
-  ///show Declaration Error response stream
-  Stream<bool> get showDeclarationError => _showDeclarationErrorSubject.stream;
-
-  void updateDeclarationErrorValue(bool value) {
-    _showDeclarationErrorSubject.safeAdd(value);
   }
 
   void validateTaxationDetails() {
