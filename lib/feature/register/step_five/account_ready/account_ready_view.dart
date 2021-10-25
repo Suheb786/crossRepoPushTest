@@ -79,8 +79,8 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
               ),
               Positioned(
                 bottom: 80,
-                left: 130,
-                right: 130,
+                left: 45,
+                right: 45,
                 child: Column(
                   children: [
                     AnimatedButton(
