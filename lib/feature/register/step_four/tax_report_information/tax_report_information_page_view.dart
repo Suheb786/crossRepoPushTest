@@ -408,7 +408,7 @@ class TaxReportInformationPageView
                                             AssetUtils.saveAndExit)),
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          right: 43, top: 24),
+                                          right: 45, top: 24),
                                       child: AppStreamBuilder<bool>(
                                           stream: model
                                               .taxReportFieldValidateStream,
