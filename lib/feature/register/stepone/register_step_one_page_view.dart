@@ -48,9 +48,9 @@ class RegisterStepOnePageView
                     top: 8.0, bottom: currentStep == 2 ? 0 : 32),
                 child: ShowUpAnimation(
                   key: ValueKey(currentStep),
-                  delayStart: Duration(milliseconds: 500),
+                  delayStart: Duration(milliseconds: 50),
                   animationDuration: Duration(milliseconds: 750),
-                  curve: Curves.bounceIn,
+                  curve: Curves.easeInOut,
                   direction: Direction.vertical,
                   offset: 0.5,
                   child: Text(
@@ -73,9 +73,9 @@ class RegisterStepOnePageView
                 child: Padding(
                   padding: EdgeInsets.only(bottom: 32),
                   child: ShowUpAnimation(
-                    delayStart: Duration(milliseconds: 500),
+                    delayStart: Duration(milliseconds: 50),
                     animationDuration: Duration(milliseconds: 750),
-                    curve: Curves.bounceIn,
+                    curve: Curves.easeInOut,
                     direction: Direction.vertical,
                     offset: 0.5,
                     child: Text(
@@ -103,12 +103,13 @@ class RegisterStepOnePageView
                       height: double.maxFinite,
                       pageSnapping: true,
                       enableInfiniteScroll: false,
-                      viewportFraction: 0.94,
                       scrollPhysics: NeverScrollableScrollPhysics(),
                       onPageChanged: (index, reason) {
                         model.updatePage(index);
                       },
-                      enlargeStrategy: CenterPageEnlargeStrategy.scale),
+                      enlargeCenterPage: true,
+                      viewportFraction: 0.88,
+                      enlargeStrategy: CenterPageEnlargeStrategy.height),
                 ),
               ),
             ],
