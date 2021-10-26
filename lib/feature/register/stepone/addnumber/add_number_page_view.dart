@@ -42,6 +42,8 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                         .nextPage(
                             duration: Duration(milliseconds: 500),
                             curve: Curves.easeInOut);
+                  } else if (data.status == Status.ERROR) {
+                    model.showToastWithError(data.appError!);
                   }
                 },
                 dataBuilder: (context, data) {
@@ -89,29 +91,6 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                     hintText: S.of(context).pleaseEnter,
                                     controller: model.emailController,
                                     key: model.emailKey,
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              ErrorParser
-                                                  .getLocalisedStringError(
-                                                      error: data!.appError,
-                                                      localisedHelper:
-                                                          S.of(context)),
-                                              textAlign: TextAlign.start,
-                                              style: TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: AppColor.vivid_red),
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
                                     inputAction: TextInputAction.go,
                                     inputType: TextInputType.emailAddress,
                                     onChanged: (value) {
@@ -167,24 +146,6 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                               ),
                                             )
                                           ],
-                                        ),
-                                      );
-                                    },
-                                    textHintWidget: (hasFocus, isValid, value) {
-                                      return Visibility(
-                                        visible: !isValid,
-                                        child: Padding(
-                                          padding: EdgeInsets.only(top: 8),
-                                          child: Text(
-                                            ErrorParser.getLocalisedStringError(
-                                                error: data!.appError,
-                                                localisedHelper: S.of(context)),
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: AppColor.vivid_red),
-                                          ),
                                         ),
                                       );
                                     },

@@ -13,7 +13,6 @@ import 'package:neo_bank/utils/color_utils.dart';
 import '../../../../di/register/register_modules.dart';
 import '../../../../ui/molecules/app_keyboard_hide.dart';
 import '../../../../ui/molecules/stream_builder/app_stream_builder.dart';
-import '../../../../utils/parser/error_parser.dart';
 import '../../../../utils/resource.dart';
 import '../../../../utils/status.dart';
 
@@ -43,6 +42,8 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                       .nextPage(
                           duration: Duration(milliseconds: 500),
                           curve: Curves.easeInOut);
+                } else if (data.status == Status.ERROR) {
+                  model.showToastWithError(data.appError!);
                 }
               },
               dataBuilder: (context, isOtpVerified) {
@@ -88,22 +89,6 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                     length: 6,
                                     controller: model.otpController,
                                     onChanged: (val) => model.validate(),
-                                  ),
-                                  Visibility(
-                                    visible: isValid!,
-                                    child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        ErrorParser.getLocalisedStringError(
-                                            error: isOtpVerified!.appError,
-                                            localisedHelper: S.of(context)),
-                                        textAlign: TextAlign.start,
-                                        style: TextStyle(
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w600,
-                                            color: AppColor.vivid_red),
-                                      ),
-                                    ),
                                   ),
                                   Center(
                                       child: Padding(

@@ -14,7 +14,6 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -41,209 +40,186 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                       model.passwordKey.currentState!.isValid = true;
                       model.confirmPasswordKey.currentState!.isValid = true;
 
-                            ProviderScope.containerOf(context)
-                                .read(registerViewModelProvider)
-                                .registrationStepsController
-                                .animateToPage(1,
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut);
-                          } else if (data.status == Status.ERROR) {
-                            if (data.appError!.type ==
-                                ErrorType.PASSWORD_MISMATCH) {
-                              model.passwordKey.currentState!.isValid = false;
-                              model.confirmPasswordKey.currentState!.isValid =
-                                  false;
-                            } else if (data.appError!.type ==
-                                ErrorType.EMPTY_PASSWORD) {
-                              model.passwordKey.currentState!.isValid = false;
-                            } else if (data.appError!.type ==
-                                ErrorType.EMPTY_CONFIRM_PASSWORD) {
-                              model.confirmPasswordKey.currentState!.isValid =
-                                  false;
-                            }
-                            model.showToastWithError(data.appError!);
-                          }
-                        },
-                        dataBuilder: (context, data) {
-                          return GestureDetector(
-                            onHorizontalDragUpdate: (details) {
-                              if (details.primaryDelta!.isNegative) {
-                                model.createPassword();
-                              } else {
-                                ProviderScope.containerOf(context)
-                                    .read(registerStepOneViewModelProvider)
-                                    .pageController
-                                    .previousPage(
-                                        duration: Duration(milliseconds: 500),
-                                        curve: Curves.easeInOut);
-                              }
-                            },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16)),
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 32, horizontal: 24),
-                                  decoration: BoxDecoration(
-                                    color: AppColor.very_soft_violet,
-                                    gradient: LinearGradient(
-                                        colors: [
-                                          AppColor.dark_violet,
-                                          AppColor.dark_moderate_blue
-                                        ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter),
-                                  ),
-                                  child: Stack(
+                      ProviderScope.containerOf(context)
+                          .read(registerViewModelProvider)
+                          .registrationStepsController
+                          .animateToPage(1,
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeInOut);
+                    } else if (data.status == Status.ERROR) {
+                      if (data.appError!.type == ErrorType.PASSWORD_MISMATCH) {
+                        model.passwordKey.currentState!.isValid = false;
+                        model.confirmPasswordKey.currentState!.isValid = false;
+                      } else if (data.appError!.type ==
+                          ErrorType.EMPTY_PASSWORD) {
+                        model.passwordKey.currentState!.isValid = false;
+                      } else if (data.appError!.type ==
+                          ErrorType.EMPTY_CONFIRM_PASSWORD) {
+                        model.confirmPasswordKey.currentState!.isValid = false;
+                      }
+                      model.showToastWithError(data.appError!);
+                    }
+                  },
+                  dataBuilder: (context, data) {
+                    return GestureDetector(
+                      onHorizontalDragUpdate: (details) {
+                        if (details.primaryDelta!.isNegative) {
+                          model.createPassword();
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(registerStepOneViewModelProvider)
+                              .pageController
+                              .previousPage(
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut);
+                        }
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 32, horizontal: 24),
+                            decoration: BoxDecoration(
+                              color: AppColor.very_soft_violet,
+                              gradient: LinearGradient(
+                                  colors: [
+                                    AppColor.dark_violet,
+                                    AppColor.dark_moderate_blue
+                                  ],
+                                  begin: Alignment.bottomCenter,
+                                  end: Alignment.topCenter),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                SingleChildScrollView(
+                                  child: Column(
                                     children: [
-                                      SingleChildScrollView(
-                                        child: Column(
-                                          children: [
-                                            AppTextField(
-                                              key: model.passwordKey,
-                                              labelText:
-                                                  S.of(context).createPassword,
-                                              obscureText: true,
-                                              hintText:
-                                                  S.of(context).pleaseEnter,
-                                              inputType: TextInputType.text,
-                                              controller: model
-                                                  .createPasswordController,
-                                              onChanged: (value) =>
-                                                  model.validatePassword(),
-                                              suffixIcon: (isChecked, value) {
-                                                return InkWell(
-                                                  onTap: () {
-                                                    model
-                                                            .passwordKey
-                                                            .currentState!
-                                                            .secureText =
-                                                        !model
-                                                            .passwordKey
-                                                            .currentState!
-                                                            .secureText;
-                                                  },
-                                                  child: model
-                                                          .passwordKey
-                                                          .currentState!
-                                                          .secureText
-                                                      ? Container(
-                                                          width: 16,
-                                                          height: 16,
-                                                          padding:
-                                                              EdgeInsets.all(4),
-                                                          child: AppSvg.asset(
-                                                              AssetUtils.eye),
-                                                        )
-                                                      : Icon(
-                                                          Icons.visibility_off,
-                                                          color: AppColor
-                                                              .very_light_violet,
-                                                        ),
-                                                );
-                                              },
-                                              labelIcon: () => Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5.33),
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    CreatePasswordInfoDialog
-                                                        .show(context,
-                                                            onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    });
-                                                  },
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.info,
-                                                      height: 13.33,
-                                                      width: 13.33),
-                                                ),
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: 16,
-                                            ),
-                                            AppTextField(
-                                              key: model.confirmPasswordKey,
-                                              labelText:
-                                                  S.of(context).confirmPassword,
-                                              hintText:
-                                                  S.of(context).pleaseEnter,
-                                              inputType: TextInputType.text,
-                                              obscureText: true,
-                                              onChanged: (value) =>
-                                                  model.validatePassword(),
-                                              controller: model
-                                                  .confirmPasswordController,
-                                              suffixIcon: (isChecked, value) {
-                                                return InkWell(
-                                                  onTap: () {
-                                                    model
-                                                            .confirmPasswordKey
-                                                            .currentState!
-                                                            .secureText =
-                                                        !model
-                                                            .confirmPasswordKey
-                                                            .currentState!
-                                                            .secureText;
-                                                  },
-                                                  child: model
-                                                          .confirmPasswordKey
-                                                          .currentState!
-                                                          .secureText
-                                                      ? Container(
-                                                          width: 16,
-                                                          height: 16,
-                                                          padding:
-                                                              EdgeInsets.all(4),
-                                                          child: AppSvg.asset(
-                                                              AssetUtils.eye),
-                                                        )
-                                                      : Icon(
-                                                          Icons.visibility_off,
-                                                          color: AppColor
-                                                              .very_light_violet,
-                                                        ),
-                                                );
-                                              },
-                                            ),
-                                            SizedBox(
-                                              height: MediaQuery.of(context)
-                                                  .viewInsets
-                                                  .bottom,
-                                            )
-                                          ],
+                                      AppTextField(
+                                        key: model.passwordKey,
+                                        labelText: S.of(context).createPassword,
+                                        obscureText: true,
+                                        hintText: S.of(context).pleaseEnter,
+                                        inputType: TextInputType.text,
+                                        controller:
+                                            model.createPasswordController,
+                                        onChanged: (value) =>
+                                            model.validatePassword(),
+                                        suffixIcon: (isChecked, value) {
+                                          return InkWell(
+                                            onTap: () {
+                                              model.passwordKey.currentState!
+                                                      .secureText =
+                                                  !model.passwordKey
+                                                      .currentState!.secureText;
+                                            },
+                                            child: model.passwordKey
+                                                    .currentState!.secureText
+                                                ? Container(
+                                                    width: 16,
+                                                    height: 16,
+                                                    padding: EdgeInsets.all(4),
+                                                    child: AppSvg.asset(
+                                                        AssetUtils.eye),
+                                                  )
+                                                : Icon(
+                                                    Icons.visibility_off,
+                                                    color: AppColor
+                                                        .very_light_violet,
+                                                  ),
+                                          );
+                                        },
+                                        labelIcon: () => Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 5.33),
+                                          child: InkWell(
+                                            onTap: () {
+                                              CreatePasswordInfoDialog.show(
+                                                  context, onDismissed: () {
+                                                Navigator.pop(context);
+                                              });
+                                            },
+                                            child: AppSvg.asset(AssetUtils.info,
+                                                height: 13.33, width: 13.33),
+                                          ),
                                         ),
                                       ),
-                                      Positioned(
-                                        left: 45,
-                                        right: 45,
-                                        bottom: 0,
-                                        child: AppStreamBuilder<bool>(
-                                            stream: model.showButtonStream,
-                                            initialData: false,
-                                            dataBuilder: (context, isValid) {
-                                              if (isValid!) {
-                                                return AnimatedButton(
-                                                    buttonText: S
-                                                        .of(context)
-                                                        .swipeToProceed);
-                                              } else {
-                                                return Container();
-                                              }
-                                            }),
+                                      SizedBox(
+                                        height: 16,
                                       ),
+                                      AppTextField(
+                                        key: model.confirmPasswordKey,
+                                        labelText:
+                                            S.of(context).confirmPassword,
+                                        hintText: S.of(context).pleaseEnter,
+                                        inputType: TextInputType.text,
+                                        obscureText: true,
+                                        onChanged: (value) =>
+                                            model.validatePassword(),
+                                        controller:
+                                            model.confirmPasswordController,
+                                        suffixIcon: (isChecked, value) {
+                                          return InkWell(
+                                            onTap: () {
+                                              model
+                                                      .confirmPasswordKey
+                                                      .currentState!
+                                                      .secureText =
+                                                  !model.confirmPasswordKey
+                                                      .currentState!.secureText;
+                                            },
+                                            child: model.confirmPasswordKey
+                                                    .currentState!.secureText
+                                                ? Container(
+                                                    width: 16,
+                                                    height: 16,
+                                                    padding: EdgeInsets.all(4),
+                                                    child: AppSvg.asset(
+                                                        AssetUtils.eye),
+                                                  )
+                                                : Icon(
+                                                    Icons.visibility_off,
+                                                    color: AppColor
+                                                        .very_light_violet,
+                                                  ),
+                                          );
+                                        },
+                                      ),
+                                      SizedBox(
+                                        height: MediaQuery.of(context)
+                                            .viewInsets
+                                            .bottom,
+                                      )
                                     ],
-                                  )),
-                            ),
-                          );
-                        }),
-                  );
-                }),
-          ),
-        ],
-      ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 45,
+                                    right: 45,
+                                    bottom: 0,),
+                                  child: AppStreamBuilder<bool>(
+                                      stream: model.showButtonStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isValid) {
+                                        if (isValid!) {
+                                          return AnimatedButton(
+                                              buttonText:
+                                                  S.of(context).swipeToProceed);
+                                        } else {
+                                          return Container();
+                                        }
+                                      }),
+                                ),
+                              ],
+                            )),
+                      ),
+                    );
+                  }),
+            );
+          }),
     );
   }
 }
+
