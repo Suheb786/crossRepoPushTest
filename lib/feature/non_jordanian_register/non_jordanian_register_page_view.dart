@@ -77,9 +77,9 @@ class NonJordanianRegisterPageView
                                 top: 8.0, bottom: 32, left: 24, right: 24),
                             child: ShowUpAnimation(
                               key: ValueKey(currentStep),
-                              delayStart: Duration(milliseconds: 500),
+                              delayStart: Duration(milliseconds: 50),
                               animationDuration: Duration(milliseconds: 750),
-                              curve: Curves.bounceIn,
+                              curve: Curves.easeInOut,
                               direction: Direction.vertical,
                               offset: 0.5,
                               child: Text(
@@ -89,27 +89,6 @@ class NonJordanianRegisterPageView
                                     color: AppColor.very_dark_gray,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
-                              ),
-                            ),
-                          ),
-                          Visibility(
-                            visible: currentStep == 2,
-                            child: Padding(
-                              padding: EdgeInsets.only(bottom: 32),
-                              child: ShowUpAnimation(
-                                delayStart: Duration(milliseconds: 500),
-                                animationDuration: Duration(milliseconds: 750),
-                                curve: Curves.bounceIn,
-                                direction: Direction.vertical,
-                                offset: 0.5,
-                                child: Text(
-                                  '+962 79 322 8080',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: AppColor.vivid_orange,
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.w600),
-                                ),
                               ),
                             ),
                           ),
@@ -127,13 +106,14 @@ class NonJordanianRegisterPageView
                                   height: double.maxFinite,
                                   pageSnapping: true,
                                   enableInfiniteScroll: false,
-                                  viewportFraction: 0.94,
+                                  enlargeCenterPage: true,
+                                  viewportFraction: 0.88,
                                   scrollPhysics: NeverScrollableScrollPhysics(),
                                   onPageChanged: (index, reason) {
                                     model.changeCurrentPage(index);
                                   },
                                   enlargeStrategy:
-                                      CenterPageEnlargeStrategy.scale),
+                                      CenterPageEnlargeStrategy.height),
                             ),
                           ),
                         ],

@@ -50,9 +50,9 @@ class RegisterStepFivePageView
                     EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
                 child: ShowUpAnimation(
                   key: ValueKey(currentStep),
-                  delayStart: Duration(milliseconds: 500),
+                  delayStart: Duration(milliseconds: 50),
                   animationDuration: Duration(milliseconds: 750),
-                  curve: Curves.bounceIn,
+                  curve: Curves.easeInOut,
                   direction: Direction.vertical,
                   offset: 0.5,
                   child: Text(
@@ -86,12 +86,13 @@ class RegisterStepFivePageView
                       height: double.maxFinite,
                       pageSnapping: true,
                       enableInfiniteScroll: false,
-                      viewportFraction: 0.94,
+                      enlargeCenterPage: true,
+                      viewportFraction: 0.88,
                       scrollPhysics: NeverScrollableScrollPhysics(),
                       onPageChanged: (index, reason) {
                         model.updatePage(index);
                       },
-                      enlargeStrategy: CenterPageEnlargeStrategy.scale),
+                      enlargeStrategy: CenterPageEnlargeStrategy.height),
                 ),
               ),
             ],

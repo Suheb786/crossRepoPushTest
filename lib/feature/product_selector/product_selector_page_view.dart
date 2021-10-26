@@ -87,6 +87,9 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
+                        elevation: 2,
+                        margin: EdgeInsets.zero,
+                        shadowColor: AppColor.black.withOpacity(0.32),
                         child: Container(
                           decoration: BoxDecoration(
                             color: AppColor.very_soft_violet,

@@ -71,6 +71,9 @@ class FatcaUSRelevantW8PageView
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
+                        elevation: 2,
+                        margin: EdgeInsets.zero,
+                        shadowColor: AppColor.black.withOpacity(0.32),
                         child: Container(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),

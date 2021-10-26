@@ -47,9 +47,9 @@ class RegisterStepOnePageView
                     EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
                 child: ShowUpAnimation(
                   key: ValueKey(currentStep),
-                  delayStart: Duration(milliseconds: 500),
+                  delayStart: Duration(milliseconds: 50),
                   animationDuration: Duration(milliseconds: 750),
-                  curve: Curves.bounceIn,
+                  curve: Curves.easeInOut,
                   direction: Direction.vertical,
                   offset: 0.5,
                   child: Text(
@@ -81,13 +81,14 @@ class RegisterStepOnePageView
                   options: CarouselOptions(
                       height: double.maxFinite,
                       pageSnapping: true,
+                      enlargeCenterPage: true,
+                      viewportFraction: 0.88,
                       enableInfiniteScroll: false,
-                      viewportFraction: 0.94,
                       scrollPhysics: NeverScrollableScrollPhysics(),
                       onPageChanged: (index, reason) {
                         model.updatePage(index);
                       },
-                      enlargeStrategy: CenterPageEnlargeStrategy.scale),
+                      enlargeStrategy: CenterPageEnlargeStrategy.height),
                 ),
               ),
             ],
