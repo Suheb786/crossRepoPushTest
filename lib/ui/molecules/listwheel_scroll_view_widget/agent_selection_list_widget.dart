@@ -21,10 +21,10 @@ class AgentSelectionListWidget extends StatelessWidget {
       child: Row(
         children: <Widget>[
           Container(
-            height: 32,
-            width: 32,
+            height: 24,
+            width: 24,
             decoration: BoxDecoration(shape: BoxShape.circle),
-            child: Image.asset(item.icon ?? "",
+            child: AppSvg.asset(item.icon ?? "",
                 color: item.isSelected! ? AppColor.black : AppColor.white),
           ),
           Expanded(

@@ -17,9 +17,9 @@ class AgentSelectionViewModel extends BasePageViewModel {
   Agent? selectedAgent = Agent();
 
   List<Agent> agentList = [
-    Agent(icon: AssetUtils.infinite, agent: "Any Agent", isSelected: false),
-    Agent(icon: AssetUtils.male, agent: "Male Agent", isSelected: false),
-    Agent(icon: AssetUtils.female, agent: "Female Agent", isSelected: false)
+    Agent(icon: AssetUtils.anyAgent, agent: "Any Agent", isSelected: false),
+    Agent(icon: AssetUtils.maleAgent, agent: "Male Agent", isSelected: false),
+    Agent(icon: AssetUtils.female_agent, agent: "Female Agent", isSelected: false)
   ];
 
   void selectAgent(int index) {
