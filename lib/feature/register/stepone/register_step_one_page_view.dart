@@ -1,5 +1,4 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -48,6 +47,7 @@ class RegisterStepOnePageView
                 padding: EdgeInsets.only(
                     top: 8.0, bottom: currentStep == 2 ? 0 : 32),
                 child: ShowUpAnimation(
+                  key: ValueKey(currentStep),
                   delayStart: Duration(milliseconds: 500),
                   animationDuration: Duration(milliseconds: 750),
                   curve: Curves.bounceIn,
