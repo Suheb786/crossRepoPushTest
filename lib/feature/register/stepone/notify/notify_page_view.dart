@@ -124,7 +124,6 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                                             visible: isValid!,
                                             child: Positioned(
                                               bottom: 0,
-                                              left: 45,
                                               right: 45,
                                               child: AnimatedButton(
                                                 buttonText: S

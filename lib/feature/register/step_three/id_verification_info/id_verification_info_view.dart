@@ -165,7 +165,6 @@ class IdVerificationInfoView
                                       ),
                                       Positioned(
                                         bottom: 0,
-                                        left: 45,
                                         right: 45,
                                         child: AppStreamBuilder<bool>(
                                             stream: model

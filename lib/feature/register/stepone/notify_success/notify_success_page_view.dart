@@ -86,7 +86,7 @@ class NotifySuccessPageView
                   Padding(
                     padding: EdgeInsets.only(right: 92),
                     child: AnimatedButton(
-                      buttonText: "Swipe to proceed",
+                      buttonText: S.of(context).swipeToProceed,
                       textColor: AppColor.white,
                       borderColor: AppColor.light_violet,
                     ),

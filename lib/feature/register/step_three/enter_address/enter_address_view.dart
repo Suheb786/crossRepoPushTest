@@ -218,7 +218,6 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                       ),
                                     ),
                                     Positioned(
-                                      left: 45,
                                       right: 45,
                                       bottom: 0,
                                       child: AppStreamBuilder<bool>(

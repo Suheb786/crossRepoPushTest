@@ -230,8 +230,8 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                             return Visibility(
                                               visible: isValid!,
                                               child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 45, right: 45),
+                                                padding:
+                                                    EdgeInsets.only(right: 45),
                                                 child: AnimatedButton(
                                                     buttonText: S
                                                         .of(context)

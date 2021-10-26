@@ -78,7 +78,6 @@ class CountrySelectionPageView
                     ),
                     Positioned(
                       bottom: 24,
-                      left: 45,
                       right: 45,
                       child: AnimatedButton(
                         buttonText: S.of(context).swipeToProceed,

@@ -257,13 +257,17 @@ class ProfileDetailsPageView
                                               );
                                             },
                                           ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom,
+                                          ),
                                         ],
                                       ),
                                     ),
                                     Positioned(
                                         bottom: 0,
                                         right: 45,
-                                        left: 45,
                                         child: AnimatedButton(
                                             buttonText:
                                                 S.of(context).swipeToProceed))
