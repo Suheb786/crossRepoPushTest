@@ -1,3 +1,4 @@
+import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/model/country/country.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
