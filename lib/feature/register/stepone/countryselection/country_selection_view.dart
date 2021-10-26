@@ -1,3 +1,4 @@
+import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/model/country/country.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -19,75 +20,82 @@ class CountrySelectionPageView
 
   @override
   Widget build(BuildContext context, model) {
-    return GestureDetector(
-      onHorizontalDragUpdate: (details) {
-        if (details.primaryDelta!.isNegative) {
-          ProviderScope.containerOf(context)
-              .read(addNumberViewModelProvider)
-              .notify();
-          ProviderScope.containerOf(context)
-              .read(registerStepOneViewModelProvider)
-              .pageController
-              .nextPage(
-                  duration: Duration(milliseconds: 500),
-                  curve: Curves.easeInOut);
-        }
-      },
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        elevation: 2,
-        margin: EdgeInsets.zero,
-        shadowColor: AppColor.black.withOpacity(0.32),
-        child: Container(
-            padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-            decoration: BoxDecoration(
-                color: AppColor.very_soft_violet,
-                gradient: LinearGradient(
-                    colors: [AppColor.dark_violet, AppColor.dark_moderate_blue],
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter)),
-            child: AppStreamBuilder<Resource<List<Country>>>(
-              stream: model.countries,
-              initialData: Resource.none(),
-              dataBuilder: (context, data) {
-                return Stack(
-                  children: [
-                    Column(
-                      children: [
-                        NotifyMeWidget(
-                          onTap: () {
-                            // ProviderScope
-                            //     .containerOf(context)
-                            //     .read(registerStepOneViewModelProvider)
-                            //     .pageController
-                            //     .nextPage(
-                            //     duration: Duration(milliseconds: 500),
-                            //     curve: Curves.easeInOut);
-                          },
-                          title: S.of(context).accountOpeningDescription,
-                          labelText: S.of(context).notifyMe,
-                        ),
-                        SizedBox(
-                          height: 18,
-                        ),
-                        CountryListItem(
-                          item: model.getSpecifiedCountry(),
-                        )
-                      ],
-                    ),
-                    Positioned(
-                      bottom: 24,
-                      left: 45,
-                      right: 45,
-                      child: AnimatedButton(
-                        buttonText: S.of(context).swipeToProceed,
+    return ShakeAnimatedWidget(
+      enabled: false,
+      duration: Duration(milliseconds: 100),
+      shakeAngle: Rotation.deg(z: 1),
+      curve: Curves.easeInOutSine,
+      child: GestureDetector(
+        onHorizontalDragUpdate: (details) {
+          if (details.primaryDelta!.isNegative) {
+            ProviderScope.containerOf(context)
+                .read(addNumberViewModelProvider)
+                .notify();
+            ProviderScope.containerOf(context)
+                .read(registerStepOneViewModelProvider)
+                .pageController
+                .nextPage(
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.easeInOut);
+          }
+        },
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          elevation: 2,
+          margin: EdgeInsets.zero,
+          shadowColor: AppColor.black.withOpacity(0.32),
+          child: Container(
+              padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+              decoration: BoxDecoration(
+                  color: AppColor.very_soft_violet,
+                  gradient: LinearGradient(colors: [
+                    AppColor.dark_violet,
+                    AppColor.dark_moderate_blue
+                  ], begin: Alignment.bottomCenter, end: Alignment.topCenter)),
+              child: AppStreamBuilder<Resource<List<Country>>>(
+                stream: model.countries,
+                initialData: Resource.none(),
+                dataBuilder: (context, data) {
+                  return Stack(
+                    children: [
+                      Column(
+                        children: [
+                          NotifyMeWidget(
+                            onTap: () {
+                              // ProviderScope
+                              //     .containerOf(context)
+                              //     .read(registerStepOneViewModelProvider)
+                              //     .pageController
+                              //     .nextPage(
+                              //     duration: Duration(milliseconds: 500),
+                              //     curve: Curves.easeInOut);
+                            },
+                            title: S.of(context).accountOpeningDescription,
+                            labelText: S.of(context).notifyMe,
+                          ),
+                          SizedBox(
+                            height: 18,
+                          ),
+                          CountryListItem(
+                            item: model.getSpecifiedCountry(),
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                );
-              },
-            )),
+                      Positioned(
+                        bottom: 24,
+                        left: 45,
+                        right: 45,
+                        child: AnimatedButton(
+                          buttonText: S.of(context).swipeToProceed,
+                        ),
+                      )
+                    ],
+                  );
+                },
+              )),
+        ),
       ),
     );
   }
