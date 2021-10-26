@@ -28,24 +28,6 @@ class FatcaUSRelevantW9PageView
     return AppKeyBoardHide(
         child: Column(
       children: [
-        Text(
-          S.of(context).fatcaandPep,
-          style: TextStyle(
-              color: AppColor.dark_gray,
-              fontSize: 10,
-              fontWeight: FontWeight.w600),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 8.0, bottom: 32),
-          child: Text(
-            S.of(context).weNeedToMatchNamesONTaxReturn,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: AppColor.very_dark_gray,
-                fontSize: 20,
-                fontWeight: FontWeight.w600),
-          ),
-        ),
         Expanded(
           child: AppStreamBuilder<bool>(
             stream: model.errorDetectorStream,

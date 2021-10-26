@@ -3219,6 +3219,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Please upload necessary document to proof yourself`
+  String get pleaseUploadNecessaryInfo {
+    return Intl.message(
+      'Please upload necessary document to proof yourself',
+      name: 'pleaseUploadNecessaryInfo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -9,20 +9,14 @@ import 'package:rxdart/rxdart.dart';
 class IdVerificationInfoViewModel extends BasePageViewModel {
   final IdVerificationInfoUseCase _idVerificationInfoUseCase;
 
-  // retrieve condition check subject holder
-  // ignore: close_sinks
+  /// retrieve condition check subject holder
   BehaviorSubject<bool> _isRetrievedConditionSubject =
       BehaviorSubject.seeded(false);
 
   Stream<bool> get isRetrievedConditionStream =>
       _isRetrievedConditionSubject.stream;
 
-  bool? _showError = false;
-
-  bool? get showError => _showError;
-
   /// id verification info request subject holder
-  // ignore: close_sinks
   PublishSubject<IdVerificationInfoUseCaseParams> _idVerificationInfoRequest =
       PublishSubject();
 
@@ -30,15 +24,10 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
       _idVerificationInfoRequest.stream;
 
   /// id verification info response subject holder
-  // ignore: close_sinks
   PublishSubject<Resource<bool>> _idVerificationInfoResponse = PublishSubject();
 
   Stream<Resource<bool>> get idVerificationResponseStream =>
       _idVerificationInfoResponse.stream;
-
-  void setShowError(bool value) {
-    _showError = value;
-  }
 
   void updateIsRetrievedConditionStream(bool value) {
     _isRetrievedConditionSubject.safeAdd(value);

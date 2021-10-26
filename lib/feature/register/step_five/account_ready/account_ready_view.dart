@@ -84,7 +84,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                 child: Column(
                   children: [
                     AnimatedButton(
-                      buttonText: "Swipe to proceed",
+                      buttonText: S.of(context).swipeToProceed,
                       textColor: AppColor.white,
                       borderColor: AppColor.light_violet,
                     ),

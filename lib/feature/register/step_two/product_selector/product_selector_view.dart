@@ -19,112 +19,82 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
   @override
   Widget build(BuildContext context, ProductSelectorViewModel model) {
     return AppKeyBoardHide(
-      child: Column(
-        children: [
-          Text(
-            S.of(context).openAccount,
-            style: TextStyle(
-                color: AppColor.dark_gray,
-                fontSize: 10,
-                fontWeight: FontWeight.w600),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 8.0, bottom: 32),
-            child: Text(
-              S.of(context).productSelectorHeader,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColor.very_dark_gray,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
-          Expanded(
-            child: ShakeAnimatedWidget(
-              enabled: false,
-              duration: Duration(milliseconds: 100),
-              shakeAngle: Rotation.deg(z: 1),
-              curve: Curves.easeInOutSine,
-              child: GestureDetector(
-                onHorizontalDragUpdate: (details) {},
-                child: Stack(
-                  clipBehavior: Clip.none,
-                  children: [
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: AppColor.very_soft_violet,
-                          gradient: LinearGradient(
-                              colors: [
-                                AppColor.dark_violet,
-                                AppColor.dark_moderate_blue
-                              ],
-                              begin: Alignment.bottomCenter,
-                              end: Alignment.topCenter),
-                        ),
-                        child: SingleChildScrollView(
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: 24, right: 24, bottom: 32),
-                            child: Column(
-                              children: [
-                                SizedBox(height: 254),
-                                InformationText(
-                                    image: AssetUtils.world,
-                                    title: S.of(context).acceptedWorldWide),
-                                SizedBox(height: 16),
-                                InformationText(
-                                    image: AssetUtils.gift,
-                                    title: S.of(context).loyaltyRewards),
-                                SizedBox(height: 16),
-                                InformationText(
-                                    image: AssetUtils.earphone,
-                                    title: S.of(context).customerService),
-                                SizedBox(height: 17),
-                                InkWell(
-                                  onTap: () {
-                                    ProviderScope.containerOf(context)
-                                        .read(registerViewModelProvider)
-                                        .registrationStepsController
-                                        .animateToPage(2,
-                                            duration:
-                                                Duration(milliseconds: 500),
-                                            curve: Curves.easeInOut);
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.all(16),
-                                    height: 57,
-                                    width: 57,
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                          width: 1,
-                                            color: AppColor.white_gray),
-                                        shape: BoxShape.circle,
-                                        color: AppColor.dark_violet_4),
-                                    child: AppSvg.asset(AssetUtils.tick),
-                                  ),
-                                )
-                              ],
+      child: ShakeAnimatedWidget(
+        enabled: false,
+        duration: Duration(milliseconds: 100),
+        shakeAngle: Rotation.deg(z: 1),
+        curve: Curves.easeInOutSine,
+        child: GestureDetector(
+          onHorizontalDragUpdate: (details) {},
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Card(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16)),
+                clipBehavior: Clip.antiAliasWithSaveLayer,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColor.very_soft_violet,
+                    gradient: LinearGradient(colors: [
+                      AppColor.dark_violet,
+                      AppColor.dark_moderate_blue
+                    ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
+                  ),
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 24, right: 24, bottom: 32),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 254),
+                          InformationText(
+                              image: AssetUtils.world,
+                              title: S.of(context).acceptedWorldWide),
+                          SizedBox(height: 16),
+                          InformationText(
+                              image: AssetUtils.gift,
+                              title: S.of(context).loyaltyRewards),
+                          SizedBox(height: 16),
+                          InformationText(
+                              image: AssetUtils.earphone,
+                              title: S.of(context).customerService),
+                          SizedBox(height: 17),
+                          InkWell(
+                            onTap: () {
+                              ProviderScope.containerOf(context)
+                                  .read(registerViewModelProvider)
+                                  .registrationStepsController
+                                  .animateToPage(2,
+                                      duration: Duration(milliseconds: 500),
+                                      curve: Curves.easeInOut);
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(16),
+                              height: 57,
+                              width: 57,
+                              decoration: BoxDecoration(
+                                  border: Border.all(
+                                      width: 1, color: AppColor.white_gray),
+                                  shape: BoxShape.circle,
+                                  color: AppColor.dark_violet_4),
+                              child: AppSvg.asset(AssetUtils.tick),
                             ),
-                          ),
-                        ),
+                          )
+                        ],
                       ),
                     ),
-                    Positioned(
-                      left: 87.38,
-                      top: -20,
-                      right: 87.62,
-                      child: Image.asset(AssetUtils.card),
-                    )
-                  ],
+                  ),
                 ),
               ),
-            ),
+              Positioned(
+                left: 87.38,
+                top: -20,
+                right: 87.62,
+                child: Image.asset(AssetUtils.card),
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

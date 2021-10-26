@@ -45,7 +45,10 @@ class RegisterStepOnePageView
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    top: 8.0, bottom: currentStep == 2 ? 0 : 32),
+                    top: 8.0,
+                    bottom: currentStep == 2 ? 0 : 32,
+                    left: 24,
+                    right: 24),
                 child: ShowUpAnimation(
                   key: ValueKey(currentStep),
                   delayStart: Duration(milliseconds: 500),
