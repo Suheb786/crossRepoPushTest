@@ -3,14 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/register/step_three/confirm_detail/confirm_detail_page.dart';
-import 'package:neo_bank/feature/register/step_three/enter_address/enter_address_page.dart';
-import 'package:neo_bank/feature/register/step_three/id_verification_info/id_verification_info_page.dart';
-import 'package:neo_bank/feature/register/step_three/job_and_income/job_and_income_page.dart';
-import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page.dart';
 import 'package:neo_bank/feature/register/step_three/purpose_of_account_opening/purpose_of_account_opening_page.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_three/student_job_income/student_job_income_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -23,12 +17,6 @@ class RegisterStepThreePageView
   RegisterStepThreePageView(ProviderBase model) : super(model);
 
   List<Widget> pages = [
-    IdVerificationInfoPage(),
-    ConfirmDetailPage(),
-    EnterAddressPage(),
-    ProfileDetailsPage(),
-    StudentJobIncomePage(),
-    JobAndIncomePage(),
     PurposeOfAccountOpeningPage(),
   ];
 
@@ -43,7 +31,7 @@ class RegisterStepThreePageView
           return Column(
             children: [
               Text(
-                S.of(context).personalDetails,
+                S.of(context).accountOpeningPurpose,
                 style: TextStyle(
                     color: AppColor.dark_gray,
                     fontSize: 10,
@@ -62,12 +50,6 @@ class RegisterStepThreePageView
                   child: Text(
                     StepTextHelper.registrationThreeStepTextHelper(
                       currentStep ?? 0,
-                      S.of(context).idVerificationInfoHeader,
-                      S.of(context).pleaseConfirmYourIDDetailsBelow,
-                      S.of(context).whereDoYouCurrentlyLive,
-                      S.of(context).tellUsAboutYourProfile,
-                      S.of(context).jobIncomeMsg,
-                      S.of(context).tellUsHowDoMakeLiving,
                       S.of(context).accountRelatedQuestions,
                     ),
                     textAlign: TextAlign.center,

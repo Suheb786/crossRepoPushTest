@@ -56,11 +56,6 @@ class PurposeOfAccountOpeningPageView
                       onHorizontalDragUpdate: (details) {
                         if (details.primaryDelta!.isNegative) {
                           model.validatePurposeOfAccountOpening();
-                        } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepThreeViewModelProvider)
-                              .registrationStepThreePageController
-                              .jumpToPage(3);
                         }
                       },
                       child: Card(

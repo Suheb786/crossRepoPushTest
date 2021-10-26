@@ -17,39 +17,22 @@ class StepTextHelper {
     }
   }
 
-  static String registrationTwoStepTextHelper(int index, String step1) {
-    switch (index) {
-      case 0:
-        return step1;
-      default:
-        return step1;
-    }
-  }
-
-  static String registrationThreeStepTextHelper(
-      int index,
-      String step1,
-      String step2,
-      String step3,
-      String step4,
-      String step5,
-      String step6,
-      String step7) {
+  static String registrationTwoStepTextHelper(
+      int index, String step1, String step2) {
     switch (index) {
       case 0:
         return step1;
       case 1:
         return step2;
-      case 2:
-        return step3;
-      case 3:
-        return step4;
-      case 4:
-        return step5;
-      case 5:
-        return step6;
-      case 6:
-        return step7;
+      default:
+        return step1;
+    }
+  }
+
+  static String registrationThreeStepTextHelper(int index, String step1) {
+    switch (index) {
+      case 0:
+        return step1;
       default:
         return step1;
     }
@@ -100,6 +83,22 @@ class StepTextHelper {
         return step4;
       case 4:
         return step5;
+      default:
+        return step1;
+    }
+  }
+
+  static String accountRegistrationStepTextHelper(
+      int index, String step1, String step2, String step3, String step4) {
+    switch (index) {
+      case 0:
+        return step1;
+      case 1:
+        return step2;
+      case 2:
+        return step3;
+      case 3:
+        return step4;
       default:
         return step1;
     }

@@ -1,45 +1,21 @@
 import 'package:data/di/repository_module.dart';
+import 'package:domain/usecase/register/student_job_income_usecase.dart';
 import 'package:domain/usecase/user/account_ready_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
-import 'package:domain/usecase/user/create_password_usecase.dart';
 import 'package:domain/usecase/user/enter_address_usecase.dart';
-import 'package:domain/usecase/user/fetch_countries_usecase.dart';
 import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:domain/usecase/user/product_selector_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
-import 'package:domain/usecase/user/register_number_usecase.dart';
 import 'package:domain/usecase/user/send_documents_usecase.dart';
-import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:domain/usecase/user/video_call_info_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:domain/usecase/user/send_documents_usecase.dart';
-import 'package:domain/usecase/register/student_job_income_usecase.dart';
-
-///[FetchCountriesUseCase] provider
-final fetchCountriesUseCaseProvider =
-    Provider.autoDispose<FetchCountriesUseCase>(
-  (ref) => FetchCountriesUseCase(
-    ref.read(countryRepoProvider),
-  ),
-);
-
-///[RegisterNumberUseCase] provider
-final registerNumberUseCaseProvider =
-    Provider.autoDispose<RegisterNumberUseCase>(
-  (ref) => RegisterNumberUseCase(),
-);
 
 ///[LoginUseCase] provider
 final loginUseCaseProvider = Provider.autoDispose<LoginUseCase>(
   (ref) => LoginUseCase(),
-);
-
-///[VerifyOtpUseCase] provider
-final verifyOtpUseCaseProvider = Provider.autoDispose<VerifyOtpUseCase>(
-  (ref) => VerifyOtpUseCase(),
 );
 
 ///[ProfileDetailsUseCase] provider
@@ -52,12 +28,6 @@ final profileDetailsUseCaseProvider =
 final sendDocumentsUseCaseUseCaseProvider =
     Provider.autoDispose<SendDocumentsUseCase>(
   (ref) => SendDocumentsUseCase(),
-);
-
-///[CreatePasswordUseCase] provider
-final createPasswordUseCaseProvider =
-    Provider.autoDispose<CreatePasswordUseCase>(
-  (ref) => CreatePasswordUseCase(),
 );
 
 ///[IdVerificationInfoUseCase] provider
@@ -106,8 +76,8 @@ final agentSelectionUseCaseProvider =
   (ref) => AgentSelectionUseCase(),
 );
 
-
 ///[StudentJobIncomeUseCase] provider
-final studentJobIncomeUseCaseProvider = Provider.autoDispose<StudentJobIncomeUseCase>(
-        (ref) => StudentJobIncomeUseCase(),
+final studentJobIncomeUseCaseProvider =
+    Provider.autoDispose<StudentJobIncomeUseCase>(
+  (ref) => StudentJobIncomeUseCase(),
 );

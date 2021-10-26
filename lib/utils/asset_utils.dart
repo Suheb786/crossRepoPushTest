@@ -32,6 +32,7 @@ class AssetUtils {
   static const String eye = svg + "eye.svg";
   static const String message = svg + "message.svg";
   static const String galaxy = svg + "galaxy.svg";
+  static const String logout = svg + "logout.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

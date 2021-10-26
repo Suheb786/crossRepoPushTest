@@ -20,7 +20,8 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
           height: double.infinity,
           width: double.infinity,
           color: AppColor.dark_blue1,
-          child: Stack(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SingleChildScrollView(
                 child: Padding(
@@ -77,29 +78,31 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                   ),
                 ),
               ),
-              Positioned(
-                bottom: 80,
-                right: 45,
-                child: Column(
-                  children: [
-                    AnimatedButton(
+              Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 96.0),
+                    child: AnimatedButton(
                       buttonText: S.of(context).swipeToProceed,
                       textColor: AppColor.white,
                       borderColor: AppColor.light_violet,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 14.0),
-                      child: Text(
-                        S.of(context).cardPersonalization,
-                        style: TextStyle(
-                          color: AppColor.very_light_violet1,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12,
-                        ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 14.0),
+                    child: Text(
+                      S.of(context).cardPersonalization,
+                      style: TextStyle(
+                        color: AppColor.very_light_violet1,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 12,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    height: 32,
+                  )
+                ],
               )
             ],
           )),

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/register/step_two/product_selector/product_selector_page.dart';
+import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income_page.dart';
 import 'package:neo_bank/feature/register/step_two/register_step_two_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -17,7 +18,8 @@ class RegisterStepTwoPageView
   RegisterStepTwoPageView(ProviderBase model) : super(model);
 
   List<Widget> pages = [
-    ProductSelectorPage(),
+    JobAndIncomePage(),
+    StudentJobIncomePage(),
   ];
 
   @override
@@ -31,7 +33,7 @@ class RegisterStepTwoPageView
           return Column(
             children: [
               Text(
-                S.of(context).openAccount,
+                S.of(context).jobAndIncome,
                 style: TextStyle(
                     color: AppColor.dark_gray,
                     fontSize: 10,
@@ -49,7 +51,10 @@ class RegisterStepTwoPageView
                   offset: 0.5,
                   child: Text(
                     StepTextHelper.registrationTwoStepTextHelper(
-                        currentStep ?? 0, S.of(context).productSelectorHeader),
+                      currentStep ?? 0,
+                      S.of(context).jobIncomeMsg,
+                      S.of(context).tellUsHowDoMakeLiving,
+                    ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColor.very_dark_gray,

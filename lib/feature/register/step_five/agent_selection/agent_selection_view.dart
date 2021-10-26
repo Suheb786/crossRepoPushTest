@@ -64,6 +64,7 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                           Scrollbar(
                             child: ListWheelScrollView.useDelegate(
                                 itemExtent: 72,
+                                controller: model.scrollController,
                                 onSelectedItemChanged: (int index) {
                                   model.selectAgent(index);
                                   ProviderScope.containerOf(context)
