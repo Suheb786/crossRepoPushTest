@@ -424,6 +424,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage(
                 "Please select your preferred agent for a video call"),
+        "pleaseUploadNecessaryInfo": MessageLookupByLibrary.simpleMessage(
+            "Please upload necessary document to proof yourself"),
         "postCode": MessageLookupByLibrary.simpleMessage("POST CODE"),
         "preferredAgent": MessageLookupByLibrary.simpleMessage(
             "You may select your preferred agent to chat with"),

@@ -1,12 +1,16 @@
+import 'package:domain/usecase/register/get_purpose_of_account_opening_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:neo_bank/utils/extension/stream_extention.dart';
-import 'package:domain/usecase/register/get_purpose_of_account_opening_usecase.dart';
 
 class PurposeOfAccountOpeningDialogViewModel extends BasePageViewModel {
   final GetPurposeOfAccountOpeningUseCase _getPurposeOfAccountOpeningUseCase;
+
+  final FixedExtentScrollController scrollController =
+      FixedExtentScrollController();
 
   ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();

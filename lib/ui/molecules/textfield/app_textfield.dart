@@ -141,7 +141,7 @@ class AppTextFieldState extends State<AppTextField> {
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
                         width: 1,
-                        color: _focusNode.hasFocus && !isValid
+                        color: !isValid
                             ? AppColor.vivid_red
                             : _focusNode.hasFocus
                                 ? (widget.textFieldFocusBorderColor ??

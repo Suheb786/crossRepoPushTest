@@ -13,7 +13,6 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -26,24 +25,6 @@ class ScheduleVideoCallPageView
     return AppKeyBoardHide(
         child: Column(
       children: [
-        Text(
-          S.of(context).personalDetails,
-          style: TextStyle(
-              color: AppColor.dark_gray,
-              fontSize: 10,
-              fontWeight: FontWeight.w600),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 8.0, bottom: 32),
-          child: Text(
-            S.of(context).pleaseSelectPreferredAgentForVideoCall,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: AppColor.very_dark_gray,
-                fontSize: 20,
-                fontWeight: FontWeight.w600),
-          ),
-        ),
         Expanded(
           child: AppStreamBuilder<bool>(
             stream: model.errorDetectorStream,
@@ -65,6 +46,8 @@ class ScheduleVideoCallPageView
                           .nextPage(
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOut);
+                    } else if (data.status == Status.ERROR) {
+                      model.showToastWithError(data.appError!);
                     }
                   },
                   dataBuilder: (context, response) {
@@ -83,6 +66,9 @@ class ScheduleVideoCallPageView
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
+                        elevation: 2,
+                        margin: EdgeInsets.zero,
+                        shadowColor: AppColor.black.withOpacity(0.32),
                         child: Container(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
@@ -111,34 +97,6 @@ class ScheduleVideoCallPageView
                                               model.preferredDateController,
                                           readOnly: true,
                                           key: model.preferredDateKey,
-                                          textHintWidget:
-                                              (hasFocus, isValid, value) {
-                                            return Visibility(
-                                              visible: !isValid,
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 8),
-                                                  child: Text(
-                                                    ErrorParser
-                                                        .getLocalisedStringError(
-                                                            error: response!
-                                                                .appError,
-                                                            localisedHelper:
-                                                                S.of(context)),
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color:
-                                                            AppColor.vivid_red),
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
                                           suffixIcon: (value, data) {
                                             return InkWell(
                                               onTap: () async {
@@ -168,34 +126,6 @@ class ScheduleVideoCallPageView
                                               model.preferredTimeController,
                                           readOnly: true,
                                           key: model.preferredTimeKey,
-                                          textHintWidget:
-                                              (hasFocus, isValid, value) {
-                                            return Visibility(
-                                              visible: !isValid,
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 8),
-                                                  child: Text(
-                                                    ErrorParser
-                                                        .getLocalisedStringError(
-                                                            error: response!
-                                                                .appError,
-                                                            localisedHelper:
-                                                                S.of(context)),
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color:
-                                                            AppColor.vivid_red),
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
                                           suffixIcon: (value, data) {
                                             return InkWell(
                                               onTap: () async {

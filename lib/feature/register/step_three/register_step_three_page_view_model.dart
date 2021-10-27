@@ -1,16 +1,23 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:rxdart/rxdart.dart';
 
 class RegisterStepThreeViewModel extends BasePageViewModel {
   final CarouselController registrationStepThreePageController =
       new CarouselController();
 
-  int _currentPage = 0;
+  PublishSubject<int> _currentStep = PublishSubject();
 
-  int get currentPage => _currentPage;
+  Stream<int> get currentStep => _currentStep.stream;
 
-  set currentPage(int page) {
-    _currentPage = page;
-    notifyListeners();
+  void updatePage(int index) {
+    _currentStep.safeAdd(index);
+  }
+
+  @override
+  void dispose() {
+    _currentStep.close();
+    super.dispose();
   }
 }

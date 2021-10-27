@@ -21,24 +21,6 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
     return AppKeyBoardHide(
       child: Column(
         children: [
-          Text(
-            S.of(context).personalDetails,
-            style: TextStyle(
-                color: AppColor.dark_gray,
-                fontSize: 10,
-                fontWeight: FontWeight.w600),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 8.0, bottom: 32),
-            child: Text(
-              S.of(context).videoCallInfoHeader,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColor.very_dark_gray,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
           Expanded(
             child: ShakeAnimatedWidget(
               enabled: false,
@@ -67,6 +49,9 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
+                  elevation: 2,
+                  margin: EdgeInsets.zero,
+                  shadowColor: AppColor.black.withOpacity(0.32),
                   child: Container(
                       padding:
                           EdgeInsets.symmetric(vertical: 32, horizontal: 24),
@@ -121,8 +106,7 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                             ),
                           ),
                           Padding(
-                            padding:
-                                const EdgeInsets.only(left: 45.0, right: 45),
+                            padding: const EdgeInsets.only(right: 45),
                             child: AnimatedButton(
                               buttonText: S.of(context).swipeToProceed,
                             ),

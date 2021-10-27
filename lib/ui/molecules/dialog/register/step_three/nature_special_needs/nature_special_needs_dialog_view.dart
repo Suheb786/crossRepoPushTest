@@ -1,3 +1,4 @@
+import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +11,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+
 import 'nature_special_needs_dialog_view_model.dart';
 
 class NatureSpecialNeedsDialogView extends StatelessWidget {
@@ -50,34 +52,57 @@ class NatureSpecialNeedsDialogView extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 32.0),
                             child: Center(
                               child: Text(
-                                S.of(context).employmentStatusSmall,
+                                S.of(context).natureSpecialNeeds,
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.w600),
                               ),
                             ),
                           ),
                           Expanded(
-                              child: ListWheelScrollView.useDelegate(
-                                  itemExtent: 64,
-                                  onSelectedItemChanged: (int index) {
-                                    model.currentIndexUpdate(index);
-                                  },
-                                  physics: FixedExtentScrollPhysics(),
-                                  perspective: 0.0000000001,
-                                  childDelegate: ListWheelChildBuilderDelegate(
-                                      childCount: data!.data!.length,
-                                      builder:
-                                          (BuildContext context, int index) {
-                                        return ListScrollWheelListWidget(
-                                          label: data.data![index],
-                                          textColor: currentIndex == index
-                                              ? AppColor.white
-                                              : AppColor.dark_gray_1,
-                                          widgetColor: currentIndex == index
-                                              ? AppColor.dark_violet_3
-                                              : AppColor.white,
-                                        );
-                                      }))),
+                              child: Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16.0),
+                                    child: Container(
+                                      height: 64,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.circular(16),
+                                        color: AppColor.dark_violet_3,
+                                      ),
+                                    ),
+                                  ),
+                                  Scrollbar(
+                                    child: FadingEdgeScrollView.fromListWheelScrollView(
+                                      gradientFractionOnStart: 0.3,
+                                      gradientFractionOnEnd: 0.3,
+                                      child: ListWheelScrollView.useDelegate(
+                                        controller: model.scrollController,
+                                          itemExtent: 64,
+                                          onSelectedItemChanged: (int index) {
+                                            model.currentIndexUpdate(index);
+                                          },
+                                          physics: FixedExtentScrollPhysics(),
+                                          perspective: 0.0000000001,
+                                          childDelegate: ListWheelChildBuilderDelegate(
+                                              childCount: data!.data!.length,
+                                              builder:
+                                                  (BuildContext context, int index) {
+                                                return ListScrollWheelListWidget(
+                                                  label: data.data![index],
+                                                  textColor: currentIndex == index
+                                                      ? AppColor.white
+                                                      : AppColor.dark_gray_1,
+                                                  widgetColor: Colors.transparent,
+                                                );
+                                              })),
+                                    ),
+                                  ),
+                                ],
+                              )),
                           InkWell(
                             onTap: () {
                               onSelected!.call(data.data![currentIndex!]);

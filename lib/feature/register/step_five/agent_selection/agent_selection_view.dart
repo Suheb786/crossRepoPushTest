@@ -20,24 +20,6 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
     return AppKeyBoardHide(
       child: Column(
         children: [
-          Text(
-            S.of(context).personalDetails,
-            style: TextStyle(
-                color: AppColor.dark_gray,
-                fontSize: 10,
-                fontWeight: FontWeight.w600),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 8.0, bottom: 32),
-            child: Text(
-              S.of(context).agentSelectionHeader,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColor.very_dark_gray,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
           Expanded(
             child: ShakeAnimatedWidget(
               enabled: false,
@@ -64,6 +46,9 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
+                  elevation: 2,
+                  margin: EdgeInsets.zero,
+                  shadowColor: AppColor.black.withOpacity(0.32),
                   child: Container(
                       padding:
                           EdgeInsets.symmetric(vertical: 32, horizontal: 16),
@@ -82,6 +67,7 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                           Scrollbar(
                             child: ListWheelScrollView.useDelegate(
                                 itemExtent: 72,
+                                controller: model.scrollController,
                                 onSelectedItemChanged: (int index) {
                                   model.selectAgent(index);
                                   ProviderScope.containerOf(context)
@@ -100,7 +86,6 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                           ),
                           Positioned(
                             bottom: 0,
-                            left: 45,
                             right: 45,
                             child: AnimatedButton(
                               buttonText: S.of(context).swipeToProceed,

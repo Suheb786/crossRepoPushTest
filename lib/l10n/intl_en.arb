@@ -319,5 +319,6 @@
   "invalidName": "Enter name",
   "invalidRole": "Enter role",
   "emptyIncomeDocument": "Please upload income document",
-  "emptyAddressDocument": "Please upload address document"
+  "emptyAddressDocument": "Please upload address document",
+  "pleaseUploadNecessaryInfo": "Please upload necessary document to proof yourself"
 }

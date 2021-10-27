@@ -21,11 +21,13 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
         }
       },
       dataBuilder: (context, data) {
-        return Container(
-          width: double.maxFinite,
-          height: double.maxFinite,
-          alignment: Alignment.center,
-          child: Image.asset(AssetUtils.splashLogo),
+        return Center(
+          child: Container(
+            width: 104,
+            height: 104,
+            alignment: Alignment.center,
+            child: Image.asset(AssetUtils.splashLogo),
+          ),
         );
       },
     );

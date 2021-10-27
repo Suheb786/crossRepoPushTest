@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -3216,6 +3215,16 @@ class S {
     return Intl.message(
       'Please upload address document',
       name: 'emptyAddressDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please upload necessary document to proof yourself`
+  String get pleaseUploadNecessaryInfo {
+    return Intl.message(
+      'Please upload necessary document to proof yourself',
+      name: 'pleaseUploadNecessaryInfo',
       desc: '',
       args: [],
     );

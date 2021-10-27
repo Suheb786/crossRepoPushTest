@@ -4,6 +4,9 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialo
 import 'package:rxdart/rxdart.dart';
 
 class StateCityDialogViewModel extends BasePageViewModel {
+  final FixedExtentScrollController scrollController =
+      FixedExtentScrollController();
+
   List<String> stateList = [
     'Alberta',
     'British Columbia',

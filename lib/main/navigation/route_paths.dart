@@ -6,4 +6,7 @@ class RoutePaths {
   static const String Login = '/login';
   static const String AccountReady = '/accountReady';
   static const String NotifySuccess = '/notifySuccess';
+  static const String AccountRegistration = '/accountRegistration';
+  static const String ProductSelector = '/productSelector';
+  static const String NonJordanianRegister = '/nonJordanianRegister';
 }

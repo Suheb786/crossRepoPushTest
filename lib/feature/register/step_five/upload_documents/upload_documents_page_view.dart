@@ -12,12 +12,12 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/ui/molecules/upload_document/upload_document_bottom_sheet.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -30,24 +30,6 @@ class UploadDocumentsPageView
     return AppKeyBoardHide(
       child: Column(
         children: [
-          Text(
-            S.of(context).uploadDocuments,
-            style: TextStyle(
-                color: AppColor.dark_gray,
-                fontSize: 10,
-                fontWeight: FontWeight.w600),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 8.0, bottom: 32),
-            child: Text(
-              S.of(context).completeTaxReportInfo,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: AppColor.very_dark_gray,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600),
-            ),
-          ),
           Expanded(
             child: AppStreamBuilder<bool>(
                 initialData: false,
@@ -75,6 +57,7 @@ class UploadDocumentsPageView
                             model.addressDocumentKey.currentState!.isValid =
                                 false;
                           }
+                          model.showToastWithError(data.appError!);
                         }
                       },
                       dataBuilder: (context, data) {
@@ -93,6 +76,9 @@ class UploadDocumentsPageView
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16)),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
+                            elevation: 2,
+                            margin: EdgeInsets.zero,
+                            shadowColor: AppColor.black.withOpacity(0.32),
                             child: Container(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),
@@ -106,301 +92,249 @@ class UploadDocumentsPageView
                                       begin: Alignment.bottomCenter,
                                       end: Alignment.topCenter),
                                 ),
-                                child: SingleChildScrollView(
-                                    padding: EdgeInsets.only(bottom: 114),
-                                    physics: ClampingScrollPhysics(),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          S.of(context).proofOfIncome,
-                                          softWrap: true,
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                              color: AppColor.white),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 8.0, bottom: 16),
-                                          child: Text(
-                                            S.of(context).proofOfIncomeDesc,
-                                            softWrap: true,
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                                color: AppColor.white),
-                                          ),
-                                        ),
-                                        AppStreamBuilder<String>(
-                                          stream: model.uploadIncomePoofStream,
-                                          initialData: '',
-                                          onData: (documentResponse) {
-                                            if (documentResponse.isNotEmpty) {
-                                              model.updateIncomeDocumentField(
-                                                  documentResponse);
-                                            }
-                                          },
-                                          dataBuilder: (context, document) {
-                                            return AppStreamBuilder<bool>(
+                                child: Stack(
+                                  children: [
+                                    SingleChildScrollView(
+                                        padding: EdgeInsets.only(bottom: 114),
+                                        physics: ClampingScrollPhysics(),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              S.of(context).proofOfIncome,
+                                              softWrap: true,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: AppColor.white),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 8.0, bottom: 16),
+                                              child: Text(
+                                                S.of(context).proofOfIncomeDesc,
+                                                softWrap: true,
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: AppColor.white),
+                                              ),
+                                            ),
+                                            AppStreamBuilder<String>(
                                               stream:
-                                                  model.documentIncomeStream,
-                                              initialData: false,
-                                              dataBuilder:
-                                                  (context, isUploaded) {
-                                                return AppTextField(
-                                                  labelText: '',
-                                                  hintText:
-                                                      S.of(context).upload,
-                                                  controller:
-                                                      model.incomeController,
-                                                  key: model.incomeDocumentKey,
-                                                  readOnly: true,
-                                                  textHintWidget: (hasFocus,
-                                                      isValid, value) {
-                                                    return Visibility(
-                                                      visible: !isValid,
-                                                      child: Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal: 16,
-                                                                vertical: 8),
-                                                        child: Text(
-                                                          ErrorParser
-                                                              .getLocalisedStringError(
-                                                                  error: data!
-                                                                      .appError,
-                                                                  localisedHelper:
-                                                                      S.of(
-                                                                          context)),
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              color: AppColor
-                                                                  .vivid_red),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                  suffixIcon: (value, data) {
-                                                    return InkWell(
-                                                      onTap: !(isUploaded!)
-                                                          ? () async {
-                                                              showModalBottomSheet(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (builder) =>
-                                                                          UploadDocumentBottomSheetWidget(
-                                                                            title:
-                                                                                S.of(context).selectAnyOption,
-                                                                            firstOptionText:
-                                                                                S.of(context).storage,
-                                                                            secondOptionText:
-                                                                                S.of(context).camera,
-                                                                            buttonText:
-                                                                                S.of(context).cancel,
-                                                                            onCameraTap:
-                                                                                () {
-                                                                              Navigator.pop(context);
-                                                                              model.uploadIncomeDocument(DocumentTypeEnum.CAMERA);
-                                                                            },
-                                                                            onPhotoLibraryTap:
-                                                                                () {
-                                                                              Navigator.pop(context);
-                                                                              model.uploadIncomeDocument(DocumentTypeEnum.GALLERY);
-                                                                            },
-                                                                            onCancelTap:
-                                                                                () {
-                                                                              Navigator.pop(context);
-                                                                            },
-                                                                          ));
-                                                            }
-                                                          : () {
-                                                              model
-                                                                  .incomeController
-                                                                  .clear();
-                                                              model
-                                                                  .updateIncomeUploadedStream(
+                                                  model.uploadIncomePoofStream,
+                                              initialData: '',
+                                              onData: (documentResponse) {
+                                                if (documentResponse
+                                                    .isNotEmpty) {
+                                                  model
+                                                      .updateIncomeDocumentField(
+                                                          documentResponse);
+                                                }
+                                              },
+                                              dataBuilder: (context, document) {
+                                                return AppStreamBuilder<bool>(
+                                                  stream: model
+                                                      .documentIncomeStream,
+                                                  initialData: false,
+                                                  dataBuilder:
+                                                      (context, isUploaded) {
+                                                    return AppTextField(
+                                                      labelText: '',
+                                                      hintText:
+                                                          S.of(context).upload,
+                                                      controller: model
+                                                          .incomeController,
+                                                      key: model
+                                                          .incomeDocumentKey,
+                                                      readOnly: true,
+                                                      suffixIcon:
+                                                          (value, data) {
+                                                        return InkWell(
+                                                          onTap: !(isUploaded!)
+                                                              ? () async {
+                                                                  showModalBottomSheet(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (builder) =>
+                                                                              UploadDocumentBottomSheetWidget(
+                                                                                title: S.of(context).selectAnyOption,
+                                                                                firstOptionText: S.of(context).storage,
+                                                                                secondOptionText: S.of(context).camera,
+                                                                                buttonText: S.of(context).cancel,
+                                                                                onCameraTap: () {
+                                                                                  Navigator.pop(context);
+                                                                                  model.uploadIncomeDocument(DocumentTypeEnum.CAMERA);
+                                                                                },
+                                                                                onPhotoLibraryTap: () {
+                                                                                  Navigator.pop(context);
+                                                                                  model.uploadIncomeDocument(DocumentTypeEnum.GALLERY);
+                                                                                },
+                                                                                onCancelTap: () {
+                                                                                  Navigator.pop(context);
+                                                                                },
+                                                                              ));
+                                                                }
+                                                              : () {
+                                                                  model
+                                                                      .incomeController
+                                                                      .clear();
+                                                                  model.updateIncomeUploadedStream(
                                                                       false);
-                                                            },
-                                                      child: Container(
-                                                          height: 16,
-                                                          width: 16,
-                                                          padding:
-                                                              EdgeInsets.all(5),
-                                                          child: isUploaded
-                                                              ? AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .delete)
-                                                              : AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .upload)),
+                                                                },
+                                                          child: Container(
+                                                              height: 16,
+                                                              width: 16,
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(5),
+                                                              child: isUploaded
+                                                                  ? AppSvg.asset(
+                                                                      AssetUtils
+                                                                          .delete)
+                                                                  : AppSvg.asset(
+                                                                      AssetUtils
+                                                                          .upload)),
+                                                        );
+                                                      },
                                                     );
                                                   },
                                                 );
                                               },
-                                            );
-                                          },
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 24.0, bottom: 24),
-                                          child: Container(
-                                            height: 1,
-                                            color: AppColor.strong_violet,
-                                          ),
-                                        ),
-                                        Text(
-                                          S.of(context).proofOfAddress,
-                                          softWrap: true,
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                              color: AppColor.white),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 8.0, bottom: 16),
-                                          child: Text(
-                                            S.of(context).proofOfAddressDesc,
-                                            softWrap: true,
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                                color: AppColor.white),
-                                          ),
-                                        ),
-                                        AppStreamBuilder<String>(
-                                          stream: model.uploadAddressPoofStream,
-                                          initialData: '',
-                                          onData: (documentResponse) {
-                                            if (documentResponse.isNotEmpty) {
-                                              model.updateAddressDocumentField(
-                                                  documentResponse);
-                                            }
-                                          },
-                                          dataBuilder: (context, document) {
-                                            return AppStreamBuilder<bool>(
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 24.0, bottom: 24),
+                                              child: Container(
+                                                height: 1,
+                                                color: AppColor.strong_violet,
+                                              ),
+                                            ),
+                                            Text(
+                                              S.of(context).proofOfAddress,
+                                              softWrap: true,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: AppColor.white),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 8.0, bottom: 16),
+                                              child: Text(
+                                                S
+                                                    .of(context)
+                                                    .proofOfAddressDesc,
+                                                softWrap: true,
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: AppColor.white),
+                                              ),
+                                            ),
+                                            AppStreamBuilder<String>(
                                               stream:
-                                                  model.documentAddressStream,
-                                              initialData: false,
-                                              dataBuilder:
-                                                  (context, isUploaded) {
-                                                return AppTextField(
-                                                  labelText: '',
-                                                  hintText:
-                                                      S.of(context).upload,
-                                                  controller:
-                                                      model.addressController,
-                                                  key: model.addressDocumentKey,
-                                                  readOnly: true,
-                                                  textHintWidget: (hasFocus,
-                                                      isValid, value) {
-                                                    return Visibility(
-                                                      visible: !isValid,
-                                                      child: Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                horizontal: 16,
-                                                                vertical: 8),
-                                                        child: Text(
-                                                          ErrorParser
-                                                              .getLocalisedStringError(
-                                                                  error: data!
-                                                                      .appError,
-                                                                  localisedHelper:
-                                                                      S.of(
-                                                                          context)),
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              color: AppColor
-                                                                  .vivid_red),
-                                                        ),
-                                                      ),
-                                                    );
-                                                  },
-                                                  suffixIcon: (value, data) {
-                                                    return InkWell(
-                                                      onTap: !(isUploaded!)
-                                                          ? () async {
-                                                              showModalBottomSheet(
-                                                                  context:
-                                                                      context,
-                                                                  builder:
-                                                                      (builder) =>
-                                                                          UploadDocumentBottomSheetWidget(
-                                                                            title:
-                                                                                S.of(context).selectAnyOption,
-                                                                            firstOptionText:
-                                                                                S.of(context).storage,
-                                                                            secondOptionText:
-                                                                                S.of(context).camera,
-                                                                            buttonText:
-                                                                                S.of(context).cancel,
-                                                                            onCameraTap:
-                                                                                () {
-                                                                              Navigator.pop(context);
-                                                                              model.uploadAddressDocument(DocumentTypeEnum.CAMERA);
-                                                                            },
-                                                                            onPhotoLibraryTap:
-                                                                                () {
-                                                                              Navigator.pop(context);
-                                                                              model.uploadAddressDocument(DocumentTypeEnum.GALLERY);
-                                                                            },
-                                                                            onCancelTap:
-                                                                                () {
-                                                                              Navigator.pop(context);
-                                                                            },
-                                                                          ));
-                                                            }
-                                                          : () {
-                                                              model
-                                                                  .addressController
-                                                                  .clear();
-                                                              model
-                                                                  .updateAddressUploadedStream(
+                                                  model.uploadAddressPoofStream,
+                                              initialData: '',
+                                              onData: (documentResponse) {
+                                                if (documentResponse
+                                                    .isNotEmpty) {
+                                                  model
+                                                      .updateAddressDocumentField(
+                                                          documentResponse);
+                                                }
+                                              },
+                                              dataBuilder: (context, document) {
+                                                return AppStreamBuilder<bool>(
+                                                  stream: model
+                                                      .documentAddressStream,
+                                                  initialData: false,
+                                                  dataBuilder:
+                                                      (context, isUploaded) {
+                                                    return AppTextField(
+                                                      labelText: '',
+                                                      hintText:
+                                                          S.of(context).upload,
+                                                      controller: model
+                                                          .addressController,
+                                                      key: model
+                                                          .addressDocumentKey,
+                                                      readOnly: true,
+                                                      suffixIcon:
+                                                          (value, data) {
+                                                        return InkWell(
+                                                          onTap: !(isUploaded!)
+                                                              ? () async {
+                                                                  showModalBottomSheet(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (builder) =>
+                                                                              UploadDocumentBottomSheetWidget(
+                                                                                title: S.of(context).selectAnyOption,
+                                                                                firstOptionText: S.of(context).storage,
+                                                                                secondOptionText: S.of(context).camera,
+                                                                                buttonText: S.of(context).cancel,
+                                                                                onCameraTap: () {
+                                                                                  Navigator.pop(context);
+                                                                                  model.uploadAddressDocument(DocumentTypeEnum.CAMERA);
+                                                                                },
+                                                                                onPhotoLibraryTap: () {
+                                                                                  Navigator.pop(context);
+                                                                                  model.uploadAddressDocument(DocumentTypeEnum.GALLERY);
+                                                                                },
+                                                                                onCancelTap: () {
+                                                                                  Navigator.pop(context);
+                                                                                },
+                                                                              ));
+                                                                }
+                                                              : () {
+                                                                  model
+                                                                      .addressController
+                                                                      .clear();
+                                                                  model.updateAddressUploadedStream(
                                                                       false);
-                                                            },
-                                                      child: Container(
-                                                          height: 16,
-                                                          width: 16,
-                                                          padding:
-                                                              EdgeInsets.all(5),
-                                                          child: isUploaded
-                                                              ? AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .delete)
-                                                              : AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .upload)),
+                                                                },
+                                                          child: Container(
+                                                              height: 16,
+                                                              width: 16,
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(5),
+                                                              child: isUploaded
+                                                                  ? AppSvg.asset(
+                                                                      AssetUtils
+                                                                          .delete)
+                                                                  : AppSvg.asset(
+                                                                      AssetUtils
+                                                                          .upload)),
+                                                        );
+                                                      },
                                                     );
                                                   },
                                                 );
                                               },
-                                            );
-                                          },
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 24.0, bottom: 16),
-                                          child: Container(
-                                            height: 1,
-                                            color: AppColor.strong_violet,
-                                          ),
-                                        ),
-                                      ],
-                                    ))),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 24.0, bottom: 16),
+                                              child: Container(
+                                                height: 1,
+                                                color: AppColor.strong_violet,
+                                              ),
+                                            ),
+                                          ],
+                                        )),
+                                    Positioned(
+                                        bottom: 0,
+                                        right: 45,
+                                        child: AnimatedButton(
+                                            buttonText:
+                                                S.of(context).swipeToProceed))
+                                  ],
+                                )),
                           ),
                         );
                       },

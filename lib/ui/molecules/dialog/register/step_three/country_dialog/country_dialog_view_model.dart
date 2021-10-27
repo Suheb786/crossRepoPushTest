@@ -12,6 +12,8 @@ class CountryDialogViewModel extends BasePageViewModel {
 
   final TextEditingController countrySearchController = TextEditingController();
 
+  final FixedExtentScrollController scrollController = FixedExtentScrollController();
+
   Country? selectedCountry = Country();
 
   ///current selected index subject holder
