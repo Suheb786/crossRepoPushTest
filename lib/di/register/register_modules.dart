@@ -32,6 +32,8 @@ import 'package:neo_bank/feature/register/stepone/profile_details/profile_detail
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_payer_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_one/calendar_dialog/calendar_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_one/year_month_dialog/year_month_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog_view_model.dart';
@@ -325,4 +327,14 @@ final stateCityDialogViewModelProvider =
 final registerStepFiveViewModelProvider =
     ChangeNotifierProvider.autoDispose<RegisterStepFiveViewModel>(
   (ref) => RegisterStepFiveViewModel(),
+);
+
+final calendarDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CalendarDialogViewModel>(
+  (ref) => CalendarDialogViewModel(),
+);
+
+final yearMonthDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<YearMonthDialogViewModel>(
+  (ref) => YearMonthDialogViewModel(),
 );

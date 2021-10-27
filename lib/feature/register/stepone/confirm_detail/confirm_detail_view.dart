@@ -9,12 +9,14 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_one/calendar_dialog/calendar_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 
 class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
   ConfirmDetailView(ProviderBase model) : super(model);
@@ -143,13 +145,31 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         labelText: S.of(context).dob,
                                         hintText: S.of(context).dobHint,
                                         inputType: TextInputType.text,
+                                        readOnly: true,
                                         controller: model.dobController,
                                         key: model.dobKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
                                         suffixIcon: (isvalid, value) {
                                           return InkWell(
-                                              onTap: () {},
+                                              onTap: () {
+                                                CalendarDialog.show(context,
+                                                    initialDateTime:
+                                                        model.selectedDate,
+                                                    title: S
+                                                        .of(context)
+                                                        .dateOfBirthSmall,
+                                                    onSelected: (date) {
+                                                  Navigator.pop(context);
+                                                  model.selectedDate = date;
+                                                  model.dobController.text =
+                                                      TimeUtils
+                                                          .getFormattedDate(
+                                                              date.toString());
+                                                }, onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onHeaderTapped: (date) {});
+                                              },
                                               child: Container(
                                                   height: 16,
                                                   width: 16,
@@ -180,11 +200,31 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         inputType: TextInputType.text,
                                         controller: model.expiryDateController,
                                         key: model.expiryDateKey,
+                                        readOnly: true,
                                         onChanged: (value) =>
                                             model.validateDetails(),
                                         suffixIcon: (isvalid, value) {
                                           return InkWell(
-                                              onTap: () {},
+                                              onTap: () {
+                                                CalendarDialog.show(context,
+                                                    initialDateTime: model
+                                                        .selectedExpiryDate,
+                                                    title: S
+                                                        .of(context)
+                                                        .dateOfBirthSmall,
+                                                    onSelected: (date) {
+                                                  Navigator.pop(context);
+                                                  model.selectedExpiryDate =
+                                                      date;
+                                                  model.expiryDateController
+                                                          .text =
+                                                      TimeUtils
+                                                          .getFormattedDate(
+                                                              date.toString());
+                                                }, onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onHeaderTapped: (date) {});
+                                              },
                                               child: Container(
                                                   height: 16,
                                                   width: 16,

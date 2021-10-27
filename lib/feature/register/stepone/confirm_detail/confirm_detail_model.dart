@@ -37,6 +37,10 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> motherNameKey =
       GlobalKey(debugLabel: "mother's name");
 
+  DateTime selectedDate = DateTime.now();
+
+  DateTime selectedExpiryDate = DateTime.now();
+
   /// confirm detail request subject holder
   PublishSubject<ConfirmDetailUseCaseParams> _confirmDetailRequest =
       PublishSubject();
