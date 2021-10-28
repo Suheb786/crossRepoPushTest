@@ -21,7 +21,7 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
   Widget build(BuildContext context, ProductSelectorViewModel model) {
     return AppKeyBoardHide(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 40),
         child: Column(
           children: [
             Align(
@@ -34,7 +34,7 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                       ModalRoute.withName(RoutePaths.Splash));
                 },
                 child: Padding(
-                  padding: EdgeInsets.only(right: 30, top: 40),
+                  padding: EdgeInsets.only(right: 30),
                   child: Container(
                       height: 24,
                       width: 24,

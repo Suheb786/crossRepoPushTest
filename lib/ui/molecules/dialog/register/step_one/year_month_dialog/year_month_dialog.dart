@@ -9,12 +9,14 @@ class YearMonthDialog {
   static show(BuildContext mContext,
       {Function? onDismissed,
       Function(String)? onSelected,
+      required String title,
       required CalendarEnum calendarEnum}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => YearMonthDialogView(
               onDismissed: onDismissed,
               onSelected: onSelected,
+              title: title,
               calendarEnum: calendarEnum,
             ));
   }

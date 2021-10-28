@@ -85,6 +85,7 @@ class CalendarDialogView extends StatelessWidget {
                                   Navigator.pop(context);
                                   model.month = TimeUtils.getMonth(month);
                                   YearMonthDialog.show(context,
+                                      title: S.of(context).dateOfBirthSmall,
                                       calendarEnum: CalendarEnum.YEAR,
                                       onDismissed: () {
                                     Navigator.pop(context);
@@ -96,7 +97,7 @@ class CalendarDialogView extends StatelessWidget {
                                         DateTime(model.year, model.month,
                                             model.date));
                                   });
-                                });
+                                }, title: S.of(context).dateOfBirthSmall);
                               },
                               selectedDayPredicate: (day) {
                                 return isSameDay(dateParams.selectedDay, day);

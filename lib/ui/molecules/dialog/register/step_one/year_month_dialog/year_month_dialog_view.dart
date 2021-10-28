@@ -20,9 +20,10 @@ class YearMonthDialogView extends StatefulWidget {
   final Function? onDismissed;
   final Function(String)? onSelected;
   final CalendarEnum? calendarEnum;
+  final String? title;
 
   const YearMonthDialogView(
-      {this.onDismissed, this.onSelected, this.calendarEnum});
+      {this.onDismissed, this.onSelected, this.calendarEnum, this.title});
 
   @override
   _YearMonthDialogViewState createState() => _YearMonthDialogViewState();
@@ -58,7 +59,7 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                             padding: const EdgeInsets.only(top: 32.0),
                             child: Center(
                               child: Text(
-                                S.of(context).dateOfBirthSmall,
+                                widget.title!,
                                 style: TextStyle(
                                     fontSize: 16, fontWeight: FontWeight.w600),
                               ),
