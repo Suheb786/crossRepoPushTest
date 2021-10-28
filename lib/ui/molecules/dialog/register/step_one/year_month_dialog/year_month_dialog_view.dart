@@ -1,11 +1,12 @@
+import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:domain/constants/enum/calendar_enum.dart';
-import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/year_month_dialog/year_month_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_wheel_widget.dart';
@@ -109,11 +110,15 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                                             ),
                                           ),
                                         ),
-                                        Scrollbar(
-                                          child: FadingEdgeScrollView
-                                              .fromListWheelScrollView(
-                                            gradientFractionOnStart: 0.3,
-                                            gradientFractionOnEnd: 0.3,
+                                        AppScrollableListViewWidget(
+                                          child: ClickableListWheelScrollView(
+                                            scrollController:
+                                                model.scrollController,
+                                            itemHeight: 64,
+                                            itemCount: listData.data!.length,
+                                            onItemTapCallback: (index) {
+                                              model.currentIndexUpdate(index);
+                                            },
                                             child:
                                                 ListWheelScrollView.useDelegate(
                                                     controller:
