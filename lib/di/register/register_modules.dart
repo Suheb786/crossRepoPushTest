@@ -242,8 +242,7 @@ final purposeOfAccountOpeningViewModelProvider =
 final fatcaUSRelevantW8PageViewModelProvider =
     ChangeNotifierProvider.autoDispose<FatcaUSRelevantW8PageViewModel>(
   (ref) => FatcaUSRelevantW8PageViewModel(
-      ref.read(fatcaUSRelevantW8UseCaseProvider),
-      ref.read(uploadDocumentUseCaseProvider)),
+      ref.read(fatcaUSRelevantW8UseCaseProvider)),
 );
 
 ///fatca us relevant w8 address details page view model provider
@@ -257,8 +256,7 @@ final fatcaUSRelevantW8AddressPageViewModelProvider = ChangeNotifierProvider
 final fatcaUSRelevantW9PageViewModelProvider =
     ChangeNotifierProvider.autoDispose<FatcaUSRelevantW9PageViewModel>(
   (ref) => FatcaUSRelevantW9PageViewModel(
-      ref.read(fatcaUSRelevantW9UseCaseProvider),
-      ref.read(uploadDocumentUseCaseProvider)),
+      ref.read(fatcaUSRelevantW9UseCaseProvider)),
 );
 
 ///fatca us relevant w9 address details page view model provider
@@ -272,7 +270,8 @@ final fatcaUSRelevantW9AddressPageViewModelProvider = ChangeNotifierProvider
 final fatcaUSW9TaxPayerDetailsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<FatcaUSW9TaxPayersDetailsPageViewModel>(
   (ref) => FatcaUSW9TaxPayersDetailsPageViewModel(
-      ref.read(fatcaUSW9TaxPayerDetailsUseCaseProvider)),
+      ref.read(fatcaUSW9TaxPayerDetailsUseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider)),
 );
 
 ///tax payer dialog view model provider

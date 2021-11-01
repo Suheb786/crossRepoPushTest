@@ -9,6 +9,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/relationship_with_pep/relationship_with_pep_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/declaration_widget.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget.dart';
@@ -74,16 +75,18 @@ class TaxationDetailsPageView
                             .read(registerStepFourViewModelProvider)
                             .registrationStepFourPageController
                             .jumpToPage(4);
-                      } else if (!model.usTaxResident &&
-                          !model.bornInUS &&
-                          !model.isPEP &&
-                          model.anyOtherCountryResident &&
-                          !model.isUSCitizen) {
-                        ProviderScope.containerOf(context)
-                            .read(registerStepFourViewModelProvider)
-                            .registrationStepFourPageController
-                            .jumpToPage(7);
-                      } else {
+                      }
+                      // else if (!model.usTaxResident &&
+                      //     !model.bornInUS &&
+                      //     !model.isPEP &&
+                      //     model.anyOtherCountryResident &&
+                      //     !model.isUSCitizen) {
+                      //   ProviderScope.containerOf(context)
+                      //       .read(registerStepFourViewModelProvider)
+                      //       .registrationStepFourPageController
+                      //       .jumpToPage(7);
+                      // }
+                      else {
                         ProviderScope.containerOf(context)
                             .read(registerViewModelProvider)
                             .registrationStepsController
@@ -139,6 +142,7 @@ class TaxationDetailsPageView
                                         areYouUSCitizenViewModelProvider,
                                     onToggle: (value) {
                                       model.isUSCitizen = value;
+                                      return Container();
                                     },
                                     title: S.of(context).areYouUSCitizen,
                                   ),
@@ -147,6 +151,7 @@ class TaxationDetailsPageView
                                         areYouUSTaxResidentViewModelProvider,
                                     onToggle: (value) {
                                       model.usTaxResident = value;
+                                      return Container();
                                     },
                                     title: S.of(context).areYouUSTaxResident,
                                     hintText:
@@ -156,6 +161,7 @@ class TaxationDetailsPageView
                                     providerBase: bornInUSViewModelProvider,
                                     onToggle: (value) {
                                       model.bornInUS = value;
+                                      return Container();
                                     },
                                     title: S.of(context).wereBornInUS,
                                   ),
@@ -164,6 +170,43 @@ class TaxationDetailsPageView
                                         taxResidentOtherViewModelProvider,
                                     onToggle: (value) {
                                       model.anyOtherCountryResident = value;
+                                      return Visibility(
+                                        visible: value,
+                                        child: AppTextField(
+                                          labelText: S.of(context).taxCountry,
+                                          hintText: S.of(context).pleaseSelect,
+                                          controller:
+                                              model.countrySelectorController,
+                                          key: model.countrySelectorKey,
+                                          readOnly: true,
+                                          suffixIcon: (value, data) {
+                                            return InkWell(
+                                              onTap: () async {
+                                                CountryDialog.show(context,
+                                                    title: S
+                                                        .of(context)
+                                                        .taxCountrySmall,
+                                                    onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: (value) {
+                                                  Navigator.pop(context);
+                                                  model
+                                                      .countrySelectorController
+                                                      .text = value;
+                                                  model.isValid();
+                                                });
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding:
+                                                      EdgeInsets.only(right: 8),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.downArrow)),
+                                            );
+                                          },
+                                        ),
+                                      );
                                     },
                                     title: S
                                         .of(context)
@@ -173,19 +216,9 @@ class TaxationDetailsPageView
                                     providerBase:
                                         areYouFirstDegreeRelativeViewModelProvider,
                                     onToggle: (value) {
-                                      model.updatePEPSwitchValue(value);
                                       model.isPEP = value;
-                                    },
-                                    title: S
-                                        .of(context)
-                                        .areYouFirstDegreeRelativePEP,
-                                  ),
-                                  AppStreamBuilder<bool>(
-                                    stream: model.pepSwitchValue,
-                                    initialData: false,
-                                    dataBuilder: (context, isActive) {
                                       return Visibility(
-                                        visible: isActive!,
+                                        visible: value,
                                         child: Column(
                                           children: [
                                             AppTextField(
@@ -262,6 +295,9 @@ class TaxationDetailsPageView
                                         ),
                                       );
                                     },
+                                    title: S
+                                        .of(context)
+                                        .areYouFirstDegreeRelativePEP,
                                   ),
                                   AppStreamBuilder<bool>(
                                     stream: model.declarationSelectedStream,

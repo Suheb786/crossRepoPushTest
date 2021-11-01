@@ -11,7 +11,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 class TaxationSwitchWidget extends StatelessWidget {
   final String title;
   final String hintText;
-  final Function(bool) onToggle;
+  final Function(bool)? onToggle;
   final ProviderBase providerBase;
 
   const TaxationSwitchWidget(
@@ -52,11 +52,13 @@ class TaxationSwitchWidget extends StatelessWidget {
                               fontSize: 14),
                         ),
                       ),
-                      SizedBox(width: 16,),
+                      SizedBox(
+                        width: 16,
+                      ),
                       FlutterSwitch(
                         value: isActive!,
                         onToggle: (value) {
-                          onToggle.call(value);
+                          onToggle?.call(value);
                           model.updateSwitchValue(value);
                         },
                         activeText: S.of(context).yes,
@@ -83,6 +85,7 @@ class TaxationSwitchWidget extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         fontSize: 12),
                   ),
+                  onToggle?.call(isActive)
                 ],
               ),
             );

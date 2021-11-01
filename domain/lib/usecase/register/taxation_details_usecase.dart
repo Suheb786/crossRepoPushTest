@@ -20,11 +20,15 @@ class TaxationDetailsUseCaseParams extends Params {
   final String? personName;
   final String? personRole;
   final bool isPEP;
+  final bool anyOtherCountryResident;
+  final String? country;
   final bool declarationSelected;
 
   TaxationDetailsUseCaseParams(
       {this.relationShipPEP,
       this.personName,
+      required this.anyOtherCountryResident,
+      this.country,
       this.personRole,
       required this.isPEP,
       required this.declarationSelected});
@@ -48,7 +52,13 @@ class TaxationDetailsUseCaseParams extends Params {
             type: ErrorType.INVALID_PERSON_ROLE,
             cause: Exception()));
       }
-    } else if (!declarationSelected) {
+    } else if (anyOtherCountryResident && country!.isEmpty) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_TAX_COUNTRY,
+          cause: Exception()));
+    }
+    if (!declarationSelected) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_DECLARATION_SELECTION,

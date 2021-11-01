@@ -322,5 +322,9 @@
   "emptyAddressDocument": "Please upload address document",
   "pleaseUploadNecessaryInfo": "Please upload necessary document to proof yourself",
   "searchYear": "Search year",
-  "noMatchingYearFound": "No matching year found!"
+  "noMatchingYearFound": "No matching year found!",
+  "areYouBeneficialOwnerAccount": "Are you the beneficial owner of the account?",
+  "typeOfExpectedTransactions": "Type of expected transactions",
+  "socialSecurityCard": "Social Security Card",
+  "socialSecurityCardDesc": "We need the copy of your physical Social Security Card"
 }

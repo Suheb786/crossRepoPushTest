@@ -63,7 +63,7 @@ class RegisterSelectionPageView
                 InkWell(
                   onTap: () {
                     Navigator.pushReplacementNamed(
-                        context, RoutePaths.AccountRegistration);
+                        context, RoutePaths.Registration);
                   },
                   child: Container(
                     padding: EdgeInsets.all(18),

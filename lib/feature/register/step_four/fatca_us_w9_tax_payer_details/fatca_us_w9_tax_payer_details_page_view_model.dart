@@ -1,6 +1,8 @@
+import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/constants/enum/us_relevant_w9_tax_payer_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/register/fatca_us_w9_tax_payer_details_usecase.dart';
+import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -13,6 +15,8 @@ import 'package:rxdart/rxdart.dart';
 class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
   final FatcaUSW9TaxPayerDetailsUseCase _fatcaUSW9taxPayerDetailsUseCase;
 
+  final UploadDocumentUseCase _uploadDocumentUseCase;
+
   ///controllers and keys
   final TextEditingController taxPayerTypeController = TextEditingController();
   final GlobalKey<AppTextFieldState> taxPayerTypeKey =
@@ -22,6 +26,11 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
       TextEditingController();
   final GlobalKey<AppTextFieldState> socialSecurityNumberKey =
       GlobalKey(debugLabel: "socialSecurityNumber");
+
+  final TextEditingController uploadDocumentController =
+      TextEditingController();
+  final GlobalKey<AppTextFieldState> uploadDocumentKey =
+      GlobalKey(debugLabel: "uploadDocument");
 
   ///fatca us w9 taxPayer details request subject holder
   PublishSubject<FatcaUSW9TaxPayerDetailsUseCaseParams>
@@ -81,8 +90,33 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
     return valid;
   }
 
+  ///document selection request holder
+  PublishSubject<UploadDocumentUseCaseParams> _uploadDocumentRequest =
+      PublishSubject();
+
+  ///document selection response holder
+  PublishSubject<String> _uploadDocumentResponse = PublishSubject();
+
+  ///document selection response stream
+  Stream<String> get uploadDocumentStream => _uploadDocumentResponse.stream;
+
+  ///document selection stream
+  Stream<bool> get documentUploadedStream => _documentUploadedRequest.stream;
+
+  ///document selection request holder
+  PublishSubject<bool> _documentUploadedRequest = PublishSubject();
+
+  void updateUploadDocumentField(String value) {
+    uploadDocumentController.text = value.split("/").last;
+    updateDocumentUploadedStream(true);
+  }
+
+  void updateDocumentUploadedStream(bool value) {
+    _documentUploadedRequest.safeAdd(value);
+  }
+
   FatcaUSW9TaxPayersDetailsPageViewModel(
-      this._fatcaUSW9taxPayerDetailsUseCase) {
+      this._fatcaUSW9taxPayerDetailsUseCase, this._uploadDocumentUseCase) {
     _fatcaUSW9taxPayerDetailsRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -93,6 +127,17 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           getError(event);
           showErrorState();
+        }
+      });
+    });
+
+    _uploadDocumentRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _uploadDocumentUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        if (event.data != null) {
+          _uploadDocumentResponse.safeAdd(event.data!);
         }
       });
     });
@@ -129,11 +174,19 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
     }
   }
 
+  void uploadDocument(DocumentTypeEnum type) {
+    _uploadDocumentRequest
+        .safeAdd(UploadDocumentUseCaseParams(documentType: type));
+  }
+
   @override
   void dispose() {
     _fatcaUSW9taxPayerDetailsRequest.close();
     _fatcaUSW9taxPayerDetailsResponse.close();
     _allFieldValidatorSubject.close();
+    _uploadDocumentRequest.close();
+    _uploadDocumentResponse.close();
+    _documentUploadedRequest.close();
     super.dispose();
   }
 }

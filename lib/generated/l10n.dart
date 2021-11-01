@@ -3250,6 +3250,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Are you the beneficial owner of the account?`
+  String get areYouBeneficialOwnerAccount {
+    return Intl.message(
+      'Are you the beneficial owner of the account?',
+      name: 'areYouBeneficialOwnerAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type of expected transactions`
+  String get typeOfExpectedTransactions {
+    return Intl.message(
+      'Type of expected transactions',
+      name: 'typeOfExpectedTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Social Security Card`
+  String get socialSecurityCard {
+    return Intl.message(
+      'Social Security Card',
+      name: 'socialSecurityCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We need the copy of your physical Social Security Card`
+  String get socialSecurityCardDesc {
+    return Intl.message(
+      'We need the copy of your physical Social Security Card',
+      name: 'socialSecurityCardDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

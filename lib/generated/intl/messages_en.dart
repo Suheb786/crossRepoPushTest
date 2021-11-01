@@ -68,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "appName": MessageLookupByLibrary.simpleMessage("Neo Bank"),
         "areYouAnyFirstDegreeQ": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a Political Exposed Person?"),
+        "areYouBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
+            "Are you the beneficial owner of the account?"),
         "areYouFirstDegreeRelativePEP": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a Political Exposed Person?"),
         "areYouTaxResidentQ": MessageLookupByLibrary.simpleMessage(
@@ -492,6 +494,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
+        "socialSecurityCard":
+            MessageLookupByLibrary.simpleMessage("Social Security Card"),
+        "socialSecurityCardDesc": MessageLookupByLibrary.simpleMessage(
+            "We need the copy of your physical Social Security Card"),
         "socialSecurityNUmber":
             MessageLookupByLibrary.simpleMessage("SOCIAL SECURITY NUMBER"),
         "spouseName": MessageLookupByLibrary.simpleMessage("Spouse Name"),
@@ -546,6 +552,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Total Additional Income"),
         "totalAnnualIncome":
             MessageLookupByLibrary.simpleMessage("TOTAL ANNUAL INCOME"),
+        "typeOfExpectedTransactions": MessageLookupByLibrary.simpleMessage(
+            "Type of expected transactions"),
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("Type of Income"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
