@@ -1,10 +1,11 @@
-import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
+import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/reason_of_unavailability/reason_of_unavailability_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/reason_unavailability_list_widget.dart';
@@ -54,7 +55,7 @@ class ReasonOfUnavailabilityDialogView extends StatelessWidget {
                       ),
                       Expanded(
                           child: Stack(
-                            alignment: Alignment.center,
+                        alignment: Alignment.center,
                         children: [
                           Padding(
                             padding:
@@ -68,10 +69,15 @@ class ReasonOfUnavailabilityDialogView extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Scrollbar(
-                            child: FadingEdgeScrollView.fromListWheelScrollView(
-                              gradientFractionOnStart: 0.3,
-                              gradientFractionOnEnd: 0.3,
+                          AppScrollableListViewWidget(
+                            child: ClickableListWheelScrollView(
+                              scrollController: model.scrollController,
+                              itemHeight: 110,
+                              itemCount:
+                                  model.reasonOfUnavailabilityList.length,
+                              onItemTapCallback: (index) {
+                                model.currentIndexUpdate(index);
+                              },
                               child: ListWheelScrollView.useDelegate(
                                   controller: model.scrollController,
                                   itemExtent: 110,

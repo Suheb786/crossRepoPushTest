@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -3225,6 +3226,26 @@ class S {
     return Intl.message(
       'Please upload necessary document to proof yourself',
       name: 'pleaseUploadNecessaryInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search year`
+  String get searchYear {
+    return Intl.message(
+      'Search year',
+      name: 'searchYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No matching year found!`
+  String get noMatchingYearFound {
+    return Intl.message(
+      'No matching year found!',
+      name: 'noMatchingYearFound',
       desc: '',
       args: [],
     );

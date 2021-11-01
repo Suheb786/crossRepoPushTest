@@ -16,8 +16,7 @@ class AgentSelectionListWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 16),
       padding: EdgeInsets.only(left: 28, right: 20, top: 20, bottom: 20),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(16),
-          color: item.isSelected! ? AppColor.very_light_gray : null),
+          borderRadius: BorderRadius.circular(16), color: Colors.transparent),
       child: Row(
         children: <Widget>[
           Container(

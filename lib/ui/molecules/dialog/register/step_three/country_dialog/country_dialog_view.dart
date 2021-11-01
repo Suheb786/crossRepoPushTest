@@ -1,5 +1,5 @@
+import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:domain/model/country/country.dart';
-import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +15,8 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+
+import '../../../../app_scollable_list_view_widget.dart';
 
 class CountryDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -104,11 +106,15 @@ class CountryDialogView extends StatelessWidget {
                                               ),
                                             ),
                                           ),
-                                          Scrollbar(
-                                            child: FadingEdgeScrollView
-                                                .fromListWheelScrollView(
-                                              gradientFractionOnStart: 0.3,
-                                              gradientFractionOnEnd: 0.3,
+                                          AppScrollableListViewWidget(
+                                            child: ClickableListWheelScrollView(
+                                              scrollController:
+                                                  model.scrollController,
+                                              itemHeight: 72,
+                                              itemCount: data.data!.length,
+                                              onItemTapCallback: (index) {
+                                                model.selectCountry(index);
+                                              },
                                               child: ListWheelScrollView
                                                   .useDelegate(
                                                       controller: model
