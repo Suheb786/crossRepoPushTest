@@ -74,6 +74,9 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                             } else if (data.appError!.type ==
                                 ErrorType.EMPTY_MOTHER_NAME) {
                               model.motherNameKey.currentState!.isValid = false;
+                            } else if (data.appError!.type ==
+                                ErrorType.INVALID_DECLARATION_SELECTION) {
+                              model.showErrorState();
                             } else {
                               model.genderKey.currentState!.isValid = false;
                             }
@@ -262,6 +265,61 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         height: MediaQuery.of(context)
                                             .viewInsets
                                             .bottom,
+                                      ),
+
+                                      ///TODO:check for fontsize, padding etc once figma get updated
+                                      SizedBox(
+                                        height: 24,
+                                      ),
+                                      TextButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            S.of(context).scanIDAgain,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                                color: AppColor.vivid_orange),
+                                          )),
+                                      SizedBox(
+                                        height: 24,
+                                      ),
+                                      Row(
+                                        children: [
+                                          AppStreamBuilder<bool>(
+                                              stream: model
+                                                  .declarationSelectedStream,
+                                              initialData: false,
+                                              dataBuilder:
+                                                  (context, isChecked) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    model
+                                                        .updateDeclarationValue(
+                                                            !(isChecked!));
+                                                    model.validateDetails();
+                                                  },
+                                                  child: isChecked == false
+                                                      ? AppSvg.asset(
+                                                          AssetUtils.ellipse)
+                                                      : AppSvg.asset(
+                                                          AssetUtils.checkBox),
+                                                );
+                                              }),
+                                          SizedBox(
+                                            width: 16,
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              S
+                                                  .of(context)
+                                                  .confirmDetailsConfirmation,
+                                              style: TextStyle(
+                                                  color: AppColor.white,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 14),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                       SizedBox(
                                         height: 32,

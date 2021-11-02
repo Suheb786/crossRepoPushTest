@@ -18,17 +18,14 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
       GlobalKey(debugLabel: "natureOfSpecialNeed");
   final GlobalKey<AppTextFieldState> employeeStatusKey =
       GlobalKey(debugLabel: "employeeStatus");
-  final GlobalKey<AppTextFieldState> personNameKey =
-      GlobalKey(debugLabel: "personName");
-  final GlobalKey<AppTextFieldState> personRoleKey =
-      GlobalKey(debugLabel: "personRole");
+  final GlobalKey<AppTextFieldState> jobNameKey =
+      GlobalKey(debugLabel: "jobName");
 
   final TextEditingController spouseNameController = TextEditingController();
   final TextEditingController natureController = TextEditingController();
   final TextEditingController employeeStatusController =
       TextEditingController();
-  final TextEditingController personNameController = TextEditingController();
-  final TextEditingController personRoleController = TextEditingController();
+  final TextEditingController jobNameController = TextEditingController();
 
   bool isMarried = false;
   bool isPerson = false;
@@ -52,6 +49,38 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
     employeeStatusController.text = value;
   }
 
+  /// show button Subject holder
+  BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get showButtonStream => _showButtonSubject.stream;
+
+  void validate() {
+    bool isValid = false;
+    if (_jobNameVisibilitySubject.value) {
+      if (jobNameController.text.isNotEmpty &&
+          employeeStatusController.text.isNotEmpty) {
+        isValid = true;
+      }
+    } else if (employeeStatusController.text.isNotEmpty) {
+      isValid = true;
+    }
+    _showButtonSubject.safeAdd(isValid);
+  }
+
+  /// job name visibility Subject holder
+  BehaviorSubject<bool> _jobNameVisibilitySubject =
+      BehaviorSubject.seeded(false);
+
+  Stream<bool> get jobNameVisibilityStream => _jobNameVisibilitySubject.stream;
+
+  void updateJobNameVisibility() {
+    if (employeeStatusController.text == 'Other') {
+      _jobNameVisibilitySubject.safeAdd(true);
+    } else {
+      _jobNameVisibilitySubject.safeAdd(false);
+    }
+  }
+
   ProfileDetailsPageViewModel(this._profileUseCase) {
     _profileDetailsRequest.listen((value) {
       RequestManager(value,
@@ -73,6 +102,8 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
       natureOfSpecialNeedKey.currentState!.isValid = false;
     } else if (type == ErrorType.INVALID_EMPLOYEE_STATUS) {
       employeeStatusKey.currentState!.isValid = false;
+    } else if (type == ErrorType.INVALID_JOB_NAME) {
+      jobNameKey.currentState!.isValid = false;
     }
   }
 
@@ -90,18 +121,20 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
 
   void validateTextFields() {
     _profileDetailsRequest.safeAdd(ProfileDetailsUseCaseParams(
-      isMarried: isMarried,
-      isPerson: isPerson,
-      isRelative: isRelative,
-      spouseName: spouseNameController.text,
-      natureOfNeeds: natureController.text,
-      employeeStatus: employeeStatusController.text,
-    ));
+        isMarried: isMarried,
+        isPerson: isPerson,
+        isRelative: isRelative,
+        spouseName: spouseNameController.text,
+        natureOfNeeds: natureController.text,
+        employeeStatus: employeeStatusController.text,
+        isEmploymentStatusOthers: _jobNameVisibilitySubject.value,
+        jobName: jobNameController.text));
   }
 
   @override
   void dispose() {
     _profileDetailsRequest.close();
+    _showButtonSubject.close();
     super.dispose();
   }
 }

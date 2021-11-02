@@ -41,12 +41,23 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   DateTime selectedExpiryDate = DateTime.now();
 
+  /// declaration selected subject holder
+  BehaviorSubject<bool> _declarationSelectedSubject =
+      BehaviorSubject.seeded(false);
+
+  /// declaration selected response stream
+  Stream<bool> get declarationSelectedStream =>
+      _declarationSelectedSubject.stream;
+
+  void updateDeclarationValue(bool value) {
+    _declarationSelectedSubject.safeAdd(value);
+  }
+
   /// confirm detail request subject holder
   PublishSubject<ConfirmDetailUseCaseParams> _confirmDetailRequest =
       PublishSubject();
 
   /// confirm detail response subject holder
-  // ignore: close_sinks
   PublishSubject<Resource<bool>> _confirmDetailResponse = PublishSubject();
 
   Stream<Resource<bool>> get confirmDetailResponseStream =>
@@ -79,7 +90,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         nationality: nationalityController.text,
         expiryDate: expiryDateController.text,
         gender: genderController.text,
-        motherName: motherNameController.text));
+        motherName: motherNameController.text,
+        declarationSelected: _declarationSelectedSubject.value));
   }
 
   void validateDetails() {
@@ -89,7 +101,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         nationalityController.text.isNotEmpty &&
         expiryDateController.text.isNotEmpty &&
         genderController.text.isNotEmpty &&
-        motherNameController.text.isNotEmpty) {
+        motherNameController.text.isNotEmpty &&
+        _declarationSelectedSubject.value) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);
@@ -101,6 +114,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     _confirmDetailRequest.close();
     _showButtonSubject.close();
     _confirmDetailResponse.close();
+    _declarationSelectedSubject.close();
     super.dispose();
   }
 }

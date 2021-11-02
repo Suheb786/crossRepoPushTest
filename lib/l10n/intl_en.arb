@@ -326,5 +326,14 @@
   "areYouBeneficialOwnerAccount": "Are you the beneficial owner of the account?",
   "typeOfExpectedTransactions": "Type of expected transactions",
   "socialSecurityCard": "Social Security Card",
-  "socialSecurityCardDesc": "We need the copy of your physical Social Security Card"
+  "socialSecurityCardDesc": "We need the copy of your physical Social Security Card",
+  "scanIDAgain": "Scan ID again",
+  "confirmDetailsConfirmation": "I confirm and agree that all my ID details are correct",
+  "permanentAddress": "Permanent address",
+  "jobName": "JOB NAME",
+  "invalidJobName": "Enter job name",
+  "eightCharacters": "8 characters",
+  "oneUpperCaseLetter": "1 uppercase letter",
+  "oneNumber": "1 number",
+  "oneSymbol": "1 symbol"
 }

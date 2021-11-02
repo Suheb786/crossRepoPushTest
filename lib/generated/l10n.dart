@@ -3290,6 +3290,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Scan ID again`
+  String get scanIDAgain {
+    return Intl.message(
+      'Scan ID again',
+      name: 'scanIDAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I confirm and agree that all my ID details are correct`
+  String get confirmDetailsConfirmation {
+    return Intl.message(
+      'I confirm and agree that all my ID details are correct',
+      name: 'confirmDetailsConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent address`
+  String get permanentAddress {
+    return Intl.message(
+      'Permanent address',
+      name: 'permanentAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `JOB NAME`
+  String get jobName {
+    return Intl.message(
+      'JOB NAME',
+      name: 'jobName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter job name`
+  String get invalidJobName {
+    return Intl.message(
+      'Enter job name',
+      name: 'invalidJobName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `8 characters`
+  String get eightCharacters {
+    return Intl.message(
+      '8 characters',
+      name: 'eightCharacters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 uppercase letter`
+  String get oneUpperCaseLetter {
+    return Intl.message(
+      '1 uppercase letter',
+      name: 'oneUpperCaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 number`
+  String get oneNumber {
+    return Intl.message(
+      '1 number',
+      name: 'oneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 symbol`
+  String get oneSymbol {
+    return Intl.message(
+      '1 symbol',
+      name: 'oneSymbol',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

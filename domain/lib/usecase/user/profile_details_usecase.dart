@@ -24,6 +24,8 @@ class ProfileDetailsUseCaseParams extends Params {
   final bool isMarried;
   final bool isPerson;
   final bool isRelative;
+  bool isEmploymentStatusOthers;
+  final String? jobName;
 
   ProfileDetailsUseCaseParams(
       {this.spouseName,
@@ -31,11 +33,12 @@ class ProfileDetailsUseCaseParams extends Params {
       this.employeeStatus,
       required this.isMarried,
       required this.isPerson,
-      required this.isRelative});
+      required this.isRelative,
+      required this.isEmploymentStatusOthers,
+      this.jobName});
 
   @override
   Either<AppError, bool> verify() {
-    //To do: change validation msg
     if (isMarried && spouseName!.isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
@@ -46,13 +49,17 @@ class ProfileDetailsUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_NATURE,
           cause: Exception()));
-    } else if (isRelative && employeeStatus!.isEmpty) {
+    } else if (employeeStatus!.isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_EMPLOYEE_STATUS,
           cause: Exception()));
+    } else if (isEmploymentStatusOthers && jobName!.isEmpty) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_JOB_NAME,
+          cause: Exception()));
     }
-    //natureOfNeeds.isEmpty || relationShipPEP.isEmpty||personName.isEmpty||personRole.isEmpty
     return Right(true);
   }
 }

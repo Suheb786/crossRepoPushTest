@@ -24,6 +24,7 @@ class ConfirmDetailUseCaseParams extends Params {
   final String? expiryDate;
   final String? gender;
   final String? motherName;
+  bool declarationSelected;
 
   ConfirmDetailUseCaseParams(
       {required this.name,
@@ -32,6 +33,7 @@ class ConfirmDetailUseCaseParams extends Params {
       required this.nationality,
       required this.expiryDate,
       required this.gender,
+      required this.declarationSelected,
       this.motherName});
 
   @override
@@ -70,6 +72,11 @@ class ConfirmDetailUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_MOTHER_NAME,
+          cause: Exception()));
+    } else if (!declarationSelected) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_DECLARATION_SELECTION,
           cause: Exception()));
     }
     return Right(true);

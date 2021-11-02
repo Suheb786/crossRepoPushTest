@@ -105,6 +105,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "citySmall": MessageLookupByLibrary.simpleMessage("City"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
+        "confirmDetailsConfirmation": MessageLookupByLibrary.simpleMessage(
+            "I confirm and agree that all my ID details are correct"),
         "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage(
             "Please confirm your\ndetails below"),
         "confirmInfoTC": MessageLookupByLibrary.simpleMessage(
@@ -141,6 +143,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Enter Date Of Birth"),
         "editInformation":
             MessageLookupByLibrary.simpleMessage("Edit Information"),
+        "eightCharacters": MessageLookupByLibrary.simpleMessage("8 characters"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
         "emailAddressSmall":
             MessageLookupByLibrary.simpleMessage("Email Address"),
@@ -301,6 +304,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter identification number"),
         "invalidIncomeType":
             MessageLookupByLibrary.simpleMessage("Enter income type"),
+        "invalidJobName":
+            MessageLookupByLibrary.simpleMessage("Enter job name"),
         "invalidMainSourceIncome":
             MessageLookupByLibrary.simpleMessage("Enter source of income."),
         "invalidMonthlyIncome":
@@ -344,6 +349,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "jobIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
         "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
             "Next, tell us how do\nmake a living"),
+        "jobName": MessageLookupByLibrary.simpleMessage("JOB NAME"),
         "letsCreateYourAccount":
             MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
         "loyaltyRewards": MessageLookupByLibrary.simpleMessage(
@@ -396,6 +402,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "ofTheBank": MessageLookupByLibrary.simpleMessage("of the bank."),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "Once fit, your ID will be scanned automatically"),
+        "oneNumber": MessageLookupByLibrary.simpleMessage("1 number"),
+        "oneSymbol": MessageLookupByLibrary.simpleMessage("1 symbol"),
+        "oneUpperCaseLetter":
+            MessageLookupByLibrary.simpleMessage("1 uppercase letter"),
         "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
@@ -408,6 +418,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create Password"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Password did not match"),
+        "permanentAddress":
+            MessageLookupByLibrary.simpleMessage("Permanent address"),
         "permanentResidentAddressLine": MessageLookupByLibrary.simpleMessage(
             "Permanent residence address Line"),
         "personName": MessageLookupByLibrary.simpleMessage("PERSON’S NAME"),
@@ -484,6 +496,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please accept the above terms and conditions"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
+        "scanIDAgain": MessageLookupByLibrary.simpleMessage("Scan ID again"),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("Schedule for later"),
         "searchCity": MessageLookupByLibrary.simpleMessage("Search city"),

@@ -66,9 +66,21 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                 ErrorType.EMPTY_STREET_ADDRESS) {
                               model.streetAddressKey.currentState!.isValid =
                                   false;
-                            } else {
+                            } else if (data.appError!.type ==
+                                ErrorType.EMPTY_BUILDING_NAME_OR_NUMBER) {
                               model.buildingNameOrNumberKey.currentState!
                                   .isValid = false;
+                            } else if (data.appError!.type ==
+                                ErrorType.EMPTY_PERMANENT_HOME_ADDRESS) {
+                              model.permanentHomeAddressKey.currentState!
+                                  .isValid = false;
+                            } else if (data.appError!.type ==
+                                ErrorType.EMPTY_PERMANENT_STREET_ADDRESS) {
+                              model.permanentStreetAddressKey.currentState!
+                                  .isValid = false;
+                            } else {
+                              model.permanentBuildingNameOrNumberKey
+                                  .currentState!.isValid = false;
                             }
                             model.showToastWithError(data.appError!);
                           }
@@ -107,122 +119,251 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                       begin: Alignment.bottomCenter,
                                       end: Alignment.topCenter),
                                 ),
-                                child: Stack(
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    SingleChildScrollView(
-                                      child: Column(
-                                        children: [
-                                          AppTextField(
-                                            labelText:
-                                                S.of(context).residentCountry,
-                                            hintText: S
-                                                .of(context)
-                                                .residentCountryHint,
-                                            readOnly: true,
-                                            controller:
-                                                model.residentCountryController,
-                                            suffixIcon: (value, data) {
-                                              return InkWell(
-                                                onTap: () async {
-                                                  CountryDialog.show(context,
-                                                      title: S
-                                                          .of(context)
-                                                          .residentCountrySmall,
-                                                      onDismissed: () {
-                                                    Navigator.pop(context);
-                                                  }, onSelected: (value) {
-                                                    Navigator.pop(context);
-                                                    model
-                                                        .residentCountryController
-                                                        .text = value;
-                                                    model.validateAddress();
-                                                  });
-                                                },
-                                                child: Container(
-                                                    height: 16,
-                                                    width: 16,
-                                                    padding: EdgeInsets.only(
-                                                        right: 8),
-                                                    child: AppSvg.asset(
-                                                        AssetUtils.downArrow)),
-                                              );
-                                            },
-                                            key: model.residentCountryKey,
-                                          ),
-                                          SizedBox(
-                                            height: 16,
-                                          ),
-                                          AppTextField(
-                                            labelText:
-                                                S.of(context).homeAddress,
-                                            hintText:
-                                                S.of(context).homeAddressHint,
-                                            inputType: TextInputType.text,
-                                            controller:
-                                                model.homeAddressController,
-                                            key: model.homeAddressrKey,
-                                            onChanged: (value) =>
-                                                model.validateAddress(),
-                                            suffixIcon: (isValid, value) =>
-                                                InkWell(
-                                                    onTap: () =>
-                                                        HomeAddressDialog.show(
-                                                            context, onSelected:
-                                                                (value) {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                          model
-                                                              .homeAddressController
-                                                              .text = value;
-                                                        }, onDismissed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        }),
-                                                    child: Image.asset(
-                                                        AssetUtils.location)),
-                                          ),
-                                          SizedBox(
-                                            height: 16,
-                                          ),
-                                          AppTextField(
-                                            labelText:
-                                                S.of(context).streetAddress,
-                                            hintText:
-                                                S.of(context).streetAddressHint,
-                                            inputType: TextInputType.text,
-                                            controller:
-                                                model.streetAddressController,
-                                            key: model.streetAddressKey,
-                                            onChanged: (value) =>
-                                                model.validateAddress(),
-                                          ),
-                                          SizedBox(
-                                            height: 16,
-                                          ),
-                                          AppTextField(
-                                            labelText:
-                                                S.of(context).buildingNameOrNo,
-                                            hintText: S
-                                                .of(context)
-                                                .buildingNameOrNoHint,
-                                            inputType: TextInputType.text,
-                                            controller: model
-                                                .buildingNameOrNumberController,
-                                            key: model.buildingNameOrNumberKey,
-                                            onChanged: (value) =>
-                                                model.validateAddress(),
-                                          ),
-                                          SizedBox(
-                                            height: MediaQuery.of(context)
-                                                .viewInsets
-                                                .bottom,
-                                          ),
-                                        ],
+                                    Expanded(
+                                      child: SingleChildScrollView(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            AppTextField(
+                                              labelText:
+                                                  S.of(context).residentCountry,
+                                              hintText: S
+                                                  .of(context)
+                                                  .residentCountryHint,
+                                              readOnly: true,
+                                              controller: model
+                                                  .residentCountryController,
+                                              suffixIcon: (value, data) {
+                                                return InkWell(
+                                                  onTap: () async {
+                                                    CountryDialog.show(context,
+                                                        title: S
+                                                            .of(context)
+                                                            .residentCountrySmall,
+                                                        onDismissed: () {
+                                                      Navigator.pop(context);
+                                                    }, onSelected: (value) {
+                                                      Navigator.pop(context);
+                                                      model
+                                                          .residentCountryController
+                                                          .text = value;
+                                                      model
+                                                          .updatePermanentAddressVisibility();
+                                                      model.validateAddress();
+                                                    });
+                                                  },
+                                                  child: Container(
+                                                      height: 16,
+                                                      width: 16,
+                                                      padding: EdgeInsets.only(
+                                                          right: 8),
+                                                      child: AppSvg.asset(
+                                                          AssetUtils
+                                                              .downArrow)),
+                                                );
+                                              },
+                                              key: model.residentCountryKey,
+                                            ),
+                                            SizedBox(
+                                              height: 16,
+                                            ),
+                                            AppTextField(
+                                              labelText:
+                                                  S.of(context).homeAddress,
+                                              hintText:
+                                                  S.of(context).homeAddressHint,
+                                              inputType: TextInputType.text,
+                                              controller:
+                                                  model.homeAddressController,
+                                              key: model.homeAddressrKey,
+                                              onChanged: (value) =>
+                                                  model.validateAddress(),
+                                              suffixIcon: (isValid, value) =>
+                                                  InkWell(
+                                                      onTap: () =>
+                                                          HomeAddressDialog
+                                                              .show(context,
+                                                                  onSelected:
+                                                                      (value) {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                            model
+                                                                .homeAddressController
+                                                                .text = value;
+                                                          }, onDismissed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          }),
+                                                      child: Image.asset(
+                                                          AssetUtils.location)),
+                                            ),
+                                            SizedBox(
+                                              height: 16,
+                                            ),
+                                            AppTextField(
+                                              labelText:
+                                                  S.of(context).streetAddress,
+                                              hintText: S
+                                                  .of(context)
+                                                  .streetAddressHint,
+                                              inputType: TextInputType.text,
+                                              controller:
+                                                  model.streetAddressController,
+                                              key: model.streetAddressKey,
+                                              onChanged: (value) =>
+                                                  model.validateAddress(),
+                                            ),
+                                            SizedBox(
+                                              height: 16,
+                                            ),
+                                            AppTextField(
+                                              labelText: S
+                                                  .of(context)
+                                                  .buildingNameOrNo,
+                                              hintText: S
+                                                  .of(context)
+                                                  .buildingNameOrNoHint,
+                                              inputType: TextInputType.text,
+                                              controller: model
+                                                  .buildingNameOrNumberController,
+                                              key:
+                                                  model.buildingNameOrNumberKey,
+                                              onChanged: (value) =>
+                                                  model.validateAddress(),
+                                            ),
+
+                                            ///TODO:check for fontsize, padding etc once figma get updated
+                                            SizedBox(
+                                              height: 16,
+                                            ),
+                                            AppStreamBuilder<bool>(
+                                              stream: model
+                                                  .permanentAddressVisibilityStream,
+                                              initialData: false,
+                                              dataBuilder:
+                                                  (context, visibility) {
+                                                return Visibility(
+                                                  visible: visibility!,
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        S
+                                                            .of(context)
+                                                            .permanentAddress,
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color:
+                                                                AppColor.white),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 16,
+                                                      ),
+                                                      AppTextField(
+                                                        labelText: S
+                                                            .of(context)
+                                                            .homeAddress,
+                                                        hintText: S
+                                                            .of(context)
+                                                            .pleaseEnter,
+                                                        inputType:
+                                                            TextInputType.text,
+                                                        controller: model
+                                                            .permanentHomeAddressController,
+                                                        key: model
+                                                            .permanentHomeAddressKey,
+                                                        onChanged: (value) => model
+                                                            .validateAddress(),
+                                                        suffixIcon: (isValid,
+                                                                value) =>
+                                                            InkWell(
+                                                                onTap: () =>
+                                                                    HomeAddressDialog.show(
+                                                                        context,
+                                                                        onSelected:
+                                                                            (value) {
+                                                                      Navigator.of(
+                                                                              context)
+                                                                          .pop();
+                                                                      model.homeAddressController
+                                                                              .text =
+                                                                          value;
+                                                                    }, onDismissed:
+                                                                            () {
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    }),
+                                                                child: Image.asset(
+                                                                    AssetUtils
+                                                                        .location)),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 16,
+                                                      ),
+                                                      AppTextField(
+                                                        labelText: S
+                                                            .of(context)
+                                                            .streetAddress,
+                                                        hintText: S
+                                                            .of(context)
+                                                            .pleaseEnter,
+                                                        inputType:
+                                                            TextInputType.text,
+                                                        controller: model
+                                                            .permanentStreetAddressController,
+                                                        key: model
+                                                            .permanentStreetAddressKey,
+                                                        onChanged: (value) => model
+                                                            .validateAddress(),
+                                                      ),
+                                                      SizedBox(
+                                                        height: 16,
+                                                      ),
+                                                      AppTextField(
+                                                        labelText: S
+                                                            .of(context)
+                                                            .buildingNameOrNo,
+                                                        hintText: S
+                                                            .of(context)
+                                                            .pleaseEnter,
+                                                        inputType:
+                                                            TextInputType.text,
+                                                        controller: model
+                                                            .permanentBuildingNameOrNumberController,
+                                                        key: model
+                                                            .permanentBuildingNameOrNumberKey,
+                                                        onChanged: (value) => model
+                                                            .validateAddress(),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: MediaQuery.of(context)
+                                                  .viewInsets
+                                                  .bottom,
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                    Positioned(
-                                      right: 45,
-                                      bottom: 0,
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        right: 45,
+                                        top: 16,
+                                      ),
                                       child: AppStreamBuilder<bool>(
                                           stream: model.showButtonStream,
                                           initialData: false,

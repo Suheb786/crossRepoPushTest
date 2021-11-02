@@ -107,8 +107,10 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                           inputType: TextInputType.text,
                                           controller:
                                               model.createPasswordController,
-                                          onChanged: (value) =>
-                                              model.validatePassword(),
+                                          onChanged: (value) {
+                                            model.validatePassword();
+                                            model.validateAllFields();
+                                          },
                                           suffixIcon: (isChecked, value) {
                                             return InkWell(
                                               onTap: () {
@@ -135,6 +137,225 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                           .very_light_violet,
                                                     ),
                                             );
+                                          },
+                                          textHintWidget:
+                                              (hasFocus, isValid, value) {
+                                            ///TODO: check design specification as per figma
+                                            return Visibility(
+                                                visible: hasFocus,
+                                                child: Wrap(
+                                                  children: [
+                                                    Chip(
+                                                      elevation: 0,
+                                                      padding:
+                                                          EdgeInsets.all(8),
+                                                      backgroundColor: model
+                                                              .minimumEightCharacters
+                                                          ? AppColor
+                                                              .vivid_orange
+                                                          : AppColor
+                                                              .strong_violet,
+                                                      shadowColor: Colors.black,
+
+                                                      avatar: model
+                                                              .minimumEightCharacters
+                                                          ? AppSvg.asset(
+                                                              AssetUtils.tick,
+                                                              color: AppColor
+                                                                  .white)
+                                                          : Container(),
+                                                      label: Text(
+                                                        S
+                                                            .of(context)
+                                                            .eightCharacters,
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            color:
+                                                                AppColor.white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ), //Text
+                                                    ),
+                                                    Chip(
+                                                      elevation: 0,
+                                                      padding:
+                                                          EdgeInsets.all(8),
+                                                      backgroundColor: model
+                                                              .hasUpperCase
+                                                          ? AppColor
+                                                              .vivid_orange
+                                                          : AppColor
+                                                              .strong_violet,
+                                                      shadowColor: Colors.black,
+
+                                                      avatar: model.hasUpperCase
+                                                          ? AppSvg.asset(
+                                                              AssetUtils.tick,
+                                                              color: AppColor
+                                                                  .white)
+                                                          : Container(),
+                                                      label: Text(
+                                                        S
+                                                            .of(context)
+                                                            .oneUpperCaseLetter,
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            color:
+                                                                AppColor.white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ), //Text
+                                                    ),
+                                                    Chip(
+                                                      elevation: 0,
+                                                      padding:
+                                                          EdgeInsets.all(8),
+                                                      backgroundColor: model
+                                                              .containsDigit
+                                                          ? AppColor
+                                                              .vivid_orange
+                                                          : AppColor
+                                                              .strong_violet,
+                                                      shadowColor: Colors.black,
+
+                                                      avatar: model
+                                                              .containsDigit
+                                                          ? AppSvg.asset(
+                                                              AssetUtils.tick,
+                                                              color: AppColor
+                                                                  .white)
+                                                          : Container(),
+                                                      label: Text(
+                                                        S.of(context).oneNumber,
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            color:
+                                                                AppColor.white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ), //Text
+                                                    ),
+                                                    Chip(
+                                                      elevation: 0,
+                                                      padding:
+                                                          EdgeInsets.all(8),
+                                                      backgroundColor: model
+                                                              .hasSymbol
+                                                          ? AppColor
+                                                              .vivid_orange
+                                                          : AppColor
+                                                              .strong_violet,
+                                                      shadowColor: Colors.black,
+
+                                                      avatar: model.hasSymbol
+                                                          ? AppSvg.asset(
+                                                              AssetUtils.tick,
+                                                              color: AppColor
+                                                                  .white)
+                                                          : Container(),
+                                                      label: Text(
+                                                        S.of(context).oneSymbol,
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            color:
+                                                                AppColor.white,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ), //Text
+                                                    ),
+                                                    // Container(
+                                                    //   decoration: BoxDecoration(
+                                                    //     color: AppColor.vivid_orange,
+                                                    //     borderRadius: BorderRadius.circular(16)
+                                                    //   ),
+                                                    //   padding: EdgeInsets.all(8),
+                                                    //   child: Row(
+                                                    //     children: [
+                                                    //       AppSvg.asset(
+                                                    //           AssetUtils.tick),
+                                                    //       Flexible(
+                                                    //         child: Text(
+                                                    //           S
+                                                    //               .of(context)
+                                                    //               .eightCharacters,
+                                                    //           style: TextStyle(
+                                                    //               fontSize: 14,
+                                                    //               fontWeight:
+                                                    //                   FontWeight
+                                                    //                       .w600,
+                                                    //               color: AppColor
+                                                    //                   .white),
+                                                    //         ),
+                                                    //       )
+                                                    //     ],
+                                                    //   ),
+                                                    // ),
+                                                    // Container(
+                                                    //   child: Row(
+                                                    //     children: [
+                                                    //       AppSvg.asset(
+                                                    //           AssetUtils.tick),
+                                                    //       Text(
+                                                    //         S
+                                                    //             .of(context)
+                                                    //             .oneUpperCaseLetter,
+                                                    //         style: TextStyle(
+                                                    //             fontSize: 14,
+                                                    //             fontWeight:
+                                                    //                 FontWeight
+                                                    //                     .w600,
+                                                    //             color: AppColor
+                                                    //                 .white),
+                                                    //       )
+                                                    //     ],
+                                                    //   ),
+                                                    // ),
+                                                    // Container(
+                                                    //   child: Row(
+                                                    //     children: [
+                                                    //       AppSvg.asset(
+                                                    //           AssetUtils.tick),
+                                                    //       Text(
+                                                    //         S
+                                                    //             .of(context)
+                                                    //             .oneNumber,
+                                                    //         style: TextStyle(
+                                                    //             fontSize: 14,
+                                                    //             fontWeight:
+                                                    //                 FontWeight
+                                                    //                     .w600,
+                                                    //             color: AppColor
+                                                    //                 .white),
+                                                    //       )
+                                                    //     ],
+                                                    //   ),
+                                                    // ),
+                                                    // Container(
+                                                    //   child: Row(
+                                                    //     children: [
+                                                    //       AppSvg.asset(
+                                                    //           AssetUtils.tick),
+                                                    //       Text(
+                                                    //         S
+                                                    //             .of(context)
+                                                    //             .oneSymbol,
+                                                    //         style: TextStyle(
+                                                    //             fontSize: 14,
+                                                    //             fontWeight:
+                                                    //                 FontWeight
+                                                    //                     .w600,
+                                                    //             color: AppColor
+                                                    //                 .white),
+                                                    //       )
+                                                    //     ],
+                                                    //   ),
+                                                    // )
+                                                  ],
+                                                ));
                                           },
                                           labelIcon: () => Padding(
                                             padding: const EdgeInsets.only(
@@ -164,7 +385,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                           inputType: TextInputType.text,
                                           obscureText: true,
                                           onChanged: (value) =>
-                                              model.validatePassword(),
+                                              model.validateAllFields(),
                                           controller:
                                               model.confirmPasswordController,
                                           suffixIcon: (isChecked, value) {

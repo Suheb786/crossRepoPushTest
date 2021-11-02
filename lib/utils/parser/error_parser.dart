@@ -172,6 +172,14 @@ class ErrorParser {
         return localisedHelper.emptyIncomeDocument;
       case ErrorType.EMPTY_ADDRESS_DOCUMENT:
         return localisedHelper.emptyAddressDocument;
+      case ErrorType.EMPTY_PERMANENT_HOME_ADDRESS:
+        return localisedHelper.emptyHomeAddress;
+      case ErrorType.EMPTY_PERMANENT_STREET_ADDRESS:
+        return localisedHelper.emptyStreetAddress;
+      case ErrorType.EMPTY_PERMANENT_BUILDING_NAME_OR_NUMBER:
+        return localisedHelper.emptyBuildingNameOrNo;
+      case ErrorType.INVALID_JOB_NAME:
+        return localisedHelper.invalidJobName;
 
       default:
         return "";
