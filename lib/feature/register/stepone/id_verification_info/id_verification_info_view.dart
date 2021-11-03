@@ -158,7 +158,7 @@ class IdVerificationInfoView
                                                         color: AppColor.white,
                                                         fontWeight:
                                                             FontWeight.w600,
-                                                        fontSize: 14),
+                                                        fontSize: 12),
                                                   ),
                                                 )
                                               ],

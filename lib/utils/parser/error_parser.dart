@@ -180,6 +180,8 @@ class ErrorParser {
         return localisedHelper.emptyBuildingNameOrNo;
       case ErrorType.INVALID_JOB_NAME:
         return localisedHelper.invalidJobName;
+      case ErrorType.EMPTY_DOCUMENT:
+        return localisedHelper.emptyDocument;
 
       default:
         return "";

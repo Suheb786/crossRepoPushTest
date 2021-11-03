@@ -70,7 +70,7 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
 
   ///beneficial owner account switch value subject
   final BehaviorSubject<bool> _beneficialOwnerAccountSubject =
-      BehaviorSubject.seeded(false);
+      BehaviorSubject.seeded(true);
 
   Stream<bool> get beneficialOwnerAccountStream =>
       _beneficialOwnerAccountSubject.stream;
@@ -98,10 +98,8 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
   void selectExpectedTransactions(int index) {
     List<ExpectedTransactions>? expectedTransactionsList =
         _getExpectedTransactionsResponse.value.data;
-    expectedTransactionsList?.forEach((element) {
-      element.isSelected = false;
-    });
-    expectedTransactionsList?.elementAt(index).isSelected = true;
+    expectedTransactionsList?.elementAt(index).isSelected =
+        !(expectedTransactionsList.elementAt(index).isSelected);
     _getExpectedTransactionsResponse
         .safeAdd(Resource.success(data: expectedTransactionsList));
   }

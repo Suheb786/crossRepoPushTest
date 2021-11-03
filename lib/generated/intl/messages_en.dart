@@ -116,7 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmTermsCondError": MessageLookupByLibrary.simpleMessage(
             "Confirm to the terms and conditions."),
         "confirmThatTaxResidency": MessageLookupByLibrary.simpleMessage(
-            "\'I confirm that my tax residency is accurate and agree to the "),
+            "I confirm that my tax residency is accurate and agree to the "),
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
             "Please swipe through and confirm your information"),
         "country": MessageLookupByLibrary.simpleMessage("COUNTRY"),
@@ -171,6 +171,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Building name or number field cannot be empty"),
         "emptyDob": MessageLookupByLibrary.simpleMessage(
             "Date of birth field cannot be empty"),
+        "emptyDocument":
+            MessageLookupByLibrary.simpleMessage("Upload valid document"),
         "emptyEmailMessage": MessageLookupByLibrary.simpleMessage(
             "Please enter your email address"),
         "emptyExpiryDate": MessageLookupByLibrary.simpleMessage(
@@ -367,7 +369,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
-        "mobileNumberHint": MessageLookupByLibrary.simpleMessage("000 0000"),
+        "mobileNumberHint": MessageLookupByLibrary.simpleMessage("00 000 0000"),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
         "monthlyIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Monthly Income"),
@@ -595,6 +597,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank."),
         "wereBornInUS":
             MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
+        "whatIsYourEmploymentStatus": MessageLookupByLibrary.simpleMessage(
+            "What is your employment status?"),
         "whatYourEmailAndMobileNumber": MessageLookupByLibrary.simpleMessage(
             "What’s your email and mobile number?"),
         "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage(

@@ -111,10 +111,10 @@ class S {
     );
   }
 
-  /// `000 0000`
+  /// `00 000 0000`
   String get mobileNumberHint {
     return Intl.message(
-      '000 0000',
+      '00 000 0000',
       name: 'mobileNumberHint',
       desc: '',
       args: [],
@@ -2411,10 +2411,10 @@ class S {
     );
   }
 
-  /// `'I confirm that my tax residency is accurate and agree to the `
+  /// `I confirm that my tax residency is accurate and agree to the `
   String get confirmThatTaxResidency {
     return Intl.message(
-      '\'I confirm that my tax residency is accurate and agree to the ',
+      'I confirm that my tax residency is accurate and agree to the ',
       name: 'confirmThatTaxResidency',
       desc: '',
       args: [],
@@ -3376,6 +3376,26 @@ class S {
     return Intl.message(
       '1 symbol',
       name: 'oneSymbol',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What is your employment status?`
+  String get whatIsYourEmploymentStatus {
+    return Intl.message(
+      'What is your employment status?',
+      name: 'whatIsYourEmploymentStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload valid document`
+  String get emptyDocument {
+    return Intl.message(
+      'Upload valid document',
+      name: 'emptyDocument',
       desc: '',
       args: [],
     );

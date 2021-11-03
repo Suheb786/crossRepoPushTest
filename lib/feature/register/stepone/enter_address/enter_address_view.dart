@@ -200,8 +200,17 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                             Navigator.pop(
                                                                 context);
                                                           }),
-                                                      child: Image.asset(
-                                                          AssetUtils.location)),
+                                                      child: Container(
+                                                        height: 20,
+                                                        width: 16,
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 4,
+                                                                top: 2),
+                                                        child: AppSvg.asset(
+                                                            AssetUtils
+                                                                .location_marker),
+                                                      )),
                                             ),
                                             SizedBox(
                                               height: 16,
@@ -237,10 +246,8 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                               onChanged: (value) =>
                                                   model.validateAddress(),
                                             ),
-
-                                            ///TODO:check for fontsize, padding etc once figma get updated
                                             SizedBox(
-                                              height: 16,
+                                              height: 32,
                                             ),
                                             AppStreamBuilder<bool>(
                                               stream: model
@@ -263,8 +270,8 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight.w600,
-                                                            color:
-                                                                AppColor.white),
+                                                            color: AppColor
+                                                                .very_light_gray_white),
                                                       ),
                                                       SizedBox(
                                                         height: 16,
@@ -303,9 +310,20 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                                       Navigator.pop(
                                                                           context);
                                                                     }),
-                                                                child: Image.asset(
-                                                                    AssetUtils
-                                                                        .location)),
+                                                                child:
+                                                                    Container(
+                                                                  height: 20,
+                                                                  width: 16,
+                                                                  padding: EdgeInsets
+                                                                      .only(
+                                                                          left:
+                                                                              4,
+                                                                          top:
+                                                                              2),
+                                                                  child: AppSvg.asset(
+                                                                      AssetUtils
+                                                                          .location_marker),
+                                                                )),
                                                       ),
                                                       SizedBox(
                                                         height: 16,

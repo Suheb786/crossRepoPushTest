@@ -1,6 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
-import 'package:domain/model/country/country.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,6 +11,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -94,7 +94,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                     hintText: S.of(context).pleaseEnter,
                                     controller: model.emailController,
                                     key: model.emailKey,
-                                    inputAction: TextInputAction.go,
+                                    inputAction: TextInputAction.next,
                                     inputType: TextInputType.emailAddress,
                                     onChanged: (value) {
                                       model.validate();
@@ -112,34 +112,32 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                     key: model.mobileNumberKey,
                                     onChanged: (value) => model.validate(),
                                     prefixIcon: () {
-                                      Country? country = ProviderScope
-                                              .containerOf(context)
-                                          .read(
-                                              countrySelectionViewModelProvider)
-                                          .selectedCountry;
+                                      // Country? country = ProviderScope
+                                      //         .containerOf(context)
+                                      //     .read(
+                                      //         countrySelectionViewModelProvider)
+                                      //     .selectedCountry;
                                       return Padding(
                                         padding: EdgeInsets.only(top: 8.0),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: <Widget>[
                                             Container(
-                                                height: 16,
-                                                width: 16,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                        image: AssetImage(
-                                                            country!.countryFlag ??
-                                                                "",
-                                                            package:
-                                                                "country_calling_code_picker"),
-                                                        fit: BoxFit.cover))),
+                                              height: 16,
+                                              width: 16,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                          AssetUtils
+                                                              .jordan_flag),
+                                                      fit: BoxFit.cover)),
+                                            ),
                                             Padding(
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 8.0),
                                               child: Text(
-                                                country.countryCallingCode ??
-                                                    "",
+                                                '+962',
                                                 style: TextStyle(
                                                   color:
                                                       AppColor.very_light_gray,

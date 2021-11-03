@@ -266,8 +266,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                             .viewInsets
                                             .bottom,
                                       ),
-
-                                      ///TODO:check for fontsize, padding etc once figma get updated
                                       SizedBox(
                                         height: 24,
                                       ),
@@ -281,7 +279,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                 color: AppColor.vivid_orange),
                                           )),
                                       SizedBox(
-                                        height: 24,
+                                        height: 34,
                                       ),
                                       Row(
                                         children: [
@@ -314,9 +312,10 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   .of(context)
                                                   .confirmDetailsConfirmation,
                                               style: TextStyle(
-                                                  color: AppColor.white,
+                                                  color: AppColor
+                                                      .very_light_gray_white,
                                                   fontWeight: FontWeight.w600,
-                                                  fontSize: 14),
+                                                  fontSize: 12),
                                             ),
                                           )
                                         ],

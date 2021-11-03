@@ -5,7 +5,7 @@
   "addMobileHeader": "What’s your\nmobile number?",
   "enterOtpHeader": "Enter 6-digit OTP sent to",
   "mobileNumber": "Mobile Number",
-  "mobileNumberHint": "000 0000",
+  "mobileNumberHint": "00 000 0000",
   "enterValidMobileNumber": "Please enter valid mobile number",
   "changeMyNumber": "Change My Number",
   "resendIn": "Resend in {resendTime}",
@@ -239,7 +239,7 @@
   "iConfirmThatMy": "I confirm that my ",
   "fatca": "FATCA ",
   "declarationIsTrueAndCorrect": "declaration is true and correct.",
-  "confirmThatTaxResidency": "'I confirm that my tax residency is accurate and agree to the ",
+  "confirmThatTaxResidency": "I confirm that my tax residency is accurate and agree to the ",
   "termAndCondition": "Terms and Conditions ",
   "ofTheBank": "of the bank.",
   "invalidTaxPayer": "Select Tax Payer",
@@ -335,5 +335,7 @@
   "eightCharacters": "8 characters",
   "oneUpperCaseLetter": "1 uppercase letter",
   "oneNumber": "1 number",
-  "oneSymbol": "1 symbol"
+  "oneSymbol": "1 symbol",
+  "whatIsYourEmploymentStatus": "What is your employment status?",
+  "emptyDocument": "Upload valid document"
 }

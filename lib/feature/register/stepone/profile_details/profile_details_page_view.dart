@@ -199,6 +199,19 @@ class ProfileDetailsPageView
                                               );
                                             },
                                           ),
+                                          SizedBox(height: 32,),
+                                          Text(
+                                            S
+                                                .of(context)
+                                                .whatIsYourEmploymentStatus,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight:
+                                                FontWeight.w600,
+                                                color: AppColor
+                                                    .very_light_gray_white),
+                                          ),
+                                          SizedBox(height: 16,),
                                           AppTextField(
                                             labelText:
                                                 S.of(context).employmentStatus,

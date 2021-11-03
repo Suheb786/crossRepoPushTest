@@ -77,7 +77,8 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
     if (_socialSecurityVisibilitySubject.value) {
       if (taxPayerTypeController.text.isNotEmpty &&
           socialSecurityNumberController.text.isNotEmpty &&
-          _declarationSelected.value) {
+          _declarationSelected.value &&
+          uploadDocumentController.text.isNotEmpty) {
         valid = true;
       }
     } else {
@@ -151,6 +152,9 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_SECURITY_NUMBER:
         socialSecurityNumberKey.currentState!.isValid = false;
         break;
+      case ErrorType.EMPTY_DOCUMENT:
+        uploadDocumentKey.currentState!.isValid = false;
+        break;
       case ErrorType.INVALID_DECLARATION_SELECTION:
         break;
     }
@@ -162,6 +166,7 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
             isSocialSecurityTaxPayer: _socialSecurityVisibilitySubject.value,
             socialSecurityNumber: socialSecurityNumberController.text,
             taxPayerType: taxPayerTypeController.text,
+            document: uploadDocumentController.text,
             declarationSelected: _declarationSelected.value));
   }
 

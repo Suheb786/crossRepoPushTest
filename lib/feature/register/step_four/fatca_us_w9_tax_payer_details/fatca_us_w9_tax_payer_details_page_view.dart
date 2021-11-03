@@ -172,15 +172,15 @@ class FatcaUSW9TaxPayersDetailsPageView
                                                         fontFamily:
                                                             "Montserrat",
                                                         color: AppColor
-                                                            .very_light_gray_white,
+                                                            .white,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                         fontSize: 14),
                                                   ),
                                                   Padding(
                                                     padding: const EdgeInsets
-                                                            .symmetric(
-                                                        vertical: 16.0),
+                                                            .only(
+                                                        bottom: 16.0,top:8),
                                                     child: Text(
                                                       S
                                                           .of(context)
@@ -191,8 +191,8 @@ class FatcaUSW9TaxPayersDetailsPageView
                                                           color: AppColor
                                                               .very_light_gray_white,
                                                           fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 14),
+                                                              FontWeight.w400,
+                                                          fontSize: 12),
                                                     ),
                                                   ),
                                                   AppStreamBuilder<String>(

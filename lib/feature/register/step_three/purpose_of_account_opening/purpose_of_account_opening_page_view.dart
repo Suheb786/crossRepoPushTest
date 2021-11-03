@@ -87,7 +87,7 @@ class PurposeOfAccountOpeningPageView
                                 children: [
                                   AppStreamBuilder<bool>(
                                     stream: model.beneficialOwnerAccountStream,
-                                    initialData: false,
+                                    initialData: true,
                                     dataBuilder: (context, isActive) {
                                       return Padding(
                                         padding:
@@ -139,7 +139,7 @@ class PurposeOfAccountOpeningPageView
                                     },
                                   ),
                                   SizedBox(
-                                    height: 16,
+                                    height: 24,
                                   ),
                                   AppStreamBuilder<
                                       Resource<List<ExpectedTransactions>>>(
@@ -176,6 +176,8 @@ class PurposeOfAccountOpeningPageView
                                               );
                                             },
                                             physics: ClampingScrollPhysics(),
+                                            padding: EdgeInsets.only(
+                                                top: 16, bottom: 24),
                                             itemCount: expectedTransactions!
                                                 .data!.length,
                                             shrinkWrap: true,
