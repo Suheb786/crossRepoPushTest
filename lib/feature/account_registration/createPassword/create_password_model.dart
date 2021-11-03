@@ -61,11 +61,6 @@ class CreatePasswordViewModel extends BasePageViewModel {
     hasUpperCase = Validator.hasUpperCase(createPasswordController.text);
     hasSymbol = Validator.hasSymbol(createPasswordController.text);
     containsDigit = Validator.containsDigit(createPasswordController.text);
-    if (hasUpperCase && hasSymbol && minimumEightCharacters) {
-      passwordKey.currentState!.isValid = true;
-    } else {
-      passwordKey.currentState!.isValid = false;
-    }
     notifyListeners();
   }
 

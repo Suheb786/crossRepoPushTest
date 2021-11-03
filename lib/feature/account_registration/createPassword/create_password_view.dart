@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/create_password_info_dialog.dart';
+import 'package:neo_bank/ui/molecules/register/password_hint_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -140,221 +141,70 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                           },
                                           textHintWidget:
                                               (hasFocus, isValid, value) {
-                                            ///TODO: check design specification as per figma
                                             return Visibility(
                                                 visible: hasFocus,
-                                                child: Wrap(
-                                                  children: [
-                                                    Chip(
-                                                      elevation: 0,
-                                                      padding:
-                                                          EdgeInsets.all(8),
-                                                      backgroundColor: model
-                                                              .minimumEightCharacters
-                                                          ? AppColor
-                                                              .vivid_orange
-                                                          : AppColor
-                                                              .strong_violet,
-                                                      shadowColor: Colors.black,
-
-                                                      avatar: model
-                                                              .minimumEightCharacters
-                                                          ? AppSvg.asset(
-                                                              AssetUtils.tick,
-                                                              color: AppColor
-                                                                  .white)
-                                                          : Container(),
-                                                      label: Text(
-                                                        S
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 10.0),
+                                                  child: Wrap(
+                                                    runSpacing: 10,
+                                                    spacing: 8,
+                                                    children: [
+                                                      PasswordHintWidget(
+                                                        label: S
                                                             .of(context)
                                                             .eightCharacters,
-                                                        style: TextStyle(
-                                                            fontSize: 12,
-                                                            color:
-                                                                AppColor.white,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
-                                                      ), //Text
-                                                    ),
-                                                    Chip(
-                                                      elevation: 0,
-                                                      padding:
-                                                          EdgeInsets.all(8),
-                                                      backgroundColor: model
-                                                              .hasUpperCase
-                                                          ? AppColor
-                                                              .vivid_orange
-                                                          : AppColor
-                                                              .strong_violet,
-                                                      shadowColor: Colors.black,
-
-                                                      avatar: model.hasUpperCase
-                                                          ? AppSvg.asset(
-                                                              AssetUtils.tick,
-                                                              color: AppColor
-                                                                  .white)
-                                                          : Container(),
-                                                      label: Text(
-                                                        S
+                                                        backgroundColor: !model
+                                                                .minimumEightCharacters
+                                                            ? AppColor
+                                                                .strong_violet
+                                                            : AppColor
+                                                                .vivid_orange,
+                                                        isValid: model
+                                                            .minimumEightCharacters,
+                                                      ),
+                                                      PasswordHintWidget(
+                                                        label: S
                                                             .of(context)
                                                             .oneUpperCaseLetter,
-                                                        style: TextStyle(
-                                                            fontSize: 12,
-                                                            color:
-                                                                AppColor.white,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
-                                                      ), //Text
-                                                    ),
-                                                    Chip(
-                                                      elevation: 0,
-                                                      padding:
-                                                          EdgeInsets.all(8),
-                                                      backgroundColor: model
-                                                              .containsDigit
-                                                          ? AppColor
-                                                              .vivid_orange
-                                                          : AppColor
-                                                              .strong_violet,
-                                                      shadowColor: Colors.black,
-
-                                                      avatar: model
-                                                              .containsDigit
-                                                          ? AppSvg.asset(
-                                                              AssetUtils.tick,
-                                                              color: AppColor
-                                                                  .white)
-                                                          : Container(),
-                                                      label: Text(
-                                                        S.of(context).oneNumber,
-                                                        style: TextStyle(
-                                                            fontSize: 12,
-                                                            color:
-                                                                AppColor.white,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
-                                                      ), //Text
-                                                    ),
-                                                    Chip(
-                                                      elevation: 0,
-                                                      padding:
-                                                          EdgeInsets.all(8),
-                                                      backgroundColor: model
-                                                              .hasSymbol
-                                                          ? AppColor
-                                                              .vivid_orange
-                                                          : AppColor
-                                                              .strong_violet,
-                                                      shadowColor: Colors.black,
-
-                                                      avatar: model.hasSymbol
-                                                          ? AppSvg.asset(
-                                                              AssetUtils.tick,
-                                                              color: AppColor
-                                                                  .white)
-                                                          : Container(),
-                                                      label: Text(
-                                                        S.of(context).oneSymbol,
-                                                        style: TextStyle(
-                                                            fontSize: 12,
-                                                            color:
-                                                                AppColor.white,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
-                                                      ), //Text
-                                                    ),
-                                                    // Container(
-                                                    //   decoration: BoxDecoration(
-                                                    //     color: AppColor.vivid_orange,
-                                                    //     borderRadius: BorderRadius.circular(16)
-                                                    //   ),
-                                                    //   padding: EdgeInsets.all(8),
-                                                    //   child: Row(
-                                                    //     children: [
-                                                    //       AppSvg.asset(
-                                                    //           AssetUtils.tick),
-                                                    //       Flexible(
-                                                    //         child: Text(
-                                                    //           S
-                                                    //               .of(context)
-                                                    //               .eightCharacters,
-                                                    //           style: TextStyle(
-                                                    //               fontSize: 14,
-                                                    //               fontWeight:
-                                                    //                   FontWeight
-                                                    //                       .w600,
-                                                    //               color: AppColor
-                                                    //                   .white),
-                                                    //         ),
-                                                    //       )
-                                                    //     ],
-                                                    //   ),
-                                                    // ),
-                                                    // Container(
-                                                    //   child: Row(
-                                                    //     children: [
-                                                    //       AppSvg.asset(
-                                                    //           AssetUtils.tick),
-                                                    //       Text(
-                                                    //         S
-                                                    //             .of(context)
-                                                    //             .oneUpperCaseLetter,
-                                                    //         style: TextStyle(
-                                                    //             fontSize: 14,
-                                                    //             fontWeight:
-                                                    //                 FontWeight
-                                                    //                     .w600,
-                                                    //             color: AppColor
-                                                    //                 .white),
-                                                    //       )
-                                                    //     ],
-                                                    //   ),
-                                                    // ),
-                                                    // Container(
-                                                    //   child: Row(
-                                                    //     children: [
-                                                    //       AppSvg.asset(
-                                                    //           AssetUtils.tick),
-                                                    //       Text(
-                                                    //         S
-                                                    //             .of(context)
-                                                    //             .oneNumber,
-                                                    //         style: TextStyle(
-                                                    //             fontSize: 14,
-                                                    //             fontWeight:
-                                                    //                 FontWeight
-                                                    //                     .w600,
-                                                    //             color: AppColor
-                                                    //                 .white),
-                                                    //       )
-                                                    //     ],
-                                                    //   ),
-                                                    // ),
-                                                    // Container(
-                                                    //   child: Row(
-                                                    //     children: [
-                                                    //       AppSvg.asset(
-                                                    //           AssetUtils.tick),
-                                                    //       Text(
-                                                    //         S
-                                                    //             .of(context)
-                                                    //             .oneSymbol,
-                                                    //         style: TextStyle(
-                                                    //             fontSize: 14,
-                                                    //             fontWeight:
-                                                    //                 FontWeight
-                                                    //                     .w600,
-                                                    //             color: AppColor
-                                                    //                 .white),
-                                                    //       )
-                                                    //     ],
-                                                    //   ),
-                                                    // )
-                                                  ],
+                                                        backgroundColor: !model
+                                                                .hasUpperCase
+                                                            ? AppColor
+                                                                .strong_violet
+                                                            : AppColor
+                                                                .vivid_orange,
+                                                        isValid:
+                                                            model.hasUpperCase,
+                                                      ),
+                                                      PasswordHintWidget(
+                                                        label: S
+                                                            .of(context)
+                                                            .oneNumber,
+                                                        backgroundColor: !model
+                                                                .containsDigit
+                                                            ? AppColor
+                                                                .strong_violet
+                                                            : AppColor
+                                                                .vivid_orange,
+                                                        isValid:
+                                                            model.containsDigit,
+                                                      ),
+                                                      PasswordHintWidget(
+                                                        label: S
+                                                            .of(context)
+                                                            .oneSymbol,
+                                                        backgroundColor: !model
+                                                                .hasSymbol
+                                                            ? AppColor
+                                                                .strong_violet
+                                                            : AppColor
+                                                                .vivid_orange,
+                                                        isValid:
+                                                            model.hasSymbol,
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ));
                                           },
                                           labelIcon: () => Padding(
