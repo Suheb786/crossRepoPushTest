@@ -60,7 +60,7 @@ class RegisterStepFivePageView
                       currentStep ?? 0,
                       S.of(context).confirmYourInformation,
                       S.of(context).videoCallInfoHeader,
-                      S.of(context).agentSelectionHeader,
+                      S.of(context).connectToAgentToAssistYou,
                       S.of(context).pleaseSelectPreferredAgentForVideoCall,
                       S.of(context).pleaseUploadNecessaryInfo,
                     ),

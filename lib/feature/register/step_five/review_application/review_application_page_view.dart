@@ -9,7 +9,7 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_five/review_application/review_application_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/review_application/review_edit_info_item.dart';
+import 'package:neo_bank/ui/molecules/register/start_over_widget.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_item.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_term_cond_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -83,73 +83,12 @@ class ReviewApplicationPageView
                                 physics: ClampingScrollPhysics(),
                                 child: Column(
                                   children: [
-                                    ///personal details
-                                    ReviewApplicationItem(
-                                      title: S.of(context).emailAddressSmall,
-                                      details: "salam@email.com",
-                                    ),
-                                    ReviewApplicationItem(
-                                      title: S.of(context).mobileNumber,
-                                      details: "+962 79 332 8080",
-                                    ),
-                                    ReviewEditInfoItem(
-                                      title: S.of(context).editInformation,
+                                    StartOverWidget(
                                       onTap: () {},
+                                      title: S.of(context).startOverDesc,
+                                      labelText: S.of(context).startOver,
                                     ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 24.0),
-                                      child: Container(
-                                        height: 1,
-                                        color: AppColor.light_gray,
-                                      ),
-                                    ),
-
-                                    ///
-                                    ReviewApplicationItem(
-                                      title: S.of(context).nameAsPerID,
-                                      details: "Abdul Salam Mahmood",
-                                    ),
-                                    ReviewApplicationItem(
-                                      title: S.of(context).idNumber,
-                                      details: "923338221222",
-                                    ),
-                                    ReviewApplicationItem(
-                                      title: S.of(context).dateOfBirth,
-                                      details: "12 July 1992",
-                                    ),
-                                    ReviewApplicationItem(
-                                      title: S.of(context).nationalitySmall,
-                                      details: "Jordan",
-                                    ),
-                                    ReviewApplicationItem(
-                                      title: S.of(context).expiryDateSmall,
-                                      details: "12 July 2022",
-                                    ),
-                                    ReviewApplicationItem(
-                                      title: S.of(context).genderSmall,
-                                      details: "Male",
-                                    ),
-                                    ReviewApplicationItem(
-                                      title: S.of(context).mothersName,
-                                      details: "Amal",
-                                    ),
-                                    ReviewApplicationItem(
-                                      title: S.of(context).mothersBirthplace,
-                                      details: "Amman",
-                                    ),
-                                    ReviewEditInfoItem(
-                                      title: S.of(context).editInformation,
-                                      onTap: () {},
-                                    ),
-                                    Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(vertical: 24.0),
-                                      child: Container(
-                                        height: 1,
-                                        color: AppColor.light_gray,
-                                      ),
-                                    ),
+                                    SizedBox(height: 32),
 
                                     ///address details
                                     ReviewApplicationItem(
@@ -168,20 +107,38 @@ class ReviewApplicationPageView
                                       title: S.of(context).buildingNameNo,
                                       details: "W Amman",
                                     ),
-                                    ReviewEditInfoItem(
-                                      title: S.of(context).editInformation,
-                                      onTap: () {},
-                                    ),
+
+                                    ///permanent address
                                     Padding(
                                       padding:
                                           EdgeInsets.symmetric(vertical: 24.0),
                                       child: Container(
                                         height: 1,
-                                        color: AppColor.light_gray,
+                                        color: AppColor.white_gray,
                                       ),
                                     ),
+                                    ReviewApplicationItem(
+                                      title: S.of(context).permanentHomeAddress,
+                                      details: "Queen Rania Al-Abdullah",
+                                    ),
+                                    ReviewApplicationItem(
+                                      title: S.of(context).streetAddressSmall,
+                                      details: "Sweilah",
+                                    ),
+                                    ReviewApplicationItem(
+                                      title: S.of(context).buildingNameNo,
+                                      details: "Walafahah Amman",
+                                    ),
 
-                                    ///
+                                    /// personal details
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(vertical: 24.0),
+                                      child: Container(
+                                        height: 1,
+                                        color: AppColor.white_gray,
+                                      ),
+                                    ),
                                     ReviewApplicationItem(
                                       title: S.of(context).spouseName,
                                       details: "Ameena Rasheed",
@@ -195,20 +152,16 @@ class ReviewApplicationPageView
                                           S.of(context).employmentStatusSmall,
                                       details: "Full-Time Employee",
                                     ),
-                                    ReviewEditInfoItem(
-                                      title: S.of(context).editInformation,
-                                      onTap: () {},
-                                    ),
+
+                                    ///occupation
                                     Padding(
                                       padding:
                                           EdgeInsets.symmetric(vertical: 24.0),
                                       child: Container(
                                         height: 1,
-                                        color: AppColor.light_gray,
+                                        color: AppColor.white_gray,
                                       ),
                                     ),
-
-                                    ///
                                     ReviewApplicationItem(
                                       title: S.of(context).occupationSmall,
                                       details: "Senior Executive",
@@ -218,7 +171,8 @@ class ReviewApplicationPageView
                                       details: "Salary",
                                     ),
                                     ReviewApplicationItem(
-                                      title: S.of(context).mainAnnualIncome,
+                                      title:
+                                          S.of(context).mainAnnualIncomeSmall,
                                       details: "JOD 60,000",
                                     ),
                                     ReviewApplicationItem(
@@ -245,27 +199,31 @@ class ReviewApplicationPageView
                                       title: S.of(context).addIncome2,
                                       details: "Investments JOD 75,000",
                                     ),
-                                    ReviewEditInfoItem(
-                                      title: S.of(context).editInformation,
-                                      onTap: () {},
-                                    ),
+
+                                    ///purpose of account opening
                                     Padding(
                                       padding:
                                           EdgeInsets.symmetric(vertical: 24.0),
                                       child: Container(
                                         height: 1,
-                                        color: AppColor.light_gray,
+                                        color: AppColor.white_gray,
                                       ),
                                     ),
-
-                                    ///
                                     ReviewApplicationItem(
                                       title: S.of(context).purposeOfAccount,
                                       details: "Salary",
                                     ),
                                     ReviewApplicationItem(
-                                      title: S.of(context).typeOfTransactions,
+                                      title: S
+                                          .of(context)
+                                          .typeOfTransactionsSmall('1'),
                                       details: "Transfers",
+                                    ),
+                                    ReviewApplicationItem(
+                                      title: S
+                                          .of(context)
+                                          .typeOfTransactionsSmall('2'),
+                                      details: "Cash Deposit",
                                     ),
                                     ReviewApplicationItem(
                                       title:
@@ -277,16 +235,14 @@ class ReviewApplicationPageView
                                           S.of(context).expAnnualTransactions,
                                       details: "JOD 102,000",
                                     ),
-                                    ReviewEditInfoItem(
-                                      title: S.of(context).editInformation,
-                                      onTap: () {},
-                                    ),
+
+                                    ///Tax and PEP questions
                                     Padding(
                                       padding:
                                           EdgeInsets.symmetric(vertical: 24.0),
                                       child: Container(
                                         height: 1,
-                                        color: AppColor.light_gray,
+                                        color: AppColor.white_gray,
                                       ),
                                     ),
                                     ReviewApplicationItem(
@@ -322,16 +278,12 @@ class ReviewApplicationPageView
                                       title: S.of(context).personsRole,
                                       details: "Minister of Health",
                                     ),
-                                    ReviewEditInfoItem(
-                                      title: S.of(context).editInformation,
-                                      onTap: () {},
-                                    ),
                                     Padding(
                                       padding:
                                           EdgeInsets.symmetric(vertical: 24.0),
                                       child: Container(
                                         height: 1,
-                                        color: AppColor.light_gray,
+                                        color: AppColor.white_gray,
                                       ),
                                     ),
                                     AppStreamBuilder<bool>(

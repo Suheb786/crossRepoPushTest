@@ -94,7 +94,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                     hintText: S.of(context).pleaseEnter,
                                     controller: model.emailController,
                                     key: model.emailKey,
-                                    inputAction: TextInputAction.next,
+                                    inputAction: TextInputAction.go,
                                     inputType: TextInputType.emailAddress,
                                     onChanged: (value) {
                                       model.validate();

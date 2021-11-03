@@ -19,7 +19,12 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(resendTime) => "Resend in ${resendTime}";
+  static String m0(estimatedTime) => "Estimated wait time \n${estimatedTime}";
+
+  static String m1(resendTime) => "Resend in ${resendTime}";
+
+  static String m2(noOfTransaction) =>
+      "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -119,6 +124,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "I confirm that my tax residency is accurate and agree to the "),
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
             "Please swipe through and confirm your information"),
+        "connectToAgentToAssistYou": MessageLookupByLibrary.simpleMessage(
+            "Connecting to our agent to assist you"),
         "country": MessageLookupByLibrary.simpleMessage("COUNTRY"),
         "countryOfCitizenship":
             MessageLookupByLibrary.simpleMessage("COUNTRY OF CITIZENSHIP"),
@@ -222,6 +229,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
             "Please enter valid spouse name"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "estimatedTime": m0,
         "exemptPayeeOptional": MessageLookupByLibrary.simpleMessage(
             "EXEMPT PAYEE CODE (OPTIONAL)"),
         "expAnnualTransactions": MessageLookupByLibrary.simpleMessage(
@@ -354,6 +362,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "jobName": MessageLookupByLibrary.simpleMessage("JOB NAME"),
         "letsCreateYourAccount":
             MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
+        "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage(
+            "Looking for available agent.."),
         "loyaltyRewards": MessageLookupByLibrary.simpleMessage(
             "Enjoy loyalty rewards with great multiplier"),
         "mailingAddressDifferentFromResidence":
@@ -422,6 +432,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Password did not match"),
         "permanentAddress":
             MessageLookupByLibrary.simpleMessage("Permanent address"),
+        "permanentHomeAddress":
+            MessageLookupByLibrary.simpleMessage("Permanent Home Address"),
         "permanentResidentAddressLine": MessageLookupByLibrary.simpleMessage(
             "Permanent residence address Line"),
         "personName": MessageLookupByLibrary.simpleMessage("PERSON’S NAME"),
@@ -487,7 +499,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Relationship with PEP"),
         "requesterName":
             MessageLookupByLibrary.simpleMessage("requester’s name"),
-        "resendIn": m0,
+        "resendIn": m1,
         "residentCountry":
             MessageLookupByLibrary.simpleMessage("RESIDENT COUNTRY"),
         "residentCountryHint": MessageLookupByLibrary.simpleMessage(
@@ -517,6 +529,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("SOCIAL SECURITY NUMBER"),
         "spouseName": MessageLookupByLibrary.simpleMessage("Spouse Name"),
         "spouseNameCaps": MessageLookupByLibrary.simpleMessage("SPOUSE NAME"),
+        "startOver": MessageLookupByLibrary.simpleMessage("Start over"),
+        "startOverDesc": MessageLookupByLibrary.simpleMessage(
+            "Quick edit is disabled for some informations. Would you like to start over? Don’t worry, we keep your filled informations."),
         "state": MessageLookupByLibrary.simpleMessage("STATE"),
         "stateSmall": MessageLookupByLibrary.simpleMessage("State"),
         "storage": MessageLookupByLibrary.simpleMessage("Storage"),
@@ -558,6 +573,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "I agree for the bank to retrieve my AHWAL data necessarily."),
         "thankYouForInterestWillSendUpdate": MessageLookupByLibrary.simpleMessage(
             "Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available."),
+        "thankYouForWaitingCallWillStartAutomatically":
+            MessageLookupByLibrary.simpleMessage(
+                "Thank you for waiting. Call will start automatically as soon as our call customer agent is ready."),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("to Welcome Page"),
@@ -572,9 +590,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("Type of Income"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
-        "typeOfTransactionsSmall":
-            MessageLookupByLibrary.simpleMessage("Type of Transactions"),
+        "typeOfTransactionsSmall": m2,
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
+        "uploadDocLaterDesc": MessageLookupByLibrary.simpleMessage(
+            "You will need to upload required document from Profile Settings later in order to complete your account verification.\n\nNote: Account will be closed automatically for any incomplete document"),
+        "uploadDocumentDesc1": MessageLookupByLibrary.simpleMessage(
+            " within 10 days after date opened."),
+        "uploadDocumentLater":
+            MessageLookupByLibrary.simpleMessage("Upload documents later"),
+        "uploadDocumentLaterQues":
+            MessageLookupByLibrary.simpleMessage("Upload Document Later?"),
         "uploadDocuments":
             MessageLookupByLibrary.simpleMessage("UPLOAD DOCUMENTS"),
         "uploadDocumentsSmall":

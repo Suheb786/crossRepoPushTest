@@ -7,9 +7,7 @@ class ReviewApplicationItem extends StatelessWidget {
   final String details;
 
   const ReviewApplicationItem(
-      {Key? key,
-        required this.title,
-        required this.details})
+      {Key? key, required this.title, required this.details})
       : super(key: key);
 
   @override
@@ -27,7 +25,7 @@ class ReviewApplicationItem extends StatelessWidget {
               style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w400,
-                  color: AppColor.gray),
+                  color: AppColor.very_dark_gray),
             ),
           ),
           Flexible(
@@ -38,7 +36,7 @@ class ReviewApplicationItem extends StatelessWidget {
               style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: AppColor.gray_black),
+                  color: AppColor.dark_violet2),
             ),
           ),
         ],

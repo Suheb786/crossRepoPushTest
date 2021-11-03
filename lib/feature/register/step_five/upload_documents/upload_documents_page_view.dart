@@ -13,6 +13,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_five/upload_document_later/upload_document_later_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/ui/molecules/upload_document/upload_document_bottom_sheet.dart';
@@ -142,13 +143,18 @@ class UploadDocumentsPageView
                                                       (context, isUploaded) {
                                                     return AppTextField(
                                                       labelText: '',
-                                                      hintText:
-                                                          S.of(context).upload,
+                                                      hintText: S
+                                                          .of(context)
+                                                          .uploadDocumentsSmall,
                                                       controller: model
                                                           .incomeController,
                                                       key: model
                                                           .incomeDocumentKey,
                                                       readOnly: true,
+                                                      hintTextColor:
+                                                          AppColor.vivid_orange,
+                                                      textColor:
+                                                          AppColor.vivid_orange,
                                                       suffixIcon:
                                                           (value, data) {
                                                         return InkWell(
@@ -255,13 +261,18 @@ class UploadDocumentsPageView
                                                       (context, isUploaded) {
                                                     return AppTextField(
                                                       labelText: '',
-                                                      hintText:
-                                                          S.of(context).upload,
+                                                      hintText: S
+                                                          .of(context)
+                                                          .uploadDocumentsSmall,
                                                       controller: model
                                                           .addressController,
                                                       key: model
                                                           .addressDocumentKey,
                                                       readOnly: true,
+                                                      hintTextColor:
+                                                          AppColor.vivid_orange,
+                                                      textColor:
+                                                          AppColor.vivid_orange,
                                                       suffixIcon:
                                                           (value, data) {
                                                         return InkWell(
@@ -317,13 +328,28 @@ class UploadDocumentsPageView
                                                 );
                                               },
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 24.0, bottom: 16),
-                                              child: Container(
-                                                height: 1,
-                                                color: AppColor.strong_violet,
-                                              ),
+                                            Center(
+                                              child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 40.0, bottom: 16),
+                                                  child: TextButton(
+                                                      onPressed: () {
+                                                        UploadDocumentLaterDialog
+                                                            .show(context,onSelected: (){
+                                                              Navigator.pop(context);
+                                                        });
+                                                      },
+                                                      child: Text(
+                                                        S
+                                                            .of(context)
+                                                            .uploadDocumentLater,
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: AppColor
+                                                                .vivid_orange),
+                                                      ))),
                                             ),
                                           ],
                                         )),

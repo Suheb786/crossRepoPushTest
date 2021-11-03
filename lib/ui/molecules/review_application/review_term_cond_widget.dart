@@ -54,7 +54,7 @@ class ReviewTCWidget extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                   fontSize: 12,
                   fontFamily: 'Montserrat',
-                  color: AppColor.gray,
+                  color: AppColor.very_dark_gray1,
                 ),
                 children: [
                   TextSpan(

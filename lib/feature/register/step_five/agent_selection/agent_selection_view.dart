@@ -1,16 +1,15 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_five/agent_selection/agent_selection_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
-import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/agent_selection_list_widget.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:riverpod/src/framework.dart';
 
@@ -53,7 +52,7 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                   shadowColor: AppColor.black.withOpacity(0.32),
                   child: Container(
                       padding:
-                          EdgeInsets.symmetric(vertical: 32, horizontal: 16),
+                          EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                       decoration: BoxDecoration(
                         color: AppColor.very_soft_violet,
                         gradient: LinearGradient(
@@ -64,64 +63,68 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                             begin: Alignment.bottomCenter,
                             end: Alignment.topCenter),
                       ),
-                      child: Stack(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Stack(
-                            alignment: Alignment.center,
+                          Column(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0),
-                                child: Container(
-                                  height: 64,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(16),
-                                    color: AppColor.white,
-                                  ),
-                                ),
+                                padding: const EdgeInsets.only(
+                                    top: 59.0, bottom: 32),
+                                child: AppSvg.asset(AssetUtils.agent),
                               ),
-                              AppScrollableListViewWidget(
-                                child: ClickableListWheelScrollView(
-                                  scrollController: model.scrollController,
-                                  itemHeight: 72,
-                                  itemCount: model.agentList.length,
-                                  onItemTapCallback: (index) {
-                                    model.selectAgent(index);
+                              Text(
+                                S.of(context).lookingForAvailableAgent,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 24,
+                                    color: AppColor.very_light_violet),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 32.0),
+                                child: CountdownTimer(
+                                  controller: model.countDownController,
+                                  onEnd: () {},
+                                  endTime: model.endTime,
+                                  widgetBuilder:
+                                      (context, currentTimeRemaining) {
+                                    return currentTimeRemaining == null
+                                        ? TextButton(
+                                            onPressed: () {
+                                              model.updateTime();
+                                            },
+                                            child: Text(
+                                              'Search Again',
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  color: AppColor.white),
+                                            ))
+                                        : Text(
+                                            S.of(context).estimatedTime(
+                                                '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14,
+                                                color: AppColor.vivid_orange),
+                                            textAlign: TextAlign.center,
+                                          );
                                   },
-                                  child: ListWheelScrollView.useDelegate(
-                                      itemExtent: 72,
-                                      controller: model.scrollController,
-                                      onSelectedItemChanged: (int index) {
-                                        model.selectAgent(index);
-                                        ProviderScope.containerOf(context)
-                                            .read(
-                                                agentSelectionViewModelProvider)
-                                            .notify();
-                                      },
-                                      physics: FixedExtentScrollPhysics(),
-                                      perspective: 0.0000000001,
-                                      childDelegate:
-                                          ListWheelChildBuilderDelegate(
-                                              childCount:
-                                                  model.agentList.length,
-                                              builder: (BuildContext context,
-                                                  int index) {
-                                                return AgentSelectionListWidget(
-                                                  item: model.agentList[index],
-                                                );
-                                              })),
                                 ),
                               ),
                             ],
                           ),
-                          Positioned(
-                            bottom: 0,
-                            right: 45,
-                            child: AnimatedButton(
-                              buttonText: S.of(context).swipeToProceed,
-                            ),
-                          )
+                          Text(
+                            S
+                                .of(context)
+                                .thankYouForWaitingCallWillStartAutomatically,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                                color: AppColor.white),
+                          ),
                         ],
                       )),
                 ),

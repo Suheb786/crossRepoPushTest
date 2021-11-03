@@ -39,6 +39,8 @@ class AssetUtils {
   static const String rightChevron = svg + "right_chevron.svg";
   static const String check_icon = svg + "check_icon.svg";
   static const String location_marker = svg + "location.svg";
+  static const String restart = svg + "restart.svg";
+  static const String agent = svg + "agent.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

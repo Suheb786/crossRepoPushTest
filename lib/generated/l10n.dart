@@ -2951,13 +2951,13 @@ class S {
     );
   }
 
-  /// `Type of Transactions`
-  String get typeOfTransactionsSmall {
+  /// `Type of Transactions {noOfTransaction}`
+  String typeOfTransactionsSmall(Object noOfTransaction) {
     return Intl.message(
-      'Type of Transactions',
+      'Type of Transactions $noOfTransaction',
       name: 'typeOfTransactionsSmall',
       desc: '',
-      args: [],
+      args: [noOfTransaction],
     );
   }
 
@@ -3396,6 +3396,116 @@ class S {
     return Intl.message(
       'Upload valid document',
       name: 'emptyDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quick edit is disabled for some informations. Would you like to start over? Don’t worry, we keep your filled informations.`
+  String get startOverDesc {
+    return Intl.message(
+      'Quick edit is disabled for some informations. Would you like to start over? Don’t worry, we keep your filled informations.',
+      name: 'startOverDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start over`
+  String get startOver {
+    return Intl.message(
+      'Start over',
+      name: 'startOver',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent Home Address`
+  String get permanentHomeAddress {
+    return Intl.message(
+      'Permanent Home Address',
+      name: 'permanentHomeAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connecting to our agent to assist you`
+  String get connectToAgentToAssistYou {
+    return Intl.message(
+      'Connecting to our agent to assist you',
+      name: 'connectToAgentToAssistYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Looking for available agent..`
+  String get lookingForAvailableAgent {
+    return Intl.message(
+      'Looking for available agent..',
+      name: 'lookingForAvailableAgent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Estimated wait time \n{estimatedTime}`
+  String estimatedTime(Object estimatedTime) {
+    return Intl.message(
+      'Estimated wait time \n$estimatedTime',
+      name: 'estimatedTime',
+      desc: 'estimatedTime',
+      args: [estimatedTime],
+    );
+  }
+
+  /// `Thank you for waiting. Call will start automatically as soon as our call customer agent is ready.`
+  String get thankYouForWaitingCallWillStartAutomatically {
+    return Intl.message(
+      'Thank you for waiting. Call will start automatically as soon as our call customer agent is ready.',
+      name: 'thankYouForWaitingCallWillStartAutomatically',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload documents later`
+  String get uploadDocumentLater {
+    return Intl.message(
+      'Upload documents later',
+      name: 'uploadDocumentLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Document Later?`
+  String get uploadDocumentLaterQues {
+    return Intl.message(
+      'Upload Document Later?',
+      name: 'uploadDocumentLaterQues',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will need to upload required document from Profile Settings later in order to complete your account verification.\n\nNote: Account will be closed automatically for any incomplete document`
+  String get uploadDocLaterDesc {
+    return Intl.message(
+      'You will need to upload required document from Profile Settings later in order to complete your account verification.\n\nNote: Account will be closed automatically for any incomplete document',
+      name: 'uploadDocLaterDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` within 10 days after date opened.`
+  String get uploadDocumentDesc1 {
+    return Intl.message(
+      ' within 10 days after date opened.',
+      name: 'uploadDocumentDesc1',
       desc: '',
       args: [],
     );
