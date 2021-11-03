@@ -8,6 +8,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_five/review_application/review_application_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/register/start_over_widget.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_item.dart';
@@ -295,6 +296,10 @@ class ReviewApplicationPageView
                                           title: S.of(context).confirmInfoTC,
                                           subTitle:
                                               S.of(context).termsAndCondition,
+                                          onTermsAndConditionTap: () {
+                                            Navigator.pushNamed(context,
+                                                RoutePaths.TermsAndCondition);
+                                          },
                                           onTap: () {
                                             model.updateDeclarationSelection(
                                                 !(isSelected!));
