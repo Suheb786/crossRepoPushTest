@@ -3510,6 +3510,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Hello,`
+  String get hello {
+    return Intl.message(
+      'Hello,',
+      name: 'hello',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WELCOME`
+  String get welcome {
+    return Intl.message(
+      'WELCOME',
+      name: 'welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have successfully created your login. Would you like to proceed with account opening?`
+  String get successfullyCreatedLoginAccount {
+    return Intl.message(
+      'You have successfully created your login. Would you like to proceed with account opening?',
+      name: 'successfullyCreatedLoginAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save your earnings digitally and securely`
+  String get saveEarningsDigitally {
+    return Intl.message(
+      'Save your earnings digitally and securely',
+      name: 'saveEarningsDigitally',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send money to your friends and family`
+  String get sendMoneyToFriendAndFamily {
+    return Intl.message(
+      'Send money to your friends and family',
+      name: 'sendMoneyToFriendAndFamily',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open Account Now`
+  String get openAccountNow {
+    return Intl.message(
+      'Open Account Now',
+      name: 'openAccountNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out and continue later`
+  String get logoutAndContinueLater {
+    return Intl.message(
+      'Log out and continue later',
+      name: 'logoutAndContinueLater',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

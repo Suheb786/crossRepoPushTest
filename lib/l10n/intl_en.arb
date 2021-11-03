@@ -356,5 +356,12 @@
   "uploadDocumentLater": "Upload documents later",
   "uploadDocumentLaterQues": "Upload Document Later?",
   "uploadDocLaterDesc": "You will need to upload required document from Profile Settings later in order to complete your account verification.\n\nNote: Account will be closed automatically for any incomplete document",
-  "uploadDocumentDesc1": " within 10 days after date opened."
+  "uploadDocumentDesc1": " within 10 days after date opened.",
+  "hello": "Hello,",
+  "welcome": "WELCOME",
+  "successfullyCreatedLoginAccount": "You have successfully created your login. Would you like to proceed with account opening?",
+  "saveEarningsDigitally": "Save your earnings digitally and securely",
+  "sendMoneyToFriendAndFamily": "Send money to your friends and family",
+  "openAccountNow": "Open Account Now",
+  "logoutAndContinueLater": "Log out and continue later"
 }

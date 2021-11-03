@@ -9,4 +9,5 @@ class RoutePaths {
   static const String AccountRegistration = '/accountRegistration';
   static const String ProductSelector = '/productSelector';
   static const String NonJordanianRegister = '/nonJordanianRegister';
+  static const String Dashboard = '/dashboard';
 }

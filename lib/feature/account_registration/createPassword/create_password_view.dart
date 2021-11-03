@@ -43,7 +43,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                       model.confirmPasswordKey.currentState!.isValid = true;
 
                       Navigator.pushReplacementNamed(
-                          context, RoutePaths.ProductSelector);
+                          context, RoutePaths.Dashboard);
                     } else if (data.status == Status.ERROR) {
                       if (data.appError!.type == ErrorType.PASSWORD_MISMATCH) {
                         model.passwordKey.currentState!.isValid = false;

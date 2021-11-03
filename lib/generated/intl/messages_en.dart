@@ -253,6 +253,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "genderHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
         "genderSmall": MessageLookupByLibrary.simpleMessage("Gender"),
+        "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
         "homeAddressHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
@@ -362,6 +363,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "jobName": MessageLookupByLibrary.simpleMessage("JOB NAME"),
         "letsCreateYourAccount":
             MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
+        "logoutAndContinueLater":
+            MessageLookupByLibrary.simpleMessage("Log out and continue later"),
         "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage(
             "Looking for available agent.."),
         "loyaltyRewards": MessageLookupByLibrary.simpleMessage(
@@ -419,6 +422,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "oneUpperCaseLetter":
             MessageLookupByLibrary.simpleMessage("1 uppercase letter"),
         "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
+        "openAccountNow":
+            MessageLookupByLibrary.simpleMessage("Open Account Now"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
         "orYouCanUpload":
@@ -510,6 +515,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please accept the above terms and conditions"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
+        "saveEarningsDigitally": MessageLookupByLibrary.simpleMessage(
+            "Save your earnings digitally and securely"),
         "scanIDAgain": MessageLookupByLibrary.simpleMessage("Scan ID again"),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("Schedule for later"),
@@ -521,6 +528,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
+        "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage(
+            "Send money to your friends and family"),
         "socialSecurityCard":
             MessageLookupByLibrary.simpleMessage("Social Security Card"),
         "socialSecurityCardDesc": MessageLookupByLibrary.simpleMessage(
@@ -540,6 +549,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Enter Street Address"),
         "streetAddressSmall":
             MessageLookupByLibrary.simpleMessage("Street Address"),
+        "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
+            "You have successfully created your login. Would you like to proceed with account opening?"),
         "swipeDownToCancel":
             MessageLookupByLibrary.simpleMessage("Swipe down to cancel"),
         "swipeDownToLogin":
@@ -618,6 +629,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you want to Claim of Tax Treaty Benefits?"),
         "weNeedToMatchNamesONTaxReturn": MessageLookupByLibrary.simpleMessage(
             "We need to match the names on your tax return"),
+        "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),
         "welcomeToNeuBank":
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank."),
         "wereBornInUS":
