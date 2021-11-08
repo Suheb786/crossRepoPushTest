@@ -32,6 +32,7 @@ class AssetUtils {
   static const String eye = svg + "eye.svg";
   static const String message = svg + "message.svg";
   static const String galaxy = svg + "galaxy.svg";
+  static const String fingerPrint = svg + "finger_print.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash_logo.png";
@@ -44,4 +45,7 @@ class AssetUtils {
   static const String infinite = drawable + "infinite.png";
   static const String male = drawable + "male.png";
   static const String female = drawable + "female.png";
+  static const String circle = drawable + "circle.webp";
+  static const String visa = drawable + "visa.png";
+  static const String signal = drawable + "signal.png";
 }
