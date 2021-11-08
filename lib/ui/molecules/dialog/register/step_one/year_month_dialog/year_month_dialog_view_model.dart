@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class YearMonthDialogViewModel extends BasePageViewModel {
@@ -29,6 +30,9 @@ class YearMonthDialogViewModel extends BasePageViewModel {
   ///year list
   List<String> yearList =
       List.generate(100, (index) => (DateTime.now().year - index).toString());
+
+  ///time list
+  List<String> timeList = [];
 
   ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();
@@ -71,9 +75,22 @@ class YearMonthDialogViewModel extends BasePageViewModel {
       case CalendarEnum.YEAR:
         _searchStringResponse.safeAdd(Resource.success(data: yearList));
         break;
+      case CalendarEnum.TIME:
+        _searchStringResponse.safeAdd(Resource.success(data: timeList));
+        break;
       default:
         return _searchStringResponse.safeAdd(Resource.success(data: monthList));
     }
+  }
+
+  getTimeRange() {
+    TimeUtils.getTimeRange().forEach((element) {
+      timeList.add(element);
+    });
+  }
+
+  YearMonthDialogViewModel() {
+    getTimeRange();
   }
 
   @override

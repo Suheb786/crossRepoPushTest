@@ -26,6 +26,7 @@ class ProfileDetailsUseCaseParams extends Params {
   final bool isRelative;
   bool isEmploymentStatusOthers;
   final String? jobName;
+  bool isBeneficialOwnerACcount;
 
   ProfileDetailsUseCaseParams(
       {this.spouseName,
@@ -35,7 +36,8 @@ class ProfileDetailsUseCaseParams extends Params {
       required this.isPerson,
       required this.isRelative,
       required this.isEmploymentStatusOthers,
-      this.jobName});
+      this.jobName,
+      required this.isBeneficialOwnerACcount});
 
   @override
   Either<AppError, bool> verify() {
@@ -58,6 +60,11 @@ class ProfileDetailsUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_JOB_NAME,
+          cause: Exception()));
+    } else if (!isBeneficialOwnerACcount) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_BENEFICIAL_OWNER_ACCOUNT,
           cause: Exception()));
     }
     return Right(true);

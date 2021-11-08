@@ -183,6 +183,11 @@ final profileQ2ViewModelProvider =
   (ref) => ProfileItemViewModel(),
 );
 
+final areYouBeneficialOwnerAccountProvider =
+    ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
+  (ref) => ProfileItemViewModel(),
+);
+
 final profileQ3ViewModelProvider =
     ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
   (ref) => ProfileItemViewModel(),

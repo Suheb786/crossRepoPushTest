@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/enum/calendar_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +11,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/calendar_dialog/calendar_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_one/year_month_dialog/year_month_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -144,10 +146,20 @@ class ScheduleVideoCallPageView
                                           suffixIcon: (value, data) {
                                             return InkWell(
                                               onTap: () async {
-                                                ///TODO: move after dialog integration
-                                                model.preferredTimeController
-                                                    .text = '10:30 AM';
-                                                model.isValid();
+                                                YearMonthDialog.show(context,
+                                                    title: S
+                                                        .of(context)
+                                                        .preferredTimeSmall,
+                                                    calendarEnum:
+                                                        CalendarEnum.TIME,
+                                                    onSelected: (time) {
+                                                  Navigator.pop(context);
+                                                  model.preferredTimeController
+                                                      .text = time;
+                                                  model.isValid();
+                                                }, onDismissed: () {
+                                                  Navigator.pop(context);
+                                                });
                                               },
                                               child: Container(
                                                   height: 16,

@@ -364,5 +364,8 @@
   "sendMoneyToFriendAndFamily": "Send money to your friends and family",
   "openAccountNow": "Open Account Now",
   "logoutAndContinueLater": "Log out and continue later",
-  "termsConditions": "Terms & Conditions"
+  "termsConditions": "Terms & Conditions",
+  "emptyCity": "Enter City",
+  "invalidBeneficialOwnerAccount": "You must be the beneficial owner of the account to proceed",
+  "preferredTimeSmall": "Preferred Time"
 }

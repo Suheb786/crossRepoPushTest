@@ -1,12 +1,16 @@
+import 'package:domain/usecase/register/get_occupation_list_usecase.dart';
+import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/usecase/register/get_occupation_list_usecase.dart';
-import 'package:neo_bank/utils/extension/stream_extention.dart';
 
 class OccupationDialogViewModel extends BasePageViewModel {
   final GetOccupationUseCase _getOccupationUseCase;
+
+  final FixedExtentScrollController scrollController =
+      FixedExtentScrollController();
 
   ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();

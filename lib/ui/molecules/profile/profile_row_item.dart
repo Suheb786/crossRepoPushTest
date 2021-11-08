@@ -1,17 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 
 class ProfileRowItem extends StatelessWidget {
   final String title;
   final ProviderBase providerBase;
   final Function(bool)? onToggle;
   final String activeText;
+  final bool initialValue;
+  final Color labelColor;
   final String inactiveText;
 
   const ProfileRowItem(
@@ -19,7 +21,9 @@ class ProfileRowItem extends StatelessWidget {
       required this.title,
       required this.activeText,
       required this.inactiveText,
+      required this.initialValue,
       required this.providerBase,
+      this.labelColor: AppColor.text_color,
       this.onToggle})
       : super(key: key);
 
@@ -29,7 +33,7 @@ class ProfileRowItem extends StatelessWidget {
       providerBase: providerBase,
       builder: (context, model, widget) {
         return AppStreamBuilder<bool>(
-          initialData: false,
+          initialData: initialValue,
           stream: model!.switchState,
           dataBuilder: (context, isActive) {
             return Container(
@@ -46,11 +50,11 @@ class ProfileRowItem extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
-                              color: AppColor.text_color),
+                              color: labelColor),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left:10.0),
+                        padding: EdgeInsets.only(left: 10.0),
                         child: FlutterSwitch(
                           value: isActive!,
                           onToggle: (value) {

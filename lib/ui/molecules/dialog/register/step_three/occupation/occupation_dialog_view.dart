@@ -1,9 +1,11 @@
+import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_wheel_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -34,7 +36,7 @@ class OccupationDialogView extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0)),
               insetPadding:
-              EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
@@ -53,35 +55,61 @@ class OccupationDialogView extends StatelessWidget {
                               child: Text(
                                 S.of(context).occupationSmall,
                                 style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600),
+                                    fontSize: 16, fontWeight: FontWeight.w600),
                               ),
                             ),
                           ),
                           Expanded(
-                              child: ListWheelScrollView.useDelegate(
-                                  itemExtent: 64,
-                                  onSelectedItemChanged: (int index) {
+                              child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 16.0),
+                                child: Container(
+                                  height: 64,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color: AppColor.dark_violet_3,
+                                  ),
+                                ),
+                              ),
+                              AppScrollableListViewWidget(
+                                child: ClickableListWheelScrollView(
+                                  scrollController: model.scrollController,
+                                  itemHeight: 64,
+                                  itemCount: data!.data!.length,
+                                  onItemTapCallback: (index) {
                                     model.currentIndexUpdate(index);
                                   },
-                                  physics: FixedExtentScrollPhysics(),
-                                  perspective: 0.0000000001,
-                                  childDelegate:
-                                      ListWheelChildBuilderDelegate(
-                                          childCount: data!.data!.length,
-                                          builder: (BuildContext context,
-                                              int index) {
-                                            return ListScrollWheelListWidget(
-                                              label: data.data![index],
-                                              textColor: currentIndex == index
-                                                  ? AppColor.white
-                                                  : AppColor.dark_gray_1,
-                                              widgetColor:
-                                                  currentIndex == index
-                                                      ? AppColor.dark_violet_3
-                                                      : AppColor.white,
-                                            );
-                                          }))),
+                                  child: ListWheelScrollView.useDelegate(
+                                      itemExtent: 64,
+                                      controller: model.scrollController,
+                                      onSelectedItemChanged: (int index) {
+                                        model.currentIndexUpdate(index);
+                                      },
+                                      physics: FixedExtentScrollPhysics(),
+                                      perspective: 0.0000000001,
+                                      childDelegate:
+                                          ListWheelChildBuilderDelegate(
+                                              childCount: data.data!.length,
+                                              builder: (BuildContext context,
+                                                  int index) {
+                                                return ListScrollWheelListWidget(
+                                                  label: data.data![index],
+                                                  textColor: currentIndex ==
+                                                          index
+                                                      ? AppColor.white
+                                                      : AppColor.dark_gray_1,
+                                                  widgetColor:
+                                                      Colors.transparent,
+                                                );
+                                              })),
+                                ),
+                              ),
+                            ],
+                          )),
                           InkWell(
                             onTap: () {
                               onSelected!.call(data.data![currentIndex!]);

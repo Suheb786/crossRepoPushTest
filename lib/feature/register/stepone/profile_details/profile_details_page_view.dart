@@ -1,6 +1,5 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
-import 'package:domain/constants/enum/nature_of_special_needs_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -113,6 +112,7 @@ class ProfileDetailsPageView
                                           ProfileRowItem(
                                             title:
                                                 S.of(context).profileDetailsQ1,
+                                            initialValue: false,
                                             activeText: S.of(context).yes,
                                             inactiveText: S.of(context).no,
                                             providerBase:
@@ -144,6 +144,7 @@ class ProfileDetailsPageView
                                           ProfileRowItem(
                                             title:
                                                 S.of(context).profileDetailsQ2,
+                                            initialValue: false,
                                             providerBase:
                                                 profileQ2ViewModelProvider,
                                             activeText: S.of(context).yes,
@@ -199,19 +200,51 @@ class ProfileDetailsPageView
                                               );
                                             },
                                           ),
-                                          SizedBox(height: 32,),
+                                          AppStreamBuilder<bool>(
+                                            stream: model
+                                                .beneficialOwnerAccountErrorVisibilityStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              return ProfileRowItem(
+                                                title: S
+                                                    .of(context)
+                                                    .areYouBeneficialOwnerAccount,
+                                                initialValue: true,
+                                                providerBase:
+                                                    areYouBeneficialOwnerAccountProvider,
+                                                activeText: S.of(context).yes,
+                                                inactiveText: S.of(context).no,
+                                                labelColor: !isValid!
+                                                    ? AppColor.vivid_red
+                                                    : AppColor.text_color,
+                                                onToggle: (isActive) {
+                                                  model
+                                                      .updateBeneficialOwnerAccountErrorVisibility(
+                                                          isActive);
+                                                  return Visibility(
+                                                    visible: isActive,
+                                                    child: Container(),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 32,
+                                          ),
                                           Text(
                                             S
                                                 .of(context)
                                                 .whatIsYourEmploymentStatus,
                                             style: TextStyle(
                                                 fontSize: 14,
-                                                fontWeight:
-                                                FontWeight.w600,
+                                                fontWeight: FontWeight.w600,
                                                 color: AppColor
                                                     .very_light_gray_white),
                                           ),
-                                          SizedBox(height: 16,),
+                                          SizedBox(
+                                            height: 16,
+                                          ),
                                           AppTextField(
                                             labelText:
                                                 S.of(context).employmentStatus,
@@ -237,16 +270,7 @@ class ProfileDetailsPageView
                                                       model
                                                           .updateJobNameVisibility();
                                                       model.validate();
-                                                    },
-                                                        natureOfNeedsEnum: (model
-                                                                    .isPerson &&
-                                                                model.natureController
-                                                                        .text ==
-                                                                    "Sensory")
-                                                            ? NatureOfSpecialNeedsEnum
-                                                                .SENSORY
-                                                            : NatureOfSpecialNeedsEnum
-                                                                .PHYSICAL);
+                                                    });
                                                   },
                                                   child: AppSvg.asset(
                                                       AssetUtils.dropDown,

@@ -21,6 +21,9 @@ class EnterAddressViewModel extends BasePageViewModel {
       TextEditingController();
   TextEditingController permanentBuildingNameOrNumberController =
       TextEditingController();
+  TextEditingController permanentResidentCountryController =
+      TextEditingController();
+  TextEditingController permanentCityController = TextEditingController();
 
   bool? dropDownEnabled = true;
 
@@ -44,6 +47,12 @@ class EnterAddressViewModel extends BasePageViewModel {
 
   final GlobalKey<AppTextFieldState> permanentBuildingNameOrNumberKey =
       GlobalKey(debugLabel: "permanentBuildingNameOrNumber");
+
+  final GlobalKey<AppTextFieldState> permanentResidentCountryKey =
+      GlobalKey(debugLabel: "permanentResidentCountry");
+
+  final GlobalKey<AppTextFieldState> permanentCityKey =
+      GlobalKey(debugLabel: "permanentCity");
 
   /// enter address request subject holder
   PublishSubject<EnterAddressUseCaseParams> _enterAddressRequest =
@@ -96,10 +105,8 @@ class EnterAddressViewModel extends BasePageViewModel {
         streetAddress: streetAddressController.text,
         buildingNameOrNo: buildingNameOrNumberController.text,
         jordanianLivesAbroad: _permanentAddressVisibilitySubject.value,
-        permanentHomeAddress: permanentHomeAddressController.text,
-        permanentStreetAddress: permanentStreetAddressController.text,
-        permanentBuildingNameOrNo:
-            permanentBuildingNameOrNumberController.text));
+        permanentCity: permanentCityController.text,
+        permanentResidentCountry: permanentResidentCountryController.text));
   }
 
   void validateAddress() {
@@ -109,9 +116,8 @@ class EnterAddressViewModel extends BasePageViewModel {
           homeAddressController.text.isNotEmpty &&
           streetAddressController.text.isNotEmpty &&
           buildingNameOrNumberController.text.isNotEmpty &&
-          permanentHomeAddressController.text.isNotEmpty &&
-          permanentStreetAddressController.text.isNotEmpty &&
-          permanentBuildingNameOrNumberController.text.isNotEmpty) {
+          permanentResidentCountryController.text.isNotEmpty &&
+          permanentCityController.text.isNotEmpty) {
         isValid = true;
       }
     } else if (residentCountryController.text.isNotEmpty &&

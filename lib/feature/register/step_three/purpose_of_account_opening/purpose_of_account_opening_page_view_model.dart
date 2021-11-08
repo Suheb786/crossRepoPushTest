@@ -68,17 +68,6 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  ///beneficial owner account switch value subject
-  final BehaviorSubject<bool> _beneficialOwnerAccountSubject =
-      BehaviorSubject.seeded(true);
-
-  Stream<bool> get beneficialOwnerAccountStream =>
-      _beneficialOwnerAccountSubject.stream;
-
-  void updateBeneficialOwnerAccountValue(bool value) {
-    _beneficialOwnerAccountSubject.safeAdd(value);
-  }
-
   List<ExpectedTransactions> expectedTransactionsList = [
     ExpectedTransactions(type: 'Cash Deposit'),
     ExpectedTransactions(type: 'Transfers'),
@@ -150,7 +139,6 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
     _purposeOfAccountOpeningRequest.close();
     _purposeOfAccountOpeningResponse.close();
     _allFieldValidatorSubject.close();
-    _beneficialOwnerAccountSubject.close();
     _getExpectedTransactionsResponse.close();
     super.dispose();
   }

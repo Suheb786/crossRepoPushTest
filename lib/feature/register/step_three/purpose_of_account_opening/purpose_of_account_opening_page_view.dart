@@ -11,7 +11,6 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_account_opening/purpose_of_account_opening_dialog.dart';
-import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
 import 'package:neo_bank/ui/molecules/register/expected_transactions_selector_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -85,29 +84,6 @@ class PurposeOfAccountOpeningPageView
                               physics: ClampingScrollPhysics(),
                               child: Column(
                                 children: [
-                                  AppStreamBuilder<bool>(
-                                    stream: model.beneficialOwnerAccountStream,
-                                    initialData: true,
-                                    dataBuilder: (context, isActive) {
-                                      return Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 32.0),
-                                        child: AppSwitchLabelWidget(
-                                          label: S
-                                              .of(context)
-                                              .areYouBeneficialOwnerAccount,
-                                          inActiveText: S.of(context).no,
-                                          activeText: S.of(context).yes,
-                                          onToggle: (value) {
-                                            model
-                                                .updateBeneficialOwnerAccountValue(
-                                                    value);
-                                          },
-                                          isActive: isActive,
-                                        ),
-                                      );
-                                    },
-                                  ),
                                   AppTextField(
                                     labelText:
                                         S.of(context).purposeOfAccountOpening,

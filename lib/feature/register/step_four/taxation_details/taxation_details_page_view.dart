@@ -56,7 +56,7 @@ class TaxationDetailsPageView
                                 duration: Duration(milliseconds: 500),
                                 curve: Curves.easeInOut);
                       } else if (model.usTaxResident &&
-                          model.bornInUS &&
+                          !model.bornInUS &&
                           !model.isPEP &&
                           !model.anyOtherCountryResident &&
                           !model.isUSCitizen) {
@@ -67,7 +67,7 @@ class TaxationDetailsPageView
                                 duration: Duration(milliseconds: 500),
                                 curve: Curves.easeInOut);
                       } else if (model.usTaxResident &&
-                          !model.bornInUS &&
+                          model.bornInUS &&
                           !model.isPEP &&
                           !model.anyOtherCountryResident &&
                           model.isUSCitizen) {

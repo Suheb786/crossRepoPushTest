@@ -22,9 +22,8 @@ class EnterAddressUseCaseParams extends Params {
   final String? streetAddress;
   final String? buildingNameOrNo;
   bool jordanianLivesAbroad;
-  final String? permanentHomeAddress;
-  final String? permanentStreetAddress;
-  final String? permanentBuildingNameOrNo;
+  final String? permanentResidentCountry;
+  final String? permanentCity;
 
   EnterAddressUseCaseParams(
       {required this.residentCountry,
@@ -32,9 +31,8 @@ class EnterAddressUseCaseParams extends Params {
       required this.streetAddress,
       required this.buildingNameOrNo,
       required this.jordanianLivesAbroad,
-      this.permanentBuildingNameOrNo,
-      this.permanentHomeAddress,
-      this.permanentStreetAddress});
+      this.permanentCity,
+      this.permanentResidentCountry});
 
   @override
   Either<AppError, bool> verify() {
@@ -59,20 +57,15 @@ class EnterAddressUseCaseParams extends Params {
           type: ErrorType.EMPTY_BUILDING_NAME_OR_NUMBER,
           cause: Exception()));
     } else if (jordanianLivesAbroad) {
-      if (Validator.isEmpty(permanentHomeAddress!)) {
+      if (Validator.isEmpty(permanentResidentCountry!)) {
         return Left(AppError(
             error: ErrorInfo(message: ''),
-            type: ErrorType.EMPTY_PERMANENT_HOME_ADDRESS,
+            type: ErrorType.EMPTY_PERMANENT_RESIDENT_COUNTRY,
             cause: Exception()));
-      } else if (Validator.isEmpty(permanentStreetAddress!)) {
+      } else if (Validator.isEmpty(permanentCity!)) {
         return Left(AppError(
             error: ErrorInfo(message: ''),
-            type: ErrorType.EMPTY_PERMANENT_STREET_ADDRESS,
-            cause: Exception()));
-      } else if (Validator.isEmpty(permanentBuildingNameOrNo!)) {
-        return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.EMPTY_PERMANENT_BUILDING_NAME_OR_NUMBER,
+            type: ErrorType.EMPTY_CITY,
             cause: Exception()));
       }
     }

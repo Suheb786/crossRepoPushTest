@@ -3590,6 +3590,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter City`
+  String get emptyCity {
+    return Intl.message(
+      'Enter City',
+      name: 'emptyCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You must be the beneficial owner of the account to proceed`
+  String get invalidBeneficialOwnerAccount {
+    return Intl.message(
+      'You must be the beneficial owner of the account to proceed',
+      name: 'invalidBeneficialOwnerAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preferred Time`
+  String get preferredTimeSmall {
+    return Intl.message(
+      'Preferred Time',
+      name: 'preferredTimeSmall',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

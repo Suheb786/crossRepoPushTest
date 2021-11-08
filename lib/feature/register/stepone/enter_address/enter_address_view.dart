@@ -71,16 +71,13 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                               model.buildingNameOrNumberKey.currentState!
                                   .isValid = false;
                             } else if (data.appError!.type ==
-                                ErrorType.EMPTY_PERMANENT_HOME_ADDRESS) {
-                              model.permanentHomeAddressKey.currentState!
+                                ErrorType.EMPTY_PERMANENT_RESIDENT_COUNTRY) {
+                              model.permanentResidentCountryKey.currentState!
                                   .isValid = false;
                             } else if (data.appError!.type ==
-                                ErrorType.EMPTY_PERMANENT_STREET_ADDRESS) {
-                              model.permanentStreetAddressKey.currentState!
-                                  .isValid = false;
-                            } else {
-                              model.permanentBuildingNameOrNumberKey
-                                  .currentState!.isValid = false;
+                                ErrorType.EMPTY_CITY) {
+                              model.permanentCityKey.currentState!.isValid =
+                                  false;
                             }
                             model.showToastWithError(data.appError!);
                           }
@@ -279,90 +276,71 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                       AppTextField(
                                                         labelText: S
                                                             .of(context)
-                                                            .homeAddress,
+                                                            .residentCountry,
                                                         hintText: S
                                                             .of(context)
-                                                            .pleaseEnter,
-                                                        inputType:
-                                                            TextInputType.text,
+                                                            .pleaseSelect,
+                                                        readOnly: true,
                                                         controller: model
-                                                            .permanentHomeAddressController,
+                                                            .permanentResidentCountryController,
+                                                        suffixIcon:
+                                                            (value, data) {
+                                                          return InkWell(
+                                                            onTap: () async {
+                                                              CountryDialog.show(
+                                                                  context,
+                                                                  title: S
+                                                                      .of(
+                                                                          context)
+                                                                      .residentCountrySmall,
+                                                                  onDismissed:
+                                                                      () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              }, onSelected:
+                                                                      (value) {
+                                                                Navigator.pop(
+                                                                    context);
+                                                                model.permanentResidentCountryController
+                                                                        .text =
+                                                                    value;
+                                                                model
+                                                                    .validateAddress();
+                                                              });
+                                                            },
+                                                            child: Container(
+                                                                height: 16,
+                                                                width: 16,
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            8),
+                                                                child: AppSvg.asset(
+                                                                    AssetUtils
+                                                                        .downArrow)),
+                                                          );
+                                                        },
                                                         key: model
-                                                            .permanentHomeAddressKey,
-                                                        onChanged: (value) => model
-                                                            .validateAddress(),
-                                                        suffixIcon: (isValid,
-                                                                value) =>
-                                                            InkWell(
-                                                                onTap: () =>
-                                                                    HomeAddressDialog.show(
-                                                                        context,
-                                                                        onSelected:
-                                                                            (value) {
-                                                                      Navigator.of(
-                                                                              context)
-                                                                          .pop();
-                                                                      model.homeAddressController
-                                                                              .text =
-                                                                          value;
-                                                                    }, onDismissed:
-                                                                            () {
-                                                                      Navigator.pop(
-                                                                          context);
-                                                                    }),
-                                                                child:
-                                                                    Container(
-                                                                  height: 20,
-                                                                  width: 16,
-                                                                  padding: EdgeInsets
-                                                                      .only(
-                                                                          left:
-                                                                              4,
-                                                                          top:
-                                                                              2),
-                                                                  child: AppSvg.asset(
-                                                                      AssetUtils
-                                                                          .location_marker),
-                                                                )),
+                                                            .permanentResidentCountryKey,
                                                       ),
                                                       SizedBox(
                                                         height: 16,
                                                       ),
                                                       AppTextField(
-                                                        labelText: S
-                                                            .of(context)
-                                                            .streetAddress,
+                                                        labelText:
+                                                            S.of(context).city,
                                                         hintText: S
                                                             .of(context)
                                                             .pleaseEnter,
                                                         inputType:
                                                             TextInputType.text,
                                                         controller: model
-                                                            .permanentStreetAddressController,
+                                                            .permanentCityController,
                                                         key: model
-                                                            .permanentStreetAddressKey,
+                                                            .permanentCityKey,
                                                         onChanged: (value) => model
                                                             .validateAddress(),
-                                                      ),
-                                                      SizedBox(
-                                                        height: 16,
-                                                      ),
-                                                      AppTextField(
-                                                        labelText: S
-                                                            .of(context)
-                                                            .buildingNameOrNo,
-                                                        hintText: S
-                                                            .of(context)
-                                                            .pleaseEnter,
-                                                        inputType:
-                                                            TextInputType.text,
-                                                        controller: model
-                                                            .permanentBuildingNameOrNumberController,
-                                                        key: model
-                                                            .permanentBuildingNameOrNumberKey,
-                                                        onChanged: (value) => model
-                                                            .validateAddress(),
-                                                      ),
+                                                      )
                                                     ],
                                                   ),
                                                 );

@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/add_income_widget.dart';
 import 'package:neo_bank/ui/molecules/register/additional_income_source_widget.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
@@ -88,12 +89,30 @@ class JobAndIncomePageView
                                 children: [
                                   AppTextField(
                                     labelText: S.of(context).occupation,
-                                    hintText: S.of(context).pleaseEnter,
+                                    hintText: S.of(context).pleaseSelect,
                                     controller: model.occupationController,
+                                    readOnly: true,
                                     key: model.occupationKey,
-                                    inputAction: TextInputAction.go,
-                                    onChanged: (value) {
-                                      model.isValid();
+                                    suffixIcon: (value, data) {
+                                      return InkWell(
+                                        onTap: () async {
+                                          OccupationDialog.show(context,
+                                              onDismissed: () {
+                                            Navigator.pop(context);
+                                          }, onSelected: (data) {
+                                            Navigator.pop(context);
+                                            model.occupationController.text =
+                                                data;
+                                            model.isValid();
+                                          });
+                                        },
+                                        child: Container(
+                                            height: 16,
+                                            width: 16,
+                                            padding: EdgeInsets.only(right: 8),
+                                            child: AppSvg.asset(
+                                                AssetUtils.downArrow)),
+                                      );
                                     },
                                   ),
                                   SizedBox(

@@ -84,6 +84,7 @@ class StudentJobIncomePageView
                                           title: S
                                               .of(context)
                                               .additionalSourceIncomeQ1,
+                                          initialValue: false,
                                           activeText: S.of(context).yes,
                                           inactiveText: S.of(context).no,
                                           providerBase:

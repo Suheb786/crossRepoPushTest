@@ -182,6 +182,12 @@ class ErrorParser {
         return localisedHelper.invalidJobName;
       case ErrorType.EMPTY_DOCUMENT:
         return localisedHelper.emptyDocument;
+      case ErrorType.EMPTY_PERMANENT_RESIDENT_COUNTRY:
+        return localisedHelper.emptyResidentCountry;
+      case ErrorType.EMPTY_CITY:
+        return localisedHelper.emptyCity;
+      case ErrorType.INVALID_BENEFICIAL_OWNER_ACCOUNT:
+        return localisedHelper.invalidBeneficialOwnerAccount;
 
       default:
         return "";

@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -74,11 +75,23 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
   Stream<bool> get jobNameVisibilityStream => _jobNameVisibilitySubject.stream;
 
   void updateJobNameVisibility() {
-    if (employeeStatusController.text == 'Other') {
+    if (employeeStatusController.text.fromEmploymentValue() ==
+        EmploymentStatusEnum.OTHER) {
       _jobNameVisibilitySubject.safeAdd(true);
     } else {
       _jobNameVisibilitySubject.safeAdd(false);
     }
+  }
+
+  /// show beneficial Owner Account Error visibility Subject holder
+  BehaviorSubject<bool> _beneficialOwnerAccountErrorVisibilitySubject =
+      BehaviorSubject.seeded(false);
+
+  Stream<bool> get beneficialOwnerAccountErrorVisibilityStream =>
+      _beneficialOwnerAccountErrorVisibilitySubject.stream;
+
+  void updateBeneficialOwnerAccountErrorVisibility(bool value) {
+    _beneficialOwnerAccountErrorVisibilitySubject.safeAdd(value);
   }
 
   ProfileDetailsPageViewModel(this._profileUseCase) {
@@ -104,7 +117,7 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
       employeeStatusKey.currentState!.isValid = false;
     } else if (type == ErrorType.INVALID_JOB_NAME) {
       jobNameKey.currentState!.isValid = false;
-    }
+    } else if (type == ErrorType.INVALID_BENEFICIAL_OWNER_ACCOUNT) {}
   }
 
   void setKeysStatusValid() {
@@ -128,6 +141,8 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
         natureOfNeeds: natureController.text,
         employeeStatus: employeeStatusController.text,
         isEmploymentStatusOthers: _jobNameVisibilitySubject.value,
+        isBeneficialOwnerACcount:
+            _beneficialOwnerAccountErrorVisibilitySubject.value,
         jobName: jobNameController.text));
   }
 
@@ -135,6 +150,8 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
   void dispose() {
     _profileDetailsRequest.close();
     _showButtonSubject.close();
+    _beneficialOwnerAccountErrorVisibilitySubject.close();
+    _jobNameVisibilitySubject.close();
     super.dispose();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -8,6 +9,7 @@ import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/bottom_sheet/date_picker_bottom_sheet/date_picker_bottom_sheet.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/calendar_dialog/calendar_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -156,22 +158,14 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         suffixIcon: (isvalid, value) {
                                           return InkWell(
                                               onTap: () {
-                                                CalendarDialog.show(context,
-                                                    initialDateTime:
-                                                        model.selectedDate,
-                                                    title: S
-                                                        .of(context)
-                                                        .dateOfBirthSmall,
-                                                    onSelected: (date) {
+                                                DatePickerBottomSheet.show(
+                                                    context,
+                                                    onDateSelected: (date) {
                                                   Navigator.pop(context);
-                                                  model.selectedDate = date;
                                                   model.dobController.text =
-                                                      TimeUtils
-                                                          .getFormattedDate(
-                                                              date.toString());
-                                                }, onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onHeaderTapped: (date) {});
+                                                      TimeUtils.getFormattedDOB(
+                                                          date);
+                                                });
                                               },
                                               child: Container(
                                                   height: 16,

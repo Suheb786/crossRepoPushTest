@@ -176,6 +176,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please upload address document"),
         "emptyBuildingNameOrNo": MessageLookupByLibrary.simpleMessage(
             "Building name or number field cannot be empty"),
+        "emptyCity": MessageLookupByLibrary.simpleMessage("Enter City"),
         "emptyDob": MessageLookupByLibrary.simpleMessage(
             "Date of birth field cannot be empty"),
         "emptyDocument":
@@ -281,6 +282,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),
         "invalidAnnualIncome":
             MessageLookupByLibrary.simpleMessage("Enter Annual income"),
+        "invalidBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
+            "You must be the beneficial owner of the account to proceed"),
         "invalidCitizenship":
             MessageLookupByLibrary.simpleMessage("Enter citizenship"),
         "invalidCity": MessageLookupByLibrary.simpleMessage("Select City"),
@@ -466,6 +469,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You may select your preferred agent to chat with"),
         "preferredDate": MessageLookupByLibrary.simpleMessage("PREFERRED DATE"),
         "preferredTime": MessageLookupByLibrary.simpleMessage("PREFERRED TIME"),
+        "preferredTimeSmall":
+            MessageLookupByLibrary.simpleMessage("Preferred Time"),
         "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
             "Great! Now, here’s what Neu has to offer for you"),
         "profileDetailsQ1":

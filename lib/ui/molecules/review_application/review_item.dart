@@ -29,14 +29,19 @@ class ReviewApplicationItem extends StatelessWidget {
             ),
           ),
           Flexible(
-            child: Text(
-              details,
-              softWrap: true,
-              textAlign: TextAlign.right,
+            child: TextFormField(
+              initialValue: details,
+              maxLines: 2,
+              textAlign: TextAlign.end,
+              cursorColor: AppColor.dark_violet2,
               style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
                   color: AppColor.dark_violet2),
+              decoration: InputDecoration.collapsed(
+                border: InputBorder.none,
+                hintText: '',
+              ),
             ),
           ),
         ],
