@@ -36,7 +36,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 73.0),
+                    padding: EdgeInsets.only(top: 57.0),
                     child: Text(
                       S.of(context).welcomeToNeuBank,
                       textAlign: TextAlign.center,
@@ -76,7 +76,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                   }
                                 },
                                 child: Padding(
-                                  padding: EdgeInsets.only(top: 40),
+                                  padding: EdgeInsets.only(top: 15),
                                   child: Stack(
                                     children: [
                                       Container(
@@ -117,9 +117,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(
-                                                  left: 24,
-                                                  right: 24,
-                                                  top: 49.84),
+                                                  left: 24, right: 24, top: 30),
                                               child: AppTextField(
                                                   labelText: S
                                                       .of(context)
