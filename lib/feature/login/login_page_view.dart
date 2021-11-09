@@ -117,7 +117,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(
-                                                  left: 24, right: 24, top: 30),
+                                                  left: 24, right: 24, top: 25),
                                               child: AppTextField(
                                                   labelText: S
                                                       .of(context)
@@ -239,12 +239,21 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                     color: AppColor.very_dark_blue1.withOpacity(0.2),
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(16))),
-                child: Text(
-                  S.of(context).swipeUpToRegister,
-                  style: TextStyle(
-                      fontSize: 14,
-                      color: AppColor.dark_grayish_violet1,
-                      fontWeight: FontWeight.w600),
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 17.5, horizontal: 24),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(200),
+                      border: Border.all(
+                        width: 2,
+                        color: AppColor.dark_grayish_violet1,
+                      )),
+                  child: Text(
+                    S.of(context).swipeUpToRegister,
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: AppColor.dark_grayish_violet1,
+                        fontWeight: FontWeight.w500),
+                  ),
                 )),
           ),
         ],
