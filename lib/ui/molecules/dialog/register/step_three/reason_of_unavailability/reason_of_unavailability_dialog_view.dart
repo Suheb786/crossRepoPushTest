@@ -1,9 +1,11 @@
+import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/reason_of_unavailability/reason_of_unavailability_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/reason_unavailability_list_widget.dart';
@@ -52,31 +54,61 @@ class ReasonOfUnavailabilityDialogView extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                          child: ListWheelScrollView.useDelegate(
-                              itemExtent: 110,
-                              onSelectedItemChanged: (int index) {
+                          child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Container(
+                              height: 110,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                color: AppColor.dark_violet_3,
+                              ),
+                            ),
+                          ),
+                          AppScrollableListViewWidget(
+                            child: ClickableListWheelScrollView(
+                              scrollController: model.scrollController,
+                              itemHeight: 110,
+                              itemCount:
+                                  model.reasonOfUnavailabilityList.length,
+                              onItemTapCallback: (index) {
                                 model.currentIndexUpdate(index);
                               },
-                              physics: FixedExtentScrollPhysics(),
-                              perspective: 0.0000000001,
-                              childDelegate: ListWheelChildBuilderDelegate(
-                                  childCount:
-                                      model.reasonOfUnavailabilityList.length,
-                                  builder: (BuildContext context, int index) {
-                                    return ReasonUnavailabilityListWidget(
-                                      reasonOfUnavailability: model
-                                          .reasonOfUnavailabilityList[index],
-                                      labelColor: currentIndex == index
-                                          ? AppColor.white
-                                          : AppColor.very_dark_violet,
-                                      descriptionColor: currentIndex == index
-                                          ? AppColor.very_light_gray_white
-                                          : AppColor.very_dark_violet,
-                                      widgetColor: currentIndex == index
-                                          ? AppColor.dark_violet_3
-                                          : AppColor.white,
-                                    );
-                                  }))),
+                              child: ListWheelScrollView.useDelegate(
+                                  controller: model.scrollController,
+                                  itemExtent: 110,
+                                  onSelectedItemChanged: (int index) {
+                                    model.currentIndexUpdate(index);
+                                  },
+                                  physics: FixedExtentScrollPhysics(),
+                                  perspective: 0.0000000001,
+                                  childDelegate: ListWheelChildBuilderDelegate(
+                                      childCount: model
+                                          .reasonOfUnavailabilityList.length,
+                                      builder:
+                                          (BuildContext context, int index) {
+                                        return ReasonUnavailabilityListWidget(
+                                          reasonOfUnavailability:
+                                              model.reasonOfUnavailabilityList[
+                                                  index],
+                                          labelColor: currentIndex == index
+                                              ? AppColor.white
+                                              : AppColor.very_dark_violet,
+                                          descriptionColor: currentIndex ==
+                                                  index
+                                              ? AppColor.very_light_gray_white
+                                              : AppColor.very_dark_violet,
+                                          widgetColor: Colors.transparent,
+                                        );
+                                      })),
+                            ),
+                          ),
+                        ],
+                      )),
                       InkWell(
                         onTap: () {
                           onSelected!.call(model

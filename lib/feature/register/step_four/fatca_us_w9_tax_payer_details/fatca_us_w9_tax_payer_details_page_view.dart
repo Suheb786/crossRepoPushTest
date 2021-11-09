@@ -16,7 +16,6 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -29,24 +28,6 @@ class FatcaUSW9TaxPayersDetailsPageView
     return AppKeyBoardHide(
         child: Column(
       children: [
-        Text(
-          S.of(context).fatcaandPep,
-          style: TextStyle(
-              color: AppColor.dark_gray,
-              fontSize: 10,
-              fontWeight: FontWeight.w600),
-        ),
-        Padding(
-          padding: EdgeInsets.only(top: 8.0, bottom: 32),
-          child: Text(
-            S.of(context).pleaseProvideInformationIfAppliesToYou,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: AppColor.very_dark_gray,
-                fontSize: 20,
-                fontWeight: FontWeight.w600),
-          ),
-        ),
         Expanded(
           child: AppStreamBuilder<bool>(
             stream: model.errorDetectorStream,
@@ -68,6 +49,8 @@ class FatcaUSW9TaxPayersDetailsPageView
                           .nextPage(
                               duration: Duration(milliseconds: 500),
                               curve: Curves.easeInOut);
+                    } else if (data.status == Status.ERROR) {
+                      model.showToastWithError(data.appError!);
                     }
                   },
                   dataBuilder: (context, response) {
@@ -88,6 +71,9 @@ class FatcaUSW9TaxPayersDetailsPageView
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
+                        elevation: 2,
+                        margin: EdgeInsets.zero,
+                        shadowColor: AppColor.black.withOpacity(0.32),
                         child: Container(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
@@ -117,34 +103,6 @@ class FatcaUSW9TaxPayersDetailsPageView
                                               model.taxPayerTypeController,
                                           key: model.taxPayerTypeKey,
                                           readOnly: true,
-                                          textHintWidget:
-                                              (hasFocus, isValid, value) {
-                                            return Visibility(
-                                              visible: !isValid,
-                                              child: Align(
-                                                alignment: Alignment.centerLeft,
-                                                child: Padding(
-                                                  padding:
-                                                      EdgeInsets.only(top: 8),
-                                                  child: Text(
-                                                    ErrorParser
-                                                        .getLocalisedStringError(
-                                                            error: response!
-                                                                .appError,
-                                                            localisedHelper:
-                                                                S.of(context)),
-                                                    textAlign: TextAlign.start,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color:
-                                                            AppColor.vivid_red),
-                                                  ),
-                                                ),
-                                              ),
-                                            );
-                                          },
                                           suffixIcon: (value, data) {
                                             return InkWell(
                                               onTap: () async {
@@ -190,37 +148,6 @@ class FatcaUSW9TaxPayersDetailsPageView
                                                     .socialSecurityNumberController,
                                                 key: model
                                                     .socialSecurityNumberKey,
-                                                textHintWidget:
-                                                    (hasFocus, isValid, value) {
-                                                  return Visibility(
-                                                    visible: !isValid,
-                                                    child: Align(
-                                                      alignment:
-                                                          Alignment.centerLeft,
-                                                      child: Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                top: 8),
-                                                        child: Text(
-                                                          ErrorParser.getLocalisedStringError(
-                                                              error: response!
-                                                                  .appError,
-                                                              localisedHelper: S
-                                                                  .of(context)),
-                                                          textAlign:
-                                                              TextAlign.start,
-                                                          style: TextStyle(
-                                                              fontSize: 12,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              color: AppColor
-                                                                  .vivid_red),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  );
-                                                },
                                                 inputAction: TextInputAction.go,
                                                 onChanged: (value) {
                                                   model.isValid();
@@ -254,35 +181,8 @@ class FatcaUSW9TaxPayersDetailsPageView
                                           onTap: () {
                                             model.updateDeclarationSelection(
                                                 !(isSelected!));
-                                            model.updateDeclarationErrorValue(
-                                                false);
                                             model.isValid();
                                           },
-                                        );
-                                      },
-                                    ),
-                                    AppStreamBuilder<bool>(
-                                      stream: model.showDeclarationError,
-                                      initialData: false,
-                                      dataBuilder: (context, data) {
-                                        return Visibility(
-                                          visible: data!,
-                                          child: Align(
-                                            alignment: Alignment.centerLeft,
-                                            child: Padding(
-                                              padding: EdgeInsets.only(top: 8),
-                                              child: Text(
-                                                S
-                                                    .of(context)
-                                                    .invalidDeclarationSelection,
-                                                textAlign: TextAlign.start,
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight: FontWeight.w600,
-                                                    color: AppColor.vivid_red),
-                                              ),
-                                            ),
-                                          ),
                                         );
                                       },
                                     ),

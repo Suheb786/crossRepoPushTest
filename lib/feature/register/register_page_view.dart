@@ -7,11 +7,10 @@ import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/step_five/register_step_five_page.dart';
 import 'package:neo_bank/feature/register/step_four/register_step_four_page.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page.dart';
+import 'package:neo_bank/feature/register/step_two/register_step_two_page.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-
-import 'step_two/register_step_two_page.dart';
 
 class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
   RegisterPageView(ProviderBase model) : super(model);

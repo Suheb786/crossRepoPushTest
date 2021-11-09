@@ -15,7 +15,8 @@ class EmployerCountryListWidget extends StatelessWidget {
       padding: EdgeInsets.only(left: 24, right: 20, top: 20, bottom: 20),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
-          color: item.isSelected ? AppColor.dark_violet_3 : AppColor.white),
+          color: Colors.transparent
+      ),
       child: Row(
         children: <Widget>[
           Container(

@@ -1,4 +1,6 @@
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/register/review_app_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -8,6 +10,8 @@ import 'package:rxdart/rxdart.dart';
 
 class ReviewApplicationPageViewModel extends BasePageViewModel {
   final ReviewApplicationUseCase _reviewAppUseCase;
+
+  ScrollController scrollController = ScrollController();
 
   ///declaration selected  subject
   BehaviorSubject<bool> _declarationSelected = BehaviorSubject.seeded(false);
@@ -39,17 +43,22 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
           .listen((event) {
         _reviewAppResponse.add(event);
         if (event.status == Status.ERROR) {
+          getError(event);
           showErrorState();
         }
       });
     });
   }
 
-  void validateReviewDetails() {
-    if (_declarationSelected.stream.value) {
-      _reviewAppRequest.safeAdd(ReviewApplicationUseCaseParams());
-    } else {
-      showErrorState();
+  void getError(Resource<List<String>> event) {
+    switch (event.appError!.type) {
+      case ErrorType.INVALID_DECLARATION_SELECTION:
+        break;
     }
+  }
+
+  void validateReviewDetails() {
+    _reviewAppRequest.safeAdd(ReviewApplicationUseCaseParams(
+        declarationSelected: _declarationSelected.value));
   }
 }

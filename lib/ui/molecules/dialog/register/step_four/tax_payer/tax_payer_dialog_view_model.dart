@@ -1,8 +1,12 @@
-import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:domain/constants/enum/tax_payer_type.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class TaxPayerDialogViewModel extends BasePageViewModel {
+  final FixedExtentScrollController scrollController =
+      FixedExtentScrollController();
+
   List<String> taxPayerListW9 = ['Social Security', 'Employer'];
   List<String> taxPayerListW8 = ['U.S.', 'Foreign'];
 

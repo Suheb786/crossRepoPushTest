@@ -1,8 +1,12 @@
+import 'package:domain/constants/enum/nature_of_special_needs_enum.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/constants/enum/nature_of_special_needs_enum.dart';
 
 class EmploymentStatusDialogViewModel extends BasePageViewModel {
+  final FixedExtentScrollController scrollController =
+      FixedExtentScrollController();
+
   List<String> employmentStatusList = [
     "Retired",
     "Student",

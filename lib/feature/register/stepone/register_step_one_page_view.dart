@@ -2,11 +2,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/register/stepone/addnumber/add_number_page.dart';
-import 'package:neo_bank/feature/register/stepone/countryselection/country_selection_page.dart';
-import 'package:neo_bank/feature/register/stepone/createPassword/create_password_page.dart';
+import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_page.dart';
+import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_page.dart';
+import 'package:neo_bank/feature/register/stepone/id_verification_info/id_verification_info_page.dart';
+import 'package:neo_bank/feature/register/stepone/profile_details/profile_details_page.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
-import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -19,11 +19,10 @@ class RegisterStepOnePageView
   RegisterStepOnePageView(ProviderBase model) : super(model);
 
   List<Widget> pages = [
-    CountrySelectionPage(),
-    //NotifyPage(),
-    AddNumberPage(),
-    ValidateOtpPage(),
-    CreatePasswordPage(),
+    IdVerificationInfoPage(),
+    ConfirmDetailPage(),
+    EnterAddressPage(),
+    ProfileDetailsPage()
   ];
 
   @override
@@ -37,15 +36,15 @@ class RegisterStepOnePageView
           return Column(
             children: [
               Text(
-                S.of(context).accountRegistration,
+                S.of(context).personalDetails,
                 style: TextStyle(
                     color: AppColor.dark_gray,
                     fontSize: 10,
                     fontWeight: FontWeight.w600),
               ),
               Padding(
-                padding: EdgeInsets.only(
-                    top: 8.0, bottom: currentStep == 2 ? 0 : 32),
+                padding:
+                    EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
                 child: ShowUpAnimation(
                   key: ValueKey(currentStep),
                   delayStart: Duration(milliseconds: 50),
@@ -55,37 +54,17 @@ class RegisterStepOnePageView
                   offset: 0.5,
                   child: Text(
                     StepTextHelper.registrationFirstStepTextHelper(
-                        currentStep ?? 0,
-                        S.of(context).selectCountryHeader,
-                        S.of(context).whatYourEmailAndMobileNumber,
-                        S.of(context).enterOtpHeader,
-                        S.of(context).createPasswordHeader),
+                      currentStep ?? 0,
+                      S.of(context).idVerificationInfoHeader,
+                      S.of(context).pleaseConfirmYourIDDetailsBelow,
+                      S.of(context).whereDoYouCurrentlyLive,
+                      S.of(context).tellUsAboutYourProfile,
+                    ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: AppColor.very_dark_gray,
                         fontSize: 20,
                         fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ),
-              Visibility(
-                visible: currentStep == 2,
-                child: Padding(
-                  padding: EdgeInsets.only(bottom: 32),
-                  child: ShowUpAnimation(
-                    delayStart: Duration(milliseconds: 50),
-                    animationDuration: Duration(milliseconds: 750),
-                    curve: Curves.easeInOut,
-                    direction: Direction.vertical,
-                    offset: 0.5,
-                    child: Text(
-                      '+962 79 322 8080',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: AppColor.vivid_orange,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600),
-                    ),
                   ),
                 ),
               ),
@@ -102,13 +81,13 @@ class RegisterStepOnePageView
                   options: CarouselOptions(
                       height: double.maxFinite,
                       pageSnapping: true,
+                      enlargeCenterPage: true,
+                      viewportFraction: 0.88,
                       enableInfiniteScroll: false,
                       scrollPhysics: NeverScrollableScrollPhysics(),
                       onPageChanged: (index, reason) {
                         model.updatePage(index);
                       },
-                      enlargeCenterPage: true,
-                      viewportFraction: 0.88,
                       enlargeStrategy: CenterPageEnlargeStrategy.height),
                 ),
               ),

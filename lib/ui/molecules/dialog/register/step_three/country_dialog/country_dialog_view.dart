@@ -1,3 +1,4 @@
+import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:domain/model/country/country.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,8 @@ import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+
+import '../../../../app_scollable_list_view_widget.dart';
 
 class CountryDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -87,25 +90,60 @@ class CountryDialogView extends StatelessWidget {
                             ),
                             Expanded(
                                 child: data!.data!.length > 0
-                                    ? Scrollbar(
-                                        child: ListWheelScrollView.useDelegate(
-                                            itemExtent: 72,
-                                            onSelectedItemChanged: (int index) {
-                                              model.selectCountry(index);
-                                            },
-                                            physics: FixedExtentScrollPhysics(),
-                                            perspective: 0.0000000001,
-                                            childDelegate:
-                                                ListWheelChildBuilderDelegate(
-                                                    childCount:
-                                                        data.data!.length,
-                                                    builder:
-                                                        (BuildContext context,
-                                                            int index) {
-                                                      return EmployerCountryListWidget(
-                                                        item: data.data![index],
-                                                      );
-                                                    })),
+                                    ? Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 16.0),
+                                            child: Container(
+                                              height: 64,
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                                color: AppColor.dark_violet_3,
+                                              ),
+                                            ),
+                                          ),
+                                          AppScrollableListViewWidget(
+                                            child: ClickableListWheelScrollView(
+                                              scrollController:
+                                                  model.scrollController,
+                                              itemHeight: 72,
+                                              itemCount: data.data!.length,
+                                              onItemTapCallback: (index) {
+                                                model.selectCountry(index);
+                                              },
+                                              child: ListWheelScrollView
+                                                  .useDelegate(
+                                                      controller: model
+                                                          .scrollController,
+                                                      itemExtent: 72,
+                                                      onSelectedItemChanged:
+                                                          (int index) {
+                                                        model.selectCountry(
+                                                            index);
+                                                      },
+                                                      physics:
+                                                          FixedExtentScrollPhysics(),
+                                                      perspective: 0.0000000001,
+                                                      childDelegate:
+                                                          ListWheelChildBuilderDelegate(
+                                                              childCount: data
+                                                                  .data!.length,
+                                                              builder: (BuildContext
+                                                                      context,
+                                                                  int index) {
+                                                                return EmployerCountryListWidget(
+                                                                  item: data
+                                                                          .data![
+                                                                      index],
+                                                                );
+                                                              })),
+                                            ),
+                                          ),
+                                        ],
                                       )
                                     : Center(
                                         child: Text(

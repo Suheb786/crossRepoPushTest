@@ -1,12 +1,16 @@
+import 'package:domain/usecase/register/relationship_with_pep_usecase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:domain/usecase/register/relationship_with_pep_usecase.dart';
-import 'package:neo_bank/utils/extension/stream_extention.dart';
 
 class RelationshipWithPEPDialogViewModel extends BasePageViewModel {
   final RelationshipWithPEPUseCase _relationshipUseCase;
+
+  final FixedExtentScrollController scrollController =
+      FixedExtentScrollController();
 
   int currentIndex = 0;
   PublishSubject<int> _currentSelectIndex = PublishSubject();

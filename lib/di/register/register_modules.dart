@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/account_registration/account_regisration_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
@@ -19,23 +20,20 @@ import 'package:neo_bank/feature/register/step_four/fatca_us_w9_tax_payer_detail
 import 'package:neo_bank/feature/register/step_four/register_step_four_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/tax_report_information/tax_report_information_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/taxation_details/taxation_details_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_three/confirm_detail/confirm_detail_model.dart';
-import 'package:neo_bank/feature/register/step_three/enter_address/enter_address_model.dart';
-import 'package:neo_bank/feature/register/step_three/id_verification_info/id_verification_info_model.dart';
-import 'package:neo_bank/feature/register/step_three/job_and_income/job_and_income_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_three/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/purpose_of_account_opening/purpose_of_account_opening_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_three/student_job_income/student_job_income_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_two/product_selector/product_selector_model.dart';
+import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_two/register_step_two_page_view_model.dart';
-import 'package:neo_bank/feature/register/stepone/addnumber/add_number_model.dart';
-import 'package:neo_bank/feature/register/stepone/countryselection/country_selection_model.dart';
-import 'package:neo_bank/feature/register/stepone/createPassword/create_password_model.dart';
+import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page_view_model.dart';
+import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_model.dart';
+import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_model.dart';
+import 'package:neo_bank/feature/register/stepone/id_verification_info/id_verification_info_model.dart';
+import 'package:neo_bank/feature/register/stepone/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
-import 'package:neo_bank/feature/register/stepone/validateotp/validate_otp_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_payer_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_one/calendar_dialog/calendar_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_one/year_month_dialog/year_month_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog_view_model.dart';
@@ -57,29 +55,6 @@ final registerStepOneViewModelProvider =
     ChangeNotifierProvider.autoDispose<RegisterStepOneViewModel>(
   (ref) => RegisterStepOneViewModel(),
 );
-
-final countrySelectionViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CountrySelectionViewModel>(
-  (ref) => CountrySelectionViewModel(
-    ref.read(fetchCountriesUseCaseProvider),
-  ),
-);
-
-final addNumberViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AddNumberViewModel>(
-  (ref) => AddNumberViewModel(ref.read(registerNumberUseCaseProvider)),
-);
-
-///[ValidateOtpViewModel] provider
-final validateOtpViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ValidateOtpViewModel>(
-  (ref) => ValidateOtpViewModel(ref.read(verifyOtpUseCaseProvider)),
-);
-
-///[CreatePasswordViewModel] provider
-final createPasswordViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreatePasswordViewModel>((ref) =>
-        CreatePasswordViewModel(ref.read(createPasswordUseCaseProvider)));
 
 ///[IdVerificationInfoViewModel] provider
 final idVerificationInfoViewModelProvider =
@@ -324,11 +299,6 @@ final homeAddressDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<HomeAddressDialogViewModel>((ref) =>
         HomeAddressDialogViewModel(ref.read(homeAddressDialogUseCaseProvider)));
 
-///product selector view model provider
-final productSelectorViwModelProvider =
-    ChangeNotifierProvider.autoDispose<ProductSelectorViewModel>((ref) =>
-        ProductSelectorViewModel(ref.read(productSelectorUseCaseProvider)));
-
 ///video call info view model provider
 final videoCallInfoViewModelProvider =
     ChangeNotifierProvider.autoDispose<VideoCallInfoViewModel>(
@@ -357,4 +327,14 @@ final stateCityDialogViewModelProvider =
 final registerStepFiveViewModelProvider =
     ChangeNotifierProvider.autoDispose<RegisterStepFiveViewModel>(
   (ref) => RegisterStepFiveViewModel(),
+);
+
+final calendarDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CalendarDialogViewModel>(
+  (ref) => CalendarDialogViewModel(),
+);
+
+final yearMonthDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<YearMonthDialogViewModel>(
+  (ref) => YearMonthDialogViewModel(),
 );

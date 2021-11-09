@@ -81,17 +81,6 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
     _declarationSelected.safeAdd(value);
   }
 
-  ///show Declaration Error Subject holder
-  final BehaviorSubject<bool> _showDeclarationErrorSubject =
-      BehaviorSubject.seeded(false);
-
-  ///show Declaration Error response stream
-  Stream<bool> get showDeclarationError => _showDeclarationErrorSubject.stream;
-
-  void updateDeclarationErrorValue(bool value) {
-    _showDeclarationErrorSubject.safeAdd(value);
-  }
-
   ///tax treaty benefits switch value subject
   final BehaviorSubject<bool> _taxTreatyBenefitsSubject =
       BehaviorSubject.seeded(false);
@@ -162,7 +151,6 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
         identificationNumberKey.currentState!.isValid = false;
         break;
       case ErrorType.INVALID_DECLARATION_SELECTION:
-        updateDeclarationErrorValue(true);
         break;
       case ErrorType.INVALID_BENEFICIAL_ADDRESS:
         beneficialCountryKey.currentState!.isValid = false;

@@ -3219,6 +3219,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Please upload necessary document to proof yourself`
+  String get pleaseUploadNecessaryInfo {
+    return Intl.message(
+      'Please upload necessary document to proof yourself',
+      name: 'pleaseUploadNecessaryInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search year`
+  String get searchYear {
+    return Intl.message(
+      'Search year',
+      name: 'searchYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No matching year found!`
+  String get noMatchingYearFound {
+    return Intl.message(
+      'No matching year found!',
+      name: 'noMatchingYearFound',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

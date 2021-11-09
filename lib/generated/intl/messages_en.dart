@@ -385,6 +385,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("NO"),
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("No matching country found"),
+        "noMatchingYearFound":
+            MessageLookupByLibrary.simpleMessage("No matching year found!"),
         "notifyMe": MessageLookupByLibrary.simpleMessage("NOTIFY ME"),
         "notifyMeExC": MessageLookupByLibrary.simpleMessage("Notify me!"),
         "occupation": MessageLookupByLibrary.simpleMessage("OCCUPATION"),
@@ -424,6 +426,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage(
                 "Please select your preferred agent for a video call"),
+        "pleaseUploadNecessaryInfo": MessageLookupByLibrary.simpleMessage(
+            "Please upload necessary document to proof yourself"),
         "postCode": MessageLookupByLibrary.simpleMessage("POST CODE"),
         "preferredAgent": MessageLookupByLibrary.simpleMessage(
             "You may select your preferred agent to chat with"),
@@ -483,6 +487,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchCity": MessageLookupByLibrary.simpleMessage("Search city"),
         "searchCountry": MessageLookupByLibrary.simpleMessage("Search country"),
         "searchState": MessageLookupByLibrary.simpleMessage("Search state"),
+        "searchYear": MessageLookupByLibrary.simpleMessage("Search year"),
         "selectAnyOption":
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(

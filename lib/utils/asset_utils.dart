@@ -33,9 +33,15 @@ class AssetUtils {
   static const String message = svg + "message.svg";
   static const String galaxy = svg + "galaxy.svg";
   static const String fingerPrint = svg + "finger_print.svg";
+  static const String logout = svg + "logout.svg";
+  static const String anyAgent = svg + "any_agent.svg";
+  static const String maleAgent = svg + "male_agent.svg";
+  static const String female_agent = svg + "female_agent.svg";
+  static const String rightChevron = svg + "right_chevron.svg";
+
 
   /// DRAWABLES
-  static const String splashLogo = drawable + "splash_logo.png";
+  static const String splashLogo = drawable + "splash.png";
   static const String loginCard = drawable + "login_card.png";
   static const String complete = drawable + "complete.png";
   static const String location = drawable + "location.png";
