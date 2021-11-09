@@ -18,6 +18,12 @@ class AddNumberPageState
   }
 
   @override
+  void onModelReady(AddNumberViewModel model) {
+    super.onModelReady(model);
+    model.fetchCountryByCode(context, "JO");
+  }
+
+  @override
   Widget buildView(BuildContext context, AddNumberViewModel model) {
     return AddNumberPageView(provideBase());
   }

@@ -39,7 +39,6 @@ class AssetUtils {
   static const String female_agent = svg + "female_agent.svg";
   static const String rightChevron = svg + "right_chevron.svg";
 
-
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
   static const String loginCard = drawable + "login_card.png";

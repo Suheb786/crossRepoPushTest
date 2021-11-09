@@ -6,4 +6,7 @@ import 'package:flutter/widgets.dart';
 mixin CountryRepository {
   Future<Either<LocalError, List<Country>>> fetchCountries(
       {required BuildContext context});
+
+  Future<Either<LocalError, Country>> getCountryByCountryCode(
+      {required BuildContext context, String? countryCode});
 }
