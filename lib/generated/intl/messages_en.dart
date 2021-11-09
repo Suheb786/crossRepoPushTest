@@ -64,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
         "agentSelectionHeader": MessageLookupByLibrary.simpleMessage(
             "Please select your preferred agent for a video call"),
+        "allowBiometric":
+            MessageLookupByLibrary.simpleMessage("Allow biometric"),
         "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
         "annualIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Annual Income"),
@@ -88,6 +90,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
+        "biometricLoginDesc": MessageLookupByLibrary.simpleMessage(
+            "Would you like to enable biometric for a more seamless login experience?"),
         "brightPlace": MessageLookupByLibrary.simpleMessage(
             "Make sure you’re in bright place and surrounding"),
         "buildingNameNo":
@@ -207,6 +211,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Resident country field cannot be empty"),
         "emptyStreetAddress": MessageLookupByLibrary.simpleMessage(
             "Street address field cannot be empty"),
+        "enableBiometricLogin":
+            MessageLookupByLibrary.simpleMessage("Enable Biometric\nLogin"),
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
@@ -390,6 +396,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mainSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
+        "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("00 000 0000"),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),

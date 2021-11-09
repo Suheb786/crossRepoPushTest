@@ -377,5 +377,9 @@
   "otherNationality": "Other Nationality",
   "politicallyExposedPerson": "Politically Exposed Person",
   "pepDesc": " is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list.",
-  "verifyInformationDirectlyOrUsingThirdPartyAgentDesc": "I declare that the bank is entitled to verify the information given directly or through any third part agent."
+  "verifyInformationDirectlyOrUsingThirdPartyAgentDesc": "I declare that the bank is entitled to verify the information given directly or through any third part agent.",
+  "enableBiometricLogin": "Enable Biometric\nLogin",
+  "biometricLoginDesc": "Would you like to enable biometric for a more seamless login experience?",
+  "mayBeLater": "Maybe later",
+  "allowBiometric": "Allow biometric"
 }

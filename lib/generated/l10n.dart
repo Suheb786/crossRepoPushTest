@@ -3720,6 +3720,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Enable Biometric\nLogin`
+  String get enableBiometricLogin {
+    return Intl.message(
+      'Enable Biometric\nLogin',
+      name: 'enableBiometricLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Would you like to enable biometric for a more seamless login experience?`
+  String get biometricLoginDesc {
+    return Intl.message(
+      'Would you like to enable biometric for a more seamless login experience?',
+      name: 'biometricLoginDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maybe later`
+  String get mayBeLater {
+    return Intl.message(
+      'Maybe later',
+      name: 'mayBeLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allow biometric`
+  String get allowBiometric {
+    return Intl.message(
+      'Allow biometric',
+      name: 'allowBiometric',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
