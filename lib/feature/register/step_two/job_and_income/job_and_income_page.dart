@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -15,6 +16,15 @@ class JobAndIncomePageState
   @override
   ProviderBase provideBase() {
     return jobAndIncomePageViewModelProvider;
+  }
+
+  @override
+  void onModelReady(JobAndIncomePageViewModel model) {
+    model.employmentStatusEnum = ProviderScope.containerOf(context)
+        .read(profileDetailsPageViewModelProvider)
+        .employeeStatusController
+        .text
+        .fromEmploymentValue();
   }
 
   @override

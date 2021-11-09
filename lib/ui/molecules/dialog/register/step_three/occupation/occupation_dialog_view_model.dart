@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/usecase/register/get_occupation_list_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -43,11 +44,11 @@ class OccupationDialogViewModel extends BasePageViewModel {
         _getOccupationResponse.safeAdd(event);
       });
     });
-    getOccupationList();
   }
 
-  void getOccupationList() {
-    _getOccupationRequest.safeAdd(GetOccupationUseCaseParams());
+  void getOccupationList(EmploymentStatusEnum employmentStatusEnum) {
+    _getOccupationRequest.safeAdd(
+        GetOccupationUseCaseParams(employmentStatusEnum: employmentStatusEnum));
   }
 
   @override

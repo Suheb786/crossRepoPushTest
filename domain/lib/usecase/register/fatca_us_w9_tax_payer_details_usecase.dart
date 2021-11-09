@@ -21,13 +21,15 @@ class FatcaUSW9TaxPayerDetailsUseCaseParams extends Params {
   final String? socialSecurityNumber;
   final bool declarationSelected;
   final String? document;
+  final bool verifyInfoDeclarationSelected;
 
   FatcaUSW9TaxPayerDetailsUseCaseParams(
       {this.taxPayerType,
       this.socialSecurityNumber,
       required this.isSocialSecurityTaxPayer,
       required this.declarationSelected,
-      this.document});
+      this.document,
+      required this.verifyInfoDeclarationSelected});
 
   @override
   Either<AppError, bool> verify() {
@@ -53,6 +55,11 @@ class FatcaUSW9TaxPayerDetailsUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_DECLARATION_SELECTION,
+          cause: Exception()));
+    } else if (!verifyInfoDeclarationSelected) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION,
           cause: Exception()));
     }
     return Right(true);

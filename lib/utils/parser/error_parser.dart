@@ -114,6 +114,8 @@ class ErrorParser {
         return localisedHelper.invalidTypesOfTransaction;
       case ErrorType.INVALID_DECLARATION_SELECTION:
         return localisedHelper.invalidDeclarationSelection;
+      case ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION:
+        return localisedHelper.invalidDeclarationSelection;
       case ErrorType.INVALID_NAME_AS_PER_TAX_RETURN:
         return localisedHelper.invalidNameAsPerTaxReturn;
       case ErrorType.INVALID_DOB:
@@ -188,6 +190,10 @@ class ErrorParser {
         return localisedHelper.emptyCity;
       case ErrorType.INVALID_BENEFICIAL_OWNER_ACCOUNT:
         return localisedHelper.invalidBeneficialOwnerAccount;
+      case ErrorType.INVALID_BUSINESS_TYPE:
+        return localisedHelper.invalidBusinessType;
+      case ErrorType.EMPTY_BUSINESS:
+        return localisedHelper.emptyBusiness;
 
       default:
         return "";

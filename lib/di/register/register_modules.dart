@@ -198,6 +198,11 @@ final studentIncomeViewModelProvider =
   (ref) => ProfileItemViewModel(),
 );
 
+final anyOtherNationalityViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ProfileItemViewModel>(
+  (ref) => ProfileItemViewModel(),
+);
+
 ///employment status dialog view model provider
 final natureSpecialNeedsDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<NatureSpecialNeedsDialogViewModel>(

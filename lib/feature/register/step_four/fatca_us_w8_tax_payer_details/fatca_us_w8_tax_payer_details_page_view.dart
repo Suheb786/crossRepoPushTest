@@ -345,6 +345,26 @@ class FatcaUSW8TaxPayersDetailsPageView
                                         );
                                       },
                                     ),
+                                    ///TODO:check for padding between declaration
+                                    AppStreamBuilder<bool>(
+                                      stream: model
+                                          .verifyInfoDeclarationSelectedStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isSelected) {
+                                        return DeclarationWidget(
+                                          isSelected: isSelected,
+                                          title1: S
+                                              .of(context)
+                                              .verifyInformationDirectlyOrUsingThirdPartyAgentDesc,
+                                          onTap: () {
+                                            model
+                                                .updateVerifyInfoDeclarationSelection(
+                                                    !(isSelected!));
+                                            model.isValid();
+                                          },
+                                        );
+                                      },
+                                    ),
                                     Center(
                                       child: Padding(
                                         padding:

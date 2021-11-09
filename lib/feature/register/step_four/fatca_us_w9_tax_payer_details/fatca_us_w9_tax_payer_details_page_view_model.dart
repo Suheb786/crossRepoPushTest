@@ -72,18 +72,33 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
     _declarationSelected.safeAdd(value);
   }
 
+  ///verify info declaration selected  subject
+  BehaviorSubject<bool> _verifyInfoDeclarationSelected =
+      BehaviorSubject.seeded(false);
+
+  ///verify info declaration selected stream
+  Stream<bool> get verifyInfoDeclarationSelectedStream =>
+      _verifyInfoDeclarationSelected.stream;
+
+  ///update declaration selection function
+  void updateVerifyInfoDeclarationSelection(bool value) {
+    _verifyInfoDeclarationSelected.safeAdd(value);
+  }
+
   bool isValid() {
     bool valid = false;
     if (_socialSecurityVisibilitySubject.value) {
       if (taxPayerTypeController.text.isNotEmpty &&
           socialSecurityNumberController.text.isNotEmpty &&
           _declarationSelected.value &&
-          uploadDocumentController.text.isNotEmpty) {
+          uploadDocumentController.text.isNotEmpty &&
+          _verifyInfoDeclarationSelected.value) {
         valid = true;
       }
     } else {
       if (taxPayerTypeController.text.isNotEmpty &&
-          _declarationSelected.value) {
+          _declarationSelected.value &&
+          _verifyInfoDeclarationSelected.value) {
         valid = true;
       }
     }
@@ -157,6 +172,8 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
         break;
       case ErrorType.INVALID_DECLARATION_SELECTION:
         break;
+      case ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION:
+        break;
     }
   }
 
@@ -167,7 +184,9 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
             socialSecurityNumber: socialSecurityNumberController.text,
             taxPayerType: taxPayerTypeController.text,
             document: uploadDocumentController.text,
-            declarationSelected: _declarationSelected.value));
+            declarationSelected: _declarationSelected.value,
+            verifyInfoDeclarationSelected:
+                _verifyInfoDeclarationSelected.value));
   }
 
   void updateTaxPayerTypeField(String value) {

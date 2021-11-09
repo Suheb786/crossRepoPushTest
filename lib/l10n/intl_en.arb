@@ -31,7 +31,7 @@
   "idNumber": "ID NUMBER",
   "idHint": "Please Enter ID Number",
   "dob": "DATE OF BIRTH",
-  "dobHint": "Please Enter Date Of Birth",
+  "dobHint": "DD/MM/YYYY",
   "nationality": "NATIONALITY",
   "nationalityHint": "Please Enter Nationality",
   "expiryDate": "EXPIRY DATE",
@@ -367,5 +367,15 @@
   "termsConditions": "Terms & Conditions",
   "emptyCity": "Enter City",
   "invalidBeneficialOwnerAccount": "You must be the beneficial owner of the account to proceed",
-  "preferredTimeSmall": "Preferred Time"
+  "preferredTimeSmall": "Preferred Time",
+  "businessType": "Business Type",
+  "pleaseSpecify": "PLEASE SPECIFY",
+  "invalidBusinessType": "Select Business Type",
+  "emptyBusiness": "Specify Business",
+  "whatIsPEP": "What is P.E.P?",
+  "doYouHaveAnyOtherNationality": "Do you have any other nationality?",
+  "otherNationality": "Other Nationality",
+  "politicallyExposedPerson": "Politically Exposed Person",
+  "pepDesc": " is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list.",
+  "verifyInformationDirectlyOrUsingThirdPartyAgentDesc": "I declare that the bank is entitled to verify the information given directly or through any third part agent."
 }

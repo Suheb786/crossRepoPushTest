@@ -21,16 +21,21 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
       GlobalKey(debugLabel: "employeeStatus");
   final GlobalKey<AppTextFieldState> jobNameKey =
       GlobalKey(debugLabel: "jobName");
+  final GlobalKey<AppTextFieldState> otherNationalityKey =
+      GlobalKey(debugLabel: "otherNationality");
 
   final TextEditingController spouseNameController = TextEditingController();
   final TextEditingController natureController = TextEditingController();
   final TextEditingController employeeStatusController =
       TextEditingController();
   final TextEditingController jobNameController = TextEditingController();
+  final TextEditingController otherNationalityController =
+      TextEditingController();
 
   bool isMarried = false;
   bool isPerson = false;
   bool isRelative = false;
+  bool isAnyOtherNationality = false;
 
   PublishSubject<ProfileDetailsUseCaseParams> _profileDetailsRequest =
       PublishSubject();
@@ -117,6 +122,8 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
       employeeStatusKey.currentState!.isValid = false;
     } else if (type == ErrorType.INVALID_JOB_NAME) {
       jobNameKey.currentState!.isValid = false;
+    } else if (type == ErrorType.INVALID_COUNTRY) {
+      otherNationalityKey.currentState!.isValid = false;
     } else if (type == ErrorType.INVALID_BENEFICIAL_OWNER_ACCOUNT) {}
   }
 
@@ -143,7 +150,9 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
         isEmploymentStatusOthers: _jobNameVisibilitySubject.value,
         isBeneficialOwnerACcount:
             _beneficialOwnerAccountErrorVisibilitySubject.value,
-        jobName: jobNameController.text));
+        jobName: jobNameController.text,
+        isAnyOtherNationality: isAnyOtherNationality,
+        otherNationality: otherNationalityController.text));
   }
 
   @override

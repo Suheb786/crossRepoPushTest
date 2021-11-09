@@ -331,10 +331,10 @@ class S {
     );
   }
 
-  /// `Please Enter Date Of Birth`
+  /// `DD/MM/YYYY`
   String get dobHint {
     return Intl.message(
-      'Please Enter Date Of Birth',
+      'DD/MM/YYYY',
       name: 'dobHint',
       desc: '',
       args: [],
@@ -3616,6 +3616,106 @@ class S {
     return Intl.message(
       'Preferred Time',
       name: 'preferredTimeSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Business Type`
+  String get businessType {
+    return Intl.message(
+      'Business Type',
+      name: 'businessType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PLEASE SPECIFY`
+  String get pleaseSpecify {
+    return Intl.message(
+      'PLEASE SPECIFY',
+      name: 'pleaseSpecify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Business Type`
+  String get invalidBusinessType {
+    return Intl.message(
+      'Select Business Type',
+      name: 'invalidBusinessType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Specify Business`
+  String get emptyBusiness {
+    return Intl.message(
+      'Specify Business',
+      name: 'emptyBusiness',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What is P.E.P?`
+  String get whatIsPEP {
+    return Intl.message(
+      'What is P.E.P?',
+      name: 'whatIsPEP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you have any other nationality?`
+  String get doYouHaveAnyOtherNationality {
+    return Intl.message(
+      'Do you have any other nationality?',
+      name: 'doYouHaveAnyOtherNationality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other Nationality`
+  String get otherNationality {
+    return Intl.message(
+      'Other Nationality',
+      name: 'otherNationality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Politically Exposed Person`
+  String get politicallyExposedPerson {
+    return Intl.message(
+      'Politically Exposed Person',
+      name: 'politicallyExposedPerson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list.`
+  String get pepDesc {
+    return Intl.message(
+      ' is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list.',
+      name: 'pepDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I declare that the bank is entitled to verify the information given directly or through any third part agent.`
+  String get verifyInformationDirectlyOrUsingThirdPartyAgentDesc {
+    return Intl.message(
+      'I declare that the bank is entitled to verify the information given directly or through any third part agent.',
+      name: 'verifyInformationDirectlyOrUsingThirdPartyAgentDesc',
       desc: '',
       args: [],
     );

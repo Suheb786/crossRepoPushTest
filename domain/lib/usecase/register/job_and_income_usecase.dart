@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/local_error.dart';
@@ -25,6 +26,10 @@ class JobAndIncomeUseCaseParams extends Params {
   final String? employerCountry;
   final String? employerCity;
   final String? employerContact;
+  final String? businessType;
+  final String? specifyBusiness;
+  final EmploymentStatusEnum employmentStatusEnum;
+  final bool businessTypeOther;
 
   JobAndIncomeUseCaseParams(
       {this.employerContact,
@@ -33,16 +38,33 @@ class JobAndIncomeUseCaseParams extends Params {
       this.employerName,
       this.annualIncome,
       this.occupation,
-      this.mainSourceIncome});
+      this.mainSourceIncome,
+      this.businessType,
+      this.specifyBusiness,
+      required this.employmentStatusEnum,
+      required this.businessTypeOther});
 
   @override
   Either<AppError, bool> verify() {
-    if (occupation!.isEmpty) {
+    if (employmentStatusEnum == EmploymentStatusEnum.BUSINESS_OWNER) {
+      if (businessTypeOther && specifyBusiness!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.EMPTY_BUSINESS,
+            cause: Exception()));
+      } else if (businessType!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_BUSINESS_TYPE,
+            cause: Exception()));
+      }
+    } else if (occupation!.isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_OCCUPATION,
           cause: Exception()));
-    } else if (mainSourceIncome!.isEmpty) {
+    }
+    if (mainSourceIncome!.isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_SOURCE_INCOME,

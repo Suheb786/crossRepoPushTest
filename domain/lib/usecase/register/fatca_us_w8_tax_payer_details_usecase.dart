@@ -25,6 +25,7 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
   final String? typeOfIncome;
   final String? explanation;
   final bool declarationSelected;
+  final bool verifyInfoDeclarationSelected;
 
   FatcaUSW8TaxPayerDetailsUseCaseParams(
       {this.taxPayerType,
@@ -35,7 +36,8 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
       this.explanation,
       this.typeOfIncome,
       required this.wantToClaimTaxTreatyBenefits,
-      required this.declarationSelected});
+      required this.declarationSelected,
+      required this.verifyInfoDeclarationSelected});
 
   @override
   Either<AppError, bool> verify() {
@@ -70,16 +72,17 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
             error: ErrorInfo(message: ''),
             type: ErrorType.INVALID_EXPLANATION,
             cause: Exception()));
-      } else if (!declarationSelected) {
-        return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_DECLARATION_SELECTION,
-            cause: Exception()));
       }
-    } else if (!declarationSelected) {
+    }
+    if (!declarationSelected) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_DECLARATION_SELECTION,
+          cause: Exception()));
+    } else if (!verifyInfoDeclarationSelected) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION,
           cause: Exception()));
     }
     return Right(true);

@@ -98,6 +98,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please Enter Building Name/Number."),
         "businessNameOptional":
             MessageLookupByLibrary.simpleMessage("BUSINESS NAME (OPTIONAL)"),
+        "businessType": MessageLookupByLibrary.simpleMessage("Business Type"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cardLater":
@@ -143,11 +144,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "doYouHaveAdditionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage(
                 "Do you have additional\nsource of income"),
+        "doYouHaveAnyOtherNationality": MessageLookupByLibrary.simpleMessage(
+            "Do you have any other nationality?"),
         "doYouHaveTinAvailable": MessageLookupByLibrary.simpleMessage(
             "Do you have TIN No available?"),
         "dob": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
-        "dobHint":
-            MessageLookupByLibrary.simpleMessage("Please Enter Date Of Birth"),
+        "dobHint": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
         "editInformation":
             MessageLookupByLibrary.simpleMessage("Edit Information"),
         "eightCharacters": MessageLookupByLibrary.simpleMessage("8 characters"),
@@ -176,6 +178,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please upload address document"),
         "emptyBuildingNameOrNo": MessageLookupByLibrary.simpleMessage(
             "Building name or number field cannot be empty"),
+        "emptyBusiness":
+            MessageLookupByLibrary.simpleMessage("Specify Business"),
         "emptyCity": MessageLookupByLibrary.simpleMessage("Enter City"),
         "emptyDob": MessageLookupByLibrary.simpleMessage(
             "Date of birth field cannot be empty"),
@@ -284,6 +288,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Annual income"),
         "invalidBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
             "You must be the beneficial owner of the account to proceed"),
+        "invalidBusinessType":
+            MessageLookupByLibrary.simpleMessage("Select Business Type"),
         "invalidCitizenship":
             MessageLookupByLibrary.simpleMessage("Enter citizenship"),
         "invalidCity": MessageLookupByLibrary.simpleMessage("Select City"),
@@ -431,6 +437,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("or continue with"),
         "orYouCanUpload":
             MessageLookupByLibrary.simpleMessage("or you can upload"),
+        "otherNationality":
+            MessageLookupByLibrary.simpleMessage("Other Nationality"),
         "password": MessageLookupByLibrary.simpleMessage("PASSWORD"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
@@ -438,6 +446,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create Password"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Password did not match"),
+        "pepDesc": MessageLookupByLibrary.simpleMessage(
+            " is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list."),
         "permanentAddress":
             MessageLookupByLibrary.simpleMessage("Permanent address"),
         "permanentHomeAddress":
@@ -462,8 +472,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage(
                 "Please select your preferred agent for a video call"),
+        "pleaseSpecify": MessageLookupByLibrary.simpleMessage("PLEASE SPECIFY"),
         "pleaseUploadNecessaryInfo": MessageLookupByLibrary.simpleMessage(
             "Please upload necessary document to proof yourself"),
+        "politicallyExposedPerson":
+            MessageLookupByLibrary.simpleMessage("Politically Exposed Person"),
         "postCode": MessageLookupByLibrary.simpleMessage("POST CODE"),
         "preferredAgent": MessageLookupByLibrary.simpleMessage(
             "You may select your preferred agent to chat with"),
@@ -624,6 +637,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Upload Document"),
         "usIDNumber": MessageLookupByLibrary.simpleMessage(
             "U.S. tax payer identification number "),
+        "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":
+            MessageLookupByLibrary.simpleMessage(
+                "I declare that the bank is entitled to verify the information given directly or through any third part agent."),
         "videoCallInfoHeader": MessageLookupByLibrary.simpleMessage(
             "Get ready to verify yourself \nvia video call"),
         "w8Form": MessageLookupByLibrary.simpleMessage("W8 Form"),
@@ -641,6 +657,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank."),
         "wereBornInUS":
             MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
+        "whatIsPEP": MessageLookupByLibrary.simpleMessage("What is P.E.P?"),
         "whatIsYourEmploymentStatus": MessageLookupByLibrary.simpleMessage(
             "What is your employment status?"),
         "whatYourEmailAndMobileNumber": MessageLookupByLibrary.simpleMessage(

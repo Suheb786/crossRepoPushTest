@@ -27,6 +27,8 @@ class ProfileDetailsUseCaseParams extends Params {
   bool isEmploymentStatusOthers;
   final String? jobName;
   bool isBeneficialOwnerACcount;
+  final bool isAnyOtherNationality;
+  final String? otherNationality;
 
   ProfileDetailsUseCaseParams(
       {this.spouseName,
@@ -37,11 +39,18 @@ class ProfileDetailsUseCaseParams extends Params {
       required this.isRelative,
       required this.isEmploymentStatusOthers,
       this.jobName,
-      required this.isBeneficialOwnerACcount});
+      required this.isBeneficialOwnerACcount,
+      required this.isAnyOtherNationality,
+      this.otherNationality});
 
   @override
   Either<AppError, bool> verify() {
-    if (isMarried && spouseName!.isEmpty) {
+    if (isAnyOtherNationality && otherNationality!.isEmpty) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_COUNTRY,
+          cause: Exception()));
+    } else if (isMarried && spouseName!.isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_NAME,

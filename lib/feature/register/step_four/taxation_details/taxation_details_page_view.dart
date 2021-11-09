@@ -9,6 +9,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_four/pep_dialog/pep_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/relationship_with_pep/relationship_with_pep_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/declaration_widget.dart';
@@ -298,6 +299,12 @@ class TaxationDetailsPageView
                                     title: S
                                         .of(context)
                                         .areYouFirstDegreeRelativePEP,
+                                    secondaryText: S.of(context).whatIsPEP,
+                                    onSecondaryTextTap: () {
+                                      PEPDialog.show(context, onSelected: () {
+                                        Navigator.pop(context);
+                                      });
+                                    },
                                   ),
                                   AppStreamBuilder<bool>(
                                     stream: model.declarationSelectedStream,

@@ -10,6 +10,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_row_item.dart';
@@ -109,6 +110,73 @@ class ProfileDetailsPageView
                                     SingleChildScrollView(
                                       child: Column(
                                         children: [
+                                          ProfileRowItem(
+                                            title: S
+                                                .of(context)
+                                                .doYouHaveAnyOtherNationality,
+                                            initialValue: false,
+                                            activeText: S.of(context).yes,
+                                            inactiveText: S.of(context).no,
+                                            providerBase:
+                                                anyOtherNationalityViewModelProvider,
+                                            onToggle: (isActive) {
+                                              model.isAnyOtherNationality =
+                                                  isActive;
+                                              return Visibility(
+                                                visible: isActive,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 16.0),
+                                                  child: AppTextField(
+                                                    labelText: S
+                                                        .of(context)
+                                                        .otherNationality
+                                                        .toUpperCase(),
+                                                    hintText: S
+                                                        .of(context)
+                                                        .pleaseSelect,
+                                                    readOnly: true,
+                                                    controller: model
+                                                        .otherNationalityController,
+                                                    key: model
+                                                        .otherNationalityKey,
+                                                    suffixIcon: (value, data) {
+                                                      return InkWell(
+                                                        onTap: () async {
+                                                          CountryDialog.show(
+                                                              context,
+                                                              title: S
+                                                                  .of(context)
+                                                                  .otherNationality,
+                                                              onDismissed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          }, onSelected:
+                                                                  (value) {
+                                                            Navigator.pop(
+                                                                context);
+                                                            model
+                                                                .otherNationalityController
+                                                                .text = value;
+                                                            model.validate();
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                            height: 16,
+                                                            width: 16,
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    right: 8),
+                                                            child: AppSvg.asset(
+                                                                AssetUtils
+                                                                    .downArrow)),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
                                           ProfileRowItem(
                                             title:
                                                 S.of(context).profileDetailsQ1,

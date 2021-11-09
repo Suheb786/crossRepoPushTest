@@ -150,7 +150,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         labelText: S.of(context).dob,
                                         hintText: S.of(context).dobHint,
                                         inputType: TextInputType.text,
-                                        readOnly: true,
                                         controller: model.dobController,
                                         key: model.dobKey,
                                         onChanged: (value) =>

@@ -28,4 +28,10 @@ class RegisterRepositoryImpl with RegisterRepository {
     final result = await _registerRemoteDS.getAdditionalIncomeSourceList();
     return Right(result);
   }
+
+  @override
+  Future<Either<LocalError, List<String>>> getBusinessTypeList() async {
+    final result = await _registerRemoteDS.getBusinessTypeList();
+    return Right(result);
+  }
 }
