@@ -9,8 +9,8 @@ import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/bottom_sheet/date_picker_bottom_sheet/date_picker_bottom_sheet.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/date_picker.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -168,19 +168,18 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         suffixIcon: (isvalid, value) {
                                           return InkWell(
                                               onTap: () {
-                                                DatePickerBottomSheet.show(
-                                                    context,
-                                                    title: S
-                                                        .of(context)
-                                                        .dateOfBirthSmall,
-                                                    onCancel: () {
-                                                  Navigator.pop(context);
-                                                }, onDateSelected: (date) {
-                                                  Navigator.pop(context);
+                                                DatePicker.show(context,
+                                                    onSelected: (date) {
                                                   model.dobController.text =
                                                       TimeUtils.getFormattedDOB(
                                                           date);
-                                                });
+                                                  model.validateDetails();
+                                                }, onCancelled: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                    title: S
+                                                        .of(context)
+                                                        .dateOfBirthSmall);
                                               },
                                               child: Container(
                                                   height: 16,
@@ -261,21 +260,19 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         suffixIcon: (isvalid, value) {
                                           return InkWell(
                                               onTap: () {
-                                                DatePickerBottomSheet.show(
-                                                    context,
-                                                    title: S
-                                                        .of(context)
-                                                        .issuingDate,
-                                                    onCancel: () {
-                                                  Navigator.pop(context);
-                                                }, onDateSelected: (date) {
-                                                  Navigator.pop(context);
+                                                DatePicker.show(context,
+                                                    onSelected: (date) {
                                                   model.issuingDateController
                                                           .text =
                                                       TimeUtils.getFormattedDOB(
                                                           date);
                                                   model.validateDetails();
-                                                });
+                                                }, onCancelled: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                    title: S
+                                                        .of(context)
+                                                        .issuingDate);
                                               },
                                               child: Container(
                                                   height: 16,
@@ -300,21 +297,19 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         suffixIcon: (isvalid, value) {
                                           return InkWell(
                                               onTap: () {
-                                                DatePickerBottomSheet.show(
-                                                    context,
-                                                    title: S
-                                                        .of(context)
-                                                        .expiryDate,
-                                                    onCancel: () {
-                                                  Navigator.pop(context);
-                                                }, onDateSelected: (date) {
-                                                  Navigator.pop(context);
+                                                DatePicker.show(context,
+                                                    onSelected: (date) {
                                                   model.expiryDateController
                                                           .text =
                                                       TimeUtils.getFormattedDOB(
                                                           date);
                                                   model.validateDetails();
-                                                });
+                                                }, onCancelled: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                    title: S
+                                                        .of(context)
+                                                        .expiryDate);
                                               },
                                               child: Container(
                                                   height: 16,
