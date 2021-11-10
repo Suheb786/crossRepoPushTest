@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_page.dart';
 import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_page.dart';
+import 'package:neo_bank/feature/register/stepone/id_verification_info/id_verification_info_page.dart';
 import 'package:neo_bank/feature/register/stepone/profile_details/profile_details_page.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -18,7 +19,7 @@ class RegisterStepOnePageView
   RegisterStepOnePageView(ProviderBase model) : super(model);
 
   List<Widget> pages = [
-    //IdVerificationInfoPage(),
+    IdVerificationInfoPage(),
     ConfirmDetailPage(),
     EnterAddressPage(),
     ProfileDetailsPage()
