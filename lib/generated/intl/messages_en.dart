@@ -689,7 +689,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "We need to match the names on your tax return"),
         "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),
         "welcomeToNeuBank":
-            MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank."),
+            MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),
         "wereBornInUS":
             MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("What is P.E.P?"),

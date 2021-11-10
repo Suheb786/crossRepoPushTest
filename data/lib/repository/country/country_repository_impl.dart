@@ -28,4 +28,21 @@ class CountryRepositoryImpl with CountryRepository {
     }
     return Right([]);
   }
+
+  @override
+  Future<Either<LocalError, Country>> getCountryByCountryCode(
+      {required BuildContext context, String? countryCode}) async {
+    local.Country? country = await _localDs.fetchCountryByCountryCode(
+        context: context, countryCode: countryCode);
+
+    if (country == null) {
+      return Right(Country());
+    }
+
+    return Right(Country(
+        countryCode: country.countryCode,
+        countryFlag: country.flag,
+        countryCallingCode: country.callingCode,
+        countryName: country.name));
+  }
 }

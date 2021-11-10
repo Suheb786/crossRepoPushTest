@@ -45,6 +45,7 @@ class AppTextField extends StatefulWidget {
   final Color? hintTextColor;
   final Color? textColor;
   final Color? labelColor;
+  final double suffixIconSize;
 
   AppTextField(
       {this.height,
@@ -89,7 +90,8 @@ class AppTextField extends StatefulWidget {
       this.hintTextColor,
       this.textColor,
       this.labelColor,
-      this.textHintWidget})
+      this.textHintWidget,
+      this.suffixIconSize: 30})
       : super(key: key);
 
   @override
@@ -206,8 +208,8 @@ class AppTextFieldState extends State<AppTextField> {
                           ),
                           suffixIcon: widget.suffixIcon
                               ?.call(isValid, widget.controller!.text),
-                          suffixIconConstraints:
-                              BoxConstraints.tight(Size(30, 30)),
+                          suffixIconConstraints: BoxConstraints.tight(Size(
+                              widget.suffixIconSize, widget.suffixIconSize)),
                           enabled: widget.enabled,
                           floatingLabelBehavior: widget.floatingLabelBehavior),
                       controller: widget.controller,

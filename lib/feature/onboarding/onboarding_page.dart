@@ -19,11 +19,6 @@ class OnBoardingPageState
   }
 
   @override
-  bool extendBodyBehindAppBar() {
-    return true;
-  }
-
-  @override
   Color scaffoldBackgroundColor() {
     return AppColor.very_dark_blue;
   }

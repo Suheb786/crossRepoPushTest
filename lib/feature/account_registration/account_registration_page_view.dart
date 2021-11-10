@@ -20,7 +20,7 @@ class AccountRegistrationPageView
   AccountRegistrationPageView(ProviderBase model) : super(model);
 
   List pages = [
-    //CountrySelectionPage(),
+    // CountrySelectionPage(),
     AddNumberPage(),
     ValidateOtpPage(),
     CreatePasswordPage()

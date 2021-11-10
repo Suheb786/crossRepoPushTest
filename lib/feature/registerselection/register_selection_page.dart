@@ -19,13 +19,8 @@ class RegisterSelectionPageState extends BaseStatefulPage<
   }
 
   @override
-  bool extendBodyBehindAppBar() {
-    return true;
-  }
-
-  @override
   Color scaffoldBackgroundColor() {
-    return AppColor.white.withOpacity(0);
+    return AppColor.white;
   }
 
   @override
