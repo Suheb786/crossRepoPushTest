@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class BlurCard extends StatelessWidget {
@@ -37,23 +38,23 @@ class BlurCard extends StatelessWidget {
                       Container(
                         width: 20,
                         height: 20,
-                        child: Placeholder(
-                          color: AppColor.white,
+                        child: Image.asset(
+                          AssetUtils.contactLess,
                         ),
                       ),
                       Center(
                           child: Container(
                         width: 51,
                         height: 51,
-                        child: Placeholder(
-                          color: AppColor.white,
+                        child: Image.asset(
+                          AssetUtils.cardLogo,
                         ),
                       )),
                       Container(
                         width: 40.1,
                         height: 12.86,
-                        child: Placeholder(
-                          color: AppColor.white,
+                        child: Image.asset(
+                          AssetUtils.visa,
                         ),
                       ),
                     ],

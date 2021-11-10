@@ -52,5 +52,6 @@ class AssetUtils {
   static const String female = drawable + "female.png";
   static const String circle = drawable + "circle.webp";
   static const String visa = drawable + "visa.png";
-  static const String signal = drawable + "signal.png";
+  static const String contactLess = drawable + "contact_less.png";
+  static const String cardLogo = drawable + "card_logo.png";
 }
