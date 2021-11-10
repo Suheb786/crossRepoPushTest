@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/addnumber/add_number_page.dart';
-import 'package:neo_bank/feature/account_registration/countryselection/country_selection_page.dart';
 import 'package:neo_bank/feature/account_registration/createPassword/create_password_page.dart';
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -21,7 +20,7 @@ class AccountRegistrationPageView
   AccountRegistrationPageView(ProviderBase model) : super(model);
 
   List pages = [
-    CountrySelectionPage(),
+    // CountrySelectionPage(),
     AddNumberPage(),
     ValidateOtpPage(),
     CreatePasswordPage()

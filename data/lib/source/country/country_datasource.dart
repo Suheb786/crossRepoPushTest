@@ -5,4 +5,7 @@ mixin CountryRemoteDs {}
 
 mixin CountryLocalDs {
   Future<List<Country>> fetchCountries({required BuildContext context});
+
+  Future<Country?> fetchCountryByCountryCode(
+      {required BuildContext context, String? countryCode});
 }

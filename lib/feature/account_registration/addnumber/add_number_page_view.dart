@@ -103,53 +103,61 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                   SizedBox(
                                     height: 16,
                                   ),
-                                  AppTextField(
-                                    labelText: S.of(context).mobileNumber,
-                                    hintText: S.of(context).mobileNumberHint,
-                                    inputType: TextInputType.number,
-                                    inputAction: TextInputAction.done,
-                                    controller: model.mobileNumberController,
-                                    key: model.mobileNumberKey,
-                                    onChanged: (value) => model.validate(),
-                                    prefixIcon: () {
-                                      Country? country = ProviderScope
-                                              .containerOf(context)
-                                          .read(
-                                              countrySelectionViewModelProvider)
-                                          .selectedCountry;
-                                      return Padding(
-                                        padding: EdgeInsets.only(top: 8.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: <Widget>[
-                                            Container(
-                                                height: 16,
-                                                width: 16,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                        image: AssetImage(
-                                                            country!.countryFlag ??
-                                                                "",
-                                                            package:
-                                                                "country_calling_code_picker"),
-                                                        fit: BoxFit.cover))),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
-                                              child: Text(
-                                                country.countryCallingCode ??
-                                                    "",
-                                                style: TextStyle(
-                                                  color:
-                                                      AppColor.very_light_gray,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                  AppStreamBuilder<Resource<Country>>(
+                                    initialData:
+                                        Resource.success(data: Country()),
+                                    stream: model.countryByCode,
+                                    dataBuilder: (context, country) {
+                                      return AppTextField(
+                                        labelText: S.of(context).mobileNumber,
+                                        hintText:
+                                            S.of(context).mobileNumberHint,
+                                        inputType: TextInputType.number,
+                                        inputAction: TextInputAction.done,
+                                        controller:
+                                            model.mobileNumberController,
+                                        key: model.mobileNumberKey,
+                                        onChanged: (value) => model.validate(),
+                                        prefixIcon: () {
+                                          return Padding(
+                                            padding: EdgeInsets.only(top: 8.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                                Container(
+                                                    height: 16,
+                                                    width: 16,
+                                                    decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        image: DecorationImage(
+                                                            image: AssetImage(
+                                                                country!.data!
+                                                                        .countryFlag ??
+                                                                    "",
+                                                                package:
+                                                                    "country_calling_code_picker"),
+                                                            fit:
+                                                                BoxFit.cover))),
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
+                                                  child: Text(
+                                                    country.data!
+                                                            .countryCallingCode ??
+                                                        "",
+                                                    style: TextStyle(
+                                                      color: AppColor
+                                                          .very_light_gray,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
                                       );
                                     },
                                   ),

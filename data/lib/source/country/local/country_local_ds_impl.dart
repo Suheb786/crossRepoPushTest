@@ -8,4 +8,10 @@ class CountryLocalDsImpl with CountryLocalDs {
   Future<List<Country>> fetchCountries({required BuildContext context}) {
     return getCountries(context);
   }
+
+  @override
+  Future<Country?> fetchCountryByCountryCode(
+      {required BuildContext context, String? countryCode}) {
+    return getCountryByCountryCode(context, countryCode ?? "JO");
+  }
 }

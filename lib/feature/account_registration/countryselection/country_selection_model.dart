@@ -1,5 +1,5 @@
 import 'package:domain/model/country/country.dart';
-import 'package:domain/usecase/user/fetch_countries_usecase.dart';
+import 'package:domain/usecase/country/fetch_countries_usecase.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
