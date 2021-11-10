@@ -12,7 +12,7 @@ class CupertinoBottomSheet {
   }) {
     showCupertinoModalPopup(
       context: context,
-      barrierColor: AppColor.very_pale_blue_white.withOpacity(0.9),
+      barrierColor: AppColor.black.withOpacity(0.5),
       barrierDismissible: isDismissible,
       builder: (context) => builder(context),
     );

@@ -221,20 +221,6 @@ class JobAndIncomePageView
                                     },
                                   ),
                                   AppTextField(
-                                    labelText: S.of(context).mainSourceOfIncome,
-                                    hintText: S.of(context).pleaseEnter,
-                                    controller: model.sourceController,
-                                    inputType: TextInputType.text,
-                                    inputAction: TextInputAction.go,
-                                    key: model.sourceKey,
-                                    onChanged: (value) {
-                                      model.isValid();
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  AppTextField(
                                     labelText: S.of(context).mainAnnualIncome,
                                     hintText: '',
                                     controller: model.annualIncomeController,
@@ -376,6 +362,8 @@ class JobAndIncomePageView
                                                     return ListView.builder(
                                                         itemCount:
                                                             dataList.length + 1,
+                                                        physics:
+                                                            ClampingScrollPhysics(),
                                                         shrinkWrap: true,
                                                         itemBuilder:
                                                             (context, index) {

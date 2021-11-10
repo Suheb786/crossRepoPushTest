@@ -345,7 +345,6 @@ class FatcaUSW8TaxPayersDetailsPageView
                                         );
                                       },
                                     ),
-                                    ///TODO:check for padding between declaration
                                     AppStreamBuilder<bool>(
                                       stream: model
                                           .verifyInfoDeclarationSelectedStream,

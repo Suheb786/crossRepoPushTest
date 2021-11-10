@@ -8,12 +8,13 @@ class DatePickerBottomSheet {
 
   static show(
     BuildContext context, {
+    String? title,
     Function(String)? onDateSelected,
+    Function()? onCancel,
   }) async {
     CupertinoBottomSheet.show(context, builder: (context) {
       return DatePickerBottomSheetView(
-        onDateSelected: onDateSelected,
-      );
+          onDateSelected: onDateSelected, title: title, onCancel: onCancel);
     });
   }
 }

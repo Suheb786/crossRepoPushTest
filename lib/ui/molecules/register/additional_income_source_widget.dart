@@ -8,6 +8,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 class AdditionalIncomeSourceWidget extends StatelessWidget {
   final AdditionalIncomeSourceParams? additionalIncomeSourceParams;
   final Function()? onTap;
+
   const AdditionalIncomeSourceWidget(
       {Key? key, this.additionalIncomeSourceParams, this.onTap})
       : super(key: key);

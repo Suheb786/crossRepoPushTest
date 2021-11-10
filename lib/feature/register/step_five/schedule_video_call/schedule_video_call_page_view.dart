@@ -9,8 +9,8 @@ import 'package:neo_bank/feature/register/step_five/schedule_video_call/schedule
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/bottom_sheet/date_picker_bottom_sheet/date_picker_bottom_sheet.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_one/calendar_dialog/calendar_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/year_month_dialog/year_month_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -104,23 +104,21 @@ class ScheduleVideoCallPageView
                                           suffixIcon: (value, data) {
                                             return InkWell(
                                               onTap: () async {
-                                                CalendarDialog.show(context,
-                                                    initialDateTime:
-                                                        DateTime.now(),
+                                                DatePickerBottomSheet.show(
+                                                    context,
                                                     title: S
                                                         .of(context)
-                                                        .dateOfBirthSmall,
-                                                    onSelected: (date) {
+                                                        .preferredDate,
+                                                    onCancel: () {
+                                                  Navigator.pop(context);
+                                                }, onDateSelected: (date) {
                                                   Navigator.pop(context);
                                                   model.preferredDateController
                                                           .text =
-                                                      TimeUtils
-                                                          .getFormattedDate(
-                                                              date.toString());
+                                                      TimeUtils.getFormattedDOB(
+                                                          date);
                                                   model.isValid();
-                                                }, onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onHeaderTapped: (date) {});
+                                                });
                                               },
                                               child: Container(
                                                   height: 16,

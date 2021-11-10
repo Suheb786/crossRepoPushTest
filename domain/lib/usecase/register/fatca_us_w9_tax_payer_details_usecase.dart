@@ -20,7 +20,6 @@ class FatcaUSW9TaxPayerDetailsUseCaseParams extends Params {
   bool isSocialSecurityTaxPayer;
   final String? socialSecurityNumber;
   final bool declarationSelected;
-  final String? document;
   final bool verifyInfoDeclarationSelected;
 
   FatcaUSW9TaxPayerDetailsUseCaseParams(
@@ -28,7 +27,6 @@ class FatcaUSW9TaxPayerDetailsUseCaseParams extends Params {
       this.socialSecurityNumber,
       required this.isSocialSecurityTaxPayer,
       required this.declarationSelected,
-      this.document,
       required this.verifyInfoDeclarationSelected});
 
   @override
@@ -43,11 +41,6 @@ class FatcaUSW9TaxPayerDetailsUseCaseParams extends Params {
         return Left(AppError(
             error: ErrorInfo(message: ''),
             type: ErrorType.INVALID_SECURITY_NUMBER,
-            cause: Exception()));
-      } else if (document!.isEmpty) {
-        return Left(AppError(
-            error: ErrorInfo(message: ''),
-            type: ErrorType.EMPTY_DOCUMENT,
             cause: Exception()));
       }
     }

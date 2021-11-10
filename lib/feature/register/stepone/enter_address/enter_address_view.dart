@@ -43,7 +43,6 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                           if (data.status == Status.SUCCESS) {
                             model.residentCountryKey.currentState!.isValid =
                                 true;
-                            model.homeAddressrKey.currentState!.isValid = true;
                             model.streetAddressKey.currentState!.isValid = true;
                             model.buildingNameOrNumberKey.currentState!
                                 .isValid = true;
@@ -59,9 +58,11 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                               model.residentCountryKey.currentState!.isValid =
                                   false;
                             } else if (data.appError!.type ==
-                                ErrorType.EMPTY_HOME_ADDRESS) {
-                              model.homeAddressrKey.currentState!.isValid =
-                                  false;
+                                ErrorType.EMPTY_DISTRICT) {
+                              model.districtKey.currentState!.isValid = false;
+                            } else if (data.appError!.type ==
+                                ErrorType.EMPTY_CITY) {
+                              model.cityKey.currentState!.isValid = false;
                             } else if (data.appError!.type ==
                                 ErrorType.EMPTY_STREET_ADDRESS) {
                               model.streetAddressKey.currentState!.isValid =
@@ -75,7 +76,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                               model.permanentResidentCountryKey.currentState!
                                   .isValid = false;
                             } else if (data.appError!.type ==
-                                ErrorType.EMPTY_CITY) {
+                                ErrorType.PERMANENT_EMPTY_CITY) {
                               model.permanentCityKey.currentState!.isValid =
                                   false;
                             }
@@ -170,14 +171,17 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                               height: 16,
                                             ),
                                             AppTextField(
-                                              labelText:
-                                                  S.of(context).homeAddress,
-                                              hintText:
-                                                  S.of(context).homeAddressHint,
+                                              labelText: S
+                                                  .of(context)
+                                                  .buildingNameOrNo,
+                                              hintText: S
+                                                  .of(context)
+                                                  .buildingNameOrNoHint,
                                               inputType: TextInputType.text,
-                                              controller:
-                                                  model.homeAddressController,
-                                              key: model.homeAddressrKey,
+                                              controller: model
+                                                  .buildingNameOrNumberController,
+                                              key:
+                                                  model.buildingNameOrNumberKey,
                                               onChanged: (value) =>
                                                   model.validateAddress(),
                                               suffixIcon: (isValid, value) =>
@@ -191,8 +195,10 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                                     context)
                                                                 .pop();
                                                             model
-                                                                .homeAddressController
+                                                                .buildingNameOrNumberController
                                                                 .text = value;
+                                                            model
+                                                                .validateAddress();
                                                           }, onDismissed: () {
                                                             Navigator.pop(
                                                                 context);
@@ -214,10 +220,9 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                             ),
                                             AppTextField(
                                               labelText:
-                                                  S.of(context).streetAddress,
-                                              hintText: S
-                                                  .of(context)
-                                                  .streetAddressHint,
+                                                  S.of(context).streetName,
+                                              hintText:
+                                                  S.of(context).pleaseEnter,
                                               inputType: TextInputType.text,
                                               controller:
                                                   model.streetAddressController,
@@ -231,15 +236,27 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                             AppTextField(
                                               labelText: S
                                                   .of(context)
-                                                  .buildingNameOrNo,
-                                              hintText: S
-                                                  .of(context)
-                                                  .buildingNameOrNoHint,
+                                                  .district
+                                                  .toUpperCase(),
+                                              hintText:
+                                                  S.of(context).pleaseEnter,
                                               inputType: TextInputType.text,
-                                              controller: model
-                                                  .buildingNameOrNumberController,
-                                              key:
-                                                  model.buildingNameOrNumberKey,
+                                              controller:
+                                                  model.districtController,
+                                              key: model.districtKey,
+                                              onChanged: (value) =>
+                                                  model.validateAddress(),
+                                            ),
+                                            SizedBox(
+                                              height: 16,
+                                            ),
+                                            AppTextField(
+                                              labelText: S.of(context).city,
+                                              hintText:
+                                                  S.of(context).pleaseEnter,
+                                              inputType: TextInputType.text,
+                                              controller: model.cityController,
+                                              key: model.cityKey,
                                               onChanged: (value) =>
                                                   model.validateAddress(),
                                             ),

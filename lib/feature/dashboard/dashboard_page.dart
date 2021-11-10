@@ -4,6 +4,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page_view.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric_login_dialog.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class DashboardPage extends BasePage<DashboardPageViewModel> {
@@ -26,6 +27,15 @@ class DashboardPageState
   @override
   Color scaffoldBackgroundColor() {
     return AppColor.very_pale_blue_white;
+  }
+
+  @override
+  void onModelReady(DashboardPageViewModel model) {
+    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+      BiometricLoginDialog.show(context, mayBeLater: () {
+        Navigator.pop(context);
+      });
+    });
   }
 
   @override

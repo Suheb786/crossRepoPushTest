@@ -17,6 +17,9 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   TextEditingController expiryDateController = new TextEditingController();
   TextEditingController genderController = new TextEditingController();
   TextEditingController motherNameController = new TextEditingController();
+  TextEditingController legalDocumentController = new TextEditingController();
+  TextEditingController issuingDateController = new TextEditingController();
+  TextEditingController issuingPlaceController = new TextEditingController();
 
   final GlobalKey<AppTextFieldState> nameKey = GlobalKey(debugLabel: "name");
 
@@ -36,6 +39,15 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   final GlobalKey<AppTextFieldState> motherNameKey =
       GlobalKey(debugLabel: "mother's name");
+
+  final GlobalKey<AppTextFieldState> legalDocumentKey =
+      GlobalKey(debugLabel: "legalDocument");
+
+  final GlobalKey<AppTextFieldState> issuingDateKey =
+      GlobalKey(debugLabel: "issuingDate");
+
+  final GlobalKey<AppTextFieldState> issuingPlaceKey =
+      GlobalKey(debugLabel: "issuingPlace");
 
   DateTime selectedDate = DateTime.now();
 
@@ -91,6 +103,9 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         expiryDate: expiryDateController.text,
         gender: genderController.text,
         motherName: motherNameController.text,
+        legalDocumentNo: legalDocumentController.text,
+        issuingDate: issuingDateController.text,
+        issuingPlace: issuingPlaceController.text,
         declarationSelected: _declarationSelectedSubject.value));
   }
 
@@ -102,6 +117,9 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         expiryDateController.text.isNotEmpty &&
         genderController.text.isNotEmpty &&
         motherNameController.text.isNotEmpty &&
+        legalDocumentController.text.isNotEmpty &&
+        issuingPlaceController.text.isNotEmpty &&
+        issuingDateController.text.isNotEmpty &&
         _declarationSelectedSubject.value) {
       _showButtonSubject.safeAdd(true);
     } else {

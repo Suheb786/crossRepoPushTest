@@ -29,8 +29,6 @@ class PEPDialogView extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
               ),
-
-              ///TODO: check for specs
               Padding(
                 padding: const EdgeInsets.only(top: 34.0, bottom: 140),
                 child: Text.rich(TextSpan(

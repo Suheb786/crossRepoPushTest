@@ -20,7 +20,6 @@ class JobAndIncomeUseCase
 
 class JobAndIncomeUseCaseParams extends Params {
   final String? occupation;
-  final String? mainSourceIncome;
   final String? annualIncome;
   final String? employerName;
   final String? employerCountry;
@@ -38,7 +37,6 @@ class JobAndIncomeUseCaseParams extends Params {
       this.employerName,
       this.annualIncome,
       this.occupation,
-      this.mainSourceIncome,
       this.businessType,
       this.specifyBusiness,
       required this.employmentStatusEnum,
@@ -64,12 +62,7 @@ class JobAndIncomeUseCaseParams extends Params {
           type: ErrorType.INVALID_OCCUPATION,
           cause: Exception()));
     }
-    if (mainSourceIncome!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_SOURCE_INCOME,
-          cause: Exception()));
-    } else if (annualIncome!.isEmpty) {
+    if (annualIncome!.isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_ANNUAL_INCOME,

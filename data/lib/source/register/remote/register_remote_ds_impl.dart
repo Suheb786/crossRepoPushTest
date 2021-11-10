@@ -43,6 +43,7 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
       AdditionalIncome(type: 'Rental Income'),
       AdditionalIncome(type: 'Investments'),
       AdditionalIncome(type: 'Own Business'),
+      AdditionalIncome(type: 'Family Allowance'),
       AdditionalIncome(type: 'Other'),
     ]);
   }

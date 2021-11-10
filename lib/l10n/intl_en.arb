@@ -381,5 +381,28 @@
   "enableBiometricLogin": "Enable Biometric\nLogin",
   "biometricLoginDesc": "Would you like to enable biometric for a more seamless login experience?",
   "mayBeLater": "Maybe later",
-  "allowBiometric": "Allow biometric"
+  "allowBiometric": "Allow biometric",
+  "nationalId": "NATIONAL ID",
+  "placeOfBirth": "Place of birth",
+  "legalDocumentNo": "LEGAL DOCUMENT NO.",
+  "issuingDate": "Issuing date",
+  "issuingPlace": "Issuing place",
+  "invalidDocumentNo": "Enter Legal Document No.",
+  "invalidIssuingDate": "Select Issuing Date",
+  "invalidIssuingPlace": "Enter Issuing Place",
+  "scrollToSetDate": "Scroll to set {scrollToSetDate}",
+  "@scrollToSetDate": {
+    "description": "scrollToSetDate",
+    "type": "string"
+  },
+  "confirm": "Confirm",
+  "streetName": "STREET NAME",
+  "district": "District",
+  "emptyDistrict": "Enter district",
+  "takePhoto": "Take Photo",
+  "uploadDocument": "Upload Document",
+  "pleaseSelectYourAction": "Please select your action",
+  "additionalNationalityPassport": "Additional Nationality Passport",
+  "additionalNationalityPassportDesc": "Please provide your additional nationality passport as a proof"
+
 }

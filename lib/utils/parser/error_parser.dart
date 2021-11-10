@@ -194,6 +194,16 @@ class ErrorParser {
         return localisedHelper.invalidBusinessType;
       case ErrorType.EMPTY_BUSINESS:
         return localisedHelper.emptyBusiness;
+      case ErrorType.INVALID_LEGAL_DOCUMENT:
+        return localisedHelper.invalidDocumentNo;
+      case ErrorType.INVALID_ISSUING_DATE:
+        return localisedHelper.invalidIssuingDate;
+      case ErrorType.INVALID_ISSUING_PLACE:
+        return localisedHelper.invalidIssuingPlace;
+      case ErrorType.EMPTY_DISTRICT:
+        return localisedHelper.emptyDistrict;
+      case ErrorType.PERMANENT_EMPTY_CITY:
+        return localisedHelper.emptyCity;
 
       default:
         return "";

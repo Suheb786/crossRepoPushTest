@@ -3760,6 +3760,186 @@ class S {
       args: [],
     );
   }
+
+  /// `NATIONAL ID`
+  String get nationalId {
+    return Intl.message(
+      'NATIONAL ID',
+      name: 'nationalId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place of birth`
+  String get placeOfBirth {
+    return Intl.message(
+      'Place of birth',
+      name: 'placeOfBirth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LEGAL DOCUMENT NO.`
+  String get legalDocumentNo {
+    return Intl.message(
+      'LEGAL DOCUMENT NO.',
+      name: 'legalDocumentNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Issuing date`
+  String get issuingDate {
+    return Intl.message(
+      'Issuing date',
+      name: 'issuingDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Issuing place`
+  String get issuingPlace {
+    return Intl.message(
+      'Issuing place',
+      name: 'issuingPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Legal Document No.`
+  String get invalidDocumentNo {
+    return Intl.message(
+      'Enter Legal Document No.',
+      name: 'invalidDocumentNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Issuing Date`
+  String get invalidIssuingDate {
+    return Intl.message(
+      'Select Issuing Date',
+      name: 'invalidIssuingDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Issuing Place`
+  String get invalidIssuingPlace {
+    return Intl.message(
+      'Enter Issuing Place',
+      name: 'invalidIssuingPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scroll to set {scrollToSetDate}`
+  String scrollToSetDate(Object scrollToSetDate) {
+    return Intl.message(
+      'Scroll to set $scrollToSetDate',
+      name: 'scrollToSetDate',
+      desc: 'scrollToSetDate',
+      args: [scrollToSetDate],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `STREET NAME`
+  String get streetName {
+    return Intl.message(
+      'STREET NAME',
+      name: 'streetName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `District`
+  String get district {
+    return Intl.message(
+      'District',
+      name: 'district',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter district`
+  String get emptyDistrict {
+    return Intl.message(
+      'Enter district',
+      name: 'emptyDistrict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Take Photo`
+  String get takePhoto {
+    return Intl.message(
+      'Take Photo',
+      name: 'takePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Document`
+  String get uploadDocument {
+    return Intl.message(
+      'Upload Document',
+      name: 'uploadDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select your action`
+  String get pleaseSelectYourAction {
+    return Intl.message(
+      'Please select your action',
+      name: 'pleaseSelectYourAction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Nationality Passport`
+  String get additionalNationalityPassport {
+    return Intl.message(
+      'Additional Nationality Passport',
+      name: 'additionalNationalityPassport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide your additional nationality passport as a proof`
+  String get additionalNationalityPassportDesc {
+    return Intl.message(
+      'Please provide your additional nationality passport as a proof',
+      name: 'additionalNationalityPassportDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

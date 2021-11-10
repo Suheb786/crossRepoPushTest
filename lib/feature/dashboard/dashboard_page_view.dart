@@ -18,40 +18,19 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 36),
+      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text.rich(TextSpan(
-                  text: S.of(context).hello,
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14,
-                    fontFamily: 'Montserrat',
-                    color: AppColor.mostly_desaturated_dark_violet,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: ' Abdul Salam',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14,
-                        fontFamily: 'Montserrat',
-                        color: AppColor.dark_violet_4,
-                      ),
-                    )
-                  ])),
-              InkWell(
-                onTap: () {},
-                child: AppSvg.asset(AssetUtils.menuIcon),
-              )
-            ],
+          Align(
+            alignment: Alignment.centerRight,
+            child: InkWell(
+              onTap: () {},
+              child: AppSvg.asset(AssetUtils.menuIcon),
+            ),
           ),
           SizedBox(
-            height: 29,
+            height: 25,
           ),
           Expanded(
             child: ShakeAnimatedWidget(

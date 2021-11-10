@@ -1,5 +1,4 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/constants/enum/tax_payer_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -15,7 +14,6 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_pa
 import 'package:neo_bank/ui/molecules/register/declaration_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/ui/molecules/upload_document/upload_document_bottom_sheet.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -140,150 +138,20 @@ class FatcaUSW9TaxPayersDetailsPageView
                                           dataBuilder: (context, isVisible) {
                                             return Visibility(
                                               visible: isVisible!,
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  AppTextField(
-                                                    labelText: S
-                                                        .of(context)
-                                                        .socialSecurityNUmber,
-                                                    hintText: S
-                                                        .of(context)
-                                                        .pleaseEnter,
-                                                    controller: model
-                                                        .socialSecurityNumberController,
-                                                    key: model
-                                                        .socialSecurityNumberKey,
-                                                    inputAction:
-                                                        TextInputAction.go,
-                                                    onChanged: (value) {
-                                                      model.isValid();
-                                                    },
-                                                  ),
-                                                  SizedBox(
-                                                    height: 32,
-                                                  ),
-                                                  Text(
-                                                    S
-                                                        .of(context)
-                                                        .socialSecurityCard,
-                                                    style: TextStyle(
-                                                        fontFamily:
-                                                            "Montserrat",
-                                                        color: AppColor
-                                                            .white,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 14),
-                                                  ),
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                            .only(
-                                                        bottom: 16.0,top:8),
-                                                    child: Text(
-                                                      S
-                                                          .of(context)
-                                                          .socialSecurityCardDesc,
-                                                      style: TextStyle(
-                                                          fontFamily:
-                                                              "Montserrat",
-                                                          color: AppColor
-                                                              .very_light_gray_white,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontSize: 12),
-                                                    ),
-                                                  ),
-                                                  AppStreamBuilder<String>(
-                                                    stream: model
-                                                        .uploadDocumentStream,
-                                                    initialData: '',
-                                                    onData: (documentResponse) {
-                                                      if (documentResponse
-                                                          .isNotEmpty) {
-                                                        model.updateUploadDocumentField(
-                                                            documentResponse);
-                                                      }
-                                                    },
-                                                    dataBuilder:
-                                                        (context, document) {
-                                                      return AppStreamBuilder<
-                                                          bool>(
-                                                        stream: model
-                                                            .documentUploadedStream,
-                                                        initialData: false,
-                                                        dataBuilder: (context,
-                                                            isUploaded) {
-                                                          return AppTextField(
-                                                            labelText: '',
-                                                            hintText: S
-                                                                .of(context)
-                                                                .uploadDocumentsSmall,
-                                                            controller: model
-                                                                .uploadDocumentController,
-                                                            key: model
-                                                                .uploadDocumentKey,
-                                                            readOnly: true,
-                                                            textColor: AppColor
-                                                                .vivid_orange,
-                                                            hintTextColor:
-                                                                AppColor
-                                                                    .vivid_orange,
-                                                            suffixIcon:
-                                                                (value, data) {
-                                                              return InkWell(
-                                                                onTap: !(isUploaded!)
-                                                                    ? () async {
-                                                                        showModalBottomSheet(
-                                                                            context:
-                                                                                context,
-                                                                            builder: (builder) =>
-                                                                                UploadDocumentBottomSheetWidget(
-                                                                                  title: S.of(context).selectAnyOption,
-                                                                                  firstOptionText: S.of(context).storage,
-                                                                                  secondOptionText: S.of(context).camera,
-                                                                                  buttonText: S.of(context).cancel,
-                                                                                  onCameraTap: () {
-                                                                                    Navigator.pop(context);
-                                                                                    model.uploadDocument(DocumentTypeEnum.CAMERA);
-                                                                                  },
-                                                                                  onPhotoLibraryTap: () {
-                                                                                    Navigator.pop(context);
-                                                                                    model.uploadDocument(DocumentTypeEnum.GALLERY);
-                                                                                  },
-                                                                                  onCancelTap: () {
-                                                                                    Navigator.pop(context);
-                                                                                  },
-                                                                                ));
-                                                                      }
-                                                                    : () {
-                                                                        model
-                                                                            .uploadDocumentController
-                                                                            .clear();
-                                                                        model.updateDocumentUploadedStream(
-                                                                            false);
-                                                                      },
-                                                                child: Container(
-                                                                    height: 16,
-                                                                    width: 16,
-                                                                    padding:
-                                                                        EdgeInsets
-                                                                            .all(
-                                                                                5),
-                                                                    child: isUploaded
-                                                                        ? AppSvg.asset(AssetUtils
-                                                                            .delete)
-                                                                        : AppSvg.asset(
-                                                                            AssetUtils.upload)),
-                                                              );
-                                                            },
-                                                          );
-                                                        },
-                                                      );
-                                                    },
-                                                  ),
-                                                ],
+                                              child: AppTextField(
+                                                labelText: S
+                                                    .of(context)
+                                                    .socialSecurityNUmber,
+                                                hintText:
+                                                    S.of(context).pleaseEnter,
+                                                controller: model
+                                                    .socialSecurityNumberController,
+                                                key: model
+                                                    .socialSecurityNumberKey,
+                                                inputAction: TextInputAction.go,
+                                                onChanged: (value) {
+                                                  model.isValid();
+                                                },
                                               ),
                                             );
                                           },
@@ -331,7 +199,7 @@ class FatcaUSW9TaxPayersDetailsPageView
                                           onTap: () {
                                             model
                                                 .updateVerifyInfoDeclarationSelection(
-                                                !(isSelected!));
+                                                    !(isSelected!));
                                             model.isValid();
                                           },
                                         );

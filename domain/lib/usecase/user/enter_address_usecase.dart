@@ -18,7 +18,8 @@ class EnterAddressUseCase
 
 class EnterAddressUseCaseParams extends Params {
   final String? residentCountry;
-  final String? homeAddress;
+  final String? district;
+  final String? city;
   final String? streetAddress;
   final String? buildingNameOrNo;
   bool jordanianLivesAbroad;
@@ -27,7 +28,8 @@ class EnterAddressUseCaseParams extends Params {
 
   EnterAddressUseCaseParams(
       {required this.residentCountry,
-      required this.homeAddress,
+      required this.district,
+      this.city,
       required this.streetAddress,
       required this.buildingNameOrNo,
       required this.jordanianLivesAbroad,
@@ -41,20 +43,25 @@ class EnterAddressUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_RESIDENT_COUNTRY,
           cause: Exception()));
-    } else if (Validator.isEmpty(homeAddress!)) {
+    } else if (Validator.isEmpty(buildingNameOrNo!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_HOME_ADDRESS,
+          type: ErrorType.EMPTY_BUILDING_NAME_OR_NUMBER,
           cause: Exception()));
     } else if (Validator.isEmpty(streetAddress!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_STREET_ADDRESS,
           cause: Exception()));
-    } else if (Validator.isEmpty(buildingNameOrNo!)) {
+    } else if (Validator.isEmpty(district!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_BUILDING_NAME_OR_NUMBER,
+          type: ErrorType.EMPTY_DISTRICT,
+          cause: Exception()));
+    } else if (Validator.isEmpty(city!)) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.EMPTY_CITY,
           cause: Exception()));
     } else if (jordanianLivesAbroad) {
       if (Validator.isEmpty(permanentResidentCountry!)) {
@@ -65,7 +72,7 @@ class EnterAddressUseCaseParams extends Params {
       } else if (Validator.isEmpty(permanentCity!)) {
         return Left(AppError(
             error: ErrorInfo(message: ''),
-            type: ErrorType.EMPTY_CITY,
+            type: ErrorType.PERMANENT_EMPTY_CITY,
             cause: Exception()));
       }
     }

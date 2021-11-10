@@ -16,11 +16,15 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   final TextEditingController addressController = TextEditingController();
   final TextEditingController incomeController = TextEditingController();
+  final TextEditingController additionalNationalityController =
+      TextEditingController();
 
   final GlobalKey<AppTextFieldState> addressDocumentKey =
       GlobalKey(debugLabel: "addressDocument");
   final GlobalKey<AppTextFieldState> incomeDocumentKey =
       GlobalKey(debugLabel: "incomeDocument");
+  final GlobalKey<AppTextFieldState> additionalNationalityKey =
+      GlobalKey(debugLabel: "additionalNationality");
 
   ///documents
   PublishSubject<SendDocumentsUseCaseParams> _documentsRequest =
@@ -57,6 +61,21 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   PublishSubject<bool> _documentAddressRequest = PublishSubject();
 
+  ///upload additional nationality  proof
+  PublishSubject<UploadDocumentUseCaseParams>
+      _additionalNationalityProofRequest = PublishSubject();
+
+  PublishSubject<String> _additionalNationalityProofResponse = PublishSubject();
+
+  Stream<String> get additionalNationalityProofStream =>
+      _additionalNationalityProofResponse.stream;
+
+  ///is additional nationality document uploaded
+  PublishSubject<bool> _documentNationalityRequest = PublishSubject();
+
+  Stream<bool> get documentNationalityStream =>
+      _documentNationalityRequest.stream;
+
   UploadDocumentsPageViewModel(
       this._documentsUseCase, this._uploadDocumentUseCase) {
     _documentsRequest.listen((value) {
@@ -88,6 +107,15 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
         _uploadAddressPoofResponse.safeAdd(event.data!);
       });
     });
+
+    _additionalNationalityProofRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _uploadDocumentUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _additionalNationalityProofResponse.safeAdd(event.data!);
+      });
+    });
   }
 
   void uploadIncomeDocument(DocumentTypeEnum type) {
@@ -102,6 +130,20 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   void updateIncomeUploadedStream(bool value) {
     _documentIncomeRequest.safeAdd(value);
+  }
+
+  void uploadAdditionalNationalityDocument(DocumentTypeEnum type) {
+    _additionalNationalityProofRequest
+        .safeAdd(UploadDocumentUseCaseParams(documentType: type));
+  }
+
+  void updateAdditionalNationalityUploadedStream(bool value) {
+    _documentNationalityRequest.safeAdd(value);
+  }
+
+  void updateAdditionalNationalityField(String value) {
+    additionalNationalityController.text = value.split("/").last;
+    updateAdditionalNationalityUploadedStream(true);
   }
 
   void uploadAddressDocument(DocumentTypeEnum type) {
@@ -131,6 +173,9 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
     _uploadAddressPoofRequest.close();
     _documentAddressRequest.close();
     _documentIncomeRequest.close();
+    _additionalNationalityProofRequest.close();
+    _additionalNationalityProofResponse.close();
+    _documentNationalityRequest.close();
     super.dispose();
   }
 }

@@ -11,7 +11,6 @@ import 'package:rxdart/rxdart.dart';
 class EnterAddressViewModel extends BasePageViewModel {
   final EnterAddressUseCase _enterAddressUseCase;
   TextEditingController residentCountryController = TextEditingController();
-  TextEditingController homeAddressController = TextEditingController();
   TextEditingController streetAddressController = TextEditingController();
   TextEditingController buildingNameOrNumberController =
       TextEditingController();
@@ -24,14 +23,13 @@ class EnterAddressViewModel extends BasePageViewModel {
   TextEditingController permanentResidentCountryController =
       TextEditingController();
   TextEditingController permanentCityController = TextEditingController();
+  TextEditingController districtController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
 
   bool? dropDownEnabled = true;
 
   final GlobalKey<AppTextFieldState> residentCountryKey =
       GlobalKey(debugLabel: "residentCountry");
-
-  final GlobalKey<AppTextFieldState> homeAddressrKey =
-      GlobalKey(debugLabel: "homeAddress");
 
   final GlobalKey<AppTextFieldState> streetAddressKey =
       GlobalKey(debugLabel: "streetAddress");
@@ -53,6 +51,10 @@ class EnterAddressViewModel extends BasePageViewModel {
 
   final GlobalKey<AppTextFieldState> permanentCityKey =
       GlobalKey(debugLabel: "permanentCity");
+  final GlobalKey<AppTextFieldState> districtKey =
+      GlobalKey(debugLabel: "district");
+
+  final GlobalKey<AppTextFieldState> cityKey = GlobalKey(debugLabel: "city");
 
   /// enter address request subject holder
   PublishSubject<EnterAddressUseCaseParams> _enterAddressRequest =
@@ -101,7 +103,8 @@ class EnterAddressViewModel extends BasePageViewModel {
   void enterAddress() {
     _enterAddressRequest.safeAdd(EnterAddressUseCaseParams(
         residentCountry: residentCountryController.text,
-        homeAddress: homeAddressController.text,
+        district: districtController.text,
+        city: cityController.text,
         streetAddress: streetAddressController.text,
         buildingNameOrNo: buildingNameOrNumberController.text,
         jordanianLivesAbroad: _permanentAddressVisibilitySubject.value,
@@ -113,7 +116,8 @@ class EnterAddressViewModel extends BasePageViewModel {
     bool isValid = false;
     if (_permanentAddressVisibilitySubject.value) {
       if (residentCountryController.text.isNotEmpty &&
-          homeAddressController.text.isNotEmpty &&
+          districtController.text.isNotEmpty &&
+          cityController.text.isNotEmpty &&
           streetAddressController.text.isNotEmpty &&
           buildingNameOrNumberController.text.isNotEmpty &&
           permanentResidentCountryController.text.isNotEmpty &&
@@ -121,7 +125,8 @@ class EnterAddressViewModel extends BasePageViewModel {
         isValid = true;
       }
     } else if (residentCountryController.text.isNotEmpty &&
-        homeAddressController.text.isNotEmpty &&
+        districtController.text.isNotEmpty &&
+        cityController.text.isNotEmpty &&
         streetAddressController.text.isNotEmpty &&
         buildingNameOrNumberController.text.isNotEmpty) {
       isValid = true;

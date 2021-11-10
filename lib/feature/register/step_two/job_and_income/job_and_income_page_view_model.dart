@@ -28,10 +28,6 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> businessTypeOtherKey =
       GlobalKey(debugLabel: "businessTypeOther");
 
-  final TextEditingController sourceController = TextEditingController();
-  final GlobalKey<AppTextFieldState> sourceKey =
-      GlobalKey(debugLabel: "source");
-
   final TextEditingController annualIncomeController = TextEditingController();
   final GlobalKey<AppTextFieldState> annualIncomeKey =
       GlobalKey(debugLabel: "annualIncome");
@@ -123,7 +119,6 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
       if (_businessTypeOtherVisibilitySubject.value) {
         if (businessTypeController.text.isNotEmpty &&
             businessTypeOtherController.text.isNotEmpty &&
-            sourceController.text.isNotEmpty &&
             annualIncomeController.text.isNotEmpty &&
             employerNameController.text.isNotEmpty &&
             employerCountryController.text.isNotEmpty &&
@@ -133,7 +128,6 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
         }
       } else {
         if (businessTypeController.text.isNotEmpty &&
-            sourceController.text.isNotEmpty &&
             annualIncomeController.text.isNotEmpty &&
             employerNameController.text.isNotEmpty &&
             employerCountryController.text.isNotEmpty &&
@@ -144,7 +138,6 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
       }
     } else {
       if (occupationController.text.isNotEmpty &&
-          sourceController.text.isNotEmpty &&
           annualIncomeController.text.isNotEmpty &&
           employerNameController.text.isNotEmpty &&
           employerCountryController.text.isNotEmpty &&
@@ -176,9 +169,6 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     switch (event.appError!.type) {
       case ErrorType.INVALID_OCCUPATION:
         occupationKey.currentState!.isValid = false;
-        break;
-      case ErrorType.INVALID_SOURCE_INCOME:
-        sourceKey.currentState!.isValid = false;
         break;
       case ErrorType.INVALID_ANNUAL_INCOME:
         annualIncomeKey.currentState!.isValid = false;
@@ -223,7 +213,6 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
         employerContact: employerContactController.text,
         employerCountry: employerCountryController.text,
         employerName: employerNameController.text,
-        mainSourceIncome: sourceController.text,
         occupation: occupationController.text,
         businessType: businessTypeController.text,
         businessTypeOther: _businessTypeOtherVisibilitySubject.value,

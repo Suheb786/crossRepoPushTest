@@ -11,7 +11,6 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/bottom_sheet/date_picker_bottom_sheet/date_picker_bottom_sheet.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_one/calendar_dialog/calendar_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -77,6 +76,18 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                 ErrorType.EMPTY_MOTHER_NAME) {
                               model.motherNameKey.currentState!.isValid = false;
                             } else if (data.appError!.type ==
+                                ErrorType.INVALID_LEGAL_DOCUMENT) {
+                              model.legalDocumentKey.currentState!.isValid =
+                                  false;
+                            } else if (data.appError!.type ==
+                                ErrorType.INVALID_ISSUING_DATE) {
+                              model.issuingDateKey.currentState!.isValid =
+                                  false;
+                            } else if (data.appError!.type ==
+                                ErrorType.INVALID_ISSUING_PLACE) {
+                              model.issuingPlaceKey.currentState!.isValid =
+                                  false;
+                            } else if (data.appError!.type ==
                                 ErrorType.INVALID_DECLARATION_SELECTION) {
                               model.showErrorState();
                             } else {
@@ -135,8 +146,8 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         height: 16,
                                       ),
                                       AppTextField(
-                                        labelText: S.of(context).idNumber,
-                                        hintText: S.of(context).idHint,
+                                        labelText: S.of(context).nationalId,
+                                        hintText: S.of(context).pleaseEnter,
                                         inputType: TextInputType.text,
                                         controller: model.idNumberController,
                                         key: model.idNumberKey,
@@ -159,7 +170,12 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                               onTap: () {
                                                 DatePickerBottomSheet.show(
                                                     context,
-                                                    onDateSelected: (date) {
+                                                    title: S
+                                                        .of(context)
+                                                        .dateOfBirthSmall,
+                                                    onCancel: () {
+                                                  Navigator.pop(context);
+                                                }, onDateSelected: (date) {
                                                   Navigator.pop(context);
                                                   model.dobController.text =
                                                       TimeUtils.getFormattedDOB(
@@ -179,56 +195,16 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         height: 16,
                                       ),
                                       AppTextField(
-                                        labelText: S.of(context).nationality,
-                                        hintText: S.of(context).nationalityHint,
+                                        labelText: S
+                                            .of(context)
+                                            .placeOfBirth
+                                            .toUpperCase(),
+                                        hintText: S.of(context).pleaseEnter,
                                         inputType: TextInputType.text,
                                         controller: model.nationalityController,
                                         key: model.nationalityKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
-                                      ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
-                                      AppTextField(
-                                        labelText: S.of(context).expiryDate,
-                                        hintText: S.of(context).expiryDateHint,
-                                        inputType: TextInputType.text,
-                                        controller: model.expiryDateController,
-                                        key: model.expiryDateKey,
-                                        readOnly: true,
-                                        onChanged: (value) =>
-                                            model.validateDetails(),
-                                        suffixIcon: (isvalid, value) {
-                                          return InkWell(
-                                              onTap: () {
-                                                CalendarDialog.show(context,
-                                                    initialDateTime: model
-                                                        .selectedExpiryDate,
-                                                    title: S
-                                                        .of(context)
-                                                        .dateOfBirthSmall,
-                                                    onSelected: (date) {
-                                                  Navigator.pop(context);
-                                                  model.selectedExpiryDate =
-                                                      date;
-                                                  model.expiryDateController
-                                                          .text =
-                                                      TimeUtils
-                                                          .getFormattedDate(
-                                                              date.toString());
-                                                }, onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onHeaderTapped: (date) {});
-                                              },
-                                              child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 7),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.calendar)));
-                                        },
                                       ),
                                       SizedBox(
                                         height: 16,
@@ -251,6 +227,117 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         inputType: TextInputType.text,
                                         controller: model.motherNameController,
                                         key: model.motherNameKey,
+                                        onChanged: (value) =>
+                                            model.validateDetails(),
+                                      ),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                      AppTextField(
+                                        labelText:
+                                            S.of(context).legalDocumentNo,
+                                        hintText: S.of(context).pleaseEnter,
+                                        inputType: TextInputType.text,
+                                        controller:
+                                            model.legalDocumentController,
+                                        key: model.legalDocumentKey,
+                                        onChanged: (value) =>
+                                            model.validateDetails(),
+                                      ),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                      AppTextField(
+                                        labelText: S
+                                            .of(context)
+                                            .issuingDate
+                                            .toUpperCase(),
+                                        hintText: S.of(context).dobHint,
+                                        inputType: TextInputType.text,
+                                        controller: model.issuingDateController,
+                                        key: model.issuingDateKey,
+                                        onChanged: (value) =>
+                                            model.validateDetails(),
+                                        suffixIcon: (isvalid, value) {
+                                          return InkWell(
+                                              onTap: () {
+                                                DatePickerBottomSheet.show(
+                                                    context,
+                                                    title: S
+                                                        .of(context)
+                                                        .issuingDate,
+                                                    onCancel: () {
+                                                  Navigator.pop(context);
+                                                }, onDateSelected: (date) {
+                                                  Navigator.pop(context);
+                                                  model.issuingDateController
+                                                          .text =
+                                                      TimeUtils.getFormattedDOB(
+                                                          date);
+                                                  model.validateDetails();
+                                                });
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.calendar)));
+                                        },
+                                      ),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                      AppTextField(
+                                        labelText: S.of(context).expiryDate,
+                                        hintText: S.of(context).dobHint,
+                                        inputType: TextInputType.text,
+                                        controller: model.expiryDateController,
+                                        key: model.expiryDateKey,
+                                        onChanged: (value) =>
+                                            model.validateDetails(),
+                                        suffixIcon: (isvalid, value) {
+                                          return InkWell(
+                                              onTap: () {
+                                                DatePickerBottomSheet.show(
+                                                    context,
+                                                    title: S
+                                                        .of(context)
+                                                        .expiryDate,
+                                                    onCancel: () {
+                                                  Navigator.pop(context);
+                                                }, onDateSelected: (date) {
+                                                  Navigator.pop(context);
+                                                  model.expiryDateController
+                                                          .text =
+                                                      TimeUtils.getFormattedDOB(
+                                                          date);
+                                                  model.validateDetails();
+                                                });
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.calendar)));
+                                        },
+                                      ),
+                                      SizedBox(
+                                        height: 16,
+                                      ),
+                                      AppTextField(
+                                        labelText: S
+                                            .of(context)
+                                            .issuingPlace
+                                            .toUpperCase(),
+                                        hintText: S.of(context).pleaseEnter,
+                                        inputType: TextInputType.text,
+                                        controller:
+                                            model.issuingPlaceController,
+                                        key: model.issuingPlaceKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
                                       ),

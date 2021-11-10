@@ -82,8 +82,6 @@ class TaxationSwitchWidget extends StatelessWidget {
                       ),
                     ],
                   ),
-
-                  ///TODO:check for specs
                   Visibility(
                     visible: secondaryText!.isNotEmpty,
                     child: Padding(

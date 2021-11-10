@@ -34,7 +34,7 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                 child: Text.rich(TextSpan(
                     text: S.of(context).uploadDocLaterDesc,
                     style: TextStyle(
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w400,
                       fontSize: 14,
                       fontFamily: 'Montserrat',
                       color: AppColor.very_dark_gray_black,
