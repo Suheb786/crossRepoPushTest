@@ -72,7 +72,10 @@ class RegisterSelectionPageView
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.0),
                     child: NotifyMeWidget(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushReplacementNamed(
+                            context, RoutePaths.NonJordanianRegister);
+                      },
                       title: S.of(context).accountOpeningDescription,
                       labelText: S.of(context).notifyMeExC,
                     ),
