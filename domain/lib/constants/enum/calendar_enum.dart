@@ -12,6 +12,7 @@ class CalendarEnum {
   static const CalendarEnum MONTH = CalendarEnum._("Month");
 
   static const CalendarEnum DAY = CalendarEnum._("Day");
+  static const CalendarEnum TIME = CalendarEnum._("Time");
 
   static const CalendarEnum NONE = CalendarEnum._("None");
 }
@@ -25,6 +26,8 @@ extension CalendarEnumExt on String {
         return CalendarEnum.MONTH;
       case "Day":
         return CalendarEnum.DAY;
+      case "Time":
+        return CalendarEnum.TIME;
       default:
         return CalendarEnum.NONE;
     }

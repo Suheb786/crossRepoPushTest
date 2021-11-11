@@ -53,8 +53,8 @@ class AppOtpFields extends StatelessWidget {
             borderWidth: 1,
             disabledColor: AppColor.very_pale_blue.withOpacity(0.4),
             borderRadius: BorderRadius.circular(8),
-            activeColor: AppColor.very_pale_blue,
-            selectedColor: AppColor.very_pale_blue),
+            activeColor: AppColor.very_pale_blue.withOpacity(0.4),
+            selectedColor: AppColor.vivid_orange),
         obscureText: true,
         obscuringWidget: Container(
           height: 18.92,

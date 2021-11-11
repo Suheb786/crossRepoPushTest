@@ -1,6 +1,5 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
-import 'package:domain/constants/enum/nature_of_special_needs_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,6 +10,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_row_item.dart';
@@ -111,8 +111,76 @@ class ProfileDetailsPageView
                                       child: Column(
                                         children: [
                                           ProfileRowItem(
+                                            title: S
+                                                .of(context)
+                                                .doYouHaveAnyOtherNationality,
+                                            initialValue: false,
+                                            activeText: S.of(context).yes,
+                                            inactiveText: S.of(context).no,
+                                            providerBase:
+                                                anyOtherNationalityViewModelProvider,
+                                            onToggle: (isActive) {
+                                              model.isAnyOtherNationality =
+                                                  isActive;
+                                              return Visibility(
+                                                visible: isActive,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 16.0),
+                                                  child: AppTextField(
+                                                    labelText: S
+                                                        .of(context)
+                                                        .otherNationality
+                                                        .toUpperCase(),
+                                                    hintText: S
+                                                        .of(context)
+                                                        .pleaseSelect,
+                                                    readOnly: true,
+                                                    controller: model
+                                                        .otherNationalityController,
+                                                    key: model
+                                                        .otherNationalityKey,
+                                                    suffixIcon: (value, data) {
+                                                      return InkWell(
+                                                        onTap: () async {
+                                                          CountryDialog.show(
+                                                              context,
+                                                              title: S
+                                                                  .of(context)
+                                                                  .otherNationality,
+                                                              onDismissed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          }, onSelected:
+                                                                  (value) {
+                                                            Navigator.pop(
+                                                                context);
+                                                            model
+                                                                .otherNationalityController
+                                                                .text = value;
+                                                            model.validate();
+                                                          });
+                                                        },
+                                                        child: Container(
+                                                            height: 16,
+                                                            width: 16,
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    right: 8),
+                                                            child: AppSvg.asset(
+                                                                AssetUtils
+                                                                    .downArrow)),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                          ProfileRowItem(
                                             title:
                                                 S.of(context).profileDetailsQ1,
+                                            initialValue: false,
                                             activeText: S.of(context).yes,
                                             inactiveText: S.of(context).no,
                                             providerBase:
@@ -144,6 +212,7 @@ class ProfileDetailsPageView
                                           ProfileRowItem(
                                             title:
                                                 S.of(context).profileDetailsQ2,
+                                            initialValue: false,
                                             providerBase:
                                                 profileQ2ViewModelProvider,
                                             activeText: S.of(context).yes,
@@ -199,71 +268,108 @@ class ProfileDetailsPageView
                                               );
                                             },
                                           ),
-                                          ProfileRowItem(
-                                            title:
-                                                S.of(context).profileDetailsQ3,
-                                            providerBase:
-                                                profileQ3ViewModelProvider,
-                                            activeText: S.of(context).yes,
-                                            inactiveText: S.of(context).no,
-                                            onToggle: (isActive) {
-                                              model.isRelative = isActive;
+                                          AppStreamBuilder<bool>(
+                                            stream: model
+                                                .beneficialOwnerAccountErrorVisibilityStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              return ProfileRowItem(
+                                                title: S
+                                                    .of(context)
+                                                    .areYouBeneficialOwnerAccount,
+                                                initialValue: true,
+                                                providerBase:
+                                                    areYouBeneficialOwnerAccountProvider,
+                                                activeText: S.of(context).yes,
+                                                inactiveText: S.of(context).no,
+                                                labelColor: !isValid!
+                                                    ? AppColor.vivid_red
+                                                    : AppColor.text_color,
+                                                onToggle: (isActive) {
+                                                  model
+                                                      .updateBeneficialOwnerAccountErrorVisibility(
+                                                          isActive);
+                                                  return Visibility(
+                                                    visible: isActive,
+                                                    child: Container(),
+                                                  );
+                                                },
+                                              );
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 32,
+                                          ),
+                                          Text(
+                                            S
+                                                .of(context)
+                                                .whatIsYourEmploymentStatus,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                                color: AppColor
+                                                    .very_light_gray_white),
+                                          ),
+                                          SizedBox(
+                                            height: 16,
+                                          ),
+                                          AppTextField(
+                                            labelText:
+                                                S.of(context).employmentStatus,
+                                            hintText:
+                                                S.of(context).pleaseSelect,
+                                            inputType: TextInputType.text,
+                                            controller:
+                                                model.employeeStatusController,
+                                            key: model.employeeStatusKey,
+                                            readOnly: true,
+                                            suffixIcon: (enabled, value) {
+                                              return InkWell(
+                                                  onTap: () async {
+                                                    EmploymentStatusDialog.show(
+                                                        context,
+                                                        onDismissed: () {
+                                                      Navigator.pop(context);
+                                                    }, onSelected: (value) {
+                                                      Navigator.pop(context);
+                                                      model
+                                                          .updateRelationShipWithPEP(
+                                                              value);
+                                                      model
+                                                          .updateJobNameVisibility();
+                                                      model.validate();
+                                                    });
+                                                  },
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.dropDown,
+                                                      width: 16,
+                                                      height: 16));
+                                            },
+                                          ),
+                                          SizedBox(
+                                            height: 16,
+                                          ),
+                                          AppStreamBuilder<bool>(
+                                            stream:
+                                                model.jobNameVisibilityStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isVisible) {
                                               return Visibility(
-                                                visible: isActive,
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      top: 16.0),
+                                                  visible: isVisible!,
                                                   child: AppTextField(
-                                                    labelText: S
-                                                        .of(context)
-                                                        .employmentStatus,
+                                                    labelText:
+                                                        S.of(context).jobName,
                                                     hintText: S
                                                         .of(context)
-                                                        .pleaseSelect,
+                                                        .pleaseEnter,
                                                     inputType:
                                                         TextInputType.text,
-                                                    controller: model
-                                                        .employeeStatusController,
-                                                    key:
-                                                        model.employeeStatusKey,
-                                                    readOnly: true,
-                                                    suffixIcon:
-                                                        (enabled, value) {
-                                                      return InkWell(
-                                                          onTap: () async {
-                                                            EmploymentStatusDialog.show(
-                                                                context, onDismissed:
-                                                                    () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                            }, onSelected:
-                                                                    (value) {
-                                                              Navigator.pop(
-                                                                  context);
-                                                              model
-                                                                  .updateRelationShipWithPEP(
-                                                                      value);
-                                                            },
-                                                                natureOfNeedsEnum: (model
-                                                                            .isPerson &&
-                                                                        model.natureController !=
-                                                                            null &&
-                                                                        model.natureController.text ==
-                                                                            "Sensory")
-                                                                    ? NatureOfSpecialNeedsEnum
-                                                                        .SENSORY
-                                                                    : NatureOfSpecialNeedsEnum
-                                                                        .PHYSICAL);
-                                                          },
-                                                          child: AppSvg.asset(
-                                                              AssetUtils
-                                                                  .dropDown,
-                                                              width: 16,
-                                                              height: 16));
-                                                    },
-                                                  ),
-                                                ),
-                                              );
+                                                    controller:
+                                                        model.jobNameController,
+                                                    key: model.jobNameKey,
+                                                    onChanged: (value) =>
+                                                        model.validate(),
+                                                  ));
                                             },
                                           ),
                                           SizedBox(
@@ -277,9 +383,18 @@ class ProfileDetailsPageView
                                     Positioned(
                                         bottom: 0,
                                         right: 45,
-                                        child: AnimatedButton(
-                                            buttonText:
-                                                S.of(context).swipeToProceed))
+                                        child: AppStreamBuilder<bool>(
+                                            stream: model.showButtonStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              return Visibility(
+                                                visible: isValid!,
+                                                child: AnimatedButton(
+                                                    buttonText: S
+                                                        .of(context)
+                                                        .swipeToProceed),
+                                              );
+                                            }))
                                   ],
                                 )),
                           ),

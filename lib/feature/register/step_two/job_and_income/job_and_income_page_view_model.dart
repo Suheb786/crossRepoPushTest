@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/register/job_and_income_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,9 +19,14 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> occupationKey =
       GlobalKey(debugLabel: "occupation");
 
-  final TextEditingController sourceController = TextEditingController();
-  final GlobalKey<AppTextFieldState> sourceKey =
-      GlobalKey(debugLabel: "source");
+  final TextEditingController businessTypeController = TextEditingController();
+  final GlobalKey<AppTextFieldState> businessTypeKey =
+      GlobalKey(debugLabel: "businessType");
+
+  final TextEditingController businessTypeOtherController =
+      TextEditingController();
+  final GlobalKey<AppTextFieldState> businessTypeOtherKey =
+      GlobalKey(debugLabel: "businessTypeOther");
 
   final TextEditingController annualIncomeController = TextEditingController();
   final GlobalKey<AppTextFieldState> annualIncomeKey =
@@ -49,9 +55,26 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     occupationController.text = value;
   }
 
+  EmploymentStatusEnum employmentStatusEnum = EmploymentStatusEnum.OTHER;
+
   ///update employer country textfield value
   void updateEmployerCountry(String value) {
     employerCountryController.text = value;
+  }
+
+  /// business type other visibility Subject holder
+  BehaviorSubject<bool> _businessTypeOtherVisibilitySubject =
+      BehaviorSubject.seeded(false);
+
+  Stream<bool> get businessTypeOtherVisibilityStream =>
+      _businessTypeOtherVisibilitySubject.stream;
+
+  void updateBusinessTypeOtherVisibility() {
+    if (businessTypeController.text == 'Other') {
+      _businessTypeOtherVisibilitySubject.safeAdd(true);
+    } else {
+      _businessTypeOtherVisibilitySubject.safeAdd(false);
+    }
   }
 
   ///employment details request subject holder
@@ -92,14 +115,36 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
 
   bool isValid() {
     bool valid = false;
-    if (occupationController.text.isNotEmpty &&
-        sourceController.text.isNotEmpty &&
-        annualIncomeController.text.isNotEmpty &&
-        employerNameController.text.isNotEmpty &&
-        employerCountryController.text.isNotEmpty &&
-        employerCityController.text.isNotEmpty &&
-        employerContactController.text.isNotEmpty) {
-      valid = true;
+    if (employmentStatusEnum == EmploymentStatusEnum.BUSINESS_OWNER) {
+      if (_businessTypeOtherVisibilitySubject.value) {
+        if (businessTypeController.text.isNotEmpty &&
+            businessTypeOtherController.text.isNotEmpty &&
+            annualIncomeController.text.isNotEmpty &&
+            employerNameController.text.isNotEmpty &&
+            employerCountryController.text.isNotEmpty &&
+            employerCityController.text.isNotEmpty &&
+            employerContactController.text.isNotEmpty) {
+          valid = true;
+        }
+      } else {
+        if (businessTypeController.text.isNotEmpty &&
+            annualIncomeController.text.isNotEmpty &&
+            employerNameController.text.isNotEmpty &&
+            employerCountryController.text.isNotEmpty &&
+            employerCityController.text.isNotEmpty &&
+            employerContactController.text.isNotEmpty) {
+          valid = true;
+        }
+      }
+    } else {
+      if (occupationController.text.isNotEmpty &&
+          annualIncomeController.text.isNotEmpty &&
+          employerNameController.text.isNotEmpty &&
+          employerCountryController.text.isNotEmpty &&
+          employerCityController.text.isNotEmpty &&
+          employerContactController.text.isNotEmpty) {
+        valid = true;
+      }
     }
     _allFieldValidatorSubject.safeAdd(valid);
     return valid;
@@ -125,9 +170,6 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_OCCUPATION:
         occupationKey.currentState!.isValid = false;
         break;
-      case ErrorType.INVALID_SOURCE_INCOME:
-        sourceKey.currentState!.isValid = false;
-        break;
       case ErrorType.INVALID_ANNUAL_INCOME:
         annualIncomeKey.currentState!.isValid = false;
         break;
@@ -142,6 +184,12 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
         break;
       case ErrorType.INVALID_EMPLOYER_CONTACT:
         employerContactKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_BUSINESS_TYPE:
+        businessTypeKey.currentState!.isValid = false;
+        break;
+      case ErrorType.EMPTY_BUSINESS:
+        businessTypeOtherKey.currentState!.isValid = false;
         break;
     }
   }
@@ -160,14 +208,16 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
 
   void validateJobAndIncomeDetails() {
     _jobAndIncomeRequest.safeAdd(JobAndIncomeUseCaseParams(
-      annualIncome: annualIncomeController.text,
-      employerCity: employerCityController.text,
-      employerContact: employerContactController.text,
-      employerCountry: employerCountryController.text,
-      employerName: employerNameController.text,
-      mainSourceIncome: sourceController.text,
-      occupation: occupationController.text,
-    ));
+        annualIncome: annualIncomeController.text,
+        employerCity: employerCityController.text,
+        employerContact: employerContactController.text,
+        employerCountry: employerCountryController.text,
+        employerName: employerNameController.text,
+        occupation: occupationController.text,
+        businessType: businessTypeController.text,
+        businessTypeOther: _businessTypeOtherVisibilitySubject.value,
+        employmentStatusEnum: employmentStatusEnum,
+        specifyBusiness: businessTypeOtherController.text));
   }
 
   @override

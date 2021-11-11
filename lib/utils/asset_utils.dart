@@ -38,6 +38,16 @@ class AssetUtils {
   static const String maleAgent = svg + "male_agent.svg";
   static const String female_agent = svg + "female_agent.svg";
   static const String rightChevron = svg + "right_chevron.svg";
+  static const String check_icon = svg + "check_icon.svg";
+  static const String location_marker = svg + "location.svg";
+  static const String restart = svg + "restart.svg";
+  static const String agent = svg + "agent.svg";
+  static const String menuIcon = svg + "menu_icon.svg";
+  static const String loader = svg + "loader.svg";
+  static const String shield = svg + "shield.svg";
+  static const String sendMoney = svg + "send_money.svg";
+  static const String leftArrow = svg + "left_arrow.svg";
+  static const String biometricIcon = svg + "biometric_icon.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -54,4 +64,5 @@ class AssetUtils {
   static const String visa = drawable + "visa.png";
   static const String contactLess = drawable + "contact_less.png";
   static const String cardLogo = drawable + "card_logo.png";
+  static const String jordan_flag = drawable + "jordan_flag.png";
 }

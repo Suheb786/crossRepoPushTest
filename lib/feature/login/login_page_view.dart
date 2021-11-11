@@ -62,7 +62,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                               if (data.status == Status.SUCCESS) {
                                 model.emailKey.currentState!.isValid = true;
                                 Navigator.pushReplacementNamed(
-                                    context, RoutePaths.Registration);
+                                    context, RoutePaths.AccountRegistration);
                               } else if (data.status == Status.ERROR) {
                                 model.emailKey.currentState!.isValid = false;
                                 model.showToastWithError(data.appError!);
@@ -190,8 +190,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                               visible: isValid!,
                                               child: Positioned(
                                                 bottom: 24,
-                                                left: 45,
-                                                right: 45,
+                                                right: 94,
                                                 child: AnimatedButton(
                                                   buttonText:
                                                       "Swipe to proceed",

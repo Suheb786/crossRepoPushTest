@@ -1,6 +1,7 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/register/taxation_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -23,6 +24,10 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
   final TextEditingController personRoleController = TextEditingController();
   final GlobalKey<AppTextFieldState> personRoleKey =
       GlobalKey(debugLabel: "personRole");
+
+  TextEditingController countrySelectorController = TextEditingController();
+  final GlobalKey<AppTextFieldState> countrySelectorKey =
+      GlobalKey(debugLabel: "countrySelector");
 
   ///declaration selected  subject
   BehaviorSubject<bool> _declarationSelected = BehaviorSubject.seeded(false);
@@ -64,10 +69,15 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
 
   bool isValid() {
     bool valid = false;
-    if (_pepSwitchSubject.value) {
+    if (isPEP) {
       if (relationShipController.text.isNotEmpty &&
           personRoleController.text.isNotEmpty &&
           personNameController.text.isNotEmpty &&
+          _declarationSelected.value) {
+        valid = true;
+      }
+    } else if (anyOtherCountryResident) {
+      if (countrySelectorController.text.isNotEmpty &&
           _declarationSelected.value) {
         valid = true;
       }
@@ -106,28 +116,23 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_PERSON_ROLE:
         personRoleKey.currentState!.isValid = false;
         break;
+      case ErrorType.INVALID_TAX_COUNTRY:
+        countrySelectorKey.currentState!.isValid = false;
+        break;
       case ErrorType.INVALID_DECLARATION_SELECTION:
         break;
     }
   }
 
-  ///first degree relatives a PEP switch subject holder
-  final BehaviorSubject<bool> _pepSwitchSubject = BehaviorSubject.seeded(false);
-
-  ///first degree relatives a PEP switch response stream
-  Stream<bool> get pepSwitchValue => _pepSwitchSubject.stream;
-
-  void updatePEPSwitchValue(bool value) {
-    _pepSwitchSubject.safeAdd(value);
-  }
-
   void validateTaxationDetails() {
     _taxationDetailsRequest.safeAdd(TaxationDetailsUseCaseParams(
         declarationSelected: _declarationSelected.value,
-        isPEP: _pepSwitchSubject.value,
+        isPEP: isPEP,
         relationShipPEP: relationShipController.text,
         personName: personNameController.text,
-        personRole: personRoleController.text));
+        personRole: personRoleController.text,
+        anyOtherCountryResident: anyOtherCountryResident,
+        country: countrySelectorController.text));
   }
 
   @override

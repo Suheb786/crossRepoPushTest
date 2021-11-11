@@ -114,6 +114,8 @@ class ErrorParser {
         return localisedHelper.invalidTypesOfTransaction;
       case ErrorType.INVALID_DECLARATION_SELECTION:
         return localisedHelper.invalidDeclarationSelection;
+      case ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION:
+        return localisedHelper.invalidDeclarationSelection;
       case ErrorType.INVALID_NAME_AS_PER_TAX_RETURN:
         return localisedHelper.invalidNameAsPerTaxReturn;
       case ErrorType.INVALID_DOB:
@@ -172,6 +174,36 @@ class ErrorParser {
         return localisedHelper.emptyIncomeDocument;
       case ErrorType.EMPTY_ADDRESS_DOCUMENT:
         return localisedHelper.emptyAddressDocument;
+      case ErrorType.EMPTY_PERMANENT_HOME_ADDRESS:
+        return localisedHelper.emptyHomeAddress;
+      case ErrorType.EMPTY_PERMANENT_STREET_ADDRESS:
+        return localisedHelper.emptyStreetAddress;
+      case ErrorType.EMPTY_PERMANENT_BUILDING_NAME_OR_NUMBER:
+        return localisedHelper.emptyBuildingNameOrNo;
+      case ErrorType.INVALID_JOB_NAME:
+        return localisedHelper.invalidJobName;
+      case ErrorType.EMPTY_DOCUMENT:
+        return localisedHelper.emptyDocument;
+      case ErrorType.EMPTY_PERMANENT_RESIDENT_COUNTRY:
+        return localisedHelper.emptyResidentCountry;
+      case ErrorType.EMPTY_CITY:
+        return localisedHelper.emptyCity;
+      case ErrorType.INVALID_BENEFICIAL_OWNER_ACCOUNT:
+        return localisedHelper.invalidBeneficialOwnerAccount;
+      case ErrorType.INVALID_BUSINESS_TYPE:
+        return localisedHelper.invalidBusinessType;
+      case ErrorType.EMPTY_BUSINESS:
+        return localisedHelper.emptyBusiness;
+      case ErrorType.INVALID_LEGAL_DOCUMENT:
+        return localisedHelper.invalidDocumentNo;
+      case ErrorType.INVALID_ISSUING_DATE:
+        return localisedHelper.invalidIssuingDate;
+      case ErrorType.INVALID_ISSUING_PLACE:
+        return localisedHelper.invalidIssuingPlace;
+      case ErrorType.EMPTY_DISTRICT:
+        return localisedHelper.emptyDistrict;
+      case ErrorType.PERMANENT_EMPTY_CITY:
+        return localisedHelper.emptyCity;
 
       default:
         return "";

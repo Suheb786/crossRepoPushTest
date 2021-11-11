@@ -18,6 +18,12 @@ class Validator {
     return regex.hasMatch(password);
   }
 
+  static bool containsDigit(String password) {
+    Pattern pattern = '[0-9]';
+    RegExp regex = new RegExp(pattern.toString());
+    return regex.hasMatch(password);
+  }
+
   static bool isEmpty(String data) {
     return data.isEmpty;
   }

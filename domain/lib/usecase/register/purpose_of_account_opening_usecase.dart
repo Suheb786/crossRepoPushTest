@@ -19,15 +19,17 @@ class PurposeOfAccountOpeningUseCase extends BaseUseCase<LocalError,
 
 class PurposeOfAccountOpeningUseCaseParams extends Params {
   final String? purposeOfAccountOpening;
-  final String? typesOfTransaction;
+
+  //final String? typesOfTransaction;
   final String? expectedMonthlyTransaction;
   final String? expectedAnnualTransaction;
 
-  PurposeOfAccountOpeningUseCaseParams(
-      {this.purposeOfAccountOpening,
-      this.expectedAnnualTransaction,
-      this.expectedMonthlyTransaction,
-      this.typesOfTransaction});
+  PurposeOfAccountOpeningUseCaseParams({
+    this.purposeOfAccountOpening,
+    this.expectedAnnualTransaction,
+    this.expectedMonthlyTransaction,
+    //this.typesOfTransaction
+  });
 
   @override
   Either<AppError, bool> verify() {
@@ -35,11 +37,6 @@ class PurposeOfAccountOpeningUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_PURPOSE_OF_ACCOUNT_OPENING,
-          cause: Exception()));
-    } else if (typesOfTransaction!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_TYPES_OF_TRANSACTION,
           cause: Exception()));
     } else if (expectedMonthlyTransaction!.isEmpty) {
       return Left(AppError(

@@ -84,7 +84,7 @@ class AccountRegistrationPageView
                           Padding(
                             padding: EdgeInsets.only(
                                 top: 8.0,
-                                bottom: currentStep == 2 ? 0 : 32,
+                                bottom: currentStep == 1 ? 0 : 32,
                                 left: 24,
                                 right: 24),
                             child: ShowUpAnimation(
@@ -95,9 +95,8 @@ class AccountRegistrationPageView
                               direction: Direction.vertical,
                               offset: 0.5,
                               child: Text(
-                                StepTextHelper.registrationFirstStepTextHelper(
+                                StepTextHelper.accountRegistrationTextHelper(
                                     currentStep ?? 0,
-                                    S.of(context).selectCountryHeader,
                                     S.of(context).whatYourEmailAndMobileNumber,
                                     S.of(context).enterOtpHeader,
                                     S.of(context).createPasswordHeader),
@@ -110,7 +109,7 @@ class AccountRegistrationPageView
                             ),
                           ),
                           Visibility(
-                            visible: currentStep == 2,
+                            visible: currentStep == 1,
                             child: Padding(
                               padding: EdgeInsets.only(bottom: 32),
                               child: ShowUpAnimation(

@@ -49,8 +49,7 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
   Stream<bool> get allFieldValidatorStream => _allFieldValidatorSubject.stream;
 
   bool isValid() {
-    ///TODO:change valid value to false once time and date picker are integrated
-    bool valid = true;
+    bool valid = false;
     if (preferredDateController.text.isNotEmpty &&
         preferredTimeController.text.isNotEmpty) {
       valid = true;

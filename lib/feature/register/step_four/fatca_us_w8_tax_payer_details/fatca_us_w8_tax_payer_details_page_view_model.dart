@@ -81,6 +81,19 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
     _declarationSelected.safeAdd(value);
   }
 
+  ///verify info declaration selected  subject
+  BehaviorSubject<bool> _verifyInfoDeclarationSelected =
+      BehaviorSubject.seeded(false);
+
+  ///verify info declaration selected stream
+  Stream<bool> get verifyInfoDeclarationSelectedStream =>
+      _verifyInfoDeclarationSelected.stream;
+
+  ///update declaration selection function
+  void updateVerifyInfoDeclarationSelection(bool value) {
+    _verifyInfoDeclarationSelected.safeAdd(value);
+  }
+
   ///tax treaty benefits switch value subject
   final BehaviorSubject<bool> _taxTreatyBenefitsSubject =
       BehaviorSubject.seeded(false);
@@ -101,17 +114,21 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
         beneficialIdentificationNumberController.text.isNotEmpty &&
         incomeTypeController.text.isNotEmpty &&
         explanationController.text.isNotEmpty &&
-        _declarationSelected.value) {
+        _declarationSelected.value &&
+        _verifyInfoDeclarationSelected.value) {
       valid = true;
     } else if (_identificationVisibilitySubject.value &&
         taxPayerTypeController.text.isNotEmpty &&
         identificationNumberController.text.isNotEmpty &&
-        _declarationSelected.value) {
+        _declarationSelected.value &&
+        _verifyInfoDeclarationSelected.value) {
       valid = true;
     } else if (taxPayerTypeController.text.isNotEmpty &&
-        _declarationSelected.value) {
+        _declarationSelected.value &&
+        _verifyInfoDeclarationSelected.value) {
       valid = true;
     } else if (_declarationSelected.value &&
+        _verifyInfoDeclarationSelected.value &&
         taxPayerTypeController.text.isNotEmpty &&
         _taxTreatyBenefitsSubject.value &&
         beneficialCountryController.text.isNotEmpty &&
@@ -152,6 +169,8 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
         break;
       case ErrorType.INVALID_DECLARATION_SELECTION:
         break;
+      case ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION:
+        break;
       case ErrorType.INVALID_BENEFICIAL_ADDRESS:
         beneficialCountryKey.currentState!.isValid = false;
         break;
@@ -179,7 +198,9 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
             typeOfIncome: incomeTypeController.text,
             explanation: explanationController.text,
             taxPayerType: taxPayerTypeController.text,
-            declarationSelected: _declarationSelected.value));
+            declarationSelected: _declarationSelected.value,
+            verifyInfoDeclarationSelected:
+                _verifyInfoDeclarationSelected.value));
   }
 
   void updateTaxPayerTypeField(String value) {

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -11,15 +12,19 @@ import 'package:neo_bank/utils/color_utils.dart';
 class TaxationSwitchWidget extends StatelessWidget {
   final String title;
   final String hintText;
-  final Function(bool) onToggle;
+  final Function(bool)? onToggle;
   final ProviderBase providerBase;
+  final Function? onSecondaryTextTap;
+  final String? secondaryText;
 
   const TaxationSwitchWidget(
       {Key? key,
       this.title: "",
       required this.providerBase,
       this.hintText: "",
-      required this.onToggle})
+      required this.onToggle,
+      this.onSecondaryTextTap,
+      this.secondaryText: ""})
       : super(key: key);
 
   @override
@@ -52,11 +57,13 @@ class TaxationSwitchWidget extends StatelessWidget {
                               fontSize: 14),
                         ),
                       ),
-                      SizedBox(width: 16,),
+                      SizedBox(
+                        width: 16,
+                      ),
                       FlutterSwitch(
                         value: isActive!,
                         onToggle: (value) {
-                          onToggle.call(value);
+                          onToggle?.call(value);
                           model.updateSwitchValue(value);
                         },
                         activeText: S.of(context).yes,
@@ -75,6 +82,23 @@ class TaxationSwitchWidget extends StatelessWidget {
                       ),
                     ],
                   ),
+                  Visibility(
+                    visible: secondaryText!.isNotEmpty,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: InkWell(
+                          onTap: () {
+                            onSecondaryTextTap?.call();
+                          },
+                          child: Text(
+                            secondaryText!,
+                            style: TextStyle(
+                                color: AppColor.vivid_orange,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600),
+                          )),
+                    ),
+                  ),
                   Text(
                     hintText,
                     style: TextStyle(
@@ -83,6 +107,7 @@ class TaxationSwitchWidget extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         fontSize: 12),
                   ),
+                  onToggle?.call(isActive)
                 ],
               ),
             );

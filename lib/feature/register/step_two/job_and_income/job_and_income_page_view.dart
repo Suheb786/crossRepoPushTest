@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,6 +12,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/add_income_widget.dart';
 import 'package:neo_bank/ui/molecules/register/additional_income_source_widget.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
@@ -86,32 +88,137 @@ class JobAndIncomePageView
                               physics: ClampingScrollPhysics(),
                               child: Column(
                                 children: [
-                                  AppTextField(
-                                    labelText: S.of(context).occupation,
-                                    hintText: S.of(context).pleaseEnter,
-                                    controller: model.occupationController,
-                                    key: model.occupationKey,
-                                    inputAction: TextInputAction.go,
-                                    onChanged: (value) {
-                                      model.isValid();
+                                  Visibility(
+                                    visible: model.employmentStatusEnum ==
+                                            EmploymentStatusEnum
+                                                .FULL_TIME_EMPLOYEE ||
+                                        model.employmentStatusEnum ==
+                                            EmploymentStatusEnum
+                                                .PART_TIME_EMPLOYEE,
+                                    child: Column(
+                                      children: [
+                                        AppTextField(
+                                          labelText: S.of(context).occupation,
+                                          hintText: S.of(context).pleaseSelect,
+                                          controller:
+                                              model.occupationController,
+                                          readOnly: true,
+                                          key: model.occupationKey,
+                                          suffixIcon: (value, data) {
+                                            return InkWell(
+                                              onTap: () async {
+                                                OccupationDialog.show(context,
+                                                    employmentStatusEnum: model
+                                                        .employmentStatusEnum,
+                                                    title: S
+                                                        .of(context)
+                                                        .occupationSmall,
+                                                    onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: (data) {
+                                                  Navigator.pop(context);
+                                                  model.occupationController
+                                                      .text = data;
+                                                  model.isValid();
+                                                });
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding:
+                                                      EdgeInsets.only(right: 8),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.downArrow)),
+                                            );
+                                          },
+                                        ),
+                                        SizedBox(
+                                          height: 16,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Visibility(
+                                    visible: model.employmentStatusEnum ==
+                                        EmploymentStatusEnum.BUSINESS_OWNER,
+                                    child: Column(
+                                      children: [
+                                        AppTextField(
+                                          labelText: S
+                                              .of(context)
+                                              .businessType
+                                              .toUpperCase(),
+                                          hintText: S.of(context).pleaseSelect,
+                                          controller:
+                                              model.businessTypeController,
+                                          readOnly: true,
+                                          key: model.businessTypeKey,
+                                          suffixIcon: (value, data) {
+                                            return InkWell(
+                                              onTap: () async {
+                                                OccupationDialog.show(context,
+                                                    employmentStatusEnum: model
+                                                        .employmentStatusEnum,
+                                                    title: S
+                                                        .of(context)
+                                                        .businessType,
+                                                    onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: (data) {
+                                                  Navigator.pop(context);
+                                                  model.businessTypeController
+                                                      .text = data;
+                                                  model
+                                                      .updateBusinessTypeOtherVisibility();
+                                                  model.isValid();
+                                                });
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding:
+                                                      EdgeInsets.only(right: 8),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.downArrow)),
+                                            );
+                                          },
+                                        ),
+                                        SizedBox(
+                                          height: 16,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  AppStreamBuilder<bool>(
+                                    stream:
+                                        model.businessTypeOtherVisibilityStream,
+                                    initialData: false,
+                                    dataBuilder: (context, isVisible) {
+                                      return Visibility(
+                                        visible: isVisible!,
+                                        child: Column(
+                                          children: [
+                                            AppTextField(
+                                              labelText:
+                                                  S.of(context).pleaseSpecify,
+                                              hintText:
+                                                  S.of(context).pleaseEnter,
+                                              controller: model
+                                                  .businessTypeOtherController,
+                                              inputType: TextInputType.text,
+                                              inputAction: TextInputAction.go,
+                                              key: model.businessTypeOtherKey,
+                                              onChanged: (value) {
+                                                model.isValid();
+                                              },
+                                            ),
+                                            SizedBox(
+                                              height: 16,
+                                            ),
+                                          ],
+                                        ),
+                                      );
                                     },
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  AppTextField(
-                                    labelText: S.of(context).mainSourceOfIncome,
-                                    hintText: S.of(context).pleaseEnter,
-                                    controller: model.sourceController,
-                                    inputType: TextInputType.text,
-                                    inputAction: TextInputAction.go,
-                                    key: model.sourceKey,
-                                    onChanged: (value) {
-                                      model.isValid();
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 16,
                                   ),
                                   AppTextField(
                                     labelText: S.of(context).mainAnnualIncome,
@@ -255,6 +362,8 @@ class JobAndIncomePageView
                                                     return ListView.builder(
                                                         itemCount:
                                                             dataList.length + 1,
+                                                        physics:
+                                                            ClampingScrollPhysics(),
                                                         shrinkWrap: true,
                                                         itemBuilder:
                                                             (context, index) {

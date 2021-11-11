@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income_page.dart';
 import 'package:neo_bank/feature/register/step_two/register_step_two_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -16,11 +14,6 @@ import 'package:show_up_animation/show_up_animation.dart';
 class RegisterStepTwoPageView
     extends BasePageViewWidget<RegisterStepTwoViewModel> {
   RegisterStepTwoPageView(ProviderBase model) : super(model);
-
-  List<Widget> pages = [
-    JobAndIncomePage(),
-    StudentJobIncomePage(),
-  ];
 
   @override
   Widget build(BuildContext context, model) {
@@ -65,14 +58,14 @@ class RegisterStepTwoPageView
               ),
               Expanded(
                 child: CarouselSlider.builder(
-                  itemCount: pages.length,
+                  itemCount: model.pages.length,
                   carouselController: model.registrationStepTwoPageController,
                   itemBuilder: (BuildContext context, int itemIndex,
                           int pageViewIndex) =>
                       AppTiltCard(
                           pageViewIndex: pageViewIndex,
                           currentPage: currentStep,
-                          child: pages[itemIndex]),
+                          child: model.pages[itemIndex]),
                   options: CarouselOptions(
                       height: double.maxFinite,
                       pageSnapping: true,

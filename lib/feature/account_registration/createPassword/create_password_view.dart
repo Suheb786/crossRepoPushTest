@@ -10,7 +10,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_one/create_password_info_dialog.dart';
+import 'package:neo_bank/ui/molecules/register/password_hint_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -42,7 +42,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                       model.confirmPasswordKey.currentState!.isValid = true;
 
                       Navigator.pushReplacementNamed(
-                          context, RoutePaths.ProductSelector);
+                          context, RoutePaths.Dashboard);
                     } else if (data.status == Status.ERROR) {
                       if (data.appError!.type == ErrorType.PASSWORD_MISMATCH) {
                         model.passwordKey.currentState!.isValid = false;
@@ -107,8 +107,10 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                           inputType: TextInputType.text,
                                           controller:
                                               model.createPasswordController,
-                                          onChanged: (value) =>
-                                              model.validatePassword(),
+                                          onChanged: (value) {
+                                            model.validatePassword();
+                                            model.validateAllFields();
+                                          },
                                           suffixIcon: (isChecked, value) {
                                             return InkWell(
                                               onTap: () {
@@ -136,21 +138,52 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                     ),
                                             );
                                           },
-                                          labelIcon: () => Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 5.33),
-                                            child: InkWell(
-                                              onTap: () {
-                                                CreatePasswordInfoDialog.show(
-                                                    context, onDismissed: () {
-                                                  Navigator.pop(context);
-                                                });
-                                              },
-                                              child: AppSvg.asset(
-                                                  AssetUtils.info,
-                                                  height: 13.33,
-                                                  width: 13.33),
-                                            ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 10.0),
+                                          child: Wrap(
+                                            runSpacing: 10,
+                                            spacing: 8,
+                                            children: [
+                                              PasswordHintWidget(
+                                                label: S
+                                                    .of(context)
+                                                    .eightCharacters,
+                                                backgroundColor: !model
+                                                        .minimumEightCharacters
+                                                    ? AppColor.strong_violet
+                                                    : AppColor.vivid_orange,
+                                                isValid: model
+                                                    .minimumEightCharacters,
+                                              ),
+                                              PasswordHintWidget(
+                                                label: S
+                                                    .of(context)
+                                                    .oneUpperCaseLetter,
+                                                backgroundColor:
+                                                    !model.hasUpperCase
+                                                        ? AppColor.strong_violet
+                                                        : AppColor.vivid_orange,
+                                                isValid: model.hasUpperCase,
+                                              ),
+                                              PasswordHintWidget(
+                                                label: S.of(context).oneNumber,
+                                                backgroundColor:
+                                                    !model.containsDigit
+                                                        ? AppColor.strong_violet
+                                                        : AppColor.vivid_orange,
+                                                isValid: model.containsDigit,
+                                              ),
+                                              PasswordHintWidget(
+                                                label: S.of(context).oneSymbol,
+                                                backgroundColor:
+                                                    !model.hasSymbol
+                                                        ? AppColor.strong_violet
+                                                        : AppColor.vivid_orange,
+                                                isValid: model.hasSymbol,
+                                              ),
+                                            ],
                                           ),
                                         ),
                                         SizedBox(
@@ -164,7 +197,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                           inputType: TextInputType.text,
                                           obscureText: true,
                                           onChanged: (value) =>
-                                              model.validatePassword(),
+                                              model.validateAllFields(),
                                           controller:
                                               model.confirmPasswordController,
                                           suffixIcon: (isChecked, value) {

@@ -24,6 +24,10 @@ class ConfirmDetailUseCaseParams extends Params {
   final String? expiryDate;
   final String? gender;
   final String? motherName;
+  final String? legalDocumentNo;
+  final String? issuingDate;
+  final String? issuingPlace;
+  bool declarationSelected;
 
   ConfirmDetailUseCaseParams(
       {required this.name,
@@ -32,6 +36,10 @@ class ConfirmDetailUseCaseParams extends Params {
       required this.nationality,
       required this.expiryDate,
       required this.gender,
+      this.issuingPlace,
+      this.issuingDate,
+      this.legalDocumentNo,
+      required this.declarationSelected,
       this.motherName});
 
   @override
@@ -70,6 +78,26 @@ class ConfirmDetailUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_MOTHER_NAME,
+          cause: Exception()));
+    } else if (Validator.isEmpty(legalDocumentNo!)) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_LEGAL_DOCUMENT,
+          cause: Exception()));
+    } else if (Validator.isEmpty(issuingDate!)) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_ISSUING_DATE,
+          cause: Exception()));
+    } else if (Validator.isEmpty(issuingPlace!)) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_ISSUING_PLACE,
+          cause: Exception()));
+    } else if (!declarationSelected) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_DECLARATION_SELECTION,
           cause: Exception()));
     }
     return Right(true);

@@ -1,7 +1,5 @@
-import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w8_useCase.dart';
-import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -13,8 +11,6 @@ import 'package:rxdart/rxdart.dart';
 
 class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
   final FatcaUSRelevantW8UseCase _fatcaUSRelevantW8UseCase;
-
-  final UploadDocumentUseCase _uploadDocumentUseCase;
 
   ///controllers and keys
   final TextEditingController nameAsPerTaxReturnController =
@@ -30,11 +26,6 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
       TextEditingController();
   final GlobalKey<AppTextFieldState> countryOfCitizenshipKey =
       GlobalKey(debugLabel: "countryOfCitizenship");
-
-  final TextEditingController uploadDocumentController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> uploadDocumentKey =
-      GlobalKey(debugLabel: "uploadDocument");
 
   ///fatca us relevant request subject holder
   PublishSubject<FatcaUSRelevantW8UseCaseParams> _fatcaUSRelevantW8Request =
@@ -53,16 +44,6 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
   ///all field validate stream
   Stream<bool> get allFieldValidatorStream => _allFieldValidatorSubject.stream;
 
-  ///document selection request holder
-  PublishSubject<UploadDocumentUseCaseParams> _uploadDocumentRequest =
-      PublishSubject();
-
-  ///document selection response holder
-  PublishSubject<String> _uploadDocumentResponse = PublishSubject();
-
-  ///document selection response stream
-  Stream<String> get uploadDocumentStream => _uploadDocumentResponse.stream;
-
   bool isValid() {
     bool valid = false;
     if (nameAsPerTaxReturnController.text.isNotEmpty &&
@@ -74,23 +55,7 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  ///all field validate stream
-  Stream<bool> get documentUploadedStream => _documentUploadedRequest.stream;
-
-  ///document selection request holder
-  PublishSubject<bool> _documentUploadedRequest = PublishSubject();
-
-  void updateUploadDocumentField(String value) {
-    uploadDocumentController.text = value.split("/").last;
-    updateDocumentUploadedStream(true);
-  }
-
-  void updateDocumentUploadedStream(bool value) {
-    _documentUploadedRequest.safeAdd(value);
-  }
-
-  FatcaUSRelevantW8PageViewModel(
-      this._fatcaUSRelevantW8UseCase, this._uploadDocumentUseCase) {
+  FatcaUSRelevantW8PageViewModel(this._fatcaUSRelevantW8UseCase) {
     _fatcaUSRelevantW8Request.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -101,17 +66,6 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           getError(event);
           showErrorState();
-        }
-      });
-    });
-
-    _uploadDocumentRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        if (event.data != null) {
-          _uploadDocumentResponse.safeAdd(event.data!);
         }
       });
     });
@@ -138,19 +92,11 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
         dob: dateOfBirthController.text));
   }
 
-  void uploadDocument(DocumentTypeEnum type) {
-    _uploadDocumentRequest
-        .safeAdd(UploadDocumentUseCaseParams(documentType: type));
-  }
-
   @override
   void dispose() {
     _fatcaUSRelevantW8Request.close();
     _fatcaUSRelevantW8Response.close();
     _allFieldValidatorSubject.close();
-    _uploadDocumentRequest.close();
-    _uploadDocumentResponse.close();
-    _documentUploadedRequest.close();
     super.dispose();
   }
 }
