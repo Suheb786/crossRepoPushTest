@@ -11,7 +11,6 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -60,24 +59,19 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                     }
                   },
                   child: Card(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16)),
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    elevation: 2,
                     margin: EdgeInsets.zero,
-                    shadowColor: AppColor.black.withOpacity(0.32),
                     child: Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                        decoration: BoxDecoration(
-                            color: AppColor.very_soft_violet,
-                            gradient: LinearGradient(
-                                colors: [
-                                  AppColor.dark_violet,
-                                  AppColor.dark_moderate_blue
-                                ],
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter)),
+                        // decoration: BoxDecoration(
+                        //     color: AppColor.very_soft_violet,
+                        //     gradient: LinearGradient(
+                        //         colors: [
+                        //           AppColor.dark_violet,
+                        //           AppColor.dark_moderate_blue
+                        //         ],
+                        //         begin: Alignment.bottomCenter,
+                        //         end: Alignment.topCenter)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -98,7 +92,10 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                       child: Text(
                                         S.of(context).changeMyNumber,
                                         style: TextStyle(
-                                          color: AppColor.vivid_orange,
+                                          color: Theme.of(context)
+                                              .accentTextTheme
+                                              .bodyText1!
+                                              .color!,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600,
                                         ),
@@ -115,7 +112,11 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                   onEnd: () {},
                                   endTime: model.endTime,
                                   textStyle: TextStyle(
-                                      fontSize: 16, color: AppColor.white),
+                                      fontSize: 16,
+                                      color: Theme.of(context)
+                                          .accentTextTheme
+                                          .bodyText1!
+                                          .color!),
                                   widgetBuilder:
                                       (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
@@ -127,14 +128,20 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                               'Resend Code',
                                               style: TextStyle(
                                                   fontSize: 14,
-                                                  color: AppColor.white),
+                                                  color: Theme.of(context)
+                                                      .accentTextTheme
+                                                      .bodyText1!
+                                                      .color!),
                                             ))
                                         : Text(
                                             S.of(context).resendIn(
                                                 '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
                                             style: TextStyle(
                                                 fontSize: 14,
-                                                color: AppColor.soft_violet),
+                                                color: Theme.of(context)
+                                                    .accentTextTheme
+                                                    .bodyText1!
+                                                    .color!),
                                           );
                                   },
                                 ),

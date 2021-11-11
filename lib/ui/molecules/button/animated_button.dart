@@ -143,3 +143,4 @@ class _AnimatedButtonState extends State<AnimatedButton>
     super.dispose();
   }
 }
+

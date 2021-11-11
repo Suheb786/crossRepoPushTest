@@ -23,18 +23,18 @@ class AppIconButton extends StatelessWidget {
       child: Container(
         height: height,
         decoration: BoxDecoration(
-            color: AppColor.strong_violet,
+            color: Theme.of(context).accentColor,
             borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColor.dark_violet2, width: 1),
+            border: Border.all(color: AppColor.veryLightGray2, width: 1),
             boxShadow: [
               BoxShadow(
-                  color: AppColor.dark_violet1,
+                  color: AppColor.veryDarkRed.withOpacity(0.1),
                   offset: Offset(0, 1),
                   blurRadius: 16)
             ]),
         alignment: Alignment.center,
         child: AppSvg.asset(icon,
-            color: AppColor.white,
+            color: Theme.of(context).primaryColorDark,
             width: iconSize,
             height: iconSize,
             fit: BoxFit.contain),
