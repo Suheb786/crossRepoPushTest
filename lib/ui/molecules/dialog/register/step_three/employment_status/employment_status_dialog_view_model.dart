@@ -1,4 +1,3 @@
-import 'package:domain/constants/enum/nature_of_special_needs_enum.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:rxdart/rxdart.dart';
@@ -8,16 +7,14 @@ class EmploymentStatusDialogViewModel extends BasePageViewModel {
       FixedExtentScrollController();
 
   List<String> employmentStatusList = [
+    "Business Owner",
+    "Full-Time Employee",
+    "Part-Time Employee",
+    "Freelance",
     "Retired",
     "Student",
     "Unemployed",
     "Other"
-  ];
-  List<String> sensoryEmploymentStatusList = [
-    "Business Owner",
-    "Full-Time Employee",
-    "Part-Time Employee",
-    "Freelance"
   ];
 
   ///current selected index subject
@@ -28,15 +25,6 @@ class EmploymentStatusDialogViewModel extends BasePageViewModel {
 
   void currentIndexUpdate(int index) {
     _currentSelectIndex.add(index);
-  }
-
-  List<String> getStatusList(NatureOfSpecialNeedsEnum typeEnum) {
-    switch (typeEnum) {
-      case NatureOfSpecialNeedsEnum.SENSORY:
-        return sensoryEmploymentStatusList;
-      default:
-        return employmentStatusList;
-    }
   }
 
   @override

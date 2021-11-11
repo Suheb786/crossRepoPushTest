@@ -1,5 +1,4 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,13 +7,9 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8/fatca_us_relevant_w8_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/register/upload_document_divider.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/ui/molecules/upload_document/upload_document_bottom_sheet.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -87,205 +82,88 @@ class FatcaUSRelevantW8PageView
                                   begin: Alignment.bottomCenter,
                                   end: Alignment.topCenter),
                             ),
-                            child: SingleChildScrollView(
-                              physics: ClampingScrollPhysics(),
-                              child: Column(
-                                children: [
-                                  AppTextField(
-                                    labelText:
-                                        S.of(context).nameAsPerIncomeTaxReturn,
-                                    hintText: S.of(context).pleaseEnter,
-                                    controller:
-                                        model.nameAsPerTaxReturnController,
-                                    key: model.nameAsPerTaxReturnKey,
-                                    inputAction: TextInputAction.go,
-                                    onChanged: (value) {
-                                      model.isValid();
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  AppTextField(
-                                    labelText: S.of(context).dateOfBirth,
-                                    hintText: S.of(context).pleaseEnter,
-                                    controller: model.dateOfBirthController,
-                                    inputType: TextInputType.text,
-                                    inputAction: TextInputAction.go,
-                                    key: model.dateOfBirthKey,
-                                    onChanged: (value) {
-                                      model.isValid();
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  AppTextField(
-                                    labelText:
-                                        S.of(context).countryOfCitizenship,
-                                    hintText: S.of(context).pleaseEnter,
-                                    controller:
-                                        model.countryOfCitizenshipController,
-                                    inputType: TextInputType.text,
-                                    inputAction: TextInputAction.go,
-                                    key: model.countryOfCitizenshipKey,
-                                    onChanged: (value) {
-                                      model.isValid();
-                                    },
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 32.0),
-                                    child: UploadDocumentDivider(
-                                      text: S.of(context).orYouCanUpload,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: SingleChildScrollView(
+                                    physics: ClampingScrollPhysics(),
+                                    child: Column(
+                                      children: [
+                                        AppTextField(
+                                          labelText: S
+                                              .of(context)
+                                              .nameAsPerIncomeTaxReturn,
+                                          hintText: S.of(context).pleaseEnter,
+                                          controller: model
+                                              .nameAsPerTaxReturnController,
+                                          key: model.nameAsPerTaxReturnKey,
+                                          inputAction: TextInputAction.go,
+                                          onChanged: (value) {
+                                            model.isValid();
+                                          },
+                                        ),
+                                        SizedBox(
+                                          height: 16,
+                                        ),
+                                        AppTextField(
+                                          labelText: S.of(context).dateOfBirth,
+                                          hintText: S.of(context).pleaseEnter,
+                                          controller:
+                                              model.dateOfBirthController,
+                                          inputType: TextInputType.text,
+                                          inputAction: TextInputAction.go,
+                                          key: model.dateOfBirthKey,
+                                          onChanged: (value) {
+                                            model.isValid();
+                                          },
+                                        ),
+                                        SizedBox(
+                                          height: 16,
+                                        ),
+                                        AppTextField(
+                                          labelText: S
+                                              .of(context)
+                                              .countryOfCitizenship,
+                                          hintText: S.of(context).pleaseEnter,
+                                          controller: model
+                                              .countryOfCitizenshipController,
+                                          inputType: TextInputType.text,
+                                          inputAction: TextInputAction.go,
+                                          key: model.countryOfCitizenshipKey,
+                                          onChanged: (value) {
+                                            model.isValid();
+                                          },
+                                        ),
+                                        SizedBox(
+                                          height: MediaQuery.of(context)
+                                              .viewInsets
+                                              .bottom,
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      S.of(context).w8Form,
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: AppColor.white),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 8,
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      S.of(context).w8FormDesc,
-                                      textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w400,
-                                          color: AppColor.white),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  AppStreamBuilder<String>(
-                                    stream: model.uploadDocumentStream,
-                                    initialData: '',
-                                    onData: (documentResponse) {
-                                      if (documentResponse.isNotEmpty) {
-                                        model.updateUploadDocumentField(
-                                            documentResponse);
-                                      }
-                                    },
-                                    dataBuilder: (context, document) {
-                                      return AppStreamBuilder<bool>(
-                                        stream: model.documentUploadedStream,
+                                ),
+                                Center(
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.only(top: 32, right: 45),
+                                    child: AppStreamBuilder<bool>(
+                                        stream: model.allFieldValidatorStream,
                                         initialData: false,
-                                        dataBuilder: (context, isUploaded) {
-                                          return AppTextField(
-                                            labelText: '',
-                                            hintText: S
-                                                .of(context)
-                                                .uploadDocumentsSmall,
-                                            controller:
-                                                model.uploadDocumentController,
-                                            key: model.uploadDocumentKey,
-                                            readOnly: true,
-                                            hintTextColor:
-                                                AppColor.vivid_orange,
-                                            suffixIcon: (value, data) {
-                                              return InkWell(
-                                                onTap: !(isUploaded!)
-                                                    ? () async {
-                                                        showModalBottomSheet(
-                                                            context: context,
-                                                            builder: (builder) =>
-                                                                UploadDocumentBottomSheetWidget(
-                                                                  title: S
-                                                                      .of(context)
-                                                                      .selectAnyOption,
-                                                                  firstOptionText: S
-                                                                      .of(context)
-                                                                      .storage,
-                                                                  secondOptionText: S
-                                                                      .of(context)
-                                                                      .camera,
-                                                                  buttonText: S
-                                                                      .of(context)
-                                                                      .cancel,
-                                                                  onCameraTap:
-                                                                      () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                    model.uploadDocument(
-                                                                        DocumentTypeEnum
-                                                                            .CAMERA);
-                                                                  },
-                                                                  onPhotoLibraryTap:
-                                                                      () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                    model.uploadDocument(
-                                                                        DocumentTypeEnum
-                                                                            .GALLERY);
-                                                                  },
-                                                                  onCancelTap:
-                                                                      () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                  },
-                                                                ));
-                                                      }
-                                                    : () {
-                                                        model
-                                                            .uploadDocumentController
-                                                            .clear();
-                                                        model
-                                                            .updateDocumentUploadedStream(
-                                                                false);
-                                                      },
-                                                child: Container(
-                                                    height: 16,
-                                                    width: 16,
-                                                    padding: EdgeInsets.all(5),
-                                                    child: isUploaded
-                                                        ? AppSvg.asset(
-                                                            AssetUtils.delete)
-                                                        : AppSvg.asset(
-                                                            AssetUtils.upload)),
-                                              );
-                                            },
-                                          );
-                                        },
-                                      );
-                                    },
+                                        dataBuilder: (context, isValid) {
+                                          return (isValid!)
+                                              ? AnimatedButton(
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed,
+                                                  buttonHeight: 50,
+                                                )
+                                              : Container();
+                                        }),
                                   ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context)
-                                        .viewInsets
-                                        .bottom,
-                                  ),
-                                  Center(
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 32, right: 45),
-                                      child: AppStreamBuilder<bool>(
-                                          stream: model.allFieldValidatorStream,
-                                          initialData: false,
-                                          dataBuilder: (context, isValid) {
-                                            return (isValid!)
-                                                ? AnimatedButton(
-                                                    buttonText: S
-                                                        .of(context)
-                                                        .swipeToProceed,
-                                                    buttonHeight: 50,
-                                                  )
-                                                : Container();
-                                          }),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                )
+                              ],
                             )),
                       ),
                     );

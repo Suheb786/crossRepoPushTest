@@ -1,5 +1,4 @@
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
-import 'package:domain/constants/enum/nature_of_special_needs_enum.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,10 +16,8 @@ import 'package:neo_bank/utils/color_utils.dart';
 class EmploymentStatusDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(String)? onSelected;
-  final NatureOfSpecialNeedsEnum? natureOfSpecialNeedsEnum;
 
-  const EmploymentStatusDialogView(
-      {this.onDismissed, this.onSelected, this.natureOfSpecialNeedsEnum});
+  const EmploymentStatusDialogView({this.onDismissed, this.onSelected});
 
   ProviderBase providerBase() {
     return employmentStatusDialogViwModelProvider;
@@ -73,9 +70,7 @@ class EmploymentStatusDialogView extends StatelessWidget {
                             child: ClickableListWheelScrollView(
                               scrollController: model.scrollController,
                               itemHeight: 64,
-                              itemCount: model
-                                  .getStatusList(natureOfSpecialNeedsEnum!)
-                                  .length,
+                              itemCount: model.employmentStatusList.length,
                               onItemTapCallback: (index) {
                                 model.currentIndexUpdate(index);
                               },
@@ -88,15 +83,13 @@ class EmploymentStatusDialogView extends StatelessWidget {
                                   physics: FixedExtentScrollPhysics(),
                                   perspective: 0.0000000001,
                                   childDelegate: ListWheelChildBuilderDelegate(
-                                      childCount: model
-                                          .getStatusList(
-                                              natureOfSpecialNeedsEnum!)
-                                          .length,
+                                      childCount:
+                                          model.employmentStatusList.length,
                                       builder:
                                           (BuildContext context, int index) {
                                         return ListScrollWheelListWidget(
-                                          label: model.getStatusList(
-                                              natureOfSpecialNeedsEnum!)[index],
+                                          label:
+                                              model.employmentStatusList[index],
                                           textColor: currentIndex == index
                                               ? Theme.of(context)
                                                   .primaryColorDark
@@ -110,8 +103,8 @@ class EmploymentStatusDialogView extends StatelessWidget {
                       )),
                       InkWell(
                         onTap: () {
-                          onSelected!.call(model.getStatusList(
-                              natureOfSpecialNeedsEnum!)[currentIndex!]);
+                          onSelected!
+                              .call(model.employmentStatusList[currentIndex!]);
                         },
                         child: Container(
                           padding: EdgeInsets.all(16),

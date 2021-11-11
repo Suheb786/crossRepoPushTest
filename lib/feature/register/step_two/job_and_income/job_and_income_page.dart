@@ -23,6 +23,15 @@ class JobAndIncomePageState
   }
 
   @override
+  void onModelReady(JobAndIncomePageViewModel model) {
+    model.employmentStatusEnum = ProviderScope.containerOf(context)
+        .read(profileDetailsPageViewModelProvider)
+        .employeeStatusController
+        .text
+        .fromEmploymentValue();
+  }
+
+  @override
   Widget buildView(BuildContext context, JobAndIncomePageViewModel model) {
     return JobAndIncomePageView(provideBase());
   }

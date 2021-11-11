@@ -6,4 +6,6 @@ abstract class RegisterRemoteDataSource {
   Future<List<String>> getPurposeOfAccountOpeningList();
 
   Future<List<AdditionalIncome>> getAdditionalIncomeSourceList();
+
+  Future<List<String>> getBusinessTypeList();
 }

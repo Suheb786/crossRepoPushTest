@@ -110,10 +110,10 @@ class S {
     );
   }
 
-  /// `000 0000`
+  /// `00 000 0000`
   String get mobileNumberHint {
     return Intl.message(
-      '000 0000',
+      '00 000 0000',
       name: 'mobileNumberHint',
       desc: '',
       args: [],
@@ -330,10 +330,10 @@ class S {
     );
   }
 
-  /// `Please Enter Date Of Birth`
+  /// `DD/MM/YYYY`
   String get dobHint {
     return Intl.message(
-      'Please Enter Date Of Birth',
+      'DD/MM/YYYY',
       name: 'dobHint',
       desc: '',
       args: [],
@@ -2410,10 +2410,10 @@ class S {
     );
   }
 
-  /// `'I confirm that my tax residency is accurate and agree to the `
+  /// `I confirm that my tax residency is accurate and agree to the `
   String get confirmThatTaxResidency {
     return Intl.message(
-      '\'I confirm that my tax residency is accurate and agree to the ',
+      'I confirm that my tax residency is accurate and agree to the ',
       name: 'confirmThatTaxResidency',
       desc: '',
       args: [],
@@ -2950,13 +2950,13 @@ class S {
     );
   }
 
-  /// `Type of Transactions`
-  String get typeOfTransactionsSmall {
+  /// `Type of Transactions {noOfTransaction}`
+  String typeOfTransactionsSmall(Object noOfTransaction) {
     return Intl.message(
-      'Type of Transactions',
+      'Type of Transactions $noOfTransaction',
       name: 'typeOfTransactionsSmall',
       desc: '',
-      args: [],
+      args: [noOfTransaction],
     );
   }
 
@@ -3245,6 +3245,696 @@ class S {
     return Intl.message(
       'No matching year found!',
       name: 'noMatchingYearFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you the beneficial owner of the account?`
+  String get areYouBeneficialOwnerAccount {
+    return Intl.message(
+      'Are you the beneficial owner of the account?',
+      name: 'areYouBeneficialOwnerAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type of expected transactions`
+  String get typeOfExpectedTransactions {
+    return Intl.message(
+      'Type of expected transactions',
+      name: 'typeOfExpectedTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Social Security Card`
+  String get socialSecurityCard {
+    return Intl.message(
+      'Social Security Card',
+      name: 'socialSecurityCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We need the copy of your physical Social Security Card`
+  String get socialSecurityCardDesc {
+    return Intl.message(
+      'We need the copy of your physical Social Security Card',
+      name: 'socialSecurityCardDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan ID again`
+  String get scanIDAgain {
+    return Intl.message(
+      'Scan ID again',
+      name: 'scanIDAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I confirm and agree that all my ID details are correct`
+  String get confirmDetailsConfirmation {
+    return Intl.message(
+      'I confirm and agree that all my ID details are correct',
+      name: 'confirmDetailsConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent address`
+  String get permanentAddress {
+    return Intl.message(
+      'Permanent address',
+      name: 'permanentAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `JOB NAME`
+  String get jobName {
+    return Intl.message(
+      'JOB NAME',
+      name: 'jobName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter job name`
+  String get invalidJobName {
+    return Intl.message(
+      'Enter job name',
+      name: 'invalidJobName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `8 characters`
+  String get eightCharacters {
+    return Intl.message(
+      '8 characters',
+      name: 'eightCharacters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 uppercase letter`
+  String get oneUpperCaseLetter {
+    return Intl.message(
+      '1 uppercase letter',
+      name: 'oneUpperCaseLetter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 number`
+  String get oneNumber {
+    return Intl.message(
+      '1 number',
+      name: 'oneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `1 symbol`
+  String get oneSymbol {
+    return Intl.message(
+      '1 symbol',
+      name: 'oneSymbol',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What is your employment status?`
+  String get whatIsYourEmploymentStatus {
+    return Intl.message(
+      'What is your employment status?',
+      name: 'whatIsYourEmploymentStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload valid document`
+  String get emptyDocument {
+    return Intl.message(
+      'Upload valid document',
+      name: 'emptyDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Quick edit is disabled for some informations. Would you like to start over? Don’t worry, we keep your filled informations.`
+  String get startOverDesc {
+    return Intl.message(
+      'Quick edit is disabled for some informations. Would you like to start over? Don’t worry, we keep your filled informations.',
+      name: 'startOverDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start over`
+  String get startOver {
+    return Intl.message(
+      'Start over',
+      name: 'startOver',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent Home Address`
+  String get permanentHomeAddress {
+    return Intl.message(
+      'Permanent Home Address',
+      name: 'permanentHomeAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connecting to our agent to assist you`
+  String get connectToAgentToAssistYou {
+    return Intl.message(
+      'Connecting to our agent to assist you',
+      name: 'connectToAgentToAssistYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Looking for available agent..`
+  String get lookingForAvailableAgent {
+    return Intl.message(
+      'Looking for available agent..',
+      name: 'lookingForAvailableAgent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Estimated wait time \n{estimatedTime}`
+  String estimatedTime(Object estimatedTime) {
+    return Intl.message(
+      'Estimated wait time \n$estimatedTime',
+      name: 'estimatedTime',
+      desc: 'estimatedTime',
+      args: [estimatedTime],
+    );
+  }
+
+  /// `Thank you for waiting. Call will start automatically as soon as our call customer agent is ready.`
+  String get thankYouForWaitingCallWillStartAutomatically {
+    return Intl.message(
+      'Thank you for waiting. Call will start automatically as soon as our call customer agent is ready.',
+      name: 'thankYouForWaitingCallWillStartAutomatically',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload documents later`
+  String get uploadDocumentLater {
+    return Intl.message(
+      'Upload documents later',
+      name: 'uploadDocumentLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Document Later?`
+  String get uploadDocumentLaterQues {
+    return Intl.message(
+      'Upload Document Later?',
+      name: 'uploadDocumentLaterQues',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will need to upload required document from Profile Settings later in order to complete your account verification.\n\nNote: Account will be closed automatically for any incomplete document`
+  String get uploadDocLaterDesc {
+    return Intl.message(
+      'You will need to upload required document from Profile Settings later in order to complete your account verification.\n\nNote: Account will be closed automatically for any incomplete document',
+      name: 'uploadDocLaterDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` within 10 days after date opened.`
+  String get uploadDocumentDesc1 {
+    return Intl.message(
+      ' within 10 days after date opened.',
+      name: 'uploadDocumentDesc1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello,`
+  String get hello {
+    return Intl.message(
+      'Hello,',
+      name: 'hello',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WELCOME`
+  String get welcome {
+    return Intl.message(
+      'WELCOME',
+      name: 'welcome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have successfully created your login. Would you like to proceed with account opening?`
+  String get successfullyCreatedLoginAccount {
+    return Intl.message(
+      'You have successfully created your login. Would you like to proceed with account opening?',
+      name: 'successfullyCreatedLoginAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save your earnings digitally and securely`
+  String get saveEarningsDigitally {
+    return Intl.message(
+      'Save your earnings digitally and securely',
+      name: 'saveEarningsDigitally',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send money to your friends and family`
+  String get sendMoneyToFriendAndFamily {
+    return Intl.message(
+      'Send money to your friends and family',
+      name: 'sendMoneyToFriendAndFamily',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Open Account Now`
+  String get openAccountNow {
+    return Intl.message(
+      'Open Account Now',
+      name: 'openAccountNow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out and continue later`
+  String get logoutAndContinueLater {
+    return Intl.message(
+      'Log out and continue later',
+      name: 'logoutAndContinueLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms & Conditions`
+  String get termsConditions {
+    return Intl.message(
+      'Terms & Conditions',
+      name: 'termsConditions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter City`
+  String get emptyCity {
+    return Intl.message(
+      'Enter City',
+      name: 'emptyCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You must be the beneficial owner of the account to proceed`
+  String get invalidBeneficialOwnerAccount {
+    return Intl.message(
+      'You must be the beneficial owner of the account to proceed',
+      name: 'invalidBeneficialOwnerAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preferred Time`
+  String get preferredTimeSmall {
+    return Intl.message(
+      'Preferred Time',
+      name: 'preferredTimeSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Business Type`
+  String get businessType {
+    return Intl.message(
+      'Business Type',
+      name: 'businessType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PLEASE SPECIFY`
+  String get pleaseSpecify {
+    return Intl.message(
+      'PLEASE SPECIFY',
+      name: 'pleaseSpecify',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Business Type`
+  String get invalidBusinessType {
+    return Intl.message(
+      'Select Business Type',
+      name: 'invalidBusinessType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Specify Business`
+  String get emptyBusiness {
+    return Intl.message(
+      'Specify Business',
+      name: 'emptyBusiness',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What is P.E.P?`
+  String get whatIsPEP {
+    return Intl.message(
+      'What is P.E.P?',
+      name: 'whatIsPEP',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you have any other nationality?`
+  String get doYouHaveAnyOtherNationality {
+    return Intl.message(
+      'Do you have any other nationality?',
+      name: 'doYouHaveAnyOtherNationality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other Nationality`
+  String get otherNationality {
+    return Intl.message(
+      'Other Nationality',
+      name: 'otherNationality',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Politically Exposed Person`
+  String get politicallyExposedPerson {
+    return Intl.message(
+      'Politically Exposed Person',
+      name: 'politicallyExposedPerson',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list.`
+  String get pepDesc {
+    return Intl.message(
+      ' is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list.',
+      name: 'pepDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I declare that the bank is entitled to verify the information given directly or through any third part agent.`
+  String get verifyInformationDirectlyOrUsingThirdPartyAgentDesc {
+    return Intl.message(
+      'I declare that the bank is entitled to verify the information given directly or through any third part agent.',
+      name: 'verifyInformationDirectlyOrUsingThirdPartyAgentDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable Biometric\nLogin`
+  String get enableBiometricLogin {
+    return Intl.message(
+      'Enable Biometric\nLogin',
+      name: 'enableBiometricLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Would you like to enable biometric for a more seamless login experience?`
+  String get biometricLoginDesc {
+    return Intl.message(
+      'Would you like to enable biometric for a more seamless login experience?',
+      name: 'biometricLoginDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maybe later`
+  String get mayBeLater {
+    return Intl.message(
+      'Maybe later',
+      name: 'mayBeLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Allow biometric`
+  String get allowBiometric {
+    return Intl.message(
+      'Allow biometric',
+      name: 'allowBiometric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NATIONAL ID`
+  String get nationalId {
+    return Intl.message(
+      'NATIONAL ID',
+      name: 'nationalId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place of birth`
+  String get placeOfBirth {
+    return Intl.message(
+      'Place of birth',
+      name: 'placeOfBirth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LEGAL DOCUMENT NO.`
+  String get legalDocumentNo {
+    return Intl.message(
+      'LEGAL DOCUMENT NO.',
+      name: 'legalDocumentNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Issuing date`
+  String get issuingDate {
+    return Intl.message(
+      'Issuing date',
+      name: 'issuingDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Issuing place`
+  String get issuingPlace {
+    return Intl.message(
+      'Issuing place',
+      name: 'issuingPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Legal Document No.`
+  String get invalidDocumentNo {
+    return Intl.message(
+      'Enter Legal Document No.',
+      name: 'invalidDocumentNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Issuing Date`
+  String get invalidIssuingDate {
+    return Intl.message(
+      'Select Issuing Date',
+      name: 'invalidIssuingDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Issuing Place`
+  String get invalidIssuingPlace {
+    return Intl.message(
+      'Enter Issuing Place',
+      name: 'invalidIssuingPlace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scroll to set {scrollToSetDate}`
+  String scrollToSetDate(Object scrollToSetDate) {
+    return Intl.message(
+      'Scroll to set $scrollToSetDate',
+      name: 'scrollToSetDate',
+      desc: 'scrollToSetDate',
+      args: [scrollToSetDate],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `STREET NAME`
+  String get streetName {
+    return Intl.message(
+      'STREET NAME',
+      name: 'streetName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `District`
+  String get district {
+    return Intl.message(
+      'District',
+      name: 'district',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter district`
+  String get emptyDistrict {
+    return Intl.message(
+      'Enter district',
+      name: 'emptyDistrict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Take Photo`
+  String get takePhoto {
+    return Intl.message(
+      'Take Photo',
+      name: 'takePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Document`
+  String get uploadDocument {
+    return Intl.message(
+      'Upload Document',
+      name: 'uploadDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select your action`
+  String get pleaseSelectYourAction {
+    return Intl.message(
+      'Please select your action',
+      name: 'pleaseSelectYourAction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Additional Nationality Passport`
+  String get additionalNationalityPassport {
+    return Intl.message(
+      'Additional Nationality Passport',
+      name: 'additionalNationalityPassport',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide your additional nationality passport as a proof`
+  String get additionalNationalityPassportDesc {
+    return Intl.message(
+      'Please provide your additional nationality passport as a proof',
+      name: 'additionalNationalityPassportDesc',
       desc: '',
       args: [],
     );

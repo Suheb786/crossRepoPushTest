@@ -69,8 +69,8 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                                 visible:
                                     model.selectedAdditionalIncome!.isSelected,
                                 child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 24, vertical: 32),
+                                  padding: const EdgeInsets.only(
+                                      left: 24, right: 24, bottom: 24),
                                   child: AppTextField(
                                     labelText: S.of(context).totalAnnualIncome,
                                     hintText: '',

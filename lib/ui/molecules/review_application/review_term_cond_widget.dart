@@ -9,12 +9,14 @@ class ReviewTCWidget extends StatelessWidget {
   final String? subTitle;
   final bool? isSelected;
   final Function? onTap;
+  final Function? onTermsAndConditionTap;
 
   const ReviewTCWidget(
       {Key? key,
       required this.title,
       this.subTitle,
       this.isSelected: false,
+      this.onTermsAndConditionTap,
       this.onTap})
       : super(key: key);
 
@@ -62,6 +64,20 @@ class ReviewTCWidget extends StatelessWidget {
                   color: Theme.of(context).primaryColorDark,
                 ),
                 children: [
+                  WidgetSpan(
+                    child: InkWell(
+                      onTap: () {
+                        onTermsAndConditionTap?.call();
+                      },
+                      child: Text(
+                        subTitle!,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 12,
+                          fontFamily: 'Montserrat',
+                          color: AppColor.vivid_orange,
+                        ),
+                      ),
                   TextSpan(
                     text: subTitle,
                     style: TextStyle(

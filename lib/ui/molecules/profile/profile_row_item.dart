@@ -12,6 +12,8 @@ class ProfileRowItem extends StatelessWidget {
   final ProviderBase providerBase;
   final Function(bool)? onToggle;
   final String activeText;
+  final bool initialValue;
+  final Color labelColor;
   final String inactiveText;
 
   const ProfileRowItem(
@@ -19,7 +21,9 @@ class ProfileRowItem extends StatelessWidget {
       required this.title,
       required this.activeText,
       required this.inactiveText,
+      required this.initialValue,
       required this.providerBase,
+      this.labelColor: AppColor.text_color,
       this.onToggle})
       : super(key: key);
 
@@ -29,7 +33,7 @@ class ProfileRowItem extends StatelessWidget {
       providerBase: providerBase,
       builder: (context, model, widget) {
         return AppStreamBuilder<bool>(
-          initialData: false,
+          initialData: initialValue,
           stream: model!.switchState,
           dataBuilder: (context, isActive) {
             return Container(

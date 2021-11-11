@@ -20,12 +20,14 @@ class FatcaUSW9TaxPayerDetailsUseCaseParams extends Params {
   bool isSocialSecurityTaxPayer;
   final String? socialSecurityNumber;
   final bool declarationSelected;
+  final bool verifyInfoDeclarationSelected;
 
   FatcaUSW9TaxPayerDetailsUseCaseParams(
       {this.taxPayerType,
       this.socialSecurityNumber,
       required this.isSocialSecurityTaxPayer,
-      required this.declarationSelected});
+      required this.declarationSelected,
+      required this.verifyInfoDeclarationSelected});
 
   @override
   Either<AppError, bool> verify() {
@@ -34,15 +36,23 @@ class FatcaUSW9TaxPayerDetailsUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_TAX_PAYER,
           cause: Exception()));
-    } else if (isSocialSecurityTaxPayer && socialSecurityNumber!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_SECURITY_NUMBER,
-          cause: Exception()));
-    } else if (!declarationSelected) {
+    } else if (isSocialSecurityTaxPayer) {
+      if (socialSecurityNumber!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_SECURITY_NUMBER,
+            cause: Exception()));
+      }
+    }
+    if (!declarationSelected) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_DECLARATION_SELECTION,
+          cause: Exception()));
+    } else if (!verifyInfoDeclarationSelected) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION,
           cause: Exception()));
     }
     return Right(true);

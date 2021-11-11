@@ -12,10 +12,11 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/bottom_sheet/upload_document/upload_document_bottom_sheet.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_five/upload_document_later/upload_document_later_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/ui/molecules/upload_document/upload_document_bottom_sheet.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -138,40 +139,48 @@ class UploadDocumentsPageView
                                                       (context, isUploaded) {
                                                     return AppTextField(
                                                       labelText: '',
-                                                      hintText:
-                                                          S.of(context).upload,
+                                                      hintText: S
+                                                          .of(context)
+                                                          .uploadDocumentsSmall,
                                                       controller: model
                                                           .incomeController,
                                                       key: model
                                                           .incomeDocumentKey,
                                                       readOnly: true,
+                                                      hintTextColor:
+                                                          AppColor.vivid_orange,
+                                                      textColor:
+                                                          AppColor.vivid_orange,
                                                       suffixIcon:
                                                           (value, data) {
                                                         return InkWell(
                                                           onTap: !(isUploaded!)
                                                               ? () async {
-                                                                  showModalBottomSheet(
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (builder) =>
-                                                                              UploadDocumentBottomSheetWidget(
-                                                                                title: S.of(context).selectAnyOption,
-                                                                                firstOptionText: S.of(context).storage,
-                                                                                secondOptionText: S.of(context).camera,
-                                                                                buttonText: S.of(context).cancel,
-                                                                                onCameraTap: () {
-                                                                                  Navigator.pop(context);
-                                                                                  model.uploadIncomeDocument(DocumentTypeEnum.CAMERA);
-                                                                                },
-                                                                                onPhotoLibraryTap: () {
-                                                                                  Navigator.pop(context);
-                                                                                  model.uploadIncomeDocument(DocumentTypeEnum.GALLERY);
-                                                                                },
-                                                                                onCancelTap: () {
-                                                                                  Navigator.pop(context);
-                                                                                },
-                                                                              ));
+                                                                  UploadDocumentBottomSheet.show(
+                                                                      context,
+                                                                      title: S
+                                                                          .of(
+                                                                              context)
+                                                                          .pleaseSelectYourAction,
+                                                                      onTakePhoto:
+                                                                          () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    model.uploadIncomeDocument(
+                                                                        DocumentTypeEnum
+                                                                            .CAMERA);
+                                                                  }, uploadDocument:
+                                                                          () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    model.uploadIncomeDocument(
+                                                                        DocumentTypeEnum
+                                                                            .GALLERY);
+                                                                  }, onCancel:
+                                                                          () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  });
                                                                 }
                                                               : () {
                                                                   model
@@ -253,40 +262,48 @@ class UploadDocumentsPageView
                                                       (context, isUploaded) {
                                                     return AppTextField(
                                                       labelText: '',
-                                                      hintText:
-                                                          S.of(context).upload,
+                                                      hintText: S
+                                                          .of(context)
+                                                          .uploadDocumentsSmall,
                                                       controller: model
                                                           .addressController,
                                                       key: model
                                                           .addressDocumentKey,
                                                       readOnly: true,
+                                                      hintTextColor:
+                                                          AppColor.vivid_orange,
+                                                      textColor:
+                                                          AppColor.vivid_orange,
                                                       suffixIcon:
                                                           (value, data) {
                                                         return InkWell(
                                                           onTap: !(isUploaded!)
                                                               ? () async {
-                                                                  showModalBottomSheet(
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (builder) =>
-                                                                              UploadDocumentBottomSheetWidget(
-                                                                                title: S.of(context).selectAnyOption,
-                                                                                firstOptionText: S.of(context).storage,
-                                                                                secondOptionText: S.of(context).camera,
-                                                                                buttonText: S.of(context).cancel,
-                                                                                onCameraTap: () {
-                                                                                  Navigator.pop(context);
-                                                                                  model.uploadAddressDocument(DocumentTypeEnum.CAMERA);
-                                                                                },
-                                                                                onPhotoLibraryTap: () {
-                                                                                  Navigator.pop(context);
-                                                                                  model.uploadAddressDocument(DocumentTypeEnum.GALLERY);
-                                                                                },
-                                                                                onCancelTap: () {
-                                                                                  Navigator.pop(context);
-                                                                                },
-                                                                              ));
+                                                                  UploadDocumentBottomSheet.show(
+                                                                      context,
+                                                                      title: S
+                                                                          .of(
+                                                                              context)
+                                                                          .pleaseSelectYourAction,
+                                                                      onTakePhoto:
+                                                                          () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    model.uploadAddressDocument(
+                                                                        DocumentTypeEnum
+                                                                            .CAMERA);
+                                                                  }, uploadDocument:
+                                                                          () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    model.uploadAddressDocument(
+                                                                        DocumentTypeEnum
+                                                                            .GALLERY);
+                                                                  }, onCancel:
+                                                                          () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  });
                                                                 }
                                                               : () {
                                                                   model
@@ -315,13 +332,159 @@ class UploadDocumentsPageView
                                                 );
                                               },
                                             ),
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                  top: 24.0, bottom: 16),
-                                              child: Container(
-                                                height: 1,
-                                                color: AppColor.strong_violet,
-                                              ),
+
+                                            ///TODO:change visibility based on additional nationality
+                                            Visibility(
+                                                visible: true,
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 24),
+                                                      child: Container(
+                                                        height: 1,
+                                                        color: AppColor
+                                                            .strong_violet,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      S
+                                                          .of(context)
+                                                          .additionalNationalityPassport,
+                                                      softWrap: true,
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color:
+                                                              AppColor.white),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          top: 8.0, bottom: 16),
+                                                      child: Text(
+                                                        S
+                                                            .of(context)
+                                                            .additionalNationalityPassportDesc,
+                                                        softWrap: true,
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            fontWeight:
+                                                                FontWeight.w400,
+                                                            color:
+                                                                AppColor.white),
+                                                      ),
+                                                    ),
+                                                    AppStreamBuilder<String>(
+                                                      stream: model
+                                                          .additionalNationalityProofStream,
+                                                      initialData: '',
+                                                      onData:
+                                                          (documentResponse) {
+                                                        if (documentResponse
+                                                            .isNotEmpty) {
+                                                          model.updateAdditionalNationalityField(
+                                                              documentResponse);
+                                                        }
+                                                      },
+                                                      dataBuilder:
+                                                          (context, document) {
+                                                        return AppStreamBuilder<
+                                                            bool>(
+                                                          stream: model
+                                                              .documentNationalityStream,
+                                                          initialData: false,
+                                                          dataBuilder: (context,
+                                                              isUploaded) {
+                                                            return AppTextField(
+                                                              labelText: '',
+                                                              hintText: S
+                                                                  .of(context)
+                                                                  .uploadDocumentsSmall,
+                                                              controller: model
+                                                                  .additionalNationalityController,
+                                                              key: model
+                                                                  .additionalNationalityKey,
+                                                              readOnly: true,
+                                                              hintTextColor:
+                                                                  AppColor
+                                                                      .vivid_orange,
+                                                              textColor: AppColor
+                                                                  .vivid_orange,
+                                                              suffixIcon:
+                                                                  (value,
+                                                                      data) {
+                                                                return InkWell(
+                                                                  onTap: !(isUploaded!)
+                                                                      ? () async {
+                                                                          UploadDocumentBottomSheet.show(context, title: S.of(context).pleaseSelectYourAction, onTakePhoto:
+                                                                              () {
+                                                                            Navigator.pop(context);
+                                                                            model.uploadAdditionalNationalityDocument(DocumentTypeEnum.CAMERA);
+                                                                          }, uploadDocument:
+                                                                              () {
+                                                                            Navigator.pop(context);
+                                                                            model.uploadAdditionalNationalityDocument(DocumentTypeEnum.GALLERY);
+                                                                          }, onCancel:
+                                                                              () {
+                                                                            Navigator.pop(context);
+                                                                          });
+                                                                        }
+                                                                      : () {
+                                                                          model
+                                                                              .additionalNationalityController
+                                                                              .clear();
+                                                                          model.updateAdditionalNationalityUploadedStream(
+                                                                              false);
+                                                                        },
+                                                                  child: Container(
+                                                                      height:
+                                                                          16,
+                                                                      width: 16,
+                                                                      padding:
+                                                                          EdgeInsets.all(
+                                                                              5),
+                                                                      child: isUploaded
+                                                                          ? AppSvg.asset(AssetUtils
+                                                                              .delete)
+                                                                          : AppSvg.asset(
+                                                                              AssetUtils.upload)),
+                                                                );
+                                                              },
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                    ),
+                                                  ],
+                                                )),
+                                            Center(
+                                              child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 40.0, bottom: 16),
+                                                  child: TextButton(
+                                                      onPressed: () {
+                                                        UploadDocumentLaterDialog
+                                                            .show(context,
+                                                                onSelected: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        });
+                                                      },
+                                                      child: Text(
+                                                        S
+                                                            .of(context)
+                                                            .uploadDocumentLater,
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: AppColor
+                                                                .vivid_orange),
+                                                      ))),
                                             ),
                                           ],
                                         )),

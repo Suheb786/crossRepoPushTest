@@ -185,7 +185,7 @@ class IdVerificationInfoView
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
-                                                        fontSize: 14),
+                                                        fontSize: 12),
                                                   ),
                                                 )
                                               ],

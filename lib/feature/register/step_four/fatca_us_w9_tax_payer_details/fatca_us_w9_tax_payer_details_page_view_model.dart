@@ -1,6 +1,7 @@
 import 'package:domain/constants/enum/us_relevant_w9_tax_payer_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/register/fatca_us_w9_tax_payer_details_usecase.dart';
+import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -12,6 +13,8 @@ import 'package:rxdart/rxdart.dart';
 
 class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
   final FatcaUSW9TaxPayerDetailsUseCase _fatcaUSW9taxPayerDetailsUseCase;
+
+  final UploadDocumentUseCase _uploadDocumentUseCase;
 
   ///controllers and keys
   final TextEditingController taxPayerTypeController = TextEditingController();
@@ -63,17 +66,32 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
     _declarationSelected.safeAdd(value);
   }
 
+  ///verify info declaration selected  subject
+  BehaviorSubject<bool> _verifyInfoDeclarationSelected =
+      BehaviorSubject.seeded(false);
+
+  ///verify info declaration selected stream
+  Stream<bool> get verifyInfoDeclarationSelectedStream =>
+      _verifyInfoDeclarationSelected.stream;
+
+  ///update declaration selection function
+  void updateVerifyInfoDeclarationSelection(bool value) {
+    _verifyInfoDeclarationSelected.safeAdd(value);
+  }
+
   bool isValid() {
     bool valid = false;
     if (_socialSecurityVisibilitySubject.value) {
       if (taxPayerTypeController.text.isNotEmpty &&
           socialSecurityNumberController.text.isNotEmpty &&
-          _declarationSelected.value) {
+          _declarationSelected.value &&
+          _verifyInfoDeclarationSelected.value) {
         valid = true;
       }
     } else {
       if (taxPayerTypeController.text.isNotEmpty &&
-          _declarationSelected.value) {
+          _declarationSelected.value &&
+          _verifyInfoDeclarationSelected.value) {
         valid = true;
       }
     }
@@ -82,7 +100,7 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
   }
 
   FatcaUSW9TaxPayersDetailsPageViewModel(
-      this._fatcaUSW9taxPayerDetailsUseCase) {
+      this._fatcaUSW9taxPayerDetailsUseCase, this._uploadDocumentUseCase) {
     _fatcaUSW9taxPayerDetailsRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -108,6 +126,8 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
         break;
       case ErrorType.INVALID_DECLARATION_SELECTION:
         break;
+      case ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION:
+        break;
     }
   }
 
@@ -117,7 +137,9 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
             isSocialSecurityTaxPayer: _socialSecurityVisibilitySubject.value,
             socialSecurityNumber: socialSecurityNumberController.text,
             taxPayerType: taxPayerTypeController.text,
-            declarationSelected: _declarationSelected.value));
+            declarationSelected: _declarationSelected.value,
+            verifyInfoDeclarationSelected:
+                _verifyInfoDeclarationSelected.value));
   }
 
   void updateTaxPayerTypeField(String value) {

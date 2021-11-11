@@ -1,4 +1,5 @@
 import 'package:domain/usecase/user/create_password_usecase.dart';
+import 'package:domain/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -49,13 +50,27 @@ class CreatePasswordViewModel extends BasePageViewModel {
     });
   }
 
+  ///password Validation
+  bool hasUpperCase = false;
+  bool hasSymbol = false;
+  bool minimumEightCharacters = false;
+  bool containsDigit = false;
+
+  void validatePassword() {
+    minimumEightCharacters = createPasswordController.text.length > 7;
+    hasUpperCase = Validator.hasUpperCase(createPasswordController.text);
+    hasSymbol = Validator.hasSymbol(createPasswordController.text);
+    containsDigit = Validator.containsDigit(createPasswordController.text);
+    notifyListeners();
+  }
+
   void createPassword() {
     _createPasswordRequest.safeAdd(CreatePasswordUseCaseParams(
         createPassword: createPasswordController.text,
         confirmPassword: confirmPasswordController.text));
   }
 
-  void validatePassword() {
+  void validateAllFields() {
     if (createPasswordController.text.isNotEmpty &&
         confirmPasswordController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);

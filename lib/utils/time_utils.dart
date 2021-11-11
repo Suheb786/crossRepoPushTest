@@ -71,4 +71,19 @@ class TimeUtils {
         return 1;
     }
   }
+
+  static Iterable<String> getTimeRange() {
+    var base =
+        DateTime.fromMillisecondsSinceEpoch(11 * Duration.millisecondsPerHour);
+    var list =
+        List.generate(48, (index) => base.add(Duration(minutes: 30) * index))
+            .map((dt) => DateFormat.jm().format(dt));
+    return list;
+  }
+
+  static String getFormattedDOB(String date) {
+    DateTime dateTime = DateTime.parse(date).toLocal();
+    final DateFormat formatter = DateFormat('dd/MM/y');
+    return formatter.format(dateTime);
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
+import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
@@ -9,6 +10,7 @@ import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
+import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 
 class AppRouter {
@@ -58,6 +60,16 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => NonJordanianRegistrationPage(),
             settings: RouteSettings(name: RoutePaths.NonJordanianRegister));
+
+      case RoutePaths.Dashboard:
+        return CupertinoPageRoute(
+            builder: (context) => DashboardPage(),
+            settings: RouteSettings(name: RoutePaths.Dashboard));
+
+      case RoutePaths.TermsAndCondition:
+        return CupertinoPageRoute(
+            builder: (context) => TermsAndConditionPage(),
+            settings: RouteSettings(name: RoutePaths.TermsAndCondition));
 
       default:
         return CupertinoPageRoute(
