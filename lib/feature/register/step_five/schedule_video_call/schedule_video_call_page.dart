@@ -18,6 +18,11 @@ class ScheduleVideoCallPageState extends BaseStatefulPage<
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(BuildContext context, ScheduleVideoCallPageViewModel model) {
     return ScheduleVideoCallPageView(provideBase());
   }

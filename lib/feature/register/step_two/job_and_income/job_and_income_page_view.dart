@@ -122,7 +122,7 @@ class JobAndIncomePageView
                                                   padding:
                                                       EdgeInsets.only(right: 8),
                                                   child: AppSvg.asset(
-                                                      AssetUtils.downArrow)),
+                                                      AssetUtils.downArrow,color: AppColor.dark_gray_1)),
                                             );
                                           },
                                         ),
@@ -173,7 +173,7 @@ class JobAndIncomePageView
                                                   padding:
                                                       EdgeInsets.only(right: 8),
                                                   child: AppSvg.asset(
-                                                      AssetUtils.downArrow)),
+                                                      AssetUtils.downArrow,color: AppColor.dark_gray_1)),
                                             );
                                           },
                                         ),
@@ -230,8 +230,10 @@ class JobAndIncomePageView
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
-                                              color: AppColor
-                                                  .very_light_gray_white),
+                                              color: Theme.of(context)
+                                                  .primaryTextTheme
+                                                  .bodyText1!
+                                                  .color!),
                                         ),
                                       );
                                     },
@@ -282,7 +284,7 @@ class JobAndIncomePageView
                                             width: 16,
                                             padding: EdgeInsets.only(right: 8),
                                             child: AppSvg.asset(
-                                                AssetUtils.downArrow)),
+                                                AssetUtils.downArrow,color: AppColor.dark_gray_1)),
                                       );
                                     },
                                   ),

@@ -71,22 +71,16 @@ class FatcaUSRelevantW8AddressDetailsPageView
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
+                        color: Theme.of(context)
+                            .cardTheme
+                            .copyWith(color: AppColor.white)
+                            .color,
                         elevation: 2,
                         margin: EdgeInsets.zero,
                         shadowColor: AppColor.black.withOpacity(0.32),
-                        child: Container(
+                        child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
-                            decoration: BoxDecoration(
-                              color: AppColor.very_soft_violet,
-                              gradient: LinearGradient(
-                                  colors: [
-                                    AppColor.dark_violet,
-                                    AppColor.dark_moderate_blue
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter),
-                            ),
                             child: SingleChildScrollView(
                               physics: ClampingScrollPhysics(),
                               child: Column(
@@ -134,7 +128,8 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                             width: 16,
                                             padding: EdgeInsets.only(right: 8),
                                             child: AppSvg.asset(
-                                                AssetUtils.downArrow)),
+                                                AssetUtils.downArrow,
+                                                color: AppColor.dark_gray_1)),
                                       );
                                     },
                                   ),
@@ -167,7 +162,8 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                             width: 16,
                                             padding: EdgeInsets.only(right: 8),
                                             child: AppSvg.asset(
-                                                AssetUtils.downArrow)),
+                                                AssetUtils.downArrow,
+                                                color: AppColor.dark_gray_1)),
                                       );
                                     },
                                   ),
@@ -200,7 +196,8 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                             width: 16,
                                             padding: EdgeInsets.only(right: 8),
                                             child: AppSvg.asset(
-                                                AssetUtils.downArrow)),
+                                                AssetUtils.downArrow,
+                                                color: AppColor.dark_gray_1)),
                                       );
                                     },
                                   ),

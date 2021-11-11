@@ -48,21 +48,15 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                       borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
+                  color: Theme.of(context)
+                      .cardTheme
+                      .copyWith(color: AppColor.white)
+                      .color,
                   margin: EdgeInsets.zero,
                   shadowColor: AppColor.black.withOpacity(0.32),
-                  child: Container(
+                  child: Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                      decoration: BoxDecoration(
-                        color: AppColor.very_soft_violet,
-                        gradient: LinearGradient(
-                            colors: [
-                              AppColor.dark_violet,
-                              AppColor.dark_moderate_blue
-                            ],
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter),
-                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,7 +74,7 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 24,
-                                    color: AppColor.very_light_violet),
+                                    color: Theme.of(context).primaryColorDark),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 32.0),
@@ -99,7 +93,10 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                                               'Search Again',
                                               style: TextStyle(
                                                   fontSize: 14,
-                                                  color: AppColor.white),
+                                                  color: Theme.of(context)
+                                                      .accentTextTheme
+                                                      .bodyText1!
+                                                      .color),
                                             ))
                                         : Text(
                                             S.of(context).estimatedTime(
@@ -107,7 +104,10 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 14,
-                                                color: AppColor.vivid_orange),
+                                                color: Theme.of(context)
+                                                    .accentTextTheme
+                                                    .bodyText1!
+                                                    .color),
                                             textAlign: TextAlign.center,
                                           );
                                   },
@@ -123,7 +123,7 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 12,
-                                color: AppColor.white),
+                                color: Theme.of(context).primaryColorDark),
                           ),
                         ],
                       )),

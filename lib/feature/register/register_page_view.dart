@@ -10,7 +10,6 @@ import 'package:neo_bank/feature/register/step_three/register_step_three_page.da
 import 'package:neo_bank/feature/register/step_two/register_step_two_page.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
   RegisterPageView(ProviderBase model) : super(model);
@@ -49,7 +48,8 @@ class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
                       activeShape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),
                       activeColor: Theme.of(context).accentColor,
-                      color: AppColor.very_soft_violet.withOpacity(0.3)),
+                      color:
+                          Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               },
             ),

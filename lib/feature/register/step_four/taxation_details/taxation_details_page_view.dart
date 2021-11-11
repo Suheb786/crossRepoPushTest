@@ -197,7 +197,9 @@ class TaxationDetailsPageView
                                                   padding:
                                                       EdgeInsets.only(right: 8),
                                                   child: AppSvg.asset(
-                                                      AssetUtils.downArrow)),
+                                                      AssetUtils.downArrow,
+                                                      color: AppColor
+                                                          .dark_gray_1)),
                                             );
                                           },
                                         ),
@@ -248,8 +250,9 @@ class TaxationDetailsPageView
                                                       padding: EdgeInsets.only(
                                                           right: 8),
                                                       child: AppSvg.asset(
-                                                          AssetUtils
-                                                              .downArrow)),
+                                                          AssetUtils.downArrow,
+                                                          color: AppColor
+                                                              .dark_gray_1)),
                                                 );
                                               },
                                             ),

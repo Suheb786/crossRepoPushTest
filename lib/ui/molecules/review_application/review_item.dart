@@ -37,7 +37,7 @@ class ReviewApplicationItem extends StatelessWidget {
               style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: AppColor.dark_violet2),
+                  color: Theme.of(context).primaryColorDark),
               decoration: InputDecoration.collapsed(
                 border: InputBorder.none,
                 hintText: '',

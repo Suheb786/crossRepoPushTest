@@ -1,8 +1,6 @@
 import 'package:domain/model/register/additional_income.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class AdditionalIncomeSelectorWidget extends StatelessWidget {
@@ -32,12 +30,16 @@ class AdditionalIncomeSelectorWidget extends StatelessWidget {
               width: 40,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
+                  color: additionalIncome.isSelected
+                      ? AppColor.vividYellow
+                      : Colors.transparent,
                   border: Border.all(
-                      color: AppColor.mostly_desaturated_dark_violet,
+                      color: Theme.of(context)
+                          .inputDecorationTheme
+                          .enabledBorder!
+                          .borderSide
+                          .color,
                       width: 1)),
-              child: additionalIncome.isSelected
-                  ? AppSvg.asset(AssetUtils.radioButton)
-                  : Container(),
             ),
             SizedBox(
               width: 16,

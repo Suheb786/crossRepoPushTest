@@ -78,10 +78,7 @@ class AccountRegistrationPageView
                           Text(
                             S.of(context).accountRegistration,
                             style: TextStyle(
-                                color: Theme.of(context)
-                                    .primaryTextTheme
-                                    .bodyText1!
-                                    .color,
+                                color: Theme.of(context).accentColor,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -106,10 +103,7 @@ class AccountRegistrationPageView
                                     S.of(context).createPasswordHeader),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Theme.of(context)
-                                        .primaryTextTheme
-                                        .bodyText1!
-                                        .color,
+                                    color: Theme.of(context).accentColor,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
                               ),
@@ -129,10 +123,7 @@ class AccountRegistrationPageView
                                   '+962 79 322 8080',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: Theme.of(context)
-                                          .primaryTextTheme
-                                          .bodyText1!
-                                          .color,
+                                      color: Theme.of(context).accentColor,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600),
                                 ),

@@ -148,9 +148,11 @@ class UploadDocumentsPageView
                                                           .incomeDocumentKey,
                                                       readOnly: true,
                                                       hintTextColor:
-                                                          AppColor.vivid_orange,
+                                                          Theme.of(context)
+                                                              .primaryColorDark,
                                                       textColor:
-                                                          AppColor.vivid_orange,
+                                                          Theme.of(context)
+                                                              .primaryColorDark,
                                                       suffixIcon:
                                                           (value, data) {
                                                         return InkWell(
@@ -196,12 +198,22 @@ class UploadDocumentsPageView
                                                                   EdgeInsets
                                                                       .all(5),
                                                               child: isUploaded
-                                                                  ? AppSvg.asset(
+                                                                  ? AppSvg
+                                                                      .asset(
                                                                       AssetUtils
-                                                                          .delete)
-                                                                  : AppSvg.asset(
+                                                                          .delete,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                    )
+                                                                  : AppSvg
+                                                                      .asset(
                                                                       AssetUtils
-                                                                          .upload)),
+                                                                          .upload,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                    )),
                                                         );
                                                       },
                                                     );
@@ -214,7 +226,7 @@ class UploadDocumentsPageView
                                                   top: 24.0, bottom: 24),
                                               child: Container(
                                                 height: 1,
-                                                color: AppColor.strong_violet,
+                                                color: AppColor.dark_gray_1,
                                               ),
                                             ),
                                             Text(
@@ -271,9 +283,11 @@ class UploadDocumentsPageView
                                                           .addressDocumentKey,
                                                       readOnly: true,
                                                       hintTextColor:
-                                                          AppColor.vivid_orange,
+                                                          Theme.of(context)
+                                                              .primaryColorDark,
                                                       textColor:
-                                                          AppColor.vivid_orange,
+                                                          Theme.of(context)
+                                                              .primaryColorDark,
                                                       suffixIcon:
                                                           (value, data) {
                                                         return InkWell(
@@ -319,12 +333,22 @@ class UploadDocumentsPageView
                                                                   EdgeInsets
                                                                       .all(5),
                                                               child: isUploaded
-                                                                  ? AppSvg.asset(
+                                                                  ? AppSvg
+                                                                      .asset(
                                                                       AssetUtils
-                                                                          .delete)
-                                                                  : AppSvg.asset(
+                                                                          .delete,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                    )
+                                                                  : AppSvg
+                                                                      .asset(
                                                                       AssetUtils
-                                                                          .upload)),
+                                                                          .upload,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                    )),
                                                         );
                                                       },
                                                     );
@@ -335,7 +359,7 @@ class UploadDocumentsPageView
 
                                             ///TODO:change visibility based on additional nationality
                                             Visibility(
-                                                visible: true,
+                                                visible: false,
                                                 child: Column(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
@@ -482,8 +506,11 @@ class UploadDocumentsPageView
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight.w600,
-                                                            color: AppColor
-                                                                .vivid_orange),
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .accentTextTheme
+                                                                .bodyText1!
+                                                                .color),
                                                       ))),
                                             ),
                                           ],

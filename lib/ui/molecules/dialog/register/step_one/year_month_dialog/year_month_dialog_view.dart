@@ -107,7 +107,7 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(16),
-                                              color: AppColor.dark_violet_3,
+                                              color: AppColor.vividYellow,
                                             ),
                                           ),
                                         ),
@@ -147,8 +147,9 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                                                                     index],
                                                                 textColor: currentIndex ==
                                                                         index
-                                                                    ? AppColor
-                                                                        .white
+                                                                    ? Theme.of(
+                                                                            context)
+                                                                        .primaryColorDark
                                                                     : AppColor
                                                                         .dark_gray_1,
                                                                 widgetColor: Colors
@@ -165,7 +166,10 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w400,
-                                            color: AppColor.dark_violet_4),
+                                            color: Theme.of(context)
+                                                .accentTextTheme
+                                                .bodyText1!
+                                                .color!),
                                       ),
                                     )),
                           InkWell(
@@ -179,8 +183,12 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                               width: 57,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: AppColor.dark_violet_4),
-                              child: AppSvg.asset(AssetUtils.tick),
+                                  color: Theme.of(context)
+                                      .accentTextTheme
+                                      .bodyText1!
+                                      .color!),
+                              child: AppSvg.asset(AssetUtils.tick,
+                                  color: Theme.of(context).accentColor),
                             ),
                           ),
                           Padding(

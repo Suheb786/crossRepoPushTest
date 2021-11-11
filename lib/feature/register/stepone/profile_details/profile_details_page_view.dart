@@ -163,7 +163,9 @@ class ProfileDetailsPageView
                                                                     right: 8),
                                                             child: AppSvg.asset(
                                                                 AssetUtils
-                                                                    .downArrow)),
+                                                                    .downArrow,
+                                                                color: AppColor
+                                                                    .dark_gray_1)),
                                                       );
                                                     },
                                                   ),
@@ -254,6 +256,8 @@ class ProfileDetailsPageView
                                                           child: AppSvg.asset(
                                                               AssetUtils
                                                                   .dropDown,
+                                                              color: AppColor
+                                                                  .dark_gray_1,
                                                               width: 16,
                                                               height: 16));
                                                     },
@@ -301,8 +305,8 @@ class ProfileDetailsPageView
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
-                                                color: AppColor
-                                                    .very_light_gray_white),
+                                                color: Theme.of(context)
+                                                    .primaryColorDark),
                                           ),
                                           SizedBox(
                                             height: 16,
@@ -336,6 +340,8 @@ class ProfileDetailsPageView
                                                   },
                                                   child: AppSvg.asset(
                                                       AssetUtils.dropDown,
+                                                      color:
+                                                          AppColor.dark_gray_1,
                                                       width: 16,
                                                       height: 16));
                                             },

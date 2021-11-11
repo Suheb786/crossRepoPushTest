@@ -98,7 +98,10 @@ class TaxationSwitchWidget extends StatelessWidget {
                           child: Text(
                             secondaryText!,
                             style: TextStyle(
-                                color: AppColor.vivid_orange,
+                                color: Theme.of(context)
+                                    .accentTextTheme
+                                    .bodyText1!
+                                    .color,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600),
                           )),

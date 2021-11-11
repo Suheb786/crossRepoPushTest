@@ -104,7 +104,8 @@ class PurposeOfAccountOpeningPageView
                                             width: 16,
                                             padding: EdgeInsets.only(right: 8),
                                             child: AppSvg.asset(
-                                                AssetUtils.downArrow)),
+                                                AssetUtils.downArrow,
+                                                color: AppColor.dark_gray_1)),
                                       );
                                     },
                                   ),
@@ -127,8 +128,8 @@ class PurposeOfAccountOpeningPageView
                                                 .typeOfExpectedTransactions,
                                             style: TextStyle(
                                                 fontFamily: "Montserrat",
-                                                color: AppColor
-                                                    .very_light_gray_white,
+                                                color: Theme.of(context)
+                                                    .primaryColorDark,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 14),
                                           ),
@@ -175,8 +176,10 @@ class PurposeOfAccountOpeningPageView
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
-                                              color: AppColor
-                                                  .very_light_gray_white),
+                                              color: Theme.of(context)
+                                                  .primaryTextTheme
+                                                  .bodyText1!
+                                                  .color!),
                                         ),
                                       );
                                     },
@@ -206,8 +209,10 @@ class PurposeOfAccountOpeningPageView
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
-                                              color: AppColor
-                                                  .very_light_gray_white),
+                                              color: Theme.of(context)
+                                                  .primaryTextTheme
+                                                  .bodyText1!
+                                                  .color!),
                                         ),
                                       );
                                     },

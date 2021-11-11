@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/register/password_hint_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -153,8 +154,9 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                     .eightCharacters,
                                                 backgroundColor: !model
                                                         .minimumEightCharacters
-                                                    ? AppColor.strong_violet
-                                                    : AppColor.vivid_orange,
+                                                    ? AppColor.gray1
+                                                    : Theme.of(context)
+                                                        .primaryColorDark,
                                                 isValid: model
                                                     .minimumEightCharacters,
                                               ),
@@ -164,24 +166,27 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                     .oneUpperCaseLetter,
                                                 backgroundColor:
                                                     !model.hasUpperCase
-                                                        ? AppColor.strong_violet
-                                                        : AppColor.vivid_orange,
+                                                        ? AppColor.gray1
+                                                        : Theme.of(context)
+                                                            .primaryColorDark,
                                                 isValid: model.hasUpperCase,
                                               ),
                                               PasswordHintWidget(
                                                 label: S.of(context).oneNumber,
                                                 backgroundColor:
                                                     !model.containsDigit
-                                                        ? AppColor.strong_violet
-                                                        : AppColor.vivid_orange,
+                                                        ? AppColor.gray1
+                                                        : Theme.of(context)
+                                                            .primaryColorDark,
                                                 isValid: model.containsDigit,
                                               ),
                                               PasswordHintWidget(
                                                 label: S.of(context).oneSymbol,
                                                 backgroundColor:
                                                     !model.hasSymbol
-                                                        ? AppColor.strong_violet
-                                                        : AppColor.vivid_orange,
+                                                        ? AppColor.gray1
+                                                        : Theme.of(context)
+                                                            .primaryColorDark,
                                                 isValid: model.hasSymbol,
                                               ),
                                             ],

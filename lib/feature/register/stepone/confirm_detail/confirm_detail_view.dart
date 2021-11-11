@@ -116,9 +116,9 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               elevation: 2,
                               color: Theme.of(context)
-                                .cardTheme
-                                .copyWith(color: AppColor.white)
-                                .color,
+                                  .cardTheme
+                                  .copyWith(color: AppColor.white)
+                                  .color,
                               margin: EdgeInsets.zero,
                               shadowColor: AppColor.black.withOpacity(0.32),
                               child: Padding(
@@ -181,7 +181,9 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 7),
                                                   child: AppSvg.asset(
-                                                      AssetUtils.calendar)));
+                                                      AssetUtils.calendar,
+                                                      color: Theme.of(context)
+                                                          .primaryColorDark)));
                                         },
                                       ),
                                       SizedBox(
@@ -274,7 +276,9 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 7),
                                                   child: AppSvg.asset(
-                                                      AssetUtils.calendar)));
+                                                      AssetUtils.calendar,
+                                                      color: Theme.of(context)
+                                                          .primaryColorDark)));
                                         },
                                       ),
                                       SizedBox(
@@ -311,7 +315,9 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: 7),
                                                   child: AppSvg.asset(
-                                                      AssetUtils.calendar)));
+                                                      AssetUtils.calendar,
+                                                      color: Theme.of(context)
+                                                          .primaryColorDark)));
                                         },
                                       ),
                                       SizedBox(
@@ -345,7 +351,10 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
-                                                color: AppColor.vivid_orange),
+                                                color: Theme.of(context)
+                                                    .accentTextTheme
+                                                    .bodyText1!
+                                                    .color!),
                                           )),
                                       SizedBox(
                                         height: 34,
@@ -365,11 +374,44 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                             !(isChecked!));
                                                     model.validateDetails();
                                                   },
-                                                  child: isChecked == false
-                                                      ? AppSvg.asset(
-                                                          AssetUtils.ellipse)
-                                                      : AppSvg.asset(
-                                                          AssetUtils.checkBox),
+                                                  child: Container(
+                                                    height: 40,
+                                                    width: 40,
+                                                    decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        color: isChecked!
+                                                            ? Theme.of(context)
+                                                                .accentTextTheme
+                                                                .bodyText1!
+                                                                .color!
+                                                            : Colors
+                                                                .transparent,
+                                                        border: Border.all(
+                                                            color: !isChecked
+                                                                ? Theme.of(
+                                                                        context)
+                                                                    .accentTextTheme
+                                                                    .bodyText1!
+                                                                    .color!
+                                                                : Colors
+                                                                    .transparent)),
+                                                    child: isChecked
+                                                        ? Container(
+                                                            height: 16,
+                                                            width: 16,
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    10),
+                                                            child: AppSvg.asset(
+                                                              AssetUtils
+                                                                  .checkIcon,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .accentColor,
+                                                            ),
+                                                          )
+                                                        : Container(),
+                                                  ),
                                                 );
                                               }),
                                           SizedBox(
@@ -381,8 +423,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   .of(context)
                                                   .confirmDetailsConfirmation,
                                               style: TextStyle(
-                                                  color: AppColor
-                                                      .very_light_gray_white,
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 12),
                                             ),

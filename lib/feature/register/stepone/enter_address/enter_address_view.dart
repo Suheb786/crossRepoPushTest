@@ -155,8 +155,9 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                       padding: EdgeInsets.only(
                                                           right: 8),
                                                       child: AppSvg.asset(
-                                                          AssetUtils
-                                                              .downArrow)),
+                                                          AssetUtils.downArrow,
+                                                          color: AppColor
+                                                              .dark_gray_1)),
                                                 );
                                               },
                                               key: model.residentCountryKey,
@@ -206,7 +207,10 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                                 top: 2),
                                                         child: AppSvg.asset(
                                                             AssetUtils
-                                                                .location_marker),
+                                                                .location_marker,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .primaryColorDark),
                                                       )),
                                             ),
                                             SizedBox(
@@ -278,8 +282,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight.w600,
-                                                            color: AppColor
-                                                                .very_light_gray_white),
+                                                            color: Theme.of(context).primaryColorDark),
                                                       ),
                                                       SizedBox(
                                                         height: 16,
@@ -328,7 +331,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                                             8),
                                                                 child: AppSvg.asset(
                                                                     AssetUtils
-                                                                        .downArrow)),
+                                                                        .downArrow,color: AppColor.dark_gray_1)),
                                                           );
                                                         },
                                                         key: model

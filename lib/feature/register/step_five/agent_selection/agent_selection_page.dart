@@ -19,6 +19,11 @@ class AgentSelectionPageState
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   void onModelReady(AgentSelectionViewModel model) {
     model.countDownController =
         CountdownTimerController(endTime: model.endTime);

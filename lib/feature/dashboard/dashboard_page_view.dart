@@ -26,7 +26,8 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
             alignment: Alignment.centerRight,
             child: InkWell(
               onTap: () {},
-              child: AppSvg.asset(AssetUtils.menuIcon),
+              child: AppSvg.asset(AssetUtils.menuIcon,
+                  color: Theme.of(context).accentColor),
             ),
           ),
           SizedBox(
@@ -45,102 +46,90 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                       borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
+                  color: Theme.of(context)
+                      .cardTheme
+                      .copyWith(color: AppColor.white)
+                      .color,
                   margin: EdgeInsets.zero,
                   shadowColor: AppColor.black.withOpacity(0.32),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: AppColor.very_soft_violet,
-                      gradient: LinearGradient(
-                          colors: [
-                            AppColor.strong_violet_1,
-                            AppColor.strong_magenta
-                          ],
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter),
-                    ),
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            left: 24, right: 24, bottom: 32, top: 32),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                AppSvg.asset(AssetUtils.loader),
-                                SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  S.of(context).welcome,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColor.light_grayish_violet_1),
-                                )
-                              ],
-                            ),
-                            SizedBox(
-                              height: 48,
-                            ),
-                            Text(
-                              S.of(context).successfullyCreatedLoginAccount,
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.w400,
-                                  color: AppColor.white),
-                            ),
-                            SizedBox(
-                              height: 32,
-                            ),
-                            InformationText(
-                                image: AssetUtils.shield,
-                                title: S.of(context).saveEarningsDigitally),
-                            SizedBox(
-                              height: 24,
-                            ),
-                            InformationText(
-                                image: AssetUtils.sendMoney,
-                                title:
-                                    S.of(context).sendMoneyToFriendAndFamily),
-                            SizedBox(
-                              height: 81,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.pushReplacementNamed(
-                                    context, RoutePaths.Registration);
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(18),
-                                width: double.maxFinite,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color:
-                                              AppColor.black.withOpacity(0.16),
-                                          blurRadius: 12,
-                                          spreadRadius: -4,
-                                          offset: Offset(0, 12)),
-                                    ],
-                                    gradient: LinearGradient(
-                                        colors: [
-                                          AppColor.light_blue1,
-                                          AppColor.soft_red
-                                        ],
-                                        begin: Alignment.topRight,
-                                        end: Alignment.bottomLeft)),
-                                child: Center(
-                                  child: Text(S.of(context).openAccountNow,
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: AppColor.white)),
-                                ),
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: 24, right: 24, bottom: 32, top: 32),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              AppSvg.asset(AssetUtils.loader,color: AppColor.dark_gray),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text(
+                                S.of(context).welcome,
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColor.dark_gray),
+                              )
+                            ],
+                          ),
+                          SizedBox(
+                            height: 48,
+                          ),
+                          Text(
+                            S.of(context).successfullyCreatedLoginAccount,
+                            style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w400,
+                                color: AppColor.dark_gray_1),
+                          ),
+                          SizedBox(
+                            height: 32,
+                          ),
+                          InformationText(
+                              image: AssetUtils.shield,
+                              title: S.of(context).saveEarningsDigitally),
+                          SizedBox(
+                            height: 24,
+                          ),
+                          InformationText(
+                              image: AssetUtils.sendMoney,
+                              title: S.of(context).sendMoneyToFriendAndFamily),
+                          SizedBox(
+                            height: 42,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushReplacementNamed(
+                                  context, RoutePaths.Registration);
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(18),
+                              width: double.maxFinite,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8),
+                                color: Theme.of(context)
+                                    .accentTextTheme
+                                    .bodyText1!
+                                    .color!,
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: AppColor.black.withOpacity(0.32),
+                                      blurRadius: 12,
+                                      spreadRadius: -4,
+                                      offset: Offset(0, 12)),
+                                ],
+                              ),
+                              child: Center(
+                                child: Text(S.of(context).openAccountNow,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColor.white)),
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
@@ -164,7 +153,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: AppColor.vivid_orange),
+                    color: Theme.of(context).accentColor),
               ),
             ),
           )

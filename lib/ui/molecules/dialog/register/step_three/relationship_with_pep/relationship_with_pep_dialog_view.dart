@@ -70,7 +70,7 @@ class RelationshipWithPEPDialogView extends StatelessWidget {
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
-                                    color: AppColor.dark_violet_3,
+                                    color: AppColor.vividYellow,
                                   ),
                                 ),
                               ),
@@ -99,7 +99,8 @@ class RelationshipWithPEPDialogView extends StatelessWidget {
                                                   label: data.data![index],
                                                   textColor: currentIndex ==
                                                           index
-                                                      ? AppColor.white
+                                                      ? Theme.of(context)
+                                                          .primaryColorDark
                                                       : AppColor.dark_gray_1,
                                                   widgetColor:
                                                       Colors.transparent,
@@ -119,8 +120,12 @@ class RelationshipWithPEPDialogView extends StatelessWidget {
                               width: 57,
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  color: AppColor.dark_violet_4),
-                              child: AppSvg.asset(AssetUtils.tick),
+                                  color: Theme.of(context)
+                                      .accentTextTheme
+                                      .bodyText1!
+                                      .color!),
+                              child: AppSvg.asset(AssetUtils.tick,
+                                  color: Theme.of(context).accentColor),
                             ),
                           ),
                           Padding(

@@ -21,8 +21,7 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
       width: double.infinity,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-              color: AppColor.mostly_desaturated_dark_violet, width: 1)),
+          border: Border.all(color: AppColor.whiteGray, width: 1)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
