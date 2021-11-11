@@ -21,7 +21,7 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
   Widget build(BuildContext context, ProductSelectorViewModel model) {
     return AppKeyBoardHide(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
         child: Column(
           children: [
             Align(
@@ -132,7 +132,7 @@ class ProductSelectorView extends BasePageViewWidget<ProductSelectorViewModel> {
                                       decoration: BoxDecoration(
                                           border: Border.all(
                                               width: 1,
-                                              color: AppColor.white_gray),
+                                              color: AppColor.whiteGray),
                                           shape: BoxShape.circle,
                                           color: AppColor.dark_violet_4),
                                       child: AppSvg.asset(AssetUtils.tick),

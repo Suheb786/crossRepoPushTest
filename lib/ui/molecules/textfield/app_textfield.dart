@@ -144,12 +144,24 @@ class AppTextFieldState extends State<AppTextField> {
                     border: Border.all(
                         width: 1,
                         color: !isValid
-                            ? AppColor.vivid_red
+                            ? Theme.of(context)
+                                .inputDecorationTheme
+                                .errorBorder!
+                                .borderSide
+                                .color
                             : _focusNode.hasFocus
                                 ? (widget.textFieldFocusBorderColor ??
-                                    AppColor.vivid_orange)
+                                    Theme.of(context)
+                                        .inputDecorationTheme
+                                        .focusedBorder!
+                                        .borderSide
+                                        .color)
                                 : (widget.textFieldBorderColor ??
-                                    AppColor.soft_violet))),
+                                    Theme.of(context)
+                                        .inputDecorationTheme
+                                        .enabledBorder!
+                                        .borderSide
+                                        .color))),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -159,7 +171,10 @@ class AppTextFieldState extends State<AppTextField> {
                             text: widget.labelText,
                             style: DefaultTextStyle.of(context).style.copyWith(
                                   color: widget.labelColor ??
-                                      Theme.of(context).accentColor,
+                                      Theme.of(context)
+                                          .inputDecorationTheme
+                                          .labelStyle!
+                                          .color,
                                   fontSize: 10,
                                   fontFamily: "Montserrat",
                                 )),
@@ -172,7 +187,7 @@ class AppTextFieldState extends State<AppTextField> {
                       maxLength: widget.maxLength,
                       textAlign: widget.textAlign,
                       style: TextStyle(
-                        color: widget.textColor ?? AppColor.very_light_gray,
+                        // color: widget.textColor ?? AppColor.very_light_gray,
                         fontSize: widget.fontSize,
                         fontWeight: FontWeight.w600,
                       ),
@@ -185,7 +200,8 @@ class AppTextFieldState extends State<AppTextField> {
                       maxLines: widget.maxLines,
                       minLines: widget.minLines,
                       obscureText: secureText,
-                      cursorColor: widget.hintTextColor ?? AppColor.white,
+                      cursorColor: widget.hintTextColor ??
+                          Theme.of(context).textSelectionTheme.cursorColor,
                       obscuringCharacter: widget.obscuringCharacter,
                       decoration: InputDecoration(
                           prefix: widget.prefix?.call(),
@@ -202,7 +218,10 @@ class AppTextFieldState extends State<AppTextField> {
                           fillColor: widget.filledColor,
                           hintStyle: TextStyle(
                             color: widget.hintTextColor ??
-                                AppColor.very_soft_violet,
+                                Theme.of(context)
+                                    .inputDecorationTheme
+                                    .hintStyle!
+                                    .color,
                             fontSize: widget.fontSize,
                             fontWeight: FontWeight.w600,
                           ),

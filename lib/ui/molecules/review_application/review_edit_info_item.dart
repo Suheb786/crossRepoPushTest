@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+
 import '../app_svg.dart';
 
 class ReviewEditInfoItem extends StatelessWidget {
@@ -18,7 +19,7 @@ class ReviewEditInfoItem extends StatelessWidget {
       child: Container(
         height: 50,
         decoration: BoxDecoration(
-          border: Border.all(width: 1, color: AppColor.white_gray),
+          border: Border.all(width: 1, color: AppColor.whiteGray),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Row(
@@ -58,8 +59,8 @@ class ReviewEditInfoItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
-                      child: AppSvg.asset(AssetUtils.edit,
-                          width: 16, height: 16),
+                      child:
+                          AppSvg.asset(AssetUtils.edit, width: 16, height: 16),
                     )),
               ),
             ),

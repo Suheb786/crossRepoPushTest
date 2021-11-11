@@ -93,21 +93,16 @@ class RegisterSelectionPageView
                           width: double.maxFinite,
                           margin: EdgeInsets.symmetric(horizontal: 24),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              boxShadow: [
-                                BoxShadow(
-                                    color: AppColor.black.withOpacity(0.16),
-                                    blurRadius: 12,
-                                    spreadRadius: -4,
-                                    offset: Offset(0, 12)),
-                              ],
-                              gradient: LinearGradient(
-                                  colors: [
-                                    AppColor.light_blue1,
-                                    AppColor.soft_red
-                                  ],
-                                  begin: Alignment.topRight,
-                                  end: Alignment.bottomLeft)),
+                            borderRadius: BorderRadius.circular(16),
+                            color: Theme.of(context).primaryColorDark,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: AppColor.black.withOpacity(0.32),
+                                  blurRadius: 12,
+                                  spreadRadius: -4,
+                                  offset: Offset(0, 12)),
+                            ],
+                          ),
                           child: Center(
                             child: Text(S.of(context).registerViaEmail,
                                 style: TextStyle(
@@ -168,19 +163,12 @@ class RegisterSelectionPageView
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(vertical: 32),
-            padding: EdgeInsets.symmetric(vertical: 17.5, horizontal: 24),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(200),
-                border: Border.all(
-                  width: 2,
-                  color: AppColor.very_light_violet1,
-                )),
+            margin: EdgeInsets.symmetric(vertical: 25),
             child: Text(
               S.of(context).swipeDownToLogin,
               style: TextStyle(
-                  fontSize: 12,
-                  color: AppColor.very_light_violet1,
+                  fontSize: 16,
+                  color: Theme.of(context).accentColor,
                   fontWeight: FontWeight.w500),
             ),
           )

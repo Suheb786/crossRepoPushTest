@@ -40,8 +40,7 @@ class NotifyMeWidget extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      fontFamily: 'Montserrat',
-                      color: AppColor.vivid_orange),
+                      color: AppColor.brightBlue),
                 ),
                 InkWell(
                   onTap: () {
@@ -50,7 +49,8 @@ class NotifyMeWidget extends StatelessWidget {
                   child: Container(
                       height: 16,
                       width: 16,
-                      child: AppSvg.asset(AssetUtils.message)),
+                      child: AppSvg.asset(AssetUtils.message,
+                          color: AppColor.brightBlue)),
                 )
               ],
             ),

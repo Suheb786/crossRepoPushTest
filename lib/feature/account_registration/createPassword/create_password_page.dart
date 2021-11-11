@@ -18,6 +18,11 @@ class CreatePasswordPageState
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Colors.transparent;
+  }
+
+  @override
   Widget buildView(BuildContext context, CreatePasswordViewModel model) {
     return CreatePasswordView(provideBase());
   }
