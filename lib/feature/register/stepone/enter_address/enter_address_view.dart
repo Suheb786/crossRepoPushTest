@@ -111,7 +111,6 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),
-                                ),
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,

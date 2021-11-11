@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 
 class ReviewTCWidget extends StatelessWidget {
   final String title;
@@ -36,20 +37,14 @@ class ReviewTCWidget extends StatelessWidget {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                border: Border.all(
-                    color: !isSelected!
-                        ? Theme.of(context).accentTextTheme.bodyText1!.color!
-                        : Colors.transparent),
-                shape: BoxShape.circle,
-                color: isSelected!
-                    ? Theme.of(context).accentTextTheme.bodyText1!.color!
-                    : Colors.transparent,
-              ),
+                  border: Border.all(
+                      color: AppColor.mostly_desaturated_dark_violet),
+                  shape: BoxShape.circle,
+                  color: isSelected!
+                      ? AppColor.dark_violet_4
+                      : Colors.transparent),
               child: (isSelected!)
-                  ? AppSvg.asset(AssetUtils.checkIcon,
-                      color: Theme.of(context).accentColor,
-                      height: 7.33,
-                      width: 10.67)
+                  ? AppSvg.asset(AssetUtils.tick, height: 7.33, width: 10.67)
                   : null,
             ),
           ),
@@ -78,14 +73,6 @@ class ReviewTCWidget extends StatelessWidget {
                           color: AppColor.vivid_orange,
                         ),
                       ),
-                  TextSpan(
-                    text: subTitle,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12,
-                      fontFamily: 'Montserrat',
-                      color:
-                          Theme.of(context).accentTextTheme.bodyText1!.color!,
                     ),
                   )
                 ])),
