@@ -159,7 +159,7 @@ class AppTextFieldState extends State<AppTextField> {
                             text: widget.labelText,
                             style: DefaultTextStyle.of(context).style.copyWith(
                                   color: widget.labelColor ??
-                                      AppColor.light_grayish_violet,
+                                      Theme.of(context).accentColor,
                                   fontSize: 10,
                                   fontFamily: "Montserrat",
                                 )),

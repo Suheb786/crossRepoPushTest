@@ -39,6 +39,7 @@ dependencies:
   rxdart: ^0.27.2
   fluttertoast: ^8.0.8
   responsive_builder: ^0.4.1
+  animated_theme_switcher: ^2.0.1
   flutter_svg: ^0.22.0
   responsive_framework: ^0.1.4
   intl: 0.17.0

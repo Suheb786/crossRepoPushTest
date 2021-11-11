@@ -16,17 +16,13 @@ class NotifyMeWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
       decoration: BoxDecoration(
-          color: AppColor.strong_violet,
+          border: Border.all(color: AppColor.veryLightGray1),
           borderRadius: BorderRadius.circular(16)),
       child: Column(
         children: [
           Text(
             title!,
-            style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Montserrat',
-                color: AppColor.white),
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
           ),
           SizedBox(
             height: 16,
@@ -34,10 +30,8 @@ class NotifyMeWidget extends StatelessWidget {
           Container(
             padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
             decoration: BoxDecoration(
-                //color: AppColor.strong_violet,
-
                 borderRadius: BorderRadius.circular(8),
-                border: Border.all(color: AppColor.soft_violet, width: 1)),
+                border: Border.all(color: AppColor.veryLightGray1, width: 1)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

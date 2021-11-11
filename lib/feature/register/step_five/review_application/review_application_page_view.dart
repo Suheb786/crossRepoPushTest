@@ -101,7 +101,7 @@ class ReviewApplicationPageView
                                           EdgeInsets.symmetric(vertical: 24.0),
                                       child: Container(
                                         height: 1,
-                                        color: AppColor.light_gray,
+                                        color: AppColor.lightGray,
                                       ),
                                     ),
 
@@ -147,7 +147,7 @@ class ReviewApplicationPageView
                                           EdgeInsets.symmetric(vertical: 24.0),
                                       child: Container(
                                         height: 1,
-                                        color: AppColor.light_gray,
+                                        color: AppColor.lightGray,
                                       ),
                                     ),
 
@@ -177,7 +177,7 @@ class ReviewApplicationPageView
                                           EdgeInsets.symmetric(vertical: 24.0),
                                       child: Container(
                                         height: 1,
-                                        color: AppColor.light_gray,
+                                        color: AppColor.lightGray,
                                       ),
                                     ),
 
@@ -204,7 +204,7 @@ class ReviewApplicationPageView
                                           EdgeInsets.symmetric(vertical: 24.0),
                                       child: Container(
                                         height: 1,
-                                        color: AppColor.light_gray,
+                                        color: AppColor.lightGray,
                                       ),
                                     ),
 
@@ -254,7 +254,7 @@ class ReviewApplicationPageView
                                           EdgeInsets.symmetric(vertical: 24.0),
                                       child: Container(
                                         height: 1,
-                                        color: AppColor.light_gray,
+                                        color: AppColor.lightGray,
                                       ),
                                     ),
 
@@ -286,7 +286,7 @@ class ReviewApplicationPageView
                                           EdgeInsets.symmetric(vertical: 24.0),
                                       child: Container(
                                         height: 1,
-                                        color: AppColor.light_gray,
+                                        color: AppColor.lightGray,
                                       ),
                                     ),
                                     ReviewApplicationItem(
@@ -331,7 +331,7 @@ class ReviewApplicationPageView
                                           EdgeInsets.symmetric(vertical: 24.0),
                                       child: Container(
                                         height: 1,
-                                        color: AppColor.light_gray,
+                                        color: AppColor.lightGray,
                                       ),
                                     ),
                                     AppStreamBuilder<bool>(

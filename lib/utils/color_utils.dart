@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 class AppColor {
   AppColor._();
 
-  static const white = const Color(0xffffffff);
   static const white1 = const Color(0xffFAFAFA);
-  static const black = const Color(0xff000000);
   static const very_light_grey = const Color(0xffF3F3F3);
   static const dark_blue = const Color(0xff3516A4);
   static const dark_blue1 = const Color(0xff06002C);
@@ -37,8 +35,8 @@ class AppColor {
   static const dark_violet_1 = const Color(0xff4b25af);
   static const dark_violet_2 = const Color(0xff481EAF);
   static const dark_violet_3 = const Color(0xff4a22b0);
-  static const dark_gray_1 = const Color(0xff8b8b8b);
   static const dark_violet_4 = const Color(0xff412098);
+  static const dark_gray_1 = const Color(0xff8b8b8b);
   static const very_light_violet1 = const Color(0xffa389e6);
   static const very_dark_violet = const Color(0xff272331);
   static const mostly_desaturated_dark_violet = const Color(0xff8270af);
@@ -50,7 +48,6 @@ class AppColor {
   static const gray = const Color(0xff8B8B8B);
   static const light_gray1 = const Color(0xfff2f2f2);
   static const gray_black = const Color(0xff101010);
-  static const light_gray = const Color(0xffF5F5F5);
   static const light_blue = const Color(0xff572BCC);
   static const light_blue1 = const Color(0xff4639FF);
   static const soft_red = const Color(0xffED7863);
@@ -60,4 +57,15 @@ class AppColor {
   static const very_dark_gray_black1 = const Color(0xff2d2d2d);
   static const grayish_violet = const Color(0xffcdc9d8);
   static const very_dark_blue1 = const Color(0xff29136F);
+
+  /// --------- NEW COLOR SCHEME
+  static const white = const Color(0xffffffff);
+  static const black = const Color(0xff000000);
+  static const brightRed = const Color(0xffE53E51);
+  static const vividYellow = const Color(0xffFFE816);
+  static const brightBlue = const Color(0xff3CB4E5);
+  static const veryLightGray = const Color(0xffFBFBFB);
+  static const lightGray = const Color(0xffF5F5F5);
+  static const veryLightGray1 = const Color(0xffE8E8E8);
+  static const veryDarkGray = const Color(0xff292929);
 }

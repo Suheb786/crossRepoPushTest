@@ -4,7 +4,6 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/onboarding/onboarding_module.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page_model.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page_view.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class OnBoardingPage extends BasePage<OnBoardingViewModel> {
   @override
@@ -16,11 +15,6 @@ class OnBoardingPageState
   @override
   ProviderBase provideBase() {
     return onBoardingViewModelProvider;
-  }
-
-  @override
-  Color scaffoldBackgroundColor() {
-    return AppColor.very_dark_blue;
   }
 
   @override

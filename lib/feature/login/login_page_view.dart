@@ -79,42 +79,46 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                   padding: EdgeInsets.only(top: 15),
                                   child: Stack(
                                     children: [
-                                      Container(
+                                      Card(
                                         margin: EdgeInsets.only(
                                             bottom: 16,
                                             right: 24,
                                             left: 24,
                                             top: 25),
-                                        padding: EdgeInsets.only(top: 235),
-                                        clipBehavior: Clip.antiAlias,
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(16),
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    AssetUtils.circle),
-                                                fit: BoxFit.fitWidth,
-                                                alignment: Alignment.topCenter),
-                                            backgroundBlendMode:
-                                                BlendMode.difference,
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  AppColor.dark_violet,
-                                                  AppColor.dark_moderate_blue
-                                                ],
-                                                begin: Alignment.bottomCenter,
-                                                end: Alignment.topCenter),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  color: AppColor.black
-                                                      .withOpacity(0.32),
-                                                  blurRadius: 24,
-                                                  offset: Offset(0, 8)),
-                                            ]),
+                                        color: Theme.of(context)
+                                            .cardTheme
+                                            .copyWith(color: AppColor.white)
+                                            .color,
+                                        // padding: EdgeInsets.only(top: 235),
+                                        // width:
+                                        //     MediaQuery.of(context).size.width,
+                                        // decoration: BoxDecoration(
+                                        //     borderRadius:
+                                        //         BorderRadius.circular(16),
+                                        //     image: DecorationImage(
+                                        //         image: AssetImage(
+                                        //             AssetUtils.circle),
+                                        //         fit: BoxFit.fitWidth,
+                                        //         alignment: Alignment.topCenter),
+                                        //     backgroundBlendMode:
+                                        //         BlendMode.difference,
+                                        //     gradient: LinearGradient(
+                                        //         colors: [
+                                        //           AppColor.dark_violet,
+                                        //           AppColor.dark_moderate_blue
+                                        //         ],
+                                        //         begin: Alignment.bottomCenter,
+                                        //         end: Alignment.topCenter),
+                                        //     boxShadow: [
+                                        //       BoxShadow(
+                                        //           color: AppColor.black
+                                        //               .withOpacity(0.32),
+                                        //           blurRadius: 24,
+                                        //           offset: Offset(0, 8)),
+                                        //     ]),
                                         child: Column(
                                           children: [
+                                            Center(child: BlurCard()),
                                             Padding(
                                               padding: EdgeInsets.only(
                                                   left: 24, right: 24, top: 25),
@@ -181,7 +185,6 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                           ],
                                         ),
                                       ),
-                                      Center(child: BlurCard()),
                                       AppStreamBuilder<bool>(
                                           stream: model.showButtonStream,
                                           initialData: false,
@@ -236,7 +239,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                 width: double.maxFinite,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                    color: AppColor.very_dark_blue1.withOpacity(0.2),
+                    color: Theme.of(context).primaryColor,
                     borderRadius:
                         BorderRadius.vertical(top: Radius.circular(16))),
                 child: Container(
@@ -251,7 +254,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                     S.of(context).swipeUpToRegister,
                     style: TextStyle(
                         fontSize: 12,
-                        color: AppColor.dark_grayish_violet1,
+                        color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.w500),
                   ),
                 )),
