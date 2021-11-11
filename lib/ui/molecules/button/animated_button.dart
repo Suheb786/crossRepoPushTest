@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class AnimatedButton extends StatefulWidget {
   int? animationDuration;
@@ -17,7 +16,8 @@ class AnimatedButton extends StatefulWidget {
   String? buttonText;
   double? buttonHeight;
 
-  AnimatedButton({Key? key,
+  AnimatedButton({
+    Key? key,
     this.animationDuration = 900000,
     this.fadeAnimationDuration = 2,
     this.animationBegin = 20,
@@ -30,8 +30,7 @@ class AnimatedButton extends StatefulWidget {
     this.onTap,
     required this.buttonText,
     this.buttonHeight = 50,
-  })
-      : super(key: key);
+  }) : super(key: key);
 
   @override
   _AnimatedButtonState createState() => _AnimatedButtonState();
@@ -57,12 +56,12 @@ class _AnimatedButtonState extends State<AnimatedButton>
         Tween<double>(begin: widget.animationBegin, end: widget.animationEnd)
             .animate(animationController!);
     fadeAnimation = Tween<double>(
-        begin: widget.fadeAnimationBegin, end: widget.fadeAnimationEnd)
+            begin: widget.fadeAnimationBegin, end: widget.fadeAnimationEnd)
         .animate(fadeAnimationController!);
     animationController!.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         Timer(Duration(seconds: 1), () {
-          if(mounted) {
+          if (mounted) {
             fadeAnimationController!.reverse();
           }
         });
@@ -80,7 +79,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
 
   startAnimation() async {
     Timer(Duration(seconds: 1), () {
-      if(mounted) {
+      if (mounted) {
         animationController!.forward();
         fadeAnimationController!.forward();
       }
@@ -95,39 +94,43 @@ class _AnimatedButtonState extends State<AnimatedButton>
         alignment: Alignment.centerRight,
         child: AnimatedBuilder(
           animation: animationController!,
-          builder: (context, child) =>
-              InkWell(
-                onTap: () => widget.onTap!(),
-                child: Container(
-                  height: widget.buttonHeight!,
-                  width: animation!.value,
-                  decoration: BoxDecoration(
-                      color: widget.buttonColor ?? Colors.transparent,
-                      borderRadius: BorderRadius.circular(widget.buttonHeight!/2),
-                      border: Border.all(
-                          color: widget.borderColor != null
-                              ? widget.borderColor!
-                              : AppColor.white)),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        widget.buttonText!,
-                        style: TextStyle(
-                            color: widget.textColor != null
-                                ? widget.textColor
-                                : AppColor.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.clip,
-                        softWrap: false,
-                      ),
-                    ),
+          builder: (context, child) => InkWell(
+            onTap: () => widget.onTap!(),
+            child: Container(
+              height: widget.buttonHeight!,
+              width: animation!.value,
+              decoration: BoxDecoration(
+                  color: widget.buttonColor ?? Colors.transparent,
+                  borderRadius: BorderRadius.circular(widget.buttonHeight! / 2),
+                  border: Border.all(
+                      color: widget.borderColor != null
+                          ? widget.borderColor!
+                          : Theme.of(context)
+                              .accentTextTheme
+                              .bodyText1!
+                              .color!)),
+              child: Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    widget.buttonText!,
+                    style: TextStyle(
+                        color: widget.textColor != null
+                            ? widget.textColor
+                            : Theme.of(context)
+                                .accentTextTheme
+                                .bodyText1!
+                                .color!,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500),
+                    maxLines: 1,
+                    overflow: TextOverflow.clip,
+                    softWrap: false,
                   ),
                 ),
               ),
+            ),
+          ),
         ),
       ),
     );
@@ -140,4 +143,3 @@ class _AnimatedButtonState extends State<AnimatedButton>
     super.dispose();
   }
 }
-

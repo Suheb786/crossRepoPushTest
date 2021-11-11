@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -10,7 +11,6 @@ import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.d
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
@@ -38,7 +38,7 @@ class RegisterStepOnePageView
               Text(
                 S.of(context).personalDetails,
                 style: TextStyle(
-                    color: AppColor.dark_gray,
+                    color: Theme.of(context).accentColor,
                     fontSize: 10,
                     fontWeight: FontWeight.w600),
               ),
@@ -62,7 +62,7 @@ class RegisterStepOnePageView
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: AppColor.very_dark_gray,
+                        color: Theme.of(context).accentColor,
                         fontSize: 20,
                         fontWeight: FontWeight.w600),
                   ),

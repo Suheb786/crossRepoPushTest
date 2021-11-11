@@ -13,7 +13,6 @@ import 'package:neo_bank/feature/register/step_four/taxation_details/taxation_de
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
@@ -48,7 +47,7 @@ class RegisterStepFourPageView
               Text(
                 S.of(context).fatcaandPep,
                 style: TextStyle(
-                    color: AppColor.dark_gray,
+                    color: Theme.of(context).accentColor,
                     fontSize: 10,
                     fontWeight: FontWeight.w600),
               ),
@@ -76,7 +75,7 @@ class RegisterStepFourPageView
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: AppColor.very_dark_gray,
+                        color: Theme.of(context).accentColor,
                         fontSize: 20,
                         fontWeight: FontWeight.w600),
                   ),

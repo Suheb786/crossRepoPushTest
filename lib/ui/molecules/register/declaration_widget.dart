@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class DeclarationWidget extends StatelessWidget {
   final String? title1;
@@ -37,25 +36,32 @@ class DeclarationWidget extends StatelessWidget {
               height: 40,
               width: 40,
               decoration: BoxDecoration(
-                  border: Border.all(
-                      color: AppColor.mostly_desaturated_dark_violet),
-                  shape: BoxShape.circle,
-                  color: AppColor.dark_violet_4),
+                border: Border.all(
+                    color: !isSelected!
+                        ? Theme.of(context).accentTextTheme.bodyText1!.color!
+                        : Colors.transparent),
+                shape: BoxShape.circle,
+                color: isSelected!
+                    ? Theme.of(context).accentTextTheme.bodyText1!.color!
+                    : Colors.transparent,
+              ),
               child: (isSelected!)
-                  ? AppSvg.asset(AssetUtils.tick, height: 7.33, width: 10.67)
+                  ? AppSvg.asset(AssetUtils.checkIcon,
+                      color: Theme.of(context).accentColor,
+                      height: 7.33,
+                      width: 10.67)
                   : null,
             ),
           ),
           SizedBox(width: 15),
           Flexible(
             child: Text.rich(TextSpan(
-                text:
-                    title1,
+                text: title1,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 12,
                   fontFamily: 'Montserrat',
-                  color: AppColor.very_light_gray_white,
+                  color: Theme.of(context).primaryColorDark,
                 ),
                 children: [
                   TextSpan(
@@ -64,7 +70,8 @@ class DeclarationWidget extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         fontSize: 12,
                         fontFamily: 'Montserrat',
-                        color: AppColor.vivid_orange,
+                        color:
+                            Theme.of(context).accentTextTheme.bodyText1!.color!,
                       ),
                       children: [
                         TextSpan(
@@ -73,7 +80,7 @@ class DeclarationWidget extends StatelessWidget {
                             fontWeight: FontWeight.w600,
                             fontSize: 12,
                             fontFamily: 'Montserrat',
-                            color: AppColor.very_light_gray_white,
+                            color: Theme.of(context).primaryColorDark,
                           ),
                         )
                       ])

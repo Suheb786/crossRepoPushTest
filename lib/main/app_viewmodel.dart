@@ -141,7 +141,7 @@ class AppViewModel extends BaseViewModel {
               displayColor: AppColor.white),
           primaryTextTheme: _themeData.textTheme.apply(
               fontFamily: "Montserrat",
-              bodyColor: AppColor.white,
+              bodyColor: AppColor.very_dark_gray_black,
               displayColor: AppColor.white),
           iconTheme: IconThemeData(
             color: AppColor.white,

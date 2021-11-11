@@ -20,6 +20,11 @@ class TaxReportInformationPageState extends BaseStatefulPage<
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(
       BuildContext context, TaxReportInformationPageViewModel model) {
     return TaxReportInformationPageView(provideBase());

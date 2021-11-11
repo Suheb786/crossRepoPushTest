@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class AddIncomeWidget extends StatelessWidget {
   final String? label;
   final Function()? onTap;
+
   const AddIncomeWidget({Key? key, this.onTap, this.label}) : super(key: key);
 
   @override
@@ -18,14 +18,16 @@ class AddIncomeWidget extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: AppColor.soft_violet, width: 1)),
+            border: Border.all(
+                color: Theme.of(context).accentTextTheme.bodyText1!.color!,
+                width: 1)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               label!,
               style: TextStyle(
-                  color: AppColor.vivid_orange,
+                  color: Theme.of(context).primaryColorDark,
                   fontSize: 12,
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.w600),
@@ -33,6 +35,7 @@ class AddIncomeWidget extends StatelessWidget {
             Icon(
               Icons.add,
               size: 16,
+              color: Theme.of(context).primaryColorDark,
             )
           ],
         ),

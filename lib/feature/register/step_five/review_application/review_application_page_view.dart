@@ -62,18 +62,15 @@ class ReviewApplicationPageView
                               borderRadius: BorderRadius.circular(16)),
                           clipBehavior: Clip.antiAliasWithSaveLayer,
                           elevation: 2,
+                          color: Theme.of(context)
+                              .cardTheme
+                              .copyWith(color: AppColor.white)
+                              .color,
                           margin: EdgeInsets.zero,
                           shadowColor: AppColor.black.withOpacity(0.32),
-                          child: Container(
+                          child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
-                            decoration: BoxDecoration(
-                              color: AppColor.white,
-                              gradient: LinearGradient(
-                                  colors: [AppColor.white, AppColor.white],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter),
-                            ),
                             child:
                                 FadingEdgeScrollView.fromSingleChildScrollView(
                               gradientFractionOnEnd: 0.3,
@@ -365,10 +362,6 @@ class ReviewApplicationPageView
                                                 buttonText: S
                                                     .of(context)
                                                     .swipeToProceed,
-                                                textColor:
-                                                    AppColor.light_violet,
-                                                borderColor:
-                                                    AppColor.light_violet,
                                               ),
                                             );
                                           }),

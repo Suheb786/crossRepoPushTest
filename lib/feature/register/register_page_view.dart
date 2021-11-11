@@ -48,7 +48,7 @@ class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),
-                      activeColor: AppColor.dark_blue,
+                      activeColor: Theme.of(context).accentColor,
                       color: AppColor.very_soft_violet.withOpacity(0.3)),
                 );
               },

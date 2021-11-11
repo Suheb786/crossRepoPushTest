@@ -8,6 +8,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 class AdditionalIncomeSourceWidget extends StatelessWidget {
   final AdditionalIncomeSourceParams? additionalIncomeSourceParams;
   final Function()? onTap;
+
   const AdditionalIncomeSourceWidget(
       {Key? key, this.additionalIncomeSourceParams, this.onTap})
       : super(key: key);
@@ -19,7 +20,6 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       width: double.infinity,
       decoration: BoxDecoration(
-          color: AppColor.dark_violet2,
           borderRadius: BorderRadius.circular(8),
           border: Border.all(
               color: AppColor.mostly_desaturated_dark_violet, width: 1)),
@@ -39,7 +39,7 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
                     softWrap: false,
                     maxLines: 5,
                     style: TextStyle(
-                        color: AppColor.very_light_gray_white,
+                        color: Theme.of(context).primaryColorDark,
                         fontSize: 14,
                         fontWeight: FontWeight.w600),
                   ),
@@ -51,7 +51,7 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
                   '${additionalIncomeSourceParams!.currency} ${additionalIncomeSourceParams!.amount}',
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                      color: AppColor.very_light_violet,
+                      color: Theme.of(context).primaryColorDark,
                       fontSize: 12,
                       fontWeight: FontWeight.w600),
                 ),
@@ -62,7 +62,10 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
             onTap: () {
               onTap?.call();
             },
-            child: AppSvg.asset(AssetUtils.delete),
+            child: AppSvg.asset(
+              AssetUtils.delete,
+              color: Theme.of(context).primaryColorDark,
+            ),
           )
         ],
       ),

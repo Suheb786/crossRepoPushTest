@@ -1,12 +1,12 @@
 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-<circle cx="28" cy="28" r="28" fill="#412098"/>
-<path d="M28 37V39" stroke="#FFA125" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M34.3604 34.36L35.7804 35.78" stroke="#FFA125" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M20.2197 35.78L21.6397 34.36" stroke="#FFA125" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M37 28H39" stroke="#FFA125" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M17 28H19" stroke="#FFA125" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M28 33C30.7614 33 33 30.7614 33 28C33 25.2386 30.7614 23 28 23C25.2386 23 23 25.2386 23 28C23 30.7614 25.2386 33 28 33Z" stroke="#FFA125" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M34.3604 21.64L35.7804 20.22" stroke="#FFA125" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M20.2197 20.22L21.6397 21.64" stroke="#FFA125" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M28 17V19" stroke="#FFA125" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="28" cy="28" fill="#FFE816" r="28"/>
+<path d="M28 37V39" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+<path d="M34.3594 34.3604L35.7794 35.7804" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+<path d="M20.2188 35.7804L21.6388 34.3604" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+<path d="M37 28H39" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+<path d="M17 28H19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+<path d="M28 33C30.7614 33 33 30.7614 33 28C33 25.2386 30.7614 23 28 23C25.2386 23 23 25.2386 23 28C23 30.7614 25.2386 33 28 33Z" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+<path d="M34.3594 21.6397L35.7794 20.2197" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+<path d="M20.2188 20.2197L21.6388 21.6397" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+<path d="M28 17V19" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
 </svg>

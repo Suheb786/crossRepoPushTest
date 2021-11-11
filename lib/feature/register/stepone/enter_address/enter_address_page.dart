@@ -21,4 +21,9 @@ class EnterAddressPageState
   Widget buildView(BuildContext context, EnterAddressViewModel model) {
     return EnterAddressView(provideBase());
   }
+
+  @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
 }

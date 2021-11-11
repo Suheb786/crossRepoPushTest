@@ -10,11 +10,16 @@ class RegisterStepTwoPage extends BasePage<RegisterStepTwoViewModel> {
   RegisterStepTwoPageState createState() => RegisterStepTwoPageState();
 }
 
-class RegisterStepTwoPageState extends BaseStatefulPage<
-    RegisterStepTwoViewModel, RegisterStepTwoPage> {
+class RegisterStepTwoPageState
+    extends BaseStatefulPage<RegisterStepTwoViewModel, RegisterStepTwoPage> {
   @override
   ProviderBase provideBase() {
     return registerStepTwoViewModelProvider;
+  }
+
+  @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
   }
 
   @override

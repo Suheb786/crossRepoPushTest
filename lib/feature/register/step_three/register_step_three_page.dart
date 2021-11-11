@@ -18,6 +18,11 @@ class RegisterStepThreePageState extends BaseStatefulPage<
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(BuildContext context, RegisterStepThreeViewModel model) {
     return RegisterStepThreePageView(provideBase());
   }

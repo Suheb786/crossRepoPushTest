@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:flutter_switch/flutter_switch.dart';
 
 class ProfileRowItem extends StatelessWidget {
   final String title;
@@ -44,33 +44,42 @@ class ProfileRowItem extends StatelessWidget {
                           title,
                           softWrap: true,
                           style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: AppColor.text_color),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context)
+                                .primaryTextTheme
+                                .bodyText1!
+                                .color!,
+                          ),
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left:10.0),
+                        padding: EdgeInsets.only(left: 10.0),
                         child: FlutterSwitch(
                           value: isActive!,
                           onToggle: (value) {
                             model.updateState(value);
                           },
+                          width: 70,
+                          height: 40,
+                          padding: 8,
                           activeText: activeText,
-                          activeTextColor: AppColor.vivid_orange,
-                          activeSwitchBorder:
-                              Border.all(color: AppColor.border_color),
+                          activeTextColor: AppColor.white,
+                          inactiveTextColor: AppColor.darkGray,
                           activeTextFontWeight: FontWeight.w500,
                           showOnOff: true,
                           valueFontSize: 10,
-                          activeToggleColor: AppColor.vivid_orange,
+                          activeToggleColor: AppColor.white,
                           inactiveText: inactiveText,
-                          inactiveToggleColor: AppColor.white,
+                          inactiveToggleColor: AppColor.lightGrayishMagenta,
                           inactiveTextFontWeight: FontWeight.w500,
                           inactiveSwitchBorder:
-                              Border.all(color: AppColor.border_color),
-                          activeColor: AppColor.dark_violet_4,
-                          inactiveColor: AppColor.dark_violet_4,
+                              Border.all(color: AppColor.gray_2),
+                          activeColor: Theme.of(context)
+                              .accentTextTheme
+                              .bodyText1!
+                              .color!,
+                          inactiveColor: Theme.of(context).accentColor,
                         ),
                       ),
                     ],

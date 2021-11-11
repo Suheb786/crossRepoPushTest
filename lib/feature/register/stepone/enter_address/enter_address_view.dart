@@ -92,21 +92,15 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                   borderRadius: BorderRadius.circular(16)),
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               elevation: 2,
+                              color: Theme.of(context)
+                                  .cardTheme
+                                  .copyWith(color: AppColor.white)
+                                  .color,
                               margin: EdgeInsets.zero,
                               shadowColor: AppColor.black.withOpacity(0.32),
-                              child: Container(
+                              child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),
-                                decoration: BoxDecoration(
-                                  color: AppColor.very_soft_violet,
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        AppColor.dark_violet,
-                                        AppColor.dark_moderate_blue
-                                      ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter),
-                                ),
                                 child: Stack(
                                   children: [
                                     SingleChildScrollView(

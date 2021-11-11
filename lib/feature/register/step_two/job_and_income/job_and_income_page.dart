@@ -18,6 +18,11 @@ class JobAndIncomePageState
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(BuildContext context, JobAndIncomePageViewModel model) {
     return JobAndIncomePageView(provideBase());
   }
