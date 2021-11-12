@@ -91,7 +91,7 @@ class IdVerificationInfoView
                                         child: Column(
                                           children: [
                                             InformationText(
-                                                image: AssetUtils.sunny,
+                                                image: AssetUtils.sun,
                                                 title: S
                                                     .of(context)
                                                     .idVerificationPlaceInfo),
@@ -99,14 +99,16 @@ class IdVerificationInfoView
                                               height: 32,
                                             ),
                                             InformationText(
-                                                image: AssetUtils.scan,
+                                                image: AssetUtils.scanIcon,
                                                 title:
                                                     S.of(context).idScanInfo),
                                             SizedBox(
                                               height: 32,
                                             ),
                                             InformationText(
-                                                image: AssetUtils.correct,
+                                                image: AssetUtils.tick,
+                                                iconColor: Theme.of(context)
+                                                    .primaryColorDark,
                                                 title: S.of(context).onIdFit),
                                             SizedBox(
                                               height: 144,

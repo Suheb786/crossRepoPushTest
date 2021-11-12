@@ -102,17 +102,21 @@ class HomeAddressDialogView extends StatelessWidget {
                       },
                       dataBuilder: (context, currentLocation) {
                         return AppTextField(
-                          controller: model.addressController,
-                          labelText: "Home Address",
-                          hintText: "",
-                          labelFontSize: 12,
-                          labelColor: AppColor.black,
-                          textColor: AppColor.black,
-                          suffixIcon: (isValid, value) => Image.asset(
-                            AssetUtils.locationBlack,
-                            color: AppColor.black,
-                          ),
-                        );
+                            controller: model.addressController,
+                            labelText: "Home Address",
+                            hintText: "",
+                            labelFontSize: 12,
+                            labelColor: AppColor.black,
+                            textColor: AppColor.black,
+                            suffixIcon: (isValid, value) => Container(
+                                  height: 20,
+                                  width: 16,
+                                  padding: EdgeInsets.only(left: 4, top: 2),
+                                  child: AppSvg.asset(
+                                      AssetUtils.location_marker,
+                                      color:
+                                          Theme.of(context).primaryColorDark),
+                                ));
                       }),
                 ),
                 SizedBox(
@@ -127,8 +131,11 @@ class HomeAddressDialogView extends StatelessWidget {
                     height: 57,
                     width: 57,
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: AppColor.dark_violet_4),
-                    child: AppSvg.asset(AssetUtils.tick),
+                        shape: BoxShape.circle,
+                        color:
+                            Theme.of(context).accentTextTheme.bodyText1!.color),
+                    child: AppSvg.asset(AssetUtils.tick,
+                        color: Theme.of(context).accentColor),
                   ),
                 ),
                 Padding(

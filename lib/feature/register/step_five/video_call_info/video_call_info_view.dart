@@ -66,20 +66,24 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                             child: Column(
                               children: [
                                 InformationText(
-                                    image: AssetUtils.sunny,
+                                    image: AssetUtils.sun,
                                     title: S.of(context).brightPlace),
                                 SizedBox(
                                   height: 32,
                                 ),
                                 InformationText(
-                                    image: AssetUtils.record,
-                                    title: S.of(context).quietSurrounding),
+                                    image: AssetUtils.mic,
+                                    title: S.of(context).quietSurrounding,
+                                    iconColor:
+                                        Theme.of(context).primaryColorDark),
                                 SizedBox(
                                   height: 32,
                                 ),
                                 InformationText(
-                                    image: AssetUtils.earphone,
-                                    title: S.of(context).preferredAgent),
+                                    image: AssetUtils.headPhone,
+                                    title: S.of(context).preferredAgent,
+                                    iconColor:
+                                        Theme.of(context).primaryColorDark),
                                 SizedBox(
                                   height: 56,
                                 ),

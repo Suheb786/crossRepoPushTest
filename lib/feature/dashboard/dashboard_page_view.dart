@@ -87,13 +87,13 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                             height: 32,
                           ),
                           InformationText(
-                              image: AssetUtils.shield,
+                              image: AssetUtils.shieldIcon,
                               title: S.of(context).saveEarningsDigitally),
                           SizedBox(
                             height: 24,
                           ),
                           InformationText(
-                              image: AssetUtils.sendMoney,
+                              image: AssetUtils.transactionHistory,
                               title: S.of(context).sendMoneyToFriendAndFamily),
                           SizedBox(
                             height: 42,

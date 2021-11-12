@@ -66,7 +66,19 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                               Padding(
                                 padding: const EdgeInsets.only(
                                     top: 59.0, bottom: 32),
-                                child: AppSvg.asset(AssetUtils.agent),
+                                child: Container(
+                                  height: 78,
+                                  width: 78,
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 25.07, vertical: 22.29),
+                                  decoration: BoxDecoration(
+                                    color: AppColor.vividYellow,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: AppSvg.asset(AssetUtils.maleAgent,
+                                      color:
+                                          Theme.of(context).primaryColorDark),
+                                ),
                               ),
                               Text(
                                 S.of(context).lookingForAvailableAgent,
