@@ -12,11 +12,11 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/bottom_sheet/upload_document/upload_document_bottom_sheet.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_five/upload_document_later/upload_document_later_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/ui/molecules/upload_document_selection_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -165,31 +165,30 @@ class UploadDocumentsPageView
                                                         return InkWell(
                                                           onTap: !(isUploaded!)
                                                               ? () async {
-                                                                  UploadDocumentBottomSheet.show(
+                                                                  UploadDocumentSelectionWidget.show(
                                                                       context,
-                                                                      title: S
-                                                                          .of(
-                                                                              context)
-                                                                          .pleaseSelectYourAction,
-                                                                      onTakePhoto:
+                                                                      onCameraTap:
                                                                           () {
                                                                     Navigator.pop(
                                                                         context);
                                                                     model.uploadIncomeDocument(
                                                                         DocumentTypeEnum
                                                                             .CAMERA);
-                                                                  }, uploadDocument:
+                                                                  }, onUploadDocumentTap:
                                                                           () {
                                                                     Navigator.pop(
                                                                         context);
                                                                     model.uploadIncomeDocument(
                                                                         DocumentTypeEnum
                                                                             .GALLERY);
-                                                                  }, onCancel:
+                                                                  }, onCancelled:
                                                                           () {
                                                                     Navigator.pop(
                                                                         context);
-                                                                  });
+                                                                  },
+                                                                      title: S
+                                                                          .of(context)
+                                                                          .pleaseSelectYourAction);
                                                                 }
                                                               : () {
                                                                   model
@@ -305,31 +304,30 @@ class UploadDocumentsPageView
                                                         return InkWell(
                                                           onTap: !(isUploaded!)
                                                               ? () async {
-                                                                  UploadDocumentBottomSheet.show(
+                                                                  UploadDocumentSelectionWidget.show(
                                                                       context,
-                                                                      title: S
-                                                                          .of(
-                                                                              context)
-                                                                          .pleaseSelectYourAction,
-                                                                      onTakePhoto:
+                                                                      onCameraTap:
                                                                           () {
                                                                     Navigator.pop(
                                                                         context);
                                                                     model.uploadAddressDocument(
                                                                         DocumentTypeEnum
                                                                             .CAMERA);
-                                                                  }, uploadDocument:
+                                                                  }, onUploadDocumentTap:
                                                                           () {
                                                                     Navigator.pop(
                                                                         context);
                                                                     model.uploadAddressDocument(
                                                                         DocumentTypeEnum
                                                                             .GALLERY);
-                                                                  }, onCancel:
+                                                                  }, onCancelled:
                                                                           () {
                                                                     Navigator.pop(
                                                                         context);
-                                                                  });
+                                                                  },
+                                                                      title: S
+                                                                          .of(context)
+                                                                          .pleaseSelectYourAction);
                                                                 }
                                                               : () {
                                                                   model
@@ -462,15 +460,15 @@ class UploadDocumentsPageView
                                                                 return InkWell(
                                                                   onTap: !(isUploaded!)
                                                                       ? () async {
-                                                                          UploadDocumentBottomSheet.show(context, title: S.of(context).pleaseSelectYourAction, onTakePhoto:
+                                                                          UploadDocumentSelectionWidget.show(context, title: S.of(context).pleaseSelectYourAction, onCameraTap:
                                                                               () {
                                                                             Navigator.pop(context);
                                                                             model.uploadAdditionalNationalityDocument(DocumentTypeEnum.CAMERA);
-                                                                          }, uploadDocument:
+                                                                          }, onUploadDocumentTap:
                                                                               () {
                                                                             Navigator.pop(context);
                                                                             model.uploadAdditionalNationalityDocument(DocumentTypeEnum.GALLERY);
-                                                                          }, onCancel:
+                                                                          }, onCancelled:
                                                                               () {
                                                                             Navigator.pop(context);
                                                                           });
