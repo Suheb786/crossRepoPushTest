@@ -77,7 +77,9 @@ class FatcaUSRelevantW8AddressDetailsPageView
                             .color,
                         elevation: 2,
                         margin: EdgeInsets.zero,
-                        shadowColor: AppColor.black.withOpacity(0.32),
+                        shadowColor: Theme.of(context)
+                            .primaryColorDark
+                            .withOpacity(0.32),
                         child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
@@ -108,29 +110,25 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                     controller: model.countryController,
                                     key: model.countryKey,
                                     readOnly: true,
+                                    onPressed: () {
+                                      CountryDialog.show(context,
+                                          title: S.of(context).taxCountrySmall,
+                                          onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: (value) {
+                                        Navigator.pop(context);
+                                        model.countryController.text = value;
+                                        model.isValid();
+                                      });
+                                    },
                                     suffixIcon: (value, data) {
-                                      return InkWell(
-                                        onTap: () async {
-                                          CountryDialog.show(context,
-                                              title:
-                                                  S.of(context).taxCountrySmall,
-                                              onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.countryController.text =
-                                                value;
-                                            model.isValid();
-                                          });
-                                        },
-                                        child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow,
-                                                color: AppColor.dark_gray_1)),
-                                      );
+                                      return Container(
+                                          height: 16,
+                                          width: 16,
+                                          padding: EdgeInsets.only(right: 8),
+                                          child: AppSvg.asset(
+                                              AssetUtils.downArrow,
+                                              color: AppColor.dark_gray_1));
                                     },
                                   ),
                                   SizedBox(
@@ -142,29 +140,27 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                     controller: model.stateController,
                                     key: model.stateKey,
                                     readOnly: true,
+                                    onPressed: () {
+                                      StateCityDialog.show(context,
+                                          title: S.of(context).stateSmall,
+                                          onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: (value) {
+                                        Navigator.pop(context);
+                                        model.stateController.text = value;
+                                        model.isValid();
+                                      },
+                                          stateCityTypeEnum:
+                                              StateCityTypeEnum.STATE);
+                                    },
                                     suffixIcon: (value, data) {
-                                      return InkWell(
-                                        onTap: () async {
-                                          StateCityDialog.show(context,
-                                              title: S.of(context).stateSmall,
-                                              onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.stateController.text = value;
-                                            model.isValid();
-                                          },
-                                              stateCityTypeEnum:
-                                                  StateCityTypeEnum.STATE);
-                                        },
-                                        child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow,
-                                                color: AppColor.dark_gray_1)),
-                                      );
+                                      return Container(
+                                          height: 16,
+                                          width: 16,
+                                          padding: EdgeInsets.only(right: 8),
+                                          child: AppSvg.asset(
+                                              AssetUtils.downArrow,
+                                              color: AppColor.dark_gray_1));
                                     },
                                   ),
                                   SizedBox(
@@ -176,29 +172,27 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                     controller: model.cityController,
                                     key: model.cityKey,
                                     readOnly: true,
+                                    onPressed: () {
+                                      StateCityDialog.show(context,
+                                          title: S.of(context).citySmall,
+                                          onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: (value) {
+                                        Navigator.pop(context);
+                                        model.cityController.text = value;
+                                        model.isValid();
+                                      },
+                                          stateCityTypeEnum:
+                                              StateCityTypeEnum.CITY);
+                                    },
                                     suffixIcon: (value, data) {
-                                      return InkWell(
-                                        onTap: () async {
-                                          StateCityDialog.show(context,
-                                              title: S.of(context).citySmall,
-                                              onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.cityController.text = value;
-                                            model.isValid();
-                                          },
-                                              stateCityTypeEnum:
-                                                  StateCityTypeEnum.CITY);
-                                        },
-                                        child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow,
-                                                color: AppColor.dark_gray_1)),
-                                      );
+                                      return Container(
+                                          height: 16,
+                                          width: 16,
+                                          padding: EdgeInsets.only(right: 8),
+                                          child: AppSvg.asset(
+                                              AssetUtils.downArrow,
+                                              color: AppColor.dark_gray_1));
                                     },
                                   ),
                                   SizedBox(

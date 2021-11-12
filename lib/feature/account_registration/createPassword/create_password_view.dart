@@ -14,7 +14,6 @@ import 'package:neo_bank/ui/molecules/register/password_hint_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -154,7 +153,10 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                     .eightCharacters,
                                                 backgroundColor: !model
                                                         .minimumEightCharacters
-                                                    ? AppColor.gray1
+                                                    ? Theme.of(context)
+                                                        .inputDecorationTheme
+                                                        .hintStyle!
+                                                        .color
                                                     : Theme.of(context)
                                                         .primaryColorDark,
                                                 isValid: model
@@ -164,29 +166,38 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                 label: S
                                                     .of(context)
                                                     .oneUpperCaseLetter,
-                                                backgroundColor:
-                                                    !model.hasUpperCase
-                                                        ? AppColor.gray1
-                                                        : Theme.of(context)
-                                                            .primaryColorDark,
+                                                backgroundColor: !model
+                                                        .hasUpperCase
+                                                    ? Theme.of(context)
+                                                        .inputDecorationTheme
+                                                        .hintStyle!
+                                                        .color
+                                                    : Theme.of(context)
+                                                        .primaryColorDark,
                                                 isValid: model.hasUpperCase,
                                               ),
                                               PasswordHintWidget(
                                                 label: S.of(context).oneNumber,
-                                                backgroundColor:
-                                                    !model.containsDigit
-                                                        ? AppColor.gray1
-                                                        : Theme.of(context)
-                                                            .primaryColorDark,
+                                                backgroundColor: !model
+                                                        .containsDigit
+                                                    ? Theme.of(context)
+                                                        .inputDecorationTheme
+                                                        .hintStyle!
+                                                        .color
+                                                    : Theme.of(context)
+                                                        .primaryColorDark,
                                                 isValid: model.containsDigit,
                                               ),
                                               PasswordHintWidget(
                                                 label: S.of(context).oneSymbol,
-                                                backgroundColor:
-                                                    !model.hasSymbol
-                                                        ? AppColor.gray1
-                                                        : Theme.of(context)
-                                                            .primaryColorDark,
+                                                backgroundColor: !model
+                                                        .hasSymbol
+                                                    ? Theme.of(context)
+                                                        .inputDecorationTheme
+                                                        .hintStyle!
+                                                        .color
+                                                    : Theme.of(context)
+                                                        .primaryColorDark,
                                                 isValid: model.hasSymbol,
                                               ),
                                             ],

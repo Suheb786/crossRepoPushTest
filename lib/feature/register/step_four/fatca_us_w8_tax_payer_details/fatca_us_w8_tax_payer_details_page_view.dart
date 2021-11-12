@@ -79,7 +79,9 @@ class FatcaUSW8TaxPayersDetailsPageView
                             .copyWith(color: AppColor.white)
                             .color,
                         margin: EdgeInsets.zero,
-                        shadowColor: AppColor.black.withOpacity(0.32),
+                        shadowColor: Theme.of(context)
+                            .primaryColorDark
+                            .withOpacity(0.32),
                         child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
@@ -99,31 +101,29 @@ class FatcaUSW8TaxPayersDetailsPageView
                                               model.taxPayerTypeController,
                                           key: model.taxPayerTypeKey,
                                           readOnly: true,
+                                          onPressed: () {
+                                            TaxPayerDialog.show(context,
+                                                taxPayerTypeEnum:
+                                                    TaxPayerTypeEnum.W8,
+                                                onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: (value) {
+                                              Navigator.pop(context);
+                                              model.updateTaxPayerTypeField(
+                                                  value);
+                                              model.isValid();
+                                            });
+                                          },
                                           suffixIcon: (value, data) {
-                                            return InkWell(
-                                              onTap: () async {
-                                                TaxPayerDialog.show(context,
-                                                    taxPayerTypeEnum:
-                                                        TaxPayerTypeEnum.W8,
-                                                    onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (value) {
-                                                  Navigator.pop(context);
-                                                  model.updateTaxPayerTypeField(
-                                                      value);
-                                                  model.isValid();
-                                                });
-                                              },
-                                              child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding:
-                                                      EdgeInsets.only(right: 8),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.downArrow,
-                                                      color: AppColor
-                                                          .dark_gray_1)),
-                                            );
+                                            return Container(
+                                                height: 16,
+                                                width: 16,
+                                                padding:
+                                                    EdgeInsets.only(right: 8),
+                                                child: AppSvg.asset(
+                                                    AssetUtils.downArrow,
+                                                    color:
+                                                        AppColor.dark_gray_1));
                                           },
                                         ),
                                         SizedBox(
@@ -199,44 +199,40 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                           key: model
                                                               .beneficialCountryKey,
                                                           readOnly: true,
+                                                          onPressed: () {
+                                                            CountryDialog.show(
+                                                                context,
+                                                                title: S
+                                                                    .of(context)
+                                                                    .beneficialOwnerIsAResidenceOf,
+                                                                onDismissed:
+                                                                    () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            }, onSelected:
+                                                                    (value) {
+                                                              Navigator.pop(
+                                                                  context);
+                                                              model
+                                                                  .beneficialCountryController
+                                                                  .text = value;
+                                                              model.isValid();
+                                                            });
+                                                          },
                                                           suffixIcon:
                                                               (value, data) {
-                                                            return InkWell(
-                                                              onTap: () async {
-                                                                CountryDialog.show(
-                                                                    context,
-                                                                    title: S
-                                                                        .of(
-                                                                            context)
-                                                                        .beneficialOwnerIsAResidenceOf,
-                                                                    onDismissed:
-                                                                        () {
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                }, onSelected:
-                                                                        (value) {
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                  model.beneficialCountryController
-                                                                          .text =
-                                                                      value;
-                                                                  model
-                                                                      .isValid();
-                                                                });
-                                                              },
-                                                              child: Container(
-                                                                  height: 16,
-                                                                  width: 16,
-                                                                  padding: EdgeInsets
-                                                                      .only(
-                                                                          right:
-                                                                              8),
-                                                                  child: AppSvg.asset(
-                                                                      AssetUtils
-                                                                          .downArrow,
-                                                                      color: AppColor
-                                                                          .dark_gray_1)),
-                                                            );
+                                                            return Container(
+                                                                height: 16,
+                                                                width: 16,
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        right:
+                                                                            8),
+                                                                child: AppSvg.asset(
+                                                                    AssetUtils
+                                                                        .downArrow,
+                                                                    color: AppColor
+                                                                        .dark_gray_1));
                                                           },
                                                         ),
                                                         SizedBox(

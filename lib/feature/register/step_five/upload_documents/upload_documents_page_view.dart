@@ -83,7 +83,9 @@ class UploadDocumentsPageView
                                 .copyWith(color: AppColor.white)
                                 .color,
                             margin: EdgeInsets.zero,
-                            shadowColor: AppColor.black.withOpacity(0.32),
+                            shadowColor: Theme.of(context)
+                                .primaryColorDark
+                                .withOpacity(0.32),
                             child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),
@@ -150,6 +152,11 @@ class UploadDocumentsPageView
                                                       hintTextColor:
                                                           Theme.of(context)
                                                               .primaryColorDark,
+                                                      textFieldBorderColor:
+                                                          Theme.of(context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color,
                                                       textColor:
                                                           Theme.of(context)
                                                               .primaryColorDark,
@@ -282,6 +289,11 @@ class UploadDocumentsPageView
                                                       key: model
                                                           .addressDocumentKey,
                                                       readOnly: true,
+                                                      textFieldBorderColor:
+                                                          Theme.of(context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color,
                                                       hintTextColor:
                                                           Theme.of(context)
                                                               .primaryColorDark,
@@ -432,6 +444,12 @@ class UploadDocumentsPageView
                                                                   .additionalNationalityController,
                                                               key: model
                                                                   .additionalNationalityKey,
+                                                              textFieldBorderColor:
+                                                                  Theme.of(
+                                                                          context)
+                                                                      .accentTextTheme
+                                                                      .bodyText1!
+                                                                      .color,
                                                               readOnly: true,
                                                               hintTextColor:
                                                                   AppColor

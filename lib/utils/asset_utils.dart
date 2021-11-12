@@ -49,6 +49,9 @@ class AssetUtils {
   static const String sendMoney = svg + "send_money.svg";
   static const String leftArrow = svg + "left_arrow.svg";
   static const String biometricIcon = svg + "biometric_icon.svg";
+  static const String sun = svg + "sun.svg";
+  static const String mic = svg + "mic.svg";
+  static const String headPhone = svg + "headphone.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

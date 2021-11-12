@@ -98,32 +98,32 @@ class JobAndIncomePageView
                                               model.occupationController,
                                           readOnly: true,
                                           key: model.occupationKey,
+                                          onPressed: () {
+                                            OccupationDialog.show(context,
+                                                employmentStatusEnum:
+                                                    model.employmentStatusEnum,
+                                                title: S
+                                                    .of(context)
+                                                    .occupationSmall,
+                                                onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: (data) {
+                                              Navigator.pop(context);
+                                              model.occupationController.text =
+                                                  data;
+                                              model.isValid();
+                                            });
+                                          },
                                           suffixIcon: (value, data) {
-                                            return InkWell(
-                                              onTap: () async {
-                                                OccupationDialog.show(context,
-                                                    employmentStatusEnum: model
-                                                        .employmentStatusEnum,
-                                                    title: S
-                                                        .of(context)
-                                                        .occupationSmall,
-                                                    onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (data) {
-                                                  Navigator.pop(context);
-                                                  model.occupationController
-                                                      .text = data;
-                                                  model.isValid();
-                                                });
-                                              },
-                                              child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding:
-                                                      EdgeInsets.only(right: 8),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.downArrow,color: AppColor.dark_gray_1)),
-                                            );
+                                            return Container(
+                                                height: 16,
+                                                width: 16,
+                                                padding:
+                                                    EdgeInsets.only(right: 8),
+                                                child: AppSvg.asset(
+                                                    AssetUtils.downArrow,
+                                                    color:
+                                                        AppColor.dark_gray_1));
                                           },
                                         ),
                                         SizedBox(
@@ -147,34 +147,33 @@ class JobAndIncomePageView
                                               model.businessTypeController,
                                           readOnly: true,
                                           key: model.businessTypeKey,
+                                          onPressed: () {
+                                            OccupationDialog.show(context,
+                                                employmentStatusEnum:
+                                                    model.employmentStatusEnum,
+                                                title:
+                                                    S.of(context).businessType,
+                                                onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: (data) {
+                                              Navigator.pop(context);
+                                              model.businessTypeController
+                                                  .text = data;
+                                              model
+                                                  .updateBusinessTypeOtherVisibility();
+                                              model.isValid();
+                                            });
+                                          },
                                           suffixIcon: (value, data) {
-                                            return InkWell(
-                                              onTap: () async {
-                                                OccupationDialog.show(context,
-                                                    employmentStatusEnum: model
-                                                        .employmentStatusEnum,
-                                                    title: S
-                                                        .of(context)
-                                                        .businessType,
-                                                    onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (data) {
-                                                  Navigator.pop(context);
-                                                  model.businessTypeController
-                                                      .text = data;
-                                                  model
-                                                      .updateBusinessTypeOtherVisibility();
-                                                  model.isValid();
-                                                });
-                                              },
-                                              child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding:
-                                                      EdgeInsets.only(right: 8),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.downArrow,color: AppColor.dark_gray_1)),
-                                            );
+                                            return Container(
+                                                height: 16,
+                                                width: 16,
+                                                padding:
+                                                    EdgeInsets.only(right: 8),
+                                                child: AppSvg.asset(
+                                                    AssetUtils.downArrow,
+                                                    color:
+                                                        AppColor.dark_gray_1));
                                           },
                                         ),
                                         SizedBox(
@@ -264,28 +263,27 @@ class JobAndIncomePageView
                                     controller: model.employerCountryController,
                                     readOnly: true,
                                     key: model.employerCountryKey,
+                                    onPressed: () {
+                                      CountryDialog.show(context,
+                                          title: S
+                                              .of(context)
+                                              .employerCountrySmall,
+                                          onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: (value) {
+                                        Navigator.pop(context);
+                                        model.updateEmployerCountry(value);
+                                        model.isValid();
+                                      });
+                                    },
                                     suffixIcon: (value, data) {
-                                      return InkWell(
-                                        onTap: () async {
-                                          CountryDialog.show(context,
-                                              title: S
-                                                  .of(context)
-                                                  .employerCountrySmall,
-                                              onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.updateEmployerCountry(value);
-                                            model.isValid();
-                                          });
-                                        },
-                                        child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow,color: AppColor.dark_gray_1)),
-                                      );
+                                      return Container(
+                                          height: 16,
+                                          width: 16,
+                                          padding: EdgeInsets.only(right: 8),
+                                          child: AppSvg.asset(
+                                              AssetUtils.downArrow,
+                                              color: AppColor.dark_gray_1));
                                     },
                                   ),
                                   SizedBox(

@@ -234,6 +234,7 @@ class AppTextFieldState extends State<AppTextField> {
                       controller: widget.controller,
                       validator: this.widget.validator,
                       onSaved: this.widget.onSaved,
+                      onTap: this.widget.onPressed,
                       onFieldSubmitted: this.widget.onFieldSubmitted,
                       onChanged: (value) {
                         setState(() {});

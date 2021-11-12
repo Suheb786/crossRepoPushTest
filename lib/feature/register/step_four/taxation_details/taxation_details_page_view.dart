@@ -123,7 +123,9 @@ class TaxationDetailsPageView
                             .copyWith(color: AppColor.white)
                             .color,
                         margin: EdgeInsets.zero,
-                        shadowColor: AppColor.black.withOpacity(0.32),
+                        shadowColor: Theme.of(context)
+                            .primaryColorDark
+                            .withOpacity(0.32),
                         child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
@@ -174,33 +176,30 @@ class TaxationDetailsPageView
                                               model.countrySelectorController,
                                           key: model.countrySelectorKey,
                                           readOnly: true,
+                                          onPressed: () {
+                                            CountryDialog.show(context,
+                                                title: S
+                                                    .of(context)
+                                                    .taxCountrySmall,
+                                                onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: (value) {
+                                              Navigator.pop(context);
+                                              model.countrySelectorController
+                                                  .text = value;
+                                              model.isValid();
+                                            });
+                                          },
                                           suffixIcon: (value, data) {
-                                            return InkWell(
-                                              onTap: () async {
-                                                CountryDialog.show(context,
-                                                    title: S
-                                                        .of(context)
-                                                        .taxCountrySmall,
-                                                    onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (value) {
-                                                  Navigator.pop(context);
-                                                  model
-                                                      .countrySelectorController
-                                                      .text = value;
-                                                  model.isValid();
-                                                });
-                                              },
-                                              child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding:
-                                                      EdgeInsets.only(right: 8),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.downArrow,
-                                                      color: AppColor
-                                                          .dark_gray_1)),
-                                            );
+                                            return Container(
+                                                height: 16,
+                                                width: 16,
+                                                padding:
+                                                    EdgeInsets.only(right: 8),
+                                                child: AppSvg.asset(
+                                                    AssetUtils.downArrow,
+                                                    color:
+                                                        AppColor.dark_gray_1));
                                           },
                                         ),
                                       );
@@ -229,31 +228,28 @@ class TaxationDetailsPageView
                                                   model.relationShipController,
                                               key: model.relationShipWithPepKey,
                                               readOnly: true,
+                                              onPressed: () {
+                                                RelationshipWithPEPDialog.show(
+                                                    context, onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: (value) {
+                                                  Navigator.pop(context);
+                                                  model
+                                                      .updateRelationShipWithPEP(
+                                                          value);
+                                                  model.isValid();
+                                                });
+                                              },
                                               suffixIcon: (enabled, value) {
-                                                return InkWell(
-                                                  onTap: () async {
-                                                    RelationshipWithPEPDialog
-                                                        .show(context,
-                                                            onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    }, onSelected: (value) {
-                                                      Navigator.pop(context);
-                                                      model
-                                                          .updateRelationShipWithPEP(
-                                                              value);
-                                                      model.isValid();
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                      height: 16,
-                                                      width: 16,
-                                                      padding: EdgeInsets.only(
-                                                          right: 8),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils.downArrow,
-                                                          color: AppColor
-                                                              .dark_gray_1)),
-                                                );
+                                                return Container(
+                                                    height: 16,
+                                                    width: 16,
+                                                    padding: EdgeInsets.only(
+                                                        right: 8),
+                                                    child: AppSvg.asset(
+                                                        AssetUtils.downArrow,
+                                                        color: AppColor
+                                                            .dark_gray_1));
                                               },
                                             ),
                                             SizedBox(height: 16),

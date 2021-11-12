@@ -10,6 +10,7 @@ import 'package:neo_bank/feature/register/step_five/review_application/review_ap
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/register/review_application_non_editable_items.dart';
 import 'package:neo_bank/ui/molecules/register/start_over_widget.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_item.dart';
 import 'package:neo_bank/ui/molecules/review_application/review_term_cond_widget.dart';
@@ -89,21 +90,27 @@ class ReviewApplicationPageView
                                     SizedBox(height: 32),
 
                                     ///address details
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).residentCountrySmall,
-                                      details: "Jordan",
+                                      controller:
+                                          model.residentCountryController,
+                                      textInputType: TextInputType.text,
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).homeAddressSmall,
-                                      details: "Queen Rania Al-Abdullah",
+                                      controller: model.homeAddressController,
+                                      textInputType: TextInputType.text,
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).streetAddressSmall,
-                                      details: "Sweilah",
+                                      controller: model.streetAddressController,
+                                      textInputType: TextInputType.text,
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).buildingNameNo,
-                                      details: "W Amman",
+                                      controller:
+                                          model.buildingNameOrNoController,
+                                      textInputType: TextInputType.text,
                                     ),
 
                                     ///permanent address
@@ -115,17 +122,16 @@ class ReviewApplicationPageView
                                         color: AppColor.white_gray,
                                       ),
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).permanentHomeAddress,
-                                      details: "Queen Rania Al-Abdullah",
+                                      controller: model
+                                          .residentPermanentAddressCountryController,
                                     ),
-                                    ReviewApplicationItem(
-                                      title: S.of(context).streetAddressSmall,
-                                      details: "Sweilah",
-                                    ),
-                                    ReviewApplicationItem(
-                                      title: S.of(context).buildingNameNo,
-                                      details: "Walafahah Amman",
+                                    ReviewApplicationEditableItem(
+                                      title: S.of(context).citySmall,
+                                      controller: model
+                                          .residentPermanentAddressCityController,
+                                      textInputType: TextInputType.text,
                                     ),
 
                                     /// personal details
@@ -137,18 +143,23 @@ class ReviewApplicationPageView
                                         color: AppColor.white_gray,
                                       ),
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).spouseName,
-                                      details: "Ameena Rasheed",
+                                      controller: model.spouseNameController,
+                                      textInputType: TextInputType.text,
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).natureSpecialNeeds,
-                                      details: "Movement",
+                                      controller:
+                                          model.specialNeedsPersonController,
+                                      textInputType: TextInputType.text,
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title:
                                           S.of(context).employmentStatusSmall,
-                                      details: "Full-Time Employee",
+                                      controller:
+                                          model.employmentStatusController,
+                                      textInputType: TextInputType.text,
                                     ),
 
                                     ///occupation
@@ -160,42 +171,60 @@ class ReviewApplicationPageView
                                         color: AppColor.white_gray,
                                       ),
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).occupationSmall,
-                                      details: "Senior Executive",
+                                      controller: model.occupationController,
+                                      textInputType: TextInputType.text,
                                     ),
-                                    ReviewApplicationItem(
-                                      title: S.of(context).mainSourceIncome,
-                                      details: "Salary",
-                                    ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title:
                                           S.of(context).mainAnnualIncomeSmall,
-                                      details: "JOD 60,000",
+                                      controller:
+                                          model.mainAnnualIncomeController,
+                                      prefixWidget: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 40.0, bottom: 12),
+                                        child: Text(
+                                          S.of(context).JOD,
+                                          textAlign: TextAlign.end,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
+                                              color: Theme.of(context)
+                                                  .primaryColorDark),
+                                        ),
+                                      ),
+                                      textInputType: TextInputType.number,
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).employerNameSmall,
-                                      details: "Jordan Insurance Company",
+                                      controller: model.employerNameController,
+                                      textInputType: TextInputType.text,
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).employerCountrySmall,
-                                      details: "Jordan",
+                                      controller:
+                                          model.employerCountryController,
+                                      textInputType: TextInputType.text,
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).employerCitySmall,
-                                      details: "Amman",
+                                      controller: model.employerCityController,
+                                      textInputType: TextInputType.text,
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).employerContactSmall,
-                                      details: "+962 79 333 8080",
+                                      controller:
+                                          model.employerContactController,
+                                      textInputType: TextInputType.phone,
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).addIncome1,
-                                      details: "Rent Income JOD 25,000",
+                                      initialValue: "Rent Income JOD 25,000",
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).addIncome2,
-                                      details: "Investments JOD 75,000",
+                                      initialValue: "Investments JOD 75,000",
                                     ),
 
                                     ///purpose of account opening
@@ -207,31 +236,63 @@ class ReviewApplicationPageView
                                         color: AppColor.white_gray,
                                       ),
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S.of(context).purposeOfAccount,
-                                      details: "Salary",
+                                      controller: model
+                                          .purposeOfAccountOpeningController,
+                                      textInputType: TextInputType.text,
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S
                                           .of(context)
                                           .typeOfTransactionsSmall('1'),
-                                      details: "Transfers",
+                                      initialValue: "Transfers",
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title: S
                                           .of(context)
                                           .typeOfTransactionsSmall('2'),
-                                      details: "Cash Deposit",
+                                      initialValue: "Cash Deposit",
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title:
                                           S.of(context).expMonthlyTransactions,
-                                      details: "JOD 12,000",
+                                      controller: model
+                                          .expectedMonthlyTransactionsController,
+                                      prefixWidget: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 40.0, bottom: 12),
+                                        child: Text(
+                                          S.of(context).JOD,
+                                          textAlign: TextAlign.end,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
+                                              color: Theme.of(context)
+                                                  .primaryColorDark),
+                                        ),
+                                      ),
+                                      textInputType: TextInputType.number,
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationEditableItem(
                                       title:
                                           S.of(context).expAnnualTransactions,
-                                      details: "JOD 102,000",
+                                      controller: model
+                                          .expectedAnnualTransactionsController,
+                                      prefixWidget: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 40.0, bottom: 12),
+                                        child: Text(
+                                          S.of(context).JOD,
+                                          textAlign: TextAlign.end,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
+                                              color: Theme.of(context)
+                                                  .primaryColorDark),
+                                        ),
+                                      ),
+                                      textInputType: TextInputType.number,
                                     ),
 
                                     ///Tax and PEP questions
@@ -243,38 +304,38 @@ class ReviewApplicationPageView
                                         color: AppColor.white_gray,
                                       ),
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationNonEditableItem(
                                       title: S.of(context).areYouUSCitizen,
-                                      details: "No",
+                                      value: "No",
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationNonEditableItem(
                                       title: S.of(context).areYouUSTaxResident,
-                                      details: "No",
+                                      value: "No",
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationNonEditableItem(
                                       title: S.of(context).wereBornInUS,
-                                      details: "No",
+                                      value: "No",
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationNonEditableItem(
                                       title: S.of(context).areYouTaxResidentQ,
-                                      details: "No",
+                                      value: "No",
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationNonEditableItem(
                                       title:
                                           S.of(context).areYouAnyFirstDegreeQ,
-                                      details: "Yes",
+                                      value: "Yes",
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationNonEditableItem(
                                       title: S.of(context).relationshipWithPEP,
-                                      details: "Father",
+                                      value: "Father",
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationNonEditableItem(
                                       title: S.of(context).personsName,
-                                      details: "Salah Mawajdeh",
+                                      value: "Salah Mawajdeh",
                                     ),
-                                    ReviewApplicationItem(
+                                    ReviewApplicationNonEditableItem(
                                       title: S.of(context).personsRole,
-                                      details: "Minister of Health",
+                                      value: "Minister of Health",
                                     ),
                                     Padding(
                                       padding:

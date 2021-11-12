@@ -18,6 +18,11 @@ class NotifyPageState
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(BuildContext context, NotifyPageViewModel model) {
     return NotifyPageView(provideBase());
   }

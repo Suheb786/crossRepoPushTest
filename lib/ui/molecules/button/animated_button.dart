@@ -103,6 +103,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
                   color: widget.buttonColor ?? Colors.transparent,
                   borderRadius: BorderRadius.circular(widget.buttonHeight! / 2),
                   border: Border.all(
+                      width: 2,
                       color: widget.borderColor != null
                           ? widget.borderColor!
                           : Theme.of(context)
@@ -143,4 +144,3 @@ class _AnimatedButtonState extends State<AnimatedButton>
     super.dispose();
   }
 }
-

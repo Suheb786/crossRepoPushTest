@@ -72,7 +72,9 @@ class FatcaUSRelevantW8PageView
                             .cardTheme
                             .copyWith(color: AppColor.white)
                             .color,
-                        shadowColor: AppColor.black.withOpacity(0.32),
+                        shadowColor: Theme.of(context)
+                            .primaryColorDark
+                            .withOpacity(0.32),
                         child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),

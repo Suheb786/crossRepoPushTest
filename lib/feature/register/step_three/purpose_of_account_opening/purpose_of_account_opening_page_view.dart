@@ -70,7 +70,9 @@ class PurposeOfAccountOpeningPageView
                             .copyWith(color: AppColor.white)
                             .color,
                         margin: EdgeInsets.zero,
-                        shadowColor: AppColor.black.withOpacity(0.32),
+                        shadowColor: Theme.of(context)
+                            .primaryColorDark
+                            .withOpacity(0.32),
                         child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
@@ -86,27 +88,25 @@ class PurposeOfAccountOpeningPageView
                                         model.purposeOfAccountOpeningController,
                                     key: model.purposeOfAccountOpeningKey,
                                     readOnly: true,
+                                    onPressed: () {
+                                      PurposeOfAccountOpeningDialog.show(
+                                          context, onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: (value) {
+                                        Navigator.pop(context);
+                                        model.updatePurposeOfAccountOpening(
+                                            value);
+                                        model.isValid();
+                                      });
+                                    },
                                     suffixIcon: (value, data) {
-                                      return InkWell(
-                                        onTap: () async {
-                                          PurposeOfAccountOpeningDialog.show(
-                                              context, onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.updatePurposeOfAccountOpening(
-                                                value);
-                                            model.isValid();
-                                          });
-                                        },
-                                        child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow,
-                                                color: AppColor.dark_gray_1)),
-                                      );
+                                      return Container(
+                                          height: 16,
+                                          width: 16,
+                                          padding: EdgeInsets.only(right: 8),
+                                          child: AppSvg.asset(
+                                              AssetUtils.downArrow,
+                                              color: AppColor.dark_gray_1));
                                     },
                                   ),
                                   SizedBox(
