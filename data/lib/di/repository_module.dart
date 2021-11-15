@@ -6,13 +6,24 @@ import 'package:data/repository/register/register_repository_impl.dart';
 import 'package:data/repository/register/register_step_four_repository_impl.dart';
 import 'package:data/repository/register/register_step_three_repository_impl.dart';
 import 'package:data/repository/upload_document/upload_document_repository_impl.dart';
+import 'package:data/repository/user/user_repository_impl.dart';
 import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
 import 'package:domain/repository/register/register_repository.dart';
 import 'package:domain/repository/register/register_step_four_repository.dart';
 import 'package:domain/repository/register/register_step_three_repository.dart';
 import 'package:domain/repository/upload_document/upload_document_repository.dart';
+import 'package:domain/repository/user/user_repository.dart';
 import 'package:riverpod/riverpod.dart';
+
+/// inject [UserRepository] provider
+var userRepoProvider = Provider<UserRepository>(
+  (ref) => UserRepositoryImpl(
+    ref.read(userRemoteDSProvider),
+    ref.read(userLocalDSProvider),
+    ref.read(dioProvider),
+  ),
+);
 
 /// inject [CountryRepository] provider
 var countryRepoProvider = Provider<CountryRepository>(
