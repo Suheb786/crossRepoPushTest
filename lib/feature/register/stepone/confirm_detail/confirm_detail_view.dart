@@ -207,11 +207,11 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         height: 16,
                                       ),
                                       AppTextField(
-                                        labelText: S.of(context).gender,
-                                        hintText: S.of(context).genderHint,
+                                        labelText: S.of(context).expiryDate,
+                                        hintText: S.of(context).dobHint,
                                         inputType: TextInputType.text,
-                                        controller: model.genderController,
-                                        key: model.genderKey,
+                                        controller: model.expiryDateController,
+                                        key: model.expiryDateKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
                                       ),
@@ -219,11 +219,15 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         height: 16,
                                       ),
                                       AppTextField(
-                                        labelText: S.of(context).motherName,
-                                        hintText: S.of(context).motherNameHint,
+                                        labelText: S
+                                            .of(context)
+                                            .issuingPlace
+                                            .toUpperCase(),
+                                        hintText: S.of(context).pleaseEnter,
                                         inputType: TextInputType.text,
-                                        controller: model.motherNameController,
-                                        key: model.motherNameKey,
+                                        controller:
+                                            model.issuingPlaceController,
+                                        key: model.issuingPlaceKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
                                       ),
@@ -240,6 +244,31 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         key: model.legalDocumentKey,
                                         onChanged: (value) =>
                                             model.validateDetails(),
+                                        suffixIcon: (isvalid, value) {
+                                          return InkWell(
+                                              onTap: () {
+                                                DatePicker.show(context,
+                                                    onSelected: (date) {
+                                                  model.expiryDateController
+                                                          .text =
+                                                      TimeUtils.getFormattedDOB(
+                                                          date);
+                                                  model.validateDetails();
+                                                }, onCancelled: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                    title: S
+                                                        .of(context)
+                                                        .expiryDate);
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.calendar)));
+                                        },
                                       ),
                                       SizedBox(
                                         height: 16,
@@ -342,6 +371,60 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         height: MediaQuery.of(context)
                                             .viewInsets
                                             .bottom,
+                                      ),
+                                      SizedBox(
+                                        height: 24,
+                                      ),
+                                      TextButton(
+                                          onPressed: () {},
+                                          child: Text(
+                                            S.of(context).scanIDAgain,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                                color: AppColor.vivid_orange),
+                                          )),
+                                      SizedBox(
+                                        height: 34,
+                                      ),
+                                      Row(
+                                        children: [
+                                          AppStreamBuilder<bool>(
+                                              stream: model
+                                                  .declarationSelectedStream,
+                                              initialData: false,
+                                              dataBuilder:
+                                                  (context, isChecked) {
+                                                return InkWell(
+                                                  onTap: () {
+                                                    model
+                                                        .updateDeclarationValue(
+                                                            !(isChecked!));
+                                                    model.validateDetails();
+                                                  },
+                                                  child: isChecked == false
+                                                      ? AppSvg.asset(
+                                                          AssetUtils.ellipse)
+                                                      : AppSvg.asset(
+                                                          AssetUtils.checkBox),
+                                                );
+                                              }),
+                                          SizedBox(
+                                            width: 16,
+                                          ),
+                                          Expanded(
+                                            child: Text(
+                                              S
+                                                  .of(context)
+                                                  .confirmDetailsConfirmation,
+                                              style: TextStyle(
+                                                  color: AppColor
+                                                      .very_light_gray_white,
+                                                  fontWeight: FontWeight.w600,
+                                                  fontSize: 12),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                       SizedBox(
                                         height: 24,

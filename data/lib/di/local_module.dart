@@ -1,5 +1,6 @@
 import 'package:data/db/floor/database_properties.dart';
 import 'package:data/db/floor/floor_db_service.dart';
+import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/source/country/country_datasource.dart';
 import 'package:data/source/country/local/country_local_ds_impl.dart';
 import 'package:data/source/enter_address/home_address_dialog_ds.dart';
@@ -36,3 +37,6 @@ var uploadDocumentDataSourceProvider =
 
 var homeAddressDialogDataSourceProvider =
     Provider<HomeAddressDialogDS>((ref) => HomeAddressDialogDSImpl());
+
+var deviceInfoHelperProvider =
+    Provider<DeviceInfoHelper>((ref) => DeviceInfoHelper());

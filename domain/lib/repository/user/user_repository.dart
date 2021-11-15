@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/database_error.dart';
+import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/user.dart';
 
 abstract class UserRepository {
@@ -14,4 +15,11 @@ abstract class UserRepository {
 
   /// Logout current user
   Future<Either<DatabaseError, bool>> logoutUser();
+
+  /// Check email is available or not
+  Future<Either<NetworkError, String>> checkUserName({String? email});
+
+  /// Login user with syste
+  Future<Either<NetworkError, bool>> loginUser(
+      {required String email, required String password});
 }

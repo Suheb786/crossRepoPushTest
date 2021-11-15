@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class StartOverWidget extends StatelessWidget {
@@ -14,7 +16,8 @@ class StartOverWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
       decoration: BoxDecoration(
-          color: AppColor.vividYellow, borderRadius: BorderRadius.circular(16)),
+          color: AppColor.strong_violet,
+          borderRadius: BorderRadius.circular(16)),
       child: Column(
         children: [
           Text(
@@ -23,39 +26,39 @@ class StartOverWidget extends StatelessWidget {
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 fontFamily: 'Montserrat',
-                color: Theme.of(context).primaryColorDark),
+                color: AppColor.white),
           ),
           SizedBox(
             height: 24,
           ),
-          // Container(
-          //   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
-          //   decoration: BoxDecoration(
-          //       borderRadius: BorderRadius.circular(8),
-          //       border: Border.all(color: AppColor.vividYellow, width: 1)),
-          //   child: Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       Text(
-          //         labelText!,
-          //         style: TextStyle(
-          //             fontSize: 14,
-          //             fontWeight: FontWeight.w600,
-          //             fontFamily: 'Montserrat',
-          //             color: AppColor.vivid_orange),
-          //       ),
-          //       InkWell(
-          //         onTap: () {
-          //           onTap?.call();
-          //         },
-          //         child: Container(
-          //             height: 16,
-          //             width: 16,
-          //             child: AppSvg.asset(AssetUtils.restart)),
-          //       )
-          //     ],
-          //   ),
-          // )
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: AppColor.soft_violet, width: 1)),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  labelText!,
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Montserrat',
+                      color: AppColor.vivid_orange),
+                ),
+                InkWell(
+                  onTap: () {
+                    onTap?.call();
+                  },
+                  child: Container(
+                      height: 16,
+                      width: 16,
+                      child: AppSvg.asset(AssetUtils.restart)),
+                )
+              ],
+            ),
+          )
         ],
       ),
     );

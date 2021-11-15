@@ -33,8 +33,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    AppSvg.asset(AssetUtils.biometricIcon,
-                        color: AppColor.dark_gray_1),
+                    AppSvg.asset(AssetUtils.biometricIcon),
                     Center(
                       child: Padding(
                         padding: EdgeInsets.only(top: 41),
@@ -44,7 +43,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w600,
-                              color: Theme.of(context).primaryColorDark),
+                              color: AppColor.very_dark_gray),
                         ),
                       ),
                     ),
@@ -56,7 +55,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
-                              color: Theme.of(context).primaryColorDark),
+                              color: AppColor.gray_black),
                         ),
                       ),
                     ),
@@ -66,19 +65,21 @@ class BiometricLoginDialogView extends StatelessWidget {
                         padding: EdgeInsets.all(18),
                         width: double.maxFinite,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color!,
-                          boxShadow: [
-                            BoxShadow(
-                                color: AppColor.black.withOpacity(0.32),
-                                blurRadius: 12,
-                                spreadRadius: -4,
-                                offset: Offset(0, 12)),
-                          ],
-                        ),
+                            borderRadius: BorderRadius.circular(8),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: AppColor.black.withOpacity(0.16),
+                                  blurRadius: 12,
+                                  spreadRadius: -4,
+                                  offset: Offset(0, 12)),
+                            ],
+                            gradient: LinearGradient(
+                                colors: [
+                                  AppColor.light_blue1,
+                                  AppColor.soft_red
+                                ],
+                                begin: Alignment.topRight,
+                                end: Alignment.bottomLeft)),
                         child: Center(
                           child: Text(S.of(context).allowBiometric,
                               style: TextStyle(
@@ -100,7 +101,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                             style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
-                                color: AppColor.brightBlue),
+                                color: AppColor.vivid_orange),
                           ),
                         ),
                       ),

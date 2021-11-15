@@ -1,3 +1,4 @@
+import 'package:data/di/local_module.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:data/source/register/register_datasource.dart';
@@ -45,8 +46,8 @@ final apiServiceProvider = Provider<ApiService>(
 );
 
 /// User remoteDS provider
-final userRemoteDSProvider = Provider<UserRemoteDS>(
-    (ref) => UserRemoteDSImpl(ref.read(apiServiceProvider)));
+final userRemoteDSProvider = Provider<UserRemoteDS>((ref) => UserRemoteDSImpl(
+    ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
 final registerRemoteDS = Provider<RegisterRemoteDataSource>(
   (ref) => RegisterRemoteDataSourceImpl(),

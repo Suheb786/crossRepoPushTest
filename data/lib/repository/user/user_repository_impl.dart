@@ -2,9 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:data/db/floor/utils/safe_db_call.dart';
 import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/network/api_interceptor.dart';
+import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/error/database_error.dart';
+import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/repository/user/user_repository.dart';
 
@@ -67,6 +69,29 @@ class UserRepositoryImpl extends UserRepository {
     return result.fold(
       (l) => Left(l),
       (r) => Right(tokenUser),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, String>> checkUserName({String? email}) async {
+    final result = await safeApiCall(
+      _remoteDS.checkUserName(email: email!),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> loginUser(
+      {required String email, required String password}) async {
+    final result = await safeApiCall(
+      _remoteDS.loginUser(email: email, password: password),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(true),
     );
   }
 }

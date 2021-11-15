@@ -60,7 +60,8 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                         children: [
                           Row(
                             children: [
-                              AppSvg.asset(AssetUtils.loader,color: AppColor.dark_gray),
+                              AppSvg.asset(AssetUtils.loader,
+                                  color: AppColor.dark_gray),
                               SizedBox(
                                 width: 8,
                               ),

@@ -60,11 +60,8 @@ class PEPDialogView extends StatelessWidget {
                   height: 57,
                   width: 57,
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).accentTextTheme.bodyText1!.color,
-                  ),
-                  child: AppSvg.asset(AssetUtils.tick,
-                      color: Theme.of(context).accentColor),
+                      shape: BoxShape.circle, color: AppColor.dark_violet_4),
+                  child: AppSvg.asset(AssetUtils.tick),
                 ),
               ),
             ],

@@ -15,7 +15,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[LoginUseCase] provider
 final loginUseCaseProvider = Provider.autoDispose<LoginUseCase>(
-  (ref) => LoginUseCase(),
+  (ref) => LoginUseCase(ref.read(userRepoProvider)),
 );
 
 ///[ProfileDetailsUseCase] provider
