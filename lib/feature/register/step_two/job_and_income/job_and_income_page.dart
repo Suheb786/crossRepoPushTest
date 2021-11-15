@@ -19,6 +19,11 @@ class JobAndIncomePageState
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   void onModelReady(JobAndIncomePageViewModel model) {
     model.employmentStatusEnum = ProviderScope.containerOf(context)
         .read(profileDetailsPageViewModelProvider)

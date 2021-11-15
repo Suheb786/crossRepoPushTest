@@ -5,14 +5,24 @@ import 'package:neo_bank/utils/color_utils.dart';
 class InformationText extends StatelessWidget {
   String? image;
   String? title;
+  Color? iconColor;
 
-  InformationText({required this.image, required this.title});
+  InformationText({required this.image, required this.title, this.iconColor});
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        AppSvg.asset(image!),
+        Container(
+          height: 56,
+          width: 56,
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: AppColor.vividYellow,
+            shape: BoxShape.circle,
+          ),
+          child: AppSvg.asset(image!, color: iconColor),
+        ),
         SizedBox(
           width: 16,
         ),
@@ -20,7 +30,7 @@ class InformationText extends StatelessWidget {
           child: Text(
             title!,
             style: TextStyle(
-                color: AppColor.white,
+                color: Theme.of(context).primaryTextTheme.bodyText1!.color!,
                 fontWeight: FontWeight.w600,
                 fontSize: 14),
           ),

@@ -102,21 +102,17 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                   borderRadius: BorderRadius.circular(16)),
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               elevation: 2,
+                              color: Theme.of(context)
+                                  .cardTheme
+                                  .copyWith(color: AppColor.white)
+                                  .color,
                               margin: EdgeInsets.zero,
-                              shadowColor: AppColor.black.withOpacity(0.32),
-                              child: Container(
+                              shadowColor: Theme.of(context)
+                                  .primaryColorDark
+                                  .withOpacity(0.32),
+                              child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),
-                                decoration: BoxDecoration(
-                                  color: AppColor.very_soft_violet,
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        AppColor.dark_violet,
-                                        AppColor.dark_moderate_blue
-                                      ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter),
-                                ),
                                 child: Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -136,34 +132,33 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                               readOnly: true,
                                               controller: model
                                                   .residentCountryController,
+                                              onPressed: () {
+                                                CountryDialog.show(context,
+                                                    title: S
+                                                        .of(context)
+                                                        .residentCountrySmall,
+                                                    onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: (value) {
+                                                  Navigator.pop(context);
+                                                  model
+                                                      .residentCountryController
+                                                      .text = value;
+                                                  model
+                                                      .updatePermanentAddressVisibility();
+                                                  model.validateAddress();
+                                                });
+                                              },
                                               suffixIcon: (value, data) {
-                                                return InkWell(
-                                                  onTap: () async {
-                                                    CountryDialog.show(context,
-                                                        title: S
-                                                            .of(context)
-                                                            .residentCountrySmall,
-                                                        onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    }, onSelected: (value) {
-                                                      Navigator.pop(context);
-                                                      model
-                                                          .residentCountryController
-                                                          .text = value;
-                                                      model
-                                                          .updatePermanentAddressVisibility();
-                                                      model.validateAddress();
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                      height: 16,
-                                                      width: 16,
-                                                      padding: EdgeInsets.only(
-                                                          right: 8),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils
-                                                              .downArrow)),
-                                                );
+                                                return Container(
+                                                    height: 16,
+                                                    width: 16,
+                                                    padding: EdgeInsets.only(
+                                                        right: 8),
+                                                    child: AppSvg.asset(
+                                                        AssetUtils.downArrow,
+                                                        color: AppColor
+                                                            .dark_gray_1));
                                               },
                                               key: model.residentCountryKey,
                                             ),
@@ -212,7 +207,10 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                                 top: 2),
                                                         child: AppSvg.asset(
                                                             AssetUtils
-                                                                .location_marker),
+                                                                .location_marker,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .primaryColorDark),
                                                       )),
                                             ),
                                             SizedBox(
@@ -284,8 +282,9 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight.w600,
-                                                            color: AppColor
-                                                                .very_light_gray_white),
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .primaryColorDark),
                                                       ),
                                                       SizedBox(
                                                         height: 16,
@@ -300,42 +299,39 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                         readOnly: true,
                                                         controller: model
                                                             .permanentResidentCountryController,
+                                                        onPressed: () {
+                                                          CountryDialog.show(
+                                                              context,
+                                                              title: S
+                                                                  .of(context)
+                                                                  .residentCountrySmall,
+                                                              onDismissed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          }, onSelected:
+                                                                  (value) {
+                                                            Navigator.pop(
+                                                                context);
+                                                            model
+                                                                .permanentResidentCountryController
+                                                                .text = value;
+                                                            model
+                                                                .validateAddress();
+                                                          });
+                                                        },
                                                         suffixIcon:
                                                             (value, data) {
-                                                          return InkWell(
-                                                            onTap: () async {
-                                                              CountryDialog.show(
-                                                                  context,
-                                                                  title: S
-                                                                      .of(
-                                                                          context)
-                                                                      .residentCountrySmall,
-                                                                  onDismissed:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              }, onSelected:
-                                                                      (value) {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.permanentResidentCountryController
-                                                                        .text =
-                                                                    value;
-                                                                model
-                                                                    .validateAddress();
-                                                              });
-                                                            },
-                                                            child: Container(
-                                                                height: 16,
-                                                                width: 16,
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        right:
-                                                                            8),
-                                                                child: AppSvg.asset(
-                                                                    AssetUtils
-                                                                        .downArrow)),
-                                                          );
+                                                          return Container(
+                                                              height: 16,
+                                                              width: 16,
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      right: 8),
+                                                              child: AppSvg.asset(
+                                                                  AssetUtils
+                                                                      .downArrow,
+                                                                  color: AppColor
+                                                                      .dark_gray_1));
                                                         },
                                                         key: model
                                                             .permanentResidentCountryKey,

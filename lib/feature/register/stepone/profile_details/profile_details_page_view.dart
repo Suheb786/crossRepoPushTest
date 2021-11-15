@@ -90,21 +90,17 @@ class ProfileDetailsPageView
                                 borderRadius: BorderRadius.circular(16)),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             elevation: 2,
+                            color: Theme.of(context)
+                                .cardTheme
+                                .copyWith(color: AppColor.white)
+                                .color,
                             margin: EdgeInsets.zero,
-                            shadowColor: AppColor.black.withOpacity(0.32),
-                            child: Container(
+                            shadowColor: Theme.of(context)
+                                .primaryColorDark
+                                .withOpacity(0.32),
+                            child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),
-                                decoration: BoxDecoration(
-                                  color: AppColor.very_soft_violet,
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        AppColor.dark_violet,
-                                        AppColor.dark_moderate_blue
-                                      ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter),
-                                ),
                                 child: Stack(
                                   children: [
                                     SingleChildScrollView(
@@ -140,37 +136,34 @@ class ProfileDetailsPageView
                                                         .otherNationalityController,
                                                     key: model
                                                         .otherNationalityKey,
+                                                    onPressed: () {
+                                                      CountryDialog.show(
+                                                          context,
+                                                          title: S
+                                                              .of(context)
+                                                              .otherNationality,
+                                                          onDismissed: () {
+                                                        Navigator.pop(context);
+                                                      }, onSelected: (value) {
+                                                        Navigator.pop(context);
+                                                        model
+                                                            .otherNationalityController
+                                                            .text = value;
+                                                        model.validate();
+                                                      });
+                                                    },
                                                     suffixIcon: (value, data) {
-                                                      return InkWell(
-                                                        onTap: () async {
-                                                          CountryDialog.show(
-                                                              context,
-                                                              title: S
-                                                                  .of(context)
-                                                                  .otherNationality,
-                                                              onDismissed: () {
-                                                            Navigator.pop(
-                                                                context);
-                                                          }, onSelected:
-                                                                  (value) {
-                                                            Navigator.pop(
-                                                                context);
-                                                            model
-                                                                .otherNationalityController
-                                                                .text = value;
-                                                            model.validate();
-                                                          });
-                                                        },
-                                                        child: Container(
-                                                            height: 16,
-                                                            width: 16,
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    right: 8),
-                                                            child: AppSvg.asset(
-                                                                AssetUtils
-                                                                    .downArrow)),
-                                                      );
+                                                      return Container(
+                                                          height: 16,
+                                                          width: 16,
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  right: 8),
+                                                          child: AppSvg.asset(
+                                                              AssetUtils
+                                                                  .downArrow,
+                                                              color: AppColor
+                                                                  .dark_gray_1));
                                                     },
                                                   ),
                                                 ),
@@ -238,30 +231,26 @@ class ProfileDetailsPageView
                                                     key: model
                                                         .natureOfSpecialNeedKey,
                                                     readOnly: true,
+                                                    onPressed: () {
+                                                      NatureSpecialNeedsDialog
+                                                          .show(context,
+                                                              onDismissed: () {
+                                                        Navigator.pop(context);
+                                                      }, onSelected: (value) {
+                                                        Navigator.pop(context);
+                                                        model
+                                                            .updateNatureOfNeeds(
+                                                                value);
+                                                      });
+                                                    },
                                                     suffixIcon:
                                                         (enabled, value) {
-                                                      return InkWell(
-                                                          onTap: () async {
-                                                            NatureSpecialNeedsDialog
-                                                                .show(context,
-                                                                    onDismissed:
-                                                                        () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                            }, onSelected:
-                                                                        (value) {
-                                                              Navigator.pop(
-                                                                  context);
-                                                              model
-                                                                  .updateNatureOfNeeds(
-                                                                      value);
-                                                            });
-                                                          },
-                                                          child: AppSvg.asset(
-                                                              AssetUtils
-                                                                  .dropDown,
-                                                              width: 16,
-                                                              height: 16));
+                                                      return AppSvg.asset(
+                                                          AssetUtils.dropDown,
+                                                          color: AppColor
+                                                              .dark_gray_1,
+                                                          width: 16,
+                                                          height: 16);
                                                     },
                                                   ),
                                                 ),
@@ -307,8 +296,8 @@ class ProfileDetailsPageView
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
-                                                color: AppColor
-                                                    .very_light_gray_white),
+                                                color: Theme.of(context)
+                                                    .primaryColorDark),
                                           ),
                                           SizedBox(
                                             height: 16,
@@ -323,27 +312,24 @@ class ProfileDetailsPageView
                                                 model.employeeStatusController,
                                             key: model.employeeStatusKey,
                                             readOnly: true,
+                                            onPressed: () {
+                                              EmploymentStatusDialog.show(
+                                                  context, onDismissed: () {
+                                                Navigator.pop(context);
+                                              }, onSelected: (value) {
+                                                Navigator.pop(context);
+                                                model.updateRelationShipWithPEP(
+                                                    value);
+                                                model.updateJobNameVisibility();
+                                                model.validate();
+                                              });
+                                            },
                                             suffixIcon: (enabled, value) {
-                                              return InkWell(
-                                                  onTap: () async {
-                                                    EmploymentStatusDialog.show(
-                                                        context,
-                                                        onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    }, onSelected: (value) {
-                                                      Navigator.pop(context);
-                                                      model
-                                                          .updateRelationShipWithPEP(
-                                                              value);
-                                                      model
-                                                          .updateJobNameVisibility();
-                                                      model.validate();
-                                                    });
-                                                  },
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.dropDown,
-                                                      width: 16,
-                                                      height: 16));
+                                              return AppSvg.asset(
+                                                  AssetUtils.dropDown,
+                                                  color: AppColor.dark_gray_1,
+                                                  width: 16,
+                                                  height: 16);
                                             },
                                           ),
                                           SizedBox(

@@ -12,7 +12,6 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -66,25 +65,20 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                       }
                     },
                     child: Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16)),
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      elevation: 2,
                       margin: EdgeInsets.zero,
-                      shadowColor: AppColor.black.withOpacity(0.32),
                       child: Container(
                           padding: EdgeInsets.symmetric(
                               vertical: 32, horizontal: 24),
-                          decoration: BoxDecoration(
-                            color: AppColor.very_soft_violet,
-                            gradient: LinearGradient(
-                                colors: [
-                                  AppColor.dark_violet,
-                                  AppColor.dark_moderate_blue
-                                ],
-                                begin: Alignment.bottomCenter,
-                                end: Alignment.topCenter),
-                          ),
+                          // decoration: BoxDecoration(
+                          //   color: AppColor.very_soft_violet,
+                          //   gradient: LinearGradient(
+                          //       colors: [
+                          //         AppColor.dark_violet,
+                          //         AppColor.dark_moderate_blue
+                          //       ],
+                          //       begin: Alignment.bottomCenter,
+                          //       end: Alignment.topCenter),
+                          // ),
                           child: Stack(
                             children: [
                               Column(
@@ -146,8 +140,10 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                             .countryCallingCode ??
                                                         "",
                                                     style: TextStyle(
-                                                      color: AppColor
-                                                          .very_light_gray,
+                                                      color: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1!
+                                                          .color,
                                                       fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.w600,

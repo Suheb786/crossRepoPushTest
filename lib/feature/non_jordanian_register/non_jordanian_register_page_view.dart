@@ -9,7 +9,6 @@ import 'package:neo_bank/feature/non_jordanian_register/notify/notify_page.dart'
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class NonJordanianRegisterPageView
@@ -43,7 +42,8 @@ class NonJordanianRegisterPageView
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),
-                      activeColor: AppColor.gray_1.withOpacity(0.3)),
+                      activeColor:
+                          Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               },
             ),
@@ -68,7 +68,7 @@ class NonJordanianRegisterPageView
                           Text(
                             S.of(context).notifyMe,
                             style: TextStyle(
-                                color: AppColor.dark_gray,
+                                color: Theme.of(context).accentColor,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -86,7 +86,7 @@ class NonJordanianRegisterPageView
                                 S.of(context).pleaseEnterLatestEmail,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: AppColor.very_dark_gray,
+                                    color: Theme.of(context).accentColor,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
                               ),

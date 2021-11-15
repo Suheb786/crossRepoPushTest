@@ -2,12 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class ReviewApplicationItem extends StatelessWidget {
+class ReviewApplicationEditableItem extends StatelessWidget {
   final String title;
-  final String details;
+  final TextEditingController? controller;
+  final String? initialValue;
+  final Widget? prefixWidget;
+  final TextInputType? textInputType;
 
-  const ReviewApplicationItem(
-      {Key? key, required this.title, required this.details})
+  const ReviewApplicationEditableItem(
+      {Key? key,
+      required this.title,
+      this.initialValue,
+      this.textInputType,
+      this.prefixWidget,
+      this.controller})
       : super(key: key);
 
   @override
@@ -30,18 +38,22 @@ class ReviewApplicationItem extends StatelessWidget {
           ),
           Flexible(
             child: TextFormField(
-              initialValue: details,
+              controller: controller,
+              initialValue: initialValue,
               maxLines: 2,
               textAlign: TextAlign.end,
-              cursorColor: AppColor.dark_violet2,
+              keyboardType: textInputType,
+              cursorColor: Theme.of(context).primaryColorDark,
               style: TextStyle(
                   fontSize: 12,
                   fontWeight: FontWeight.w600,
-                  color: AppColor.dark_violet2),
-              decoration: InputDecoration.collapsed(
-                border: InputBorder.none,
-                hintText: '',
-              ),
+                  color: Theme.of(context).primaryColorDark),
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  isCollapsed: true,
+                  hintText: '',
+                  prefixIconConstraints: BoxConstraints.tightForFinite(),
+                  prefixIcon: this.prefixWidget),
             ),
           ),
         ],

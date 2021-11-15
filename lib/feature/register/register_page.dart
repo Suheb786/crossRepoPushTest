@@ -27,4 +27,9 @@ class RegisterPageState
   Widget buildView(BuildContext context, RegisterViewModel model) {
     return RegisterPageView(provideBase());
   }
+
+  @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
 }

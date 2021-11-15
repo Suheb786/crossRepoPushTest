@@ -26,6 +26,11 @@ class ValidateOtpPageState
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Colors.transparent;
+  }
+
+  @override
   Widget buildView(BuildContext context, ValidateOtpViewModel model) {
     return ValidateOtpPageView(provideBase());
   }

@@ -38,6 +38,7 @@ class AssetUtils {
   static const String maleAgent = svg + "male_agent.svg";
   static const String female_agent = svg + "female_agent.svg";
   static const String rightChevron = svg + "right_chevron.svg";
+  static const String checkIcon = svg + "check_icon.svg";
   static const String check_icon = svg + "check_icon.svg";
   static const String location_marker = svg + "location.svg";
   static const String restart = svg + "restart.svg";
@@ -48,6 +49,12 @@ class AssetUtils {
   static const String sendMoney = svg + "send_money.svg";
   static const String leftArrow = svg + "left_arrow.svg";
   static const String biometricIcon = svg + "biometric_icon.svg";
+  static const String sun = svg + "sun.svg";
+  static const String mic = svg + "mic.svg";
+  static const String headPhone = svg + "headphone.svg";
+  static const String scanIcon = svg + "scan_icon.svg";
+  static const String shieldIcon = svg + "shield_icon.svg";
+  static const String transactionHistory = svg + "transaction_history.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

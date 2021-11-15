@@ -24,4 +24,9 @@ class NonJordanianRegistrationPageState extends BaseStatefulPage<
       BuildContext context, NonJordanianRegisterPageViewModel model) {
     return NonJordanianRegisterPageView(provideBase());
   }
+
+  @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
 }

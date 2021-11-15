@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class UploadDocumentBottomSheetWidget extends StatelessWidget {
@@ -6,20 +7,14 @@ class UploadDocumentBottomSheetWidget extends StatelessWidget {
   final Function()? onCameraTap;
   final Function()? onCancelTap;
   final String? title;
-  final String? firstOptionText;
-  final String? secondOptionText;
-  final String? buttonText;
 
-  const UploadDocumentBottomSheetWidget(
-      {Key? key,
-      this.onCameraTap,
-      this.onPhotoLibraryTap,
-      this.onCancelTap,
-      this.title,
-      this.firstOptionText,
-      this.secondOptionText,
-      this.buttonText})
-      : super(key: key);
+  const UploadDocumentBottomSheetWidget({
+    Key? key,
+    this.onCameraTap,
+    this.onPhotoLibraryTap,
+    this.onCancelTap,
+    this.title,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,20 +29,20 @@ class UploadDocumentBottomSheetWidget extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: AppColor.gray_black),
+                    color: Theme.of(context).primaryColorDark),
               ),
             ),
             new ListTile(
                 leading: new Icon(
-                  Icons.photo_library,
+                  Icons.upload_file,
                   color: AppColor.gray,
                 ),
                 title: Text(
-                  firstOptionText ?? "",
+                  S.of(context).uploadDocument,
                   style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
-                      color: AppColor.very_dark_violet),
+                      color: Theme.of(context).primaryColorDark),
                 ),
                 onTap: () {
                   onPhotoLibraryTap?.call();
@@ -55,11 +50,11 @@ class UploadDocumentBottomSheetWidget extends StatelessWidget {
             new ListTile(
               leading: new Icon(Icons.photo_camera, color: AppColor.gray),
               title: Text(
-                secondOptionText ?? "",
+                S.of(context).takePhoto,
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: AppColor.very_dark_violet),
+                    color: Theme.of(context).primaryColorDark),
               ),
               onTap: () {
                 onCameraTap?.call();
@@ -69,7 +64,7 @@ class UploadDocumentBottomSheetWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 16),
               child: Container(
                 height: 1,
-                color: AppColor.dark_grayish_violet1,
+                color: Theme.of(context).primaryColorDark,
               ),
             ),
             InkWell(
@@ -80,11 +75,12 @@ class UploadDocumentBottomSheetWidget extends StatelessWidget {
                   child: Padding(
                 padding: EdgeInsets.only(bottom: 24.0),
                 child: Text(
-                  buttonText ?? "",
+                  S.of(context).cancel,
                   style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: AppColor.gray_black),
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                  ),
                 ),
               )),
             ),

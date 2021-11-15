@@ -14,7 +14,6 @@ import 'package:neo_bank/ui/molecules/register/password_hint_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -72,25 +71,20 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                         }
                       },
                       child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        elevation: 2,
                         margin: EdgeInsets.zero,
-                        shadowColor: AppColor.black.withOpacity(0.32),
                         child: Container(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
-                            decoration: BoxDecoration(
-                              color: AppColor.very_soft_violet,
-                              gradient: LinearGradient(
-                                  colors: [
-                                    AppColor.dark_violet,
-                                    AppColor.dark_moderate_blue
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter),
-                            ),
+                            // decoration: BoxDecoration(
+                            //   color: AppColor.very_soft_violet,
+                            //   gradient: LinearGradient(
+                            //       colors: [
+                            //         AppColor.dark_violet,
+                            //         AppColor.dark_moderate_blue
+                            //       ],
+                            //       begin: Alignment.bottomCenter,
+                            //       end: Alignment.topCenter),
+                            // ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -129,12 +123,19 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                       padding:
                                                           EdgeInsets.all(4),
                                                       child: AppSvg.asset(
-                                                          AssetUtils.eye),
+                                                          AssetUtils.eye,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .inputDecorationTheme
+                                                              .labelStyle!
+                                                              .color),
                                                     )
                                                   : Icon(
                                                       Icons.visibility_off,
-                                                      color: AppColor
-                                                          .very_light_violet,
+                                                      color: Theme.of(context)
+                                                          .inputDecorationTheme
+                                                          .labelStyle!
+                                                          .color,
                                                     ),
                                             );
                                           },
@@ -152,8 +153,12 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                     .eightCharacters,
                                                 backgroundColor: !model
                                                         .minimumEightCharacters
-                                                    ? AppColor.strong_violet
-                                                    : AppColor.vivid_orange,
+                                                    ? Theme.of(context)
+                                                        .inputDecorationTheme
+                                                        .hintStyle!
+                                                        .color
+                                                    : Theme.of(context)
+                                                        .primaryColorDark,
                                                 isValid: model
                                                     .minimumEightCharacters,
                                               ),
@@ -161,26 +166,38 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                 label: S
                                                     .of(context)
                                                     .oneUpperCaseLetter,
-                                                backgroundColor:
-                                                    !model.hasUpperCase
-                                                        ? AppColor.strong_violet
-                                                        : AppColor.vivid_orange,
+                                                backgroundColor: !model
+                                                        .hasUpperCase
+                                                    ? Theme.of(context)
+                                                        .inputDecorationTheme
+                                                        .hintStyle!
+                                                        .color
+                                                    : Theme.of(context)
+                                                        .primaryColorDark,
                                                 isValid: model.hasUpperCase,
                                               ),
                                               PasswordHintWidget(
                                                 label: S.of(context).oneNumber,
-                                                backgroundColor:
-                                                    !model.containsDigit
-                                                        ? AppColor.strong_violet
-                                                        : AppColor.vivid_orange,
+                                                backgroundColor: !model
+                                                        .containsDigit
+                                                    ? Theme.of(context)
+                                                        .inputDecorationTheme
+                                                        .hintStyle!
+                                                        .color
+                                                    : Theme.of(context)
+                                                        .primaryColorDark,
                                                 isValid: model.containsDigit,
                                               ),
                                               PasswordHintWidget(
                                                 label: S.of(context).oneSymbol,
-                                                backgroundColor:
-                                                    !model.hasSymbol
-                                                        ? AppColor.strong_violet
-                                                        : AppColor.vivid_orange,
+                                                backgroundColor: !model
+                                                        .hasSymbol
+                                                    ? Theme.of(context)
+                                                        .inputDecorationTheme
+                                                        .hintStyle!
+                                                        .color
+                                                    : Theme.of(context)
+                                                        .primaryColorDark,
                                                 isValid: model.hasSymbol,
                                               ),
                                             ],
@@ -220,12 +237,19 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                       padding:
                                                           EdgeInsets.all(4),
                                                       child: AppSvg.asset(
-                                                          AssetUtils.eye),
+                                                          AssetUtils.eye,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .inputDecorationTheme
+                                                              .labelStyle!
+                                                              .color),
                                                     )
                                                   : Icon(
                                                       Icons.visibility_off,
-                                                      color: AppColor
-                                                          .very_light_violet,
+                                                      color: Theme.of(context)
+                                                          .inputDecorationTheme
+                                                          .labelStyle!
+                                                          .color,
                                                     ),
                                             );
                                           },

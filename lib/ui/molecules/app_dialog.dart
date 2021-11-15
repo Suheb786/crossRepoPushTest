@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class AppDialog {
   AppDialog._();
@@ -21,7 +20,7 @@ class AppDialog {
           );
         },
         transitionDuration: Duration(milliseconds: 300),
-        barrierColor: AppColor.very_pale_blue_white.withOpacity(0.9),
+        barrierColor: Theme.of(context).primaryColorDark.withOpacity(0.5),
         pageBuilder: (ctx, anim1, anim2) => builder(ctx));
   }
 }

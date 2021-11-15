@@ -4,7 +4,6 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/login/login_module.dart';
 import 'package:neo_bank/feature/login/login_page_model.dart';
 import 'package:neo_bank/feature/login/login_page_view.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class LoginPage extends BasePage<LoginViewModel> {
   @override
@@ -20,11 +19,6 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> {
   @override
   bool extendBodyBehindAppBar() {
     return true;
-  }
-
-  @override
-  Color scaffoldBackgroundColor() {
-    return AppColor.white.withOpacity(0);
   }
 
   @override

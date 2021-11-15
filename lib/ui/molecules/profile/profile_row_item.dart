@@ -48,9 +48,13 @@ class ProfileRowItem extends StatelessWidget {
                           title,
                           softWrap: true,
                           style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w600,
-                              color: labelColor),
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context)
+                                .primaryTextTheme
+                                .bodyText1!
+                                .color!,
+                          ),
                         ),
                       ),
                       Padding(
@@ -60,21 +64,26 @@ class ProfileRowItem extends StatelessWidget {
                           onToggle: (value) {
                             model.updateState(value);
                           },
+                          width: 70,
+                          height: 40,
+                          padding: 8,
                           activeText: activeText,
-                          activeTextColor: AppColor.vivid_orange,
-                          activeSwitchBorder:
-                              Border.all(color: AppColor.border_color),
+                          activeTextColor: AppColor.white,
+                          inactiveTextColor: AppColor.darkGray,
                           activeTextFontWeight: FontWeight.w500,
                           showOnOff: true,
                           valueFontSize: 10,
-                          activeToggleColor: AppColor.vivid_orange,
+                          activeToggleColor: AppColor.white,
                           inactiveText: inactiveText,
-                          inactiveToggleColor: AppColor.white,
+                          inactiveToggleColor: AppColor.lightGrayishMagenta,
                           inactiveTextFontWeight: FontWeight.w500,
                           inactiveSwitchBorder:
-                              Border.all(color: AppColor.border_color),
-                          activeColor: AppColor.dark_violet_4,
-                          inactiveColor: AppColor.dark_violet_4,
+                              Border.all(color: AppColor.gray_2),
+                          activeColor: Theme.of(context)
+                              .accentTextTheme
+                              .bodyText1!
+                              .color!,
+                          inactiveColor: Theme.of(context).accentColor,
                         ),
                       ),
                     ],

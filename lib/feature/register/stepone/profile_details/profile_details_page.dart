@@ -18,6 +18,11 @@ class ProfileDetailsPageState
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(BuildContext context, ProfileDetailsPageViewModel model) {
     return ProfileDetailsPageView(provideBase());
   }

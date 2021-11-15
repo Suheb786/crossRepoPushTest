@@ -11,7 +11,6 @@ import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_p
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
@@ -28,7 +27,8 @@ class AccountRegistrationPageView
 
   @override
   Widget build(BuildContext context, model) {
-    return Padding(
+    return Container(
+      color: Theme.of(context).primaryColor,
       padding: EdgeInsets.only(top: 56),
       child: Column(
         children: [
@@ -51,8 +51,9 @@ class AccountRegistrationPageView
                       spacing: EdgeInsets.symmetric(horizontal: 1),
                       activeShape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(5)),
-                      activeColor: AppColor.dark_blue,
-                      color: AppColor.very_soft_violet.withOpacity(0.3)),
+                      activeColor: Theme.of(context).accentColor,
+                      color:
+                          Theme.of(context).primaryColorLight.withOpacity(0.3)),
                 );
               },
             ),
@@ -77,7 +78,7 @@ class AccountRegistrationPageView
                           Text(
                             S.of(context).accountRegistration,
                             style: TextStyle(
-                                color: AppColor.dark_gray,
+                                color: Theme.of(context).accentColor,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -102,7 +103,7 @@ class AccountRegistrationPageView
                                     S.of(context).createPasswordHeader),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: AppColor.very_dark_gray,
+                                    color: Theme.of(context).accentColor,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
                               ),
@@ -122,7 +123,7 @@ class AccountRegistrationPageView
                                   '+962 79 322 8080',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: AppColor.vivid_orange,
+                                      color: Theme.of(context).accentColor,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600),
                                 ),

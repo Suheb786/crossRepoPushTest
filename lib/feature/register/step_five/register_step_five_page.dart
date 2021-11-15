@@ -18,6 +18,11 @@ class RegisterStepFivePageState
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(BuildContext context, RegisterStepFiveViewModel model) {
     return RegisterStepFivePageView(provideBase());
   }

@@ -71,21 +71,15 @@ class FatcaUSRelevantW9AddressDetailsPageView
                             borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         elevation: 2,
+                        color: Theme.of(context)
+                            .cardTheme
+                            .copyWith(color: AppColor.white)
+                            .color,
                         margin: EdgeInsets.zero,
                         shadowColor: AppColor.black.withOpacity(0.32),
-                        child: Container(
+                        child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
-                            decoration: BoxDecoration(
-                              color: AppColor.very_soft_violet,
-                              gradient: LinearGradient(
-                                  colors: [
-                                    AppColor.dark_violet,
-                                    AppColor.dark_moderate_blue
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter),
-                            ),
                             child: SingleChildScrollView(
                               physics: ClampingScrollPhysics(),
                               child: Column(
@@ -110,28 +104,27 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                     controller: model.stateController,
                                     key: model.stateKey,
                                     readOnly: true,
+                                    onPressed: () {
+                                      StateCityDialog.show(context,
+                                          title: S.of(context).stateSmall,
+                                          onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: (value) {
+                                        Navigator.pop(context);
+                                        model.stateController.text = value;
+                                        model.isValid();
+                                      },
+                                          stateCityTypeEnum:
+                                              StateCityTypeEnum.STATE);
+                                    },
                                     suffixIcon: (value, data) {
-                                      return InkWell(
-                                        onTap: () async {
-                                          StateCityDialog.show(context,
-                                              title: S.of(context).stateSmall,
-                                              onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.stateController.text = value;
-                                            model.isValid();
-                                          },
-                                              stateCityTypeEnum:
-                                                  StateCityTypeEnum.STATE);
-                                        },
-                                        child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow)),
-                                      );
+                                      return Container(
+                                          height: 16,
+                                          width: 16,
+                                          padding: EdgeInsets.only(right: 8),
+                                          child: AppSvg.asset(
+                                              AssetUtils.downArrow,
+                                              color: AppColor.dark_gray_1));
                                     },
                                   ),
                                   SizedBox(
@@ -143,28 +136,27 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                     controller: model.cityController,
                                     key: model.cityKey,
                                     readOnly: true,
+                                    onPressed: () {
+                                      StateCityDialog.show(context,
+                                          title: S.of(context).citySmall,
+                                          onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: (value) {
+                                        Navigator.pop(context);
+                                        model.cityController.text = value;
+                                        model.isValid();
+                                      },
+                                          stateCityTypeEnum:
+                                              StateCityTypeEnum.CITY);
+                                    },
                                     suffixIcon: (value, data) {
-                                      return InkWell(
-                                        onTap: () async {
-                                          StateCityDialog.show(context,
-                                              title: S.of(context).citySmall,
-                                              onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.cityController.text = value;
-                                            model.isValid();
-                                          },
-                                              stateCityTypeEnum:
-                                                  StateCityTypeEnum.CITY);
-                                        },
-                                        child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow)),
-                                      );
+                                      return Container(
+                                          height: 16,
+                                          width: 16,
+                                          padding: EdgeInsets.only(right: 8),
+                                          child: AppSvg.asset(
+                                              AssetUtils.downArrow,
+                                              color: AppColor.dark_gray_1));
                                     },
                                   ),
                                   SizedBox(
@@ -198,7 +190,12 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                               height: 14,
                                               width: 14,
                                               child: AppSvg.asset(
-                                                  AssetUtils.info)),
+                                                  AssetUtils.info,
+                                                  color: Theme.of(context)
+                                                      .inputDecorationTheme
+                                                      .focusedBorder!
+                                                      .borderSide
+                                                      .color)),
                                         ),
                                       );
                                     },
@@ -227,7 +224,12 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                               height: 14,
                                               width: 14,
                                               child: AppSvg.asset(
-                                                  AssetUtils.info)),
+                                                  AssetUtils.info,
+                                                  color: Theme.of(context)
+                                                      .inputDecorationTheme
+                                                      .focusedBorder!
+                                                      .borderSide
+                                                      .color)),
                                         ),
                                       );
                                     },
@@ -314,40 +316,37 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                     key: model
                                                         .additionalRequesterStateKey,
                                                     readOnly: true,
+                                                    onPressed: () {
+                                                      StateCityDialog.show(
+                                                          context,
+                                                          title: S
+                                                              .of(context)
+                                                              .stateSmall,
+                                                          onDismissed: () {
+                                                        Navigator.pop(context);
+                                                      }, onSelected: (value) {
+                                                        Navigator.pop(context);
+                                                        model
+                                                            .additionalRequesterStateController
+                                                            .text = value;
+                                                        model.isValid();
+                                                      },
+                                                          stateCityTypeEnum:
+                                                              StateCityTypeEnum
+                                                                  .STATE);
+                                                    },
                                                     suffixIcon: (value, data) {
-                                                      return InkWell(
-                                                        onTap: () async {
-                                                          StateCityDialog.show(
-                                                              context,
-                                                              title: S
-                                                                  .of(context)
-                                                                  .stateSmall,
-                                                              onDismissed: () {
-                                                            Navigator.pop(
-                                                                context);
-                                                          }, onSelected:
-                                                                  (value) {
-                                                            Navigator.pop(
-                                                                context);
-                                                            model
-                                                                .additionalRequesterStateController
-                                                                .text = value;
-                                                            model.isValid();
-                                                          },
-                                                              stateCityTypeEnum:
-                                                                  StateCityTypeEnum
-                                                                      .STATE);
-                                                        },
-                                                        child: Container(
-                                                            height: 16,
-                                                            width: 16,
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    right: 8),
-                                                            child: AppSvg.asset(
-                                                                AssetUtils
-                                                                    .downArrow)),
-                                                      );
+                                                      return Container(
+                                                          height: 16,
+                                                          width: 16,
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  right: 8),
+                                                          child: AppSvg.asset(
+                                                              AssetUtils
+                                                                  .downArrow,
+                                                              color: AppColor
+                                                                  .dark_gray_1));
                                                     },
                                                   ),
                                                   SizedBox(
@@ -364,40 +363,37 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                     key: model
                                                         .additionalRequesterCityKey,
                                                     readOnly: true,
+                                                    onPressed: () {
+                                                      StateCityDialog.show(
+                                                          context,
+                                                          title: S
+                                                              .of(context)
+                                                              .citySmall,
+                                                          onDismissed: () {
+                                                        Navigator.pop(context);
+                                                      }, onSelected: (value) {
+                                                        Navigator.pop(context);
+                                                        model
+                                                            .additionalRequesterCityController
+                                                            .text = value;
+                                                        model.isValid();
+                                                      },
+                                                          stateCityTypeEnum:
+                                                              StateCityTypeEnum
+                                                                  .CITY);
+                                                    },
                                                     suffixIcon: (value, data) {
-                                                      return InkWell(
-                                                        onTap: () async {
-                                                          StateCityDialog.show(
-                                                              context,
-                                                              title: S
-                                                                  .of(context)
-                                                                  .citySmall,
-                                                              onDismissed: () {
-                                                            Navigator.pop(
-                                                                context);
-                                                          }, onSelected:
-                                                                  (value) {
-                                                            Navigator.pop(
-                                                                context);
-                                                            model
-                                                                .additionalRequesterCityController
-                                                                .text = value;
-                                                            model.isValid();
-                                                          },
-                                                              stateCityTypeEnum:
-                                                                  StateCityTypeEnum
-                                                                      .CITY);
-                                                        },
-                                                        child: Container(
-                                                            height: 16,
-                                                            width: 16,
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    right: 8),
-                                                            child: AppSvg.asset(
-                                                                AssetUtils
-                                                                    .downArrow)),
-                                                      );
+                                                      return Container(
+                                                          height: 16,
+                                                          width: 16,
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  right: 8),
+                                                          child: AppSvg.asset(
+                                                              AssetUtils
+                                                                  .downArrow,
+                                                              color: AppColor
+                                                                  .dark_gray_1));
                                                     },
                                                   ),
                                                   SizedBox(

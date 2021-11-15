@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
@@ -31,30 +32,35 @@ class AppSwitchLabelWidget extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
                 fontFamily: "Montserrat",
-                color: AppColor.very_light_gray_white,
+                color: Theme.of(context).primaryColorDark,
                 fontWeight: FontWeight.w600,
                 fontSize: 14),
           ),
         ),
-        SizedBox(width: 16,),
+        SizedBox(
+          width: 16,
+        ),
         FlutterSwitch(
           value: isActive!,
           onToggle: (value) {
             onToggle?.call(value);
           },
+          width: 70,
+          height: 40,
+          padding: 8,
           activeText: activeText,
-          activeTextColor: AppColor.vivid_orange,
-          activeTextFontWeight: FontWeight.w700,
-          activeToggleColor: AppColor.vivid_orange,
-          inactiveTextColor: AppColor.white,
+          activeTextColor: AppColor.white,
+          inactiveTextColor: AppColor.darkGray,
+          activeTextFontWeight: FontWeight.w500,
           showOnOff: true,
           valueFontSize: 10,
-          switchBorder:
-              Border.all(color: AppColor.mostly_desaturated_dark_violet),
-          inactiveText: inActiveText,
+          activeToggleColor: AppColor.white,
+          inactiveText: inActiveText!,
+          inactiveToggleColor: AppColor.lightGrayishMagenta,
           inactiveTextFontWeight: FontWeight.w500,
-          activeColor: AppColor.dark_violet_4,
-          inactiveColor: AppColor.dark_violet_4,
+          inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
+          activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
+          inactiveColor: Theme.of(context).accentColor,
         ),
       ],
     );

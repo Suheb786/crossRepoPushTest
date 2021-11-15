@@ -21,6 +21,11 @@ class RegisterStepTwoPageState
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   void onModelReady(RegisterStepTwoViewModel model) {
     switch (ProviderScope.containerOf(context)
         .read(profileDetailsPageViewModelProvider)

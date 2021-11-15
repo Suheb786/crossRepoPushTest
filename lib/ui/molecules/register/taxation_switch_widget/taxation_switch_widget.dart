@@ -52,7 +52,7 @@ class TaxationSwitchWidget extends StatelessWidget {
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                               fontFamily: "Montserrat",
-                              color: AppColor.very_light_gray_white,
+                              color: Theme.of(context).primaryColorDark,
                               fontWeight: FontWeight.w600,
                               fontSize: 14),
                         ),
@@ -66,19 +66,24 @@ class TaxationSwitchWidget extends StatelessWidget {
                           onToggle?.call(value);
                           model.updateSwitchValue(value);
                         },
+                        width: 70,
+                        height: 40,
+                        padding: 8,
                         activeText: S.of(context).yes,
-                        activeTextColor: AppColor.vivid_orange,
-                        activeTextFontWeight: FontWeight.w700,
-                        activeToggleColor: AppColor.vivid_orange,
-                        inactiveTextColor: AppColor.white,
+                        activeTextColor: AppColor.white,
+                        inactiveTextColor: AppColor.darkGray,
+                        activeTextFontWeight: FontWeight.w500,
                         showOnOff: true,
                         valueFontSize: 10,
-                        switchBorder: Border.all(
-                            color: AppColor.mostly_desaturated_dark_violet),
+                        activeToggleColor: AppColor.white,
                         inactiveText: S.of(context).no,
+                        inactiveToggleColor: AppColor.lightGrayishMagenta,
                         inactiveTextFontWeight: FontWeight.w500,
-                        activeColor: AppColor.dark_violet_4,
-                        inactiveColor: AppColor.dark_violet_4,
+                        inactiveSwitchBorder:
+                            Border.all(color: AppColor.gray_2),
+                        activeColor:
+                            Theme.of(context).accentTextTheme.bodyText1!.color!,
+                        inactiveColor: Theme.of(context).accentColor,
                       ),
                     ],
                   ),
@@ -93,7 +98,10 @@ class TaxationSwitchWidget extends StatelessWidget {
                           child: Text(
                             secondaryText!,
                             style: TextStyle(
-                                color: AppColor.vivid_orange,
+                                color: Theme.of(context)
+                                    .accentTextTheme
+                                    .bodyText1!
+                                    .color,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600),
                           )),
@@ -103,7 +111,7 @@ class TaxationSwitchWidget extends StatelessWidget {
                     hintText,
                     style: TextStyle(
                         fontFamily: "Montserrat",
-                        color: AppColor.very_light_gray_white,
+                        color: Theme.of(context).primaryColorDark,
                         fontWeight: FontWeight.w400,
                         fontSize: 12),
                   ),

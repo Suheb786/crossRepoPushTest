@@ -48,6 +48,8 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    updateTextFieldData();
   }
 
   void getError(Resource<List<String>> event) {
@@ -60,5 +62,64 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   void validateReviewDetails() {
     _reviewAppRequest.safeAdd(ReviewApplicationUseCaseParams(
         declarationSelected: _declarationSelected.value));
+  }
+
+  ///controllers
+
+  ///Controllers for address
+  TextEditingController residentCountryController = TextEditingController();
+  TextEditingController homeAddressController = TextEditingController();
+  TextEditingController streetAddressController = TextEditingController();
+  TextEditingController buildingNameOrNoController = TextEditingController();
+
+  ///Controllers for permanent address
+  TextEditingController residentPermanentAddressCountryController =
+      TextEditingController();
+  TextEditingController residentPermanentAddressCityController =
+      TextEditingController();
+
+  ///Controllers for personal details
+  TextEditingController otherNationalityController = TextEditingController();
+  TextEditingController spouseNameController = TextEditingController();
+  TextEditingController specialNeedsPersonController = TextEditingController();
+  TextEditingController employmentStatusController = TextEditingController();
+
+  ///Controllers for job and income details
+  TextEditingController businessTypeController = TextEditingController();
+  TextEditingController businessTypeOtherController = TextEditingController();
+  TextEditingController occupationController = TextEditingController();
+  TextEditingController mainAnnualIncomeController = TextEditingController();
+  TextEditingController employerNameController = TextEditingController();
+  TextEditingController employerCountryController = TextEditingController();
+  TextEditingController employerCityController = TextEditingController();
+  TextEditingController employerContactController = TextEditingController();
+
+  ///Controllers for purpose of account opening
+  TextEditingController purposeOfAccountOpeningController =
+      TextEditingController();
+  TextEditingController expectedMonthlyTransactionsController =
+      TextEditingController();
+  TextEditingController expectedAnnualTransactionsController =
+      TextEditingController();
+
+  void updateTextFieldData() {
+    residentCountryController.text = 'Jordan';
+    homeAddressController.text = 'Queen Rania Al-Abdullah';
+    streetAddressController.text = 'Sweilah';
+    buildingNameOrNoController.text = 'W Amman';
+    residentPermanentAddressCountryController.text = 'Bahrain';
+    residentPermanentAddressCityController.text = 'Sweilah';
+    spouseNameController.text = 'Ameena Rasheed';
+    specialNeedsPersonController.text = 'Movement';
+    employmentStatusController.text = 'Full-Time Employee';
+    occupationController.text = 'Senior Executive';
+    mainAnnualIncomeController.text = '60,000';
+    employerNameController.text = 'Jordan Insurance Company';
+    employerCountryController.text = 'Jordan';
+    employerCityController.text = 'Amman';
+    employerContactController.text = '+962 79 333 8080';
+    purposeOfAccountOpeningController.text = 'Salary';
+    expectedMonthlyTransactionsController.text = '12,000';
+    expectedAnnualTransactionsController.text = '102,000';
   }
 }

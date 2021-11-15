@@ -24,6 +24,11 @@ class AddNumberPageState
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Colors.transparent;
+  }
+
+  @override
   Widget buildView(BuildContext context, AddNumberViewModel model) {
     return AddNumberPageView(provideBase());
   }

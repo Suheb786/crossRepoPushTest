@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class UploadDocumentLaterDialogView extends StatelessWidget {
   final Function()? onSelected;
@@ -37,7 +36,8 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                       fontSize: 14,
                       fontFamily: 'Montserrat',
-                      color: AppColor.very_dark_gray_black,
+                      color:
+                          Theme.of(context).primaryTextTheme.bodyText1!.color,
                     ),
                     children: [
                       TextSpan(
@@ -46,7 +46,10 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           fontSize: 14,
                           fontFamily: 'Montserrat',
-                          color: AppColor.vivid_orange,
+                          color: Theme.of(context)
+                              .accentTextTheme
+                              .bodyText1!
+                              .color,
                         ),
                       )
                     ])),
@@ -60,8 +63,11 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
                   height: 57,
                   width: 57,
                   decoration: BoxDecoration(
-                      shape: BoxShape.circle, color: AppColor.dark_violet_4),
-                  child: AppSvg.asset(AssetUtils.tick),
+                      shape: BoxShape.circle,
+                      color:
+                          Theme.of(context).accentTextTheme.bodyText1!.color),
+                  child: AppSvg.asset(AssetUtils.tick,
+                      color: Theme.of(context).accentColor),
                 ),
               ),
             ],

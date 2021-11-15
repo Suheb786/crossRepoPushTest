@@ -39,7 +39,8 @@ class EmployerCountryListWidget extends StatelessWidget {
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: item.isSelected
-                        ? AppColor.white
+                        ? Theme.of(context)
+                        .primaryColorDark
                         : AppColor.very_dark_violet),
               ),
             ),

@@ -18,6 +18,11 @@ class FatcaUSRelevantW9PageState extends BaseStatefulPage<
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(BuildContext context, FatcaUSRelevantW9PageViewModel model) {
     return FatcaUSRelevantW9PageView(provideBase());
   }

@@ -12,11 +12,11 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/bottom_sheet/upload_document/upload_document_bottom_sheet.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_five/upload_document_later/upload_document_later_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/ui/molecules/upload_document_selection_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -78,21 +78,17 @@ class UploadDocumentsPageView
                                 borderRadius: BorderRadius.circular(16)),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             elevation: 2,
+                            color: Theme.of(context)
+                                .cardTheme
+                                .copyWith(color: AppColor.white)
+                                .color,
                             margin: EdgeInsets.zero,
-                            shadowColor: AppColor.black.withOpacity(0.32),
-                            child: Container(
+                            shadowColor: Theme.of(context)
+                                .primaryColorDark
+                                .withOpacity(0.32),
+                            child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),
-                                decoration: BoxDecoration(
-                                  color: AppColor.very_soft_violet,
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        AppColor.dark_violet,
-                                        AppColor.dark_moderate_blue
-                                      ],
-                                      begin: Alignment.bottomCenter,
-                                      end: Alignment.topCenter),
-                                ),
                                 child: Stack(
                                   children: [
                                     SingleChildScrollView(
@@ -108,7 +104,8 @@ class UploadDocumentsPageView
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: AppColor.white),
+                                                  color: Theme.of(context)
+                                                      .primaryColorDark),
                                             ),
                                             Padding(
                                               padding: EdgeInsets.only(
@@ -119,7 +116,8 @@ class UploadDocumentsPageView
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     fontWeight: FontWeight.w400,
-                                                    color: AppColor.white),
+                                                    color: Theme.of(context)
+                                                        .primaryColorDark),
                                               ),
                                             ),
                                             AppStreamBuilder<String>(
@@ -152,39 +150,45 @@ class UploadDocumentsPageView
                                                           .incomeDocumentKey,
                                                       readOnly: true,
                                                       hintTextColor:
-                                                          AppColor.vivid_orange,
+                                                          Theme.of(context)
+                                                              .primaryColorDark,
+                                                      textFieldBorderColor:
+                                                          Theme.of(context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color,
                                                       textColor:
-                                                          AppColor.vivid_orange,
+                                                          Theme.of(context)
+                                                              .primaryColorDark,
                                                       suffixIcon:
                                                           (value, data) {
                                                         return InkWell(
                                                           onTap: !(isUploaded!)
                                                               ? () async {
-                                                                  UploadDocumentBottomSheet.show(
+                                                                  UploadDocumentSelectionWidget.show(
                                                                       context,
-                                                                      title: S
-                                                                          .of(
-                                                                              context)
-                                                                          .pleaseSelectYourAction,
-                                                                      onTakePhoto:
+                                                                      onCameraTap:
                                                                           () {
                                                                     Navigator.pop(
                                                                         context);
                                                                     model.uploadIncomeDocument(
                                                                         DocumentTypeEnum
                                                                             .CAMERA);
-                                                                  }, uploadDocument:
+                                                                  }, onUploadDocumentTap:
                                                                           () {
                                                                     Navigator.pop(
                                                                         context);
                                                                     model.uploadIncomeDocument(
                                                                         DocumentTypeEnum
                                                                             .GALLERY);
-                                                                  }, onCancel:
+                                                                  }, onCancelled:
                                                                           () {
                                                                     Navigator.pop(
                                                                         context);
-                                                                  });
+                                                                  },
+                                                                      title: S
+                                                                          .of(context)
+                                                                          .pleaseSelectYourAction);
                                                                 }
                                                               : () {
                                                                   model
@@ -200,12 +204,22 @@ class UploadDocumentsPageView
                                                                   EdgeInsets
                                                                       .all(5),
                                                               child: isUploaded
-                                                                  ? AppSvg.asset(
+                                                                  ? AppSvg
+                                                                      .asset(
                                                                       AssetUtils
-                                                                          .delete)
-                                                                  : AppSvg.asset(
+                                                                          .delete,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                    )
+                                                                  : AppSvg
+                                                                      .asset(
                                                                       AssetUtils
-                                                                          .upload)),
+                                                                          .upload,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                    )),
                                                         );
                                                       },
                                                     );
@@ -218,7 +232,7 @@ class UploadDocumentsPageView
                                                   top: 24.0, bottom: 24),
                                               child: Container(
                                                 height: 1,
-                                                color: AppColor.strong_violet,
+                                                color: AppColor.dark_gray_1,
                                               ),
                                             ),
                                             Text(
@@ -227,7 +241,8 @@ class UploadDocumentsPageView
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: AppColor.white),
+                                                  color: Theme.of(context)
+                                                      .primaryColorDark),
                                             ),
                                             Padding(
                                               padding: EdgeInsets.only(
@@ -240,7 +255,8 @@ class UploadDocumentsPageView
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     fontWeight: FontWeight.w400,
-                                                    color: AppColor.white),
+                                                    color: Theme.of(context)
+                                                        .primaryColorDark),
                                               ),
                                             ),
                                             AppStreamBuilder<String>(
@@ -272,40 +288,46 @@ class UploadDocumentsPageView
                                                       key: model
                                                           .addressDocumentKey,
                                                       readOnly: true,
+                                                      textFieldBorderColor:
+                                                          Theme.of(context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color,
                                                       hintTextColor:
-                                                          AppColor.vivid_orange,
+                                                          Theme.of(context)
+                                                              .primaryColorDark,
                                                       textColor:
-                                                          AppColor.vivid_orange,
+                                                          Theme.of(context)
+                                                              .primaryColorDark,
                                                       suffixIcon:
                                                           (value, data) {
                                                         return InkWell(
                                                           onTap: !(isUploaded!)
                                                               ? () async {
-                                                                  UploadDocumentBottomSheet.show(
+                                                                  UploadDocumentSelectionWidget.show(
                                                                       context,
-                                                                      title: S
-                                                                          .of(
-                                                                              context)
-                                                                          .pleaseSelectYourAction,
-                                                                      onTakePhoto:
+                                                                      onCameraTap:
                                                                           () {
                                                                     Navigator.pop(
                                                                         context);
                                                                     model.uploadAddressDocument(
                                                                         DocumentTypeEnum
                                                                             .CAMERA);
-                                                                  }, uploadDocument:
+                                                                  }, onUploadDocumentTap:
                                                                           () {
                                                                     Navigator.pop(
                                                                         context);
                                                                     model.uploadAddressDocument(
                                                                         DocumentTypeEnum
                                                                             .GALLERY);
-                                                                  }, onCancel:
+                                                                  }, onCancelled:
                                                                           () {
                                                                     Navigator.pop(
                                                                         context);
-                                                                  });
+                                                                  },
+                                                                      title: S
+                                                                          .of(context)
+                                                                          .pleaseSelectYourAction);
                                                                 }
                                                               : () {
                                                                   model
@@ -321,12 +343,22 @@ class UploadDocumentsPageView
                                                                   EdgeInsets
                                                                       .all(5),
                                                               child: isUploaded
-                                                                  ? AppSvg.asset(
+                                                                  ? AppSvg
+                                                                      .asset(
                                                                       AssetUtils
-                                                                          .delete)
-                                                                  : AppSvg.asset(
+                                                                          .delete,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                    )
+                                                                  : AppSvg
+                                                                      .asset(
                                                                       AssetUtils
-                                                                          .upload)),
+                                                                          .upload,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                    )),
                                                         );
                                                       },
                                                     );
@@ -337,7 +369,7 @@ class UploadDocumentsPageView
 
                                             ///TODO:change visibility based on additional nationality
                                             Visibility(
-                                                visible: true,
+                                                visible: false,
                                                 child: Column(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
@@ -410,6 +442,12 @@ class UploadDocumentsPageView
                                                                   .additionalNationalityController,
                                                               key: model
                                                                   .additionalNationalityKey,
+                                                              textFieldBorderColor:
+                                                                  Theme.of(
+                                                                          context)
+                                                                      .accentTextTheme
+                                                                      .bodyText1!
+                                                                      .color,
                                                               readOnly: true,
                                                               hintTextColor:
                                                                   AppColor
@@ -422,15 +460,15 @@ class UploadDocumentsPageView
                                                                 return InkWell(
                                                                   onTap: !(isUploaded!)
                                                                       ? () async {
-                                                                          UploadDocumentBottomSheet.show(context, title: S.of(context).pleaseSelectYourAction, onTakePhoto:
+                                                                          UploadDocumentSelectionWidget.show(context, title: S.of(context).pleaseSelectYourAction, onCameraTap:
                                                                               () {
                                                                             Navigator.pop(context);
                                                                             model.uploadAdditionalNationalityDocument(DocumentTypeEnum.CAMERA);
-                                                                          }, uploadDocument:
+                                                                          }, onUploadDocumentTap:
                                                                               () {
                                                                             Navigator.pop(context);
                                                                             model.uploadAdditionalNationalityDocument(DocumentTypeEnum.GALLERY);
-                                                                          }, onCancel:
+                                                                          }, onCancelled:
                                                                               () {
                                                                             Navigator.pop(context);
                                                                           });
@@ -484,8 +522,11 @@ class UploadDocumentsPageView
                                                             fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight.w600,
-                                                            color: AppColor
-                                                                .vivid_orange),
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .accentTextTheme
+                                                                .bodyText1!
+                                                                .color),
                                                       ))),
                                             ),
                                           ],

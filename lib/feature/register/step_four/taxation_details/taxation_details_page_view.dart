@@ -118,21 +118,17 @@ class TaxationDetailsPageView
                             borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         elevation: 2,
+                        color: Theme.of(context)
+                            .cardTheme
+                            .copyWith(color: AppColor.white)
+                            .color,
                         margin: EdgeInsets.zero,
-                        shadowColor: AppColor.black.withOpacity(0.32),
-                        child: Container(
+                        shadowColor: Theme.of(context)
+                            .primaryColorDark
+                            .withOpacity(0.32),
+                        child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
-                            decoration: BoxDecoration(
-                              color: AppColor.very_soft_violet,
-                              gradient: LinearGradient(
-                                  colors: [
-                                    AppColor.dark_violet,
-                                    AppColor.dark_moderate_blue
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter),
-                            ),
                             child: SingleChildScrollView(
                               physics: ClampingScrollPhysics(),
                               child: Column(
@@ -180,31 +176,30 @@ class TaxationDetailsPageView
                                               model.countrySelectorController,
                                           key: model.countrySelectorKey,
                                           readOnly: true,
+                                          onPressed: () {
+                                            CountryDialog.show(context,
+                                                title: S
+                                                    .of(context)
+                                                    .taxCountrySmall,
+                                                onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: (value) {
+                                              Navigator.pop(context);
+                                              model.countrySelectorController
+                                                  .text = value;
+                                              model.isValid();
+                                            });
+                                          },
                                           suffixIcon: (value, data) {
-                                            return InkWell(
-                                              onTap: () async {
-                                                CountryDialog.show(context,
-                                                    title: S
-                                                        .of(context)
-                                                        .taxCountrySmall,
-                                                    onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (value) {
-                                                  Navigator.pop(context);
-                                                  model
-                                                      .countrySelectorController
-                                                      .text = value;
-                                                  model.isValid();
-                                                });
-                                              },
-                                              child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding:
-                                                      EdgeInsets.only(right: 8),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.downArrow)),
-                                            );
+                                            return Container(
+                                                height: 16,
+                                                width: 16,
+                                                padding:
+                                                    EdgeInsets.only(right: 8),
+                                                child: AppSvg.asset(
+                                                    AssetUtils.downArrow,
+                                                    color:
+                                                        AppColor.dark_gray_1));
                                           },
                                         ),
                                       );
@@ -233,30 +228,28 @@ class TaxationDetailsPageView
                                                   model.relationShipController,
                                               key: model.relationShipWithPepKey,
                                               readOnly: true,
+                                              onPressed: () {
+                                                RelationshipWithPEPDialog.show(
+                                                    context, onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: (value) {
+                                                  Navigator.pop(context);
+                                                  model
+                                                      .updateRelationShipWithPEP(
+                                                          value);
+                                                  model.isValid();
+                                                });
+                                              },
                                               suffixIcon: (enabled, value) {
-                                                return InkWell(
-                                                  onTap: () async {
-                                                    RelationshipWithPEPDialog
-                                                        .show(context,
-                                                            onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    }, onSelected: (value) {
-                                                      Navigator.pop(context);
-                                                      model
-                                                          .updateRelationShipWithPEP(
-                                                              value);
-                                                      model.isValid();
-                                                    });
-                                                  },
-                                                  child: Container(
-                                                      height: 16,
-                                                      width: 16,
-                                                      padding: EdgeInsets.only(
-                                                          right: 8),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils
-                                                              .downArrow)),
-                                                );
+                                                return Container(
+                                                    height: 16,
+                                                    width: 16,
+                                                    padding: EdgeInsets.only(
+                                                        right: 8),
+                                                    child: AppSvg.asset(
+                                                        AssetUtils.downArrow,
+                                                        color: AppColor
+                                                            .dark_gray_1));
                                               },
                                             ),
                                             SizedBox(height: 16),

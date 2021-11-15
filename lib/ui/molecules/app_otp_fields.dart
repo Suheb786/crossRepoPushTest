@@ -49,21 +49,38 @@ class AppOtpFields extends StatelessWidget {
             fieldWidth: fieldWidth,
             selectedFillColor: selectedFillColor,
             activeFillColor: AppColor.white,
-            inactiveColor: AppColor.very_pale_blue.withOpacity(0.4),
+            inactiveColor: Theme.of(context)
+                .inputDecorationTheme
+                .enabledBorder!
+                .borderSide
+                .color,
             borderWidth: 1,
-            disabledColor: AppColor.very_pale_blue.withOpacity(0.4),
+            disabledColor: Theme.of(context)
+                .inputDecorationTheme
+                .enabledBorder!
+                .borderSide
+                .color,
             borderRadius: BorderRadius.circular(8),
-            activeColor: AppColor.very_pale_blue.withOpacity(0.4),
-            selectedColor: AppColor.vivid_orange),
+            activeColor: Theme.of(context)
+                .inputDecorationTheme
+                .enabledBorder!
+                .borderSide
+                .color,
+            selectedColor: Theme.of(context)
+                .inputDecorationTheme
+                .focusedBorder!
+                .borderSide
+                .color),
         obscureText: true,
         obscuringWidget: Container(
           height: 18.92,
           width: 6.62,
           decoration: BoxDecoration(
-              shape: BoxShape.circle, color: AppColor.very_pale_blue),
+              shape: BoxShape.circle,
+              color: Theme.of(context).textTheme.bodyText1!.color),
         ),
         textStyle: TextStyle(
-            color: AppColor.very_pale_blue,
+            // color: AppColor.very_pale_blue,
             fontWeight: FontWeight.w600,
             fontSize: 19),
         mainAxisAlignment: MainAxisAlignment.spaceBetween,

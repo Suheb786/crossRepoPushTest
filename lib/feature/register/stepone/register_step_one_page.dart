@@ -18,6 +18,11 @@ class RegisterStepOnePageState
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(BuildContext context, RegisterStepOneViewModel model) {
     return RegisterStepOnePageView(provideBase());
   }

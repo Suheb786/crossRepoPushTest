@@ -7,7 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/base_page_extensions.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 
@@ -81,8 +80,8 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
   }
 
   /// Building a appbar of screen
-  Color scaffoldBackgroundColor() {
-    return AppColor.very_light_grey;
+  Color? scaffoldBackgroundColor() {
+    return null;
   }
 
   /// Building a drawer of screen

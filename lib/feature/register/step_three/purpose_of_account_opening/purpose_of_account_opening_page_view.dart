@@ -65,21 +65,17 @@ class PurposeOfAccountOpeningPageView
                             borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         elevation: 2,
+                        color: Theme.of(context)
+                            .cardTheme
+                            .copyWith(color: AppColor.white)
+                            .color,
                         margin: EdgeInsets.zero,
-                        shadowColor: AppColor.black.withOpacity(0.32),
-                        child: Container(
+                        shadowColor: Theme.of(context)
+                            .primaryColorDark
+                            .withOpacity(0.32),
+                        child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
-                            decoration: BoxDecoration(
-                              color: AppColor.very_soft_violet,
-                              gradient: LinearGradient(
-                                  colors: [
-                                    AppColor.dark_violet,
-                                    AppColor.dark_moderate_blue
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter),
-                            ),
                             child: SingleChildScrollView(
                               physics: ClampingScrollPhysics(),
                               child: Column(
@@ -92,26 +88,25 @@ class PurposeOfAccountOpeningPageView
                                         model.purposeOfAccountOpeningController,
                                     key: model.purposeOfAccountOpeningKey,
                                     readOnly: true,
+                                    onPressed: () {
+                                      PurposeOfAccountOpeningDialog.show(
+                                          context, onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: (value) {
+                                        Navigator.pop(context);
+                                        model.updatePurposeOfAccountOpening(
+                                            value);
+                                        model.isValid();
+                                      });
+                                    },
                                     suffixIcon: (value, data) {
-                                      return InkWell(
-                                        onTap: () async {
-                                          PurposeOfAccountOpeningDialog.show(
-                                              context, onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.updatePurposeOfAccountOpening(
-                                                value);
-                                            model.isValid();
-                                          });
-                                        },
-                                        child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow)),
-                                      );
+                                      return Container(
+                                          height: 16,
+                                          width: 16,
+                                          padding: EdgeInsets.only(right: 8),
+                                          child: AppSvg.asset(
+                                              AssetUtils.downArrow,
+                                              color: AppColor.dark_gray_1));
                                     },
                                   ),
                                   SizedBox(
@@ -133,8 +128,8 @@ class PurposeOfAccountOpeningPageView
                                                 .typeOfExpectedTransactions,
                                             style: TextStyle(
                                                 fontFamily: "Montserrat",
-                                                color: AppColor
-                                                    .very_light_gray_white,
+                                                color: Theme.of(context)
+                                                    .primaryColorDark,
                                                 fontWeight: FontWeight.w600,
                                                 fontSize: 14),
                                           ),
@@ -181,8 +176,10 @@ class PurposeOfAccountOpeningPageView
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
-                                              color: AppColor
-                                                  .very_light_gray_white),
+                                              color: Theme.of(context)
+                                                  .primaryTextTheme
+                                                  .bodyText1!
+                                                  .color!),
                                         ),
                                       );
                                     },
@@ -212,8 +209,10 @@ class PurposeOfAccountOpeningPageView
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
-                                              color: AppColor
-                                                  .very_light_gray_white),
+                                              color: Theme.of(context)
+                                                  .primaryTextTheme
+                                                  .bodyText1!
+                                                  .color!),
                                         ),
                                       );
                                     },

@@ -8,12 +8,10 @@ import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w9/fatca_u
 import 'package:neo_bank/feature/register/step_four/fatca_us_w8_tax_payer_details/fatca_us_w8_tax_payer_details_page.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_w9_tax_payer_details/fatca_us_w9_tax_payer_details_page.dart';
 import 'package:neo_bank/feature/register/step_four/register_step_four_page_view_model.dart';
-import 'package:neo_bank/feature/register/step_four/tax_report_information/tax_report_information_page.dart';
 import 'package:neo_bank/feature/register/step_four/taxation_details/taxation_details_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
@@ -32,7 +30,7 @@ class RegisterStepFourPageView
     FatcaUSRelevantW9Page(),
     FatcaUSRelevantW9AddressDetailsPage(),
     FatcaUSW9TaxPayersDetailsPage(),
-    TaxReportInformationPage(),
+    //TaxReportInformationPage(),
   ];
 
   @override
@@ -48,7 +46,7 @@ class RegisterStepFourPageView
               Text(
                 S.of(context).fatcaandPep,
                 style: TextStyle(
-                    color: AppColor.dark_gray,
+                    color: Theme.of(context).accentColor,
                     fontSize: 10,
                     fontWeight: FontWeight.w600),
               ),
@@ -76,7 +74,7 @@ class RegisterStepFourPageView
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: AppColor.very_dark_gray,
+                        color: Theme.of(context).accentColor,
                         fontSize: 20,
                         fontWeight: FontWeight.w600),
                   ),

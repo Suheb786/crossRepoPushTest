@@ -164,7 +164,7 @@ class CalendarDialogView extends StatelessWidget {
                                   formatButtonVisible: false,
                                   decoration: BoxDecoration(
                                       border: Border.all(
-                                        color: AppColor.white_gray,
+                                        color: AppColor.whiteGray,
                                       ),
                                       borderRadius: BorderRadius.circular(8))),
                               daysOfWeekHeight: 32,

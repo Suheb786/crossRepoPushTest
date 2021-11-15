@@ -19,6 +19,11 @@ class IdVerificationInfoPageState extends BaseStatefulPage<
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(BuildContext context, IdVerificationInfoViewModel model) {
     return IdVerificationInfoView(provideBase());
   }

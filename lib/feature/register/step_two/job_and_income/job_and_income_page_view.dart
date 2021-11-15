@@ -69,21 +69,15 @@ class JobAndIncomePageView
                             borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         elevation: 2,
+                        color: Theme.of(context)
+                            .cardTheme
+                            .copyWith(color: AppColor.white)
+                            .color,
                         margin: EdgeInsets.zero,
                         shadowColor: AppColor.black.withOpacity(0.32),
-                        child: Container(
+                        child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
-                            decoration: BoxDecoration(
-                              color: AppColor.very_soft_violet,
-                              gradient: LinearGradient(
-                                  colors: [
-                                    AppColor.dark_violet,
-                                    AppColor.dark_moderate_blue
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter),
-                            ),
                             child: SingleChildScrollView(
                               physics: ClampingScrollPhysics(),
                               child: Column(
@@ -104,32 +98,32 @@ class JobAndIncomePageView
                                               model.occupationController,
                                           readOnly: true,
                                           key: model.occupationKey,
+                                          onPressed: () {
+                                            OccupationDialog.show(context,
+                                                employmentStatusEnum:
+                                                    model.employmentStatusEnum,
+                                                title: S
+                                                    .of(context)
+                                                    .occupationSmall,
+                                                onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: (data) {
+                                              Navigator.pop(context);
+                                              model.occupationController.text =
+                                                  data;
+                                              model.isValid();
+                                            });
+                                          },
                                           suffixIcon: (value, data) {
-                                            return InkWell(
-                                              onTap: () async {
-                                                OccupationDialog.show(context,
-                                                    employmentStatusEnum: model
-                                                        .employmentStatusEnum,
-                                                    title: S
-                                                        .of(context)
-                                                        .occupationSmall,
-                                                    onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (data) {
-                                                  Navigator.pop(context);
-                                                  model.occupationController
-                                                      .text = data;
-                                                  model.isValid();
-                                                });
-                                              },
-                                              child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding:
-                                                      EdgeInsets.only(right: 8),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.downArrow)),
-                                            );
+                                            return Container(
+                                                height: 16,
+                                                width: 16,
+                                                padding:
+                                                    EdgeInsets.only(right: 8),
+                                                child: AppSvg.asset(
+                                                    AssetUtils.downArrow,
+                                                    color:
+                                                        AppColor.dark_gray_1));
                                           },
                                         ),
                                         SizedBox(
@@ -153,34 +147,33 @@ class JobAndIncomePageView
                                               model.businessTypeController,
                                           readOnly: true,
                                           key: model.businessTypeKey,
+                                          onPressed: () {
+                                            OccupationDialog.show(context,
+                                                employmentStatusEnum:
+                                                    model.employmentStatusEnum,
+                                                title:
+                                                    S.of(context).businessType,
+                                                onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: (data) {
+                                              Navigator.pop(context);
+                                              model.businessTypeController
+                                                  .text = data;
+                                              model
+                                                  .updateBusinessTypeOtherVisibility();
+                                              model.isValid();
+                                            });
+                                          },
                                           suffixIcon: (value, data) {
-                                            return InkWell(
-                                              onTap: () async {
-                                                OccupationDialog.show(context,
-                                                    employmentStatusEnum: model
-                                                        .employmentStatusEnum,
-                                                    title: S
-                                                        .of(context)
-                                                        .businessType,
-                                                    onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (data) {
-                                                  Navigator.pop(context);
-                                                  model.businessTypeController
-                                                      .text = data;
-                                                  model
-                                                      .updateBusinessTypeOtherVisibility();
-                                                  model.isValid();
-                                                });
-                                              },
-                                              child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding:
-                                                      EdgeInsets.only(right: 8),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.downArrow)),
-                                            );
+                                            return Container(
+                                                height: 16,
+                                                width: 16,
+                                                padding:
+                                                    EdgeInsets.only(right: 8),
+                                                child: AppSvg.asset(
+                                                    AssetUtils.downArrow,
+                                                    color:
+                                                        AppColor.dark_gray_1));
                                           },
                                         ),
                                         SizedBox(
@@ -236,8 +229,10 @@ class JobAndIncomePageView
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
-                                              color: AppColor
-                                                  .very_light_gray_white),
+                                              color: Theme.of(context)
+                                                  .primaryTextTheme
+                                                  .bodyText1!
+                                                  .color!),
                                         ),
                                       );
                                     },
@@ -268,28 +263,27 @@ class JobAndIncomePageView
                                     controller: model.employerCountryController,
                                     readOnly: true,
                                     key: model.employerCountryKey,
+                                    onPressed: () {
+                                      CountryDialog.show(context,
+                                          title: S
+                                              .of(context)
+                                              .employerCountrySmall,
+                                          onDismissed: () {
+                                        Navigator.pop(context);
+                                      }, onSelected: (value) {
+                                        Navigator.pop(context);
+                                        model.updateEmployerCountry(value);
+                                        model.isValid();
+                                      });
+                                    },
                                     suffixIcon: (value, data) {
-                                      return InkWell(
-                                        onTap: () async {
-                                          CountryDialog.show(context,
-                                              title: S
-                                                  .of(context)
-                                                  .employerCountrySmall,
-                                              onDismissed: () {
-                                            Navigator.pop(context);
-                                          }, onSelected: (value) {
-                                            Navigator.pop(context);
-                                            model.updateEmployerCountry(value);
-                                            model.isValid();
-                                          });
-                                        },
-                                        child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.downArrow)),
-                                      );
+                                      return Container(
+                                          height: 16,
+                                          width: 16,
+                                          padding: EdgeInsets.only(right: 8),
+                                          child: AppSvg.asset(
+                                              AssetUtils.downArrow,
+                                              color: AppColor.dark_gray_1));
                                     },
                                   ),
                                   SizedBox(

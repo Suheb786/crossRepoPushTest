@@ -11,7 +11,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/blur_card.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -41,7 +40,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                       S.of(context).welcomeToNeuBank,
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                          color: AppColor.white,
+                          color: Theme.of(context).primaryColorDark,
                           fontSize: 32,
                           fontWeight: FontWeight.w600),
                     ),
@@ -62,7 +61,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                               if (data.status == Status.SUCCESS) {
                                 model.emailKey.currentState!.isValid = true;
                                 Navigator.pushReplacementNamed(
-                                    context, RoutePaths.AccountRegistration);
+                                    context, RoutePaths.Registration);
                               } else if (data.status == Status.ERROR) {
                                 model.emailKey.currentState!.isValid = false;
                                 model.showToastWithError(data.appError!);
@@ -79,42 +78,51 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                   padding: EdgeInsets.only(top: 15),
                                   child: Stack(
                                     children: [
-                                      Container(
+                                      Card(
                                         margin: EdgeInsets.only(
                                             bottom: 16,
                                             right: 24,
                                             left: 24,
                                             top: 25),
-                                        padding: EdgeInsets.only(top: 235),
-                                        clipBehavior: Clip.antiAlias,
-                                        width:
-                                            MediaQuery.of(context).size.width,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(16),
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    AssetUtils.circle),
-                                                fit: BoxFit.fitWidth,
-                                                alignment: Alignment.topCenter),
-                                            backgroundBlendMode:
-                                                BlendMode.difference,
-                                            gradient: LinearGradient(
-                                                colors: [
-                                                  AppColor.dark_violet,
-                                                  AppColor.dark_moderate_blue
-                                                ],
-                                                begin: Alignment.bottomCenter,
-                                                end: Alignment.topCenter),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                  color: AppColor.black
-                                                      .withOpacity(0.32),
-                                                  blurRadius: 24,
-                                                  offset: Offset(0, 8)),
-                                            ]),
+                                        clipBehavior: Clip.hardEdge,
+                                        color: Theme.of(context)
+                                            .cardTheme
+                                            .copyWith(color: AppColor.white)
+                                            .color,
+                                        // padding: EdgeInsets.only(top: 235),
+                                        // width:
+                                        //     MediaQuery.of(context).size.width,
+                                        // decoration: BoxDecoration(
+                                        //     borderRadius:
+                                        //         BorderRadius.circular(16),
+                                        //     image: DecorationImage(
+                                        //         image: AssetImage(
+                                        //             AssetUtils.circle),
+                                        //         fit: BoxFit.fitWidth,
+                                        //         alignment: Alignment.topCenter),
+                                        //     backgroundBlendMode:
+                                        //         BlendMode.difference,
+                                        //     gradient: LinearGradient(
+                                        //         colors: [
+                                        //           AppColor.dark_violet,
+                                        //           AppColor.dark_moderate_blue
+                                        //         ],
+                                        //         begin: Alignment.bottomCenter,
+                                        //         end: Alignment.topCenter),
+                                        //     boxShadow: [
+                                        //       BoxShadow(
+                                        //           color: AppColor.black
+                                        //               .withOpacity(0.32),
+                                        //           blurRadius: 24,
+                                        //           offset: Offset(0, 8)),
+                                        //     ]),
                                         child: Column(
                                           children: [
+                                            // Center(child: BlurCard()),
+                                            Container(
+                                              color: AppColor.vividYellow,
+                                              height: 220,
+                                            ),
                                             Padding(
                                               padding: EdgeInsets.only(
                                                   left: 24, right: 24, top: 25),
@@ -144,7 +152,10 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                             ),
                                             Padding(
                                               padding: EdgeInsets.only(
-                                                  top: 16, left: 24, right: 24),
+                                                  top: 16,
+                                                  left: 24,
+                                                  right: 24,
+                                                  bottom: 37),
                                               child: AppTextField(
                                                 labelText:
                                                     S.of(context).password,
@@ -163,25 +174,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                 obscureText: true,
                                               ),
                                             ),
-                                            Container(
-                                              height: 2,
-                                              margin: EdgeInsets.only(
-                                                  top: 64,
-                                                  bottom: 8,
-                                                  left: 96,
-                                                  right: 96),
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                      width: 1,
-                                                      color: AppColor.white),
-                                                  borderRadius:
-                                                      BorderRadius.circular(1),
-                                                  color: AppColor.white),
-                                            ),
                                           ],
                                         ),
                                       ),
-                                      Center(child: BlurCard()),
                                       AppStreamBuilder<bool>(
                                           stream: model.showButtonStream,
                                           initialData: false,
@@ -190,7 +185,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                               visible: isValid!,
                                               child: Positioned(
                                                 bottom: 24,
-                                                right: 94,
+                                                left: 45,
+                                                right: 45,
                                                 child: AnimatedButton(
                                                   buttonText:
                                                       "Swipe to proceed",
@@ -230,30 +226,33 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                 //     duration: Duration(milliseconds: 350), curve: Curves.ease);
               }
             },
-            child: Container(
-                padding: EdgeInsets.only(bottom: 32, top: 16),
-                width: double.maxFinite,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                    color: AppColor.very_dark_blue1.withOpacity(0.2),
-                    borderRadius:
-                        BorderRadius.vertical(top: Radius.circular(16))),
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 17.5, horizontal: 24),
+            child: Column(
+              children: [
+                Container(
+                  height: 4,
+                  width: 128,
+                  margin: EdgeInsets.only(top: 44, bottom: 8),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(200),
-                      border: Border.all(
-                        width: 2,
-                        color: AppColor.dark_grayish_violet1,
-                      )),
-                  child: Text(
-                    S.of(context).swipeUpToRegister,
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: AppColor.dark_grayish_violet1,
-                        fontWeight: FontWeight.w500),
-                  ),
-                )),
+                      borderRadius: BorderRadius.circular(2),
+                      color: AppColor.whiteGray),
+                ),
+                Container(
+                    padding: EdgeInsets.only(bottom: 25, top: 19),
+                    width: double.maxFinite,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).primaryColor,
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(16))),
+                    child: Text(
+                      S.of(context).swipeUpToRegister,
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Theme.of(context).accentColor,
+                          fontWeight: FontWeight.w600),
+                    )),
+              ],
+            ),
           ),
         ],
       ),

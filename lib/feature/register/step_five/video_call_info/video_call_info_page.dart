@@ -18,6 +18,11 @@ class VideoCallInfoPageState
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(BuildContext context, VideoCallInfoViewModel model) {
     return VideoCallInfoView(provideBase());
   }

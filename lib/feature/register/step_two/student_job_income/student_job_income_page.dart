@@ -18,6 +18,11 @@ class StudentJobIncomePageState extends BaseStatefulPage<
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(BuildContext context, StudentJobIncomePageViewModel model) {
     return StudentJobIncomePageView(provideBase());
   }

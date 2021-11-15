@@ -4,7 +4,6 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/splash/splash_modules.dart';
 import 'package:neo_bank/feature/splash/splash_page_model.dart';
 import 'package:neo_bank/feature/splash/splash_page_view.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class SplashPage extends BasePage<SplashViewModel> {
   @override
@@ -25,11 +24,6 @@ class SplashPageState extends BaseStatefulPage<SplashViewModel, SplashPage> {
   @override
   bool extendBodyBehindAppBar() {
     return true;
-  }
-
-  @override
-  Color scaffoldBackgroundColor() {
-    return AppColor.very_dark_blue;
   }
 
   @override

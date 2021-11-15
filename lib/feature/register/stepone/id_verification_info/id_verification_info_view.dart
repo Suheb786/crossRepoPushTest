@@ -74,28 +74,24 @@ class IdVerificationInfoView
                                   borderRadius: BorderRadius.circular(16)),
                               clipBehavior: Clip.antiAliasWithSaveLayer,
                               elevation: 2,
+                              color: Theme.of(context)
+                                  .cardTheme
+                                  .copyWith(color: AppColor.white)
+                                  .color,
                               margin: EdgeInsets.zero,
-                              shadowColor: AppColor.black.withOpacity(0.32),
-                              child: Container(
+                              shadowColor: Theme.of(context)
+                                  .primaryColorDark
+                                  .withOpacity(0.32),
+                              child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       vertical: 32, horizontal: 24),
-                                  decoration: BoxDecoration(
-                                    color: AppColor.very_soft_violet,
-                                    gradient: LinearGradient(
-                                        colors: [
-                                          AppColor.dark_violet,
-                                          AppColor.dark_moderate_blue
-                                        ],
-                                        begin: Alignment.bottomCenter,
-                                        end: Alignment.topCenter),
-                                  ),
                                   child: Stack(
                                     children: [
                                       SingleChildScrollView(
                                         child: Column(
                                           children: [
                                             InformationText(
-                                                image: AssetUtils.sunny,
+                                                image: AssetUtils.sun,
                                                 title: S
                                                     .of(context)
                                                     .idVerificationPlaceInfo),
@@ -103,14 +99,16 @@ class IdVerificationInfoView
                                               height: 32,
                                             ),
                                             InformationText(
-                                                image: AssetUtils.scan,
+                                                image: AssetUtils.scanIcon,
                                                 title:
                                                     S.of(context).idScanInfo),
                                             SizedBox(
                                               height: 32,
                                             ),
                                             InformationText(
-                                                image: AssetUtils.correct,
+                                                image: AssetUtils.tick,
+                                                iconColor: Theme.of(context)
+                                                    .primaryColorDark,
                                                 title: S.of(context).onIdFit),
                                             SizedBox(
                                               height: 144,
@@ -136,14 +134,48 @@ class IdVerificationInfoView
                                                                     false);
                                                           }
                                                         },
-                                                        child: isChecked ==
-                                                                false
-                                                            ? AppSvg.asset(
-                                                                AssetUtils
-                                                                    .ellipse)
-                                                            : AppSvg.asset(
-                                                                AssetUtils
-                                                                    .checkBox),
+                                                        child: Container(
+                                                          height: 40,
+                                                          width: 40,
+                                                          decoration: BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              color: isChecked!
+                                                                  ? Theme.of(
+                                                                          context)
+                                                                      .accentTextTheme
+                                                                      .bodyText1!
+                                                                      .color!
+                                                                  : Colors
+                                                                      .transparent,
+                                                              border: Border.all(
+                                                                  color: !isChecked
+                                                                      ? Theme.of(
+                                                                              context)
+                                                                          .accentTextTheme
+                                                                          .bodyText1!
+                                                                          .color!
+                                                                      : Colors
+                                                                          .transparent)),
+                                                          child: isChecked
+                                                              ? Container(
+                                                                  height: 16,
+                                                                  width: 16,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  child: AppSvg
+                                                                      .asset(
+                                                                    AssetUtils
+                                                                        .checkIcon,
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .accentColor,
+                                                                  ),
+                                                                )
+                                                              : Container(),
+                                                        ),
                                                       );
                                                     }),
                                                 SizedBox(
@@ -155,7 +187,6 @@ class IdVerificationInfoView
                                                         .of(context)
                                                         .termsAndConditions,
                                                     style: TextStyle(
-                                                        color: AppColor.white,
                                                         fontWeight:
                                                             FontWeight.w600,
                                                         fontSize: 12),

@@ -71,21 +71,17 @@ class ScheduleVideoCallPageView
                             borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         elevation: 2,
+                        color: Theme.of(context)
+                            .cardTheme
+                            .copyWith(color: AppColor.white)
+                            .color,
                         margin: EdgeInsets.zero,
-                        shadowColor: AppColor.black.withOpacity(0.32),
-                        child: Container(
+                        shadowColor: Theme.of(context)
+                            .primaryColorDark
+                            .withOpacity(0.32),
+                        child: Padding(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
-                            decoration: BoxDecoration(
-                              color: AppColor.very_soft_violet,
-                              gradient: LinearGradient(
-                                  colors: [
-                                    AppColor.dark_violet,
-                                    AppColor.dark_moderate_blue
-                                  ],
-                                  begin: Alignment.bottomCenter,
-                                  end: Alignment.topCenter),
-                            ),
                             child: Column(
                               children: [
                                 Expanded(
@@ -101,31 +97,31 @@ class ScheduleVideoCallPageView
                                               model.preferredDateController,
                                           readOnly: true,
                                           key: model.preferredDateKey,
+                                          onPressed: () {
+                                            DatePicker.show(context,
+                                                onSelected: (date) {
+                                              model.preferredDateController
+                                                      .text =
+                                                  TimeUtils.getFormattedDOB(
+                                                      date);
+                                              model.isValid();
+                                            }, onCancelled: () {
+                                              Navigator.pop(context);
+                                            },
+                                                title: S
+                                                    .of(context)
+                                                    .preferredDate);
+                                          },
                                           suffixIcon: (value, data) {
-                                            return InkWell(
-                                              onTap: () async {
-                                                DatePicker.show(context,
-                                                    onSelected: (date) {
-                                                  model.preferredDateController
-                                                          .text =
-                                                      TimeUtils.getFormattedDOB(
-                                                          date);
-                                                  model.isValid();
-                                                }, onCancelled: () {
-                                                  Navigator.pop(context);
-                                                },
-                                                    title: S
-                                                        .of(context)
-                                                        .preferredDate);
-                                              },
-                                              child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 7),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.calendar)),
-                                            );
+                                            return Container(
+                                                height: 16,
+                                                width: 16,
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 7),
+                                                child: AppSvg.asset(
+                                                    AssetUtils.calendar,
+                                                    color: Theme.of(context)
+                                                        .primaryColorDark));
                                           },
                                         ),
                                         SizedBox(
@@ -139,32 +135,31 @@ class ScheduleVideoCallPageView
                                               model.preferredTimeController,
                                           readOnly: true,
                                           key: model.preferredTimeKey,
+                                          onPressed: () {
+                                            YearMonthDialog.show(context,
+                                                title: S
+                                                    .of(context)
+                                                    .preferredTimeSmall,
+                                                calendarEnum: CalendarEnum.TIME,
+                                                onSelected: (time) {
+                                              Navigator.pop(context);
+                                              model.preferredTimeController
+                                                  .text = time;
+                                              model.isValid();
+                                            }, onDismissed: () {
+                                              Navigator.pop(context);
+                                            });
+                                          },
                                           suffixIcon: (value, data) {
-                                            return InkWell(
-                                              onTap: () async {
-                                                YearMonthDialog.show(context,
-                                                    title: S
-                                                        .of(context)
-                                                        .preferredTimeSmall,
-                                                    calendarEnum:
-                                                        CalendarEnum.TIME,
-                                                    onSelected: (time) {
-                                                  Navigator.pop(context);
-                                                  model.preferredTimeController
-                                                      .text = time;
-                                                  model.isValid();
-                                                }, onDismissed: () {
-                                                  Navigator.pop(context);
-                                                });
-                                              },
-                                              child: Container(
-                                                  height: 16,
-                                                  width: 16,
-                                                  padding:
-                                                      EdgeInsets.only(right: 8),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.downArrow)),
-                                            );
+                                            return Container(
+                                                height: 16,
+                                                width: 16,
+                                                padding:
+                                                    EdgeInsets.only(right: 8),
+                                                child: AppSvg.asset(
+                                                    AssetUtils.downArrow,
+                                                    color:
+                                                        AppColor.dark_gray_1));
                                           },
                                         ),
                                         SizedBox(

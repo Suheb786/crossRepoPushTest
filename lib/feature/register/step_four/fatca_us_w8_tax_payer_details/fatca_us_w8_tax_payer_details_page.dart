@@ -20,6 +20,11 @@ class FatcaUSW8TaxPayersDetailsPageState extends BaseStatefulPage<
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
+  }
+
+  @override
   Widget buildView(
       BuildContext context, FatcaUSW8TaxPayersDetailsPageViewModel model) {
     return FatcaUSW8TaxPayersDetailsPageView(provideBase());

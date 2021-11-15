@@ -50,21 +50,15 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                       borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
+                  color: Theme.of(context)
+                      .cardTheme
+                      .copyWith(color: AppColor.white)
+                      .color,
                   margin: EdgeInsets.zero,
                   shadowColor: AppColor.black.withOpacity(0.32),
-                  child: Container(
+                  child: Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                      decoration: BoxDecoration(
-                        color: AppColor.very_soft_violet,
-                        gradient: LinearGradient(
-                            colors: [
-                              AppColor.dark_violet,
-                              AppColor.dark_moderate_blue
-                            ],
-                            begin: Alignment.bottomCenter,
-                            end: Alignment.topCenter),
-                      ),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
@@ -72,20 +66,24 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                             child: Column(
                               children: [
                                 InformationText(
-                                    image: AssetUtils.sunny,
+                                    image: AssetUtils.sun,
                                     title: S.of(context).brightPlace),
                                 SizedBox(
                                   height: 32,
                                 ),
                                 InformationText(
-                                    image: AssetUtils.record,
-                                    title: S.of(context).quietSurrounding),
+                                    image: AssetUtils.mic,
+                                    title: S.of(context).quietSurrounding,
+                                    iconColor:
+                                        Theme.of(context).primaryColorDark),
                                 SizedBox(
                                   height: 32,
                                 ),
                                 InformationText(
-                                    image: AssetUtils.earphone,
-                                    title: S.of(context).preferredAgent),
+                                    image: AssetUtils.headPhone,
+                                    title: S.of(context).preferredAgent,
+                                    iconColor:
+                                        Theme.of(context).primaryColorDark),
                                 SizedBox(
                                   height: 56,
                                 ),
@@ -98,7 +96,10 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                   },
                                   child: Text(S.of(context).scheduleLater,
                                       style: TextStyle(
-                                          color: AppColor.vivid_orange,
+                                          color: Theme.of(context)
+                                              .accentTextTheme
+                                              .bodyText1!
+                                              .color,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w600)),
                                 ),

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class PasswordHintWidget extends StatelessWidget {
   final String? label;
@@ -30,7 +30,7 @@ class PasswordHintWidget extends StatelessWidget {
             style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w600,
-                color: AppColor.white),
+                color: Theme.of(context).accentColor),
           )
         ],
       ),
