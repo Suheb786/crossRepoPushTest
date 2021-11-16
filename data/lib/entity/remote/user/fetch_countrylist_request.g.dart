@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'fetch_country_list_request.dart';
+part of 'fetch_countrylist_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

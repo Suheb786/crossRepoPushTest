@@ -85,7 +85,7 @@ abstract class UserRemoteDS {
       String? permanentHomeAddress,
       String? permanentStreetAddress});
 
-  Future<String> verifyMobileOtp({String? otpCode, bool? getToken});
+  Future<bool> verifyMobileOtp({String? otpCode, bool? getToken});
 }
 
 abstract class UserLocalDS {

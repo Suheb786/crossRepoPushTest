@@ -1,7 +1,7 @@
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part "fetch_country_list_request.g.dart";
+part "fetch_countrylist_request.g.dart";
 
 @JsonSerializable()
 class FetchCountryListRequest {

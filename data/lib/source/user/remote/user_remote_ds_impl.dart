@@ -3,7 +3,7 @@ import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
-import 'package:data/entity/remote/user/fetch_country_List_request.dart';
+import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/save_id_info_request.dart';
@@ -212,7 +212,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<String> verifyMobileOtp({String? otpCode, bool? getToken}) async {
+  Future<bool> verifyMobileOtp({String? otpCode, bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.verifyMobileOtp(VerifyMobileOtpRequest(
         baseData: baseData, otpCode: otpCode, getToken: getToken));

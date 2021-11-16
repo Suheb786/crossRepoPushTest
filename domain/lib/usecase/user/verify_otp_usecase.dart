@@ -1,26 +1,34 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
-import 'package:domain/error/local_error.dart';
+import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class VerifyOtpUseCase
-    extends BaseUseCase<LocalError, VerifyOtpUseCaseParams, bool> {
-  VerifyOtpUseCase();
+    extends BaseUseCase<NetworkError, VerifyOtpUseCaseParams, bool> {
+  final UserRepository _repository;
+
+  VerifyOtpUseCase(this._repository);
 
   @override
-  Future<Either<LocalError, bool>> execute(
+  Future<Either<NetworkError, bool>> execute(
       {required VerifyOtpUseCaseParams params}) {
     return Future.value(Right(true));
+
+    ///TODO:uncomment once gets response
+    // return _repository.verifyMobileOtp(
+    //     otpCode: params.otp, getToken: params.getToken);
   }
 }
 
 class VerifyOtpUseCaseParams extends Params {
   final String otp;
+  final bool? getToken;
 
-  VerifyOtpUseCaseParams({required this.otp});
+  VerifyOtpUseCaseParams({required this.otp, this.getToken: false});
 
   @override
   Either<AppError, bool> verify() {

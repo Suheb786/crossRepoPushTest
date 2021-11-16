@@ -45,7 +45,7 @@ abstract class UserRepository {
       bool? getToken});
 
   /// verify mobile otp
-  Future<Either<NetworkError, String>> verifyMobileOtp(
+  Future<Either<NetworkError, bool>> verifyMobileOtp(
       {String? otpCode, bool? getToken});
 
   /// save Id information

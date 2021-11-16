@@ -1,6 +1,6 @@
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
-import 'package:data/entity/remote/user/fetch_country_List_request.dart';
+import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/save_id_info_request.dart';
@@ -54,6 +54,6 @@ abstract class ApiService {
       @Body() SaveResidenceInformationRequest saveResidenceInformationRequest);
 
   @POST("/auth/VerifyMobileOtp")
-  Future<String> verifyMobileOtp(
+  Future<bool> verifyMobileOtp(
       @Body() VerifyMobileOtpRequest verifyMobileOtpRequest);
 }

@@ -33,7 +33,11 @@ class ExpectedTransactionsSelectorWidget extends StatelessWidget {
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(
-                      color: AppColor.mostly_desaturated_dark_violet,
+                      color: Theme.of(context)
+                          .inputDecorationTheme
+                          .enabledBorder!
+                          .borderSide
+                          .color,
                       width: 1)),
               child: expectedTransactions.isSelected
                   ? AppSvg.asset(AssetUtils.correct)
@@ -46,7 +50,7 @@ class ExpectedTransactionsSelectorWidget extends StatelessWidget {
               child: Text(
                 expectedTransactions.type!,
                 style: TextStyle(
-                    color: textColor ?? AppColor.black,
+                    color: Theme.of(context).primaryColorDark,
                     fontSize: 14,
                     fontWeight: FontWeight.w600),
               ),

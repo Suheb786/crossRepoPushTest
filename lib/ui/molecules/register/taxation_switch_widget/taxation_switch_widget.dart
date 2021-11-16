@@ -107,23 +107,6 @@ class TaxationSwitchWidget extends StatelessWidget {
                           )),
                     ),
                   ),
-                  Visibility(
-                    visible: secondaryText!.isNotEmpty,
-                    child: Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: InkWell(
-                          onTap: () {
-                            onSecondaryTextTap?.call();
-                          },
-                          child: Text(
-                            secondaryText!,
-                            style: TextStyle(
-                                color: AppColor.vivid_orange,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600),
-                          )),
-                    ),
-                  ),
                   Text(
                     hintText,
                     style: TextStyle(

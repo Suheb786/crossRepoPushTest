@@ -301,7 +301,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, String>> verifyMobileOtp(
+  Future<Either<NetworkError, bool>> verifyMobileOtp(
       {String? otpCode, bool? getToken}) async {
     final result = await safeApiCall(
       _remoteDS.verifyMobileOtp(otpCode: otpCode, getToken: getToken),
