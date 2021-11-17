@@ -1,6 +1,10 @@
 import 'package:data/di/local_module.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
+import 'package:data/source/id_card/id_card_datasource.dart';
+import 'package:data/source/id_card/remote/id_card_remote_ds_impl.dart';
+import 'package:data/source/kyc/kyc_datasource.dart';
+import 'package:data/source/kyc/remote/kyc_remote_ds_impl.dart';
 import 'package:data/source/register/register_datasource.dart';
 import 'package:data/source/register/register_step_four_datasource.dart';
 import 'package:data/source/register/register_step_three_datasource.dart';
@@ -59,4 +63,16 @@ final registerStepThreeRemoteDS = Provider<RegisterStepThreeRemoteDataSource>(
 
 final registerStepFourRemoteDS = Provider<RegisterStepFourRemoteDataSource>(
   (ref) => RegisterStepFourRemoteDataSourceImpl(),
+);
+
+///kyc remote data source
+final kycRemoteDS = Provider<KYCRemoteDS>(
+  (ref) => KYCRemoteDSImpl(
+      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+);
+
+///id card remote data source
+final idCardRemoteDS = Provider<IdCardRemoteDS>(
+  (ref) => IdCardRemoteDSImpl(
+      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );

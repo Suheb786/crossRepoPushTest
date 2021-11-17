@@ -1,3 +1,5 @@
+import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
+import 'package:data/entity/remote/kyc/kyc_status_request.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
@@ -56,4 +58,11 @@ abstract class ApiService {
   @POST("/auth/VerifyMobileOtp")
   Future<bool> verifyMobileOtp(
       @Body() VerifyMobileOtpRequest verifyMobileOtpRequest);
+
+  @POST("/kyc/getstatus")
+  Future<String> checkKYCStatus(@Body() KYCStatusRequest kycStatusRequest);
+
+  @POST("/idcard/CheckAhwal")
+  Future<String> getAhwalDetails(
+      @Body() GetAhwalDetailsRequest getAhwalDetailsRequest);
 }
