@@ -89,7 +89,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                         // Center(child: BlurCard()),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              left: 24, right: 24, top: 25),
+                                              left: 16, right: 16, top: 25),
                                           child: AppTextField(
                                               textFieldBorderColor:
                                                   Theme.of(context).accentColor,
@@ -118,7 +118,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                         ),
                                         Padding(
                                           padding: EdgeInsets.only(
-                                              top: 16, left: 24, right: 24),
+                                              top: 16, left: 16, right: 16),
                                           child: AppTextField(
                                             labelText: S.of(context).password,
                                             hintText: S.of(context).pleaseEnter,

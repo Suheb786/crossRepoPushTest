@@ -5,6 +5,7 @@ import 'package:neo_bank/feature/notify_success/notify_success_page_view_model.d
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_details.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -24,60 +25,78 @@ class NotifySuccessPageView
       child: Container(
           height: double.infinity,
           width: double.infinity,
-          color: AppColor.dark_blue1,
+          color: Theme.of(context).primaryColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(24, 84, 24, 32),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Center(child: Image.asset(AssetUtils.complete)),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Center(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              S.of(context).awesome,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 24,
-                                  color: AppColor.very_light_violet),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 92),
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Image.asset(AssetUtils.line),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              height: 111.37,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColor.vividYellow,
+                              ),
+                              child:
+                                  Center(child: AppSvg.asset(AssetUtils.right)),
                             ),
-                            SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              S.of(context).thankYouForInterestWillSendUpdate,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 16,
-                                  color: AppColor.white),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        height: 40,
+                    ),
+                    SizedBox(
+                      height: 34.7,
+                    ),
+                    Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            S.of(context).awesome,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 24,
+                                color: Theme.of(context).accentColor),
+                          ),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text(
+                            S.of(context).thankYouForInterestWillSendUpdate,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                                color: Theme.of(context).accentColor),
+                          ),
+                        ],
                       ),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: AppColor.white1.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(8)),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                        child: AccountDetails(
-                            title: S.of(context).refTitle,
-                            value: S.of(context).refNumber),
-                      ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 24),
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).accentColor,
+                          borderRadius: BorderRadius.circular(16)),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                      child: AccountDetails(
+                          title: S.of(context).refTitle,
+                          value: S.of(context).refNumber),
+                    ),
+                  ],
                 ),
               ),
               Column(
@@ -87,8 +106,8 @@ class NotifySuccessPageView
                     padding: EdgeInsets.only(right: 92),
                     child: AnimatedButton(
                       buttonText: S.of(context).swipeToProceed,
-                      textColor: AppColor.white,
-                      borderColor: AppColor.light_violet,
+                      textColor: Theme.of(context).accentColor,
+                      borderColor: Theme.of(context).accentColor,
                     ),
                   ),
                   SizedBox(
@@ -102,8 +121,8 @@ class NotifySuccessPageView
                       child: Text(
                         S.of(context).toWelcomePage,
                         style: TextStyle(
-                          color: AppColor.very_light_violet1,
-                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).accentColor,
+                          fontWeight: FontWeight.w400,
                           fontSize: 12,
                         ),
                       ),

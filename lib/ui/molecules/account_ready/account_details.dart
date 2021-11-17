@@ -25,7 +25,7 @@ class AccountDetails extends StatelessWidget {
           children: [
             Text(
               value!,
-              style: TextStyle(fontWeight: FontWeight.w400, fontSize: 12),
+              style: TextStyle(fontWeight: FontWeight.w600, fontSize: 12),
             ),
             SizedBox(
               width: 7,

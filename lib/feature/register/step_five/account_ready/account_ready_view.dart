@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 
 class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
   AccountReadyView(ProviderBase model) : super(model);
@@ -41,7 +42,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                               height: 111.37,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.yellow,
+                                color: AppColor.vividYellow,
                               ),
                               child:
                                   Center(child: AppSvg.asset(AssetUtils.right)),
