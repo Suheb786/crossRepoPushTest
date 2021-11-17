@@ -4,17 +4,29 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class JobAndIncomeUseCase
     extends BaseUseCase<LocalError, JobAndIncomeUseCaseParams, bool> {
-  JobAndIncomeUseCase();
+  final UserRepository _repository;
+
+  JobAndIncomeUseCase(this._repository);
 
   @override
   Future<Either<LocalError, bool>> execute(
       {required JobAndIncomeUseCaseParams params}) {
     return Future.value(Right(true));
+
+    ///TODO:uncomment once gets response
+    //   return _repository.saveJobInformation(
+    //       occupation: params.occupation,
+    //       annualIncome: params.annualIncome,
+    //       employeeName: params.employerName,
+    //       employerCountry: params.employerCountry,
+    //       employerCity: params.employerCity,
+    //       employerContact: params.employerContact);
   }
 }
 

@@ -38,7 +38,7 @@ final additionalIncomeSourceUseCaseProvider =
 
 ///[JobAndIncomeUseCase] provider
 final jobAndIncomeUseCaseProvider = Provider.autoDispose<JobAndIncomeUseCase>(
-  (ref) => JobAndIncomeUseCase(),
+  (ref) => JobAndIncomeUseCase(ref.read(userRepoProvider)),
 );
 
 ///[TaxationDetailsUseCase] provider

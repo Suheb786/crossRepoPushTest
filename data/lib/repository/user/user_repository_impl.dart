@@ -7,6 +7,7 @@ import 'package:data/source/user/user_data_sources.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/error/database_error.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/repository/user/user_repository.dart';
 
@@ -92,6 +93,222 @@ class UserRepositoryImpl extends UserRepository {
     return result!.fold(
       (l) => Left(l),
       (r) => Right(true),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, String>> checkUserNameMobile(
+      {String? mobileNumber, String? countryCode}) async {
+    final result = await safeApiCall(
+      _remoteDS.checkUserNameMobile(
+          mobileNumber: mobileNumber, countryCode: countryCode),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, String>> fetchCountryList(
+      {bool? getToken}) async {
+    final result = await safeApiCall(
+      _remoteDS.fetchCountryList(getToken: getToken),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, String>> registerProspectUser(
+      {String? countryName,
+      String? languageCode,
+      String? uniqueId,
+      int? companyId,
+      String? email,
+      String? mobileNumber,
+      String? password,
+      String? confirmPassword,
+      String? userName,
+      String? fireBaseToken,
+      String? vKeySessionId,
+      String? platform,
+      bool? getToken}) async {
+    final result = await safeApiCall(
+      _remoteDS.registerProspectUser(
+        countryName: countryName,
+        languageCode: languageCode,
+        uniqueId: uniqueId,
+        companyId: companyId,
+        email: email,
+        mobileNumber: mobileNumber,
+        password: password,
+        confirmPassword: confirmPassword,
+        userName: userName,
+        fireBaseToken: fireBaseToken,
+        vKeySessionId: vKeySessionId,
+        platform: platform,
+        getToken: getToken,
+      ),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, String>> saveIdInfo(
+      {String? id,
+      String? type,
+      String? fullName,
+      String? firstName,
+      String? middleName,
+      String? familyName,
+      String? idNumber,
+      String? dob,
+      String? nationality,
+      String? doe,
+      String? gender,
+      String? motherName,
+      String? documentCode,
+      String? documentNumber,
+      String? issuer,
+      String? optionalData1,
+      String? optionalData2,
+      String? mrtDraw,
+      String? frontCardImage,
+      String? backCardImage,
+      String? personFaceImage,
+      bool? getToken,
+      bool? isimtfBlacklist,
+      String? instanceID,
+      double? scanPercentage}) async {
+    final result = await safeApiCall(
+      _remoteDS.saveIdInfo(
+          id: id,
+          type: type,
+          fullName: fullName,
+          middleName: middleName,
+          familyName: familyName,
+          idNumber: idNumber,
+          dob: dob,
+          nationality: nationality,
+          doe: doe,
+          gender: gender,
+          motherName: motherName,
+          documentCode: documentCode,
+          documentNumber: documentNumber,
+          issuer: issuer,
+          optionalData1: optionalData1,
+          optionalData2: optionalData2,
+          mrtDraw: mrtDraw,
+          frontCardImage: frontCardImage,
+          backCardImage: backCardImage,
+          personFaceImage: personFaceImage,
+          getToken: getToken,
+          isimtfBlacklist: isimtfBlacklist,
+          instanceID: instanceID,
+          scanPercentage: scanPercentage),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, String>> saveJobInformation(
+      {String? employeeName,
+      String? occupation,
+      String? annualIncome,
+      String? employerCountry,
+      String? employerCity,
+      String? employerContact,
+      bool? additionalIncome,
+      String? mainSource,
+      List<AdditionalIncomeType>? additionalIncomeType}) async {
+    final result = await safeApiCall(
+      _remoteDS.saveJobInformation(
+          employeeName: employeeName,
+          occupation: occupation,
+          annualIncome: annualIncome,
+          employerCountry: employerCountry,
+          employerCity: employerCity,
+          employerContact: employerContact,
+          additionalIncome: additionalIncome,
+          mainSource: mainSource,
+          additionalIncomeType: additionalIncomeType),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, String>> saveProfileInformation(
+      {bool? married,
+      bool? specialPerson,
+      bool? anyOtherNationality,
+      bool? beneficialOwnerAccount,
+      String? otherNationality,
+      String? employmentStatus,
+      String? spouseName,
+      String? natureOfSpecialNeeds}) async {
+    final result = await safeApiCall(_remoteDS.saveProfileInformation(
+        married: married,
+        specialPerson: specialPerson,
+        anyOtherNationality: anyOtherNationality,
+        beneficialOwnerAccount: beneficialOwnerAccount,
+        otherNationality: otherNationality,
+        employmentStatus: employmentStatus,
+        spouseName: spouseName,
+        natureOfSpecialNeeds: natureOfSpecialNeeds));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, String>> saveResidenceInformation(
+      {String? residentCountry,
+      String? homeAddress,
+      String? streetAddress,
+      String? residentDistrict,
+      String? residentCity,
+      String? permanentResidentCountry,
+      String? permanentResidentCity,
+      String? permanentHomeAddress,
+      String? permanentStreetAddress}) async {
+    final result = await safeApiCall(_remoteDS.saveResidenceInformation(
+        residentCountry: residentCountry,
+        homeAddress: homeAddress,
+        streetAddress: streetAddress,
+        residentDistrict: residentDistrict,
+        residentCity: residentCity,
+        permanentResidentCountry: permanentResidentCountry,
+        permanentResidentCity: permanentResidentCity,
+        permanentHomeAddress: permanentHomeAddress,
+        permanentStreetAddress: permanentStreetAddress));
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> verifyMobileOtp(
+      {String? otpCode, bool? getToken}) async {
+    final result = await safeApiCall(
+      _remoteDS.verifyMobileOtp(otpCode: otpCode, getToken: getToken),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r),
     );
   }
 }
