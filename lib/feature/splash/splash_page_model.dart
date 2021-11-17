@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/animation.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/subjects.dart';
@@ -11,16 +12,22 @@ class SplashViewModel extends BasePageViewModel {
 
   Stream<double> get splashProgressStream => _splashProgressSubject.stream;
 
+  AnimationController? animationController;
+
   /// Timer logic to trigger after 1 sec
-  startTimer() {
-    Timer.periodic(Duration(seconds: 1), (timer) {
-      if (timer.tick == 4) {
-        _splashProgressSubject.safeAdd(1.0);
-        timer.cancel();
-      } else {
-        _splashProgressSubject.safeAdd(_splashProgressSubject.value + 0.25);
-      }
+  startTimer(Duration duration) {
+    Timer(duration, () {
+      _splashProgressSubject.safeAdd(1.0);
     });
+
+    // Timer.periodic(duration, (timer) {
+    //   if (timer.tick == 4) {
+    //     _splashProgressSubject.safeAdd(1.0);
+    //     timer.cancel();
+    //   } else {
+    //     _splashProgressSubject.safeAdd(_splashProgressSubject.value + 0.25);
+    //   }
+    // });
   }
 
   @override

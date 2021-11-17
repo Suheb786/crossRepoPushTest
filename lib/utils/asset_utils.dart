@@ -4,6 +4,7 @@ class AssetUtils {
 
   static const String svg = "assets/svg/";
   static const String drawable = "assets/drawable/";
+  static const String _animation = "assets/animation/";
 
   static const String check = svg + "check.svg";
   static const String info = svg + "info.svg";
@@ -72,4 +73,7 @@ class AssetUtils {
   static const String contactLess = drawable + "contact_less.png";
   static const String cardLogo = drawable + "card_logo.png";
   static const String jordan_flag = drawable + "jordan_flag.png";
+
+  /// Animations
+  static const String splashAnimation = _animation + "blink_splash.json";
 }
