@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/database_error.dart';
+import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/user.dart';
 
 abstract class UserRepository {
@@ -114,4 +116,7 @@ abstract class UserRepository {
       bool? additionalIncome,
       String? mainSource,
       List<AdditionalIncomeType>? additionalIncomeType});
+
+  /// Scan User Document
+  Future<Either<LocalError, ScannedDocumentInformation>> scanUserDocument();
 }

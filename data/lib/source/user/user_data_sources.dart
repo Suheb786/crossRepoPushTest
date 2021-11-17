@@ -1,4 +1,7 @@
+import 'package:blinkid_flutter/recognizers/blink_id_combined_recognizer.dart';
+import 'package:dartz/dartz.dart';
 import 'package:data/entity/local/user_db_entity.dart';
+import 'package:domain/error/local_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 
 abstract class UserRemoteDS {
@@ -96,4 +99,7 @@ abstract class UserLocalDS {
   Future<bool> removeUser();
 
   Future<bool> saveCurrentUser(UserDBEntity userDBEntity);
+
+  Future<Either<LocalError, BlinkIdCombinedRecognizerResult>>
+      scanUserDocument();
 }

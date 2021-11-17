@@ -6,8 +6,10 @@ import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/error/database_error.dart';
+import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/repository/user/user_repository.dart';
 
@@ -310,5 +312,31 @@ class UserRepositoryImpl extends UserRepository {
       (l) => Left(l),
       (r) => Right(r),
     );
+  }
+
+  @override
+  Future<Either<LocalError, ScannedDocumentInformation>>
+      scanUserDocument() async {
+    final document = await _localDS.scanUserDocument();
+    return document.fold(
+        (l) => Left(l),
+        (r) => Right(ScannedDocumentInformation(
+              fullName: r.fullName,
+              firstName: r.firstName,
+              middleName: r.fathersName,
+              familyName: r.lastName,
+              idNumber: r.personalIdNumber,
+              dob: r.dateOfBirth.toString(),
+              nationality: r.nationality,
+              doe: r.dateOfExpiry.toString(),
+              gender: r.sex,
+              motherName: r.mothersName,
+              documentCode: r.documentAdditionalNumber,
+              documentNumber: r.documentNumber,
+              issuer: r.issuingAuthority,
+              frontCardImage: r.fullDocumentFrontImage,
+              backCardImage: r.fullDocumentBackImage,
+              personFaceImage: r.faceImage,
+            )));
   }
 }

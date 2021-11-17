@@ -12,6 +12,7 @@ import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:domain/usecase/user/product_selector_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
+import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:domain/usecase/user/send_documents_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:domain/usecase/user/video_call_info_usecase.dart';
@@ -107,3 +108,7 @@ final registerProspectUseCaseProvider =
 final verifyMobileOtpUseCaseProvider = Provider.autoDispose<VerifyOtpUseCase>(
   (ref) => VerifyOtpUseCase(ref.read(userRepoProvider)),
 );
+
+///[ScanUserDocumentUseCase] provider
+final scanUserDocumentUseCaseProvider = Provider<ScanUserDocumentUseCase>(
+    (ref) => ScanUserDocumentUseCase(ref.read(userRepoProvider)));
