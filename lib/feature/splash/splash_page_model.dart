@@ -19,15 +19,6 @@ class SplashViewModel extends BasePageViewModel {
     Timer(duration, () {
       _splashProgressSubject.safeAdd(1.0);
     });
-
-    // Timer.periodic(duration, (timer) {
-    //   if (timer.tick == 4) {
-    //     _splashProgressSubject.safeAdd(1.0);
-    //     timer.cancel();
-    //   } else {
-    //     _splashProgressSubject.safeAdd(_splashProgressSubject.value + 0.25);
-    //   }
-    // });
   }
 
   @override

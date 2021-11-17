@@ -35,31 +35,6 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
               ..forward();
           }),
         );
-
-        // return ThemeSwitcher(
-        //   builder: (BuildContext context) {
-        //     return InkWell(
-        //       onTap: () {
-        //         ProviderScope.containerOf(context)
-        //             .read(appViewModel)
-        //             .toggleTheme();
-        //
-        //         ThemeSwitcher.of(context)!.changeTheme(
-        //             theme: ProviderScope.containerOf(context)
-        //                 .read(appViewModel)
-        //                 .themeData);
-        //       },
-        //       child: Center(
-        //         child: Container(
-        //           width: 104,
-        //           height: 104,
-        //           alignment: Alignment.center,
-        //           child: Image.asset(AssetUtils.splashLogo),
-        //         ),
-        //       ),
-        //     );
-        //   },
-        // );
       },
     );
   }

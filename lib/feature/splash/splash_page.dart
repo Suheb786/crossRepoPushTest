@@ -22,7 +22,6 @@ class SplashPageState extends BaseStatefulPage<SplashViewModel, SplashPage>
   @override
   void onModelReady(SplashViewModel model) {
     model.animationController = AnimationController(vsync: this);
-    // model.startTimer();
   }
 
   @override
