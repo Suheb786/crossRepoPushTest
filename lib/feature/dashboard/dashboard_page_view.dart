@@ -15,98 +15,111 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24),
-      child: SingleChildScrollView(
-        physics: ClampingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    AppSvg.asset(AssetUtils.welcomeIcon),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 62.0),
-                      child: InkWell(
-                        onTap: () {},
-                        child: AppSvg.asset(AssetUtils.menuIcon,
-                            color: Theme.of(context).accentColor),
+    return GestureDetector(
+      onHorizontalDragUpdate: (details) {
+        if (details.primaryDelta!.isNegative) {
+          Navigator.pushReplacementNamed(context, RoutePaths.Registration);
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 24),
+        child: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppSvg.asset(AssetUtils.welcomeIcon),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 62.0),
+                        child: InkWell(
+                          onTap: () {},
+                          child: AppSvg.asset(AssetUtils.menuIcon,
+                              color: Theme.of(context).accentColor),
+                        ),
                       ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Text(
+                      S.of(context).successfullyCreatedLoginAccount,
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).accentColor),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Text(
-                    S.of(context).successfullyCreatedLoginAccount,
-                    style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).accentColor),
                   ),
-                ),
-                SizedBox(
-                  height: 22,
-                ),
-                InformationText(
-                  image: AssetUtils.lock,
-                  title: S.of(context).saveEarningsDigitally,
-                  containerColor: Theme.of(context).accentColor,
-                  textColor: Theme.of(context).accentColor,
-                ),
-                SizedBox(
-                  height: 16,
-                ),
-                InformationText(
-                  image: AssetUtils.transactionHistory,
-                  containerColor: Theme.of(context).accentColor,
-                  title: S.of(context).sendMoneyToFriendAndFamily,
-                  textColor: Theme.of(context).accentColor,
-                ),
-                SizedBox(
-                  height: 46,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(right: 70.0),
-                  child: AnimatedButton(
-                    buttonText: S.of(context).swipeToProceed,
-                    borderColor: Theme.of(context).accentColor,
-                    textColor: Theme.of(context).accentColor,
+                  SizedBox(
+                    height: 22,
                   ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 76,
-            ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 36.0),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamedAndRemoveUntil(
-                        context,
-                        RoutePaths.OnBoarding,
-                        ModalRoute.withName(RoutePaths.Splash));
-                  },
-                  child: Text(
-                    S.of(context).logoutAndContinueLater,
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Theme.of(context).accentColor),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: InformationText(
+                      image: AssetUtils.lock,
+                      title: S.of(context).saveEarningsDigitally,
+                      containerColor: Theme.of(context).accentColor,
+                      textColor: Theme.of(context).accentColor,
+                    ),
                   ),
-                ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: InformationText(
+                      image: AssetUtils.transactionHistory,
+                      containerColor: Theme.of(context).accentColor,
+                      title: S.of(context).sendMoneyToFriendAndFamily,
+                      textColor: Theme.of(context).accentColor,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 46,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 70.0),
+                    child: AnimatedButton(
+                      buttonText: S.of(context).swipeToProceed,
+                      borderColor: Theme.of(context).accentColor,
+                      textColor: Theme.of(context).accentColor,
+                    ),
+                  ),
+                ],
               ),
-            )
-          ],
+              SizedBox(
+                height: 76,
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 36.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          RoutePaths.OnBoarding,
+                          ModalRoute.withName(RoutePaths.Splash));
+                    },
+                    child: Text(
+                      S.of(context).logoutAndContinueLater,
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).accentColor),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
