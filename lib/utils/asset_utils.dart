@@ -77,5 +77,5 @@ class AssetUtils {
   static const String jordan_flag = drawable + "jordan_flag.png";
 
   /// Animations
-  static const String splashAnimation = _animation + "blink_splash.json";
+  static const String splashAnimation = _animation + "blink_splash-animation_v2.json";
 }
