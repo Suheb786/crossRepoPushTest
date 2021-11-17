@@ -1,9 +1,5 @@
-import 'package:dartz/dartz.dart';
-import 'package:domain/error/network_error.dart';
-
-abstract class BankSmartRepository {
-  /// add account of opening purpose
-  Future<Either<NetworkError, String>> addAccountPurpose(
+abstract class BankSmartRemoteDS {
+  Future<String> addAccountPurpose(
       {required bool getToken,
       String? purpose,
       bool? isCashDeposit,
@@ -13,3 +9,5 @@ abstract class BankSmartRepository {
       double? monthlyTransaction,
       double? annualTransaction});
 }
+
+abstract class BankSmartLocalDS {}

@@ -1,6 +1,6 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/register/expected_Transactionss.dart';
-import 'package:domain/usecase/register/purpose_of_account_opening_usecase.dart';
+import 'package:domain/usecase/bank_smart/purpose_of_account_opening_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -126,12 +126,21 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
   }
 
   void validatePurposeOfAccountOpening() {
-    _purposeOfAccountOpeningRequest
-        .safeAdd(PurposeOfAccountOpeningUseCaseParams(
-      purposeOfAccountOpening: purposeOfAccountOpeningController.text,
-      expectedAnnualTransaction: expectedAnnualTransactionController.text,
-      expectedMonthlyTransaction: expectedMonthlyTransactionController.text,
-    ));
+    _purposeOfAccountOpeningRequest.safeAdd(
+        PurposeOfAccountOpeningUseCaseParams(
+            purposeOfAccountOpening: purposeOfAccountOpeningController.text,
+            expectedAnnualTransaction: expectedAnnualTransactionController.text,
+            expectedMonthlyTransaction:
+                expectedMonthlyTransactionController.text,
+            getToken: false,
+            isCashDeposit:
+                _getExpectedTransactionsResponse.value.data![0].isSelected,
+            isTransfer:
+                _getExpectedTransactionsResponse.value.data![1].isSelected,
+            isBillPayment:
+                _getExpectedTransactionsResponse.value.data![2].isSelected,
+            isOther:
+                _getExpectedTransactionsResponse.value.data![3].isSelected));
   }
 
   @override

@@ -11,7 +11,6 @@ import 'package:domain/usecase/register/get_occupation_list_usecase.dart';
 import 'package:domain/usecase/register/get_purpose_of_account_opening_usecase.dart';
 import 'package:domain/usecase/register/job_and_income_usecase.dart';
 import 'package:domain/usecase/register/nature_of_special_needs_usecase.dart';
-import 'package:domain/usecase/register/purpose_of_account_opening_usecase.dart';
 import 'package:domain/usecase/register/relationship_with_pep_usecase.dart';
 import 'package:domain/usecase/register/review_app_usecase.dart';
 import 'package:domain/usecase/register/schedule_video_call_usecase.dart';
@@ -77,11 +76,6 @@ final employmentStatusDialogUseCaseProvider =
   (ref) =>
       EmploymentStatusDialogUseCase(ref.read(registerStepThreeRepoProvider)),
 );
-
-///[PurposeOfAccountOpeningUseCase] provider
-final purposeOfAccountsOpeningUseCaseProvider =
-    Provider.autoDispose<PurposeOfAccountOpeningUseCase>(
-        (ref) => PurposeOfAccountOpeningUseCase());
 
 ///[FatcaUSRelevantW8UseCase] provider
 final fatcaUSRelevantW8UseCaseProvider =

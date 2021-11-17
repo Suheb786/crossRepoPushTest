@@ -194,6 +194,21 @@ class _ApiService implements ApiService {
     return value;
   }
 
+  @override
+  Future<String> addAccountPurpose(addAccountPurposeRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(addAccountPurposeRequest.toJson());
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/Banksmart/AddAccountPurpose',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

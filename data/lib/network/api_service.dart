@@ -1,4 +1,5 @@
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
+import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
@@ -65,4 +66,8 @@ abstract class ApiService {
   @POST("/idcard/CheckAhwal")
   Future<String> getAhwalDetails(
       @Body() GetAhwalDetailsRequest getAhwalDetailsRequest);
+
+  @POST("/Banksmart/AddAccountPurpose")
+  Future<String> addAccountPurpose(
+      @Body() AddAccountPurposeRequest addAccountPurposeRequest);
 }

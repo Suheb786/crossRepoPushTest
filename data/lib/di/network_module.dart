@@ -1,6 +1,8 @@
 import 'package:data/di/local_module.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
+import 'package:data/source/bank_smart/bank_smart_datasource.dart';
+import 'package:data/source/bank_smart/remote/bank_smart_remote_ds_impl.dart';
 import 'package:data/source/id_card/id_card_datasource.dart';
 import 'package:data/source/id_card/remote/id_card_remote_ds_impl.dart';
 import 'package:data/source/kyc/kyc_datasource.dart';
@@ -74,5 +76,11 @@ final kycRemoteDS = Provider<KYCRemoteDS>(
 ///id card remote data source
 final idCardRemoteDS = Provider<IdCardRemoteDS>(
   (ref) => IdCardRemoteDSImpl(
+      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+);
+
+///bank smart remote data source
+final bankSmartRemoteDS = Provider<BankSmartRemoteDS>(
+  (ref) => BankSmartRemoteDSImpl(
       ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );
