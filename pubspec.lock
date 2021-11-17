@@ -36,6 +36,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.0"
+  blinkid_flutter:
+    dependency: transitive
+    description:
+      name: blinkid_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.14.0"
   boolean_selector:
     dependency: transitive
     description:
