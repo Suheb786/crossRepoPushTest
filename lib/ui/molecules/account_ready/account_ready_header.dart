@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class AccountReadyHeader extends StatelessWidget {
-
   String? title;
   String? subTitle;
 
@@ -11,16 +9,17 @@ class AccountReadyHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal:24.0),
+      padding: const EdgeInsets.symmetric(horizontal: 24.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            title!,
-            style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 24,
-                color: AppColor.very_light_violet),
+          Center(
+            child: Text(title!,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Theme.of(context).accentColor,
+                    fontSize: 24,
+                    fontWeight: FontWeight.w600)),
           ),
           SizedBox(
             height: 4,
@@ -30,8 +29,8 @@ class AccountReadyHeader extends StatelessWidget {
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontWeight: FontWeight.w400,
-                fontSize: 16,
-                color: AppColor.very_light_violet),
+                fontSize: 14,
+                color: Theme.of(context).accentColor),
           ),
         ],
       ),

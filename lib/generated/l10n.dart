@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1660,10 +1661,10 @@ class S {
     );
   }
 
-  /// `Your account is up and ready. Let’s get you the Neu Debit Card.`
+  /// `Your account is up and ready. \nLet’s get your Blink Debit Card.`
   String get accountReady {
     return Intl.message(
-      'Your account is up and ready. Let’s get you the Neu Debit Card.',
+      'Your account is up and ready. \nLet’s get your Blink Debit Card.',
       name: 'accountReady',
       desc: '',
       args: [],
@@ -3939,6 +3940,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter your login details`
+  String get enterLoginDetails {
+    return Intl.message(
+      'Enter your login details',
+      name: 'enterLoginDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot password`
+  String get forgotPassword {
+    return Intl.message(
+      'Forgot password',
+      name: 'forgotPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account has been created successfully.`
+  String get accountCreated {
+    return Intl.message(
+      'Account has been created successfully.',
+      name: 'accountCreated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Card Delivery`
+  String get cardDelivery {
+    return Intl.message(
+      'to Card Delivery',
+      name: 'cardDelivery',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -3952,8 +3993,10 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   @override
   bool isSupported(Locale locale) => _isSupported(locale);
+
   @override
   Future<S> load(Locale locale) => S.load(locale);
+
   @override
   bool shouldReload(AppLocalizationDelegate old) => false;
 

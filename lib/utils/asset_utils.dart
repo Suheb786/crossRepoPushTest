@@ -56,6 +56,8 @@ class AssetUtils {
   static const String scanIcon = svg + "scan_icon.svg";
   static const String shieldIcon = svg + "shield_icon.svg";
   static const String transactionHistory = svg + "transaction_history.svg";
+  static const String right = svg + "right.svg";
+  static const String copy = svg + "copy.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -73,6 +75,9 @@ class AssetUtils {
   static const String contactLess = drawable + "contact_less.png";
   static const String cardLogo = drawable + "card_logo.png";
   static const String jordan_flag = drawable + "jordan_flag.png";
+  static const String blink = drawable + "blink.png";
+  static const String welcome = drawable + "welcome.png";
+  static const String line = drawable + "line.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink_splash.json";

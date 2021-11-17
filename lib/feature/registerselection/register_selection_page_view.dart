@@ -24,11 +24,23 @@ class RegisterSelectionPageView
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            height: 40,
+            height: 60,
+            width: double.infinity,
             decoration: BoxDecoration(
                 color: Theme.of(context).accentColor,
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16))),
+            child: Padding(
+              padding: EdgeInsets.only(left: 128, right: 128),
+              child: Container(
+                height: 4,
+                width: 128,
+                margin: EdgeInsets.only(top: 44, bottom: 8),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(2),
+                    color: AppColor.whiteGray),
+              ),
+            ),
           ),
           Padding(
             padding: EdgeInsets.only(top: 33.0),
@@ -55,6 +67,8 @@ class RegisterSelectionPageView
                 }
               },
               child: Card(
+                elevation: 0,
+                color: Theme.of(context).primaryColor,
                 margin: EdgeInsets.only(top: 24, right: 24, left: 24),
                 // clipBehavior: Clip.antiAlias,
                 // padding: EdgeInsets.symmetric(vertical: 32),
@@ -85,33 +99,38 @@ class RegisterSelectionPageView
                           labelText: S.of(context).notifyMeExC,
                         ),
                       ),
-                      Spacer(),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(
-                              context, RoutePaths.AccountRegistration);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(18),
-                          width: double.maxFinite,
-                          margin: EdgeInsets.symmetric(horizontal: 24),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            color: Theme.of(context).primaryColorDark,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: AppColor.black.withOpacity(0.32),
-                                  blurRadius: 12,
-                                  spreadRadius: -4,
-                                  offset: Offset(0, 12)),
-                            ],
-                          ),
-                          child: Center(
-                            child: Text(S.of(context).registerViaEmail,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColor.white)),
+                      Padding(
+                        padding: EdgeInsets.only(top: 56),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                                context, RoutePaths.AccountRegistration);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(18),
+                            width: double.maxFinite,
+                            margin: EdgeInsets.symmetric(horizontal: 24),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: Theme.of(context)
+                                  .accentTextTheme
+                                  .bodyText1
+                                  ?.color,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: AppColor.black.withOpacity(0.32),
+                                    blurRadius: 12,
+                                    spreadRadius: -4,
+                                    offset: Offset(0, 12)),
+                              ],
+                            ),
+                            child: Center(
+                              child: Text(S.of(context).registerViaEmail,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      color: Theme.of(context).accentColor)),
+                            ),
                           ),
                         ),
                       ),
@@ -122,18 +141,18 @@ class RegisterSelectionPageView
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             AppDivider(
-                              color: AppColor.white.withOpacity(0.3),
+                              color: Theme.of(context).accentColor,
                               indent: 24,
                               endIndent: 12,
                             ),
                             Text(
                               S.of(context).orContinueWith,
                               style: TextStyle(
-                                  color: AppColor.dark_grayish_violet1,
+                                  color: Theme.of(context).accentColor,
                                   fontSize: 12),
                             ),
                             AppDivider(
-                              color: AppColor.white.withOpacity(0.3),
+                              color: Theme.of(context).accentColor,
                               endIndent: 24,
                               indent: 12,
                             ),
