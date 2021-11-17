@@ -164,7 +164,7 @@
   "emptyStreetAddress": "Street address field cannot be empty",
   "emptyBuildingNameOrNo": "Building name or number field cannot be empty",
   "awesome": "Awesome!",
-  "accountReady": "Your account is up and ready. Let’s get you the Neu Debit Card.",
+  "accountReady": "Your account is up and ready. \nLet’s get your Blink Debit Card.",
   "refTitle": "Ref No.",
   "refNumber": "984893922",
   "iban": "IBAN",
@@ -403,6 +403,9 @@
   "uploadDocument": "Upload Document",
   "pleaseSelectYourAction": "Please select your action",
   "additionalNationalityPassport": "Additional Nationality Passport",
-  "additionalNationalityPassportDesc": "Please provide your additional nationality passport as a proof"
-
+  "additionalNationalityPassportDesc": "Please provide your additional nationality passport as a proof",
+  "enterLoginDetails": "Enter your login details",
+  "forgotPassword": "Forgot password",
+  "accountCreated": "Account has been created successfully.",
+  "cardDelivery": "to Card Delivery"
 }

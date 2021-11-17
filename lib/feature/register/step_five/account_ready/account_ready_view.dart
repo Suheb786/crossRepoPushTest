@@ -6,9 +6,9 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_details.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_ready_header.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
   AccountReadyView(ProviderBase model) : super(model);
@@ -19,63 +19,71 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
       child: Container(
           height: double.infinity,
           width: double.infinity,
-          color: AppColor.dark_blue1,
+          color: Theme.of(context).primaryColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               SingleChildScrollView(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(24, 84, 24, 32),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 53, right: 53),
-                        child: Image.asset(AssetUtils.complete),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      AccountReadyHeader(
-                          title: S.of(context).awesome,
-                          subTitle: S.of(context).accountReady),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      Container(
-                        height: 104,
-                        width: 327,
-                        decoration: BoxDecoration(
-                            color: AppColor.white1.withOpacity(0.1),
-                            borderRadius: BorderRadius.circular(8)),
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                        child: Column(
-                          children: [
-                            AccountDetails(
-                                title: S.of(context).refTitle,
-                                value: S.of(context).refNumber),
-                            SizedBox(
-                              height: 16,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 92),
+                      child: Stack(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(top: 25),
+                            child: Image.asset(AssetUtils.line),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              height: 111.37,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.yellow,
+                              ),
+                              child:
+                                  Center(child: AppSvg.asset(AssetUtils.right)),
                             ),
-                            AccountDetails(
-                                title: S.of(context).iban,
-                                value: S.of(context).ibanNumber),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        height: 32,
+                    ),
+                    SizedBox(
+                      height: 34,
+                    ),
+                    AccountReadyHeader(
+                        title: S.of(context).accountCreated,
+                        subTitle: S.of(context).accountReady),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Container(
+                      height: 104,
+                      width: 327,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).cardColor,
+                          borderRadius: BorderRadius.circular(16)),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                      child: Column(
+                        children: [
+                          AccountDetails(
+                              title: S.of(context).refTitle,
+                              value: S.of(context).refNumber),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          AccountDetails(
+                            title: S.of(context).iban,
+                            value: S.of(context).ibanNumber,
+                            showIcon: true,
+                          ),
+                        ],
                       ),
-                      Text(
-                        S.of(context).cardLater,
-                        style: TextStyle(
-                            color: AppColor.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
               Column(
@@ -84,16 +92,16 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                     padding: const EdgeInsets.only(right: 96.0),
                     child: AnimatedButton(
                       buttonText: S.of(context).swipeToProceed,
-                      textColor: AppColor.white,
-                      borderColor: AppColor.light_violet,
+                      textColor: Theme.of(context).accentColor,
+                      borderColor: Theme.of(context).accentColor,
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 14.0),
                     child: Text(
-                      S.of(context).cardPersonalization,
+                      S.of(context).cardDelivery,
                       style: TextStyle(
-                        color: AppColor.very_light_violet1,
+                        color: Theme.of(context).accentColor,
                         fontWeight: FontWeight.w500,
                         fontSize: 12,
                       ),

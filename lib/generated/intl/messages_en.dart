@@ -33,6 +33,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
             "Accepted worldwide with no hidden charges"),
+        "accountCreated": MessageLookupByLibrary.simpleMessage(
+            "Account has been created successfully."),
         "accountNumberOptional":
             MessageLookupByLibrary.simpleMessage("ACCOUNT NUMBER (OPTIONAL)"),
         "accountOpeningDescription": MessageLookupByLibrary.simpleMessage(
@@ -40,7 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountOpeningPurpose":
             MessageLookupByLibrary.simpleMessage("ACCOUNT OPENING PURPOSE"),
         "accountReady": MessageLookupByLibrary.simpleMessage(
-            "Your account is up and ready. Let’s get you the Neu Debit Card."),
+            "Your account is up and ready. \nLet’s get your Blink Debit Card."),
         "accountRegistration":
             MessageLookupByLibrary.simpleMessage("ACCOUNT REGISTRATION"),
         "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
@@ -111,6 +113,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "businessType": MessageLookupByLibrary.simpleMessage("Business Type"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cardDelivery":
+            MessageLookupByLibrary.simpleMessage("to Card Delivery"),
         "cardLater":
             MessageLookupByLibrary.simpleMessage("I’ll get my card later"),
         "cardPersonalization":
@@ -226,6 +230,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Where do you\ncurrently live?"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Confirm password field cannot be empty"),
+        "enterLoginDetails":
+            MessageLookupByLibrary.simpleMessage("Enter your login details"),
         "enterOtpHeader":
             MessageLookupByLibrary.simpleMessage("Enter 6-digit OTP sent to"),
         "enterPassword": MessageLookupByLibrary.simpleMessage(
@@ -269,6 +275,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fatca": MessageLookupByLibrary.simpleMessage("FATCA "),
         "fatcaandPep": MessageLookupByLibrary.simpleMessage("FATCA & PEP"),
         "femaleAgent": MessageLookupByLibrary.simpleMessage("Female Agent"),
+        "forgotPassword":
+            MessageLookupByLibrary.simpleMessage("Forgot password"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
         "genderHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
