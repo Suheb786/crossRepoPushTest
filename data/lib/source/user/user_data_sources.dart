@@ -1,11 +1,14 @@
 import 'package:blinkid_flutter/recognizers/blink_id_combined_recognizer.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/entity/local/user_db_entity.dart';
+import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
+import 'package:retrofit/dio.dart';
 
 abstract class UserRemoteDS {
-  Future<String> checkUserName({String email});
+  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
+      {String email});
 
   Future<String> loginUser({required String email, required String password});
 

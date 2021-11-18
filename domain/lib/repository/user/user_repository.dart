@@ -3,6 +3,7 @@ import 'package:domain/error/database_error.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/check_username_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/user.dart';
 
@@ -20,7 +21,8 @@ abstract class UserRepository {
   Future<Either<DatabaseError, bool>> logoutUser();
 
   /// Check email is available or not
-  Future<Either<NetworkError, String>> checkUserName({String? email});
+  Future<Either<NetworkError, CheckUsernameResponse>> checkUserName(
+      {String? email});
 
   /// Login user with syste
   Future<Either<NetworkError, bool>> loginUser(
