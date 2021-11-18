@@ -21,7 +21,6 @@ class NotifyMeWidget extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
         decoration: BoxDecoration(
             color: Theme.of(context).accentColor,
-            border: Border.all(color: AppColor.veryLightGray1),
             borderRadius: BorderRadius.circular(16)),
         child: Column(
           children: [

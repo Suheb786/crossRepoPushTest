@@ -38,7 +38,11 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(top: 112.0),
-                      child: Image.asset(AssetUtils.blink),
+                      child: Image.asset(
+                        AssetUtils.blink,
+                        width: 195,
+                        height: 91.14,
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 100.0),
@@ -63,10 +67,14 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                               stream: model.loginStream,
                               initialData: Resource.none(),
                               onData: (data) {
+                                Navigator.pushReplacementNamed(
+                                    context, RoutePaths.Registration);
                                 if (data.status == Status.SUCCESS) {
                                   model.emailKey.currentState!.isValid = true;
-                                  Navigator.pushReplacementNamed(
-                                      context, RoutePaths.Registration);
+
+                                  /// TODO: Uncomment when we get success response
+                                  // Navigator.pushReplacementNamed(
+                                  //     context, RoutePaths.Registration);
                                 } else if (data.status == Status.ERROR) {
                                   model.emailKey.currentState!.isValid = false;
                                   model.showToastWithError(data.appError!);
@@ -79,47 +87,47 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                       model.validateEmail();
                                     }
                                   },
-                                  child: Card(
-                                    elevation: 0,
-                                    color: Theme.of(context).primaryColor,
-                                    margin:
-                                        EdgeInsets.only(left: 24, right: 24),
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 40, right: 40, top: 25),
                                     child: Column(
                                       children: [
                                         // Center(child: BlurCard()),
+                                        AppTextField(
+                                            textFieldBorderColor:
+                                                AppColor.whiteGray,
+                                            textFieldFocusBorderColor:
+                                                Theme.of(context)
+                                                    .primaryColorDark,
+                                            labelText:
+                                                S.of(context).emailAddress,
+                                            hintText: S.of(context).pleaseEnter,
+                                            key: model.emailKey,
+                                            controller: model.emailController,
+                                            inputType:
+                                                TextInputType.emailAddress,
+                                            inputAction: TextInputAction.next,
+                                            onSaved: (value) {
+                                              model.validateEmail();
+                                            },
+                                            suffixIcon: (_, __) {
+                                              return Visibility(
+                                                visible: false,
+                                                child: AppSvg.asset(
+                                                    AssetUtils.fingerPrint),
+                                              );
+                                            },
+                                            suffixIconSize: 24,
+                                            onChanged: (value) =>
+                                                model.validate()),
                                         Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 16, right: 16, top: 25),
+                                          padding: EdgeInsets.only(top: 16),
                                           child: AppTextField(
-                                              textFieldBorderColor:
-                                                  Theme.of(context).accentColor,
-                                              labelText:
-                                                  S.of(context).emailAddress,
-                                              hintText:
-                                                  S.of(context).pleaseEnter,
-                                              key: model.emailKey,
-                                              controller: model.emailController,
-                                              inputType:
-                                                  TextInputType.emailAddress,
-                                              inputAction: TextInputAction.next,
-                                              onSaved: (value) {
-                                                model.validateEmail();
-                                              },
-                                              suffixIcon: (_, __) {
-                                                return Visibility(
-                                                  visible: false,
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.fingerPrint),
-                                                );
-                                              },
-                                              suffixIconSize: 24,
-                                              onChanged: (value) =>
-                                                  model.validate()),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 16, left: 16, right: 16),
-                                          child: AppTextField(
+                                            textFieldBorderColor:
+                                                AppColor.whiteGray,
+                                            textFieldFocusBorderColor:
+                                                Theme.of(context)
+                                                    .primaryColorDark,
                                             labelText: S.of(context).password,
                                             hintText: S.of(context).pleaseEnter,
                                             key: model.passwordKey,
@@ -153,9 +161,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                 visible: isValid!,
                                                 child: Padding(
                                                   padding: EdgeInsets.only(
-                                                      top: 24,
-                                                      left: 71,
-                                                      right: 71),
+                                                      top: 24, right: 52),
                                                   child: AnimatedButton(
                                                     buttonText:
                                                         "Swipe to proceed",
@@ -205,7 +211,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                   Container(
                     height: 4,
                     width: 128,
-                    margin: EdgeInsets.only(top: 44, bottom: 8),
+                    margin: EdgeInsets.only(bottom: 8, top: 8),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(2),
                         color: AppColor.whiteGray),

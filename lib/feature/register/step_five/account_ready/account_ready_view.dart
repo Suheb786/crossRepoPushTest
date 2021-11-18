@@ -31,11 +31,9 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                     Padding(
                       padding: EdgeInsets.only(top: 92),
                       child: Stack(
+                        alignment: Alignment.center,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: 25),
-                            child: Image.asset(AssetUtils.line),
-                          ),
+                          Image.asset(AssetUtils.line),
                           Align(
                             alignment: Alignment.center,
                             child: Container(
