@@ -1,5 +1,10 @@
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
+import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/get_account_details_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
@@ -72,4 +77,25 @@ abstract class ApiService {
   @POST("/Banksmart/AddAccountPurpose")
   Future<String> addAccountPurpose(
       @Body() AddAccountPurposeRequest addAccountPurposeRequest);
+
+  @POST("/FatcaCrs/get")
+  Future<String> getFatcaQuestions(
+      @Body() GetFatcaQuestionsRequestEntity getFatcaQuestionsRequestEntity);
+
+  @POST("/FatcaCrs/set")
+  Future<String> saveFatcaInformation(
+      @Body()
+          SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
+
+  @POST("/BankSmart/GetAccount")
+  Future<String> getAccount(
+      @Body() GetAccountRequestEntity getAccountRequestEntity);
+
+  @POST("/BankSmart/CreateAccount")
+  Future<String> createAccount(
+      @Body() CreateAccountRequestEntity createAccountRequestEntity);
+
+  @POST("/BankSmart/ GetAccountDetails")
+  Future<String> getAccountDetails(
+      @Body() GetAccountDetailsRequestEntity getAccountDetailsRequestEntity);
 }

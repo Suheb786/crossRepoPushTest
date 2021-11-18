@@ -212,6 +212,81 @@ class _ApiService implements ApiService {
     return value;
   }
 
+  @override
+  Future<String> getFatcaQuestions(getFatcaQuestionsRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(getFatcaQuestionsRequestEntity.toJson());
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/FatcaCrs/get',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<String> saveFatcaInformation(saveFatcaInformationRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(saveFatcaInformationRequestEntity.toJson());
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/FatcaCrs/set',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<String> getAccount(getAccountRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(getAccountRequestEntity.toJson());
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/BankSmart/GetAccount',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<String> createAccount(createAccountRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(createAccountRequestEntity.toJson());
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/BankSmart/CreateAccount',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
+  @override
+  Future<String> getAccountDetails(getAccountDetailsRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(getAccountDetailsRequestEntity.toJson());
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/BankSmart/ GetAccountDetails',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

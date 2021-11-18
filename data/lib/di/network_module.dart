@@ -3,6 +3,8 @@ import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:data/source/bank_smart/remote/bank_smart_remote_ds_impl.dart';
+import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
+import 'package:data/source/fatca_crs/remote/fatca_crs_remote_ds_impl.dart';
 import 'package:data/source/id_card/id_card_datasource.dart';
 import 'package:data/source/id_card/remote/id_card_remote_ds_impl.dart';
 import 'package:data/source/kyc/kyc_datasource.dart';
@@ -82,5 +84,11 @@ final idCardRemoteDS = Provider<IdCardRemoteDS>(
 ///bank smart remote data source
 final bankSmartRemoteDS = Provider<BankSmartRemoteDS>(
   (ref) => BankSmartRemoteDSImpl(
+      ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
+);
+
+///fatca crs data source
+final fatcaCrsRemoteDS = Provider<FatcaCrsRemoteDS>(
+  (ref) => FatcaCrsRemoteDSImpl(
       ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );

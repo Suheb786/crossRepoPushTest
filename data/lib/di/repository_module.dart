@@ -3,6 +3,7 @@ import 'package:data/di/network_module.dart';
 import 'package:data/repository/bank_smart/bank_smart_repository_impl.dart';
 import 'package:data/repository/country/country_repository_impl.dart';
 import 'package:data/repository/enter_address/home_address_dialog_repository_impl.dart';
+import 'package:data/repository/fatca_crs/fatca_crs_repository_impl.dart';
 import 'package:data/repository/id_card/id_card_repository_impl.dart';
 import 'package:data/repository/kyc/kyc_repository_impl.dart';
 import 'package:data/repository/register/register_repository_impl.dart';
@@ -13,6 +14,7 @@ import 'package:data/repository/user/user_repository_impl.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
+import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/repository/id_card/id_card_repository.dart';
 import 'package:domain/repository/kyc/kyc_repository.dart';
 import 'package:domain/repository/register/register_repository.dart';
@@ -69,3 +71,7 @@ var idCardRepositoryProvider = Provider<IdCardRepository>(
 /// inject [BankSmartRepository] provider
 var bankSmartRepositoryProvider = Provider<BankSmartRepository>(
     (ref) => BankSmartRepositoryImpl(ref.read(bankSmartRemoteDS)));
+
+/// inject [FatcaCrsRepository] provider
+var fatcaCrsRepositoryProvider = Provider<FatcaCrsRepository>(
+    (ref) => FatcaCrsRepositoryImpl(ref.read(fatcaCrsRemoteDS)));
