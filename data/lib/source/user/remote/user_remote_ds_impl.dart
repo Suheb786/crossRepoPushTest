@@ -3,6 +3,7 @@ import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
+import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
@@ -14,6 +15,7 @@ import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:domain/model/user/additional_income_type.dart';
+import 'package:retrofit/retrofit.dart';
 
 class UserRemoteDSImpl extends UserRemoteDS {
   final ApiService _apiService;
@@ -22,7 +24,8 @@ class UserRemoteDSImpl extends UserRemoteDS {
   UserRemoteDSImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<String> checkUserName({String? email}) async {
+  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
+      {String? email}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService
         .checkUserName(CheckUserEmailRequest(baseData: baseData, email: email));
