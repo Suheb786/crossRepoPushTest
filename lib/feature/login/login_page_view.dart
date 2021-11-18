@@ -74,8 +74,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                               },
                               dataBuilder: (context, data) {
                                 return GestureDetector(
-                                  onHorizontalDragUpdate: (details) {
-                                    if (details.primaryDelta!.isNegative) {
+                                  onHorizontalDragEnd: (details) {
+                                    if (details.primaryVelocity!.isNegative) {
                                       model.validateEmail();
                                     }
                                   },
