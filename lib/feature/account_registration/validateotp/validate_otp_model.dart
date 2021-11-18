@@ -21,7 +21,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   void updateTime() {
     endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-    notifyListeners();
+    // notifyListeners();
   }
 
   ///verify otp request subject holder
@@ -41,6 +41,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
+  BehaviorSubject<String> _otpSubject = BehaviorSubject.seeded("");
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
@@ -59,12 +60,13 @@ class ValidateOtpViewModel extends BasePageViewModel {
   }
 
   void validateOtp() {
-    _verifyOtpRequest.safeAdd(VerifyOtpUseCaseParams(otp: otpController.text));
+    _verifyOtpRequest.safeAdd(VerifyOtpUseCaseParams(otp: _otpSubject.value));
   }
 
-  void validate() {
-    if (otpController.text.isNotEmpty && otpController.text.length >= 6) {
+  void validate(String value) {
+    if (value.isNotEmpty && value.length == 6) {
       _showButtonSubject.safeAdd(true);
+      _otpSubject.safeAdd(value);
     } else {
       _showButtonSubject.safeAdd(false);
     }
@@ -84,6 +86,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
     _errorDetectorSubject.close();
     countDownController.disposeTimer();
     _showButtonSubject.close();
+    _otpSubject.close();
     super.dispose();
   }
 }

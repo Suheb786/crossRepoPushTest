@@ -37,9 +37,10 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                   ProviderScope.containerOf(context)
                       .read(accountRegistrationViewModelProvider)
                       .pageController
-                      .nextPage(
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeInOut);
+                      .next(animation: true);
+                  // .nextPage(
+                  //     duration: Duration(milliseconds: 500),
+                  //     curve: Curves.easeInOut);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -53,9 +54,10 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                       ProviderScope.containerOf(context)
                           .read(accountRegistrationViewModelProvider)
                           .pageController
-                          .previousPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                          .previous(animation: true);
+                      // .previousPage(
+                      //     duration: Duration(milliseconds: 500),
+                      //     curve: Curves.easeInOut);
                     }
                   },
                   child: Card(
@@ -81,8 +83,10 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                 children: [
                                   AppOtpFields(
                                     length: 6,
-                                    controller: model.otpController,
-                                    onChanged: (val) => model.validate(),
+                                    // controller: model.otpController,
+                                    onChanged: (val) {
+                                      if (val.length == 6) model.validate(val);
+                                    },
                                   ),
                                   Center(
                                       child: Padding(
