@@ -16,20 +16,19 @@ class AppTiltCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedOpacity(
       opacity: pageViewIndex! == currentPage! ? 1 : 1,
-      duration: Duration(milliseconds: 300),
+      duration: Duration(milliseconds: 500),
       child: AnimatedContainer(
         padding: EdgeInsets.symmetric(horizontal: 8),
         curve: Curves.easeIn,
-        duration: Duration(milliseconds: 300),
+        duration: Duration(milliseconds: 500),
         transformAlignment: Alignment.center,
         transform: Matrix4.rotationZ(pageViewIndex! == currentPage!
             ? 0
             : pageViewIndex! < currentPage!
-                ? -2 * (math.pi / 180) //-0.03
+                ? -2 * (math.pi / 180)
                 : 2 * (math.pi / 180)),
-        //0.03),
         child: AnimatedContainer(
-          duration: Duration(milliseconds: 300),
+          duration: Duration(milliseconds: 500),
           transform: Matrix4.diagonal3Values(
               pageViewIndex! == currentPage! ? 1 : 1,
               pageViewIndex! == currentPage! ? 1 : 1,
