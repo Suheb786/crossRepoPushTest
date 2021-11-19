@@ -124,8 +124,8 @@ class AddNumberViewModel extends BasePageViewModel {
         if (event.status == Status.SUCCESS) {
           isEmailAvailable = event.data?.isAvailable ?? false;
         }
-        print("I AM HERE with status ${event.status}");
         _checkUserNameResponse.safeAdd(event);
+        validate();
       });
     });
 
@@ -148,6 +148,7 @@ class AddNumberViewModel extends BasePageViewModel {
           isNumberAvailable = event.data?.isAvailable ?? false;
         }
         _checkUserMobileResponse.safeAdd(event);
+        validate();
       });
     });
   }
