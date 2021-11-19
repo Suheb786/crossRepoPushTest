@@ -101,7 +101,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, String>> checkUserNameMobile(
+  Future<Either<NetworkError, CheckUsernameResponse>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode}) async {
     final result = await safeApiCall(
       _remoteDS.checkUserNameMobile(
@@ -109,7 +109,7 @@ class UserRepositoryImpl extends UserRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 

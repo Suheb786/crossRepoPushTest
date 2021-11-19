@@ -265,8 +265,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                   ),
                                 ),
                                 Padding(
-                                  padding:
-                                      EdgeInsets.only(right: 45, bottom: 0),
+                                  padding: EdgeInsets.only(top: 16),
                                   child: AppStreamBuilder<bool>(
                                       stream: model.showButtonStream,
                                       initialData: false,

@@ -9,9 +9,7 @@ part of 'response_entity.dart';
 ResponseEntity _$ResponseEntityFromJson(Map<String, dynamic> json) {
   return ResponseEntity(
     code: json['code'] as int?,
-    content: json['content'] == null
-        ? null
-        : ContentEntity.fromJson(json['content'] as Map<String, dynamic>),
+    content: json['content'],
     exceptionMessage: json['exceptionMessage'] as String?,
     message: json['message'] as String?,
     token: json['token'] as String?,

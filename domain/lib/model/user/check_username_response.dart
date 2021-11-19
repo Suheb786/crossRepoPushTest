@@ -1,7 +1,5 @@
-import 'package:domain/model/user/response.dart';
-
 class CheckUsernameResponse {
-  final Response? response;
+  final bool? isAvailable;
 
-  CheckUsernameResponse({this.response});
+  CheckUsernameResponse({this.isAvailable: false});
 }

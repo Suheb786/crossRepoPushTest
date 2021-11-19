@@ -7,21 +7,10 @@ part "check_user_name_mobile_request.g.dart";
 class CheckUserNameMobileRequest {
   @JsonKey(name: "channelId")
   final String? channelId;
-  @JsonKey(name: "uniqueId")
-  final String? uniqueId;
-  @JsonKey(name: "mobileNumber")
-  final String? mobileNumber;
-  @JsonKey(name: "countryCode")
-  final String? countryCode;
-  @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  @JsonKey(name: "content")
+  final Map<String, dynamic>? content;
 
-  CheckUserNameMobileRequest(
-      {this.channelId: "01",
-      this.uniqueId: "",
-      this.mobileNumber,
-      this.countryCode,
-      required this.baseData});
+  CheckUserNameMobileRequest({this.channelId: "01", required this.content});
 
   factory CheckUserNameMobileRequest.fromJson(Map<String, dynamic> json) =>
       _$CheckUserNameMobileRequestFromJson(json);

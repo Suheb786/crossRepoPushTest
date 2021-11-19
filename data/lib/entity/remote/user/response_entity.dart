@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/user/content_entity.dart';
 import 'package:domain/model/user/response.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -15,7 +14,7 @@ class ResponseEntity
   @JsonKey(name: "token")
   final String? token;
   @JsonKey(name: "content")
-  final ContentEntity? content;
+  final dynamic content;
   @JsonKey(name: "exceptionMessage")
   final String? exceptionMessage;
   @JsonKey(name: "id")
@@ -47,6 +46,6 @@ class ResponseEntity
         message: this.message ?? "",
         token: this.token ?? "",
         id: this.id,
-        content: this.content != null ? this.content!.transform() : null);
+        content: this.content);
   }
 }

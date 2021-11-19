@@ -1,10 +1,8 @@
-import 'package:domain/model/user/content.dart';
-
 class Response {
   final int? code;
   final String? message;
   final String? token;
-  final Content? content;
+  final dynamic content;
   final String? exceptionMessage;
   final String? id;
 

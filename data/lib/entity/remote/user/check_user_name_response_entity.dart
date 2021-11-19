@@ -27,7 +27,6 @@ class CheckUserNameResponseEntity
 
   @override
   CheckUsernameResponse transform() {
-    return CheckUsernameResponse(
-        response: this.response != null ? this.response!.transform() : null);
+    return CheckUsernameResponse(isAvailable: response!.transform().code == 1);
   }
 }

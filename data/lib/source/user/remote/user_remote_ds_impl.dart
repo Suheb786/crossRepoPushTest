@@ -27,8 +27,12 @@ class UserRemoteDSImpl extends UserRemoteDS {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
       {String? email}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .checkUserName(CheckUserEmailRequest(baseData: baseData, email: email));
+    Map<String, dynamic> content = Map();
+    content.putIfAbsent("userName", () => email);
+    content.putIfAbsent(
+        "UniqueId", () => DateTime.now().microsecondsSinceEpoch.toString());
+    return _apiService.checkUserName(
+        CheckUserEmailRequest(baseData: baseData.toJson(), content: content));
   }
 
   @override
@@ -40,13 +44,16 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<String> checkUserNameMobile(
+  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.checkUserNameMobile(CheckUserNameMobileRequest(
-        baseData: baseData,
-        mobileNumber: mobileNumber,
-        countryCode: countryCode));
+    Map<String, dynamic> content = Map();
+    content.putIfAbsent("MobileNumber", () => mobileNumber);
+    content.putIfAbsent("CountryCode", () => countryCode);
+    content.putIfAbsent(
+        "UniqueId", () => DateTime.now().microsecondsSinceEpoch.toString());
+    return _apiService
+        .checkUserNameMobile(CheckUserNameMobileRequest(content: content));
   }
 
   @override

@@ -12,7 +12,7 @@ abstract class UserRemoteDS {
 
   Future<String> loginUser({required String email, required String password});
 
-  Future<String> checkUserNameMobile(
+  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode});
 
   Future<String> fetchCountryList({bool? getToken});

@@ -1,7 +1,11 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/country/country.dart';
+import 'package:domain/model/user/check_username_response.dart';
 import 'package:domain/usecase/country/fetch_country_by_code_usecase.dart';
+import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
+import 'package:domain/usecase/user/check_username_usecase.dart';
 import 'package:domain/usecase/user/register_number_usecase.dart';
+import 'package:domain/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -14,6 +18,8 @@ import 'package:rxdart/rxdart.dart';
 class AddNumberViewModel extends BasePageViewModel {
   final RegisterNumberUseCase _registerNumberUseCase;
   final FetchCountryByCodeUseCase _fetchCountryByCodeUseCase;
+  final CheckUserNameUseCase _checkUserNameUseCase;
+  final CheckUserNameMobileUseCase _checkUserNameMobileUseCase;
 
   ///controllers and keys
   final TextEditingController mobileNumberController = TextEditingController();
@@ -44,8 +50,37 @@ class AddNumberViewModel extends BasePageViewModel {
 
   Stream<Resource<Country>> get countryByCode => _fetchCountryResponse.stream;
 
+  /// EMAIL value listener
+  final PublishSubject<String> _emailInputStream = PublishSubject();
+
+  /// Email availability
+  PublishSubject<CheckUserNameUseCaseParams> _checkUserNameRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<CheckUsernameResponse>> _checkUserNameResponse =
+      PublishSubject();
+
+  Stream<Resource<CheckUsernameResponse>> get checkUserNameStream =>
+      _checkUserNameResponse.stream;
+
+  /// Phone value listener
+  final PublishSubject<String> _phoneInputStream = PublishSubject();
+
+  /// Email availability
+  PublishSubject<CheckUserNameMobileUseCaseParams> _checkUserMobileRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<CheckUsernameResponse>> _checkUserMobileResponse =
+      PublishSubject();
+
+  Stream<Resource<CheckUsernameResponse>> get checkUserMobileStream =>
+      _checkUserMobileResponse.stream;
+
   AddNumberViewModel(
-      this._registerNumberUseCase, this._fetchCountryByCodeUseCase) {
+      this._registerNumberUseCase,
+      this._fetchCountryByCodeUseCase,
+      this._checkUserNameUseCase,
+      this._checkUserNameMobileUseCase) {
     _registerNumberRequest.listen((value) {
       RequestManager(value,
               createCall: () => _registerNumberUseCase.execute(params: value))
@@ -66,6 +101,43 @@ class AddNumberViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _fetchCountryResponse.safeAdd(event);
+      });
+    });
+
+    _emailInputStream.stream
+        .debounceTime(Duration(milliseconds: 800))
+        .distinct()
+        .listen((email) {
+      if (Validator.validateEmail(email)) {
+        checkEmailAvailability();
+      }
+    });
+
+    _checkUserNameRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _checkUserNameUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _checkUserNameResponse.safeAdd(event);
+      });
+    });
+
+    _phoneInputStream.stream
+        .debounceTime(Duration(milliseconds: 800))
+        .distinct()
+        .listen((phone) {
+      if (phone.length > 8) {
+        checkPhoneAvailability();
+      }
+    });
+
+    _checkUserMobileRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _checkUserNameMobileUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _checkUserMobileResponse.safeAdd(event);
       });
     });
   }
@@ -96,6 +168,28 @@ class AddNumberViewModel extends BasePageViewModel {
         mobileNumber: mobileNumberController.text));
   }
 
+  /// Check Request for email is registered already or not
+  void checkEmailAvailability() {
+    _checkUserNameRequest
+        .safeAdd(CheckUserNameUseCaseParams(email: emailController.text));
+  }
+
+  /// Validate email is registered with system or not
+  void validateEmail() {
+    _emailInputStream.safeAdd(emailController.text);
+  }
+
+  /// Check Request for email is registered already or not
+  void checkPhoneAvailability() {
+    _checkUserMobileRequest.safeAdd(CheckUserNameMobileUseCaseParams(
+        mobileNumber: mobileNumberController.text, countryCode: 'JOR'));
+  }
+
+  /// Validate mobile is registered with system or not
+  void validateMobile() {
+    _phoneInputStream.safeAdd(mobileNumberController.text);
+  }
+
   void validate() {
     if (mobileNumberController.text.isNotEmpty &&
         emailController.text.isNotEmpty) {
@@ -112,6 +206,12 @@ class AddNumberViewModel extends BasePageViewModel {
     _showButtonSubject.close();
     _fetchCountryRequest.close();
     _fetchCountryResponse.close();
+    _emailInputStream.close();
+    _checkUserNameRequest.close();
+    _checkUserNameResponse.close();
+    _phoneInputStream.close();
+    _checkUserMobileRequest.close();
+    _checkUserMobileResponse.close();
     super.dispose();
   }
 }
