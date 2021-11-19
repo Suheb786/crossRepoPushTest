@@ -5,20 +5,15 @@ part "check_user_email_request.g.dart";
 
 @JsonSerializable()
 class CheckUserEmailRequest {
-  @JsonKey(name: "userName")
-  final String? email;
   @JsonKey(name: "channelId")
   final String? channelId;
-  @JsonKey(name: "uniqueId")
-  final String? uniqueId;
+  @JsonKey(name: "content")
+  final Map<String, dynamic>? content;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String, dynamic> baseData;
 
   CheckUserEmailRequest(
-      {this.email: "",
-      this.channelId: "01",
-      this.uniqueId: "",
-      required this.baseData});
+      {this.channelId: "01", required this.content, required this.baseData});
 
   factory CheckUserEmailRequest.fromJson(Map<String, dynamic> json) =>
       _$CheckUserEmailRequestFromJson(json);

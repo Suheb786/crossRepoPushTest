@@ -1,4 +1,3 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,13 +8,14 @@ import 'package:neo_bank/feature/account_registration/addnumber/add_number_page.
 import 'package:neo_bank/feature/account_registration/createPassword/create_password_page.dart';
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
 class AccountRegistrationPageView
     extends BasePageViewWidget<AccountRegistrationPageViewModel> {
-  var pages = [
+  final pages = [
     // CountrySelectionPage(),
     AddNumberPage(),
     ValidateOtpPage(),
@@ -122,31 +122,13 @@ class AccountRegistrationPageView
                       ),
                     ),
                     Expanded(
-                      child: Swiper(
-                        customLayoutOption:
-                            CustomLayoutOption(startIndex: -1, stateCount: 3)
-                                .addRotate(
-                                    [-7.0 / 180, 0.0, 7.0 / 180]).addTranslate([
-                          Offset(
-                              -(MediaQuery.of(context).size.width - 35), -5.0),
-                          Offset(0.0, 0.0),
-                          Offset(MediaQuery.of(context).size.width - 35, -5.0)
-                        ]),
-                        key: ValueKey(currentStep),
-                        autoplay: false,
-                        loop: false,
-                        controller: model.pageController,
-                        itemWidth: MediaQuery.of(context).size.width - 48,
-                        index: currentStep,
-                        viewportFraction: 0.88,
-                        scrollDirection: Axis.horizontal,
-                        physics: ClampingScrollPhysics(),
-                        onIndexChanged: (index) =>
-                            model.changeCurrentPage(index),
-                        itemCount: pages.length,
-                        layout: SwiperLayout.CUSTOM,
-                        itemBuilder: (context, index) => Container(
-                            margin: EdgeInsets.all(5), child: pages[index]),
+                      child: AppSwiper(
+                        pages: pages,
+                        pageController: model.pageController,
+                        onIndexChanged: (index) {
+                          model.changeCurrentPage(index);
+                        },
+                        currentStep: currentStep,
                       ),
                     )
                   ],

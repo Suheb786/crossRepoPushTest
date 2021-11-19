@@ -38,9 +38,6 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                       .read(accountRegistrationViewModelProvider)
                       .pageController
                       .next(animation: true);
-                  // .nextPage(
-                  //     duration: Duration(milliseconds: 500),
-                  //     curve: Curves.easeInOut);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -55,9 +52,6 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                           .read(accountRegistrationViewModelProvider)
                           .pageController
                           .previous(animation: true);
-                      // .previousPage(
-                      //     duration: Duration(milliseconds: 500),
-                      //     curve: Curves.easeInOut);
                     }
                   },
                   child: Card(
@@ -65,15 +59,6 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                     child: Container(
                         padding:
                             EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                        // decoration: BoxDecoration(
-                        //     color: AppColor.very_soft_violet,
-                        //     gradient: LinearGradient(
-                        //         colors: [
-                        //           AppColor.dark_violet,
-                        //           AppColor.dark_moderate_blue
-                        //         ],
-                        //         begin: Alignment.bottomCenter,
-                        //         end: Alignment.topCenter)),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -149,23 +134,22 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                           );
                                   },
                                 ),
-                                AppStreamBuilder<bool>(
-                                    stream: model.showButtonStream,
-                                    initialData: false,
-                                    dataBuilder: (context, isValid) {
-                                      return Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 16.0, right: 43),
-                                        child: Visibility(
+                                Padding(
+                                  padding: EdgeInsets.only(top: 16.0),
+                                  child: AppStreamBuilder<bool>(
+                                      stream: model.showButtonStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isValid) {
+                                        return Visibility(
                                           visible: isValid!,
                                           child: AnimatedButton(
                                             buttonHeight: 50,
                                             buttonText:
                                                 S.of(context).swipeToProceed,
                                           ),
-                                        ),
-                                      );
-                                    })
+                                        );
+                                      }),
+                                )
                               ],
                             ),
                           ],

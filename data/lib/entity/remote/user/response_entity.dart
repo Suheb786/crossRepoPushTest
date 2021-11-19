@@ -14,7 +14,7 @@ class ResponseEntity
   @JsonKey(name: "token")
   final String? token;
   @JsonKey(name: "content")
-  final dynamic? content;
+  final dynamic content;
   @JsonKey(name: "exceptionMessage")
   final String? exceptionMessage;
   @JsonKey(name: "id")
@@ -46,6 +46,6 @@ class ResponseEntity
         message: this.message ?? "",
         token: this.token ?? "",
         id: this.id,
-        content: this.content != null ? this.content!.transform() : null);
+        content: this.content);
   }
 }

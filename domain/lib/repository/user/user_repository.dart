@@ -31,7 +31,7 @@ abstract class UserRepository {
       {required String email, required String password});
 
   /// Check for userName mobile availability
-  Future<Either<NetworkError, String>> checkUserNameMobile(
+  Future<Either<NetworkError, CheckUsernameResponse>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode});
 
   /// register prospect user

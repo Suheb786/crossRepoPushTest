@@ -31,16 +31,16 @@ abstract class ApiService {
     return _ApiService(dio, baseUrl: baseUrl);
   }
 
-  @POST("/auth/CheckUserName")
+  @POST("http://192.168.181.2:2821/api/auth/CheckUserName")
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
       @Body() CheckUserEmailRequest request);
 
+  @POST("http://192.168.181.2:2821/api/auth/CheckUserNameMobile")
+  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
+      @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
+
   @POST("/auth/loginUser")
   Future<String> loginUser(@Body() LoginUserRequest loginUserRequest);
-
-  @POST("/auth​/CheckUserNameMobile")
-  Future<String> checkUserNameMobile(
-      @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 
   @POST("/transfer/GetCountries")
   Future<String> fetchCountryList(
@@ -99,7 +99,7 @@ abstract class ApiService {
   Future<String> createAccount(
       @Body() CreateAccountRequestEntity createAccountRequestEntity);
 
-  @POST("/BankSmart/ GetAccountDetails")
+  @POST("/BankSmart/GetAccountDetails")
   Future<String> getAccountDetails(
       @Body() GetAccountDetailsRequestEntity getAccountDetailsRequestEntity);
 }

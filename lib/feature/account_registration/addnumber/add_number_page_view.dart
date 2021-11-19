@@ -39,9 +39,6 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                         .read(accountRegistrationViewModelProvider)
                         .pageController
                         .next(animation: true);
-                    // .nextPage(
-                    //     duration: Duration(milliseconds: 500),
-                    //     curve: Curves.easeInOut);
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
@@ -61,9 +58,6 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                             .read(accountRegistrationViewModelProvider)
                             .pageController
                             .previous(animation: true);
-                        // .previousPage(
-                        //     duration: Duration(milliseconds: 500),
-                        //     curve: Curves.easeInOut);
                       }
                     },
                     child: Card(
@@ -71,117 +65,101 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                       child: Container(
                           padding: EdgeInsets.symmetric(
                               vertical: 32, horizontal: 24),
-                          // decoration: BoxDecoration(
-                          //   color: AppColor.very_soft_violet,
-                          //   gradient: LinearGradient(
-                          //       colors: [
-                          //         AppColor.dark_violet,
-                          //         AppColor.dark_moderate_blue
-                          //       ],
-                          //       begin: Alignment.bottomCenter,
-                          //       end: Alignment.topCenter),
-                          // ),
-                          child: Stack(
+                          child: Column(
                             children: [
-                              Column(
-                                children: [
-                                  AppTextField(
-                                    labelText: S.of(context).emailAddress,
-                                    hintText: S.of(context).pleaseEnter,
-                                    controller: model.emailController,
-                                    key: model.emailKey,
-                                    inputAction: TextInputAction.go,
-                                    inputType: TextInputType.emailAddress,
+                              AppTextField(
+                                labelText: S.of(context).emailAddress,
+                                hintText: S.of(context).pleaseEnter,
+                                controller: model.emailController,
+                                key: model.emailKey,
+                                inputAction: TextInputAction.go,
+                                inputType: TextInputType.emailAddress,
+                                onChanged: (value) {
+                                  model.validateEmail();
+                                  model.validate();
+                                },
+                              ),
+                              SizedBox(
+                                height: 16,
+                              ),
+                              AppStreamBuilder<Resource<Country>>(
+                                initialData: Resource.success(data: Country()),
+                                stream: model.countryByCode,
+                                dataBuilder: (context, country) {
+                                  return AppTextField(
+                                    labelText: S.of(context).mobileNumber,
+                                    hintText: S.of(context).mobileNumberHint,
+                                    inputType: TextInputType.number,
+                                    inputAction: TextInputAction.done,
+                                    controller: model.mobileNumberController,
+                                    key: model.mobileNumberKey,
                                     onChanged: (value) {
+                                      model.validateMobile();
                                       model.validate();
                                     },
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  AppStreamBuilder<Resource<Country>>(
-                                    initialData:
-                                        Resource.success(data: Country()),
-                                    stream: model.countryByCode,
-                                    dataBuilder: (context, country) {
-                                      return AppTextField(
-                                        labelText: S.of(context).mobileNumber,
-                                        hintText:
-                                            S.of(context).mobileNumberHint,
-                                        inputType: TextInputType.number,
-                                        inputAction: TextInputAction.done,
-                                        controller:
-                                            model.mobileNumberController,
-                                        key: model.mobileNumberKey,
-                                        onChanged: (value) => model.validate(),
-                                        prefixIcon: () {
-                                          return Padding(
-                                            padding: EdgeInsets.only(top: 8.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                Container(
-                                                    height: 16,
-                                                    width: 16,
-                                                    decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        image: DecorationImage(
-                                                            image: AssetImage(
-                                                                country!.data!
-                                                                        .countryFlag ??
-                                                                    "",
-                                                                package:
-                                                                    "country_calling_code_picker"),
-                                                            fit:
-                                                                BoxFit.cover))),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 8.0),
-                                                  child: Text(
-                                                    country.data!
-                                                            .countryCallingCode ??
-                                                        "",
-                                                    style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyText1!
-                                                          .color,
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          );
-                                        },
+                                    prefixIcon: () {
+                                      return Padding(
+                                        padding: EdgeInsets.only(top: 8.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: <Widget>[
+                                            Container(
+                                                height: 16,
+                                                width: 16,
+                                                decoration: BoxDecoration(
+                                                    shape: BoxShape.circle,
+                                                    image: DecorationImage(
+                                                        image: AssetImage(
+                                                            country!.data!
+                                                                    .countryFlag ??
+                                                                "",
+                                                            package:
+                                                                "country_calling_code_picker"),
+                                                        fit: BoxFit.cover))),
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 8.0),
+                                              child: Text(
+                                                country.data!
+                                                        .countryCallingCode ??
+                                                    "",
+                                                style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyText1!
+                                                      .color,
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
                                       );
                                     },
-                                  ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context)
-                                        .viewInsets
-                                        .bottom,
-                                  ),
-                                ],
+                                  );
+                                },
                               ),
-                              AppStreamBuilder<bool>(
-                                  stream: model.showButtonStream,
-                                  initialData: false,
-                                  dataBuilder: (context, isValid) {
-                                    return Visibility(
-                                      visible: isValid!,
-                                      child: Positioned(
-                                        bottom: 0,
-                                        right: 45,
+                              Spacer(),
+                              Padding(
+                                padding: EdgeInsets.symmetric(vertical: 16.0),
+                                child: AppStreamBuilder<bool>(
+                                    stream: model.showButtonStream,
+                                    initialData: false,
+                                    dataBuilder: (context, isValid) {
+                                      return Visibility(
+                                        visible: isValid!,
                                         child: AnimatedButton(
                                           buttonText:
                                               S.of(context).swipeToProceed,
                                         ),
-                                      ),
-                                    );
-                                  })
+                                      );
+                                    }),
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).viewInsets.bottom,
+                              ),
                             ],
                           )),
                     ),
