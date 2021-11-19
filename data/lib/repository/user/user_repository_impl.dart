@@ -331,18 +331,31 @@ class UserRepositoryImpl extends UserRepository {
               firstName: r.firstName,
               middleName: r.fathersName,
               familyName: r.lastName,
-              idNumber: r.personalIdNumber,
-              dob: r.dateOfBirth.toString(),
-              nationality: r.nationality,
-              doe: r.dateOfExpiry.toString(),
-              gender: r.sex,
-              motherName: r.mothersName,
-              documentCode: r.documentAdditionalNumber,
+              idNumber: r.documentNumber!.isNotEmpty ? r.documentNumber : '',
+              dob: r.dateOfBirth != null
+                  ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
+                      r.dateOfBirth!.day!)
+                  : DateTime(0),
+              nationality: r.nationality!.isNotEmpty ? r.nationality : '',
+              doe: r.dateOfExpiry != null
+                  ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!,
+                      r.dateOfExpiry!.day!)
+                  : DateTime(0),
+              gender: r.sex!.isNotEmpty ? r.sex : '',
+              motherName: r.mothersName!.isNotEmpty ? r.mothersName : '',
+              documentCode: r.documentAdditionalNumber!.isNotEmpty
+                  ? r.documentAdditionalNumber
+                  : '',
               documentNumber: r.documentNumber,
               issuer: r.issuingAuthority,
               frontCardImage: r.fullDocumentFrontImage,
               backCardImage: r.fullDocumentBackImage,
               personFaceImage: r.faceImage,
+              issuingPlace: r.address,
+              issuingDate: r.dateOfIssue != null
+                  ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
+                      r.dateOfIssue!.day!)
+                  : DateTime(0),
             )));
   }
 }

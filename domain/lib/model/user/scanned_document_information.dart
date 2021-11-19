@@ -5,9 +5,11 @@ class ScannedDocumentInformation {
   final String? firstName;
   final String? middleName;
   final String? familyName;
-  final String? dob;
+  final DateTime? dob;
   final String? nationality;
-  final String? doe;
+  final DateTime? doe;
+  final DateTime? issuingDate;
+  final String? issuingPlace;
   final String? gender;
   final String? motherName;
   final String? documentCode;
@@ -44,5 +46,7 @@ class ScannedDocumentInformation {
       this.backCardImage,
       this.personFaceImage,
       this.isimtfBlacklist,
-      this.scanPercentage});
+      this.scanPercentage,
+      this.issuingDate,
+      this.issuingPlace});
 }

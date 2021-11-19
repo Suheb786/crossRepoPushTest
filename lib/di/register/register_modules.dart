@@ -66,7 +66,8 @@ final idVerificationInfoViewModelProvider =
 ///[ConfirmDetailViewModel] provider
 final confirmDetailViewModelProvider =
     ChangeNotifierProvider.autoDispose<ConfirmDetailViewModel>((ref) =>
-        ConfirmDetailViewModel(ref.read(confirmDetailUseCaseProvider)));
+        ConfirmDetailViewModel(ref.read(confirmDetailUseCaseProvider),
+            ref.read(scanUserDocumentUseCaseProvider)));
 
 ///[EnterAddressViewModel] provider
 final enterAddressViewModelProvider =

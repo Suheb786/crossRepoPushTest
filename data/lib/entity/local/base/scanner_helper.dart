@@ -1,5 +1,6 @@
 class ScannerHelper {
-  ///TODO: add id once generated
-  static String ANDROID_BLINK_ID = "";
-  static String IOS_BLINK_ID = "";
+  static String ANDROID_BLINK_ID =
+      "sRwAAAAYY29tLmNvZGViYXNlbmVvLm5lb19iYW5rrMWOvulhIf2xMR6JWE0tJ4uKfTWrhDoQHz8b92cNcwNQbC49BTEL8NIeXnjzSWfiiAuLGvE0E6ZMqGiMqPKr0rdWTF1Tg3JrXm1CfxfyycfMRhx7SClUBfJarwiKBZKpv9aviwT73V9WFBs0nlQw1YdPA2xIA93lhNQ8oBGPutiTwNFfCE0TXpzElKe84apoKkRqfEED/sicn7V8yU8OGiogddzews8ugNO2YXXIfS4=";
+  static String IOS_BLINK_ID =
+      "sRwAAAEXY29tLmNvZGViYXNlbmVvLm5lb0JhbmtfJlGKI1cyIBAUO/ErfdyKTrtJpLwV3dppnhPyhT1m29a5w9G9zIUMjy/cmEx/Nzcihqg/TeJrBTlOTQWZKqvIcNYeeQU3jbe9YU9Tz/+eMQ/xRLXSfeKWr1dTKmK40w6oVKJ3URC1mXHhcOLiRyEVQ5Br0ax1PeTP9ccAO6/UNlea4rxsdOSoMSr9klYokC5KTR8j9NCE7Fp/NScUbcj6AxnSvvDMUTkXOV/N9fpVzA==";
 }

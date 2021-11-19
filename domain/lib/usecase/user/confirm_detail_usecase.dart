@@ -3,6 +3,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
@@ -45,6 +46,7 @@ class ConfirmDetailUseCaseParams extends Params {
   final String? issuingDate;
   final String? issuingPlace;
   bool declarationSelected;
+  final ScannedDocumentInformation? scannedDocumentInformation;
 
   ConfirmDetailUseCaseParams(
       {required this.name,
@@ -57,6 +59,7 @@ class ConfirmDetailUseCaseParams extends Params {
       this.issuingDate,
       this.legalDocumentNo,
       required this.declarationSelected,
+      this.scannedDocumentInformation,
       this.motherName});
 
   @override
