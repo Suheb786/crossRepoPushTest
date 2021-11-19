@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/bank_smart/customer_account_details.dart';
+import 'package:domain/model/bank_smart/customer_information.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 
 class BankSmartRepositoryImpl extends BankSmartRepository {
@@ -29,6 +31,50 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
           isTransfer: isTransfer,
           annualTransaction: annualTransaction,
           monthlyTransaction: monthlyTransaction),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, String>> getAccount(
+      {required bool getToken, String? productCode}) async {
+    final result = await safeApiCall(
+      _bankSmartRemoteDS.getAccount(
+          getToken: getToken, productCode: productCode),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, String>> createAccount(
+      {required bool getToken,
+      String? cif,
+      CustomerInformation? customerInformation,
+      CustomerAccountDetails? accountDetails}) async {
+    final result = await safeApiCall(
+      _bankSmartRemoteDS.createAccount(
+          getToken: getToken,
+          cif: cif,
+          customerInformation: customerInformation,
+          accountDetails: accountDetails),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, String>> getAccountDetails(
+      {required bool getToken}) async {
+    final result = await safeApiCall(
+      _bankSmartRemoteDS.getAccountDetails(getToken: getToken),
     );
     return result!.fold(
       (l) => Left(l),

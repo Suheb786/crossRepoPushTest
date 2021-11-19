@@ -82,5 +82,6 @@ class AssetUtils {
   static const String line = drawable + "line.png";
 
   /// Animations
-  static const String splashAnimation = _animation + "blink_splash-animation_v2.json";
+  static const String splashAnimation =
+      _animation + "blink_splash-animation_v2.json";
 }

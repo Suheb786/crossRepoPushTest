@@ -13,10 +13,18 @@ class ValidateOtpPage extends BasePage<ValidateOtpViewModel> {
 
 class ValidateOtpPageState
     extends BaseStatefulPage<ValidateOtpViewModel, ValidateOtpPage>
-    with TickerProviderStateMixin {
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+  ValidateOtpPageState() : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return validateOtpViewModelProvider;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
   }
 
   @override
@@ -31,7 +39,16 @@ class ValidateOtpPageState
   }
 
   @override
+  void onFocusLost() {
+    getViewModel().countDownController.disposeTimer();
+    super.onFocusLost();
+  }
+
+  @override
   Widget buildView(BuildContext context, ValidateOtpViewModel model) {
     return ValidateOtpPageView(provideBase());
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

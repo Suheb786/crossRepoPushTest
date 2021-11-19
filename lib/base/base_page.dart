@@ -54,6 +54,10 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
 
   @override
   Widget build(BuildContext context) {
+    return stateBuild(context);
+  }
+
+  Widget stateBuild(BuildContext context) {
     return subscribeVisibilityEvents
         ? FocusDetector(
             onFocusLost: () => onFocusLost(),
