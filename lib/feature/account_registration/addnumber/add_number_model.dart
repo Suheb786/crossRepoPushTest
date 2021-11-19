@@ -76,6 +76,9 @@ class AddNumberViewModel extends BasePageViewModel {
   Stream<Resource<CheckUsernameResponse>> get checkUserMobileStream =>
       _checkUserMobileResponse.stream;
 
+  bool isEmailAvailable = false;
+  bool isNumberAvailable = false;
+
   AddNumberViewModel(
       this._registerNumberUseCase,
       this._fetchCountryByCodeUseCase,
@@ -118,6 +121,10 @@ class AddNumberViewModel extends BasePageViewModel {
               createCall: () => _checkUserNameUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        if (event.status == Status.SUCCESS) {
+          isEmailAvailable = event.data?.isAvailable ?? false;
+        }
+        print("I AM HERE with status ${event.status}");
         _checkUserNameResponse.safeAdd(event);
       });
     });
@@ -137,6 +144,9 @@ class AddNumberViewModel extends BasePageViewModel {
                   _checkUserNameMobileUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        if (event.status == Status.SUCCESS) {
+          isNumberAvailable = event.data?.isAvailable ?? false;
+        }
         _checkUserMobileResponse.safeAdd(event);
       });
     });
@@ -162,10 +172,12 @@ class AddNumberViewModel extends BasePageViewModel {
   }
 
   void validateNumber({required String dialCode}) {
-    _registerNumberRequest.safeAdd(RegisterNumberUseCaseParams(
-        emailAddress: emailController.text,
-        countryCode: dialCode,
-        mobileNumber: mobileNumberController.text));
+    if (isEmailAvailable && isNumberAvailable) {
+      _registerNumberRequest.safeAdd(RegisterNumberUseCaseParams(
+          emailAddress: emailController.text,
+          countryCode: dialCode,
+          mobileNumber: mobileNumberController.text));
+    }
   }
 
   /// Check Request for email is registered already or not
@@ -191,8 +203,7 @@ class AddNumberViewModel extends BasePageViewModel {
   }
 
   void validate() {
-    if (mobileNumberController.text.isNotEmpty &&
-        emailController.text.isNotEmpty) {
+    if (isNumberAvailable && isEmailAvailable) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);

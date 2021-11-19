@@ -1,6 +1,7 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/model/country/country.dart';
+import 'package:domain/model/user/check_username_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -67,16 +68,30 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                               vertical: 32, horizontal: 24),
                           child: Column(
                             children: [
-                              AppTextField(
-                                labelText: S.of(context).emailAddress,
-                                hintText: S.of(context).pleaseEnter,
-                                controller: model.emailController,
-                                key: model.emailKey,
-                                inputAction: TextInputAction.go,
-                                inputType: TextInputType.emailAddress,
-                                onChanged: (value) {
-                                  model.validateEmail();
-                                  model.validate();
+                              AppStreamBuilder<Resource<CheckUsernameResponse>>(
+                                initialData: Resource.none(),
+                                stream: model.checkUserNameStream,
+                                onData: (data) {
+                                  print("I AM HERE");
+                                  if (data.status == Status.ERROR) {
+                                    model.showToastWithError(data.appError!);
+                                    print("I AM HERE tooo");
+                                    model.showErrorState();
+                                  }
+                                },
+                                dataBuilder: (context, data) {
+                                  return AppTextField(
+                                    labelText: S.of(context).emailAddress,
+                                    hintText: S.of(context).pleaseEnter,
+                                    controller: model.emailController,
+                                    key: model.emailKey,
+                                    inputAction: TextInputAction.go,
+                                    inputType: TextInputType.emailAddress,
+                                    onChanged: (value) {
+                                      model.validateEmail();
+                                      model.validate();
+                                    },
+                                  );
                                 },
                               ),
                               SizedBox(
@@ -86,55 +101,73 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                 initialData: Resource.success(data: Country()),
                                 stream: model.countryByCode,
                                 dataBuilder: (context, country) {
-                                  return AppTextField(
-                                    labelText: S.of(context).mobileNumber,
-                                    hintText: S.of(context).mobileNumberHint,
-                                    inputType: TextInputType.number,
-                                    inputAction: TextInputAction.done,
-                                    controller: model.mobileNumberController,
-                                    key: model.mobileNumberKey,
-                                    onChanged: (value) {
-                                      model.validateMobile();
-                                      model.validate();
+                                  return AppStreamBuilder<
+                                      Resource<CheckUsernameResponse>>(
+                                    initialData: Resource.none(),
+                                    stream: model.checkUserMobileStream,
+                                    onData: (data) {
+                                      if (data.status == Status.ERROR) {
+                                        model
+                                            .showToastWithError(data.appError!);
+                                        model.showErrorState();
+                                      }
                                     },
-                                    prefixIcon: () {
-                                      return Padding(
-                                        padding: EdgeInsets.only(top: 8.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: <Widget>[
-                                            Container(
-                                                height: 16,
-                                                width: 16,
-                                                decoration: BoxDecoration(
-                                                    shape: BoxShape.circle,
-                                                    image: DecorationImage(
-                                                        image: AssetImage(
-                                                            country!.data!
-                                                                    .countryFlag ??
-                                                                "",
-                                                            package:
-                                                                "country_calling_code_picker"),
-                                                        fit: BoxFit.cover))),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: 8.0),
-                                              child: Text(
-                                                country.data!
-                                                        .countryCallingCode ??
-                                                    "",
-                                                style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyText1!
-                                                      .color,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                    dataBuilder: (context, data) {
+                                      return AppTextField(
+                                        labelText: S.of(context).mobileNumber,
+                                        hintText:
+                                            S.of(context).mobileNumberHint,
+                                        inputType: TextInputType.number,
+                                        inputAction: TextInputAction.done,
+                                        controller:
+                                            model.mobileNumberController,
+                                        key: model.mobileNumberKey,
+                                        onChanged: (value) {
+                                          model.validateMobile();
+                                          model.validate();
+                                        },
+                                        prefixIcon: () {
+                                          return Padding(
+                                            padding: EdgeInsets.only(top: 8.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                                Container(
+                                                    height: 16,
+                                                    width: 16,
+                                                    decoration: BoxDecoration(
+                                                        shape: BoxShape.circle,
+                                                        image: DecorationImage(
+                                                            image: AssetImage(
+                                                                country!.data!
+                                                                        .countryFlag ??
+                                                                    "",
+                                                                package:
+                                                                    "country_calling_code_picker"),
+                                                            fit:
+                                                                BoxFit.cover))),
+                                                Padding(
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 8.0),
+                                                  child: Text(
+                                                    country.data!
+                                                            .countryCallingCode ??
+                                                        "",
+                                                    style: TextStyle(
+                                                      color: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyText1!
+                                                          .color,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          );
+                                        },
                                       );
                                     },
                                   );

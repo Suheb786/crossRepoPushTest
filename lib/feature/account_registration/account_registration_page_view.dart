@@ -18,8 +18,8 @@ class AccountRegistrationPageView
   final pages = [
     // CountrySelectionPage(),
     AddNumberPage(),
+    CreatePasswordPage(),
     ValidateOtpPage(),
-    CreatePasswordPage()
   ];
 
   AccountRegistrationPageView(ProviderBase model) : super(model);
