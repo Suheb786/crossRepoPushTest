@@ -123,5 +123,8 @@ enum ErrorType {
 
   //schedule video call
   INVALID_PREFERRED_DATE,
-  INVALID_PREFERRED_TIME
+  INVALID_PREFERRED_TIME,
+
+  //Api error codes
+  DEVICE_NOT_FOUND
 }

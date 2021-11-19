@@ -204,6 +204,8 @@ class ErrorParser {
         return localisedHelper.emptyDistrict;
       case ErrorType.PERMANENT_EMPTY_CITY:
         return localisedHelper.emptyCity;
+      case ErrorType.DEVICE_NOT_FOUND:
+        return localisedHelper.deviceNotFound;
 
       default:
         return "";

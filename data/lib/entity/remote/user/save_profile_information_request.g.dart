@@ -14,8 +14,7 @@ SaveProfileInformationRequest _$SaveProfileInformationRequestFromJson(
     employmentStatus: json['EmploymentStatus'] as String?,
     spauseName: json['SpauseName'] as String?,
     natureSP: json['NatureSP'] as String?,
-    baseData:
-        BaseClassEntity.fromJson(json['baseClass'] as Map<String, dynamic>),
+    baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }
 

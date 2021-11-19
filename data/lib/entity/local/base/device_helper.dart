@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_ip/flutter_ip.dart';
 import 'package:package_info/package_info.dart';
+import 'package:r_get_ip/r_get_ip.dart';
 
 class DeviceInfoHelper {
   final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
@@ -21,7 +21,7 @@ class DeviceInfoHelper {
     print('Package Info Data ' + ' ' + info.version + ' ' + info.buildNumber);
     String externalIp = "";
     try {
-      externalIp = await FlutterIp.externalIP;
+      externalIp = (await RGetIp.externalIP)!;
     } catch (e) {
       print(e.toString());
       externalIp = "";

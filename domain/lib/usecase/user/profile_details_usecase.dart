@@ -1,34 +1,31 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
-import 'package:domain/error/local_error.dart';
+import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class ProfileDetailsUseCase
-    extends BaseUseCase<LocalError, ProfileDetailsUseCaseParams, bool> {
+class ProfileDetailsUseCase extends BaseUseCase<NetworkError,
+    ProfileDetailsUseCaseParams, SaveProfileStatusResponse> {
   final UserRepository _repository;
 
   ProfileDetailsUseCase(this._repository);
 
   @override
-  Future<Either<LocalError, bool>> execute(
+  Future<Either<NetworkError, SaveProfileStatusResponse>> execute(
       {required ProfileDetailsUseCaseParams params}) {
-    return Future.value(Right(true));
-
-    ///TODO:uncomment once gets response
-
-    //   return _repository.saveProfileInformation(
-    //       married: params.isMarried,
-    //       anyOtherNationality: params.isAnyOtherNationality,
-    //       otherNationality: params.otherNationality,
-    //       employmentStatus: params.employeeStatus,
-    //       beneficialOwnerAccount: params.isBeneficialOwnerACcount,
-    //       natureOfSpecialNeeds: params.natureOfNeeds,
-    //       specialPerson: params.isPerson,
-    //       spouseName: params.spouseName);
+    return _repository.saveProfileInformation(
+        married: params.isMarried,
+        anyOtherNationality: params.isAnyOtherNationality,
+        otherNationality: params.otherNationality,
+        employmentStatus: params.employeeStatus,
+        beneficialOwnerAccount: params.isBeneficialOwnerACcount,
+        natureOfSpecialNeeds: params.natureOfNeeds,
+        specialPerson: params.isPerson,
+        spouseName: params.spouseName);
   }
 }
 

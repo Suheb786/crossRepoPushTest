@@ -15,8 +15,7 @@ SaveResidenceInformationRequest _$SaveResidenceInformationRequestFromJson(
     permanentResidantCountry: json['perResidantCountry'] as String?,
     permanentHomeAddre: json['perHomeAddre'] as String?,
     permanentStreetAddress: json['perStreetAddress'] as String?,
-    baseData:
-        BaseClassEntity.fromJson(json['baseClass'] as Map<String, dynamic>),
+    baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }
 

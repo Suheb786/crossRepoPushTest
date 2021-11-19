@@ -85,137 +85,130 @@ class IdVerificationInfoView
                               child: Padding(
                                   padding: EdgeInsets.symmetric(
                                       vertical: 32, horizontal: 24),
-                                  child: Stack(
-                                    children: [
-                                      SingleChildScrollView(
-                                        child: Column(
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      children: [
+                                        InformationText(
+                                            image: AssetUtils.sun,
+                                            title: S
+                                                .of(context)
+                                                .idVerificationPlaceInfo),
+                                        SizedBox(
+                                          height: 32,
+                                        ),
+                                        InformationText(
+                                            image: AssetUtils.scanIcon,
+                                            title: S.of(context).idScanInfo),
+                                        SizedBox(
+                                          height: 32,
+                                        ),
+                                        InformationText(
+                                            image: AssetUtils.tick,
+                                            iconColor: Theme.of(context)
+                                                .primaryColorDark,
+                                            title: S.of(context).onIdFit),
+                                        SizedBox(
+                                          height: 144,
+                                        ),
+                                        Row(
                                           children: [
-                                            InformationText(
-                                                image: AssetUtils.sun,
-                                                title: S
-                                                    .of(context)
-                                                    .idVerificationPlaceInfo),
-                                            SizedBox(
-                                              height: 32,
-                                            ),
-                                            InformationText(
-                                                image: AssetUtils.scanIcon,
-                                                title:
-                                                    S.of(context).idScanInfo),
-                                            SizedBox(
-                                              height: 32,
-                                            ),
-                                            InformationText(
-                                                image: AssetUtils.tick,
-                                                iconColor: Theme.of(context)
-                                                    .primaryColorDark,
-                                                title: S.of(context).onIdFit),
-                                            SizedBox(
-                                              height: 144,
-                                            ),
-                                            Row(
-                                              children: [
-                                                AppStreamBuilder<bool>(
-                                                    stream: model
-                                                        .isRetrievedConditionStream,
-                                                    initialData: false,
-                                                    dataBuilder:
-                                                        (context, isChecked) {
-                                                      return InkWell(
-                                                        onTap: () {
-                                                          if (isChecked ==
-                                                              false) {
-                                                            model
-                                                                .updateIsRetrievedConditionStream(
-                                                                    true);
-                                                          } else {
-                                                            model
-                                                                .updateIsRetrievedConditionStream(
-                                                                    false);
-                                                          }
-                                                        },
-                                                        child: Container(
-                                                          height: 40,
-                                                          width: 40,
-                                                          decoration: BoxDecoration(
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              color: isChecked!
+                                            AppStreamBuilder<bool>(
+                                                stream: model
+                                                    .isRetrievedConditionStream,
+                                                initialData: false,
+                                                dataBuilder:
+                                                    (context, isChecked) {
+                                                  return InkWell(
+                                                    onTap: () {
+                                                      if (isChecked == false) {
+                                                        model
+                                                            .updateIsRetrievedConditionStream(
+                                                                true);
+                                                      } else {
+                                                        model
+                                                            .updateIsRetrievedConditionStream(
+                                                                false);
+                                                      }
+                                                    },
+                                                    child: Container(
+                                                      height: 40,
+                                                      width: 40,
+                                                      decoration: BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          color: isChecked!
+                                                              ? Theme.of(
+                                                                      context)
+                                                                  .accentTextTheme
+                                                                  .bodyText1!
+                                                                  .color!
+                                                              : Colors
+                                                                  .transparent,
+                                                          border: Border.all(
+                                                              color: !isChecked
                                                                   ? Theme.of(
                                                                           context)
                                                                       .accentTextTheme
                                                                       .bodyText1!
                                                                       .color!
                                                                   : Colors
-                                                                      .transparent,
-                                                              border: Border.all(
-                                                                  color: !isChecked
-                                                                      ? Theme.of(
-                                                                              context)
-                                                                          .accentTextTheme
-                                                                          .bodyText1!
-                                                                          .color!
-                                                                      : Colors
-                                                                          .transparent)),
-                                                          child: isChecked
-                                                              ? Container(
-                                                                  height: 16,
-                                                                  width: 16,
-                                                                  padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              10),
-                                                                  child: AppSvg
-                                                                      .asset(
-                                                                    AssetUtils
-                                                                        .checkIcon,
-                                                                    color: Theme.of(
-                                                                            context)
-                                                                        .accentColor,
-                                                                  ),
-                                                                )
-                                                              : Container(),
-                                                        ),
-                                                      );
-                                                    }),
-                                                SizedBox(
-                                                  width: 16,
-                                                ),
-                                                Expanded(
-                                                  child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .termsAndConditions,
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        fontSize: 12),
-                                                  ),
-                                                )
-                                              ],
+                                                                      .transparent)),
+                                                      child: isChecked
+                                                          ? Container(
+                                                              height: 16,
+                                                              width: 16,
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(10),
+                                                              child:
+                                                                  AppSvg.asset(
+                                                                AssetUtils
+                                                                    .checkIcon,
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .accentColor,
+                                                              ),
+                                                            )
+                                                          : Container(),
+                                                    ),
+                                                  );
+                                                }),
+                                            SizedBox(
+                                              width: 16,
                                             ),
+                                            Expanded(
+                                              child: Text(
+                                                S
+                                                    .of(context)
+                                                    .termsAndConditions,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 12),
+                                              ),
+                                            )
                                           ],
                                         ),
-                                      ),
-                                      Positioned(
-                                        bottom: 0,
-                                        right: 45,
-                                        child: AppStreamBuilder<bool>(
-                                            stream: model
-                                                .isRetrievedConditionStream,
-                                            initialData: false,
-                                            dataBuilder: (context, isChecked) {
-                                              return Visibility(
-                                                visible: isChecked!,
-                                                child: AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed,
-                                                ),
-                                              );
-                                            }),
-                                      )
-                                    ],
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 8.0),
+                                          child: AppStreamBuilder<bool>(
+                                              stream: model
+                                                  .isRetrievedConditionStream,
+                                              initialData: false,
+                                              dataBuilder:
+                                                  (context, isChecked) {
+                                                return Visibility(
+                                                  visible: isChecked!,
+                                                  child: AnimatedButton(
+                                                    buttonText: S
+                                                        .of(context)
+                                                        .swipeToProceed,
+                                                  ),
+                                                );
+                                              }),
+                                        )
+                                      ],
+                                    ),
                                   )),
                             ),
                           );

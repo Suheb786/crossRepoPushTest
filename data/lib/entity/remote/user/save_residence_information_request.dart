@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "save_residence_information_request.g.dart";
@@ -18,15 +17,15 @@ class SaveResidenceInformationRequest {
   @JsonKey(name: "perStreetAddress")
   final String? permanentStreetAddress;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String, dynamic> baseData;
 
   SaveResidenceInformationRequest(
-      {this.residantCountry,
-      this.homeAddress,
-      this.streetAddress,
-      this.permanentResidantCountry,
-      this.permanentHomeAddre,
-      this.permanentStreetAddress,
+      {this.residantCountry:"",
+      this.homeAddress:"",
+      this.streetAddress:"",
+      this.permanentResidantCountry:"",
+      this.permanentHomeAddre:"",
+      this.permanentStreetAddress:"",
       required this.baseData});
 
   factory SaveResidenceInformationRequest.fromJson(Map<String, dynamic> json) =>

@@ -68,89 +68,67 @@ class StudentJobIncomePageView
                           child: Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: 32, horizontal: 24),
-                              child: Stack(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        AppStreamBuilder<
-                                            List<AdditionalIncomeSourceParams>>(
-                                          stream: model
-                                              .additionalSourceIncomeListStream,
-                                          initialData: [],
-                                          dataBuilder: (context, dataList) {
-                                            if (dataList!.isNotEmpty) {
-                                              return ListView.builder(
-                                                  itemCount:
-                                                      dataList.length + 1,
-                                                  shrinkWrap: true,
-                                                  physics: ClampingScrollPhysics(),
-                                                  itemBuilder:
-                                                      (context, index) {
-                                                    if (index ==
-                                                        dataList.length) {
-                                                      return AddIncomeWidget(
-                                                        label: S
-                                                            .of(context)
-                                                            .addIncome,
-                                                        onTap: () {
-                                                          AdditionalIncomeSourceDialog
-                                                              .show(context,
-                                                                  onDismissed:
-                                                                      () {
-                                                            Navigator.pop(
-                                                                context);
-                                                          }, onSelected:
-                                                                      (value) {
-                                                            Navigator.pop(
-                                                                context);
-                                                            model
-                                                                .addAdditionalIncomeList(
-                                                                    value);
-                                                          });
-                                                        },
-                                                      );
-                                                    }
-                                                    return AdditionalIncomeSourceWidget(
-                                                      additionalIncomeSourceParams:
-                                                          dataList[index],
-                                                      onTap: () {
-                                                        model
-                                                            .removeAdditionalItem(
-                                                                index);
-                                                      },
-                                                    );
-                                                  });
-                                            } else {
-                                              return AddIncomeWidget(
-                                                label: S.of(context).addIncome,
+                                  AppStreamBuilder<
+                                      List<AdditionalIncomeSourceParams>>(
+                                    stream: model
+                                        .additionalSourceIncomeListStream,
+                                    initialData: [],
+                                    dataBuilder: (context, dataList) {
+                                      if (dataList!.isNotEmpty) {
+                                        return ListView.builder(
+                                            itemCount: dataList.length + 1,
+                                            shrinkWrap: true,
+                                            physics: ClampingScrollPhysics(),
+                                            itemBuilder: (context, index) {
+                                              if (index == dataList.length) {
+                                                return AddIncomeWidget(
+                                                  label:
+                                                      S.of(context).addIncome,
+                                                  onTap: () {
+                                                    AdditionalIncomeSourceDialog
+                                                        .show(context,
+                                                            onDismissed: () {
+                                                      Navigator.pop(context);
+                                                    }, onSelected: (value) {
+                                                      Navigator.pop(context);
+                                                      model
+                                                          .addAdditionalIncomeList(
+                                                              value);
+                                                    });
+                                                  },
+                                                );
+                                              }
+                                              return AdditionalIncomeSourceWidget(
+                                                additionalIncomeSourceParams:
+                                                    dataList[index],
                                                 onTap: () {
-                                                  AdditionalIncomeSourceDialog
-                                                      .show(context,
-                                                          onDismissed: () {
-                                                    Navigator.pop(context);
-                                                  }, onSelected: (value) {
-                                                    Navigator.pop(context);
-                                                    model
-                                                        .addAdditionalIncomeList(
-                                                            value);
-                                                  });
+                                                  model.removeAdditionalItem(
+                                                      index);
                                                 },
                                               );
-                                            }
+                                            });
+                                      } else {
+                                        return AddIncomeWidget(
+                                          label: S.of(context).addIncome,
+                                          onTap: () {
+                                            AdditionalIncomeSourceDialog.show(
+                                                context, onDismissed: () {
+                                              Navigator.pop(context);
+                                            }, onSelected: (value) {
+                                              Navigator.pop(context);
+                                              model.addAdditionalIncomeList(
+                                                  value);
+                                            });
                                           },
-                                        ),
-                                        SizedBox(
-                                          height: MediaQuery.of(context)
-                                              .viewInsets
-                                              .bottom,
-                                        ),
-                                      ],
-                                    ),
+                                        );
+                                      }
+                                    },
                                   ),
-                                  Positioned(
-                                    bottom: 0,
-                                    right: 45,
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
                                     child: AnimatedButton(
                                         buttonText:
                                             S.of(context).swipeToProceed),

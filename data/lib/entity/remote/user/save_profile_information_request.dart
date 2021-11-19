@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "save_profile_information_request.g.dart";
@@ -16,14 +15,14 @@ class SaveProfileInformationRequest {
   @JsonKey(name: "NatureSP")
   final String? natureSP;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String, dynamic> baseData;
 
   SaveProfileInformationRequest(
       {this.married,
       this.specialPerson,
-      this.employmentStatus,
-      this.spauseName,
-      this.natureSP,
+      this.employmentStatus: "",
+      this.spauseName: "",
+      this.natureSP: "",
       required this.baseData});
 
   factory SaveProfileInformationRequest.fromJson(Map<String, dynamic> json) =>

@@ -225,24 +225,21 @@ class PurposeOfAccountOpeningPageView
                                         .viewInsets
                                         .bottom,
                                   ),
-                                  Center(
-                                    child: Padding(
-                                      padding:
-                                          EdgeInsets.only(right: 45, top: 24),
-                                      child: AppStreamBuilder<bool>(
-                                          stream: model.allFieldValidatorStream,
-                                          initialData: false,
-                                          dataBuilder: (context, isValid) {
-                                            return (isValid!)
-                                                ? AnimatedButton(
-                                                    buttonText: S
-                                                        .of(context)
-                                                        .swipeToProceed,
-                                                    buttonHeight: 50,
-                                                  )
-                                                : Container();
-                                          }),
-                                    ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 24),
+                                    child: AppStreamBuilder<bool>(
+                                        stream: model.allFieldValidatorStream,
+                                        initialData: false,
+                                        dataBuilder: (context, isValid) {
+                                          return (isValid!)
+                                              ? AnimatedButton(
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed,
+                                                  buttonHeight: 50,
+                                                )
+                                              : Container();
+                                        }),
                                   )
                                 ],
                               ),

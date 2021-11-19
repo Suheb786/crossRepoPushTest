@@ -28,61 +28,61 @@ class ApiInterceptor extends InterceptorsWrapper {
 
     return handler.next(options);
   }
-
-  @override
-  void onError(DioError dioError, ErrorInterceptorHandler handler) async {
-    if (dioError.response?.statusCode == 401) {
-      RequestOptions? options = dioError.response!.requestOptions;
-
-      final currentUserEither = await _userRepository.getCurrentUser();
-      User? user = currentUserEither.fold((l) => null, (r) => r);
-
-      if (user == null) {
-        throw Exception();
-      }
-
-      /// Refresh Token
-      //   _previousDio.interceptors.requestLock.lock();
-      //   _previousDio.interceptors.responseLock.lock();
-      //
-      //   var refreshResponse = await safeApiCall(apiService.refreshToken(
-      //       "refresh_token",
-      //       NetworkProperties.SCOPE,
-      //       NetworkProperties.CLIENT_ID,
-      //       "token",
-      //       "${user.refreshToken}"));
-      //   Either<NetworkError, User> transformedResponse =
-      //       refreshResponse!.fold((l) => Left(l), (r) {
-      //     return Right(
-      //       r.data.transform(),
-      //     );
-      //   });
-      //   User newUser = transformedResponse.fold((l) => null, (r) => r);
-      //
-      //   if (newUser.token.isNotEmpty) {
-      //     user.token = newUser.token;
-      //     user.refreshToken = newUser.refreshToken;
-      //     user.expiredIn = newUser.expiredIn;
-      //     user.tokenType = newUser.tokenType;
-      //     await _userRepository.saveUser(user);
-      //     options.headers["Authorization"] =
-      //         "${user.tokenType ?? "Bearer"} ${user.token ?? ""}";
-      //     _previousDio.interceptors.requestLock.unlock();
-      //     _previousDio.interceptors.responseLock.unlock();
-      //
-      //     return _previousDio
-      //         .fetch(options)
-      //         .then((value) => handler.resolve(value), onError: (e) {
-      //       handler.reject(e);
-      //     });
-      //   } else {
-      //     _previousDio.interceptors.requestLock.unlock();
-      //     _previousDio.interceptors.responseLock.unlock();
-      //     return super.onError(dioError, handler);
-      //   }
-      // }
-      return handler.next(dioError);
-      //return super.onError(dioError, handler);
-    }
-  }
+  //
+  // @override
+  // void onError(DioError dioError, ErrorInterceptorHandler handler) async {
+  //   if (dioError.response?.statusCode == 401) {
+  //     RequestOptions? options = dioError.response!.requestOptions;
+  //
+  //     final currentUserEither = await _userRepository.getCurrentUser();
+  //     User? user = currentUserEither.fold((l) => null, (r) => r);
+  //
+  //     if (user == null) {
+  //       throw Exception();
+  //     }
+  //
+  //     /// Refresh Token
+  //     //   _previousDio.interceptors.requestLock.lock();
+  //     //   _previousDio.interceptors.responseLock.lock();
+  //     //
+  //     //   var refreshResponse = await safeApiCall(apiService.refreshToken(
+  //     //       "refresh_token",
+  //     //       NetworkProperties.SCOPE,
+  //     //       NetworkProperties.CLIENT_ID,
+  //     //       "token",
+  //     //       "${user.refreshToken}"));
+  //     //   Either<NetworkError, User> transformedResponse =
+  //     //       refreshResponse!.fold((l) => Left(l), (r) {
+  //     //     return Right(
+  //     //       r.data.transform(),
+  //     //     );
+  //     //   });
+  //     //   User newUser = transformedResponse.fold((l) => null, (r) => r);
+  //     //
+  //     //   if (newUser.token.isNotEmpty) {
+  //     //     user.token = newUser.token;
+  //     //     user.refreshToken = newUser.refreshToken;
+  //     //     user.expiredIn = newUser.expiredIn;
+  //     //     user.tokenType = newUser.tokenType;
+  //     //     await _userRepository.saveUser(user);
+  //     //     options.headers["Authorization"] =
+  //     //         "${user.tokenType ?? "Bearer"} ${user.token ?? ""}";
+  //     //     _previousDio.interceptors.requestLock.unlock();
+  //     //     _previousDio.interceptors.responseLock.unlock();
+  //     //
+  //     //     return _previousDio
+  //     //         .fetch(options)
+  //     //         .then((value) => handler.resolve(value), onError: (e) {
+  //     //       handler.reject(e);
+  //     //     });
+  //     //   } else {
+  //     //     _previousDio.interceptors.requestLock.unlock();
+  //     //     _previousDio.interceptors.responseLock.unlock();
+  //     //     return super.onError(dioError, handler);
+  //     //   }
+  //     // }
+  //     return handler.next(dioError);
+  //     //return super.onError(dioError, handler);
+  //   }
+  // }
 }

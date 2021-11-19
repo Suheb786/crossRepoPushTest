@@ -10,6 +10,8 @@ import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/check_username_response.dart';
+import 'package:domain/model/user/save_country_residence_info_response.dart';
+import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/repository/user/user_repository.dart';
@@ -253,15 +255,16 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, String>> saveProfileInformation(
-      {bool? married,
-      bool? specialPerson,
-      bool? anyOtherNationality,
-      bool? beneficialOwnerAccount,
-      String? otherNationality,
-      String? employmentStatus,
-      String? spouseName,
-      String? natureOfSpecialNeeds}) async {
+  Future<Either<NetworkError, SaveProfileStatusResponse>>
+      saveProfileInformation(
+          {bool? married,
+          bool? specialPerson,
+          bool? anyOtherNationality,
+          bool? beneficialOwnerAccount,
+          String? otherNationality,
+          String? employmentStatus,
+          String? spouseName,
+          String? natureOfSpecialNeeds}) async {
     final result = await safeApiCall(_remoteDS.saveProfileInformation(
         married: married,
         specialPerson: specialPerson,
@@ -273,21 +276,22 @@ class UserRepositoryImpl extends UserRepository {
         natureOfSpecialNeeds: natureOfSpecialNeeds));
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, String>> saveResidenceInformation(
-      {String? residentCountry,
-      String? homeAddress,
-      String? streetAddress,
-      String? residentDistrict,
-      String? residentCity,
-      String? permanentResidentCountry,
-      String? permanentResidentCity,
-      String? permanentHomeAddress,
-      String? permanentStreetAddress}) async {
+  Future<Either<NetworkError, SaveCountryResidenceInfoResponse>>
+      saveResidenceInformation(
+          {String? residentCountry,
+          String? homeAddress,
+          String? streetAddress,
+          String? residentDistrict,
+          String? residentCity,
+          String? permanentResidentCountry,
+          String? permanentResidentCity,
+          String? permanentHomeAddress,
+          String? permanentStreetAddress}) async {
     final result = await safeApiCall(_remoteDS.saveResidenceInformation(
         residentCountry: residentCountry,
         homeAddress: homeAddress,
@@ -300,7 +304,7 @@ class UserRepositoryImpl extends UserRepository {
         permanentStreetAddress: permanentStreetAddress));
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -327,18 +331,31 @@ class UserRepositoryImpl extends UserRepository {
               firstName: r.firstName,
               middleName: r.fathersName,
               familyName: r.lastName,
-              idNumber: r.personalIdNumber,
-              dob: r.dateOfBirth.toString(),
-              nationality: r.nationality,
-              doe: r.dateOfExpiry.toString(),
-              gender: r.sex,
-              motherName: r.mothersName,
-              documentCode: r.documentAdditionalNumber,
+              idNumber: r.documentNumber!.isNotEmpty ? r.documentNumber : '',
+              dob: r.dateOfBirth != null
+                  ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
+                      r.dateOfBirth!.day!)
+                  : DateTime(0),
+              nationality: r.nationality!.isNotEmpty ? r.nationality : '',
+              doe: r.dateOfExpiry != null
+                  ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!,
+                      r.dateOfExpiry!.day!)
+                  : DateTime(0),
+              gender: r.sex!.isNotEmpty ? r.sex : '',
+              motherName: r.mothersName!.isNotEmpty ? r.mothersName : '',
+              documentCode: r.documentAdditionalNumber!.isNotEmpty
+                  ? r.documentAdditionalNumber
+                  : '',
               documentNumber: r.documentNumber,
               issuer: r.issuingAuthority,
               frontCardImage: r.fullDocumentFrontImage,
               backCardImage: r.fullDocumentBackImage,
               personFaceImage: r.faceImage,
+              issuingPlace: r.address,
+              issuingDate: r.dateOfIssue != null
+                  ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
+                      r.dateOfIssue!.day!)
+                  : DateTime(0),
             )));
   }
 }

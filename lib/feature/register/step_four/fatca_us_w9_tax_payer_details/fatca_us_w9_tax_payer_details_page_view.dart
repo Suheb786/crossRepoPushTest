@@ -204,7 +204,7 @@ class FatcaUSW9TaxPayersDetailsPageView
                                     Center(
                                       child: Padding(
                                         padding:
-                                            EdgeInsets.only(top: 26, right: 45),
+                                            EdgeInsets.only(top: 26),
                                         child: AppStreamBuilder<bool>(
                                             stream:
                                                 model.allFieldValidatorStream,

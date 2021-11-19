@@ -65,27 +65,25 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                             child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),
-                                child: Stack(
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Column(
-                                      children: [
-                                        AppTextField(
-                                          labelText: S.of(context).emailAddress,
-                                          hintText: S.of(context).pleaseEnter,
-                                          controller: model.emailController,
-                                          key: model.emailKey,
-                                          inputAction: TextInputAction.go,
-                                          inputType: TextInputType.emailAddress,
-                                          onChanged: (value) {
-                                            model.validate();
-                                          },
-                                        ),
-                                        SizedBox(
-                                          height: MediaQuery.of(context)
-                                              .viewInsets
-                                              .bottom,
-                                        ),
-                                      ],
+                                    AppTextField(
+                                      labelText: S.of(context).emailAddress,
+                                      hintText: S.of(context).pleaseEnter,
+                                      controller: model.emailController,
+                                      key: model.emailKey,
+                                      inputAction: TextInputAction.go,
+                                      inputType: TextInputType.emailAddress,
+                                      onChanged: (value) {
+                                        model.validate();
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: MediaQuery.of(context)
+                                          .viewInsets
+                                          .bottom,
                                     ),
                                     AppStreamBuilder<bool>(
                                         stream: model.showButtonStream,
@@ -93,14 +91,9 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                                         dataBuilder: (context, isValid) {
                                           return Visibility(
                                             visible: isValid!,
-                                            child: Positioned(
-                                              bottom: 0,
-                                              right: 45,
-                                              child: AnimatedButton(
-                                                buttonText: S
-                                                    .of(context)
-                                                    .swipeToProceed,
-                                              ),
+                                            child: AnimatedButton(
+                                              buttonText:
+                                                  S.of(context).swipeToProceed,
                                             ),
                                           );
                                         })

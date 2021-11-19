@@ -367,8 +367,7 @@ class ReviewApplicationPageView
                                     ),
 
                                     Padding(
-                                      padding:
-                                          EdgeInsets.only(right: 45, top: 24),
+                                      padding: EdgeInsets.only(top: 24),
                                       child: AppStreamBuilder<bool>(
                                           stream:
                                               model.declarationSelectedStream,

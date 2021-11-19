@@ -1,4 +1,6 @@
+import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
+import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -6,10 +8,12 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ConfirmDetailViewModel extends BasePageViewModel {
   final ConfirmDetailUseCase _confirmDetailUseCase;
+  final ScanUserDocumentUseCase _scanUserDocumentUseCase;
   TextEditingController nameController = new TextEditingController();
   TextEditingController idNumberController = new TextEditingController();
   TextEditingController dobController = new TextEditingController();
@@ -53,6 +57,18 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   DateTime selectedExpiryDate = DateTime.now();
 
+  ///scan document request holder
+  final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest =
+      PublishSubject();
+
+  ///scan document response holder
+  final PublishSubject<Resource<ScannedDocumentInformation>>
+      _scanUserDocumentResponse = PublishSubject();
+
+  ///scan document response stream
+  Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream =>
+      _scanUserDocumentResponse.stream;
+
   /// declaration selected subject holder
   BehaviorSubject<bool> _declarationSelectedSubject =
       BehaviorSubject.seeded(false);
@@ -80,7 +96,11 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  ConfirmDetailViewModel(this._confirmDetailUseCase) {
+  ScannedDocumentInformation scannedDocumentResult =
+      ScannedDocumentInformation();
+
+  ConfirmDetailViewModel(
+      this._confirmDetailUseCase, this._scanUserDocumentUseCase) {
     _confirmDetailRequest.listen((value) {
       RequestManager(value,
               createCall: () => _confirmDetailUseCase.execute(params: value))
@@ -92,6 +112,22 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _scanUserDocumentRequest
+        .debounceTime(Duration(milliseconds: 800))
+        .distinct()
+        .listen((value) {
+      RequestManager(value,
+              createCall: () => _scanUserDocumentUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _scanUserDocumentResponse.safeAdd(event);
+      });
+    });
+  }
+
+  void scanDocument() {
+    _scanUserDocumentRequest.safeAdd(ScanUserDocumentUseCaseParams());
   }
 
   void confirmDetail() {
@@ -106,7 +142,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         legalDocumentNo: legalDocumentController.text,
         issuingDate: issuingDateController.text,
         issuingPlace: issuingPlaceController.text,
-        declarationSelected: _declarationSelectedSubject.value));
+        declarationSelected: _declarationSelectedSubject.value,
+        scannedDocumentInformation: scannedDocumentResult));
   }
 
   void validateDetails() {
@@ -133,6 +170,27 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     _showButtonSubject.close();
     _confirmDetailResponse.close();
     _declarationSelectedSubject.close();
+    _scanUserDocumentRequest.close();
+    _scanUserDocumentResponse.close();
     super.dispose();
+  }
+
+  void setData(ScannedDocumentInformation? data) {
+    nameController.text = data!.fullName!;
+    idNumberController.text = data.idNumber!;
+    dobController.text = data.dob!.year != 0
+        ? TimeUtils.getFormattedDOB(data.dob!.toString())
+        : '';
+    nationalityController.text = data.nationality!;
+    genderController.text = data.gender!;
+    motherNameController.text = data.motherName!;
+    legalDocumentController.text = data.documentNumber!;
+    issuingDateController.text = data.issuingDate!.year != 0
+        ? TimeUtils.getFormattedDOB(data.dob!.toString())
+        : '';
+    expiryDateController.text = data.doe!.year != 0
+        ? TimeUtils.getFormattedDOB(data.dob!.toString())
+        : '';
+    issuingPlaceController.text = data.issuingPlace!;
   }
 }

@@ -6,12 +6,13 @@ import 'package:domain/model/base/error_info.dart';
 class NetworkError extends BaseError {
   NetworkError(
       {required int httpError,
+      String errorCode: "",
       String message: "",
       required Exception cause,
       String description: ""})
       : super(
             error: ErrorInfo(
-                code: httpError, message: message, description: description),
+                code: httpError, message: errorCode, description: description),
             cause: cause);
 
   @override
@@ -41,7 +42,18 @@ class NetworkError extends BaseError {
             cause: cause, error: error, type: ErrorType.NET_SERVER_MESSAGE);
 
       default:
-        return AppError(cause: cause, error: error, type: ErrorType.NETWORK);
+        print('error message-->${error.message}');
+        switch (error.message) {
+          case "err-014":
+            print('error message--returned');
+            return AppError(
+                cause: cause, error: error, type: ErrorType.DEVICE_NOT_FOUND);
+
+          default:
+            print('error message-- default returned');
+            return AppError(
+                cause: cause, error: error, type: ErrorType.NETWORK);
+        }
     }
   }
 }

@@ -407,5 +407,6 @@
   "enterLoginDetails": "Enter your login details",
   "forgotPassword": "Forgot password",
   "accountCreated": "Account has been created successfully.",
-  "cardDelivery": "to Card Delivery"
+  "cardDelivery": "to Card Delivery",
+  "deviceNotFound": "Device Not Found"
 }

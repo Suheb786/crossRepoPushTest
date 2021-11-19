@@ -12,9 +12,11 @@ import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
+import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_id_info_request.dart';
 import 'package:data/entity/remote/user/save_job_info_request.dart';
 import 'package:data/entity/remote/user/save_profile_information_request.dart';
+import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:data/entity/remote/user/save_residence_information_request.dart';
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
 import 'package:dio/dio.dart';
@@ -56,12 +58,14 @@ abstract class ApiService {
       @Body() SaveJobInfoRequest saveJobInfoRequest);
 
   @POST("/AddFeilds/SaveProfileStatus")
-  Future<String> saveProfileInformation(
+  Future<HttpResponse<SaveProfileStatusResponseEntity>> saveProfileInformation(
       @Body() SaveProfileInformationRequest saveProfileInformationRequest);
 
   @POST("/AddFeilds/SaveCountryResidenceInfo")
-  Future<String> saveResidenceInformation(
-      @Body() SaveResidenceInformationRequest saveResidenceInformationRequest);
+  Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
+      saveResidenceInformation(
+          @Body()
+              SaveResidenceInformationRequest saveResidenceInformationRequest);
 
   @POST("/auth/VerifyMobileOtp")
   Future<bool> verifyMobileOtp(

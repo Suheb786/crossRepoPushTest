@@ -6,24 +6,26 @@ part 'base_class.g.dart';
 
 @JsonSerializable()
 class BaseClassEntity {
-  @JsonKey(name: "ip")
+  @JsonKey(name: "IP")
   String? ip;
-  @JsonKey(name: "deviceID")
+  @JsonKey(name: "DeviceID")
   String? deviceID;
-  @JsonKey(name: "channelType")
+  @JsonKey(name: "ChannelType")
   String? channelType;
-  @JsonKey(name: "latitude")
+  @JsonKey(name: "Latitude")
   String? latitude;
-  @JsonKey(name: "longitude")
+  @JsonKey(name: "Longitude")
   String? longitude;
-  @JsonKey(name: "platform")
+  @JsonKey(name: "Platform")
   String? platform;
-  @JsonKey(name: "browser")
+  @JsonKey(name: "Browser")
   String? browser;
-  @JsonKey(name: "mobileModel")
+  @JsonKey(name: "MobileModel")
   String? mobileModel;
-  @JsonKey(name: "appVersion")
+  @JsonKey(name: "AppVersion")
   String? appVersion;
+  @JsonKey(name: "VkeySessionId")
+  String? vKeySessionId;
 
   BaseClassEntity(
       {this.ip,
@@ -34,9 +36,10 @@ class BaseClassEntity {
       platform,
       this.browser,
       this.mobileModel,
-      this.appVersion}) {
+      this.appVersion,
+      this.vKeySessionId: ""}) {
     this.platform = Platform.isAndroid ? "A" : "I";
-    this.channelType = "App";
+    this.channelType = "01";
   }
 
   factory BaseClassEntity.fromJson(Map<String, dynamic> json) =>
