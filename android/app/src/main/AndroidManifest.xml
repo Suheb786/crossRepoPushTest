@@ -3,6 +3,7 @@
 
     <application
         android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
         android:label="neo_bank">
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCPizDLZPZ1Q1aAj4noRQyrdXZyE2ZS6FI"/>

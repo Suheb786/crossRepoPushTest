@@ -230,13 +230,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.0"
-  flutter_ip:
-    dependency: transitive
-    description:
-      name: flutter_ip
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -490,6 +483,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0-beta-1"
+  r_get_ip:
+    dependency: transitive
+    description:
+      name: r_get_ip
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.1"
   responsive_builder:
     dependency: "direct main"
     description:

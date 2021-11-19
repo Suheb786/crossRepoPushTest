@@ -4,6 +4,8 @@ import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/check_username_response.dart';
+import 'package:domain/model/user/save_country_residence_info_response.dart';
+import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/user.dart';
 
@@ -85,27 +87,29 @@ abstract class UserRepository {
   Future<Either<NetworkError, String>> fetchCountryList({bool? getToken});
 
   /// save residence information
-  Future<Either<NetworkError, String>> saveResidenceInformation(
-      {String? residentCountry,
-      String? homeAddress,
-      String? streetAddress,
-      String? residentDistrict,
-      String? residentCity,
-      String? permanentResidentCountry,
-      String? permanentResidentCity,
-      String? permanentHomeAddress,
-      String? permanentStreetAddress});
+  Future<Either<NetworkError, SaveCountryResidenceInfoResponse>>
+      saveResidenceInformation(
+          {String? residentCountry,
+          String? homeAddress,
+          String? streetAddress,
+          String? residentDistrict,
+          String? residentCity,
+          String? permanentResidentCountry,
+          String? permanentResidentCity,
+          String? permanentHomeAddress,
+          String? permanentStreetAddress});
 
   /// save profile information
-  Future<Either<NetworkError, String>> saveProfileInformation(
-      {bool? married,
-      bool? specialPerson,
-      bool? anyOtherNationality,
-      bool? beneficialOwnerAccount,
-      String? otherNationality,
-      String? employmentStatus,
-      String? spouseName,
-      String? natureOfSpecialNeeds});
+  Future<Either<NetworkError, SaveProfileStatusResponse>>
+      saveProfileInformation(
+          {bool? married,
+          bool? specialPerson,
+          bool? anyOtherNationality,
+          bool? beneficialOwnerAccount,
+          String? otherNationality,
+          String? employmentStatus,
+          String? spouseName,
+          String? natureOfSpecialNeeds});
 
   /// save job information
   Future<Either<NetworkError, String>> saveJobInformation(

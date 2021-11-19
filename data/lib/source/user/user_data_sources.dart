@@ -2,6 +2,8 @@ import 'package:blinkid_flutter/recognizers/blink_id_combined_recognizer.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
+import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
+import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:retrofit/dio.dart';
@@ -70,7 +72,7 @@ abstract class UserRemoteDS {
       String? mainSource,
       List<AdditionalIncomeType>? additionalIncomeType});
 
-  Future<String> saveProfileInformation(
+  Future<HttpResponse<SaveProfileStatusResponseEntity>> saveProfileInformation(
       {bool? married,
       bool? specialPerson,
       bool? anyOtherNationality,
@@ -80,16 +82,17 @@ abstract class UserRemoteDS {
       String? spouseName,
       String? natureOfSpecialNeeds});
 
-  Future<String> saveResidenceInformation(
-      {String? residentCountry,
-      String? homeAddress,
-      String? streetAddress,
-      String? residentDistrict,
-      String? residentCity,
-      String? permanentResidentCountry,
-      String? permanentResidentCity,
-      String? permanentHomeAddress,
-      String? permanentStreetAddress});
+  Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
+      saveResidenceInformation(
+          {String? residentCountry,
+          String? homeAddress,
+          String? streetAddress,
+          String? residentDistrict,
+          String? residentCity,
+          String? permanentResidentCountry,
+          String? permanentResidentCity,
+          String? permanentHomeAddress,
+          String? permanentStreetAddress});
 
   Future<bool> verifyMobileOtp({String? otpCode, bool? getToken});
 }

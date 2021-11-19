@@ -1,23 +1,25 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'response_entity.dart';
+part of 'save_profile_status_response_data_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ResponseEntity _$ResponseEntityFromJson(Map<String, dynamic> json) {
-  return ResponseEntity(
+SaveProfileStatusResponseDataEntity
+    _$SaveProfileStatusResponseDataEntityFromJson(Map<String, dynamic> json) {
+  return SaveProfileStatusResponseDataEntity(
     code: json['code'] as int?,
-    content: json['content'],
-    exceptionMessage: json['exceptionMessage'] as String?,
+    content: json['content'] as String?,
+    exceptionMessage: json['exceptionMessage'],
     message: json['message'] as String?,
     token: json['token'] as String?,
-    id: json['id'] as String?,
+    id: json['id'],
   );
 }
 
-Map<String, dynamic> _$ResponseEntityToJson(ResponseEntity instance) =>
+Map<String, dynamic> _$SaveProfileStatusResponseDataEntityToJson(
+        SaveProfileStatusResponseDataEntity instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

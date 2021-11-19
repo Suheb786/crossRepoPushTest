@@ -1,5 +1,6 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
+import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,7 +41,8 @@ class ProfileDetailsPageView
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<bool>>(
+                    child:
+                        AppStreamBuilder<Resource<SaveProfileStatusResponse>>(
                       stream: model.profileDetailsStream,
                       initialData: Resource.none(),
                       onData: (data) {
@@ -73,8 +75,8 @@ class ProfileDetailsPageView
                       },
                       dataBuilder: (context, data) {
                         return GestureDetector(
-                          onHorizontalDragUpdate: (details) {
-                            if (details.primaryDelta!.isNegative) {
+                          onHorizontalDragEnd: (details) {
+                            if (details.primaryVelocity!.isNegative) {
                               model.validateTextFields();
                             } else {
                               ProviderScope.containerOf(context)

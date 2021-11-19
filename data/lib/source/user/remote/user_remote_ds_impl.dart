@@ -7,9 +7,11 @@ import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
+import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_id_info_request.dart';
 import 'package:data/entity/remote/user/save_job_info_request.dart';
 import 'package:data/entity/remote/user/save_profile_information_request.dart';
+import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:data/entity/remote/user/save_residence_information_request.dart';
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
 import 'package:data/network/api_service.dart';
@@ -172,7 +174,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<String> saveProfileInformation(
+  Future<HttpResponse<SaveProfileStatusResponseEntity>> saveProfileInformation(
       {bool? married,
       bool? specialPerson,
       bool? anyOtherNationality,
@@ -183,7 +185,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
       String? natureOfSpecialNeeds}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveProfileInformation(SaveProfileInformationRequest(
-      baseData: baseData,
+      baseData: baseData.toJson(),
       married: married,
       specialPerson: specialPerson,
       employmentStatus: employmentStatus,
@@ -193,19 +195,20 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<String> saveResidenceInformation(
-      {String? residentCountry,
-      String? homeAddress,
-      String? streetAddress,
-      String? residentDistrict,
-      String? residentCity,
-      String? permanentResidentCountry,
-      String? permanentResidentCity,
-      String? permanentHomeAddress,
-      String? permanentStreetAddress}) async {
+  Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
+      saveResidenceInformation(
+          {String? residentCountry,
+          String? homeAddress,
+          String? streetAddress,
+          String? residentDistrict,
+          String? residentCity,
+          String? permanentResidentCountry,
+          String? permanentResidentCity,
+          String? permanentHomeAddress,
+          String? permanentStreetAddress}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveResidenceInformation(SaveResidenceInformationRequest(
-        baseData: baseData,
+        baseData: baseData.toJson(),
         residantCountry: residentCountry,
         homeAddress: homeAddress,
         streetAddress: streetAddress,

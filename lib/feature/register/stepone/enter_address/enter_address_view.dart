@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/user/save_country_residence_info_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -36,7 +37,8 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<bool>>(
+                    child: AppStreamBuilder<
+                            Resource<SaveCountryResidenceInfoResponse>>(
                         stream: model.enterAddressResponseStream,
                         initialData: Resource.none(),
                         onData: (data) {
@@ -85,8 +87,8 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                         },
                         dataBuilder: (context, data) {
                           return GestureDetector(
-                            onHorizontalDragUpdate: (details) {
-                              if (details.primaryDelta!.isNegative) {
+                            onHorizontalDragEnd: (details) {
+                              if (details.primaryVelocity!.isNegative) {
                                 model.enterAddress();
                               } else {
                                 ProviderScope.containerOf(context)

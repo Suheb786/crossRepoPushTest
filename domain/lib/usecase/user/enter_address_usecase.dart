@@ -1,33 +1,31 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
-import 'package:domain/error/local_error.dart';
+import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/user/save_country_residence_info_response.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class EnterAddressUseCase
-    extends BaseUseCase<LocalError, EnterAddressUseCaseParams, bool> {
+class EnterAddressUseCase extends BaseUseCase<NetworkError,
+    EnterAddressUseCaseParams, SaveCountryResidenceInfoResponse> {
   final UserRepository _repository;
 
   EnterAddressUseCase(this._repository);
 
   @override
-  Future<Either<LocalError, bool>> execute(
+  Future<Either<NetworkError, SaveCountryResidenceInfoResponse>> execute(
       {required EnterAddressUseCaseParams params}) {
-    return Future.value(Right(true));
-
-    ///TODO:uncomment once get response
-    //   return _repository.saveResidenceInformation(
-    //       residentCountry: params.residentCountry,
-    //       residentDistrict: params.district,
-    //       residentCity: params.city,
-    //       streetAddress: params.streetAddress,
-    //       homeAddress: params.buildingNameOrNo,
-    //       permanentResidentCountry: params.permanentResidentCountry,
-    //       permanentResidentCity: params.permanentCity);
+    return _repository.saveResidenceInformation(
+        residentCountry: params.residentCountry,
+        residentDistrict: params.district,
+        residentCity: params.city,
+        streetAddress: params.streetAddress,
+        homeAddress: params.buildingNameOrNo,
+        permanentResidentCountry: params.permanentResidentCountry,
+        permanentResidentCity: params.permanentCity);
   }
 }
 

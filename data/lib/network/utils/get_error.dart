@@ -6,12 +6,13 @@ NetworkError getError({Response? apiResponse}) {
   if (apiResponse?.data != null) {
     try {
       final errorResponseEntity =
-          ErrorResponseEntity.fromJson(apiResponse?.data);
+          ErrorResponseEntity.fromJson(apiResponse?.data as Map<String,dynamic>);
+      print('error response entity--->${errorResponseEntity.toString()}');
       if (errorResponseEntity != null) {
         return NetworkError(
             httpError: apiResponse!.statusCode!,
-            message: errorResponseEntity.message,
-            description: errorResponseEntity.errorDescription,
+            errorCode: errorResponseEntity.response!.message!,
+            description: errorResponseEntity.response!.code.toString(),
             cause: Exception("Server Response Error"));
       } else {
         return NetworkError(
