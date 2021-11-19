@@ -88,10 +88,11 @@ class AccountRegistrationPageView
                         offset: 0.5,
                         child: Text(
                           StepTextHelper.accountRegistrationTextHelper(
-                              currentStep ?? 0,
-                              S.of(context).whatYourEmailAndMobileNumber,
-                              S.of(context).enterOtpHeader,
-                              S.of(context).createPasswordHeader),
+                            currentStep ?? 0,
+                            S.of(context).whatYourEmailAndMobileNumber,
+                            S.of(context).createPasswordHeader,
+                            S.of(context).enterOtpHeader,
+                          ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Theme.of(context).accentColor,

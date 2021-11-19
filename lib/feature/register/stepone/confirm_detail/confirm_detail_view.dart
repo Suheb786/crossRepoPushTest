@@ -473,14 +473,10 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                               dataBuilder: (context, isValid) {
                                                 return Visibility(
                                                   visible: isValid!,
-                                                  child: Padding(
-                                                    padding: EdgeInsets.only(
-                                                        right: 45),
-                                                    child: AnimatedButton(
-                                                        buttonText: S
-                                                            .of(context)
-                                                            .swipeToProceed),
-                                                  ),
+                                                  child: AnimatedButton(
+                                                      buttonText: S
+                                                          .of(context)
+                                                          .swipeToProceed),
                                                 );
                                               })
                                         ],

@@ -85,13 +85,10 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                   SizedBox(
                     height: 46,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 70.0),
-                    child: AnimatedButton(
-                      buttonText: S.of(context).swipeToProceed,
-                      borderColor: Theme.of(context).accentColor,
-                      textColor: Theme.of(context).accentColor,
-                    ),
+                  AnimatedButton(
+                    buttonText: S.of(context).swipeToProceed,
+                    borderColor: Theme.of(context).accentColor,
+                    textColor: Theme.of(context).accentColor,
                   ),
                 ],
               ),

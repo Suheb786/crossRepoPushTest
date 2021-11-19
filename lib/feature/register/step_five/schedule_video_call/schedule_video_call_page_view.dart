@@ -173,7 +173,7 @@ class ScheduleVideoCallPageView
                                 ),
                                 Center(
                                   child: Padding(
-                                    padding: EdgeInsets.only(right: 45),
+                                    padding: EdgeInsets.only(top: 8),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.allFieldValidatorStream,
                                         initialData: false,

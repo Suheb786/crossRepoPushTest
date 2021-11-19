@@ -107,7 +107,7 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 45),
+                            padding: const EdgeInsets.only(top: 8.0),
                             child: AnimatedButton(
                               buttonText: S.of(context).swipeToProceed,
                             ),

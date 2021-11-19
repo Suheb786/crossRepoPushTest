@@ -87,13 +87,10 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
               ),
               Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 96.0),
-                    child: AnimatedButton(
-                      buttonText: S.of(context).swipeToProceed,
-                      textColor: Theme.of(context).accentColor,
-                      borderColor: Theme.of(context).accentColor,
-                    ),
+                  AnimatedButton(
+                    buttonText: S.of(context).swipeToProceed,
+                    textColor: Theme.of(context).accentColor,
+                    borderColor: Theme.of(context).accentColor,
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: 14.0),

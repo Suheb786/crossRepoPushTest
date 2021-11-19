@@ -102,13 +102,10 @@ class NotifySuccessPageView
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(right: 92),
-                    child: AnimatedButton(
-                      buttonText: S.of(context).swipeToProceed,
-                      textColor: Theme.of(context).accentColor,
-                      borderColor: Theme.of(context).accentColor,
-                    ),
+                  AnimatedButton(
+                    buttonText: S.of(context).swipeToProceed,
+                    textColor: Theme.of(context).accentColor,
+                    borderColor: Theme.of(context).accentColor,
                   ),
                   SizedBox(
                     height: 5,

@@ -320,8 +320,7 @@ class TaxationDetailsPageView
                                   ),
                                   Center(
                                     child: Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 32, right: 45),
+                                      padding: EdgeInsets.only(top: 32),
                                       child: AppStreamBuilder<bool>(
                                           stream: model.allFieldValidatorStream,
                                           initialData: false,
@@ -330,9 +329,7 @@ class TaxationDetailsPageView
                                                 ? AnimatedButton(
                                                     buttonText: S
                                                         .of(context)
-                                                        .swipeToProceed,
-                                                    buttonHeight: 50,
-                                                  )
+                                                        .swipeToProceed)
                                                 : Container();
                                           }),
                                     ),

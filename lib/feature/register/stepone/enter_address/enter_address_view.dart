@@ -372,7 +372,6 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                        right: 45,
                                         top: 16,
                                       ),
                                       child: AppStreamBuilder<bool>(

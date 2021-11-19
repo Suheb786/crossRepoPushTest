@@ -161,7 +161,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                 visible: isValid!,
                                                 child: Padding(
                                                   padding: EdgeInsets.only(
-                                                      top: 24, right: 52),
+                                                      top: 24),
                                                   child: AnimatedButton(
                                                     buttonText:
                                                         "Swipe to proceed",
