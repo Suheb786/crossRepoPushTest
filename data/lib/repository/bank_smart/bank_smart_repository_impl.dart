@@ -4,6 +4,7 @@ import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/bank_smart/customer_account_details.dart';
 import 'package:domain/model/bank_smart/customer_information.dart';
+import 'package:domain/model/bank_smart/purpose_of_account_opening_response.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 
 class BankSmartRepositoryImpl extends BankSmartRepository {
@@ -12,15 +13,16 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
   BankSmartRepositoryImpl(this._bankSmartRemoteDS);
 
   @override
-  Future<Either<NetworkError, String>> addAccountPurpose(
-      {required bool getToken,
-      String? purpose,
-      bool? isCashDeposit,
-      bool? isTransfer,
-      bool? isBillPayment,
-      bool? isOther,
-      double? monthlyTransaction,
-      double? annualTransaction}) async {
+  Future<Either<NetworkError, PurposeOfAccountOpeningResponse>>
+      addAccountPurpose(
+          {required bool getToken,
+          String? purpose,
+          bool? isCashDeposit,
+          bool? isTransfer,
+          bool? isBillPayment,
+          bool? isOther,
+          double? monthlyTransaction,
+          double? annualTransaction}) async {
     final result = await safeApiCall(
       _bankSmartRemoteDS.addAccountPurpose(
           getToken: getToken,
@@ -34,7 +36,7 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 

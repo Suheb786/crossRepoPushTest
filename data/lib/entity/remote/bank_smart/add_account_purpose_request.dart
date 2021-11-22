@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "add_account_purpose_request.g.dart";
@@ -22,7 +21,7 @@ class AddAccountPurposeRequest {
   @JsonKey(name: "AnualTransaction")
   final double? annualTransaction;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String,dynamic> baseData;
 
   AddAccountPurposeRequest(
       {this.getToken: false,

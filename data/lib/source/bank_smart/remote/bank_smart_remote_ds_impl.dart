@@ -5,11 +5,13 @@ import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart
 import 'package:data/entity/remote/bank_smart/customer_details_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_details_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:domain/model/bank_smart/customer_account_details.dart';
 import 'package:domain/model/bank_smart/customer_information.dart';
+import 'package:retrofit/dio.dart';
 
 class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
   final ApiService _apiService;
@@ -18,7 +20,7 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
   BankSmartRemoteDSImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<String> addAccountPurpose(
+  Future<HttpResponse<PurposeOfAccountOpeningResponseEntity>> addAccountPurpose(
       {required bool getToken,
       String? purpose,
       bool? isCashDeposit,
@@ -29,7 +31,7 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
       double? annualTransaction}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.addAccountPurpose(AddAccountPurposeRequest(
-        baseData: baseData,
+        baseData: baseData.toJson(),
         getToken: getToken,
         purpose: purpose,
         isCashDeposit: isCashDeposit,
