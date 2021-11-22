@@ -1,9 +1,9 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
@@ -43,15 +43,15 @@ class StudentJobIncomePageViewModel extends BasePageViewModel {
   PublishSubject<bool> _documentStudentRequest = PublishSubject();
 
   ///additional income source list holder
-  final BehaviorSubject<List<AdditionalIncomeSourceParams>>
+  final BehaviorSubject<List<AdditionalIncomeType>>
       _additionalIncomeSourceSubject = BehaviorSubject.seeded([]);
 
   ///additional income source response stream
-  Stream<List<AdditionalIncomeSourceParams>>
+  Stream<List<AdditionalIncomeType>>
       get additionalSourceIncomeListStream =>
           _additionalIncomeSourceSubject.stream;
 
-  List<AdditionalIncomeSourceParams> additionalSourceIncome = [];
+  List<AdditionalIncomeType> additionalSourceIncome = [];
 
   StudentJobIncomePageViewModel(
       this._studentIncomeUseCase, this._uploadDocumentUseCase) {
@@ -92,7 +92,7 @@ class StudentJobIncomePageViewModel extends BasePageViewModel {
   }
 
   ///add items to list
-  void addAdditionalIncomeList(AdditionalIncomeSourceParams value) {
+  void addAdditionalIncomeList(AdditionalIncomeType value) {
     additionalSourceIncome.add(value);
     _additionalIncomeSourceSubject.safeAdd(additionalSourceIncome);
   }

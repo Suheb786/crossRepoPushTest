@@ -34,7 +34,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                 controller: model.scrollController,
                 padding: MediaQuery.of(context).viewInsets,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Padding(
                       padding: EdgeInsets.only(top: 112.0),
@@ -44,14 +44,16 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                         height: 91.14,
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 100.0),
-                      child: Text(
-                        S.of(context).enterLoginDetails,
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).accentColor,
-                            fontWeight: FontWeight.w600),
+                    Center(
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 100.0),
+                        child: Text(
+                          S.of(context).enterLoginDetails,
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).accentColor,
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
                     AppStreamBuilder<bool>(
@@ -160,8 +162,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                               return Visibility(
                                                 visible: isValid!,
                                                 child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      top: 24),
+                                                  padding:
+                                                      EdgeInsets.only(top: 24),
                                                   child: AnimatedButton(
                                                     buttonText:
                                                         "Swipe to proceed",

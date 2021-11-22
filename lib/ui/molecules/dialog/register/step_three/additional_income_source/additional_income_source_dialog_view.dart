@@ -1,4 +1,5 @@
 import 'package:domain/model/register/additional_income.dart';
+import 'package:domain/model/user/additional_income_type.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/additional_income_selector_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -19,7 +19,7 @@ import 'additional_income_source_dialog_view_model.dart';
 
 class AdditionIncomeSourceDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(AdditionalIncomeSourceParams)? onSelected;
+  final Function(AdditionalIncomeType)? onSelected;
 
   const AdditionIncomeSourceDialogView({
     this.onDismissed,
@@ -113,11 +113,10 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                       )),
                       InkWell(
                         onTap: () {
-                          onSelected!.call(AdditionalIncomeSourceParams(
-                              incomeSourceType:
+                          onSelected!.call(AdditionalIncomeType(
+                              additionalIncomeSource:
                                   model.selectedAdditionalIncome!.type!,
-                              amount: model.totalAnnualIncomeController.text,
-                              currency: 'JOD'));
+                              totalIncome: model.totalAnnualIncomeController.text));
                         },
                         child: Container(
                           padding: EdgeInsets.all(16),

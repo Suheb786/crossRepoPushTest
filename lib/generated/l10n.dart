@@ -3990,6 +3990,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Error While saving IDCard`
+  String get errorSavingIdCard {
+    return Intl.message(
+      'Error While saving IDCard',
+      name: 'errorSavingIdCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Id card is expired, cannot proceed.`
+  String get idCardExpired {
+    return Intl.message(
+      'Id card is expired, cannot proceed.',
+      name: 'idCardExpired',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -408,5 +408,7 @@
   "forgotPassword": "Forgot password",
   "accountCreated": "Account has been created successfully.",
   "cardDelivery": "to Card Delivery",
-  "deviceNotFound": "Device Not Found"
+  "deviceNotFound": "Device Not Found",
+  "errorSavingIdCard": "Error While saving IDCard",
+  "idCardExpired": "Id card is expired, cannot proceed."
 }

@@ -14,6 +14,8 @@ import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_id_info_request.dart';
+import 'package:data/entity/remote/user/save_id_info_response_entity.dart';
+import 'package:data/entity/remote/user/save_job_details_response_entity.dart';
 import 'package:data/entity/remote/user/save_job_info_request.dart';
 import 'package:data/entity/remote/user/save_profile_information_request.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
@@ -51,10 +53,11 @@ abstract class ApiService {
       @Body() RegisterProspectUserRequest registerProspectUserRequest);
 
   @POST("/CustomerDetails/SaveIdInfo")
-  Future<String> saveIdInfo(@Body() SaveIdInfoRequest saveIdInfoRequest);
+  Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(
+      @Body() SaveIdInfoRequest saveIdInfoRequest);
 
   @POST("/AddFeilds/SaveJobDetails")
-  Future<String> saveJobInformation(
+  Future<HttpResponse<SaveJobDetailsResponseEntity>> saveJobInformation(
       @Body() SaveJobInfoRequest saveJobInfoRequest);
 
   @POST("/AddFeilds/SaveProfileStatus")

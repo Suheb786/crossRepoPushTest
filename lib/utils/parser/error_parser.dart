@@ -206,6 +206,10 @@ class ErrorParser {
         return localisedHelper.emptyCity;
       case ErrorType.DEVICE_NOT_FOUND:
         return localisedHelper.deviceNotFound;
+      case ErrorType.ERROR_SAVING_ID_CARD:
+        return localisedHelper.errorSavingIdCard;
+      case ErrorType.ID_CARD_EXPIRED:
+        return localisedHelper.idCardExpired;
 
       default:
         return "";

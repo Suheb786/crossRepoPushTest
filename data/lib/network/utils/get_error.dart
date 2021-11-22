@@ -5,8 +5,8 @@ import 'package:domain/error/network_error.dart';
 NetworkError getError({Response? apiResponse}) {
   if (apiResponse?.data != null) {
     try {
-      final errorResponseEntity =
-          ErrorResponseEntity.fromJson(apiResponse?.data as Map<String,dynamic>);
+      final errorResponseEntity = ErrorResponseEntity.fromJson(
+          apiResponse?.data as Map<String, dynamic>);
       print('error response entity--->${errorResponseEntity.toString()}');
       if (errorResponseEntity != null) {
         return NetworkError(

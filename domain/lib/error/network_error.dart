@@ -45,12 +45,20 @@ class NetworkError extends BaseError {
         print('error message-->${error.message}');
         switch (error.message) {
           case "err-014":
-            print('error message--returned');
             return AppError(
                 cause: cause, error: error, type: ErrorType.DEVICE_NOT_FOUND);
 
+          case "ex-058":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_SAVING_ID_CARD);
+
+          case "err-154":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ID_CARD_EXPIRED);
+
           default:
-            print('error message-- default returned');
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);
         }

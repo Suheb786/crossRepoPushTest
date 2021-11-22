@@ -257,6 +257,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
             "Please enter valid spouse name"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "errorSavingIdCard":
+            MessageLookupByLibrary.simpleMessage("Error While saving IDCard"),
         "estimatedTime": m0,
         "exemptPayeeOptional": MessageLookupByLibrary.simpleMessage(
             "EXEMPT PAYEE CODE (OPTIONAL)"),
@@ -297,6 +299,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
         "ibanNumber":
             MessageLookupByLibrary.simpleMessage("84118220000022123444"),
+        "idCardExpired": MessageLookupByLibrary.simpleMessage(
+            "Id card is expired, cannot proceed."),
         "idHint":
             MessageLookupByLibrary.simpleMessage("Please Enter ID Number"),
         "idNumber": MessageLookupByLibrary.simpleMessage("ID NUMBER"),
