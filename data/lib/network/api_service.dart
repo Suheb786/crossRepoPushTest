@@ -39,7 +39,7 @@ abstract class ApiService {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 
-  @POST("/auth/loginUser")
+  @POST("/auth/login")
   Future<String> loginUser(@Body() LoginUserRequest loginUserRequest);
 
   @POST("/transfer/GetCountries")

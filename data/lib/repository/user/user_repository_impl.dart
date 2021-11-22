@@ -130,34 +130,19 @@ class UserRepositoryImpl extends UserRepository {
   @override
   Future<Either<NetworkError, String>> registerProspectUser(
       {String? countryName,
-      String? languageCode,
-      String? uniqueId,
-      int? companyId,
       String? email,
       String? mobileNumber,
       String? password,
       String? confirmPassword,
-      String? userName,
-      String? fireBaseToken,
-      String? vKeySessionId,
-      String? platform,
-      bool? getToken}) async {
+      String? userName}) async {
     final result = await safeApiCall(
       _remoteDS.registerProspectUser(
-        countryName: countryName,
-        languageCode: languageCode,
-        uniqueId: uniqueId,
-        companyId: companyId,
-        email: email,
-        mobileNumber: mobileNumber,
-        password: password,
-        confirmPassword: confirmPassword,
-        userName: userName,
-        fireBaseToken: fireBaseToken,
-        vKeySessionId: vKeySessionId,
-        platform: platform,
-        getToken: getToken,
-      ),
+          countryName: countryName,
+          email: email,
+          mobileNumber: mobileNumber,
+          password: password,
+          confirmPassword: confirmPassword,
+          userName: userName),
     );
     return result!.fold(
       (l) => Left(l),

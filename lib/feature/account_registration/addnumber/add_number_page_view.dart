@@ -35,6 +35,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                 stream: model.registerNumberStream,
                 initialData: Resource.none(),
                 onData: (data) {
+                  print("data.status ${data.status}");
                   if (data.status == Status.SUCCESS) {
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
@@ -46,14 +47,9 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                 },
                 dataBuilder: (context, data) {
                   return GestureDetector(
-                    onHorizontalDragUpdate: (details) {
-                      if (details.primaryDelta!.isNegative) {
-                        model.validateNumber(
-                            dialCode: ProviderScope.containerOf(context)
-                                    .read(countrySelectionViewModelProvider)
-                                    .selectedCountry!
-                                    .countryCallingCode ??
-                                "");
+                    onHorizontalDragEnd: (details) {
+                      if (details.primaryVelocity!.isNegative) {
+                        model.validateNumber();
                       } else {
                         ProviderScope.containerOf(context)
                             .read(accountRegistrationViewModelProvider)

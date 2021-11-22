@@ -37,18 +37,11 @@ abstract class UserRepository {
   /// register prospect user
   Future<Either<NetworkError, String>> registerProspectUser(
       {String? countryName,
-      String? languageCode,
-      String? uniqueId,
-      int? companyId,
       String? email,
       String? mobileNumber,
       String? password,
       String? confirmPassword,
-      String? userName,
-      String? fireBaseToken,
-      String? vKeySessionId,
-      String? platform,
-      bool? getToken});
+      String? userName});
 
   /// verify mobile otp
   Future<Either<NetworkError, bool>> verifyMobileOtp(

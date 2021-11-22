@@ -8,24 +8,23 @@ part of 'login_user_request.dart';
 
 LoginUserRequest _$LoginUserRequestFromJson(Map<String, dynamic> json) {
   return LoginUserRequest(
-    email: json['email'] as String?,
+    userName: json['userName'] as String?,
     password: json['password'] as String?,
-    baseData:
-        BaseClassEntity.fromJson(json['baseClass'] as Map<String, dynamic>),
-    getToken: json['GetToken'] as bool?,
-    platform: json['Platform'] as String?,
-    uniqueId: json['UniqueId'] as String?,
-    fireBaseToken: json['FireBaseToken'] as String?,
+    baseData: json['baseClass'] as Map<String, dynamic>,
+    getToken: json['getToken'] as bool?,
+    platform: json['platform'] as String?,
+    uniqueId: json['uniqueId'] as String?,
+    fireBaseToken: json['fireBaseToken'] as String?,
   );
 }
 
 Map<String, dynamic> _$LoginUserRequestToJson(LoginUserRequest instance) =>
     <String, dynamic>{
-      'UniqueId': instance.uniqueId,
-      'GetToken': instance.getToken,
-      'Platform': instance.platform,
-      'FireBaseToken': instance.fireBaseToken,
-      'email': instance.email,
+      'uniqueId': instance.uniqueId,
+      'getToken': instance.getToken,
+      'platform': instance.platform,
+      'fireBaseToken': instance.fireBaseToken,
+      'userName': instance.userName,
       'password': instance.password,
       'baseClass': instance.baseData,
     };

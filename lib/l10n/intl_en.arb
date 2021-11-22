@@ -408,5 +408,6 @@
   "forgotPassword": "Forgot password",
   "accountCreated": "Account has been created successfully.",
   "cardDelivery": "to Card Delivery",
-  "deviceNotFound": "Device Not Found"
+  "deviceNotFound": "Device Not Found",
+  "invalidUserNamePassword": "You have entered an invalid username or password, please try again"
 }

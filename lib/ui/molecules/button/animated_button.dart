@@ -97,7 +97,7 @@ class _AnimatedButtonState extends State<AnimatedButton>
           child: AnimatedBuilder(
             animation: animationController!,
             builder: (context, child) => InkWell(
-              onTap: () => widget.onTap!(),
+              onTap: () => widget.onTap?.call(),
               child: Container(
                 height: widget.buttonHeight!,
                 width: animation!.value,
