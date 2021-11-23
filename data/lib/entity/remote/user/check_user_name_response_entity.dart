@@ -1,5 +1,5 @@
 import 'package:data/entity/remote/user/response_entity.dart';
-import 'package:domain/model/user/check_username_response.dart';
+import 'package:domain/model/user/check_username.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -8,8 +8,7 @@ part 'check_user_name_response_entity.g.dart';
 @JsonSerializable()
 class CheckUserNameResponseEntity
     implements
-        BaseLayerDataTransformer<CheckUserNameResponseEntity,
-            CheckUsernameResponse> {
+        BaseLayerDataTransformer<CheckUserNameResponseEntity, CheckUsername> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -21,12 +20,12 @@ class CheckUserNameResponseEntity
   Map<String, dynamic> toJson() => _$CheckUserNameResponseEntityToJson(this);
 
   @override
-  CheckUserNameResponseEntity restore(CheckUsernameResponse response) {
+  CheckUserNameResponseEntity restore(CheckUsername response) {
     return CheckUserNameResponseEntity();
   }
 
   @override
-  CheckUsernameResponse transform() {
-    return CheckUsernameResponse(isAvailable: response!.transform().code == 1);
+  CheckUsername transform() {
+    return CheckUsername(isAvailable: response!.code == 1);
   }
 }

@@ -112,7 +112,8 @@ class AccountRegistrationPageView
                           direction: Direction.vertical,
                           offset: 0.5,
                           child: Text(
-                            '+962 79 322 8080',
+                            "",
+                            //"${ProviderScope?.containerOf(context).read(addNumberViewModelProvider).selectedCountry.countryCallingCode ?? ""} ${ProviderScope.containerOf(context).read(addNumberViewModelProvider).mobileNumberController.text ?? ""}",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Theme.of(context).accentColor,

@@ -206,6 +206,8 @@ class ErrorParser {
         return localisedHelper.emptyCity;
       case ErrorType.DEVICE_NOT_FOUND:
         return localisedHelper.deviceNotFound;
+      case ErrorType.INVALID_USERNAME_PASSWORD:
+        return localisedHelper.invalidUserNamePassword;
 
       default:
         return "";

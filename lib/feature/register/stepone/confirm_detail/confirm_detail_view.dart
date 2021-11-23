@@ -53,9 +53,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                             ProviderScope.containerOf(context)
                                 .read(registerStepOneViewModelProvider)
                                 .pageController
-                                .nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut);
+                                .next();
                           }
                           if (data.status == Status.ERROR) {
                             if (data.appError!.type == ErrorType.EMPTY_NAME) {
@@ -117,10 +115,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                     ProviderScope.containerOf(context)
                                         .read(registerStepOneViewModelProvider)
                                         .pageController
-                                        .previousPage(
-                                            duration:
-                                                Duration(milliseconds: 500),
-                                            curve: Curves.easeInOut);
+                                        .previous();
                                   }
                                 },
                                 child: Card(

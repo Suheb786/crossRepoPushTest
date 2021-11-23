@@ -45,9 +45,7 @@ class IdVerificationInfoView
                             ProviderScope.containerOf(context)
                                 .read(registerStepOneViewModelProvider)
                                 .pageController
-                                .nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut);
+                                .next();
                           } else if (data.status == Status.ERROR) {
                             model.showToastWithError(AppError(
                                 error: ErrorInfo(message: ''),
@@ -64,9 +62,7 @@ class IdVerificationInfoView
                                 ProviderScope.containerOf(context)
                                     .read(registerStepOneViewModelProvider)
                                     .pageController
-                                    .previousPage(
-                                        duration: Duration(milliseconds: 500),
-                                        curve: Curves.easeInOut);
+                                    .previous();
                               }
                             },
                             child: Card(

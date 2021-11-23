@@ -2,6 +2,7 @@ import 'package:blinkid_flutter/recognizers/blink_id_combined_recognizer.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
+import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:domain/error/local_error.dart';
@@ -12,7 +13,8 @@ abstract class UserRemoteDS {
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
       {String email});
 
-  Future<String> loginUser({required String email, required String password});
+  Future<HttpResponse<LoginResponseEntity>> loginUser(
+      {required String email, required String password});
 
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode});
@@ -21,18 +23,11 @@ abstract class UserRemoteDS {
 
   Future<String> registerProspectUser(
       {String? countryName,
-      String? languageCode,
-      String? uniqueId,
-      int? companyId,
       String? email,
       String? mobileNumber,
       String? password,
       String? confirmPassword,
-      String? userName,
-      String? fireBaseToken,
-      String? vKeySessionId,
-      String? platform,
-      bool? getToken});
+      String? userName});
 
   Future<String> saveIdInfo(
       {String? id,

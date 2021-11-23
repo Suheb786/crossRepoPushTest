@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -63,18 +64,14 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                             duration: Duration(milliseconds: 100),
                             shakeAngle: Rotation.deg(z: 1),
                             curve: Curves.easeInOutSine,
-                            child: AppStreamBuilder<Resource<bool>>(
+                            child: AppStreamBuilder<Resource<User>>(
                               stream: model.loginStream,
                               initialData: Resource.none(),
                               onData: (data) {
-                                Navigator.pushReplacementNamed(
-                                    context, RoutePaths.Registration);
                                 if (data.status == Status.SUCCESS) {
                                   model.emailKey.currentState!.isValid = true;
-
-                                  /// TODO: Uncomment when we get success response
-                                  // Navigator.pushReplacementNamed(
-                                  //     context, RoutePaths.Registration);
+                                  Navigator.pushReplacementNamed(
+                                      context, RoutePaths.Registration);
                                 } else if (data.status == Status.ERROR) {
                                   model.emailKey.currentState!.isValid = false;
                                   model.showToastWithError(data.appError!);
@@ -91,8 +88,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     padding: EdgeInsets.only(
                                         left: 40, right: 40, top: 25),
                                     child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
                                       children: [
-                                        // Center(child: BlurCard()),
                                         AppTextField(
                                             textFieldBorderColor:
                                                 AppColor.whiteGray,
@@ -146,6 +144,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                           padding: EdgeInsets.only(top: 24),
                                           child: Text(
                                             S.of(context).forgotPassword,
+                                            textAlign: TextAlign.center,
                                             style: TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w600,
@@ -153,27 +152,31 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                     .accentColor),
                                           ),
                                         ),
-                                        AppStreamBuilder<bool>(
-                                            stream: model.showButtonStream,
-                                            initialData: false,
-                                            dataBuilder: (context, isValid) {
-                                              return Visibility(
-                                                visible: isValid!,
-                                                child: Padding(
-                                                  padding: EdgeInsets.only(
-                                                      top: 24),
-                                                  child: AnimatedButton(
-                                                    buttonText:
-                                                        "Swipe to proceed",
-                                                    borderColor:
-                                                        Theme.of(context)
-                                                            .accentColor,
-                                                    textColor: Theme.of(context)
-                                                        .accentColor,
+                                        Center(
+                                          child: AppStreamBuilder<bool>(
+                                              stream: model.showButtonStream,
+                                              initialData: false,
+                                              dataBuilder: (context, isValid) {
+                                                return Visibility(
+                                                  visible: isValid!,
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 24),
+                                                    child: AnimatedButton(
+                                                      buttonText: S
+                                                          .of(context)
+                                                          .swipeToProceed,
+                                                      borderColor:
+                                                          Theme.of(context)
+                                                              .accentColor,
+                                                      textColor:
+                                                          Theme.of(context)
+                                                              .accentColor,
+                                                    ),
                                                   ),
-                                                ),
-                                              );
-                                            })
+                                                );
+                                              }),
+                                        )
                                       ],
                                     ),
                                   ),

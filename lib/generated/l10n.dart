@@ -3990,6 +3990,16 @@ class S {
       args: [],
     );
   }
+
+  /// `You have entered an invalid username or password, please try again`
+  String get invalidUserNamePassword {
+    return Intl.message(
+      'You have entered an invalid username or password, please try again',
+      name: 'invalidUserNamePassword',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

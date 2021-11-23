@@ -9,7 +9,7 @@ import 'package:domain/error/database_error.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
-import 'package:domain/model/user/check_username_response.dart';
+import 'package:domain/model/user/check_username.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
 import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
@@ -79,7 +79,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, CheckUsernameResponse>> checkUserName(
+  Future<Either<NetworkError, CheckUsername>> checkUserName(
       {String? email}) async {
     final result = await safeApiCall(
       _remoteDS.checkUserName(email: email!),
@@ -91,19 +91,19 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> loginUser(
+  Future<Either<NetworkError, User>> loginUser(
       {required String email, required String password}) async {
     final result = await safeApiCall(
       _remoteDS.loginUser(email: email, password: password),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(true),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, CheckUsernameResponse>> checkUserNameMobile(
+  Future<Either<NetworkError, CheckUsername>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode}) async {
     final result = await safeApiCall(
       _remoteDS.checkUserNameMobile(
@@ -130,34 +130,19 @@ class UserRepositoryImpl extends UserRepository {
   @override
   Future<Either<NetworkError, String>> registerProspectUser(
       {String? countryName,
-      String? languageCode,
-      String? uniqueId,
-      int? companyId,
       String? email,
       String? mobileNumber,
       String? password,
       String? confirmPassword,
-      String? userName,
-      String? fireBaseToken,
-      String? vKeySessionId,
-      String? platform,
-      bool? getToken}) async {
+      String? userName}) async {
     final result = await safeApiCall(
       _remoteDS.registerProspectUser(
-        countryName: countryName,
-        languageCode: languageCode,
-        uniqueId: uniqueId,
-        companyId: companyId,
-        email: email,
-        mobileNumber: mobileNumber,
-        password: password,
-        confirmPassword: confirmPassword,
-        userName: userName,
-        fireBaseToken: fireBaseToken,
-        vKeySessionId: vKeySessionId,
-        platform: platform,
-        getToken: getToken,
-      ),
+          countryName: countryName,
+          email: email,
+          mobileNumber: mobileNumber,
+          password: password,
+          confirmPassword: confirmPassword,
+          userName: userName),
     );
     return result!.fold(
       (l) => Left(l),

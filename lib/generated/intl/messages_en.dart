@@ -394,6 +394,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter total additional income"),
         "invalidTypesOfTransaction": MessageLookupByLibrary.simpleMessage(
             "Please Enter transaction type"),
+        "invalidUserNamePassword": MessageLookupByLibrary.simpleMessage(
+            "You have entered an invalid username or password, please try again"),
         "isBusinessNameDifferent": MessageLookupByLibrary.simpleMessage(
             "Please enter if only the business name is different from the name above"),
         "issuingDate": MessageLookupByLibrary.simpleMessage("Issuing date"),

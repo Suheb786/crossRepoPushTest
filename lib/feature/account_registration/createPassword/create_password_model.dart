@@ -1,4 +1,5 @@
 import 'package:domain/usecase/user/create_password_usecase.dart';
+import 'package:domain/usecase/user/register_prospect_usecase.dart';
 import 'package:domain/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -11,8 +12,9 @@ import 'package:rxdart/rxdart.dart';
 
 class CreatePasswordViewModel extends BasePageViewModel {
   final CreatePasswordUseCase _createPasswordUseCase;
-
-  TextEditingController createPasswordController = TextEditingController();
+  final RegisterProspectUseCase _registerProspectUseCase;
+  final TextEditingController createPasswordController =
+      TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
   final GlobalKey<AppTextFieldState> passwordKey =
@@ -31,12 +33,22 @@ class CreatePasswordViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get createPasswordStream =>
       _createPasswordResponse.stream;
 
+  ///Register user request subject holder
+  PublishSubject<RegisterProspectUseCaseParams> _registerUserRequest =
+      PublishSubject();
+
+  /// Register user response subject holder
+  PublishSubject<Resource<bool>> _registerUserResponse = PublishSubject();
+
+  Stream<Resource<bool>> get registerUserStream => _registerUserResponse.stream;
+
   /// show button Subject holder
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  CreatePasswordViewModel(this._createPasswordUseCase) {
+  CreatePasswordViewModel(
+      this._createPasswordUseCase, this._registerProspectUseCase) {
     _createPasswordRequest.listen((value) {
       RequestManager(value,
               createCall: () => _createPasswordUseCase.execute(params: value))
@@ -46,6 +58,15 @@ class CreatePasswordViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
         }
+      });
+    });
+
+    _registerUserRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _registerProspectUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _registerUserResponse.safeAdd(event);
       });
     });
   }
@@ -79,11 +100,27 @@ class CreatePasswordViewModel extends BasePageViewModel {
     }
   }
 
+  void registerUser({
+    String? email,
+    String? phone,
+    String? country,
+  }) {
+    _registerUserRequest.safeAdd(RegisterProspectUseCaseParams(
+        email: email,
+        countryName: country,
+        mobileNumber: phone,
+        userName: email,
+        password: createPasswordController.text,
+        confirmPassword: confirmPasswordController.text));
+  }
+
   @override
   void dispose() {
     _showButtonSubject.close();
     _createPasswordResponse.close();
     _createPasswordRequest.close();
+    _registerUserRequest.close();
+    _registerUserResponse.close();
     super.dispose();
   }
 }

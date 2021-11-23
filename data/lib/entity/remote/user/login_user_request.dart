@@ -1,27 +1,26 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "login_user_request.g.dart";
 
 @JsonSerializable()
 class LoginUserRequest {
-  @JsonKey(name: "UniqueId")
+  @JsonKey(name: "uniqueId")
   final String? uniqueId;
-  @JsonKey(name: "GetToken")
+  @JsonKey(name: "getToken")
   final bool? getToken;
-  @JsonKey(name: "Platform")
+  @JsonKey(name: "platform")
   final String? platform;
-  @JsonKey(name: "FireBaseToken")
+  @JsonKey(name: "fireBaseToken")
   final String? fireBaseToken;
-  @JsonKey(name: "email")
-  final String? email;
+  @JsonKey(name: "userName")
+  final String? userName;
   @JsonKey(name: "password")
   final String? password;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String, dynamic> baseData;
 
   LoginUserRequest(
-      {this.email: "",
+      {this.userName: "",
       this.password: "",
       required this.baseData,
       this.getToken: true,
