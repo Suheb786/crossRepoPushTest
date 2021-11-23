@@ -25,10 +25,29 @@ class ConfirmDetailPageState
     return Theme.of(context).primaryColor;
   }
 
+  // @override
+  // void onVisibilityGained() {
+  //   getViewModel().scannedDocumentResult = ProviderScope.containerOf(context)
+  //       .read(idVerificationInfoViewModelProvider)
+  //       .scannedDocumentResult;
+  //
+  //   getViewModel().setData();
+  //
+  //   ///TODO: call ahwal API
+  //   super.onVisibilityGained();
+  // }
+  //
+
   @override
-  void onVisibilityGained() {
-    //getViewModel().scanDocument();
-    super.onVisibilityGained();
+  void onFocusGained() {
+    getViewModel().scannedDocumentResult = ProviderScope.containerOf(context)
+        .read(idVerificationInfoViewModelProvider)
+        .scannedDocumentResult;
+
+    //getViewModel().setData();
+
+    ///TODO: call ahwal API
+    super.onFocusGained();
   }
 
   @override

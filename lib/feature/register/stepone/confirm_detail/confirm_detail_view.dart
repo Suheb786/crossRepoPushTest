@@ -107,7 +107,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                             onData: (data) {
                               if (data.status == Status.SUCCESS) {
                                 model.scannedDocumentResult = data.data!;
-                                model.setData(data.data);
                               }
                             },
                             dataBuilder: (context, scannedData) {

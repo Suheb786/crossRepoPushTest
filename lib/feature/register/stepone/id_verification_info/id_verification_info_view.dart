@@ -2,6 +2,7 @@ import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -42,12 +43,7 @@ class IdVerificationInfoView
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            ProviderScope.containerOf(context)
-                                .read(registerStepOneViewModelProvider)
-                                .pageController
-                                .nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut);
+                            model.scanDocument();
                           } else if (data.status == Status.ERROR) {
                             model.showToastWithError(AppError(
                                 error: ErrorInfo(message: ''),
@@ -56,161 +52,184 @@ class IdVerificationInfoView
                           }
                         },
                         dataBuilder: (context, data) {
-                          return GestureDetector(
-                            onHorizontalDragEnd: (details) {
-                              if (details.primaryVelocity!.isNegative) {
-                                model.idVerificationInfo();
-                              } else {
+                          return AppStreamBuilder<
+                              Resource<ScannedDocumentInformation>>(
+                            stream: model.scanUserDocumentStream,
+                            initialData: Resource.none(),
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
+                                model.scannedDocumentResult = data.data!;
                                 ProviderScope.containerOf(context)
                                     .read(registerStepOneViewModelProvider)
                                     .pageController
-                                    .previousPage(
+                                    .nextPage(
                                         duration: Duration(milliseconds: 500),
                                         curve: Curves.easeInOut);
                               }
                             },
-                            child: Card(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(16)),
-                              clipBehavior: Clip.antiAliasWithSaveLayer,
-                              elevation: 2,
-                              color: Theme.of(context)
-                                  .cardTheme
-                                  .copyWith(color: AppColor.white)
-                                  .color,
-                              margin: EdgeInsets.zero,
-                              shadowColor: Theme.of(context)
-                                  .primaryColorDark
-                                  .withOpacity(0.32),
-                              child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 32, horizontal: 24),
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        InformationText(
-                                            image: AssetUtils.sun,
-                                            title: S
-                                                .of(context)
-                                                .idVerificationPlaceInfo),
-                                        SizedBox(
-                                          height: 32,
-                                        ),
-                                        InformationText(
-                                            image: AssetUtils.scanIcon,
-                                            title: S.of(context).idScanInfo),
-                                        SizedBox(
-                                          height: 32,
-                                        ),
-                                        InformationText(
-                                            image: AssetUtils.tick,
-                                            iconColor: Theme.of(context)
-                                                .primaryColorDark,
-                                            title: S.of(context).onIdFit),
-                                        SizedBox(
-                                          height: 144,
-                                        ),
-                                        Row(
+                            dataBuilder: (context, scannedData) {
+                              return GestureDetector(
+                                onHorizontalDragEnd: (details) {
+                                  if (details.primaryVelocity!.isNegative) {
+                                    model.idVerificationInfo();
+                                  } else {
+                                    ProviderScope.containerOf(context)
+                                        .read(registerStepOneViewModelProvider)
+                                        .pageController
+                                        .previousPage(
+                                            duration:
+                                                Duration(milliseconds: 500),
+                                            curve: Curves.easeInOut);
+                                  }
+                                },
+                                child: Card(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16)),
+                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                  elevation: 2,
+                                  color: Theme.of(context)
+                                      .cardTheme
+                                      .copyWith(color: AppColor.white)
+                                      .color,
+                                  margin: EdgeInsets.zero,
+                                  shadowColor: Theme.of(context)
+                                      .primaryColorDark
+                                      .withOpacity(0.32),
+                                  child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 32, horizontal: 24),
+                                      child: SingleChildScrollView(
+                                        child: Column(
                                           children: [
-                                            AppStreamBuilder<bool>(
-                                                stream: model
-                                                    .isRetrievedConditionStream,
-                                                initialData: false,
-                                                dataBuilder:
-                                                    (context, isChecked) {
-                                                  return InkWell(
-                                                    onTap: () {
-                                                      if (isChecked == false) {
-                                                        model
-                                                            .updateIsRetrievedConditionStream(
-                                                                true);
-                                                      } else {
-                                                        model
-                                                            .updateIsRetrievedConditionStream(
-                                                                false);
-                                                      }
-                                                    },
-                                                    child: Container(
-                                                      height: 40,
-                                                      width: 40,
-                                                      decoration: BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          color: isChecked!
-                                                              ? Theme.of(
-                                                                      context)
-                                                                  .accentTextTheme
-                                                                  .bodyText1!
-                                                                  .color!
-                                                              : Colors
-                                                                  .transparent,
-                                                          border: Border.all(
-                                                              color: !isChecked
+                                            InformationText(
+                                                image: AssetUtils.sun,
+                                                title: S
+                                                    .of(context)
+                                                    .idVerificationPlaceInfo),
+                                            SizedBox(
+                                              height: 32,
+                                            ),
+                                            InformationText(
+                                                image: AssetUtils.scanIcon,
+                                                title:
+                                                    S.of(context).idScanInfo),
+                                            SizedBox(
+                                              height: 32,
+                                            ),
+                                            InformationText(
+                                                image: AssetUtils.tick,
+                                                iconColor: Theme.of(context)
+                                                    .primaryColorDark,
+                                                title: S.of(context).onIdFit),
+                                            SizedBox(
+                                              height: 144,
+                                            ),
+                                            Row(
+                                              children: [
+                                                AppStreamBuilder<bool>(
+                                                    stream: model
+                                                        .isRetrievedConditionStream,
+                                                    initialData: false,
+                                                    dataBuilder:
+                                                        (context, isChecked) {
+                                                      return InkWell(
+                                                        onTap: () {
+                                                          if (isChecked ==
+                                                              false) {
+                                                            model
+                                                                .updateIsRetrievedConditionStream(
+                                                                    true);
+                                                          } else {
+                                                            model
+                                                                .updateIsRetrievedConditionStream(
+                                                                    false);
+                                                          }
+                                                        },
+                                                        child: Container(
+                                                          height: 40,
+                                                          width: 40,
+                                                          decoration: BoxDecoration(
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              color: isChecked!
                                                                   ? Theme.of(
                                                                           context)
                                                                       .accentTextTheme
                                                                       .bodyText1!
                                                                       .color!
                                                                   : Colors
-                                                                      .transparent)),
-                                                      child: isChecked
-                                                          ? Container(
-                                                              height: 16,
-                                                              width: 16,
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(10),
-                                                              child:
-                                                                  AppSvg.asset(
-                                                                AssetUtils
-                                                                    .checkIcon,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .accentColor,
-                                                              ),
-                                                            )
-                                                          : Container(),
-                                                    ),
-                                                  );
-                                                }),
-                                            SizedBox(
-                                              width: 16,
+                                                                      .transparent,
+                                                              border: Border.all(
+                                                                  color: !isChecked
+                                                                      ? Theme.of(
+                                                                              context)
+                                                                          .accentTextTheme
+                                                                          .bodyText1!
+                                                                          .color!
+                                                                      : Colors
+                                                                          .transparent)),
+                                                          child: isChecked
+                                                              ? Container(
+                                                                  height: 16,
+                                                                  width: 16,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  child: AppSvg
+                                                                      .asset(
+                                                                    AssetUtils
+                                                                        .checkIcon,
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .accentColor,
+                                                                  ),
+                                                                )
+                                                              : Container(),
+                                                        ),
+                                                      );
+                                                    }),
+                                                SizedBox(
+                                                  width: 16,
+                                                ),
+                                                Expanded(
+                                                  child: Text(
+                                                    S
+                                                        .of(context)
+                                                        .termsAndConditions,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        fontSize: 12),
+                                                  ),
+                                                )
+                                              ],
                                             ),
-                                            Expanded(
-                                              child: Text(
-                                                S
-                                                    .of(context)
-                                                    .termsAndConditions,
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.w600,
-                                                    fontSize: 12),
-                                              ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 8.0),
+                                              child: AppStreamBuilder<bool>(
+                                                  stream: model
+                                                      .isRetrievedConditionStream,
+                                                  initialData: false,
+                                                  dataBuilder:
+                                                      (context, isChecked) {
+                                                    return Visibility(
+                                                      visible: isChecked!,
+                                                      child: AnimatedButton(
+                                                        buttonText: S
+                                                            .of(context)
+                                                            .swipeToProceed,
+                                                      ),
+                                                    );
+                                                  }),
                                             )
                                           ],
                                         ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 8.0),
-                                          child: AppStreamBuilder<bool>(
-                                              stream: model
-                                                  .isRetrievedConditionStream,
-                                              initialData: false,
-                                              dataBuilder:
-                                                  (context, isChecked) {
-                                                return Visibility(
-                                                  visible: isChecked!,
-                                                  child: AnimatedButton(
-                                                    buttonText: S
-                                                        .of(context)
-                                                        .swipeToProceed,
-                                                  ),
-                                                );
-                                              }),
-                                        )
-                                      ],
-                                    ),
-                                  )),
-                            ),
+                                      )),
+                                ),
+                              );
+                            },
                           );
                         }),
                   );
