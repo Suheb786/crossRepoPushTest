@@ -48,9 +48,6 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream =>
       _scanUserDocumentResponse.stream;
 
-  ScannedDocumentInformation scannedDocumentResult =
-      ScannedDocumentInformation();
-
   IdVerificationInfoViewModel(
       this._idVerificationInfoUseCase, this._scanUserDocumentUseCase) {
     _idVerificationInfoRequest.listen((value) {

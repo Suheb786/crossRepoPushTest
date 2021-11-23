@@ -3,8 +3,6 @@ import 'package:domain/error/database_error.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
-import 'package:domain/model/user/check_username_response.dart';
-import 'package:domain/model/user/get_token_response.dart';
 import 'package:domain/model/user/check_username.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
@@ -123,5 +121,5 @@ abstract class UserRepository {
   Future<Either<LocalError, ScannedDocumentInformation>> scanUserDocument();
 
   ///get token
-  Future<Either<NetworkError, GetTokenResponse>> getToken();
+  Future<Either<NetworkError, bool>> getToken();
 }

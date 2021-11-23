@@ -58,13 +58,13 @@ class IdVerificationInfoView
                             initialData: Resource.none(),
                             onData: (data) {
                               if (data.status == Status.SUCCESS) {
-                                model.scannedDocumentResult = data.data!;
+                                ProviderScope.containerOf(context)
+                                    .read(confirmDetailViewModelProvider)
+                                    .setData(data.data);
                                 ProviderScope.containerOf(context)
                                     .read(registerStepOneViewModelProvider)
                                     .pageController
-                                    .nextPage(
-                                        duration: Duration(milliseconds: 500),
-                                        curve: Curves.easeInOut);
+                                    .next();
                               }
                             },
                             dataBuilder: (context, scannedData) {
@@ -76,10 +76,7 @@ class IdVerificationInfoView
                                     ProviderScope.containerOf(context)
                                         .read(registerStepOneViewModelProvider)
                                         .pageController
-                                        .previousPage(
-                                            duration:
-                                                Duration(milliseconds: 500),
-                                            curve: Curves.easeInOut);
+                                        .previous();
                                   }
                                 },
                                 child: Card(

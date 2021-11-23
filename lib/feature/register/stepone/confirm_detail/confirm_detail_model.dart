@@ -180,7 +180,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   }
 
   void setData(ScannedDocumentInformation? data) {
-    nameController.text = data!.fullName!;
+    scannedDocumentResult = data!;
+    nameController.text = data.fullName!;
     idNumberController.text = data.idNumber!;
     dobController.text = data.dob!.year != 0
         ? TimeUtils.getFormattedDOB(data.dob!.toString())

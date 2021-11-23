@@ -31,6 +31,6 @@ class PurposeOfAccountOpeningResponseEntity
   @override
   PurposeOfAccountOpeningResponse transform() {
     return PurposeOfAccountOpeningResponse(
-        isSuccess: response!.transform().code == 1);
+        isSuccess: response!.code == 1);
   }
 }

@@ -7,8 +7,7 @@ class ApiInterceptor extends InterceptorsWrapper {
   final UserRepository _userRepository;
   final Dio _previousDio;
   late ApiService apiService;
-  String authToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzNzYxOTAzYy1lNTk4LTQwMjMtODA4OC00NzRhMjk0YzI3M2YiLCJKdGkiOiJkZjM1YzEzZC0wZjZiLTRkMWUtOTZmNi0xNjUwNTk4NjE5NzciLCJVbmlxdWUiOiI0NTBkNTA4Ni0zNDE5LTRkOTItOTc3Mi00ODc2ZTY5MTAyMDIiLCJleHAiOjE2Mzc2NjkzMDMsImlzcyI6IjA6MDowOjEiLCJhdWQiOiIwOjA6MDoxIn0.t9LuZ6A-_1i3mEGl8iE2LnDVW1FpOKUo5CAdXobFzaM";
+  String authToken = "";
 
   ApiInterceptor(this._userRepository, this._previousDio) {
     Dio newDio = Dio(_previousDio.options);

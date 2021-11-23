@@ -26,6 +26,6 @@ class SaveIdInfoResponseEntity
 
   @override
   SaveIdInfoResponse transform() {
-    return SaveIdInfoResponse(isSuccess: response!.transform().code == 1);
+    return SaveIdInfoResponse(isSuccess: response!.code == 1);
   }
 }

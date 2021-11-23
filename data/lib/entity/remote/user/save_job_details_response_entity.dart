@@ -27,6 +27,6 @@ class SaveJobDetailsResponseEntity
 
   @override
   SaveJobDetailsResponse transform() {
-    return SaveJobDetailsResponse(isSuccess: response!.transform().code == 1);
+    return SaveJobDetailsResponse(isSuccess: response!.code == 1);
   }
 }

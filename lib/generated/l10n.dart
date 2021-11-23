@@ -3981,16 +3981,6 @@ class S {
     );
   }
 
-  /// `Device Not Found`
-  String get deviceNotFound {
-    return Intl.message(
-      'Device Not Found',
-      name: 'deviceNotFound',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Error While saving IDCard`
   String get errorSavingIdCard {
     return Intl.message(
@@ -4006,6 +3996,26 @@ class S {
     return Intl.message(
       'Id card is expired, cannot proceed.',
       name: 'idCardExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Device Not Found`
+  String get deviceNotFound {
+    return Intl.message(
+      'Device Not Found',
+      name: 'deviceNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have entered an invalid username or password, please try again`
+  String get invalidUserNamePassword {
+    return Intl.message(
+      'You have entered an invalid username or password, please try again',
+      name: 'invalidUserNamePassword',
       desc: '',
       args: [],
     );
