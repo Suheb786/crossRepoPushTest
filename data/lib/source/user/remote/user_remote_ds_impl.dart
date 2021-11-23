@@ -5,6 +5,7 @@ import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
+import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
@@ -132,7 +133,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
     ///TODO:change to dynamic data
     return _apiService.saveIdInfo(SaveIdInfoRequest(
         baseData: baseData.toJson(),
-        getToken: false,
+        getToken: true,
         type: "C",
         dob: dob,
         id: DateTime.now().microsecondsSinceEpoch.toString(),
@@ -235,5 +236,10 @@ class UserRemoteDSImpl extends UserRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.verifyMobileOtp(VerifyMobileOtpRequest(
         baseData: baseData, otpCode: otpCode, getToken: getToken));
+  }
+
+  @override
+  Future<HttpResponse<GetTokenResponseEntity>> getToken() {
+    return _apiService.getToken();
   }
 }

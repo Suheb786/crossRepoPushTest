@@ -2,6 +2,7 @@ import 'package:blinkid_flutter/recognizers/blink_id_combined_recognizer.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
+import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_id_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_job_details_response_entity.dart';
@@ -97,6 +98,8 @@ abstract class UserRemoteDS {
           String? permanentStreetAddress});
 
   Future<bool> verifyMobileOtp({String? otpCode, bool? getToken});
+
+  Future<HttpResponse<GetTokenResponseEntity>> getToken();
 }
 
 abstract class UserLocalDS {

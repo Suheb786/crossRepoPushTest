@@ -1,13 +1,74 @@
+import 'dart:async';
+import 'dart:isolate';
+
+import 'package:domain/model/user/get_token_response.dart';
+import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:neo_bank/base/base_view_model.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/request_manager.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
+import 'package:rxdart/rxdart.dart';
 
 GlobalKey<NavigatorState> appLevelKey = GlobalKey(debugLabel: 'app-key');
 
 class AppViewModel extends BaseViewModel {
   ThemeData _themeData = ThemeData();
   AppTheme _appTheme = AppTheme.light;
+  late ReceivePort _receivePort;
+  late Isolate _isolate;
+
+  final GetTokenUseCase _getTokenUseCase;
+
+  static PublishSubject<GetTokenUseCaseParams> _getTokenRequest =
+      PublishSubject();
+
+  static PublishSubject<Resource<GetTokenResponse>> _getTokenResponse =
+      PublishSubject();
+
+  Stream<Resource<GetTokenResponse>> get getTokenStream =>
+      _getTokenResponse.stream;
+
+  AppViewModel(this._getTokenUseCase) {
+    _getTokenRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getTokenUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        if (event.status == Status.ERROR) {
+          print("error");
+        }
+        _getTokenResponse.safeAdd(event);
+      });
+    });
+    _getToken();
+  }
+
+  void _getToken() async {
+    _receivePort = ReceivePort();
+    _isolate = await Isolate.spawn(_getTokenCallBack, _receivePort.sendPort);
+    _receivePort.listen(_handleMessage, onDone: () {
+      print('Done');
+    });
+  }
+
+  void _handleMessage(dynamic data) {
+    print('data $data');
+    callGetToken();
+  }
+
+  static void _getTokenCallBack(SendPort sendPort) async {
+    Timer.periodic(Duration(minutes: 2), (Timer t) {
+      sendPort.send('Send');
+    });
+  }
+
+  void callGetToken() {
+    _getTokenRequest.add(GetTokenUseCaseParams());
+  }
 
   AppTheme get appTheme => _appTheme;
 

@@ -17,9 +17,9 @@ class AddAccountPurposeRequest {
   @JsonKey(name: "IsOther")
   final bool? isOther;
   @JsonKey(name: "MonthlyTransaction")
-  final double? monthlyTransaction;
+  final num? monthlyTransaction;
   @JsonKey(name: "AnualTransaction")
-  final double? annualTransaction;
+  final num? annualTransaction;
   @JsonKey(name: "baseClass")
   final Map<String,dynamic> baseData;
 

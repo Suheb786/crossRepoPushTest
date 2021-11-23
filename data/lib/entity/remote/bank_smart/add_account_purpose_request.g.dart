@@ -15,8 +15,8 @@ AddAccountPurposeRequest _$AddAccountPurposeRequestFromJson(
     isTransfer: json['IsTransfer'] as bool?,
     isBillPayment: json['IsBillPayment'] as bool?,
     isOther: json['IsOther'] as bool?,
-    monthlyTransaction: (json['MonthlyTransaction'] as num?)?.toDouble(),
-    annualTransaction: (json['AnualTransaction'] as num?)?.toDouble(),
+    monthlyTransaction: json['MonthlyTransaction'] as num?,
+    annualTransaction: json['AnualTransaction'] as num?,
     baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }

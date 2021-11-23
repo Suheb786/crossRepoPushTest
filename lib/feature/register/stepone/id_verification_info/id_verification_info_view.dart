@@ -57,8 +57,8 @@ class IdVerificationInfoView
                         },
                         dataBuilder: (context, data) {
                           return GestureDetector(
-                            onHorizontalDragUpdate: (details) {
-                              if (details.primaryDelta!.isNegative) {
+                            onHorizontalDragEnd: (details) {
+                              if (details.primaryVelocity!.isNegative) {
                                 model.idVerificationInfo();
                               } else {
                                 ProviderScope.containerOf(context)

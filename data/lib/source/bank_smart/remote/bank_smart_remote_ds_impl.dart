@@ -59,7 +59,7 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
     return _apiService.createAccount(CreateAccountRequestEntity(
         baseData: baseData,
         cif: cif,
-        getToken: getToken,
+        getToken: true,
         customerDetailsEntity:
             CustomerDetailsEntity().restore(customerInformation!),
         account: AccountDetailsEntity().restore(accountDetails!)));
@@ -69,6 +69,6 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
   Future<String> getAccountDetails({bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getAccountDetails(
-        GetAccountDetailsRequestEntity(baseData: baseData, getToken: getToken));
+        GetAccountDetailsRequestEntity(baseData: baseData, getToken: true));
   }
 }

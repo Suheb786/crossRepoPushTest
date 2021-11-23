@@ -11,6 +11,7 @@ import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
+import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
@@ -106,4 +107,8 @@ abstract class ApiService {
   @POST("/BankSmart/GetAccountDetails")
   Future<String> getAccountDetails(
       @Body() GetAccountDetailsRequestEntity getAccountDetailsRequestEntity);
+
+  ///get token
+  @GET("/auth/verifyToken")
+  Future<HttpResponse<GetTokenResponseEntity>> getToken();
 }
