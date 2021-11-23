@@ -5,6 +5,7 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/check_username_response.dart';
 import 'package:domain/model/user/get_token_response.dart';
+import 'package:domain/model/user/check_username.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
@@ -26,32 +27,24 @@ abstract class UserRepository {
   Future<Either<DatabaseError, bool>> logoutUser();
 
   /// Check email is available or not
-  Future<Either<NetworkError, CheckUsernameResponse>> checkUserName(
-      {String? email});
+  Future<Either<NetworkError, CheckUsername>> checkUserName({String? email});
 
   /// Login user with syste
-  Future<Either<NetworkError, bool>> loginUser(
+  Future<Either<NetworkError, User>> loginUser(
       {required String email, required String password});
 
   /// Check for userName mobile availability
-  Future<Either<NetworkError, CheckUsernameResponse>> checkUserNameMobile(
+  Future<Either<NetworkError, CheckUsername>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode});
 
   /// register prospect user
   Future<Either<NetworkError, String>> registerProspectUser(
       {String? countryName,
-      String? languageCode,
-      String? uniqueId,
-      int? companyId,
       String? email,
       String? mobileNumber,
       String? password,
       String? confirmPassword,
-      String? userName,
-      String? fireBaseToken,
-      String? vKeySessionId,
-      String? platform,
-      bool? getToken});
+      String? userName});
 
   /// verify mobile otp
   Future<Either<NetworkError, bool>> verifyMobileOtp(

@@ -42,7 +42,7 @@ class NetworkError extends BaseError {
             cause: cause, error: error, type: ErrorType.NET_SERVER_MESSAGE);
 
       default:
-        print('error message-->${error.message}');
+        print("I AM EXECUTED with error code ${error.message}");
         switch (error.message) {
           case "err-014":
             return AppError(
@@ -57,6 +57,12 @@ class NetworkError extends BaseError {
           case "err-154":
             return AppError(
                 cause: cause, error: error, type: ErrorType.ID_CARD_EXPIRED);
+
+          case "err-061":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_USERNAME_PASSWORD);
 
           default:
             return AppError(

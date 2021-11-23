@@ -6,6 +6,7 @@ import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
+import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
@@ -41,11 +42,16 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<String> loginUser(
+  Future<HttpResponse<LoginResponseEntity>> loginUser(
       {required String email, required String password}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.loginUser(
-        LoginUserRequest(baseData: baseData, email: email, password: password));
+    return _apiService.loginUser(LoginUserRequest(
+      uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
+      platform: baseData.platform,
+      password: password,
+      userName: email,
+      baseData: baseData.toJson(),
+    ));
   }
 
   @override
@@ -71,34 +77,27 @@ class UserRemoteDSImpl extends UserRemoteDS {
   @override
   Future<String> registerProspectUser(
       {String? countryName,
-      String? languageCode,
-      String? uniqueId,
-      int? companyId,
       String? email,
       String? mobileNumber,
       String? password,
       String? confirmPassword,
-      String? userName,
-      String? fireBaseToken,
-      String? vKeySessionId,
-      String? platform,
-      bool? getToken}) async {
+      String? userName}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.registerProspectUser(RegisterProspectUserRequest(
-        baseData: baseData,
-        getToken: getToken,
+        baseData: baseData.toJson(),
+        getToken: false,
         mobileNumber: mobileNumber,
         email: email,
-        companyId: companyId,
+        companyId: 2,
         confirmPassword: confirmPassword,
         countryName: countryName,
-        fireBaseToken: fireBaseToken,
-        languageCode: languageCode,
+        fireBaseToken: "",
+        languageCode: "En",
         password: password,
-        platform: platform,
-        uniqueId: uniqueId,
+        platform: baseData.platform,
+        uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
         userName: userName,
-        vkeySessionId: vKeySessionId));
+        vkeySessionId: baseData.vKeySessionId));
   }
 
   @override

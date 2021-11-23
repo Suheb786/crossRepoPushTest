@@ -411,4 +411,6 @@
   "deviceNotFound": "Device Not Found",
   "errorSavingIdCard": "Error While saving IDCard",
   "idCardExpired": "Id card is expired, cannot proceed."
+  "deviceNotFound": "Device Not Found",
+  "invalidUserNamePassword": "You have entered an invalid username or password, please try again"
 }

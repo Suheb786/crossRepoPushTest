@@ -1,7 +1,7 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/model/country/country.dart';
-import 'package:domain/model/user/check_username_response.dart';
+import 'package:domain/model/user/check_username.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -35,6 +35,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                 stream: model.registerNumberStream,
                 initialData: Resource.none(),
                 onData: (data) {
+                  print("data.status ${data.status}");
                   if (data.status == Status.SUCCESS) {
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
@@ -46,14 +47,9 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                 },
                 dataBuilder: (context, data) {
                   return GestureDetector(
-                    onHorizontalDragUpdate: (details) {
-                      if (details.primaryDelta!.isNegative) {
-                        model.validateNumber(
-                            dialCode: ProviderScope.containerOf(context)
-                                    .read(countrySelectionViewModelProvider)
-                                    .selectedCountry!
-                                    .countryCallingCode ??
-                                "");
+                    onHorizontalDragEnd: (details) {
+                      if (details.primaryVelocity!.isNegative) {
+                        model.validateNumber();
                       } else {
                         ProviderScope.containerOf(context)
                             .read(accountRegistrationViewModelProvider)
@@ -68,7 +64,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                               vertical: 32, horizontal: 24),
                           child: Column(
                             children: [
-                              AppStreamBuilder<Resource<CheckUsernameResponse>>(
+                              AppStreamBuilder<Resource<CheckUsername>>(
                                 initialData: Resource.none(),
                                 stream: model.checkUserNameStream,
                                 onData: (data) {
@@ -102,7 +98,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                 stream: model.countryByCode,
                                 dataBuilder: (context, country) {
                                   return AppStreamBuilder<
-                                      Resource<CheckUsernameResponse>>(
+                                      Resource<CheckUsername>>(
                                     initialData: Resource.none(),
                                     stream: model.checkUserMobileStream,
                                     onData: (data) {

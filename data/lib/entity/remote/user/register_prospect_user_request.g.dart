@@ -22,8 +22,7 @@ RegisterProspectUserRequest _$RegisterProspectUserRequestFromJson(
     vkeySessionId: json['vkeySessionId'] as String?,
     platform: json['platform'] as String?,
     getToken: json['getToken'] as bool?,
-    baseData:
-        BaseClassEntity.fromJson(json['baseClass'] as Map<String, dynamic>),
+    baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }
 

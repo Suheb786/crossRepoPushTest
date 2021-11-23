@@ -38,4 +38,5 @@ final validateOtpViewModelProvider =
 ///[CreatePasswordViewModel] provider
 final createPasswordViewModelProvider =
     ChangeNotifierProvider.autoDispose<CreatePasswordViewModel>((ref) =>
-        CreatePasswordViewModel(ref.read(createPasswordUseCaseProvider)));
+        CreatePasswordViewModel(ref.read(createPasswordUseCaseProvider),
+            ref.read(registerProspectUseCaseProvider)));
