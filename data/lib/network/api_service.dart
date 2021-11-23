@@ -10,6 +10,7 @@ import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
+import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
@@ -40,7 +41,8 @@ abstract class ApiService {
       @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 
   @POST("/auth/login")
-  Future<String> loginUser(@Body() LoginUserRequest loginUserRequest);
+  Future<HttpResponse<LoginResponseEntity>> loginUser(
+      @Body() LoginUserRequest loginUserRequest);
 
   @POST("/transfer/GetCountries")
   Future<String> fetchCountryList(

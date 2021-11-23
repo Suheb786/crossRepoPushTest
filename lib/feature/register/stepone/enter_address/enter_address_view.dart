@@ -51,9 +51,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                             ProviderScope.containerOf(context)
                                 .read(registerStepOneViewModelProvider)
                                 .pageController
-                                .nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut);
+                                .next();
                           } else if (data.status == Status.ERROR) {
                             if (data.appError!.type ==
                                 ErrorType.EMPTY_RESIDENT_COUNTRY) {
@@ -94,9 +92,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                 ProviderScope.containerOf(context)
                                     .read(registerStepOneViewModelProvider)
                                     .pageController
-                                    .previousPage(
-                                        duration: Duration(milliseconds: 500),
-                                        curve: Curves.easeInOut);
+                                    .previous();
                               }
                             },
                             child: Card(

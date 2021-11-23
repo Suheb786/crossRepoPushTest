@@ -1,4 +1,5 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -21,9 +22,9 @@ class LoginViewModel extends BasePageViewModel {
 
   PublishSubject<LoginUseCaseParams> _loginRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _loginResponse = PublishSubject();
+  PublishSubject<Resource<User>> _loginResponse = PublishSubject();
 
-  Stream<Resource<bool>> get loginStream => _loginResponse.stream;
+  Stream<Resource<User>> get loginStream => _loginResponse.stream;
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 

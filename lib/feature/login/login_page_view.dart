@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -63,7 +64,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                             duration: Duration(milliseconds: 100),
                             shakeAngle: Rotation.deg(z: 1),
                             curve: Curves.easeInOutSine,
-                            child: AppStreamBuilder<Resource<bool>>(
+                            child: AppStreamBuilder<Resource<User>>(
                               stream: model.loginStream,
                               initialData: Resource.none(),
                               onData: (data) {

@@ -1,6 +1,6 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/country/country.dart';
-import 'package:domain/model/user/check_username_response.dart';
+import 'package:domain/model/user/check_username.dart';
 import 'package:domain/usecase/country/fetch_country_by_code_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
@@ -57,10 +57,10 @@ class AddNumberViewModel extends BasePageViewModel {
   PublishSubject<CheckUserNameUseCaseParams> _checkUserNameRequest =
       PublishSubject();
 
-  PublishSubject<Resource<CheckUsernameResponse>> _checkUserNameResponse =
+  PublishSubject<Resource<CheckUsername>> _checkUserNameResponse =
       PublishSubject();
 
-  Stream<Resource<CheckUsernameResponse>> get checkUserNameStream =>
+  Stream<Resource<CheckUsername>> get checkUserNameStream =>
       _checkUserNameResponse.stream;
 
   /// Phone value listener
@@ -70,10 +70,10 @@ class AddNumberViewModel extends BasePageViewModel {
   PublishSubject<CheckUserNameMobileUseCaseParams> _checkUserMobileRequest =
       PublishSubject();
 
-  PublishSubject<Resource<CheckUsernameResponse>> _checkUserMobileResponse =
+  PublishSubject<Resource<CheckUsername>> _checkUserMobileResponse =
       PublishSubject();
 
-  Stream<Resource<CheckUsernameResponse>> get checkUserMobileStream =>
+  Stream<Resource<CheckUsername>> get checkUserMobileStream =>
       _checkUserMobileResponse.stream;
 
   bool isEmailAvailable = false;

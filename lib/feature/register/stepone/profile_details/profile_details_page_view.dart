@@ -82,9 +82,7 @@ class ProfileDetailsPageView
                               ProviderScope.containerOf(context)
                                   .read(registerStepOneViewModelProvider)
                                   .pageController
-                                  .previousPage(
-                                      duration: Duration(milliseconds: 500),
-                                      curve: Curves.easeInOut);
+                                  .previous();
                             }
                           },
                           child: Card(
