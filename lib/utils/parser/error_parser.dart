@@ -206,8 +206,14 @@ class ErrorParser {
         return localisedHelper.emptyCity;
       case ErrorType.DEVICE_NOT_FOUND:
         return localisedHelper.deviceNotFound;
+      case ErrorType.ERROR_SAVING_ID_CARD:
+        return localisedHelper.errorSavingIdCard;
+      case ErrorType.ID_CARD_EXPIRED:
+        return localisedHelper.idCardExpired;
       case ErrorType.INVALID_USERNAME_PASSWORD:
         return localisedHelper.invalidUserNamePassword;
+      case ErrorType.ID_CARD_NOT_ALLOWED:
+        return localisedHelper.idCardNotAllowed;
       case ErrorType.INVALID_NETWORK_OTP:
         return localisedHelper.invalidOtp;
       case ErrorType.OTP_EXPIRED:

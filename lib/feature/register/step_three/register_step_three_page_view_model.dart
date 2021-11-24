@@ -5,7 +5,7 @@ import 'package:rxdart/rxdart.dart';
 
 class RegisterStepThreeViewModel extends BasePageViewModel {
   final CarouselController registrationStepThreePageController =
-      new CarouselController();
+  new CarouselController();
 
   PublishSubject<int> _currentStep = PublishSubject();
 

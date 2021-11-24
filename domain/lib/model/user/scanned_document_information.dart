@@ -22,31 +22,33 @@ class ScannedDocumentInformation {
   final String? backCardImage;
   final String? personFaceImage;
   final bool? isimtfBlacklist;
-  final double? scanPercentage;
+  final num? scanPercentage;
+  final String instanceId;
 
   ScannedDocumentInformation(
-      {this.idNumber,
-      this.type,
-      this.fullName,
-      this.firstName,
-      this.middleName,
-      this.familyName,
+      {this.type: "",
+      this.fullName: "",
+      this.firstName: "",
+      this.middleName: "",
+      this.familyName: "",
+      this.idNumber: "",
       this.dob,
-      this.nationality,
+      this.nationality: "",
       this.doe,
-      this.gender,
-      this.motherName,
-      this.documentCode,
-      this.documentNumber,
-      this.issuer,
-      this.optionalData1,
-      this.optionalData2,
-      this.mrtDraw,
-      this.frontCardImage,
-      this.backCardImage,
-      this.personFaceImage,
-      this.isimtfBlacklist,
-      this.scanPercentage,
-      this.issuingDate,
-      this.issuingPlace});
+      this.gender: "",
+      this.motherName: "",
+      this.documentCode: "",
+      this.documentNumber: "",
+      this.issuer: "",
+      this.optionalData1: "",
+      this.optionalData2: "",
+      this.mrtDraw: "",
+      this.frontCardImage: "",
+      this.backCardImage: "",
+      this.personFaceImage: "",
+      this.isimtfBlacklist: false,
+      this.instanceId: "",
+      this.scanPercentage: 0,
+      this.issuingPlace: "",
+      this.issuingDate});
 }

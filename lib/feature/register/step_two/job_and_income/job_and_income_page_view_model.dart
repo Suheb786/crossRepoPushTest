@@ -1,9 +1,10 @@
 import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:domain/usecase/register/job_and_income_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -82,10 +83,12 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
       PublishSubject();
 
   ///employment details response holder
-  PublishSubject<Resource<bool>> _jobAndIncomeResponse = PublishSubject();
+  PublishSubject<Resource<SaveJobDetailsResponse>> _jobAndIncomeResponse =
+      PublishSubject();
 
   ///employment details stream
-  Stream<Resource<bool>> get jobAndIncomeStream => _jobAndIncomeResponse.stream;
+  Stream<Resource<SaveJobDetailsResponse>> get jobAndIncomeStream =>
+      _jobAndIncomeResponse.stream;
 
   ///all filed validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();
@@ -102,16 +105,15 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     _switchSubject.safeAdd(value);
   }
 
-  List<AdditionalIncomeSourceParams> additionalSourceIncome = [];
+  List<AdditionalIncomeType> additionalSourceIncome = [];
 
   ///additional income source list holder
-  final BehaviorSubject<List<AdditionalIncomeSourceParams>>
+  final BehaviorSubject<List<AdditionalIncomeType>>
       _additionalIncomeSourceSubject = BehaviorSubject.seeded([]);
 
   ///additional income source response stream
-  Stream<List<AdditionalIncomeSourceParams>>
-      get additionalSourceIncomeListStream =>
-          _additionalIncomeSourceSubject.stream;
+  Stream<List<AdditionalIncomeType>> get additionalSourceIncomeListStream =>
+      _additionalIncomeSourceSubject.stream;
 
   bool isValid() {
     bool valid = false;
@@ -165,7 +167,7 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     });
   }
 
-  void getError(Resource<bool> event) {
+  void getError(Resource<SaveJobDetailsResponse> event) {
     switch (event.appError!.type) {
       case ErrorType.INVALID_OCCUPATION:
         occupationKey.currentState!.isValid = false;
@@ -195,7 +197,7 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
   }
 
   ///add items to list
-  void addAdditionalIncomeList(AdditionalIncomeSourceParams value) {
+  void addAdditionalIncomeList(AdditionalIncomeType value) {
     additionalSourceIncome.add(value);
     _additionalIncomeSourceSubject.safeAdd(additionalSourceIncome);
   }
@@ -217,7 +219,9 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
         businessType: businessTypeController.text,
         businessTypeOther: _businessTypeOtherVisibilitySubject.value,
         employmentStatusEnum: employmentStatusEnum,
-        specifyBusiness: businessTypeOtherController.text));
+        specifyBusiness: businessTypeOtherController.text,
+        isAdditionalIncome: _switchSubject.value,
+        additionalIncomeList: additionalSourceIncome));
   }
 
   @override

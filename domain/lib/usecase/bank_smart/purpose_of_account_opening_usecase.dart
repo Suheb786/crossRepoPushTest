@@ -1,31 +1,31 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
-import 'package:domain/error/local_error.dart';
+import 'package:domain/error/network_error.dart';
+import 'package:domain/model/bank_smart/purpose_of_account_opening_response.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class PurposeOfAccountOpeningUseCase extends BaseUseCase<LocalError,
-    PurposeOfAccountOpeningUseCaseParams, bool> {
+class PurposeOfAccountOpeningUseCase extends BaseUseCase<NetworkError,
+    PurposeOfAccountOpeningUseCaseParams, PurposeOfAccountOpeningResponse> {
   final BankSmartRepository _bankSmartRepository;
 
   PurposeOfAccountOpeningUseCase(this._bankSmartRepository);
 
   @override
-  Future<Either<LocalError, bool>> execute(
+  Future<Either<NetworkError, PurposeOfAccountOpeningResponse>> execute(
       {required PurposeOfAccountOpeningUseCaseParams params}) {
-    return Future.value(Right(true));
-    // return _bankSmartRepository.addAccountPurpose(
-    //     getToken: params.getToken!,
-    //     purpose: params.purposeOfAccountOpening,
-    //     annualTransaction: double.parse(params.expectedAnnualTransaction!),
-    //     monthlyTransaction: double.parse(params.expectedMonthlyTransaction!),
-    //     isCashDeposit: params.isCashDeposit,
-    //     isTransfer: params.isTransfer,
-    //     isBillPayment: params.isBillPayment,
-    //     isOther: params.isOther);
+    return _bankSmartRepository.addAccountPurpose(
+        getToken: params.getToken!,
+        purpose: params.purposeOfAccountOpening,
+        annualTransaction: double.parse(params.expectedAnnualTransaction!),
+        monthlyTransaction: double.parse(params.expectedMonthlyTransaction!),
+        isCashDeposit: params.isCashDeposit,
+        isTransfer: params.isTransfer,
+        isBillPayment: params.isBillPayment,
+        isOther: params.isOther);
   }
 }
 

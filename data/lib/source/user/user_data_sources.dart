@@ -2,9 +2,12 @@ import 'package:blinkid_flutter/recognizers/blink_id_combined_recognizer.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
+import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/register_response_entity.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
+import 'package:data/entity/remote/user/save_id_info_response_entity.dart';
+import 'package:data/entity/remote/user/save_job_details_response_entity.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:domain/error/local_error.dart';
@@ -31,7 +34,7 @@ abstract class UserRemoteDS {
       String? confirmPassword,
       String? userName});
 
-  Future<String> saveIdInfo(
+  Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(
       {String? id,
       String? type,
       String? fullName,
@@ -58,7 +61,7 @@ abstract class UserRemoteDS {
       String? instanceID,
       double? scanPercentage});
 
-  Future<String> saveJobInformation(
+  Future<HttpResponse<SaveJobDetailsResponseEntity>> saveJobInformation(
       {String? employeeName,
       String? occupation,
       String? annualIncome,
@@ -93,6 +96,8 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp(
       {String? otpCode});
+
+  Future<HttpResponse<GetTokenResponseEntity>> getToken();
 }
 
 abstract class UserLocalDS {

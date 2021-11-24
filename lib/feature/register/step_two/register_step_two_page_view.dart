@@ -33,7 +33,7 @@ class RegisterStepTwoPageView
               ),
               Padding(
                 padding:
-                    EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
+                EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
                 child: ShowUpAnimation(
                   key: ValueKey(currentStep),
                   delayStart: Duration(milliseconds: 50),
@@ -60,7 +60,7 @@ class RegisterStepTwoPageView
                   itemCount: model.pages.length,
                   carouselController: model.registrationStepTwoPageController,
                   itemBuilder: (BuildContext context, int itemIndex,
-                          int pageViewIndex) =>
+                      int pageViewIndex) =>
                       AppTiltCard(
                           pageViewIndex: pageViewIndex,
                           currentPage: currentStep,

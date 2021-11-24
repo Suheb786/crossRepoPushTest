@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/bank_smart/purpose_of_account_opening_response.dart';
 import 'package:domain/model/register/expected_Transactionss.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -38,7 +39,8 @@ class PurposeOfAccountOpeningPageView
                 duration: Duration(milliseconds: 100),
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
-                child: AppStreamBuilder<Resource<bool>>(
+                child:
+                    AppStreamBuilder<Resource<PurposeOfAccountOpeningResponse>>(
                   stream: model.purposeOfAccountOpeningStream,
                   initialData: Resource.none(),
                   onData: (data) {
@@ -55,8 +57,8 @@ class PurposeOfAccountOpeningPageView
                   },
                   dataBuilder: (context, response) {
                     return GestureDetector(
-                      onHorizontalDragUpdate: (details) {
-                        if (details.primaryDelta!.isNegative) {
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity!.isNegative) {
                           model.validatePurposeOfAccountOpening();
                         }
                       },

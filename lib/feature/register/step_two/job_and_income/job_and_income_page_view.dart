@@ -1,5 +1,7 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/employment_status_enum.dart';
+import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,7 +44,7 @@ class JobAndIncomePageView
                 duration: Duration(milliseconds: 100),
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
-                child: AppStreamBuilder<Resource<bool>>(
+                child: AppStreamBuilder<Resource<SaveJobDetailsResponse>>(
                   stream: model.jobAndIncomeStream,
                   initialData: Resource.none(),
                   onData: (data) {
@@ -59,8 +61,8 @@ class JobAndIncomePageView
                   },
                   dataBuilder: (context, response) {
                     return GestureDetector(
-                      onHorizontalDragUpdate: (details) {
-                        if (details.primaryDelta!.isNegative) {
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity!.isNegative) {
                           model.validateJobAndIncomeDetails();
                         }
                       },
@@ -346,7 +348,7 @@ class JobAndIncomePageView
                                               visible: isActive!,
                                               child: AppStreamBuilder<
                                                   List<
-                                                      AdditionalIncomeSourceParams>>(
+                                                      AdditionalIncomeType>>(
                                                 stream: model
                                                     .additionalSourceIncomeListStream,
                                                 initialData: [],
@@ -426,8 +428,7 @@ class JobAndIncomePageView
                                   ),
                                   Center(
                                     child: Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 32),
+                                      padding: EdgeInsets.only(top: 32),
                                       child: AppStreamBuilder<bool>(
                                           stream: model.allFieldValidatorStream,
                                           initialData: false,

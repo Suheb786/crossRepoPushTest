@@ -69,6 +69,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                               initialData: Resource.none(),
                               onData: (data) {
                                 if (data.status == Status.SUCCESS) {
+                                  model.getToken();
                                   model.emailKey.currentState!.isValid = true;
                                   Navigator.pushReplacementNamed(
                                       context, RoutePaths.Registration);

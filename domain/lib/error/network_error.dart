@@ -48,11 +48,27 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.DEVICE_NOT_FOUND);
 
+          case "ex-058":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_SAVING_ID_CARD);
+
+          case "err-154":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ID_CARD_EXPIRED);
+
           case "err-061":
             return AppError(
                 cause: cause,
                 error: error,
                 type: ErrorType.INVALID_USERNAME_PASSWORD);
+
+          case "err-151":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ID_CARD_NOT_ALLOWED);
 
           case "err-069":
             return AppError(

@@ -408,9 +408,12 @@
   "forgotPassword": "Forgot password",
   "accountCreated": "Account has been created successfully.",
   "cardDelivery": "to Card Delivery",
+  "errorSavingIdCard": "Error While saving IDCard",
+  "idCardExpired": "Id card is expired, cannot proceed.",
   "deviceNotFound": "Device Not Found",
   "invalidUserNamePassword": "You have entered an invalid username or password, please try again",
   "invalidOtp": "You have entered an invalid OTP code, please enter a valid one",
   "otpExpired": "Your OTP code is expired, please request for a new OTP code",
-  "emailAlreadyExist": "Email already exist"
+  "emailAlreadyExist": "Email already exist",
+  "idCardNotAllowed": "ID card is not allowed for NeoBank."
 }

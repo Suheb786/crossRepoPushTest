@@ -1,5 +1,6 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
+import 'package:domain/model/user/additional_income_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -72,7 +73,7 @@ class StudentJobIncomePageView
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   AppStreamBuilder<
-                                      List<AdditionalIncomeSourceParams>>(
+                                      List<AdditionalIncomeType>>(
                                     stream: model
                                         .additionalSourceIncomeListStream,
                                     initialData: [],
