@@ -1,3 +1,4 @@
+import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
@@ -53,9 +54,11 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> issuingPlaceKey =
       GlobalKey(debugLabel: "issuingPlace");
 
-  DateTime selectedDate = DateTime.now();
+  String selectedDobDate = DateTime.now().toLocal().toString();
 
-  DateTime selectedExpiryDate = DateTime.now();
+  String selectedIssuingDate = DateTime.now().toLocal().toString();
+
+  String selectedExpiryDate = DateTime.now().toLocal().toString();
 
   ///scan document request holder
   final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest =
@@ -86,9 +89,10 @@ class ConfirmDetailViewModel extends BasePageViewModel {
       PublishSubject();
 
   /// confirm detail response subject holder
-  PublishSubject<Resource<bool>> _confirmDetailResponse = PublishSubject();
+  PublishSubject<Resource<SaveIdInfoResponse>> _confirmDetailResponse =
+      PublishSubject();
 
-  Stream<Resource<bool>> get confirmDetailResponseStream =>
+  Stream<Resource<SaveIdInfoResponse>> get confirmDetailResponseStream =>
       _confirmDetailResponse.stream;
 
   /// show button Subject holder
@@ -134,13 +138,13 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     _confirmDetailRequest.safeAdd(ConfirmDetailUseCaseParams(
         name: nameController.text,
         idNumber: idNumberController.text,
-        dateOfBirth: dobController.text,
+        dateOfBirth: selectedDobDate,
         nationality: nationalityController.text,
-        expiryDate: expiryDateController.text,
+        expiryDate: selectedExpiryDate,
         gender: genderController.text,
         motherName: motherNameController.text,
         legalDocumentNo: legalDocumentController.text,
-        issuingDate: issuingDateController.text,
+        issuingDate: selectedIssuingDate,
         issuingPlace: issuingPlaceController.text,
         declarationSelected: _declarationSelectedSubject.value,
         scannedDocumentInformation: scannedDocumentResult));
@@ -176,7 +180,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   }
 
   void setData(ScannedDocumentInformation? data) {
-    nameController.text = data!.fullName!;
+    scannedDocumentResult = data!;
+    nameController.text = data.fullName!;
     idNumberController.text = data.idNumber!;
     dobController.text = data.dob!.year != 0
         ? TimeUtils.getFormattedDOB(data.dob!.toString())

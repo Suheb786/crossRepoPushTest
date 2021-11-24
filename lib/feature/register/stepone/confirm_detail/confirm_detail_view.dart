@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<bool>>(
+                    child: AppStreamBuilder<Resource<SaveIdInfoResponse>>(
                         stream: model.confirmDetailResponseStream,
                         initialData: Resource.none(),
                         onData: (data) {
@@ -89,7 +90,8 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                             } else if (data.appError!.type ==
                                 ErrorType.INVALID_DECLARATION_SELECTION) {
                               model.showErrorState();
-                            } else {
+                            } else if (data.appError!.type ==
+                                ErrorType.EMPTY_GENDER) {
                               model.genderKey.currentState!.isValid = false;
                             }
                             model.showToastWithError(data.appError!);
@@ -103,7 +105,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                             onData: (data) {
                               if (data.status == Status.SUCCESS) {
                                 model.scannedDocumentResult = data.data!;
-                                model.setData(data.data);
                               }
                             },
                             dataBuilder: (context, scannedData) {
@@ -175,6 +176,8 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   onTap: () {
                                                     DatePicker.show(context,
                                                         onSelected: (date) {
+                                                      model.selectedDobDate =
+                                                          date;
                                                       model.dobController.text =
                                                           TimeUtils
                                                               .getFormattedDOB(
@@ -276,6 +279,8 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   onTap: () {
                                                     DatePicker.show(context,
                                                         onSelected: (date) {
+                                                      model.selectedIssuingDate =
+                                                          date;
                                                       model.issuingDateController
                                                               .text =
                                                           TimeUtils
@@ -319,6 +324,8 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   onTap: () {
                                                     DatePicker.show(context,
                                                         onSelected: (date) {
+                                                      model.selectedExpiryDate =
+                                                          date;
                                                       model.expiryDateController
                                                               .text =
                                                           TimeUtils
@@ -354,6 +361,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                 .issuingPlace
                                                 .toUpperCase(),
                                             hintText: S.of(context).pleaseEnter,
+                                            maxLines: 5,
                                             inputType: TextInputType.text,
                                             controller:
                                                 model.issuingPlaceController,

@@ -11,6 +11,8 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/check_username.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
+import 'package:domain/model/user/save_id_info_response.dart';
+import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/user.dart';
@@ -151,7 +153,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, String>> saveIdInfo(
+  Future<Either<NetworkError, SaveIdInfoResponse>> saveIdInfo(
       {String? id,
       String? type,
       String? fullName,
@@ -206,12 +208,12 @@ class UserRepositoryImpl extends UserRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, String>> saveJobInformation(
+  Future<Either<NetworkError, SaveJobDetailsResponse>> saveJobInformation(
       {String? employeeName,
       String? occupation,
       String? annualIncome,
@@ -235,7 +237,7 @@ class UserRepositoryImpl extends UserRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -342,5 +344,16 @@ class UserRepositoryImpl extends UserRepository {
                       r.dateOfIssue!.day!)
                   : DateTime(0),
             )));
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> getToken() async {
+    final result = await safeApiCall(
+      _remoteDS.getToken(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
   }
 }

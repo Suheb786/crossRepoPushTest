@@ -5,11 +5,14 @@ import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
+import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_id_info_request.dart';
+import 'package:data/entity/remote/user/save_id_info_response_entity.dart';
+import 'package:data/entity/remote/user/save_job_details_response_entity.dart';
 import 'package:data/entity/remote/user/save_job_info_request.dart';
 import 'package:data/entity/remote/user/save_profile_information_request.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
@@ -98,7 +101,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<String> saveIdInfo(
+  Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(
       {String? id,
       String? type,
       String? fullName,
@@ -125,25 +128,27 @@ class UserRemoteDSImpl extends UserRemoteDS {
       String? instanceID,
       double? scanPercentage}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+
+    ///TODO:change to dynamic data
     return _apiService.saveIdInfo(SaveIdInfoRequest(
-        baseData: baseData,
-        getToken: getToken,
-        type: type,
+        baseData: baseData.toJson(),
+        getToken: true,
+        type: "C",
         dob: dob,
-        id: id,
+        id: DateTime.now().microsecondsSinceEpoch.toString(),
         backCardImage: backCardImage,
-        documentCode: documentCode,
+        documentCode: 'I',
         documentNumber: documentNumber,
         doe: doe,
         familyName: familyName,
-        firstName: firstName,
+        firstName: firstName ?? fullName!.split(' ').first,
         frontCardImage: frontCardImage,
         fullName: fullName,
-        gender: gender,
+        gender: gender![0].toUpperCase(),
         idNumber: idNumber,
         instanceID: instanceID,
-        isimtfBlacklist: isimtfBlacklist,
-        issuer: issuer,
+        isimtfBlacklist: false,
+        issuer: nationality,
         middleName: middleName,
         motherName: motherName,
         mrtDraw: mrtDraw,
@@ -151,11 +156,11 @@ class UserRemoteDSImpl extends UserRemoteDS {
         optionalData1: optionalData1,
         optionalData2: optionalData2,
         personFaceImage: personFaceImage,
-        scanPercentage: scanPercentage));
+        scanPercentage: 0));
   }
 
   @override
-  Future<String> saveJobInformation(
+  Future<HttpResponse<SaveJobDetailsResponseEntity>> saveJobInformation(
       {String? employeeName,
       String? occupation,
       String? annualIncome,
@@ -167,12 +172,14 @@ class UserRemoteDSImpl extends UserRemoteDS {
       List<AdditionalIncomeType>? additionalIncomeType}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveJobInformation(SaveJobInfoRequest(
-        baseData: baseData,
+        baseData: baseData.toJson(),
         occupation: occupation,
         annualIncome: annualIncome,
+        employeeName: employeeName,
         employerCountries: employerCountry,
         employerCity: employerCity,
         employerContact: employerContact,
+        mainSource: 'JOB',
         additionalIncomes: additionalIncome,
         additionalIncome: additionalIncomeType!
             .map((e) => AdditionalIncome().restore(e))
@@ -228,5 +235,10 @@ class UserRemoteDSImpl extends UserRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.verifyMobileOtp(VerifyMobileOtpRequest(
         baseData: baseData, otpCode: otpCode, getToken: getToken));
+  }
+
+  @override
+  Future<HttpResponse<GetTokenResponseEntity>> getToken() {
+    return _apiService.getToken();
   }
 }

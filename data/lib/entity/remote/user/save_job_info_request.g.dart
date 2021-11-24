@@ -19,8 +19,7 @@ SaveJobInfoRequest _$SaveJobInfoRequestFromJson(Map<String, dynamic> json) {
     additionalIncome: (json['AdditionalIncome'] as List<dynamic>?)
         ?.map((e) => AdditionalIncome.fromJson(e as Map<String, dynamic>))
         .toList(),
-    baseData:
-        BaseClassEntity.fromJson(json['baseClass'] as Map<String, dynamic>),
+    baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }
 

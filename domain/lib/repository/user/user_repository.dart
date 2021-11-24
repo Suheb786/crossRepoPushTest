@@ -5,6 +5,8 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/check_username.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
+import 'package:domain/model/user/save_id_info_response.dart';
+import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/model/user/user.dart';
@@ -47,7 +49,7 @@ abstract class UserRepository {
       {String? otpCode, bool? getToken});
 
   /// save Id information
-  Future<Either<NetworkError, String>> saveIdInfo({
+  Future<Either<NetworkError, SaveIdInfoResponse>> saveIdInfo({
     String? id,
     String? type,
     String? fullName,
@@ -104,7 +106,7 @@ abstract class UserRepository {
           String? natureOfSpecialNeeds});
 
   /// save job information
-  Future<Either<NetworkError, String>> saveJobInformation(
+  Future<Either<NetworkError, SaveJobDetailsResponse>> saveJobInformation(
       {String? employeeName,
       String? occupation,
       String? annualIncome,
@@ -117,4 +119,7 @@ abstract class UserRepository {
 
   /// Scan User Document
   Future<Either<LocalError, ScannedDocumentInformation>> scanUserDocument();
+
+  ///get token
+  Future<Either<NetworkError, bool>> getToken();
 }

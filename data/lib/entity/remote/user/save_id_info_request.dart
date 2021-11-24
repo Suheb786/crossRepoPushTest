@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "save_id_info_request.g.dart";
@@ -54,9 +53,9 @@ class SaveIdInfoRequest {
   @JsonKey(name: "instanceID")
   final String? instanceID;
   @JsonKey(name: "scanPercentage")
-  final double? scanPercentage;
+  final num? scanPercentage;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String,dynamic> baseData;
 
   SaveIdInfoRequest(
       {this.id,

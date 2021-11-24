@@ -72,7 +72,7 @@ class RegisterStepOnePageView
                   pages: pages,
                   pageController: model.pageController,
                   onIndexChanged: (index) {
-                    // model.changeCurrentPage(index);
+                    model.updatePage(index);
                   },
                   currentStep: currentStep,
                 ),

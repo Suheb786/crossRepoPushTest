@@ -38,7 +38,7 @@ class RegisterStepThreePageView
               ),
               Padding(
                 padding:
-                    EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
+                EdgeInsets.only(top: 8.0, bottom: 32, left: 24, right: 24),
                 child: ShowUpAnimation(
                   key: ValueKey(currentStep),
                   delayStart: Duration(milliseconds: 50),
@@ -64,7 +64,7 @@ class RegisterStepThreePageView
                   itemCount: pages.length,
                   carouselController: model.registrationStepThreePageController,
                   itemBuilder: (BuildContext context, int itemIndex,
-                          int pageViewIndex) =>
+                      int pageViewIndex) =>
                       AppTiltCard(
                           pageViewIndex: pageViewIndex,
                           currentPage: currentStep,

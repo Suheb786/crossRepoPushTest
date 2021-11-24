@@ -6,6 +6,7 @@ import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/enter_address_usecase.dart';
+import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
@@ -112,3 +113,7 @@ final verifyMobileOtpUseCaseProvider = Provider.autoDispose<VerifyOtpUseCase>(
 ///[ScanUserDocumentUseCase] provider
 final scanUserDocumentUseCaseProvider = Provider<ScanUserDocumentUseCase>(
     (ref) => ScanUserDocumentUseCase(ref.read(userRepoProvider)));
+
+///[GetTokenUseCase] provider
+final getTokenUseCaseProvider = Provider<GetTokenUseCase>(
+    (ref) => GetTokenUseCase(ref.read(userRepoProvider)));

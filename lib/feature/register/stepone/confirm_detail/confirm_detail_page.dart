@@ -26,12 +26,6 @@ class ConfirmDetailPageState
   }
 
   @override
-  void onVisibilityGained() {
-    //getViewModel().scanDocument();
-    super.onVisibilityGained();
-  }
-
-  @override
   Widget build(BuildContext context) {
     super.build(context);
     return stateBuild(context);

@@ -2,18 +2,20 @@ import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/bank_smart/customer_account_details.dart';
 import 'package:domain/model/bank_smart/customer_information.dart';
+import 'package:domain/model/bank_smart/purpose_of_account_opening_response.dart';
 
 abstract class BankSmartRepository {
   /// add account of opening purpose
-  Future<Either<NetworkError, String>> addAccountPurpose(
-      {required bool getToken,
-      String? purpose,
-      bool? isCashDeposit,
-      bool? isTransfer,
-      bool? isBillPayment,
-      bool? isOther,
-      double? monthlyTransaction,
-      double? annualTransaction});
+  Future<Either<NetworkError, PurposeOfAccountOpeningResponse>>
+      addAccountPurpose(
+          {required bool getToken,
+          String? purpose,
+          bool? isCashDeposit,
+          bool? isTransfer,
+          bool? isBillPayment,
+          bool? isOther,
+          double? monthlyTransaction,
+          double? annualTransaction});
 
   /// get account
   Future<Either<NetworkError, String>> getAccount(

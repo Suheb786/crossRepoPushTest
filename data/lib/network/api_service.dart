@@ -3,6 +3,7 @@ import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_details_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
@@ -11,10 +12,13 @@ import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
+import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_id_info_request.dart';
+import 'package:data/entity/remote/user/save_id_info_response_entity.dart';
+import 'package:data/entity/remote/user/save_job_details_response_entity.dart';
 import 'package:data/entity/remote/user/save_job_info_request.dart';
 import 'package:data/entity/remote/user/save_profile_information_request.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
@@ -53,10 +57,11 @@ abstract class ApiService {
       @Body() RegisterProspectUserRequest registerProspectUserRequest);
 
   @POST("/CustomerDetails/SaveIdInfo")
-  Future<String> saveIdInfo(@Body() SaveIdInfoRequest saveIdInfoRequest);
+  Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(
+      @Body() SaveIdInfoRequest saveIdInfoRequest);
 
   @POST("/AddFeilds/SaveJobDetails")
-  Future<String> saveJobInformation(
+  Future<HttpResponse<SaveJobDetailsResponseEntity>> saveJobInformation(
       @Body() SaveJobInfoRequest saveJobInfoRequest);
 
   @POST("/AddFeilds/SaveProfileStatus")
@@ -81,7 +86,7 @@ abstract class ApiService {
       @Body() GetAhwalDetailsRequest getAhwalDetailsRequest);
 
   @POST("/Banksmart/AddAccountPurpose")
-  Future<String> addAccountPurpose(
+  Future<HttpResponse<PurposeOfAccountOpeningResponseEntity>> addAccountPurpose(
       @Body() AddAccountPurposeRequest addAccountPurposeRequest);
 
   @POST("/FatcaCrs/get")
@@ -104,4 +109,8 @@ abstract class ApiService {
   @POST("/BankSmart/GetAccountDetails")
   Future<String> getAccountDetails(
       @Body() GetAccountDetailsRequestEntity getAccountDetailsRequestEntity);
+
+  ///get token
+  @GET("/auth/verifyToken")
+  Future<HttpResponse<GetTokenResponseEntity>> getToken();
 }

@@ -3981,6 +3981,26 @@ class S {
     );
   }
 
+  /// `Error While saving IDCard`
+  String get errorSavingIdCard {
+    return Intl.message(
+      'Error While saving IDCard',
+      name: 'errorSavingIdCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Id card is expired, cannot proceed.`
+  String get idCardExpired {
+    return Intl.message(
+      'Id card is expired, cannot proceed.',
+      name: 'idCardExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Device Not Found`
   String get deviceNotFound {
     return Intl.message(
@@ -3996,6 +4016,16 @@ class S {
     return Intl.message(
       'You have entered an invalid username or password, please try again',
       name: 'invalidUserNamePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID card is not allowed for NeoBank.`
+  String get idCardNotAllowed {
+    return Intl.message(
+      'ID card is not allowed for NeoBank.',
+      name: 'idCardNotAllowed',
       desc: '',
       args: [],
     );

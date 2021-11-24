@@ -60,8 +60,8 @@ final registerStepOneViewModelProvider =
 ///[IdVerificationInfoViewModel] provider
 final idVerificationInfoViewModelProvider =
     ChangeNotifierProvider.autoDispose<IdVerificationInfoViewModel>((ref) =>
-        IdVerificationInfoViewModel(
-            ref.read(idVerificationInfoUseCaseProvider)));
+        IdVerificationInfoViewModel(ref.read(idVerificationInfoUseCaseProvider),
+            ref.read(scanUserDocumentUseCaseProvider)));
 
 ///[ConfirmDetailViewModel] provider
 final confirmDetailViewModelProvider =

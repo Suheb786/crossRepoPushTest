@@ -32,9 +32,8 @@ SaveIdInfoRequest _$SaveIdInfoRequestFromJson(Map<String, dynamic> json) {
     getToken: json['getToken'] as bool?,
     isimtfBlacklist: json['isimtfBlacklist'] as bool?,
     instanceID: json['instanceID'] as String?,
-    scanPercentage: (json['scanPercentage'] as num?)?.toDouble(),
-    baseData:
-        BaseClassEntity.fromJson(json['baseClass'] as Map<String, dynamic>),
+    scanPercentage: json['scanPercentage'] as num?,
+    baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }
 
