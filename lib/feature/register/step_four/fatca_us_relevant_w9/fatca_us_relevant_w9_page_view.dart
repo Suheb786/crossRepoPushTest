@@ -41,7 +41,9 @@ class FatcaUSRelevantW9PageView
                       ProviderScope.containerOf(context)
                           .read(registerStepFourViewModelProvider)
                           .registrationStepFourPageController
-                          .next();
+                          .nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeInOut);
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -55,7 +57,7 @@ class FatcaUSRelevantW9PageView
                           ProviderScope.containerOf(context)
                               .read(registerStepFourViewModelProvider)
                               .registrationStepFourPageController
-                              .move(0);
+                              .jumpToPage(0);
                         }
                       },
                       child: Card(

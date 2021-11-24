@@ -70,7 +70,7 @@ class UploadDocumentsPageView
                               ProviderScope.containerOf(context)
                                   .read(registerStepFiveViewModelProvider)
                                   .registrationStepFivePageController
-                                  .move(1);
+                                  .jumpToPage(1);
                             }
                           },
                           child: Card(

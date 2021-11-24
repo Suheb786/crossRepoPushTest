@@ -411,5 +411,6 @@
   "errorSavingIdCard": "Error While saving IDCard",
   "idCardExpired": "Id card is expired, cannot proceed.",
   "deviceNotFound": "Device Not Found",
-  "invalidUserNamePassword": "You have entered an invalid username or password, please try again"
+  "invalidUserNamePassword": "You have entered an invalid username or password, please try again",
+  "idCardNotAllowed": "ID card is not allowed for NeoBank."
 }

@@ -4020,6 +4020,16 @@ class S {
       args: [],
     );
   }
+
+  /// `ID card is not allowed for NeoBank.`
+  String get idCardNotAllowed {
+    return Intl.message(
+      'ID card is not allowed for NeoBank.',
+      name: 'idCardNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

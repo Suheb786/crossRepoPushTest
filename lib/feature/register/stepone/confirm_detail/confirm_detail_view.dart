@@ -361,6 +361,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                 .issuingPlace
                                                 .toUpperCase(),
                                             hintText: S.of(context).pleaseEnter,
+                                            maxLines: 5,
                                             inputType: TextInputType.text,
                                             controller:
                                                 model.issuingPlaceController,

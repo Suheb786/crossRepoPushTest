@@ -212,6 +212,8 @@ class ErrorParser {
         return localisedHelper.idCardExpired;
       case ErrorType.INVALID_USERNAME_PASSWORD:
         return localisedHelper.invalidUserNamePassword;
+      case ErrorType.ID_CARD_NOT_ALLOWED:
+        return localisedHelper.idCardNotAllowed;
 
       default:
         return "";

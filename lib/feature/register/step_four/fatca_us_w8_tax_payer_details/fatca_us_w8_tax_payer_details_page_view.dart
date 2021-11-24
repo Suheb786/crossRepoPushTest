@@ -64,7 +64,9 @@ class FatcaUSW8TaxPayersDetailsPageView
                           ProviderScope.containerOf(context)
                               .read(registerStepFourViewModelProvider)
                               .registrationStepFourPageController
-                              .previous();
+                              .previousPage(
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut);
                         }
                       },
                       child: Card(

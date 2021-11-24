@@ -64,19 +64,18 @@ class TaxationDetailsPageView
                         ProviderScope.containerOf(context)
                             .read(registerStepFourViewModelProvider)
                             .registrationStepFourPageController
-                            .next();
+                            .nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeInOut);
                       } else if (model.usTaxResident &&
                           model.bornInUS &&
                           !model.isPEP &&
                           !model.anyOtherCountryResident &&
                           model.isUSCitizen) {
-                        // ProviderScope.containerOf(context)
-                        //     .read(registerStepFourViewModelProvider)
-                        //     .updatePage(4);
                         ProviderScope.containerOf(context)
                             .read(registerStepFourViewModelProvider)
                             .registrationStepFourPageController
-                            .move(4);
+                            .jumpToPage(4);
                       }
                       // else if (!model.usTaxResident &&
                       //     !model.bornInUS &&
@@ -109,7 +108,9 @@ class TaxationDetailsPageView
                           ProviderScope.containerOf(context)
                               .read(registerStepFourViewModelProvider)
                               .registrationStepFourPageController
-                              .previous();
+                              .previousPage(
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut);
                         }
                       },
                       child: Card(

@@ -45,7 +45,9 @@ class ReviewApplicationPageView
                         ProviderScope.containerOf(context)
                             .read(registerStepFiveViewModelProvider)
                             .registrationStepFivePageController
-                            .next();
+                            .nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeInOut);
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
                       }

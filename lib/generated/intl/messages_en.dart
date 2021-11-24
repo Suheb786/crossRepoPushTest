@@ -301,6 +301,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("84118220000022123444"),
         "idCardExpired": MessageLookupByLibrary.simpleMessage(
             "Id card is expired, cannot proceed."),
+        "idCardNotAllowed": MessageLookupByLibrary.simpleMessage(
+            "ID card is not allowed for NeoBank."),
         "idHint":
             MessageLookupByLibrary.simpleMessage("Please Enter ID Number"),
         "idNumber": MessageLookupByLibrary.simpleMessage("ID NUMBER"),

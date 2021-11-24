@@ -1,10 +1,11 @@
-import 'package:card_swiper/card_swiper.dart';
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RegisterStepThreeViewModel extends BasePageViewModel {
-  final SwiperController pageThreeController = SwiperController();
+  final CarouselController registrationStepThreePageController =
+  new CarouselController();
 
   PublishSubject<int> _currentStep = PublishSubject();
 

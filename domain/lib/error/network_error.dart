@@ -64,6 +64,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.INVALID_USERNAME_PASSWORD);
 
+          case "err-151":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ID_CARD_NOT_ALLOWED);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);
