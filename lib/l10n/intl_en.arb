@@ -415,5 +415,6 @@
   "invalidOtp": "You have entered an invalid OTP code, please enter a valid one",
   "otpExpired": "Your OTP code is expired, please request for a new OTP code",
   "emailAlreadyExist": "Email already exist",
-  "idCardNotAllowed": "ID card is not allowed for NeoBank."
+  "idCardNotAllowed": "ID card is not allowed for NeoBank.",
+  "otpLimitExceed": "Otp Limit Exceeds, Please Try again Later"
 }

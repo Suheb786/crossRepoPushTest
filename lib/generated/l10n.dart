@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -3980,6 +3981,26 @@ class S {
     );
   }
 
+  /// `Error While saving IDCard`
+  String get errorSavingIdCard {
+    return Intl.message(
+      'Error While saving IDCard',
+      name: 'errorSavingIdCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Id card is expired, cannot proceed.`
+  String get idCardExpired {
+    return Intl.message(
+      'Id card is expired, cannot proceed.',
+      name: 'idCardExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Device Not Found`
   String get deviceNotFound {
     return Intl.message(
@@ -4025,6 +4046,26 @@ class S {
     return Intl.message(
       'Email already exist',
       name: 'emailAlreadyExist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID card is not allowed for NeoBank.`
+  String get idCardNotAllowed {
+    return Intl.message(
+      'ID card is not allowed for NeoBank.',
+      name: 'idCardNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Otp Limit Exceeds, Please Try again Later`
+  String get otpLimitExceed {
+    return Intl.message(
+      'Otp Limit Exceeds, Please Try again Later',
+      name: 'otpLimitExceed',
       desc: '',
       args: [],
     );

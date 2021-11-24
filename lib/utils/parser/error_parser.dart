@@ -220,6 +220,8 @@ class ErrorParser {
         return localisedHelper.otpExpired;
       case ErrorType.EMAIL_ALREADY_EXIST:
         return localisedHelper.emailAlreadyExist;
+      case ErrorType.OTP_VERIFY_LIMIT_EXCEEDED:
+        return localisedHelper.otpLimitExceed;
 
       default:
         return "";

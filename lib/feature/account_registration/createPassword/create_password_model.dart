@@ -94,7 +94,8 @@ class CreatePasswordViewModel extends BasePageViewModel {
 
   void validateAllFields() {
     if (createPasswordController.text.isNotEmpty &&
-        confirmPasswordController.text.isNotEmpty) {
+        confirmPasswordController.text.isNotEmpty &&
+        confirmPasswordController.text == createPasswordController.text) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);

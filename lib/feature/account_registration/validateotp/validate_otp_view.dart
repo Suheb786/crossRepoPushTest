@@ -44,8 +44,8 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
               },
               dataBuilder: (context, isOtpVerified) {
                 return GestureDetector(
-                  onHorizontalDragUpdate: (details) {
-                    if (details.primaryDelta!.isNegative) {
+                  onHorizontalDragEnd: (details) {
+                    if (details.primaryVelocity!.isNegative) {
                       model.validateOtp();
                     } else {
                       ProviderScope.containerOf(context)
