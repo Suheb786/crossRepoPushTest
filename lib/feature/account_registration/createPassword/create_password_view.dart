@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/feature/account_registration/createPassword/create_password_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -37,6 +38,9 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                 initialData: Resource.none(),
                 onData: (registerData) {
                   if (registerData.status == Status.SUCCESS) {
+                    ProviderScope.containerOf(context)
+                        .read(appViewModel)
+                        .getToken();
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .pageController

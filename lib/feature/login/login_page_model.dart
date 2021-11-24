@@ -1,9 +1,7 @@
 import 'dart:async';
-import 'dart:isolate';
 
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/user/user.dart';
-import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -24,18 +22,6 @@ class LoginViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> passwordKey =
       GlobalKey(debugLabel: "login_password");
 
-  late ReceivePort _receivePort;
-  late Isolate _isolate;
-
-  final GetTokenUseCase _getTokenUseCase;
-
-  static PublishSubject<GetTokenUseCaseParams> _getTokenRequest =
-      PublishSubject();
-
-  static PublishSubject<Resource<bool>> _getTokenResponse = PublishSubject();
-
-  Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
-
   PublishSubject<LoginUseCaseParams> _loginRequest = PublishSubject();
 
   PublishSubject<Resource<User>> _loginResponse = PublishSubject();
@@ -46,7 +32,7 @@ class LoginViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  LoginViewModel(this._loginUseCase, this._getTokenUseCase) {
+  LoginViewModel(this._loginUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value,
               createCall: () => _loginUseCase.execute(params: value))
@@ -65,41 +51,6 @@ class LoginViewModel extends BasePageViewModel {
         }
       });
     });
-
-    _getTokenRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _getTokenUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        if (event.status == Status.ERROR) {
-          print("error");
-        }
-        _getTokenResponse.safeAdd(event);
-      });
-    });
-  }
-
-  void getToken() async {
-    _receivePort = ReceivePort();
-    _isolate = await Isolate.spawn(_getTokenCallBack, _receivePort.sendPort);
-    _receivePort.listen(_handleMessage, onDone: () {
-      print('Done');
-    });
-  }
-
-  void _handleMessage(dynamic data) {
-    print('data $data');
-    callGetToken();
-  }
-
-  static void _getTokenCallBack(SendPort sendPort) async {
-    Timer.periodic(Duration(minutes: 2), (Timer t) {
-      sendPort.send('Send');
-    });
-  }
-
-  void callGetToken() {
-    _getTokenRequest.add(GetTokenUseCaseParams());
   }
 
   void validateEmail() {
