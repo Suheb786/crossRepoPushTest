@@ -1,4 +1,6 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/account/check_other_nationality_status_response.dart';
+import 'package:domain/usecase/account/check_other_nationality_status_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:domain/usecase/user/send_documents_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,6 +15,7 @@ import 'package:rxdart/rxdart.dart';
 class UploadDocumentsPageViewModel extends BasePageViewModel {
   final SendDocumentsUseCase _documentsUseCase;
   final UploadDocumentUseCase _uploadDocumentUseCase;
+  final CheckOtherNationalityStatusUseCase _checkOtherNationalityStatusUseCase;
 
   final TextEditingController addressController = TextEditingController();
   final TextEditingController incomeController = TextEditingController();
@@ -76,8 +79,24 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   Stream<bool> get documentNationalityStream =>
       _documentNationalityRequest.stream;
 
-  UploadDocumentsPageViewModel(
-      this._documentsUseCase, this._uploadDocumentUseCase) {
+  ///check other nationality
+  PublishSubject<CheckOtherNationalityStatusUseCaseParams>
+      _checkOtherNationalityStatusRequest = PublishSubject();
+
+  PublishSubject<Resource<CheckOtherNationalityResponse>>
+      _checkOtherNationalityStatusResponse = PublishSubject();
+
+  Stream<Resource<CheckOtherNationalityResponse>>
+      get checkOtherNationalityStatusStream =>
+          _checkOtherNationalityStatusResponse.stream;
+
+  void checkOtherNationality() {
+    _checkOtherNationalityStatusRequest
+        .safeAdd(CheckOtherNationalityStatusUseCaseParams());
+  }
+
+  UploadDocumentsPageViewModel(this._documentsUseCase,
+      this._uploadDocumentUseCase, this._checkOtherNationalityStatusUseCase) {
     _documentsRequest.listen((value) {
       RequestManager(value,
               createCall: () => _documentsUseCase.execute(params: value))
@@ -116,6 +135,21 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
         _additionalNationalityProofResponse.safeAdd(event.data!);
       });
     });
+
+    _checkOtherNationalityStatusRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _checkOtherNationalityStatusUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _checkOtherNationalityStatusResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+        }
+      });
+    });
+
+    checkOtherNationality();
   }
 
   void uploadIncomeDocument(DocumentTypeEnum type) {
@@ -176,6 +210,8 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
     _additionalNationalityProofRequest.close();
     _additionalNationalityProofResponse.close();
     _documentNationalityRequest.close();
+    _checkOtherNationalityStatusRequest.close();
+    _checkOtherNationalityStatusResponse.close();
     super.dispose();
   }
 }

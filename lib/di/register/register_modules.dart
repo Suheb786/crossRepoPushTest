@@ -239,7 +239,8 @@ final uploadDocumentsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<UploadDocumentsPageViewModel>(
   (ref) => UploadDocumentsPageViewModel(
       ref.read(sendDocumentsUseCaseUseCaseProvider),
-      ref.read(uploadDocumentUseCaseProvider)),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(checkOtherNationalityStatusUseCaseProvider)),
 );
 
 ///account ready page

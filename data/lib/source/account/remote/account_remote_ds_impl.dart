@@ -1,4 +1,6 @@
 import 'package:data/entity/local/base/device_helper.dart';
+import 'package:data/entity/remote/account/check_other_nationality_status_request_entity.dart';
+import 'package:data/entity/remote/account/check_other_nationality_status_response_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_request_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_response_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
@@ -18,5 +20,14 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkVideoCallStatus(CheckVideoCallStatusRequestEntity(
         baseData: baseData.toJson(), getToken: getToken));
+  }
+
+  @override
+  Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
+      checkOtherNationalityStatus({bool? getToken}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.checkOtherNationalityStatus(
+        CheckOtherNationalityStatusRequestEntity(
+            baseData: baseData.toJson(), getToken: getToken));
   }
 }

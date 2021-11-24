@@ -1,3 +1,5 @@
+import 'package:data/entity/remote/account/check_other_nationality_status_request_entity.dart';
+import 'package:data/entity/remote/account/check_other_nationality_status_response_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_request_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
@@ -123,4 +125,12 @@ abstract class ApiService {
   Future<HttpResponse<CheckVideoCallStatusResponseEntity>> checkVideoCallStatus(
       @Body()
           CheckVideoCallStatusRequestEntity checkVideoCallStatusRequestEntity);
+
+  ///check other nationality status
+  @POST("/Account/CheckOtherNationalityStatus")
+  Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
+      checkOtherNationalityStatus(
+          @Body()
+              CheckOtherNationalityStatusRequestEntity
+                  checkOtherNationalityStatusRequestEntity);
 }
