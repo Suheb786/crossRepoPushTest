@@ -409,5 +409,7 @@
   "accountCreated": "Account has been created successfully.",
   "cardDelivery": "to Card Delivery",
   "deviceNotFound": "Device Not Found",
-  "invalidUserNamePassword": "You have entered an invalid username or password, please try again"
+  "invalidUserNamePassword": "You have entered an invalid username or password, please try again",
+  "getLater": "I’ll get it later",
+  "getCardNow": "Get your card now!"
 }

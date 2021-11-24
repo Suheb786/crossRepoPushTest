@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -3996,6 +3995,26 @@ class S {
     return Intl.message(
       'You have entered an invalid username or password, please try again',
       name: 'invalidUserNamePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I’ll get it later`
+  String get getLater {
+    return Intl.message(
+      'I’ll get it later',
+      name: 'getLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your card now!`
+  String get getCardNow {
+    return Intl.message(
+      'Get your card now!',
+      name: 'getCardNow',
       desc: '',
       args: [],
     );

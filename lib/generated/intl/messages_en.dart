@@ -283,6 +283,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "genderHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
         "genderSmall": MessageLookupByLibrary.simpleMessage("Gender"),
+        "getCardNow":
+            MessageLookupByLibrary.simpleMessage("Get your card now!"),
+        "getLater": MessageLookupByLibrary.simpleMessage("I’ll get it later"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
         "homeAddressHint":

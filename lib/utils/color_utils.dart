@@ -73,6 +73,7 @@ class AppColor {
   static const brightBlue = const Color(0xff3CB4E5);
   static const veryLightGray = const Color(0xffFBFBFB);
   static const lightGray = const Color(0xffF5F5F5);
+  static const verLightGray4 = const Color(0xffBCBCBC);
   static const veryLightGray1 = const Color(0xffE8E8E8);
   static const veryLightGray2 = const Color(0xffEEEEEE);
   static const veryDarkGray = const Color(0xff292929);

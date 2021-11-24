@@ -96,8 +96,11 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
               key: _scaffoldKey,
               backgroundColor: scaffoldBackgroundColor(),
               appBar: buildAppbar(),
+              floatingActionButton: buildFloatingActionButton(),
               extendBodyBehindAppBar: extendBodyBehindAppBar(),
               body: _buildScaffoldBody(context, model!),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerDocked,
               drawer: buildDrawer(),
               drawerEnableOpenDragGesture: drawerEnableOpenDragGesture(),
               bottomNavigationBar: buildBottomNavigationBar(),
@@ -125,6 +128,10 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
 
   /// Building a bottom-sheet
   Widget? buildBottomSheet() {
+    return null;
+  }
+
+  Widget? buildFloatingActionButton() {
     return null;
   }
 

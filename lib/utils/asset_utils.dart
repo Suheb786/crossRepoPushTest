@@ -60,6 +60,7 @@ class AssetUtils {
   static const String copy = svg + "copy.svg";
   static const String welcomeIcon = svg + "welcome_icon.svg";
   static const String lock = svg + "lock.svg";
+  static const String swipeDown = svg + "swipe_down.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -80,6 +81,10 @@ class AssetUtils {
   static const String blink = drawable + "blink.png";
   static const String welcome = drawable + "welcome.png";
   static const String line = drawable + "line.png";
+  static const String line_black_white = drawable + "line_black_white.png";
+  static const String house = drawable + "house.png";
+  static const String headphoneBlack = drawable + "headphone_black.png";
+  static const String logoWhite = drawable + "logo_white.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";
