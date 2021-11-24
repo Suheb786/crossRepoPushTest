@@ -62,9 +62,7 @@ class FatcaUSW9TaxPayersDetailsPageView
                           ProviderScope.containerOf(context)
                               .read(registerStepFourViewModelProvider)
                               .registrationStepFourPageController
-                              .previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                              .previous();
                         }
                       },
                       child: Card(
@@ -203,8 +201,7 @@ class FatcaUSW9TaxPayersDetailsPageView
                                     ),
                                     Center(
                                       child: Padding(
-                                        padding:
-                                            EdgeInsets.only(top: 26),
+                                        padding: EdgeInsets.only(top: 26),
                                         child: AppStreamBuilder<bool>(
                                             stream:
                                                 model.allFieldValidatorStream,

@@ -33,16 +33,12 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                     ProviderScope.containerOf(context)
                         .read(registerStepFiveViewModelProvider)
                         .registrationStepFivePageController
-                        .nextPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
+                        .next();
                   } else {
                     ProviderScope.containerOf(context)
                         .read(registerStepFiveViewModelProvider)
                         .registrationStepFivePageController
-                        .previousPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
+                        .previous();
                   }
                 },
                 child: Card(
@@ -92,7 +88,7 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                     ProviderScope.containerOf(context)
                                         .read(registerStepFiveViewModelProvider)
                                         .registrationStepFivePageController
-                                        .jumpToPage(3);
+                                        .move(3);
                                   },
                                   child: Text(S.of(context).scheduleLater,
                                       style: TextStyle(

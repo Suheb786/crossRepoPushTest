@@ -77,7 +77,6 @@ class LoginViewModel extends BasePageViewModel {
         _getTokenResponse.safeAdd(event);
       });
     });
-    getToken();
   }
 
   void getToken() async {

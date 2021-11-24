@@ -33,14 +33,12 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                     ProviderScope.containerOf(context)
                         .read(registerStepFiveViewModelProvider)
                         .registrationStepFivePageController
-                        .jumpToPage(4);
+                        .move(4);
                   } else {
                     ProviderScope.containerOf(context)
                         .read(registerStepFiveViewModelProvider)
                         .registrationStepFivePageController
-                        .previousPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
+                        .previous();
                   }
                 },
                 child: Card(

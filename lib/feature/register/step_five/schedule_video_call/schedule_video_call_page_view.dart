@@ -47,9 +47,8 @@ class ScheduleVideoCallPageView
                       ProviderScope.containerOf(context)
                           .read(registerStepFiveViewModelProvider)
                           .registrationStepFivePageController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                          .next(
+                              );
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -63,7 +62,7 @@ class ScheduleVideoCallPageView
                           ProviderScope.containerOf(context)
                               .read(registerStepFiveViewModelProvider)
                               .registrationStepFivePageController
-                              .jumpToPage(1);
+                              .move(1);
                         }
                       },
                       child: Card(

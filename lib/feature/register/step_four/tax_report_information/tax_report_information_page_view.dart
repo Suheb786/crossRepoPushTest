@@ -62,7 +62,7 @@ class TaxReportInformationPageView
                           ProviderScope.containerOf(context)
                               .read(registerStepFourViewModelProvider)
                               .registrationStepFourPageController
-                              .jumpToPage(0);
+                              .move(0);
                         }
                       },
                       child: Card(

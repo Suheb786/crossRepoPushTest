@@ -46,9 +46,7 @@ class FatcaUSRelevantW8AddressDetailsPageView
                       ProviderScope.containerOf(context)
                           .read(registerStepFourViewModelProvider)
                           .registrationStepFourPageController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                          .next();
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -62,9 +60,7 @@ class FatcaUSRelevantW8AddressDetailsPageView
                           ProviderScope.containerOf(context)
                               .read(registerStepFourViewModelProvider)
                               .registrationStepFourPageController
-                              .previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                              .previous();
                         }
                       },
                       child: Card(
@@ -236,8 +232,7 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                   ),
                                   Center(
                                     child: Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 32),
+                                      padding: EdgeInsets.only(top: 32),
                                       child: AppStreamBuilder<bool>(
                                           stream: model.allFieldValidatorStream,
                                           initialData: false,
