@@ -9,17 +9,16 @@ part of 'save_fatca_information_request_entity.dart';
 SaveFatcaInformationRequestEntity _$SaveFatcaInformationRequestEntityFromJson(
     Map<String, dynamic> json) {
   return SaveFatcaInformationRequestEntity(
-    response1: json['Response1'] as String?,
-    response2: json['Response2'] as String?,
-    response3: json['Response3'] as String?,
-    response4: json['Response4'] as String?,
+    response1: json['Response1'] as bool?,
+    response2: json['Response2'] as bool?,
+    response3: json['Response3'] as bool?,
+    response4: json['Response4'] as bool?,
     isTinNoRes4: json['IsTinNoRes4'] as bool?,
     taxResidenceCountry: json['TaxResidenceCountry'] as String?,
     tinNoRes4: json['TinNoRes4'] as String?,
     reasonUnavailableRes4: json['ReasonUnavailbleRes4'] as String?,
     reasonBRes4: json['ReasonBRes4'] as String?,
-    baseData:
-        BaseClassEntity.fromJson(json['baseClass'] as Map<String, dynamic>),
+    baseData: json['baseClass'] as Map<String, dynamic>,
     getToken: json['GetToken'] as bool?,
   );
 }

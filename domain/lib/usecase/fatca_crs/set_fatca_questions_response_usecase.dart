@@ -1,21 +1,33 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
-import 'package:domain/error/local_error.dart';
+import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/fatca_crs/set_fatca_questions_response.dart';
+import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class TaxationDetailsUseCase
-    extends BaseUseCase<LocalError, TaxationDetailsUseCaseParams, bool> {
+class SetFatcaQuestionsResponseUseCase extends BaseUseCase<NetworkError,
+    SetFatcaQuestionsResponseUseCaseParams, SetFatcaQuestionsResponse> {
+  final FatcaCrsRepository _repository;
+
+  SetFatcaQuestionsResponseUseCase(this._repository);
+
   @override
-  Future<Either<LocalError, bool>> execute(
-      {required TaxationDetailsUseCaseParams params}) {
-    return Future.value(Right(false));
+  Future<Either<NetworkError, SetFatcaQuestionsResponse>> execute(
+      {required SetFatcaQuestionsResponseUseCaseParams params}) {
+    return _repository.saveFatcaInformation(
+        response1: params.isUSCitizen,
+        response2: params.isUSTaxResident,
+        response3: params.wasBornInUS,
+        response4: params.anyOtherCountryResident,
+        taxResidenceCountry: params.country!,
+        getToken: true);
   }
 }
 
-class TaxationDetailsUseCaseParams extends Params {
+class SetFatcaQuestionsResponseUseCaseParams extends Params {
   final String? relationShipPEP;
   final String? personName;
   final String? personRole;
@@ -23,15 +35,21 @@ class TaxationDetailsUseCaseParams extends Params {
   final bool anyOtherCountryResident;
   final String? country;
   final bool declarationSelected;
+  final bool isUSCitizen;
+  final bool isUSTaxResident;
+  final bool wasBornInUS;
 
-  TaxationDetailsUseCaseParams(
+  SetFatcaQuestionsResponseUseCaseParams(
       {this.relationShipPEP,
       this.personName,
       required this.anyOtherCountryResident,
       this.country,
       this.personRole,
       required this.isPEP,
-      required this.declarationSelected});
+      required this.declarationSelected,
+      required this.isUSCitizen,
+      required this.isUSTaxResident,
+      required this.wasBornInUS});
 
   @override
   Either<AppError, bool> verify() {

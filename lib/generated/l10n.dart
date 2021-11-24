@@ -4030,6 +4030,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Error While Saving Status`
+  String get errorSavingStatus {
+    return Intl.message(
+      'Error While Saving Status',
+      name: 'errorSavingStatus',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

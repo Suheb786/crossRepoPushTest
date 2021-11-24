@@ -7,6 +7,7 @@ import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_respons
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/set_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
@@ -95,7 +96,7 @@ abstract class ApiService {
       @Body() GetFatcaQuestionsRequestEntity getFatcaQuestionsRequestEntity);
 
   @POST("/FatcaCrs/set")
-  Future<String> saveFatcaInformation(
+  Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
       @Body()
           SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
 

@@ -259,6 +259,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "errorSavingIdCard":
             MessageLookupByLibrary.simpleMessage("Error While saving IDCard"),
+        "errorSavingStatus":
+            MessageLookupByLibrary.simpleMessage("Error While Saving Status"),
         "estimatedTime": m0,
         "exemptPayeeOptional": MessageLookupByLibrary.simpleMessage(
             "EXEMPT PAYEE CODE (OPTIONAL)"),

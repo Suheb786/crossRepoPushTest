@@ -124,7 +124,7 @@ final additionalIncomeSourceDialogViwModelProvider =
 final taxationDetailsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<TaxationDetailsPageViewModel>(
   (ref) => TaxationDetailsPageViewModel(
-      ref.read(taxationDetailsUseCaseProvider),
+      ref.read(setFatcaQuestionsResponseUseCaseProvider),
       ref.read(getFatcaQuestionsUseCaseProvider)),
 );
 

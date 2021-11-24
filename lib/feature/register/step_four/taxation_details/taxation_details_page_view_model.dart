@@ -1,7 +1,8 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/fatca_crs/get_fatca_questions_response.dart';
+import 'package:domain/model/fatca_crs/set_fatca_questions_response.dart';
 import 'package:domain/usecase/fatca_crs/get_fatca_questions_usecase.dart';
-import 'package:domain/usecase/register/taxation_details_usecase.dart';
+import 'package:domain/usecase/fatca_crs/set_fatca_questions_response_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -13,7 +14,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class TaxationDetailsPageViewModel extends BasePageViewModel {
-  final TaxationDetailsUseCase _taxationDetailsUseCase;
+  final SetFatcaQuestionsResponseUseCase _setFatcaQuestionsUseCase;
   final GetFatcaQuestionsUseCase _getFatcaQuestionsUseCase;
 
   final TextEditingController relationShipController = TextEditingController();
@@ -49,16 +50,17 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
     _declarationSelected.safeAdd(value);
   }
 
-  ///taxation details request subject holder
-  PublishSubject<TaxationDetailsUseCaseParams> _taxationDetailsRequest =
-      PublishSubject();
+  ///set fatca questions request subject holder
+  PublishSubject<SetFatcaQuestionsResponseUseCaseParams>
+      _setFatcaQuestionsRequest = PublishSubject();
 
-  ///taxation details response holder
-  PublishSubject<Resource<bool>> _taxationDetailsResponse = PublishSubject();
+  ///set fatca questions response holder
+  PublishSubject<Resource<SetFatcaQuestionsResponse>>
+      _setFatcaQuestionsResponse = PublishSubject();
 
-  ///taxation details stream
-  Stream<Resource<bool>> get taxationDetailsStream =>
-      _taxationDetailsResponse.stream;
+  ///set fatca questions stream
+  Stream<Resource<SetFatcaQuestionsResponse>> get setFatcaQuestionsStream =>
+      _setFatcaQuestionsResponse.stream;
 
   void updateRelationShipWithPEP(String value) {
     relationShipController.text = value;
@@ -111,13 +113,14 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
   }
 
   TaxationDetailsPageViewModel(
-      this._taxationDetailsUseCase, this._getFatcaQuestionsUseCase) {
-    _taxationDetailsRequest.listen((value) {
+      this._setFatcaQuestionsUseCase, this._getFatcaQuestionsUseCase) {
+    _setFatcaQuestionsRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _taxationDetailsUseCase.execute(params: value))
+              createCall: () =>
+                  _setFatcaQuestionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _taxationDetailsResponse.safeAdd(event);
+        _setFatcaQuestionsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           getError(event);
@@ -140,7 +143,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
     getFatcaQuestions();
   }
 
-  void getError(Resource<bool> event) {
+  void getError(Resource<SetFatcaQuestionsResponse> event) {
     switch (event.appError!.type) {
       case ErrorType.INVALID_RELATIONSHIP:
         relationShipWithPepKey.currentState!.isValid = false;
@@ -159,21 +162,24 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
     }
   }
 
-  void validateTaxationDetails() {
-    _taxationDetailsRequest.safeAdd(TaxationDetailsUseCaseParams(
+  void setFatcaQuestionResponse() {
+    _setFatcaQuestionsRequest.safeAdd(SetFatcaQuestionsResponseUseCaseParams(
         declarationSelected: _declarationSelected.value,
         isPEP: isPEP,
         relationShipPEP: relationShipController.text,
         personName: personNameController.text,
         personRole: personRoleController.text,
         anyOtherCountryResident: anyOtherCountryResident,
-        country: countrySelectorController.text));
+        country: countrySelectorController.text,
+        isUSCitizen: isUSCitizen,
+        isUSTaxResident: usTaxResident,
+        wasBornInUS: bornInUS));
   }
 
   @override
   void dispose() {
-    _taxationDetailsRequest.close();
-    _taxationDetailsResponse.close();
+    _setFatcaQuestionsRequest.close();
+    _setFatcaQuestionsResponse.close();
     _declarationSelected.close();
     _getFatcaQuestionsRequest.close();
     _getFatcaQuestionsResponseSubject.close();

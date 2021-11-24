@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/model/fatca_crs/get_fatca_questions_response.dart';
+import 'package:domain/model/fatca_crs/set_fatca_questions_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -41,8 +42,8 @@ class TaxationDetailsPageView
                 duration: Duration(milliseconds: 100),
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
-                child: AppStreamBuilder<Resource<bool>>(
-                  stream: model.taxationDetailsStream,
+                child: AppStreamBuilder<Resource<SetFatcaQuestionsResponse>>(
+                  stream: model.setFatcaQuestionsStream,
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
@@ -102,9 +103,9 @@ class TaxationDetailsPageView
                   },
                   dataBuilder: (context, response) {
                     return GestureDetector(
-                      onHorizontalDragUpdate: (details) {
-                        if (details.primaryDelta!.isNegative) {
-                          model.validateTaxationDetails();
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity!.isNegative) {
+                          model.setFatcaQuestionResponse();
                         } else {
                           ProviderScope.containerOf(context)
                               .read(registerStepFourViewModelProvider)

@@ -214,6 +214,8 @@ class ErrorParser {
         return localisedHelper.invalidUserNamePassword;
       case ErrorType.ID_CARD_NOT_ALLOWED:
         return localisedHelper.idCardNotAllowed;
+      case ErrorType.ERROR_SAVING_STATUS:
+        return localisedHelper.errorSavingStatus;
 
       default:
         return "";

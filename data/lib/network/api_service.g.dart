@@ -253,18 +253,21 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<String> saveFatcaInformation(saveFatcaInformationRequestEntity) async {
+  Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
+      saveFatcaInformationRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(saveFatcaInformationRequestEntity.toJson());
-    final _result = await _dio.fetch<String>(_setStreamType<String>(
-        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-            .compose(_dio.options, '/FatcaCrs/set',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!;
-    return value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<SetFatcaQuestionsResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/FatcaCrs/set',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = SetFatcaQuestionsResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
   }
 
   @override

@@ -3,6 +3,7 @@ import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/set_fatca_questions_response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
 import 'package:retrofit/dio.dart';
@@ -17,16 +18,16 @@ class FatcaCrsRemoteDSImpl extends FatcaCrsRemoteDS {
   Future<HttpResponse<GetFatcaQuestionsResponseEntity>> getFatcaQuestions(
       {bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getFatcaQuestions(
-        GetFatcaQuestionsRequestEntity(baseData: baseData, getToken: true));
+    return _apiService.getFatcaQuestions(GetFatcaQuestionsRequestEntity(
+        baseData: baseData.toJson(), getToken: true));
   }
 
   @override
-  Future<String> saveFatcaInformation(
-      {String? response1,
-      String? response2,
-      String? response3,
-      String? response4,
+  Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
+      {bool? response1,
+      bool? response2,
+      bool? response3,
+      bool? response4,
       bool? isTinNoRes4,
       String? taxResidenceCountry,
       String? tinNoRes4,
@@ -44,7 +45,7 @@ class FatcaCrsRemoteDSImpl extends FatcaCrsRemoteDS {
         tinNoRes4: tinNoRes4,
         reasonUnavailableRes4: reasonUnavailableRes4,
         reasonBRes4: reasonBRes4,
-        baseData: baseData,
+        baseData: baseData.toJson(),
         getToken: getToken));
   }
 }
