@@ -1,5 +1,9 @@
+import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
+import 'package:retrofit/retrofit.dart';
+
 abstract class FatcaCrsRemoteDS {
-  Future<String> getFatcaQuestions({bool getToken});
+  Future<HttpResponse<GetFatcaQuestionsResponseEntity>> getFatcaQuestions(
+      {bool getToken});
 
   Future<String> saveFatcaInformation(
       {String response1,

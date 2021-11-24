@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account_registration/account_regisration_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/fatca_crs/fatca_crs_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
@@ -122,8 +123,9 @@ final additionalIncomeSourceDialogViwModelProvider =
 ///taxation details page view model provider
 final taxationDetailsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<TaxationDetailsPageViewModel>(
-  (ref) =>
-      TaxationDetailsPageViewModel(ref.read(taxationDetailsUseCaseProvider)),
+  (ref) => TaxationDetailsPageViewModel(
+      ref.read(taxationDetailsUseCaseProvider),
+      ref.read(getFatcaQuestionsUseCaseProvider)),
 );
 
 final areYouUSCitizenViewModelProvider =

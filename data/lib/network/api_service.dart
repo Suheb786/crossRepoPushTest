@@ -5,14 +5,15 @@ import 'package:data/entity/remote/bank_smart/get_account_details_request_entity
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
-import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
+import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
@@ -90,7 +91,7 @@ abstract class ApiService {
       @Body() AddAccountPurposeRequest addAccountPurposeRequest);
 
   @POST("/FatcaCrs/get")
-  Future<String> getFatcaQuestions(
+  Future<HttpResponse<GetFatcaQuestionsResponseEntity>> getFatcaQuestions(
       @Body() GetFatcaQuestionsRequestEntity getFatcaQuestionsRequestEntity);
 
   @POST("/FatcaCrs/set")

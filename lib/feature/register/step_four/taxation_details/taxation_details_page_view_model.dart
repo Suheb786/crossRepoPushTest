@@ -1,4 +1,6 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/fatca_crs/get_fatca_questions_response.dart';
+import 'package:domain/usecase/fatca_crs/get_fatca_questions_usecase.dart';
 import 'package:domain/usecase/register/taxation_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,7 @@ import 'package:rxdart/rxdart.dart';
 
 class TaxationDetailsPageViewModel extends BasePageViewModel {
   final TaxationDetailsUseCase _taxationDetailsUseCase;
+  final GetFatcaQuestionsUseCase _getFatcaQuestionsUseCase;
 
   final TextEditingController relationShipController = TextEditingController();
   final GlobalKey<AppTextFieldState> relationShipWithPepKey =
@@ -90,7 +93,25 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  TaxationDetailsPageViewModel(this._taxationDetailsUseCase) {
+  ///get fatca question request subject holder
+  PublishSubject<GetFatcaQuestionsUseCaseParams> _getFatcaQuestionsRequest =
+      PublishSubject();
+
+  ///get fatca question response holder
+  PublishSubject<Resource<GetFatcaQuestionsResponse>>
+      _getFatcaQuestionsResponseSubject = PublishSubject();
+
+  ///get fatca question stream
+  Stream<Resource<GetFatcaQuestionsResponse>> get getFatcaQuestionsStream =>
+      _getFatcaQuestionsResponseSubject.stream;
+
+  void getFatcaQuestions() {
+    _getFatcaQuestionsRequest
+        .safeAdd(GetFatcaQuestionsUseCaseParams(getToken: true));
+  }
+
+  TaxationDetailsPageViewModel(
+      this._taxationDetailsUseCase, this._getFatcaQuestionsUseCase) {
     _taxationDetailsRequest.listen((value) {
       RequestManager(value,
               createCall: () => _taxationDetailsUseCase.execute(params: value))
@@ -103,6 +124,20 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getFatcaQuestionsRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _getFatcaQuestionsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _getFatcaQuestionsResponseSubject.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+        }
+      });
+    });
+    getFatcaQuestions();
   }
 
   void getError(Resource<bool> event) {
@@ -140,6 +175,8 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
     _taxationDetailsRequest.close();
     _taxationDetailsResponse.close();
     _declarationSelected.close();
+    _getFatcaQuestionsRequest.close();
+    _getFatcaQuestionsResponseSubject.close();
     super.dispose();
   }
 }

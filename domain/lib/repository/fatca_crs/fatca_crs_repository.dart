@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/fatca_crs/get_fatca_questions_response.dart';
 
 abstract class FatcaCrsRepository {
   /// retrieve fatca questions
-  Future<Either<NetworkError, String>> getFatcaQuestions(
+  Future<Either<NetworkError, GetFatcaQuestionsResponse>> getFatcaQuestions(
       {required bool getToken});
 
   /// save fatca information

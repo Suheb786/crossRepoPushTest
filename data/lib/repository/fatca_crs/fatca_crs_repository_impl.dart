@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/fatca_crs/get_fatca_questions_response.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 
 class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
@@ -10,15 +11,16 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
   FatcaCrsRepositoryImpl(this._crsRemoteDS);
 
   @override
-  Future<Either<NetworkError, String>> getFatcaQuestions(
+  Future<Either<NetworkError, GetFatcaQuestionsResponse>> getFatcaQuestions(
       {required bool getToken}) async {
     final result = await safeApiCall(
       _crsRemoteDS.getFatcaQuestions(getToken: getToken),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r),
-    );
+        (l) => Left(l),
+        (r) => Right(
+              (r.data.transform()),
+            ));
   }
 
   @override
