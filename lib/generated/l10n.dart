@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -3996,6 +3995,36 @@ class S {
     return Intl.message(
       'You have entered an invalid username or password, please try again',
       name: 'invalidUserNamePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have entered an invalid OTP code, please enter a valid one`
+  String get invalidOtp {
+    return Intl.message(
+      'You have entered an invalid OTP code, please enter a valid one',
+      name: 'invalidOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your OTP code is expired, please request for a new OTP code`
+  String get otpExpired {
+    return Intl.message(
+      'Your OTP code is expired, please request for a new OTP code',
+      name: 'otpExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email already exist`
+  String get emailAlreadyExist {
+    return Intl.message(
+      'Email already exist',
+      name: 'emailAlreadyExist',
       desc: '',
       args: [],
     );

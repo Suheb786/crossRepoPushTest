@@ -128,7 +128,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, String>> registerProspectUser(
+  Future<Either<NetworkError, User>> registerProspectUser(
       {String? countryName,
       String? email,
       String? mobileNumber,
@@ -146,7 +146,7 @@ class UserRepositoryImpl extends UserRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -295,13 +295,13 @@ class UserRepositoryImpl extends UserRepository {
 
   @override
   Future<Either<NetworkError, bool>> verifyMobileOtp(
-      {String? otpCode, bool? getToken}) async {
+      {String? otpCode}) async {
     final result = await safeApiCall(
-      _remoteDS.verifyMobileOtp(otpCode: otpCode, getToken: getToken),
+      _remoteDS.verifyMobileOtp(otpCode: otpCode),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 

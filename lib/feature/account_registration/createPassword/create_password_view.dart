@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -31,7 +32,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
               duration: Duration(milliseconds: 100),
               shakeAngle: Rotation.deg(z: 1),
               curve: Curves.easeInOutSine,
-              child: AppStreamBuilder<Resource<bool>>(
+              child: AppStreamBuilder<Resource<User>>(
                 stream: model.registerUserStream,
                 initialData: Resource.none(),
                 onData: (registerData) {
@@ -39,7 +40,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .pageController
-                        .next(animation: true);
+                        .next();
                   } else if (registerData.status == Status.ERROR) {
                     model.showToastWithError(registerData.appError!);
                   }
@@ -48,8 +49,8 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                   return AppStreamBuilder<Resource<bool>>(
                       stream: model.createPasswordStream,
                       initialData: Resource.none(),
-                      onData: (data) {
-                        if (data.status == Status.SUCCESS) {
+                      onData: (passwordData) {
+                        if (passwordData.status == Status.SUCCESS) {
                           model.passwordKey.currentState!.isValid = true;
                           model.confirmPasswordKey.currentState!.isValid = true;
                           model.registerUser(
@@ -62,27 +63,27 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                   .read(addNumberViewModelProvider)
                                   .mobileNumberController
                                   .text);
-                        } else if (data.status == Status.ERROR) {
-                          if (data.appError!.type ==
+                        } else if (passwordData.status == Status.ERROR) {
+                          if (passwordData.appError!.type ==
                               ErrorType.PASSWORD_MISMATCH) {
                             model.passwordKey.currentState!.isValid = false;
                             model.confirmPasswordKey.currentState!.isValid =
                                 false;
-                          } else if (data.appError!.type ==
+                          } else if (passwordData.appError!.type ==
                               ErrorType.EMPTY_PASSWORD) {
                             model.passwordKey.currentState!.isValid = false;
-                          } else if (data.appError!.type ==
+                          } else if (passwordData.appError!.type ==
                               ErrorType.EMPTY_CONFIRM_PASSWORD) {
                             model.confirmPasswordKey.currentState!.isValid =
                                 false;
                           }
-                          model.showToastWithError(data.appError!);
+                          model.showToastWithError(passwordData.appError!);
                         }
                       },
                       dataBuilder: (context, data) {
                         return GestureDetector(
-                          onHorizontalDragUpdate: (details) {
-                            if (details.primaryDelta!.isNegative) {
+                          onHorizontalDragEnd: (details) {
+                            if (details.primaryVelocity!.isNegative) {
                               model.createPassword();
                             } else {
                               ProviderScope.containerOf(context)

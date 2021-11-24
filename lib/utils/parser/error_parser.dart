@@ -208,6 +208,12 @@ class ErrorParser {
         return localisedHelper.deviceNotFound;
       case ErrorType.INVALID_USERNAME_PASSWORD:
         return localisedHelper.invalidUserNamePassword;
+      case ErrorType.INVALID_NETWORK_OTP:
+        return localisedHelper.invalidOtp;
+      case ErrorType.OTP_EXPIRED:
+        return localisedHelper.otpExpired;
+      case ErrorType.EMAIL_ALREADY_EXIST:
+        return localisedHelper.emailAlreadyExist;
 
       default:
         return "";

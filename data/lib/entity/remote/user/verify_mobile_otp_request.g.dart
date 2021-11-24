@@ -11,8 +11,7 @@ VerifyMobileOtpRequest _$VerifyMobileOtpRequestFromJson(
   return VerifyMobileOtpRequest(
     otpCode: json['otpCode'] as String?,
     getToken: json['getToken'] as bool?,
-    baseData:
-        BaseClassEntity.fromJson(json['baseClass'] as Map<String, dynamic>),
+    baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }
 

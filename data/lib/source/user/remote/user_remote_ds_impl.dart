@@ -8,6 +8,7 @@ import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
+import 'package:data/entity/remote/user/register_response_entity.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_id_info_request.dart';
 import 'package:data/entity/remote/user/save_job_info_request.dart';
@@ -15,6 +16,7 @@ import 'package:data/entity/remote/user/save_profile_information_request.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:data/entity/remote/user/save_residence_information_request.dart';
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
+import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:domain/model/user/additional_income_type.dart';
@@ -72,7 +74,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<String> registerProspectUser(
+  Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
       {String? countryName,
       String? email,
       String? mobileNumber,
@@ -224,9 +226,10 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<bool> verifyMobileOtp({String? otpCode, bool? getToken}) async {
+  Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp(
+      {String? otpCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.verifyMobileOtp(VerifyMobileOtpRequest(
-        baseData: baseData, otpCode: otpCode, getToken: getToken));
+        getToken: true, otpCode: otpCode, baseData: baseData.toJson()));
   }
 }

@@ -54,6 +54,22 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.INVALID_USERNAME_PASSWORD);
 
+          case "err-069":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_NETWORK_OTP);
+
+          case "err-070":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.OTP_EXPIRED);
+
+          case "suc-004":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.EMAIL_ALREADY_EXIST);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

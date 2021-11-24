@@ -13,6 +13,7 @@ import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
+import 'package:data/entity/remote/user/register_response_entity.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_id_info_request.dart';
 import 'package:data/entity/remote/user/save_job_info_request.dart';
@@ -20,6 +21,7 @@ import 'package:data/entity/remote/user/save_profile_information_request.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:data/entity/remote/user/save_residence_information_request.dart';
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
+import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -44,13 +46,17 @@ abstract class ApiService {
   Future<HttpResponse<LoginResponseEntity>> loginUser(
       @Body() LoginUserRequest loginUserRequest);
 
+  @POST("/auth/RegisterV2")
+  Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
+      @Body() RegisterProspectUserRequest registerProspectUserRequest);
+
+  @POST("/auth/VerifyMobileOtp")
+  Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp(
+      @Body() VerifyMobileOtpRequest verifyMobileOtpRequest);
+
   @POST("/transfer/GetCountries")
   Future<String> fetchCountryList(
       @Body() FetchCountryListRequest fetchCountryListRequest);
-
-  @POST("/auth/RegisterV2")
-  Future<String> registerProspectUser(
-      @Body() RegisterProspectUserRequest registerProspectUserRequest);
 
   @POST("/CustomerDetails/SaveIdInfo")
   Future<String> saveIdInfo(@Body() SaveIdInfoRequest saveIdInfoRequest);
@@ -68,10 +74,6 @@ abstract class ApiService {
       saveResidenceInformation(
           @Body()
               SaveResidenceInformationRequest saveResidenceInformationRequest);
-
-  @POST("/auth/VerifyMobileOtp")
-  Future<bool> verifyMobileOtp(
-      @Body() VerifyMobileOtpRequest verifyMobileOtpRequest);
 
   @POST("/kyc/getstatus")
   Future<String> checkKYCStatus(@Body() KYCStatusRequest kycStatusRequest);
