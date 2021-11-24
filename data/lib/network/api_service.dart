@@ -1,3 +1,5 @@
+import 'package:data/entity/remote/account/check_videocall_status_request_entity.dart';
+import 'package:data/entity/remote/account/check_videocall_status_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
@@ -115,4 +117,10 @@ abstract class ApiService {
   ///get token
   @GET("/auth/verifyToken")
   Future<HttpResponse<GetTokenResponseEntity>> getToken();
+
+  ///check video call status
+  @POST("/Account/CheckVideoCallStatus")
+  Future<HttpResponse<CheckVideoCallStatusResponseEntity>> checkVideoCallStatus(
+      @Body()
+          CheckVideoCallStatusRequestEntity checkVideoCallStatusRequestEntity);
 }
