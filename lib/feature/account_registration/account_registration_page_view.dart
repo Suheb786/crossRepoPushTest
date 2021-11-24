@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/addnumber/add_number_page.dart';
 import 'package:neo_bank/feature/account_registration/createPassword/create_password_page.dart';
@@ -112,8 +113,8 @@ class AccountRegistrationPageView
                           direction: Direction.vertical,
                           offset: 0.5,
                           child: Text(
-                            "",
-                            //"${ProviderScope?.containerOf(context).read(addNumberViewModelProvider).selectedCountry.countryCallingCode ?? ""} ${ProviderScope.containerOf(context).read(addNumberViewModelProvider).mobileNumberController.text ?? ""}",
+                            "${ProviderScope?.containerOf(context).read(addNumberViewModelProvider).selectedCountry.countryCallingCode ?? ""} "
+                            "${ProviderScope.containerOf(context).read(addNumberViewModelProvider).mobileNumberController.text}",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Theme.of(context).accentColor,

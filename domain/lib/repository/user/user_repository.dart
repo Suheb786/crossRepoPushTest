@@ -36,7 +36,7 @@ abstract class UserRepository {
       {String? mobileNumber, String? countryCode});
 
   /// register prospect user
-  Future<Either<NetworkError, String>> registerProspectUser(
+  Future<Either<NetworkError, User>> registerProspectUser(
       {String? countryName,
       String? email,
       String? mobileNumber,
@@ -45,8 +45,7 @@ abstract class UserRepository {
       String? userName});
 
   /// verify mobile otp
-  Future<Either<NetworkError, bool>> verifyMobileOtp(
-      {String? otpCode, bool? getToken});
+  Future<Either<NetworkError, bool>> verifyMobileOtp({String? otpCode});
 
   /// save Id information
   Future<Either<NetworkError, SaveIdInfoResponse>> saveIdInfo({

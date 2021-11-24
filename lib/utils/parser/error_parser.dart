@@ -214,6 +214,14 @@ class ErrorParser {
         return localisedHelper.invalidUserNamePassword;
       case ErrorType.ID_CARD_NOT_ALLOWED:
         return localisedHelper.idCardNotAllowed;
+      case ErrorType.INVALID_NETWORK_OTP:
+        return localisedHelper.invalidOtp;
+      case ErrorType.OTP_EXPIRED:
+        return localisedHelper.otpExpired;
+      case ErrorType.EMAIL_ALREADY_EXIST:
+        return localisedHelper.emailAlreadyExist;
+      case ErrorType.OTP_VERIFY_LIMIT_EXCEEDED:
+        return localisedHelper.otpLimitExceed;
 
       default:
         return "";

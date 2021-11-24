@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/di/onboarding/onboarding_module.dart';
 import 'package:neo_bank/feature/login/login_page_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -69,7 +70,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                               initialData: Resource.none(),
                               onData: (data) {
                                 if (data.status == Status.SUCCESS) {
-                                  model.getToken();
+                                  ProviderScope.containerOf(context)
+                                      .read(appViewModel)
+                                      .getToken();
                                   model.emailKey.currentState!.isValid = true;
                                   Navigator.pushReplacementNamed(
                                       context, RoutePaths.Registration);

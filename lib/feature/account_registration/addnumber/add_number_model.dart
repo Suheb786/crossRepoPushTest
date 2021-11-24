@@ -78,7 +78,7 @@ class AddNumberViewModel extends BasePageViewModel {
 
   bool isEmailAvailable = false;
   bool isNumberAvailable = false;
-  late Country selectedCountry;
+  Country selectedCountry = Country();
 
   AddNumberViewModel(
       this._registerNumberUseCase,
@@ -177,12 +177,12 @@ class AddNumberViewModel extends BasePageViewModel {
   }
 
   void validateNumber() {
-    // if (isEmailAvailable && isNumberAvailable) {
-    _registerNumberRequest.safeAdd(RegisterNumberUseCaseParams(
-        emailAddress: emailController.text,
-        countryCode: selectedCountry.countryCallingCode,
-        mobileNumber: mobileNumberController.text));
-    // }
+    if (isEmailAvailable && isNumberAvailable) {
+      _registerNumberRequest.safeAdd(RegisterNumberUseCaseParams(
+          emailAddress: emailController.text,
+          countryCode: selectedCountry.countryCallingCode,
+          mobileNumber: mobileNumberController.text));
+    }
   }
 
   /// Check Request for email is registered already or not
