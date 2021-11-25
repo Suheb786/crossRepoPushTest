@@ -9,6 +9,7 @@ class User {
   String? refreshToken;
   String? tokenType;
   int? expiredIn;
+  bool? isExisting;
 
   User(
       {this.token,
@@ -20,5 +21,6 @@ class User {
       this.isCurrent,
       this.refreshToken,
       this.tokenType,
-      this.expiredIn});
+      this.expiredIn,
+      this.isExisting});
 }

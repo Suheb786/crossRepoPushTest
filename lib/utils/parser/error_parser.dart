@@ -220,6 +220,14 @@ class ErrorParser {
         return localisedHelper.emptyNationalityDocument;
       case ErrorType.ERROR_WHILE_UPLOADING_IMAGE:
         return localisedHelper.errorUploadImage;
+      case ErrorType.INVALID_NETWORK_OTP:
+        return localisedHelper.invalidOtp;
+      case ErrorType.OTP_EXPIRED:
+        return localisedHelper.otpExpired;
+      case ErrorType.EMAIL_ALREADY_EXIST:
+        return localisedHelper.emailAlreadyExist;
+      case ErrorType.OTP_VERIFY_LIMIT_EXCEEDED:
+        return localisedHelper.otpLimitExceed;
 
       default:
         return "";

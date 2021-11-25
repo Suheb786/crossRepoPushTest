@@ -82,6 +82,28 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_WHILE_UPLOADING_IMAGE);
 
+          case "err-069":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_NETWORK_OTP);
+
+          case "err-070":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.OTP_EXPIRED);
+
+          case "suc-004":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.EMAIL_ALREADY_EXIST);
+
+          case "err-280":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.OTP_VERIFY_LIMIT_EXCEEDED);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

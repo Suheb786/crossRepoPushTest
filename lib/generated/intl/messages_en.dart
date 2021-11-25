@@ -174,6 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailAddress": MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
         "emailAddressSmall":
             MessageLookupByLibrary.simpleMessage("Email Address"),
+        "emailAlreadyExist":
+            MessageLookupByLibrary.simpleMessage("Email already exist"),
         "employerCity": MessageLookupByLibrary.simpleMessage("EMPLOYER CITY"),
         "employerCitySmall":
             MessageLookupByLibrary.simpleMessage("Employer City"),
@@ -378,6 +380,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter name as per tax return"),
         "invalidOccupation":
             MessageLookupByLibrary.simpleMessage("Enter Occupation"),
+        "invalidOtp": MessageLookupByLibrary.simpleMessage(
+            "You have entered an invalid OTP code, please enter a valid one"),
         "invalidPermanentAddress": MessageLookupByLibrary.simpleMessage(
             "Enter Permanent Residence Address"),
         "invalidPostCode":
@@ -490,6 +494,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("or you can upload"),
         "otherNationality":
             MessageLookupByLibrary.simpleMessage("Other Nationality"),
+        "otpExpired": MessageLookupByLibrary.simpleMessage(
+            "Your OTP code is expired, please request for a new OTP code"),
+        "otpLimitExceed": MessageLookupByLibrary.simpleMessage(
+            "Otp Limit Exceeds, Please Try again Later"),
         "password": MessageLookupByLibrary.simpleMessage("PASSWORD"),
         "passwordDialogContent": MessageLookupByLibrary.simpleMessage(
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
