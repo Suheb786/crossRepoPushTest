@@ -10,7 +10,7 @@ abstract class UploadDocumentLocalDS {
 
 abstract class UploadDocumentRemoteDS {
   Future<HttpResponse<UploadDocumentResponseEntity>> uploadDocument(
-      {String base64Image});
+      {String path});
 
   Future<HttpResponse<SaveUploadDocumentResponseEntity>> saveUploadDocument(
       {String? proofOfIncomeId,

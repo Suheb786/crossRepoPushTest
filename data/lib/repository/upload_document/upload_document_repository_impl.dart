@@ -30,9 +30,9 @@ class UploadDocumentRepositoryImpl extends UploadDocumentRepository {
 
   @override
   Future<Either<NetworkError, FileUploadResponse>> uploadDocument(
-      {String? base64Image}) async {
+      {String? path}) async {
     final result = await safeApiCall(
-      _uploadDocumentRemoteDS.uploadDocument(base64Image: base64Image!),
+      _uploadDocumentRemoteDS.uploadDocument(path: path!),
     );
     return result!.fold(
       (l) => Left(l),

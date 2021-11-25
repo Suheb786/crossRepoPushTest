@@ -397,7 +397,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<SaveUploadDocumentResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/FileUpload/SaveUploadDocuments',
+                .compose(_dio.options, '/FileUpload/SaveUploadDocumentsDocs',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = SaveUploadDocumentResponseEntity.fromJson(_result.data!);

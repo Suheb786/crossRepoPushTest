@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:data/entity/local/base/device_helper.dart';
+import 'package:data/entity/local/base/image_utils.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
@@ -16,12 +19,12 @@ class UploadDocumentRemoteDSImpl extends UploadDocumentRemoteDS {
 
   @override
   Future<HttpResponse<UploadDocumentResponseEntity>> uploadDocument(
-      {String? base64Image}) async {
+      {String? path}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.uploadDocument(UploadDocumentRequestEntity(
         baseData: baseData.toJson(),
         getToken: true,
-        documentBase64: base64Image));
+        documentBase64: ImageUtils.convertToBase64(path!)));
   }
 
   @override

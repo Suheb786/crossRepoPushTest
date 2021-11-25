@@ -1,6 +1,7 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/account/check_other_nationality_status_response.dart';
 import 'package:domain/model/upload_document/file_upload_response.dart';
+import 'package:domain/model/upload_document/save_upload_document_response.dart';
 import 'package:domain/usecase/account/check_other_nationality_status_usecase.dart';
 import 'package:domain/usecase/upload_doc/file_upload_usecase.dart';
 import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
@@ -9,7 +10,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
-import 'package:neo_bank/utils/image_utils.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -43,9 +43,11 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   PublishSubject<SendDocumentsUseCaseParams> _documentsRequest =
       PublishSubject();
 
-  PublishSubject<Resource<bool>> _documentsResponse = PublishSubject();
+  PublishSubject<Resource<SaveUploadDocumentResponse>> _documentsResponse =
+      PublishSubject();
 
-  Stream<Resource<bool>> get documentsStream => _documentsResponse.stream;
+  Stream<Resource<SaveUploadDocumentResponse>> get documentsStream =>
+      _documentsResponse.stream;
 
   ///upload income proof
   PublishSubject<UploadDocumentUseCaseParams> _uploadIncomePoofRequest =
@@ -244,6 +246,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
         _checkOtherNationalityStatusResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -299,25 +302,25 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   void validateDocuments() {
     _documentsRequest.safeAdd(SendDocumentsUseCaseParams(
-        incomeProof: incomeController.text,
-        addressProof: addressController.text,
+        incomeProof: incomeProofDocumentId,
+        addressProof: addressProofDocumentId,
         isOtherNationality: isOtherNationality,
-        nationalityProof: additionalNationalityController.text));
+        nationalityProof: otherNationalityProofDocumentId));
   }
 
   void uploadIncomeProof(String image) {
-    _uploadIncomeProofDocumentRequest.safeAdd(FileUploadUseCaseParams(
-        base64Image: ImageUtils.convertToBase64(image)));
+    _uploadIncomeProofDocumentRequest
+        .safeAdd(FileUploadUseCaseParams(path: image));
   }
 
   void uploadAddressProof(String image) {
-    _uploadAddressProofDocumentRequest.safeAdd(FileUploadUseCaseParams(
-        base64Image: ImageUtils.convertToBase64(image)));
+    _uploadAddressProofDocumentRequest
+        .safeAdd(FileUploadUseCaseParams(path: image));
   }
 
   void uploadOtherNationalityProof(String image) {
-    _uploadOtherNationalityProofDocumentRequest.safeAdd(FileUploadUseCaseParams(
-        base64Image: ImageUtils.convertToBase64(image)));
+    _uploadOtherNationalityProofDocumentRequest
+        .safeAdd(FileUploadUseCaseParams(path: image));
   }
 
   void validateFields() {

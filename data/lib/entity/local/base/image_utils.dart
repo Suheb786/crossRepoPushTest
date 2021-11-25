@@ -8,6 +8,6 @@ class ImageUtils {
   static String convertToBase64(String image) {
     final bytes = Io.File(image).readAsBytesSync();
     String baseImage64 = base64Encode(bytes);
-    return '$baseImage64';
+    return baseImage64;
   }
 }

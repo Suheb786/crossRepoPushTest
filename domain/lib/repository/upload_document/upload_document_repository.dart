@@ -9,7 +9,7 @@ abstract class UploadDocumentRepository {
   Future<Either<BaseError, String>> pickUploadDocument({DocumentTypeEnum type});
 
   Future<Either<NetworkError, FileUploadResponse>> uploadDocument(
-      {String base64Image});
+      {String path});
 
   Future<Either<NetworkError, SaveUploadDocumentResponse>> saveUploadDocument(
       {String proofOfIncomeId,

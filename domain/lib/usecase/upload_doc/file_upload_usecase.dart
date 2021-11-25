@@ -15,14 +15,14 @@ class FileUploadUseCase extends BaseUseCase<NetworkError,
   @override
   Future<Either<NetworkError, FileUploadResponse>> execute(
       {FileUploadUseCaseParams? params}) {
-    return _repository.uploadDocument(base64Image: params!.base64Image);
+    return _repository.uploadDocument(path: params!.path);
   }
 }
 
 class FileUploadUseCaseParams extends Params {
-  final String base64Image;
+  final String path;
 
-  FileUploadUseCaseParams({required this.base64Image});
+  FileUploadUseCaseParams({required this.path});
 
   @override
   Either<AppError, bool> verify() {

@@ -4,6 +4,7 @@ import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/account/check_other_nationality_status_response.dart';
 import 'package:domain/model/upload_document/file_upload_response.dart';
+import 'package:domain/model/upload_document/save_upload_document_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -43,7 +44,8 @@ class UploadDocumentsPageView
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<bool>>(
+                    child:
+                        AppStreamBuilder<Resource<SaveUploadDocumentResponse>>(
                       stream: model.documentsStream,
                       initialData: Resource.none(),
                       onData: (data) {
@@ -69,8 +71,8 @@ class UploadDocumentsPageView
                       },
                       dataBuilder: (context, data) {
                         return GestureDetector(
-                          onHorizontalDragUpdate: (details) {
-                            if (details.primaryDelta!.isNegative) {
+                          onHorizontalDragEnd: (details) {
+                            if (details.primaryVelocity!.isNegative) {
                               model.validateDocuments();
                             } else {
                               ProviderScope.containerOf(context)
@@ -219,6 +221,8 @@ class UploadDocumentsPageView
                                                                       false);
                                                                   model.isIncomeDocumentUploaded =
                                                                       false;
+                                                                  model.incomeProofDocumentId =
+                                                                      '';
                                                                   model
                                                                       .validateFields();
                                                                 },
@@ -381,6 +385,8 @@ class UploadDocumentsPageView
                                                                       false);
                                                                   model.isAddressDocumentUploaded =
                                                                       false;
+                                                                  model.addressProofDocumentId =
+                                                                      '';
                                                                   model
                                                                       .validateFields();
                                                                 },
@@ -571,6 +577,7 @@ class UploadDocumentsPageView
                                                                           : () {
                                                                               model.additionalNationalityController.clear();
                                                                               model.isOtherNationalityDocumentUploaded = false;
+                                                                              model.otherNationalityProofDocumentId = '';
                                                                               model.validateFields();
                                                                               model.updateAdditionalNationalityUploadedStream(false);
                                                                             },

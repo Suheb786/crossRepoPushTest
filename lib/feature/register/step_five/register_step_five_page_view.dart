@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/register/step_five/agent_selection/agent_selection_page.dart';
 import 'package:neo_bank/feature/register/step_five/register_step_five_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_five/review_application/review_application_page.dart';
+import 'package:neo_bank/feature/register/step_five/schedule_video_call/schedule_video_call_page.dart';
 import 'package:neo_bank/feature/register/step_five/upload_documents/upload_documents_page.dart';
+import 'package:neo_bank/feature/register/step_five/video_call_info/video_call_info_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -16,10 +20,10 @@ class RegisterStepFivePageView
   RegisterStepFivePageView(ProviderBase model) : super(model);
 
   List<Widget> pages = [
-    // ReviewApplicationPage(),
-    // VideoCallInfoPage(),
-    // AgentSelectionPage(),
-    // ScheduleVideoCallPage(),
+    ReviewApplicationPage(),
+    VideoCallInfoPage(),
+    AgentSelectionPage(),
+    ScheduleVideoCallPage(),
     UploadDocumentsPage(),
   ];
 

@@ -144,7 +144,7 @@ abstract class ApiService {
       @Body() UploadDocumentRequestEntity uploadDocumentRequestEntity);
 
   ///save upload document
-  @POST("/FileUpload/SaveUploadDocuments")
+  @POST("/FileUpload/SaveUploadDocumentsDocs")
   Future<HttpResponse<SaveUploadDocumentResponseEntity>> saveUploadDocument(
       @Body() SaveUploadDocumentRequestEntity saveUploadDocumentRequestEntity);
 }
