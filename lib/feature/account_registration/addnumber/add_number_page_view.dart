@@ -40,7 +40,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .pageController
-                        .next(animation: true);
+                        .next();
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
@@ -68,10 +68,8 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                 initialData: Resource.none(),
                                 stream: model.checkUserNameStream,
                                 onData: (data) {
-                                  print("I AM HERE");
                                   if (data.status == Status.ERROR) {
                                     model.showToastWithError(data.appError!);
-                                    print("I AM HERE tooo");
                                     model.showErrorState();
                                   }
                                 },
