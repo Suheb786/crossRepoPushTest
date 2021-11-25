@@ -4021,16 +4021,6 @@ class S {
     );
   }
 
-  /// `ID card is not allowed for NeoBank.`
-  String get idCardNotAllowed {
-    return Intl.message(
-      'ID card is not allowed for NeoBank.',
-      name: 'idCardNotAllowed',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Error While Saving Status`
   String get errorSavingStatus {
     return Intl.message(
@@ -4056,6 +4046,56 @@ class S {
     return Intl.message(
       'Error While Upload Image',
       name: 'errorUploadImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have entered an invalid OTP code, please enter a valid one`
+  String get invalidOtp {
+    return Intl.message(
+      'You have entered an invalid OTP code, please enter a valid one',
+      name: 'invalidOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your OTP code is expired, please request for a new OTP code`
+  String get otpExpired {
+    return Intl.message(
+      'Your OTP code is expired, please request for a new OTP code',
+      name: 'otpExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email already exist`
+  String get emailAlreadyExist {
+    return Intl.message(
+      'Email already exist',
+      name: 'emailAlreadyExist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID card is not allowed for NeoBank.`
+  String get idCardNotAllowed {
+    return Intl.message(
+      'ID card is not allowed for NeoBank.',
+      name: 'idCardNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Otp Limit Exceeds, Please Try again Later`
+  String get otpLimitExceed {
+    return Intl.message(
+      'Otp Limit Exceeds, Please Try again Later',
+      name: 'otpLimitExceed',
       desc: '',
       args: [],
     );
