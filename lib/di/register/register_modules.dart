@@ -6,7 +6,7 @@ import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_prov
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/get_card/get_card_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/home_builder_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_model.dart';
 import 'package:neo_bank/feature/register/step_five/agent_selection/agent_selection_model.dart';
@@ -363,7 +363,7 @@ final appHomeViewModelProvider =
   (ref) => AppHomeViewModel(),
 );
 
-final homeBuilderViewModelProvider =
-    ChangeNotifierProvider.autoDispose<HomeBuilderViewModel>(
-  (ref) => HomeBuilderViewModel(),
+final myAccountViewModelProvider =
+    ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
+  (ref) => MyAccountViewModel(ref.read(myAccountUseCaseProvider)),
 );

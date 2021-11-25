@@ -1,5 +1,6 @@
 import 'package:data/di/repository_module.dart';
-import 'package:domain/usecase/dashboard/get_card_usercase.dart';
+import 'package:domain/usecase/dashboard/get_card_usecase.dart';
+import 'package:domain/usecase/dashboard/my_account_usecase.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
 import 'package:domain/usecase/user/account_ready_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
@@ -117,4 +118,9 @@ final scanUserDocumentUseCaseProvider = Provider<ScanUserDocumentUseCase>(
 ///[GetCardUseCase] provider
 final getCardUseCaseProvider = Provider.autoDispose<GetCardUseCase>(
   (ref) => GetCardUseCase(),
+);
+
+///[MyAccountUseCase] provider
+final myAccountUseCaseProvider = Provider.autoDispose<MyAccountUseCase>(
+  (ref) => MyAccountUseCase(),
 );

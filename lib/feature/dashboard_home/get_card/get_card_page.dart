@@ -8,11 +8,10 @@ import 'package:neo_bank/utils/asset_utils.dart';
 
 class GetCardPage extends BasePage<GetCardViewModel> {
   @override
-  JobAndIncomePageState createState() => JobAndIncomePageState();
+  GetCardPageState createState() => GetCardPageState();
 }
 
-class JobAndIncomePageState
-    extends BaseStatefulPage<GetCardViewModel, GetCardPage> {
+class GetCardPageState extends BaseStatefulPage<GetCardViewModel, GetCardPage> {
   @override
   ProviderBase provideBase() {
     return getCardViewModelProvider;

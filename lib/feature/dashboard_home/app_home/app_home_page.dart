@@ -8,11 +8,10 @@ import 'package:neo_bank/utils/asset_utils.dart';
 
 class AppHomePage extends BasePage<AppHomeViewModel> {
   @override
-  JobAndIncomePageState createState() => JobAndIncomePageState();
+  AppHomePageState createState() => AppHomePageState();
 }
 
-class JobAndIncomePageState
-    extends BaseStatefulPage<AppHomeViewModel, AppHomePage> {
+class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> {
   @override
   ProviderBase provideBase() {
     return appHomeViewModelProvider;
