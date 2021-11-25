@@ -1,12 +1,15 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/account/check_other_nationality_status_response.dart';
+import 'package:domain/model/upload_document/file_upload_response.dart';
 import 'package:domain/usecase/account/check_other_nationality_status_usecase.dart';
+import 'package:domain/usecase/upload_doc/file_upload_usecase.dart';
+import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
-import 'package:domain/usecase/user/send_documents_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/image_utils.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -14,8 +17,15 @@ import 'package:rxdart/rxdart.dart';
 
 class UploadDocumentsPageViewModel extends BasePageViewModel {
   final SendDocumentsUseCase _documentsUseCase;
+
+  ///SaveUploadDocumentsDocs usecase
   final UploadDocumentUseCase _uploadDocumentUseCase;
+
+  ///check other nationality usecase
   final CheckOtherNationalityStatusUseCase _checkOtherNationalityStatusUseCase;
+
+  ///upload individual document usecase
+  final FileUploadUseCase _fileUploadUseCase;
 
   final TextEditingController addressController = TextEditingController();
   final TextEditingController incomeController = TextEditingController();
@@ -95,8 +105,58 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
         .safeAdd(CheckOtherNationalityStatusUseCaseParams());
   }
 
-  UploadDocumentsPageViewModel(this._documentsUseCase,
-      this._uploadDocumentUseCase, this._checkOtherNationalityStatusUseCase) {
+  ///upload income proof
+  String incomeProofDocumentId = '';
+  PublishSubject<FileUploadUseCaseParams> _uploadIncomeProofDocumentRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<FileUploadResponse>>
+      _uploadIncomeProofDocumentResponse = PublishSubject();
+
+  Stream<Resource<FileUploadResponse>> get uploadIncomeProofDocumentStream =>
+      _uploadIncomeProofDocumentResponse.stream;
+
+  ///upload address proof
+  String addressProofDocumentId = '';
+  PublishSubject<FileUploadUseCaseParams> _uploadAddressProofDocumentRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<FileUploadResponse>>
+      _uploadAddressProofDocumentResponse = PublishSubject();
+
+  Stream<Resource<FileUploadResponse>> get uploadAddressProofDocumentStream =>
+      _uploadAddressProofDocumentResponse.stream;
+
+  ///upload other nationality proof
+  String otherNationalityProofDocumentId = '';
+  PublishSubject<FileUploadUseCaseParams>
+      _uploadOtherNationalityProofDocumentRequest = PublishSubject();
+
+  PublishSubject<Resource<FileUploadResponse>>
+      _uploadOtherNationalityProofDocumentResponse = PublishSubject();
+
+  Stream<Resource<FileUploadResponse>>
+      get uploadOtherNationalityProofDocumentStream =>
+          _uploadOtherNationalityProofDocumentResponse.stream;
+
+  bool isOtherNationality = false;
+
+  bool isIncomeDocumentUploaded = false;
+  bool isAddressDocumentUploaded = false;
+  bool isOtherNationalityDocumentUploaded = false;
+
+  /// animated button visibility subject
+  BehaviorSubject<bool> _showAnimatedButtonSubject =
+      BehaviorSubject.seeded(false);
+
+  Stream<bool> get showAnimatedButtonStream =>
+      _showAnimatedButtonSubject.stream;
+
+  UploadDocumentsPageViewModel(
+      this._documentsUseCase,
+      this._uploadDocumentUseCase,
+      this._checkOtherNationalityStatusUseCase,
+      this._fileUploadUseCase) {
     _documentsRequest.listen((value) {
       RequestManager(value,
               createCall: () => _documentsUseCase.execute(params: value))
@@ -136,6 +196,45 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
       });
     });
 
+    _uploadIncomeProofDocumentRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _fileUploadUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _uploadIncomeProofDocumentResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _uploadAddressProofDocumentRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _fileUploadUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _uploadAddressProofDocumentResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _uploadOtherNationalityProofDocumentRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _fileUploadUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _uploadOtherNationalityProofDocumentResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
     _checkOtherNationalityStatusRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -158,7 +257,9 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   }
 
   void updateIncomeDocumentField(String value) {
+    print('income value:--->$value');
     incomeController.text = value.split("/").last;
+    uploadIncomeProof(value);
     updateIncomeUploadedStream(true);
   }
 
@@ -177,6 +278,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   void updateAdditionalNationalityField(String value) {
     additionalNationalityController.text = value.split("/").last;
+    uploadOtherNationalityProof(value);
     updateAdditionalNationalityUploadedStream(true);
   }
 
@@ -187,6 +289,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   void updateAddressDocumentField(String value) {
     addressController.text = value.split("/").last;
+    uploadAddressProof(value);
     updateAddressUploadedStream(true);
   }
 
@@ -197,7 +300,38 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   void validateDocuments() {
     _documentsRequest.safeAdd(SendDocumentsUseCaseParams(
         incomeProof: incomeController.text,
-        addressProof: addressController.text));
+        addressProof: addressController.text,
+        isOtherNationality: isOtherNationality,
+        nationalityProof: additionalNationalityController.text));
+  }
+
+  void uploadIncomeProof(String image) {
+    _uploadIncomeProofDocumentRequest.safeAdd(FileUploadUseCaseParams(
+        base64Image: ImageUtils.convertToBase64(image)));
+  }
+
+  void uploadAddressProof(String image) {
+    _uploadAddressProofDocumentRequest.safeAdd(FileUploadUseCaseParams(
+        base64Image: ImageUtils.convertToBase64(image)));
+  }
+
+  void uploadOtherNationalityProof(String image) {
+    _uploadOtherNationalityProofDocumentRequest.safeAdd(FileUploadUseCaseParams(
+        base64Image: ImageUtils.convertToBase64(image)));
+  }
+
+  void validateFields() {
+    bool isValid = false;
+    if (isOtherNationality) {
+      if (isIncomeDocumentUploaded &&
+          isAddressDocumentUploaded &&
+          isOtherNationalityDocumentUploaded) {
+        isValid = true;
+      }
+    } else if (isIncomeDocumentUploaded && isAddressDocumentUploaded) {
+      isValid = true;
+    }
+    _showAnimatedButtonSubject.safeAdd(isValid);
   }
 
   @override
@@ -212,6 +346,13 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
     _documentNationalityRequest.close();
     _checkOtherNationalityStatusRequest.close();
     _checkOtherNationalityStatusResponse.close();
+    _uploadIncomeProofDocumentRequest.close();
+    _uploadIncomeProofDocumentResponse.close();
+    _uploadAddressProofDocumentRequest.close();
+    _uploadAddressProofDocumentResponse.close();
+    _uploadOtherNationalityProofDocumentRequest.close();
+    _uploadOtherNationalityProofDocumentResponse.close();
+    _showAnimatedButtonSubject.close();
     super.dispose();
   }
 }

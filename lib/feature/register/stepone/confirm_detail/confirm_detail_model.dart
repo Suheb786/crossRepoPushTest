@@ -138,13 +138,19 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     _confirmDetailRequest.safeAdd(ConfirmDetailUseCaseParams(
         name: nameController.text,
         idNumber: idNumberController.text,
-        dateOfBirth: selectedDobDate,
+        dateOfBirth: scannedDocumentResult.dob!.year == 0
+            ? selectedDobDate
+            : scannedDocumentResult.dob.toString(),
         nationality: nationalityController.text,
-        expiryDate: selectedExpiryDate,
+        expiryDate: scannedDocumentResult.doe!.year == 0
+            ? selectedExpiryDate
+            : scannedDocumentResult.doe!.toString(),
         gender: genderController.text,
         motherName: motherNameController.text,
         legalDocumentNo: legalDocumentController.text,
-        issuingDate: selectedIssuingDate,
+        issuingDate: scannedDocumentResult.issuingDate!.year == 0
+            ? selectedIssuingDate
+            : scannedDocumentResult.issuingDate.toString(),
         issuingPlace: issuingPlaceController.text,
         declarationSelected: _declarationSelectedSubject.value,
         scannedDocumentInformation: scannedDocumentResult));

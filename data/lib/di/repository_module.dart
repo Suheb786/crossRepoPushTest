@@ -56,7 +56,8 @@ var registerStepFourRepoProvider = Provider<RegisterStepFourRepository>(
 
 var uploadDocumentRepositoryProvider = Provider<UploadDocumentRepository>(
     (ref) => UploadDocumentRepositoryImpl(
-        ref.read(uploadDocumentDataSourceProvider)));
+        ref.read(uploadDocumentDataSourceProvider),
+        ref.read(uploadDocumentRemoteDataSourceProvider)));
 
 var homeAddressDialogRepositoryProvider = Provider<HomeAddressDialogRepository>(
     (ref) => HomeAddressDialogRepositoryImpl(

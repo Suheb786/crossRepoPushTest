@@ -222,6 +222,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Name field cannot be empty"),
         "emptyNationality": MessageLookupByLibrary.simpleMessage(
             "Nationality field cannot be empty"),
+        "emptyNationalityDocument": MessageLookupByLibrary.simpleMessage(
+            "Upload valid nationality document."),
         "emptyResidentCountry": MessageLookupByLibrary.simpleMessage(
             "Resident country field cannot be empty"),
         "emptyStreetAddress": MessageLookupByLibrary.simpleMessage(
@@ -261,6 +263,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error While saving IDCard"),
         "errorSavingStatus":
             MessageLookupByLibrary.simpleMessage("Error While Saving Status"),
+        "errorUploadImage":
+            MessageLookupByLibrary.simpleMessage("Error While Upload Image"),
         "estimatedTime": m0,
         "exemptPayeeOptional": MessageLookupByLibrary.simpleMessage(
             "EXEMPT PAYEE CODE (OPTIONAL)"),

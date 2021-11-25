@@ -240,7 +240,8 @@ final uploadDocumentsPageViewModelProvider =
   (ref) => UploadDocumentsPageViewModel(
       ref.read(sendDocumentsUseCaseUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
-      ref.read(checkOtherNationalityStatusUseCaseProvider)),
+      ref.read(checkOtherNationalityStatusUseCaseProvider),
+      ref.read(fileUploadUseCaseProvider)),
 );
 
 ///account ready page

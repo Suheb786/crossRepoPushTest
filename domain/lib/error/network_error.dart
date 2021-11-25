@@ -76,6 +76,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_SAVING_STATUS);
 
+          case "ex-055":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_UPLOADING_IMAGE);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

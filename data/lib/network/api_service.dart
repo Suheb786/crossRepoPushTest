@@ -13,6 +13,10 @@ import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/set_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
+import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
+import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
+import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
+import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
@@ -133,4 +137,14 @@ abstract class ApiService {
           @Body()
               CheckOtherNationalityStatusRequestEntity
                   checkOtherNationalityStatusRequestEntity);
+
+  ///upload document
+  @POST("/FileUpload/UploadDocuments")
+  Future<HttpResponse<UploadDocumentResponseEntity>> uploadDocument(
+      @Body() UploadDocumentRequestEntity uploadDocumentRequestEntity);
+
+  ///save upload document
+  @POST("/FileUpload/SaveUploadDocuments")
+  Future<HttpResponse<SaveUploadDocumentResponseEntity>> saveUploadDocument(
+      @Body() SaveUploadDocumentRequestEntity saveUploadDocumentRequestEntity);
 }

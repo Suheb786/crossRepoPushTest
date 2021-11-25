@@ -3,6 +3,7 @@ import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/account/check_other_nationality_status_response.dart';
+import 'package:domain/model/upload_document/file_upload_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -58,6 +59,10 @@ class UploadDocumentsPageView
                               ErrorType.EMPTY_ADDRESS_DOCUMENT) {
                             model.addressDocumentKey.currentState!.isValid =
                                 false;
+                          } else if (data.appError!.type ==
+                              ErrorType.EMPTY_NATIONALITY_DOCUMENT) {
+                            model.additionalNationalityKey.currentState!
+                                .isValid = false;
                           }
                           model.showToastWithError(data.appError!);
                         }
@@ -134,82 +139,114 @@ class UploadDocumentsPageView
                                               initialData: false,
                                               dataBuilder:
                                                   (context, isUploaded) {
-                                                return AppTextField(
-                                                  labelText: '',
-                                                  hintText: S
-                                                      .of(context)
-                                                      .uploadDocumentsSmall,
-                                                  controller:
-                                                      model.incomeController,
-                                                  key: model.incomeDocumentKey,
-                                                  readOnly: true,
-                                                  hintTextColor:
-                                                      Theme.of(context)
-                                                          .primaryColorDark,
-                                                  textFieldBorderColor:
-                                                      Theme.of(context)
-                                                          .accentTextTheme
-                                                          .bodyText1!
-                                                          .color,
-                                                  textColor: Theme.of(context)
-                                                      .primaryColorDark,
-                                                  suffixIcon: (value, data) {
-                                                    return InkWell(
-                                                      onTap: !(isUploaded!)
-                                                          ? () async {
-                                                              UploadDocumentSelectionWidget.show(
-                                                                  context,
-                                                                  onCameraTap:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.uploadIncomeDocument(
-                                                                    DocumentTypeEnum
-                                                                        .CAMERA);
-                                                              }, onUploadDocumentTap:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.uploadIncomeDocument(
-                                                                    DocumentTypeEnum
-                                                                        .GALLERY);
-                                                              }, onCancelled:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              },
-                                                                  title: S
-                                                                      .of(context)
-                                                                      .pleaseSelectYourAction);
-                                                            }
-                                                          : () {
-                                                              model
-                                                                  .incomeController
-                                                                  .clear();
-                                                              model
-                                                                  .updateIncomeUploadedStream(
+                                                return AppStreamBuilder<
+                                                    Resource<
+                                                        FileUploadResponse>>(
+                                                  stream: model
+                                                      .uploadIncomeProofDocumentStream,
+                                                  initialData: Resource.none(),
+                                                  onData: (data) {
+                                                    if (data.status ==
+                                                        Status.SUCCESS) {
+                                                      model.incomeProofDocumentId =
+                                                          data
+                                                              .data!
+                                                              .fileUploadContent!
+                                                              .documentId!;
+                                                      model.isIncomeDocumentUploaded =
+                                                          true;
+                                                      model.validateFields();
+                                                    }
+                                                  },
+                                                  dataBuilder: (context,
+                                                      incomeUploadedResponse) {
+                                                    return AppTextField(
+                                                      labelText: '',
+                                                      hintText: S
+                                                          .of(context)
+                                                          .uploadDocumentsSmall,
+                                                      controller: model
+                                                          .incomeController,
+                                                      key: model
+                                                          .incomeDocumentKey,
+                                                      readOnly: true,
+                                                      hintTextColor:
+                                                          Theme.of(context)
+                                                              .primaryColorDark,
+                                                      textFieldBorderColor:
+                                                          Theme.of(context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color,
+                                                      textColor:
+                                                          Theme.of(context)
+                                                              .primaryColorDark,
+                                                      suffixIcon:
+                                                          (value, data) {
+                                                        return InkWell(
+                                                          onTap: !(isUploaded!)
+                                                              ? () async {
+                                                                  UploadDocumentSelectionWidget.show(
+                                                                      context,
+                                                                      onCameraTap:
+                                                                          () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    model.uploadIncomeDocument(
+                                                                        DocumentTypeEnum
+                                                                            .CAMERA);
+                                                                  }, onUploadDocumentTap:
+                                                                          () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    model.uploadIncomeDocument(
+                                                                        DocumentTypeEnum
+                                                                            .GALLERY);
+                                                                  }, onCancelled:
+                                                                          () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  },
+                                                                      title: S
+                                                                          .of(context)
+                                                                          .pleaseSelectYourAction);
+                                                                }
+                                                              : () {
+                                                                  model
+                                                                      .incomeController
+                                                                      .clear();
+                                                                  model.updateIncomeUploadedStream(
                                                                       false);
-                                                            },
-                                                      child: Container(
-                                                          height: 16,
-                                                          width: 16,
-                                                          padding:
-                                                              EdgeInsets.all(5),
-                                                          child: isUploaded
-                                                              ? AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .delete,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark,
-                                                                )
-                                                              : AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .upload,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark,
-                                                                )),
+                                                                  model.isIncomeDocumentUploaded =
+                                                                      false;
+                                                                  model
+                                                                      .validateFields();
+                                                                },
+                                                          child: Container(
+                                                              height: 16,
+                                                              width: 16,
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(5),
+                                                              child: isUploaded
+                                                                  ? AppSvg
+                                                                      .asset(
+                                                                      AssetUtils
+                                                                          .delete,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                    )
+                                                                  : AppSvg
+                                                                      .asset(
+                                                                      AssetUtils
+                                                                          .upload,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                    )),
+                                                        );
+                                                      },
                                                     );
                                                   },
                                                 );
@@ -263,82 +300,115 @@ class UploadDocumentsPageView
                                               initialData: false,
                                               dataBuilder:
                                                   (context, isUploaded) {
-                                                return AppTextField(
-                                                  labelText: '',
-                                                  hintText: S
-                                                      .of(context)
-                                                      .uploadDocumentsSmall,
-                                                  controller:
-                                                      model.addressController,
-                                                  key: model.addressDocumentKey,
-                                                  readOnly: true,
-                                                  textFieldBorderColor:
-                                                      Theme.of(context)
-                                                          .accentTextTheme
-                                                          .bodyText1!
-                                                          .color,
-                                                  hintTextColor:
-                                                      Theme.of(context)
-                                                          .primaryColorDark,
-                                                  textColor: Theme.of(context)
-                                                      .primaryColorDark,
-                                                  suffixIcon: (value, data) {
-                                                    return InkWell(
-                                                      onTap: !(isUploaded!)
-                                                          ? () async {
-                                                              UploadDocumentSelectionWidget.show(
-                                                                  context,
-                                                                  onCameraTap:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.uploadAddressDocument(
-                                                                    DocumentTypeEnum
-                                                                        .CAMERA);
-                                                              }, onUploadDocumentTap:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.uploadAddressDocument(
-                                                                    DocumentTypeEnum
-                                                                        .GALLERY);
-                                                              }, onCancelled:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              },
-                                                                  title: S
-                                                                      .of(context)
-                                                                      .pleaseSelectYourAction);
-                                                            }
-                                                          : () {
-                                                              model
-                                                                  .addressController
-                                                                  .clear();
-                                                              model
-                                                                  .updateAddressUploadedStream(
+                                                return AppStreamBuilder<
+                                                    Resource<
+                                                        FileUploadResponse>>(
+                                                  stream: model
+                                                      .uploadAddressProofDocumentStream,
+                                                  initialData: Resource.none(),
+                                                  onData:
+                                                      (addressProofResponse) {
+                                                    if (addressProofResponse
+                                                            .status ==
+                                                        Status.SUCCESS) {
+                                                      model.addressProofDocumentId =
+                                                          addressProofResponse
+                                                              .data!
+                                                              .fileUploadContent!
+                                                              .documentId!;
+                                                      model.isAddressDocumentUploaded =
+                                                          true;
+                                                      model.validateFields();
+                                                    }
+                                                  },
+                                                  dataBuilder: (context, data) {
+                                                    return AppTextField(
+                                                      labelText: '',
+                                                      hintText: S
+                                                          .of(context)
+                                                          .uploadDocumentsSmall,
+                                                      controller: model
+                                                          .addressController,
+                                                      key: model
+                                                          .addressDocumentKey,
+                                                      readOnly: true,
+                                                      textFieldBorderColor:
+                                                          Theme.of(context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color,
+                                                      hintTextColor:
+                                                          Theme.of(context)
+                                                              .primaryColorDark,
+                                                      textColor:
+                                                          Theme.of(context)
+                                                              .primaryColorDark,
+                                                      suffixIcon:
+                                                          (value, data) {
+                                                        return InkWell(
+                                                          onTap: !(isUploaded!)
+                                                              ? () async {
+                                                                  UploadDocumentSelectionWidget.show(
+                                                                      context,
+                                                                      onCameraTap:
+                                                                          () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    model.uploadAddressDocument(
+                                                                        DocumentTypeEnum
+                                                                            .CAMERA);
+                                                                  }, onUploadDocumentTap:
+                                                                          () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                    model.uploadAddressDocument(
+                                                                        DocumentTypeEnum
+                                                                            .GALLERY);
+                                                                  }, onCancelled:
+                                                                          () {
+                                                                    Navigator.pop(
+                                                                        context);
+                                                                  },
+                                                                      title: S
+                                                                          .of(context)
+                                                                          .pleaseSelectYourAction);
+                                                                }
+                                                              : () {
+                                                                  model
+                                                                      .addressController
+                                                                      .clear();
+                                                                  model.updateAddressUploadedStream(
                                                                       false);
-                                                            },
-                                                      child: Container(
-                                                          height: 16,
-                                                          width: 16,
-                                                          padding:
-                                                              EdgeInsets.all(5),
-                                                          child: isUploaded
-                                                              ? AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .delete,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark,
-                                                                )
-                                                              : AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .upload,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark,
-                                                                )),
+                                                                  model.isAddressDocumentUploaded =
+                                                                      false;
+                                                                  model
+                                                                      .validateFields();
+                                                                },
+                                                          child: Container(
+                                                              height: 16,
+                                                              width: 16,
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(5),
+                                                              child: isUploaded
+                                                                  ? AppSvg
+                                                                      .asset(
+                                                                      AssetUtils
+                                                                          .delete,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                    )
+                                                                  : AppSvg
+                                                                      .asset(
+                                                                      AssetUtils
+                                                                          .upload,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                    )),
+                                                        );
+                                                      },
                                                     );
                                                   },
                                                 );
@@ -352,10 +422,20 @@ class UploadDocumentsPageView
                                           initialData: Resource.none(),
                                           stream: model
                                               .checkOtherNationalityStatusStream,
+                                          onData: (data) {
+                                            if (data.status == Status.SUCCESS) {
+                                              model.isOtherNationality = data
+                                                  .data!
+                                                  .checkOtherNationalityResponseContent!
+                                                  .status!;
+                                            }
+                                          },
                                           dataBuilder: (context, status) {
                                             return Visibility(
-                                                visible: status!.status ==
-                                                    Status.SUCCESS,
+                                                visible: status!
+                                                    .data!
+                                                    .checkOtherNationalityResponseContent!
+                                                    .status!,
                                                 child: Column(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.start,
@@ -421,67 +501,94 @@ class UploadDocumentsPageView
                                                           initialData: false,
                                                           dataBuilder: (context,
                                                               isUploaded) {
-                                                            return AppTextField(
-                                                              labelText: '',
-                                                              hintText: S
-                                                                  .of(context)
-                                                                  .uploadDocumentsSmall,
-                                                              controller: model
-                                                                  .additionalNationalityController,
-                                                              key: model
-                                                                  .additionalNationalityKey,
-                                                              textFieldBorderColor:
-                                                                  Theme.of(
+                                                            return AppStreamBuilder<
+                                                                Resource<
+                                                                    FileUploadResponse>>(
+                                                              stream: model
+                                                                  .uploadOtherNationalityProofDocumentStream,
+                                                              initialData:
+                                                                  Resource
+                                                                      .none(),
+                                                              onData:
+                                                                  (otherNationalityUploadResponse) {
+                                                                if (otherNationalityUploadResponse
+                                                                        .status ==
+                                                                    Status
+                                                                        .SUCCESS) {
+                                                                  model.otherNationalityProofDocumentId =
+                                                                      otherNationalityUploadResponse
+                                                                          .data!
+                                                                          .fileUploadContent!
+                                                                          .documentId!;
+                                                                  model.isOtherNationalityDocumentUploaded =
+                                                                      true;
+                                                                  model
+                                                                      .validateFields();
+                                                                }
+                                                              },
+                                                              dataBuilder:
+                                                                  (context,
+                                                                      data) {
+                                                                return AppTextField(
+                                                                  labelText: '',
+                                                                  hintText: S
+                                                                      .of(context)
+                                                                      .uploadDocumentsSmall,
+                                                                  controller: model
+                                                                      .additionalNationalityController,
+                                                                  key: model
+                                                                      .additionalNationalityKey,
+                                                                  textFieldBorderColor: Theme.of(
                                                                           context)
                                                                       .accentTextTheme
                                                                       .bodyText1!
                                                                       .color,
-                                                              readOnly: true,
-                                                              hintTextColor: Theme
-                                                                      .of(context)
-                                                                  .primaryColorDark,
-                                                              textColor: Theme.of(
-                                                                      context)
-                                                                  .primaryColorDark,
-                                                              suffixIcon:
-                                                                  (value,
-                                                                      data) {
-                                                                return InkWell(
-                                                                  onTap: !(isUploaded!)
-                                                                      ? () async {
-                                                                          UploadDocumentSelectionWidget.show(context, title: S.of(context).pleaseSelectYourAction, onCameraTap:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                            model.uploadAdditionalNationalityDocument(DocumentTypeEnum.CAMERA);
-                                                                          }, onUploadDocumentTap:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                            model.uploadAdditionalNationalityDocument(DocumentTypeEnum.GALLERY);
-                                                                          }, onCancelled:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                          });
-                                                                        }
-                                                                      : () {
-                                                                          model
-                                                                              .additionalNationalityController
-                                                                              .clear();
-                                                                          model.updateAdditionalNationalityUploadedStream(
-                                                                              false);
-                                                                        },
-                                                                  child: Container(
-                                                                      height: 16,
-                                                                      width: 16,
-                                                                      padding: EdgeInsets.all(5),
-                                                                      child: isUploaded
-                                                                          ? AppSvg.asset(
-                                                                              AssetUtils.delete,
-                                                                              color: Theme.of(context).primaryColorDark,
-                                                                            )
-                                                                          : AppSvg.asset(
-                                                                              AssetUtils.upload,
-                                                                              color: Theme.of(context).primaryColorDark,
-                                                                            )),
+                                                                  readOnly:
+                                                                      true,
+                                                                  hintTextColor:
+                                                                      Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark,
+                                                                  textColor: Theme.of(
+                                                                          context)
+                                                                      .primaryColorDark,
+                                                                  suffixIcon:
+                                                                      (value,
+                                                                          data) {
+                                                                    return InkWell(
+                                                                      onTap: !(isUploaded!)
+                                                                          ? () async {
+                                                                              UploadDocumentSelectionWidget.show(context, title: S.of(context).pleaseSelectYourAction, onCameraTap: () {
+                                                                                Navigator.pop(context);
+                                                                                model.uploadAdditionalNationalityDocument(DocumentTypeEnum.CAMERA);
+                                                                              }, onUploadDocumentTap: () {
+                                                                                Navigator.pop(context);
+                                                                                model.uploadAdditionalNationalityDocument(DocumentTypeEnum.GALLERY);
+                                                                              }, onCancelled: () {
+                                                                                Navigator.pop(context);
+                                                                              });
+                                                                            }
+                                                                          : () {
+                                                                              model.additionalNationalityController.clear();
+                                                                              model.isOtherNationalityDocumentUploaded = false;
+                                                                              model.validateFields();
+                                                                              model.updateAdditionalNationalityUploadedStream(false);
+                                                                            },
+                                                                      child: Container(
+                                                                          height: 16,
+                                                                          width: 16,
+                                                                          padding: EdgeInsets.all(5),
+                                                                          child: isUploaded
+                                                                              ? AppSvg.asset(
+                                                                                  AssetUtils.delete,
+                                                                                  color: Theme.of(context).primaryColorDark,
+                                                                                )
+                                                                              : AppSvg.asset(
+                                                                                  AssetUtils.upload,
+                                                                                  color: Theme.of(context).primaryColorDark,
+                                                                                )),
+                                                                    );
+                                                                  },
                                                                 );
                                                               },
                                                             );
@@ -520,9 +627,20 @@ class UploadDocumentsPageView
                                                   ))),
                                         ),
                                         Center(
-                                          child: AnimatedButton(
-                                              buttonText:
-                                                  S.of(context).swipeToProceed),
+                                          child: AppStreamBuilder<bool>(
+                                            stream:
+                                                model.showAnimatedButtonStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              return Visibility(
+                                                visible: isValid!,
+                                                child: AnimatedButton(
+                                                    buttonText: S
+                                                        .of(context)
+                                                        .swipeToProceed),
+                                              );
+                                            },
+                                          ),
                                         )
                                       ],
                                     ))),

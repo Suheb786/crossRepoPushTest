@@ -17,6 +17,8 @@ import 'package:data/source/register/register_step_three_datasource.dart';
 import 'package:data/source/register/remote/register_remote_ds_impl.dart';
 import 'package:data/source/register/remote/register_step_four_remote_ds_impl.dart';
 import 'package:data/source/register/remote/register_step_three_remote_ds_impl.dart';
+import 'package:data/source/upload_document/remote/upload_document_remote_ds_impl.dart';
+import 'package:data/source/upload_document/upload_document_datasource.dart';
 import 'package:data/source/user/remote/user_remote_ds_impl.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:dio/dio.dart';
@@ -100,3 +102,8 @@ final accountRemoteDS = Provider<AccountRemoteDS>(
   (ref) => AccountRemoteDSImpl(
       ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)),
 );
+
+///upload document remote DS
+var uploadDocumentRemoteDataSourceProvider = Provider<UploadDocumentRemoteDS>(
+    (ref) => UploadDocumentRemoteDSImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));

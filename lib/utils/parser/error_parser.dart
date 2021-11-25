@@ -216,6 +216,10 @@ class ErrorParser {
         return localisedHelper.idCardNotAllowed;
       case ErrorType.ERROR_SAVING_STATUS:
         return localisedHelper.errorSavingStatus;
+      case ErrorType.EMPTY_NATIONALITY_DOCUMENT:
+        return localisedHelper.emptyNationalityDocument;
+      case ErrorType.ERROR_WHILE_UPLOADING_IMAGE:
+        return localisedHelper.errorUploadImage;
 
       default:
         return "";

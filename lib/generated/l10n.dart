@@ -4040,6 +4040,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Upload valid nationality document.`
+  String get emptyNationalityDocument {
+    return Intl.message(
+      'Upload valid nationality document.',
+      name: 'emptyNationalityDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Upload Image`
+  String get errorUploadImage {
+    return Intl.message(
+      'Error While Upload Image',
+      name: 'errorUploadImage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
