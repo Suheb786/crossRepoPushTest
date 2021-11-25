@@ -411,5 +411,6 @@
   "deviceNotFound": "Device Not Found",
   "invalidUserNamePassword": "You have entered an invalid username or password, please try again",
   "getLater": "I’ll get it later",
-  "getCardNow": "Get your card now!"
+  "getCardNow": "Get your card now!",
+  "totalBalance": "Total Balance"
 }

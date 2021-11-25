@@ -4,7 +4,9 @@ import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart'
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
-import 'package:neo_bank/feature/my_dashboard/get_card/get_card_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/get_card/get_card_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/home_builder_view_model.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_model.dart';
 import 'package:neo_bank/feature/register/step_five/agent_selection/agent_selection_model.dart';
@@ -354,4 +356,14 @@ final yearMonthDialogViewModelProvider =
 final getCardViewModelProvider =
     ChangeNotifierProvider.autoDispose<GetCardViewModel>(
   (ref) => GetCardViewModel(ref.read(getCardUseCaseProvider)),
+);
+
+final appHomeViewModelProvider =
+    ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
+  (ref) => AppHomeViewModel(),
+);
+
+final homeBuilderViewModelProvider =
+    ChangeNotifierProvider.autoDispose<HomeBuilderViewModel>(
+  (ref) => HomeBuilderViewModel(),
 );

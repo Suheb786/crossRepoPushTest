@@ -2,21 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
-import 'package:neo_bank/feature/my_dashboard/get_card/get_card_page_view.dart';
-import 'package:neo_bank/feature/my_dashboard/get_card/get_card_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page_view.dart';
+import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
-class GetCardPage extends BasePage<GetCardViewModel> {
+class AppHomePage extends BasePage<AppHomeViewModel> {
   @override
   JobAndIncomePageState createState() => JobAndIncomePageState();
 }
 
 class JobAndIncomePageState
-    extends BaseStatefulPage<GetCardViewModel, GetCardPage> {
+    extends BaseStatefulPage<AppHomeViewModel, AppHomePage> {
   @override
   ProviderBase provideBase() {
-    return getCardViewModelProvider;
+    return appHomeViewModelProvider;
   }
 
   @override
@@ -45,9 +44,7 @@ class JobAndIncomePageState
       height: 80,
       width: 80,
       decoration: BoxDecoration(
-        color: Theme.of(context).primaryColorDark,
-        shape: BoxShape.circle
-      ),
+          color: Theme.of(context).primaryColorDark, shape: BoxShape.circle),
       child: Center(
         child: Image.asset(AssetUtils.logoWhite),
       ),
@@ -57,11 +54,11 @@ class JobAndIncomePageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme.of(context).accentColor;
   }
 
   @override
-  Widget buildView(BuildContext context, GetCardViewModel model) {
-    return GetCardPageView(provideBase());
+  Widget buildView(BuildContext context, AppHomeViewModel model) {
+    return AppHomePageView(provideBase());
   }
 }
