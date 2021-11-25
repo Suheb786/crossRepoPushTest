@@ -1,4 +1,6 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/account/check_videocall_status_response.dart';
+import 'package:domain/usecase/account/check_videocall_status_usecase.dart';
 import 'package:domain/usecase/register/review_app_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -10,6 +12,7 @@ import 'package:rxdart/rxdart.dart';
 
 class ReviewApplicationPageViewModel extends BasePageViewModel {
   final ReviewApplicationUseCase _reviewAppUseCase;
+  final CheckVideoCallStatusUseCase _checkVideoCallStatusUseCase;
 
   ScrollController scrollController = ScrollController();
 
@@ -35,7 +38,20 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   Stream<Resource<List<String>>> get reviewAppStream =>
       _reviewAppResponse.stream;
 
-  ReviewApplicationPageViewModel(this._reviewAppUseCase) {
+  ///check video call status subject holder
+  PublishSubject<CheckVideoCallStatusUseCaseParams> _checkVideoCallRequest =
+      PublishSubject();
+
+  ///check video call status response holder
+  PublishSubject<Resource<CheckVideoCallResponse>> _checkVideoCallResponse =
+      PublishSubject();
+
+  ///check video call status stream
+  Stream<Resource<CheckVideoCallResponse>> get checkVideoCallStream =>
+      _checkVideoCallResponse.stream;
+
+  ReviewApplicationPageViewModel(
+      this._reviewAppUseCase, this._checkVideoCallStatusUseCase) {
     _reviewAppRequest.listen((value) {
       RequestManager(value,
               createCall: () => _reviewAppUseCase.execute(params: value))
@@ -44,6 +60,19 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
         _reviewAppResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
+          showErrorState();
+        }
+      });
+    });
+
+    _checkVideoCallRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _checkVideoCallStatusUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _checkVideoCallResponse.add(event);
+        if (event.status == Status.ERROR) {
           showErrorState();
         }
       });
@@ -62,6 +91,10 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   void validateReviewDetails() {
     _reviewAppRequest.safeAdd(ReviewApplicationUseCaseParams(
         declarationSelected: _declarationSelected.value));
+  }
+
+  void checkVideoCallStatus() {
+    _checkVideoCallRequest.safeAdd(CheckVideoCallStatusUseCaseParams());
   }
 
   ///controllers
@@ -121,5 +154,12 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     purposeOfAccountOpeningController.text = 'Salary';
     expectedMonthlyTransactionsController.text = '12,000';
     expectedAnnualTransactionsController.text = '102,000';
+  }
+
+  @override
+  void dispose() {
+    _checkVideoCallRequest.close();
+    _checkVideoCallResponse.close();
+    super.dispose();
   }
 }

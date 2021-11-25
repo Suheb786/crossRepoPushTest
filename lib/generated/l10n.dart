@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4015,6 +4016,36 @@ class S {
     return Intl.message(
       'You have entered an invalid username or password, please try again',
       name: 'invalidUserNamePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Saving Status`
+  String get errorSavingStatus {
+    return Intl.message(
+      'Error While Saving Status',
+      name: 'errorSavingStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload valid nationality document.`
+  String get emptyNationalityDocument {
+    return Intl.message(
+      'Upload valid nationality document.',
+      name: 'emptyNationalityDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Upload Image`
+  String get errorUploadImage {
+    return Intl.message(
+      'Error While Upload Image',
+      name: 'errorUploadImage',
       desc: '',
       args: [],
     );

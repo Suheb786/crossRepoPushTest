@@ -70,6 +70,18 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ID_CARD_NOT_ALLOWED);
 
+          case "ex-050":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_SAVING_STATUS);
+
+          case "ex-055":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_UPLOADING_IMAGE);
+
           case "err-069":
             return AppError(
                 cause: cause,

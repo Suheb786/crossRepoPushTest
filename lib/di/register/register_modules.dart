@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/account/account_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/account_registration/account_regisration_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/fatca_crs/fatca_crs_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
@@ -122,8 +124,9 @@ final additionalIncomeSourceDialogViwModelProvider =
 ///taxation details page view model provider
 final taxationDetailsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<TaxationDetailsPageViewModel>(
-  (ref) =>
-      TaxationDetailsPageViewModel(ref.read(taxationDetailsUseCaseProvider)),
+  (ref) => TaxationDetailsPageViewModel(
+      ref.read(setFatcaQuestionsResponseUseCaseProvider),
+      ref.read(getFatcaQuestionsUseCaseProvider)),
 );
 
 final areYouUSCitizenViewModelProvider =
@@ -227,7 +230,8 @@ final registerStepFourViewModelProvider =
 final reviewApplicationPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ReviewApplicationPageViewModel>(
   (ref) => ReviewApplicationPageViewModel(
-      ref.read(reviewApplicationUseCaseProvider)),
+      ref.read(reviewApplicationUseCaseProvider),
+      ref.read(checkVideoCallStatusUseCaseProvider)),
 );
 
 ///upload documents page
@@ -235,7 +239,9 @@ final uploadDocumentsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<UploadDocumentsPageViewModel>(
   (ref) => UploadDocumentsPageViewModel(
       ref.read(sendDocumentsUseCaseUseCaseProvider),
-      ref.read(uploadDocumentUseCaseProvider)),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(checkOtherNationalityStatusUseCaseProvider),
+      ref.read(fileUploadUseCaseProvider)),
 );
 
 ///account ready page

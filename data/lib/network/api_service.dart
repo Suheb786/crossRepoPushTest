@@ -1,3 +1,7 @@
+import 'package:data/entity/remote/account/check_other_nationality_status_request_entity.dart';
+import 'package:data/entity/remote/account/check_other_nationality_status_response_entity.dart';
+import 'package:data/entity/remote/account/check_videocall_status_request_entity.dart';
+import 'package:data/entity/remote/account/check_videocall_status_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
@@ -5,14 +9,20 @@ import 'package:data/entity/remote/bank_smart/get_account_details_request_entity
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/set_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
+import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
+import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
+import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
+import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
-import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
+import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/register_response_entity.dart';
@@ -92,11 +102,11 @@ abstract class ApiService {
       @Body() AddAccountPurposeRequest addAccountPurposeRequest);
 
   @POST("/FatcaCrs/get")
-  Future<String> getFatcaQuestions(
+  Future<HttpResponse<GetFatcaQuestionsResponseEntity>> getFatcaQuestions(
       @Body() GetFatcaQuestionsRequestEntity getFatcaQuestionsRequestEntity);
 
   @POST("/FatcaCrs/set")
-  Future<String> saveFatcaInformation(
+  Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
       @Body()
           SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
 
@@ -115,4 +125,28 @@ abstract class ApiService {
   ///get token
   @GET("/auth/verifyToken")
   Future<HttpResponse<GetTokenResponseEntity>> getToken();
+
+  ///check video call status
+  @POST("/Account/CheckVideoCallStatus")
+  Future<HttpResponse<CheckVideoCallStatusResponseEntity>> checkVideoCallStatus(
+      @Body()
+          CheckVideoCallStatusRequestEntity checkVideoCallStatusRequestEntity);
+
+  ///check other nationality status
+  @POST("/Account/CheckOtherNationalityStatus")
+  Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
+      checkOtherNationalityStatus(
+          @Body()
+              CheckOtherNationalityStatusRequestEntity
+                  checkOtherNationalityStatusRequestEntity);
+
+  ///upload document
+  @POST("/FileUpload/UploadDocuments")
+  Future<HttpResponse<UploadDocumentResponseEntity>> uploadDocument(
+      @Body() UploadDocumentRequestEntity uploadDocumentRequestEntity);
+
+  ///save upload document
+  @POST("/FileUpload/SaveUploadDocumentsDocs")
+  Future<HttpResponse<SaveUploadDocumentResponseEntity>> saveUploadDocument(
+      @Body() SaveUploadDocumentRequestEntity saveUploadDocumentRequestEntity);
 }

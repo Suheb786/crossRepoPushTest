@@ -1,5 +1,6 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
+import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
 import 'package:domain/usecase/user/account_ready_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
@@ -14,7 +15,6 @@ import 'package:domain/usecase/user/product_selector_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
-import 'package:domain/usecase/user/send_documents_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:domain/usecase/user/video_call_info_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -30,10 +30,10 @@ final profileDetailsUseCaseProvider =
   (ref) => ProfileDetailsUseCase(ref.read(userRepoProvider)),
 );
 
-///[UploadDocumentsUseCase] provider
+///[SendDocumentsUseCase] provider
 final sendDocumentsUseCaseUseCaseProvider =
     Provider.autoDispose<SendDocumentsUseCase>(
-  (ref) => SendDocumentsUseCase(),
+  (ref) => SendDocumentsUseCase(ref.read(uploadDocumentRepositoryProvider)),
 );
 
 ///[IdVerificationInfoUseCase] provider
