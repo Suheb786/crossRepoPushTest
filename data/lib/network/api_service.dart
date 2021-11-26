@@ -7,6 +7,7 @@ import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_details_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/get_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
@@ -111,7 +112,7 @@ abstract class ApiService {
           SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
 
   @POST("/BankSmart/GetAccount")
-  Future<String> getAccount(
+  Future<HttpResponse<GetAccountResponseEntity>> getAccount(
       @Body() GetAccountRequestEntity getAccountRequestEntity);
 
   @POST("/BankSmart/CreateAccount")

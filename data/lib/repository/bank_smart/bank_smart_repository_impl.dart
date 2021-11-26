@@ -4,6 +4,7 @@ import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/bank_smart/customer_account_details.dart';
 import 'package:domain/model/bank_smart/customer_information.dart';
+import 'package:domain/model/bank_smart/get_account_response.dart';
 import 'package:domain/model/bank_smart/purpose_of_account_opening_response.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 
@@ -41,15 +42,15 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
   }
 
   @override
-  Future<Either<NetworkError, String>> getAccount(
-      {required bool getToken, String? productCode}) async {
+  Future<Either<NetworkError, GetAccountResponse>> getAccount(
+      {required bool getToken}) async {
     final result = await safeApiCall(
       _bankSmartRemoteDS.getAccount(
-          getToken: getToken, productCode: productCode),
+          getToken: getToken)
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 

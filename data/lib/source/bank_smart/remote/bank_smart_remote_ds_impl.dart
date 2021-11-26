@@ -5,6 +5,7 @@ import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart
 import 'package:data/entity/remote/bank_smart/customer_details_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_details_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/get_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/network/api_service.dart';
@@ -43,10 +44,11 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
   }
 
   @override
-  Future<String> getAccount({bool? getToken, String? productCode}) async {
+  Future<HttpResponse<GetAccountResponseEntity>> getAccount(
+      {bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getAccount(GetAccountRequestEntity(
-        baseData: baseData, productCode: productCode, getToken: getToken));
+        baseData: baseData.toJson(), getToken: getToken));
   }
 
   @override

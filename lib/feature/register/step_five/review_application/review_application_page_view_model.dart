@@ -1,6 +1,8 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/account/check_videocall_status_response.dart';
+import 'package:domain/model/bank_smart/get_account_response.dart';
 import 'package:domain/usecase/account/check_videocall_status_usecase.dart';
+import 'package:domain/usecase/bank_smart/get_account_usecase.dart';
 import 'package:domain/usecase/register/review_app_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -13,6 +15,7 @@ import 'package:rxdart/rxdart.dart';
 class ReviewApplicationPageViewModel extends BasePageViewModel {
   final ReviewApplicationUseCase _reviewAppUseCase;
   final CheckVideoCallStatusUseCase _checkVideoCallStatusUseCase;
+  final GetAccountUseCase _getAccountUseCase;
 
   ScrollController scrollController = ScrollController();
 
@@ -50,8 +53,19 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   Stream<Resource<CheckVideoCallResponse>> get checkVideoCallStream =>
       _checkVideoCallResponse.stream;
 
-  ReviewApplicationPageViewModel(
-      this._reviewAppUseCase, this._checkVideoCallStatusUseCase) {
+  ///get Account subject holder
+  PublishSubject<GetAccountUseCaseParams> _getAccountRequest = PublishSubject();
+
+  ///get Account response holder
+  PublishSubject<Resource<GetAccountResponse>> _getAccountResponse =
+      PublishSubject();
+
+  ///get Account stream
+  Stream<Resource<GetAccountResponse>> get getAccountStream =>
+      _getAccountResponse.stream;
+
+  ReviewApplicationPageViewModel(this._reviewAppUseCase,
+      this._checkVideoCallStatusUseCase, this._getAccountUseCase) {
     _reviewAppRequest.listen((value) {
       RequestManager(value,
               createCall: () => _reviewAppUseCase.execute(params: value))
@@ -74,6 +88,20 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
         _checkVideoCallResponse.add(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _getAccountRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getAccountUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _getAccountResponse.add(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -95,6 +123,10 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
 
   void checkVideoCallStatus() {
     _checkVideoCallRequest.safeAdd(CheckVideoCallStatusUseCaseParams());
+  }
+
+  void getAccount() {
+    _getAccountRequest.safeAdd(GetAccountUseCaseParams());
   }
 
   ///controllers
@@ -160,6 +192,8 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   void dispose() {
     _checkVideoCallRequest.close();
     _checkVideoCallResponse.close();
+    _getAccountRequest.close();
+    _getAccountResponse.close();
     super.dispose();
   }
 }

@@ -104,6 +104,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.OTP_VERIFY_LIMIT_EXCEEDED);
 
+          case "ex-017":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_CREATING_ACCOUNT);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

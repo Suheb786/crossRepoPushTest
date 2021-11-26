@@ -21,14 +21,14 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   final String? stateCors;
   @JsonKey(name: "addressCurr")
   final String? addressCurr;
-  @JsonKey(name: "cityCurr")
-  final String? cityCurr;
   @JsonKey(name: "countryCurr")
   final String? countryCurr;
   @JsonKey(name: "stateCurr")
   final String? stateCurr;
+  @JsonKey(name: "cityCurr")
+  final String? cityCurr;
   @JsonKey(name: "addressHomeCountry")
-  final String? addressHomeCountry;
+  final dynamic? addressHomeCountry;
   @JsonKey(name: "countryHome")
   final String? countryHome;
   @JsonKey(name: "stateHome")
@@ -45,38 +45,42 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   final String? crsRelevantInd;
   @JsonKey(name: "areYouAuSCitizenInd")
   final String? areYouAuSCitizenInd;
-  @JsonKey(name: "areYouAUSTaxResidentInd")
-  final String? areYouAUSTaxResidentInd;
-  @JsonKey(name: "wereYouBornInTheUSInd")
-  final String? wereYouBornInTheUSInd;
-  @JsonKey(name: "countryUSOrUAEInd")
-  final String? countryUSOrUAEInd;
+  @JsonKey(name: "areYouAusTaxResidentInd")
+  final String? areYouAusTaxResidentInd;
+  @JsonKey(name: "wereYouBornInTheUsInd")
+  final String? wereYouBornInTheUsInd;
+  @JsonKey(name: "countryUsOrUaeInd")
+  final String? countryUsOrUaeInd;
   @JsonKey(name: "phone1")
   final String? phone1;
   @JsonKey(name: "phone2")
   final String? phone2;
   @JsonKey(name: "mobileNo")
   final String? mobileNo;
-  @JsonKey(name: "customerEmail")
-  final String? customerEmail;
-  @JsonKey(name: "idno")
-  final String? idno;
-  @JsonKey(name: "idExpirydate")
-  final String? idExpirydate;
+  @JsonKey(name: "email")
+  final String? email;
+  @JsonKey(name: "nic")
+  final String? nic;
+  @JsonKey(name: "nationalCardNumber")
+  final dynamic? nationalCardNumber;
+  @JsonKey(name: "nicExpirydate")
+  final DateTime? nicExpirydate;
   @JsonKey(name: "dob")
-  final String? dob;
+  final DateTime? dob;
   @JsonKey(name: "gender")
   final String? gender;
+  @JsonKey(name: "maritalstatus")
+  final dynamic? maritalstatus;
   @JsonKey(name: "tinInd")
-  final String? tinInd;
+  final dynamic? tinInd;
   @JsonKey(name: "tinno1Ind")
-  final String? tinno1Ind;
+  final dynamic? tinno1Ind;
   @JsonKey(name: "taxCountry1Ind")
-  final String? taxCountry1Ind;
+  final dynamic? taxCountry1Ind;
   @JsonKey(name: "tinNo2Ind")
-  final double? tinNo2Ind;
+  final dynamic? tinNo2Ind;
   @JsonKey(name: "taxCountry2Ind")
-  final double? taxCountry2Ind;
+  final String? taxCountry2Ind;
   @JsonKey(name: "tinNo3Ind")
   final String? tinNo3Ind;
   @JsonKey(name: "taxCountry3Ind")
@@ -90,13 +94,13 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "taxCountry5Ind")
   final String? taxCountry5Ind;
   @JsonKey(name: "fatcaNoReason")
-  final String? fatcaNoReason;
+  final dynamic? fatcaNoReason;
   @JsonKey(name: "reasonBind")
-  final double? reasonBind;
+  final dynamic? reasonBind;
   @JsonKey(name: "groupCode")
   final String? groupCode;
   @JsonKey(name: "mdmid")
-  final String? mdmid;
+  final dynamic? mdmid;
   @JsonKey(name: "rManager")
   final String? rManager;
   @JsonKey(name: "riskProfile")
@@ -108,27 +112,27 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "lastName")
   final String? lastName;
   @JsonKey(name: "nationality")
-  final double? nationality;
+  final String? nationality;
   @JsonKey(name: "idIssueCountry")
   final String? idIssueCountry;
   @JsonKey(name: "passportNumber")
   final String? passportNumber;
+  @JsonKey(name: "passportIssueDate")
+  final DateTime? passportIssueDate;
   @JsonKey(name: "passportExpiry")
-  final String? passportExpiry;
+  final dynamic? passportExpiry;
   @JsonKey(name: "passportIssueCountry")
   final String? passportIssueCountry;
   @JsonKey(name: "passportGender")
   final String? passportGender;
   @JsonKey(name: "onboardingCountry")
   final String? onboardingCountry;
-  @JsonKey(name: "profession")
-  final String? profession;
   @JsonKey(name: "employerName")
-  final double? employerName;
+  final String? employerName;
   @JsonKey(name: "incomeBracket")
   final String? incomeBracket;
   @JsonKey(name: "kycReviewDate")
-  final String? kycReviewDate;
+  final DateTime? kycReviewDate;
   @JsonKey(name: "dualCitizenship")
   final String? dualCitizenship;
   @JsonKey(name: "citizenCountry2")
@@ -140,11 +144,85 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "hni")
   final String? hni;
   @JsonKey(name: "refererPromoCode")
-  final String? refererPromoCode;
-  @JsonKey(name: "ourBranchID")
-  final String? ourBranchID;
-  @JsonKey(name: "createBy")
-  final String? createBy;
+  final dynamic? refererPromoCode;
+  @JsonKey(name: "ourBranchId")
+  final dynamic? ourBranchId;
+  @JsonKey(name: "idType")
+  final dynamic? idType;
+  @JsonKey(name: "firstNameAr")
+  final dynamic? firstNameAr;
+  @JsonKey(name: "secondNameAr")
+  final dynamic? secondNameAr;
+  @JsonKey(name: "thirdNameAr")
+  final dynamic? thirdNameAr;
+  @JsonKey(name: "familyNameAr")
+  final dynamic? familyNameAr;
+  @JsonKey(name: "motherFirstName")
+  final dynamic? motherFirstName;
+  @JsonKey(name: "placeofBirth")
+  final dynamic? placeofBirth;
+  @JsonKey(name: "countryofBirth")
+  final dynamic? countryofBirth;
+  @JsonKey(name: "relationshipPep")
+  final dynamic? relationshipPep;
+  @JsonKey(name: "namePep")
+  final dynamic? namePep;
+  @JsonKey(name: "rolePep")
+  final dynamic? rolePep;
+  @JsonKey(name: "beneficialOwner")
+  final dynamic? beneficialOwner;
+  @JsonKey(name: "districtCorresp")
+  final dynamic? districtCorresp;
+  @JsonKey(name: "addressLine1")
+  final dynamic? addressLine1;
+  @JsonKey(name: "spouseName")
+  final dynamic? spouseName;
+  @JsonKey(name: "specialNeedsPerson")
+  final dynamic? specialNeedsPerson;
+  @JsonKey(name: "natureofSpecialNeeds")
+  final dynamic? natureofSpecialNeeds;
+  @JsonKey(name: "employmentStatus")
+  final dynamic? employmentStatus;
+  @JsonKey(name: "occupation")
+  final String? occupation;
+  @JsonKey(name: "mainSourceofIncome")
+  final dynamic? mainSourceofIncome;
+  @JsonKey(name: "otherEmploymentStatus")
+  final dynamic? otherEmploymentStatus;
+  @JsonKey(name: "annualIncome")
+  final int? annualIncome;
+  @JsonKey(name: "monthlyIncome")
+  final double? monthlyIncome;
+  @JsonKey(name: "additionalIncomeSource")
+  final dynamic? additionalIncomeSource;
+  @JsonKey(name: "otherAdditionalIncomeSource")
+  final dynamic? otherAdditionalIncomeSource;
+  @JsonKey(name: "additionalIncomeAmount")
+  final int? additionalIncomeAmount;
+  @JsonKey(name: "employerPhone")
+  final dynamic? employerPhone;
+  @JsonKey(name: "reasonforBanking")
+  final dynamic? reasonforBanking;
+  @JsonKey(name: "preferredLanguage")
+  final dynamic? preferredLanguage;
+  @JsonKey(name: "accountOfficer")
+  final dynamic? accountOfficer;
+  @JsonKey(name: "ifrsFields")
+  final dynamic? ifrsFields;
+  @JsonKey(name: "cbjSecretNumber")
+  final dynamic? cbjSecretNumber;
+  @JsonKey(name: "obligerRating")
+  final dynamic? obligerRating;
+  @JsonKey(name: "smsSubscription")
+  final dynamic? smsSubscription;
+  @JsonKey(name: "titlear")
+  final dynamic? titlear;
+  @JsonKey(name: "empCountry")
+  final dynamic? empCountry;
+  @JsonKey(name: "empState")
+  final dynamic? empState;
+  @JsonKey(name: "empCity")
+  final dynamic? empCity;
 
   CustomerDetailsEntity(
       {this.categoryId,
@@ -154,9 +232,9 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
       this.countryCors,
       this.stateCors,
       this.addressCurr,
-      this.cityCurr,
       this.countryCurr,
       this.stateCurr,
+      this.cityCurr,
       this.addressHomeCountry,
       this.countryHome,
       this.stateHome,
@@ -166,17 +244,19 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
       this.fatcaRelevantInd,
       this.crsRelevantInd,
       this.areYouAuSCitizenInd,
-      this.areYouAUSTaxResidentInd,
-      this.wereYouBornInTheUSInd,
-      this.countryUSOrUAEInd,
+      this.areYouAusTaxResidentInd,
+      this.wereYouBornInTheUsInd,
+      this.countryUsOrUaeInd,
       this.phone1,
       this.phone2,
       this.mobileNo,
-      this.customerEmail,
-      this.idno,
-      this.idExpirydate,
+      this.email,
+      this.nic,
+      this.nationalCardNumber,
+      this.nicExpirydate,
       this.dob,
       this.gender,
+      this.maritalstatus,
       this.tinInd,
       this.tinno1Ind,
       this.taxCountry1Ind,
@@ -200,11 +280,11 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
       this.nationality,
       this.idIssueCountry,
       this.passportNumber,
+      this.passportIssueDate,
       this.passportExpiry,
       this.passportIssueCountry,
       this.passportGender,
       this.onboardingCountry,
-      this.profession,
       this.employerName,
       this.incomeBracket,
       this.kycReviewDate,
@@ -214,8 +294,45 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
       this.blackList,
       this.hni,
       this.refererPromoCode,
-      this.ourBranchID,
-      this.createBy});
+      this.ourBranchId,
+      this.idType,
+      this.firstNameAr,
+      this.secondNameAr,
+      this.thirdNameAr,
+      this.familyNameAr,
+      this.motherFirstName,
+      this.placeofBirth,
+      this.countryofBirth,
+      this.relationshipPep,
+      this.namePep,
+      this.rolePep,
+      this.beneficialOwner,
+      this.districtCorresp,
+      this.addressLine1,
+      this.spouseName,
+      this.specialNeedsPerson,
+      this.natureofSpecialNeeds,
+      this.employmentStatus,
+      this.occupation,
+      this.mainSourceofIncome,
+      this.otherEmploymentStatus,
+      this.annualIncome,
+      this.monthlyIncome,
+      this.additionalIncomeSource,
+      this.otherAdditionalIncomeSource,
+      this.additionalIncomeAmount,
+      this.employerPhone,
+      this.reasonforBanking,
+      this.preferredLanguage,
+      this.accountOfficer,
+      this.ifrsFields,
+      this.cbjSecretNumber,
+      this.obligerRating,
+      this.smsSubscription,
+      this.titlear,
+      this.empCountry,
+      this.empState,
+      this.empCity});
 
   factory CustomerDetailsEntity.fromJson(Map<String, dynamic> json) =>
       _$CustomerDetailsEntityFromJson(json);
@@ -244,15 +361,9 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
         fatcaRelevantInd: data.fatcaRelevantInd,
         crsRelevantInd: data.crsRelevantInd,
         areYouAuSCitizenInd: data.areYouAuSCitizenInd,
-        areYouAUSTaxResidentInd: data.areYouAUSTaxResidentInd,
-        wereYouBornInTheUSInd: data.wereYouBornInTheUSInd,
-        countryUSOrUAEInd: data.countryUSOrUAEInd,
         phone1: data.phone1,
         phone2: data.phone2,
         mobileNo: data.mobileNo,
-        customerEmail: data.customerEmail,
-        idno: data.idno,
-        idExpirydate: data.idExpirydate,
         dob: data.dob,
         gender: data.gender,
         tinInd: data.tinInd,
@@ -282,7 +393,6 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
         passportIssueCountry: data.passportIssueCountry,
         passportGender: data.passportGender,
         onboardingCountry: data.onboardingCountry,
-        profession: data.profession,
         employerName: data.employerName,
         incomeBracket: data.incomeBracket,
         kycReviewDate: data.kycReviewDate,
@@ -292,81 +402,167 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
         blackList: data.blackList,
         hni: data.hni,
         refererPromoCode: data.refererPromoCode,
-        ourBranchID: data.ourBranchID,
-        createBy: data.createBy);
+        annualIncome: data.annualIncome,
+        occupation: data.occupation,
+        spouseName: data.spouseName,
+        employmentStatus: data.employmentStatus,
+        email: data.email,
+        additionalIncomeSource: data.additionalIncomeSource,
+        monthlyIncome: data.monthlyIncome,
+        accountOfficer: data.accountOfficer,
+        additionalIncomeAmount: data.additionalIncomeAmount,
+        addressLine1: data.addressLine1,
+        areYouAusTaxResidentInd: data.areYouAusTaxResidentInd,
+        beneficialOwner: data.beneficialOwner,
+        cbjSecretNumber: data.cbjSecretNumber,
+        countryofBirth: data.countryofBirth,
+        countryUsOrUaeInd: data.countryUsOrUaeInd,
+        districtCorresp: data.districtCorresp,
+        empCity: data.empCity,
+        empCountry: data.empCountry,
+        employerPhone: data.employerPhone,
+        empState: data.empState,
+        familyNameAr: data.familyNameAr,
+        firstNameAr: data.firstNameAr,
+        idType: data.idType,
+        ifrsFields: data.ifrsFields,
+        mainSourceofIncome: data.mainSourceofIncome,
+        maritalstatus: data.maritalstatus,
+        motherFirstName: data.motherFirstName,
+        namePep: data.namePep,
+        nationalCardNumber: data.nationalCardNumber,
+        natureofSpecialNeeds: data.natureofSpecialNeeds,
+        nic: data.nic,
+        nicExpirydate: data.nicExpirydate,
+        obligerRating: data.obligerRating,
+        otherAdditionalIncomeSource: data.otherAdditionalIncomeSource,
+        otherEmploymentStatus: data.otherEmploymentStatus,
+        ourBranchId: data.ourBranchId,
+        passportIssueDate: data.passportIssueDate,
+        placeofBirth: data.placeofBirth,
+        preferredLanguage: data.preferredLanguage,
+        reasonforBanking: data.reasonforBanking,
+        relationshipPep: data.relationshipPep,
+        rolePep: data.rolePep,
+        secondNameAr: data.secondNameAr,
+        smsSubscription: data.smsSubscription,
+        specialNeedsPerson: data.specialNeedsPerson,
+        thirdNameAr: data.thirdNameAr,
+        titlear: data.titlear,
+        wereYouBornInTheUsInd: data.wereYouBornInTheUsInd);
   }
 
   @override
   CustomerInformation transform() {
     return CustomerInformation(
-        categoryId: this.categoryId,
-        name: this.name,
-        addressCors: this.addressCors,
-        cityCors: this.cityCors,
-        countryCors: this.countryCors,
-        stateCors: this.stateCors,
-        addressCurr: this.addressCurr,
-        cityCurr: this.cityCurr,
-        countryCurr: this.countryCurr,
-        stateCurr: this.stateCurr,
-        addressHomeCountry: this.addressHomeCountry,
-        countryHome: this.countryHome,
-        stateHome: this.stateHome,
-        cityHome: this.cityHome,
-        residentNonResident: this.residentNonResident,
-        countryofResidence: this.countryofResidence,
-        fatcaRelevantInd: this.fatcaRelevantInd,
-        crsRelevantInd: this.crsRelevantInd,
-        areYouAuSCitizenInd: this.areYouAuSCitizenInd,
-        areYouAUSTaxResidentInd: this.areYouAUSTaxResidentInd,
-        wereYouBornInTheUSInd: this.wereYouBornInTheUSInd,
-        countryUSOrUAEInd: this.countryUSOrUAEInd,
-        phone1: this.phone1,
-        phone2: this.phone2,
-        mobileNo: this.mobileNo,
-        customerEmail: this.customerEmail,
-        idno: this.idno,
-        idExpirydate: this.idExpirydate,
-        dob: this.dob,
-        gender: this.gender,
-        tinInd: this.tinInd,
-        tinno1Ind: this.tinno1Ind,
-        taxCountry1Ind: this.taxCountry1Ind,
-        tinNo2Ind: this.tinNo2Ind,
-        taxCountry2Ind: this.taxCountry2Ind,
-        tinNo3Ind: this.tinNo3Ind,
-        taxCountry3Ind: this.taxCountry3Ind,
-        tinNo4Ind: this.tinNo4Ind,
-        taxCountry4Ind: this.taxCountry4Ind,
-        tinNo5Ind: this.tinNo5Ind,
-        taxCountry5Ind: this.taxCountry5Ind,
-        fatcaNoReason: this.fatcaNoReason,
-        reasonBind: this.reasonBind,
-        groupCode: this.groupCode,
-        mdmid: this.mdmid,
-        rManager: this.rManager,
-        riskProfile: this.riskProfile,
-        firstName: this.firstName,
-        middleName: this.middleName,
-        lastName: this.lastName,
-        nationality: this.nationality,
-        idIssueCountry: this.idIssueCountry,
-        passportNumber: this.passportNumber,
-        passportExpiry: this.passportExpiry,
-        passportIssueCountry: this.passportIssueCountry,
-        passportGender: this.passportGender,
-        onboardingCountry: this.onboardingCountry,
-        profession: this.profession,
-        employerName: this.employerName,
-        incomeBracket: this.incomeBracket,
-        kycReviewDate: this.kycReviewDate,
-        dualCitizenship: this.dualCitizenship,
-        citizenCountry2: this.citizenCountry2,
-        pep: this.pep,
-        blackList: this.blackList,
-        hni: this.hni,
-        refererPromoCode: this.refererPromoCode,
-        ourBranchID: this.ourBranchID,
-        createBy: this.createBy);
+      categoryId: this.categoryId,
+      name: this.name,
+      addressCors: this.addressCors,
+      cityCors: this.cityCors,
+      countryCors: this.countryCors,
+      stateCors: this.stateCors,
+      addressCurr: this.addressCurr,
+      cityCurr: this.cityCurr,
+      countryCurr: this.countryCurr,
+      stateCurr: this.stateCurr,
+      addressHomeCountry: this.addressHomeCountry,
+      countryHome: this.countryHome,
+      stateHome: this.stateHome,
+      cityHome: this.cityHome,
+      residentNonResident: this.residentNonResident,
+      countryofResidence: this.countryofResidence,
+      fatcaRelevantInd: this.fatcaRelevantInd,
+      crsRelevantInd: this.crsRelevantInd,
+      areYouAuSCitizenInd: this.areYouAuSCitizenInd,
+      phone1: this.phone1,
+      phone2: this.phone2,
+      mobileNo: this.mobileNo,
+      dob: this.dob,
+      gender: this.gender,
+      tinInd: this.tinInd,
+      tinno1Ind: this.tinno1Ind,
+      taxCountry1Ind: this.taxCountry1Ind,
+      tinNo2Ind: this.tinNo2Ind,
+      taxCountry2Ind: this.taxCountry2Ind,
+      tinNo3Ind: this.tinNo3Ind,
+      taxCountry3Ind: this.taxCountry3Ind,
+      tinNo4Ind: this.tinNo4Ind,
+      taxCountry4Ind: this.taxCountry4Ind,
+      tinNo5Ind: this.tinNo5Ind,
+      taxCountry5Ind: this.taxCountry5Ind,
+      fatcaNoReason: this.fatcaNoReason,
+      reasonBind: this.reasonBind,
+      groupCode: this.groupCode,
+      mdmid: this.mdmid,
+      rManager: this.rManager,
+      riskProfile: this.riskProfile,
+      firstName: this.firstName,
+      middleName: this.middleName,
+      lastName: this.lastName,
+      nationality: this.nationality,
+      idIssueCountry: this.idIssueCountry,
+      passportNumber: this.passportNumber,
+      passportExpiry: this.passportExpiry,
+      passportIssueCountry: this.passportIssueCountry,
+      passportGender: this.passportGender,
+      onboardingCountry: this.onboardingCountry,
+      employerName: this.employerName,
+      incomeBracket: this.incomeBracket,
+      kycReviewDate: this.kycReviewDate,
+      dualCitizenship: this.dualCitizenship,
+      citizenCountry2: this.citizenCountry2,
+      pep: this.pep,
+      blackList: this.blackList,
+      hni: this.hni,
+      refererPromoCode: this.refererPromoCode,
+      annualIncome: this.annualIncome,
+      occupation: this.occupation,
+      spouseName: this.spouseName,
+      employmentStatus: this.employmentStatus,
+      email: this.email,
+      additionalIncomeSource: this.additionalIncomeSource,
+      monthlyIncome: this.monthlyIncome,
+      accountOfficer: this.accountOfficer,
+      additionalIncomeAmount: this.additionalIncomeAmount,
+      addressLine1: this.addressLine1,
+      areYouAusTaxResidentInd: this.areYouAusTaxResidentInd,
+      beneficialOwner: this.beneficialOwner,
+      cbjSecretNumber: this.cbjSecretNumber,
+      countryofBirth: this.countryofBirth,
+      countryUsOrUaeInd: this.countryUsOrUaeInd,
+      districtCorresp: this.districtCorresp,
+      empCity: this.empCity,
+      empCountry: this.empCountry,
+      employerPhone: this.employerPhone,
+      empState: this.empState,
+      familyNameAr: this.familyNameAr,
+      firstNameAr: this.firstNameAr,
+      idType: this.idType,
+      ifrsFields: this.ifrsFields,
+      mainSourceofIncome: this.mainSourceofIncome,
+      maritalstatus: this.maritalstatus,
+      motherFirstName: this.motherFirstName,
+      namePep: this.namePep,
+      nationalCardNumber: this.nationalCardNumber,
+      natureofSpecialNeeds: this.natureofSpecialNeeds,
+      nic: this.nic,
+      nicExpirydate: this.nicExpirydate,
+      obligerRating: this.obligerRating,
+      otherAdditionalIncomeSource: this.otherAdditionalIncomeSource,
+      otherEmploymentStatus: this.otherEmploymentStatus,
+      ourBranchId: this.ourBranchId,
+      passportIssueDate: this.passportIssueDate,
+      placeofBirth: this.placeofBirth,
+      preferredLanguage: this.preferredLanguage,
+      reasonforBanking: this.reasonforBanking,
+      relationshipPep: this.relationshipPep,
+      rolePep: this.rolePep,
+      secondNameAr: this.secondNameAr,
+      smsSubscription: this.smsSubscription,
+      specialNeedsPerson: this.specialNeedsPerson,
+      thirdNameAr: this.thirdNameAr,
+      titlear: this.titlear,
+      wereYouBornInTheUsInd: this.wereYouBornInTheUsInd,
+    );
   }
 }

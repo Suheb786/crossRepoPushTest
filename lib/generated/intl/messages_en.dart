@@ -261,6 +261,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
             "Please enter valid spouse name"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
+            "Error While Creating Account"),
         "errorSavingIdCard":
             MessageLookupByLibrary.simpleMessage("Error While saving IDCard"),
         "errorSavingStatus":
