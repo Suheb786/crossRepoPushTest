@@ -228,6 +228,8 @@ class ErrorParser {
         return localisedHelper.emailAlreadyExist;
       case ErrorType.OTP_VERIFY_LIMIT_EXCEEDED:
         return localisedHelper.otpLimitExceed;
+      case ErrorType.ERROR_CREATING_ACCOUNT:
+        return localisedHelper.errorCreatingAccount;
 
       default:
         return "";

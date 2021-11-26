@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/bank_smart/customer_account_details.dart';
 import 'package:domain/model/bank_smart/customer_information.dart';
+import 'package:domain/model/bank_smart/get_account_response.dart';
 import 'package:domain/model/bank_smart/purpose_of_account_opening_response.dart';
 
 abstract class BankSmartRepository {
@@ -18,13 +19,12 @@ abstract class BankSmartRepository {
           double? annualTransaction});
 
   /// get account
-  Future<Either<NetworkError, String>> getAccount(
-      {required bool getToken, String? productCode});
+  Future<Either<NetworkError, GetAccountResponse>> getAccount(
+      {required bool getToken});
 
   /// create account
   Future<Either<NetworkError, String>> createAccount(
       {required bool getToken,
-      String? cif,
       CustomerInformation? customerInformation,
       CustomerAccountDetails? accountDetails});
 

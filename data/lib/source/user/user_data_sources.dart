@@ -2,6 +2,7 @@ import 'package:blinkid_flutter/recognizers/blink_id_combined_recognizer.dart';
 import 'package:dartz/dartz.dart';
 import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/register_response_entity.dart';
@@ -98,6 +99,9 @@ abstract class UserRemoteDS {
       {String? otpCode});
 
   Future<HttpResponse<GetTokenResponseEntity>> getToken();
+
+  Future<HttpResponse<GetConfirmApplicationDataResponseEntity>>
+      confirmApplicationDataGet();
 }
 
 abstract class UserLocalDS {

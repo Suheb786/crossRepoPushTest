@@ -4100,6 +4100,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Error While Creating Account`
+  String get errorCreatingAccount {
+    return Intl.message(
+      'Error While Creating Account',
+      name: 'errorCreatingAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

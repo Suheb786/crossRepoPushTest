@@ -231,7 +231,10 @@ final reviewApplicationPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ReviewApplicationPageViewModel>(
   (ref) => ReviewApplicationPageViewModel(
       ref.read(reviewApplicationUseCaseProvider),
-      ref.read(checkVideoCallStatusUseCaseProvider)),
+      ref.read(checkVideoCallStatusUseCaseProvider),
+      ref.read(getAccountUseCaseProvider),
+      ref.read(createAccountUseCaseProvider),
+      ref.read(getConfirmApplicationDataUseCaseProvider)),
 );
 
 ///upload documents page
