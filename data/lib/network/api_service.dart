@@ -42,6 +42,8 @@ import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import 'network_properties.dart';
+
 part 'api_service.g.dart';
 
 //flutter pub run build_runner build
@@ -51,11 +53,11 @@ abstract class ApiService {
     return _ApiService(dio, baseUrl: baseUrl);
   }
 
-  @POST("http://192.168.181.2:2821/api/auth/CheckUserName")
+  @POST("${NetworkProperties.BASE_ROUTER_URL}/auth/CheckUserName")
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
       @Body() CheckUserEmailRequest request);
 
-  @POST("http://192.168.181.2:2821/api/auth/CheckUserNameMobile")
+  @POST("${NetworkProperties.BASE_ROUTER_URL}/auth/CheckUserNameMobile")
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 

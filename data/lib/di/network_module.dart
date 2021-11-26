@@ -27,7 +27,7 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 import 'package:riverpod/riverpod.dart';
 
 final baseOptions = Provider<BaseOptions>(
-    (ref) => BaseOptions(baseUrl: NetworkProperties.BASE_URL));
+    (ref) => BaseOptions(baseUrl: NetworkProperties.BASE_CHANNEL_URL));
 
 final prettyDioLoggerProvider = Provider<PrettyDioLogger>(
   (ref) => PrettyDioLogger(
@@ -53,8 +53,8 @@ final dioProvider = Provider<Dio>(
 );
 
 final apiServiceProvider = Provider<ApiService>(
-  (ref) =>
-      ApiService(ref.read(dioProvider), baseUrl: NetworkProperties.BASE_URL),
+  (ref) => ApiService(ref.read(dioProvider),
+      baseUrl: NetworkProperties.BASE_CHANNEL_URL),
 );
 
 /// User remoteDS provider
