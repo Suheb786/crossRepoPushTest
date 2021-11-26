@@ -3,6 +3,7 @@ import 'package:domain/model/account/check_videocall_status_response.dart';
 import 'package:domain/model/bank_smart/customer_account_details.dart';
 import 'package:domain/model/bank_smart/customer_information.dart';
 import 'package:domain/model/bank_smart/get_account_response.dart';
+import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
 import 'package:domain/usecase/account/check_videocall_status_usecase.dart';
 import 'package:domain/usecase/bank_smart/create_account_usecase.dart';
 import 'package:domain/usecase/bank_smart/get_account_usecase.dart';
@@ -87,12 +88,13 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
       _getConfirmApplicationDataRequest = PublishSubject();
 
   ///get confirm  Account data response holder
-  PublishSubject<Resource<String>> _getConfirmApplicationDataResponse =
-      PublishSubject();
+  PublishSubject<Resource<GetConfirmApplicationDataResponse>>
+      _getConfirmApplicationDataResponse = PublishSubject();
 
   ///get confirm  Account data stream
-  Stream<Resource<String>> get getConfirmApplicationDataStream =>
-      _getConfirmApplicationDataResponse.stream;
+  Stream<Resource<GetConfirmApplicationDataResponse>>
+      get getConfirmApplicationDataStream =>
+          _getConfirmApplicationDataResponse.stream;
 
   ReviewApplicationPageViewModel(
       this._reviewAppUseCase,

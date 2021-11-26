@@ -2,6 +2,7 @@ import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/model/account/check_videocall_status_response.dart';
 import 'package:domain/model/bank_smart/get_account_response.dart';
+import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -39,12 +40,15 @@ class ReviewApplicationPageView
                   duration: Duration(milliseconds: 100),
                   shakeAngle: Rotation.deg(z: 1),
                   curve: Curves.easeInOutSine,
-                  child: AppStreamBuilder<Resource<String>>(
+                  child: AppStreamBuilder<
+                      Resource<GetConfirmApplicationDataResponse>>(
                     stream: model.getConfirmApplicationDataStream,
                     initialData: Resource.none(),
                     onData: (getConfirmApplicationData) {
                       if (getConfirmApplicationData.status == Status.SUCCESS) {
                         ///TODO:update ui with response data
+                        print(
+                            'data---->${getConfirmApplicationData.data!.getApplicationData!.getConfirmApplicationDataContent!.jobDetailInfo!.additionalIncomeInfo!.length}');
                       }
                     },
                     dataBuilder: (context, data) {
@@ -82,11 +86,18 @@ class ReviewApplicationPageView
                                   if (getAccountResponse.status ==
                                       Status.SUCCESS) {
                                     ///create account called
-                                    model.createAccount(
-                                        getAccountResponse
-                                            .data!.content!.accountDetails!,
-                                        getAccountResponse.data!.content!
-                                            .customerInformation!);
+                                    // model.createAccount(
+                                    //     getAccountResponse
+                                    //         .data!.content!.accountDetails!,
+                                    //     getAccountResponse.data!.content!
+                                    //         .customerInformation!);
+                                    ProviderScope.containerOf(context)
+                                        .read(registerStepFiveViewModelProvider)
+                                        .registrationStepFivePageController
+                                        .nextPage(
+                                            duration:
+                                                Duration(milliseconds: 500),
+                                            curve: Curves.easeInOut);
                                   }
                                 },
                                 dataBuilder: (context, data) {
@@ -96,14 +107,14 @@ class ReviewApplicationPageView
                                     onData: (createAccountResponse) {
                                       if (createAccountResponse.status ==
                                           Status.SUCCESS) {
-                                        ProviderScope.containerOf(context)
-                                            .read(
-                                                registerStepFiveViewModelProvider)
-                                            .registrationStepFivePageController
-                                            .nextPage(
-                                                duration:
-                                                    Duration(milliseconds: 500),
-                                                curve: Curves.easeInOut);
+                                        // ProviderScope.containerOf(context)
+                                        //     .read(
+                                        //         registerStepFiveViewModelProvider)
+                                        //     .registrationStepFivePageController
+                                        //     .nextPage(
+                                        //         duration:
+                                        //             Duration(milliseconds: 500),
+                                        //         curve: Curves.easeInOut);
                                       }
                                     },
                                     dataBuilder: (context, data) {

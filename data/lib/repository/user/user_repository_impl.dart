@@ -10,6 +10,7 @@ import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/check_username.dart';
+import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
@@ -357,13 +358,14 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, String>> confirmApplicationDataGet() async {
+  Future<Either<NetworkError, GetConfirmApplicationDataResponse>>
+      confirmApplicationDataGet() async {
     final result = await safeApiCall(
       _remoteDS.confirmApplicationDataGet(),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(''),
+      (r) => Right(r.data.transform()),
     );
   }
 }
