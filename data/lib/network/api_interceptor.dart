@@ -12,7 +12,8 @@ class ApiInterceptor extends InterceptorsWrapper {
   ApiInterceptor(this._userRepository, this._previousDio) {
     Dio newDio = Dio(_previousDio.options);
     newDio.interceptors.add(_previousDio.interceptors.first);
-    apiService = ApiService(newDio, baseUrl: NetworkProperties.BASE_URL);
+    apiService =
+        ApiService(newDio, baseUrl: NetworkProperties.BASE_CHANNEL_URL);
   }
 
   @override
