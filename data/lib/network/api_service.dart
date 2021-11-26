@@ -5,6 +5,7 @@ import 'package:data/entity/remote/account/check_videocall_status_response_entit
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/create_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_details_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_response_entity.dart';
@@ -120,7 +121,7 @@ abstract class ApiService {
       @Body() GetAccountRequestEntity getAccountRequestEntity);
 
   @POST("/BankSmart/CreateAccount")
-  Future<String> createAccount(
+  Future<HttpResponse<CreateAccountResponseEntity>> createAccount(
       @Body() CreateAccountRequestEntity createAccountRequestEntity);
 
   @POST("/BankSmart/GetAccountDetails")

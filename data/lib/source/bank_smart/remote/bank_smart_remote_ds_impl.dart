@@ -2,6 +2,7 @@ import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/bank_smart/account_details_entity.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/create_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/customer_details_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_details_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
@@ -52,7 +53,7 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
   }
 
   @override
-  Future<String> createAccount(
+  Future<HttpResponse<CreateAccountResponseEntity>> createAccount(
       {bool? getToken,
       CustomerInformation? customerInformation,
       CustomerAccountDetails? accountDetails}) async {

@@ -1,5 +1,6 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/account/check_videocall_status_response.dart';
+import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/bank_smart/customer_account_details.dart';
 import 'package:domain/model/bank_smart/customer_information.dart';
 import 'package:domain/model/bank_smart/get_account_response.dart';
@@ -77,10 +78,11 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
       PublishSubject();
 
   ///create Account response holder
-  PublishSubject<Resource<String>> _createAccountResponse = PublishSubject();
+  PublishSubject<Resource<CreateAccountResponse>> _createAccountResponse =
+      PublishSubject();
 
   ///create Account stream
-  Stream<Resource<String>> get createAccountStream =>
+  Stream<Resource<CreateAccountResponse>> get createAccountStream =>
       _createAccountResponse.stream;
 
   ///get confirm  Account data subject holder

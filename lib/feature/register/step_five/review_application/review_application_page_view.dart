@@ -1,6 +1,7 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/model/account/check_videocall_status_response.dart';
+import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/bank_smart/get_account_response.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
@@ -86,35 +87,29 @@ class ReviewApplicationPageView
                                   if (getAccountResponse.status ==
                                       Status.SUCCESS) {
                                     ///create account called
-                                    // model.createAccount(
-                                    //     getAccountResponse
-                                    //         .data!.content!.accountDetails!,
-                                    //     getAccountResponse.data!.content!
-                                    //         .customerInformation!);
-                                    ProviderScope.containerOf(context)
-                                        .read(registerStepFiveViewModelProvider)
-                                        .registrationStepFivePageController
-                                        .nextPage(
-                                            duration:
-                                                Duration(milliseconds: 500),
-                                            curve: Curves.easeInOut);
+                                    model.createAccount(
+                                        getAccountResponse
+                                            .data!.content!.accountDetails!,
+                                        getAccountResponse.data!.content!
+                                            .customerInformation!);
                                   }
                                 },
                                 dataBuilder: (context, data) {
-                                  return AppStreamBuilder<Resource<String>>(
+                                  return AppStreamBuilder<
+                                      Resource<CreateAccountResponse>>(
                                     stream: model.createAccountStream,
                                     initialData: Resource.none(),
                                     onData: (createAccountResponse) {
                                       if (createAccountResponse.status ==
                                           Status.SUCCESS) {
-                                        // ProviderScope.containerOf(context)
-                                        //     .read(
-                                        //         registerStepFiveViewModelProvider)
-                                        //     .registrationStepFivePageController
-                                        //     .nextPage(
-                                        //         duration:
-                                        //             Duration(milliseconds: 500),
-                                        //         curve: Curves.easeInOut);
+                                        ProviderScope.containerOf(context)
+                                            .read(
+                                                registerStepFiveViewModelProvider)
+                                            .registrationStepFivePageController
+                                            .nextPage(
+                                                duration:
+                                                    Duration(milliseconds: 500),
+                                                curve: Curves.easeInOut);
                                       }
                                     },
                                     dataBuilder: (context, data) {
