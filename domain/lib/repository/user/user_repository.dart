@@ -121,4 +121,7 @@ abstract class UserRepository {
 
   ///get token
   Future<Either<NetworkError, bool>> getToken();
+
+  /// confirm application data get
+  Future<Either<NetworkError, String>> confirmApplicationDataGet();
 }

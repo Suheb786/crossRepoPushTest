@@ -39,442 +39,551 @@ class ReviewApplicationPageView
                   duration: Duration(milliseconds: 100),
                   shakeAngle: Rotation.deg(z: 1),
                   curve: Curves.easeInOutSine,
-                  child: AppStreamBuilder<Resource<List<String>>>(
-                    stream: model.reviewAppStream,
+                  child: AppStreamBuilder<Resource<String>>(
+                    stream: model.getConfirmApplicationDataStream,
                     initialData: Resource.none(),
-                    onData: (data) {
-                      if (data.status == Status.SUCCESS) {
-                        ///check for videocall call status
-                        model.checkVideoCallStatus();
-                      } else if (data.status == Status.ERROR) {
-                        model.showToastWithError(data.appError!);
+                    onData: (getConfirmApplicationData) {
+                      if (getConfirmApplicationData.status == Status.SUCCESS) {
+                        ///TODO:update ui with response data
                       }
                     },
-                    dataBuilder: (context, response) {
-                      return AppStreamBuilder<Resource<CheckVideoCallResponse>>(
-                        stream: model.checkVideoCallStream,
+                    dataBuilder: (context, data) {
+                      return AppStreamBuilder<Resource<List<String>>>(
+                        stream: model.reviewAppStream,
                         initialData: Resource.none(),
                         onData: (data) {
-                          ///video call status is false then call get account
                           if (data.status == Status.SUCCESS) {
-                            if (!(data.data!.checkVideoCallResponseContent!
-                                .status!)) {
-                              model.getAccount();
-                            }
+                            ///check for videocall call status
+                            model.checkVideoCallStatus();
+                          } else if (data.status == Status.ERROR) {
+                            model.showToastWithError(data.appError!);
                           }
                         },
-                        dataBuilder: (context, status) {
-                          return AppStreamBuilder<Resource<GetAccountResponse>>(
-                            stream: model.getAccountStream,
+                        dataBuilder: (context, response) {
+                          return AppStreamBuilder<
+                              Resource<CheckVideoCallResponse>>(
+                            stream: model.checkVideoCallStream,
                             initialData: Resource.none(),
-                            onData: (getAccountResponse) {
-                              if (getAccountResponse.status == Status.SUCCESS) {
-                                ///TODO: call create ACcount
-                                ProviderScope.containerOf(context)
-                                    .read(registerStepFiveViewModelProvider)
-                                    .registrationStepFivePageController
-                                    .nextPage(
-                                        duration: Duration(milliseconds: 500),
-                                        curve: Curves.easeInOut);
+                            onData: (data) {
+                              ///video call status is false then call get account
+                              if (data.status == Status.SUCCESS) {
+                                if (!(data.data!.checkVideoCallResponseContent!
+                                    .status!)) {
+                                  model.getAccount();
+                                }
                               }
                             },
-                            dataBuilder: (context, data) {
-                              return GestureDetector(
-                                onHorizontalDragEnd: (details) {
-                                  if (details.primaryVelocity!.isNegative) {
-                                    model.validateReviewDetails();
+                            dataBuilder: (context, status) {
+                              return AppStreamBuilder<
+                                  Resource<GetAccountResponse>>(
+                                stream: model.getAccountStream,
+                                initialData: Resource.none(),
+                                onData: (getAccountResponse) {
+                                  if (getAccountResponse.status ==
+                                      Status.SUCCESS) {
+                                    ///create account called
+                                    model.createAccount(
+                                        getAccountResponse
+                                            .data!.content!.accountDetails!,
+                                        getAccountResponse.data!.content!
+                                            .customerInformation!);
                                   }
                                 },
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16)),
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  elevation: 2,
-                                  color: Theme.of(context)
-                                      .cardTheme
-                                      .copyWith(color: AppColor.white)
-                                      .color,
-                                  margin: EdgeInsets.zero,
-                                  shadowColor: AppColor.black.withOpacity(0.32),
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 32, horizontal: 24),
-                                    child: FadingEdgeScrollView
-                                        .fromSingleChildScrollView(
-                                      gradientFractionOnEnd: 0.3,
-                                      gradientFractionOnStart: 0.3,
-                                      child: SingleChildScrollView(
-                                        controller: model.scrollController,
-                                        physics: ClampingScrollPhysics(),
-                                        child: Column(
-                                          children: [
-                                            StartOverWidget(
-                                              onTap: () {},
-                                              title:
-                                                  S.of(context).startOverDesc,
-                                              labelText:
-                                                  S.of(context).startOver,
-                                            ),
-                                            SizedBox(height: 32),
+                                dataBuilder: (context, data) {
+                                  return AppStreamBuilder<Resource<String>>(
+                                    stream: model.createAccountStream,
+                                    initialData: Resource.none(),
+                                    onData: (createAccountResponse) {
+                                      if (createAccountResponse.status ==
+                                          Status.SUCCESS) {
+                                        ProviderScope.containerOf(context)
+                                            .read(
+                                                registerStepFiveViewModelProvider)
+                                            .registrationStepFivePageController
+                                            .nextPage(
+                                                duration:
+                                                    Duration(milliseconds: 500),
+                                                curve: Curves.easeInOut);
+                                      }
+                                    },
+                                    dataBuilder: (context, data) {
+                                      return GestureDetector(
+                                        onHorizontalDragEnd: (details) {
+                                          if (details
+                                              .primaryVelocity!.isNegative) {
+                                            model.validateReviewDetails();
+                                          }
+                                        },
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(16)),
+                                          clipBehavior:
+                                              Clip.antiAliasWithSaveLayer,
+                                          elevation: 2,
+                                          color: Theme.of(context)
+                                              .cardTheme
+                                              .copyWith(color: AppColor.white)
+                                              .color,
+                                          margin: EdgeInsets.zero,
+                                          shadowColor:
+                                              AppColor.black.withOpacity(0.32),
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 32, horizontal: 24),
+                                            child: FadingEdgeScrollView
+                                                .fromSingleChildScrollView(
+                                              gradientFractionOnEnd: 0.3,
+                                              gradientFractionOnStart: 0.3,
+                                              child: SingleChildScrollView(
+                                                controller:
+                                                    model.scrollController,
+                                                physics:
+                                                    ClampingScrollPhysics(),
+                                                child: Column(
+                                                  children: [
+                                                    StartOverWidget(
+                                                      onTap: () {},
+                                                      title: S
+                                                          .of(context)
+                                                          .startOverDesc,
+                                                      labelText: S
+                                                          .of(context)
+                                                          .startOver,
+                                                    ),
+                                                    SizedBox(height: 32),
 
-                                            ///address details
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .residentCountrySmall,
-                                              controller: model
-                                                  .residentCountryController,
-                                              textInputType: TextInputType.text,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .homeAddressSmall,
-                                              controller:
-                                                  model.homeAddressController,
-                                              textInputType: TextInputType.text,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .streetAddressSmall,
-                                              controller:
-                                                  model.streetAddressController,
-                                              textInputType: TextInputType.text,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title:
-                                                  S.of(context).buildingNameNo,
-                                              controller: model
-                                                  .buildingNameOrNoController,
-                                              textInputType: TextInputType.text,
-                                            ),
+                                                    ///address details
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .residentCountrySmall,
+                                                      controller: model
+                                                          .residentCountryController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .homeAddressSmall,
+                                                      controller: model
+                                                          .homeAddressController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .streetAddressSmall,
+                                                      controller: model
+                                                          .streetAddressController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .buildingNameNo,
+                                                      controller: model
+                                                          .buildingNameOrNoController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
 
-                                            ///permanent address
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 24.0),
-                                              child: Container(
-                                                height: 1,
-                                                color: AppColor.white_gray,
-                                              ),
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .permanentHomeAddress,
-                                              controller: model
-                                                  .residentPermanentAddressCountryController,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S.of(context).citySmall,
-                                              controller: model
-                                                  .residentPermanentAddressCityController,
-                                              textInputType: TextInputType.text,
-                                            ),
-
-                                            /// personal details
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 24.0),
-                                              child: Container(
-                                                height: 1,
-                                                color: AppColor.white_gray,
-                                              ),
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S.of(context).spouseName,
-                                              controller:
-                                                  model.spouseNameController,
-                                              textInputType: TextInputType.text,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .natureSpecialNeeds,
-                                              controller: model
-                                                  .specialNeedsPersonController,
-                                              textInputType: TextInputType.text,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .employmentStatusSmall,
-                                              controller: model
-                                                  .employmentStatusController,
-                                              textInputType: TextInputType.text,
-                                            ),
-
-                                            ///occupation
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 24.0),
-                                              child: Container(
-                                                height: 1,
-                                                color: AppColor.white_gray,
-                                              ),
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title:
-                                                  S.of(context).occupationSmall,
-                                              controller:
-                                                  model.occupationController,
-                                              textInputType: TextInputType.text,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .mainAnnualIncomeSmall,
-                                              controller: model
-                                                  .mainAnnualIncomeController,
-                                              prefixWidget: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 40.0, bottom: 12),
-                                                child: Text(
-                                                  S.of(context).JOD,
-                                                  textAlign: TextAlign.end,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color: Theme.of(context)
-                                                          .primaryColorDark),
-                                                ),
-                                              ),
-                                              textInputType:
-                                                  TextInputType.number,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .employerNameSmall,
-                                              controller:
-                                                  model.employerNameController,
-                                              textInputType: TextInputType.text,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .employerCountrySmall,
-                                              controller: model
-                                                  .employerCountryController,
-                                              textInputType: TextInputType.text,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .employerCitySmall,
-                                              controller:
-                                                  model.employerCityController,
-                                              textInputType: TextInputType.text,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .employerContactSmall,
-                                              controller: model
-                                                  .employerContactController,
-                                              textInputType:
-                                                  TextInputType.phone,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S.of(context).addIncome1,
-                                              initialValue:
-                                                  "Rent Income JOD 25,000",
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S.of(context).addIncome2,
-                                              initialValue:
-                                                  "Investments JOD 75,000",
-                                            ),
-
-                                            ///purpose of account opening
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 24.0),
-                                              child: Container(
-                                                height: 1,
-                                                color: AppColor.white_gray,
-                                              ),
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .purposeOfAccount,
-                                              controller: model
-                                                  .purposeOfAccountOpeningController,
-                                              textInputType: TextInputType.text,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .typeOfTransactionsSmall('1'),
-                                              initialValue: "Transfers",
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .typeOfTransactionsSmall('2'),
-                                              initialValue: "Cash Deposit",
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .expMonthlyTransactions,
-                                              controller: model
-                                                  .expectedMonthlyTransactionsController,
-                                              prefixWidget: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 40.0, bottom: 12),
-                                                child: Text(
-                                                  S.of(context).JOD,
-                                                  textAlign: TextAlign.end,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color: Theme.of(context)
-                                                          .primaryColorDark),
-                                                ),
-                                              ),
-                                              textInputType:
-                                                  TextInputType.number,
-                                            ),
-                                            ReviewApplicationEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .expAnnualTransactions,
-                                              controller: model
-                                                  .expectedAnnualTransactionsController,
-                                              prefixWidget: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 40.0, bottom: 12),
-                                                child: Text(
-                                                  S.of(context).JOD,
-                                                  textAlign: TextAlign.end,
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color: Theme.of(context)
-                                                          .primaryColorDark),
-                                                ),
-                                              ),
-                                              textInputType:
-                                                  TextInputType.number,
-                                            ),
-
-                                            ///Tax and PEP questions
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 24.0),
-                                              child: Container(
-                                                height: 1,
-                                                color: AppColor.white_gray,
-                                              ),
-                                            ),
-                                            ReviewApplicationNonEditableItem(
-                                              title:
-                                                  S.of(context).areYouUSCitizen,
-                                              value: "No",
-                                            ),
-                                            ReviewApplicationNonEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .areYouUSTaxResident,
-                                              value: "No",
-                                            ),
-                                            ReviewApplicationNonEditableItem(
-                                              title: S.of(context).wereBornInUS,
-                                              value: "No",
-                                            ),
-                                            ReviewApplicationNonEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .areYouTaxResidentQ,
-                                              value: "No",
-                                            ),
-                                            ReviewApplicationNonEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .areYouAnyFirstDegreeQ,
-                                              value: "Yes",
-                                            ),
-                                            ReviewApplicationNonEditableItem(
-                                              title: S
-                                                  .of(context)
-                                                  .relationshipWithPEP,
-                                              value: "Father",
-                                            ),
-                                            ReviewApplicationNonEditableItem(
-                                              title: S.of(context).personsName,
-                                              value: "Salah Mawajdeh",
-                                            ),
-                                            ReviewApplicationNonEditableItem(
-                                              title: S.of(context).personsRole,
-                                              value: "Minister of Health",
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: 24.0),
-                                              child: Container(
-                                                height: 1,
-                                                color: AppColor.white_gray,
-                                              ),
-                                            ),
-                                            AppStreamBuilder<bool>(
-                                              stream: model
-                                                  .declarationSelectedStream,
-                                              initialData: false,
-                                              dataBuilder:
-                                                  (context, isSelected) {
-                                                return ReviewTCWidget(
-                                                  isSelected: isSelected,
-                                                  title: S
-                                                      .of(context)
-                                                      .confirmInfoTC,
-                                                  subTitle: S
-                                                      .of(context)
-                                                      .termsAndCondition,
-                                                  onTermsAndConditionTap: () {
-                                                    Navigator.pushNamed(
-                                                        context,
-                                                        RoutePaths
-                                                            .TermsAndCondition);
-                                                  },
-                                                  onTap: () {
-                                                    model
-                                                        .updateDeclarationSelection(
-                                                            !(isSelected!));
-                                                  },
-                                                );
-                                              },
-                                            ),
-
-                                            Padding(
-                                              padding: EdgeInsets.only(top: 24),
-                                              child: AppStreamBuilder<bool>(
-                                                  stream: model
-                                                      .declarationSelectedStream,
-                                                  initialData: false,
-                                                  dataBuilder:
-                                                      (context, isChecked) {
-                                                    return Visibility(
-                                                      visible: isChecked!,
-                                                      child: AnimatedButton(
-                                                        buttonText: S
-                                                            .of(context)
-                                                            .swipeToProceed,
+                                                    ///permanent address
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 24.0),
+                                                      child: Container(
+                                                        height: 1,
+                                                        color:
+                                                            AppColor.white_gray,
                                                       ),
-                                                    );
-                                                  }),
-                                            )
-                                          ],
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .permanentHomeAddress,
+                                                      controller: model
+                                                          .residentPermanentAddressCountryController,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .citySmall,
+                                                      controller: model
+                                                          .residentPermanentAddressCityController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
+
+                                                    /// personal details
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 24.0),
+                                                      child: Container(
+                                                        height: 1,
+                                                        color:
+                                                            AppColor.white_gray,
+                                                      ),
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .spouseName,
+                                                      controller: model
+                                                          .spouseNameController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .natureSpecialNeeds,
+                                                      controller: model
+                                                          .specialNeedsPersonController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .employmentStatusSmall,
+                                                      controller: model
+                                                          .employmentStatusController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
+
+                                                    ///occupation
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 24.0),
+                                                      child: Container(
+                                                        height: 1,
+                                                        color:
+                                                            AppColor.white_gray,
+                                                      ),
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .occupationSmall,
+                                                      controller: model
+                                                          .occupationController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .mainAnnualIncomeSmall,
+                                                      controller: model
+                                                          .mainAnnualIncomeController,
+                                                      prefixWidget: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 40.0,
+                                                                bottom: 12),
+                                                        child: Text(
+                                                          S.of(context).JOD,
+                                                          textAlign:
+                                                              TextAlign.end,
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .primaryColorDark),
+                                                        ),
+                                                      ),
+                                                      textInputType:
+                                                          TextInputType.number,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .employerNameSmall,
+                                                      controller: model
+                                                          .employerNameController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .employerCountrySmall,
+                                                      controller: model
+                                                          .employerCountryController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .employerCitySmall,
+                                                      controller: model
+                                                          .employerCityController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .employerContactSmall,
+                                                      controller: model
+                                                          .employerContactController,
+                                                      textInputType:
+                                                          TextInputType.phone,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .addIncome1,
+                                                      initialValue:
+                                                          "Rent Income JOD 25,000",
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .addIncome2,
+                                                      initialValue:
+                                                          "Investments JOD 75,000",
+                                                    ),
+
+                                                    ///purpose of account opening
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 24.0),
+                                                      child: Container(
+                                                        height: 1,
+                                                        color:
+                                                            AppColor.white_gray,
+                                                      ),
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .purposeOfAccount,
+                                                      controller: model
+                                                          .purposeOfAccountOpeningController,
+                                                      textInputType:
+                                                          TextInputType.text,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .typeOfTransactionsSmall(
+                                                              '1'),
+                                                      initialValue: "Transfers",
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .typeOfTransactionsSmall(
+                                                              '2'),
+                                                      initialValue:
+                                                          "Cash Deposit",
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .expMonthlyTransactions,
+                                                      controller: model
+                                                          .expectedMonthlyTransactionsController,
+                                                      prefixWidget: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 40.0,
+                                                                bottom: 12),
+                                                        child: Text(
+                                                          S.of(context).JOD,
+                                                          textAlign:
+                                                              TextAlign.end,
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .primaryColorDark),
+                                                        ),
+                                                      ),
+                                                      textInputType:
+                                                          TextInputType.number,
+                                                    ),
+                                                    ReviewApplicationEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .expAnnualTransactions,
+                                                      controller: model
+                                                          .expectedAnnualTransactionsController,
+                                                      prefixWidget: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 40.0,
+                                                                bottom: 12),
+                                                        child: Text(
+                                                          S.of(context).JOD,
+                                                          textAlign:
+                                                              TextAlign.end,
+                                                          style: TextStyle(
+                                                              fontSize: 12,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .primaryColorDark),
+                                                        ),
+                                                      ),
+                                                      textInputType:
+                                                          TextInputType.number,
+                                                    ),
+
+                                                    ///Tax and PEP questions
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 24.0),
+                                                      child: Container(
+                                                        height: 1,
+                                                        color:
+                                                            AppColor.white_gray,
+                                                      ),
+                                                    ),
+                                                    ReviewApplicationNonEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .areYouUSCitizen,
+                                                      value: "No",
+                                                    ),
+                                                    ReviewApplicationNonEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .areYouUSTaxResident,
+                                                      value: "No",
+                                                    ),
+                                                    ReviewApplicationNonEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .wereBornInUS,
+                                                      value: "No",
+                                                    ),
+                                                    ReviewApplicationNonEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .areYouTaxResidentQ,
+                                                      value: "No",
+                                                    ),
+                                                    ReviewApplicationNonEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .areYouAnyFirstDegreeQ,
+                                                      value: "Yes",
+                                                    ),
+                                                    ReviewApplicationNonEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .relationshipWithPEP,
+                                                      value: "Father",
+                                                    ),
+                                                    ReviewApplicationNonEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .personsName,
+                                                      value: "Salah Mawajdeh",
+                                                    ),
+                                                    ReviewApplicationNonEditableItem(
+                                                      title: S
+                                                          .of(context)
+                                                          .personsRole,
+                                                      value:
+                                                          "Minister of Health",
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 24.0),
+                                                      child: Container(
+                                                        height: 1,
+                                                        color:
+                                                            AppColor.white_gray,
+                                                      ),
+                                                    ),
+                                                    AppStreamBuilder<bool>(
+                                                      stream: model
+                                                          .declarationSelectedStream,
+                                                      initialData: false,
+                                                      dataBuilder: (context,
+                                                          isSelected) {
+                                                        return ReviewTCWidget(
+                                                          isSelected:
+                                                              isSelected,
+                                                          title: S
+                                                              .of(context)
+                                                              .confirmInfoTC,
+                                                          subTitle: S
+                                                              .of(context)
+                                                              .termsAndCondition,
+                                                          onTermsAndConditionTap:
+                                                              () {
+                                                            Navigator.pushNamed(
+                                                                context,
+                                                                RoutePaths
+                                                                    .TermsAndCondition);
+                                                          },
+                                                          onTap: () {
+                                                            model.updateDeclarationSelection(
+                                                                !(isSelected!));
+                                                          },
+                                                        );
+                                                      },
+                                                    ),
+
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          top: 24),
+                                                      child: AppStreamBuilder<
+                                                              bool>(
+                                                          stream: model
+                                                              .declarationSelectedStream,
+                                                          initialData: false,
+                                                          dataBuilder: (context,
+                                                              isChecked) {
+                                                            return Visibility(
+                                                              visible:
+                                                                  isChecked!,
+                                                              child:
+                                                                  AnimatedButton(
+                                                                buttonText: S
+                                                                    .of(context)
+                                                                    .swipeToProceed,
+                                                              ),
+                                                            );
+                                                          }),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                      );
+                                    },
+                                  );
+                                },
                               );
                             },
                           );

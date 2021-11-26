@@ -296,8 +296,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> verifyMobileOtp(
-      {String? otpCode}) async {
+  Future<Either<NetworkError, bool>> verifyMobileOtp({String? otpCode}) async {
     final result = await safeApiCall(
       _remoteDS.verifyMobileOtp(otpCode: otpCode),
     );
@@ -354,6 +353,17 @@ class UserRepositoryImpl extends UserRepository {
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, String>> confirmApplicationDataGet() async {
+    final result = await safeApiCall(
+      _remoteDS.confirmApplicationDataGet(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(''),
     );
   }
 }

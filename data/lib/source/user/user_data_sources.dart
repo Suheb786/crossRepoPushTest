@@ -98,6 +98,8 @@ abstract class UserRemoteDS {
       {String? otpCode});
 
   Future<HttpResponse<GetTokenResponseEntity>> getToken();
+
+  Future<String> confirmApplicationDataGet();
 }
 
 abstract class UserLocalDS {

@@ -57,13 +57,11 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
   @override
   Future<Either<NetworkError, String>> createAccount(
       {required bool getToken,
-      String? cif,
       CustomerInformation? customerInformation,
       CustomerAccountDetails? accountDetails}) async {
     final result = await safeApiCall(
       _bankSmartRemoteDS.createAccount(
           getToken: getToken,
-          cif: cif,
           customerInformation: customerInformation,
           accountDetails: accountDetails),
     );

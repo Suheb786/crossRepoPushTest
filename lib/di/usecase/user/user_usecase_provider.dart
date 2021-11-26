@@ -5,6 +5,7 @@ import 'package:domain/usecase/user/account_ready_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
+import 'package:domain/usecase/user/confirm_application_data_get_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/enter_address_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
@@ -117,3 +118,8 @@ final scanUserDocumentUseCaseProvider = Provider<ScanUserDocumentUseCase>(
 ///[GetTokenUseCase] provider
 final getTokenUseCaseProvider = Provider<GetTokenUseCase>(
     (ref) => GetTokenUseCase(ref.read(userRepoProvider)));
+
+///[ConfirmApplicationDataGetUseCase] provider
+final getConfirmApplicationDataUseCaseProvider =
+    Provider<ConfirmApplicationDataGetUseCase>(
+        (ref) => ConfirmApplicationDataGetUseCase(ref.read(userRepoProvider)));

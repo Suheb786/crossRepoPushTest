@@ -20,7 +20,6 @@ abstract class BankSmartRemoteDS {
 
   Future<String> createAccount(
       {bool getToken,
-      String? cif,
       CustomerInformation? customerInformation,
       CustomerAccountDetails? accountDetails});
 

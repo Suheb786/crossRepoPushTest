@@ -1,4 +1,5 @@
 import 'package:data/di/repository_module.dart';
+import 'package:domain/usecase/bank_smart/create_account_usecase.dart';
 import 'package:domain/usecase/bank_smart/get_account_details_usecase.dart';
 import 'package:domain/usecase/bank_smart/get_account_usecase.dart';
 import 'package:domain/usecase/bank_smart/purpose_of_account_opening_usecase.dart';
@@ -17,3 +18,7 @@ final getAccountUseCaseProvider = Provider.autoDispose<GetAccountUseCase>(
 final getAccountDetailsUseCaseProvider =
     Provider.autoDispose<GetAccountDetailsUseCase>((ref) =>
         GetAccountDetailsUseCase(ref.read(bankSmartRepositoryProvider)));
+
+///[CreateAccountUseCase] provider
+final createAccountUseCaseProvider = Provider.autoDispose<CreateAccountUseCase>(
+    (ref) => CreateAccountUseCase(ref.read(bankSmartRepositoryProvider)));

@@ -19,8 +19,7 @@ CreateAccountRequestEntity _$CreateAccountRequestEntityFromJson(
         ? null
         : AccountDetailsEntity.fromJson(
             json['account'] as Map<String, dynamic>),
-    baseData:
-        BaseClassEntity.fromJson(json['baseClass'] as Map<String, dynamic>),
+    baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }
 

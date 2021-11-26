@@ -232,7 +232,9 @@ final reviewApplicationPageViewModelProvider =
   (ref) => ReviewApplicationPageViewModel(
       ref.read(reviewApplicationUseCaseProvider),
       ref.read(checkVideoCallStatusUseCaseProvider),
-      ref.read(getAccountUseCaseProvider)),
+      ref.read(getAccountUseCaseProvider),
+      ref.read(createAccountUseCaseProvider),
+      ref.read(getConfirmApplicationDataUseCaseProvider)),
 );
 
 ///upload documents page

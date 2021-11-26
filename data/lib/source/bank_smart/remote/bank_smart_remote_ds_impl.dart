@@ -54,13 +54,11 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
   @override
   Future<String> createAccount(
       {bool? getToken,
-      String? cif,
       CustomerInformation? customerInformation,
       CustomerAccountDetails? accountDetails}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.createAccount(CreateAccountRequestEntity(
-        baseData: baseData,
-        cif: cif,
+        baseData: baseData.toJson(),
         getToken: true,
         customerDetailsEntity:
             CustomerDetailsEntity().restore(customerInformation!),

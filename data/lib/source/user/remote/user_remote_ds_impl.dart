@@ -4,6 +4,7 @@ import 'package:data/entity/remote/user/additional_income.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_get_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
@@ -243,5 +244,13 @@ class UserRemoteDSImpl extends UserRemoteDS {
   @override
   Future<HttpResponse<GetTokenResponseEntity>> getToken() {
     return _apiService.getToken();
+  }
+
+  @override
+  Future<String> confirmApplicationDataGet() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.confirmApplicationDataGet(
+        ConfirmApplicationDataGetRequestEntity(
+            getToken: true, baseData: baseData.toJson()));
   }
 }
