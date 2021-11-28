@@ -1,6 +1,7 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/dashboard/get_card_usecase.dart';
 import 'package:domain/usecase/dashboard/my_account_usecase.dart';
+import 'package:domain/usecase/dashboard/my_debit_card_usecase.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
 import 'package:domain/usecase/user/account_ready_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
@@ -18,6 +19,9 @@ import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:domain/usecase/user/send_documents_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:domain/usecase/user/video_call_info_usecase.dart';
+import 'package:domain/usecase/dashboard/card_delivered_usecase.dart';
+import 'package:domain/usecase/dashboard/debit_card_verification_success_usecase.dart';
+import 'package:domain/usecase/dashboard/card_detail_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[LoginUseCase] provider
@@ -123,4 +127,25 @@ final getCardUseCaseProvider = Provider.autoDispose<GetCardUseCase>(
 ///[MyAccountUseCase] provider
 final myAccountUseCaseProvider = Provider.autoDispose<MyAccountUseCase>(
   (ref) => MyAccountUseCase(),
+);
+
+///[<MyDebitCardUseCase>] provider
+final myDebitCardUseCaseProvider = Provider.autoDispose<MyDebitCardUseCase>(
+  (ref) => MyDebitCardUseCase(),
+);
+
+///[<CardDeliveredUseCase>] provider
+final cardDeliveredUseCaseProvider = Provider.autoDispose<CardDeliveredUseCase>(
+  (ref) => CardDeliveredUseCase(),
+);
+
+///[<DebitCardVerificationSuccessUseCase>] provider
+final debitCardVerificationSuccessUseCaseProvider =
+    Provider.autoDispose<DebitCardVerificationSuccessUseCase>(
+  (ref) => DebitCardVerificationSuccessUseCase(),
+);
+
+///[<DebitCardVerificationSuccessUseCase>] provider
+final cardDetailUseCaseProvider = Provider.autoDispose<CardDetailUseCase>(
+  (ref) => CardDetailUseCase(),
 );

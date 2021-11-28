@@ -61,6 +61,12 @@ class AssetUtils {
   static const String welcomeIcon = svg + "welcome_icon.svg";
   static const String lock = svg + "lock.svg";
   static const String swipeDown = svg + "swipe_down.svg";
+  static const String swipeUp = svg + "swipe_up.svg";
+  static const String blinkBlack = svg + "blink_black.svg";
+  static const String zigzagCircle = svg + "zigzag_circle.svg";
+  static const String settingsRed = svg + "settings_red.svg";
+  static const String share = svg + "share.svg";
+  static const String close = svg + "close.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -85,6 +91,8 @@ class AssetUtils {
   static const String house = drawable + "house.png";
   static const String headphoneBlack = drawable + "headphone_black.png";
   static const String logoWhite = drawable + "logo_white.png";
+  static const String zigzagRed = drawable + "zigzag_red.png";
+  static const String ellipseRed = drawable + "ellipse_red.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";

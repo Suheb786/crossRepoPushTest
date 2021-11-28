@@ -5,8 +5,12 @@ import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/card_delivered/card_delivered_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/card_detail/card_detail_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/get_card/get_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_model.dart';
 import 'package:neo_bank/feature/register/step_five/agent_selection/agent_selection_model.dart';
@@ -366,4 +370,25 @@ final appHomeViewModelProvider =
 final myAccountViewModelProvider =
     ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
   (ref) => MyAccountViewModel(ref.read(myAccountUseCaseProvider)),
+);
+
+final myDebitCardViewModelProvider =
+    ChangeNotifierProvider.autoDispose<MyDebitCardViewModel>(
+  (ref) => MyDebitCardViewModel(ref.read(myDebitCardUseCaseProvider)),
+);
+
+final cardDeliveredViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CardDeliveredViewModel>(
+  (ref) => CardDeliveredViewModel(ref.read(cardDeliveredUseCaseProvider)),
+);
+
+final debitCardVerificationSuccessViewModelProvider =
+    ChangeNotifierProvider.autoDispose<DebitCardVerificationSuccessViewModel>(
+  (ref) => DebitCardVerificationSuccessViewModel(
+      ref.read(debitCardVerificationSuccessUseCaseProvider)),
+);
+
+final cardDetailViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CardDetailViewModel>(
+  (ref) => CardDetailViewModel(ref.read(cardDetailUseCaseProvider)),
 );

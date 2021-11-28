@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/get_card/get_card_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -13,7 +14,19 @@ class GetCardPageView extends BasePageViewWidget<GetCardViewModel> {
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
         child: GestureDetector(
-      onHorizontalDragEnd: (details) {},
+      onHorizontalDragEnd: (details) {
+        if (details.primaryVelocity!.isNegative) {
+          ProviderScope.containerOf(context)
+              .read(appHomeViewModelProvider)
+              .pageController
+              .next();
+        } else {
+          ProviderScope.containerOf(context)
+              .read(appHomeViewModelProvider)
+              .pageController
+              .previous();
+        }
+      },
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -36,7 +49,8 @@ class GetCardPageView extends BasePageViewWidget<GetCardViewModel> {
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
-                          color: Theme.of(context).accentColor),
+                          color:
+                              Theme.of(context).accentColor.withOpacity(0.4)),
                     )
                   ],
                 ),

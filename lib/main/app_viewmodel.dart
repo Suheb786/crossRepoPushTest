@@ -171,7 +171,7 @@ class AppViewModel extends BaseViewModel {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             textTheme: ButtonTextTheme.normal,
           ),
-        );
+          canvasColor: AppColor.vividYellow);
         break;
     }
 
