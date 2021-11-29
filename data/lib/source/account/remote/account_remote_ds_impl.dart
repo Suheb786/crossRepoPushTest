@@ -3,6 +3,8 @@ import 'package:data/entity/remote/account/check_other_nationality_status_reques
 import 'package:data/entity/remote/account/check_other_nationality_status_response_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_request_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_response_entity.dart';
+import 'package:data/entity/remote/account/doc_status_request_entity.dart';
+import 'package:data/entity/remote/account/doc_status_response_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/account/account_datasource.dart';
@@ -29,5 +31,12 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
     return _apiService.checkOtherNationalityStatus(
         CheckOtherNationalityStatusRequestEntity(
             baseData: baseData.toJson(), getToken: getToken));
+  }
+
+  @override
+  Future<HttpResponse<DocStatusResponseEntity>> docStatus() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.docStatus(
+        DocStatusRequestEntity(baseData: baseData.toJson(), getToken: true));
   }
 }

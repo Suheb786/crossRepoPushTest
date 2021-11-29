@@ -4,12 +4,14 @@ import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/bank_smart/customer_account_details.dart';
 import 'package:domain/model/bank_smart/customer_information.dart';
 import 'package:domain/model/bank_smart/get_account_response.dart';
+import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_content.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
 import 'package:domain/usecase/account/check_videocall_status_usecase.dart';
 import 'package:domain/usecase/bank_smart/create_account_usecase.dart';
 import 'package:domain/usecase/bank_smart/get_account_usecase.dart';
 import 'package:domain/usecase/register/review_app_usecase.dart';
 import 'package:domain/usecase/user/confirm_application_data_get_usecase.dart';
+import 'package:domain/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -172,7 +174,6 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     });
 
     getConfirmApplicationData();
-    updateTextFieldData();
   }
 
   void getError(Resource<List<String>> event) {
@@ -211,14 +212,15 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
 
   ///Controllers for address
   TextEditingController residentCountryController = TextEditingController();
-  TextEditingController homeAddressController = TextEditingController();
+  TextEditingController districtController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
   TextEditingController streetAddressController = TextEditingController();
   TextEditingController buildingNameOrNoController = TextEditingController();
 
   ///Controllers for permanent address
-  TextEditingController residentPermanentAddressCountryController =
+  TextEditingController residentPermanentCountryController =
       TextEditingController();
-  TextEditingController residentPermanentAddressCityController =
+  TextEditingController residentPermanentCityController =
       TextEditingController();
 
   ///Controllers for personal details
@@ -245,26 +247,26 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   TextEditingController expectedAnnualTransactionsController =
       TextEditingController();
 
-  void updateTextFieldData() {
-    residentCountryController.text = 'Jordan';
-    homeAddressController.text = 'Queen Rania Al-Abdullah';
-    streetAddressController.text = 'Sweilah';
-    buildingNameOrNoController.text = 'W Amman';
-    residentPermanentAddressCountryController.text = 'Bahrain';
-    residentPermanentAddressCityController.text = 'Sweilah';
-    spouseNameController.text = 'Ameena Rasheed';
-    specialNeedsPersonController.text = 'Movement';
-    employmentStatusController.text = 'Full-Time Employee';
-    occupationController.text = 'Senior Executive';
-    mainAnnualIncomeController.text = '60,000';
-    employerNameController.text = 'Jordan Insurance Company';
-    employerCountryController.text = 'Jordan';
-    employerCityController.text = 'Amman';
-    employerContactController.text = '+962 79 333 8080';
-    purposeOfAccountOpeningController.text = 'Salary';
-    expectedMonthlyTransactionsController.text = '12,000';
-    expectedAnnualTransactionsController.text = '102,000';
-  }
+  // void updateTextFieldData() {
+  //   residentCountryController.text = 'Jordan';
+  //   homeAddressController.text = 'Queen Rania Al-Abdullah';
+  //   streetAddressController.text = 'Sweilah';
+  //   buildingNameOrNoController.text = 'W Amman';
+  //   residentPermanentAddressCountryController.text = 'Bahrain';
+  //   residentPermanentAddressCityController.text = 'Sweilah';
+  //   spouseNameController.text = 'Ameena Rasheed';
+  //   specialNeedsPersonController.text = 'Movement';
+  //   employmentStatusController.text = 'Full-Time Employee';
+  //   occupationController.text = 'Senior Executive';
+  //   mainAnnualIncomeController.text = '60,000';
+  //   employerNameController.text = 'Jordan Insurance Company';
+  //   employerCountryController.text = 'Jordan';
+  //   employerCityController.text = 'Amman';
+  //   employerContactController.text = '+962 79 333 8080';
+  //   purposeOfAccountOpeningController.text = 'Salary';
+  //   expectedMonthlyTransactionsController.text = '12,000';
+  //   expectedAnnualTransactionsController.text = '102,000';
+  // }
 
   @override
   void dispose() {
@@ -277,5 +279,73 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     _getConfirmApplicationDataRequest.close();
     _getConfirmApplicationDataResponse.close();
     super.dispose();
+  }
+
+  void updateTextFieldData(
+      GetConfirmApplicationDataContent getConfirmApplicationDataContent) {
+    ///address
+    residentCountryController.text =
+        getConfirmApplicationDataContent.countryResidenceInfo!.residantCountry!;
+    streetAddressController.text =
+        getConfirmApplicationDataContent.countryResidenceInfo!.streetName!;
+    buildingNameOrNoController.text =
+        getConfirmApplicationDataContent.countryResidenceInfo!.buildingName!;
+    districtController.text =
+        getConfirmApplicationDataContent.countryResidenceInfo!.district!;
+    cityController.text =
+        getConfirmApplicationDataContent.countryResidenceInfo!.city!;
+
+    ///permanent address
+    residentPermanentCountryController.text = Validator.isNotEmptyNull(
+            getConfirmApplicationDataContent
+                .countryResidenceInfo!.perResidantCountry!)
+        ? getConfirmApplicationDataContent
+            .countryResidenceInfo!.perResidantCountry!
+        : '';
+    residentPermanentCityController.text = Validator.isNotEmptyNull(
+            getConfirmApplicationDataContent.countryResidenceInfo!.perCity!)
+        ? getConfirmApplicationDataContent.countryResidenceInfo!.perCity!
+        : '';
+
+    ///profile status
+    spouseNameController.text = Validator.isNotEmptyNull(
+            getConfirmApplicationDataContent.profileStatusInfo!.spauseName!)
+        ? getConfirmApplicationDataContent.profileStatusInfo!.spauseName!
+        : '';
+    // print('special needs ${getConfirmApplicationDataContent.profileStatusInfo!.natureSp!}');
+    // specialNeedsPersonController.text = Validator.isNotEmptyNull(
+    //         getConfirmApplicationDataContent.profileStatusInfo!.natureSp!)
+    //     ? getConfirmApplicationDataContent.profileStatusInfo!.natureSp!
+    //     : '';
+    employmentStatusController.text =
+        getConfirmApplicationDataContent.profileStatusInfo!.employmentStatus!;
+
+    ///job details
+    occupationController.text = Validator.isNotEmptyNull(
+            getConfirmApplicationDataContent
+                .jobDetailInfo!.jobDetailContentInfo!.profession!)
+        ? (getConfirmApplicationDataContent
+            .jobDetailInfo!.jobDetailContentInfo!.profession!)
+        : '';
+    mainAnnualIncomeController.text = getConfirmApplicationDataContent
+        .jobDetailInfo!.jobDetailContentInfo!.annualIncome!;
+    employerNameController.text = getConfirmApplicationDataContent
+        .jobDetailInfo!.jobDetailContentInfo!.employeeName!;
+    employerCountryController.text = getConfirmApplicationDataContent
+        .jobDetailInfo!.jobDetailContentInfo!.employerCountry!;
+    employerCityController.text = getConfirmApplicationDataContent
+        .jobDetailInfo!.jobDetailContentInfo!.employerCity!;
+    employerContactController.text = getConfirmApplicationDataContent
+        .jobDetailInfo!.jobDetailContentInfo!.employerContact!;
+
+    ///purpose of account opening
+    purposeOfAccountOpeningController.text =
+        getConfirmApplicationDataContent.accountPurposeInfo!.purpose!;
+    expectedMonthlyTransactionsController.text =
+        getConfirmApplicationDataContent.accountPurposeInfo!.monthlyTransaction!
+            .toString();
+    expectedAnnualTransactionsController.text = getConfirmApplicationDataContent
+        .accountPurposeInfo!.anualTransaction!
+        .toString();
   }
 }

@@ -420,5 +420,12 @@
   "emailAlreadyExist": "Email already exist",
   "idCardNotAllowed": "ID card is not allowed for NeoBank.",
   "otpLimitExceed": "Otp Limit Exceeds, Please Try again Later",
-  "errorCreatingAccount": "Error While Creating Account"
+  "errorCreatingAccount": "Error While Creating Account",
+  "permanentCountry": "Permanent Country",
+  "permanentCity": "Permanent City",
+  "additionalIncomeList": "Add. Income \n{additionalIncomeList}",
+  "@additionalIncomeList": {
+    "description": "additionalIncomeList",
+    "type": "string"
+  }
 }

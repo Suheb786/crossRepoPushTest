@@ -2,6 +2,8 @@ import 'package:data/entity/remote/account/check_other_nationality_status_reques
 import 'package:data/entity/remote/account/check_other_nationality_status_response_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_request_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_response_entity.dart';
+import 'package:data/entity/remote/account/doc_status_request_entity.dart';
+import 'package:data/entity/remote/account/doc_status_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
@@ -164,4 +166,9 @@ abstract class ApiService {
           @Body()
               ConfirmApplicationDataGetRequestEntity
                   confirmApplicationDataGetRequestEntity);
+
+  ///doc status
+  @POST("/account/DocsStatus")
+  Future<HttpResponse<DocStatusResponseEntity>> docStatus(
+      @Body() DocStatusRequestEntity docStatusRequestEntity);
 }

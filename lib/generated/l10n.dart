@@ -4110,6 +4110,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Permanent Country`
+  String get permanentCountry {
+    return Intl.message(
+      'Permanent Country',
+      name: 'permanentCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent City`
+  String get permanentCity {
+    return Intl.message(
+      'Permanent City',
+      name: 'permanentCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add. Income \n{additionalIncomeList}`
+  String additionalIncomeList(Object additionalIncomeList) {
+    return Intl.message(
+      'Add. Income \n$additionalIncomeList',
+      name: 'additionalIncomeList',
+      desc: 'additionalIncomeList',
+      args: [additionalIncomeList],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
