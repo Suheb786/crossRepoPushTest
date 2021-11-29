@@ -77,7 +77,7 @@ class AccountRegistrationPageView
                     Padding(
                       padding: EdgeInsets.only(
                           top: 8.0,
-                          bottom: currentStep == 1 ? 0 : 32,
+                          bottom: currentStep == 2 ? 0 : 32,
                           left: 24,
                           right: 24),
                       child: ShowUpAnimation(
@@ -103,7 +103,7 @@ class AccountRegistrationPageView
                       ),
                     ),
                     Visibility(
-                      visible: currentStep == 1,
+                      visible: currentStep == 2,
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 32),
                         child: ShowUpAnimation(
