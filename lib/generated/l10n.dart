@@ -4140,6 +4140,26 @@ class S {
       args: [additionalIncomeList],
     );
   }
+
+  /// `Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777.`
+  String get unableToVerifyIDCard {
+    return Intl.message(
+      'Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777.',
+      name: 'unableToVerifyIDCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid User.`
+  String get invalidUser {
+    return Intl.message(
+      'Invalid User.',
+      name: 'invalidUser',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

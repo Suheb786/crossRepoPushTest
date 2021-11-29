@@ -427,5 +427,7 @@
   "@additionalIncomeList": {
     "description": "additionalIncomeList",
     "type": "string"
-  }
+  },
+  "unableToVerifyIDCard": "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777.",
+  "invalidUser": "Invalid User."
 }

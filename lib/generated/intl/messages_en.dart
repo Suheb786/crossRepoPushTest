@@ -416,6 +416,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter total additional income"),
         "invalidTypesOfTransaction": MessageLookupByLibrary.simpleMessage(
             "Please Enter transaction type"),
+        "invalidUser": MessageLookupByLibrary.simpleMessage("Invalid User."),
         "invalidUserNamePassword": MessageLookupByLibrary.simpleMessage(
             "You have entered an invalid username or password, please try again"),
         "isBusinessNameDifferent": MessageLookupByLibrary.simpleMessage(
@@ -696,6 +697,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
         "typeOfTransactionsSmall": m4,
+        "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
+            "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "uploadDocLaterDesc": MessageLookupByLibrary.simpleMessage(
             "You will need to upload required document from Profile Settings later in order to complete your account verification.\n\nNote: Account will be closed automatically for any incomplete document"),

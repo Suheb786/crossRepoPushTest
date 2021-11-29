@@ -110,6 +110,16 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_CREATING_ACCOUNT);
 
+          case "err-020":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.UNABLE_TO_VERIFY_ID_CARD);
+
+          case "err-047":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.INVALID_USER);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);
