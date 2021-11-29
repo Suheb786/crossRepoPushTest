@@ -77,7 +77,7 @@ abstract class ApiService {
   Future<String> fetchCountryList(
       @Body() FetchCountryListRequest fetchCountryListRequest);
 
-  @POST("/CustomerDetails/SaveIdInfo")
+  @POST("/IdCard/set")
   Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(
       @Body() SaveIdInfoRequest saveIdInfoRequest);
 

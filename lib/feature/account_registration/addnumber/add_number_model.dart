@@ -137,7 +137,7 @@ class AddNumberViewModel extends BasePageViewModel {
         .debounceTime(Duration(milliseconds: 800))
         .distinct()
         .listen((phone) {
-      if (phone.length > 8) {
+      if (phone.length > 7) {
         checkPhoneAvailability();
       }
     });
