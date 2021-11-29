@@ -1,7 +1,6 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
 import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
-import 'package:domain/usecase/user/account_ready_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
@@ -51,11 +50,6 @@ final confirmDetailUseCaseProvider = Provider.autoDispose<ConfirmDetailUseCase>(
 ///[EnterAddressUseCase] provider
 final enterAddressUseCaseProvider = Provider.autoDispose<EnterAddressUseCase>(
   (ref) => EnterAddressUseCase(ref.read(userRepoProvider)),
-);
-
-///[AccountReadyUseCase] provider
-final accountReadyUseCaseProvider = Provider.autoDispose<AccountReadyUseCase>(
-  (ref) => AccountReadyUseCase(),
 );
 
 ///[HomeAddressDialogUseCase] provider
