@@ -26,6 +26,7 @@ import 'package:neo_bank/feature/register/step_three/register_step_three_page_vi
 import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_two/register_step_two_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page_view_model.dart';
+import 'package:neo_bank/feature/register/stepone/capture/capture_model.dart';
 import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_model.dart';
 import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_model.dart';
 import 'package:neo_bank/feature/register/stepone/id_verification_info/id_verification_info_model.dart';
@@ -62,6 +63,10 @@ final idVerificationInfoViewModelProvider =
     ChangeNotifierProvider.autoDispose<IdVerificationInfoViewModel>((ref) =>
         IdVerificationInfoViewModel(ref.read(idVerificationInfoUseCaseProvider),
             ref.read(scanUserDocumentUseCaseProvider)));
+
+final captureViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CaptureViewModel>(
+        (ref) => CaptureViewModel());
 
 ///[ConfirmDetailViewModel] provider
 final confirmDetailViewModelProvider =
