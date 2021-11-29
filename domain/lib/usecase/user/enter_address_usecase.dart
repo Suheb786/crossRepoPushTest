@@ -22,8 +22,8 @@ class EnterAddressUseCase extends BaseUseCase<NetworkError,
         residentCountry: params.residentCountry,
         residentDistrict: params.district,
         residentCity: params.city,
-        streetAddress: params.streetAddress,
-        homeAddress: params.buildingNameOrNo,
+        streetName: params.streetAddress,
+        buildingName: params.buildingNameOrNo,
         permanentResidentCountry: params.permanentResidentCountry,
         permanentResidentCity: params.permanentCity);
   }

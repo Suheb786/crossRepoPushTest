@@ -6,26 +6,29 @@ part "save_residence_information_request.g.dart";
 class SaveResidenceInformationRequest {
   @JsonKey(name: "residantCountry")
   final String? residantCountry;
-  @JsonKey(name: "homeAddress")
-  final String? homeAddress;
-  @JsonKey(name: "streetAddress")
-  final String? streetAddress;
-  @JsonKey(name: "perResidantCountry")
-  final String? permanentResidantCountry;
-  @JsonKey(name: "perHomeAddre")
-  final String? permanentHomeAddre;
-  @JsonKey(name: "perStreetAddress")
-  final String? permanentStreetAddress;
+  @JsonKey(name: "BuildingName")
+  final String? buildingName;
+  @JsonKey(name: "StreetName")
+  final String? streetName;
+  @JsonKey(name: "District")
+  final String? district;
+  @JsonKey(name: "City")
+  final String? city;
+  @JsonKey(name: "PerCountry")
+  final String? perCountry;
+  @JsonKey(name: "PerCity")
+  final String? perCity;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
   SaveResidenceInformationRequest(
-      {this.residantCountry:"",
-      this.homeAddress:"",
-      this.streetAddress:"",
-      this.permanentResidantCountry:"",
-      this.permanentHomeAddre:"",
-      this.permanentStreetAddress:"",
+      {this.residantCountry: "",
+      this.buildingName: "",
+      this.streetName: "",
+      this.district: "",
+      this.city: "",
+      this.perCountry: "",
+      this.perCity: "",
       required this.baseData});
 
   factory SaveResidenceInformationRequest.fromJson(Map<String, dynamic> json) =>

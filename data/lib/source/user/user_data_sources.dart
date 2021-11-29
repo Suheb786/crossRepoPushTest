@@ -86,14 +86,12 @@ abstract class UserRemoteDS {
   Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
       saveResidenceInformation(
           {String? residentCountry,
-          String? homeAddress,
-          String? streetAddress,
+          String? buildingName,
+          String? streetName,
           String? residentDistrict,
           String? residentCity,
           String? permanentResidentCountry,
-          String? permanentResidentCity,
-          String? permanentHomeAddress,
-          String? permanentStreetAddress});
+          String? permanentResidentCity});
 
   Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp(
       {String? otpCode});

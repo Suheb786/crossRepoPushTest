@@ -215,23 +215,22 @@ class UserRemoteDSImpl extends UserRemoteDS {
   Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
       saveResidenceInformation(
           {String? residentCountry,
-          String? homeAddress,
-          String? streetAddress,
+          String? buildingName,
+          String? streetName,
           String? residentDistrict,
           String? residentCity,
           String? permanentResidentCountry,
-          String? permanentResidentCity,
-          String? permanentHomeAddress,
-          String? permanentStreetAddress}) async {
+          String? permanentResidentCity}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveResidenceInformation(SaveResidenceInformationRequest(
         baseData: baseData.toJson(),
         residantCountry: residentCountry,
-        homeAddress: homeAddress,
-        streetAddress: streetAddress,
-        permanentResidantCountry: permanentResidentCountry,
-        permanentHomeAddre: permanentHomeAddress,
-        permanentStreetAddress: permanentStreetAddress));
+        buildingName: buildingName,
+        streetName: streetName,
+        district: residentDistrict,
+        city: residentCity,
+        perCountry: permanentResidentCountry,
+        perCity: permanentResidentCity));
   }
 
   @override
@@ -248,7 +247,8 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<GetConfirmApplicationDataResponseEntity>> confirmApplicationDataGet() async {
+  Future<HttpResponse<GetConfirmApplicationDataResponseEntity>>
+      confirmApplicationDataGet() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.confirmApplicationDataGet(
         ConfirmApplicationDataGetRequestEntity(

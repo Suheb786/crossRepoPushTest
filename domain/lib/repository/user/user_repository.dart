@@ -82,16 +82,15 @@ abstract class UserRepository {
 
   /// save residence information
   Future<Either<NetworkError, SaveCountryResidenceInfoResponse>>
-      saveResidenceInformation(
-          {String? residentCountry,
-          String? homeAddress,
-          String? streetAddress,
-          String? residentDistrict,
-          String? residentCity,
-          String? permanentResidentCountry,
-          String? permanentResidentCity,
-          String? permanentHomeAddress,
-          String? permanentStreetAddress});
+      saveResidenceInformation({
+    String? residentCountry,
+    String? buildingName,
+    String? streetName,
+    String? residentDistrict,
+    String? residentCity,
+    String? permanentResidentCountry,
+    String? permanentResidentCity,
+  });
 
   /// save profile information
   Future<Either<NetworkError, SaveProfileStatusResponse>>

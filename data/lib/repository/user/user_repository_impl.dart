@@ -272,24 +272,20 @@ class UserRepositoryImpl extends UserRepository {
   Future<Either<NetworkError, SaveCountryResidenceInfoResponse>>
       saveResidenceInformation(
           {String? residentCountry,
-          String? homeAddress,
-          String? streetAddress,
+          String? buildingName,
+          String? streetName,
           String? residentDistrict,
           String? residentCity,
           String? permanentResidentCountry,
-          String? permanentResidentCity,
-          String? permanentHomeAddress,
-          String? permanentStreetAddress}) async {
+          String? permanentResidentCity}) async {
     final result = await safeApiCall(_remoteDS.saveResidenceInformation(
         residentCountry: residentCountry,
-        homeAddress: homeAddress,
-        streetAddress: streetAddress,
+        buildingName: buildingName,
+        streetName: streetName,
         residentDistrict: residentDistrict,
         residentCity: residentCity,
         permanentResidentCountry: permanentResidentCountry,
-        permanentResidentCity: permanentResidentCity,
-        permanentHomeAddress: permanentHomeAddress,
-        permanentStreetAddress: permanentStreetAddress));
+        permanentResidentCity: permanentResidentCity));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
