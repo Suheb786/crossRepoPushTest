@@ -10,6 +10,8 @@ import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
+import 'package:data/entity/remote/user/register_interest/register_interest_request_entity.dart';
+import 'package:data/entity/remote/user/register_interest/register_interest_response_entity.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/register_response_entity.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
@@ -253,5 +255,15 @@ class UserRemoteDSImpl extends UserRemoteDS {
     return _apiService.confirmApplicationDataGet(
         ConfirmApplicationDataGetRequestEntity(
             getToken: true, baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<RegisterInterestResponseEntity>> registerInterest(
+      {String? email}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.registerInterest(RegisterInterestRequestEntity(
+        email: email,
+        uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
+        baseData: baseData.toJson()));
   }
 }

@@ -31,6 +31,8 @@ import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
+import 'package:data/entity/remote/user/register_interest/register_interest_request_entity.dart';
+import 'package:data/entity/remote/user/register_interest/register_interest_response_entity.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/register_response_entity.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
@@ -171,4 +173,9 @@ abstract class ApiService {
   @POST("/account/DocsStatus")
   Future<HttpResponse<DocStatusResponseEntity>> docStatus(
       @Body() DocStatusRequestEntity docStatusRequestEntity);
+
+  ///register interest
+  @POST("/auth/RegisterInterest")
+  Future<HttpResponse<RegisterInterestResponseEntity>> registerInterest(
+      @Body() RegisterInterestRequestEntity registerInterestRequestEntity);
 }

@@ -11,6 +11,7 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/check_username.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
+import 'package:domain/model/user/register_interest/register_interest_response.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
@@ -358,6 +359,18 @@ class UserRepositoryImpl extends UserRepository {
       confirmApplicationDataGet() async {
     final result = await safeApiCall(
       _remoteDS.confirmApplicationDataGet(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, RegisterInterestResponse>> registerInterest(
+      {String? email}) async {
+    final result = await safeApiCall(
+      _remoteDS.registerInterest(email: email),
     );
     return result!.fold(
       (l) => Left(l),
