@@ -93,6 +93,7 @@ class AssetUtils {
   static const String logoWhite = drawable + "logo_white.png";
   static const String zigzagRed = drawable + "zigzag_red.png";
   static const String ellipseRed = drawable + "ellipse_red.png";
+  static const String ellipseWhite = drawable + "ellipse_white.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
@@ -119,19 +119,27 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
         ),
         Positioned(
           top: 0,
-          child: Container(
-            height: 24,
-            width: 125,
-            decoration: BoxDecoration(
-                color: AppColor.darkGrey,
-                borderRadius: BorderRadius.circular(100)),
-            child: Center(
-              child: Text(
-                "Card delivered?",
-                style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 12),
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => DebitCardDeliveredPage()));
+            },
+            child: Container(
+              height: 24,
+              width: 125,
+              decoration: BoxDecoration(
+                  color: AppColor.darkGrey,
+                  borderRadius: BorderRadius.circular(100)),
+              child: Center(
+                child: Text(
+                  "Card delivered?",
+                  style: TextStyle(
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 12),
+                ),
               ),
             ),
           ),

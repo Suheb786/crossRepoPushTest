@@ -4,9 +4,13 @@ import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart'
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
+import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/card_delivered/card_delivered_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/card_detail/card_detail_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/get_card/get_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
@@ -378,8 +382,8 @@ final myDebitCardViewModelProvider =
 );
 
 final cardDeliveredViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CardDeliveredViewModel>(
-  (ref) => CardDeliveredViewModel(ref.read(cardDeliveredUseCaseProvider)),
+    ChangeNotifierProvider.autoDispose<DebitCardDeliveredViewModel>(
+  (ref) => DebitCardDeliveredViewModel(ref.read(cardDeliveredUseCaseProvider)),
 );
 
 final debitCardVerificationSuccessViewModelProvider =
@@ -391,4 +395,27 @@ final debitCardVerificationSuccessViewModelProvider =
 final cardDetailViewModelProvider =
     ChangeNotifierProvider.autoDispose<CardDetailViewModel>(
   (ref) => CardDetailViewModel(ref.read(cardDetailUseCaseProvider)),
+);
+
+final cardTransactionViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CardTransactionViewModel>(
+  (ref) => CardTransactionViewModel(ref.read(cardTransactionUseCaseProvider)),
+);
+
+final creditCardDeliveredViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CreditCardDeliveredViewModel>(
+  (ref) => CreditCardDeliveredViewModel(
+      ref.read(creditCardDeliveredUseCaseProvider)),
+);
+
+final creditCardVerificationSuccessViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CreditCardVerificationSuccessViewModel>(
+  (ref) => CreditCardVerificationSuccessViewModel(
+      ref.read(creditCardVerificationSuccessUseCaseProvider)),
+);
+
+final accountTransactionViewModelProvider =
+    ChangeNotifierProvider.autoDispose<AccountTransactionViewModel>(
+  (ref) =>
+      AccountTransactionViewModel(ref.read(accountTransactionUseCaseProvider)),
 );

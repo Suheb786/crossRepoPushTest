@@ -19,19 +19,22 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> {
 
   @override
   Widget? buildBottomNavigationBar() {
-    return BottomAppBar(
-      notchMargin: 0,
-      elevation: 0,
-      clipBehavior: Clip.none,
-      color: Colors.white,
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 65),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Image.asset(AssetUtils.house),
-            Image.asset(AssetUtils.headphoneBlack),
-          ],
+    return Padding(
+      padding: EdgeInsets.only(bottom: 24.0),
+      child: BottomAppBar(
+        notchMargin: 0,
+        elevation: 0,
+        clipBehavior: Clip.none,
+        color: Colors.white,
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 65),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Image.asset(AssetUtils.house),
+              Image.asset(AssetUtils.headphoneBlack),
+            ],
+          ),
         ),
       ),
     );
