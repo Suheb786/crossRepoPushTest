@@ -230,6 +230,12 @@ class ErrorParser {
         return localisedHelper.otpLimitExceed;
       case ErrorType.ERROR_CREATING_ACCOUNT:
         return localisedHelper.errorCreatingAccount;
+      case ErrorType.UNABLE_TO_VERIFY_ID_CARD:
+        return localisedHelper.unableToVerifyIDCard;
+      case ErrorType.INVALID_USER:
+        return localisedHelper.invalidUser;
+      case ErrorType.ERROR_WHILE_LOGOUT:
+        return localisedHelper.errorWhileLogout;
 
       default:
         return "";

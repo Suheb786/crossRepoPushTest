@@ -4,6 +4,7 @@ import 'package:data/source/account/account_datasource.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/account/check_other_nationality_status_response.dart';
 import 'package:domain/model/account/check_videocall_status_response.dart';
+import 'package:domain/model/account/doc_status_response.dart';
 import 'package:domain/repository/account/account_repository.dart';
 
 class AccountRepositoryImpl extends AccountRepository {
@@ -28,6 +29,17 @@ class AccountRepositoryImpl extends AccountRepository {
       checkOtherNationalityStatus({required bool getToken}) async {
     final result = await safeApiCall(
       _accountRemoteDS.checkOtherNationalityStatus(getToken: getToken),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, DocStatusResponse>> docStatus() async {
+    final result = await safeApiCall(
+      _accountRemoteDS.docStatus(),
     );
     return result!.fold(
       (l) => Left(l),

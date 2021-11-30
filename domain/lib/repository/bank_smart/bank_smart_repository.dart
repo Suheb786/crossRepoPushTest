@@ -1,7 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/bank_smart/customer_account_details.dart';
 import 'package:domain/model/bank_smart/customer_information.dart';
+import 'package:domain/model/bank_smart/get_account_details_response.dart';
 import 'package:domain/model/bank_smart/get_account_response.dart';
 import 'package:domain/model/bank_smart/purpose_of_account_opening_response.dart';
 
@@ -23,12 +25,12 @@ abstract class BankSmartRepository {
       {required bool getToken});
 
   /// create account
-  Future<Either<NetworkError, String>> createAccount(
+  Future<Either<NetworkError, CreateAccountResponse>> createAccount(
       {required bool getToken,
       CustomerInformation? customerInformation,
       CustomerAccountDetails? accountDetails});
 
   /// get account details
-  Future<Either<NetworkError, String>> getAccountDetails(
+  Future<Either<NetworkError, GetAccountDetailsResponse>> getAccountDetails(
       {required bool getToken});
 }

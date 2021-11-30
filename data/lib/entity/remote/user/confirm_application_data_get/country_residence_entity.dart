@@ -14,16 +14,18 @@ class CountryResidenceEntity
   final String? userId;
   @JsonKey(name: "residantCountry")
   final String? residantCountry;
-  @JsonKey(name: "homeAddress")
-  final String? homeAddress;
-  @JsonKey(name: "streetAddress")
-  final String? streetAddress;
-  @JsonKey(name: "perResidantCountry")
+  @JsonKey(name: "buildingName")
+  final String? buildingName;
+  @JsonKey(name: "streetName")
+  final String? streetName;
+  @JsonKey(name: "district")
+  final String? district;
+  @JsonKey(name: "city")
+  final String? city;
+  @JsonKey(name: "perCountry")
   final String? perResidantCountry;
-  @JsonKey(name: "perHomeAddress")
-  final dynamic? perHomeAddress;
-  @JsonKey(name: "perStreetAddress")
-  final dynamic? perStreetAddress;
+  @JsonKey(name: "perCity")
+  final dynamic? perCity;
   @JsonKey(name: "createdOn")
   final DateTime? createdOn;
   @JsonKey(name: "isActive")
@@ -33,11 +35,12 @@ class CountryResidenceEntity
       {this.id,
       this.userId,
       this.residantCountry,
-      this.homeAddress,
-      this.streetAddress,
+      this.perCity,
+      this.city,
       this.perResidantCountry,
-      this.perHomeAddress,
-      this.perStreetAddress,
+      this.district,
+      this.buildingName,
+      this.streetName,
       this.createdOn,
       this.isActive});
 
@@ -50,13 +53,14 @@ class CountryResidenceEntity
   CountryResidenceEntity restore(CountryResidenceInfo response) {
     return CountryResidenceEntity(
         id: response.id,
-        homeAddress: response.homeAddress,
-        streetAddress: response.streetAddress,
+        buildingName: response.buildingName,
+        streetName: response.streetName,
         createdOn: response.createdOn,
         isActive: response.isActive,
-        perHomeAddress: response.perHomeAddress,
+        city: response.city,
         perResidantCountry: response.perResidantCountry,
-        perStreetAddress: response.perStreetAddress,
+        perCity: response.perCity,
+        district: response.district,
         residantCountry: response.residantCountry,
         userId: response.userId);
   }
@@ -65,13 +69,14 @@ class CountryResidenceEntity
   CountryResidenceInfo transform() {
     return CountryResidenceInfo(
         id: this.id,
-        homeAddress: this.homeAddress,
-        streetAddress: this.streetAddress,
+        buildingName: this.buildingName,
+        streetName: this.streetName,
         createdOn: this.createdOn,
         isActive: this.isActive,
-        perHomeAddress: this.perHomeAddress,
+        district: this.district,
+        city: this.city,
         perResidantCountry: this.perResidantCountry,
-        perStreetAddress: this.perStreetAddress,
+        perCity: this.perCity,
         residantCountry: this.residantCountry,
         userId: this.userId);
   }

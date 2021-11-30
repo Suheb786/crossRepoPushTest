@@ -4110,6 +4110,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Permanent Country`
+  String get permanentCountry {
+    return Intl.message(
+      'Permanent Country',
+      name: 'permanentCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent City`
+  String get permanentCity {
+    return Intl.message(
+      'Permanent City',
+      name: 'permanentCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add. Income \n{additionalIncomeList}`
+  String additionalIncomeList(Object additionalIncomeList) {
+    return Intl.message(
+      'Add. Income \n$additionalIncomeList',
+      name: 'additionalIncomeList',
+      desc: 'additionalIncomeList',
+      args: [additionalIncomeList],
+    );
+  }
+
+  /// `Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777.`
+  String get unableToVerifyIDCard {
+    return Intl.message(
+      'Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777.',
+      name: 'unableToVerifyIDCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid User.`
+  String get invalidUser {
+    return Intl.message(
+      'Invalid User.',
+      name: 'invalidUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Logout`
+  String get errorWhileLogout {
+    return Intl.message(
+      'Error While Logout',
+      name: 'errorWhileLogout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

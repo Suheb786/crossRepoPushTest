@@ -400,7 +400,8 @@ class TaxationDetailsPageView
                                         ],
                                       ),
                                     );
-                                  default:
+
+                                  case Status.LOADING:
                                     return Center(
                                       child: CircularProgressIndicator(
                                         valueColor:
@@ -408,6 +409,10 @@ class TaxationDetailsPageView
                                                 Theme.of(context).primaryColor),
                                         strokeWidth: 2,
                                       ),
+                                    );
+                                  default:
+                                    return Center(
+                                      child: Text('Something went wrong'),
                                     );
                                 }
                               },

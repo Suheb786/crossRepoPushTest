@@ -420,5 +420,15 @@
   "emailAlreadyExist": "Email already exist",
   "idCardNotAllowed": "ID card is not allowed for NeoBank.",
   "otpLimitExceed": "Otp Limit Exceeds, Please Try again Later",
-  "errorCreatingAccount": "Error While Creating Account"
+  "errorCreatingAccount": "Error While Creating Account",
+  "permanentCountry": "Permanent Country",
+  "permanentCity": "Permanent City",
+  "additionalIncomeList": "Add. Income \n{additionalIncomeList}",
+  "@additionalIncomeList": {
+    "description": "additionalIncomeList",
+    "type": "string"
+  },
+  "unableToVerifyIDCard": "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777.",
+  "invalidUser": "Invalid User.",
+  "errorWhileLogout": "Error While Logout"
 }

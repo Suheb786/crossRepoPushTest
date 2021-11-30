@@ -250,7 +250,7 @@ final uploadDocumentsPageViewModelProvider =
 ///account ready page
 final accountReadyPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountReadyViewModel>(
-  (ref) => AccountReadyViewModel(ref.read(accountReadyUseCaseProvider)),
+  (ref) => AccountReadyViewModel(ref.read(getAccountDetailsUseCaseProvider)),
 );
 
 /// purpose of account opening  view model provider
