@@ -15,6 +15,7 @@ import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:domain/usecase/user/send_documents_usecase.dart';
+import 'package:domain/usecase/user/upload_selfie_image_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:domain/usecase/user/video_call_info_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -117,3 +118,7 @@ final scanUserDocumentUseCaseProvider = Provider<ScanUserDocumentUseCase>(
 ///[GetTokenUseCase] provider
 final getTokenUseCaseProvider = Provider<GetTokenUseCase>(
     (ref) => GetTokenUseCase(ref.read(userRepoProvider)));
+
+///[UploadSelfieImageUseCase] provider
+final uploadSelfieImageUseCaseProvider = Provider<UploadSelfieImageUseCase>(
+    (ref) => UploadSelfieImageUseCase(ref.read(userRepoProvider)));

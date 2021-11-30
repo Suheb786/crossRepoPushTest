@@ -64,9 +64,10 @@ final idVerificationInfoViewModelProvider =
         IdVerificationInfoViewModel(ref.read(idVerificationInfoUseCaseProvider),
             ref.read(scanUserDocumentUseCaseProvider)));
 
+///[CaptureViewModel] provider
 final captureViewModelProvider =
     ChangeNotifierProvider.autoDispose<CaptureViewModel>(
-        (ref) => CaptureViewModel());
+        (ref) => CaptureViewModel(ref.read(uploadSelfieImageUseCaseProvider)));
 
 ///[ConfirmDetailViewModel] provider
 final confirmDetailViewModelProvider =

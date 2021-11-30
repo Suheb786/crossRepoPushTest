@@ -16,6 +16,7 @@ import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/register_response_entity.dart';
+import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_id_info_request.dart';
 import 'package:data/entity/remote/user/save_id_info_response_entity.dart';
@@ -24,6 +25,7 @@ import 'package:data/entity/remote/user/save_job_info_request.dart';
 import 'package:data/entity/remote/user/save_profile_information_request.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:data/entity/remote/user/save_residence_information_request.dart';
+import 'package:data/entity/remote/user/save_selfie_image_request.dart';
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:dio/dio.dart';
@@ -65,6 +67,10 @@ abstract class ApiService {
   @POST("/IdCard/set")
   Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(
       @Body() SaveIdInfoRequest saveIdInfoRequest);
+
+  @POST("/Account/SelfeeCheck")
+  Future<HttpResponse<ResponseEntity>> uploadSelfieImage(
+      @Body() SaveSelfieImageRequest saveSelfieImageRequest);
 
   @POST("/AddFeilds/SaveJobDetails")
   Future<HttpResponse<SaveJobDetailsResponseEntity>> saveJobInformation(

@@ -296,8 +296,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> verifyMobileOtp(
-      {String? otpCode}) async {
+  Future<Either<NetworkError, bool>> verifyMobileOtp({String? otpCode}) async {
     final result = await safeApiCall(
       _remoteDS.verifyMobileOtp(otpCode: otpCode),
     );
@@ -350,6 +349,17 @@ class UserRepositoryImpl extends UserRepository {
   Future<Either<NetworkError, bool>> getToken() async {
     final result = await safeApiCall(
       _remoteDS.getToken(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> uploadSelfieImage({String? image}) async {
+    final result = await safeApiCall(
+      _remoteDS.uploadSelfieImage(image: image),
     );
     return result!.fold(
       (l) => Left(l),

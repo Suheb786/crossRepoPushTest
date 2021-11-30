@@ -47,6 +47,9 @@ abstract class UserRepository {
   /// verify mobile otp
   Future<Either<NetworkError, bool>> verifyMobileOtp({String? otpCode});
 
+  /// Upload selfie image
+  Future<Either<NetworkError, bool>> uploadSelfieImage({String? image});
+
   /// save Id information
   Future<Either<NetworkError, SaveIdInfoResponse>> saveIdInfo({
     String? id,
