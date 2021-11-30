@@ -1,9 +1,11 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/register/register_modules.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page_view.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
 class AppHomePage extends BasePage<AppHomeViewModel> {
@@ -20,39 +22,45 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> {
   @override
   Widget? buildBottomNavigationBar() {
     return Padding(
-      padding: EdgeInsets.only(bottom: 24.0),
-      child: BottomAppBar(
-        notchMargin: 0,
+      padding: EdgeInsets.only(bottom: 24),
+      child: ConvexAppBar(
         elevation: 0,
-        clipBehavior: Clip.none,
-        color: Colors.white,
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 65),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Image.asset(AssetUtils.house),
-              Image.asset(AssetUtils.headphoneBlack),
-            ],
+        style: TabStyle.fixedCircle,
+        backgroundColor: Theme.of(context).accentColor,
+        items: [
+          TabItem(icon: AppSvg.asset(AssetUtils.house)),
+          TabItem(
+            icon: Container(
+              height: 80,
+              width: 80,
+              decoration: BoxDecoration(
+                  color: Theme.of(context).primaryColorDark,
+                  shape: BoxShape.circle),
+              child: Center(
+                child: AppSvg.asset(AssetUtils.logoWhite),
+              ),
+            ),
           ),
-        ),
+          TabItem(icon: AppSvg.asset(AssetUtils.headphoneBlack)),
+        ],
+        initialActiveIndex: 1,
+        onTap: (i) => print("got index $i"),
       ),
     );
   }
 
-  @override
-  Widget? buildFloatingActionButton() {
-    return Container(
-      height: 80,
-      width: 80,
-      decoration: BoxDecoration(
-          color: Theme.of(context).primaryColorDark, shape: BoxShape.circle),
-      child: Center(
-        child: Image.asset(AssetUtils.logoWhite),
-      ),
-    );
-  }
-
+  // @override
+  // Widget? buildFloatingActionButton() {
+  //   return Container(
+  //     height: 80,
+  //     width: 80,
+  //     decoration: BoxDecoration(
+  //         color: Theme.of(context).primaryColorDark, shape: BoxShape.circle),
+  //     child: Center(
+  //       child: Image.asset(AssetUtils.logoWhite),
+  //     ),
+  //   );
+  // }
 
   @override
   Color? scaffoldBackgroundColor() {

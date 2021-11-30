@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -42,7 +43,13 @@ class CardTransactionPageView
                 padding: EdgeInsets.only(top: 35),
                 child: GestureDetector(
                   onVerticalDragEnd: (details) {
-                    Navigator.pop(context);
+                    if (details.primaryVelocity!.isNegative) {
+                    } else {
+                      ProviderScope.containerOf(context)
+                          .read(homeViewModelProvider)
+                          .homeController
+                          .jumpToPage(0);
+                    }
                   },
                   child: Container(
                     height: double.infinity,

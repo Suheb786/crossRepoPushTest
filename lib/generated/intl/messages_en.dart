@@ -35,6 +35,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Accepted worldwide with no hidden charges"),
         "accountCreated": MessageLookupByLibrary.simpleMessage(
             "Account has been created successfully."),
+        "accountNo": MessageLookupByLibrary.simpleMessage("ACCOUNT NO."),
         "accountNumberOptional":
             MessageLookupByLibrary.simpleMessage("ACCOUNT NUMBER (OPTIONAL)"),
         "accountOpeningDescription": MessageLookupByLibrary.simpleMessage(
@@ -52,6 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addIncome2": MessageLookupByLibrary.simpleMessage("Add. Income 2"),
         "addMobileHeader":
             MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
+        "addMoney": MessageLookupByLibrary.simpleMessage("Add money"),
         "additionIncomeSource":
             MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
         "additionalIncome":
@@ -95,6 +97,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Are you a US Tax Resident?"),
         "areYouUSTaxResidentHint":
             MessageLookupByLibrary.simpleMessage("(e.g. Green Card Holder)"),
+        "availableBalance":
+            MessageLookupByLibrary.simpleMessage("AVAILABLE BALANCE"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
@@ -442,6 +446,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mothersBirthplace":
             MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
         "mothersName": MessageLookupByLibrary.simpleMessage("Mother’s Name"),
+        "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
         "name": MessageLookupByLibrary.simpleMessage("NAME AS PER ID"),
         "nameAsPerID": MessageLookupByLibrary.simpleMessage("Name as per ID"),
         "nameAsPerIncomeTaxReturn": MessageLookupByLibrary.simpleMessage(

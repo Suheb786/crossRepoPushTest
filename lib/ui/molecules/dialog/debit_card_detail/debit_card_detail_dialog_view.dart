@@ -1,29 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/dashboard_home/card_detail/card_detail_view_model.dart';
-import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class CardDetailPageView extends BasePageViewWidget<CardDetailViewModel> {
-  CardDetailPageView(ProviderBase model) : super(model);
+class DebitCardDetailDialogView extends StatelessWidget {
+  const DebitCardDetailDialogView();
+
+  ProviderBase providerBase() {
+    return debitCardDetailDialogViewModelProvider;
+  }
 
   @override
-  Widget build(BuildContext context, model) {
-    return AppKeyBoardHide(
-      child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        elevation: 2,
-        color: Theme.of(context).canvasColor,
-        margin: EdgeInsets.zero,
-        shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-        child: SingleChildScrollView(
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(left: 47, right: 48),
+      child: Center(
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          elevation: 2,
+          color: Theme.of(context).canvasColor,
+          margin: EdgeInsets.zero,
+          shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
           child: Padding(
-            padding:
-                EdgeInsets.only(left: 27.0, bottom: 29, top: 38, right: 25),
+            padding: EdgeInsets.only(left: 29.0, top: 38, right: 25),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,12 +40,17 @@ class CardDetailPageView extends BasePageViewWidget<CardDetailViewModel> {
                           fontSize: 16,
                           fontWeight: FontWeight.w600),
                     ),
-                    Text(
-                      "Flip back",
-                      style: TextStyle(
-                          color: AppColor.green,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "Flip back",
+                        style: TextStyle(
+                            color: AppColor.green,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600),
+                      ),
                     )
                   ],
                 ),

@@ -1,6 +1,5 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/dashboard/account_transaction_usecase.dart';
-import 'package:domain/usecase/dashboard/card_detail_usecase.dart';
 import 'package:domain/usecase/dashboard/card_transaction_usecase.dart';
 import 'package:domain/usecase/dashboard/credit_card_delivered_usecase.dart';
 import 'package:domain/usecase/dashboard/credit_card_verification_success_usecase.dart';
@@ -148,11 +147,6 @@ final cardDeliveredUseCaseProvider =
 final debitCardVerificationSuccessUseCaseProvider =
     Provider.autoDispose<DebitCardVerificationSuccessUseCase>(
   (ref) => DebitCardVerificationSuccessUseCase(),
-);
-
-///[<CardDetailUseCase>] provider
-final cardDetailUseCaseProvider = Provider.autoDispose<CardDetailUseCase>(
-  (ref) => CardDetailUseCase(),
 );
 
 ///[<CardTransactionUseCase>] provider

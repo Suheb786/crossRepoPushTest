@@ -412,5 +412,9 @@
   "invalidUserNamePassword": "You have entered an invalid username or password, please try again",
   "getLater": "I’ll get it later",
   "getCardNow": "Get your card now!",
-  "totalBalance": "Total Balance"
+  "totalBalance": "Total Balance",
+  "myAccount": "My Account",
+  "availableBalance": "AVAILABLE BALANCE",
+  "accountNo": "ACCOUNT NO.",
+  "addMoney": "Add money"
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -23,7 +24,15 @@ class DebitCardDeliveredPageView
             children: [
               Align(
                   alignment: Alignment.centerRight,
-                  child: AppSvg.asset(AssetUtils.close)),
+                  child: InkWell(
+                      onTap: () {
+                        print("clicked here");
+                        ProviderScope.containerOf(context)
+                            .read(homeViewModelProvider)
+                            .homeController
+                            .jumpToPage(2);
+                      },
+                      child: AppSvg.asset(AssetUtils.close))),
               Stack(
                 children: [
                   Padding(

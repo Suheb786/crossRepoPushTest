@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/register/register_modules.dart';
-import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -16,16 +16,12 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
     return AppKeyBoardHide(
       child: GestureDetector(
         onHorizontalDragEnd: (details) {
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .pageController
-              .next();
-        },
-        onVerticalDragEnd: (details) {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => AccountTransactionPage()));
+          if (details.primaryVelocity!.isNegative) {
+            ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .pageController
+                .next();
+          }
         },
         child: Card(
           shape:
@@ -54,7 +50,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "My Account",
+                                S.of(context).myAccount,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 12,
@@ -98,7 +94,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                               Padding(
                                 padding: EdgeInsets.only(top: 4),
                                 child: Text(
-                                  "AVAILABLE BALANCE",
+                                  S.of(context).availableBalance,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 10,
@@ -120,7 +116,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                               Padding(
                                 padding: EdgeInsets.only(top: 5),
                                 child: Text(
-                                  "ACCOUNT NO.",
+                                  S.of(context).accountNo,
                                   style: TextStyle(
                                       color: Theme.of(context)
                                           .accentColor
@@ -148,7 +144,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                     Padding(
                       padding: EdgeInsets.only(top: 6),
                       child: Text(
-                        "IBAN",
+                        S.of(context).iban,
                         style: TextStyle(
                             color:
                                 Theme.of(context).accentColor.withOpacity(0.4),
@@ -172,7 +168,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                               .color),
                       child: Center(
                         child: Text(
-                          "Add money",
+                          S.of(context).addMoney,
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 14,

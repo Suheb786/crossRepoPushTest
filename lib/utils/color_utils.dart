@@ -13,6 +13,8 @@ class AppColor {
   static const dark_blue1 = const Color(0xff06002C);
   static const very_light_violet = const Color(0xffD3C7F3);
   static const green = const Color(0xffAC9C0D);
+  static const lightRed = const Color(0xffFF8391);
+  static const veryLightRed = const Color(0xffF9B6BE);
   static const dark_violet = const Color(0xff4417AE);
   static const dark_violet1 = const Color(0xff442399);
   static const dark_violet2 = const Color(0xff412098);

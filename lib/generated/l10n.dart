@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4025,6 +4026,46 @@ class S {
     return Intl.message(
       'Total Balance',
       name: 'totalBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Account`
+  String get myAccount {
+    return Intl.message(
+      'My Account',
+      name: 'myAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AVAILABLE BALANCE`
+  String get availableBalance {
+    return Intl.message(
+      'AVAILABLE BALANCE',
+      name: 'availableBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ACCOUNT NO.`
+  String get accountNo {
+    return Intl.message(
+      'ACCOUNT NO.',
+      name: 'accountNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add money`
+  String get addMoney {
+    return Intl.message(
+      'Add money',
+      name: 'addMoney',
       desc: '',
       args: [],
     );

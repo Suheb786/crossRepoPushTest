@@ -67,6 +67,9 @@ class AssetUtils {
   static const String settingsRed = svg + "settings_red.svg";
   static const String share = svg + "share.svg";
   static const String close = svg + "close.svg";
+  static const String house = svg + "house.svg";
+  static const String headphoneBlack = svg + "headphone_black.svg";
+  static const String logoWhite = svg + "logo_white.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -88,9 +91,6 @@ class AssetUtils {
   static const String welcome = drawable + "welcome.png";
   static const String line = drawable + "line.png";
   static const String line_black_white = drawable + "line_black_white.png";
-  static const String house = drawable + "house.png";
-  static const String headphoneBlack = drawable + "headphone_black.png";
-  static const String logoWhite = drawable + "logo_white.png";
   static const String zigzagRed = drawable + "zigzag_red.png";
   static const String ellipseRed = drawable + "ellipse_red.png";
   static const String ellipseWhite = drawable + "ellipse_white.png";

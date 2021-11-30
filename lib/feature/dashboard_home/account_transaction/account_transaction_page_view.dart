@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -20,7 +22,7 @@ class AccountTransactionPageView
           children: [
             Center(
               child: Text(
-                "My Account",
+                S.of(context).myAccount,
                 style: TextStyle(
                     color: Theme.of(context).accentColor,
                     fontWeight: FontWeight.w600,
@@ -31,8 +33,13 @@ class AccountTransactionPageView
               child: Padding(
                 padding: EdgeInsets.only(top: 35),
                 child: GestureDetector(
-                  onVerticalDragEnd: (details) {
-                    Navigator.pop(context);
+                  onVerticalDragUpdate: (details) {
+                    ProviderScope.containerOf(context)
+                        .read(homeViewModelProvider)
+                        .homeController
+                        .previousPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOut);
                   },
                   child: Container(
                     height: double.infinity,
