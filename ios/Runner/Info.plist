@@ -55,6 +55,10 @@
     <string>App allows you to upload photos.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
     <string>The app needs location permission</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Can I use the camera please?</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Can I use the mic please?</string>
     <key>LSSupportsOpeningDocumentsInPlace</key>
     <true/>
 </dict>

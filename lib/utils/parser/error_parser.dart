@@ -236,6 +236,8 @@ class ErrorParser {
         return localisedHelper.invalidUser;
       case ErrorType.ERROR_WHILE_LOGOUT:
         return localisedHelper.errorWhileLogout;
+      case ErrorType.IMAGE_UPLOAD_ERROR:
+        return localisedHelper.pleaseProvideSelfie;
 
       default:
         return "";

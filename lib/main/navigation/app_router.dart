@@ -9,6 +9,7 @@ import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
+import 'package:neo_bank/feature/register/stepone/capture/capture_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -73,6 +74,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => TermsAndConditionPage(),
             settings: RouteSettings(name: RoutePaths.TermsAndCondition));
+
+      case RoutePaths.Capture:
+        return CupertinoPageRoute(
+            builder: (context) => CapturePage(),
+            settings: RouteSettings(name: RoutePaths.Capture));
 
       default:
         return CupertinoPageRoute(

@@ -35,20 +35,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
             children: [
               Column(
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppSvg.asset(AssetUtils.welcomeIcon),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 62.0),
-                        child: InkWell(
-                          onTap: () {},
-                          child: AppSvg.asset(AssetUtils.menuIcon,
-                              color: Theme.of(context).accentColor),
-                        ),
-                      ),
-                    ],
-                  ),
+                  AppSvg.asset(AssetUtils.welcomeIcon),
                   SizedBox(
                     height: 40,
                   ),

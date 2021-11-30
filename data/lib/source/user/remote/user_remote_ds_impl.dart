@@ -1,4 +1,5 @@
 import 'package:data/entity/local/base/device_helper.dart';
+import 'package:data/entity/local/base/image_utils.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
@@ -16,6 +17,7 @@ import 'package:data/entity/remote/user/register_interest/register_interest_requ
 import 'package:data/entity/remote/user/register_interest/register_interest_response_entity.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/register_response_entity.dart';
+import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_id_info_request.dart';
 import 'package:data/entity/remote/user/save_id_info_response_entity.dart';
@@ -24,6 +26,7 @@ import 'package:data/entity/remote/user/save_job_info_request.dart';
 import 'package:data/entity/remote/user/save_profile_information_request.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:data/entity/remote/user/save_residence_information_request.dart';
+import 'package:data/entity/remote/user/save_selfie_image_request.dart';
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/api_service.dart';
@@ -283,5 +286,15 @@ class UserRemoteDSImpl extends UserRemoteDS {
         latitude: baseData.latitude,
         longitude: baseData.longitude,
         mobileModel: baseData.mobileModel));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> uploadSelfieImage(
+      {String? imagePath}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.uploadSelfieImage(SaveSelfieImageRequest(
+        baseData: baseData.toJson(),
+        getToken: true,
+        selfieImage: ImageUtils.convertToBase64(imagePath!)));
   }
 }

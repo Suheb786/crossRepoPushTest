@@ -16,6 +16,7 @@ import 'package:domain/usecase/user/product_selector_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
+import 'package:domain/usecase/user/upload_selfie_image_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:domain/usecase/user/video_call_info_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -122,3 +123,7 @@ final getConfirmApplicationDataUseCaseProvider =
 ///[LogoutUseCase] provider
 final logoutUseCaseProvider =
     Provider<LogoutUseCase>((ref) => LogoutUseCase(ref.read(userRepoProvider)));
+
+///[UploadSelfieImageUseCase] provider
+final uploadSelfieImageUseCaseProvider = Provider<UploadSelfieImageUseCase>(
+    (ref) => UploadSelfieImageUseCase(ref.read(userRepoProvider)));
