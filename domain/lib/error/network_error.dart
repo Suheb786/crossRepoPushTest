@@ -120,6 +120,10 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.INVALID_USER);
 
+          case "err-060":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_LOGOUT);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

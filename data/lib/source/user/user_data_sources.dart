@@ -5,6 +5,7 @@ import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
+import 'package:data/entity/remote/user/logout/logout_response_entity.dart';
 import 'package:data/entity/remote/user/register_interest/register_interest_response_entity.dart';
 import 'package:data/entity/remote/user/register_response_entity.dart';
 import 'package:data/entity/remote/user/save_country_residence_info_response_entity.dart';
@@ -104,6 +105,8 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<RegisterInterestResponseEntity>> registerInterest(
       {String? email});
+
+  Future<HttpResponse<LogoutResponseEntity>> logout();
 }
 
 abstract class UserLocalDS {

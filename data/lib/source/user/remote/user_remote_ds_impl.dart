@@ -10,6 +10,8 @@ import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
+import 'package:data/entity/remote/user/logout/logout_request_entity.dart';
+import 'package:data/entity/remote/user/logout/logout_response_entity.dart';
 import 'package:data/entity/remote/user/register_interest/register_interest_request_entity.dart';
 import 'package:data/entity/remote/user/register_interest/register_interest_response_entity.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
@@ -265,5 +267,21 @@ class UserRemoteDSImpl extends UserRemoteDS {
         email: email,
         uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
         baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<LogoutResponseEntity>> logout() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.logout(LogoutRequestEntity(
+        platform: baseData.platform,
+        vkeySessionId: baseData.vKeySessionId,
+        appVersion: baseData.appVersion,
+        browser: baseData.browser,
+        channelType: baseData.channelType,
+        deviceID: baseData.deviceID,
+        iP: baseData.ip,
+        latitude: baseData.latitude,
+        longitude: baseData.longitude,
+        mobileModel: baseData.mobileModel));
   }
 }

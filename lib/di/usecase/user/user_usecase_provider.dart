@@ -11,6 +11,7 @@ import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
+import 'package:domain/usecase/user/logout_usecase.dart';
 import 'package:domain/usecase/user/product_selector_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
@@ -117,3 +118,7 @@ final getTokenUseCaseProvider = Provider<GetTokenUseCase>(
 final getConfirmApplicationDataUseCaseProvider =
     Provider<ConfirmApplicationDataGetUseCase>(
         (ref) => ConfirmApplicationDataGetUseCase(ref.read(userRepoProvider)));
+
+///[LogoutUseCase] provider
+final logoutUseCaseProvider =
+    Provider<LogoutUseCase>((ref) => LogoutUseCase(ref.read(userRepoProvider)));

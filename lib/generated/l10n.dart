@@ -4160,6 +4160,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Error While Logout`
+  String get errorWhileLogout {
+    return Intl.message(
+      'Error While Logout',
+      name: 'errorWhileLogout',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -234,6 +234,8 @@ class ErrorParser {
         return localisedHelper.unableToVerifyIDCard;
       case ErrorType.INVALID_USER:
         return localisedHelper.invalidUser;
+      case ErrorType.ERROR_WHILE_LOGOUT:
+        return localisedHelper.errorWhileLogout;
 
       default:
         return "";
