@@ -4170,6 +4170,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Please provide selfie to proceed further.`
+  String get pleaseProvideSelfie {
+    return Intl.message(
+      'Please provide selfie to proceed further.',
+      name: 'pleaseProvideSelfie',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

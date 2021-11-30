@@ -87,8 +87,6 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     if (details.primaryVelocity!.isNegative) {
                                       model.validateEmail();
                                     }
-                                    Navigator.pushNamed(
-                                        context, RoutePaths.Capture);
                                   },
                                   child: Padding(
                                     padding: EdgeInsets.only(

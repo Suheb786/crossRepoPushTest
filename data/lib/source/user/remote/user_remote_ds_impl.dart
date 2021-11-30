@@ -1,4 +1,5 @@
 import 'package:data/entity/local/base/device_helper.dart';
+import 'package:data/entity/local/base/image_utils.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
@@ -289,9 +290,11 @@ class UserRemoteDSImpl extends UserRemoteDS {
 
   @override
   Future<HttpResponse<ResponseEntity>> uploadSelfieImage(
-      {String? image}) async {
+      {String? imagePath}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.uploadSelfieImage(SaveSelfieImageRequest(
-        baseData: baseData.toJson(), getToken: true, selfieImage: image));
+        baseData: baseData.toJson(),
+        getToken: true,
+        selfieImage: ImageUtils.convertToBase64(imagePath!)));
   }
 }

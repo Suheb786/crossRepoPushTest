@@ -356,9 +356,10 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> uploadSelfieImage({String? image}) async {
+  Future<Either<NetworkError, bool>> uploadSelfieImage(
+      {String? imagePath}) async {
     final result = await safeApiCall(
-      _remoteDS.uploadSelfieImage(image: image),
+      _remoteDS.uploadSelfieImage(imagePath: imagePath),
     );
     return result!.fold(
       (l) => Left(l),

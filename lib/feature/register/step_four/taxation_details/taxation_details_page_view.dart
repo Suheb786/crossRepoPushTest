@@ -11,9 +11,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_four/pep_dialog/pep_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/relationship_with_pep/relationship_with_pep_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/declaration_widget.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -244,118 +242,118 @@ class TaxationDetailsPageView
                                                 .fatcaQuestionsList![3]
                                                 .labelEn!,
                                           ),
-                                          TaxationSwitchWidget(
-                                            providerBase:
-                                                areYouFirstDegreeRelativeViewModelProvider,
-                                            onToggle: (value) {
-                                              model.isPEP = value;
-                                              return Visibility(
-                                                visible: value,
-                                                child: Column(
-                                                  children: [
-                                                    AppTextField(
-                                                      labelText: S
-                                                          .of(context)
-                                                          .relationShipWithPepCaps,
-                                                      hintText: S
-                                                          .of(context)
-                                                          .pleaseSelect,
-                                                      inputType:
-                                                          TextInputType.text,
-                                                      controller: model
-                                                          .relationShipController,
-                                                      key: model
-                                                          .relationShipWithPepKey,
-                                                      readOnly: true,
-                                                      onPressed: () {
-                                                        RelationshipWithPEPDialog
-                                                            .show(context,
-                                                                onDismissed:
-                                                                    () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        }, onSelected: (value) {
-                                                          Navigator.pop(
-                                                              context);
-                                                          model
-                                                              .updateRelationShipWithPEP(
-                                                                  value);
-                                                          model.isValid();
-                                                        });
-                                                      },
-                                                      suffixIcon:
-                                                          (enabled, value) {
-                                                        return Container(
-                                                            height: 16,
-                                                            width: 16,
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    right: 8),
-                                                            child: AppSvg.asset(
-                                                                AssetUtils
-                                                                    .downArrow,
-                                                                color: AppColor
-                                                                    .dark_gray_1));
-                                                      },
-                                                    ),
-                                                    SizedBox(height: 16),
-                                                    AppTextField(
-                                                      labelText: S
-                                                          .of(context)
-                                                          .personName,
-                                                      hintText: S
-                                                          .of(context)
-                                                          .pleaseEnter,
-                                                      inputType:
-                                                          TextInputType.text,
-                                                      controller: model
-                                                          .personNameController,
-                                                      key: model.personNameKey,
-                                                      onChanged: (value) {
-                                                        model.isValid();
-                                                      },
-                                                    ),
-                                                    SizedBox(height: 16),
-                                                    AppTextField(
-                                                      labelText: S
-                                                          .of(context)
-                                                          .personRole,
-                                                      hintText: S
-                                                          .of(context)
-                                                          .pleaseEnter,
-                                                      inputType:
-                                                          TextInputType.text,
-                                                      controller: model
-                                                          .personRoleController,
-                                                      key: model.personRoleKey,
-                                                      onChanged: (value) {
-                                                        model.isValid();
-                                                      },
-                                                    ),
-                                                    SizedBox(
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                              .viewInsets
-                                                              .bottom,
-                                                    )
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                            title: questions
-                                                .data!
-                                                .getFatcaQuestionsResponseContent!
-                                                .fatcaQuestionsList![4]
-                                                .labelEn!,
-                                            secondaryText:
-                                                S.of(context).whatIsPEP,
-                                            onSecondaryTextTap: () {
-                                              PEPDialog.show(context,
-                                                  onSelected: () {
-                                                Navigator.pop(context);
-                                              });
-                                            },
-                                          ),
+                                          // TaxationSwitchWidget(
+                                          //   providerBase:
+                                          //       areYouFirstDegreeRelativeViewModelProvider,
+                                          //   onToggle: (value) {
+                                          //     model.isPEP = value;
+                                          //     return Visibility(
+                                          //       visible: value,
+                                          //       child: Column(
+                                          //         children: [
+                                          //           AppTextField(
+                                          //             labelText: S
+                                          //                 .of(context)
+                                          //                 .relationShipWithPepCaps,
+                                          //             hintText: S
+                                          //                 .of(context)
+                                          //                 .pleaseSelect,
+                                          //             inputType:
+                                          //                 TextInputType.text,
+                                          //             controller: model
+                                          //                 .relationShipController,
+                                          //             key: model
+                                          //                 .relationShipWithPepKey,
+                                          //             readOnly: true,
+                                          //             onPressed: () {
+                                          //               RelationshipWithPEPDialog
+                                          //                   .show(context,
+                                          //                       onDismissed:
+                                          //                           () {
+                                          //                 Navigator.pop(
+                                          //                     context);
+                                          //               }, onSelected: (value) {
+                                          //                 Navigator.pop(
+                                          //                     context);
+                                          //                 model
+                                          //                     .updateRelationShipWithPEP(
+                                          //                         value);
+                                          //                 model.isValid();
+                                          //               });
+                                          //             },
+                                          //             suffixIcon:
+                                          //                 (enabled, value) {
+                                          //               return Container(
+                                          //                   height: 16,
+                                          //                   width: 16,
+                                          //                   padding:
+                                          //                       EdgeInsets.only(
+                                          //                           right: 8),
+                                          //                   child: AppSvg.asset(
+                                          //                       AssetUtils
+                                          //                           .downArrow,
+                                          //                       color: AppColor
+                                          //                           .dark_gray_1));
+                                          //             },
+                                          //           ),
+                                          //           SizedBox(height: 16),
+                                          //           AppTextField(
+                                          //             labelText: S
+                                          //                 .of(context)
+                                          //                 .personName,
+                                          //             hintText: S
+                                          //                 .of(context)
+                                          //                 .pleaseEnter,
+                                          //             inputType:
+                                          //                 TextInputType.text,
+                                          //             controller: model
+                                          //                 .personNameController,
+                                          //             key: model.personNameKey,
+                                          //             onChanged: (value) {
+                                          //               model.isValid();
+                                          //             },
+                                          //           ),
+                                          //           SizedBox(height: 16),
+                                          //           AppTextField(
+                                          //             labelText: S
+                                          //                 .of(context)
+                                          //                 .personRole,
+                                          //             hintText: S
+                                          //                 .of(context)
+                                          //                 .pleaseEnter,
+                                          //             inputType:
+                                          //                 TextInputType.text,
+                                          //             controller: model
+                                          //                 .personRoleController,
+                                          //             key: model.personRoleKey,
+                                          //             onChanged: (value) {
+                                          //               model.isValid();
+                                          //             },
+                                          //           ),
+                                          //           SizedBox(
+                                          //             height:
+                                          //                 MediaQuery.of(context)
+                                          //                     .viewInsets
+                                          //                     .bottom,
+                                          //           )
+                                          //         ],
+                                          //       ),
+                                          //     );
+                                          //   },
+                                          //   title: questions
+                                          //       .data!
+                                          //       .getFatcaQuestionsResponseContent!
+                                          //       .fatcaQuestionsList![4]
+                                          //       .labelEn!,
+                                          //   secondaryText:
+                                          //       S.of(context).whatIsPEP,
+                                          //   onSecondaryTextTap: () {
+                                          //     PEPDialog.show(context,
+                                          //         onSelected: () {
+                                          //       Navigator.pop(context);
+                                          //     });
+                                          //   },
+                                          // ),
                                           AppStreamBuilder<bool>(
                                             stream:
                                                 model.declarationSelectedStream,

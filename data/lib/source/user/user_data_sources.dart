@@ -99,7 +99,7 @@ abstract class UserRemoteDS {
   Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp(
       {String? otpCode});
 
-  Future<HttpResponse<ResponseEntity>> uploadSelfieImage({String? image});
+  Future<HttpResponse<ResponseEntity>> uploadSelfieImage({String? imagePath});
 
   Future<HttpResponse<GetTokenResponseEntity>> getToken();
 

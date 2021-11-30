@@ -14,14 +14,14 @@ class UploadSelfieImageUseCase
   @override
   Future<Either<NetworkError, bool>> execute(
       {required UploadSelfieImageUseCaseParams params}) {
-    return _repository.uploadSelfieImage(image: params.image);
+    return _repository.uploadSelfieImage(imagePath: params.imagePath);
   }
 }
 
 class UploadSelfieImageUseCaseParams extends Params {
-  String? image;
+  String? imagePath;
 
-  UploadSelfieImageUseCaseParams({required this.image});
+  UploadSelfieImageUseCaseParams({required this.imagePath});
 
   @override
   Either<AppError, bool> verify() {

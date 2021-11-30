@@ -541,6 +541,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseProvideInformationIfAppliesToYou":
             MessageLookupByLibrary.simpleMessage(
                 "Please provide information below, if applies to you"),
+        "pleaseProvideSelfie": MessageLookupByLibrary.simpleMessage(
+            "Please provide selfie to proceed further."),
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage(

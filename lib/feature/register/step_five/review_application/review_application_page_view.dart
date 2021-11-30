@@ -703,31 +703,32 @@ class ReviewApplicationPageView
                                                               );
                                                             },
                                                           ),
-
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 24),
-                                                            child: AppStreamBuilder<
-                                                                    bool>(
-                                                                stream: model
-                                                                    .declarationSelectedStream,
-                                                                initialData:
-                                                                    false,
-                                                                dataBuilder:
-                                                                    (context,
-                                                                        isChecked) {
-                                                                  return Visibility(
-                                                                    visible:
-                                                                        isChecked!,
-                                                                    child:
-                                                                        AnimatedButton(
-                                                                      buttonText: S
-                                                                          .of(context)
-                                                                          .swipeToProceed,
-                                                                    ),
-                                                                  );
-                                                                }),
+                                                          Center(
+                                                            child: Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      top: 24),
+                                                              child: AppStreamBuilder<
+                                                                      bool>(
+                                                                  stream: model
+                                                                      .declarationSelectedStream,
+                                                                  initialData:
+                                                                      false,
+                                                                  dataBuilder:
+                                                                      (context,
+                                                                          isChecked) {
+                                                                    return Visibility(
+                                                                      visible:
+                                                                          isChecked!,
+                                                                      child:
+                                                                          AnimatedButton(
+                                                                        buttonText: S
+                                                                            .of(context)
+                                                                            .swipeToProceed,
+                                                                      ),
+                                                                    );
+                                                                  }),
+                                                            ),
                                                           )
                                                         ],
                                                       ),
