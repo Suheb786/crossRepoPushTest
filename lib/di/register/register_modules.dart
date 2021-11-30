@@ -234,7 +234,8 @@ final reviewApplicationPageViewModelProvider =
       ref.read(checkVideoCallStatusUseCaseProvider),
       ref.read(getAccountUseCaseProvider),
       ref.read(createAccountUseCaseProvider),
-      ref.read(getConfirmApplicationDataUseCaseProvider)),
+      ref.read(getConfirmApplicationDataUseCaseProvider),
+      ref.read(setConfirmApplicationDataUseCaseProvider)),
 );
 
 ///upload documents page

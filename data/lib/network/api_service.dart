@@ -27,6 +27,7 @@ import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/confirm_application_data_get_request_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
@@ -185,4 +186,11 @@ abstract class ApiService {
   @POST("/auth/logout")
   Future<HttpResponse<LogoutResponseEntity>> logout(
       @Body() LogoutRequestEntity logoutRequestEntity);
+
+  ///confirm application data set
+  @POST("/AdditionalDoc/ConfirmApplicationDataSave")
+  Future<String> confirmApplicationDataSet(
+      @Body()
+          ConfirmApplicationDataSetRequestEntity
+              confirmApplicationDataSetRequestEntity);
 }

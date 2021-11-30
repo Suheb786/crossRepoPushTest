@@ -4,7 +4,12 @@ import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/check_username.dart';
+import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
+import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/model/user/register_interest/register_interest_response.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
@@ -134,4 +139,12 @@ abstract class UserRepository {
 
   ///logout
   Future<Either<NetworkError, LogoutResponse>> logout();
+
+  /// confirm application data set
+  Future<Either<NetworkError, String>> confirmApplicationDataSet(
+      {CountryResidenceInfo countryResidenceInfo,
+      ProfileStatusInfo profileStatusInfo,
+      JobDetailInfo jobDetailInfo,
+      FatcaCrsInfo fatcaCrsInfo,
+      AccountPurposeInfo accountPurposeInfo});
 }

@@ -3,6 +3,8 @@ import 'package:data/entity/remote/user/confirm_application_data_get/country_res
 import 'package:data/entity/remote/user/confirm_application_data_get/fatca_crs_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/job_detail_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/profile_status_entity.dart';
+import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_content.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -24,7 +26,6 @@ class GetConfirmApplicationDataContentEntity
   final AccountPurposeEntity? accountPurpose;
   @JsonKey(name: "fatcaCrs")
   final FatcaCrsEntity? fatcaCrs;
-
 
   GetConfirmApplicationDataContentEntity(
       {this.profileStatus,
@@ -58,8 +59,11 @@ class GetConfirmApplicationDataContentEntity
   GetConfirmApplicationDataContent transform() {
     return GetConfirmApplicationDataContent(
         accountPurposeInfo: this.accountPurpose!.transform(),
-        countryResidenceInfo: this.countryResidence!.transform(),
-        fatcaCrsInfo: this.fatcaCrs!.transform(),
+        countryResidenceInfo: this.countryResidence != null
+            ? this.countryResidence!.transform()
+            : CountryResidenceInfo(),
+        fatcaCrsInfo:
+            this.fatcaCrs != null ? this.fatcaCrs!.transform() : FatcaCrsInfo(),
         jobDetailInfo: this.jobDetail!.transform(),
         profileStatusInfo: this.profileStatus!.transform());
   }

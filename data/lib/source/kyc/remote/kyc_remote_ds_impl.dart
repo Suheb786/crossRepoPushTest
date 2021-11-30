@@ -14,6 +14,6 @@ class KYCRemoteDSImpl extends KYCRemoteDS {
   Future<String> checkKYCStatus({bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkKYCStatus(
-        KYCStatusRequest(baseData: baseData, getToken: true));
+        KYCStatusRequest(baseData: baseData.toJson(), getToken: true));
   }
 }

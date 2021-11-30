@@ -15,6 +15,11 @@ import 'package:data/entity/remote/user/save_profile_status_response_entity.dart
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:retrofit/dio.dart';
 
 abstract class UserRemoteDS {
@@ -107,6 +112,13 @@ abstract class UserRemoteDS {
       {String? email});
 
   Future<HttpResponse<LogoutResponseEntity>> logout();
+
+  Future<String> confirmApplicationDataSet(
+      {CountryResidenceInfo? countryResidenceInfo,
+      ProfileStatusInfo? profileStatusInfo,
+      JobDetailInfo? jobDetailInfo,
+      FatcaCrsInfo? fatcaCrsInfo,
+      AccountPurposeInfo? accountPurposeInfo});
 }
 
 abstract class UserLocalDS {

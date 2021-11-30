@@ -42,7 +42,7 @@ class ReviewApplicationPageView
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<List<String>>>(
+                    child: AppStreamBuilder<Resource<String>>(
                       stream: model.reviewAppStream,
                       initialData: Resource.none(),
                       onData: (data) {
@@ -704,30 +704,32 @@ class ReviewApplicationPageView
                                                             },
                                                           ),
 
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    top: 24),
-                                                            child: AppStreamBuilder<
-                                                                    bool>(
-                                                                stream: model
-                                                                    .declarationSelectedStream,
-                                                                initialData:
-                                                                    false,
-                                                                dataBuilder:
-                                                                    (context,
-                                                                        isChecked) {
-                                                                  return Visibility(
-                                                                    visible:
-                                                                        isChecked!,
-                                                                    child:
-                                                                        AnimatedButton(
-                                                                      buttonText: S
-                                                                          .of(context)
-                                                                          .swipeToProceed,
-                                                                    ),
-                                                                  );
-                                                                }),
+                                                          Center(
+                                                            child: Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      top: 24),
+                                                              child: AppStreamBuilder<
+                                                                      bool>(
+                                                                  stream: model
+                                                                      .declarationSelectedStream,
+                                                                  initialData:
+                                                                      false,
+                                                                  dataBuilder:
+                                                                      (context,
+                                                                          isChecked) {
+                                                                    return Visibility(
+                                                                      visible:
+                                                                          isChecked!,
+                                                                      child:
+                                                                          AnimatedButton(
+                                                                        buttonText: S
+                                                                            .of(context)
+                                                                            .swipeToProceed,
+                                                                      ),
+                                                                    );
+                                                                  }),
+                                                            ),
                                                           )
                                                         ],
                                                       ),
@@ -735,7 +737,6 @@ class ReviewApplicationPageView
                                                   );
 
                                                 case Status.LOADING:
-                                                default:
                                                   return Center(
                                                     child:
                                                         CircularProgressIndicator(
@@ -745,6 +746,16 @@ class ReviewApplicationPageView
                                                                   context)
                                                               .primaryColor),
                                                       strokeWidth: 2,
+                                                    ),
+                                                  );
+                                                default:
+                                                  return Center(
+                                                    child: Text(
+                                                      'Something went wrong',
+                                                      style: TextStyle(
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .primaryColor),
                                                     ),
                                                   );
                                               }

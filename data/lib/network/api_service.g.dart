@@ -493,6 +493,22 @@ class _ApiService implements ApiService {
     return httpResponse;
   }
 
+  @override
+  Future<String> confirmApplicationDataSet(
+      confirmApplicationDataSetRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(confirmApplicationDataSetRequestEntity.toJson());
+    final _result = await _dio.fetch<String>(_setStreamType<String>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/AdditionalDoc/ConfirmApplicationDataSave',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||
