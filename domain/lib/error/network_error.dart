@@ -70,6 +70,18 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ID_CARD_NOT_ALLOWED);
 
+          case "ex-050":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_SAVING_STATUS);
+
+          case "ex-055":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_UPLOADING_IMAGE);
+
           case "err-069":
             return AppError(
                 cause: cause,
@@ -91,6 +103,26 @@ class NetworkError extends BaseError {
                 cause: cause,
                 error: error,
                 type: ErrorType.OTP_VERIFY_LIMIT_EXCEEDED);
+
+          case "ex-017":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_CREATING_ACCOUNT);
+
+          case "err-020":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.UNABLE_TO_VERIFY_ID_CARD);
+
+          case "err-047":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.INVALID_USER);
+
+          case "err-060":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_WHILE_LOGOUT);
 
           default:
             return AppError(

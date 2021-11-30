@@ -214,6 +214,12 @@ class ErrorParser {
         return localisedHelper.invalidUserNamePassword;
       case ErrorType.ID_CARD_NOT_ALLOWED:
         return localisedHelper.idCardNotAllowed;
+      case ErrorType.ERROR_SAVING_STATUS:
+        return localisedHelper.errorSavingStatus;
+      case ErrorType.EMPTY_NATIONALITY_DOCUMENT:
+        return localisedHelper.emptyNationalityDocument;
+      case ErrorType.ERROR_WHILE_UPLOADING_IMAGE:
+        return localisedHelper.errorUploadImage;
       case ErrorType.INVALID_NETWORK_OTP:
         return localisedHelper.invalidOtp;
       case ErrorType.OTP_EXPIRED:
@@ -222,6 +228,14 @@ class ErrorParser {
         return localisedHelper.emailAlreadyExist;
       case ErrorType.OTP_VERIFY_LIMIT_EXCEEDED:
         return localisedHelper.otpLimitExceed;
+      case ErrorType.ERROR_CREATING_ACCOUNT:
+        return localisedHelper.errorCreatingAccount;
+      case ErrorType.UNABLE_TO_VERIFY_ID_CARD:
+        return localisedHelper.unableToVerifyIDCard;
+      case ErrorType.INVALID_USER:
+        return localisedHelper.invalidUser;
+      case ErrorType.ERROR_WHILE_LOGOUT:
+        return localisedHelper.errorWhileLogout;
 
       default:
         return "";

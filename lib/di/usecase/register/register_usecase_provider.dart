@@ -15,7 +15,6 @@ import 'package:domain/usecase/register/relationship_with_pep_usecase.dart';
 import 'package:domain/usecase/register/review_app_usecase.dart';
 import 'package:domain/usecase/register/schedule_video_call_usecase.dart';
 import 'package:domain/usecase/register/tax_report_information_usecase.dart';
-import 'package:domain/usecase/register/taxation_details_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[GetOccupationUseCase] provider
@@ -38,12 +37,6 @@ final additionalIncomeSourceUseCaseProvider =
 ///[JobAndIncomeUseCase] provider
 final jobAndIncomeUseCaseProvider = Provider.autoDispose<JobAndIncomeUseCase>(
   (ref) => JobAndIncomeUseCase(ref.read(userRepoProvider)),
-);
-
-///[TaxationDetailsUseCase] provider
-final taxationDetailsUseCaseProvider =
-    Provider.autoDispose<TaxationDetailsUseCase>(
-  (ref) => TaxationDetailsUseCase(),
 );
 
 ///[TaxReportInformationUseCase] provider

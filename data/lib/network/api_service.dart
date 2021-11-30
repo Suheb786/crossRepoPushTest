@@ -1,19 +1,40 @@
+import 'package:data/entity/remote/account/check_other_nationality_status_request_entity.dart';
+import 'package:data/entity/remote/account/check_other_nationality_status_response_entity.dart';
+import 'package:data/entity/remote/account/check_videocall_status_request_entity.dart';
+import 'package:data/entity/remote/account/check_videocall_status_response_entity.dart';
+import 'package:data/entity/remote/account/doc_status_request_entity.dart';
+import 'package:data/entity/remote/account/doc_status_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/create_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_details_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/get_account_details_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/get_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/set_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
+import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
+import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
+import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
+import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_get/confirm_application_data_get_request_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
+import 'package:data/entity/remote/user/logout/logout_request_entity.dart';
+import 'package:data/entity/remote/user/logout/logout_response_entity.dart';
+import 'package:data/entity/remote/user/register_interest/register_interest_request_entity.dart';
+import 'package:data/entity/remote/user/register_interest/register_interest_response_entity.dart';
 import 'package:data/entity/remote/user/register_prospect_user_request.dart';
 import 'package:data/entity/remote/user/register_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
@@ -31,6 +52,8 @@ import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
+import 'network_properties.dart';
+
 part 'api_service.g.dart';
 
 //flutter pub run build_runner build
@@ -40,11 +63,11 @@ abstract class ApiService {
     return _ApiService(dio, baseUrl: baseUrl);
   }
 
-  @POST("http://192.168.181.2:2821/api/auth/CheckUserName")
+  @POST("${NetworkProperties.BASE_ROUTER_URL}/auth/CheckUserName")
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
       @Body() CheckUserEmailRequest request);
 
-  @POST("http://192.168.181.2:2821/api/auth/CheckUserNameMobile")
+  @POST("${NetworkProperties.BASE_ROUTER_URL}/auth/CheckUserNameMobile")
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       @Body() CheckUserNameMobileRequest checkUserNameMobileRequest);
 
@@ -98,27 +121,74 @@ abstract class ApiService {
       @Body() AddAccountPurposeRequest addAccountPurposeRequest);
 
   @POST("/FatcaCrs/get")
-  Future<String> getFatcaQuestions(
+  Future<HttpResponse<GetFatcaQuestionsResponseEntity>> getFatcaQuestions(
       @Body() GetFatcaQuestionsRequestEntity getFatcaQuestionsRequestEntity);
 
   @POST("/FatcaCrs/set")
-  Future<String> saveFatcaInformation(
+  Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
       @Body()
           SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
 
   @POST("/BankSmart/GetAccount")
-  Future<String> getAccount(
+  Future<HttpResponse<GetAccountResponseEntity>> getAccount(
       @Body() GetAccountRequestEntity getAccountRequestEntity);
 
   @POST("/BankSmart/CreateAccount")
-  Future<String> createAccount(
+  Future<HttpResponse<CreateAccountResponseEntity>> createAccount(
       @Body() CreateAccountRequestEntity createAccountRequestEntity);
 
   @POST("/BankSmart/GetAccountDetails")
-  Future<String> getAccountDetails(
+  Future<HttpResponse<GetAccountDetailsResponseEntity>> getAccountDetails(
       @Body() GetAccountDetailsRequestEntity getAccountDetailsRequestEntity);
 
   ///get token
   @GET("/auth/verifyToken")
   Future<HttpResponse<GetTokenResponseEntity>> getToken();
+
+  ///check video call status
+  @POST("/Account/CheckVideoCallStatus")
+  Future<HttpResponse<CheckVideoCallStatusResponseEntity>> checkVideoCallStatus(
+      @Body()
+          CheckVideoCallStatusRequestEntity checkVideoCallStatusRequestEntity);
+
+  ///check other nationality status
+  @POST("/Account/CheckOtherNationalityStatus")
+  Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
+      checkOtherNationalityStatus(
+          @Body()
+              CheckOtherNationalityStatusRequestEntity
+                  checkOtherNationalityStatusRequestEntity);
+
+  ///upload document
+  @POST("/FileUpload/UploadDocuments")
+  Future<HttpResponse<UploadDocumentResponseEntity>> uploadDocument(
+      @Body() UploadDocumentRequestEntity uploadDocumentRequestEntity);
+
+  ///save upload document
+  @POST("/FileUpload/SaveUploadDocumentsDocs")
+  Future<HttpResponse<SaveUploadDocumentResponseEntity>> saveUploadDocument(
+      @Body() SaveUploadDocumentRequestEntity saveUploadDocumentRequestEntity);
+
+  ///get confirm application data
+  @POST("/AdditionalDoc/ConfirmApplicationDataGet")
+  Future<HttpResponse<GetConfirmApplicationDataResponseEntity>>
+      confirmApplicationDataGet(
+          @Body()
+              ConfirmApplicationDataGetRequestEntity
+                  confirmApplicationDataGetRequestEntity);
+
+  ///doc status
+  @POST("/account/DocsStatus")
+  Future<HttpResponse<DocStatusResponseEntity>> docStatus(
+      @Body() DocStatusRequestEntity docStatusRequestEntity);
+
+  ///register interest
+  @POST("/auth/RegisterInterest")
+  Future<HttpResponse<RegisterInterestResponseEntity>> registerInterest(
+      @Body() RegisterInterestRequestEntity registerInterestRequestEntity);
+
+  ///logout
+  @POST("/auth/logout")
+  Future<HttpResponse<LogoutResponseEntity>> logout(
+      @Body() LogoutRequestEntity logoutRequestEntity);
 }

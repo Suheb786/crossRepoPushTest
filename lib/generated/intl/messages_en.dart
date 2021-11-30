@@ -20,13 +20,16 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(estimatedTime) => "Estimated wait time \n${estimatedTime}";
+  static String m0(additionalIncomeList) =>
+      "Add. Income \n${additionalIncomeList}";
 
-  static String m1(resendTime) => "Resend in ${resendTime}";
+  static String m1(estimatedTime) => "Estimated wait time \n${estimatedTime}";
 
-  static String m2(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
+  static String m2(resendTime) => "Resend in ${resendTime}";
 
-  static String m3(noOfTransaction) =>
+  static String m3(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
+
+  static String m4(noOfTransaction) =>
       "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -57,6 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
         "additionalIncome":
             MessageLookupByLibrary.simpleMessage("Additional Income"),
+        "additionalIncomeList": m0,
         "additionalNationalityPassport": MessageLookupByLibrary.simpleMessage(
             "Additional Nationality Passport"),
         "additionalNationalityPassportDesc": MessageLookupByLibrary.simpleMessage(
@@ -225,6 +229,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Name field cannot be empty"),
         "emptyNationality": MessageLookupByLibrary.simpleMessage(
             "Nationality field cannot be empty"),
+        "emptyNationalityDocument": MessageLookupByLibrary.simpleMessage(
+            "Upload valid nationality document."),
         "emptyResidentCountry": MessageLookupByLibrary.simpleMessage(
             "Resident country field cannot be empty"),
         "emptyStreetAddress": MessageLookupByLibrary.simpleMessage(
@@ -260,9 +266,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterValidSpouseName": MessageLookupByLibrary.simpleMessage(
             "Please enter valid spouse name"),
         "error": MessageLookupByLibrary.simpleMessage("Error"),
+        "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
+            "Error While Creating Account"),
         "errorSavingIdCard":
             MessageLookupByLibrary.simpleMessage("Error While saving IDCard"),
-        "estimatedTime": m0,
+        "errorSavingStatus":
+            MessageLookupByLibrary.simpleMessage("Error While Saving Status"),
+        "errorUploadImage":
+            MessageLookupByLibrary.simpleMessage("Error While Upload Image"),
+        "errorWhileLogout":
+            MessageLookupByLibrary.simpleMessage("Error While Logout"),
+        "estimatedTime": m1,
         "exemptPayeeOptional": MessageLookupByLibrary.simpleMessage(
             "EXEMPT PAYEE CODE (OPTIONAL)"),
         "expAnnualTransactions": MessageLookupByLibrary.simpleMessage(
@@ -405,6 +419,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter total additional income"),
         "invalidTypesOfTransaction": MessageLookupByLibrary.simpleMessage(
             "Please Enter transaction type"),
+        "invalidUser": MessageLookupByLibrary.simpleMessage("Invalid User."),
         "invalidUserNamePassword": MessageLookupByLibrary.simpleMessage(
             "You have entered an invalid username or password, please try again"),
         "isBusinessNameDifferent": MessageLookupByLibrary.simpleMessage(
@@ -504,6 +519,9 @@ class MessageLookup extends MessageLookupByLibrary {
             " is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list."),
         "permanentAddress":
             MessageLookupByLibrary.simpleMessage("Permanent address"),
+        "permanentCity": MessageLookupByLibrary.simpleMessage("Permanent City"),
+        "permanentCountry":
+            MessageLookupByLibrary.simpleMessage("Permanent Country"),
         "permanentHomeAddress":
             MessageLookupByLibrary.simpleMessage("Permanent Home Address"),
         "permanentResidentAddressLine": MessageLookupByLibrary.simpleMessage(
@@ -579,7 +597,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Relationship with PEP"),
         "requesterName":
             MessageLookupByLibrary.simpleMessage("requester’s name"),
-        "resendIn": m1,
+        "resendIn": m2,
         "residentCountry":
             MessageLookupByLibrary.simpleMessage("RESIDENT COUNTRY"),
         "residentCountryHint": MessageLookupByLibrary.simpleMessage(
@@ -595,7 +613,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "scanIDAgain": MessageLookupByLibrary.simpleMessage("Scan ID again"),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("Schedule for later"),
-        "scrollToSetDate": m2,
+        "scrollToSetDate": m3,
         "searchCity": MessageLookupByLibrary.simpleMessage("Search city"),
         "searchCountry": MessageLookupByLibrary.simpleMessage("Search country"),
         "searchState": MessageLookupByLibrary.simpleMessage("Search state"),
@@ -681,7 +699,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("Type of Income"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
-        "typeOfTransactionsSmall": m3,
+        "typeOfTransactionsSmall": m4,
+        "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
+            "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "uploadDocLaterDesc": MessageLookupByLibrary.simpleMessage(
             "You will need to upload required document from Profile Settings later in order to complete your account verification.\n\nNote: Account will be closed automatically for any incomplete document"),

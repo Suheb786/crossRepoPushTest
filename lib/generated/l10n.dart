@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4020,6 +4021,36 @@ class S {
     );
   }
 
+  /// `Error While Saving Status`
+  String get errorSavingStatus {
+    return Intl.message(
+      'Error While Saving Status',
+      name: 'errorSavingStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload valid nationality document.`
+  String get emptyNationalityDocument {
+    return Intl.message(
+      'Upload valid nationality document.',
+      name: 'emptyNationalityDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Upload Image`
+  String get errorUploadImage {
+    return Intl.message(
+      'Error While Upload Image',
+      name: 'errorUploadImage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You have entered an invalid OTP code, please enter a valid one`
   String get invalidOtp {
     return Intl.message(
@@ -4065,6 +4096,76 @@ class S {
     return Intl.message(
       'Otp Limit Exceeds, Please Try again Later',
       name: 'otpLimitExceed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Creating Account`
+  String get errorCreatingAccount {
+    return Intl.message(
+      'Error While Creating Account',
+      name: 'errorCreatingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent Country`
+  String get permanentCountry {
+    return Intl.message(
+      'Permanent Country',
+      name: 'permanentCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent City`
+  String get permanentCity {
+    return Intl.message(
+      'Permanent City',
+      name: 'permanentCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add. Income \n{additionalIncomeList}`
+  String additionalIncomeList(Object additionalIncomeList) {
+    return Intl.message(
+      'Add. Income \n$additionalIncomeList',
+      name: 'additionalIncomeList',
+      desc: 'additionalIncomeList',
+      args: [additionalIncomeList],
+    );
+  }
+
+  /// `Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777.`
+  String get unableToVerifyIDCard {
+    return Intl.message(
+      'Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777.',
+      name: 'unableToVerifyIDCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid User.`
+  String get invalidUser {
+    return Intl.message(
+      'Invalid User.',
+      name: 'invalidUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Logout`
+  String get errorWhileLogout {
+    return Intl.message(
+      'Error While Logout',
+      name: 'errorWhileLogout',
       desc: '',
       args: [],
     );

@@ -44,7 +44,10 @@ class AppRouter {
 
       case RoutePaths.NotifySuccess:
         return CupertinoPageRoute(
-            builder: (context) => NotifySuccessPage(),
+            builder: (context) => NotifySuccessPage(
+                  notifySuccessArguments:
+                      settings.arguments as NotifySuccessArguments,
+                ),
             settings: RouteSettings(name: RoutePaths.NotifySuccess));
 
       case RoutePaths.AccountRegistration:

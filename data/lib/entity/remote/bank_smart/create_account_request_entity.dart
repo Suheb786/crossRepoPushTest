@@ -1,6 +1,5 @@
 import 'package:data/entity/remote/bank_smart/account_details_entity.dart';
 import 'package:data/entity/remote/bank_smart/customer_details_entity.dart';
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'create_account_request_entity.g.dart';
@@ -16,7 +15,7 @@ class CreateAccountRequestEntity {
   @JsonKey(name: "account")
   final AccountDetailsEntity? account;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String,dynamic> baseData;
 
   CreateAccountRequestEntity(
       {this.getToken,

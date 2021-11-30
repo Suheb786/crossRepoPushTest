@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "save_fatca_information_request_entity.g.dart";
@@ -6,13 +5,13 @@ part "save_fatca_information_request_entity.g.dart";
 @JsonSerializable()
 class SaveFatcaInformationRequestEntity {
   @JsonKey(name: "Response1")
-  final String? response1;
+  final bool? response1;
   @JsonKey(name: "Response2")
-  final String? response2;
+  final bool? response2;
   @JsonKey(name: "Response3")
-  final String? response3;
+  final bool? response3;
   @JsonKey(name: "Response4")
-  final String? response4;
+  final bool? response4;
   @JsonKey(name: "IsTinNoRes4")
   final bool? isTinNoRes4;
   @JsonKey(name: "TaxResidenceCountry")
@@ -26,7 +25,7 @@ class SaveFatcaInformationRequestEntity {
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String, dynamic> baseData;
 
   SaveFatcaInformationRequestEntity(
       {this.response1,

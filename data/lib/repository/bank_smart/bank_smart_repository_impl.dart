@@ -2,8 +2,11 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/bank_smart/customer_account_details.dart';
 import 'package:domain/model/bank_smart/customer_information.dart';
+import 'package:domain/model/bank_smart/get_account_details_response.dart';
+import 'package:domain/model/bank_smart/get_account_response.dart';
 import 'package:domain/model/bank_smart/purpose_of_account_opening_response.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 
@@ -41,46 +44,42 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
   }
 
   @override
-  Future<Either<NetworkError, String>> getAccount(
-      {required bool getToken, String? productCode}) async {
-    final result = await safeApiCall(
-      _bankSmartRemoteDS.getAccount(
-          getToken: getToken, productCode: productCode),
-    );
+  Future<Either<NetworkError, GetAccountResponse>> getAccount(
+      {required bool getToken}) async {
+    final result =
+        await safeApiCall(_bankSmartRemoteDS.getAccount(getToken: getToken));
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, String>> createAccount(
+  Future<Either<NetworkError, CreateAccountResponse>> createAccount(
       {required bool getToken,
-      String? cif,
       CustomerInformation? customerInformation,
       CustomerAccountDetails? accountDetails}) async {
     final result = await safeApiCall(
       _bankSmartRemoteDS.createAccount(
           getToken: getToken,
-          cif: cif,
           customerInformation: customerInformation,
           accountDetails: accountDetails),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, String>> getAccountDetails(
+  Future<Either<NetworkError, GetAccountDetailsResponse>> getAccountDetails(
       {required bool getToken}) async {
     final result = await safeApiCall(
       _bankSmartRemoteDS.getAccountDetails(getToken: getToken),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 }

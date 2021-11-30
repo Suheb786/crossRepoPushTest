@@ -31,4 +31,8 @@ class Validator {
   static bool isEqual(String data1, String data2) {
     return data1 == data2;
   }
+
+  static bool isNotEmptyNull(String data) {
+    return ((data != null) && data.isNotEmpty);
+  }
 }

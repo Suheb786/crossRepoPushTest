@@ -1,15 +1,17 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
-import 'package:domain/usecase/user/account_ready_usecase.dart';
+import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
+import 'package:domain/usecase/user/confirm_application_data_get_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/enter_address_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
+import 'package:domain/usecase/user/logout_usecase.dart';
 import 'package:domain/usecase/user/product_selector_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
@@ -31,10 +33,10 @@ final profileDetailsUseCaseProvider =
   (ref) => ProfileDetailsUseCase(ref.read(userRepoProvider)),
 );
 
-///[UploadDocumentsUseCase] provider
+///[SendDocumentsUseCase] provider
 final sendDocumentsUseCaseUseCaseProvider =
     Provider.autoDispose<SendDocumentsUseCase>(
-  (ref) => SendDocumentsUseCase(),
+  (ref) => SendDocumentsUseCase(ref.read(uploadDocumentRepositoryProvider)),
 );
 
 ///[IdVerificationInfoUseCase] provider
@@ -51,11 +53,6 @@ final confirmDetailUseCaseProvider = Provider.autoDispose<ConfirmDetailUseCase>(
 ///[EnterAddressUseCase] provider
 final enterAddressUseCaseProvider = Provider.autoDispose<EnterAddressUseCase>(
   (ref) => EnterAddressUseCase(ref.read(userRepoProvider)),
-);
-
-///[AccountReadyUseCase] provider
-final accountReadyUseCaseProvider = Provider.autoDispose<AccountReadyUseCase>(
-  (ref) => AccountReadyUseCase(),
 );
 
 ///[HomeAddressDialogUseCase] provider
@@ -118,6 +115,15 @@ final scanUserDocumentUseCaseProvider = Provider<ScanUserDocumentUseCase>(
 ///[GetTokenUseCase] provider
 final getTokenUseCaseProvider = Provider<GetTokenUseCase>(
     (ref) => GetTokenUseCase(ref.read(userRepoProvider)));
+
+///[ConfirmApplicationDataGetUseCase] provider
+final getConfirmApplicationDataUseCaseProvider =
+    Provider<ConfirmApplicationDataGetUseCase>(
+        (ref) => ConfirmApplicationDataGetUseCase(ref.read(userRepoProvider)));
+
+///[LogoutUseCase] provider
+final logoutUseCaseProvider =
+    Provider<LogoutUseCase>((ref) => LogoutUseCase(ref.read(userRepoProvider)));
 
 ///[UploadSelfieImageUseCase] provider
 final uploadSelfieImageUseCaseProvider = Provider<UploadSelfieImageUseCase>(

@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/fatca_crs/get_fatca_questions_response.dart';
+import 'package:domain/model/fatca_crs/set_fatca_questions_response.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 
 class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
@@ -10,28 +12,29 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
   FatcaCrsRepositoryImpl(this._crsRemoteDS);
 
   @override
-  Future<Either<NetworkError, String>> getFatcaQuestions(
+  Future<Either<NetworkError, GetFatcaQuestionsResponse>> getFatcaQuestions(
       {required bool getToken}) async {
     final result = await safeApiCall(
       _crsRemoteDS.getFatcaQuestions(getToken: getToken),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r),
-    );
+        (l) => Left(l),
+        (r) => Right(
+              (r.data.transform()),
+            ));
   }
 
   @override
-  Future<Either<NetworkError, String>> saveFatcaInformation(
-      {required String response1,
-      required String response2,
-      required String response3,
-      required String response4,
-      required bool isTinNoRes4,
-      required String taxResidenceCountry,
-      required String tinNoRes4,
-      required String reasonUnavailableRes4,
-      required String reasonBRes4,
+  Future<Either<NetworkError, SetFatcaQuestionsResponse>> saveFatcaInformation(
+      {required bool response1,
+      required bool response2,
+      required bool response3,
+      required bool response4,
+      bool? isTinNoRes4,
+      String? taxResidenceCountry,
+      String? tinNoRes4,
+      String? reasonUnavailableRes4,
+      String? reasonBRes4,
       required bool getToken}) async {
     final result = await safeApiCall(
       _crsRemoteDS.saveFatcaInformation(
@@ -48,7 +51,7 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r),
+      (r) => Right(r.data.transform()),
     );
   }
 }
