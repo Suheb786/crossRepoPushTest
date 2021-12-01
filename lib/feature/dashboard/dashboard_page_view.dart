@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -8,6 +10,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric_login_dialog.dart';
 import 'package:neo_bank/ui/molecules/information_text.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -35,20 +38,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
             children: [
               Column(
                 children: [
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      AppSvg.asset(AssetUtils.welcomeIcon),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 62.0),
-                        child: InkWell(
-                          onTap: () {},
-                          child: AppSvg.asset(AssetUtils.menuIcon,
-                              color: Theme.of(context).accentColor),
-                        ),
-                      ),
-                    ],
-                  ),
+                  AppSvg.asset(AssetUtils.welcomeIcon),
                   SizedBox(
                     height: 40,
                   ),
@@ -94,6 +84,38 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                     borderColor: Theme.of(context).accentColor,
                     textColor: Theme.of(context).accentColor,
                   ),
+                  AppStreamBuilder<Resource<bool>>(
+                    stream: model.authenticateBioMetricStream,
+                    initialData: Resource.none(),
+                    dataBuilder: (context, data) =>
+                        AppStreamBuilder<Resource<bool>>(
+                      stream: model.checkBioMetricStream,
+                      initialData: Resource.none(),
+                      onData: (data) {
+                        if (data.status == Status.SUCCESS) {
+                          if (data.data ?? false) {
+                            BiometricLoginDialog.show(context, mayBeLater: () {
+                              Navigator.pop(context);
+                            }, enableBioMetric: () {
+                              model.authenticateBioMetric(
+                                  title:
+                                      S.of(context).enableBiometricLoginTitle,
+                                  localisedReason: Platform.isAndroid
+                                      ? S
+                                          .of(context)
+                                          .enableBiometricLoginDescriptionAndroid
+                                      : S
+                                          .of(context)
+                                          .enableBiometricLoginDescriptionIos);
+                            });
+                          }
+                        }
+                      },
+                      dataBuilder: (context, data) {
+                        return Container();
+                      },
+                    ),
+                  )
                 ],
               ),
               SizedBox(

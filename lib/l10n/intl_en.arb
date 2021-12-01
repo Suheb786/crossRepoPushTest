@@ -435,7 +435,9 @@
   "userNotRegister": "User Not Register",
   "errorWhileRegistration": "An error has occurred during Registration Process, please try again",
   "errorWhileGetAdditionalDocument": "Error while Get Additional Documentation",
-  "accountLocked": "Your account is locked, please contact customer service on 7777-7777 to unlock"
-
-
+  "accountLocked": "Your account is locked, please contact customer service on 7777-7777 to unlock",
+  "pleaseProvideSelfie": "Please provide selfie to proceed further.",
+  "enableBiometricLoginTitle":"Enable Biometric Login",
+  "enableBiometricLoginDescriptionAndroid": "Scan your finger to log in",
+  "enableBiometricLoginDescriptionIos": "Scan your face to log in"
 }

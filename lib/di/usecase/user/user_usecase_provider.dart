@@ -2,6 +2,8 @@ import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
 import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
+import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
+import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
 import 'package:domain/usecase/user/confirm_application_data_get_usecase.dart';
@@ -18,6 +20,7 @@ import 'package:domain/usecase/user/product_selector_usecase.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
+import 'package:domain/usecase/user/upload_selfie_image_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:domain/usecase/user/video_call_info_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -132,3 +135,23 @@ final enableFingerPrintUseCaseProvider = Provider<EnableFingerPrintUseCase>(
 ///[DisableFingerPrintUseCase] provider
 final disableFingerPrintUseCaseProvider = Provider<DisableFingerPrintUseCase>(
     (ref) => DisableFingerPrintUseCase(ref.read(userRepoProvider)));
+
+///[UploadSelfieImageUseCase] provider
+final uploadSelfieImageUseCaseProvider = Provider<UploadSelfieImageUseCase>(
+    (ref) => UploadSelfieImageUseCase(ref.read(userRepoProvider)));
+
+///[CheckBioMetricSupportUseCase] provider
+final checkBioMetricSupportUseCaseProvider =
+    Provider.autoDispose<CheckBioMetricSupportUseCase>(
+  (ref) => CheckBioMetricSupportUseCase(
+    ref.read(userRepoProvider),
+  ),
+);
+
+///[AuthenticateBioMetricUseCase] provider
+final authenticateBioMetricUseCaseProvider =
+    Provider.autoDispose<AuthenticateBioMetricUseCase>(
+  (ref) => AuthenticateBioMetricUseCase(
+    ref.read(userRepoProvider),
+  ),
+);

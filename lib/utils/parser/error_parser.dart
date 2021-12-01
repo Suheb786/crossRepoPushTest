@@ -246,6 +246,8 @@ class ErrorParser {
         return localisedHelper.errorWhileGetAdditionalDocument;
       case ErrorType.ACCOUNT_LOCKED:
         return localisedHelper.accountLocked;
+      case ErrorType.IMAGE_UPLOAD_ERROR:
+        return localisedHelper.pleaseProvideSelfie;
 
       default:
         return "";

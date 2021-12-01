@@ -1,12 +1,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.codebaseneo.neo_bank">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+
     <application
         android:icon="@mipmap/ic_launcher"
-        android:usesCleartextTraffic="true"
-        android:label="neo_bank">
-        <meta-data android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCPizDLZPZ1Q1aAj4noRQyrdXZyE2ZS6FI"/>
+        android:label="Blink"
+        android:usesCleartextTraffic="true">
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCPizDLZPZ1Q1aAj4noRQyrdXZyE2ZS6FI" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

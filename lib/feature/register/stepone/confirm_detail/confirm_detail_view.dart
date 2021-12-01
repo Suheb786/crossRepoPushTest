@@ -1,5 +1,7 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,6 +11,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -42,7 +45,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                     child: AppStreamBuilder<Resource<SaveIdInfoResponse>>(
                         stream: model.confirmDetailResponseStream,
                         initialData: Resource.none(),
-                        onData: (data) {
+                        onData: (data) async {
                           if (data.status == Status.SUCCESS) {
                             model.nameKey.currentState!.isValid = true;
                             model.idNumberKey.currentState!.isValid = true;
@@ -51,10 +54,23 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                             model.expiryDateKey.currentState!.isValid = true;
                             model.genderKey.currentState!.isValid = true;
                             model.motherNameKey.currentState!.isValid = true;
-                            ProviderScope.containerOf(context)
-                                .read(registerStepOneViewModelProvider)
-                                .pageController
-                                .next();
+
+                            final isImageUpload = await Navigator.pushNamed(
+                                context, RoutePaths.Capture);
+
+                            if (isImageUpload != null &&
+                                (isImageUpload as bool)) {
+                              ProviderScope.containerOf(context)
+                                  .read(registerStepOneViewModelProvider)
+                                  .pageController
+                                  .next();
+                            } else {
+                              model.showToastWithError(AppError(
+                                error: ErrorInfo(message: ''),
+                                type: ErrorType.IMAGE_UPLOAD_ERROR,
+                                cause: Exception(),
+                              ));
+                            }
                           }
                           if (data.status == Status.ERROR) {
                             if (data.appError!.type == ErrorType.EMPTY_NAME) {

@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:domain/error/base_error.dart';
 import 'package:domain/error/database_error.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
@@ -54,6 +55,9 @@ abstract class UserRepository {
 
   /// verify mobile otp
   Future<Either<NetworkError, bool>> verifyMobileOtp({String? otpCode});
+
+  /// Upload selfie image
+  Future<Either<NetworkError, bool>> uploadSelfieImage({String? imagePath});
 
   /// save Id information
   Future<Either<NetworkError, SaveIdInfoResponse>> saveIdInfo({
@@ -153,4 +157,9 @@ abstract class UserRepository {
 
   ///disable finger print
   Future<Either<NetworkError, bool>> disableFingerPrint();
+
+  Future<Either<BaseError, bool>> checkBioMetricSupport();
+
+  Future<Either<BaseError, bool>> authenticateBioMetric(
+      String title, String localisedReason);
 }

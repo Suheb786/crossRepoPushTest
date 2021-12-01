@@ -703,7 +703,6 @@ class ReviewApplicationPageView
                                                               );
                                                             },
                                                           ),
-
                                                           Center(
                                                             child: Padding(
                                                               padding: EdgeInsets

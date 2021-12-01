@@ -5,7 +5,10 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric
 
 final dashboardViewModelProvider =
     ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
-  (ref) => DashboardPageViewModel(ref.read(logoutUseCaseProvider)),
+  (ref) => DashboardPageViewModel(
+      ref.read(logoutUseCaseProvider),
+      ref.read(checkBioMetricSupportUseCaseProvider),
+      ref.read(authenticateBioMetricUseCaseProvider)),
 );
 
 final biometricLoginViewModelProvider =
