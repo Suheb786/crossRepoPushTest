@@ -147,4 +147,10 @@ abstract class UserRepository {
       JobDetailInfo jobDetailInfo,
       FatcaCrsInfo fatcaCrsInfo,
       AccountPurposeInfo accountPurposeInfo});
+
+  ///enable finger print
+  Future<Either<NetworkError, bool>> enableFingerPrint({String cipher});
+
+  ///disable finger print
+  Future<Either<NetworkError, bool>> disableFingerPrint();
 }

@@ -114,12 +114,17 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<LogoutResponseEntity>> logout();
 
-  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>> confirmApplicationDataSet(
-      {CountryResidenceInfo? countryResidenceInfo,
-      ProfileStatusInfo? profileStatusInfo,
-      JobDetailInfo? jobDetailInfo,
-      FatcaCrsInfo? fatcaCrsInfo,
-      AccountPurposeInfo? accountPurposeInfo});
+  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
+      confirmApplicationDataSet(
+          {CountryResidenceInfo? countryResidenceInfo,
+          ProfileStatusInfo? profileStatusInfo,
+          JobDetailInfo? jobDetailInfo,
+          FatcaCrsInfo? fatcaCrsInfo,
+          AccountPurposeInfo? accountPurposeInfo});
+
+  Future<bool> enableFingerPrint({String? cipher});
+
+  Future<bool> disableFingerPrint();
 }
 
 abstract class UserLocalDS {

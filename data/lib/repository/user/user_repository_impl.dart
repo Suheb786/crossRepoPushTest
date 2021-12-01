@@ -415,4 +415,26 @@ class UserRepositoryImpl extends UserRepository {
       (r) => Right(r.isSuccessful()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> enableFingerPrint({String? cipher}) async {
+    final result = await safeApiCall(
+      _remoteDS.enableFingerPrint(cipher: cipher),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(true),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> disableFingerPrint() async {
+    final result = await safeApiCall(
+      _remoteDS.disableFingerPrint(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(true),
+    );
+  }
 }

@@ -30,6 +30,8 @@ import 'package:data/entity/remote/user/confirm_application_data_get/confirm_app
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_request_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
+import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
+import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
@@ -197,4 +199,14 @@ abstract class ApiService {
           @Body()
               ConfirmApplicationDataSetRequestEntity
                   confirmApplicationDataSetRequestEntity);
+
+  ///enable fingerprint
+  @POST("/auth/enableFingerPrint")
+  Future<bool> enableFingerPrint(
+      @Body() EnableFingerPrintRequestEntity enableFingerPrintRequestEntity);
+
+  ///disable fingerprint
+  @POST("/auth/DisableFingerPrint")
+  Future<bool> disableFingerPrint(
+      @Body() DisableFingerPrintRequestEntity disableFingerPrintRequestEntity);
 }

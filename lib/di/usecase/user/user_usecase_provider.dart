@@ -6,6 +6,8 @@ import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
 import 'package:domain/usecase/user/confirm_application_data_get_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
+import 'package:domain/usecase/user/disable_finger_print_usecase.dart';
+import 'package:domain/usecase/user/enable_finger_print_usecase.dart';
 import 'package:domain/usecase/user/enter_address_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
@@ -122,3 +124,11 @@ final getConfirmApplicationDataUseCaseProvider =
 ///[LogoutUseCase] provider
 final logoutUseCaseProvider =
     Provider<LogoutUseCase>((ref) => LogoutUseCase(ref.read(userRepoProvider)));
+
+///[EnableFingerPrintUseCase] provider
+final enableFingerPrintUseCaseProvider = Provider<EnableFingerPrintUseCase>(
+    (ref) => EnableFingerPrintUseCase(ref.read(userRepoProvider)));
+
+///[DisableFingerPrintUseCase] provider
+final disableFingerPrintUseCaseProvider = Provider<DisableFingerPrintUseCase>(
+    (ref) => DisableFingerPrintUseCase(ref.read(userRepoProvider)));

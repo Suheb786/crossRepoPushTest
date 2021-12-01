@@ -14,6 +14,8 @@ import 'package:data/entity/remote/user/confirm_application_data_get/profile_sta
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_request_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/review_application_data_entity.dart';
+import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
+import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
@@ -320,5 +322,21 @@ class UserRemoteDSImpl extends UserRemoteDS {
                 accountPurpose:
                     AccountPurposeEntity().restore(accountPurposeInfo!)),
             baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<bool> enableFingerPrint({String? cipher}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.enableFingerPrint(EnableFingerPrintRequestEntity(
+        getToken: true, cipher: cipher, baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<bool> disableFingerPrint() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.disableFingerPrint(DisableFingerPrintRequestEntity(
+        getToken: true,
+        uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
+        baseData: baseData.toJson()));
   }
 }
