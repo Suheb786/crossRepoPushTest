@@ -431,5 +431,8 @@
   "unableToVerifyIDCard": "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777.",
   "invalidUser": "Invalid User.",
   "errorWhileLogout": "Error While Logout",
-  "pleaseProvideSelfie": "Please provide selfie to proceed further."
+  "pleaseProvideSelfie": "Please provide selfie to proceed further.",
+  "enableBiometricLoginTitle":"Enable Biometric Login",
+  "enableBiometricLoginDescriptionAndroid": "Scan your finger to log in",
+  "enableBiometricLoginDescriptionIos": "Scan your face to log in"
 }

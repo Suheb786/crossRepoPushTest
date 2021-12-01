@@ -1,10 +1,12 @@
 import 'package:dartz/dartz.dart';
+import 'package:data/db/exception/app_local_exception.dart';
 import 'package:data/db/floor/utils/safe_db_call.dart';
 import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/network/api_interceptor.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:dio/dio.dart';
+import 'package:domain/error/base_error.dart';
 import 'package:domain/error/database_error.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
@@ -400,5 +402,65 @@ class UserRepositoryImpl extends UserRepository {
       (l) => Left(l),
       (r) => Right(r.data.transform()),
     );
+  }
+
+  @override
+  Future<Either<BaseError, bool>> checkBioMetricSupport() async {
+    try {
+      bool checkBioMetric = await _localDS.checkBioMetricSupport();
+      return Right(checkBioMetric);
+    } catch (exception) {
+      return _handleAppLocalException(exception);
+    }
+  }
+
+  @override
+  Future<Either<LocalError, bool>> authenticateBioMetric(
+      String title, String localisedReason) async {
+    try {
+      bool isAuthenticated =
+          await _localDS.authenticateBioMetric(title, localisedReason);
+      return Right(isAuthenticated);
+    } catch (exception) {
+      return _handleAppLocalException(exception);
+    }
+  }
+
+  Left<LocalError, bool> _handleAppLocalException(exception) {
+    switch (exception.runtimeType) {
+      case AppLocalException:
+        if (exception is AppLocalException) {
+          return Left(
+            LocalError(
+              cause: Exception(
+                exception.toString(),
+              ),
+              localError: exception.appLocalExceptionType.value,
+              message: exception.toString(),
+            ),
+          );
+        } else {
+          return Left(
+            LocalError(
+              cause: Exception(
+                exception.toString(),
+              ),
+              localError: 1,
+              message: exception.toString(),
+            ),
+          );
+        }
+        break;
+      default:
+        return Left(
+          LocalError(
+            cause: Exception(
+              exception.toString(),
+            ),
+            localError: 1,
+            message: exception.toString(),
+          ),
+        );
+    }
   }
 }
