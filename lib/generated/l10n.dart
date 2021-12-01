@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4215,6 +4216,46 @@ class S {
     return Intl.message(
       'Your account is locked, please contact customer service on 7777-7777 to unlock',
       name: 'accountLocked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide selfie to proceed further.`
+  String get pleaseProvideSelfie {
+    return Intl.message(
+      'Please provide selfie to proceed further.',
+      name: 'pleaseProvideSelfie',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable Biometric Login`
+  String get enableBiometricLoginTitle {
+    return Intl.message(
+      'Enable Biometric Login',
+      name: 'enableBiometricLoginTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan your finger to log in`
+  String get enableBiometricLoginDescriptionAndroid {
+    return Intl.message(
+      'Scan your finger to log in',
+      name: 'enableBiometricLoginDescriptionAndroid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan your face to log in`
+  String get enableBiometricLoginDescriptionIos {
+    return Intl.message(
+      'Scan your face to log in',
+      name: 'enableBiometricLoginDescriptionIos',
       desc: '',
       args: [],
     );

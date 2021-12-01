@@ -86,6 +86,11 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                   ),
                   AppStreamBuilder<Resource<bool>>(
                     stream: model.authenticateBioMetricStream,
+                    onData: (data) {
+                      if (data.status == Status.SUCCESS) {
+                        print('success');
+                      }
+                    },
                     initialData: Resource.none(),
                     dataBuilder: (context, data) =>
                         AppStreamBuilder<Resource<bool>>(

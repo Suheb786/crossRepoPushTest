@@ -24,7 +24,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
-                    'https://192.168.106.1:2821/api/auth/CheckUserName',
+                    'http://192.168.181.2:2821/api/auth/CheckUserName',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
@@ -43,7 +43,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
-                    'https://192.168.106.1:2821/api/auth/CheckUserNameMobile',
+                    'http://192.168.181.2:2821/api/auth/CheckUserNameMobile',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
