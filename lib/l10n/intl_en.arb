@@ -416,5 +416,8 @@
   "myAccount": "My Account",
   "availableBalance": "AVAILABLE BALANCE",
   "accountNo": "ACCOUNT NO.",
-  "addMoney": "Add money"
+  "addMoney": "Add money",
+  "myDebitCard": "My Debit Card",
+  "flipCard": "Flip card",
+  "cardDelivered": "Card delivered?"
 }

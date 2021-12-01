@@ -3,9 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/debit_card_detail/debit_card_detail_dialog.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
@@ -15,58 +16,61 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
   @override
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          GestureDetector(
-            onHorizontalDragEnd: (details) {
-              if (details.primaryVelocity!.isNegative) {
-              } else {
-                ProviderScope.containerOf(context)
-                    .read(appHomeViewModelProvider)
-                    .pageController
-                    .previous();
-              }
-            },
-            child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              elevation: 2,
-              color: Theme.of(context).canvasColor,
-              margin: EdgeInsets.zero,
-              shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-              child: Padding(
-                padding: EdgeInsets.only(left: 27.0, top: 30, bottom: 29),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "My Debit Card",
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColorDark,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600),
-                        ),
+      child: GestureDetector(
+        onHorizontalDragEnd: (details) {
+          if (details.primaryVelocity!.isNegative) {
+          } else {
+            ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .pageController
+                .previous();
+          }
+        },
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          elevation: 2,
+          color: Theme.of(context).canvasColor,
+          margin: EdgeInsets.zero,
+          shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+          child: AppStreamBuilder<bool>(
+              stream: model.isGetCardNowClickedStream,
+              initialData: false,
+              dataBuilder: (context, isClicked) {
+                return isClicked == false
+                    ? Padding(
+                        padding:
+                            EdgeInsets.only(left: 27.0, top: 30, bottom: 29),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  S.of(context).myDebitCard,
+                                  style: TextStyle(
+                                      color: Theme.of(context).primaryColorDark,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
+                                ),
                         Padding(
                           padding: EdgeInsets.only(right: 23.0),
                           child: InkWell(
                             onTap: () {
-                              print("tapped");
-                              DebitCardDetailDialog.show(context);
-                            },
+                              model.updateIsGetCardNowClicked(
+                                          !isClicked!);
+                                    },
                             child: Text(
-                              "Flip card",
-                              style: TextStyle(
-                                  color: AppColor.green,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600),
-                            ),
+                              S.of(context).flipCard,
+                                      style: TextStyle(
+                                          color: AppColor.green,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600),
+                                    ),
                           ),
                         )
                       ],
@@ -99,54 +103,183 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                       children: [
                         Container(
                           height: 36,
-                          width: 105,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Theme.of(context)
-                                  .accentTextTheme
-                                  .bodyText1!
-                                  .color),
-                          child: Center(
-                            child: Text(
-                              "Add money",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 14,
-                                  color: Theme.of(context).accentColor),
-                            ),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Theme.of(context)
+                                          .accentTextTheme
+                                          .bodyText1!
+                                          .color),
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 8, horizontal: 17),
+                                    child: Text(
+                                      S.of(context).addMoney,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 14,
+                                          color: Theme.of(context).accentColor),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 33.0),
+                                  child: AppSvg.asset(AssetUtils.settingsRed),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                    : SingleChildScrollView(
+                        child: Padding(
+                          padding:
+                              EdgeInsets.only(left: 29.0, top: 38, right: 25),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    "Zein Malhas",
+                                    style: TextStyle(
+                                        color:
+                                            Theme.of(context).primaryColorDark,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      model.updateIsGetCardNowClicked(
+                                          !isClicked!);
+                                    },
+                                    child: Text(
+                                      "Flip back",
+                                      style: TextStyle(
+                                          color: AppColor.green,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 63),
+                                child: Text(
+                                  "8451 1353 1245 3421",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 8),
+                                child: Text(
+                                  "CARD NUMBER",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 10,
+                                      color: AppColor.green),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 19),
+                                child: Divider(
+                                  height: 1,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 21),
+                                child: Text(
+                                  "140591314151414",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 8),
+                                child: Text(
+                                  "LINKED ACCOUNT NUMBER",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 10,
+                                      color: AppColor.green),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 19),
+                                child: Divider(
+                                  height: 1,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 21, bottom: 128),
+                                child: Row(
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "08/23",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 8),
+                                          child: Text(
+                                            "EXPIRY DATE",
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                color: AppColor.green,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 59.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "688",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(top: 8),
+                                            child: Text(
+                                              "CVV",
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: AppColor.green,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 33.0),
-                          child: AppSvg.asset(AssetUtils.settingsRed),
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 0,
-            child: Container(
-              height: 24,
-              width: 125,
-              decoration: BoxDecoration(
-                  color: AppColor.darkGrey,
-                  borderRadius: BorderRadius.circular(100)),
-              child: Center(
-                child: Text(
-                  "Card delivered?",
-                  style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 12),
-                ),
-              ),
-            ),
-          ),
-        ],
+                      );
+              }),
+        ),
       ),
     );
   }

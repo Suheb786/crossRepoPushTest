@@ -48,7 +48,7 @@ class CardTransactionPageView
                       ProviderScope.containerOf(context)
                           .read(homeViewModelProvider)
                           .homeController
-                          .jumpToPage(0);
+                          .jumpToPage(2);
                     }
                   },
                   child: Container(

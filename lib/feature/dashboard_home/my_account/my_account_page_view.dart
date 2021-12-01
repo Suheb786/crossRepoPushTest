@@ -44,88 +44,92 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 30.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                S.of(context).myAccount,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12,
-                                    color: Theme.of(context).accentColor),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 66),
-                                child: Text(
-                                  "Zein Malhas",
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600,
-                                      color: Theme.of(context).accentColor),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 23),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("0.00",
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.w700,
-                                            color:
-                                                Theme.of(context).accentColor)),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 5.0),
-                                      child: Text("JOD",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 10,
-                                              color: Theme.of(context)
-                                                  .accentColor
-                                                  .withOpacity(0.4))),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 4),
-                                child: Text(
-                                  S.of(context).availableBalance,
+                        Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.only(top: 30.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  S.of(context).myAccount,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
-                                      fontSize: 10,
-                                      color: Theme.of(context)
-                                          .accentColor
-                                          .withOpacity(0.4)),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 29),
-                                child: Text(
-                                  "8451 1353 1245 3421",
-                                  style: TextStyle(
                                       fontSize: 12,
-                                      fontWeight: FontWeight.w600,
                                       color: Theme.of(context).accentColor),
                                 ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 5),
-                                child: Text(
-                                  S.of(context).accountNo,
-                                  style: TextStyle(
-                                      color: Theme.of(context)
-                                          .accentColor
-                                          .withOpacity(0.4),
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w600),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 66),
+                                  child: Text(
+                                    "Zein Malhas",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context).accentColor),
+                                  ),
                                 ),
-                              ),
-                            ],
+                                Padding(
+                                  padding: EdgeInsets.only(top: 23),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text("0.00",
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w700,
+                                              color: Theme.of(context)
+                                                  .accentColor)),
+                                      Padding(
+                                        padding:
+                                            EdgeInsets.only(top: 5, left: 5.0),
+                                        child: Text("JOD",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 10,
+                                                color: Theme.of(context)
+                                                    .accentColor
+                                                    .withOpacity(0.4))),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 4),
+                                  child: Text(
+                                    S.of(context).availableBalance,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 10,
+                                        color: Theme.of(context)
+                                            .accentColor
+                                            .withOpacity(0.4)),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 29),
+                                  child: Text(
+                                    "8451 1353 1245 3421",
+                                    style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context).accentColor),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 5),
+                                  child: Text(
+                                    S.of(context).accountNo,
+                                    style: TextStyle(
+                                        color: Theme.of(context)
+                                            .accentColor
+                                            .withOpacity(0.4),
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Image.asset(AssetUtils.zigzagRed)

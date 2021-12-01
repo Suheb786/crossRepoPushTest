@@ -33,13 +33,15 @@ class AccountTransactionPageView
               child: Padding(
                 padding: EdgeInsets.only(top: 35),
                 child: GestureDetector(
-                  onVerticalDragUpdate: (details) {
-                    ProviderScope.containerOf(context)
-                        .read(homeViewModelProvider)
-                        .homeController
-                        .previousPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
+                  onVerticalDragEnd: (details) {
+                    if (details.primaryVelocity!.isNegative) {
+                    } else {
+                      print("clicked here");
+                      ProviderScope.containerOf(context)
+                          .read(homeViewModelProvider)
+                          .homeController
+                          .jumpToPage(2);
+                    }
                   },
                   child: Container(
                     height: double.infinity,

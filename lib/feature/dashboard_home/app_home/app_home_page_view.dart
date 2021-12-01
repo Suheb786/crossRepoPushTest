@@ -37,16 +37,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                   ProviderScope.containerOf(context)
                       .read(homeViewModelProvider)
                       .homeController
-                      .nextPage(
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeInOut);
+                      .jumpToPage(3);
                 } else if (currentStep == 1) {
                   ProviderScope.containerOf(context)
                       .read(homeViewModelProvider)
                       .homeController
-                      .animateTo(2,
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeInOut);
+                      .jumpToPage(4);
                 }
               } else {
                 print("hello world");
@@ -77,8 +73,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                 Padding(
                   padding: EdgeInsets.only(top: 5.0),
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text("0.00",
                           style: TextStyle(
@@ -86,7 +82,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               fontWeight: FontWeight.w700,
                               color: Theme.of(context).primaryColorDark)),
                       Padding(
-                        padding: EdgeInsets.only(left: 5.0),
+                        padding: EdgeInsets.only(top: 5, left: 5.0),
                         child: Text("JOD",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
@@ -97,17 +93,47 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 18.0),
+                  padding: EdgeInsets.only(top: 18),
                   child: AppSvg.asset(AssetUtils.swipeDown),
                 ),
                 Expanded(
-                  child: AppSwiper(
-                    pages: pages,
-                    pageController: model.pageController,
-                    onIndexChanged: (index) {
-                      model.updatePage(index);
-                    },
-                    currentStep: currentStep,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 4),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        AppSwiper(
+                          pages: pages,
+                          pageController: model.pageController,
+                          onIndexChanged: (index) {
+                            model.updatePage(index);
+                          },
+                          currentStep: currentStep,
+                        ),
+                        Positioned(
+                          top: 0,
+                          child: Offstage(
+                            offstage: currentStep != 2,
+                            child: Container(
+                              height: 24,
+                              width: 125,
+                              decoration: BoxDecoration(
+                                  color: AppColor.darkGrey,
+                                  borderRadius: BorderRadius.circular(100)),
+                              child: Center(
+                                child: Text(
+                                  S.of(context).cardDelivered,
+                                  style: TextStyle(
+                                      color: Theme.of(context).accentColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 12),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 // Padding(

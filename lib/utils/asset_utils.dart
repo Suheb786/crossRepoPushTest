@@ -70,6 +70,7 @@ class AssetUtils {
   static const String house = svg + "house.svg";
   static const String headphoneBlack = svg + "headphone_black.svg";
   static const String logoWhite = svg + "logo_white.svg";
+  static const String addCircle = svg + "add_circle.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -94,6 +95,8 @@ class AssetUtils {
   static const String zigzagRed = drawable + "zigzag_red.png";
   static const String ellipseRed = drawable + "ellipse_red.png";
   static const String ellipseWhite = drawable + "ellipse_white.png";
+  static const String progress1 = drawable + "progress_1.png";
+  static const String progress2 = drawable + "progress_2.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";

@@ -13,7 +13,8 @@ class AppHomePage extends BasePage<AppHomeViewModel> {
   AppHomePageState createState() => AppHomePageState();
 }
 
-class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> {
+class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
+    with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
     return appHomeViewModelProvider;
@@ -68,7 +69,16 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage> {
   }
 
   @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
   Widget buildView(BuildContext context, AppHomeViewModel model) {
     return AppHomePageView(provideBase());
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

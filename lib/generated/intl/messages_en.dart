@@ -117,6 +117,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "businessType": MessageLookupByLibrary.simpleMessage("Business Type"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cardDelivered":
+            MessageLookupByLibrary.simpleMessage("Card delivered?"),
         "cardDelivery":
             MessageLookupByLibrary.simpleMessage("to Card Delivery"),
         "cardLater":
@@ -281,6 +283,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "fatca": MessageLookupByLibrary.simpleMessage("FATCA "),
         "fatcaandPep": MessageLookupByLibrary.simpleMessage("FATCA & PEP"),
         "femaleAgent": MessageLookupByLibrary.simpleMessage("Female Agent"),
+        "flipCard": MessageLookupByLibrary.simpleMessage("Flip card"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
@@ -447,6 +450,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
         "mothersName": MessageLookupByLibrary.simpleMessage("Mother’s Name"),
         "myAccount": MessageLookupByLibrary.simpleMessage("My Account"),
+        "myDebitCard": MessageLookupByLibrary.simpleMessage("My Debit Card"),
         "name": MessageLookupByLibrary.simpleMessage("NAME AS PER ID"),
         "nameAsPerID": MessageLookupByLibrary.simpleMessage("Name as per ID"),
         "nameAsPerIncomeTaxReturn": MessageLookupByLibrary.simpleMessage(

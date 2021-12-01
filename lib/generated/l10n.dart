@@ -4070,6 +4070,36 @@ class S {
       args: [],
     );
   }
+
+  /// `My Debit Card`
+  String get myDebitCard {
+    return Intl.message(
+      'My Debit Card',
+      name: 'myDebitCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Flip card`
+  String get flipCard {
+    return Intl.message(
+      'Flip card',
+      name: 'flipCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card delivered?`
+  String get cardDelivered {
+    return Intl.message(
+      'Card delivered?',
+      name: 'cardDelivered',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
