@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Accepted worldwide with no hidden charges"),
         "accountCreated": MessageLookupByLibrary.simpleMessage(
             "Account has been created successfully."),
+        "accountLocked": MessageLookupByLibrary.simpleMessage(
+            "Your account is locked, please contact customer service on 7777-7777 to unlock"),
         "accountNumberOptional":
             MessageLookupByLibrary.simpleMessage("ACCOUNT NUMBER (OPTIONAL)"),
         "accountOpeningDescription": MessageLookupByLibrary.simpleMessage(
@@ -273,8 +275,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error While Saving Status"),
         "errorUploadImage":
             MessageLookupByLibrary.simpleMessage("Error While Upload Image"),
+        "errorWhileGetAdditionalDocument": MessageLookupByLibrary.simpleMessage(
+            "Error while Get Additional Documentation"),
         "errorWhileLogout":
             MessageLookupByLibrary.simpleMessage("Error While Logout"),
+        "errorWhileRegistration": MessageLookupByLibrary.simpleMessage(
+            "An error has occurred during Registration Process, please try again"),
         "estimatedTime": m1,
         "exemptPayeeOptional": MessageLookupByLibrary.simpleMessage(
             "EXEMPT PAYEE CODE (OPTIONAL)"),
@@ -453,6 +459,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
+        "mobileNoExist":
+            MessageLookupByLibrary.simpleMessage("Mobile Number Exist"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("00 000 0000"),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
@@ -718,6 +726,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Upload Document"),
         "usIDNumber": MessageLookupByLibrary.simpleMessage(
             "U.S. tax payer identification number "),
+        "userNotRegister":
+            MessageLookupByLibrary.simpleMessage("User Not Register"),
         "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":
             MessageLookupByLibrary.simpleMessage(
                 "I declare that the bank is entitled to verify the information given directly or through any third part agent."),

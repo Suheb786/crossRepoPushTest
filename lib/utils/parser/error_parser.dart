@@ -236,6 +236,16 @@ class ErrorParser {
         return localisedHelper.invalidUser;
       case ErrorType.ERROR_WHILE_LOGOUT:
         return localisedHelper.errorWhileLogout;
+      case ErrorType.MOBILE_NUMBER_EXIST:
+        return localisedHelper.mobileNoExist;
+      case ErrorType.USER_NOT_REGISTER:
+        return localisedHelper.userNotRegister;
+      case ErrorType.ERROR_WHILE_REGISTRATION:
+        return localisedHelper.errorWhileRegistration;
+      case ErrorType.ERROR_GET_ADDITIONAL_DOCUMENTATION:
+        return localisedHelper.errorWhileGetAdditionalDocument;
+      case ErrorType.ACCOUNT_LOCKED:
+        return localisedHelper.accountLocked;
 
       default:
         return "";

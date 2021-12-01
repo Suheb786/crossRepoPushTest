@@ -4169,6 +4169,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Mobile Number Exist`
+  String get mobileNoExist {
+    return Intl.message(
+      'Mobile Number Exist',
+      name: 'mobileNoExist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Not Register`
+  String get userNotRegister {
+    return Intl.message(
+      'User Not Register',
+      name: 'userNotRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error has occurred during Registration Process, please try again`
+  String get errorWhileRegistration {
+    return Intl.message(
+      'An error has occurred during Registration Process, please try again',
+      name: 'errorWhileRegistration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Get Additional Documentation`
+  String get errorWhileGetAdditionalDocument {
+    return Intl.message(
+      'Error while Get Additional Documentation',
+      name: 'errorWhileGetAdditionalDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account is locked, please contact customer service on 7777-7777 to unlock`
+  String get accountLocked {
+    return Intl.message(
+      'Your account is locked, please contact customer service on 7777-7777 to unlock',
+      name: 'accountLocked',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
