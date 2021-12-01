@@ -6,10 +6,11 @@
         android:required="true" />
 
     <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
 
     <application
         android:icon="@mipmap/ic_launcher"
-        android:label="neo_bank"
+        android:label="Blink"
         android:usesCleartextTraffic="true">
         <meta-data
             android:name="com.google.android.geo.API_KEY"

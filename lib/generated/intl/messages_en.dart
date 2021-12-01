@@ -237,6 +237,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Street address field cannot be empty"),
         "enableBiometricLogin":
             MessageLookupByLibrary.simpleMessage("Enable Biometric\nLogin"),
+        "enableBiometricLoginDescriptionAndroid":
+            MessageLookupByLibrary.simpleMessage("Scan your finger to log in"),
+        "enableBiometricLoginDescriptionIos":
+            MessageLookupByLibrary.simpleMessage("Scan your face to log in"),
+        "enableBiometricLoginTitle":
+            MessageLookupByLibrary.simpleMessage("Enable Biometric Login"),
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(

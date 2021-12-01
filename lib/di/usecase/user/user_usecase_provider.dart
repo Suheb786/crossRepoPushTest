@@ -2,6 +2,8 @@ import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
 import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
+import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
+import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
 import 'package:domain/usecase/user/confirm_application_data_get_usecase.dart';
@@ -127,3 +129,19 @@ final logoutUseCaseProvider =
 ///[UploadSelfieImageUseCase] provider
 final uploadSelfieImageUseCaseProvider = Provider<UploadSelfieImageUseCase>(
     (ref) => UploadSelfieImageUseCase(ref.read(userRepoProvider)));
+
+///[CheckBioMetricSupportUseCase] provider
+final checkBioMetricSupportUseCaseProvider =
+    Provider.autoDispose<CheckBioMetricSupportUseCase>(
+  (ref) => CheckBioMetricSupportUseCase(
+    ref.read(userRepoProvider),
+  ),
+);
+
+///[AuthenticateBioMetricUseCase] provider
+final authenticateBioMetricUseCaseProvider =
+    Provider.autoDispose<AuthenticateBioMetricUseCase>(
+  (ref) => AuthenticateBioMetricUseCase(
+    ref.read(userRepoProvider),
+  ),
+);

@@ -123,4 +123,8 @@ abstract class UserLocalDS {
 
   Future<Either<LocalError, BlinkIdCombinedRecognizerResult>>
       scanUserDocument();
+
+  Future<bool> checkBioMetricSupport();
+
+  Future<bool> authenticateBioMetric(String title, String localisedReason);
 }

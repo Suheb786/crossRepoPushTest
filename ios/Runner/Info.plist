@@ -61,5 +61,7 @@
     <string>Can I use the mic please?</string>
     <key>LSSupportsOpeningDocumentsInPlace</key>
     <true/>
+    <key>NSFaceIDUsageDescription</key>
+    <string>Why is my app authenticating using face id?</string>
 </dict>
 </plist>

@@ -4180,6 +4180,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Enable Biometric Login`
+  String get enableBiometricLoginTitle {
+    return Intl.message(
+      'Enable Biometric Login',
+      name: 'enableBiometricLoginTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan your finger to log in`
+  String get enableBiometricLoginDescriptionAndroid {
+    return Intl.message(
+      'Scan your finger to log in',
+      name: 'enableBiometricLoginDescriptionAndroid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan your face to log in`
+  String get enableBiometricLoginDescriptionIos {
+    return Intl.message(
+      'Scan your face to log in',
+      name: 'enableBiometricLoginDescriptionIos',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
