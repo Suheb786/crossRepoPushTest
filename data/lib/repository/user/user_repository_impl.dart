@@ -396,7 +396,7 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, String>> confirmApplicationDataSet(
+  Future<Either<NetworkError, bool>> confirmApplicationDataSet(
       {CountryResidenceInfo? countryResidenceInfo,
       ProfileStatusInfo? profileStatusInfo,
       JobDetailInfo? jobDetailInfo,
@@ -412,7 +412,7 @@ class UserRepositoryImpl extends UserRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right("r.data.transform()"),
+      (r) => Right(r.isSuccessful()),
     );
   }
 }

@@ -42,7 +42,7 @@ class ReviewApplicationPageView
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<String>>(
+                    child: AppStreamBuilder<Resource<bool>>(
                       stream: model.reviewAppStream,
                       initialData: Resource.none(),
                       onData: (data) {

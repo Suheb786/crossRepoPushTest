@@ -12,6 +12,7 @@ import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm
 import 'package:data/entity/remote/user/confirm_application_data_get/job_detail_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/profile_status_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_request_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/review_application_data_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
@@ -298,12 +299,13 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<String> confirmApplicationDataSet(
-      {CountryResidenceInfo? countryResidenceInfo,
-      ProfileStatusInfo? profileStatusInfo,
-      JobDetailInfo? jobDetailInfo,
-      FatcaCrsInfo? fatcaCrsInfo,
-      AccountPurposeInfo? accountPurposeInfo}) async {
+  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
+      confirmApplicationDataSet(
+          {CountryResidenceInfo? countryResidenceInfo,
+          ProfileStatusInfo? profileStatusInfo,
+          JobDetailInfo? jobDetailInfo,
+          FatcaCrsInfo? fatcaCrsInfo,
+          AccountPurposeInfo? accountPurposeInfo}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.confirmApplicationDataSet(
         ConfirmApplicationDataSetRequestEntity(

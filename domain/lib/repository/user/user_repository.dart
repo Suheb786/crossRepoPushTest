@@ -141,7 +141,7 @@ abstract class UserRepository {
   Future<Either<NetworkError, LogoutResponse>> logout();
 
   /// confirm application data set
-  Future<Either<NetworkError, String>> confirmApplicationDataSet(
+  Future<Either<NetworkError, bool>> confirmApplicationDataSet(
       {CountryResidenceInfo countryResidenceInfo,
       ProfileStatusInfo profileStatusInfo,
       JobDetailInfo jobDetailInfo,

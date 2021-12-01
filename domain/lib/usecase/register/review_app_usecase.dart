@@ -13,13 +13,13 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class ReviewApplicationUseCase
-    extends BaseUseCase<NetworkError, ReviewApplicationUseCaseParams, String> {
+    extends BaseUseCase<NetworkError, ReviewApplicationUseCaseParams, bool> {
   final UserRepository _repository;
 
   ReviewApplicationUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, String>> execute(
+  Future<Either<NetworkError, bool>> execute(
       {required ReviewApplicationUseCaseParams params}) {
     return _repository.confirmApplicationDataSet(
         countryResidenceInfo: params.countryResidenceInfo,

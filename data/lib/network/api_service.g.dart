@@ -494,19 +494,23 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<String> confirmApplicationDataSet(
-      confirmApplicationDataSetRequestEntity) async {
+  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
+      confirmApplicationDataSet(confirmApplicationDataSetRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(confirmApplicationDataSetRequestEntity.toJson());
-    final _result = await _dio.fetch<String>(_setStreamType<String>(
-        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-            .compose(_dio.options, '/AdditionalDoc/ConfirmApplicationDataSave',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!;
-    return value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ConfirmApplicationDataSetResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(
+                    _dio.options, '/AdditionalDoc/ConfirmApplicationDataSave',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value =
+        ConfirmApplicationDataSetResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {

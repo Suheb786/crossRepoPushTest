@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/logout/logout_response_entity.dart';
@@ -113,7 +114,7 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<LogoutResponseEntity>> logout();
 
-  Future<String> confirmApplicationDataSet(
+  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>> confirmApplicationDataSet(
       {CountryResidenceInfo? countryResidenceInfo,
       ProfileStatusInfo? profileStatusInfo,
       JobDetailInfo? jobDetailInfo,
