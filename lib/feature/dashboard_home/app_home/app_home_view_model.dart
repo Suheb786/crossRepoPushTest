@@ -1,12 +1,12 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:rxdart/rxdart.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:rxdart/rxdart.dart';
 
 class AppHomeViewModel extends BasePageViewModel {
   final SwiperController pageController = SwiperController();
+  final controller = PageController(viewportFraction: 0.8, keepPage: true);
 
   PublishSubject<int> _currentStep = PublishSubject();
 

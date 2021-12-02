@@ -29,7 +29,7 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
         style: TabStyle.fixedCircle,
         backgroundColor: Theme.of(context).accentColor,
         items: [
-          TabItem(icon: AppSvg.asset(AssetUtils.house)),
+          TabItem(icon: AppSvg.asset(AssetUtils.house), title: " "),
           TabItem(
             icon: Container(
               height: 80,
@@ -42,7 +42,9 @@ class AppHomePageState extends BaseStatefulPage<AppHomeViewModel, AppHomePage>
               ),
             ),
           ),
-          TabItem(icon: AppSvg.asset(AssetUtils.headphoneBlack)),
+          TabItem(
+              icon: Container(child: AppSvg.asset(AssetUtils.headphoneBlack)),
+              title: " "),
         ],
         initialActiveIndex: 1,
         onTap: (i) => print("got index $i"),

@@ -37,12 +37,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                   ProviderScope.containerOf(context)
                       .read(homeViewModelProvider)
                       .homeController
-                      .jumpToPage(3);
+                      .jumpToPage(2);
                 } else if (currentStep == 1) {
                   ProviderScope.containerOf(context)
                       .read(homeViewModelProvider)
                       .homeController
-                      .jumpToPage(4);
+                      .jumpToPage(3);
                 }
               } else {
                 print("hello world");
@@ -57,7 +57,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                   ProviderScope.containerOf(context)
                       .read(homeViewModelProvider)
                       .homeController
-                      .jumpToPage(1);
+                      .jumpToPage(0);
                 }
               }
             },

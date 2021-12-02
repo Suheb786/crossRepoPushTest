@@ -35,199 +35,230 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
           margin: EdgeInsets.zero,
           shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
           child: AppStreamBuilder<bool>(
-              stream: model.isGetCardNowClickedStream,
-              initialData: false,
-              dataBuilder: (context, isClicked) {
-                return isClicked == false
-                    ? Padding(
+            stream: model.isGetCardNowClickedStream,
+            initialData: false,
+            dataBuilder: (context, isClicked) {
+              return isClicked == false
+                  ? Padding(
+                      padding: EdgeInsets.only(left: 27.0, top: 30, bottom: 29),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                S.of(context).myDebitCard,
+                                style: TextStyle(
+                                    color: Theme.of(context).primaryColorDark,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 23.0),
+                                child: InkWell(
+                                  onTap: () {
+                                    model
+                                        .updateIsGetCardNowClicked(!isClicked!);
+                                  },
+                                  child: Text(
+                                    S.of(context).flipCard,
+                                    style: TextStyle(
+                                        color: AppColor.green,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: 12),
+                                  child: AppSvg.asset(AssetUtils.blinkBlack),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: 21),
+                                  child: Text(
+                                    "Zein Malhas",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(top: 76),
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: AppSvg.asset(AssetUtils.zigzagCircle),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                height: 36,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Theme.of(context)
+                                        .accentTextTheme
+                                        .bodyText1!
+                                        .color),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 8, horizontal: 17),
+                                  child: Text(
+                                    S.of(context).addMoney,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14,
+                                        color: Theme.of(context).accentColor),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(right: 33.0),
+                                child: AppSvg.asset(AssetUtils.settingsRed),
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    )
+                  : SingleChildScrollView(
+                      child: Padding(
                         padding:
-                            EdgeInsets.only(left: 27.0, top: 30, bottom: 29),
+                            EdgeInsets.only(left: 29.0, top: 38, right: 25),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisSize: MainAxisSize.min,
                           children: [
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  S.of(context).myDebitCard,
+                                  "Zein Malhas",
                                   style: TextStyle(
                                       color: Theme.of(context).primaryColorDark,
-                                      fontSize: 12,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w600),
                                 ),
-                        Padding(
-                          padding: EdgeInsets.only(right: 23.0),
-                          child: InkWell(
-                            onTap: () {
-                              model.updateIsGetCardNowClicked(
-                                          !isClicked!);
-                                    },
-                            child: Text(
-                              S.of(context).flipCard,
-                                      style: TextStyle(
-                                          color: AppColor.green,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                          ),
-                        )
-                      ],
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 12),
-                          child: AppSvg.asset(AssetUtils.blinkBlack),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 21),
-                          child: Text(
-                            "Zein Malhas",
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 76, left: 41),
-                          child: AppSvg.asset(AssetUtils.zigzagCircle),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Container(
-                          height: 36,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color),
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 8, horizontal: 17),
-                                    child: Text(
-                                      S.of(context).addMoney,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 14,
-                                          color: Theme.of(context).accentColor),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(right: 33.0),
-                                  child: AppSvg.asset(AssetUtils.settingsRed),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      )
-                    : SingleChildScrollView(
-                        child: Padding(
-                          padding:
-                              EdgeInsets.only(left: 29.0, top: 38, right: 25),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Zein Malhas",
+                                InkWell(
+                                  onTap: () {
+                                    model
+                                        .updateIsGetCardNowClicked(!isClicked!);
+                                  },
+                                  child: Text(
+                                    "Flip back",
                                     style: TextStyle(
-                                        color:
-                                            Theme.of(context).primaryColorDark,
-                                        fontSize: 16,
+                                        color: AppColor.green,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w600),
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      model.updateIsGetCardNowClicked(
-                                          !isClicked!);
-                                    },
-                                    child: Text(
-                                      "Flip back",
-                                      style: TextStyle(
-                                          color: AppColor.green,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  )
-                                ],
+                                )
+                              ],
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 63),
+                              child: Text(
+                                "8451 1353 1245 3421",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
+                                ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 63),
-                                child: Text(
-                                  "8451 1353 1245 3421",
-                                  style: TextStyle(
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 8),
+                              child: Text(
+                                "CARD NUMBER",
+                                style: TextStyle(
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 16,
-                                  ),
+                                    fontSize: 10,
+                                    color: AppColor.green),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 19),
+                              child: Divider(
+                                height: 1,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 21),
+                              child: Text(
+                                "140591314151414",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 16,
                                 ),
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 8),
-                                child: Text(
-                                  "CARD NUMBER",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 10,
-                                      color: AppColor.green),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 19),
-                                child: Divider(
-                                  height: 1,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 21),
-                                child: Text(
-                                  "140591314151414",
-                                  style: TextStyle(
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 8),
+                              child: Text(
+                                "LINKED ACCOUNT NUMBER",
+                                style: TextStyle(
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 16,
+                                    fontSize: 10,
+                                    color: AppColor.green),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 19),
+                              child: Divider(
+                                height: 1,
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 21, bottom: 128),
+                              child: Row(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "08/23",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 8),
+                                        child: Text(
+                                          "EXPIRY DATE",
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              color: AppColor.green,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 8),
-                                child: Text(
-                                  "LINKED ACCOUNT NUMBER",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 10,
-                                      color: AppColor.green),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 19),
-                                child: Divider(
-                                  height: 1,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(top: 21, bottom: 128),
-                                child: Row(
-                                  children: [
-                                    Column(
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 59.0),
+                                    child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "08/23",
+                                          "688",
                                           style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 16,
@@ -236,7 +267,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                         Padding(
                                           padding: EdgeInsets.only(top: 8),
                                           child: Text(
-                                            "EXPIRY DATE",
+                                            "CVV",
                                             style: TextStyle(
                                                 fontSize: 10,
                                                 color: AppColor.green,
@@ -245,40 +276,16 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                         )
                                       ],
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 59.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            "688",
-                                            style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 16,
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 8),
-                                            child: Text(
-                                              "CVV",
-                                              style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: AppColor.green,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
-                      );
-              }),
+                      ),
+                    );
+            },
+          ),
         ),
       ),
     );

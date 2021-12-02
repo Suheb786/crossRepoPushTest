@@ -48,6 +48,7 @@ class App extends ConsumerWidget {
                 onGenerateTitle: (context) => S.of(context).appName,
                 debugShowCheckedModeBanner: false,
                 // initialRoute: RoutePaths.Splash,
+                // home: HomePage(),
                 home: HomePage(),
                 theme: theme,
                 onGenerateRoute: AppRouter.generateRoute);

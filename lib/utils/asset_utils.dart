@@ -97,6 +97,8 @@ class AssetUtils {
   static const String ellipseWhite = drawable + "ellipse_white.png";
   static const String progress1 = drawable + "progress_1.png";
   static const String progress2 = drawable + "progress_2.png";
+  static const String progress1a = drawable + "progress1a.png";
+  static const String progress2a = drawable + "progress2a.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";
