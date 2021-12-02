@@ -302,7 +302,7 @@ class ReviewApplicationPageView
                                                           ),
                                                           Visibility(
                                                             visible: model
-                                                                .spouseNameController
+                                                                .specialNeedsPersonController
                                                                 .text
                                                                 .isNotEmpty,
                                                             child:

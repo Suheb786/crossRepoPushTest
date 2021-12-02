@@ -385,11 +385,10 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
             getConfirmApplicationDataContent.profileStatusInfo!.spauseName!)
         ? getConfirmApplicationDataContent.profileStatusInfo!.spauseName!
         : '';
-    // print('special needs ${getConfirmApplicationDataContent.profileStatusInfo!.natureSp!}');
-    // specialNeedsPersonController.text = Validator.isNotEmptyNull(
-    //         getConfirmApplicationDataContent.profileStatusInfo!.natureSp!)
-    //     ? getConfirmApplicationDataContent.profileStatusInfo!.natureSp!
-    //     : '';
+    specialNeedsPersonController.text = Validator.isNotEmptyNull(
+            getConfirmApplicationDataContent.profileStatusInfo!.natureSp!)
+        ? getConfirmApplicationDataContent.profileStatusInfo!.natureSp!
+        : '';
     employmentStatusController.text =
         getConfirmApplicationDataContent.profileStatusInfo!.employmentStatus!;
 

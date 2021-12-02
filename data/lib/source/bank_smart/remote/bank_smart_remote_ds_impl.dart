@@ -63,8 +63,8 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
         baseData: baseData.toJson(),
         getToken: true,
         customerDetailsEntity:
-            CustomerDetailsEntity().restore(customerInformation!),
-        account: AccountDetailsEntity().restore(accountDetails!)));
+            CustomerDetailsEntity().restore(customerInformation!).toJson(),
+        account: AccountDetailsEntity().restore(accountDetails!).toJson()));
   }
 
   @override

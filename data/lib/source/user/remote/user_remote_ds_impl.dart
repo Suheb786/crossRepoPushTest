@@ -316,14 +316,19 @@ class UserRemoteDSImpl extends UserRemoteDS {
         ConfirmApplicationDataSetRequestEntity(
             getToken: true,
             reviewDocumentResponse: ReviewApplicationDataEntity(
-                profileStatus:
-                    ProfileStatusEntity().restore(profileStatusInfo!),
-                jobDetail: JobDetailEntity().restore(jobDetailInfo!),
-                fatcaCrs: FatcaCrsEntity().restore(fatcaCrsInfo!),
-                countryResidence:
-                    CountryResidenceEntity().restore(countryResidenceInfo!),
-                accountPurpose:
-                    AccountPurposeEntity().restore(accountPurposeInfo!)),
+                    profileStatus: ProfileStatusEntity()
+                        .restore(profileStatusInfo!)
+                        .toJson(),
+                    jobDetail:
+                        JobDetailEntity().restore(jobDetailInfo!).toJson(),
+                    fatcaCrs: FatcaCrsEntity().restore(fatcaCrsInfo!).toJson(),
+                    countryResidence: CountryResidenceEntity()
+                        .restore(countryResidenceInfo!)
+                        .toJson(),
+                    accountPurpose: AccountPurposeEntity()
+                        .restore(accountPurposeInfo!)
+                        .toJson())
+                .toJson(),
             baseData: baseData.toJson()));
   }
 

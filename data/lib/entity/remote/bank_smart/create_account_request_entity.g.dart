@@ -11,14 +11,8 @@ CreateAccountRequestEntity _$CreateAccountRequestEntityFromJson(
   return CreateAccountRequestEntity(
     getToken: json['getToken'] as bool?,
     cif: json['cif'] as String?,
-    customerDetailsEntity: json['customer'] == null
-        ? null
-        : CustomerDetailsEntity.fromJson(
-            json['customer'] as Map<String, dynamic>),
-    account: json['account'] == null
-        ? null
-        : AccountDetailsEntity.fromJson(
-            json['account'] as Map<String, dynamic>),
+    customerDetailsEntity: json['customer'] as Map<String, dynamic>?,
+    account: json['account'] as Map<String, dynamic>?,
     baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }

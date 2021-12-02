@@ -1,8 +1,3 @@
-import 'package:data/entity/remote/user/confirm_application_data_get/account_purpose_entity.dart';
-import 'package:data/entity/remote/user/confirm_application_data_get/country_residence_entity.dart';
-import 'package:data/entity/remote/user/confirm_application_data_get/fatca_crs_entity.dart';
-import 'package:data/entity/remote/user/confirm_application_data_get/job_detail_entity.dart';
-import 'package:data/entity/remote/user/confirm_application_data_get/profile_status_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "review_application_data_entity.g.dart";
@@ -10,15 +5,15 @@ part "review_application_data_entity.g.dart";
 @JsonSerializable()
 class ReviewApplicationDataEntity {
   @JsonKey(name: "countryResidence")
-  final CountryResidenceEntity? countryResidence;
+  final Map<String, dynamic>? countryResidence;
   @JsonKey(name: "profileStatus")
-  final ProfileStatusEntity? profileStatus;
+  final Map<String, dynamic>? profileStatus;
   @JsonKey(name: "jobDetail")
-  final JobDetailEntity? jobDetail;
+  final Map<String, dynamic>? jobDetail;
   @JsonKey(name: "accountPurpose")
-  final AccountPurposeEntity? accountPurpose;
+  final Map<String, dynamic>? accountPurpose;
   @JsonKey(name: "fatcaCrs")
-  final FatcaCrsEntity? fatcaCrs;
+  final Map<String, dynamic>? fatcaCrs;
 
   ReviewApplicationDataEntity(
       {this.countryResidence,

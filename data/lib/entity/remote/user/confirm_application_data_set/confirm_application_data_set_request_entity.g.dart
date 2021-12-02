@@ -10,10 +10,8 @@ ConfirmApplicationDataSetRequestEntity
     _$ConfirmApplicationDataSetRequestEntityFromJson(
         Map<String, dynamic> json) {
   return ConfirmApplicationDataSetRequestEntity(
-    reviewDocumentResponse: json['ReviewDocumentResponse'] == null
-        ? null
-        : ReviewApplicationDataEntity.fromJson(
-            json['ReviewDocumentResponse'] as Map<String, dynamic>),
+    reviewDocumentResponse:
+        json['ReviewDocumentResponse'] as Map<String, dynamic>?,
     getToken: json['GetToken'] as bool?,
     baseData: json['BaseClass'] as Map<String, dynamic>?,
   );
