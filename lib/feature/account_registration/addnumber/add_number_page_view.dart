@@ -108,7 +108,10 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                     },
                                     dataBuilder: (context, data) {
                                       return AppTextField(
-                                        labelText: S.of(context).mobileNumber,
+                                        labelText: S
+                                            .of(context)
+                                            .mobileNumber
+                                            .toUpperCase(),
                                         hintText:
                                             S.of(context).mobileNumberHint,
                                         inputType: TextInputType.number,

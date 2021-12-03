@@ -340,9 +340,8 @@ final agentSelectionViewModelProvider =
 ///student income page
 final studentIncomePageViewModelProvider =
     ChangeNotifierProvider.autoDispose<StudentJobIncomePageViewModel>(
-  (ref) => StudentJobIncomePageViewModel(
-      ref.read(studentJobIncomeUseCaseProvider),
-      ref.read(uploadDocumentUseCaseProvider)),
+  (ref) =>
+      StudentJobIncomePageViewModel(ref.read(studentJobIncomeUseCaseProvider)),
 );
 
 ///state city dialog view model provider

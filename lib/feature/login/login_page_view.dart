@@ -54,7 +54,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                         style: TextStyle(
                             fontSize: 14,
                             color: Theme.of(context).accentColor,
-                            fontWeight: FontWeight.w600),
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
                     AppStreamBuilder<bool>(
@@ -172,7 +172,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontSize: 14,
-                                                    fontWeight: FontWeight.w600,
+                                                    fontWeight: FontWeight.w500,
                                                     color: Theme.of(context)
                                                         .accentColor),
                                               ),
@@ -258,14 +258,15 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(16))),
                       child: Text(
-                        S.of(context).swipeUpToRegister,
+                        S.of(context).swipeUpToJoinOurCommunity,
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             color: Theme.of(context)
                                 .accentTextTheme
                                 .bodyText1
                                 ?.color,
-                            fontWeight: FontWeight.w600),
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.w500),
                       )),
                 ],
               ),

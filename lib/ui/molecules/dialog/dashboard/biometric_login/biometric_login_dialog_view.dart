@@ -83,10 +83,11 @@ class BiometricLoginDialogView extends StatelessWidget {
                           ],
                         ),
                         child: Center(
-                          child: Text(S.of(context).allowBiometric,
+                          child: Text(S.of(context).enable,
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
+                                  letterSpacing: 1,
                                   color: AppColor.white)),
                         ),
                       ),
@@ -102,6 +103,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                             S.of(context).mayBeLater,
                             style: TextStyle(
                                 fontSize: 14,
+                                letterSpacing: 1,
                                 fontWeight: FontWeight.w600,
                                 color: AppColor.brightBlue),
                           ),

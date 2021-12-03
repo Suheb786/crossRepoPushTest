@@ -37,8 +37,12 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppSvg.asset(AssetUtils.welcomeIcon),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: AppSvg.asset(AssetUtils.swiggleHello),
+                  ),
                   SizedBox(
                     height: 40,
                   ),
@@ -53,36 +57,47 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                     ),
                   ),
                   SizedBox(
-                    height: 22,
+                    height: 24,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: InformationText(
-                      image: AssetUtils.lock,
-                      title: S.of(context).saveEarningsDigitally,
+                      image: AssetUtils.informationSave,
+                      title: S.of(context).informationSave,
                       containerColor: Theme.of(context).accentColor,
                       textColor: Theme.of(context).accentColor,
                     ),
                   ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  //   child: InformationText(
+                  //     image: AssetUtils.lock,
+                  //     title: S.of(context).saveEarningsDigitally,
+                  //     containerColor: Theme.of(context).accentColor,
+                  //     textColor: Theme.of(context).accentColor,
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 16,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  //   child: InformationText(
+                  //     image: AssetUtils.transactionHistory,
+                  //     containerColor: Theme.of(context).accentColor,
+                  //     title: S.of(context).sendMoneyToFriendAndFamily,
+                  //     textColor: Theme.of(context).accentColor,
+                  //   ),
+                  // ),
                   SizedBox(
-                    height: 16,
+                    height: 92,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: InformationText(
-                      image: AssetUtils.transactionHistory,
-                      containerColor: Theme.of(context).accentColor,
-                      title: S.of(context).sendMoneyToFriendAndFamily,
+                  Center(
+                    child: AnimatedButton(
+                      buttonText: S.of(context).swipeToProceed,
+                      borderColor: Theme.of(context).accentColor,
                       textColor: Theme.of(context).accentColor,
                     ),
-                  ),
-                  SizedBox(
-                    height: 46,
-                  ),
-                  AnimatedButton(
-                    buttonText: S.of(context).swipeToProceed,
-                    borderColor: Theme.of(context).accentColor,
-                    textColor: Theme.of(context).accentColor,
                   ),
                   AppStreamBuilder<Resource<bool>>(
                     stream: model.authenticateBioMetricStream,
@@ -150,6 +165,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
+                              letterSpacing: 1,
                               color: Theme.of(context).accentColor),
                         ),
                       ),

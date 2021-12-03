@@ -308,11 +308,15 @@ class ProfileDetailsPageView
                                           });
                                         },
                                         suffixIcon: (enabled, value) {
-                                          return AppSvg.asset(
-                                              AssetUtils.dropDown,
-                                              color: AppColor.dark_gray_1,
-                                              width: 16,
-                                              height: 16);
+                                          return Container(
+                                            margin: EdgeInsets.symmetric(
+                                                horizontal: 4, vertical: 6),
+                                            width: 16,
+                                            height: 16,
+                                            child: AppSvg.asset(
+                                                AssetUtils.dropDown,
+                                                color: AppColor.dark_gray_1),
+                                          );
                                         },
                                       ),
                                       SizedBox(

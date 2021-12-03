@@ -91,10 +91,10 @@ class S {
     );
   }
 
-  /// `Enter 6-digit OTP sent to`
+  /// `Enter the 6-digit code sent to`
   String get enterOtpHeader {
     return Intl.message(
-      'Enter 6-digit OTP sent to',
+      'Enter the 6-digit code sent to',
       name: 'enterOtpHeader',
       desc: '',
       args: [],
@@ -161,10 +161,10 @@ class S {
     );
   }
 
-  /// `Next, let's create your\nlogin password`
+  /// `Next, let’s create\nyour password`
   String get createPasswordHeader {
     return Intl.message(
-      'Next, let\'s create your\nlogin password',
+      'Next, let’s create\nyour password',
       name: 'createPasswordHeader',
       desc: '',
       args: [],
@@ -221,20 +221,20 @@ class S {
     );
   }
 
-  /// `Please get your ID ready\nto be scanned`
+  /// `Grab your ID and let's\nget scanning`
   String get idVerificationInfoHeader {
     return Intl.message(
-      'Please get your ID ready\nto be scanned',
+      'Grab your ID and let\'s\nget scanning',
       name: 'idVerificationInfoHeader',
       desc: '',
       args: [],
     );
   }
 
-  /// `Make sure you’re in bright place and surrounding`
+  /// `Make sure you're in a bright place`
   String get idVerificationPlaceInfo {
     return Intl.message(
-      'Make sure you’re in bright place and surrounding',
+      'Make sure you\'re in a bright place',
       name: 'idVerificationPlaceInfo',
       desc: '',
       args: [],
@@ -261,10 +261,10 @@ class S {
     );
   }
 
-  /// `I agree for the bank to retrieve my AHWAL data necessarily.`
+  /// `I agree for blink to retrieve my data from the Civil Department`
   String get termsAndConditions {
     return Intl.message(
-      'I agree for the bank to retrieve my AHWAL data necessarily.',
+      'I agree for blink to retrieve my data from the Civil Department',
       name: 'termsAndConditions',
       desc: '',
       args: [],
@@ -1001,10 +1001,10 @@ class S {
     );
   }
 
-  /// `Tell us a bit about your\nprofile status`
+  /// `Tell us a bit \nabout yourself`
   String get tellUsAboutYourProfile {
     return Intl.message(
-      'Tell us a bit about your\nprofile status',
+      'Tell us a bit \nabout yourself',
       name: 'tellUsAboutYourProfile',
       desc: '',
       args: [],
@@ -1831,10 +1831,10 @@ class S {
     );
   }
 
-  /// `Next, tell us how do\nmake a living`
+  /// `Bear with us, just a few more questions about your income`
   String get tellUsHowDoMakeLiving {
     return Intl.message(
-      'Next, tell us how do\nmake a living',
+      'Bear with us, just a few more questions about your income',
       name: 'tellUsHowDoMakeLiving',
       desc: '',
       args: [],
@@ -1931,10 +1931,10 @@ class S {
     );
   }
 
-  /// `Almost there! We have few account related questions`
+  /// `Now, tell us what\nthe account is for`
   String get accountRelatedQuestions {
     return Intl.message(
-      'Almost there! We have few account related questions',
+      'Now, tell us what\nthe account is for',
       name: 'accountRelatedQuestions',
       desc: '',
       args: [],
@@ -3021,10 +3021,10 @@ class S {
     );
   }
 
-  /// `Next, tell us how do\nmake a living`
+  /// `Bear with us, just a few more questions about your income`
   String get jobIncomeMsg {
     return Intl.message(
-      'Next, tell us how do\nmake a living',
+      'Bear with us, just a few more questions about your income',
       name: 'jobIncomeMsg',
       desc: '',
       args: [],
@@ -3091,10 +3091,10 @@ class S {
     );
   }
 
-  /// `Please confirm and complete your ID details below`
+  /// `Now let's confirm your\nID details`
   String get pleaseConfirmYourIDDetailsBelow {
     return Intl.message(
-      'Please confirm and complete your ID details below',
+      'Now let\'s confirm your\nID details',
       name: 'pleaseConfirmYourIDDetailsBelow',
       desc: '',
       args: [],
@@ -3111,20 +3111,20 @@ class S {
     );
   }
 
-  /// `Account opening is only available for Jordanian citizen, for now. Hey, don’t be fret. We’ll expand to other countries, soon!`
+  /// `Account opening is only available for Jordanians for now, but don’t worry we’re expanding into new countries, soon!`
   String get accountOpeningDescription {
     return Intl.message(
-      'Account opening is only available for Jordanian citizen, for now. Hey, don’t be fret. We’ll expand to other countries, soon!',
+      'Account opening is only available for Jordanians for now, but don’t worry we’re expanding into new countries, soon!',
       name: 'accountOpeningDescription',
       desc: '',
       args: [],
     );
   }
 
-  /// `Notify me!`
+  /// `Notify me`
   String get notifyMeExC {
     return Intl.message(
-      'Notify me!',
+      'Notify me',
       name: 'notifyMeExC',
       desc: '',
       args: [],
@@ -3291,10 +3291,10 @@ class S {
     );
   }
 
-  /// `Scan ID again`
+  /// `Something wrong, scan ID again`
   String get scanIDAgain {
     return Intl.message(
-      'Scan ID again',
+      'Something wrong, scan ID again',
       name: 'scanIDAgain',
       desc: '',
       args: [],
@@ -3531,10 +3531,10 @@ class S {
     );
   }
 
-  /// `You have successfully created your login. Would you like to proceed with account opening?`
+  /// `You have successfully created your profile, now let's get your account up and running.`
   String get successfullyCreatedLoginAccount {
     return Intl.message(
-      'You have successfully created your login. Would you like to proceed with account opening?',
+      'You have successfully created your profile, now let\'s get your account up and running.',
       name: 'successfullyCreatedLoginAccount',
       desc: '',
       args: [],
@@ -3731,10 +3731,10 @@ class S {
     );
   }
 
-  /// `Would you like to enable biometric for a more seamless login experience?`
+  /// `To blink in more seamlessly, please enable biometric login`
   String get biometricLoginDesc {
     return Intl.message(
-      'Would you like to enable biometric for a more seamless login experience?',
+      'To blink in more seamlessly, please enable biometric login',
       name: 'biometricLoginDesc',
       desc: '',
       args: [],
@@ -4256,6 +4256,96 @@ class S {
     return Intl.message(
       'Scan your face to log in',
       name: 'enableBiometricLoginDescriptionIos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe up to join our community`
+  String get swipeUpToJoinOurCommunity {
+    return Intl.message(
+      'Swipe up to join our community',
+      name: 'swipeUpToJoinOurCommunity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let’s Create\nYour Profile`
+  String get letsCreateYourProfile {
+    return Intl.message(
+      'Let’s Create\nYour Profile',
+      name: 'letsCreateYourProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email and\nmobile number`
+  String get enterYourEmailAndMobile {
+    return Intl.message(
+      'Enter your email and\nmobile number',
+      name: 'enterYourEmailAndMobile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable`
+  String get enable {
+    return Intl.message(
+      'Enable',
+      name: 'enable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't worry, if you log out your information will be saved and you can login at any time.`
+  String get informationSave {
+    return Intl.message(
+      'Don\'t worry, if you log out your information will be saved and you can login at any time.',
+      name: 'informationSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload ID instead`
+  String get uploadIdInstead {
+    return Intl.message(
+      'Upload ID instead',
+      name: 'uploadIdInstead',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AREA`
+  String get area {
+    return Intl.message(
+      'AREA',
+      name: 'area',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `INCOME DETAILS`
+  String get incomeDetails {
+    return Intl.message(
+      'INCOME DETAILS',
+      name: 'incomeDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ACCOUNT DETAILS`
+  String get accountDetails {
+    return Intl.message(
+      'ACCOUNT DETAILS',
+      name: 'accountDetails',
       desc: '',
       args: [],
     );
