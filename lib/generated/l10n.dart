@@ -4100,6 +4100,16 @@ class S {
       args: [],
     );
   }
+
+  /// `What are you looking for?`
+  String get lookingFor {
+    return Intl.message(
+      'What are you looking for?',
+      name: 'lookingFor',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

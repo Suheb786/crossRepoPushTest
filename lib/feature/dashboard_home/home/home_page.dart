@@ -17,6 +17,11 @@ class HomePageState extends BaseStatefulPage<HomeViewModel, HomePage> {
   }
 
   @override
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).accentColor;
+  }
+
+  @override
   Widget buildView(BuildContext context, HomeViewModel model) {
     return HomePageView(provideBase());
   }

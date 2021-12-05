@@ -31,7 +31,11 @@ class CreditCardDeliveredPageView
                             .homeController
                             .jumpToPage(2);
                       },
-                      child: AppSvg.asset(AssetUtils.close))),
+                      child: InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: AppSvg.asset(AssetUtils.close)))),
               Stack(
                 children: [
                   Padding(

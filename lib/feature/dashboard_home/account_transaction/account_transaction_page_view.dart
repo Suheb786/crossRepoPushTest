@@ -6,6 +6,7 @@ import 'package:neo_bank/feature/dashboard_home/account_transaction/account_tran
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
@@ -18,31 +19,31 @@ class AccountTransactionPageView
     return AppKeyBoardHide(
       child: Padding(
         padding: EdgeInsets.only(top: 52),
-        child: Column(
-          children: [
-            Center(
-              child: Text(
-                S.of(context).myAccount,
-                style: TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 14),
+        child: GestureDetector(
+          onVerticalDragEnd: (details) {
+            if (details.primaryVelocity!.isNegative) {
+            } else {
+              print("clicked here");
+              ProviderScope.containerOf(context)
+                  .read(homeViewModelProvider)
+                  .homeController
+                  .jumpToPage(1);
+            }
+          },
+          child: Column(
+            children: [
+              Center(
+                child: Text(
+                  S.of(context).myAccount,
+                  style: TextStyle(
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.w600,
+                      fontSize: 14),
+                ),
               ),
-            ),
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.only(top: 35),
-                child: GestureDetector(
-                  onVerticalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {
-                    } else {
-                      print("clicked here");
-                      ProviderScope.containerOf(context)
-                          .read(homeViewModelProvider)
-                          .homeController
-                          .jumpToPage(2);
-                    }
-                  },
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.only(top: 35),
                   child: Container(
                     height: double.infinity,
                     decoration: BoxDecoration(
@@ -65,112 +66,32 @@ class AccountTransactionPageView
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 24.0),
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Padding(
-                                  padding: EdgeInsets.only(left: 24.0),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        height: 40,
-                                        decoration: BoxDecoration(
-                                            color: AppColor.whiteGrey,
-                                            borderRadius:
-                                                BorderRadius.circular(16)),
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 16, vertical: 10),
-                                          child: Row(
-                                            children: [
-                                              Text(
-                                                "All Transactions",
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    EdgeInsets.only(left: 8),
-                                                child: AppSvg.asset(
-                                                    AssetUtils.downArrow,
-                                                    color: Theme.of(context)
-                                                        .primaryColorDark),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 8.0),
-                                        child: Container(
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                              color: AppColor.whiteGrey,
-                                              borderRadius:
-                                                  BorderRadius.circular(16)),
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 16, vertical: 10),
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  "All Time",
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      EdgeInsets.only(left: 8),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.downArrow,
-                                                      color: Theme.of(context)
-                                                          .primaryColorDark),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 8.0),
-                                        child: Container(
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                              color: AppColor.whiteGrey,
-                                              borderRadius:
-                                                  BorderRadius.circular(16)),
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 16, vertical: 10),
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  "All Category",
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      EdgeInsets.only(left: 8),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.downArrow,
-                                                      color: Theme.of(context)
-                                                          .primaryColorDark),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    ],
+                              padding: EdgeInsets.only(
+                                  top: 24.0, left: 24, right: 38),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: AppTextField(
+                                      labelText: "",
+                                      hintText: S.of(context).lookingFor,
+                                      controller: model.searchController,
+                                      readOnly: true,
+                                      onPressed: () {},
+                                      suffixIcon: (value, data) {
+                                        return Padding(
+                                            padding: EdgeInsets.only(left: 19),
+                                            child: AppSvg.asset(
+                                                AssetUtils.search,
+                                                height: 16,
+                                                width: 16));
+                                      },
+                                    ),
                                   ),
-                                ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 24),
+                                    child: AppSvg.asset(AssetUtils.filter),
+                                  )
+                                ],
                               ),
                             ),
                             // Expanded(
@@ -937,9 +858,9 @@ class AccountTransactionPageView
                     ),
                   ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

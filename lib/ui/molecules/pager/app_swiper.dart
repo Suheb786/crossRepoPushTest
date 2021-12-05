@@ -20,9 +20,9 @@ class AppSwiper extends StatelessWidget {
     return Swiper(
       customLayoutOption: CustomLayoutOption(startIndex: -1, stateCount: 3)
           .addRotate([-7.0 / 180, 0.0, 7.0 / 180]).addTranslate([
-        Offset(-(MediaQuery.of(context).size.width - 35), -5.0),
+        Offset(-(MediaQuery.of(context).size.width - 60), -5.0),
         Offset(0.0, 0.0),
-        Offset(MediaQuery.of(context).size.width - 35, -5.0)
+        Offset(MediaQuery.of(context).size.width - 60, -5.0)
       ]),
       loop: false,
       controller: pageController,

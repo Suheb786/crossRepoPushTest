@@ -419,5 +419,6 @@
   "addMoney": "Add money",
   "myDebitCard": "My Debit Card",
   "flipCard": "Flip card",
-  "cardDelivered": "Card delivered?"
+  "cardDelivered": "Card delivered?",
+  "lookingFor": "What are you looking for?"
 }

@@ -421,6 +421,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
         "logoutAndContinueLater":
             MessageLookupByLibrary.simpleMessage("Log out and continue later"),
+        "lookingFor":
+            MessageLookupByLibrary.simpleMessage("What are you looking for?"),
         "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage(
             "Looking for available agent.."),
         "loyaltyRewards": MessageLookupByLibrary.simpleMessage(

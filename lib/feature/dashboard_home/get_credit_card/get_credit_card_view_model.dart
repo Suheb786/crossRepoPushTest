@@ -12,10 +12,18 @@ class GetCreditCardViewModel extends BasePageViewModel {
   Stream<bool> get isGetCardNowClickedStream =>
       _isGetCardNowClickedSubject.stream;
 
+  BehaviorSubject<bool> _flipCardSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get flipCardStream => _flipCardSubject.stream;
+
   GetCreditCardViewModel(this._useCase);
 
   void updateIsGetCardNowClicked(bool value) {
     _isGetCardNowClickedSubject.safeAdd(value);
+  }
+
+  void updateFlipCardStream(bool value) {
+    _flipCardSubject.safeAdd(value);
   }
 
   @override

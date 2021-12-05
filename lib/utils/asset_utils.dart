@@ -71,6 +71,8 @@ class AssetUtils {
   static const String headphoneBlack = svg + "headphone_black.svg";
   static const String logoWhite = svg + "logo_white.svg";
   static const String addCircle = svg + "add_circle.svg";
+  static const String cardCircle = svg + "card_circle.svg";
+  static const String filter = svg + "filter.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -99,6 +101,7 @@ class AssetUtils {
   static const String progress2 = drawable + "progress_2.png";
   static const String progress1a = drawable + "progress1a.png";
   static const String progress2a = drawable + "progress2a.png";
+  static const String zigzagBackground = drawable + "zigzag_background.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";

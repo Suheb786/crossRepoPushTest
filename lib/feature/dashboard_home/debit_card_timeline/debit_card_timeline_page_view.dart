@@ -338,6 +338,20 @@ class DebitCardTimeLinePageView
                 ),
               ),
             ),
+            // Padding(
+            //   padding: EdgeInsets.only(top: 95),
+            //   child: Align(
+            //     alignment: Alignment.center,
+            //     child: Container(
+            //       width: 280,
+            //       height: 67,
+            //       decoration: BoxDecoration(
+            //         color: Theme.of(context).primaryColor,
+            //         borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16))
+            //       ),
+            //     ),
+            //   ),
+            // )
           ],
         ),
       ),
