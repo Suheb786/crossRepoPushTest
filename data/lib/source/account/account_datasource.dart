@@ -1,3 +1,4 @@
+import 'package:data/entity/remote/account/check_agent_status_response_entity.dart';
 import 'package:data/entity/remote/account/check_other_nationality_status_response_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_response_entity.dart';
 import 'package:data/entity/remote/account/doc_status_response_entity.dart';
@@ -11,6 +12,8 @@ abstract class AccountRemoteDS {
       checkOtherNationalityStatus({bool getToken});
 
   Future<HttpResponse<DocStatusResponseEntity>> docStatus();
+
+  Future<HttpResponse<CheckAgentStatusResponseEntity>> checkAgentStatus();
 }
 
 abstract class AccountLocalDS {}
