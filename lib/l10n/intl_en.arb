@@ -434,5 +434,6 @@
   "pleaseProvideSelfie": "Please provide selfie to proceed further.",
   "enableBiometricLoginTitle":"Enable Biometric Login",
   "enableBiometricLoginDescriptionAndroid": "Scan your finger to log in",
-  "enableBiometricLoginDescriptionIos": "Scan your face to log in"
+  "enableBiometricLoginDescriptionIos": "Scan your face to log in",
+  "genericError": "Something went wrong. Please try again."
 }

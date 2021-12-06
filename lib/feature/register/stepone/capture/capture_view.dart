@@ -6,6 +6,7 @@ import 'package:neo_bank/feature/register/stepone/capture/capture_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 
 class CaptureView extends BasePageViewWidget<CaptureViewModel> {
   CaptureView(ProviderBase model) : super(model);
@@ -23,14 +24,14 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
               initialData: Resource.none(),
               stream: model.uploadImageResponseStream,
               onData: (isImageUploaded) {
-                Navigator.pop(context, true);
+                // Navigator.pop(context, true);
 
                 /// TODO:: NEED TO HANDLE AFTER API UPDATES
-                // if (isImageUploaded.status == Status.SUCCESS) {
-                //   Navigator.pop(context, true);
-                // } else if (isImageUploaded.status == Status.ERROR) {
-                //   model.showToastWithError(isImageUploaded.appError!);
-                // }
+                if (isImageUploaded.status == Status.SUCCESS) {
+                  Navigator.pop(context, true);
+                } else if (isImageUploaded.status == Status.ERROR) {
+                  model.showToastWithError(isImageUploaded.appError!);
+                }
               },
               dataBuilder: (context, data) {
                 return Container(
@@ -70,8 +71,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                             top: 40,
                             child: IconButton(
                                 onPressed: () {
-                                  /// TODO:: SEND RESULT AS FALSE ON CLOSE
-                                  Navigator.pop(context, true);
+                                  Navigator.pop(context, false);
                                 },
                                 icon: Icon(Icons.close)),
                           ),

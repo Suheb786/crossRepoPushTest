@@ -58,6 +58,7 @@ class UserLocalDSImpl extends UserLocalDS {
     var idRecognizer = BlinkIdCombinedRecognizer();
     idRecognizer.returnFullDocumentImage = true;
     idRecognizer.scanCroppedDocumentImage = true;
+    idRecognizer.returnFaceImage = true;
 
     DocumentVerificationOverlaySettings settings =
         DocumentVerificationOverlaySettings();

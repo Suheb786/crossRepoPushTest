@@ -33,7 +33,7 @@ class CaptureViewModel extends BasePageViewModel {
       _cameraControllerInitializer.stream;
 
   void initCamera(List<CameraDescription> cameras) {
-    cameraController = CameraController(cameras[1], ResolutionPreset.max);
+    cameraController = CameraController(cameras[1], ResolutionPreset.medium);
     cameraController!.initialize().then((_) {
       _cameraControllerInitializer.safeAdd(true);
     });
@@ -47,6 +47,7 @@ class CaptureViewModel extends BasePageViewModel {
     }
 
     try {
+      cameraController!.pausePreview();
       XFile file = await controller.takePicture();
       uploadImage(file);
     } on CameraException catch (e) {
