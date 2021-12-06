@@ -22,13 +22,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.3.0"
+  asn1lib:
+    dependency: transitive
+    description:
+      name: asn1lib
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
   async:
     dependency: transitive
     description:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.6.1"
+    version: "2.5.0"
   blinkid_flutter:
     dependency: "direct main"
     description:
@@ -506,6 +513,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.2"
+  pointycastle:
+    dependency: transitive
+    description:
+      name: pointycastle
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.4.0"
   pool:
     dependency: transitive
     description:
@@ -569,6 +583,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.14.0+3"
+  rsa_encrypt:
+    dependency: "direct main"
+    description:
+      name: rsa_encrypt
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   rxdart:
     dependency: transitive
     description:
@@ -608,7 +629,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.0"
   sqflite:
     dependency: transitive
     description:
@@ -692,7 +713,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.2.19"
   timing:
     dependency: transitive
     description:

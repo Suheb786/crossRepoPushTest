@@ -48,7 +48,7 @@ final taxReportInformationUseCaseProvider =
 ///[TaxReportInformationUseCase] provider
 final reviewApplicationUseCaseProvider =
     Provider.autoDispose<ReviewApplicationUseCase>(
-  (ref) => ReviewApplicationUseCase(ref.read(registerStepFourRepoProvider)),
+  (ref) => ReviewApplicationUseCase(ref.read(userRepoProvider)),
 );
 
 ///[NatureOfSpecialNeedsUseCase] provider

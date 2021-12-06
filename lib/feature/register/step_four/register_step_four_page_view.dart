@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/register/step_four/fatca_signature/fatca_signature_page.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8/fatca_us_relevant_w8_page.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w9/fatca_us_relevant_w9_page.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_w8_tax_payer_details/fatca_us_w8_tax_payer_details_page.dart';
@@ -30,7 +31,7 @@ class RegisterStepFourPageView
     FatcaUSRelevantW9Page(),
     FatcaUSRelevantW9AddressDetailsPage(),
     FatcaUSW9TaxPayersDetailsPage(),
-    //TaxReportInformationPage(),
+    FatcaSignaturePage()
   ];
 
   @override
@@ -44,7 +45,7 @@ class RegisterStepFourPageView
           return Column(
             children: [
               Text(
-                S.of(context).fatcaandPep,
+                S.of(context).otherDetails,
                 style: TextStyle(
                     color: Theme.of(context).accentColor,
                     fontSize: 10,
@@ -63,14 +64,14 @@ class RegisterStepFourPageView
                   child: Text(
                     StepTextHelper.registrationFourStepTextHelper(
                       currentStep ?? 0,
-                      S.of(context).tellUsAboutImportantInformations,
+                      S.of(context).fewMoreQuestions,
                       S.of(context).weNeedToMatchNamesONTaxReturn,
                       S.of(context).pleaseProvideInformationIfAppliesToYou,
                       S.of(context).pleaseProvideInformationIfAppliesToYou,
                       S.of(context).weNeedToMatchNamesONTaxReturn,
                       S.of(context).pleaseProvideInformationIfAppliesToYou,
                       S.of(context).pleaseProvideInformationIfAppliesToYou,
-                      S.of(context).taxReportInfoDesc,
+                      S.of(context).consentForSignatureUpload,
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(

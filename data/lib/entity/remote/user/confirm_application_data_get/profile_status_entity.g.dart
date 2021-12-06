@@ -14,7 +14,7 @@ ProfileStatusEntity _$ProfileStatusEntityFromJson(Map<String, dynamic> json) {
     married: json['married'] as bool?,
     specialPerson: json['specialPerson'] as bool?,
     spouseName: json['spauseName'] as String?,
-    natureSp: json['natureSp'] as String?,
+    natureSp: json['natureSP'] as String?,
     createdOn: json['createdOn'] == null
         ? null
         : DateTime.parse(json['createdOn'] as String),
@@ -31,7 +31,7 @@ Map<String, dynamic> _$ProfileStatusEntityToJson(
       'married': instance.married,
       'specialPerson': instance.specialPerson,
       'spauseName': instance.spouseName,
-      'natureSp': instance.natureSp,
+      'natureSP': instance.natureSp,
       'createdOn': instance.createdOn?.toIso8601String(),
       'isActive': instance.isActive,
     };

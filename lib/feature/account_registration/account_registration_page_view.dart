@@ -90,7 +90,7 @@ class AccountRegistrationPageView
                         child: Text(
                           StepTextHelper.accountRegistrationTextHelper(
                             currentStep ?? 0,
-                            S.of(context).whatYourEmailAndMobileNumber,
+                            S.of(context).enterYourEmailAndMobile,
                             S.of(context).createPasswordHeader,
                             S.of(context).enterOtpHeader,
                           ),

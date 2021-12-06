@@ -12,4 +12,12 @@ class RoutePaths {
   static const String Dashboard = '/dashboard';
   static const String TermsAndCondition = '/termsAndCondition';
   static const String Capture = '/capture';
+  static const String FatcaCertification = '/fatcaCertification';
+  static const String ExemptPayeeCode = '/exemptPayeeCode';
+  static const String ExemptionFromFatcaReportingCode =
+      '/exemptionFromFatcaReportingCode';
+  static const String UsTaxPayerIdentificationNo =
+      '/usTaxPayerIdentificationNo';
+  static const String ReferenceNumber = '/referenceNumber';
+  static const String TaxTreatyBenefits = '/taxTreatyBenefits';
 }

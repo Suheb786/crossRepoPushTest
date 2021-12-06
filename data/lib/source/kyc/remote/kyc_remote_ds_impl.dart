@@ -1,8 +1,10 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
+import 'package:data/entity/remote/kyc/check_kyc_status_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/kyc/kyc_datasource.dart';
+import 'package:retrofit/dio.dart';
 
 class KYCRemoteDSImpl extends KYCRemoteDS {
   final ApiService _apiService;
@@ -11,9 +13,10 @@ class KYCRemoteDSImpl extends KYCRemoteDS {
   KYCRemoteDSImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<String> checkKYCStatus({bool? getToken}) async {
+  Future<HttpResponse<CheckKycStatusResponseEntity>> checkKYCStatus(
+      {bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkKYCStatus(
-        KYCStatusRequest(baseData: baseData, getToken: true));
+        KYCStatusRequest(baseData: baseData.toJson(), getToken: true));
   }
 }

@@ -13,5 +13,6 @@ final dashboardViewModelProvider =
 
 final biometricLoginViewModelProvider =
     ChangeNotifierProvider.autoDispose<BiometricLoginDialogViewModel>(
-  (ref) => BiometricLoginDialogViewModel(),
+  (ref) =>
+      BiometricLoginDialogViewModel(ref.read(enableFingerPrintUseCaseProvider)),
 );

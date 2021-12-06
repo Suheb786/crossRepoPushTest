@@ -23,15 +23,25 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> identificationNumberKey =
       GlobalKey(debugLabel: "identificationNumber");
 
+  final TextEditingController referenceNumberController =
+      TextEditingController();
+  final GlobalKey<AppTextFieldState> referenceNumberKey =
+      GlobalKey(debugLabel: "referenceNumber");
+
   final TextEditingController beneficialCountryController =
       TextEditingController();
   final GlobalKey<AppTextFieldState> beneficialCountryKey =
       GlobalKey(debugLabel: "beneficialCountry");
 
-  final TextEditingController beneficialIdentificationNumberController =
+  final TextEditingController provisionClaimController =
       TextEditingController();
-  final GlobalKey<AppTextFieldState> beneficialIdentificationNumberKey =
-      GlobalKey(debugLabel: "beneficialIdentificationNumber");
+  final GlobalKey<AppTextFieldState> provisionClaimKey =
+      GlobalKey(debugLabel: "provisionClaim");
+
+  final TextEditingController treatyClaimRateController =
+      TextEditingController();
+  final GlobalKey<AppTextFieldState> treatyClaimRateKey =
+      GlobalKey(debugLabel: "treatyClaimRate");
 
   final TextEditingController incomeTypeController = TextEditingController();
   final GlobalKey<AppTextFieldState> incomeTypeKey =
@@ -70,30 +80,6 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
     _identificationVisibilitySubject.safeAdd(value);
   }
 
-  ///declaration selected  subject
-  BehaviorSubject<bool> _declarationSelected = BehaviorSubject.seeded(false);
-
-  ///declaration selected stream
-  Stream<bool> get declarationSelectedStream => _declarationSelected.stream;
-
-  ///update declaration selection function
-  void updateDeclarationSelection(bool value) {
-    _declarationSelected.safeAdd(value);
-  }
-
-  ///verify info declaration selected  subject
-  BehaviorSubject<bool> _verifyInfoDeclarationSelected =
-      BehaviorSubject.seeded(false);
-
-  ///verify info declaration selected stream
-  Stream<bool> get verifyInfoDeclarationSelectedStream =>
-      _verifyInfoDeclarationSelected.stream;
-
-  ///update declaration selection function
-  void updateVerifyInfoDeclarationSelection(bool value) {
-    _verifyInfoDeclarationSelected.safeAdd(value);
-  }
-
   ///tax treaty benefits switch value subject
   final BehaviorSubject<bool> _taxTreatyBenefitsSubject =
       BehaviorSubject.seeded(false);
@@ -106,36 +92,41 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
 
   bool isValid() {
     bool valid = false;
-    if (_taxTreatyBenefitsSubject.value &&
-        _identificationVisibilitySubject.value &&
-        taxPayerTypeController.text.isNotEmpty &&
-        identificationNumberController.text.isNotEmpty &&
-        beneficialCountryController.text.isNotEmpty &&
-        beneficialIdentificationNumberController.text.isNotEmpty &&
-        incomeTypeController.text.isNotEmpty &&
-        explanationController.text.isNotEmpty &&
-        _declarationSelected.value &&
-        _verifyInfoDeclarationSelected.value) {
-      valid = true;
-    } else if (_identificationVisibilitySubject.value &&
-        taxPayerTypeController.text.isNotEmpty &&
-        identificationNumberController.text.isNotEmpty &&
-        _declarationSelected.value &&
-        _verifyInfoDeclarationSelected.value) {
-      valid = true;
-    } else if (taxPayerTypeController.text.isNotEmpty &&
-        _declarationSelected.value &&
-        _verifyInfoDeclarationSelected.value) {
-      valid = true;
-    } else if (_declarationSelected.value &&
-        _verifyInfoDeclarationSelected.value &&
-        taxPayerTypeController.text.isNotEmpty &&
-        _taxTreatyBenefitsSubject.value &&
-        beneficialCountryController.text.isNotEmpty &&
-        beneficialIdentificationNumberController.text.isNotEmpty &&
-        incomeTypeController.text.isNotEmpty &&
-        explanationController.text.isNotEmpty) {
-      valid = true;
+
+    if (_taxTreatyBenefitsSubject.value) {
+      if (_identificationVisibilitySubject.value) {
+        if (taxPayerTypeController.text.isNotEmpty &&
+            identificationNumberController.text.isNotEmpty &&
+            referenceNumberController.text.isNotEmpty &&
+            beneficialCountryController.text.isNotEmpty &&
+            treatyClaimRateController.text.isNotEmpty &&
+            provisionClaimController.text.isNotEmpty &&
+            incomeTypeController.text.isNotEmpty &&
+            explanationController.text.isNotEmpty) {
+          valid = true;
+        }
+      } else {
+        if (taxPayerTypeController.text.isNotEmpty &&
+            beneficialCountryController.text.isNotEmpty &&
+            treatyClaimRateController.text.isNotEmpty &&
+            provisionClaimController.text.isNotEmpty &&
+            incomeTypeController.text.isNotEmpty &&
+            explanationController.text.isNotEmpty) {
+          valid = true;
+        }
+      }
+    } else {
+      if (_identificationVisibilitySubject.value) {
+        if (taxPayerTypeController.text.isNotEmpty &&
+            identificationNumberController.text.isNotEmpty &&
+            referenceNumberController.text.isNotEmpty) {
+          valid = true;
+        }
+      } else {
+        if (taxPayerTypeController.text.isNotEmpty) {
+          valid = true;
+        }
+      }
     }
 
     _allFieldValidatorSubject.safeAdd(valid);
@@ -167,15 +158,14 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_IDENTIFICATION_NUMBER:
         identificationNumberKey.currentState!.isValid = false;
         break;
-      case ErrorType.INVALID_DECLARATION_SELECTION:
-        break;
-      case ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION:
-        break;
       case ErrorType.INVALID_BENEFICIAL_ADDRESS:
         beneficialCountryKey.currentState!.isValid = false;
         break;
-      case ErrorType.INVALID_BENEFICIAL_IDENTIFICATION_NUMBER:
-        beneficialIdentificationNumberKey.currentState!.isValid = false;
+      case ErrorType.INVALID_TREATY_CLAIM_RATE:
+        treatyClaimRateKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_PROVISION_CLAIM:
+        provisionClaimKey.currentState!.isValid = false;
         break;
       case ErrorType.INVALID_INCOME_TYPE:
         incomeTypeKey.currentState!.isValid = false;
@@ -183,24 +173,26 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_EXPLANATION:
         explanationKey.currentState!.isValid = false;
         break;
+      case ErrorType.INVALID_REFERENCE_NO:
+        referenceNumberKey.currentState!.isValid = false;
+        break;
     }
   }
 
   void validateFatcaUSW8TaxPayersDetails() {
-    _fatcaUSW8taxPayerDetailsRequest.safeAdd(
-        FatcaUSW8TaxPayerDetailsUseCaseParams(
-            isUSTaxPayer: _identificationVisibilitySubject.value,
-            identificationNumber: identificationNumberController.text,
-            wantToClaimTaxTreatyBenefits: _taxTreatyBenefitsSubject.value,
-            beneficialAddress: beneficialCountryController.text,
-            beneficialIdentificationNumber:
-                beneficialIdentificationNumberController.text,
-            typeOfIncome: incomeTypeController.text,
-            explanation: explanationController.text,
-            taxPayerType: taxPayerTypeController.text,
-            declarationSelected: _declarationSelected.value,
-            verifyInfoDeclarationSelected:
-                _verifyInfoDeclarationSelected.value));
+    _fatcaUSW8taxPayerDetailsRequest
+        .safeAdd(FatcaUSW8TaxPayerDetailsUseCaseParams(
+      isUSTaxPayer: _identificationVisibilitySubject.value,
+      identificationNumber: identificationNumberController.text,
+      wantToClaimTaxTreatyBenefits: _taxTreatyBenefitsSubject.value,
+      beneficialAddress: beneficialCountryController.text,
+      treatyClaimRate: treatyClaimRateController.text,
+      provisionClaimArticle: provisionClaimController.text,
+      typeOfIncome: incomeTypeController.text,
+      explanation: explanationController.text,
+      taxPayerType: taxPayerTypeController.text,
+      referenceNumber: referenceNumberController.text,
+    ));
   }
 
   void updateTaxPayerTypeField(String value) {
@@ -218,7 +210,6 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
     _fatcaUSW8taxPayerDetailsResponse.close();
     _allFieldValidatorSubject.close();
     _taxTreatyBenefitsSubject.close();
-    _declarationSelected.close();
     super.dispose();
   }
 }

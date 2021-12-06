@@ -20,7 +20,7 @@ class ProfileStatusEntity
   final bool? specialPerson;
   @JsonKey(name: "spauseName")
   final String? spouseName;
-  @JsonKey(name: "natureSp")
+  @JsonKey(name: "natureSP")
   final String? natureSp;
   @JsonKey(name: "createdOn")
   final DateTime? createdOn;

@@ -124,6 +124,32 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.ERROR_WHILE_LOGOUT);
 
+          case "err-235":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.MOBILE_NUMBER_EXIST);
+
+          case "err-033":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.USER_NOT_REGISTER);
+
+          case "ex-153":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_REGISTRATION);
+
+          case "ex-007":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_GET_ADDITIONAL_DOCUMENTATION);
+
+          case "err-062":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ACCOUNT_LOCKED);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

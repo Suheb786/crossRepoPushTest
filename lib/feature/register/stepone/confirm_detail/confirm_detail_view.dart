@@ -406,7 +406,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                         .color!),
                                               )),
                                           SizedBox(
-                                            height: 34,
+                                            height: 32,
                                           ),
                                           Row(
                                             children: [
@@ -483,19 +483,21 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                               )
                                             ],
                                           ),
-                                          SizedBox(
-                                            height: 32,
-                                          ),
                                           AppStreamBuilder<bool>(
                                               stream: model.showButtonStream,
                                               initialData: false,
                                               dataBuilder: (context, isValid) {
-                                                return Visibility(
-                                                  visible: isValid!,
-                                                  child: AnimatedButton(
-                                                      buttonText: S
-                                                          .of(context)
-                                                          .swipeToProceed),
+                                                return Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 26.0),
+                                                  child: Visibility(
+                                                    visible: isValid!,
+                                                    child: AnimatedButton(
+                                                        buttonText: S
+                                                            .of(context)
+                                                            .swipeToProceed),
+                                                  ),
                                                 );
                                               })
                                         ],

@@ -1,5 +1,3 @@
-import 'package:data/entity/remote/bank_smart/account_details_entity.dart';
-import 'package:data/entity/remote/bank_smart/customer_details_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'create_account_request_entity.g.dart';
@@ -11,9 +9,9 @@ class CreateAccountRequestEntity {
   @JsonKey(name: "cif")
   final String? cif;
   @JsonKey(name: "customer")
-  final CustomerDetailsEntity? customerDetailsEntity;
+  final Map<String,dynamic>? customerDetailsEntity;
   @JsonKey(name: "account")
-  final AccountDetailsEntity? account;
+  final Map<String,dynamic>? account;
   @JsonKey(name: "baseClass")
   final Map<String,dynamic> baseData;
 

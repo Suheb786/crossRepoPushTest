@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/logout/logout_response_entity.dart';
@@ -16,6 +17,11 @@ import 'package:data/entity/remote/user/save_profile_status_response_entity.dart
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:retrofit/dio.dart';
 
 abstract class UserRemoteDS {
@@ -110,6 +116,18 @@ abstract class UserRemoteDS {
       {String? email});
 
   Future<HttpResponse<LogoutResponseEntity>> logout();
+
+  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
+      confirmApplicationDataSet(
+          {CountryResidenceInfo? countryResidenceInfo,
+          ProfileStatusInfo? profileStatusInfo,
+          JobDetailInfo? jobDetailInfo,
+          FatcaCrsInfo? fatcaCrsInfo,
+          AccountPurposeInfo? accountPurposeInfo});
+
+  Future<bool> enableFingerPrint({String? cipher});
+
+  Future<bool> disableFingerPrint();
 }
 
 abstract class UserLocalDS {

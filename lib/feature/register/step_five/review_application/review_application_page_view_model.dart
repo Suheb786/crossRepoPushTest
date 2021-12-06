@@ -4,8 +4,14 @@ import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/bank_smart/customer_account_details.dart';
 import 'package:domain/model/bank_smart/customer_information.dart';
 import 'package:domain/model/bank_smart/get_account_response.dart';
+import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_content.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
+import 'package:domain/model/user/confirm_application_data_get/job_detail_content_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/usecase/account/check_videocall_status_usecase.dart';
 import 'package:domain/usecase/bank_smart/create_account_usecase.dart';
 import 'package:domain/usecase/bank_smart/get_account_usecase.dart';
@@ -46,11 +52,10 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
       PublishSubject();
 
   ///review response holder
-  PublishSubject<Resource<List<String>>> _reviewAppResponse = PublishSubject();
+  PublishSubject<Resource<bool>> _reviewAppResponse = PublishSubject();
 
   ///review stream
-  Stream<Resource<List<String>>> get reviewAppStream =>
-      _reviewAppResponse.stream;
+  Stream<Resource<bool>> get reviewAppStream => _reviewAppResponse.stream;
 
   ///check video call status subject holder
   PublishSubject<CheckVideoCallStatusUseCaseParams> _checkVideoCallRequest =
@@ -99,6 +104,12 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   Stream<Resource<GetConfirmApplicationDataResponse>>
       get getConfirmApplicationDataStream =>
           _getConfirmApplicationDataResponse.stream;
+
+  ProfileStatusInfo profileStatusInfo = ProfileStatusInfo();
+  CountryResidenceInfo countryResidenceInfo = CountryResidenceInfo();
+  JobDetailInfo jobDetailInfo = JobDetailInfo();
+  AccountPurposeInfo accountPurposeInfo = AccountPurposeInfo();
+  FatcaCrsInfo fatcaCrsInfo = FatcaCrsInfo();
 
   ReviewApplicationPageViewModel(
       this._reviewAppUseCase,
@@ -176,7 +187,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     getConfirmApplicationData();
   }
 
-  void getError(Resource<List<String>> event) {
+  void getError(Resource<bool> event) {
     switch (event.appError!.type) {
       case ErrorType.INVALID_DECLARATION_SELECTION:
         break;
@@ -185,7 +196,62 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
 
   void validateReviewDetails() {
     _reviewAppRequest.safeAdd(ReviewApplicationUseCaseParams(
-        declarationSelected: _declarationSelected.value));
+        declarationSelected: _declarationSelected.value,
+        countryResidenceInfo: CountryResidenceInfo(
+            userId: countryResidenceInfo.userId,
+            residantCountry: residentCountryController.text,
+            buildingName: buildingNameOrNoController.text,
+            streetName: streetAddressController.text,
+            district: districtController.text,
+            city: cityController.text,
+            perResidantCountry: residentPermanentCountryController.text,
+            perCity: residentPermanentCityController.text,
+            isActive: countryResidenceInfo.isActive,
+            createdOn: countryResidenceInfo.createdOn,
+            id: countryResidenceInfo.id),
+        profileStatusInfo: ProfileStatusInfo(
+            id: profileStatusInfo.id,
+            createdOn: profileStatusInfo.createdOn,
+            isActive: profileStatusInfo.isActive,
+            userId: profileStatusInfo.userId,
+            employmentStatus: employmentStatusController.text,
+            specialPerson: profileStatusInfo.specialPerson,
+            married: profileStatusInfo.married,
+            natureSp: specialNeedsPersonController.text,
+            spauseName: spouseNameController.text),
+        accountPurposeInfo: AccountPurposeInfo(
+            userId: accountPurposeInfo.userId,
+            isActive: accountPurposeInfo.isActive,
+            createdOn: accountPurposeInfo.createdOn,
+            id: accountPurposeInfo.id,
+            isOther: accountPurposeInfo.isOther,
+            isBillPayment: accountPurposeInfo.isBillPayment,
+            isTransfer: accountPurposeInfo.isTransfer,
+            isCashDeposit: accountPurposeInfo.isCashDeposit,
+            monthlyTransaction:
+                double.parse(expectedMonthlyTransactionsController.text),
+            anualTransaction:
+                double.parse(expectedAnnualTransactionsController.text),
+            purpose: purposeOfAccountOpeningController.text),
+        jobDetailInfo: JobDetailInfo(
+            additionalIncomeInfo: jobDetailInfo.additionalIncomeInfo,
+            jobDetailContentInfo: JobDetailContentInfo(
+                id: jobDetailInfo.jobDetailContentInfo!.id,
+                createdOn: jobDetailInfo.jobDetailContentInfo!.createdOn,
+                isActive: jobDetailInfo.jobDetailContentInfo!.isActive,
+                userId: jobDetailInfo.jobDetailContentInfo!.userId,
+
+                ///change to occupation
+                profession: occupationController.text,
+                mainSource: jobDetailInfo.jobDetailContentInfo!.mainSource,
+                employeeName: employerNameController.text,
+                employerCountry: employerCountryController.text,
+                employerCity: employerCityController.text,
+                employerContact: employerContactController.text,
+                additionalIncome:
+                    jobDetailInfo.jobDetailContentInfo!.additionalIncome,
+                annualIncome: mainAnnualIncomeController.text)),
+        fatcaCrsInfo: fatcaCrsInfo));
   }
 
   void checkVideoCallStatus() {
@@ -283,6 +349,13 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
 
   void updateTextFieldData(
       GetConfirmApplicationDataContent getConfirmApplicationDataContent) {
+    countryResidenceInfo =
+        getConfirmApplicationDataContent.countryResidenceInfo!;
+    profileStatusInfo = getConfirmApplicationDataContent.profileStatusInfo!;
+    jobDetailInfo = getConfirmApplicationDataContent.jobDetailInfo!;
+    fatcaCrsInfo = getConfirmApplicationDataContent.fatcaCrsInfo!;
+    accountPurposeInfo = getConfirmApplicationDataContent.accountPurposeInfo!;
+
     ///address
     residentCountryController.text =
         getConfirmApplicationDataContent.countryResidenceInfo!.residantCountry!;
@@ -312,11 +385,10 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
             getConfirmApplicationDataContent.profileStatusInfo!.spauseName!)
         ? getConfirmApplicationDataContent.profileStatusInfo!.spauseName!
         : '';
-    // print('special needs ${getConfirmApplicationDataContent.profileStatusInfo!.natureSp!}');
-    // specialNeedsPersonController.text = Validator.isNotEmptyNull(
-    //         getConfirmApplicationDataContent.profileStatusInfo!.natureSp!)
-    //     ? getConfirmApplicationDataContent.profileStatusInfo!.natureSp!
-    //     : '';
+    specialNeedsPersonController.text = Validator.isNotEmptyNull(
+            getConfirmApplicationDataContent.profileStatusInfo!.natureSp!)
+        ? getConfirmApplicationDataContent.profileStatusInfo!.natureSp!
+        : '';
     employmentStatusController.text =
         getConfirmApplicationDataContent.profileStatusInfo!.employmentStatus!;
 

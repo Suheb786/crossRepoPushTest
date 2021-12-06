@@ -197,10 +197,10 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     motherNameController.text = data.motherName!;
     legalDocumentController.text = data.documentNumber!;
     issuingDateController.text = data.issuingDate!.year != 0
-        ? TimeUtils.getFormattedDOB(data.dob!.toString())
+        ? TimeUtils.getFormattedDOB(data.issuingDate!.toString())
         : '';
     expiryDateController.text = data.doe!.year != 0
-        ? TimeUtils.getFormattedDOB(data.dob!.toString())
+        ? TimeUtils.getFormattedDOB(data.doe!.toString())
         : '';
     issuingPlaceController.text = data.issuingPlace!;
   }
