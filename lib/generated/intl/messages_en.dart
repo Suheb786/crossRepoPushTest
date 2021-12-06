@@ -42,8 +42,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "Your account is locked, please contact customer service on 7777-7777 to unlock"),
-        "accountNumberOptional":
-            MessageLookupByLibrary.simpleMessage("ACCOUNT NUMBER (OPTIONAL)"),
+        "accountNumberOptional": MessageLookupByLibrary.simpleMessage(
+            "LIST OF ACCOUNT NUMBER (OPTIONAL)"),
         "accountOpeningDescription": MessageLookupByLibrary.simpleMessage(
             "Account opening is only available for Jordanians for now, but don’t worry we’re expanding into new countries, soon!"),
         "accountOpeningPurpose":
@@ -148,7 +148,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmThatTaxResidency": MessageLookupByLibrary.simpleMessage(
             "I confirm that my tax residency is accurate and agree to the "),
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
-            "Please swipe through and confirm your information"),
+            "Review and confirm\nyour details"),
         "connectToAgentToAssistYou": MessageLookupByLibrary.simpleMessage(
             "Connecting to our agent to assist you"),
         "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
@@ -319,6 +319,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fatca": MessageLookupByLibrary.simpleMessage("FATCA "),
         "fatcaandPep": MessageLookupByLibrary.simpleMessage("FATCA & PEP"),
         "femaleAgent": MessageLookupByLibrary.simpleMessage("Female Agent"),
+        "fewMoreQuestions": MessageLookupByLibrary.simpleMessage(
+            "Almost there, just a few\nmore questions"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
@@ -331,6 +333,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
         "homeAddressSmall":
             MessageLookupByLibrary.simpleMessage("Home Address"),
+        "iConfirmThatAllInfoAccurateFatca":
+            MessageLookupByLibrary.simpleMessage(
+                "I confirm that all information provided is accurate."),
         "iConfirmThatMy":
             MessageLookupByLibrary.simpleMessage("I confirm that my "),
         "iDNumber": MessageLookupByLibrary.simpleMessage("ID Number"),
@@ -585,12 +590,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseSelect": MessageLookupByLibrary.simpleMessage("Please select"),
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage(
-                "Please select your preferred agent for a video call"),
+                "Schedule your call\nfor later"),
         "pleaseSelectYourAction":
             MessageLookupByLibrary.simpleMessage("Please select your action"),
         "pleaseSpecify": MessageLookupByLibrary.simpleMessage("PLEASE SPECIFY"),
         "pleaseUploadNecessaryInfo": MessageLookupByLibrary.simpleMessage(
-            "Please upload necessary document to proof yourself"),
+            "You’re done! Just upload\nyour documents"),
         "politicallyExposedPerson":
             MessageLookupByLibrary.simpleMessage("Politically Exposed Person"),
         "postCode": MessageLookupByLibrary.simpleMessage("POST CODE"),
@@ -734,7 +739,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available."),
         "thankYouForWaitingCallWillStartAutomatically":
             MessageLookupByLibrary.simpleMessage(
-                "Thank you for waiting. Call will start automatically as soon as our call customer agent is ready."),
+                "Thank you for waiting, the video call will start automatically"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("to Welcome Page"),
@@ -780,8 +785,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":
             MessageLookupByLibrary.simpleMessage(
                 "I declare that the bank is entitled to verify the information given directly or through any third part agent."),
+        "videoCall": MessageLookupByLibrary.simpleMessage("VIDEO CALL"),
+        "videoCallInfoDescription": MessageLookupByLibrary.simpleMessage(
+            "Please get ready to meet our Engagement Team, we will now connect you."),
         "videoCallInfoHeader": MessageLookupByLibrary.simpleMessage(
-            "Get ready to verify yourself \nvia video call"),
+            "It’s time for a quick\nvideo call"),
         "w8Form": MessageLookupByLibrary.simpleMessage("W8 Form"),
         "w8FormDesc": MessageLookupByLibrary.simpleMessage(
             "If you already have a physical pre-filled W8 form please upload below."),
@@ -792,6 +800,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you want to Claim of Tax Treaty Benefits?"),
         "weNeedToMatchNamesONTaxReturn": MessageLookupByLibrary.simpleMessage(
             "We need to match the names on your tax return"),
+        "weWillConnectYouInBlink": MessageLookupByLibrary.simpleMessage(
+            "We will connect you\nin blink..."),
         "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),
         "welcomeToNeuBank":
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),

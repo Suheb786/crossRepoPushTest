@@ -180,25 +180,25 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                         S.of(context).accountNumberOptional,
                                     hintText: S.of(context).pleaseEnter,
                                     controller: model.accountNumberController,
-                                    labelIcon: () {
-                                      return InkWell(
-                                        onTap: () async {},
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 5.0),
-                                          child: Container(
-                                              height: 14,
-                                              width: 14,
-                                              child: AppSvg.asset(
-                                                  AssetUtils.info,
-                                                  color: Theme.of(context)
-                                                      .inputDecorationTheme
-                                                      .focusedBorder!
-                                                      .borderSide
-                                                      .color)),
-                                        ),
-                                      );
-                                    },
+                                    // labelIcon: () {
+                                    //   return InkWell(
+                                    //     onTap: () async {},
+                                    //     child: Padding(
+                                    //       padding:
+                                    //           const EdgeInsets.only(left: 5.0),
+                                    //       child: Container(
+                                    //           height: 14,
+                                    //           width: 14,
+                                    //           child: AppSvg.asset(
+                                    //               AssetUtils.info,
+                                    //               color: Theme.of(context)
+                                    //                   .inputDecorationTheme
+                                    //                   .focusedBorder!
+                                    //                   .borderSide
+                                    //                   .color)),
+                                    //     ),
+                                    //   );
+                                    // },
                                     key: model.accountNumberKey,
                                     inputAction: TextInputAction.go,
                                     onChanged: (value) {

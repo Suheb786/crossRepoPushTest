@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1100,10 +1101,10 @@ class S {
     );
   }
 
-  /// `Please swipe through and confirm your information`
+  /// `Review and confirm\nyour details`
   String get confirmYourInformation {
     return Intl.message(
-      'Please swipe through and confirm your information',
+      'Review and confirm\nyour details',
       name: 'confirmYourInformation',
       desc: '',
       args: [],
@@ -2310,10 +2311,10 @@ class S {
     );
   }
 
-  /// `ACCOUNT NUMBER (OPTIONAL)`
+  /// `LIST OF ACCOUNT NUMBER (OPTIONAL)`
   String get accountNumberOptional {
     return Intl.message(
-      'ACCOUNT NUMBER (OPTIONAL)',
+      'LIST OF ACCOUNT NUMBER (OPTIONAL)',
       name: 'accountNumberOptional',
       desc: '',
       args: [],
@@ -2570,10 +2571,10 @@ class S {
     );
   }
 
-  /// `Please select your preferred agent for a video call`
+  /// `Schedule your call\nfor later`
   String get pleaseSelectPreferredAgentForVideoCall {
     return Intl.message(
-      'Please select your preferred agent for a video call',
+      'Schedule your call\nfor later',
       name: 'pleaseSelectPreferredAgentForVideoCall',
       desc: '',
       args: [],
@@ -2750,10 +2751,10 @@ class S {
     );
   }
 
-  /// `Get ready to verify yourself \nvia video call`
+  /// `It’s time for a quick\nvideo call`
   String get videoCallInfoHeader {
     return Intl.message(
-      'Get ready to verify yourself \nvia video call',
+      'It’s time for a quick\nvideo call',
       name: 'videoCallInfoHeader',
       desc: '',
       args: [],
@@ -3220,10 +3221,10 @@ class S {
     );
   }
 
-  /// `Please upload necessary document to proof yourself`
+  /// `You’re done! Just upload\nyour documents`
   String get pleaseUploadNecessaryInfo {
     return Intl.message(
-      'Please upload necessary document to proof yourself',
+      'You’re done! Just upload\nyour documents',
       name: 'pleaseUploadNecessaryInfo',
       desc: '',
       args: [],
@@ -3460,10 +3461,10 @@ class S {
     );
   }
 
-  /// `Thank you for waiting. Call will start automatically as soon as our call customer agent is ready.`
+  /// `Thank you for waiting, the video call will start automatically`
   String get thankYouForWaitingCallWillStartAutomatically {
     return Intl.message(
-      'Thank you for waiting. Call will start automatically as soon as our call customer agent is ready.',
+      'Thank you for waiting, the video call will start automatically',
       name: 'thankYouForWaitingCallWillStartAutomatically',
       desc: '',
       args: [],
@@ -4495,6 +4496,56 @@ class S {
     return Intl.message(
       'OTHER DETAILS',
       name: 'otherDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I confirm that all information provided is accurate.`
+  String get iConfirmThatAllInfoAccurateFatca {
+    return Intl.message(
+      'I confirm that all information provided is accurate.',
+      name: 'iConfirmThatAllInfoAccurateFatca',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Almost there, just a few\nmore questions`
+  String get fewMoreQuestions {
+    return Intl.message(
+      'Almost there, just a few\nmore questions',
+      name: 'fewMoreQuestions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VIDEO CALL`
+  String get videoCall {
+    return Intl.message(
+      'VIDEO CALL',
+      name: 'videoCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please get ready to meet our Engagement Team, we will now connect you.`
+  String get videoCallInfoDescription {
+    return Intl.message(
+      'Please get ready to meet our Engagement Team, we will now connect you.',
+      name: 'videoCallInfoDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will connect you\nin blink...`
+  String get weWillConnectYouInBlink {
+    return Intl.message(
+      'We will connect you\nin blink...',
+      name: 'weWillConnectYouInBlink',
       desc: '',
       args: [],
     );

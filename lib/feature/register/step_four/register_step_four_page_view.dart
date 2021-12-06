@@ -32,7 +32,6 @@ class RegisterStepFourPageView
     FatcaUSRelevantW9AddressDetailsPage(),
     FatcaUSW9TaxPayersDetailsPage(),
     FatcaSignaturePage()
-    //TaxReportInformationPage(),
   ];
 
   @override
@@ -65,7 +64,7 @@ class RegisterStepFourPageView
                   child: Text(
                     StepTextHelper.registrationFourStepTextHelper(
                       currentStep ?? 0,
-                      S.of(context).tellUsAboutImportantInformations,
+                      S.of(context).fewMoreQuestions,
                       S.of(context).weNeedToMatchNamesONTaxReturn,
                       S.of(context).pleaseProvideInformationIfAppliesToYou,
                       S.of(context).pleaseProvideInformationIfAppliesToYou,

@@ -59,7 +59,7 @@ class RegisterStepFivePageView
                       currentStep ?? 0,
                       S.of(context).confirmYourInformation,
                       S.of(context).videoCallInfoHeader,
-                      S.of(context).connectToAgentToAssistYou,
+                      S.of(context).videoCallInfoHeader,
                       S.of(context).pleaseSelectPreferredAgentForVideoCall,
                       S.of(context).pleaseUploadNecessaryInfo,
                     ),
@@ -108,7 +108,7 @@ class RegisterStepFivePageView
       case 1:
       case 2:
       case 3:
-        return S.of(context).personalDetails;
+        return S.of(context).videoCall;
       case 4:
         return S.of(context).uploadDocuments;
       default:

@@ -71,8 +71,8 @@ class FatcaSignaturePageView
                             } else {
                               ///TODO:Route based on w8 or w9
                               ProviderScope.containerOf(context)
-                                  .read(registerStepFiveViewModelProvider)
-                                  .registrationStepFivePageController
+                                  .read(registerStepFourViewModelProvider)
+                                  .registrationStepFourPageController
                                   .jumpToPage(0);
                             }
                           },
@@ -92,16 +92,16 @@ class FatcaSignaturePageView
                             child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),
-                                child: SingleChildScrollView(
-                                    physics: ClampingScrollPhysics(),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: SingleChildScrollView(
+                                        physics: ClampingScrollPhysics(),
+                                        child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
@@ -295,28 +295,29 @@ class FatcaSignaturePageView
                                             ),
                                           ],
                                         ),
-                                        Center(
-                                          child: AppStreamBuilder<bool>(
-                                            stream:
-                                                model.showAnimatedButtonStream,
-                                            initialData: false,
-                                            dataBuilder: (context, isValid) {
-                                              return Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 16.0),
-                                                child: Visibility(
-                                                  visible: isValid!,
-                                                  child: AnimatedButton(
-                                                      buttonText: S
-                                                          .of(context)
-                                                          .swipeToProceed),
-                                                ),
-                                              );
-                                            },
-                                          ),
-                                        )
-                                      ],
-                                    ))),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: AppStreamBuilder<bool>(
+                                        stream: model.showAnimatedButtonStream,
+                                        initialData: false,
+                                        dataBuilder: (context, isValid) {
+                                          return Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 16.0),
+                                            child: Visibility(
+                                              visible: isValid!,
+                                              child: AnimatedButton(
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    )
+                                  ],
+                                )),
                           ),
                         );
                       },

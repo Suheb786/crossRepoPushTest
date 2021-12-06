@@ -363,11 +363,7 @@ class TaxationDetailsPageView
                                                 isSelected: isSelected,
                                                 title1: S
                                                     .of(context)
-                                                    .confirmThatTaxResidency,
-                                                title2: S
-                                                    .of(context)
-                                                    .termAndCondition,
-                                                title3: S.of(context).ofTheBank,
+                                                    .iConfirmThatAllInfoAccurateFatca,
                                                 onTap: () {
                                                   model
                                                       .updateDeclarationSelection(

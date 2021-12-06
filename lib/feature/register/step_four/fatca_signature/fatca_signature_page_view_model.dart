@@ -95,7 +95,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
               createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _getDocumentResponse.safeAdd(event);
+        _getDocumentResponse.safeAdd(event.data!);
         if (event.status == Status.ERROR) {
           showErrorState();
         }
@@ -119,11 +119,9 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
 
   void signatureUpload() {
     _uploadSignatureRequest.safeAdd(UploadSignatureUseCaseParams(
-      signature: signatureController.text,
-      declarationSelected: _declarationSelected.value,
-        verifyInfoDeclarationSelected:
-        _verifyInfoDeclarationSelected.value
-    ));
+        signature: signatureController.text,
+        declarationSelected: _declarationSelected.value,
+        verifyInfoDeclarationSelected: _verifyInfoDeclarationSelected.value));
   }
 
   bool isValid() {
