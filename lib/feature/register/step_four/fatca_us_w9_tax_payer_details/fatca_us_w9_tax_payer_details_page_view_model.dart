@@ -55,43 +55,15 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
     _socialSecurityVisibilitySubject.safeAdd(value);
   }
 
-  ///declaration selected  subject
-  BehaviorSubject<bool> _declarationSelected = BehaviorSubject.seeded(false);
-
-  ///declaration selected stream
-  Stream<bool> get declarationSelectedStream => _declarationSelected.stream;
-
-  ///update declaration selection function
-  void updateDeclarationSelection(bool value) {
-    _declarationSelected.safeAdd(value);
-  }
-
-  ///verify info declaration selected  subject
-  BehaviorSubject<bool> _verifyInfoDeclarationSelected =
-      BehaviorSubject.seeded(false);
-
-  ///verify info declaration selected stream
-  Stream<bool> get verifyInfoDeclarationSelectedStream =>
-      _verifyInfoDeclarationSelected.stream;
-
-  ///update declaration selection function
-  void updateVerifyInfoDeclarationSelection(bool value) {
-    _verifyInfoDeclarationSelected.safeAdd(value);
-  }
-
   bool isValid() {
     bool valid = false;
     if (_socialSecurityVisibilitySubject.value) {
       if (taxPayerTypeController.text.isNotEmpty &&
-          socialSecurityNumberController.text.isNotEmpty &&
-          _declarationSelected.value &&
-          _verifyInfoDeclarationSelected.value) {
+          socialSecurityNumberController.text.isNotEmpty) {
         valid = true;
       }
     } else {
-      if (taxPayerTypeController.text.isNotEmpty &&
-          _declarationSelected.value &&
-          _verifyInfoDeclarationSelected.value) {
+      if (taxPayerTypeController.text.isNotEmpty) {
         valid = true;
       }
     }
@@ -124,10 +96,6 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_SECURITY_NUMBER:
         socialSecurityNumberKey.currentState!.isValid = false;
         break;
-      case ErrorType.INVALID_DECLARATION_SELECTION:
-        break;
-      case ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION:
-        break;
     }
   }
 
@@ -136,10 +104,7 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
         FatcaUSW9TaxPayerDetailsUseCaseParams(
             isSocialSecurityTaxPayer: _socialSecurityVisibilitySubject.value,
             socialSecurityNumber: socialSecurityNumberController.text,
-            taxPayerType: taxPayerTypeController.text,
-            declarationSelected: _declarationSelected.value,
-            verifyInfoDeclarationSelected:
-                _verifyInfoDeclarationSelected.value));
+            taxPayerType: taxPayerTypeController.text));
   }
 
   void updateTaxPayerTypeField(String value) {

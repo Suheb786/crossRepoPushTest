@@ -1,3 +1,5 @@
+import 'package:data/entity/remote/account/check_agent_status_request_entity.dart';
+import 'package:data/entity/remote/account/check_agent_status_response_entity.dart';
 import 'package:data/entity/remote/account/check_other_nationality_status_request_entity.dart';
 import 'package:data/entity/remote/account/check_other_nationality_status_response_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_request_entity.dart';
@@ -17,6 +19,7 @@ import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/set_fatca_questions_response_entity.dart';
+import 'package:data/entity/remote/kyc/check_kyc_status_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
@@ -27,6 +30,10 @@ import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/confirm_application_data_get_request_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_request_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
+import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
+import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
@@ -110,7 +117,8 @@ abstract class ApiService {
               SaveResidenceInformationRequest saveResidenceInformationRequest);
 
   @POST("/kyc/getstatus")
-  Future<String> checkKYCStatus(@Body() KYCStatusRequest kycStatusRequest);
+  Future<HttpResponse<CheckKycStatusResponseEntity>> checkKYCStatus(
+      @Body() KYCStatusRequest kycStatusRequest);
 
   @POST("/idcard/CheckAhwal")
   Future<String> getAhwalDetails(
@@ -191,4 +199,27 @@ abstract class ApiService {
   @POST("/auth/logout")
   Future<HttpResponse<LogoutResponseEntity>> logout(
       @Body() LogoutRequestEntity logoutRequestEntity);
+
+  ///confirm application data set
+  @POST("/AdditionalDoc/ConfirmApplicationDataSave")
+  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
+      confirmApplicationDataSet(
+          @Body()
+              ConfirmApplicationDataSetRequestEntity
+                  confirmApplicationDataSetRequestEntity);
+
+  ///enable fingerprint
+  @POST("/auth/enableFingerPrint")
+  Future<bool> enableFingerPrint(
+      @Body() EnableFingerPrintRequestEntity enableFingerPrintRequestEntity);
+
+  ///disable fingerprint
+  @POST("/auth/DisableFingerPrint")
+  Future<bool> disableFingerPrint(
+      @Body() DisableFingerPrintRequestEntity disableFingerPrintRequestEntity);
+
+  ///check agent status
+  @POST("/Account/CheckAgentStatus")
+  Future<HttpResponse<CheckAgentStatusResponseEntity>> checkAgentStatus(
+      @Body() CheckAgentStatusRequestEntity checkAgentStatusRequestEntity);
 }

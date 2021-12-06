@@ -42,7 +42,7 @@ class ReviewApplicationPageView
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<List<String>>>(
+                    child: AppStreamBuilder<Resource<bool>>(
                       stream: model.reviewAppStream,
                       initialData: Resource.none(),
                       onData: (data) {
@@ -302,7 +302,7 @@ class ReviewApplicationPageView
                                                           ),
                                                           Visibility(
                                                             visible: model
-                                                                .spouseNameController
+                                                                .specialNeedsPersonController
                                                                 .text
                                                                 .isNotEmpty,
                                                             child:
@@ -736,7 +736,6 @@ class ReviewApplicationPageView
                                                   );
 
                                                 case Status.LOADING:
-                                                default:
                                                   return Center(
                                                     child:
                                                         CircularProgressIndicator(
@@ -746,6 +745,16 @@ class ReviewApplicationPageView
                                                                   context)
                                                               .primaryColor),
                                                       strokeWidth: 2,
+                                                    ),
+                                                  );
+                                                default:
+                                                  return Center(
+                                                    child: Text(
+                                                      'Something went wrong',
+                                                      style: TextStyle(
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .primaryColor),
                                                     ),
                                                   );
                                               }

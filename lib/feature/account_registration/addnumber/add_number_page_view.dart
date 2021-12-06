@@ -10,9 +10,11 @@ import 'package:neo_bank/di/account_registration/account_registration_modules.da
 import 'package:neo_bank/feature/account_registration/addnumber/add_number_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -108,7 +110,10 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                     },
                                     dataBuilder: (context, data) {
                                       return AppTextField(
-                                        labelText: S.of(context).mobileNumber,
+                                        labelText: S
+                                            .of(context)
+                                            .mobileNumber
+                                            .toUpperCase(),
                                         hintText:
                                             S.of(context).mobileNumberHint,
                                         inputType: TextInputType.number,
@@ -121,44 +126,64 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                           model.validate();
                                         },
                                         prefixIcon: () {
-                                          return Padding(
-                                            padding: EdgeInsets.only(top: 8.0),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                Container(
-                                                    height: 16,
-                                                    width: 16,
-                                                    decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        image: DecorationImage(
-                                                            image: AssetImage(
-                                                                country!.data!
-                                                                        .countryFlag ??
-                                                                    "",
-                                                                package:
-                                                                    "country_calling_code_picker"),
-                                                            fit:
-                                                                BoxFit.cover))),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal: 8.0),
-                                                  child: Text(
-                                                    country.data!
-                                                            .countryCallingCode ??
-                                                        "",
-                                                    style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .textTheme
-                                                          .bodyText1!
-                                                          .color,
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w600,
+                                          return InkWell(
+                                            onTap: () {
+                                              ///TODO: open country code dialog
+                                            },
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(top: 8.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: <Widget>[
+                                                  Container(
+                                                      height: 16,
+                                                      width: 16,
+                                                      decoration: BoxDecoration(
+                                                          shape:
+                                                              BoxShape.circle,
+                                                          image: DecorationImage(
+                                                              image: AssetImage(
+                                                                  country!.data!
+                                                                          .countryFlag ??
+                                                                      "",
+                                                                  package:
+                                                                      "country_calling_code_picker"),
+                                                              fit: BoxFit
+                                                                  .cover))),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            horizontal: 8.0),
+                                                    child: Text(
+                                                      country.data!
+                                                              .countryCallingCode ??
+                                                          "",
+                                                      style: TextStyle(
+                                                        color: Theme.of(context)
+                                                            .textTheme
+                                                            .bodyText1!
+                                                            .color,
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
                                                     ),
                                                   ),
-                                                )
-                                              ],
+                                                  Container(
+                                                      height: 16,
+                                                      width: 16,
+                                                      margin: EdgeInsets.only(
+                                                          right: 8),
+                                                      child: AppSvg.asset(
+                                                          AssetUtils.downArrow,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .primaryTextTheme
+                                                              .bodyText1!
+                                                              .color))
+                                                ],
+                                              ),
                                             ),
                                           );
                                         },

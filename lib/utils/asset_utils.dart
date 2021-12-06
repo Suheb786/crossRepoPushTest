@@ -60,6 +60,9 @@ class AssetUtils {
   static const String copy = svg + "copy.svg";
   static const String welcomeIcon = svg + "welcome_icon.svg";
   static const String lock = svg + "lock.svg";
+  static const String informationSave = svg + "information_saved.svg";
+  static const String swiggleHello = svg + "swiggle_hello.svg";
+  static const String marker_icon = svg + "marker.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

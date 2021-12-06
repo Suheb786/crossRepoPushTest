@@ -65,7 +65,7 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                             children: [
                               Padding(
                                 padding: const EdgeInsets.only(
-                                    top: 59.0, bottom: 32),
+                                    top: 35.0, bottom: 32),
                                 child: Container(
                                   height: 78,
                                   width: 78,
@@ -81,11 +81,11 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                                 ),
                               ),
                               Text(
-                                S.of(context).lookingForAvailableAgent,
+                                S.of(context).weWillConnectYouInBlink,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
-                                    fontSize: 24,
+                                    fontSize: 20,
                                     color: Theme.of(context).primaryColorDark),
                               ),
                               Padding(

@@ -5,8 +5,18 @@ import 'package:data/entity/remote/user/additional_income.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_get/account_purpose_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/confirm_application_data_get_request_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_get/country_residence_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_get/fatca_crs_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_get/job_detail_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_get/profile_status_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_request_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
+import 'package:data/entity/remote/user/confirm_application_data_set/review_application_data_entity.dart';
+import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
+import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
@@ -32,6 +42,11 @@ import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
+import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:retrofit/retrofit.dart';
 
 class UserRemoteDSImpl extends UserRemoteDS {
@@ -286,6 +301,51 @@ class UserRemoteDSImpl extends UserRemoteDS {
         latitude: baseData.latitude,
         longitude: baseData.longitude,
         mobileModel: baseData.mobileModel));
+  }
+
+  @override
+  Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
+      confirmApplicationDataSet(
+          {CountryResidenceInfo? countryResidenceInfo,
+          ProfileStatusInfo? profileStatusInfo,
+          JobDetailInfo? jobDetailInfo,
+          FatcaCrsInfo? fatcaCrsInfo,
+          AccountPurposeInfo? accountPurposeInfo}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.confirmApplicationDataSet(
+        ConfirmApplicationDataSetRequestEntity(
+            getToken: true,
+            reviewDocumentResponse: ReviewApplicationDataEntity(
+                    profileStatus: ProfileStatusEntity()
+                        .restore(profileStatusInfo!)
+                        .toJson(),
+                    jobDetail:
+                        JobDetailEntity().restore(jobDetailInfo!).toJson(),
+                    fatcaCrs: FatcaCrsEntity().restore(fatcaCrsInfo!).toJson(),
+                    countryResidence: CountryResidenceEntity()
+                        .restore(countryResidenceInfo!)
+                        .toJson(),
+                    accountPurpose: AccountPurposeEntity()
+                        .restore(accountPurposeInfo!)
+                        .toJson())
+                .toJson(),
+            baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<bool> enableFingerPrint({String? cipher}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.enableFingerPrint(EnableFingerPrintRequestEntity(
+        getToken: true, cipher: cipher, baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<bool> disableFingerPrint() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.disableFingerPrint(DisableFingerPrintRequestEntity(
+        getToken: true,
+        uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
+        baseData: baseData.toJson()));
   }
 
   @override

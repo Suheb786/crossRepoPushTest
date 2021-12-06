@@ -32,7 +32,7 @@ class Validator {
     return data1 == data2;
   }
 
-  static bool isNotEmptyNull(String data) {
-    return ((data != null) && data.isNotEmpty);
+  static bool isNotEmptyNull(String? data) {
+    return ((data != null) && (data.isNotEmpty));
   }
 }

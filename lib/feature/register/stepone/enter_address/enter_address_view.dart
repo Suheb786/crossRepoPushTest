@@ -122,11 +122,9 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             AppTextField(
-                                              labelText:
-                                                  S.of(context).residentCountry,
-                                              hintText: S
-                                                  .of(context)
-                                                  .residentCountryHint,
+                                              labelText: S.of(context).country,
+                                              hintText:
+                                                  S.of(context).pleaseSelect,
                                               readOnly: true,
                                               controller: model
                                                   .residentCountryController,
@@ -167,9 +165,8 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                               labelText: S
                                                   .of(context)
                                                   .buildingNameOrNo,
-                                              hintText: S
-                                                  .of(context)
-                                                  .buildingNameOrNoHint,
+                                              hintText:
+                                                  S.of(context).pleaseEnter,
                                               inputType: TextInputType.text,
                                               controller: model
                                                   .buildingNameOrNumberController,
@@ -232,7 +229,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                             AppTextField(
                                               labelText: S
                                                   .of(context)
-                                                  .district
+                                                  .area
                                                   .toUpperCase(),
                                               hintText:
                                                   S.of(context).pleaseEnter,
@@ -290,7 +287,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                       AppTextField(
                                                         labelText: S
                                                             .of(context)
-                                                            .residentCountry,
+                                                            .country,
                                                         hintText: S
                                                             .of(context)
                                                             .pleaseSelect,

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/account/check_agent_status_response.dart';
 import 'package:domain/model/account/check_other_nationality_status_response.dart';
 import 'package:domain/model/account/check_videocall_status_response.dart';
 import 'package:domain/model/account/doc_status_response.dart';
@@ -15,4 +16,7 @@ abstract class AccountRepository {
 
   /// check document status
   Future<Either<NetworkError, DocStatusResponse>> docStatus();
+
+  /// check agent status
+  Future<Either<NetworkError, CheckAgentStatusResponse>> checkAgentStatus();
 }
