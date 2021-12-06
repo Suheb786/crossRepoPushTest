@@ -24,13 +24,13 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
               initialData: Resource.none(),
               stream: model.uploadImageResponseStream,
               onData: (isImageUploaded) {
-                // Navigator.pop(context, true);
-
-                /// TODO:: NEED TO HANDLE AFTER API UPDATES
                 if (isImageUploaded.status == Status.SUCCESS) {
                   Navigator.pop(context, true);
                 } else if (isImageUploaded.status == Status.ERROR) {
                   model.showToastWithError(isImageUploaded.appError!);
+                  model.cameraController!.resumePreview();
+                } else if (isImageUploaded.status == Status.LOADING) {
+                  model.cameraController!.pausePreview();
                 }
               },
               dataBuilder: (context, data) {

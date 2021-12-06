@@ -47,7 +47,6 @@ class CaptureViewModel extends BasePageViewModel {
     }
 
     try {
-      cameraController!.pausePreview();
       XFile file = await controller.takePicture();
       uploadImage(file);
     } on CameraException catch (e) {

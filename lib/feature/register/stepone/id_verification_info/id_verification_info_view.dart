@@ -15,7 +15,6 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/information_text.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -72,26 +71,9 @@ class IdVerificationInfoView
                                 onHorizontalDragEnd: (details) {
                                   if (details.primaryVelocity!.isNegative) {
                                     model.idVerificationInfo();
-                                  } else {
-                                    ProviderScope.containerOf(context)
-                                        .read(registerStepOneViewModelProvider)
-                                        .pageController
-                                        .previous();
                                   }
                                 },
                                 child: Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16)),
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  elevation: 2,
-                                  color: Theme.of(context)
-                                      .cardTheme
-                                      .copyWith(color: AppColor.white)
-                                      .color,
-                                  margin: EdgeInsets.zero,
-                                  shadowColor: Theme.of(context)
-                                      .primaryColorDark
-                                      .withOpacity(0.32),
                                   child: Padding(
                                       padding: EdgeInsets.symmetric(
                                           vertical: 32, horizontal: 24),

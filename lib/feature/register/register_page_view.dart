@@ -13,8 +13,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 
 class RegisterPageView extends BasePageViewWidget<RegisterViewModel> {
   RegisterPageView(ProviderBase model) : super(model);
-
-  List pages = [
+  final pages = [
     RegisterStepOnePage(),
     RegisterStepTwoPage(),
     RegisterStepThreePage(),
