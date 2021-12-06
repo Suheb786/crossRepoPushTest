@@ -132,6 +132,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change My Number"),
         "city": MessageLookupByLibrary.simpleMessage("CITY"),
         "citySmall": MessageLookupByLibrary.simpleMessage("City"),
+        "claimOfTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
+            "Claim of Tax Treaty Benefits"),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -300,8 +302,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "errorWhileRegistration": MessageLookupByLibrary.simpleMessage(
             "An error has occurred during Registration Process, please try again"),
         "estimatedTime": m1,
+        "exemptPayeeCode":
+            MessageLookupByLibrary.simpleMessage("Exempt Payee Code"),
         "exemptPayeeOptional": MessageLookupByLibrary.simpleMessage(
             "EXEMPT PAYEE CODE (OPTIONAL)"),
+        "exemptionFromFatcaReportingCode": MessageLookupByLibrary.simpleMessage(
+            "Exemption from FATCA Reporting Code"),
         "expAnnualTransactions": MessageLookupByLibrary.simpleMessage(
             "Expected Annual Transactions"),
         "expMonthlyTransactions": MessageLookupByLibrary.simpleMessage(
@@ -317,6 +323,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "explainReason": MessageLookupByLibrary.simpleMessage("EXPLAIN REASON"),
         "explanation": MessageLookupByLibrary.simpleMessage("EXPLANATION"),
         "fatca": MessageLookupByLibrary.simpleMessage("FATCA "),
+        "fatcaCertification":
+            MessageLookupByLibrary.simpleMessage("FATCA Certification"),
         "fatcaandPep": MessageLookupByLibrary.simpleMessage("FATCA & PEP"),
         "femaleAgent": MessageLookupByLibrary.simpleMessage("Female Agent"),
         "fewMoreQuestions": MessageLookupByLibrary.simpleMessage(
@@ -639,6 +647,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
         "referenceNumber":
             MessageLookupByLibrary.simpleMessage("REFERENCE NUMBER"),
+        "referenceNumberSmall":
+            MessageLookupByLibrary.simpleMessage("Reference Number"),
         "registerViaEmail":
             MessageLookupByLibrary.simpleMessage("Register via Email"),
         "relationShipWithPepCaps":
@@ -780,6 +790,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Upload Signature"),
         "usIDNumber": MessageLookupByLibrary.simpleMessage(
             "U.S. tax payer identification number "),
+        "usTaxPayerIdentificationNumber": MessageLookupByLibrary.simpleMessage(
+            "U.S. Tax Payer\nIdentification Number "),
         "userNotRegister":
             MessageLookupByLibrary.simpleMessage("User Not Register"),
         "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":

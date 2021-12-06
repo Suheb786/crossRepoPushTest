@@ -11,6 +11,12 @@ import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/stepone/capture/capture_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
+import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
+import 'package:neo_bank/feature/static_content/exempt_payee_code/exempt_payee_code_page.dart';
+import 'package:neo_bank/feature/static_content/exemption_from_fatca_reporting_code/exemption_from_fatca_reporting_code_page.dart';
+import 'package:neo_bank/feature/static_content/fatca_certification/fatca_certification_page.dart';
+import 'package:neo_bank/feature/static_content/reference_number/reference_number_page.dart';
+import 'package:neo_bank/feature/static_content/us_tax_payer_identification_number/us_tax_payer_identification_number_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 
@@ -79,6 +85,38 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => CapturePage(),
             settings: RouteSettings(name: RoutePaths.Capture));
+
+      case RoutePaths.FatcaCertification:
+        return CupertinoPageRoute(
+            builder: (context) => FatcaCertificationPage(),
+            settings: RouteSettings(name: RoutePaths.FatcaCertification));
+
+      case RoutePaths.ExemptPayeeCode:
+        return CupertinoPageRoute(
+            builder: (context) => ExemptPayeeCodePage(),
+            settings: RouteSettings(name: RoutePaths.ExemptPayeeCode));
+
+      case RoutePaths.ExemptionFromFatcaReportingCode:
+        return CupertinoPageRoute(
+            builder: (context) => ExemptionFromFatcaReportingCodePage(),
+            settings: RouteSettings(
+                name: RoutePaths.ExemptionFromFatcaReportingCode));
+
+      case RoutePaths.UsTaxPayerIdentificationNo:
+        return CupertinoPageRoute(
+            builder: (context) => UsTaxPayerIdentificationNumberPage(),
+            settings:
+                RouteSettings(name: RoutePaths.UsTaxPayerIdentificationNo));
+
+      case RoutePaths.ReferenceNumber:
+        return CupertinoPageRoute(
+            builder: (context) => ReferenceNumberPage(),
+            settings: RouteSettings(name: RoutePaths.ReferenceNumber));
+
+      case RoutePaths.TaxTreatyBenefits:
+        return CupertinoPageRoute(
+            builder: (context) => ClaimOfTaxTreatyBenefitsPage(),
+            settings: RouteSettings(name: RoutePaths.TaxTreatyBenefits));
 
       default:
         return CupertinoPageRoute(

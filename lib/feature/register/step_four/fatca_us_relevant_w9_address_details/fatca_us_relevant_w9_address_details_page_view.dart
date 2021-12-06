@@ -6,6 +6,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w9_address_details/fatca_us_relevant_w9_address_details_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -216,7 +217,10 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                         model.exemptPayeeCodeNumberController,
                                     labelIcon: () {
                                       return InkWell(
-                                        onTap: () async {},
+                                        onTap: () async {
+                                          Navigator.pushNamed(context,
+                                              RoutePaths.ExemptPayeeCode);
+                                        },
                                         child: Padding(
                                           padding:
                                               const EdgeInsets.only(left: 5.0),

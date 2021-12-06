@@ -7,6 +7,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_w8_tax_payer_details/fatca_us_w8_tax_payer_details_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -89,7 +90,8 @@ class FatcaUSW8TaxPayersDetailsPageView
                                   child: SingleChildScrollView(
                                     physics: ClampingScrollPhysics(),
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       mainAxisSize: MainAxisSize.max,
                                       children: [
                                         AppTextField(
@@ -159,7 +161,10 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                                 left: 4.0),
                                                         child: InkWell(
                                                           onTap: () {
-                                                            ///TODO:Navigate to us tax identification number page
+                                                            Navigator.pushNamed(
+                                                                context,
+                                                                RoutePaths
+                                                                    .UsTaxPayerIdentificationNo);
                                                           },
                                                           child: AppSvg.asset(
                                                               AssetUtils.info,
@@ -197,7 +202,10 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                                 left: 4.0),
                                                         child: InkWell(
                                                           onTap: () {
-                                                            ///TODO:Navigate to us reference page
+                                                            Navigator.pushNamed(
+                                                                context,
+                                                                RoutePaths
+                                                                    .ReferenceNumber);
                                                           },
                                                           child: AppSvg.asset(
                                                               AssetUtils.info,
@@ -248,7 +256,10 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                   ),
                                                   InkWell(
                                                     onTap: () {
-                                                      ///TODO:Navigate to info of what is Tax treaty Benefits
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          RoutePaths
+                                                              .TaxTreatyBenefits);
                                                     },
                                                     child: Text(
                                                       S
@@ -422,26 +433,23 @@ class FatcaUSW8TaxPayersDetailsPageView
                                             );
                                           },
                                         ),
-
                                       ],
                                     ),
                                   ),
                                 ),
                                 Center(
                                   child: AppStreamBuilder<bool>(
-                                    stream:
-                                    model.allFieldValidatorStream,
+                                    stream: model.allFieldValidatorStream,
                                     initialData: false,
                                     dataBuilder: (context, isValid) {
                                       return Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 16.0),
+                                        padding:
+                                            const EdgeInsets.only(top: 16.0),
                                         child: Visibility(
                                           visible: isValid!,
                                           child: AnimatedButton(
-                                              buttonText: S
-                                                  .of(context)
-                                                  .swipeToProceed),
+                                              buttonText:
+                                                  S.of(context).swipeToProceed),
                                         ),
                                       );
                                     },

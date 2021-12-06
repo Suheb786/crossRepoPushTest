@@ -4550,6 +4550,66 @@ class S {
       args: [],
     );
   }
+
+  /// `FATCA Certification`
+  String get fatcaCertification {
+    return Intl.message(
+      'FATCA Certification',
+      name: 'fatcaCertification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exempt Payee Code`
+  String get exemptPayeeCode {
+    return Intl.message(
+      'Exempt Payee Code',
+      name: 'exemptPayeeCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exemption from FATCA Reporting Code`
+  String get exemptionFromFatcaReportingCode {
+    return Intl.message(
+      'Exemption from FATCA Reporting Code',
+      name: 'exemptionFromFatcaReportingCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `U.S. Tax Payer\nIdentification Number `
+  String get usTaxPayerIdentificationNumber {
+    return Intl.message(
+      'U.S. Tax Payer\nIdentification Number ',
+      name: 'usTaxPayerIdentificationNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reference Number`
+  String get referenceNumberSmall {
+    return Intl.message(
+      'Reference Number',
+      name: 'referenceNumberSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Claim of Tax Treaty Benefits`
+  String get claimOfTaxTreatyBenefits {
+    return Intl.message(
+      'Claim of Tax Treaty Benefits',
+      name: 'claimOfTaxTreatyBenefits',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

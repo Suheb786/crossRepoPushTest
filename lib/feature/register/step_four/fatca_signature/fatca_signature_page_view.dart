@@ -252,6 +252,7 @@ class FatcaSignaturePageView
                                                   initialData: false,
                                                   dataBuilder:
                                                       (context, isSelected) {
+                                                    ///TODO:Navigate to fatca Certification
                                                     return DeclarationWidget(
                                                       isSelected: isSelected,
                                                       title1: S

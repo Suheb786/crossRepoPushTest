@@ -468,5 +468,11 @@
   "fewMoreQuestions": "Almost there, just a few\nmore questions",
   "videoCall": "VIDEO CALL",
   "videoCallInfoDescription": "Please get ready to meet our Engagement Team, we will now connect you.",
-  "weWillConnectYouInBlink": "We will connect you\nin blink..."
+  "weWillConnectYouInBlink": "We will connect you\nin blink...",
+  "fatcaCertification": "FATCA Certification",
+  "exemptPayeeCode": "Exempt Payee Code",
+  "exemptionFromFatcaReportingCode": "Exemption from FATCA Reporting Code",
+  "usTaxPayerIdentificationNumber": "U.S. Tax Payer\nIdentification Number ",
+  "referenceNumberSmall": "Reference Number",
+  "claimOfTaxTreatyBenefits": "Claim of Tax Treaty Benefits"
 }
