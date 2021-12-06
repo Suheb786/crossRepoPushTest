@@ -43,7 +43,7 @@ class CardTransactionPageView
             children: [
               Center(
                 child: Text(
-                  "ViSA Platinum Credit Card",
+                  S.of(context).visaPlatinumCard,
                   style: TextStyle(
                       color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w600,

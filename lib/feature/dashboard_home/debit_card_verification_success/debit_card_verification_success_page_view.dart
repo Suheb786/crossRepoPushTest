@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -47,7 +48,7 @@ class DebitCardVerificationSuccessPageView
               Padding(
                 padding: EdgeInsets.only(top: 34.0),
                 child: Text(
-                  "Debit card\nhas been verified.",
+                  S.of(context).debitCardVerified,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Theme.of(context).accentColor,
@@ -58,7 +59,7 @@ class DebitCardVerificationSuccessPageView
               Padding(
                 padding: EdgeInsets.only(top: 16.0),
                 child: Text(
-                  "You can use your physical card\nto pay and shop anywhere.\nContactless limit is now 150 JOD.",
+                  S.of(context).physicalCardUse,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Theme.of(context).accentColor,
@@ -69,7 +70,7 @@ class DebitCardVerificationSuccessPageView
               Padding(
                 padding: EdgeInsets.only(top: 285),
                 child: AnimatedButton(
-                  buttonText: "Swipe to proceed",
+                  buttonText: S.of(context).swipeToProceed,
                   borderColor: Theme.of(context).accentColor,
                   textColor: Theme.of(context).accentColor,
                 ),
@@ -81,7 +82,7 @@ class DebitCardVerificationSuccessPageView
                 child: Padding(
                   padding: EdgeInsets.only(top: 9),
                   child: Text(
-                    "to Dashboard",
+                    S.of(context).toDashboard,
                     style: TextStyle(
                         color: Theme.of(context).accentColor,
                         fontSize: 12,

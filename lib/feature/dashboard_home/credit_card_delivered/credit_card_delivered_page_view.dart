@@ -4,6 +4,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -65,7 +66,7 @@ class CreditCardDeliveredPageView
                               children: [
                                 Center(
                                   child: Text(
-                                    "NUMBER ON CARD",
+                                    S.of(context).numberOnCard,
                                     style: TextStyle(
                                         fontSize: 10,
                                         fontWeight: FontWeight.w400,
@@ -85,7 +86,7 @@ class CreditCardDeliveredPageView
                                   padding: EdgeInsets.only(
                                       top: 78, left: 30, right: 24),
                                   child: Text(
-                                    "Yay! Your card has been delivered. Check the number on the back of plastic card and swipe to confirm if its matched with above.",
+                                    S.of(context).cardHasBeenDelivered,
                                     maxLines: 4,
                                     style: TextStyle(
                                         fontSize: 14,
@@ -96,7 +97,7 @@ class CreditCardDeliveredPageView
                                 Padding(
                                   padding: EdgeInsets.only(top: 75, bottom: 31),
                                   child: AnimatedButton(
-                                      buttonText: "Swipe to confirm",
+                                      buttonText: S.of(context).swipeToConfirm,
                                       borderColor: Theme.of(context)
                                           .accentTextTheme
                                           .bodyText1!
@@ -113,22 +114,49 @@ class CreditCardDeliveredPageView
                       left: 40,
                       right: 16,
                       top: 72,
-                      child: Container(
-                          decoration: BoxDecoration(
-                              color: AppColor.vividYellow,
-                              borderRadius: BorderRadius.circular(10.43)),
-                          child: Padding(
-                              padding: EdgeInsets.only(top: 67, bottom: 26.54),
-                              child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child:
-                                      Image.asset(AssetUtils.ellipseWhite)))))
+                      child: Stack(
+                        children: [
+                          Container(
+                              height: 186,
+                              width: double.infinity,
+                              padding: EdgeInsets.only(top: 111, left: 20),
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                        AssetUtils.creditCard,
+                                      ),
+                                      fit: BoxFit.fill),
+                                  borderRadius: BorderRadius.circular(10.43)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "ZEIN MALHAS",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  Padding(
+                                      padding: EdgeInsets.only(top: 10),
+                                      child: Text("1234",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w700)))
+                                ],
+                              )),
+                          Positioned(
+                              left: 7,
+                              bottom: 19,
+                              child: Image.asset(AssetUtils.ellipseYellow))
+                        ],
+                      ))
                 ],
               ),
               Padding(
                 padding: EdgeInsets.only(top: 36),
                 child: Text(
-                  "I have delivery issue",
+                  S.of(context).deliveryIssue,
                   style: TextStyle(
                       color: Theme.of(context).accentTextTheme.bodyText1!.color,
                       fontSize: 14,

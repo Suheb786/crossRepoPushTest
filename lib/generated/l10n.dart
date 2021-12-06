@@ -4110,6 +4110,226 @@ class S {
       args: [],
     );
   }
+
+  /// `Debit Card\ndelivered`
+  String get debitCardDelivered {
+    return Intl.message(
+      'Debit Card\ndelivered',
+      name: 'debitCardDelivered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You joined \nblink`
+  String get joinedBlink {
+    return Intl.message(
+      'You joined \nblink',
+      name: 'joinedBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debit Card\nactivated.`
+  String get debitCardActivated {
+    return Intl.message(
+      'Debit Card\nactivated.',
+      name: 'debitCardActivated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit Card\nactivated.`
+  String get creditCardActivated {
+    return Intl.message(
+      'Credit Card\nactivated.',
+      name: 'creditCardActivated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blink was\nborn`
+  String get blinkBorn {
+    return Intl.message(
+      'Blink was\nborn',
+      name: 'blinkBorn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ViSA Platinum Credit Card`
+  String get visaPlatinumCard {
+    return Intl.message(
+      'ViSA Platinum Credit Card',
+      name: 'visaPlatinumCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NUMBER ON CARD`
+  String get numberOnCard {
+    return Intl.message(
+      'NUMBER ON CARD',
+      name: 'numberOnCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yay! Your card has been delivered. Check the number on the back of plastic card and swipe to confirm if its matched with above.`
+  String get cardHasBeenDelivered {
+    return Intl.message(
+      'Yay! Your card has been delivered. Check the number on the back of plastic card and swipe to confirm if its matched with above.',
+      name: 'cardHasBeenDelivered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe to confirm`
+  String get swipeToConfirm {
+    return Intl.message(
+      'Swipe to confirm',
+      name: 'swipeToConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I have delivery issue`
+  String get deliveryIssue {
+    return Intl.message(
+      'I have delivery issue',
+      name: 'deliveryIssue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit card\nhas been verified.`
+  String get creditCardVerified {
+    return Intl.message(
+      'Credit card\nhas been verified.',
+      name: 'creditCardVerified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can use your physical card\nto pay and shop anywhere.\nContactless limit is now 150 JOD.`
+  String get physicalCardUse {
+    return Intl.message(
+      'You can use your physical card\nto pay and shop anywhere.\nContactless limit is now 150 JOD.',
+      name: 'physicalCardUse',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Dashboard`
+  String get toDashboard {
+    return Intl.message(
+      'to Dashboard',
+      name: 'toDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debit card\nhas been verified.`
+  String get debitCardVerified {
+    return Intl.message(
+      'Debit card\nhas been verified.',
+      name: 'debitCardVerified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Here’s why you should get\nyour blink credit card.`
+  String get blinkCreditCard {
+    return Intl.message(
+      'Here’s why you should get\nyour blink credit card.',
+      name: 'blinkCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TOTAL USED LIMIT`
+  String get totalUsedLimit {
+    return Intl.message(
+      'TOTAL USED LIMIT',
+      name: 'totalUsedLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay back`
+  String get payBack {
+    return Intl.message(
+      'Pay back',
+      name: 'payBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AVAILABLE AMOUNT`
+  String get availableAmount {
+    return Intl.message(
+      'AVAILABLE AMOUNT',
+      name: 'availableAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Flip back`
+  String get flipBack {
+    return Intl.message(
+      'Flip back',
+      name: 'flipBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CARD NUMBER`
+  String get cardNumber {
+    return Intl.message(
+      'CARD NUMBER',
+      name: 'cardNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LINKED ACCOUNT NUMBER`
+  String get linkedAccountNumber {
+    return Intl.message(
+      'LINKED ACCOUNT NUMBER',
+      name: 'linkedAccountNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CVV`
+  String get cvv {
+    return Intl.message(
+      'CVV',
+      name: 'cvv',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

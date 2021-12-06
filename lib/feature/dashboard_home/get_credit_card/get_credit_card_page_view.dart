@@ -85,7 +85,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        "Here’s why you should get\nyour blink credit card.",
+                                        S.of(context).blinkCreditCard,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                             fontSize: 12,
@@ -187,7 +187,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                     !isFlipped!);
                                               },
                                               child: Text(
-                                                "Flip Card",
+                                                S.of(context).flipCard,
                                                 textAlign: TextAlign.right,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w600,
@@ -248,7 +248,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                   padding:
                                                       EdgeInsets.only(top: 5),
                                                   child: Text(
-                                                    "TOTAL USED LIMIT",
+                                                    S
+                                                        .of(context)
+                                                        .totalUsedLimit,
                                                     style: TextStyle(
                                                         color: AppColor
                                                             .veryLightRed,
@@ -274,7 +276,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                     vertical: 8,
                                                     horizontal: 25),
                                                 child: Text(
-                                                  "Pay back",
+                                                  S.of(context).payBack,
                                                   style: TextStyle(
                                                     color: Theme.of(context)
                                                         .accentColor,
@@ -332,7 +334,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                   padding:
                                                       EdgeInsets.only(top: 5),
                                                   child: Text(
-                                                    "AVAILABLE AMOUNT",
+                                                    S
+                                                        .of(context)
+                                                        .availableAmount,
                                                     style: TextStyle(
                                                         color: AppColor
                                                             .veryLightRed,
@@ -388,7 +392,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                       !isFlipped!);
                                                 },
                                                 child: Text(
-                                                  "Flip back",
+                                                  S.of(context).flipBack,
                                                   style: TextStyle(
                                                       color: Theme.of(context)
                                                           .accentColor
@@ -415,7 +419,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           Padding(
                                             padding: EdgeInsets.only(top: 8),
                                             child: Text(
-                                              "CARD NUMBER",
+                                              S.of(context).cardNumber,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w600,
                                                   color: Theme.of(context)
@@ -444,7 +448,10 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           ),
                                           Padding(
                                             padding: EdgeInsets.only(top: 8),
-                                            child: Text("LINKED ACCOUNT NUMBER",
+                                            child: Text(
+                                                S
+                                                    .of(context)
+                                                    .linkedAccountNumber,
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 10,
@@ -482,7 +489,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                       padding: EdgeInsets.only(
                                                           top: 8),
                                                       child: Text(
-                                                        "EXPIRY DATE",
+                                                        S
+                                                            .of(context)
+                                                            .expiryDate,
                                                         style: TextStyle(
                                                             fontSize: 10,
                                                             color: Theme.of(
@@ -521,7 +530,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                             EdgeInsets.only(
                                                                 top: 8),
                                                         child: Text(
-                                                          "CVV",
+                                                          S.of(context).cvv,
                                                           style: TextStyle(
                                                               fontSize: 10,
                                                               color: Theme.of(

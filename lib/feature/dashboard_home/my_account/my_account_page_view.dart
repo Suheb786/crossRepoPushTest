@@ -146,12 +146,20 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 20),
-                        child: Text(
-                          "JOD12031531451345134123456731",
-                          style: TextStyle(
-                              color: Theme.of(context).accentColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12),
+                        child: Row(
+                          children: [
+                            Text(
+                              "JOD12031531451345134123456731",
+                              style: TextStyle(
+                                  color: Theme.of(context).accentColor,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(left: 8),
+                              child: AppSvg.asset(AssetUtils.copy),
+                            )
+                          ],
                         ),
                       ),
                       Padding(

@@ -23,7 +23,6 @@ class AccountTransactionPageView
           onVerticalDragEnd: (details) {
             if (details.primaryVelocity!.isNegative) {
             } else {
-              print("clicked here");
               ProviderScope.containerOf(context)
                   .read(homeViewModelProvider)
                   .homeController

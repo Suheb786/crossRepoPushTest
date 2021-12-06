@@ -4,6 +4,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -66,7 +67,7 @@ class DebitCardDeliveredPageView
                               children: [
                                 Center(
                                   child: Text(
-                                    "NUMBER ON CARD",
+                                    S.of(context).numberOnCard,
                                     style: TextStyle(
                                         fontSize: 10,
                                         fontWeight: FontWeight.w400,
@@ -86,7 +87,7 @@ class DebitCardDeliveredPageView
                                   padding: EdgeInsets.only(
                                       top: 78, left: 30, right: 24),
                                   child: Text(
-                                    "Yay! Your card has been delivered. Check the number on the back of plastic card and swipe to confirm if its matched with above.",
+                                    S.of(context).cardDelivery,
                                     maxLines: 4,
                                     style: TextStyle(
                                         fontSize: 14,
@@ -97,7 +98,7 @@ class DebitCardDeliveredPageView
                                 Padding(
                                   padding: EdgeInsets.only(top: 75, bottom: 31),
                                   child: AnimatedButton(
-                                      buttonText: "Swipe to confirm",
+                                      buttonText: S.of(context).swipeToConfirm,
                                       borderColor: Theme.of(context)
                                           .accentTextTheme
                                           .bodyText1!
@@ -111,24 +112,28 @@ class DebitCardDeliveredPageView
                     ),
                   ),
                   Positioned(
-                      left: 40,
-                      right: 16,
-                      top: 72,
-                      child: Container(
+                    left: 40,
+                    right: 16,
+                    top: 72,
+                    child: Stack(
+                      children: [
+                        AppSvg.asset(AssetUtils.debitCard),
+                        Container(
+                          height: 186,
+                          width: double.infinity,
                           decoration: BoxDecoration(
-                              color: AppColor.vividYellow,
                               borderRadius: BorderRadius.circular(10.43)),
-                          child: Padding(
-                              padding: EdgeInsets.only(top: 67, bottom: 26.54),
-                              child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Image.asset(AssetUtils.ellipseRed)))))
+                          child: AppSvg.asset(AssetUtils.ellipseRed),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
               Padding(
                 padding: EdgeInsets.only(top: 36),
                 child: Text(
-                  "I have delivery issue",
+                  S.of(context).deliveryIssue,
                   style: TextStyle(
                       color: Theme.of(context).accentTextTheme.bodyText1!.color,
                       fontSize: 14,

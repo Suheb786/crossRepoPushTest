@@ -8,7 +8,6 @@ class AppHomeViewModel extends BasePageViewModel {
   final SwiperController pageController = SwiperController();
   PageController controller =
       PageController(viewportFraction: 0.8, keepPage: true, initialPage: 1);
-  TextEditingController exampleController = TextEditingController();
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;
@@ -22,12 +21,6 @@ class AppHomeViewModel extends BasePageViewModel {
   Stream<PageController> get pageControllerStream =>
       _pageControllerSubject.stream;
 
-  PublishSubject<TextEditingController> _exampleControllerSubject =
-      PublishSubject();
-
-  Stream<TextEditingController> get exampleControllerStream =>
-      _exampleControllerSubject.stream;
-
   void updatePage(int index) {
     _currentStep.safeAdd(index);
   }
@@ -36,11 +29,6 @@ class AppHomeViewModel extends BasePageViewModel {
     controller = PageController(
         initialPage: index, viewportFraction: 0.8, keepPage: true);
     _pageControllerSubject.safeAdd(controller);
-  }
-
-  void updateExampleControllerStream(String index) {
-    exampleController.text = index;
-    _exampleControllerSubject.safeAdd(exampleController);
   }
 
   void updateShowTimeLineStream(bool value) {

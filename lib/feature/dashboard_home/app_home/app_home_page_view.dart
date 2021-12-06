@@ -1,4 +1,3 @@
-import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -11,10 +10,11 @@ import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart'
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
+import 'package:neo_bank/ui/molecules/pager/dashboard_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
   AppHomePageView(ProviderBase model) : super(model);
@@ -111,60 +111,49 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                     child: Stack(
                                       alignment: Alignment.center,
                                       children: [
-                                        AppSwiper(
+                                        DashboardSwiper(
                                           pages: pages,
                                           pageController: model.pageController,
                                           onIndexChanged: (index) {
                                             model.updatePage(index);
-                                            model.updateExampleControllerStream(
-                                                "Hello world");
                                             model.updatePageControllerStream(
                                                 index);
                                           },
                                           currentStep: currentStep,
                                         ),
-                                        Positioned(
-                                          top: 0,
-                                          child: Offstage(
-                                            offstage: currentStep != 2,
-                                            child: Container(
-                                              height: 24,
-                                              width: 125,
-                                              decoration: BoxDecoration(
-                                                  color: AppColor.darkGrey,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          100)),
-                                              child: Center(
-                                                child: Text(
-                                                  S.of(context).cardDelivered,
-                                                  style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .accentColor,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      fontSize: 12),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
                                       ],
                                     ),
                                   ),
                                 ),
-                                DotsIndicator(
-                                  dotsCount: pages.length,
-                                  position: currentStep!.toDouble(),
-                                  decorator: DotsDecorator(
-                                      color: Theme.of(context)
+                                SmoothPageIndicator(
+                                    controller: model.controller,
+                                    count: pages.length,
+                                    effect: ScrollingDotsEffect(
+                                      activeStrokeWidth: 2.6,
+                                      activeDotScale: 1.3,
+                                      activeDotColor:
+                                          Theme.of(context).primaryColorDark,
+                                      dotColor: Theme.of(context)
                                           .primaryColorDark
                                           .withOpacity(0.6),
-                                      activeColor:
-                                          Theme.of(context).primaryColorDark,
-                                      size: Size(8, 8),
-                                      activeSize: Size(10, 10)),
-                                )
+                                      maxVisibleDots: 5,
+                                      radius: 8,
+                                      spacing: 10,
+                                      dotHeight: 10,
+                                      dotWidth: 10,
+                                    )),
+                                // DotsIndicator(
+                                //   dotsCount: pages.length,
+                                //   position: currentStep!.toDouble(),
+                                //   decorator: DotsDecorator(
+                                //       color: Theme.of(context)
+                                //           .primaryColorDark
+                                //           .withOpacity(0.6),
+                                //       activeColor:
+                                //           Theme.of(context).primaryColorDark,
+                                //       size: Size(8, 8),
+                                //       activeSize: Size(10, 10)),
+                                // )
                               ],
                             ),
                           )
@@ -260,7 +249,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                     .bodyText1!
                                                                     .color!)),
                                                         child: Text(
-                                                          "Confirm",
+                                                          S.of(context).confirm,
                                                           style: TextStyle(
                                                               color: Theme.of(
                                                                       context)
@@ -284,8 +273,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                   children: [
                                                     Text(
                                                       currentStep == 1
-                                                          ? "Debit Card\ndelivered"
-                                                          : "You joined \nblink",
+                                                          ? S
+                                                              .of(context)
+                                                              .debitCardDelivered
+                                                          : S
+                                                              .of(context)
+                                                              .joinedBlink,
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -450,8 +443,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 children: [
                                                   Text(
                                                     currentStep != 1
-                                                        ? "Debit Card\nactivated."
-                                                        : "Credit Card\nactivated.",
+                                                        ? S
+                                                            .of(context)
+                                                            .debitCardActivated
+                                                        : S
+                                                            .of(context)
+                                                            .creditCardActivated,
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w600,
@@ -479,7 +476,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 child: Column(
                                                   children: [
                                                     Text(
-                                                      "Blink was\nborn",
+                                                      S.of(context).blinkBorn,
                                                       style: TextStyle(
                                                           fontWeight:
                                                               FontWeight.w600,

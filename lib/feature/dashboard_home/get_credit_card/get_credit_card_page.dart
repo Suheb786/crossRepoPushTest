@@ -11,7 +11,8 @@ class GetCreditCardPage extends BasePage<GetCreditCardViewModel> {
 }
 
 class GetCreditCardPageState
-    extends BaseStatefulPage<GetCreditCardViewModel, GetCreditCardPage> {
+    extends BaseStatefulPage<GetCreditCardViewModel, GetCreditCardPage>
+    with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
     return getCreditCardViewModelProvider;
@@ -23,7 +24,16 @@ class GetCreditCardPageState
   }
 
   @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
   Widget buildView(BuildContext context, GetCreditCardViewModel model) {
     return GetCreditCardPageView(provideBase());
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
