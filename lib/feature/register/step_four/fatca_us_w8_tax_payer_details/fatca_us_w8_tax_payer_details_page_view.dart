@@ -13,7 +13,6 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_payer_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/register/app_switch_label_widget.dart';
-import 'package:neo_bank/ui/molecules/register/declaration_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -46,11 +45,9 @@ class FatcaUSW8TaxPayersDetailsPageView
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       ProviderScope.containerOf(context)
-                          .read(registerViewModelProvider)
-                          .registrationStepsController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                          .read(registerStepFourViewModelProvider)
+                          .registrationStepFourPageController
+                          .jumpToPage(7);
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -92,6 +89,8 @@ class FatcaUSW8TaxPayersDetailsPageView
                                   child: SingleChildScrollView(
                                     physics: ClampingScrollPhysics(),
                                     child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      mainAxisSize: MainAxisSize.max,
                                       children: [
                                         AppTextField(
                                           labelText:
@@ -136,21 +135,83 @@ class FatcaUSW8TaxPayersDetailsPageView
                                           dataBuilder: (context, isVisible) {
                                             return Visibility(
                                               visible: isVisible!,
-                                              child: AppTextField(
-                                                labelText: S
-                                                    .of(context)
-                                                    .usIDNumber
-                                                    .toUpperCase(),
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
-                                                controller: model
-                                                    .identificationNumberController,
-                                                key: model
-                                                    .identificationNumberKey,
-                                                inputAction: TextInputAction.go,
-                                                onChanged: (value) {
-                                                  model.isValid();
-                                                },
+                                              child: Column(
+                                                children: [
+                                                  AppTextField(
+                                                    labelText: S
+                                                        .of(context)
+                                                        .usIDNumber
+                                                        .toUpperCase(),
+                                                    hintText: S
+                                                        .of(context)
+                                                        .pleaseEnter,
+                                                    controller: model
+                                                        .identificationNumberController,
+                                                    key: model
+                                                        .identificationNumberKey,
+                                                    inputAction:
+                                                        TextInputAction.go,
+                                                    labelIcon: () {
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 4.0),
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            ///TODO:Navigate to us tax identification number page
+                                                          },
+                                                          child: AppSvg.asset(
+                                                              AssetUtils.info,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .primaryColorDark),
+                                                        ),
+                                                      );
+                                                    },
+                                                    onChanged: (value) {
+                                                      model.isValid();
+                                                    },
+                                                  ),
+                                                  SizedBox(
+                                                    height: 16,
+                                                  ),
+                                                  AppTextField(
+                                                    labelText: S
+                                                        .of(context)
+                                                        .referenceNumber,
+                                                    hintText: S
+                                                        .of(context)
+                                                        .pleaseEnter,
+                                                    controller: model
+                                                        .referenceNumberController,
+                                                    key: model
+                                                        .referenceNumberKey,
+                                                    inputAction:
+                                                        TextInputAction.go,
+                                                    labelIcon: () {
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 4.0),
+                                                        child: InkWell(
+                                                          onTap: () {
+                                                            ///TODO:Navigate to us reference page
+                                                          },
+                                                          child: AppSvg.asset(
+                                                              AssetUtils.info,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .primaryColorDark),
+                                                        ),
+                                                      );
+                                                    },
+                                                    onChanged: (value) {
+                                                      model.isValid();
+                                                    },
+                                                  ),
+                                                ],
                                               ),
                                             );
                                           },
@@ -161,8 +222,10 @@ class FatcaUSW8TaxPayersDetailsPageView
                                           dataBuilder: (context, isActive) {
                                             return Padding(
                                               padding: const EdgeInsets.only(
-                                                  top: 32.0),
+                                                  top: 24.0),
                                               child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
                                                 children: [
                                                   AppSwitchLabelWidget(
                                                     label: S
@@ -176,8 +239,31 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                       model
                                                           .updateTaxTreatyBenefitsValue(
                                                               value);
+                                                      model.isValid();
                                                     },
                                                     isActive: isActive,
+                                                  ),
+                                                  SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  InkWell(
+                                                    onTap: () {
+                                                      ///TODO:Navigate to info of what is Tax treaty Benefits
+                                                    },
+                                                    child: Text(
+                                                      S
+                                                          .of(context)
+                                                          .whatIsTaxTreatyBenefits,
+                                                      style: TextStyle(
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color,
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
                                                   ),
                                                   SizedBox(
                                                     height: 16,
@@ -241,18 +327,40 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                         AppTextField(
                                                           labelText: S
                                                               .of(context)
-                                                              .usIDNumber
+                                                              .provisionClaim
+                                                              .toUpperCase(),
+                                                          hintText: S
+                                                              .of(context)
+                                                              .pleaseSelect,
+                                                          controller: model
+                                                              .provisionClaimController,
+                                                          key: model
+                                                              .provisionClaimKey,
+                                                          inputType:
+                                                              TextInputType
+                                                                  .text,
+                                                          onChanged: (value) {
+                                                            model.isValid();
+                                                          },
+                                                        ),
+                                                        SizedBox(
+                                                          height: 16,
+                                                        ),
+                                                        AppTextField(
+                                                          labelText: S
+                                                              .of(context)
+                                                              .treatyClaimRate
                                                               .toUpperCase(),
                                                           hintText: S
                                                               .of(context)
                                                               .pleaseEnter,
                                                           controller: model
-                                                              .beneficialIdentificationNumberController,
+                                                              .treatyClaimRateController,
                                                           key: model
-                                                              .beneficialIdentificationNumberKey,
-                                                          inputAction:
-                                                              TextInputAction
-                                                                  .go,
+                                                              .treatyClaimRateKey,
+                                                          inputType:
+                                                              TextInputType
+                                                                  .text,
                                                           onChanged: (value) {
                                                             model.isValid();
                                                           },
@@ -314,70 +422,30 @@ class FatcaUSW8TaxPayersDetailsPageView
                                             );
                                           },
                                         ),
+
                                       ],
                                     ),
                                   ),
                                 ),
-                                Column(
-                                  children: [
-                                    AppStreamBuilder<bool>(
-                                      stream: model.declarationSelectedStream,
-                                      initialData: false,
-                                      dataBuilder: (context, isSelected) {
-                                        return DeclarationWidget(
-                                          isSelected: isSelected,
-                                          title1: S.of(context).iConfirmThatMy,
-                                          title2: S.of(context).fatca,
-                                          title3: S
-                                              .of(context)
-                                              .declarationIsTrueAndCorrect,
-                                          onTap: () {
-                                            model.updateDeclarationSelection(
-                                                !(isSelected!));
-                                            model.isValid();
-                                          },
-                                        );
-                                      },
-                                    ),
-                                    AppStreamBuilder<bool>(
-                                      stream: model
-                                          .verifyInfoDeclarationSelectedStream,
-                                      initialData: false,
-                                      dataBuilder: (context, isSelected) {
-                                        return DeclarationWidget(
-                                          isSelected: isSelected,
-                                          title1: S
-                                              .of(context)
-                                              .verifyInformationDirectlyOrUsingThirdPartyAgentDesc,
-                                          onTap: () {
-                                            model
-                                                .updateVerifyInfoDeclarationSelection(
-                                                    !(isSelected!));
-                                            model.isValid();
-                                          },
-                                        );
-                                      },
-                                    ),
-                                    Center(
-                                      child: Padding(
-                                        padding: EdgeInsets.only(top: 32),
-                                        child: AppStreamBuilder<bool>(
-                                            stream:
-                                                model.allFieldValidatorStream,
-                                            initialData: false,
-                                            dataBuilder: (context, isValid) {
-                                              return (isValid!)
-                                                  ? AnimatedButton(
-                                                      buttonText: S
-                                                          .of(context)
-                                                          .swipeToProceed,
-                                                      buttonHeight: 50,
-                                                    )
-                                                  : Container();
-                                            }),
-                                      ),
-                                    ),
-                                  ],
+                                Center(
+                                  child: AppStreamBuilder<bool>(
+                                    stream:
+                                    model.allFieldValidatorStream,
+                                    initialData: false,
+                                    dataBuilder: (context, isValid) {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 16.0),
+                                        child: Visibility(
+                                          visible: isValid!,
+                                          child: AnimatedButton(
+                                              buttonText: S
+                                                  .of(context)
+                                                  .swipeToProceed),
+                                        ),
+                                      );
+                                    },
+                                  ),
                                 )
                               ],
                             )),

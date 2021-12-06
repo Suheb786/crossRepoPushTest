@@ -14,7 +14,10 @@ class FatcaUSRelevantW8AddressDetailsPage
 
 class FatcaUSRelevantW8AddressDetailsPageState extends BaseStatefulPage<
     FatcaUSRelevantW8AddressDetailsPageViewModel,
-    FatcaUSRelevantW8AddressDetailsPage> {
+    FatcaUSRelevantW8AddressDetailsPage> with AutomaticKeepAliveClientMixin {
+  FatcaUSRelevantW8AddressDetailsPageState()
+      : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return fatcaUSRelevantW8AddressPageViewModelProvider;
@@ -30,4 +33,13 @@ class FatcaUSRelevantW8AddressDetailsPageState extends BaseStatefulPage<
       FatcaUSRelevantW8AddressDetailsPageViewModel model) {
     return FatcaUSRelevantW8AddressDetailsPageView(provideBase());
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

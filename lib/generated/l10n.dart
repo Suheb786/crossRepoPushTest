@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -2151,10 +2150,10 @@ class S {
     );
   }
 
-  /// `Permanent residence address Line`
+  /// `Permanent residence address`
   String get permanentResidentAddressLine {
     return Intl.message(
-      'Permanent residence address Line',
+      'Permanent residence address',
       name: 'permanentResidentAddressLine',
       desc: '',
       args: [],
@@ -2251,10 +2250,10 @@ class S {
     );
   }
 
-  /// `Select Post Code`
+  /// `Enter Post Code`
   String get invalidPostCode {
     return Intl.message(
-      'Select Post Code',
+      'Enter Post Code',
       name: 'invalidPostCode',
       desc: '',
       args: [],
@@ -4346,6 +4345,156 @@ class S {
     return Intl.message(
       'ACCOUNT DETAILS',
       name: 'accountDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MAILING address Line`
+  String get mailingAddressLine {
+    return Intl.message(
+      'MAILING address Line',
+      name: 'mailingAddressLine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter mailing address`
+  String get enterMailingAddress {
+    return Intl.message(
+      'Enter mailing address',
+      name: 'enterMailingAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What is Claim of Tax Treaty Benefits?`
+  String get whatIsTaxTreatyBenefits {
+    return Intl.message(
+      'What is Claim of Tax Treaty Benefits?',
+      name: 'whatIsTaxTreatyBenefits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REFERENCE NUMBER`
+  String get referenceNumber {
+    return Intl.message(
+      'REFERENCE NUMBER',
+      name: 'referenceNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter reference number`
+  String get invalidReferenceNumber {
+    return Intl.message(
+      'Enter reference number',
+      name: 'invalidReferenceNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `provisions CLAIM of Article & paragraph`
+  String get provisionClaim {
+    return Intl.message(
+      'provisions CLAIM of Article & paragraph',
+      name: 'provisionClaim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `treaty identified to Claim Rate (%)`
+  String get treatyClaimRate {
+    return Intl.message(
+      'treaty identified to Claim Rate (%)',
+      name: 'treatyClaimRate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter provision claim article and paragraph`
+  String get invalidProvisionClaim {
+    return Intl.message(
+      'Enter provision claim article and paragraph',
+      name: 'invalidProvisionClaim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter treaty identified to claim rate`
+  String get invalidTreatyClaimRate {
+    return Intl.message(
+      'Enter treaty identified to claim rate',
+      name: 'invalidTreatyClaimRate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We need your consent by uploading the signature`
+  String get consentForSignatureUpload {
+    return Intl.message(
+      'We need your consent by uploading the signature',
+      name: 'consentForSignatureUpload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please upload signature`
+  String get emptySignature {
+    return Intl.message(
+      'Please upload signature',
+      name: 'emptySignature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Signature`
+  String get yourSignature {
+    return Intl.message(
+      'Your Signature',
+      name: 'yourSignature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Simply sign on a plain white paper and upload it as a declaration of your FATCA information`
+  String get signatureUploadDes {
+    return Intl.message(
+      'Simply sign on a plain white paper and upload it as a declaration of your FATCA information',
+      name: 'signatureUploadDes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Signature`
+  String get uploadSignature {
+    return Intl.message(
+      'Upload Signature',
+      name: 'uploadSignature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OTHER DETAILS`
+  String get otherDetails {
+    return Intl.message(
+      'OTHER DETAILS',
+      name: 'otherDetails',
       desc: '',
       args: [],
     );

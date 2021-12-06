@@ -14,6 +14,7 @@ import 'package:neo_bank/feature/register/step_five/review_application/review_ap
 import 'package:neo_bank/feature/register/step_five/schedule_video_call/schedule_video_call_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/upload_documents/upload_documents_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/video_call_info/video_call_info_model.dart';
+import 'package:neo_bank/feature/register/step_four/fatca_signature/fatca_signature_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8/fatca_us_relevant_w8_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w9/fatca_us_relevant_w9_page_view_model.dart';
@@ -362,4 +363,13 @@ final calendarDialogViewModelProvider =
 final yearMonthDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<YearMonthDialogViewModel>(
   (ref) => YearMonthDialogViewModel(),
+);
+
+///fatca signaturepage view model provider
+final fatcaSignaturePageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<FatcaSignaturePageViewModel>(
+  (ref) => FatcaSignaturePageViewModel(
+    ref.read(uploadSignatureUseCaseProvider),
+    ref.read(uploadDocumentUseCaseProvider),
+  ),
 );

@@ -158,6 +158,8 @@ class ErrorParser {
         return localisedHelper.invalidIncomeType;
       case ErrorType.INVALID_EXPLANATION:
         return localisedHelper.invalidExplanation;
+      case ErrorType.INVALID_REFERENCE_NO:
+        return localisedHelper.invalidReferenceNumber;
       case ErrorType.INVALID_PREFERRED_DATE:
         return localisedHelper.invalidPreferredDate;
       case ErrorType.INVALID_PREFERRED_TIME:
@@ -248,6 +250,22 @@ class ErrorParser {
         return localisedHelper.accountLocked;
       case ErrorType.IMAGE_UPLOAD_ERROR:
         return localisedHelper.pleaseProvideSelfie;
+      case ErrorType.DIFFERENT_ADDRESS_LINE:
+        return localisedHelper.enterMailingAddress;
+      case ErrorType.DIFFERENT_COUNTRY:
+        return localisedHelper.invalidCountry;
+      case ErrorType.DIFFERENT_STATE:
+        return localisedHelper.invalidState;
+      case ErrorType.DIFFERENT_CITY:
+        return localisedHelper.invalidCity;
+      case ErrorType.DIFFERENT_POSTCODE:
+        return localisedHelper.invalidPostCode;
+      case ErrorType.INVALID_TREATY_CLAIM_RATE:
+        return localisedHelper.invalidProvisionClaim;
+      case ErrorType.INVALID_PROVISION_CLAIM:
+        return localisedHelper.invalidTreatyClaimRate;
+      case ErrorType.INVALID_SIGNATURE:
+        return localisedHelper.emptySignature;
 
       default:
         return "";
