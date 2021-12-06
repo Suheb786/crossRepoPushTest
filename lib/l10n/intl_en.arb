@@ -474,5 +474,6 @@
   "exemptionFromFatcaReportingCode": "Exemption from FATCA Reporting Code",
   "usTaxPayerIdentificationNumber": "U.S. Tax Payer\nIdentification Number ",
   "referenceNumberSmall": "Reference Number",
-  "claimOfTaxTreatyBenefits": "Claim of Tax Treaty Benefits"
+  "claimOfTaxTreatyBenefits": "Claim of Tax Treaty Benefits",
+  "genericError": "Something went wrong. Please try again."
 }

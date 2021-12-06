@@ -323,7 +323,8 @@ class UserRepositoryImpl extends UserRepository {
               firstName: r.firstName,
               middleName: r.fathersName,
               familyName: r.lastName,
-              idNumber: r.documentNumber!.isNotEmpty ? r.documentNumber : '',
+              idNumber:
+                  r.personalIdNumber!.isNotEmpty ? r.personalIdNumber : '',
               dob: r.dateOfBirth != null
                   ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
                       r.dateOfBirth!.day!)

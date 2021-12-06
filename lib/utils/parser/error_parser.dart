@@ -9,27 +9,27 @@ class ErrorParser {
       {AppError? error, required S localisedHelper}) {
     switch (error?.type) {
       case ErrorType.IOEXCEPTION:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.UI:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.NETWORK:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.NET_SERVER_MESSAGE:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.NET_NO_INTERNET_CONNECTION:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.DATABASE:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.DATABASE_NOT_SUPPORTED:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.DB_ERROR1:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.DB_USER_NOT_FOUND:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.INVALID_PIN:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.NO_DOCUMENT_FOUND:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.INVALID_MOBILE:
         return localisedHelper.enterValidMobileNumber;
       case ErrorType.INVALID_OTP:

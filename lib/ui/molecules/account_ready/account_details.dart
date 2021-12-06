@@ -3,9 +3,9 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
 class AccountDetails extends StatelessWidget {
-  String? title;
-  String? value;
-  bool? showIcon;
+  final String? title;
+  final String? value;
+  final bool? showIcon;
 
   AccountDetails(
       {required this.title, required this.value, this.showIcon = false});

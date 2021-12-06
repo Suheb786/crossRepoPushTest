@@ -173,14 +173,6 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                     label: S
                                                         .of(context)
                                                         .eightCharacters,
-                                                    backgroundColor: !model
-                                                            .minimumEightCharacters
-                                                        ? Theme.of(context)
-                                                            .inputDecorationTheme
-                                                            .hintStyle!
-                                                            .color
-                                                        : Theme.of(context)
-                                                            .primaryColorDark,
                                                     isValid: model
                                                         .minimumEightCharacters,
                                                   ),
@@ -188,41 +180,17 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                                                     label: S
                                                         .of(context)
                                                         .oneUpperCaseLetter,
-                                                    backgroundColor: !model
-                                                            .hasUpperCase
-                                                        ? Theme.of(context)
-                                                            .inputDecorationTheme
-                                                            .hintStyle!
-                                                            .color
-                                                        : Theme.of(context)
-                                                            .primaryColorDark,
                                                     isValid: model.hasUpperCase,
                                                   ),
                                                   PasswordHintWidget(
                                                     label:
                                                         S.of(context).oneNumber,
-                                                    backgroundColor: !model
-                                                            .containsDigit
-                                                        ? Theme.of(context)
-                                                            .inputDecorationTheme
-                                                            .hintStyle!
-                                                            .color
-                                                        : Theme.of(context)
-                                                            .primaryColorDark,
                                                     isValid:
                                                         model.containsDigit,
                                                   ),
                                                   PasswordHintWidget(
                                                     label:
                                                         S.of(context).oneSymbol,
-                                                    backgroundColor: !model
-                                                            .hasSymbol
-                                                        ? Theme.of(context)
-                                                            .inputDecorationTheme
-                                                            .hintStyle!
-                                                            .color
-                                                        : Theme.of(context)
-                                                            .primaryColorDark,
                                                     isValid: model.hasSymbol,
                                                   ),
                                                 ],
