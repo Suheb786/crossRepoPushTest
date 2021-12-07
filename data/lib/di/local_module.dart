@@ -1,5 +1,7 @@
 import 'package:data/db/floor/database_properties.dart';
 import 'package:data/db/floor/floor_db_service.dart';
+import 'package:data/di/repository_module.dart';
+import 'package:data/entity/local/base/crypto_util.dart';
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/local_auth/bio_matric/bio_metric_service.dart';
 import 'package:data/source/country/country_datasource.dart';
@@ -51,3 +53,9 @@ var homeAddressDialogDataSourceProvider =
 
 var deviceInfoHelperProvider =
     Provider<DeviceInfoHelper>((ref) => DeviceInfoHelper());
+
+///cryptoUtil provider
+final crytoUtilProvider = Provider<CryptoUtil>(
+  (ref) => CryptoUtil(repository: ref.read(userRepoProvider)),
+);
+

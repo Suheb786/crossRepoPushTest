@@ -15,7 +15,6 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -76,9 +75,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                       .read(appViewModel)
                                       .getToken();
                                   //model.checkKycStatus();
-                                  CountryDialog.show(context);
-                                  // Navigator.pushReplacementNamed(
-                                  //     context, RoutePaths.Registration);
+                                  Navigator.pushReplacementNamed(
+                                      context, RoutePaths.Dashboard);
                                   model.emailKey.currentState!.isValid = true;
                                 } else if (data.status == Status.ERROR) {
                                   model.emailKey.currentState!.isValid = false;

@@ -100,57 +100,69 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                       textColor: Theme.of(context).accentColor,
                     ),
                   ),
-                  AppStreamBuilder<Resource<GenerateKeyPairResponse>>(
-                    stream: model.generateKeyPairStream,
+                  AppStreamBuilder<Resource<bool>>(
+                    stream: model.enableBiometricStream,
                     initialData: Resource.none(),
-                    onData: (data) {
-                      if (data.status == Status.SUCCESS) {
-                        ///TODO: call enable biometric
+                    onData: (data){
+                      if(data.status==Status.SUCCESS){
+
                       }
                     },
-                    dataBuilder: (context, keyPair) {
-                      return AppStreamBuilder<Resource<bool>>(
-                        stream: model.authenticateBioMetricStream,
+                    dataBuilder: (context, bioMetricResponse) {
+                      return AppStreamBuilder<
+                          Resource<GenerateKeyPairResponse>>(
+                        stream: model.generateKeyPairStream,
+                        initialData: Resource.none(),
                         onData: (data) {
-                          // if(data.status==Status.LOADING){
-                          //   model.generateKeyPair();
-                          // }
                           if (data.status == Status.SUCCESS) {
-                            print('success');
-                            model.generateKeyPair();
+                            model.enableBiometric();
                           }
                         },
-                        initialData: Resource.none(),
-                        dataBuilder: (context, data) =>
-                            AppStreamBuilder<Resource<bool>>(
-                          stream: model.checkBioMetricStream,
-                          initialData: Resource.none(),
-                          onData: (data) {
-                            if (data.status == Status.SUCCESS) {
-                              if (data.data ?? false) {
-                                BiometricLoginDialog.show(context,
-                                    mayBeLater: () {
-                                  Navigator.pop(context);
-                                }, enableBioMetric: () {
-                                  model.authenticateBioMetric(
-                                      title: S
-                                          .of(context)
-                                          .enableBiometricLoginTitle,
-                                      localisedReason: Platform.isAndroid
-                                          ? S
-                                              .of(context)
-                                              .enableBiometricLoginDescriptionAndroid
-                                          : S
-                                              .of(context)
-                                              .enableBiometricLoginDescriptionIos);
-                                });
+                        dataBuilder: (context, keyPair) {
+                          return AppStreamBuilder<Resource<bool>>(
+                            stream: model.authenticateBioMetricStream,
+                            onData: (data) {
+                              if (data.status == Status.LOADING) {
+                                model.generateKeyPair();
                               }
-                            }
-                          },
-                          dataBuilder: (context, data) {
-                            return Container();
-                          },
-                        ),
+                              if (data.status == Status.SUCCESS) {
+                                print('success');
+                                model.generateKeyPair();
+                              }
+                            },
+                            initialData: Resource.none(),
+                            dataBuilder: (context, data) =>
+                                AppStreamBuilder<Resource<bool>>(
+                              stream: model.checkBioMetricStream,
+                              initialData: Resource.none(),
+                              onData: (data) {
+                                if (data.status == Status.SUCCESS) {
+                                  if (data.data ?? false) {
+                                    BiometricLoginDialog.show(context,
+                                        mayBeLater: () {
+                                      Navigator.pop(context);
+                                    }, enableBioMetric: () {
+                                      model.authenticateBioMetric(
+                                          title: S
+                                              .of(context)
+                                              .enableBiometricLoginTitle,
+                                          localisedReason: Platform.isAndroid
+                                              ? S
+                                                  .of(context)
+                                                  .enableBiometricLoginDescriptionAndroid
+                                              : S
+                                                  .of(context)
+                                                  .enableBiometricLoginDescriptionIos);
+                                    });
+                                  }
+                                }
+                              },
+                              dataBuilder: (context, data) {
+                                return Container();
+                              },
+                            ),
+                          );
+                        },
                       );
                     },
                   )

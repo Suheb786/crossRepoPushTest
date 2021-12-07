@@ -2,6 +2,7 @@ import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.d
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
+import 'package:domain/usecase/user/enable_biometric_usecase.dart';
 import 'package:domain/usecase/user/generate_key_pair_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -16,6 +17,7 @@ class DashboardPageViewModel extends BasePageViewModel {
   final CheckBioMetricSupportUseCase _checkBioMetricSupportUseCase;
   final AuthenticateBioMetricUseCase _authenticateBioMetricUseCase;
   final GenerateKeyPairUseCase _generateKeyPairUseCase;
+  final EnableBiometricUseCase _enableBiometricUseCase;
 
   /// logout request holder
   PublishSubject<LogoutUseCaseParams> _logoutRequest = PublishSubject();
@@ -61,11 +63,23 @@ class DashboardPageViewModel extends BasePageViewModel {
   Stream<Resource<GenerateKeyPairResponse>> get generateKeyPairStream =>
       _generateKeyPairResponse.stream;
 
+  /// enable biometric request
+  PublishSubject<EnableBiometricUseCaseParams> _enableBiometricRequest =
+      PublishSubject();
+
+  /// enable biometric response
+  PublishSubject<Resource<bool>> _enableBiometricResponse = PublishSubject();
+
+  /// enable biometric response stream
+  Stream<Resource<bool>> get enableBiometricStream =>
+      _enableBiometricResponse.stream;
+
   DashboardPageViewModel(
       this._logoutUseCase,
       this._checkBioMetricSupportUseCase,
       this._authenticateBioMetricUseCase,
-      this._generateKeyPairUseCase) {
+      this._generateKeyPairUseCase,
+      this._enableBiometricUseCase) {
     _logoutRequest.listen((value) {
       RequestManager(value,
               createCall: () => _logoutUseCase.execute(params: value))
@@ -110,6 +124,19 @@ class DashboardPageViewModel extends BasePageViewModel {
       });
     });
 
+    _enableBiometricRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _enableBiometricUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _enableBiometricResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
     _checkBioMetricRequest.add(
       CheckBioMetricSupportUseCaseParams(),
     );
@@ -131,6 +158,10 @@ class DashboardPageViewModel extends BasePageViewModel {
     _generateKeyPairRequest.safeAdd(GenerateKeyPairUseCaseParams());
   }
 
+  void enableBiometric() {
+    _enableBiometricRequest.safeAdd(EnableBiometricUseCaseParams());
+  }
+
   @override
   void dispose() {
     _logoutRequest.close();
@@ -141,6 +172,8 @@ class DashboardPageViewModel extends BasePageViewModel {
     _authenticateBioMetricResponse.close();
     _generateKeyPairRequest.close();
     _generateKeyPairResponse.close();
+    _enableBiometricRequest.close();
+    _enableBiometricResponse.close();
     super.dispose();
   }
 }

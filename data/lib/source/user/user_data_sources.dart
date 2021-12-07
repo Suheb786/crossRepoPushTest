@@ -131,6 +131,8 @@ abstract class UserRemoteDS {
   Future<bool> disableFingerPrint();
 
   Future<HttpResponse<GenerateKeyPairResponseEntity>> generateKeyPair();
+
+  Future<bool> enableBiometric();
 }
 
 abstract class UserLocalDS {

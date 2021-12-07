@@ -525,4 +525,15 @@ class UserRepositoryImpl extends UserRepository {
       (r) => Right(r.data.transform()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> enableBiometric() async {
+    final result = await safeApiCall(
+      _remoteDS.enableBiometric(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(true),
+    );
+  }
 }

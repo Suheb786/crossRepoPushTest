@@ -637,6 +637,21 @@ class _ApiService implements ApiService {
     return httpResponse;
   }
 
+  @override
+  Future<bool> enableBiometric(enableBiometricRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(enableBiometricRequestEntity.toJson());
+    final _result = await _dio.fetch<bool>(_setStreamType<bool>(
+        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+            .compose(_dio.options, '/auth/EnableBioMetric',
+                queryParameters: queryParameters, data: _data)
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = _result.data!;
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

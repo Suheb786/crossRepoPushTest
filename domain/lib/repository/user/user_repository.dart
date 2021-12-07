@@ -166,4 +166,7 @@ abstract class UserRepository {
 
   Future<Either<BaseError, bool>> authenticateBioMetric(
       String title, String localisedReason);
+
+  ///enable biometric
+  Future<Either<NetworkError, bool>> enableBiometric();
 }

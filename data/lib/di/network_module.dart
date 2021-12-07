@@ -61,7 +61,10 @@ final apiServiceProvider = Provider<ApiService>(
 
 /// User remoteDS provider
 final userRemoteDSProvider = Provider<UserRemoteDS>((ref) => UserRemoteDSImpl(
-    ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+    ref.read(apiServiceProvider),
+    ref.read(deviceInfoHelperProvider),
+    ref.read(userLocalDSProvider),
+    ref.read(crytoUtilProvider)));
 
 final registerRemoteDS = Provider<RegisterRemoteDataSource>(
   (ref) => RegisterRemoteDataSourceImpl(),
