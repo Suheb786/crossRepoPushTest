@@ -98,6 +98,14 @@ class AddNumberViewModel extends BasePageViewModel {
   Stream<Resource<AllowedCountryListResponse>> get getAllowedCountryStream =>
       _getAllowedCountryResponse.stream;
 
+  ///selected country response holder
+  BehaviorSubject<CountryData> _selectedCountryResponse =
+      BehaviorSubject.seeded(CountryData());
+
+  ///get allowed code country response stream
+  Stream<CountryData> get getSelectedCountryStream =>
+      _selectedCountryResponse.stream;
+
   AddNumberViewModel(
       this._registerNumberUseCase,
       this._fetchCountryByCodeUseCase,
@@ -139,6 +147,10 @@ class AddNumberViewModel extends BasePageViewModel {
         _getAllowedCountryResponse.safeAdd(event);
         if (event.status == Status.SUCCESS) {
           countryData = event.data!.contentData!.countryData!.first;
+          setSelectedCountry(countryData);
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+          showErrorState();
         }
       });
     });
@@ -252,6 +264,10 @@ class AddNumberViewModel extends BasePageViewModel {
     _getAllowedCountryRequest.safeAdd(GetAllowedCodeCountryListUseCaseParams());
   }
 
+  void setSelectedCountry(CountryData data) {
+    _selectedCountryResponse.safeAdd(data);
+  }
+
   @override
   void dispose() {
     _registerNumberRequest.close();
@@ -267,6 +283,7 @@ class AddNumberViewModel extends BasePageViewModel {
     _checkUserMobileResponse.close();
     _getAllowedCountryRequest.close();
     _getAllowedCountryResponse.close();
+    _selectedCountryResponse.close();
     super.dispose();
   }
 }

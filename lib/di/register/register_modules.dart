@@ -44,6 +44,7 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_inco
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/home_address_dialog/home_address_dialog_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/mobile_number_dialog/mobile_number_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_account_opening/purpose_of_account_opening_dialog_view_model.dart';
@@ -375,3 +376,8 @@ final fatcaSignaturePageViewModelProvider =
     ref.read(uploadDocumentUseCaseProvider),
   ),
 );
+
+///mobile number dialog view model provider
+final mobileNumberDialogViwModelProvider =
+    ChangeNotifierProvider.autoDispose<MobileNumberDialogViewModel>(
+        (ref) => MobileNumberDialogViewModel());

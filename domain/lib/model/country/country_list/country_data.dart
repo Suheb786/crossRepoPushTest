@@ -1,27 +1,27 @@
 class CountryData {
-  CountryData({
-    this.isoCode3,
-    this.score,
-    this.isoCode,
-    this.phoneCode:"",
-    this.countryName:"",
-    this.isAllowedCountry,
-    this.nationality,
-    this.gfxCode,
-    this.gfxIntCode,
-    this.isRestrictedNationality,
-    this.isGccCountry,
-    this.isMobileAllowed,
-    this.crossAllowed,
-    this.crossIdAllowed,
-    this.mobileMax,
-    this.mobileMin,
-    this.idForensic,
-    this.passportScan,
-    this.isAllowedFatca,
-    this.isNationalityAllowed,
-    this.isIssuerAllowed,
-  });
+  CountryData(
+      {this.isoCode3,
+      this.score,
+      this.isoCode,
+      this.phoneCode: "",
+      this.countryName: "",
+      this.isAllowedCountry,
+      this.nationality,
+      this.gfxCode,
+      this.gfxIntCode,
+      this.isRestrictedNationality,
+      this.isGccCountry,
+      this.isMobileAllowed,
+      this.crossAllowed,
+      this.crossIdAllowed,
+      this.mobileMax,
+      this.mobileMin,
+      this.idForensic,
+      this.passportScan,
+      this.isAllowedFatca,
+      this.isNationalityAllowed,
+      this.isIssuerAllowed,
+      this.isSelected: false});
 
   final String? isoCode3;
   final dynamic? score;
@@ -44,4 +44,5 @@ class CountryData {
   final bool? isAllowedFatca;
   final bool? isNationalityAllowed;
   final bool? isIssuerAllowed;
+  bool isSelected;
 }
