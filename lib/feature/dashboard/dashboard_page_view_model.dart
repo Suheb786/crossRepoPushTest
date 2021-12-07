@@ -1,6 +1,8 @@
+import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
+import 'package:domain/usecase/user/generate_key_pair_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -13,6 +15,7 @@ class DashboardPageViewModel extends BasePageViewModel {
   final LogoutUseCase _logoutUseCase;
   final CheckBioMetricSupportUseCase _checkBioMetricSupportUseCase;
   final AuthenticateBioMetricUseCase _authenticateBioMetricUseCase;
+  final GenerateKeyPairUseCase _generateKeyPairUseCase;
 
   /// logout request holder
   PublishSubject<LogoutUseCaseParams> _logoutRequest = PublishSubject();
@@ -46,8 +49,23 @@ class DashboardPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get authenticateBioMetricStream =>
       _authenticateBioMetricResponse.stream;
 
-  DashboardPageViewModel(this._logoutUseCase,
-      this._checkBioMetricSupportUseCase, this._authenticateBioMetricUseCase) {
+  /// generate key pair request
+  PublishSubject<GenerateKeyPairUseCaseParams> _generateKeyPairRequest =
+      PublishSubject();
+
+  /// generate key pair response
+  PublishSubject<Resource<GenerateKeyPairResponse>> _generateKeyPairResponse =
+      PublishSubject();
+
+  /// generate key pair response stream
+  Stream<Resource<GenerateKeyPairResponse>> get generateKeyPairStream =>
+      _generateKeyPairResponse.stream;
+
+  DashboardPageViewModel(
+      this._logoutUseCase,
+      this._checkBioMetricSupportUseCase,
+      this._authenticateBioMetricUseCase,
+      this._generateKeyPairUseCase) {
     _logoutRequest.listen((value) {
       RequestManager(value,
               createCall: () => _logoutUseCase.execute(params: value))
@@ -76,8 +94,19 @@ class DashboardPageViewModel extends BasePageViewModel {
         createCall: () => _authenticateBioMetricUseCase.execute(params: value),
       ).asFlow().listen((event) {
         _authenticateBioMetricResponse.safeAdd(event);
+      });
+    });
 
-        ///TODO:: ADD API CALL HERE INCASE OF ENABLE TRUE
+    _generateKeyPairRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _generateKeyPairUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _generateKeyPairResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
       });
     });
 
@@ -98,6 +127,10 @@ class DashboardPageViewModel extends BasePageViewModel {
     _logoutRequest.safeAdd(LogoutUseCaseParams());
   }
 
+  void generateKeyPair() {
+    _generateKeyPairRequest.safeAdd(GenerateKeyPairUseCaseParams());
+  }
+
   @override
   void dispose() {
     _logoutRequest.close();
@@ -106,6 +139,8 @@ class DashboardPageViewModel extends BasePageViewModel {
     _checkBioMetricResponse.close();
     _authenticateBioMetricRequest.close();
     _authenticateBioMetricResponse.close();
+    _generateKeyPairRequest.close();
+    _generateKeyPairResponse.close();
     super.dispose();
   }
 }

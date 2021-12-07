@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -99,42 +100,59 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                       textColor: Theme.of(context).accentColor,
                     ),
                   ),
-                  AppStreamBuilder<Resource<bool>>(
-                    stream: model.authenticateBioMetricStream,
+                  AppStreamBuilder<Resource<GenerateKeyPairResponse>>(
+                    stream: model.generateKeyPairStream,
+                    initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
-                        print('success');
+                        ///TODO: call enable biometric
                       }
                     },
-                    initialData: Resource.none(),
-                    dataBuilder: (context, data) =>
-                        AppStreamBuilder<Resource<bool>>(
-                      stream: model.checkBioMetricStream,
-                      initialData: Resource.none(),
-                      onData: (data) {
-                        if (data.status == Status.SUCCESS) {
-                          if (data.data ?? false) {
-                            BiometricLoginDialog.show(context, mayBeLater: () {
-                              Navigator.pop(context);
-                            }, enableBioMetric: () {
-                              model.authenticateBioMetric(
-                                  title:
-                                      S.of(context).enableBiometricLoginTitle,
-                                  localisedReason: Platform.isAndroid
-                                      ? S
-                                          .of(context)
-                                          .enableBiometricLoginDescriptionAndroid
-                                      : S
-                                          .of(context)
-                                          .enableBiometricLoginDescriptionIos);
-                            });
+                    dataBuilder: (context, keyPair) {
+                      return AppStreamBuilder<Resource<bool>>(
+                        stream: model.authenticateBioMetricStream,
+                        onData: (data) {
+                          // if(data.status==Status.LOADING){
+                          //   model.generateKeyPair();
+                          // }
+                          if (data.status == Status.SUCCESS) {
+                            print('success');
+                            model.generateKeyPair();
                           }
-                        }
-                      },
-                      dataBuilder: (context, data) {
-                        return Container();
-                      },
-                    ),
+                        },
+                        initialData: Resource.none(),
+                        dataBuilder: (context, data) =>
+                            AppStreamBuilder<Resource<bool>>(
+                          stream: model.checkBioMetricStream,
+                          initialData: Resource.none(),
+                          onData: (data) {
+                            if (data.status == Status.SUCCESS) {
+                              if (data.data ?? false) {
+                                BiometricLoginDialog.show(context,
+                                    mayBeLater: () {
+                                  Navigator.pop(context);
+                                }, enableBioMetric: () {
+                                  model.authenticateBioMetric(
+                                      title: S
+                                          .of(context)
+                                          .enableBiometricLoginTitle,
+                                      localisedReason: Platform.isAndroid
+                                          ? S
+                                              .of(context)
+                                              .enableBiometricLoginDescriptionAndroid
+                                          : S
+                                              .of(context)
+                                              .enableBiometricLoginDescriptionIos);
+                                });
+                              }
+                            }
+                          },
+                          dataBuilder: (context, data) {
+                            return Container();
+                          },
+                        ),
+                      );
+                    },
                   )
                 ],
               ),

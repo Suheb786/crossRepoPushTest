@@ -11,6 +11,7 @@ import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/disable_finger_print_usecase.dart';
 import 'package:domain/usecase/user/enable_finger_print_usecase.dart';
 import 'package:domain/usecase/user/enter_address_usecase.dart';
+import 'package:domain/usecase/user/generate_key_pair_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
@@ -152,6 +153,14 @@ final checkBioMetricSupportUseCaseProvider =
 final authenticateBioMetricUseCaseProvider =
     Provider.autoDispose<AuthenticateBioMetricUseCase>(
   (ref) => AuthenticateBioMetricUseCase(
+    ref.read(userRepoProvider),
+  ),
+);
+
+///[GenerateKeyPairUseCase] provider
+final generateKeyPairUseCaseProvider =
+    Provider.autoDispose<GenerateKeyPairUseCase>(
+  (ref) => GenerateKeyPairUseCase(
     ref.read(userRepoProvider),
   ),
 );

@@ -10,6 +10,9 @@ class User {
   String? tokenType;
   int? expiredIn;
   bool? isExisting;
+  String? privatePEM;
+  String? publicPEM;
+  bool? isBiometricEnabled;
 
   User(
       {this.token,
@@ -22,5 +25,8 @@ class User {
       this.refreshToken,
       this.tokenType,
       this.expiredIn,
-      this.isExisting});
+      this.isExisting,
+      this.publicPEM,
+      this.privatePEM,
+      this.isBiometricEnabled: false});
 }

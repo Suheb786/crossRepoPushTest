@@ -29,6 +29,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.6"
+  args:
+    dependency: transitive
+    description:
+      name: args
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.3.0"
   asn1lib:
     dependency: transitive
     description:
@@ -204,6 +211,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  encrypt:
+    dependency: transitive
+    description:
+      name: encrypt
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.1"
   fading_edge_scrollview:
     dependency: "direct main"
     description:

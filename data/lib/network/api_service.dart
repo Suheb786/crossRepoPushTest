@@ -15,6 +15,10 @@ import 'package:data/entity/remote/bank_smart/get_account_details_response_entit
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
+import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
+import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
+import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
+import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
@@ -35,6 +39,8 @@ import 'package:data/entity/remote/user/confirm_application_data_set/confirm_app
 import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
+import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
+import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
@@ -222,4 +228,21 @@ abstract class ApiService {
   @POST("/Account/CheckAgentStatus")
   Future<HttpResponse<CheckAgentStatusResponseEntity>> checkAgentStatus(
       @Body() CheckAgentStatusRequestEntity checkAgentStatusRequestEntity);
+
+  ///get country list
+  @POST("/transfer/GetCountriesV1")
+  Future<HttpResponse<CountryListResponseEntity>> getCountryList(
+      @Body() CountryListRequestEntity countryListRequestEntity);
+
+  ///get allowed country code list
+  @POST("${NetworkProperties.BASE_ROUTER_URL}/Country/GetAllowedCode")
+  Future<HttpResponse<GetAllowedCountryResponseEntity>>
+      getAllowedCodeCountryList(
+          @Body()
+              GetAllowedCountryRequestEntity getAllowedCountryRequestEntity);
+
+  ///generate key pair
+  @POST("/auth/GenerateKeyPair")
+  Future<HttpResponse<GenerateKeyPairResponseEntity>> generateKeyPair(
+      @Body() GenerateKeyPairRequestEntity generateKeyPairRequestEntity);
 }
