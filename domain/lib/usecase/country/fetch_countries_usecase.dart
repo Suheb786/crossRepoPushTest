@@ -19,11 +19,6 @@ class FetchCountriesUseCase
   Future<Either<LocalError, List<Country>>> execute(
       {required FetchCountriesUseParams params}) {
     return _countryRepository.fetchCountries(context: params.context);
-
-    ///TODO: uncomment once gets response
-    // return _repository.fetchCountryList(
-    //   getToken: params.getToken
-    // );
   }
 }
 

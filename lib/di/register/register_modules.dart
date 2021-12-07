@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account/account_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/account_registration/account_regisration_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/fatca_crs/fatca_crs_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
@@ -120,7 +121,8 @@ final purposeOfAccountOpeningDialogViwModelProvider =
 ///get employer Country dialog view model provider
 final employerCountryDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<CountryDialogViewModel>((ref) =>
-        CountryDialogViewModel(ref.read(fetchCountriesUseCaseProvider)));
+        CountryDialogViewModel(ref.read(fetchCountriesUseCaseProvider),
+            ref.read(getCountriesListUseCaseProvider)));
 
 ///additional income source dialog view model provider
 final additionalIncomeSourceDialogViwModelProvider =

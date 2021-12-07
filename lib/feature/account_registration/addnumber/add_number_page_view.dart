@@ -1,6 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
-import 'package:domain/model/country/country.dart';
+import 'package:domain/model/country/get_allowed_code/allowed_country_list_response.dart';
 import 'package:domain/model/user/check_username.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -93,9 +93,11 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                               SizedBox(
                                 height: 16,
                               ),
-                              AppStreamBuilder<Resource<Country>>(
-                                initialData: Resource.success(data: Country()),
-                                stream: model.countryByCode,
+                              AppStreamBuilder<
+                                  Resource<AllowedCountryListResponse>>(
+                                initialData: Resource.success(
+                                    data: AllowedCountryListResponse()),
+                                stream: model.getAllowedCountryStream,
                                 dataBuilder: (context, country) {
                                   return AppStreamBuilder<
                                       Resource<CheckUsername>>(
@@ -136,29 +138,29 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                               child: Row(
                                                 mainAxisSize: MainAxisSize.min,
                                                 children: <Widget>[
+                                                  ///TODO:add country Flag
                                                   Container(
                                                       height: 16,
                                                       width: 16,
                                                       decoration: BoxDecoration(
-                                                          shape:
-                                                              BoxShape.circle,
-                                                          image: DecorationImage(
-                                                              image: AssetImage(
-                                                                  country!.data!
-                                                                          .countryFlag ??
-                                                                      "",
-                                                                  package:
-                                                                      "country_calling_code_picker"),
-                                                              fit: BoxFit
-                                                                  .cover))),
+                                                        color: Theme.of(context)
+                                                            .primaryColorDark,
+                                                        shape: BoxShape.circle,
+                                                      )),
                                                   Padding(
                                                     padding:
                                                         EdgeInsets.symmetric(
                                                             horizontal: 8.0),
                                                     child: Text(
-                                                      country.data!
-                                                              .countryCallingCode ??
-                                                          "",
+                                                      country!
+                                                                  .data!
+                                                                  .contentData!
+                                                                  .countryData!
+                                                                  .first
+                                                                  .phoneCode !=
+                                                              null
+                                                          ? '+${country.data!.contentData!.countryData!.first.phoneCode}'
+                                                          : "",
                                                       style: TextStyle(
                                                         color: Theme.of(context)
                                                             .textTheme
