@@ -23,6 +23,8 @@ import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/set_fatca_questions_response_entity.dart';
+import 'package:data/entity/remote/fatca_crs/upload_signature_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/upload_signature_response_entity.dart';
 import 'package:data/entity/remote/kyc/check_kyc_status_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
@@ -251,4 +253,9 @@ abstract class ApiService {
   @POST("/auth/EnableBioMetric")
   Future<HttpResponse<ResponseEntity>> enableBiometric(
       @Body() EnableBiometricRequestEntity enableBiometricRequestEntity);
+
+  ///upload Signature
+  @POST("/FatcaCrs/UploadSignatureFatca")
+  Future<HttpResponse<UploadSignatureResponseEntity>> uploadSignature(
+      @Body() UploadSignatureRequestEntity uploadSignatureRequestEntity);
 }

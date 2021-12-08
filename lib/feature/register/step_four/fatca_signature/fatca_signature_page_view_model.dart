@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/fatca_crs/upload_signature_response.dart';
 import 'package:domain/usecase/fatca_crs/upload_signature_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,9 +26,10 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   PublishSubject<UploadSignatureUseCaseParams> _uploadSignatureRequest =
       PublishSubject();
 
-  PublishSubject<Resource<bool>> _uploadSignatureResponse = PublishSubject();
+  PublishSubject<Resource<UploadSignatureResponse>> _uploadSignatureResponse =
+      PublishSubject();
 
-  Stream<Resource<bool>> get uploadSignatureStream =>
+  Stream<Resource<UploadSignatureResponse>> get uploadSignatureStream =>
       _uploadSignatureResponse.stream;
 
   ///get document
@@ -44,6 +46,10 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   Stream<bool> get signatureUploadedStream => _signatureUploadedRequest.stream;
 
   bool isSignatureUploaded = false;
+
+  String selectedFile = '';
+
+  String fileId='';
 
   /// animated button visibility subject
   BehaviorSubject<bool> _showAnimatedButtonSubject =
@@ -110,6 +116,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
 
   void updateSignatureField(String value) {
     signatureController.text = value.split("/").last;
+    selectedFile = value;
     updateSignatureUploadedStream(true);
   }
 
@@ -118,8 +125,9 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   }
 
   void signatureUpload() {
+    print('${signatureController.text}');
     _uploadSignatureRequest.safeAdd(UploadSignatureUseCaseParams(
-        signature: signatureController.text,
+        signature: selectedFile,
         declarationSelected: _declarationSelected.value,
         verifyInfoDeclarationSelected: _verifyInfoDeclarationSelected.value));
   }

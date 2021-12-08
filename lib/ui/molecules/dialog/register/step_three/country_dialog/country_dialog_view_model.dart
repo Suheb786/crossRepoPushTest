@@ -82,7 +82,7 @@ class CountryDialogViewModel extends BasePageViewModel {
       });
     });
 
-    getCountries();
+    //getCountries();
   }
 
   void getCountryList(BuildContext context) {

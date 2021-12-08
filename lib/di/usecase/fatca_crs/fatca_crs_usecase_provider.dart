@@ -19,5 +19,5 @@ final setFatcaQuestionsResponseUseCaseProvider =
 ///[UploadSignatureUseCase] provider
 final uploadSignatureUseCaseProvider =
     Provider.autoDispose<UploadSignatureUseCase>(
-  (ref) => UploadSignatureUseCase(),
+  (ref) => UploadSignatureUseCase(ref.read(fatcaCrsRepositoryProvider)),
 );

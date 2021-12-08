@@ -4,6 +4,7 @@ import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/fatca_crs/get_fatca_questions_response.dart';
 import 'package:domain/model/fatca_crs/set_fatca_questions_response.dart';
+import 'package:domain/model/fatca_crs/upload_signature_response.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 
 class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
@@ -53,5 +54,18 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
       (l) => Left(l),
       (r) => Right(r.data.transform()),
     );
+  }
+
+  @override
+  Future<Either<NetworkError, UploadSignatureResponse>> uploadSignature(
+      {required String image}) async {
+    final result = await safeApiCall(
+      _crsRemoteDS.uploadSignature(image: image),
+    );
+    return result!.fold(
+        (l) => Left(l),
+        (r) => Right(
+              (r.data.transform()),
+            ));
   }
 }
