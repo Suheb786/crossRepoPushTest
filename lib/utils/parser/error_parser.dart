@@ -266,6 +266,8 @@ class ErrorParser {
         return localisedHelper.invalidTreatyClaimRate;
       case ErrorType.INVALID_SIGNATURE:
         return localisedHelper.emptySignature;
+      case ErrorType.INVALID_USERNAME:
+        return localisedHelper.invalidUserName;
 
       default:
         return "";

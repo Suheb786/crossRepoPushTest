@@ -104,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "areYouUSTaxResidentHint":
             MessageLookupByLibrary.simpleMessage("(e.g. Green Card Holder)"),
         "area": MessageLookupByLibrary.simpleMessage("AREA"),
+        "areaSmall": MessageLookupByLibrary.simpleMessage("Area"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
@@ -134,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "citySmall": MessageLookupByLibrary.simpleMessage("City"),
         "claimOfTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
             "Claim of Tax Treaty Benefits"),
+        "clickToEditSomeMayBeDisabled": MessageLookupByLibrary.simpleMessage(
+            "Click to edit the fields, some may be disabled."),
         "completeTaxReportInfo": MessageLookupByLibrary.simpleMessage(
             "Complete your tax report information below"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
@@ -203,6 +206,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "employerName": MessageLookupByLibrary.simpleMessage("EMPLOYER NAME"),
         "employerNameSmall":
             MessageLookupByLibrary.simpleMessage("Employer Name"),
+        "employerPhoneNo":
+            MessageLookupByLibrary.simpleMessage("Employer Phone Number "),
         "employmentStatus":
             MessageLookupByLibrary.simpleMessage("EMPLOYMENT STATUS"),
         "employmentStatusSmall":
@@ -312,10 +317,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "Expected Annual Transactions"),
         "expMonthlyTransactions": MessageLookupByLibrary.simpleMessage(
             "Expected Monthly Transactions"),
+        "expectedAnnualAmount":
+            MessageLookupByLibrary.simpleMessage("Expected Annual Amount"),
         "expectedAnnualTransactions": MessageLookupByLibrary.simpleMessage(
             "EXPECTED ANNUAL TRANSACTIONS"),
+        "expectedMonthlyAmount":
+            MessageLookupByLibrary.simpleMessage("Expected Monthly Amount"),
         "expectedMonthlyTransactions": MessageLookupByLibrary.simpleMessage(
             "EXPECTED MONTHLY TRANSACTIONS"),
+        "expectedTransactions":
+            MessageLookupByLibrary.simpleMessage("Expected Transactions"),
         "expiryDate": MessageLookupByLibrary.simpleMessage("EXPIRY DATE"),
         "expiryDateHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Expiry Date"),
@@ -467,6 +478,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidTypesOfTransaction": MessageLookupByLibrary.simpleMessage(
             "Please Enter transaction type"),
         "invalidUser": MessageLookupByLibrary.simpleMessage("Invalid User."),
+        "invalidUserName": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid UserName"),
         "invalidUserNamePassword": MessageLookupByLibrary.simpleMessage(
             "You have entered an invalid username or password, please try again"),
         "isBusinessNameDifferent": MessageLookupByLibrary.simpleMessage(
@@ -540,6 +553,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "notifyMe": MessageLookupByLibrary.simpleMessage("NOTIFY ME"),
         "notifyMeExC": MessageLookupByLibrary.simpleMessage("Notify me"),
         "occupation": MessageLookupByLibrary.simpleMessage("OCCUPATION"),
+        "occupationBusinessType":
+            MessageLookupByLibrary.simpleMessage("Occupation/Business Type"),
         "occupationSmall": MessageLookupByLibrary.simpleMessage("Occupation"),
         "ofTheBank": MessageLookupByLibrary.simpleMessage("of the bank."),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
@@ -556,6 +571,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "orYouCanUpload":
             MessageLookupByLibrary.simpleMessage("or you can upload"),
         "otherDetails": MessageLookupByLibrary.simpleMessage("OTHER DETAILS"),
+        "otherIncome": MessageLookupByLibrary.simpleMessage("Other Income"),
         "otherNationality":
             MessageLookupByLibrary.simpleMessage("Other Nationality"),
         "otpExpired": MessageLookupByLibrary.simpleMessage(

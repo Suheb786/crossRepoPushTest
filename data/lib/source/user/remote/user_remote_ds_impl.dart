@@ -215,14 +215,14 @@ class UserRemoteDSImpl extends UserRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveJobInformation(SaveJobInfoRequest(
         baseData: baseData.toJson(),
-        occupation: occupation,
-        annualIncome: annualIncome,
-        employeeName: employeeName,
-        employerCountries: employerCountry,
-        employerCity: employerCity,
-        employerContact: employerContact,
+        occupation: occupation ?? '',
+        annualIncome: annualIncome ?? '',
+        employeeName: employeeName ?? '',
+        employerCountries: employerCountry ?? 'Jordan',
+        employerCity: employerCity ?? '',
+        employerContact: employerContact ?? '',
         mainSource: 'JOB',
-        businessType: businessType,
+        businessType: businessType ?? '',
         additionalIncomes: additionalIncome,
         additionalIncome: additionalIncomeType!
             .map((e) => AdditionalIncome().restore(e))

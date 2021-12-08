@@ -9,9 +9,9 @@ class FatcaCrsInfo {
   final String? response3;
   final String? response4;
   final dynamic? response5;
-  final dynamic? relationshipWithPep;
-  final dynamic? personName;
-  final dynamic? personRole;
+  final String? relationshipWithPep;
+  final String? personName;
+  final String? personRole;
   final dynamic? namePerIncomeTaxReturn;
   final dynamic? dob;
   final dynamic? citizenShipCountry;

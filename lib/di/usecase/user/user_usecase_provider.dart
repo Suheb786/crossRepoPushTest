@@ -88,7 +88,7 @@ final agentSelectionUseCaseProvider =
 ///[StudentJobIncomeUseCase] provider
 final studentJobIncomeUseCaseProvider =
     Provider.autoDispose<StudentJobIncomeUseCase>(
-  (ref) => StudentJobIncomeUseCase(),
+  (ref) => StudentJobIncomeUseCase(ref.read(userRepoProvider)),
 );
 
 ///[CheckUserNameUseCase] provider

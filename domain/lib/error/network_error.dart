@@ -150,6 +150,10 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.ACCOUNT_LOCKED);
 
+          case "err-063":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.INVALID_USERNAME);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

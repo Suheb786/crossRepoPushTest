@@ -27,12 +27,12 @@ class FatcaCrsEntity
   final String? response4;
   @JsonKey(name: "response5")
   final dynamic? response5;
-  @JsonKey(name: "relationshipWithPep")
-  final dynamic? relationshipWithPep;
+  @JsonKey(name: "relationshipWithPEP")
+  final String? relationshipWithPep;
   @JsonKey(name: "personName")
-  final dynamic? personName;
+  final String? personName;
   @JsonKey(name: "personRole")
-  final dynamic? personRole;
+  final String? personRole;
   @JsonKey(name: "namePerIncomeTaxReturn")
   final dynamic? namePerIncomeTaxReturn;
   @JsonKey(name: "dob")

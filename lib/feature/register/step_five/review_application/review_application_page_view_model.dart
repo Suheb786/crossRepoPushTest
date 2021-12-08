@@ -202,7 +202,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
             residantCountry: residentCountryController.text,
             buildingName: buildingNameOrNoController.text,
             streetName: streetAddressController.text,
-            district: districtController.text,
+            area: districtController.text,
             city: cityController.text,
             perResidantCountry: residentPermanentCountryController.text,
             perCity: residentPermanentCityController.text,
@@ -364,7 +364,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     buildingNameOrNoController.text =
         getConfirmApplicationDataContent.countryResidenceInfo!.buildingName!;
     districtController.text =
-        getConfirmApplicationDataContent.countryResidenceInfo!.district!;
+        getConfirmApplicationDataContent.countryResidenceInfo!.area!;
     cityController.text =
         getConfirmApplicationDataContent.countryResidenceInfo!.city!;
 
@@ -399,16 +399,36 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
         ? (getConfirmApplicationDataContent
             .jobDetailInfo!.jobDetailContentInfo!.profession!)
         : '';
-    mainAnnualIncomeController.text = getConfirmApplicationDataContent
-        .jobDetailInfo!.jobDetailContentInfo!.annualIncome!;
-    employerNameController.text = getConfirmApplicationDataContent
-        .jobDetailInfo!.jobDetailContentInfo!.employeeName!;
-    employerCountryController.text = getConfirmApplicationDataContent
-        .jobDetailInfo!.jobDetailContentInfo!.employerCountry!;
-    employerCityController.text = getConfirmApplicationDataContent
-        .jobDetailInfo!.jobDetailContentInfo!.employerCity!;
-    employerContactController.text = getConfirmApplicationDataContent
-        .jobDetailInfo!.jobDetailContentInfo!.employerContact!;
+    mainAnnualIncomeController.text = Validator.isNotEmptyNull(
+            getConfirmApplicationDataContent
+                .jobDetailInfo!.jobDetailContentInfo!.annualIncome!)
+        ? getConfirmApplicationDataContent
+            .jobDetailInfo!.jobDetailContentInfo!.annualIncome!
+        : '';
+    employerNameController.text = Validator.isNotEmptyNull(
+            getConfirmApplicationDataContent
+                .jobDetailInfo!.jobDetailContentInfo!.employeeName!)
+        ? getConfirmApplicationDataContent
+            .jobDetailInfo!.jobDetailContentInfo!.employeeName!
+        : '';
+    employerCountryController.text = Validator.isNotEmptyNull(
+            getConfirmApplicationDataContent
+                .jobDetailInfo!.jobDetailContentInfo!.employerCountry!)
+        ? getConfirmApplicationDataContent
+            .jobDetailInfo!.jobDetailContentInfo!.employerCountry!
+        : '';
+    employerCityController.text = Validator.isNotEmptyNull(
+            getConfirmApplicationDataContent
+                .jobDetailInfo!.jobDetailContentInfo!.employerCity!)
+        ? getConfirmApplicationDataContent
+            .jobDetailInfo!.jobDetailContentInfo!.employerCity!
+        : '';
+    employerContactController.text = Validator.isNotEmptyNull(
+            getConfirmApplicationDataContent
+                .jobDetailInfo!.jobDetailContentInfo!.employerContact!)
+        ? getConfirmApplicationDataContent
+            .jobDetailInfo!.jobDetailContentInfo!.employerContact!
+        : '';
 
     ///purpose of account opening
     purposeOfAccountOpeningController.text =
