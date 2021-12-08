@@ -105,7 +105,7 @@ class EnterAddressViewModel extends BasePageViewModel {
   void enterAddress() {
     _enterAddressRequest.safeAdd(EnterAddressUseCaseParams(
         residentCountry: residentCountryController.text,
-        district: districtController.text,
+        residentArea: districtController.text,
         city: cityController.text,
         streetAddress: streetAddressController.text,
         buildingNameOrNo: buildingNameOrNumberController.text,

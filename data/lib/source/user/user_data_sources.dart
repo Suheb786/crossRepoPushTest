@@ -80,6 +80,8 @@ abstract class UserRemoteDS {
       String? employerCity,
       String? employerContact,
       bool? additionalIncome,
+      String? businessType,
+      String? specifyBusinessType,
       String? mainSource,
       List<AdditionalIncomeType>? additionalIncomeType});
 
@@ -91,6 +93,7 @@ abstract class UserRemoteDS {
       String? otherNationality,
       String? employmentStatus,
       String? spouseName,
+      bool? isEmployed,
       String? natureOfSpecialNeeds});
 
   Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
@@ -98,7 +101,7 @@ abstract class UserRemoteDS {
           {String? residentCountry,
           String? buildingName,
           String? streetName,
-          String? residentDistrict,
+          String? residentArea,
           String? residentCity,
           String? permanentResidentCountry,
           String? permanentResidentCity});
@@ -132,7 +135,7 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<GenerateKeyPairResponseEntity>> generateKeyPair();
 
-  Future<bool> enableBiometric();
+  Future<HttpResponse<ResponseEntity>> enableBiometric();
 }
 
 abstract class UserLocalDS {

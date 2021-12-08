@@ -249,6 +249,6 @@ abstract class ApiService {
 
   ///enable biometric
   @POST("/auth/EnableBioMetric")
-  Future<bool> enableBiometric(
+  Future<HttpResponse<ResponseEntity>> enableBiometric(
       @Body() EnableBiometricRequestEntity enableBiometricRequestEntity);
 }

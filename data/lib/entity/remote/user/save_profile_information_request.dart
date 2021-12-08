@@ -14,6 +14,12 @@ class SaveProfileInformationRequest {
   final String? spauseName;
   @JsonKey(name: "NatureSP")
   final String? natureSP;
+  @JsonKey(name: "IsAdditionalNational")
+  final bool? isAdditionalNational;
+  @JsonKey(name: "IsEmployed")
+  final bool? isEmployed;
+  @JsonKey(name: "AdditionalNationality")
+  final String? additionalNationality;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
@@ -23,6 +29,9 @@ class SaveProfileInformationRequest {
       this.employmentStatus: "",
       this.spauseName: "",
       this.natureSP: "",
+      this.additionalNationality,
+      this.isAdditionalNational,
+      this.isEmployed,
       required this.baseData});
 
   factory SaveProfileInformationRequest.fromJson(Map<String, dynamic> json) =>

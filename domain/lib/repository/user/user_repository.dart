@@ -98,7 +98,7 @@ abstract class UserRepository {
     String? residentCountry,
     String? buildingName,
     String? streetName,
-    String? residentDistrict,
+    String? residentArea,
     String? residentCity,
     String? permanentResidentCountry,
     String? permanentResidentCity,
@@ -114,12 +114,15 @@ abstract class UserRepository {
           String? otherNationality,
           String? employmentStatus,
           String? spouseName,
+          bool? isEmployed,
           String? natureOfSpecialNeeds});
 
   /// save job information
   Future<Either<NetworkError, SaveJobDetailsResponse>> saveJobInformation(
       {String? employeeName,
       String? occupation,
+      String? businessType,
+      String? specifyBusinessType,
       String? annualIncome,
       String? employerCountry,
       String? employerCity,

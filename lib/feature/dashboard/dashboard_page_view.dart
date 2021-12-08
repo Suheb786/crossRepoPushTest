@@ -103,10 +103,8 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                   AppStreamBuilder<Resource<bool>>(
                     stream: model.enableBiometricStream,
                     initialData: Resource.none(),
-                    onData: (data){
-                      if(data.status==Status.SUCCESS){
-
-                      }
+                    onData: (data) {
+                      if (data.status == Status.SUCCESS) {}
                     },
                     dataBuilder: (context, bioMetricResponse) {
                       return AppStreamBuilder<
@@ -122,11 +120,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                           return AppStreamBuilder<Resource<bool>>(
                             stream: model.authenticateBioMetricStream,
                             onData: (data) {
-                              if (data.status == Status.LOADING) {
-                                model.generateKeyPair();
-                              }
                               if (data.status == Status.SUCCESS) {
-                                print('success');
                                 model.generateKeyPair();
                               }
                             },

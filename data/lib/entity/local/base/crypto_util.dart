@@ -1,39 +1,29 @@
 import 'package:data/entity/local/base/rsa_key_helper.dart';
-import 'package:domain/model/user/user.dart';
-import 'package:domain/repository/user/user_repository.dart';
 import 'package:encrypt/encrypt.dart' as encrypt;
-import 'package:pointycastle/pointycastle.dart';
 
-class CryptoUtil {
-  final _rsaHelper = RsaKeyHelper();
+final _keyHelper = RsaKeyHelper();
 
-  RSAPublicKey? _publicKey;
-  RSAPrivateKey? _privateKey;
-  UserRepository repository;
-
-  CryptoUtil({required this.repository});
-
-  ///load key from db
-  Future loadKeys() async {
-    try {
-      var userEither = await repository.getCurrentUser();
-      User? user = userEither.fold((l) => null, (r) {
-        return r;
-      });
-      String publicKey = user!.publicPEM!;
-      String privateKey = user.privatePEM!;
-      print('Public key : ' + publicKey);
-      print('Private key : ' + privateKey);
-      if (publicKey != null) {
-        _publicKey = _rsaHelper.parsePublicKeyFromPem(publicKey);
-      }
-      if (privateKey != null) {
-        _privateKey = _rsaHelper.parsePrivateKeyFromPem(privateKey);
-      }
-    } catch (e) {
-      print("Load Key Error " + e.toString());
-    }
-  }
+// ///load key from db
+// Future loadKeys() async {
+//   try {
+//     var userEither = await _repository.getCurrentUser();
+//     User? user = userEither.fold((l) => null, (r) {
+//       return r;
+//     });
+//     String publicKey = user!.publicPEM!;
+//     String privateKey = user.privatePEM!;
+//     print('Public key : ' + publicKey);
+//     print('Private key : ' + privateKey);
+//     if (publicKey != null) {
+//       _publicKey = _keyHelper.parsePublicKeyFromPem(publicKey);
+//     }
+//     if (privateKey != null) {
+//       _privateKey = _keyHelper.parsePrivateKeyFromPem(privateKey);
+//     }
+//   } catch (e) {
+//     print("Load Key Error " + e.toString());
+//   }
+// }
 
 //
 // ///save key to db
@@ -43,18 +33,22 @@ class CryptoUtil {
 // }
 //
 
-  ///RSA encryption
-  Future<String> encryptData({String? content}) async {
-    if (_publicKey == null || _privateKey == null) {
-      await loadKeys();
-    }
-    var encrypter = encrypt.Encrypter(encrypt.RSA(
-        publicKey: _publicKey,
-        privateKey: _privateKey,
-        encoding: encrypt.RSAEncoding.PKCS1));
-    return Future.value(encrypter.encrypt(content!).base64);
-    // RSAEncoding.PKCS1
-  }
+///RSA encryption
+Future<String> encryptData(
+    {String? content, String? publicKey, String? privateKey}) async {
+  // if (_publicKey == null || _privateKey == null) {
+  //   //await loadKeys();
+  // }
+  print('public Key--->$publicKey');
+  print('public Key--->$privateKey');
+
+  var encrypter = encrypt.Encrypter(encrypt.RSA(
+      publicKey: _keyHelper.parsePublicKeyFromPem(publicKey),
+      privateKey: _keyHelper.parsePrivateKeyFromPem(privateKey),
+      encoding: encrypt.RSAEncoding.PKCS1));
+  return Future.value(encrypter.encrypt(content!).base64);
+  // RSAEncoding.PKCS1
+}
 //
 // String signedData({String content}) {
 //   return _rsaHelper.sign(content, _privateKey);
@@ -133,5 +127,3 @@ class CryptoUtil {
 // //     throw error;
 // //   }
 // // }
-
-}

@@ -59,10 +59,15 @@ class UserRemoteDSImpl extends UserRemoteDS {
   final ApiService _apiService;
   final DeviceInfoHelper _deviceInfoHelper;
   final UserLocalDS _userLocalDS;
-  final CryptoUtil _cryptoUtil;
 
-  UserRemoteDSImpl(this._apiService, this._deviceInfoHelper, this._userLocalDS,
-      this._cryptoUtil);
+  // final CryptoUtil _cryptoUtil;
+
+  UserRemoteDSImpl(
+    this._apiService,
+    this._deviceInfoHelper,
+    this._userLocalDS,
+    // this._cryptoUtil
+  );
 
   @override
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
@@ -203,6 +208,8 @@ class UserRemoteDSImpl extends UserRemoteDS {
       String? employerCity,
       String? employerContact,
       bool? additionalIncome,
+      String? businessType,
+      String? specifyBusinessType,
       String? mainSource,
       List<AdditionalIncomeType>? additionalIncomeType}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
@@ -215,6 +222,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
         employerCity: employerCity,
         employerContact: employerContact,
         mainSource: 'JOB',
+        businessType: businessType,
         additionalIncomes: additionalIncome,
         additionalIncome: additionalIncomeType!
             .map((e) => AdditionalIncome().restore(e))
@@ -230,6 +238,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
       String? otherNationality,
       String? employmentStatus,
       String? spouseName,
+      bool? isEmployed,
       String? natureOfSpecialNeeds}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveProfileInformation(SaveProfileInformationRequest(
@@ -239,6 +248,9 @@ class UserRemoteDSImpl extends UserRemoteDS {
       employmentStatus: employmentStatus,
       spauseName: spouseName,
       natureSP: natureOfSpecialNeeds,
+      additionalNationality: otherNationality,
+      isEmployed: isEmployed,
+      isAdditionalNational: anyOtherNationality,
     ));
   }
 
@@ -248,7 +260,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
           {String? residentCountry,
           String? buildingName,
           String? streetName,
-          String? residentDistrict,
+          String? residentArea,
           String? residentCity,
           String? permanentResidentCountry,
           String? permanentResidentCity}) async {
@@ -258,7 +270,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
         residantCountry: residentCountry,
         buildingName: buildingName,
         streetName: streetName,
-        district: residentDistrict,
+        area: residentArea,
         city: residentCity,
         perCountry: permanentResidentCountry,
         perCity: permanentResidentCity));
@@ -376,13 +388,16 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<bool> enableBiometric() async {
+  Future<HttpResponse<ResponseEntity>> enableBiometric() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    UserDBEntity userDBEntity = (await _userLocalDS.getCurrentUser())!;
-    User user = userDBEntity.transform();
+    UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
+    User user = userDBEntity!.transform();
     return _apiService.enableBiometric(EnableBiometricRequestEntity(
       publicKey: user.publicPEM,
-      cipher: await _cryptoUtil.encryptData(content: user.id),
+      cipher: await encryptData(
+          content: user.id,
+          publicKey: user.publicPEM,
+          privateKey: user.privatePEM),
       baseData: baseData.toJson(),
     ));
   }

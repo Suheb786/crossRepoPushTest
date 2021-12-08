@@ -76,7 +76,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                       .getToken();
                                   //model.checkKycStatus();
                                   Navigator.pushReplacementNamed(
-                                      context, RoutePaths.Dashboard);
+                                      context, RoutePaths.Registration);
                                   model.emailKey.currentState!.isValid = true;
                                 } else if (data.status == Status.ERROR) {
                                   model.emailKey.currentState!.isValid = false;

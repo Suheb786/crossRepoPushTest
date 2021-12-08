@@ -232,6 +232,8 @@ class UserRepositoryImpl extends UserRepository {
       String? employerCity,
       String? employerContact,
       bool? additionalIncome,
+      String? businessType,
+      String? specifyBusinessType,
       String? mainSource,
       List<AdditionalIncomeType>? additionalIncomeType}) async {
     final result = await safeApiCall(
@@ -244,6 +246,8 @@ class UserRepositoryImpl extends UserRepository {
           employerContact: employerContact,
           additionalIncome: additionalIncome,
           mainSource: mainSource,
+          businessType: businessType,
+          specifyBusinessType: specifyBusinessType,
           additionalIncomeType: additionalIncomeType),
     );
     return result!.fold(
@@ -262,6 +266,7 @@ class UserRepositoryImpl extends UserRepository {
           String? otherNationality,
           String? employmentStatus,
           String? spouseName,
+          bool? isEmployed,
           String? natureOfSpecialNeeds}) async {
     final result = await safeApiCall(_remoteDS.saveProfileInformation(
         married: married,
@@ -271,6 +276,7 @@ class UserRepositoryImpl extends UserRepository {
         otherNationality: otherNationality,
         employmentStatus: employmentStatus,
         spouseName: spouseName,
+        isEmployed: isEmployed,
         natureOfSpecialNeeds: natureOfSpecialNeeds));
     return result!.fold(
       (l) => Left(l),
@@ -284,7 +290,7 @@ class UserRepositoryImpl extends UserRepository {
           {String? residentCountry,
           String? buildingName,
           String? streetName,
-          String? residentDistrict,
+          String? residentArea,
           String? residentCity,
           String? permanentResidentCountry,
           String? permanentResidentCity}) async {
@@ -292,7 +298,7 @@ class UserRepositoryImpl extends UserRepository {
         residentCountry: residentCountry,
         buildingName: buildingName,
         streetName: streetName,
-        residentDistrict: residentDistrict,
+        residentArea: residentArea,
         residentCity: residentCity,
         permanentResidentCountry: permanentResidentCountry,
         permanentResidentCity: permanentResidentCity));
@@ -533,7 +539,7 @@ class UserRepositoryImpl extends UserRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(true),
+      (r) => Right(r.isSuccessful()),
     );
   }
 }
