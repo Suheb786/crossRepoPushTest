@@ -140,7 +140,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         }
       });
     });
-    getFatcaQuestions();
+    //getFatcaQuestions();
   }
 
   void getError(Resource<SetFatcaQuestionsResponse> event) {

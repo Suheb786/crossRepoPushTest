@@ -61,17 +61,19 @@ class ReviewApplicationPageView
                           onData: (data) {
                             ///video call status is false then call get account
                             if (data.status == Status.SUCCESS) {
-                              if (!(data.data!.checkVideoCallResponseContent!
-                                  .status!)) {
-                                model.getAccount();
-                              } else {
-                                ProviderScope.containerOf(context)
-                                    .read(registerStepFiveViewModelProvider)
-                                    .registrationStepFivePageController
-                                    .nextPage(
-                                        duration: Duration(milliseconds: 500),
-                                        curve: Curves.easeInOut);
-                              }
+                              ///TODO:check for condition once confirms form create account
+                              // if (!(data.data!.checkVideoCallResponseContent!
+                              //     .status!)) {
+                              //   model.getAccount();
+                              // } else {
+                              //   ProviderScope.containerOf(context)
+                              //       .read(registerStepFiveViewModelProvider)
+                              //       .registrationStepFivePageController
+                              //       .nextPage(
+                              //           duration: Duration(milliseconds: 500),
+                              //           curve: Curves.easeInOut);
+                              // }
+                              model.getAccount();
                             }
                           },
                           dataBuilder: (context, status) {
