@@ -6,6 +6,8 @@ import 'package:data/entity/remote/account/check_videocall_status_request_entity
 import 'package:data/entity/remote/account/check_videocall_status_response_entity.dart';
 import 'package:data/entity/remote/account/doc_status_request_entity.dart';
 import 'package:data/entity/remote/account/doc_status_response_entity.dart';
+import 'package:data/entity/remote/account/save_customer_schedule_time_request_entity.dart';
+import 'package:data/entity/remote/account/save_customer_schedule_time_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
@@ -258,4 +260,12 @@ abstract class ApiService {
   @POST("/FatcaCrs/UploadSignatureFatca")
   Future<HttpResponse<UploadSignatureResponseEntity>> uploadSignature(
       @Body() UploadSignatureRequestEntity uploadSignatureRequestEntity);
+
+  ///schedule video call time
+  @POST("/account/SaveCustomerScheduledTime")
+  Future<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>
+      saveCustomerVideoCallScheduleTime(
+          @Body()
+              SaveCustomerScheduleTimeRequestEntity
+                  saveCustomerScheduleTimeRequestEntity);
 }

@@ -64,6 +64,13 @@ class ReviewApplicationPageView
                               if (!(data.data!.checkVideoCallResponseContent!
                                   .status!)) {
                                 model.getAccount();
+                              } else {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepFiveViewModelProvider)
+                                    .registrationStepFivePageController
+                                    .nextPage(
+                                        duration: Duration(milliseconds: 500),
+                                        curve: Curves.easeInOut);
                               }
                             }
                           },

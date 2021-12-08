@@ -4,6 +4,7 @@ import 'package:domain/model/account/check_agent_status_response.dart';
 import 'package:domain/model/account/check_other_nationality_status_response.dart';
 import 'package:domain/model/account/check_videocall_status_response.dart';
 import 'package:domain/model/account/doc_status_response.dart';
+import 'package:domain/model/account/save_customer_schedule_time_response.dart';
 
 abstract class AccountRepository {
   /// check Video call status
@@ -19,4 +20,9 @@ abstract class AccountRepository {
 
   /// check agent status
   Future<Either<NetworkError, CheckAgentStatusResponse>> checkAgentStatus();
+
+  /// save customer schedule time
+  Future<Either<NetworkError, SaveCustomerScheduleTimeResponse>>
+      saveCustomerVideoCallScheduleTime(
+          {required String scheduleDate, required String scheduleTime});
 }
