@@ -112,22 +112,46 @@ class DebitCardDeliveredPageView
                     ),
                   ),
                   Positioned(
-                    left: 40,
-                    right: 16,
-                    top: 72,
-                    child: Stack(
-                      children: [
-                        AppSvg.asset(AssetUtils.debitCard),
-                        Container(
-                          height: 186,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.43)),
-                          child: AppSvg.asset(AssetUtils.ellipseRed),
-                        ),
-                      ],
-                    ),
-                  )
+                      left: 40,
+                      right: 16,
+                      top: 72,
+                      child: Stack(
+                        children: [
+                          Container(
+                              height: 186,
+                              width: double.infinity,
+                              padding: EdgeInsets.only(top: 111, left: 20),
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                        AssetUtils.debitCard,
+                                      ),
+                                      fit: BoxFit.fill),
+                                  borderRadius: BorderRadius.circular(10.43)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "ZEIN MALHAS",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  Padding(
+                                      padding: EdgeInsets.only(top: 10),
+                                      child: Text("1234",
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w700)))
+                                ],
+                              )),
+                          Positioned(
+                              left: 7,
+                              bottom: 19,
+                              child: Image.asset(AssetUtils.ellipseRed))
+                        ],
+                      ))
                 ],
               ),
               Padding(

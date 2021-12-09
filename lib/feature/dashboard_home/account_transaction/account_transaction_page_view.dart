@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -20,13 +19,10 @@ class AccountTransactionPageView
       child: Padding(
         padding: EdgeInsets.only(top: 52),
         child: GestureDetector(
-          onVerticalDragEnd: (details) {
-            if (details.primaryVelocity!.isNegative) {
+          onVerticalDragUpdate: (details) {
+            if (details.primaryDelta!.isNegative) {
             } else {
-              ProviderScope.containerOf(context)
-                  .read(homeViewModelProvider)
-                  .homeController
-                  .jumpToPage(1);
+              Navigator.pop(context);
             }
           },
           child: Column(

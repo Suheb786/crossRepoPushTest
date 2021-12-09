@@ -21,6 +21,8 @@ class AppHomeViewModel extends BasePageViewModel {
   Stream<PageController> get pageControllerStream =>
       _pageControllerSubject.stream;
 
+  bool showBody = true;
+
   void updatePage(int index) {
     _currentStep.safeAdd(index);
   }
