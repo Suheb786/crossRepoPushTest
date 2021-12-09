@@ -4330,6 +4330,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Send Money`
+  String get sendMoney {
+    return Intl.message(
+      'Send Money',
+      name: 'sendMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request money`
+  String get requestMoney {
+    return Intl.message(
+      'Request money',
+      name: 'requestMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don’t have any contacts yet.\nAdd your blink contacts while\nsending money`
+  String get addSendContact {
+    return Intl.message(
+      'You don’t have any contacts yet.\nAdd your blink contacts while\nsending money',
+      name: 'addSendContact',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

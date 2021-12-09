@@ -442,5 +442,8 @@
   "flipBack": "Flip back",
   "cardNumber": "CARD NUMBER",
   "linkedAccountNumber": "LINKED ACCOUNT NUMBER",
-  "cvv": "CVV"
+  "cvv": "CVV",
+  "sendMoney": "Send Money",
+  "requestMoney": "Request money",
+  "addSendContact": "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money"
 }

@@ -73,6 +73,7 @@ class AssetUtils {
   static const String addCircle = svg + "add_circle.svg";
   static const String cardCircle = svg + "card_circle.svg";
   static const String filter = svg + "filter.svg";
+  static const String profileCircle = svg + "profile_circle.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
