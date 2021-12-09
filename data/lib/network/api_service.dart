@@ -17,6 +17,8 @@ import 'package:data/entity/remote/bank_smart/get_account_details_response_entit
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
+import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
@@ -268,4 +270,9 @@ abstract class ApiService {
           @Body()
               SaveCustomerScheduleTimeRequestEntity
                   saveCustomerScheduleTimeRequestEntity);
+
+  ///remove debit lock
+  @POST("/BankSmart/RemoveDebitLock")
+  Future<HttpResponse<RemoveDebitLockResponseEntity>> removeDebitLock(
+      RemoveDebitLockRequestEntity removeDebitLockRequestEntity);
 }

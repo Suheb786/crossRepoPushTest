@@ -82,4 +82,15 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
       (r) => Right(r.data.transform()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> removeDebitLock() async {
+    final result = await safeApiCall(
+      _bankSmartRemoteDS.removeDebitLock(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }

@@ -43,6 +43,8 @@ class TaxationDetailsPageView
             initialData: Resource.none(),
             onData: (data) {
               if (data.status == Status.SUCCESS) {
+                ///storing response to main page
+                model.updateData(context);
                 if (model.isPEP &&
                     !model.bornInUS &&
                     !model.usTaxResident &&

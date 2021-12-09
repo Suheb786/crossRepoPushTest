@@ -3,6 +3,7 @@ import 'package:domain/model/account/check_other_nationality_status_response.dar
 import 'package:domain/model/upload_document/file_upload_response.dart';
 import 'package:domain/model/upload_document/save_upload_document_response.dart';
 import 'package:domain/usecase/account/check_other_nationality_status_usecase.dart';
+import 'package:domain/usecase/bank_smart/remove_debit_lock_usecase.dart';
 import 'package:domain/usecase/upload_doc/file_upload_usecase.dart';
 import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
@@ -26,6 +27,9 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   ///upload individual document usecase
   final FileUploadUseCase _fileUploadUseCase;
+
+  ///remove debit credit lock
+  final RemoveDebitLockUseCase _removeDebitLockUseCase;
 
   final TextEditingController addressController = TextEditingController();
   final TextEditingController incomeController = TextEditingController();
@@ -154,11 +158,20 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   Stream<bool> get showAnimatedButtonStream =>
       _showAnimatedButtonSubject.stream;
 
+  ///remove debit lock
+  PublishSubject<RemoveDebitLockUseCaseParams> _removeDebitLockRequest =
+      PublishSubject();
+
+  PublishSubject<String> _removeDebitLockResponse = PublishSubject();
+
+  Stream<String> get removeDebitLockStream => _removeDebitLockResponse.stream;
+
   UploadDocumentsPageViewModel(
       this._documentsUseCase,
       this._uploadDocumentUseCase,
       this._checkOtherNationalityStatusUseCase,
-      this._fileUploadUseCase) {
+      this._fileUploadUseCase,
+      this._removeDebitLockUseCase) {
     _documentsRequest.listen((value) {
       RequestManager(value,
               createCall: () => _documentsUseCase.execute(params: value))
@@ -244,6 +257,19 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _checkOtherNationalityStatusResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _removeDebitLockRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _removeDebitLockUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _removeDebitLockResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
@@ -337,6 +363,11 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
     _showAnimatedButtonSubject.safeAdd(isValid);
   }
 
+  ///remove debit lock
+  void removeDebitLock() {
+    _removeDebitLockRequest.safeAdd(RemoveDebitLockUseCaseParams());
+  }
+
   @override
   void dispose() {
     _documentsRequest.close();
@@ -356,6 +387,8 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
     _uploadOtherNationalityProofDocumentRequest.close();
     _uploadOtherNationalityProofDocumentResponse.close();
     _showAnimatedButtonSubject.close();
+    _removeDebitLockRequest.close();
+    _removeDebitLockResponse.close();
     super.dispose();
   }
 }

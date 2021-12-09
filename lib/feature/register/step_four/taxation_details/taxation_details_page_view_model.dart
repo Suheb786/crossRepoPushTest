@@ -1,11 +1,14 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/fatca_crs/fatca_set_data.dart';
 import 'package:domain/model/fatca_crs/get_fatca_questions_response.dart';
 import 'package:domain/model/fatca_crs/set_fatca_questions_response.dart';
 import 'package:domain/usecase/fatca_crs/get_fatca_questions_usecase.dart';
 import 'package:domain/usecase/fatca_crs/set_fatca_questions_response_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -174,6 +177,26 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         isUSCitizen: isUSCitizen,
         isUSTaxResident: usTaxResident,
         wasBornInUS: bornInUS));
+  }
+
+  ///TODO: need to complete this
+  void updateData(BuildContext context) {
+    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .fatcaData;
+    fatcaSetData.response1 = isUSCitizen;
+    fatcaSetData.response2 = usTaxResident;
+    fatcaSetData.response3 = bornInUS;
+    fatcaSetData.response4 = anyOtherCountryResident;
+    fatcaSetData.response5 = isPEP;
+    fatcaSetData.taxResidenceCountry = countrySelectorController.text;
+    fatcaSetData.relationshipWithPep = relationShipController.text;
+    fatcaSetData.personRole = personRoleController.text;
+    fatcaSetData.personName = personNameController.text;
+
+    ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .setFatcaData(fatcaSetData);
   }
 
   @override

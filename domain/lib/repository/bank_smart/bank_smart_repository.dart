@@ -33,4 +33,7 @@ abstract class BankSmartRepository {
   /// get account details
   Future<Either<NetworkError, GetAccountDetailsResponse>> getAccountDetails(
       {required bool getToken});
+
+  /// remove debit lock
+  Future<Either<NetworkError, bool>> removeDebitLock();
 }

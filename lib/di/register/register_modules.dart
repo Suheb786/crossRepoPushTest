@@ -254,7 +254,8 @@ final uploadDocumentsPageViewModelProvider =
       ref.read(sendDocumentsUseCaseUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
       ref.read(checkOtherNationalityStatusUseCaseProvider),
-      ref.read(fileUploadUseCaseProvider)),
+      ref.read(fileUploadUseCaseProvider),
+      ref.read(removeDebitLockUseCaseProvider)),
 );
 
 ///account ready page
