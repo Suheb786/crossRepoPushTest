@@ -40,6 +40,7 @@ class AppHomeViewModel extends BasePageViewModel {
   @override
   void dispose() {
     _currentStep.close();
+    _showTimeLineSubject.close();
     _pageControllerSubject.close();
     super.dispose();
   }
