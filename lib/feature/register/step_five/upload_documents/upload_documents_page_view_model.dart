@@ -277,7 +277,8 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
       });
     });
 
-    checkOtherNationality();
+    ///commented as not required now
+    //checkOtherNationality();
   }
 
   void uploadIncomeDocument(DocumentTypeEnum type) {
