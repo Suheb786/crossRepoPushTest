@@ -372,9 +372,9 @@ final yearMonthDialogViewModelProvider =
 final fatcaSignaturePageViewModelProvider =
     ChangeNotifierProvider.autoDispose<FatcaSignaturePageViewModel>(
   (ref) => FatcaSignaturePageViewModel(
-    ref.read(uploadSignatureUseCaseProvider),
-    ref.read(uploadDocumentUseCaseProvider),
-  ),
+      ref.read(uploadSignatureUseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(setFatcaQuestionsResponseUseCaseProvider)),
 );
 
 ///mobile number dialog view model provider

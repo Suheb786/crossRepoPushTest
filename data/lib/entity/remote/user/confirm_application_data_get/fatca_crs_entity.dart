@@ -18,15 +18,15 @@ class FatcaCrsEntity
   @JsonKey(name: "accountId")
   final int? accountId;
   @JsonKey(name: "response1")
-  final String? response1;
+  final bool? response1;
   @JsonKey(name: "response2")
-  final String? response2;
+  final bool? response2;
   @JsonKey(name: "response3")
-  final String? response3;
+  final bool? response3;
   @JsonKey(name: "response4")
-  final String? response4;
+  final bool? response4;
   @JsonKey(name: "response5")
-  final dynamic? response5;
+  final bool? response5;
   @JsonKey(name: "relationshipWithPEP")
   final String? relationshipWithPep;
   @JsonKey(name: "personName")

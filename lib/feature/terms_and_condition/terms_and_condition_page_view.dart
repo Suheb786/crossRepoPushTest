@@ -19,6 +19,7 @@ class TermsAndConditionPageView
               topLeft: Radius.circular(16), topRight: Radius.circular(16))),
       child: Scrollbar(
         child: SingleChildScrollView(
+          padding: EdgeInsets.only(right: 8),
           physics: ClampingScrollPhysics(),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -137,8 +137,6 @@ class DashboardPageViewModel extends BasePageViewModel {
       });
     });
 
-   generateKeyPair();
-
     _checkBioMetricRequest.add(
       CheckBioMetricSupportUseCaseParams(),
     );

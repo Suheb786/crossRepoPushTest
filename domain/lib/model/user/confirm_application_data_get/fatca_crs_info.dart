@@ -4,11 +4,11 @@ class FatcaCrsInfo {
   final int? productId;
   final int? accountId;
   final String? userId;
-  final String? response1;
-  final String? response2;
-  final String? response3;
-  final String? response4;
-  final dynamic? response5;
+  final bool? response1;
+  final bool? response2;
+  final bool? response3;
+  final bool? response4;
+  final bool? response5;
   final String? relationshipWithPep;
   final String? personName;
   final String? personRole;

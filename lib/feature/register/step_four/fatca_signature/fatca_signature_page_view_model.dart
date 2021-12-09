@@ -1,5 +1,7 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/fatca_crs/set_fatca_questions_response.dart';
 import 'package:domain/model/fatca_crs/upload_signature_response.dart';
+import 'package:domain/usecase/fatca_crs/set_fatca_questions_response_usecase.dart';
 import 'package:domain/usecase/fatca_crs/upload_signature_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,6 +15,7 @@ import 'package:rxdart/rxdart.dart';
 
 class FatcaSignaturePageViewModel extends BasePageViewModel {
   final UploadSignatureUseCase _uploadSignatureUseCase;
+  final SetFatcaQuestionsResponseUseCase _setFatcaQuestionsUseCase;
 
   ///upload document usecase
   final UploadDocumentUseCase _uploadDocumentUseCase;
@@ -49,7 +52,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
 
   String selectedFile = '';
 
-  String fileId='';
+  String fileId = '';
 
   /// animated button visibility subject
   BehaviorSubject<bool> _showAnimatedButtonSubject =
@@ -82,8 +85,20 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
     _verifyInfoDeclarationSelected.safeAdd(value);
   }
 
-  FatcaSignaturePageViewModel(
-      this._uploadSignatureUseCase, this._uploadDocumentUseCase) {
+  ///set fatca questions request subject holder
+  PublishSubject<SetFatcaQuestionsResponseUseCaseParams>
+      _setFatcaQuestionsRequest = PublishSubject();
+
+  ///set fatca questions response holder
+  PublishSubject<Resource<SetFatcaQuestionsResponse>>
+      _setFatcaQuestionsResponse = PublishSubject();
+
+  ///set fatca questions stream
+  Stream<Resource<SetFatcaQuestionsResponse>> get setFatcaQuestionsStream =>
+      _setFatcaQuestionsResponse.stream;
+
+  FatcaSignaturePageViewModel(this._uploadSignatureUseCase,
+      this._uploadDocumentUseCase, this._setFatcaQuestionsUseCase) {
     _uploadSignatureRequest.listen((value) {
       RequestManager(value,
               createCall: () => _uploadSignatureUseCase.execute(params: value))
@@ -104,6 +119,20 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
         _getDocumentResponse.safeAdd(event.data!);
         if (event.status == Status.ERROR) {
           showErrorState();
+        }
+      });
+    });
+
+    _setFatcaQuestionsRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _setFatcaQuestionsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _setFatcaQuestionsResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -143,6 +172,23 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
     _showAnimatedButtonSubject.safeAdd(valid);
     return valid;
   }
+
+  // void setFatcaQuestionResponse(BuildContext context) {
+  //   _setFatcaQuestionsRequest.safeAdd(SetFatcaQuestionsResponseUseCaseParams(
+  //       declarationSelected: ProviderScope.containerOf(context)
+  //           .read(taxationDetailsPageViewModelProvider)
+  //           .declarationSelectedStream
+  //           .previous(animation: true), isUSTaxResident: null;,
+  //       isPEP: isPEP,
+  //       relationShipPEP: relationShipController.text,
+  //       personName: personNameController.text,
+  //       personRole: personRoleController.text,
+  //       anyOtherCountryResident: anyOtherCountryResident,
+  //       country: countrySelectorController.text,
+  //       isUSCitizen: isUSCitizen,
+  //       isUSTaxResident: usTaxResident,
+  //       wasBornInUS: bornInUS));
+  // }
 
   @override
   void dispose() {

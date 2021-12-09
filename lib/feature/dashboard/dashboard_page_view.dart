@@ -113,6 +113,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
+                            print('success');
                             model.enableBiometric();
                           }
                         },
@@ -121,6 +122,7 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                             stream: model.authenticateBioMetricStream,
                             onData: (data) {
                               if (data.status == Status.SUCCESS) {
+                                print('authenticated success');
                                 model.generateKeyPair();
                               }
                             },

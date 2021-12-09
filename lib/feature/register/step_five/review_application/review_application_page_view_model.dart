@@ -439,5 +439,8 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     expectedAnnualTransactionsController.text = getConfirmApplicationDataContent
         .accountPurposeInfo!.anualTransaction!
         .toString();
+
+    print(
+        'value---->${getConfirmApplicationDataContent.fatcaCrsInfo!.response5 == "true"}');
   }
 }

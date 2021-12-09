@@ -12,6 +12,14 @@ class SaveFatcaInformationRequestEntity {
   final bool? response3;
   @JsonKey(name: "Response4")
   final bool? response4;
+  @JsonKey(name: "Response5")
+  final bool? response5;
+  @JsonKey(name: "RelationshipWithPEP")
+  final String? relationshipWithPEP;
+  @JsonKey(name: "PersonName")
+  final String? personName;
+  @JsonKey(name: "PersonRole")
+  final String? personRole;
   @JsonKey(name: "IsTinNoRes4")
   final bool? isTinNoRes4;
   @JsonKey(name: "TaxResidenceCountry")
@@ -32,12 +40,16 @@ class SaveFatcaInformationRequestEntity {
       this.response2,
       this.response3,
       this.response4,
+      this.response5,
       this.isTinNoRes4,
       this.taxResidenceCountry,
       this.tinNoRes4,
       this.reasonUnavailableRes4,
       this.reasonBRes4,
       required this.baseData,
+      this.relationshipWithPEP,
+      this.personName,
+      this.personRole,
       this.getToken: true});
 
   factory SaveFatcaInformationRequestEntity.fromJson(

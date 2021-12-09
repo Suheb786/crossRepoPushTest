@@ -4,6 +4,7 @@ import 'package:domain/model/account/check_videocall_status_response.dart';
 import 'package:domain/model/bank_smart/create_account_response.dart';
 import 'package:domain/model/bank_smart/get_account_response.dart';
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
+import 'package:domain/utils/validator.dart';
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -720,50 +721,75 @@ class ReviewApplicationPageView
                                                             title: S
                                                                 .of(context)
                                                                 .areYouAnyFirstDegreeQ,
-                                                            value: 'Yes',
+                                                            value: getValue(data
+                                                                .data!
+                                                                .getApplicationData!
+                                                                .getConfirmApplicationDataContent!
+                                                                .fatcaCrsInfo!
+                                                                .response5!),
                                                           ),
                                                           Visibility(
                                                               visible: data
-                                                                      .data!
-                                                                      .getApplicationData!
-                                                                      .getConfirmApplicationDataContent!
-                                                                      .fatcaCrsInfo!
-                                                                      .response5 ==
-                                                                  "true",
+                                                                  .data!
+                                                                  .getApplicationData!
+                                                                  .getConfirmApplicationDataContent!
+                                                                  .fatcaCrsInfo!
+                                                                  .response5!,
                                                               child: Column(
                                                                 children: [
                                                                   ReviewApplicationNonEditableItem(
                                                                     title: S
                                                                         .of(context)
                                                                         .relationshipWithPEP,
-                                                                    value: data
-                                                                        .data!
-                                                                        .getApplicationData!
-                                                                        .getConfirmApplicationDataContent!
-                                                                        .fatcaCrsInfo!
-                                                                        .relationshipWithPep as String,
+                                                                    value: Validator.isNotEmptyNull(data
+                                                                            .data!
+                                                                            .getApplicationData!
+                                                                            .getConfirmApplicationDataContent!
+                                                                            .fatcaCrsInfo!
+                                                                            .relationshipWithPep)
+                                                                        ? data
+                                                                            .data!
+                                                                            .getApplicationData!
+                                                                            .getConfirmApplicationDataContent!
+                                                                            .fatcaCrsInfo!
+                                                                            .relationshipWithPep
+                                                                        : '',
                                                                   ),
                                                                   ReviewApplicationNonEditableItem(
                                                                     title: S
                                                                         .of(context)
                                                                         .personsName,
-                                                                    value: data
-                                                                        .data!
-                                                                        .getApplicationData!
-                                                                        .getConfirmApplicationDataContent!
-                                                                        .fatcaCrsInfo!
-                                                                        .personName,
+                                                                    value: Validator.isNotEmptyNull(data
+                                                                            .data!
+                                                                            .getApplicationData!
+                                                                            .getConfirmApplicationDataContent!
+                                                                            .fatcaCrsInfo!
+                                                                            .personName)
+                                                                        ? data
+                                                                            .data!
+                                                                            .getApplicationData!
+                                                                            .getConfirmApplicationDataContent!
+                                                                            .fatcaCrsInfo!
+                                                                            .personName
+                                                                        : '',
                                                                   ),
                                                                   ReviewApplicationNonEditableItem(
                                                                     title: S
                                                                         .of(context)
                                                                         .personsRole,
-                                                                    value: data
-                                                                        .data!
-                                                                        .getApplicationData!
-                                                                        .getConfirmApplicationDataContent!
-                                                                        .fatcaCrsInfo!
-                                                                        .personRole,
+                                                                    value: Validator.isNotEmptyNull(data
+                                                                            .data!
+                                                                            .getApplicationData!
+                                                                            .getConfirmApplicationDataContent!
+                                                                            .fatcaCrsInfo!
+                                                                            .personRole)
+                                                                        ? data
+                                                                            .data!
+                                                                            .getApplicationData!
+                                                                            .getConfirmApplicationDataContent!
+                                                                            .fatcaCrsInfo!
+                                                                            .personRole
+                                                                        : '',
                                                                   ),
                                                                 ],
                                                               )),
@@ -884,9 +910,9 @@ class ReviewApplicationPageView
     );
   }
 
-  String getValue(String value) {
+  String getValue(bool value) {
     switch (value) {
-      case 'false':
+      case false:
         return 'No';
 
       default:

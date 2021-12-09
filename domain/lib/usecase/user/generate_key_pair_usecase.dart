@@ -20,9 +20,9 @@ class GenerateKeyPairUseCase extends BaseUseCase<BaseError,
           (response) async {
         return (await _repository.getCurrentUser()).fold((l) => Left(l),
             (currentUser) async {
+          print('current user--->${currentUser.id}');
           currentUser.privatePEM = response.content!.privatePEM;
           currentUser.publicPEM = response.content!.publicPEM;
-
           return (await _repository.saveUser(currentUser)).fold((l) => Left(l),
               (user) async {
             print('savedUser--->${user.privatePEM}');
