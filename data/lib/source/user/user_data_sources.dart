@@ -5,6 +5,7 @@ import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
+import 'package:data/entity/remote/user/get_combo_values/get_combo_values_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/logout/logout_response_entity.dart';
@@ -136,6 +137,8 @@ abstract class UserRemoteDS {
   Future<HttpResponse<GenerateKeyPairResponseEntity>> generateKeyPair();
 
   Future<HttpResponse<ResponseEntity>> enableBiometric();
+
+  Future<HttpResponse<GetComboValuesResponseEntity>> getComboValues();
 }
 
 abstract class UserLocalDS {

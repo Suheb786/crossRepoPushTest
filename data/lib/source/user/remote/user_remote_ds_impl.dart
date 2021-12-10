@@ -23,6 +23,8 @@ import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
+import 'package:data/entity/remote/user/get_combo_values/get_combo_values_request_entity.dart';
+import 'package:data/entity/remote/user/get_combo_values/get_combo_values_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
@@ -400,5 +402,12 @@ class UserRemoteDSImpl extends UserRemoteDS {
           privateKey: user.privatePEM),
       baseData: baseData.toJson(),
     ));
+  }
+
+  @override
+  Future<HttpResponse<GetComboValuesResponseEntity>> getComboValues() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getComboValues(GetComboValuesRequestEntity(
+        baseData: baseData.toJson(), getToken: true));
   }
 }

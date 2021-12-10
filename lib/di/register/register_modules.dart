@@ -100,7 +100,8 @@ final registerStepThreeViewModelProvider =
 ///job and income page view model provider
 final jobAndIncomePageViewModelProvider =
     ChangeNotifierProvider.autoDispose<JobAndIncomePageViewModel>(
-  (ref) => JobAndIncomePageViewModel(ref.read(jobAndIncomeUseCaseProvider)),
+  (ref) => JobAndIncomePageViewModel(ref.read(jobAndIncomeUseCaseProvider),
+      ref.read(getComboValuesUseCaseProvider)),
 );
 
 ///employment status dialog view model provider

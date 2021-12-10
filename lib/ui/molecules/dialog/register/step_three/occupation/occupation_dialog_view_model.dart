@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/employment_status_enum.dart';
+import 'package:domain/model/user/get_combo_values/get_combo_values_data.dart';
 import 'package:domain/usecase/register/get_occupation_list_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -34,6 +35,8 @@ class OccupationDialogViewModel extends BasePageViewModel {
   ///get occupation list stream
   Stream<Resource<List<String>>> get getOccupationStream =>
       _getOccupationResponse.stream;
+
+  List<GetComboValuesData> businessTypeList = [];
 
   OccupationDialogViewModel(this._getOccupationUseCase) {
     _getOccupationRequest.listen((value) {

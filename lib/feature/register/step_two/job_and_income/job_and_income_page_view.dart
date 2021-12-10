@@ -98,7 +98,9 @@ class JobAndIncomePageView
                                       Navigator.pop(context);
                                       model.occupationController.text = data;
                                       model.isValid();
-                                    });
+                                    },
+                                        businessTypeList:
+                                            model.businessTypeList);
                                   },
                                   suffixIcon: (value, data) {
                                     return Container(
@@ -140,7 +142,9 @@ class JobAndIncomePageView
                                       model.businessTypeController.text = data;
                                       model.updateBusinessTypeOtherVisibility();
                                       model.isValid();
-                                    });
+                                    },
+                                        businessTypeList:
+                                            model.businessTypeList);
                                   },
                                   suffixIcon: (value, data) {
                                     return Container(

@@ -12,6 +12,7 @@ import 'package:domain/model/user/confirm_application_data_get/get_confirm_appli
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
+import 'package:domain/model/user/get_combo_values/get_combo_values_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/model/user/register_interest/register_interest_response.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
@@ -172,4 +173,7 @@ abstract class UserRepository {
 
   ///enable biometric
   Future<Either<NetworkError, bool>> enableBiometric();
+
+  ///get combo values
+  Future<Either<NetworkError, GetComboValuesResponse>> getComboValues();
 }
