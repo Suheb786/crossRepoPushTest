@@ -31,8 +31,8 @@ AccountDetailsEntity _$AccountDetailsEntityFromJson(Map<String, dynamic> json) {
     notes: json['notes'] as String?,
     natureID: json['natureID'] as String?,
     relationshipCode: json['relationshipCode'] as String?,
-    allowCreditTransaction: json['allowCreditTransaction'] as int?,
-    allowDebitTransaction: json['allowDebitTransaction'] as int?,
+    dontAllowDebitTran: json['dontAllowDebitTran'] as int?,
+    dontAllowCreditTran: json['dontAllowCreditTran'] as int?,
     creditNeedsSupervision: json['creditNeedsSupervision'] as int?,
     debitNeedsSupervision: json['debitNeedsSupervision'] as int?,
     notServiceCharges: json['notServiceCharges'] as int?,
@@ -50,6 +50,7 @@ AccountDetailsEntity _$AccountDetailsEntityFromJson(Map<String, dynamic> json) {
     productCross: json['productCross'] as int?,
     productOthers: json['productOthers'] as int?,
     productOthersDesc: json['productOthersDesc'] as String?,
+    idType: json['idType'],
   );
 }
 
@@ -79,8 +80,8 @@ Map<String, dynamic> _$AccountDetailsEntityToJson(
       'notes': instance.notes,
       'natureID': instance.natureID,
       'relationshipCode': instance.relationshipCode,
-      'allowCreditTransaction': instance.allowCreditTransaction,
-      'allowDebitTransaction': instance.allowDebitTransaction,
+      'dontAllowCreditTran': instance.dontAllowCreditTran,
+      'dontAllowDebitTran': instance.dontAllowDebitTran,
       'creditNeedsSupervision': instance.creditNeedsSupervision,
       'debitNeedsSupervision': instance.debitNeedsSupervision,
       'notServiceCharges': instance.notServiceCharges,
@@ -98,4 +99,5 @@ Map<String, dynamic> _$AccountDetailsEntityToJson(
       'productCross': instance.productCross,
       'productOthers': instance.productOthers,
       'productOthersDesc': instance.productOthersDesc,
+      'idType': instance.idType,
     };

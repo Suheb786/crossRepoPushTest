@@ -47,6 +47,7 @@ class FatcaSignaturePageView
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
                           model.fileId = data.data!.id!;
+                          model.updateData(context);
                           ProviderScope.containerOf(context)
                               .read(registerViewModelProvider)
                               .registrationStepsController

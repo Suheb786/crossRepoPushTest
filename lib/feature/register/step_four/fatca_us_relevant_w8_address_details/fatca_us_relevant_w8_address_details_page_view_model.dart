@@ -1,7 +1,10 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/fatca_crs/fatca_set_data.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w8_address_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -178,6 +181,31 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
             differentCountry: differentMailingCountryController.text,
             differentPostCode: differentMailingPostCodeController.text,
             differentState: differentMailingStateController.text));
+  }
+
+  ///update data to main page
+  void updateData(BuildContext context) {
+    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .fatcaData;
+    fatcaSetData.permanentResidenceAddress = permanentAddressController.text;
+    fatcaSetData.country = countryController.text;
+    fatcaSetData.city = cityController.text;
+    fatcaSetData.state = stateController.text;
+    fatcaSetData.postCode = postCodeController.text;
+    fatcaSetData.differentMailingAddress =
+        _mailingAddressDifferentSubject.value;
+    fatcaSetData.differentMailingAddressValue =
+        differentMailingAddressController.text;
+    fatcaSetData.differentMailingState = differentMailingStateController.text;
+    fatcaSetData.differentMailingCity = differentMailingCityController.text;
+    fatcaSetData.differentMailingCountry =
+        differentMailingCountryController.text;
+    fatcaSetData.differentMailingPostCode =
+        differentMailingPostCodeController.text;
+    ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .setFatcaData(fatcaSetData);
   }
 
   @override

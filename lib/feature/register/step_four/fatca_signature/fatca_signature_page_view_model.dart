@@ -1,11 +1,14 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/fatca_crs/fatca_set_data.dart';
 import 'package:domain/model/fatca_crs/set_fatca_questions_response.dart';
 import 'package:domain/model/fatca_crs/upload_signature_response.dart';
 import 'package:domain/usecase/fatca_crs/set_fatca_questions_response_usecase.dart';
 import 'package:domain/usecase/fatca_crs/upload_signature_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -189,6 +192,17 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   //       isUSTaxResident: usTaxResident,
   //       wasBornInUS: bornInUS));
   // }
+
+  ///update data to main page
+  void updateData(BuildContext context) {
+    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .fatcaData;
+    fatcaSetData.signatureId = fileId;
+    ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .setFatcaData(fatcaSetData);
+  }
 
   @override
   void dispose() {

@@ -38,6 +38,7 @@ class FatcaUSRelevantW8PageView
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
+                      model.updateData(context);
                       ProviderScope.containerOf(context)
                           .read(registerStepFourViewModelProvider)
                           .registrationStepFourPageController
@@ -50,8 +51,8 @@ class FatcaUSRelevantW8PageView
                   },
                   dataBuilder: (context, response) {
                     return GestureDetector(
-                      onHorizontalDragUpdate: (details) {
-                        if (details.primaryDelta!.isNegative) {
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity!.isNegative) {
                           model.validateFatcaUSRelevantW8Details();
                         } else {
                           ProviderScope.containerOf(context)

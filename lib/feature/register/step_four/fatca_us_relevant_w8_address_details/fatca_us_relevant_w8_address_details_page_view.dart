@@ -43,6 +43,7 @@ class FatcaUSRelevantW8AddressDetailsPageView
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
+                      model.updateData(context);
                       ProviderScope.containerOf(context)
                           .read(registerStepFourViewModelProvider)
                           .registrationStepFourPageController
@@ -55,8 +56,8 @@ class FatcaUSRelevantW8AddressDetailsPageView
                   },
                   dataBuilder: (context, response) {
                     return GestureDetector(
-                      onHorizontalDragUpdate: (details) {
-                        if (details.primaryDelta!.isNegative) {
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity!.isNegative) {
                           model.validateFatcaUSRelevantW8AddressDetails();
                         } else {
                           ProviderScope.containerOf(context)
