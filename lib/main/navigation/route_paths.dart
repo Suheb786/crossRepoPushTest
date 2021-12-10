@@ -20,4 +20,5 @@ class RoutePaths {
       '/usTaxPayerIdentificationNo';
   static const String ReferenceNumber = '/referenceNumber';
   static const String TaxTreatyBenefits = '/taxTreatyBenefits';
+  static const String CardDelivery = '/cardDelivery';
 }

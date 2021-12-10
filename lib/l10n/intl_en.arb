@@ -484,6 +484,16 @@
   "otherIncome": "Other Income",
   "expectedTransactions": "Expected Transactions",
   "expectedMonthlyAmount": "Expected Monthly Amount",
-  "expectedAnnualAmount": "Expected Annual Amount"
+  "expectedAnnualAmount": "Expected Annual Amount",
+  "debitCard": "DEBIT CARD",
+  "yourCardHasBeenIssued": "Your card has\nbeen issued",
+  "letsSet4DigitPin": "Let’s set your\n4-digit PIN",
+  "nowConfirmPin": "Now, confirm\nyour PIN",
+  "yourCardReady": "Your card is ready!",
+  "yourCardReadyDesc": "Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately.",
+  "errorWhileGetAccount": "Error While get Account",
+  "emptyPin": "Enter Pin",
+  "invalidPinLength": "Length of pin cannot be less than 4",
+  "pinDoesNotMatch": "Pin does not match"
 
 }
