@@ -18,6 +18,8 @@ import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.da
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
+import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
+import 'package:domain/model/user/get_combo_values/get_combo_values_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/model/user/register_interest/register_interest_response.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
@@ -231,6 +233,8 @@ class UserRepositoryImpl extends UserRepository {
       String? employerCity,
       String? employerContact,
       bool? additionalIncome,
+      String? businessType,
+      String? specifyBusinessType,
       String? mainSource,
       List<AdditionalIncomeType>? additionalIncomeType}) async {
     final result = await safeApiCall(
@@ -243,6 +247,8 @@ class UserRepositoryImpl extends UserRepository {
           employerContact: employerContact,
           additionalIncome: additionalIncome,
           mainSource: mainSource,
+          businessType: businessType,
+          specifyBusinessType: specifyBusinessType,
           additionalIncomeType: additionalIncomeType),
     );
     return result!.fold(
@@ -261,6 +267,7 @@ class UserRepositoryImpl extends UserRepository {
           String? otherNationality,
           String? employmentStatus,
           String? spouseName,
+          bool? isEmployed,
           String? natureOfSpecialNeeds}) async {
     final result = await safeApiCall(_remoteDS.saveProfileInformation(
         married: married,
@@ -270,6 +277,7 @@ class UserRepositoryImpl extends UserRepository {
         otherNationality: otherNationality,
         employmentStatus: employmentStatus,
         spouseName: spouseName,
+        isEmployed: isEmployed,
         natureOfSpecialNeeds: natureOfSpecialNeeds));
     return result!.fold(
       (l) => Left(l),
@@ -283,7 +291,7 @@ class UserRepositoryImpl extends UserRepository {
           {String? residentCountry,
           String? buildingName,
           String? streetName,
-          String? residentDistrict,
+          String? residentArea,
           String? residentCity,
           String? permanentResidentCountry,
           String? permanentResidentCity}) async {
@@ -291,7 +299,7 @@ class UserRepositoryImpl extends UserRepository {
         residentCountry: residentCountry,
         buildingName: buildingName,
         streetName: streetName,
-        residentDistrict: residentDistrict,
+        residentArea: residentArea,
         residentCity: residentCity,
         permanentResidentCountry: permanentResidentCountry,
         permanentResidentCity: permanentResidentCity));
@@ -511,5 +519,39 @@ class UserRepositoryImpl extends UserRepository {
           ),
         );
     }
+  }
+
+  @override
+  Future<Either<NetworkError, GenerateKeyPairResponse>>
+      generateKeyPair() async {
+    final result = await safeApiCall(
+      _remoteDS.generateKeyPair(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> enableBiometric() async {
+    final result = await safeApiCall(
+      _remoteDS.enableBiometric(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, GetComboValuesResponse>> getComboValues() async {
+    final result = await safeApiCall(
+      _remoteDS.getComboValues(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
   }
 }

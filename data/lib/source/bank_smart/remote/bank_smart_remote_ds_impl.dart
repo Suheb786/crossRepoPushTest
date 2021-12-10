@@ -9,6 +9,8 @@ import 'package:data/entity/remote/bank_smart/get_account_details_response_entit
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
+import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
@@ -73,5 +75,12 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getAccountDetails(
         GetAccountDetailsRequestEntity(baseData: baseData, getToken: true));
+  }
+
+  @override
+  Future<HttpResponse<RemoveDebitLockResponseEntity>> removeDebitLock() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.removeDebitLock(RemoveDebitLockRequestEntity(
+        baseData: baseData.toJson(), getToken: true));
   }
 }

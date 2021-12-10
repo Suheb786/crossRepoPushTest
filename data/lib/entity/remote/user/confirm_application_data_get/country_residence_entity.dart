@@ -18,8 +18,8 @@ class CountryResidenceEntity
   final String? buildingName;
   @JsonKey(name: "streetName")
   final String? streetName;
-  @JsonKey(name: "district")
-  final String? district;
+  @JsonKey(name: "area")
+  final String? area;
   @JsonKey(name: "city")
   final String? city;
   @JsonKey(name: "perCountry")
@@ -38,7 +38,7 @@ class CountryResidenceEntity
       this.perCity,
       this.city,
       this.perResidantCountry,
-      this.district,
+      this.area,
       this.buildingName,
       this.streetName,
       this.createdOn,
@@ -60,7 +60,7 @@ class CountryResidenceEntity
         city: response.city,
         perResidantCountry: response.perResidantCountry,
         perCity: response.perCity,
-        district: response.district,
+        area: response.area,
         residantCountry: response.residantCountry,
         userId: response.userId);
   }
@@ -73,7 +73,7 @@ class CountryResidenceEntity
         streetName: this.streetName,
         createdOn: this.createdOn,
         isActive: this.isActive,
-        district: this.district,
+        area: this.area,
         city: this.city,
         perResidantCountry: this.perResidantCountry,
         perCity: this.perCity,

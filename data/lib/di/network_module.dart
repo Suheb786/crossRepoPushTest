@@ -5,6 +5,8 @@ import 'package:data/source/account/account_datasource.dart';
 import 'package:data/source/account/remote/account_remote_ds_impl.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:data/source/bank_smart/remote/bank_smart_remote_ds_impl.dart';
+import 'package:data/source/country/country_datasource.dart';
+import 'package:data/source/country/remote/country_remote_ds_impl.dart';
 import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
 import 'package:data/source/fatca_crs/remote/fatca_crs_remote_ds_impl.dart';
 import 'package:data/source/id_card/id_card_datasource.dart';
@@ -59,7 +61,10 @@ final apiServiceProvider = Provider<ApiService>(
 
 /// User remoteDS provider
 final userRemoteDSProvider = Provider<UserRemoteDS>((ref) => UserRemoteDSImpl(
-    ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+      ref.read(apiServiceProvider),
+      ref.read(deviceInfoHelperProvider),
+      ref.read(userLocalDSProvider),
+    ));
 
 final registerRemoteDS = Provider<RegisterRemoteDataSource>(
   (ref) => RegisterRemoteDataSourceImpl(),
@@ -106,4 +111,9 @@ final accountRemoteDS = Provider<AccountRemoteDS>(
 ///upload document remote DS
 var uploadDocumentRemoteDataSourceProvider = Provider<UploadDocumentRemoteDS>(
     (ref) => UploadDocumentRemoteDSImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///country remote DS
+var countryRemoteDataSourceProvider = Provider<CountryRemoteDs>((ref) =>
+    CountryRemoteDSImpl(
         ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));

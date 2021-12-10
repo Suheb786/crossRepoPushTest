@@ -1,8 +1,11 @@
 import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/get_combo_values/get_combo_values_data.dart';
+import 'package:domain/model/user/get_combo_values/get_combo_values_response.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:domain/usecase/register/job_and_income_usecase.dart';
+import 'package:domain/usecase/user/get_combo_values_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -14,6 +17,8 @@ import 'package:rxdart/rxdart.dart';
 
 class JobAndIncomePageViewModel extends BasePageViewModel {
   final JobAndIncomeUseCase _jobAndIncomeUseCase;
+
+  final GetComboValuesUseCase _getComboValuesUseCase;
 
   ///controllers and keys
   final TextEditingController occupationController = TextEditingController();
@@ -107,6 +112,8 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
 
   List<AdditionalIncomeType> additionalSourceIncome = [];
 
+  List<GetComboValuesData> businessTypeList = [];
+
   ///additional income source list holder
   final BehaviorSubject<List<AdditionalIncomeType>>
       _additionalIncomeSourceSubject = BehaviorSubject.seeded([]);
@@ -114,6 +121,18 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
   ///additional income source response stream
   Stream<List<AdditionalIncomeType>> get additionalSourceIncomeListStream =>
       _additionalIncomeSourceSubject.stream;
+
+  ///get combo values request subject holder
+  PublishSubject<GetComboValuesUseCaseParams> _getComboValuesRequest =
+      PublishSubject();
+
+  ///get combo values response holder
+  PublishSubject<Resource<GetComboValuesResponse>> _getComboValuesResponse =
+      PublishSubject();
+
+  ///get combo values stream
+  Stream<Resource<GetComboValuesResponse>> get getComboValuesStream =>
+      _getComboValuesResponse.stream;
 
   bool isValid() {
     bool valid = false;
@@ -152,7 +171,8 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  JobAndIncomePageViewModel(this._jobAndIncomeUseCase) {
+  JobAndIncomePageViewModel(
+      this._jobAndIncomeUseCase, this._getComboValuesUseCase) {
     _jobAndIncomeRequest.listen((value) {
       RequestManager(value,
               createCall: () => _jobAndIncomeUseCase.execute(params: value))
@@ -165,6 +185,24 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getComboValuesRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getComboValuesUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _getComboValuesResponse.add(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          businessTypeList = event.data!.getComboValuesContent!
+              .getComboValuesContentData!.businessType!;
+        }
+      });
+    });
+
+    getComboValues();
   }
 
   void getError(Resource<SaveJobDetailsResponse> event) {
@@ -222,6 +260,10 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
         specifyBusiness: businessTypeOtherController.text,
         isAdditionalIncome: _switchSubject.value,
         additionalIncomeList: additionalSourceIncome));
+  }
+
+  void getComboValues() {
+    _getComboValuesRequest.safeAdd(GetComboValuesUseCaseParams());
   }
 
   @override

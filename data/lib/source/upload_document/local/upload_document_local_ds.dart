@@ -26,7 +26,7 @@ class UploadDocumentLocalDSImpl extends UploadDocumentLocalDS {
     ));
 
     if (result != null) {
-      PlatformFile file = result.files.first;
+      PlatformFile file = result.files.single;
       return file.path!;
     }
     return "";

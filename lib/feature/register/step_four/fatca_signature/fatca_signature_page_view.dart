@@ -2,6 +2,7 @@ import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/fatca_crs/upload_signature_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,11 +41,13 @@ class FatcaSignaturePageView
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<bool>>(
+                    child: AppStreamBuilder<Resource<UploadSignatureResponse>>(
                       stream: model.uploadSignatureStream,
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
+                          model.fileId = data.data!.id!;
+                          model.updateData(context);
                           ProviderScope.containerOf(context)
                               .read(registerViewModelProvider)
                               .registrationStepsController
@@ -67,6 +70,7 @@ class FatcaSignaturePageView
                         return GestureDetector(
                           onHorizontalDragEnd: (details) {
                             if (details.primaryVelocity!.isNegative) {
+                              print('called');
                               model.signatureUpload();
                             } else {
                               ///TODO:Route based on w8 or w9
@@ -205,6 +209,8 @@ class FatcaSignaturePageView
                                                                       false);
                                                                   model.isSignatureUploaded =
                                                                       false;
+                                                                  model.selectedFile =
+                                                                      '';
                                                                   model
                                                                       .isValid();
                                                                 },

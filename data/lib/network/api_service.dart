@@ -6,6 +6,8 @@ import 'package:data/entity/remote/account/check_videocall_status_request_entity
 import 'package:data/entity/remote/account/check_videocall_status_response_entity.dart';
 import 'package:data/entity/remote/account/doc_status_request_entity.dart';
 import 'package:data/entity/remote/account/doc_status_response_entity.dart';
+import 'package:data/entity/remote/account/save_customer_schedule_time_request_entity.dart';
+import 'package:data/entity/remote/account/save_customer_schedule_time_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
@@ -15,10 +17,18 @@ import 'package:data/entity/remote/bank_smart/get_account_details_response_entit
 import 'package:data/entity/remote/bank_smart/get_account_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/get_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
+import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.dart';
+import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
+import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
+import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
+import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
+import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/set_fatca_questions_response_entity.dart';
+import 'package:data/entity/remote/fatca_crs/upload_signature_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/upload_signature_response_entity.dart';
 import 'package:data/entity/remote/kyc/check_kyc_status_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
@@ -33,8 +43,13 @@ import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_request_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
 import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
+import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
+import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
+import 'package:data/entity/remote/user/get_combo_values/get_combo_values_request_entity.dart';
+import 'package:data/entity/remote/user/get_combo_values/get_combo_values_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
@@ -222,4 +237,49 @@ abstract class ApiService {
   @POST("/Account/CheckAgentStatus")
   Future<HttpResponse<CheckAgentStatusResponseEntity>> checkAgentStatus(
       @Body() CheckAgentStatusRequestEntity checkAgentStatusRequestEntity);
+
+  ///get country list
+  @POST("/transfer/GetCountriesV1")
+  Future<HttpResponse<CountryListResponseEntity>> getCountryList(
+      @Body() CountryListRequestEntity countryListRequestEntity);
+
+  ///get allowed country code list
+  @POST("${NetworkProperties.BASE_ROUTER_URL}/Country/GetAllowedCode")
+  Future<HttpResponse<GetAllowedCountryResponseEntity>>
+      getAllowedCodeCountryList(
+          @Body()
+              GetAllowedCountryRequestEntity getAllowedCountryRequestEntity);
+
+  ///generate key pair
+  @POST("/auth/GenerateKeyPair")
+  Future<HttpResponse<GenerateKeyPairResponseEntity>> generateKeyPair(
+      @Body() GenerateKeyPairRequestEntity generateKeyPairRequestEntity);
+
+  ///enable biometric
+  @POST("/auth/EnableBioMetric")
+  Future<HttpResponse<ResponseEntity>> enableBiometric(
+      @Body() EnableBiometricRequestEntity enableBiometricRequestEntity);
+
+  ///upload Signature
+  @POST("/FatcaCrs/UploadSignatureFatca")
+  Future<HttpResponse<UploadSignatureResponseEntity>> uploadSignature(
+      @Body() UploadSignatureRequestEntity uploadSignatureRequestEntity);
+
+  ///schedule video call time
+  @POST("/account/SaveCustomerScheduledTime")
+  Future<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>
+      saveCustomerVideoCallScheduleTime(
+          @Body()
+              SaveCustomerScheduleTimeRequestEntity
+                  saveCustomerScheduleTimeRequestEntity);
+
+  ///remove debit lock
+  @POST("/BankSmart/RemoveDebitLock")
+  Future<HttpResponse<RemoveDebitLockResponseEntity>> removeDebitLock(
+      @Body() RemoveDebitLockRequestEntity removeDebitLockRequestEntity);
+
+  ///get combo values
+  @POST("/AdditionalFieldsResp/getcombovalues")
+  Future<HttpResponse<GetComboValuesResponseEntity>> getComboValues(
+      @Body() GetComboValuesRequestEntity getComboValuesRequestEntity);
 }

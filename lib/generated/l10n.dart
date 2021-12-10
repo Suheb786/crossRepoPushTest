@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4616,6 +4615,96 @@ class S {
     return Intl.message(
       'Something went wrong. Please try again.',
       name: 'genericError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid UserName`
+  String get invalidUserName {
+    return Intl.message(
+      'Please enter a valid UserName',
+      name: 'invalidUserName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click to edit the fields, some may be disabled.`
+  String get clickToEditSomeMayBeDisabled {
+    return Intl.message(
+      'Click to edit the fields, some may be disabled.',
+      name: 'clickToEditSomeMayBeDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Area`
+  String get areaSmall {
+    return Intl.message(
+      'Area',
+      name: 'areaSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Occupation/Business Type`
+  String get occupationBusinessType {
+    return Intl.message(
+      'Occupation/Business Type',
+      name: 'occupationBusinessType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employer Phone Number `
+  String get employerPhoneNo {
+    return Intl.message(
+      'Employer Phone Number ',
+      name: 'employerPhoneNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other Income`
+  String get otherIncome {
+    return Intl.message(
+      'Other Income',
+      name: 'otherIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expected Transactions`
+  String get expectedTransactions {
+    return Intl.message(
+      'Expected Transactions',
+      name: 'expectedTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expected Monthly Amount`
+  String get expectedMonthlyAmount {
+    return Intl.message(
+      'Expected Monthly Amount',
+      name: 'expectedMonthlyAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expected Annual Amount`
+  String get expectedAnnualAmount {
+    return Intl.message(
+      'Expected Annual Amount',
+      name: 'expectedAnnualAmount',
       desc: '',
       args: [],
     );

@@ -1,7 +1,10 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/fatca_crs/fatca_set_data.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w9_address_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -180,6 +183,29 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
             additionalRequesterPostCode:
                 additionalRequesterPostCodeController.text,
             additionalRequesterState: additionalRequesterStateController.text));
+  }
+
+  ///update data to main page
+  void updateData(BuildContext context) {
+    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .fatcaData;
+    fatcaSetData.usAddress = addressController.text;
+    fatcaSetData.state = stateController.text;
+    fatcaSetData.city = cityController.text;
+    fatcaSetData.postCode = postCodeController.text;
+    fatcaSetData.accountNo = accountNumberController.text;
+    fatcaSetData.exemptPayeeCode = exemptPayeeCodeNumberController.text;
+    ///exemption from fatca code missing
+    fatcaSetData.additionalRequester = _additionalRequesterSubject.value;
+    fatcaSetData.requesterName = additionalRequesterNameController.text;
+    fatcaSetData.requesterAddressUs = additionalRequesterAddressController.text;
+    fatcaSetData.requesterState = additionalRequesterStateController.text;
+    fatcaSetData.requesterCity = additionalRequesterCityController.text;
+    fatcaSetData.requesterPostCode = additionalRequesterPostCodeController.text;
+    ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .setFatcaData(fatcaSetData);
   }
 
   @override

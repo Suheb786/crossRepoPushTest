@@ -53,10 +53,10 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
   final String? natureID;
   @JsonKey(name: "relationshipCode")
   final String? relationshipCode;
-  @JsonKey(name: "allowCreditTransaction")
-  final int? allowCreditTransaction;
-  @JsonKey(name: "allowDebitTransaction")
-  final int? allowDebitTransaction;
+  @JsonKey(name: "dontAllowCreditTran")
+  final int? dontAllowCreditTran;
+  @JsonKey(name: "dontAllowDebitTran")
+  final int? dontAllowDebitTran;
   @JsonKey(name: "creditNeedsSupervision")
   final int? creditNeedsSupervision;
   @JsonKey(name: "debitNeedsSupervision")
@@ -91,6 +91,8 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
   final int? productOthers;
   @JsonKey(name: "productOthersDesc")
   final String? productOthersDesc;
+  @JsonKey(name: "idType")
+  final dynamic? idType;
 
   factory AccountDetailsEntity.fromJson(Map<String, dynamic> json) =>
       _$AccountDetailsEntityFromJson(json);
@@ -119,8 +121,8 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
       this.notes,
       this.natureID,
       this.relationshipCode,
-      this.allowCreditTransaction: 0,
-      this.allowDebitTransaction: 0,
+      this.dontAllowDebitTran: 0,
+      this.dontAllowCreditTran: 0,
       this.creditNeedsSupervision: 0,
       this.debitNeedsSupervision: 0,
       this.notServiceCharges: 0,
@@ -137,7 +139,8 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
       this.productRemittance: 0,
       this.productCross: 0,
       this.productOthers: 0,
-      this.productOthersDesc});
+      this.productOthersDesc,
+      this.idType});
 
   Map<String, dynamic> toJson() => _$AccountDetailsEntityToJson(this);
 
@@ -167,8 +170,8 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
         notes: this.notes,
         natureID: this.natureID,
         relationshipCode: this.relationshipCode,
-        allowCreditTransaction: this.allowCreditTransaction,
-        allowDebitTransaction: this.allowDebitTransaction,
+        dontAllowCreditTran: this.dontAllowCreditTran,
+        dontAllowDebitTran: this.dontAllowDebitTran,
         creditNeedsSupervision: this.creditNeedsSupervision,
         debitNeedsSupervision: this.debitNeedsSupervision,
         notServiceCharges: this.notServiceCharges,
@@ -185,7 +188,8 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
         productRemittance: this.productRemittance,
         productCross: this.productCross,
         productOthers: this.productOthers,
-        productOthersDesc: this.productOthersDesc);
+        productOthersDesc: this.productOthersDesc,
+        idType: this.idType);
   }
 
   @override
@@ -214,8 +218,8 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
         notes: data.notes,
         natureID: data.natureID,
         relationshipCode: data.relationshipCode,
-        allowCreditTransaction: data.allowCreditTransaction,
-        allowDebitTransaction: data.allowDebitTransaction,
+        dontAllowDebitTran: data.dontAllowDebitTran,
+        dontAllowCreditTran: data.dontAllowCreditTran,
         creditNeedsSupervision: data.creditNeedsSupervision,
         debitNeedsSupervision: data.debitNeedsSupervision,
         notServiceCharges: data.notServiceCharges,
@@ -232,6 +236,7 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
         productRemittance: data.productRemittance,
         productCross: data.productCross,
         productOthers: data.productOthers,
-        productOthersDesc: data.productOthersDesc);
+        productOthersDesc: data.productOthersDesc,
+        idType: data.idType);
   }
 }

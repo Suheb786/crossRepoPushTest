@@ -22,6 +22,10 @@ class SetFatcaQuestionsResponseUseCase extends BaseUseCase<NetworkError,
         response2: params.isUSTaxResident,
         response3: params.wasBornInUS,
         response4: params.anyOtherCountryResident,
+        response5: params.isPEP,
+        relationshipWithPep: params.relationShipPEP!,
+        personName: params.personName!,
+        personRole: params.personRole!,
         taxResidenceCountry: params.country!,
         getToken: true);
   }

@@ -9,6 +9,8 @@ class SaveJobInfoRequest {
   final String? employeeName;
   @JsonKey(name: "Occupation")
   final String? occupation;
+  @JsonKey(name: "BusinessType")
+  final String? businessType;
   @JsonKey(name: "AnnualIncome")
   final String? annualIncome;
   @JsonKey(name: "EmployerCountries")
@@ -24,7 +26,7 @@ class SaveJobInfoRequest {
   @JsonKey(name: "AdditionalIncome")
   final List<AdditionalIncome>? additionalIncome;
   @JsonKey(name: "baseClass")
-  final Map<String,dynamic> baseData;
+  final Map<String, dynamic> baseData;
 
   SaveJobInfoRequest(
       {this.employeeName,
@@ -35,6 +37,7 @@ class SaveJobInfoRequest {
       this.employerContact,
       this.additionalIncomes,
       this.mainSource,
+      this.businessType,
       this.additionalIncome,
       required this.baseData});
 

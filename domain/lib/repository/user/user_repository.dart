@@ -11,6 +11,8 @@ import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.da
 import 'package:domain/model/user/confirm_application_data_get/get_confirm_application_data_response.dart';
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
+import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
+import 'package:domain/model/user/get_combo_values/get_combo_values_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/model/user/register_interest/register_interest_response.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
@@ -97,7 +99,7 @@ abstract class UserRepository {
     String? residentCountry,
     String? buildingName,
     String? streetName,
-    String? residentDistrict,
+    String? residentArea,
     String? residentCity,
     String? permanentResidentCountry,
     String? permanentResidentCity,
@@ -113,12 +115,15 @@ abstract class UserRepository {
           String? otherNationality,
           String? employmentStatus,
           String? spouseName,
+          bool? isEmployed,
           String? natureOfSpecialNeeds});
 
   /// save job information
   Future<Either<NetworkError, SaveJobDetailsResponse>> saveJobInformation(
       {String? employeeName,
       String? occupation,
+      String? businessType,
+      String? specifyBusinessType,
       String? annualIncome,
       String? employerCountry,
       String? employerCity,
@@ -158,8 +163,17 @@ abstract class UserRepository {
   ///disable finger print
   Future<Either<NetworkError, bool>> disableFingerPrint();
 
+  ///generate key pair
+  Future<Either<NetworkError, GenerateKeyPairResponse>> generateKeyPair();
+
   Future<Either<BaseError, bool>> checkBioMetricSupport();
 
   Future<Either<BaseError, bool>> authenticateBioMetric(
       String title, String localisedReason);
+
+  ///enable biometric
+  Future<Either<NetworkError, bool>> enableBiometric();
+
+  ///get combo values
+  Future<Either<NetworkError, GetComboValuesResponse>> getComboValues();
 }

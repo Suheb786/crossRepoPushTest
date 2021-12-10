@@ -475,5 +475,15 @@
   "usTaxPayerIdentificationNumber": "U.S. Tax Payer\nIdentification Number ",
   "referenceNumberSmall": "Reference Number",
   "claimOfTaxTreatyBenefits": "Claim of Tax Treaty Benefits",
-  "genericError": "Something went wrong. Please try again."
+  "genericError": "Something went wrong. Please try again.",
+  "invalidUserName": "Please enter a valid UserName",
+  "clickToEditSomeMayBeDisabled": "Click to edit the fields, some may be disabled.",
+  "areaSmall": "Area",
+  "occupationBusinessType": "Occupation/Business Type",
+  "employerPhoneNo": "Employer Phone Number ",
+  "otherIncome": "Other Income",
+  "expectedTransactions": "Expected Transactions",
+  "expectedMonthlyAmount": "Expected Monthly Amount",
+  "expectedAnnualAmount": "Expected Annual Amount"
+
 }

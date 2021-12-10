@@ -22,8 +22,8 @@ class CustomerAccountDetails {
   final String? notes;
   final String? natureID;
   final String? relationshipCode;
-  final int? allowCreditTransaction;
-  final int? allowDebitTransaction;
+  final int? dontAllowCreditTran;
+  final int? dontAllowDebitTran;
   final int? creditNeedsSupervision;
   final int? debitNeedsSupervision;
   final int? notServiceCharges;
@@ -41,6 +41,7 @@ class CustomerAccountDetails {
   final int? productCross;
   final int? productOthers;
   final String? productOthersDesc;
+  final dynamic? idType;
 
   CustomerAccountDetails(
       {this.createBy,
@@ -66,8 +67,8 @@ class CustomerAccountDetails {
       this.notes,
       this.natureID,
       this.relationshipCode,
-      this.allowCreditTransaction,
-      this.allowDebitTransaction,
+      this.dontAllowCreditTran,
+      this.dontAllowDebitTran,
       this.creditNeedsSupervision,
       this.debitNeedsSupervision,
       this.notServiceCharges,
@@ -84,5 +85,6 @@ class CustomerAccountDetails {
       this.productRemittance,
       this.productCross,
       this.productOthers,
+      this.idType,
       this.productOthersDesc});
 }

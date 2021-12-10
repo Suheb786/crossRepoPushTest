@@ -10,8 +10,8 @@ class SaveResidenceInformationRequest {
   final String? buildingName;
   @JsonKey(name: "StreetName")
   final String? streetName;
-  @JsonKey(name: "District")
-  final String? district;
+  @JsonKey(name: "Area")
+  final String? area;
   @JsonKey(name: "City")
   final String? city;
   @JsonKey(name: "PerCountry")
@@ -25,7 +25,7 @@ class SaveResidenceInformationRequest {
       {this.residantCountry: "",
       this.buildingName: "",
       this.streetName: "",
-      this.district: "",
+      this.area: "",
       this.city: "",
       this.perCountry: "",
       this.perCity: "",

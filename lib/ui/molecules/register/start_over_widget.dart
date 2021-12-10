@@ -26,9 +26,9 @@ class StartOverWidget extends StatelessWidget {
                 fontFamily: 'Montserrat',
                 color: Theme.of(context).primaryColorDark),
           ),
-          SizedBox(
-            height: 24,
-          ),
+          // SizedBox(
+          //   height: 24,
+          // ),
           // Container(
           //   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
           //   decoration: BoxDecoration(

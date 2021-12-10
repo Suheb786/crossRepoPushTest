@@ -4,6 +4,8 @@ import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm_application_data_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
+import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
+import 'package:data/entity/remote/user/get_combo_values/get_combo_values_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/logout/logout_response_entity.dart';
@@ -79,6 +81,8 @@ abstract class UserRemoteDS {
       String? employerCity,
       String? employerContact,
       bool? additionalIncome,
+      String? businessType,
+      String? specifyBusinessType,
       String? mainSource,
       List<AdditionalIncomeType>? additionalIncomeType});
 
@@ -90,6 +94,7 @@ abstract class UserRemoteDS {
       String? otherNationality,
       String? employmentStatus,
       String? spouseName,
+      bool? isEmployed,
       String? natureOfSpecialNeeds});
 
   Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
@@ -97,7 +102,7 @@ abstract class UserRemoteDS {
           {String? residentCountry,
           String? buildingName,
           String? streetName,
-          String? residentDistrict,
+          String? residentArea,
           String? residentCity,
           String? permanentResidentCountry,
           String? permanentResidentCity});
@@ -128,6 +133,12 @@ abstract class UserRemoteDS {
   Future<bool> enableFingerPrint({String? cipher});
 
   Future<bool> disableFingerPrint();
+
+  Future<HttpResponse<GenerateKeyPairResponseEntity>> generateKeyPair();
+
+  Future<HttpResponse<ResponseEntity>> enableBiometric();
+
+  Future<HttpResponse<GetComboValuesResponseEntity>> getComboValues();
 }
 
 abstract class UserLocalDS {

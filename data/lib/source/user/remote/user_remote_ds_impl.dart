@@ -1,5 +1,7 @@
+import 'package:data/entity/local/base/crypto_util.dart';
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/local/base/image_utils.dart';
+import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
@@ -16,8 +18,13 @@ import 'package:data/entity/remote/user/confirm_application_data_set/confirm_app
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/review_application_data_entity.dart';
 import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
+import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
+import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_response_entity.dart';
+import 'package:data/entity/remote/user/get_combo_values/get_combo_values_request_entity.dart';
+import 'package:data/entity/remote/user/get_combo_values/get_combo_values_response_entity.dart';
 import 'package:data/entity/remote/user/get_token_response_entity.dart';
 import 'package:data/entity/remote/user/login_response_entity.dart';
 import 'package:data/entity/remote/user/login_user_request.dart';
@@ -47,13 +54,22 @@ import 'package:domain/model/user/confirm_application_data_get/country_residence
 import 'package:domain/model/user/confirm_application_data_get/fatca_crs_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
+import 'package:domain/model/user/user.dart';
 import 'package:retrofit/retrofit.dart';
 
 class UserRemoteDSImpl extends UserRemoteDS {
   final ApiService _apiService;
   final DeviceInfoHelper _deviceInfoHelper;
+  final UserLocalDS _userLocalDS;
 
-  UserRemoteDSImpl(this._apiService, this._deviceInfoHelper);
+  // final CryptoUtil _cryptoUtil;
+
+  UserRemoteDSImpl(
+    this._apiService,
+    this._deviceInfoHelper,
+    this._userLocalDS,
+    // this._cryptoUtil
+  );
 
   @override
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
@@ -194,18 +210,21 @@ class UserRemoteDSImpl extends UserRemoteDS {
       String? employerCity,
       String? employerContact,
       bool? additionalIncome,
+      String? businessType,
+      String? specifyBusinessType,
       String? mainSource,
       List<AdditionalIncomeType>? additionalIncomeType}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveJobInformation(SaveJobInfoRequest(
         baseData: baseData.toJson(),
-        occupation: occupation,
-        annualIncome: annualIncome,
-        employeeName: employeeName,
-        employerCountries: employerCountry,
-        employerCity: employerCity,
-        employerContact: employerContact,
+        occupation: occupation ?? '',
+        annualIncome: annualIncome ?? '',
+        employeeName: employeeName ?? '',
+        employerCountries: employerCountry ?? 'Jordan',
+        employerCity: employerCity ?? '',
+        employerContact: employerContact ?? '',
         mainSource: 'JOB',
+        businessType: businessType ?? '',
         additionalIncomes: additionalIncome,
         additionalIncome: additionalIncomeType!
             .map((e) => AdditionalIncome().restore(e))
@@ -221,6 +240,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
       String? otherNationality,
       String? employmentStatus,
       String? spouseName,
+      bool? isEmployed,
       String? natureOfSpecialNeeds}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveProfileInformation(SaveProfileInformationRequest(
@@ -230,6 +250,9 @@ class UserRemoteDSImpl extends UserRemoteDS {
       employmentStatus: employmentStatus,
       spauseName: spouseName,
       natureSP: natureOfSpecialNeeds,
+      additionalNationality: otherNationality,
+      isEmployed: isEmployed,
+      isAdditionalNational: anyOtherNationality,
     ));
   }
 
@@ -239,7 +262,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
           {String? residentCountry,
           String? buildingName,
           String? streetName,
-          String? residentDistrict,
+          String? residentArea,
           String? residentCity,
           String? permanentResidentCountry,
           String? permanentResidentCity}) async {
@@ -249,7 +272,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
         residantCountry: residentCountry,
         buildingName: buildingName,
         streetName: streetName,
-        district: residentDistrict,
+        area: residentArea,
         city: residentCity,
         perCountry: permanentResidentCountry,
         perCity: permanentResidentCity));
@@ -356,5 +379,35 @@ class UserRemoteDSImpl extends UserRemoteDS {
         baseData: baseData.toJson(),
         getToken: true,
         selfieImage: ImageUtils.convertToBase64(imagePath!)));
+  }
+
+  @override
+  Future<HttpResponse<GenerateKeyPairResponseEntity>> generateKeyPair() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.generateKeyPair(GenerateKeyPairRequestEntity(
+      baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> enableBiometric() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
+    User user = userDBEntity!.transform();
+    return _apiService.enableBiometric(EnableBiometricRequestEntity(
+      publicKey: user.publicPEM,
+      cipher: await encryptData(
+          content: user.id,
+          publicKey: user.publicPEM,
+          privateKey: user.privatePEM),
+      baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<GetComboValuesResponseEntity>> getComboValues() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getComboValues(GetComboValuesRequestEntity(
+        baseData: baseData.toJson(), getToken: true));
   }
 }

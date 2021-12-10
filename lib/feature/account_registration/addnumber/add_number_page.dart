@@ -24,6 +24,7 @@ class AddNumberPageState
   void onModelReady(AddNumberViewModel model) {
     super.onModelReady(model);
     model.fetchCountryByCode(context, "JO");
+    model.getAllowedCountryCode();
   }
 
   @override

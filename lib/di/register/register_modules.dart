@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account/account_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/account_registration/account_regisration_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/fatca_crs/fatca_crs_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
@@ -43,6 +44,7 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_inco
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/home_address_dialog/home_address_dialog_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/mobile_number_dialog/mobile_number_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_account_opening/purpose_of_account_opening_dialog_view_model.dart';
@@ -98,7 +100,8 @@ final registerStepThreeViewModelProvider =
 ///job and income page view model provider
 final jobAndIncomePageViewModelProvider =
     ChangeNotifierProvider.autoDispose<JobAndIncomePageViewModel>(
-  (ref) => JobAndIncomePageViewModel(ref.read(jobAndIncomeUseCaseProvider)),
+  (ref) => JobAndIncomePageViewModel(ref.read(jobAndIncomeUseCaseProvider),
+      ref.read(getComboValuesUseCaseProvider)),
 );
 
 ///employment status dialog view model provider
@@ -120,7 +123,8 @@ final purposeOfAccountOpeningDialogViwModelProvider =
 ///get employer Country dialog view model provider
 final employerCountryDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<CountryDialogViewModel>((ref) =>
-        CountryDialogViewModel(ref.read(fetchCountriesUseCaseProvider)));
+        CountryDialogViewModel(ref.read(fetchCountriesUseCaseProvider),
+            ref.read(getCountriesListUseCaseProvider)));
 
 ///additional income source dialog view model provider
 final additionalIncomeSourceDialogViwModelProvider =
@@ -251,7 +255,8 @@ final uploadDocumentsPageViewModelProvider =
       ref.read(sendDocumentsUseCaseUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
       ref.read(checkOtherNationalityStatusUseCaseProvider),
-      ref.read(fileUploadUseCaseProvider)),
+      ref.read(fileUploadUseCaseProvider),
+      ref.read(removeDebitLockUseCaseProvider)),
 );
 
 ///account ready page
@@ -369,7 +374,12 @@ final yearMonthDialogViewModelProvider =
 final fatcaSignaturePageViewModelProvider =
     ChangeNotifierProvider.autoDispose<FatcaSignaturePageViewModel>(
   (ref) => FatcaSignaturePageViewModel(
-    ref.read(uploadSignatureUseCaseProvider),
-    ref.read(uploadDocumentUseCaseProvider),
-  ),
+      ref.read(uploadSignatureUseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(setFatcaQuestionsResponseUseCaseProvider)),
 );
+
+///mobile number dialog view model provider
+final mobileNumberDialogViwModelProvider =
+    ChangeNotifierProvider.autoDispose<MobileNumberDialogViewModel>(
+        (ref) => MobileNumberDialogViewModel());

@@ -2,7 +2,6 @@ import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
-import 'package:domain/model/account/check_other_nationality_status_response.dart';
 import 'package:domain/model/upload_document/file_upload_response.dart';
 import 'package:domain/model/upload_document/save_upload_document_response.dart';
 import 'package:flutter/material.dart';
@@ -422,191 +421,191 @@ class UploadDocumentsPageView
                                             );
                                           },
                                         ),
-                                        AppStreamBuilder<
-                                            Resource<
-                                                CheckOtherNationalityResponse>>(
-                                          initialData: Resource.none(),
-                                          stream: model
-                                              .checkOtherNationalityStatusStream,
-                                          onData: (data) {
-                                            if (data.status == Status.SUCCESS) {
-                                              model.isOtherNationality = data
-                                                  .data!
-                                                  .checkOtherNationalityResponseContent!
-                                                  .status!;
-                                            }
-                                          },
-                                          dataBuilder: (context, status) {
-                                            return Visibility(
-                                                visible: status!
-                                                    .data!
-                                                    .checkOtherNationalityResponseContent!
-                                                    .status!,
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                              vertical: 24),
-                                                      child: Container(
-                                                        height: 1,
-                                                        color: AppColor
-                                                            .dark_gray_1,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      S
-                                                          .of(context)
-                                                          .additionalNationalityPassport,
-                                                      softWrap: true,
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: Theme.of(
-                                                                  context)
-                                                              .primaryColorDark),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          top: 8.0, bottom: 16),
-                                                      child: Text(
-                                                        S
-                                                            .of(context)
-                                                            .additionalNationalityPassportDesc,
-                                                        softWrap: true,
-                                                        style: TextStyle(
-                                                            fontSize: 12,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .primaryColorDark),
-                                                      ),
-                                                    ),
-                                                    AppStreamBuilder<String>(
-                                                      stream: model
-                                                          .additionalNationalityProofStream,
-                                                      initialData: '',
-                                                      onData:
-                                                          (documentResponse) {
-                                                        if (documentResponse
-                                                            .isNotEmpty) {
-                                                          model.updateAdditionalNationalityField(
-                                                              documentResponse);
-                                                        }
-                                                      },
-                                                      dataBuilder:
-                                                          (context, document) {
-                                                        return AppStreamBuilder<
-                                                            bool>(
-                                                          stream: model
-                                                              .documentNationalityStream,
-                                                          initialData: false,
-                                                          dataBuilder: (context,
-                                                              isUploaded) {
-                                                            return AppStreamBuilder<
-                                                                Resource<
-                                                                    FileUploadResponse>>(
-                                                              stream: model
-                                                                  .uploadOtherNationalityProofDocumentStream,
-                                                              initialData:
-                                                                  Resource
-                                                                      .none(),
-                                                              onData:
-                                                                  (otherNationalityUploadResponse) {
-                                                                if (otherNationalityUploadResponse
-                                                                        .status ==
-                                                                    Status
-                                                                        .SUCCESS) {
-                                                                  model.otherNationalityProofDocumentId =
-                                                                      otherNationalityUploadResponse
-                                                                          .data!
-                                                                          .fileUploadContent!
-                                                                          .documentId!;
-                                                                  model.isOtherNationalityDocumentUploaded =
-                                                                      true;
-                                                                  model
-                                                                      .validateFields();
-                                                                }
-                                                              },
-                                                              dataBuilder:
-                                                                  (context,
-                                                                      data) {
-                                                                return AppTextField(
-                                                                  labelText: '',
-                                                                  hintText: S
-                                                                      .of(context)
-                                                                      .uploadDocumentsSmall,
-                                                                  controller: model
-                                                                      .additionalNationalityController,
-                                                                  key: model
-                                                                      .additionalNationalityKey,
-                                                                  textFieldBorderColor: Theme.of(
-                                                                          context)
-                                                                      .accentTextTheme
-                                                                      .bodyText1!
-                                                                      .color,
-                                                                  readOnly:
-                                                                      true,
-                                                                  hintTextColor:
-                                                                      Theme.of(
-                                                                              context)
-                                                                          .primaryColorDark,
-                                                                  textColor: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark,
-                                                                  suffixIcon:
-                                                                      (value,
-                                                                          data) {
-                                                                    return InkWell(
-                                                                      onTap: !(isUploaded!)
-                                                                          ? () async {
-                                                                              UploadDocumentSelectionWidget.show(context, title: S.of(context).pleaseSelectYourAction, onCameraTap: () {
-                                                                                Navigator.pop(context);
-                                                                                model.uploadAdditionalNationalityDocument(DocumentTypeEnum.CAMERA);
-                                                                              }, onUploadDocumentTap: () {
-                                                                                Navigator.pop(context);
-                                                                                model.uploadAdditionalNationalityDocument(DocumentTypeEnum.GALLERY);
-                                                                              }, onCancelled: () {
-                                                                                Navigator.pop(context);
-                                                                              });
-                                                                            }
-                                                                          : () {
-                                                                              model.additionalNationalityController.clear();
-                                                                              model.isOtherNationalityDocumentUploaded = false;
-                                                                              model.otherNationalityProofDocumentId = '';
-                                                                              model.validateFields();
-                                                                              model.updateAdditionalNationalityUploadedStream(false);
-                                                                            },
-                                                                      child: Container(
-                                                                          height: 16,
-                                                                          width: 16,
-                                                                          padding: EdgeInsets.all(5),
-                                                                          child: isUploaded
-                                                                              ? AppSvg.asset(
-                                                                                  AssetUtils.delete,
-                                                                                  color: Theme.of(context).primaryColorDark,
-                                                                                )
-                                                                              : AppSvg.asset(
-                                                                                  AssetUtils.upload,
-                                                                                  color: Theme.of(context).primaryColorDark,
-                                                                                )),
-                                                                    );
-                                                                  },
-                                                                );
-                                                              },
-                                                            );
-                                                          },
-                                                        );
-                                                      },
-                                                    ),
-                                                  ],
-                                                ));
-                                          },
-                                        ),
+                                        // AppStreamBuilder<
+                                        //     Resource<
+                                        //         CheckOtherNationalityResponse>>(
+                                        //   initialData: Resource.none(),
+                                        //   stream: model
+                                        //       .checkOtherNationalityStatusStream,
+                                        //   onData: (data) {
+                                        //     if (data.status == Status.SUCCESS) {
+                                        //       model.isOtherNationality = data
+                                        //           .data!
+                                        //           .checkOtherNationalityResponseContent!
+                                        //           .status!;
+                                        //     }
+                                        //   },
+                                        //   dataBuilder: (context, status) {
+                                        //     return Visibility(
+                                        //         visible: status!
+                                        //             .data!
+                                        //             .checkOtherNationalityResponseContent!
+                                        //             .status!,
+                                        //         child: Column(
+                                        //           crossAxisAlignment:
+                                        //               CrossAxisAlignment.start,
+                                        //           children: [
+                                        //             Padding(
+                                        //               padding:
+                                        //                   EdgeInsets.symmetric(
+                                        //                       vertical: 24),
+                                        //               child: Container(
+                                        //                 height: 1,
+                                        //                 color: AppColor
+                                        //                     .dark_gray_1,
+                                        //               ),
+                                        //             ),
+                                        //             Text(
+                                        //               S
+                                        //                   .of(context)
+                                        //                   .additionalNationalityPassport,
+                                        //               softWrap: true,
+                                        //               style: TextStyle(
+                                        //                   fontSize: 14,
+                                        //                   fontWeight:
+                                        //                       FontWeight.w600,
+                                        //                   color: Theme.of(
+                                        //                           context)
+                                        //                       .primaryColorDark),
+                                        //             ),
+                                        //             Padding(
+                                        //               padding: EdgeInsets.only(
+                                        //                   top: 8.0, bottom: 16),
+                                        //               child: Text(
+                                        //                 S
+                                        //                     .of(context)
+                                        //                     .additionalNationalityPassportDesc,
+                                        //                 softWrap: true,
+                                        //                 style: TextStyle(
+                                        //                     fontSize: 12,
+                                        //                     fontWeight:
+                                        //                         FontWeight.w400,
+                                        //                     color: Theme.of(
+                                        //                             context)
+                                        //                         .primaryColorDark),
+                                        //               ),
+                                        //             ),
+                                        //             AppStreamBuilder<String>(
+                                        //               stream: model
+                                        //                   .additionalNationalityProofStream,
+                                        //               initialData: '',
+                                        //               onData:
+                                        //                   (documentResponse) {
+                                        //                 if (documentResponse
+                                        //                     .isNotEmpty) {
+                                        //                   model.updateAdditionalNationalityField(
+                                        //                       documentResponse);
+                                        //                 }
+                                        //               },
+                                        //               dataBuilder:
+                                        //                   (context, document) {
+                                        //                 return AppStreamBuilder<
+                                        //                     bool>(
+                                        //                   stream: model
+                                        //                       .documentNationalityStream,
+                                        //                   initialData: false,
+                                        //                   dataBuilder: (context,
+                                        //                       isUploaded) {
+                                        //                     return AppStreamBuilder<
+                                        //                         Resource<
+                                        //                             FileUploadResponse>>(
+                                        //                       stream: model
+                                        //                           .uploadOtherNationalityProofDocumentStream,
+                                        //                       initialData:
+                                        //                           Resource
+                                        //                               .none(),
+                                        //                       onData:
+                                        //                           (otherNationalityUploadResponse) {
+                                        //                         if (otherNationalityUploadResponse
+                                        //                                 .status ==
+                                        //                             Status
+                                        //                                 .SUCCESS) {
+                                        //                           model.otherNationalityProofDocumentId =
+                                        //                               otherNationalityUploadResponse
+                                        //                                   .data!
+                                        //                                   .fileUploadContent!
+                                        //                                   .documentId!;
+                                        //                           model.isOtherNationalityDocumentUploaded =
+                                        //                               true;
+                                        //                           model
+                                        //                               .validateFields();
+                                        //                         }
+                                        //                       },
+                                        //                       dataBuilder:
+                                        //                           (context,
+                                        //                               data) {
+                                        //                         return AppTextField(
+                                        //                           labelText: '',
+                                        //                           hintText: S
+                                        //                               .of(context)
+                                        //                               .uploadDocumentsSmall,
+                                        //                           controller: model
+                                        //                               .additionalNationalityController,
+                                        //                           key: model
+                                        //                               .additionalNationalityKey,
+                                        //                           textFieldBorderColor: Theme.of(
+                                        //                                   context)
+                                        //                               .accentTextTheme
+                                        //                               .bodyText1!
+                                        //                               .color,
+                                        //                           readOnly:
+                                        //                               true,
+                                        //                           hintTextColor:
+                                        //                               Theme.of(
+                                        //                                       context)
+                                        //                                   .primaryColorDark,
+                                        //                           textColor: Theme.of(
+                                        //                                   context)
+                                        //                               .primaryColorDark,
+                                        //                           suffixIcon:
+                                        //                               (value,
+                                        //                                   data) {
+                                        //                             return InkWell(
+                                        //                               onTap: !(isUploaded!)
+                                        //                                   ? () async {
+                                        //                                       UploadDocumentSelectionWidget.show(context, title: S.of(context).pleaseSelectYourAction, onCameraTap: () {
+                                        //                                         Navigator.pop(context);
+                                        //                                         model.uploadAdditionalNationalityDocument(DocumentTypeEnum.CAMERA);
+                                        //                                       }, onUploadDocumentTap: () {
+                                        //                                         Navigator.pop(context);
+                                        //                                         model.uploadAdditionalNationalityDocument(DocumentTypeEnum.GALLERY);
+                                        //                                       }, onCancelled: () {
+                                        //                                         Navigator.pop(context);
+                                        //                                       });
+                                        //                                     }
+                                        //                                   : () {
+                                        //                                       model.additionalNationalityController.clear();
+                                        //                                       model.isOtherNationalityDocumentUploaded = false;
+                                        //                                       model.otherNationalityProofDocumentId = '';
+                                        //                                       model.validateFields();
+                                        //                                       model.updateAdditionalNationalityUploadedStream(false);
+                                        //                                     },
+                                        //                               child: Container(
+                                        //                                   height: 16,
+                                        //                                   width: 16,
+                                        //                                   padding: EdgeInsets.all(5),
+                                        //                                   child: isUploaded
+                                        //                                       ? AppSvg.asset(
+                                        //                                           AssetUtils.delete,
+                                        //                                           color: Theme.of(context).primaryColorDark,
+                                        //                                         )
+                                        //                                       : AppSvg.asset(
+                                        //                                           AssetUtils.upload,
+                                        //                                           color: Theme.of(context).primaryColorDark,
+                                        //                                         )),
+                                        //                             );
+                                        //                           },
+                                        //                         );
+                                        //                       },
+                                        //                     );
+                                        //                   },
+                                        //                 );
+                                        //               },
+                                        //             ),
+                                        //           ],
+                                        //         ));
+                                        //   },
+                                        // ),
                                         Center(
                                           child: Padding(
                                               padding: EdgeInsets.only(

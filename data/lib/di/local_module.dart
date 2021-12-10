@@ -1,6 +1,7 @@
 import 'package:data/db/floor/database_properties.dart';
 import 'package:data/db/floor/floor_db_service.dart';
 import 'package:data/entity/local/base/device_helper.dart';
+import 'package:data/entity/local/base/rsa_key_helper.dart';
 import 'package:data/local_auth/bio_matric/bio_metric_service.dart';
 import 'package:data/source/country/country_datasource.dart';
 import 'package:data/source/country/local/country_local_ds_impl.dart';
@@ -51,3 +52,15 @@ var homeAddressDialogDataSourceProvider =
 
 var deviceInfoHelperProvider =
     Provider<DeviceInfoHelper>((ref) => DeviceInfoHelper());
+
+// ///cryptoUtil provider
+// final crytoUtilProvider = Provider<CryptoUtil>(
+//   (ref) => CryptoUtil(ref.read(userRepoProvider),
+//       //ref.read(rsaHelperProvider)
+//   ),
+// );
+
+///rsa Helper provider
+final rsaHelperProvider = Provider<RsaKeyHelper>(
+  (ref) => RsaKeyHelper(),
+);

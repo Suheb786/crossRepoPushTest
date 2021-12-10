@@ -8,7 +8,9 @@ final dashboardViewModelProvider =
   (ref) => DashboardPageViewModel(
       ref.read(logoutUseCaseProvider),
       ref.read(checkBioMetricSupportUseCaseProvider),
-      ref.read(authenticateBioMetricUseCaseProvider)),
+      ref.read(authenticateBioMetricUseCaseProvider),
+      ref.read(generateKeyPairUseCaseProvider),
+      ref.read(enableBiometricUseCaseProvider)),
 );
 
 final biometricLoginViewModelProvider =

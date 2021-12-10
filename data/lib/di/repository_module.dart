@@ -39,6 +39,7 @@ var userRepoProvider = Provider<UserRepository>(
 var countryRepoProvider = Provider<CountryRepository>(
   (ref) => CountryRepositoryImpl(
     ref.read(countryLocalDataProvider),
+    ref.read(countryRemoteDataSourceProvider)
   ),
 );
 

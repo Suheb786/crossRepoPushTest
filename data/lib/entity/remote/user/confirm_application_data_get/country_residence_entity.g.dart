@@ -15,7 +15,7 @@ CountryResidenceEntity _$CountryResidenceEntityFromJson(
     perCity: json['perCity'],
     city: json['city'] as String?,
     perResidantCountry: json['perCountry'] as String?,
-    district: json['district'] as String?,
+    area: json['area'] as String?,
     buildingName: json['buildingName'] as String?,
     streetName: json['streetName'] as String?,
     createdOn: json['createdOn'] == null
@@ -33,7 +33,7 @@ Map<String, dynamic> _$CountryResidenceEntityToJson(
       'residantCountry': instance.residantCountry,
       'buildingName': instance.buildingName,
       'streetName': instance.streetName,
-      'district': instance.district,
+      'area': instance.area,
       'city': instance.city,
       'perCountry': instance.perResidantCountry,
       'perCity': instance.perCity,

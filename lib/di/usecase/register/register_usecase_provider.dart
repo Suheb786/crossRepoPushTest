@@ -103,5 +103,5 @@ final fatcaUSW8TaxPayerDetailsUseCaseProvider =
 ///[ScheduleVideoCallUseCase] provider
 final scheduleVideoCallUseCaseProvider =
     Provider.autoDispose<ScheduleVideoCallUseCase>(
-  (ref) => ScheduleVideoCallUseCase(),
+  (ref) => ScheduleVideoCallUseCase(ref.read(accountRepositoryProvider)),
 );

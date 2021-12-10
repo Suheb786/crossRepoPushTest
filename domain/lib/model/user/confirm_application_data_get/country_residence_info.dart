@@ -4,7 +4,7 @@ class CountryResidenceInfo {
   final String? residantCountry;
   final String? buildingName;
   final String? streetName;
-  final String? district;
+  final String? area;
   final String? city;
   final String? perResidantCountry;
   final String? perCity;
@@ -18,7 +18,7 @@ class CountryResidenceInfo {
     this.streetName,
     this.buildingName,
     this.perResidantCountry,
-    this.district,
+    this.area,
     this.city,
     this.perCity,
     this.createdOn,

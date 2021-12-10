@@ -42,6 +42,7 @@ class FatcaUSW9TaxPayersDetailsPageView
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
+                      model.updateData(context);
                       ProviderScope.containerOf(context)
                           .read(registerStepFourViewModelProvider)
                           .registrationStepFourPageController
@@ -52,8 +53,8 @@ class FatcaUSW9TaxPayersDetailsPageView
                   },
                   dataBuilder: (context, response) {
                     return GestureDetector(
-                      onHorizontalDragUpdate: (details) {
-                        if (details.primaryDelta!.isNegative) {
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity!.isNegative) {
                           model.validateFatcaUSW9TaxPayersDetails();
                         } else {
                           ProviderScope.containerOf(context)
