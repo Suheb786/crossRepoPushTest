@@ -66,7 +66,7 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
                                 physics: ClampingScrollPhysics(),
                                 child: AppOtpFields(
                                   length: 4,
-                                  fieldWidth: 63.75,
+                                  fieldWidth: MediaQuery.of(context).size.width/6.4,
                                   fieldHeight: 52,
                                   onChanged: (val) {
                                     model.validate(val);

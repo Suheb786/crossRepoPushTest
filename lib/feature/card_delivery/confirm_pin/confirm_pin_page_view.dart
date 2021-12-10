@@ -6,6 +6,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/feature/card_delivery/confirm_pin/confirm_pin_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -33,10 +34,8 @@ class ConfirmPinPageView extends BasePageViewWidget<ConfirmPinPageViewModel> {
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  ProviderScope.containerOf(context)
-                      .read(cardDeliveryViewModelProvider)
-                      .swiperController
-                      .next(animation: true);
+                  Navigator.pushReplacementNamed(
+                      context, RoutePaths.CardReadySuccess);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -70,7 +69,7 @@ class ConfirmPinPageView extends BasePageViewWidget<ConfirmPinPageViewModel> {
                                 physics: ClampingScrollPhysics(),
                                 child: AppOtpFields(
                                   length: 4,
-                                  fieldWidth: 63.75,
+                                  fieldWidth: MediaQuery.of(context).size.width/6.4,
                                   fieldHeight: 52,
                                   onChanged: (val) {
                                     model.validate(val);

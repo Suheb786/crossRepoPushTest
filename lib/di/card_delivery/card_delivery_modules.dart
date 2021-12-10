@@ -4,6 +4,7 @@ import 'package:neo_bank/feature/card_delivery/card_delivery_page_view_model.dar
 import 'package:neo_bank/feature/card_delivery/confirm_pin/confirm_pin_page_view_model.dart';
 import 'package:neo_bank/feature/card_delivery/create_pin/create_pin_page_view_model.dart';
 import 'package:neo_bank/feature/card_delivery/visa_card/visa_card_page_view_model.dart';
+import 'package:neo_bank/feature/card_ready_success/card_ready_success_page_view_model.dart';
 
 ///card delivery view model provider
 final cardDeliveryViewModelProvider =
@@ -27,4 +28,10 @@ final confirmPinViewModelProvider =
 final visaCardViewModelProvider =
     ChangeNotifierProvider.autoDispose<VisaCardPageViewModel>(
   (ref) => VisaCardPageViewModel(),
+);
+
+///card ready success view model provider
+final cardReadySuccessViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CardReadySuccessPageViewModel>(
+  (ref) => CardReadySuccessPageViewModel(),
 );

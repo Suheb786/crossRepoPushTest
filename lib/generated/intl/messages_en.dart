@@ -781,6 +781,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Thank you for waiting, the video call will start automatically"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
+        "toDashboard": MessageLookupByLibrary.simpleMessage("to Dashboard"),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("to Welcome Page"),
         "totalAdditionalIncome":

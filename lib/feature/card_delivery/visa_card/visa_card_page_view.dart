@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
@@ -50,20 +52,30 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                               controller: model.cardController,
                               fill: Fill.fillBack,
                               direction: FlipDirection.HORIZONTAL,
-                              // default
                               front: Stack(
                                 alignment: Alignment.center,
                                 children: [
                                   ClipRRect(
                                       borderRadius: BorderRadius.circular(16),
                                       child: AppSvg.asset(AssetUtils.visaCard)),
-                                  InkWell(
-                                      onTap: () {
-                                        print('tapped');
-                                        model.cardController.toggleCard();
-                                      },
-                                      child:
-                                          AppSvg.asset(AssetUtils.flipButton))
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(30),
+                                    clipBehavior: Clip.antiAlias,
+                                    child: InkWell(
+                                        onTap: () {
+                                          model.cardController.toggleCard();
+                                        },
+                                        child: BackdropFilter(
+                                          filter: ImageFilter.blur(
+                                              sigmaY: 15, sigmaX: 15),
+                                          child: Container(
+                                            height: 60,
+                                            width: 60,
+                                            child: AppSvg.asset(
+                                                AssetUtils.flipButton),
+                                          ),
+                                        )),
+                                  )
                                 ],
                               ),
                               back: Stack(

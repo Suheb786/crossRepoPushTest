@@ -45,11 +45,11 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   final String? crsRelevantInd;
   @JsonKey(name: "areYouAuSCitizenInd")
   final String? areYouAuSCitizenInd;
-  @JsonKey(name: "areYouAusTaxResidentInd")
+  @JsonKey(name: "areYouAUSTaxResidentInd")
   final String? areYouAusTaxResidentInd;
-  @JsonKey(name: "wereYouBornInTheUsInd")
+  @JsonKey(name: "wereYouBornInTheUSInd")
   final String? wereYouBornInTheUsInd;
-  @JsonKey(name: "countryUsOrUaeInd")
+  @JsonKey(name: "countryUSOrUAEInd")
   final String? countryUsOrUaeInd;
   @JsonKey(name: "phone1")
   final String? phone1;
@@ -149,13 +149,13 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   final dynamic? ourBranchId;
   @JsonKey(name: "idType")
   final String? idType;
-  @JsonKey(name: "firstNameAr")
+  @JsonKey(name: "firstNameAR")
   final String? firstNameAr;
-  @JsonKey(name: "secondNameAr")
+  @JsonKey(name: "secondNameAR")
   final String? secondNameAr;
-  @JsonKey(name: "thirdNameAr")
+  @JsonKey(name: "thirdNameAR")
   final String? thirdNameAr;
-  @JsonKey(name: "familyNameAr")
+  @JsonKey(name: "familyNameAR")
   final String? familyNameAr;
   @JsonKey(name: "motherFirstName")
   final String? motherFirstName;

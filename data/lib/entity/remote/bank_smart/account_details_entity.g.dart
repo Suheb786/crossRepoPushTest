@@ -10,7 +10,7 @@ AccountDetailsEntity _$AccountDetailsEntityFromJson(Map<String, dynamic> json) {
   return AccountDetailsEntity(
     createBy: json['createBy'] as String?,
     ourBranchID: json['ourBranchID'] as String?,
-    clientID: json['clientID'] as String?,
+    clientID: json['clientID'],
     productID: json['productID'] as String?,
     name: json['name'] as String?,
     address: json['address'] as String?,

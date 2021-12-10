@@ -494,6 +494,7 @@
   "errorWhileGetAccount": "Error While get Account",
   "emptyPin": "Enter Pin",
   "invalidPinLength": "Length of pin cannot be less than 4",
-  "pinDoesNotMatch": "Pin does not match"
+  "pinDoesNotMatch": "Pin does not match",
+  "toDashboard": "to Dashboard"
 
 }
