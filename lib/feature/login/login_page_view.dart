@@ -33,77 +33,77 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
         child: Column(
           children: [
             Expanded(
-              child: SingleChildScrollView(
-                controller: model.scrollController,
-                padding: MediaQuery.of(context).viewInsets,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 112.0),
-                      child: Image.asset(
-                        AssetUtils.blink,
-                        width: 195,
-                        height: 91.14,
+              child: GestureDetector(
+                onHorizontalDragEnd: (details) {
+                  if (details.primaryVelocity!.isNegative) {
+                    model.validateEmail();
+                  }
+                },
+                child: SingleChildScrollView(
+                  controller: model.scrollController,
+                  padding: MediaQuery.of(context).viewInsets,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 112.0),
+                        child: Image.asset(
+                          AssetUtils.blink,
+                          width: 195,
+                          height: 91.14,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 100.0),
-                      child: Text(
-                        S.of(context).enterLoginDetails,
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).accentColor,
-                            fontWeight: FontWeight.w500),
+                      Padding(
+                        padding: EdgeInsets.only(top: 100.0),
+                        child: Text(
+                          S.of(context).enterLoginDetails,
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).accentColor,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
-                    ),
-                    AppStreamBuilder<bool>(
-                        initialData: false,
-                        stream: model.errorDetectorStream,
-                        dataBuilder: (context, isError) {
-                          return ShakeAnimatedWidget(
-                            enabled: isError ?? false,
-                            duration: Duration(milliseconds: 100),
-                            shakeAngle: Rotation.deg(z: 1),
-                            curve: Curves.easeInOutSine,
-                            child: AppStreamBuilder<Resource<User>>(
-                              stream: model.loginStream,
-                              initialData: Resource.none(),
-                              onData: (data) {
-                                if (data.status == Status.SUCCESS) {
-                                  ProviderScope.containerOf(context)
-                                      .read(appViewModel)
-                                      .getToken();
-                                  //model.checkKycStatus();
-                                  Navigator.pushReplacementNamed(
-                                      context, RoutePaths.Registration);
-                                  model.emailKey.currentState!.isValid = true;
-                                } else if (data.status == Status.ERROR) {
-                                  model.emailKey.currentState!.isValid = false;
-                                  model.showToastWithError(data.appError!);
-                                }
-                              },
-                              dataBuilder: (context, data) {
-                                return AppStreamBuilder<
-                                    Resource<CheckKycResponse>>(
-                                  stream: model.kycStatusStream,
-                                  initialData: Resource.none(),
-                                  onData: (data) {
-                                    if (data.status == Status.SUCCESS) {
-                                      ///TODO:Navigate according to kyc response
-                                      Navigator.pushReplacementNamed(
-                                          context, RoutePaths.Registration);
-                                    }
-                                  },
-                                  dataBuilder: (context, kycResponse) {
-                                    return GestureDetector(
-                                      onHorizontalDragEnd: (details) {
-                                        if (details
-                                            .primaryVelocity!.isNegative) {
-                                          model.validateEmail();
-                                        }
-                                      },
-                                      child: Padding(
+                      AppStreamBuilder<bool>(
+                          initialData: false,
+                          stream: model.errorDetectorStream,
+                          dataBuilder: (context, isError) {
+                            return ShakeAnimatedWidget(
+                              enabled: isError ?? false,
+                              duration: Duration(milliseconds: 100),
+                              shakeAngle: Rotation.deg(z: 1),
+                              curve: Curves.easeInOutSine,
+                              child: AppStreamBuilder<Resource<User>>(
+                                stream: model.loginStream,
+                                initialData: Resource.none(),
+                                onData: (data) {
+                                  if (data.status == Status.SUCCESS) {
+                                    ProviderScope.containerOf(context)
+                                        .read(appViewModel)
+                                        .getToken();
+                                    //model.checkKycStatus();
+                                    Navigator.pushReplacementNamed(
+                                        context, RoutePaths.Registration);
+                                    model.emailKey.currentState!.isValid = true;
+                                  } else if (data.status == Status.ERROR) {
+                                    model.emailKey.currentState!.isValid =
+                                        false;
+                                    model.showToastWithError(data.appError!);
+                                  }
+                                },
+                                dataBuilder: (context, data) {
+                                  return AppStreamBuilder<
+                                      Resource<CheckKycResponse>>(
+                                    stream: model.kycStatusStream,
+                                    initialData: Resource.none(),
+                                    onData: (data) {
+                                      if (data.status == Status.SUCCESS) {
+                                        ///TODO:Navigate according to kyc response
+                                        Navigator.pushReplacementNamed(
+                                            context, RoutePaths.Registration);
+                                      }
+                                    },
+                                    dataBuilder: (context, kycResponse) {
+                                      return Padding(
                                         padding: EdgeInsets.only(
                                             left: 40, right: 40, top: 25),
                                         child: Column(
@@ -207,15 +207,15 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                             )
                                           ],
                                         ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                          );
-                        }),
-                  ],
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            );
+                          }),
+                    ],
+                  ),
                 ),
               ),
             ),
