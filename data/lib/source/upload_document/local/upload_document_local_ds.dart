@@ -21,8 +21,8 @@ class UploadDocumentLocalDSImpl extends UploadDocumentLocalDS {
 
     ///Trigger file picker with supported file types
     FilePickerResult? result = (await FilePicker.platform.pickFiles(
-      type: FileType.image,
-      //allowedExtensions: supportedTypes,
+      type: FileType.custom,
+      allowedExtensions: supportedTypes,
     ));
 
     if (result != null) {
