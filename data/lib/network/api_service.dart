@@ -152,11 +152,11 @@ abstract class ApiService {
       @Body()
           SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
 
-  @POST("/BankSmart/GetAccount")
+  @POST("/BankSmart/GetAccountV1")
   Future<HttpResponse<GetAccountResponseEntity>> getAccount(
       @Body() GetAccountRequestEntity getAccountRequestEntity);
 
-  @POST("/BankSmart/CreateAccount")
+  @POST("/BankSmart/CreateAccountV1")
   Future<HttpResponse<CreateAccountResponseEntity>> createAccount(
       @Body() CreateAccountRequestEntity createAccountRequestEntity);
 

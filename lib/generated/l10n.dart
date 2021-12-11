@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4705,6 +4706,116 @@ class S {
     return Intl.message(
       'Expected Annual Amount',
       name: 'expectedAnnualAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DEBIT CARD`
+  String get debitCard {
+    return Intl.message(
+      'DEBIT CARD',
+      name: 'debitCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card has\nbeen issued`
+  String get yourCardHasBeenIssued {
+    return Intl.message(
+      'Your card has\nbeen issued',
+      name: 'yourCardHasBeenIssued',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let’s set your\n4-digit PIN`
+  String get letsSet4DigitPin {
+    return Intl.message(
+      'Let’s set your\n4-digit PIN',
+      name: 'letsSet4DigitPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Now, confirm\nyour PIN`
+  String get nowConfirmPin {
+    return Intl.message(
+      'Now, confirm\nyour PIN',
+      name: 'nowConfirmPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card is ready!`
+  String get yourCardReady {
+    return Intl.message(
+      'Your card is ready!',
+      name: 'yourCardReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately.`
+  String get yourCardReadyDesc {
+    return Intl.message(
+      'Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately.',
+      name: 'yourCardReadyDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While get Account`
+  String get errorWhileGetAccount {
+    return Intl.message(
+      'Error While get Account',
+      name: 'errorWhileGetAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Pin`
+  String get emptyPin {
+    return Intl.message(
+      'Enter Pin',
+      name: 'emptyPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Length of pin cannot be less than 4`
+  String get invalidPinLength {
+    return Intl.message(
+      'Length of pin cannot be less than 4',
+      name: 'invalidPinLength',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pin does not match`
+  String get pinDoesNotMatch {
+    return Intl.message(
+      'Pin does not match',
+      name: 'pinDoesNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Dashboard`
+  String get toDashboard {
+    return Intl.message(
+      'to Dashboard',
+      name: 'toDashboard',
       desc: '',
       args: [],
     );

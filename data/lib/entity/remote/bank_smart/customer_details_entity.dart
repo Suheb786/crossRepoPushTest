@@ -45,11 +45,11 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   final String? crsRelevantInd;
   @JsonKey(name: "areYouAuSCitizenInd")
   final String? areYouAuSCitizenInd;
-  @JsonKey(name: "areYouAusTaxResidentInd")
+  @JsonKey(name: "areYouAUSTaxResidentInd")
   final String? areYouAusTaxResidentInd;
-  @JsonKey(name: "wereYouBornInTheUsInd")
+  @JsonKey(name: "wereYouBornInTheUSInd")
   final String? wereYouBornInTheUsInd;
-  @JsonKey(name: "countryUsOrUaeInd")
+  @JsonKey(name: "countryUSOrUAEInd")
   final String? countryUsOrUaeInd;
   @JsonKey(name: "phone1")
   final String? phone1;
@@ -62,7 +62,7 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "nic")
   final String? nic;
   @JsonKey(name: "nationalCardNumber")
-  final dynamic? nationalCardNumber;
+  final String? nationalCardNumber;
   @JsonKey(name: "nicExpirydate")
   final DateTime? nicExpirydate;
   @JsonKey(name: "dob")
@@ -70,8 +70,8 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "gender")
   final String? gender;
   @JsonKey(name: "maritalstatus")
-  final dynamic? maritalstatus;
-  @JsonKey(name: "tinInd")
+  final String? maritalstatus;
+  @JsonKey(name: "tinind")
   final dynamic? tinInd;
   @JsonKey(name: "tinno1Ind")
   final dynamic? tinno1Ind;
@@ -148,61 +148,61 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "ourBranchId")
   final dynamic? ourBranchId;
   @JsonKey(name: "idType")
-  final dynamic? idType;
-  @JsonKey(name: "firstNameAr")
-  final dynamic? firstNameAr;
-  @JsonKey(name: "secondNameAr")
-  final dynamic? secondNameAr;
-  @JsonKey(name: "thirdNameAr")
-  final dynamic? thirdNameAr;
-  @JsonKey(name: "familyNameAr")
-  final dynamic? familyNameAr;
+  final String? idType;
+  @JsonKey(name: "firstNameAR")
+  final String? firstNameAr;
+  @JsonKey(name: "secondNameAR")
+  final String? secondNameAr;
+  @JsonKey(name: "thirdNameAR")
+  final String? thirdNameAr;
+  @JsonKey(name: "familyNameAR")
+  final String? familyNameAr;
   @JsonKey(name: "motherFirstName")
-  final dynamic? motherFirstName;
+  final String? motherFirstName;
   @JsonKey(name: "placeofBirth")
-  final dynamic? placeofBirth;
+  final String? placeofBirth;
   @JsonKey(name: "countryofBirth")
-  final dynamic? countryofBirth;
+  final String? countryofBirth;
   @JsonKey(name: "relationshipPep")
-  final dynamic? relationshipPep;
+  final String? relationshipPep;
   @JsonKey(name: "namePep")
   final dynamic? namePep;
   @JsonKey(name: "rolePep")
   final dynamic? rolePep;
   @JsonKey(name: "beneficialOwner")
-  final dynamic? beneficialOwner;
+  final String? beneficialOwner;
   @JsonKey(name: "districtCorresp")
-  final dynamic? districtCorresp;
+  final String? districtCorresp;
   @JsonKey(name: "addressLine1")
-  final dynamic? addressLine1;
+  final String? addressLine1;
   @JsonKey(name: "spouseName")
-  final dynamic? spouseName;
+  final String? spouseName;
   @JsonKey(name: "specialNeedsPerson")
-  final dynamic? specialNeedsPerson;
+  final String? specialNeedsPerson;
   @JsonKey(name: "natureofSpecialNeeds")
-  final dynamic? natureofSpecialNeeds;
+  final String? natureofSpecialNeeds;
   @JsonKey(name: "employmentStatus")
-  final dynamic? employmentStatus;
+  final String? employmentStatus;
   @JsonKey(name: "occupation")
   final String? occupation;
   @JsonKey(name: "mainSourceofIncome")
-  final dynamic? mainSourceofIncome;
+  final String? mainSourceofIncome;
   @JsonKey(name: "otherEmploymentStatus")
   final dynamic? otherEmploymentStatus;
   @JsonKey(name: "annualIncome")
   final int? annualIncome;
   @JsonKey(name: "monthlyIncome")
-  final double? monthlyIncome;
+  final dynamic? monthlyIncome;
   @JsonKey(name: "additionalIncomeSource")
-  final dynamic? additionalIncomeSource;
+  final String? additionalIncomeSource;
   @JsonKey(name: "otherAdditionalIncomeSource")
-  final dynamic? otherAdditionalIncomeSource;
+  final String? otherAdditionalIncomeSource;
   @JsonKey(name: "additionalIncomeAmount")
   final int? additionalIncomeAmount;
   @JsonKey(name: "employerPhone")
-  final dynamic? employerPhone;
+  final String? employerPhone;
   @JsonKey(name: "reasonforBanking")
-  final dynamic? reasonforBanking;
+  final String? reasonforBanking;
   @JsonKey(name: "preferredLanguage")
   final dynamic? preferredLanguage;
   @JsonKey(name: "accountOfficer")
@@ -218,11 +218,11 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "titlear")
   final dynamic? titlear;
   @JsonKey(name: "empCountry")
-  final dynamic? empCountry;
+  final String? empCountry;
   @JsonKey(name: "empState")
   final dynamic? empState;
   @JsonKey(name: "empCity")
-  final dynamic? empCity;
+  final String? empCity;
 
   CustomerDetailsEntity(
       {this.categoryId,

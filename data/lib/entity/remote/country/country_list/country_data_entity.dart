@@ -29,6 +29,8 @@ class CountryDataEntity
   final bool? isNationalityAllowed;
   @JsonKey(name: "isIssuerAllowed")
   final bool? isIssuerAllowed;
+  @JsonKey(name: "mobileMax")
+  final int? mobileMax;
 
   CountryDataEntity(
       {this.isoCode3,
@@ -41,7 +43,8 @@ class CountryDataEntity
       this.isRestrictedNationality,
       this.isMobileAllowed,
       this.isNationalityAllowed,
-      this.isIssuerAllowed});
+      this.isIssuerAllowed,
+      this.mobileMax});
 
   factory CountryDataEntity.fromJson(Map<String, dynamic> json) =>
       _$CountryDataEntityFromJson(json);
@@ -66,6 +69,7 @@ class CountryDataEntity
         isRestrictedNationality: this.isRestrictedNationality,
         isMobileAllowed: this.isMobileAllowed,
         isNationalityAllowed: this.isNationalityAllowed,
-        isIssuerAllowed: this.isIssuerAllowed);
+        isIssuerAllowed: this.isIssuerAllowed,
+        mobileMax: this.mobileMax ?? 12);
   }
 }

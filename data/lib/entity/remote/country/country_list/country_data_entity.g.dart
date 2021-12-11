@@ -19,6 +19,7 @@ CountryDataEntity _$CountryDataEntityFromJson(Map<String, dynamic> json) {
     isMobileAllowed: json['isMobileAllowed'] as bool?,
     isNationalityAllowed: json['isNationalityAllowed'] as bool?,
     isIssuerAllowed: json['isIssuerAllowed'] as bool?,
+    mobileMax: json['mobileMax'] as int?,
   );
 }
 
@@ -35,4 +36,5 @@ Map<String, dynamic> _$CountryDataEntityToJson(CountryDataEntity instance) =>
       'isMobileAllowed': instance.isMobileAllowed,
       'isNationalityAllowed': instance.isNationalityAllowed,
       'isIssuerAllowed': instance.isIssuerAllowed,
+      'mobileMax': instance.mobileMax,
     };

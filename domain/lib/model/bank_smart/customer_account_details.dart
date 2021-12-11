@@ -1,7 +1,7 @@
 class CustomerAccountDetails {
   final String? createBy;
   final String? ourBranchID;
-  final String? clientID;
+  final dynamic? clientID;
   final String? productID;
   final String? name;
   final String? address;
@@ -30,10 +30,10 @@ class CustomerAccountDetails {
   final int? notStopPaymentCharges;
   final int? notChequeBookCharges;
   final String? turnOver;
-  final int? noOfDrTrx;
-  final int? noOfCrTrx;
-  final double? drThresholdLimit;
-  final double? crThresholdLimit;
+  final dynamic? noOfDrTrx;
+  final dynamic? noOfCrTrx;
+  final dynamic? drThresholdLimit;
+  final dynamic? crThresholdLimit;
   final int? productCash;
   final int? productClearing;
   final int? productCollection;

@@ -4,9 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_details.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_ready_header.dart';
-import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -20,7 +20,12 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
 
   @override
   Widget build(BuildContext context, AccountReadyViewModel model) {
-    return AppKeyBoardHide(
+    return GestureDetector(
+      onHorizontalDragEnd: (details) {
+        if (details.primaryVelocity!.isNegative) {
+          Navigator.pushReplacementNamed(context, RoutePaths.CardDelivery);
+        }
+      },
       child: Container(
           height: double.infinity,
           width: double.infinity,

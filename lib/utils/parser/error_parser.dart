@@ -268,6 +268,14 @@ class ErrorParser {
         return localisedHelper.emptySignature;
       case ErrorType.INVALID_USERNAME:
         return localisedHelper.invalidUserName;
+      case ErrorType.ERROR_WHILE_GET_ACCOUNT:
+        return localisedHelper.errorWhileGetAccount;
+      case ErrorType.EMPTY_PIN:
+        return localisedHelper.emptyPin;
+      case ErrorType.INVALID_PIN_LENGTH:
+        return localisedHelper.invalidPinLength;
+        case ErrorType.PIN_NOT_MATCH:
+        return localisedHelper.pinDoesNotMatch;
 
       default:
         return "";

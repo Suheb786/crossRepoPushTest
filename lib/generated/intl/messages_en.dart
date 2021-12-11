@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -170,6 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dateOfBirthSmall":
             MessageLookupByLibrary.simpleMessage("Date of Birth"),
+        "debitCard": MessageLookupByLibrary.simpleMessage("DEBIT CARD"),
         "declarationIsTrueAndCorrect": MessageLookupByLibrary.simpleMessage(
             "declaration is true and correct."),
         "deviceNotFound":
@@ -244,6 +246,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Nationality field cannot be empty"),
         "emptyNationalityDocument": MessageLookupByLibrary.simpleMessage(
             "Upload valid nationality document."),
+        "emptyPin": MessageLookupByLibrary.simpleMessage("Enter Pin"),
         "emptyResidentCountry": MessageLookupByLibrary.simpleMessage(
             "Resident country field cannot be empty"),
         "emptySignature":
@@ -300,6 +303,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error While Saving Status"),
         "errorUploadImage":
             MessageLookupByLibrary.simpleMessage("Error While Upload Image"),
+        "errorWhileGetAccount":
+            MessageLookupByLibrary.simpleMessage("Error While get Account"),
         "errorWhileGetAdditionalDocument": MessageLookupByLibrary.simpleMessage(
             "Error while Get Additional Documentation"),
         "errorWhileLogout":
@@ -445,6 +450,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You have entered an invalid OTP code, please enter a valid one"),
         "invalidPermanentAddress": MessageLookupByLibrary.simpleMessage(
             "Enter Permanent Residence Address"),
+        "invalidPinLength": MessageLookupByLibrary.simpleMessage(
+            "Length of pin cannot be less than 4"),
         "invalidPostCode":
             MessageLookupByLibrary.simpleMessage("Enter Post Code"),
         "invalidPreferredDate":
@@ -497,6 +504,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
         "letsCreateYourProfile":
             MessageLookupByLibrary.simpleMessage("Let’s Create\nYour Profile"),
+        "letsSet4DigitPin":
+            MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
         "logoutAndContinueLater":
             MessageLookupByLibrary.simpleMessage("Log out and continue later"),
         "lookingForAvailableAgent": MessageLookupByLibrary.simpleMessage(
@@ -552,6 +561,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No matching year found!"),
         "notifyMe": MessageLookupByLibrary.simpleMessage("NOTIFY ME"),
         "notifyMeExC": MessageLookupByLibrary.simpleMessage("Notify me"),
+        "nowConfirmPin":
+            MessageLookupByLibrary.simpleMessage("Now, confirm\nyour PIN"),
         "occupation": MessageLookupByLibrary.simpleMessage("OCCUPATION"),
         "occupationBusinessType":
             MessageLookupByLibrary.simpleMessage("Occupation/Business Type"),
@@ -602,6 +613,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("PERSONAL DETAILS"),
         "personsName": MessageLookupByLibrary.simpleMessage("Person’s Name"),
         "personsRole": MessageLookupByLibrary.simpleMessage("Person’s Role"),
+        "pinDoesNotMatch":
+            MessageLookupByLibrary.simpleMessage("Pin does not match"),
         "placeOfBirth": MessageLookupByLibrary.simpleMessage("Place of birth"),
         "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
             "Now let\'s confirm your\nID details"),
@@ -769,6 +782,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Thank you for waiting, the video call will start automatically"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
+        "toDashboard": MessageLookupByLibrary.simpleMessage("to Dashboard"),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("to Welcome Page"),
         "totalAdditionalIncome":
@@ -851,6 +865,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "whichTaxPayerAreYouSmall":
             MessageLookupByLibrary.simpleMessage("Which Tax Payer Are You?"),
         "yes": MessageLookupByLibrary.simpleMessage("YES"),
+        "yourCardHasBeenIssued":
+            MessageLookupByLibrary.simpleMessage("Your card has\nbeen issued"),
+        "yourCardReady":
+            MessageLookupByLibrary.simpleMessage("Your card is ready!"),
+        "yourCardReadyDesc": MessageLookupByLibrary.simpleMessage(
+            "Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature")
       };
 }

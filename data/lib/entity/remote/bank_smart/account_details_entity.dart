@@ -12,7 +12,7 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "ourBranchID")
   final String? ourBranchID;
   @JsonKey(name: "clientID")
-  final String? clientID;
+  final dynamic? clientID;
   @JsonKey(name: "productID")
   final String? productID;
   @JsonKey(name: "name")
@@ -70,13 +70,13 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "turnOver")
   final String? turnOver;
   @JsonKey(name: "noOfDrTrx")
-  final int? noOfDrTrx;
+  final dynamic? noOfDrTrx;
   @JsonKey(name: "noOfCrTrx")
-  final int? noOfCrTrx;
+  final dynamic? noOfCrTrx;
   @JsonKey(name: "drThresholdLimit")
-  final double? drThresholdLimit;
+  final dynamic? drThresholdLimit;
   @JsonKey(name: "crThresholdLimit")
-  final double? crThresholdLimit;
+  final dynamic? crThresholdLimit;
   @JsonKey(name: "productCash")
   final int? productCash;
   @JsonKey(name: "productClearing")

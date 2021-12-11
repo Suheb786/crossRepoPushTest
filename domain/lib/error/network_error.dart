@@ -110,6 +110,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_CREATING_ACCOUNT);
 
+          case "ex-018":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_GET_ACCOUNT);
+
           case "err-020":
             return AppError(
                 cause: cause,

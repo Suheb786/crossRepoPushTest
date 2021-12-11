@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
+import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
+import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
@@ -117,6 +119,16 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => ClaimOfTaxTreatyBenefitsPage(),
             settings: RouteSettings(name: RoutePaths.TaxTreatyBenefits));
+
+      case RoutePaths.CardDelivery:
+        return CupertinoPageRoute(
+            builder: (context) => CardDeliveryPage(),
+            settings: RouteSettings(name: RoutePaths.CardDelivery));
+
+      case RoutePaths.CardReadySuccess:
+        return CupertinoPageRoute(
+            builder: (context) => CardReadySuccessPage(),
+            settings: RouteSettings(name: RoutePaths.CardReadySuccess));
 
       default:
         return CupertinoPageRoute(
