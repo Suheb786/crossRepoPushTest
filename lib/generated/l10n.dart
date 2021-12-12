@@ -4360,6 +4360,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Payments`
+  String get payments {
+    return Intl.message(
+      'Payments',
+      name: 'payments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See all contacts`
+  String get seeAllContacts {
+    return Intl.message(
+      'See all contacts',
+      name: 'seeAllContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Payments`
+  String get backToPayments {
+    return Intl.message(
+      'Back to Payments',
+      name: 'backToPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send money to`
+  String get sendMoneyTo {
+    return Intl.message(
+      'Send money to',
+      name: 'sendMoneyTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction Purpose`
+  String get transactionPurpose {
+    return Intl.message(
+      'Transaction Purpose',
+      name: 'transactionPurpose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message(
+      'Edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account balance`
+  String get accountBalance {
+    return Intl.message(
+      'Account balance',
+      name: 'accountBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sent to`
+  String get sentTo {
+    return Intl.message(
+      'Sent to',
+      name: 'sentTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ref No.`
+  String get refno {
+    return Intl.message(
+      'Ref No.',
+      name: 'refno',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date`
+  String get date {
+    return Intl.message(
+      'Date',
+      name: 'date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share my receipt`
+  String get shareMyReceipt {
+    return Intl.message(
+      'Share my receipt',
+      name: 'shareMyReceipt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Undo transaction`
+  String get undoTransaction {
+    return Intl.message(
+      'Undo transaction',
+      name: 'undoTransaction',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

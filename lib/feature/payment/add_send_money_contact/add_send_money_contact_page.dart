@@ -11,10 +11,17 @@ class AddSendMoneyContactPage extends BasePage<AddSendMoneyContactViewModel> {
 }
 
 class AddSendMoneyContactPageState extends BaseStatefulPage<
-    AddSendMoneyContactViewModel, AddSendMoneyContactPage> {
+    AddSendMoneyContactViewModel,
+    AddSendMoneyContactPage> with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
     return addSendMoneyContactViewModelProvider;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
   }
 
   @override
@@ -26,4 +33,7 @@ class AddSendMoneyContactPageState extends BaseStatefulPage<
   Widget buildView(BuildContext context, AddSendMoneyContactViewModel model) {
     return AddSendMoneyContactPageView(provideBase());
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

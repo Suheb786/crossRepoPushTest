@@ -445,5 +445,17 @@
   "cvv": "CVV",
   "sendMoney": "Send Money",
   "requestMoney": "Request money",
-  "addSendContact": "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money"
+  "addSendContact": "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money",
+  "payments": "Payments",
+  "seeAllContacts": "See all contacts",
+  "backToPayments": "Back to Payments",
+  "sendMoneyTo": "Send money to",
+  "transactionPurpose": "Transaction Purpose",
+  "edit": "Edit",
+  "accountBalance": "Account balance",
+  "sentTo": "Sent to",
+  "refno": "Ref No.",
+  "date": "Date",
+  "shareMyReceipt": "Share my receipt",
+  "undoTransaction": "Undo transaction"
 }

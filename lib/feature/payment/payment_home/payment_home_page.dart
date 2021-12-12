@@ -14,7 +14,8 @@ class PaymentHomePage extends BasePage<PaymentHomeViewModel> {
 }
 
 class PaymentHomePageState
-    extends BaseStatefulPage<PaymentHomeViewModel, PaymentHomePage> {
+    extends BaseStatefulPage<PaymentHomeViewModel, PaymentHomePage>
+    with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
     return paymentHomeViewModelProvider;
@@ -46,7 +47,7 @@ class PaymentHomePageState
               icon: Container(child: AppSvg.asset(AssetUtils.headphoneBlack)),
               title: " "),
         ],
-        initialActiveIndex: 1,
+        initialActiveIndex: 0,
         onTap: (i) => print("got index $i"),
       ),
     );
@@ -58,7 +59,16 @@ class PaymentHomePageState
   }
 
   @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
   Widget buildView(BuildContext context, PaymentHomeViewModel model) {
     return PaymentHomePageView(provideBase());
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

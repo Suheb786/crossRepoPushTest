@@ -7,7 +7,7 @@ import 'package:rxdart/rxdart.dart';
 class PaymentHomeViewModel extends BasePageViewModel {
   final SwiperController pageController = SwiperController();
   PageController controller =
-      PageController(viewportFraction: 0.8, keepPage: true, initialPage: 1);
+      PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;

@@ -33,6 +33,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "JOD": MessageLookupByLibrary.simpleMessage("JOD"),
         "acceptedWorldWide": MessageLookupByLibrary.simpleMessage(
             "Accepted worldwide with no hidden charges"),
+        "accountBalance":
+            MessageLookupByLibrary.simpleMessage("Account balance"),
         "accountCreated": MessageLookupByLibrary.simpleMessage(
             "Account has been created successfully."),
         "accountNo": MessageLookupByLibrary.simpleMessage("ACCOUNT NO."),
@@ -104,6 +106,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "availableBalance":
             MessageLookupByLibrary.simpleMessage("AVAILABLE BALANCE"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
+        "backToPayments":
+            MessageLookupByLibrary.simpleMessage("Back to Payments"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
         "biometricLoginDesc": MessageLookupByLibrary.simpleMessage(
@@ -172,6 +176,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "customerService": MessageLookupByLibrary.simpleMessage(
             "24/7 Customer Service Service"),
         "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
+        "date": MessageLookupByLibrary.simpleMessage("Date"),
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dateOfBirthSmall":
             MessageLookupByLibrary.simpleMessage("Date of Birth"),
@@ -197,6 +202,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you have TIN No available?"),
         "dob": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dobHint": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
+        "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "editInformation":
             MessageLookupByLibrary.simpleMessage("Edit Information"),
         "eightCharacters": MessageLookupByLibrary.simpleMessage("8 characters"),
@@ -529,6 +535,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Password did not match"),
         "payBack": MessageLookupByLibrary.simpleMessage("Pay back"),
+        "payments": MessageLookupByLibrary.simpleMessage("Payments"),
         "pepDesc": MessageLookupByLibrary.simpleMessage(
             " is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list."),
         "permanentAddress":
@@ -602,6 +609,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
+        "refno": MessageLookupByLibrary.simpleMessage("Ref No."),
         "registerViaEmail":
             MessageLookupByLibrary.simpleMessage("Register via Email"),
         "relationShipWithPepCaps":
@@ -632,13 +640,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchCountry": MessageLookupByLibrary.simpleMessage("Search country"),
         "searchState": MessageLookupByLibrary.simpleMessage("Search state"),
         "searchYear": MessageLookupByLibrary.simpleMessage("Search year"),
+        "seeAllContacts":
+            MessageLookupByLibrary.simpleMessage("See all contacts"),
         "selectAnyOption":
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
+        "sendMoneyTo": MessageLookupByLibrary.simpleMessage("Send money to"),
         "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage(
             "Send money to your friends and family"),
+        "sentTo": MessageLookupByLibrary.simpleMessage("Sent to"),
+        "shareMyReceipt":
+            MessageLookupByLibrary.simpleMessage("Share my receipt"),
         "socialSecurityCard":
             MessageLookupByLibrary.simpleMessage("Social Security Card"),
         "socialSecurityCardDesc": MessageLookupByLibrary.simpleMessage(
@@ -715,12 +729,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalBalance": MessageLookupByLibrary.simpleMessage("Total Balance"),
         "totalUsedLimit":
             MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
+        "transactionPurpose":
+            MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
         "typeOfExpectedTransactions": MessageLookupByLibrary.simpleMessage(
             "Type of expected transactions"),
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("Type of Income"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
         "typeOfTransactionsSmall": m3,
+        "undoTransaction":
+            MessageLookupByLibrary.simpleMessage("Undo transaction"),
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
         "uploadDocLaterDesc": MessageLookupByLibrary.simpleMessage(
             "You will need to upload required document from Profile Settings later in order to complete your account verification.\n\nNote: Account will be closed automatically for any incomplete document"),

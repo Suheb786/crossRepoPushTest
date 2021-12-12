@@ -74,6 +74,9 @@ class AssetUtils {
   static const String cardCircle = svg + "card_circle.svg";
   static const String filter = svg + "filter.svg";
   static const String profileCircle = svg + "profile_circle.svg";
+  static const String payments = svg + "payments.svg";
+  static const String backspaceBlue = svg + "backspace_blue.svg";
+  static const String next = svg + "next.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -106,6 +109,7 @@ class AssetUtils {
   static const String creditCard = drawable + "credit_card.png";
   static const String ellipseYellow = drawable + "ellipse_yellow.png";
   static const String debitCard = drawable + "debit_card.png";
+  static const String image = drawable + "image.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";
