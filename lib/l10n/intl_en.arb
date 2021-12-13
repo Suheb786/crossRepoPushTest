@@ -495,6 +495,14 @@
   "emptyPin": "Enter Pin",
   "invalidPinLength": "Length of pin cannot be less than 4",
   "pinDoesNotMatch": "Pin does not match",
-  "toDashboard": "to Dashboard"
+  "toDashboard": "to Dashboard",
+  "changeEmailAddress": "CHANGE EMAIL ADDRESS",
+  "enterNewEmailAddress": "Please enter your\nnew email",
+  "settings": "Settings",
+  "tapToEditPhoto": "Tap to edit photo",
+  "changePassword": "Change Password",
+  "biometricLogin": "Biometric Login",
+  "myDocuments": "My Documents",
+  "termsAndConditionsSetting": "Terms & Conditions"
 
 }

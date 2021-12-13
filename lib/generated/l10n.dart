@@ -4820,6 +4820,86 @@ class S {
       args: [],
     );
   }
+
+  /// `CHANGE EMAIL ADDRESS`
+  String get changeEmailAddress {
+    return Intl.message(
+      'CHANGE EMAIL ADDRESS',
+      name: 'changeEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your\nnew email`
+  String get enterNewEmailAddress {
+    return Intl.message(
+      'Please enter your\nnew email',
+      name: 'enterNewEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to edit photo`
+  String get tapToEditPhoto {
+    return Intl.message(
+      'Tap to edit photo',
+      name: 'tapToEditPhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get changePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biometric Login`
+  String get biometricLogin {
+    return Intl.message(
+      'Biometric Login',
+      name: 'biometricLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Documents`
+  String get myDocuments {
+    return Intl.message(
+      'My Documents',
+      name: 'myDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms & Conditions`
+  String get termsAndConditionsSetting {
+    return Intl.message(
+      'Terms & Conditions',
+      name: 'termsAndConditionsSetting',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

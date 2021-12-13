@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -109,6 +108,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
+        "biometricLogin":
+            MessageLookupByLibrary.simpleMessage("Biometric Login"),
         "biometricLoginDesc": MessageLookupByLibrary.simpleMessage(
             "To blink in more seamlessly, please enable biometric login"),
         "brightPlace": MessageLookupByLibrary.simpleMessage(
@@ -130,8 +131,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("I’ll get my card later"),
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("to card personalization"),
+        "changeEmailAddress":
+            MessageLookupByLibrary.simpleMessage("CHANGE EMAIL ADDRESS"),
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
+        "changePassword":
+            MessageLookupByLibrary.simpleMessage("Change Password"),
         "city": MessageLookupByLibrary.simpleMessage("CITY"),
         "citySmall": MessageLookupByLibrary.simpleMessage("City"),
         "claimOfTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
@@ -270,6 +275,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your login details"),
         "enterMailingAddress":
             MessageLookupByLibrary.simpleMessage("Enter mailing address"),
+        "enterNewEmailAddress": MessageLookupByLibrary.simpleMessage(
+            "Please enter your\nnew email"),
         "enterOtpHeader": MessageLookupByLibrary.simpleMessage(
             "Enter the 6-digit code sent to"),
         "enterPassword": MessageLookupByLibrary.simpleMessage(
@@ -540,6 +547,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mothersBirthplace":
             MessageLookupByLibrary.simpleMessage("Mother’s Birthplace"),
         "mothersName": MessageLookupByLibrary.simpleMessage("Mother’s Name"),
+        "myDocuments": MessageLookupByLibrary.simpleMessage("My Documents"),
         "name": MessageLookupByLibrary.simpleMessage("NAME AS PER ID"),
         "nameAsPerID": MessageLookupByLibrary.simpleMessage("Name as per ID"),
         "nameAsPerIncomeTaxReturn": MessageLookupByLibrary.simpleMessage(
@@ -716,6 +724,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hello! Which country\nare you from?"),
         "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage(
             "Send money to your friends and family"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "signatureUploadDes": MessageLookupByLibrary.simpleMessage(
             "Simply sign on a plain white paper and upload it as a declaration of your FATCA information"),
         "socialSecurityCard":
@@ -751,6 +760,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "swipeUpToRegister":
             MessageLookupByLibrary.simpleMessage("Swipe up to register"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take Photo"),
+        "tapToEditPhoto":
+            MessageLookupByLibrary.simpleMessage("Tap to edit photo"),
         "taxCountry": MessageLookupByLibrary.simpleMessage("TAX COUNTRY"),
         "taxCountrySmall": MessageLookupByLibrary.simpleMessage("Tax Country"),
         "taxReportInfoDesc": MessageLookupByLibrary.simpleMessage(
@@ -774,6 +785,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Terms and Conditions."),
         "termsAndConditions": MessageLookupByLibrary.simpleMessage(
             "I agree for blink to retrieve my data from the Civil Department"),
+        "termsAndConditionsSetting":
+            MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "termsConditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "thankYouForInterestWillSendUpdate": MessageLookupByLibrary.simpleMessage(
