@@ -31,4 +31,14 @@ class UploadDocumentLocalDSImpl extends UploadDocumentLocalDS {
     }
     return "";
   }
+
+  @override
+  Future<String> pickImage() async {
+    XFile? image = await _imagePicker.pickImage(source: ImageSource.gallery);
+
+    if (image != null) {
+      return image.path;
+    }
+    return "";
+  }
 }

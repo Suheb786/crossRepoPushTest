@@ -505,6 +505,11 @@
   "myDocuments": "My Documents",
   "termsAndConditionsSetting": "Terms & Conditions",
   "changeMobileNumber": "CHANGE MOBILE NUMBER",
-  "enterNewMobileNo": "Please enter your\nnew mobile number"
-
+  "enterNewMobileNo": "Please enter your\nnew mobile number",
+  "selectFromLibrary": "Select from Library",
+  "removePhoto": "Remove Photo",
+  "success": "SUCCESS",
+  "mobileNumberUpdated": "Mobile number is successfully updated",
+  "emailAddressUpdated": "Email address is successfully updated",
+  "profilePhotoUpdated": "Profile photo is successfully updated"
 }

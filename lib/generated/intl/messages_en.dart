@@ -199,6 +199,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailAddress": MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
         "emailAddressSmall":
             MessageLookupByLibrary.simpleMessage("Email Address"),
+        "emailAddressUpdated": MessageLookupByLibrary.simpleMessage(
+            "Email address is successfully updated"),
         "emailAlreadyExist":
             MessageLookupByLibrary.simpleMessage("Email already exist"),
         "employerCity": MessageLookupByLibrary.simpleMessage("EMPLOYER CITY"),
@@ -542,6 +544,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Mobile Number Exist"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
         "mobileNumberHint": MessageLookupByLibrary.simpleMessage("00 000 0000"),
+        "mobileNumberUpdated": MessageLookupByLibrary.simpleMessage(
+            "Mobile number is successfully updated"),
         "monthlyIncome": MessageLookupByLibrary.simpleMessage("MONTHLY INCOME"),
         "monthlyIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Monthly Income"),
@@ -664,6 +668,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Are you a special need person?"),
         "profileDetailsQ3":
             MessageLookupByLibrary.simpleMessage("Are you employed?"),
+        "profilePhotoUpdated": MessageLookupByLibrary.simpleMessage(
+            "Profile photo is successfully updated"),
         "proofOfAddress":
             MessageLookupByLibrary.simpleMessage("Proof of Address"),
         "proofOfAddressDesc": MessageLookupByLibrary.simpleMessage(
@@ -698,6 +704,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("RELATIONSHIP WITH PEP"),
         "relationshipWithPEP":
             MessageLookupByLibrary.simpleMessage("Relationship with PEP"),
+        "removePhoto": MessageLookupByLibrary.simpleMessage("Remove Photo"),
         "requesterName":
             MessageLookupByLibrary.simpleMessage("requester’s name"),
         "resendIn": m2,
@@ -726,6 +733,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
+        "selectFromLibrary":
+            MessageLookupByLibrary.simpleMessage("Select from Library"),
         "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage(
             "Send money to your friends and family"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
@@ -751,6 +760,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "streetAddressSmall":
             MessageLookupByLibrary.simpleMessage("Street Address"),
         "streetName": MessageLookupByLibrary.simpleMessage("STREET NAME"),
+        "success": MessageLookupByLibrary.simpleMessage("SUCCESS"),
         "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
             "You have successfully created your profile, now let\'s get your account up and running."),
         "swipeDownToCancel":

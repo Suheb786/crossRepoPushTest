@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account_setting/account_setting_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/feature/account_settings/account_settings_page_view_model.dart';
 import 'package:neo_bank/feature/account_settings/change_email_address/add_new_email/add_new_email_address_page_view_model.dart';
 import 'package:neo_bank/feature/account_settings/change_email_address/change_email_address_page_view_model.dart';
@@ -11,7 +12,7 @@ import 'package:neo_bank/feature/account_settings/change_mobile_number/enter_cod
 ///account setting view model provider
 final accountSettingViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountSettingPageViewModel>(
-  (ref) => AccountSettingPageViewModel(),
+  (ref) => AccountSettingPageViewModel(ref.read(uploadDocumentUseCaseProvider)),
 );
 
 ///change email address view model provider

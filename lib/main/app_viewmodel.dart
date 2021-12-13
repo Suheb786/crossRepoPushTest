@@ -174,6 +174,7 @@ class AppViewModel extends BaseViewModel {
           iconTheme: IconThemeData(
             color: AppColor.white,
           ),
+          errorColor: AppColor.vivid_red,
           indicatorColor: AppColor.veryDarkGray2,
           buttonTheme: ButtonThemeData(
             shape:

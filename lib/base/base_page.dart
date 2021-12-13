@@ -159,6 +159,9 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
     model.toast.listen((message) {
       showShortToast(message);
     });
+    model.successStream.listen((event) {
+      showTopSuccess(event);
+    });
     onModelReady(model);
   }
 

@@ -4920,6 +4920,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Select from Library`
+  String get selectFromLibrary {
+    return Intl.message(
+      'Select from Library',
+      name: 'selectFromLibrary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove Photo`
+  String get removePhoto {
+    return Intl.message(
+      'Remove Photo',
+      name: 'removePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SUCCESS`
+  String get success {
+    return Intl.message(
+      'SUCCESS',
+      name: 'success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile number is successfully updated`
+  String get mobileNumberUpdated {
+    return Intl.message(
+      'Mobile number is successfully updated',
+      name: 'mobileNumberUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email address is successfully updated`
+  String get emailAddressUpdated {
+    return Intl.message(
+      'Email address is successfully updated',
+      name: 'emailAddressUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile photo is successfully updated`
+  String get profilePhotoUpdated {
+    return Intl.message(
+      'Profile photo is successfully updated',
+      name: 'profilePhotoUpdated',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

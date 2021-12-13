@@ -6,6 +6,8 @@ abstract class UploadDocumentLocalDS {
   Future<String> pickUploadDocument();
 
   Future<String> clickDocumentImage();
+
+  Future<String> pickImage();
 }
 
 abstract class UploadDocumentRemoteDS {
