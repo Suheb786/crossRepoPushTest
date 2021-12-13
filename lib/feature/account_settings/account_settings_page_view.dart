@@ -73,7 +73,9 @@ class AccountSettingPageView
               image: AssetUtils.mobile,
               title: S.of(context).mobileNumber,
               subtitle: '+962 79 322 8080',
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, RoutePaths.ChangeMobileNumber);
+              },
             ),
             Padding(
               padding: const EdgeInsets.only(top: 16.0, bottom: 16),
@@ -132,7 +134,9 @@ class AccountSettingPageView
             AccountSettingWidget(
               image: AssetUtils.termsCondition,
               title: S.of(context).termsAndConditionsSetting,
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, RoutePaths.TermsAndCondition);
+              },
             ),
             SizedBox(
               height: 60,

@@ -503,6 +503,8 @@
   "changePassword": "Change Password",
   "biometricLogin": "Biometric Login",
   "myDocuments": "My Documents",
-  "termsAndConditionsSetting": "Terms & Conditions"
+  "termsAndConditionsSetting": "Terms & Conditions",
+  "changeMobileNumber": "CHANGE MOBILE NUMBER",
+  "enterNewMobileNo": "Please enter your\nnew mobile number"
 
 }

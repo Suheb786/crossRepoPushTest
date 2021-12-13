@@ -4900,6 +4900,26 @@ class S {
       args: [],
     );
   }
+
+  /// `CHANGE MOBILE NUMBER`
+  String get changeMobileNumber {
+    return Intl.message(
+      'CHANGE MOBILE NUMBER',
+      name: 'changeMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your\nnew mobile number`
+  String get enterNewMobileNo {
+    return Intl.message(
+      'Please enter your\nnew mobile number',
+      name: 'enterNewMobileNo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

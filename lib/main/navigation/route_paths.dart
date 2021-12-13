@@ -24,4 +24,5 @@ class RoutePaths {
   static const String CardReadySuccess = '/cardReadySuccess';
   static const String AccountSetting = '/accountSetting';
   static const String ChangeEmailAddress = '/changeEmailAddress';
+  static const String ChangeMobileNumber = '/ChangeMobileNumber';
 }

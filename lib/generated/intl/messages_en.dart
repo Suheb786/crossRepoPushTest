@@ -133,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("to card personalization"),
         "changeEmailAddress":
             MessageLookupByLibrary.simpleMessage("CHANGE EMAIL ADDRESS"),
+        "changeMobileNumber":
+            MessageLookupByLibrary.simpleMessage("CHANGE MOBILE NUMBER"),
         "changeMyNumber":
             MessageLookupByLibrary.simpleMessage("Change My Number"),
         "changePassword":
@@ -277,6 +279,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter mailing address"),
         "enterNewEmailAddress": MessageLookupByLibrary.simpleMessage(
             "Please enter your\nnew email"),
+        "enterNewMobileNo": MessageLookupByLibrary.simpleMessage(
+            "Please enter your\nnew mobile number"),
         "enterOtpHeader": MessageLookupByLibrary.simpleMessage(
             "Enter the 6-digit code sent to"),
         "enterPassword": MessageLookupByLibrary.simpleMessage(
