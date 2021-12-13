@@ -56,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addMobileHeader":
             MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
         "addMoney": MessageLookupByLibrary.simpleMessage("Add money"),
+        "addRecipientToContact": MessageLookupByLibrary.simpleMessage(
+            "Add this receipient to your blink contacts"),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
             "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money"),
         "additionIncomeSource":
@@ -205,6 +207,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "editInformation":
             MessageLookupByLibrary.simpleMessage("Edit Information"),
+        "editTransactionPurpose":
+            MessageLookupByLibrary.simpleMessage("Edit Transaction Purpose"),
         "eightCharacters": MessageLookupByLibrary.simpleMessage("8 characters"),
         "emailAddress": MessageLookupByLibrary.simpleMessage("EMAIL ADDRESS"),
         "emailAddressSmall":
@@ -265,6 +269,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enable Biometric\nLogin"),
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
+        "enterCode": MessageLookupByLibrary.simpleMessage(
+            "Enter the 6-digit code sent to  \n+962 79 322 8080"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Confirm password field cannot be empty"),
         "enterLoginDetails":
@@ -337,6 +343,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
         "ibanNumber":
             MessageLookupByLibrary.simpleMessage("84118220000022123444"),
+        "ibanOrMobile":
+            MessageLookupByLibrary.simpleMessage("IBAN / Mobile No."),
         "idHint":
             MessageLookupByLibrary.simpleMessage("Please Enter ID Number"),
         "idNumber": MessageLookupByLibrary.simpleMessage("ID NUMBER"),
@@ -595,6 +603,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Proof of Income"),
         "proofOfIncomeDesc": MessageLookupByLibrary.simpleMessage(
             "For salaried individuals, please provide either one of Job Certificate / Salary Slip"),
+        "purpose": MessageLookupByLibrary.simpleMessage("PURPOSE"),
+        "purposeDetails":
+            MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
         "purposeOfAccount":
             MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
         "purposeOfAccountOpening":
@@ -617,6 +628,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "relationshipWithPEP":
             MessageLookupByLibrary.simpleMessage("Relationship with PEP"),
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),
+        "requestMoneyFrom":
+            MessageLookupByLibrary.simpleMessage("Request money from"),
+        "requestedFrom": MessageLookupByLibrary.simpleMessage("Requested from"),
         "requesterName":
             MessageLookupByLibrary.simpleMessage("requester’s name"),
         "resendIn": m1,
@@ -646,10 +660,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
+        "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("Send money to"),
         "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage(
             "Send money to your friends and family"),
+        "sending": MessageLookupByLibrary.simpleMessage("Sending"),
         "sentTo": MessageLookupByLibrary.simpleMessage("Sent to"),
         "shareMyReceipt":
             MessageLookupByLibrary.simpleMessage("Share my receipt"),
@@ -686,6 +702,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "swipeUpToRegister":
             MessageLookupByLibrary.simpleMessage("Swipe up to register"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take Photo"),
+        "tapToEdit": MessageLookupByLibrary.simpleMessage("Tap to edit amount"),
         "taxCountry": MessageLookupByLibrary.simpleMessage("TAX COUNTRY"),
         "taxCountrySmall": MessageLookupByLibrary.simpleMessage("Tax Country"),
         "taxReportInfoDesc": MessageLookupByLibrary.simpleMessage(
@@ -737,6 +754,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
         "typeOfTransactionsSmall": m3,
+        "undoRequest": MessageLookupByLibrary.simpleMessage("Undo request"),
         "undoTransaction":
             MessageLookupByLibrary.simpleMessage("Undo transaction"),
         "upload": MessageLookupByLibrary.simpleMessage("Upload"),
@@ -789,6 +807,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("WHICH TAX PAYER ARE YOU?"),
         "whichTaxPayerAreYouSmall":
             MessageLookupByLibrary.simpleMessage("Which Tax Payer Are You?"),
-        "yes": MessageLookupByLibrary.simpleMessage("YES")
+        "yes": MessageLookupByLibrary.simpleMessage("YES"),
+        "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
+            "You will be notified once your contact\naccepts your request and money is\nadded into your account.")
       };
 }

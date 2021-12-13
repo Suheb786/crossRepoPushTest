@@ -4480,6 +4480,136 @@ class S {
       args: [],
     );
   }
+
+  /// `Request money from`
+  String get requestMoneyFrom {
+    return Intl.message(
+      'Request money from',
+      name: 'requestMoneyFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Requested from`
+  String get requestedFrom {
+    return Intl.message(
+      'Requested from',
+      name: 'requestedFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will be notified once your contact\naccepts your request and money is\nadded into your account.`
+  String get youWillBeNotified {
+    return Intl.message(
+      'You will be notified once your contact\naccepts your request and money is\nadded into your account.',
+      name: 'youWillBeNotified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Undo request`
+  String get undoRequest {
+    return Intl.message(
+      'Undo request',
+      name: 'undoRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PURPOSE`
+  String get purpose {
+    return Intl.message(
+      'PURPOSE',
+      name: 'purpose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PURPOSE DETAILS`
+  String get purposeDetails {
+    return Intl.message(
+      'PURPOSE DETAILS',
+      name: 'purposeDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Transaction Purpose`
+  String get editTransactionPurpose {
+    return Intl.message(
+      'Edit Transaction Purpose',
+      name: 'editTransactionPurpose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to edit amount`
+  String get tapToEdit {
+    return Intl.message(
+      'Tap to edit amount',
+      name: 'tapToEdit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sending`
+  String get sending {
+    return Intl.message(
+      'Sending',
+      name: 'sending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN / Mobile No.`
+  String get ibanOrMobile {
+    return Intl.message(
+      'IBAN / Mobile No.',
+      name: 'ibanOrMobile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select purpose`
+  String get selectPurpose {
+    return Intl.message(
+      'Select purpose',
+      name: 'selectPurpose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add this receipient to your blink contacts`
+  String get addRecipientToContact {
+    return Intl.message(
+      'Add this receipient to your blink contacts',
+      name: 'addRecipientToContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the 6-digit code sent to  \n+962 79 322 8080`
+  String get enterCode {
+    return Intl.message(
+      'Enter the 6-digit code sent to  \n+962 79 322 8080',
+      name: 'enterCode',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

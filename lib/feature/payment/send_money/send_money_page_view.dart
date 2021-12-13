@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_contact_view_model.dart';
-import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_page.dart';
+import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_page.dart';
+import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/edit_transaction_purpose_dialog/edit_transaction_purpose_dialog.dart';
-import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class SendAmountToContactPageView
-    extends BasePageViewWidget<SendAmountToContactViewModel> {
-  SendAmountToContactPageView(ProviderBase model) : super(model);
+class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
+  SendMoneyPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -69,104 +66,14 @@ class SendAmountToContactPageView
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 24.0),
-              child: Container(
-                height: 56,
-                width: 56,
-                decoration: BoxDecoration(shape: BoxShape.circle),
-                child: Image.asset(AssetUtils.image),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 8),
+              padding: EdgeInsets.only(top: 80),
               child: Text(
-                S.of(context).sendMoneyTo,
-                style: TextStyle(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 20,
-                ),
-              ),
-            ),
-            Text(
-              "Rose",
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 20,
+                S.of(context).sendMoney,
+                style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 16, right: 24, left: 24),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: AppColor.whiteGray)),
-                padding:
-                    EdgeInsets.only(top: 14, bottom: 14, left: 26, right: 34),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      S.of(context).transactionPurpose,
-                      style: TextStyle(
-                          color: AppColor.dark_gray_1,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 2),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Personal",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 12),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              EditTransactionPurposeDialog.show(context,
-                                  onDismissed: () {
-                                Navigator.pop(context);
-                              }, onSelected: (value) {
-                                print("got value: $value");
-                                model.updatePurposeDetail(value);
-                                Navigator.pop(context);
-                              });
-                            },
-                            child: Text(
-                              S.of(context).edit,
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                  color: Theme.of(context)
-                                      .accentTextTheme
-                                      .bodyText1!
-                                      .color),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 2),
-                      child: AppStreamBuilder<String>(
-                          stream: model.purposeDetailStream,
-                          initialData: "Transfer to Friend or Family",
-                          dataBuilder: (context, value) {
-                            return Text(
-                              value!,
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w600),
-                            );
-                          }),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 27, left: 24, right: 24),
+              padding: EdgeInsets.only(top: 47, left: 24, right: 24),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -200,7 +107,7 @@ class SendAmountToContactPageView
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 24),
+              padding: EdgeInsets.only(top: 49),
               child: Text(
                 S.of(context).accountBalance,
                 style: TextStyle(
@@ -236,7 +143,7 @@ class SendAmountToContactPageView
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.only(top: 26.0),
+                padding: EdgeInsets.only(top: 44.0),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
@@ -332,7 +239,7 @@ class SendAmountToContactPageView
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              SendAmountToContactSuccessPage()));
+                                              PaymentToNewRecipientPage()));
                                 },
                                 child: AppSvg.asset(AssetUtils.next))
                           ],

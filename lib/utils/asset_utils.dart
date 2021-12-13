@@ -77,6 +77,7 @@ class AssetUtils {
   static const String payments = svg + "payments.svg";
   static const String backspaceBlue = svg + "backspace_blue.svg";
   static const String next = svg + "next.svg";
+  static const String personCircle = svg + "person_circle.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

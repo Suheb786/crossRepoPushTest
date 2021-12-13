@@ -457,5 +457,18 @@
   "refno": "Ref No.",
   "date": "Date",
   "shareMyReceipt": "Share my receipt",
-  "undoTransaction": "Undo transaction"
+  "undoTransaction": "Undo transaction",
+  "requestMoneyFrom": "Request money from",
+  "requestedFrom": "Requested from",
+  "youWillBeNotified": "You will be notified once your contact\naccepts your request and money is\nadded into your account.",
+  "undoRequest": "Undo request",
+  "purpose": "PURPOSE",
+  "purposeDetails": "PURPOSE DETAILS",
+  "editTransactionPurpose": "Edit Transaction Purpose",
+  "tapToEdit": "Tap to edit amount",
+  "sending": "Sending",
+  "ibanOrMobile": "IBAN / Mobile No.",
+  "selectPurpose": "Select purpose",
+  "addRecipientToContact": "Add this receipient to your blink contacts",
+  "enterCode": "Enter the 6-digit code sent to  \n+962 79 322 8080"
 }

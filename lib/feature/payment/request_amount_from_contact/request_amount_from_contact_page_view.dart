@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_contact_view_model.dart';
-import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_page.dart';
+import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_view_model.dart';
+import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/edit_transaction_purpose_dialog/edit_transaction_purpose_dialog.dart';
-import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class SendAmountToContactPageView
-    extends BasePageViewWidget<SendAmountToContactViewModel> {
-  SendAmountToContactPageView(ProviderBase model) : super(model);
+class RequestAmountFromContactPageView
+    extends BasePageViewWidget<RequestAmountFromContactViewModel> {
+  RequestAmountFromContactPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -39,7 +37,7 @@ class SendAmountToContactPageView
                       height: 50,
                       width: 281,
                       decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context).canvasColor,
                         borderRadius: BorderRadius.only(
                           bottomLeft: Radius.circular(16),
                           bottomRight: Radius.circular(16),
@@ -80,7 +78,7 @@ class SendAmountToContactPageView
             Padding(
               padding: EdgeInsets.only(top: 8),
               child: Text(
-                S.of(context).sendMoneyTo,
+                S.of(context).requestMoneyFrom,
                 style: TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 20,
@@ -123,43 +121,26 @@ class SendAmountToContactPageView
                             style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 12),
                           ),
-                          InkWell(
-                            onTap: () {
-                              EditTransactionPurposeDialog.show(context,
-                                  onDismissed: () {
-                                Navigator.pop(context);
-                              }, onSelected: (value) {
-                                print("got value: $value");
-                                model.updatePurposeDetail(value);
-                                Navigator.pop(context);
-                              });
-                            },
-                            child: Text(
-                              S.of(context).edit,
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                  color: Theme.of(context)
-                                      .accentTextTheme
-                                      .bodyText1!
-                                      .color),
-                            ),
+                          Text(
+                            S.of(context).edit,
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w700,
+                                color: Theme.of(context)
+                                    .accentTextTheme
+                                    .bodyText1!
+                                    .color),
                           )
                         ],
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 2),
-                      child: AppStreamBuilder<String>(
-                          stream: model.purposeDetailStream,
-                          initialData: "Transfer to Friend or Family",
-                          dataBuilder: (context, value) {
-                            return Text(
-                              value!,
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w600),
-                            );
-                          }),
+                      child: Text(
+                        "Transfer to Friend or Family",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 12),
+                      ),
                     ),
                   ],
                 ),
@@ -332,7 +313,7 @@ class SendAmountToContactPageView
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              SendAmountToContactSuccessPage()));
+                                              RequestAmountFromContactSuccessPage()));
                                 },
                                 child: AppSvg.asset(AssetUtils.next))
                           ],
