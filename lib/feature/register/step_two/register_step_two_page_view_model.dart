@@ -12,11 +12,18 @@ class RegisterStepTwoViewModel extends BasePageViewModel {
 
   Stream<int> get currentStep => _currentStep.stream;
 
+  BehaviorSubject<List<Widget>> _pages = BehaviorSubject.seeded([Container()]);
+
+  Stream<List<Widget>> get pagesStream => _pages.stream;
+
   void updatePage(int index) {
     _currentStep.safeAdd(index);
   }
 
-  List<Widget> pages = [];
+  void updatePages(List<Widget> pages) {
+    _pages.value.clear();
+    _pages.safeAdd(pages);
+  }
 
   @override
   void dispose() {

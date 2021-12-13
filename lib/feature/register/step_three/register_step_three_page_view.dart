@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -6,7 +5,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_three/purpose_of_account_opening/purpose_of_account_opening_page.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
+import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
@@ -60,26 +59,14 @@ class RegisterStepThreePageView
                 ),
               ),
               Expanded(
-                child: CarouselSlider.builder(
-                  itemCount: pages.length,
-                  carouselController: model.registrationStepThreePageController,
-                  itemBuilder: (BuildContext context, int itemIndex,
-                          int pageViewIndex) =>
-                      AppTiltCard(
-                          pageViewIndex: pageViewIndex,
-                          currentPage: currentStep,
-                          child: pages[itemIndex]),
-                  options: CarouselOptions(
-                      height: double.maxFinite,
-                      pageSnapping: true,
-                      enableInfiniteScroll: false,
-                      enlargeCenterPage: true,
-                      viewportFraction: 0.88,
-                      scrollPhysics: NeverScrollableScrollPhysics(),
-                      onPageChanged: (index, reason) {
-                        model.updatePage(index);
-                      },
-                      enlargeStrategy: CenterPageEnlargeStrategy.height),
+                child: AppSwiper(
+                  key: ValueKey(currentStep),
+                  pageController: model.registrationStepThreePageController,
+                  pages: pages,
+                  currentStep: currentStep,
+                  onIndexChanged: (index) {
+                    model.updatePage(index);
+                  },
                 ),
               ),
             ],

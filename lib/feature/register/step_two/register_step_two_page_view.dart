@@ -54,14 +54,20 @@ class RegisterStepTwoPageView
                   ),
                 ),
               ),
-              Flexible(
-                child: AppSwiper(
-                  key: ValueKey(currentStep),
-                  pageController: model.registrationStepTwoPageController,
-                  pages: model.pages,
-                  currentStep: currentStep,
-                  onIndexChanged: (index) {
-                    model.updatePage(index);
+              Expanded(
+                child: AppStreamBuilder<List<Widget>>(
+                  initialData: [Container()],
+                  stream: model.pagesStream,
+                  dataBuilder: (context, data) {
+                    return AppSwiper(
+                      key: ValueKey(currentStep),
+                      pageController: model.registrationStepTwoPageController,
+                      pages: data!,
+                      currentStep: currentStep,
+                      onIndexChanged: (index) {
+                        model.updatePage(index);
+                      },
+                    );
                   },
                 ),
               ),

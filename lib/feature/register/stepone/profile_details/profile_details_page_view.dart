@@ -1,11 +1,14 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
+import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
+import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income_page.dart';
+import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page.dart';
 import 'package:neo_bank/feature/register/stepone/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -48,12 +51,30 @@ class ProfileDetailsPageView
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
                           model.setKeysStatusValid();
-                          ProviderScope.containerOf(context)
-                              .read(registerViewModelProvider)
-                              .registrationStepsController
-                              .nextPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                          switch (model.employeeStatusController.text
+                              .fromEmploymentValue()) {
+                            case EmploymentStatusEnum.STUDENT:
+                            case EmploymentStatusEnum.FREELANCE:
+                            case EmploymentStatusEnum.RETIRED:
+                            case EmploymentStatusEnum.UNEMPLOYED:
+                              ProviderScope.containerOf(context)
+                                  .read(registerStepTwoViewModelProvider)
+                                  .updatePages([StudentJobIncomePage()]);
+                              break;
+                            default:
+                              ProviderScope.containerOf(context)
+                                  .read(registerStepTwoViewModelProvider)
+                                  .updatePages([JobAndIncomePage()]);
+                          }
+
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerViewModelProvider)
+                                .registrationStepsController
+                                .nextPage(
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.easeInOut);
+                          });
                         } else if (data.status == Status.ERROR) {
                           model.checkKeyStatus(data.appError!.type);
                           model.showToastWithError(data.appError!);

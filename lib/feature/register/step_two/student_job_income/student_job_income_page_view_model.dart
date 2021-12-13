@@ -45,6 +45,7 @@ class StudentJobIncomePageViewModel extends BasePageViewModel {
               createCall: () => _studentIncomeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _jobAndIncomeResponse.add(event);
         if (event.status == Status.ERROR) {
           showErrorState();
