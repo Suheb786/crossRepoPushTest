@@ -41,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Account has been created successfully."),
         "accountDetails":
             MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
+        "accountInquiryWentWrong":
+            MessageLookupByLibrary.simpleMessage("Account Inquiry went wrong"),
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "Your account is locked, please contact customer service on 7777-7777 to unlock"),
         "accountNumberOptional": MessageLookupByLibrary.simpleMessage(

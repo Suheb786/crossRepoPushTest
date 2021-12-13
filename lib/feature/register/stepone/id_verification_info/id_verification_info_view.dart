@@ -58,12 +58,14 @@ class IdVerificationInfoView
                             onData: (data) {
                               if (data.status == Status.SUCCESS) {
                                 ProviderScope.containerOf(context)
-                                    .read(confirmDetailViewModelProvider)
-                                    .setData(data.data);
-                                ProviderScope.containerOf(context)
                                     .read(registerStepOneViewModelProvider)
                                     .pageController
                                     .next();
+                                Future.delayed(Duration(milliseconds: 500), () {
+                                  ProviderScope.containerOf(context)
+                                      .read(confirmDetailViewModelProvider)
+                                      .setData(data.data);
+                                });
                               }
                             },
                             dataBuilder: (context, scannedData) {

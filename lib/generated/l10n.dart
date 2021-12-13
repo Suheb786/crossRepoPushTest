@@ -4820,6 +4820,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Account Inquiry went wrong`
+  String get accountInquiryWentWrong {
+    return Intl.message(
+      'Account Inquiry went wrong',
+      name: 'accountInquiryWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

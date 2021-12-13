@@ -118,6 +118,7 @@ class AddNumberViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _registerNumberResponse.safeAdd(event);
+        updateLoader();
         if (event.status == Status.ERROR) {
           getError(event);
           showErrorState();
@@ -132,6 +133,7 @@ class AddNumberViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _fetchCountryResponse.safeAdd(event);
+        updateLoader();
         if (event.status == Status.SUCCESS) {
           selectedCountry = event.data!;
         }
@@ -145,6 +147,7 @@ class AddNumberViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _getAllowedCountryResponse.safeAdd(event);
+        updateLoader();
         if (event.status == Status.SUCCESS) {
           countryData = event.data!.contentData!.countryData!.first;
           setSelectedCountry(countryData);
@@ -169,6 +172,7 @@ class AddNumberViewModel extends BasePageViewModel {
               createCall: () => _checkUserNameUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         if (event.status == Status.SUCCESS) {
           isEmailAvailable = event.data?.isAvailable ?? false;
         }
@@ -192,6 +196,7 @@ class AddNumberViewModel extends BasePageViewModel {
                   _checkUserNameMobileUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         if (event.status == Status.SUCCESS) {
           isNumberAvailable = event.data?.isAvailable ?? false;
         }
@@ -199,6 +204,7 @@ class AddNumberViewModel extends BasePageViewModel {
         validate();
       });
     });
+    getAllowedCountryCode();
   }
 
   void fetchCountryByCode(BuildContext context, String code) {

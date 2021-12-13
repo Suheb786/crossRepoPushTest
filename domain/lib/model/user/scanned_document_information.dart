@@ -7,6 +7,7 @@ class ScannedDocumentInformation {
   final String? familyName;
   final DateTime? dob;
   final String? nationality;
+  final String? nationalityIsoCode3;
   final DateTime? doe;
   final DateTime? issuingDate;
   final String? issuingPlace;
@@ -50,5 +51,6 @@ class ScannedDocumentInformation {
       this.instanceId: "",
       this.scanPercentage: 0,
       this.issuingPlace: "",
-      this.issuingDate});
+      this.issuingDate,
+      this.nationalityIsoCode3: ""});
 }

@@ -274,9 +274,10 @@ class ErrorParser {
         return localisedHelper.emptyPin;
       case ErrorType.INVALID_PIN_LENGTH:
         return localisedHelper.invalidPinLength;
-        case ErrorType.PIN_NOT_MATCH:
+      case ErrorType.PIN_NOT_MATCH:
         return localisedHelper.pinDoesNotMatch;
-
+      case ErrorType.ACCOUNT_INQUIRY_WENT_WRONG:
+        return localisedHelper.accountInquiryWentWrong;
       default:
         return "";
     }

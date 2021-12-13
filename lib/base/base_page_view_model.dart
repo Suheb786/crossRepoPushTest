@@ -15,6 +15,12 @@ class BasePageViewModel extends BaseViewModel {
 
   Stream<String> get toast => _toast.stream;
 
+  final PublishSubject<bool> _loading = PublishSubject();
+
+  Stream<bool> get loadingStream => _loading.stream;
+
+  bool _isLoading = false;
+
   void showToastWithError(AppError error) {
     _error.sink.add(error);
   }
@@ -34,11 +40,22 @@ class BasePageViewModel extends BaseViewModel {
     });
   }
 
+  void updateLoader() {
+    if (!_isLoading) {
+      _isLoading = true;
+      _loading.safeAdd(true);
+    } else {
+      _isLoading = false;
+      _loading.safeAdd(false);
+    }
+  }
+
   @override
   void dispose() {
     _error.close();
     _toast.close();
     _errorDetectorSubject.close();
+    _loading.close();
     super.dispose();
   }
 }

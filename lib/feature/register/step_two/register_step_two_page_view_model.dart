@@ -1,12 +1,12 @@
-import 'package:carousel_slider/carousel_controller.dart';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RegisterStepTwoViewModel extends BasePageViewModel {
-  final CarouselController registrationStepTwoPageController =
-      new CarouselController();
+  final SwiperController registrationStepTwoPageController =
+      new SwiperController();
 
   PublishSubject<int> _currentStep = PublishSubject();
 

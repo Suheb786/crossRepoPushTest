@@ -49,7 +49,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.1"
   blinkid_flutter:
     dependency: transitive
     description:
@@ -81,9 +81,11 @@ packages:
   card_swiper:
     dependency: "direct main"
     description:
-      name: card_swiper
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: "4322bae5a779d93e619f8a52c3b2d679796f5cb8"
+      url: "https://github.com/TheAnkurPanchani/card_swiper.git"
+    source: git
     version: "1.0.4"
   carousel_slider:
     dependency: "direct main"
@@ -627,7 +629,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   sqflite:
     dependency: transitive
     description:
@@ -718,7 +720,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   top_snackbar_flutter:
     dependency: "direct main"
     description:

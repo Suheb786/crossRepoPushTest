@@ -86,23 +86,6 @@ class UserLocalDSImpl extends UserLocalDS {
 
       for (var result in results) {
         if (result is BlinkIdCombinedRecognizerResult) {
-          print("I AM nationality ${result.nationality}");
-          print("I AM personalIdNumber ${result.personalIdNumber}");
-          print("I AM documentNumber ${result.documentNumber}");
-          print("I AM firstName ${result.firstName}");
-          print("I AM dateOfExpiry ${result.dateOfExpiry}");
-          print("I AM dateOfBirth ${result.dateOfBirth}");
-          print("I AM sex ${result.sex}");
-          print("I AM fullName ${result.fullName}");
-          print(
-              "I AM additionalAddressInformation ${result.additionalAddressInformation}");
-          print("I AM address ${result.address}");
-          print("I AM age ${result.age}");
-          print(
-              "I AM additionalNameInformation ${result.additionalNameInformation}");
-          print("I AM dateOfIssue ${result.dateOfIssue}");
-          print("I AM fathersName ${result.fathersName}");
-          print("I AM mothersName ${result.mothersName}");
           return Right(result);
         }
       }

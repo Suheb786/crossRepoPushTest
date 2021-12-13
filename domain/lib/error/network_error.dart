@@ -160,6 +160,12 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.INVALID_USERNAME);
 
+          case "err-293":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ACCOUNT_INQUIRY_WENT_WRONG);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

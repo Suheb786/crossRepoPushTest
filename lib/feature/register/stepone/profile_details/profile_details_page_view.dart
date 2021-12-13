@@ -71,7 +71,8 @@ class ProfileDetailsPageView
                       child: Padding(
                         padding: EdgeInsets.only(
                             bottom:
-                                MediaQuery.of(context).viewInsets.bottom == 0
+                                MediaQuery.of(context).viewInsets.bottom - 50 <=
+                                        0
                                     ? 0
                                     : MediaQuery.of(context).viewInsets.bottom -
                                         48),
