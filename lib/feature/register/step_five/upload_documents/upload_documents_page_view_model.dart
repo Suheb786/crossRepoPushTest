@@ -162,9 +162,10 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   PublishSubject<RemoveDebitLockUseCaseParams> _removeDebitLockRequest =
       PublishSubject();
 
-  PublishSubject<String> _removeDebitLockResponse = PublishSubject();
+  PublishSubject<Resource<bool>> _removeDebitLockResponse = PublishSubject();
 
-  Stream<String> get removeDebitLockStream => _removeDebitLockResponse.stream;
+  Stream<Resource<bool>> get removeDebitLockStream =>
+      _removeDebitLockResponse.stream;
 
   UploadDocumentsPageViewModel(
       this._documentsUseCase,
