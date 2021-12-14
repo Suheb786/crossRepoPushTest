@@ -18,4 +18,8 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
   void updatePurposeDetail(String value) {
     purposeDetailController.text = value;
   }
+
+  void updatePurpose(String value) {
+    purposeController.text = value;
+  }
 }

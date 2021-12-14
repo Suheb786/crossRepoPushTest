@@ -60,6 +60,14 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
         purposeDetail: ""));
   }
 
+  void updatePurpose(String value) {
+    purposeController.text = value;
+  }
+
+  void updatePurposeDetail(String value) {
+    purposeDetailController.text = value;
+  }
+
   void validateAddress() {}
 
   @override

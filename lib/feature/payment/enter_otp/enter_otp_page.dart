@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
@@ -20,6 +21,12 @@ class EnterOtpPageState
   @override
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).primaryColor;
+  }
+
+  @override
+  void onModelReady(EnterOtpViewModel model) {
+    model.countDownController =
+        CountdownTimerController(endTime: model.endTime);
   }
 
   @override

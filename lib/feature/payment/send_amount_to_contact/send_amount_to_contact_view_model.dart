@@ -6,6 +6,10 @@ import 'package:rxdart/rxdart.dart';
 class SendAmountToContactViewModel extends BasePageViewModel {
   SendAmountToContactUseCase _useCase;
 
+  PublishSubject<String> _purposeSubject = PublishSubject();
+
+  Stream<String> get purposeStream => _purposeSubject.stream;
+
   PublishSubject<String> _purposeDetailSubject = PublishSubject();
 
   Stream<String> get purposeDetailStream => _purposeDetailSubject.stream;
@@ -16,9 +20,14 @@ class SendAmountToContactViewModel extends BasePageViewModel {
     _purposeDetailSubject.safeAdd(value);
   }
 
+  void updatePurpose(String value) {
+    _purposeSubject.safeAdd(value);
+  }
+
   @override
   void dispose() {
     _purposeDetailSubject.close();
+    _purposeSubject.close();
     super.dispose();
   }
 }

@@ -2,6 +2,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
+import 'package:neo_bank/feature/payment/enter_otp/enter_otp_page.dart';
 import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/send_to_new_recipient/send_to_new_recipient_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -15,7 +17,7 @@ class PaymentToNewRecipientPageView
     extends BasePageViewWidget<PaymentToNewRecipientViewModel> {
   PaymentToNewRecipientPageView(ProviderBase model) : super(model);
 
-  final pages = [SendToNewRecipientPage()];
+  final pages = [SendToNewRecipientPage(), EnterOtpPage()];
 
   @override
   Widget build(BuildContext context, model) {
@@ -29,8 +31,12 @@ class PaymentToNewRecipientPageView
           return GestureDetector(
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
+                print("got current step : $currentStep");
               } else {
-                Navigator.pop(context);
+                ProviderScope.containerOf(context)
+                    .read(paymentToNewRecipientViewModelProvider)
+                    .pageController
+                    .previous();
               }
             },
             child: Column(
@@ -125,6 +131,7 @@ class PaymentToNewRecipientPageView
                               padding: EdgeInsets.only(top: 8),
                               child: Text(
                                 S.of(context).enterCode,
+                                textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20,
@@ -143,6 +150,7 @@ class PaymentToNewRecipientPageView
                       pageController: model.pageController,
                       onIndexChanged: (index) {
                         // model.changeCurrentPage(index);
+                        model.updatePage(index);
                       },
                       currentStep: currentStep,
                     ),

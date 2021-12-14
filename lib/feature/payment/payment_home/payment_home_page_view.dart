@@ -4,6 +4,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/payment/add_request_money_contact/add_request_money_contact_page.dart';
 import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_contact_page.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.dart';
+import 'package:neo_bank/feature/payment/request_money/request_money_page.dart';
 import 'package:neo_bank/feature/payment/send_money/send_money_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
@@ -29,8 +30,13 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
           return GestureDetector(
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
-                Navigator.push(
-                    context, CustomRoute.createRoute(SendMoneyPage()));
+                if (currentStep == 0) {
+                  Navigator.push(
+                      context, CustomRoute.createRoute(SendMoneyPage()));
+                } else {
+                  Navigator.push(
+                      context, CustomRoute.createRoute(RequestMoneyPage()));
+                }
               }
             },
             behavior: HitTestBehavior.translucent,

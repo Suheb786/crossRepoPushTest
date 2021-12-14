@@ -6,7 +6,7 @@ class EditTransactionPurposeDialog {
   EditTransactionPurposeDialog._();
 
   static show(BuildContext mContext,
-      {Function? onDismissed, Function(String)? onSelected}) {
+      {Function? onDismissed, Function(String, String)? onSelected}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => EditTransactionPurposeDialogView(

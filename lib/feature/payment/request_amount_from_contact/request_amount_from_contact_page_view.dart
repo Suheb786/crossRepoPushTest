@@ -6,6 +6,8 @@ import 'package:neo_bank/feature/payment/request_money_from_contact_success/requ
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/edit_transaction_purpose_dialog/edit_transaction_purpose_dialog.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
@@ -116,31 +118,55 @@ class RequestAmountFromContactPageView
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            "Personal",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 12),
-                          ),
-                          Text(
-                            S.of(context).edit,
-                            style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w700,
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color),
+                          AppStreamBuilder<String>(
+                              stream: model.purposeStream,
+                              initialData: "Personal",
+                              dataBuilder: (context, value) {
+                                return Text(
+                                  value!,
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
+                                );
+                              }),
+                          InkWell(
+                            onTap: () {
+                              EditTransactionPurposeDialog.show(context,
+                                  onDismissed: () {
+                                Navigator.pop(context);
+                              }, onSelected: (value1, value2) {
+                                print("got value: $value1");
+                                model.updatePurpose(value1);
+                                model.updatePurposeDetail(value2);
+                                Navigator.pop(context);
+                              });
+                            },
+                            child: Text(
+                              S.of(context).edit,
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w700,
+                                  color: Theme.of(context)
+                                      .accentTextTheme
+                                      .bodyText1!
+                                      .color),
+                            ),
                           )
                         ],
                       ),
                     ),
                     Padding(
                       padding: EdgeInsets.only(top: 2),
-                      child: Text(
-                        "Transfer to Friend or Family",
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, fontSize: 12),
-                      ),
+                      child: AppStreamBuilder<String>(
+                          stream: model.purposeDetailStream,
+                          initialData: "Transfer to Friend or Family",
+                          dataBuilder: (context, value) {
+                            return Text(
+                              value!,
+                              style: TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.w600),
+                            );
+                          }),
                     ),
                   ],
                 ),

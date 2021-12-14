@@ -3,6 +3,7 @@ import 'package:domain/usecase/payment/add_send_money_contact_usecase.dart';
 import 'package:domain/usecase/payment/enter_otp_usecase.dart';
 import 'package:domain/usecase/payment/request_amount_from_contact_usecase.dart';
 import 'package:domain/usecase/payment/request_money_from_contact_success_usecase.dart';
+import 'package:domain/usecase/payment/request_money_usecase.dart';
 import 'package:domain/usecase/payment/send_amount_to_contact_success_usecase.dart';
 import 'package:domain/usecase/payment/send_amount_to_contact_usecase.dart';
 import 'package:domain/usecase/payment/send_money_usecase.dart';
@@ -59,4 +60,9 @@ final sendToNewRecipientUseCaseProvider =
 ///[<EnterOtpUseCase>] provider
 final enterOtpUseCaseProvider = Provider.autoDispose<EnterOtpUseCase>(
   (ref) => EnterOtpUseCase(),
+);
+
+///[<RequestMoneyUseCase>] provider
+final requestMoneyUseCaseProvider = Provider.autoDispose<RequestMoneyUseCase>(
+  (ref) => RequestMoneyUseCase(),
 );

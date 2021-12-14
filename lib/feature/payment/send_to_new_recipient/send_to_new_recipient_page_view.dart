@@ -9,6 +9,8 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dialog.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_row_item.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -113,25 +115,35 @@ class SendToNewRecipientPageView
                                                 readOnly: true,
                                                 controller: model
                                                     .ibanOrMobileController,
-                                                onPressed: () {
-                                                  // CountryDialog.show(context,
-                                                  //     title: S
-                                                  //         .of(context)
-                                                  //         .residentCountrySmall,
-                                                  //     onDismissed: () {
-                                                  //   Navigator.pop(context);
-                                                  // }, onSelected: (value) {
-                                                  //   Navigator.pop(context);
-                                                  //   model
-                                                  //       .residentCountryController
-                                                  //       .text = value;
-                                                  //   model
-                                                  //       .updatePermanentAddressVisibility();
-                                                  //   model.validateAddress();
-                                                  // });
-                                                },
+                                                onPressed: () {},
                                               ),
                                             ),
+                                            Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 16),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      "Name",
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      "Shakila Naseem",
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    )
+                                                  ],
+                                                )),
                                             Padding(
                                               padding: EdgeInsets.only(top: 24),
                                               child: Text(
@@ -152,7 +164,15 @@ class SendToNewRecipientPageView
                                                 readOnly: true,
                                                 controller:
                                                     model.purposeController,
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  PurposeDialog.show(context,
+                                                      onSelected: (value) {
+                                                    model.updatePurpose(value);
+                                                    Navigator.pop(context);
+                                                  }, onDismissed: () {
+                                                    Navigator.pop(context);
+                                                  });
+                                                },
                                                 suffixIcon: (value, data) {
                                                   return Container(
                                                       height: 16,
@@ -177,7 +197,17 @@ class SendToNewRecipientPageView
                                                 readOnly: true,
                                                 controller: model
                                                     .purposeDetailController,
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  PurposeDetailDialog.show(
+                                                      context,
+                                                      onSelected: (value) {
+                                                    model.updatePurposeDetail(
+                                                        value);
+                                                    Navigator.pop(context);
+                                                  }, onDismissed: () {
+                                                    Navigator.pop(context);
+                                                  });
+                                                },
                                                 suffixIcon: (value, data) {
                                                   return Container(
                                                       height: 16,
@@ -244,28 +274,33 @@ class SendToNewRecipientPageView
                                                   );
                                                 },
                                               ),
-                                            )
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                top: 16,
+                                              ),
+                                              child: Align(
+                                                alignment: Alignment.center,
+                                                child: AppStreamBuilder<bool>(
+                                                    stream:
+                                                        model.showButtonStream,
+                                                    initialData: true,
+                                                    dataBuilder:
+                                                        (context, isValid) {
+                                                      return Visibility(
+                                                        visible: isValid!,
+                                                        child: AnimatedButton(
+                                                          buttonText: S
+                                                              .of(context)
+                                                              .swipeToProceed,
+                                                        ),
+                                                      );
+                                                    }),
+                                              ),
+                                            ),
                                           ],
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        top: 16,
-                                      ),
-                                      child: AppStreamBuilder<bool>(
-                                          stream: model.showButtonStream,
-                                          initialData: true,
-                                          dataBuilder: (context, isValid) {
-                                            return Visibility(
-                                              visible: isValid!,
-                                              child: AnimatedButton(
-                                                buttonText: S
-                                                    .of(context)
-                                                    .swipeToProceed,
-                                              ),
-                                            );
-                                          }),
                                     ),
                                     Padding(
                                       padding:

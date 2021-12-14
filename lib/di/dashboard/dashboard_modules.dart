@@ -15,12 +15,13 @@ import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/credit_card_detail/credit_card_detail_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric_login_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard_dialog/dashboard_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/debit_card_detail/debit_card_detail_dialog_view_model.dart';
 
 final dashboardViewModelProvider =
     ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
   (ref) => DashboardPageViewModel(),
-);
+    );
 
 final biometricLoginViewModelProvider =
     ChangeNotifierProvider.autoDispose<BiometricLoginDialogViewModel>(
@@ -30,6 +31,11 @@ final biometricLoginViewModelProvider =
 final debitCardDetailDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<DebitCardDetailDialogViewModel>(
   (ref) => DebitCardDetailDialogViewModel(),
+);
+
+final dashboardDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<DashboardDialogViewModel>(
+  (ref) => DashboardDialogViewModel(),
 );
 
 final creditCardDetailDialogViewModelProvider =
