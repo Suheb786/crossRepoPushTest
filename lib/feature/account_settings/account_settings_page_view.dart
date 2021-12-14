@@ -13,6 +13,8 @@ import 'package:neo_bank/ui/molecules/account_setting/biometric_switch_widget.da
 import 'package:neo_bank/ui/molecules/account_setting/choose_profile_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 
 class AccountSettingPageView
     extends BasePageViewWidget<AccountSettingPageViewModel> {
@@ -142,7 +144,9 @@ class AccountSettingPageView
                   AccountSettingWidget(
                     image: AssetUtils.password,
                     title: S.of(context).changePassword,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, RoutePaths.ChangePassword);
+                    },
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0, bottom: 16),
@@ -155,15 +159,52 @@ class AccountSettingPageView
                     stream: model.switchValue,
                     initialData: false,
                     dataBuilder: (context, isActive) {
-                      return BiometricSwitchWidget(
-                        onToggle: (value) {
-                          model.updateSwitchValue(value);
+                      return AppStreamBuilder<Resource<bool>>(
+                        stream: model.authenticateBioMetricStream,
+                        initialData: Resource.none(),
+                        onData: (data) {
+                          if (data.status == Status.SUCCESS) {
+                            print('authenticated success');
+                            model.showSuccessToast(
+                                S.of(context).biometricLoginActivated);
+                          }
                         },
-                        isActive: isActive,
-                        title: S.of(context).biometricLogin,
-                        image: AssetUtils.biometric,
-                        inActiveText: S.of(context).no,
-                        activeText: S.of(context).yes,
+                        dataBuilder: (context, biometricAuthenticated) {
+                          return AppStreamBuilder<Resource<bool>>(
+                            stream: model.checkBioMetricStream,
+                            initialData: Resource.none(),
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
+                                print('success');
+                                model.authenticateBioMetric(
+                                    title:
+                                        S.of(context).enableBiometricLoginTitle,
+                                    localisedReason: Platform.isAndroid
+                                        ? S
+                                            .of(context)
+                                            .enableBiometricLoginDescriptionAndroid
+                                        : S
+                                            .of(context)
+                                            .enableBiometricLoginDescriptionIos);
+                              }
+                            },
+                            dataBuilder: (context, isAvailable) {
+                              return BiometricSwitchWidget(
+                                onToggle: (value) {
+                                  model.updateSwitchValue(value);
+                                  if (value) {
+                                    model.checkBiometric();
+                                  }
+                                },
+                                isActive: isActive,
+                                title: S.of(context).biometricLogin,
+                                image: AssetUtils.biometric,
+                                inActiveText: S.of(context).no,
+                                activeText: S.of(context).yes,
+                              );
+                            },
+                          );
+                        },
                       );
                     },
                   ),

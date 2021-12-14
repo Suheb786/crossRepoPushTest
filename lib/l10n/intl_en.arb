@@ -511,5 +511,11 @@
   "success": "SUCCESS",
   "mobileNumberUpdated": "Mobile number is successfully updated",
   "emailAddressUpdated": "Email address is successfully updated",
-  "profilePhotoUpdated": "Profile photo is successfully updated"
+  "profilePhotoUpdated": "Profile photo is successfully updated",
+  "emptyNewPassword": "Enter New Password",
+  "createYourLoginPassword": "Next, let’s create your \nlogin password",
+  "currentPassword": "CURRENT PASSWORD",
+  "newPassword": "NEW PASSWORD",
+  "passwordUpdatedSuccessfully": "Password is successfully updated",
+  "biometricLoginActivated": "Biometric login is successfully activated"
 }

@@ -110,6 +110,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Beneficial owner is a resident of"),
         "biometricLogin":
             MessageLookupByLibrary.simpleMessage("Biometric Login"),
+        "biometricLoginActivated": MessageLookupByLibrary.simpleMessage(
+            "Biometric login is successfully activated"),
         "biometricLoginDesc": MessageLookupByLibrary.simpleMessage(
             "To blink in more seamlessly, please enable biometric login"),
         "brightPlace": MessageLookupByLibrary.simpleMessage(
@@ -173,6 +175,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CREATE PASSWORD"),
         "createPasswordHeader": MessageLookupByLibrary.simpleMessage(
             "Next, let’s create\nyour password"),
+        "createYourLoginPassword": MessageLookupByLibrary.simpleMessage(
+            "Next, let’s create your \nlogin password"),
+        "currentPassword":
+            MessageLookupByLibrary.simpleMessage("CURRENT PASSWORD"),
         "customerService": MessageLookupByLibrary.simpleMessage(
             "24/7 Customer Service Service"),
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
@@ -255,6 +261,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Nationality field cannot be empty"),
         "emptyNationalityDocument": MessageLookupByLibrary.simpleMessage(
             "Upload valid nationality document."),
+        "emptyNewPassword":
+            MessageLookupByLibrary.simpleMessage("Enter New Password"),
         "emptyPin": MessageLookupByLibrary.simpleMessage("Enter Pin"),
         "emptyResidentCountry": MessageLookupByLibrary.simpleMessage(
             "Resident country field cannot be empty"),
@@ -570,6 +578,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("NATURE OF SPECIAL NEEDS"),
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
+        "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
         "no": MessageLookupByLibrary.simpleMessage("NO"),
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("No matching country found"),
@@ -612,6 +621,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create Password"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Password did not match"),
+        "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Password is successfully updated"),
         "pepDesc": MessageLookupByLibrary.simpleMessage(
             " is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list."),
         "permanentAddress":

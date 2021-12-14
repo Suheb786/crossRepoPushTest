@@ -144,4 +144,13 @@ class StepTextHelper {
         return step1;
     }
   }
+
+  static String changePasswordTextHelper(int index, String step1) {
+    switch (index) {
+      case 0:
+        return step1;
+      default:
+        return step1;
+    }
+  }
 }

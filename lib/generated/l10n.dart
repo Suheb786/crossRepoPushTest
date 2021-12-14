@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4976,6 +4975,66 @@ class S {
     return Intl.message(
       'Profile photo is successfully updated',
       name: 'profilePhotoUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter New Password`
+  String get emptyNewPassword {
+    return Intl.message(
+      'Enter New Password',
+      name: 'emptyNewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next, let’s create your \nlogin password`
+  String get createYourLoginPassword {
+    return Intl.message(
+      'Next, let’s create your \nlogin password',
+      name: 'createYourLoginPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CURRENT PASSWORD`
+  String get currentPassword {
+    return Intl.message(
+      'CURRENT PASSWORD',
+      name: 'currentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NEW PASSWORD`
+  String get newPassword {
+    return Intl.message(
+      'NEW PASSWORD',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is successfully updated`
+  String get passwordUpdatedSuccessfully {
+    return Intl.message(
+      'Password is successfully updated',
+      name: 'passwordUpdatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biometric login is successfully activated`
+  String get biometricLoginActivated {
+    return Intl.message(
+      'Biometric login is successfully activated',
+      name: 'biometricLoginActivated',
       desc: '',
       args: [],
     );
