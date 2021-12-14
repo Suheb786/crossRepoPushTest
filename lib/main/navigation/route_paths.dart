@@ -26,4 +26,5 @@ class RoutePaths {
   static const String ChangeEmailAddress = '/changeEmailAddress';
   static const String ChangeMobileNumber = '/ChangeMobileNumber';
   static const String ChangePassword = '/changePassword';
+  static const String MyDocuments = '/myDocuments';
 }

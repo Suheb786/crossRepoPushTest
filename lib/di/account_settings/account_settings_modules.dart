@@ -1,5 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/account/account_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/account_setting/account_setting_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/account_settings/account_settings_page_view_model.dart';
@@ -9,8 +11,10 @@ import 'package:neo_bank/feature/account_settings/change_email_address/enter_cod
 import 'package:neo_bank/feature/account_settings/change_mobile_number/add_new_mobile_number/add_new_mobile_number_page_view_model.dart';
 import 'package:neo_bank/feature/account_settings/change_mobile_number/change_mobile_number_page_view_model.dart';
 import 'package:neo_bank/feature/account_settings/change_mobile_number/enter_code_for_change_mobile_number/enter_code_for_change_mobile_number_page_view_model.dart';
+import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page_view_model.dart';
 import 'package:neo_bank/feature/account_settings/change_password/change_password_page_view_model.dart';
 import 'package:neo_bank/feature/account_settings/change_password/enter_new_password/enter_new_password_page_view_model.dart';
+import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page_view_model.dart';
 
 ///account setting view model provider
 final accountSettingViewModelProvider =
@@ -73,4 +77,21 @@ final enterNewPasswordViewModelProvider =
     ChangeNotifierProvider.autoDispose<EnterNewPasswordPageViewModel>(
   (ref) =>
       EnterNewPasswordPageViewModel(ref.read(enterNewPasswordUseCaseProvider)),
+);
+
+///my documents page
+final myDocumentsPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<MyDocumentsPageViewModel>(
+  (ref) => MyDocumentsPageViewModel(
+      ref.read(myDocumentUseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(checkOtherNationalityStatusUseCaseProvider),
+      ref.read(fileUploadUseCaseProvider),
+      ref.read(removeDebitLockUseCaseProvider)),
+);
+
+///base card view model provider
+final baseCardViewModelProvider =
+    ChangeNotifierProvider.autoDispose<BaseCardPageViewModel>(
+  (ref) => BaseCardPageViewModel(),
 );

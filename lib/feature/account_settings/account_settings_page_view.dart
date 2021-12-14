@@ -4,6 +4,7 @@ import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/account_settings/account_settings_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -40,8 +41,9 @@ class AccountSettingPageView
                       if (data != null && data.isNotEmpty) {
                         model.selectedProfile = data;
                         model.addImage(data);
-                        model.showSuccessToast(
-                            S.of(context).profilePhotoUpdated);
+                        _cropImage(data, model, context);
+                        // model.showSuccessToast(
+                        //     S.of(context).profilePhotoUpdated);
                       }
                     },
                     dataBuilder: (context, data) {
@@ -50,39 +52,41 @@ class AccountSettingPageView
                         initialData: '',
                         dataBuilder: (context, image) {
                           return InkWell(
-                            onTap: () {
-                              ChooseProfileWidget.show(context,
-                                  onCameraTap: () {
-                                    Navigator.pop(context);
-                                    model.uploadProfilePhoto(
-                                        DocumentTypeEnum.CAMERA);
-                                  },
-                                  onGalleryTap: () {
-                                    Navigator.pop(context);
-                                    model.uploadProfilePhoto(
-                                        DocumentTypeEnum.PICK_IMAGE);
-                                  },
-                                  onRemoveTap: () {},
-                                  onCancelled: () {
-                                    Navigator.pop(context);
-                                  },
-                                  title: S.of(context).pleaseSelectYourAction);
-                            },
-                            child: Container(
-                              height: 96,
-                              width: 96,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: image!.isEmpty
-                                        ? AssetImage(AssetUtils.dummyProfile)
-                                            as ImageProvider
-                                        : FileImage(File(image)),
-                                    fit: BoxFit.cover),
-                                color: Theme.of(context).primaryColor,
-                                shape: BoxShape.circle,
-                              ),
-                            ),
-                          );
+                              onTap: () {
+                                ChooseProfileWidget.show(context,
+                                    onCameraTap: () {
+                                      Navigator.pop(context);
+                                      model.uploadProfilePhoto(
+                                          DocumentTypeEnum.CAMERA);
+                                    },
+                                    onGalleryTap: () {
+                                      Navigator.pop(context);
+                                      model.uploadProfilePhoto(
+                                          DocumentTypeEnum.PICK_IMAGE);
+                                    },
+                                    onRemoveTap: () {},
+                                    onCancelled: () {
+                                      Navigator.pop(context);
+                                    },
+                                    title:
+                                        S.of(context).pleaseSelectYourAction);
+                              },
+                              child: CircleAvatar(
+                                backgroundColor: Theme.of(context).primaryColor,
+                                radius: 48,
+                                child: CircleAvatar(
+                                  radius: 48,
+                                  backgroundImage: image!.isEmpty
+                                      ? Image.asset(
+                                          AssetUtils.dummyProfile,
+                                          fit: BoxFit.cover,
+                                        ).image
+                                      : Image.file(
+                                          File(image),
+                                          fit: BoxFit.cover,
+                                        ).image,
+                                ),
+                              ));
                         },
                       );
                     },
@@ -218,7 +222,9 @@ class AccountSettingPageView
                   AccountSettingWidget(
                     image: AssetUtils.documents,
                     title: S.of(context).myDocuments,
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, RoutePaths.MyDocuments);
+                    },
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 16.0, bottom: 16),
@@ -245,5 +251,17 @@ class AccountSettingPageView
         ),
       ],
     );
+  }
+
+  void _cropImage(String data, AccountSettingPageViewModel model,
+      BuildContext context) async {
+    File? cropped = await ImageCropper.cropImage(
+        sourcePath: data,
+        aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
+    if (cropped != null) {
+      model.selectedProfile = cropped.path;
+      model.addImage(cropped.path);
+      model.showSuccessToast(S.of(context).profilePhotoUpdated);
+    }
   }
 }

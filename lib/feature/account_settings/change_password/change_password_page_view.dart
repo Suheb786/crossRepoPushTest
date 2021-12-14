@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/feature/account_settings/change_password/change_password_page_view_model.dart';
 import 'package:neo_bank/feature/account_settings/change_password/enter_new_password/enter_new_password_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -14,7 +15,7 @@ import 'package:show_up_animation/show_up_animation.dart';
 
 class ChangePasswordPageView
     extends BasePageViewWidget<ChangePasswordPageViewModel> {
-  final pages = [EnterNewPasswordPage(), Container()];
+  final pages = [EnterNewPasswordPage(), BaseCardPage()];
 
   ChangePasswordPageView(ProviderBase model) : super(model);
 

@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -5035,6 +5036,26 @@ class S {
     return Intl.message(
       'Biometric login is successfully activated',
       name: 'biometricLoginActivated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you have a salary, upload either your job certificate or salary slip`
+  String get proofOfIncomeDescSetting {
+    return Intl.message(
+      'If you have a salary, upload either your job certificate or salary slip',
+      name: 'proofOfIncomeDescSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To confirm your address, upload your latest utility bills`
+  String get proofOfAddressDescSetting {
+    return Intl.message(
+      'To confirm your address, upload your latest utility bills',
+      name: 'proofOfAddressDescSetting',
       desc: '',
       args: [],
     );
