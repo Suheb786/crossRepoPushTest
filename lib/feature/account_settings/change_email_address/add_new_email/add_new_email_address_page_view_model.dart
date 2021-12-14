@@ -15,7 +15,7 @@ class AddNewEmailAddressPageViewModel extends BasePageViewModel {
   /// controller
   final TextEditingController emailController = TextEditingController();
 
-   final GlobalKey<AppTextFieldState> changeEmailKey =
+  final GlobalKey<AppTextFieldState> changeEmailKey =
       GlobalKey(debugLabel: "changeEmail");
 
   ///add new email address request subject holder
@@ -69,6 +69,8 @@ class AddNewEmailAddressPageViewModel extends BasePageViewModel {
         break;
       case ErrorType.INVALID_EMAIL:
         changeEmailKey.currentState!.isValid = false;
+        break;
+      default:
         break;
     }
   }

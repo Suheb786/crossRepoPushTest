@@ -73,6 +73,8 @@ class FatcaUSRelevantW9PageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_NAME_AS_PER_TAX_RETURN:
         nameAsPerTaxReturnKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 

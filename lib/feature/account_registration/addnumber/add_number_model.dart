@@ -223,6 +223,8 @@ class AddNumberViewModel extends BasePageViewModel {
       case ErrorType.INVALID_MOBILE:
         mobileNumberKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 

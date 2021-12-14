@@ -1,7 +1,6 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
-import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/upload_document/file_upload_response.dart';
 import 'package:domain/model/upload_document/save_upload_document_response.dart';
 import 'package:flutter/material.dart';
@@ -61,19 +60,19 @@ class UploadDocumentsPageView
                             if (data.status == Status.SUCCESS) {
                               model.removeDebitLock();
                             } else if (data.status == Status.ERROR) {
-                              if (data.appError!.type ==
-                                  ErrorType.EMPTY_INCOME_DOCUMENT) {
-                                model.incomeDocumentKey.currentState!.isValid =
-                                    false;
-                              } else if (data.appError!.type ==
-                                  ErrorType.EMPTY_ADDRESS_DOCUMENT) {
-                                model.addressDocumentKey.currentState!.isValid =
-                                    false;
-                              } else if (data.appError!.type ==
-                                  ErrorType.EMPTY_NATIONALITY_DOCUMENT) {
-                                model.additionalNationalityKey.currentState!
-                                    .isValid = false;
-                              }
+                              // if (data.appError!.type ==
+                              //     ErrorType.EMPTY_INCOME_DOCUMENT) {
+                              //   model.incomeDocumentKey.currentState!.isValid =
+                              //       false;
+                              // } else if (data.appError!.type ==
+                              //     ErrorType.EMPTY_ADDRESS_DOCUMENT) {
+                              //   model.addressDocumentKey.currentState!.isValid =
+                              //       false;
+                              // } else if (data.appError!.type ==
+                              //     ErrorType.EMPTY_NATIONALITY_DOCUMENT) {
+                              //   model.additionalNationalityKey.currentState!
+                              //       .isValid = false;
+                              // }
                               model.showToastWithError(data.appError!);
                             }
                           },
@@ -184,8 +183,8 @@ class UploadDocumentsPageView
                                                               .uploadDocumentsSmall,
                                                           controller: model
                                                               .incomeController,
-                                                          key: model
-                                                              .incomeDocumentKey,
+                                                          // key: model
+                                                          //     .incomeDocumentKey,
                                                           readOnly: true,
                                                           hintTextColor: Theme
                                                                   .of(context)
@@ -342,8 +341,8 @@ class UploadDocumentsPageView
                                                               .uploadDocumentsSmall,
                                                           controller: model
                                                               .addressController,
-                                                          key: model
-                                                              .addressDocumentKey,
+                                                          // key: model
+                                                          //     .addressDocumentKey,
                                                           readOnly: true,
                                                           textFieldBorderColor:
                                                               Theme.of(context)

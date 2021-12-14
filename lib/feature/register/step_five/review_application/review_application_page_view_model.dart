@@ -196,6 +196,8 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     switch (event.appError!.type) {
       case ErrorType.INVALID_DECLARATION_SELECTION:
         break;
+      default:
+        break;
     }
   }
 
@@ -444,8 +446,5 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     expectedAnnualTransactionsController.text = getConfirmApplicationDataContent
         .accountPurposeInfo!.anualTransaction!
         .toString();
-
-    print(
-        'value---->${getConfirmApplicationDataContent.fatcaCrsInfo!.response5 == "true"}');
   }
 }

@@ -527,7 +527,6 @@ class UserRepositoryImpl extends UserRepository {
             ),
           );
         }
-        break;
       default:
         return Left(
           LocalError(

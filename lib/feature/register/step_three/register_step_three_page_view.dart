@@ -14,7 +14,7 @@ class RegisterStepThreePageView
     extends BasePageViewWidget<RegisterStepThreeViewModel> {
   RegisterStepThreePageView(ProviderBase model) : super(model);
 
-  List<Widget> pages = [
+  final List<Widget> pages = [
     PurposeOfAccountOpeningPage(),
     Expanded(child: Container())
   ];

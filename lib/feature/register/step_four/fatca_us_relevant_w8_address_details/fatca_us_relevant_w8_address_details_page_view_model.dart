@@ -165,6 +165,8 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.DIFFERENT_POSTCODE:
         differentMailingPostCodeKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 

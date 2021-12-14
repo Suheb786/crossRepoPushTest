@@ -61,7 +61,6 @@ class ScannedDocumentInformation {
       this.issuingPlace: "",
       this.issuingDate,
       this.nationalityIsoCode3: "",
-      this.issuingDate,
       this.secondNameEn: "",
       this.placeOfBirth: "",
       this.familyNameAr: "",

@@ -164,6 +164,8 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         break;
       case ErrorType.INVALID_DECLARATION_SELECTION:
         break;
+      default:
+        break;
     }
   }
 

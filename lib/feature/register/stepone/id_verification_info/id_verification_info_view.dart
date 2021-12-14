@@ -94,7 +94,7 @@ class IdVerificationInfoView
                                       .read(confirmDetailViewModelProvider)
                                       .setData(scannedDocument);
                                 });
-                              }else if (data.status == Status.ERROR) {
+                              } else if (data.status == Status.ERROR) {
                                 model.showToastWithError(data.appError!);
                               }
                             },

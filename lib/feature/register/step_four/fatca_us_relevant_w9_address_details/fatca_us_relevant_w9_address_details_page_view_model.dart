@@ -164,6 +164,8 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_REQUESTER_POSTCODE:
         additionalRequesterPostCodeKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 

@@ -100,6 +100,8 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_SECURITY_NUMBER:
         socialSecurityNumberKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 

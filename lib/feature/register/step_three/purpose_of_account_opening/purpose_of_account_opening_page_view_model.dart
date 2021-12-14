@@ -125,6 +125,8 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_EXPECTED_MONTHLY_TRANSACTION:
         expectedMonthlyTransactionKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 

@@ -152,7 +152,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         issuingDate: scannedDocumentResult.issuingDate!.year == 0
             ? selectedIssuingDate
             : scannedDocumentResult.issuingDate.toString(),
-        issuingPlace: issuingPlaceController.text,
+        issuingPlace: scannedDocumentResult.issuingPlaceISo3,
         declarationSelected: _declarationSelectedSubject.value,
         scannedDocumentInformation: scannedDocumentResult));
   }
@@ -193,7 +193,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     dobController.text = data.dob!.year != 0
         ? TimeUtils.getFormattedDOB(data.dob!.toString())
         : '';
-    nationalityController.text = data.issuer!;
+    nationalityController.text = data.nationality!;
     genderController.text = data.gender!;
     motherNameController.text = data.motherName!;
     legalDocumentController.text = data.documentNumber!;

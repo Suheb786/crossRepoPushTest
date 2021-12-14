@@ -180,6 +180,8 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_REFERENCE_NO:
         referenceNumberKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 

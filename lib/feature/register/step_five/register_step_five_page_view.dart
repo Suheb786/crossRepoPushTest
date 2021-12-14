@@ -69,6 +69,7 @@ class RegisterStepFivePageView
               ),
               Expanded(
                 child: AppSwiper(
+                  key: ValueKey(currentStep),
                   pages: pages,
                   onIndexChanged: (index) {
                     model.updatePage(index);

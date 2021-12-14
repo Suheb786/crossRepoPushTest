@@ -233,6 +233,8 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
       case ErrorType.EMPTY_BUSINESS:
         businessTypeOtherKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 

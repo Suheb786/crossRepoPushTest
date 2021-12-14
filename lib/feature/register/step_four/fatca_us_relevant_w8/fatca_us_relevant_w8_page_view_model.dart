@@ -86,6 +86,8 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_CITIZENSHIP:
         countryOfCitizenshipKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 

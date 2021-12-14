@@ -9,7 +9,7 @@ class CreateAccountDataEntity
     implements
         BaseLayerDataTransformer<CreateAccountDataEntity, CreateAccountData> {
   @JsonKey(name: "accountDate")
-  final dynamic? accountDate;
+  final dynamic accountDate;
 
   @JsonKey(name: "name")
   final dynamic name;
