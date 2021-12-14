@@ -278,6 +278,8 @@ class ErrorParser {
         return localisedHelper.pinDoesNotMatch;
       case ErrorType.EMPTY_NEW_PASSWORD:
         return localisedHelper.emptyNewPassword;
+        case ErrorType.INVALID_ID_CARD:
+        return localisedHelper.invalidIDCard;
 
       default:
         return "";

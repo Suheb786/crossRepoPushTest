@@ -448,6 +448,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidExplanationForUnavailability":
             MessageLookupByLibrary.simpleMessage(
                 "Enter reason for unavailability"),
+        "invalidIDCard": MessageLookupByLibrary.simpleMessage(
+            "ID Card is not valid. Please scan JORDANIAN ID Card."),
         "invalidIdentificationNumber":
             MessageLookupByLibrary.simpleMessage("Enter identification number"),
         "invalidIncomeType":

@@ -5060,6 +5060,16 @@ class S {
       args: [],
     );
   }
+
+  /// `ID Card is not valid. Please scan JORDANIAN ID Card.`
+  String get invalidIDCard {
+    return Intl.message(
+      'ID Card is not valid. Please scan JORDANIAN ID Card.',
+      name: 'invalidIDCard',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

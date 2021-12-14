@@ -164,5 +164,6 @@ enum ErrorType {
   //card delivery
   EMPTY_PIN,
   INVALID_PIN_LENGTH,
-  PIN_NOT_MATCH
+  PIN_NOT_MATCH,
+  INVALID_ID_CARD
 }

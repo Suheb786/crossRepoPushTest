@@ -519,5 +519,6 @@
   "passwordUpdatedSuccessfully": "Password is successfully updated",
   "biometricLoginActivated": "Biometric login is successfully activated",
   "proofOfIncomeDescSetting": "If you have a salary, upload either your job certificate or salary slip",
-  "proofOfAddressDescSetting": "To confirm your address, upload your latest utility bills"
+  "proofOfAddressDescSetting": "To confirm your address, upload your latest utility bills",
+  "invalidIDCard": "ID Card is not valid. Please scan JORDANIAN ID Card."
 }

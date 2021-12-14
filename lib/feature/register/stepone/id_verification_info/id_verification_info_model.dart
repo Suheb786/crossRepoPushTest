@@ -1,4 +1,6 @@
+import 'package:domain/model/id_card/ahwal_details_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:domain/usecase/id_card/get_ahwal_details_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -11,6 +13,7 @@ import 'package:rxdart/rxdart.dart';
 class IdVerificationInfoViewModel extends BasePageViewModel {
   final IdVerificationInfoUseCase _idVerificationInfoUseCase;
   final ScanUserDocumentUseCase _scanUserDocumentUseCase;
+  final GetAhwalDetailsUseCase _getAhwalDetailsUseCase;
 
   /// retrieve condition check subject holder
   BehaviorSubject<bool> _isRetrievedConditionSubject =
@@ -48,8 +51,22 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream =>
       _scanUserDocumentResponse.stream;
 
-  IdVerificationInfoViewModel(
-      this._idVerificationInfoUseCase, this._scanUserDocumentUseCase) {
+  ///get ahwal details subject holder
+  final PublishSubject<GetAhwalDetailsUseCaseParams> _getAhwalDetailsRequest =
+      PublishSubject();
+
+  ///get ahwal details subject response holder
+  final PublishSubject<Resource<AhwalDetailResponse>> _getAhwalDetailsResponse =
+      PublishSubject();
+
+  ///get ahwal details response stream
+  Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream =>
+      _getAhwalDetailsResponse.stream;
+
+  ScannedDocumentInformation scannedDocumentInformation = ScannedDocumentInformation();
+
+  IdVerificationInfoViewModel(this._idVerificationInfoUseCase,
+      this._scanUserDocumentUseCase, this._getAhwalDetailsUseCase) {
     _idVerificationInfoRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -74,6 +91,18 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
         _scanUserDocumentResponse.safeAdd(event);
       });
     });
+
+    _getAhwalDetailsRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getAhwalDetailsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _getAhwalDetailsResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+        }
+      });
+    });
   }
 
   void idVerificationInfo() {
@@ -85,6 +114,10 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
     _scanUserDocumentRequest.safeAdd(ScanUserDocumentUseCaseParams());
   }
 
+  void getAhwalResponse(String id) {
+    _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
+  }
+
   @override
   void dispose() {
     _isRetrievedConditionSubject.close();
@@ -92,6 +125,8 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
     _idVerificationInfoResponse.close();
     _scanUserDocumentRequest.close();
     _scanUserDocumentResponse.close();
+    _getAhwalDetailsRequest.close();
+    _getAhwalDetailsResponse.close();
     super.dispose();
   }
 }
