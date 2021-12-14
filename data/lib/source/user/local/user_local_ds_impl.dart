@@ -86,6 +86,46 @@ class UserLocalDSImpl extends UserLocalDS {
 
       for (var result in results) {
         if (result is BlinkIdCombinedRecognizerResult) {
+          print("I AM nationality : ${result.nationality}");
+          print("I AM personalIdNumber:  ${result.personalIdNumber}");
+          print("I AM documentNumber : ${result.documentNumber}");
+          print("I AM firstName : ${result.firstName}");
+          print("I AM dateOfExpiry : ${result.dateOfExpiry}");
+          print("I AM dateOfBirth : ${result.dateOfBirth}");
+          print("I AM sex:  ${result.sex}");
+          print("I AM fullName:  ${result.fullName}");
+          print(
+              "I AM additionalAddressInformation : ${result.additionalAddressInformation}");
+          print("I AM address : ${result.address}");
+          print("I AM age:  ${result.age}");
+          print(
+              "I AM additionalNameInformation : ${result.additionalNameInformation}");
+          print("I AM dateOfIssue : ${result.dateOfIssue}");
+          print("I AM fathersName:  ${result.fathersName}");
+          print("I AM mothersName : ${result.mothersName}");
+          print(
+              "I AM mrzResult documentCode :${result.mrzResult!.documentCode}");
+          print(
+              "I AM mrzResult documentNumber : ${result.mrzResult!.documentNumber}");
+          print("I AM mrzResult primaryId : ${result.mrzResult!.primaryId}");
+          print("I AM mrzResult secondaryId : ${result.mrzResult!.secondaryId}");
+          print("I AM mrzResult alienNumber : ${result.mrzResult!.alienNumber}");
+          print("I AM mrzResult mrzText:  ${result.mrzResult!.mrzText}");
+          print("I AM mrzResult alienNumber : ${result.mrzResult!.issuer}");
+          print(
+              "I AM mrzResult applicationReceiptNumber : ${result.mrzResult!.applicationReceiptNumber}");
+          print(
+              "I AM mrzResult documentType : ${result.mrzResult!.documentType}");
+          print(
+              "I AM mrzResult sanitizedDocumentCode : ${result.mrzResult!.sanitizedDocumentCode}");
+          print(
+              "I AM mrzResult sanitizedDocumentNumber:  ${result.mrzResult!.sanitizedDocumentNumber}");
+          print(
+              "I AM mrzResult sanitizedIssuer:  ${result.mrzResult!.sanitizedIssuer}");
+          print(
+              "I AM mrzResult sanitizedOpt1 : ${result.mrzResult!.sanitizedOpt1}");
+          print(
+              "I AM mrzResult sanitizedOpt2:  ${result.mrzResult!.sanitizedOpt2}");
           return Right(result);
         }
       }

@@ -36,6 +36,13 @@ class ConfirmDetailUseCase extends BaseUseCase<NetworkError,
       frontCardImage: params.scannedDocumentInformation!.frontCardImage ?? '',
       backCardImage: params.scannedDocumentInformation!.backCardImage ?? '',
       personFaceImage: params.scannedDocumentInformation!.personFaceImage ?? '',
+      issuer: params.scannedDocumentInformation!.issuer ?? '',
+      secondNameEn: params.scannedDocumentInformation!.secondNameEn ?? '',
+      placeOfBirth: params.scannedDocumentInformation!.placeOfBirth ?? '',
+      familyNameAr: params.scannedDocumentInformation!.familyNameAr ?? '',
+      secNameAr: params.scannedDocumentInformation!.secNameAr ?? '',
+      firstNameAr: params.scannedDocumentInformation!.familyNameAr ?? '',
+      thirdNameAr: params.scannedDocumentInformation!.thirdNameAr ?? '',
     );
   }
 }

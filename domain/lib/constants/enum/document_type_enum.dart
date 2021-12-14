@@ -10,4 +10,5 @@ class DocumentTypeEnum {
 
   static const DocumentTypeEnum CAMERA = DocumentTypeEnum._("Camera");
   static const DocumentTypeEnum GALLERY = DocumentTypeEnum._("Gallery");
+  static const DocumentTypeEnum PICK_IMAGE = DocumentTypeEnum._("pickImage");
 }

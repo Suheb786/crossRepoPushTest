@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "get_ahwal_details_request.g.dart";
@@ -8,7 +7,7 @@ class GetAhwalDetailsRequest {
   @JsonKey(name: "IdNo")
   final String? idNo;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String,dynamic> baseData;
 
   GetAhwalDetailsRequest({this.idNo: "", required this.baseData});
 

@@ -24,6 +24,9 @@ class UploadDocumentRepositoryImpl extends UploadDocumentRepository {
     } else if (type == DocumentTypeEnum.GALLERY) {
       var imageList = await _documentLocalDS.pickUploadDocument();
       return Right(imageList);
+    } else if (type == DocumentTypeEnum.PICK_IMAGE) {
+      var imageList = await _documentLocalDS.pickImage();
+      return Right(imageList);
     }
     return Right("");
   }

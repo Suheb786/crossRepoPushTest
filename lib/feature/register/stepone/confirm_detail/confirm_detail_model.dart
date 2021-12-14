@@ -193,7 +193,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     dobController.text = data.dob!.year != 0
         ? TimeUtils.getFormattedDOB(data.dob!.toString())
         : '';
-    nationalityController.text = data.nationality!;
+    nationalityController.text = data.issuer!;
     genderController.text = data.gender!;
     motherNameController.text = data.motherName!;
     legalDocumentController.text = data.documentNumber!;
