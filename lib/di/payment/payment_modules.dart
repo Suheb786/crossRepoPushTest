@@ -8,6 +8,7 @@ import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_view_model.dart';
 import 'package:neo_bank/feature/payment/request_money/request_money_view_model.dart';
 import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_view_model.dart';
+import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_contact_view_model.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_view_model.dart';
 import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';
@@ -81,6 +82,11 @@ final enterOtpViewModelProvider =
 final paymentToNewRecipientViewModelProvider =
     ChangeNotifierProvider.autoDispose<PaymentToNewRecipientViewModel>(
   (ref) => PaymentToNewRecipientViewModel(),
+);
+
+final requestPaymentFromNewRecipientViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RequestPaymentFromNewRecipientViewModel>(
+  (ref) => RequestPaymentFromNewRecipientViewModel(),
 );
 
 ///edit transaction purpose dialog view model provider
