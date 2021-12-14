@@ -102,6 +102,7 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
                   _purposeOfAccountOpeningUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _purposeOfAccountOpeningResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);

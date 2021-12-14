@@ -16,6 +16,7 @@ class RegisterStepThreePageView
 
   List<Widget> pages = [
     PurposeOfAccountOpeningPage(),
+    Expanded(child: Container())
   ];
 
   @override

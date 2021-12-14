@@ -7,6 +7,8 @@ import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income
 import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income_page_view_model.dart';
 
 class JobAndIncomePage extends BasePage<JobAndIncomePageViewModel> {
+  JobAndIncomePage({required Key key}) : super(key: key);
+
   @override
   JobAndIncomePageState createState() => JobAndIncomePageState();
 }

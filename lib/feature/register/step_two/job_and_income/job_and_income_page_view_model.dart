@@ -23,38 +23,38 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
   ///controllers and keys
   final TextEditingController occupationController = TextEditingController();
   GlobalKey<AppTextFieldState> occupationKey =
-      GlobalKey(debugLabel: "occupation");
+      new GlobalKey(debugLabel: "occupation");
 
   final TextEditingController businessTypeController = TextEditingController();
   GlobalKey<AppTextFieldState> businessTypeKey =
-      GlobalKey(debugLabel: "businessType");
+      new GlobalKey(debugLabel: "businessType");
 
   final TextEditingController businessTypeOtherController =
       TextEditingController();
   GlobalKey<AppTextFieldState> businessTypeOtherKey =
-      GlobalKey(debugLabel: "businessTypeOther");
+      new GlobalKey(debugLabel: "businessTypeOther");
 
   final TextEditingController annualIncomeController = TextEditingController();
   GlobalKey<AppTextFieldState> annualIncomeKey =
-      GlobalKey(debugLabel: "annualIncome");
+      new GlobalKey(debugLabel: "annualIncome");
 
   final TextEditingController employerNameController = TextEditingController();
   GlobalKey<AppTextFieldState> employerNameKey =
-      GlobalKey(debugLabel: "employerName");
+      new GlobalKey(debugLabel: "employerName");
 
   final TextEditingController employerCountryController =
       TextEditingController();
   GlobalKey<AppTextFieldState> employerCountryKey =
-      GlobalKey(debugLabel: "employerCountry");
+      new GlobalKey(debugLabel: "employerCountry");
 
   final TextEditingController employerCityController = TextEditingController();
   GlobalKey<AppTextFieldState> employerCityKey =
-      GlobalKey(debugLabel: "employerCity");
+      new GlobalKey(debugLabel: "employerCity");
 
   final TextEditingController employerContactController =
       TextEditingController();
   GlobalKey<AppTextFieldState> employerContactKey =
-      GlobalKey(debugLabel: "employerContact");
+      new GlobalKey(debugLabel: "employerContact");
 
   ///update occupation  textfield value
   void updateOccupation(String value) {
