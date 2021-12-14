@@ -88,6 +88,12 @@ abstract class UserRepository {
     bool? isimtfBlacklist,
     String? instanceID,
     double? scanPercentage,
+    String? secondNameEn,
+    String? placeOfBirth,
+    String? familyNameAr,
+    String? secNameAr,
+    String? thirdNameAr,
+    String? firstNameAr,
   });
 
   /// fetch country list

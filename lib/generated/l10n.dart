@@ -4820,6 +4820,256 @@ class S {
       args: [],
     );
   }
+
+  /// `CHANGE EMAIL ADDRESS`
+  String get changeEmailAddress {
+    return Intl.message(
+      'CHANGE EMAIL ADDRESS',
+      name: 'changeEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your\nnew email`
+  String get enterNewEmailAddress {
+    return Intl.message(
+      'Please enter your\nnew email',
+      name: 'enterNewEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to edit photo`
+  String get tapToEditPhoto {
+    return Intl.message(
+      'Tap to edit photo',
+      name: 'tapToEditPhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get changePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biometric Login`
+  String get biometricLogin {
+    return Intl.message(
+      'Biometric Login',
+      name: 'biometricLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Documents`
+  String get myDocuments {
+    return Intl.message(
+      'My Documents',
+      name: 'myDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms & Conditions`
+  String get termsAndConditionsSetting {
+    return Intl.message(
+      'Terms & Conditions',
+      name: 'termsAndConditionsSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CHANGE MOBILE NUMBER`
+  String get changeMobileNumber {
+    return Intl.message(
+      'CHANGE MOBILE NUMBER',
+      name: 'changeMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your\nnew mobile number`
+  String get enterNewMobileNo {
+    return Intl.message(
+      'Please enter your\nnew mobile number',
+      name: 'enterNewMobileNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select from Library`
+  String get selectFromLibrary {
+    return Intl.message(
+      'Select from Library',
+      name: 'selectFromLibrary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove Photo`
+  String get removePhoto {
+    return Intl.message(
+      'Remove Photo',
+      name: 'removePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SUCCESS`
+  String get success {
+    return Intl.message(
+      'SUCCESS',
+      name: 'success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile number is successfully updated`
+  String get mobileNumberUpdated {
+    return Intl.message(
+      'Mobile number is successfully updated',
+      name: 'mobileNumberUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email address is successfully updated`
+  String get emailAddressUpdated {
+    return Intl.message(
+      'Email address is successfully updated',
+      name: 'emailAddressUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile photo is successfully updated`
+  String get profilePhotoUpdated {
+    return Intl.message(
+      'Profile photo is successfully updated',
+      name: 'profilePhotoUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter New Password`
+  String get emptyNewPassword {
+    return Intl.message(
+      'Enter New Password',
+      name: 'emptyNewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next, let’s create your \nlogin password`
+  String get createYourLoginPassword {
+    return Intl.message(
+      'Next, let’s create your \nlogin password',
+      name: 'createYourLoginPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CURRENT PASSWORD`
+  String get currentPassword {
+    return Intl.message(
+      'CURRENT PASSWORD',
+      name: 'currentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NEW PASSWORD`
+  String get newPassword {
+    return Intl.message(
+      'NEW PASSWORD',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is successfully updated`
+  String get passwordUpdatedSuccessfully {
+    return Intl.message(
+      'Password is successfully updated',
+      name: 'passwordUpdatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biometric login is successfully activated`
+  String get biometricLoginActivated {
+    return Intl.message(
+      'Biometric login is successfully activated',
+      name: 'biometricLoginActivated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you have a salary, upload either your job certificate or salary slip`
+  String get proofOfIncomeDescSetting {
+    return Intl.message(
+      'If you have a salary, upload either your job certificate or salary slip',
+      name: 'proofOfIncomeDescSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To confirm your address, upload your latest utility bills`
+  String get proofOfAddressDescSetting {
+    return Intl.message(
+      'To confirm your address, upload your latest utility bills',
+      name: 'proofOfAddressDescSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID Card is not valid. Please scan JORDANIAN ID Card.`
+  String get invalidIDCard {
+    return Intl.message(
+      'ID Card is not valid. Please scan JORDANIAN ID Card.',
+      name: 'invalidIDCard',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

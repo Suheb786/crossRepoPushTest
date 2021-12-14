@@ -22,4 +22,9 @@ class RoutePaths {
   static const String TaxTreatyBenefits = '/taxTreatyBenefits';
   static const String CardDelivery = '/cardDelivery';
   static const String CardReadySuccess = '/cardReadySuccess';
+  static const String AccountSetting = '/accountSetting';
+  static const String ChangeEmailAddress = '/changeEmailAddress';
+  static const String ChangeMobileNumber = '/ChangeMobileNumber';
+  static const String ChangePassword = '/changePassword';
+  static const String MyDocuments = '/myDocuments';
 }

@@ -1,6 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
+import 'package:neo_bank/feature/account_settings/account_settings_page.dart';
+import 'package:neo_bank/feature/account_settings/change_email_address/change_email_address_page.dart';
+import 'package:neo_bank/feature/account_settings/change_mobile_number/change_mobile_number_page.dart';
+import 'package:neo_bank/feature/account_settings/change_password/change_password_page.dart';
+import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
@@ -129,6 +134,31 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => CardReadySuccessPage(),
             settings: RouteSettings(name: RoutePaths.CardReadySuccess));
+
+      case RoutePaths.ChangeEmailAddress:
+        return CupertinoPageRoute(
+            builder: (context) => ChangeEmailAddressPage(),
+            settings: RouteSettings(name: RoutePaths.ChangeEmailAddress));
+
+      case RoutePaths.AccountSetting:
+        return CupertinoPageRoute(
+            builder: (context) => AccountSettingPage(),
+            settings: RouteSettings(name: RoutePaths.AccountSetting));
+
+      case RoutePaths.ChangeMobileNumber:
+        return CupertinoPageRoute(
+            builder: (context) => ChangeMobileNumberPage(),
+            settings: RouteSettings(name: RoutePaths.ChangeMobileNumber));
+
+      case RoutePaths.ChangePassword:
+        return CupertinoPageRoute(
+            builder: (context) => ChangePasswordPage(),
+            settings: RouteSettings(name: RoutePaths.ChangePassword));
+
+      case RoutePaths.MyDocuments:
+        return CupertinoPageRoute(
+            builder: (context) => MyDocumentsPage(),
+            settings: RouteSettings(name: RoutePaths.MyDocuments));
 
       default:
         return CupertinoPageRoute(

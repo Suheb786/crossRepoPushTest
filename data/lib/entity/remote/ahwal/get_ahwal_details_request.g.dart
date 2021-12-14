@@ -10,8 +10,7 @@ GetAhwalDetailsRequest _$GetAhwalDetailsRequestFromJson(
     Map<String, dynamic> json) {
   return GetAhwalDetailsRequest(
     idNo: json['IdNo'] as String?,
-    baseData:
-        BaseClassEntity.fromJson(json['baseClass'] as Map<String, dynamic>),
+    baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }
 

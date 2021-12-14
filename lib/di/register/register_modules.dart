@@ -4,6 +4,7 @@ import 'package:neo_bank/di/usecase/account_registration/account_regisration_use
 import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/fatca_crs/fatca_crs_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/id_card/id_card_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
@@ -66,8 +67,10 @@ final registerStepOneViewModelProvider =
 ///[IdVerificationInfoViewModel] provider
 final idVerificationInfoViewModelProvider =
     ChangeNotifierProvider.autoDispose<IdVerificationInfoViewModel>((ref) =>
-        IdVerificationInfoViewModel(ref.read(idVerificationInfoUseCaseProvider),
-            ref.read(scanUserDocumentUseCaseProvider)));
+        IdVerificationInfoViewModel(
+            ref.read(idVerificationInfoUseCaseProvider),
+            ref.read(scanUserDocumentUseCaseProvider),
+            ref.read(getAhwalDetailsUseCaseProvider)));
 
 ///[CaptureViewModel] provider
 final captureViewModelProvider =

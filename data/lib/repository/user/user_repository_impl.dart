@@ -188,6 +188,12 @@ class UserRepositoryImpl extends UserRepository {
       String? backCardImage,
       String? personFaceImage,
       bool? getToken,
+      String? secondNameEn,
+      String? placeOfBirth,
+      String? familyNameAr,
+      String? secNameAr,
+      String? thirdNameAr,
+      String? firstNameAr,
       bool? isimtfBlacklist,
       String? instanceID,
       double? scanPercentage}) async {
@@ -216,7 +222,14 @@ class UserRepositoryImpl extends UserRepository {
           getToken: getToken,
           isimtfBlacklist: isimtfBlacklist,
           instanceID: instanceID,
-          scanPercentage: scanPercentage),
+          scanPercentage: scanPercentage,
+          firstName: firstName,
+          thirdNameAr: thirdNameAr,
+          firstNameAr: firstNameAr,
+          secNameAr: secNameAr,
+          familyNameAr: familyNameAr,
+          placeOfBirth: placeOfBirth,
+          secondNameEn: secondNameEn),
     );
     return result!.fold(
       (l) => Left(l),
@@ -344,15 +357,23 @@ class UserRepositoryImpl extends UserRepository {
                   : DateTime(0),
               gender: r.sex!.isNotEmpty ? r.sex : '',
               motherName: r.mothersName!.isNotEmpty ? r.mothersName : '',
-              documentCode: r.documentAdditionalNumber!.isNotEmpty
-                  ? r.documentAdditionalNumber
+              documentCode: r.mrzResult!.documentCode!.isNotEmpty
+                  ? r.mrzResult!.documentCode
                   : '',
-              documentNumber: r.documentNumber,
-              issuer: r.issuingAuthority,
+              documentNumber:
+                  r.documentNumber!.isNotEmpty ? r.documentNumber : '',
+              issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                  ? r.mrzResult!.sanitizedIssuer
+                  : '',
               frontCardImage: r.fullDocumentFrontImage,
               backCardImage: r.fullDocumentBackImage,
               personFaceImage: r.faceImage,
-              issuingPlace: r.address,
+              issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                  ? r.mrzResult!.sanitizedIssuer
+                  : '',
+              issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                  ? r.mrzResult!.sanitizedIssuer
+                  : '',
               issuingDate: r.dateOfIssue != null
                   ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
                       r.dateOfIssue!.day!)

@@ -8,6 +8,7 @@ import 'package:data/entity/remote/account/doc_status_request_entity.dart';
 import 'package:data/entity/remote/account/doc_status_response_entity.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_request_entity.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_response_entity.dart';
+import 'package:data/entity/remote/ahwal/ahwal_detail_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
 import 'package:data/entity/remote/bank_smart/create_account_request_entity.dart';
@@ -136,7 +137,7 @@ abstract class ApiService {
       @Body() KYCStatusRequest kycStatusRequest);
 
   @POST("/idcard/CheckAhwal")
-  Future<String> getAhwalDetails(
+  Future<HttpResponse<AhwalDetailResponseEntity>> getAhwalDetails(
       @Body() GetAhwalDetailsRequest getAhwalDetailsRequest);
 
   @POST("/Banksmart/AddAccountPurpose")

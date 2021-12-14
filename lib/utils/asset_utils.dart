@@ -66,6 +66,14 @@ class AssetUtils {
   static const String flipButton = svg + "flip_button.svg";
   static const String visaCard = svg + "visa_card.svg";
   static const String bird = svg + "bird.svg";
+  static const String email = svg + "email.svg";
+  static const String biometric = svg + "biometric.svg";
+  static const String documents = svg + "documents.svg";
+  static const String emailSetting = svg + "email.svg";
+  static const String password = svg + "password.svg";
+  static const String termsCondition = svg + "terms_condition.svg";
+  static const String mobile = svg + "mobile.svg";
+  static const String dummy = svg + "dummy.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -87,6 +95,7 @@ class AssetUtils {
   static const String welcome = drawable + "welcome.png";
   static const String line = drawable + "line.png";
   static const String birdPng = drawable + "bird_png.png";
+  static const String dummyProfile = drawable + "dummy_profile.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";
