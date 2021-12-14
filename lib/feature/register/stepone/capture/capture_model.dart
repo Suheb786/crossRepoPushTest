@@ -24,6 +24,7 @@ class CaptureViewModel extends BasePageViewModel {
               createCall: () => _selfieImageUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _uploadImageResponse.safeAdd(event);
       });
     });

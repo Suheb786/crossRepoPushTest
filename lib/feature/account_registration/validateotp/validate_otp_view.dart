@@ -74,7 +74,13 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                       child: Padding(
                                     padding: const EdgeInsets.only(top: 32.0),
                                     child: InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        ProviderScope.containerOf(context)
+                                            .read(
+                                                accountRegistrationViewModelProvider)
+                                            .pageController
+                                            .move(0);
+                                      },
                                       child: Text(
                                         S.of(context).changeMyNumber,
                                         style: TextStyle(

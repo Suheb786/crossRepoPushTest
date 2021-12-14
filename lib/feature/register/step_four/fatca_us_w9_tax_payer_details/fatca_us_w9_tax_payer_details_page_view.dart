@@ -43,10 +43,12 @@ class FatcaUSW9TaxPayersDetailsPageView
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
-                      ProviderScope.containerOf(context)
-                          .read(registerStepFourViewModelProvider)
-                          .registrationStepFourPageController
-                          .jumpToPage(7);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope.containerOf(context)
+                            .read(registerStepFourViewModelProvider)
+                            .registrationStepFourPageController
+                            .move(7);
+                      });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -57,12 +59,12 @@ class FatcaUSW9TaxPayersDetailsPageView
                         if (details.primaryVelocity!.isNegative) {
                           model.validateFatcaUSW9TaxPayersDetails();
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepFourViewModelProvider)
-                              .registrationStepFourPageController
-                              .previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFourViewModelProvider)
+                                .registrationStepFourPageController
+                                .previous();
+                          });
                         }
                       },
                       child: Card(

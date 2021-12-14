@@ -21,13 +21,6 @@ class AddNumberPageState
   }
 
   @override
-  void onModelReady(AddNumberViewModel model) {
-    super.onModelReady(model);
-    model.fetchCountryByCode(context, "JO");
-    model.getAllowedCountryCode();
-  }
-
-  @override
   Color? scaffoldBackgroundColor() {
     return Colors.transparent;
   }

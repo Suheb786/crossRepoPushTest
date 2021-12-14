@@ -172,15 +172,15 @@ class AppTextFieldState extends State<AppTextField> {
                       text: TextSpan(children: [
                         TextSpan(
                             text: widget.labelText,
-                            style: DefaultTextStyle.of(context).style.copyWith(
-                                  color: widget.labelColor ??
-                                      Theme.of(context)
-                                          .inputDecorationTheme
-                                          .labelStyle!
-                                          .color,
-                                  fontSize: 10,
-                                  fontFamily: "Montserrat",
-                                )),
+                            style: TextStyle(
+                              color: widget.labelColor ??
+                                  Theme.of(context)
+                                      .inputDecorationTheme
+                                      .labelStyle!
+                                      .color,
+                              fontSize: 10,
+                              fontFamily: "Montserrat",
+                            )),
                         WidgetSpan(
                             child: widget.labelIcon?.call() ?? Container())
                       ]),
@@ -237,7 +237,7 @@ class AppTextFieldState extends State<AppTextField> {
                       controller: widget.controller,
                       validator: this.widget.validator,
                       onSaved: this.widget.onSaved,
-                      onTap: this.widget.onPressed,
+                      onTap: () => this.widget.onPressed?.call(),
                       onFieldSubmitted: this.widget.onFieldSubmitted,
                       onChanged: (value) {
                         setState(() {});

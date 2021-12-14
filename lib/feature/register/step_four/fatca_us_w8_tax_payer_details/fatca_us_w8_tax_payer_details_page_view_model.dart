@@ -144,6 +144,7 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
                   _fatcaUSW8taxPayerDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _fatcaUSW8taxPayerDetailsResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -178,6 +179,8 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
         break;
       case ErrorType.INVALID_REFERENCE_NO:
         referenceNumberKey.currentState!.isValid = false;
+        break;
+      default:
         break;
     }
   }

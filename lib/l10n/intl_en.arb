@@ -496,6 +496,7 @@
   "invalidPinLength": "Length of pin cannot be less than 4",
   "pinDoesNotMatch": "Pin does not match",
   "toDashboard": "to Dashboard",
+  "accountInquiryWentWrong": "Account Inquiry went wrong",
   "changeEmailAddress": "CHANGE EMAIL ADDRESS",
   "enterNewEmailAddress": "Please enter your\nnew email",
   "settings": "Settings",

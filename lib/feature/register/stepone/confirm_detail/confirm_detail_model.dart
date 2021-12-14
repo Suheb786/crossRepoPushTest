@@ -15,6 +15,7 @@ import 'package:rxdart/rxdart.dart';
 class ConfirmDetailViewModel extends BasePageViewModel {
   final ConfirmDetailUseCase _confirmDetailUseCase;
   final ScanUserDocumentUseCase _scanUserDocumentUseCase;
+
   TextEditingController nameController = new TextEditingController();
   TextEditingController idNumberController = new TextEditingController();
   TextEditingController dobController = new TextEditingController();
@@ -26,32 +27,30 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   TextEditingController issuingDateController = new TextEditingController();
   TextEditingController issuingPlaceController = new TextEditingController();
 
-  final GlobalKey<AppTextFieldState> nameKey = GlobalKey(debugLabel: "name");
+  GlobalKey<AppTextFieldState> nameKey = GlobalKey(debugLabel: "name");
 
-  final GlobalKey<AppTextFieldState> idNumberKey =
-      GlobalKey(debugLabel: "idNumber");
+  GlobalKey<AppTextFieldState> idNumberKey = GlobalKey(debugLabel: "idNumber");
 
-  final GlobalKey<AppTextFieldState> dobKey = GlobalKey(debugLabel: "dob");
+  GlobalKey<AppTextFieldState> dobKey = GlobalKey(debugLabel: "dob");
 
-  final GlobalKey<AppTextFieldState> nationalityKey =
+  GlobalKey<AppTextFieldState> nationalityKey =
       GlobalKey(debugLabel: "nationality");
 
-  final GlobalKey<AppTextFieldState> expiryDateKey =
+  GlobalKey<AppTextFieldState> expiryDateKey =
       GlobalKey(debugLabel: "expiryDate");
 
-  final GlobalKey<AppTextFieldState> genderKey =
-      GlobalKey(debugLabel: "gender");
+  GlobalKey<AppTextFieldState> genderKey = GlobalKey(debugLabel: "gender");
 
-  final GlobalKey<AppTextFieldState> motherNameKey =
+  GlobalKey<AppTextFieldState> motherNameKey =
       GlobalKey(debugLabel: "mother's name");
 
-  final GlobalKey<AppTextFieldState> legalDocumentKey =
+  GlobalKey<AppTextFieldState> legalDocumentKey =
       GlobalKey(debugLabel: "legalDocument");
 
-  final GlobalKey<AppTextFieldState> issuingDateKey =
+  GlobalKey<AppTextFieldState> issuingDateKey =
       GlobalKey(debugLabel: "issuingDate");
 
-  final GlobalKey<AppTextFieldState> issuingPlaceKey =
+  GlobalKey<AppTextFieldState> issuingPlaceKey =
       GlobalKey(debugLabel: "issuingPlace");
 
   String selectedDobDate = DateTime.now().toLocal().toString();
@@ -110,6 +109,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
               createCall: () => _confirmDetailUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _confirmDetailResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -141,7 +141,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         dateOfBirth: scannedDocumentResult.dob!.year == 0
             ? selectedDobDate
             : scannedDocumentResult.dob.toString(),
-        nationality: nationalityController.text,
+        nationality: scannedDocumentResult.nationalityIsoCode3,
+        //nationalityController.text,
         expiryDate: scannedDocumentResult.doe!.year == 0
             ? selectedExpiryDate
             : scannedDocumentResult.doe!.toString(),
@@ -151,7 +152,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         issuingDate: scannedDocumentResult.issuingDate!.year == 0
             ? selectedIssuingDate
             : scannedDocumentResult.issuingDate.toString(),
-        issuingPlace: issuingPlaceController.text,
+        issuingPlace: scannedDocumentResult.issuingPlaceISo3,
         declarationSelected: _declarationSelectedSubject.value,
         scannedDocumentInformation: scannedDocumentResult));
   }
@@ -192,7 +193,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     dobController.text = data.dob!.year != 0
         ? TimeUtils.getFormattedDOB(data.dob!.toString())
         : '';
-    nationalityController.text = data.issuer!;
+    nationalityController.text = data.nationality!;
     genderController.text = data.gender!;
     motherNameController.text = data.motherName!;
     legalDocumentController.text = data.documentNumber!;

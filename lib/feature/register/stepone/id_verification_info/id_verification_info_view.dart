@@ -84,13 +84,16 @@ class IdVerificationInfoView
                                     .contentData!.ahwalinfo!.motherFirstName;
                                 scannedDocument.placeOfBirth = data
                                     .data!.contentData!.ahwalinfo!.placeOfBirth;
-                                ProviderScope.containerOf(context)
-                                    .read(confirmDetailViewModelProvider)
-                                    .setData(scannedDocument);
+
                                 ProviderScope.containerOf(context)
                                     .read(registerStepOneViewModelProvider)
                                     .pageController
                                     .next();
+                                Future.delayed(Duration(milliseconds: 500), () {
+                                  ProviderScope.containerOf(context)
+                                      .read(confirmDetailViewModelProvider)
+                                      .setData(scannedDocument);
+                                });
                               } else if (data.status == Status.ERROR) {
                                 model.showToastWithError(data.appError!);
                               }

@@ -25,7 +25,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
               stream: model.uploadImageResponseStream,
               onData: (isImageUploaded) {
                 if (isImageUploaded.status == Status.SUCCESS) {
-                  Navigator.pop(context, true);
+                  Navigator.of(context).pop(true);
                 } else if (isImageUploaded.status == Status.ERROR) {
                   model.showToastWithError(isImageUploaded.appError!);
                   model.cameraController!.resumePreview();
@@ -71,7 +71,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                             top: 40,
                             child: IconButton(
                                 onPressed: () {
-                                  Navigator.pop(context, false);
+                                  Navigator.of(context).pop(false);
                                 },
                                 icon: Icon(Icons.close)),
                           ),

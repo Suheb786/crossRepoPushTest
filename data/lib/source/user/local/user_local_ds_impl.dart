@@ -108,8 +108,10 @@ class UserLocalDSImpl extends UserLocalDS {
           print(
               "I AM mrzResult documentNumber : ${result.mrzResult!.documentNumber}");
           print("I AM mrzResult primaryId : ${result.mrzResult!.primaryId}");
-          print("I AM mrzResult secondaryId : ${result.mrzResult!.secondaryId}");
-          print("I AM mrzResult alienNumber : ${result.mrzResult!.alienNumber}");
+          print(
+              "I AM mrzResult secondaryId : ${result.mrzResult!.secondaryId}");
+          print(
+              "I AM mrzResult alienNumber : ${result.mrzResult!.alienNumber}");
           print("I AM mrzResult mrzText:  ${result.mrzResult!.mrzText}");
           print("I AM mrzResult alienNumber : ${result.mrzResult!.issuer}");
           print(

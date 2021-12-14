@@ -125,6 +125,7 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
       RequestManager(value,
           createCall: () => _fatcaUSRelevantW9AddressDetailsUseCase.execute(
               params: value)).asFlow().listen((event) {
+        updateLoader();
         _fatcaUSRelevantW9AddressDetailsResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -163,6 +164,8 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_REQUESTER_POSTCODE:
         additionalRequesterPostCodeKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 
@@ -196,6 +199,7 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
     fatcaSetData.postCode = postCodeController.text;
     fatcaSetData.accountNo = accountNumberController.text;
     fatcaSetData.exemptPayeeCode = exemptPayeeCodeNumberController.text;
+
     ///exemption from fatca code missing
     fatcaSetData.additionalRequester = _additionalRequesterSubject.value;
     fatcaSetData.requesterName = additionalRequesterNameController.text;

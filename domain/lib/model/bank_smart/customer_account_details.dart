@@ -41,7 +41,7 @@ class CustomerAccountDetails {
   final int? productCross;
   final int? productOthers;
   final String? productOthersDesc;
-  final dynamic? idType;
+  final dynamic idType;
 
   CustomerAccountDetails(
       {this.createBy,

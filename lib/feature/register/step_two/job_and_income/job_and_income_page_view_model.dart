@@ -22,39 +22,39 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
 
   ///controllers and keys
   final TextEditingController occupationController = TextEditingController();
-  final GlobalKey<AppTextFieldState> occupationKey =
-      GlobalKey(debugLabel: "occupation");
+  GlobalKey<AppTextFieldState> occupationKey =
+      new GlobalKey(debugLabel: "occupation");
 
   final TextEditingController businessTypeController = TextEditingController();
-  final GlobalKey<AppTextFieldState> businessTypeKey =
-      GlobalKey(debugLabel: "businessType");
+  GlobalKey<AppTextFieldState> businessTypeKey =
+      new GlobalKey(debugLabel: "businessType");
 
   final TextEditingController businessTypeOtherController =
       TextEditingController();
-  final GlobalKey<AppTextFieldState> businessTypeOtherKey =
-      GlobalKey(debugLabel: "businessTypeOther");
+  GlobalKey<AppTextFieldState> businessTypeOtherKey =
+      new GlobalKey(debugLabel: "businessTypeOther");
 
   final TextEditingController annualIncomeController = TextEditingController();
-  final GlobalKey<AppTextFieldState> annualIncomeKey =
-      GlobalKey(debugLabel: "annualIncome");
+  GlobalKey<AppTextFieldState> annualIncomeKey =
+      new GlobalKey(debugLabel: "annualIncome");
 
   final TextEditingController employerNameController = TextEditingController();
-  final GlobalKey<AppTextFieldState> employerNameKey =
-      GlobalKey(debugLabel: "employerName");
+  GlobalKey<AppTextFieldState> employerNameKey =
+      new GlobalKey(debugLabel: "employerName");
 
   final TextEditingController employerCountryController =
       TextEditingController();
-  final GlobalKey<AppTextFieldState> employerCountryKey =
-      GlobalKey(debugLabel: "employerCountry");
+  GlobalKey<AppTextFieldState> employerCountryKey =
+      new GlobalKey(debugLabel: "employerCountry");
 
   final TextEditingController employerCityController = TextEditingController();
-  final GlobalKey<AppTextFieldState> employerCityKey =
-      GlobalKey(debugLabel: "employerCity");
+  GlobalKey<AppTextFieldState> employerCityKey =
+      new GlobalKey(debugLabel: "employerCity");
 
   final TextEditingController employerContactController =
       TextEditingController();
-  final GlobalKey<AppTextFieldState> employerContactKey =
-      GlobalKey(debugLabel: "employerContact");
+  GlobalKey<AppTextFieldState> employerContactKey =
+      new GlobalKey(debugLabel: "employerContact");
 
   ///update occupation  textfield value
   void updateOccupation(String value) {
@@ -178,6 +178,7 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
               createCall: () => _jobAndIncomeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _jobAndIncomeResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -191,6 +192,7 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
               createCall: () => _getComboValuesUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _getComboValuesResponse.add(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -230,6 +232,8 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
         break;
       case ErrorType.EMPTY_BUSINESS:
         businessTypeOtherKey.currentState!.isValid = false;
+        break;
+      default:
         break;
     }
   }

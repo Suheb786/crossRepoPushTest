@@ -32,6 +32,7 @@ class ScannedDocumentInformation {
   String? thirdNameAr;
   String? firstNameAr;
   String? issuingPlaceISo3;
+  final String? nationalityIsoCode3;
 
   ScannedDocumentInformation(
       {this.type: "",
@@ -59,6 +60,7 @@ class ScannedDocumentInformation {
       this.scanPercentage: 0,
       this.issuingPlace: "",
       this.issuingDate,
+      this.nationalityIsoCode3: "",
       this.secondNameEn: "",
       this.placeOfBirth: "",
       this.familyNameAr: "",

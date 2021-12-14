@@ -46,12 +46,14 @@ class JobAndIncomePageView
             initialData: Resource.none(),
             onData: (data) {
               if (data.status == Status.SUCCESS) {
-                ProviderScope.containerOf(context)
-                    .read(registerViewModelProvider)
-                    .registrationStepsController
-                    .nextPage(
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.easeInOut);
+                Future.delayed(Duration(milliseconds: 500), () {
+                  ProviderScope.containerOf(context)
+                      .read(registerViewModelProvider)
+                      .registrationStepsController
+                      .nextPage(
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.easeInOut);
+                });
               } else if (data.status == Status.ERROR) {
                 model.showToastWithError(data.appError!);
               }
@@ -66,11 +68,13 @@ class JobAndIncomePageView
                 child: Card(
                   child: Padding(
                     padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom == 0
+                        bottom: MediaQuery.of(context).viewInsets.bottom - 50 <=
+                                0
                             ? 0
                             : MediaQuery.of(context).viewInsets.bottom - 48),
                     child: SingleChildScrollView(
-                      padding: EdgeInsets.only(top: 32, right: 24, left: 24),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                       physics: ClampingScrollPhysics(),
                       child: Column(
                         children: [

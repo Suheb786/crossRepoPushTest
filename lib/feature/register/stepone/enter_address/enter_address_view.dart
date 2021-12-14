@@ -48,10 +48,12 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                             model.streetAddressKey.currentState!.isValid = true;
                             model.buildingNameOrNumberKey.currentState!
                                 .isValid = true;
-                            ProviderScope.containerOf(context)
-                                .read(registerStepOneViewModelProvider)
-                                .pageController
-                                .next();
+                            Future.delayed(Duration(milliseconds: 500), () {
+                              ProviderScope.containerOf(context)
+                                  .read(registerStepOneViewModelProvider)
+                                  .pageController
+                                  .next();
+                            });
                           } else if (data.status == Status.ERROR) {
                             if (data.appError!.type ==
                                 ErrorType.EMPTY_RESIDENT_COUNTRY) {
@@ -99,8 +101,9 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                               child: Padding(
                                 padding: EdgeInsets.only(
                                     bottom: MediaQuery.of(context)
-                                                .viewInsets
-                                                .bottom ==
+                                                    .viewInsets
+                                                    .bottom -
+                                                50 <=
                                             0
                                         ? 0
                                         : MediaQuery.of(context)

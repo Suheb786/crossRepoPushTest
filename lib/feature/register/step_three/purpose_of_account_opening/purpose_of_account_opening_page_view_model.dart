@@ -102,6 +102,7 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
                   _purposeOfAccountOpeningUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _purposeOfAccountOpeningResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -123,6 +124,8 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
         break;
       case ErrorType.INVALID_EXPECTED_MONTHLY_TRANSACTION:
         expectedMonthlyTransactionKey.currentState!.isValid = false;
+        break;
+      default:
         break;
     }
   }

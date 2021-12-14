@@ -18,9 +18,9 @@ class SaveProfileStatusResponseDataEntity
   @JsonKey(name: "content")
   final String? content;
   @JsonKey(name: "exceptionMessage")
-  final dynamic? exceptionMessage;
+  final dynamic exceptionMessage;
   @JsonKey(name: "id")
-  final dynamic? id;
+  final dynamic id;
 
   SaveProfileStatusResponseDataEntity(
       {this.code,

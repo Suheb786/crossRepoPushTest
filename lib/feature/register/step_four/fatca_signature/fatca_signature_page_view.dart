@@ -48,12 +48,14 @@ class FatcaSignaturePageView
                         if (data.status == Status.SUCCESS) {
                           model.fileId = data.data!.id!;
                           model.updateData(context);
-                          ProviderScope.containerOf(context)
-                              .read(registerViewModelProvider)
-                              .registrationStepsController
-                              .nextPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerViewModelProvider)
+                                .registrationStepsController
+                                .nextPage(
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.easeInOut);
+                          });
                         } else if (data.status == Status.ERROR) {
                           if (data.appError!.type ==
                               ErrorType.INVALID_SIGNATURE) {
@@ -74,28 +76,27 @@ class FatcaSignaturePageView
                               model.signatureUpload();
                             } else {
                               ///TODO:Route based on w8 or w9
-                              ProviderScope.containerOf(context)
-                                  .read(registerStepFourViewModelProvider)
-                                  .registrationStepFourPageController
-                                  .jumpToPage(0);
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepFourViewModelProvider)
+                                    .registrationStepFourPageController
+                                    .move(0);
+                              });
                             }
                           },
                           child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            elevation: 2,
-                            color: Theme.of(context)
-                                .cardTheme
-                                .copyWith(color: AppColor.white)
-                                .color,
-                            margin: EdgeInsets.zero,
-                            shadowColor: Theme.of(context)
-                                .primaryColorDark
-                                .withOpacity(0.32),
                             child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 32, horizontal: 24),
+                                padding: EdgeInsets.only(
+                                    bottom: MediaQuery.of(context)
+                                                    .viewInsets
+                                                    .bottom -
+                                                50 <=
+                                            0
+                                        ? 0
+                                        : MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom -
+                                            48),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.max,
@@ -104,6 +105,8 @@ class FatcaSignaturePageView
                                   children: [
                                     Expanded(
                                       child: SingleChildScrollView(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 32, horizontal: 24),
                                         physics: ClampingScrollPhysics(),
                                         child: Column(
                                           crossAxisAlignment:

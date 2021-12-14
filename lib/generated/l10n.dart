@@ -4821,6 +4821,16 @@ class S {
     );
   }
 
+  /// `Account Inquiry went wrong`
+  String get accountInquiryWentWrong {
+    return Intl.message(
+      'Account Inquiry went wrong',
+      name: 'accountInquiryWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `CHANGE EMAIL ADDRESS`
   String get changeEmailAddress {
     return Intl.message(

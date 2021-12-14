@@ -8,6 +8,7 @@ import 'package:focus_detector/focus_detector.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/utils/extension/base_page_extensions.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 
@@ -151,16 +152,24 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
   void _onBaseModelReady(VM model) {
     _viewModel = model;
     model.error.listen((event) {
-      showTopError(ErrorParser.getLocalisedStringError(
-        error: event,
-        localisedHelper: S.of(context),
-      ));
+      if (mounted)
+        showTopError(ErrorParser.getLocalisedStringError(
+          error: event,
+          localisedHelper: S.of(context),
+        ));
     });
     model.toast.listen((message) {
       showShortToast(message);
     });
     model.successStream.listen((event) {
       showTopSuccess(event);
+    });
+    model.loadingStream.listen((value) {
+      if (mounted) if (value) {
+        AppProgress(context);
+      } else {
+        Navigator.pop(context);
+      }
     });
     onModelReady(model);
   }

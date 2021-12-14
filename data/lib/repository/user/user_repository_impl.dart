@@ -340,45 +340,44 @@ class UserRepositoryImpl extends UserRepository {
     return document.fold(
         (l) => Left(l),
         (r) => Right(ScannedDocumentInformation(
-              fullName: r.fullName,
-              firstName: r.firstName,
-              middleName: r.fathersName,
-              familyName: r.lastName,
-              idNumber:
-                  r.personalIdNumber!.isNotEmpty ? r.personalIdNumber : '',
-              dob: r.dateOfBirth != null
-                  ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
-                      r.dateOfBirth!.day!)
-                  : DateTime(0),
-              nationality: r.nationality!.isNotEmpty ? r.nationality : '',
-              doe: r.dateOfExpiry != null
-                  ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!,
-                      r.dateOfExpiry!.day!)
-                  : DateTime(0),
-              gender: r.sex!.isNotEmpty ? r.sex : '',
-              motherName: r.mothersName!.isNotEmpty ? r.mothersName : '',
-              documentCode: r.mrzResult!.documentCode!.isNotEmpty
-                  ? r.mrzResult!.documentCode
-                  : '',
-              documentNumber:
-                  r.documentNumber!.isNotEmpty ? r.documentNumber : '',
-              issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                  ? r.mrzResult!.sanitizedIssuer
-                  : '',
-              frontCardImage: r.fullDocumentFrontImage,
-              backCardImage: r.fullDocumentBackImage,
-              personFaceImage: r.faceImage,
-              issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                  ? r.mrzResult!.sanitizedIssuer
-                  : '',
-              issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                  ? r.mrzResult!.sanitizedIssuer
-                  : '',
-              issuingDate: r.dateOfIssue != null
-                  ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
-                      r.dateOfIssue!.day!)
-                  : DateTime(0),
-            )));
+            fullName: r.fullName,
+            firstName: r.firstName,
+            middleName: r.fathersName,
+            familyName: r.lastName,
+            idNumber: r.personalIdNumber!.isNotEmpty ? r.personalIdNumber : '',
+            dob: r.dateOfBirth != null
+                ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
+                    r.dateOfBirth!.day!)
+                : DateTime(0),
+            nationality: r.nationality!.isNotEmpty ? r.nationality : '',
+            doe: r.dateOfExpiry != null
+                ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!,
+                    r.dateOfExpiry!.day!)
+                : DateTime(0),
+            gender: r.sex!.isNotEmpty ? r.sex : '',
+            motherName: r.mothersName!.isNotEmpty ? r.mothersName : '',
+            documentCode: r.mrzResult!.documentCode!.isNotEmpty
+                ? r.mrzResult!.documentCode
+                : '',
+            documentNumber:
+                r.documentNumber!.isNotEmpty ? r.documentNumber : '',
+            issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                ? r.mrzResult!.sanitizedIssuer
+                : '',
+            frontCardImage: r.fullDocumentFrontImage,
+            backCardImage: r.fullDocumentBackImage,
+            personFaceImage: r.faceImage,
+            issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                ? r.mrzResult!.sanitizedIssuer
+                : '',
+            issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                ? r.mrzResult!.sanitizedIssuer
+                : '',
+            issuingDate: r.dateOfIssue != null
+                ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
+                    r.dateOfIssue!.day!)
+                : DateTime(0),
+            nationalityIsoCode3: r.mrzResult?.nationality ?? "")));
   }
 
   @override
@@ -528,7 +527,6 @@ class UserRepositoryImpl extends UserRepository {
             ),
           );
         }
-        break;
       default:
         return Left(
           LocalError(

@@ -99,7 +99,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   @override
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    // BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     Map<String, dynamic> content = Map();
     content.putIfAbsent("MobileNumber", () => mobileNumber);
     content.putIfAbsent("CountryCode", () => countryCode);
