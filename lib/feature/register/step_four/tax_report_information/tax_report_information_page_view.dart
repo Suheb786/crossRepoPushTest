@@ -43,12 +43,14 @@ class TaxReportInformationPageView
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
-                      ProviderScope.containerOf(context)
-                          .read(registerViewModelProvider)
-                          .registrationStepsController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope.containerOf(context)
+                            .read(registerViewModelProvider)
+                            .registrationStepsController
+                            .nextPage(
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeInOut);
+                      });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -59,10 +61,12 @@ class TaxReportInformationPageView
                         if (details.primaryDelta!.isNegative) {
                           model.validateTaxReportInformation();
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepFourViewModelProvider)
-                              .registrationStepFourPageController
-                              .jumpToPage(0);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFourViewModelProvider)
+                                .registrationStepFourPageController
+                                .move(0);
+                          });
                         }
                       },
                       child: Card(

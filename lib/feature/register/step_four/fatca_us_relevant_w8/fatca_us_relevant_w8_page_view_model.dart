@@ -65,6 +65,7 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
                   _fatcaUSRelevantW8UseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _fatcaUSRelevantW8Response.add(event);
         if (event.status == Status.ERROR) {
           getError(event);

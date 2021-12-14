@@ -122,6 +122,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
               createCall: () => _reviewAppUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _reviewAppResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -136,6 +137,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
                   _checkVideoCallStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _checkVideoCallResponse.add(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -149,6 +151,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
               createCall: () => _getAccountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _getAccountResponse.add(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -162,6 +165,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
               createCall: () => _createAccountUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _createAccountResponse.add(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -176,6 +180,7 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
                   _applicationDataGetUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _getConfirmApplicationDataResponse.add(event);
         if (event.status == Status.ERROR) {
           showErrorState();

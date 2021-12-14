@@ -56,23 +56,6 @@ class ProfileDetailsPageView
                                     duration: Duration(milliseconds: 500),
                                     curve: Curves.easeInOut);
                           });
-                          // Future.delayed(Duration(milliseconds: 1500), () {
-                          //   switch (model.employeeStatusController.text
-                          //       .fromEmploymentValue()) {
-                          //     case EmploymentStatusEnum.STUDENT:
-                          //     case EmploymentStatusEnum.FREELANCE:
-                          //     case EmploymentStatusEnum.RETIRED:
-                          //     case EmploymentStatusEnum.UNEMPLOYED:
-                          //       ProviderScope.containerOf(context)
-                          //           .read(registerStepTwoViewModelProvider)
-                          //           .updatePages([StudentJobIncomePage()]);
-                          //       break;
-                          //     default:
-                          //       ProviderScope.containerOf(context)
-                          //           .read(registerStepTwoViewModelProvider)
-                          //           .updatePages([JobAndIncomePage()]);
-                          //   }
-                          // });
                         } else if (data.status == Status.ERROR) {
                           model.checkKeyStatus(data.appError!.type);
                           model.showToastWithError(data.appError!);

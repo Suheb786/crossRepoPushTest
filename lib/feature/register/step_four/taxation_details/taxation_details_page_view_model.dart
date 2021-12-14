@@ -123,6 +123,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
                   _setFatcaQuestionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _setFatcaQuestionsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -137,6 +138,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
                   _getFatcaQuestionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _getFatcaQuestionsResponseSubject.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();

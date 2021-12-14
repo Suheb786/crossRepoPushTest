@@ -44,12 +44,12 @@ class FatcaUSRelevantW8AddressDetailsPageView
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
-                      ProviderScope.containerOf(context)
-                          .read(registerStepFourViewModelProvider)
-                          .registrationStepFourPageController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope.containerOf(context)
+                            .read(registerStepFourViewModelProvider)
+                            .registrationStepFourPageController
+                            .next();
+                      });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -60,31 +60,28 @@ class FatcaUSRelevantW8AddressDetailsPageView
                         if (details.primaryVelocity!.isNegative) {
                           model.validateFatcaUSRelevantW8AddressDetails();
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepFourViewModelProvider)
-                              .registrationStepFourPageController
-                              .previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFourViewModelProvider)
+                                .registrationStepFourPageController
+                                .previous();
+                          });
                         }
                       },
                       child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        color: Theme.of(context)
-                            .cardTheme
-                            .copyWith(color: AppColor.white)
-                            .color,
-                        elevation: 2,
-                        margin: EdgeInsets.zero,
-                        shadowColor: Theme.of(context)
-                            .primaryColorDark
-                            .withOpacity(0.32),
                         child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 32, horizontal: 24),
+                            padding: EdgeInsets.only(
+                                bottom: MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom -
+                                            50 <=
+                                        0
+                                    ? 0
+                                    : MediaQuery.of(context).viewInsets.bottom -
+                                        48),
                             child: SingleChildScrollView(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 32, horizontal: 24),
                               physics: ClampingScrollPhysics(),
                               child: Column(
                                 children: [
@@ -204,6 +201,7 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                     hintText: S.of(context).pleaseEnter,
                                     controller: model.postCodeController,
                                     key: model.postCodeKey,
+                                    inputType: TextInputType.number,
                                     inputAction: TextInputAction.go,
                                     onChanged: (value) {
                                       model.isValid();
@@ -421,12 +419,6 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                       onChanged: (value) {
                                                         model.isValid();
                                                       },
-                                                    ),
-                                                    SizedBox(
-                                                      height:
-                                                          MediaQuery.of(context)
-                                                              .viewInsets
-                                                              .bottom,
                                                     ),
                                                   ],
                                                 ))

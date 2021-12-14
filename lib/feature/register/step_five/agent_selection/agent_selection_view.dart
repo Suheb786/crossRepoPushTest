@@ -30,30 +30,22 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
               child: GestureDetector(
                 onHorizontalDragUpdate: (details) {
                   if (details.primaryDelta!.isNegative) {
-                    ProviderScope.containerOf(context)
-                        .read(registerStepFiveViewModelProvider)
-                        .registrationStepFivePageController
-                        .jumpToPage(4);
+                    Future.delayed(Duration(milliseconds: 500), () {
+                      ProviderScope.containerOf(context)
+                          .read(registerStepFiveViewModelProvider)
+                          .registrationStepFivePageController
+                          .move(4);
+                    });
                   } else {
-                    ProviderScope.containerOf(context)
-                        .read(registerStepFiveViewModelProvider)
-                        .registrationStepFivePageController
-                        .previousPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
+                    Future.delayed(Duration(milliseconds: 500), () {
+                      ProviderScope.containerOf(context)
+                          .read(registerStepFiveViewModelProvider)
+                          .registrationStepFivePageController
+                          .previous();
+                    });
                   }
                 },
                 child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  elevation: 2,
-                  color: Theme.of(context)
-                      .cardTheme
-                      .copyWith(color: AppColor.white)
-                      .color,
-                  margin: EdgeInsets.zero,
-                  shadowColor: AppColor.black.withOpacity(0.32),
                   child: Padding(
                       padding:
                           EdgeInsets.symmetric(vertical: 32, horizontal: 24),

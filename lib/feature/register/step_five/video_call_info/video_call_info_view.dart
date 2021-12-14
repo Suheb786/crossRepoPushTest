@@ -30,19 +30,19 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
               child: GestureDetector(
                 onHorizontalDragUpdate: (details) {
                   if (details.primaryDelta!.isNegative) {
-                    ProviderScope.containerOf(context)
-                        .read(registerStepFiveViewModelProvider)
-                        .registrationStepFivePageController
-                        .nextPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
+                    Future.delayed(Duration(milliseconds: 500), () {
+                      ProviderScope.containerOf(context)
+                          .read(registerStepFiveViewModelProvider)
+                          .registrationStepFivePageController
+                          .next();
+                    });
                   } else {
-                    ProviderScope.containerOf(context)
-                        .read(registerStepFiveViewModelProvider)
-                        .registrationStepFivePageController
-                        .previousPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
+                    Future.delayed(Duration(milliseconds: 500), () {
+                      ProviderScope.containerOf(context)
+                          .read(registerStepFiveViewModelProvider)
+                          .registrationStepFivePageController
+                          .previous();
+                    });
                   }
                 },
                 child: Card(
@@ -118,11 +118,14 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                   // ),
                                   InkWell(
                                     onTap: () {
-                                      ProviderScope.containerOf(context)
-                                          .read(
-                                              registerStepFiveViewModelProvider)
-                                          .registrationStepFivePageController
-                                          .jumpToPage(3);
+                                      Future.delayed(
+                                          Duration(milliseconds: 500), () {
+                                        ProviderScope.containerOf(context)
+                                            .read(
+                                                registerStepFiveViewModelProvider)
+                                            .registrationStepFivePageController
+                                            .move(3);
+                                      });
                                     },
                                     child: Text(S.of(context).scheduleLater,
                                         style: TextStyle(

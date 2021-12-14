@@ -101,14 +101,14 @@ class ReviewApplicationPageView
                                   onData: (createAccountResponse) {
                                     if (createAccountResponse.status ==
                                         Status.SUCCESS) {
-                                      ProviderScope.containerOf(context)
-                                          .read(
-                                              registerStepFiveViewModelProvider)
-                                          .registrationStepFivePageController
-                                          .nextPage(
-                                              duration:
-                                                  Duration(milliseconds: 500),
-                                              curve: Curves.easeInOut);
+                                      Future.delayed(
+                                          Duration(milliseconds: 500), () {
+                                        ProviderScope.containerOf(context)
+                                            .read(
+                                                registerStepFiveViewModelProvider)
+                                            .registrationStepFivePageController
+                                            .next();
+                                      });
                                     }
                                   },
                                   dataBuilder: (context, data) {
@@ -120,22 +120,18 @@ class ReviewApplicationPageView
                                         }
                                       },
                                       child: Card(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(16)),
-                                        clipBehavior:
-                                            Clip.antiAliasWithSaveLayer,
-                                        elevation: 2,
-                                        color: Theme.of(context)
-                                            .cardTheme
-                                            .copyWith(color: AppColor.white)
-                                            .color,
-                                        margin: EdgeInsets.zero,
-                                        shadowColor:
-                                            AppColor.black.withOpacity(0.32),
                                         child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 32, horizontal: 24),
+                                          padding: EdgeInsets.only(
+                                              bottom: MediaQuery.of(context)
+                                                              .viewInsets
+                                                              .bottom -
+                                                          50 <=
+                                                      0
+                                                  ? 0
+                                                  : MediaQuery.of(context)
+                                                          .viewInsets
+                                                          .bottom -
+                                                      48),
                                           child: AppStreamBuilder<
                                               Resource<
                                                   GetConfirmApplicationDataResponse>>(
@@ -164,6 +160,10 @@ class ReviewApplicationPageView
                                                         0.1,
                                                     child:
                                                         SingleChildScrollView(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 32,
+                                                              horizontal: 24),
                                                       controller: model
                                                           .scrollController,
                                                       physics:

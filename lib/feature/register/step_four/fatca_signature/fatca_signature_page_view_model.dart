@@ -107,6 +107,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
               createCall: () => _uploadSignatureUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _uploadSignatureResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -119,6 +120,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
               createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _getDocumentResponse.safeAdd(event.data!);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -132,6 +134,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
                   _setFatcaQuestionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _setFatcaQuestionsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();

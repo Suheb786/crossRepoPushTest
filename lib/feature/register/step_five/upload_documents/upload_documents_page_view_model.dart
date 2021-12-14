@@ -37,11 +37,11 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
       TextEditingController();
 
   final GlobalKey<AppTextFieldState> addressDocumentKey =
-      GlobalKey(debugLabel: "addressDocument");
+      new GlobalKey(debugLabel: "addressDocument");
   final GlobalKey<AppTextFieldState> incomeDocumentKey =
-      GlobalKey(debugLabel: "incomeDocument");
+      new GlobalKey(debugLabel: "incomeDocument");
   final GlobalKey<AppTextFieldState> additionalNationalityKey =
-      GlobalKey(debugLabel: "additionalNationality");
+      new GlobalKey(debugLabel: "additionalNationality");
 
   ///documents
   PublishSubject<SendDocumentsUseCaseParams> _documentsRequest =
@@ -178,6 +178,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
               createCall: () => _documentsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _documentsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -190,6 +191,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
               createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _uploadIncomePoofResponse.safeAdd(event.data!);
       });
     });
@@ -199,6 +201,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
               createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _uploadAddressPoofResponse.safeAdd(event.data!);
       });
     });
@@ -217,6 +220,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
               createCall: () => _fileUploadUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _uploadIncomeProofDocumentResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -230,6 +234,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
               createCall: () => _fileUploadUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _uploadAddressProofDocumentResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -243,6 +248,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
               createCall: () => _fileUploadUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _uploadOtherNationalityProofDocumentResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -257,6 +263,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
                   _checkOtherNationalityStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _checkOtherNationalityStatusResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -270,6 +277,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
               createCall: () => _removeDebitLockUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _removeDebitLockResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();

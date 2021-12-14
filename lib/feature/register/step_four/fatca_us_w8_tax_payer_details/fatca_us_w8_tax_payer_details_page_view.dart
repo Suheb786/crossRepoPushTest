@@ -46,10 +46,12 @@ class FatcaUSW8TaxPayersDetailsPageView
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
-                      ProviderScope.containerOf(context)
-                          .read(registerStepFourViewModelProvider)
-                          .registrationStepFourPageController
-                          .jumpToPage(7);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope.containerOf(context)
+                            .read(registerStepFourViewModelProvider)
+                            .registrationStepFourPageController
+                            .move(7);
+                      });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -60,35 +62,32 @@ class FatcaUSW8TaxPayersDetailsPageView
                         if (details.primaryVelocity!.isNegative) {
                           model.validateFatcaUSW8TaxPayersDetails();
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepFourViewModelProvider)
-                              .registrationStepFourPageController
-                              .previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFourViewModelProvider)
+                                .registrationStepFourPageController
+                                .previous();
+                          });
                         }
                       },
                       child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16)),
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        elevation: 2,
-                        color: Theme.of(context)
-                            .cardTheme
-                            .copyWith(color: AppColor.white)
-                            .color,
-                        margin: EdgeInsets.zero,
-                        shadowColor: Theme.of(context)
-                            .primaryColorDark
-                            .withOpacity(0.32),
                         child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical: 32, horizontal: 24),
+                            padding: EdgeInsets.only(
+                                bottom: MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom -
+                                            50 <=
+                                        0
+                                    ? 0
+                                    : MediaQuery.of(context).viewInsets.bottom -
+                                        48),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Expanded(
                                   child: SingleChildScrollView(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 32, horizontal: 24),
                                     physics: ClampingScrollPhysics(),
                                     child: Column(
                                       mainAxisAlignment:
@@ -420,12 +419,6 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                             model.isValid();
                                                           },
                                                         ),
-                                                        SizedBox(
-                                                          height: MediaQuery.of(
-                                                                  context)
-                                                              .viewInsets
-                                                              .bottom,
-                                                        ),
                                                       ],
                                                     ),
                                                   )
@@ -444,8 +437,8 @@ class FatcaUSW8TaxPayersDetailsPageView
                                     initialData: false,
                                     dataBuilder: (context, isValid) {
                                       return Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 16.0),
+                                        padding: const EdgeInsets.only(
+                                            top: 16.0, bottom: 32),
                                         child: Visibility(
                                           visible: isValid!,
                                           child: AnimatedButton(

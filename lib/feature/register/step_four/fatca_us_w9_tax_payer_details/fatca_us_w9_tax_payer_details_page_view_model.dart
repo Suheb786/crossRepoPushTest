@@ -82,6 +82,7 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
                   _fatcaUSW9taxPayerDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _fatcaUSW9taxPayerDetailsResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
