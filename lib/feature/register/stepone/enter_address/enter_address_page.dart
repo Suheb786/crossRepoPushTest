@@ -11,10 +11,7 @@ class EnterAddressPage extends BasePage<EnterAddressViewModel> {
 }
 
 class EnterAddressPageState
-    extends BaseStatefulPage<EnterAddressViewModel, EnterAddressPage>
-    with AutomaticKeepAliveClientMixin {
-  EnterAddressPageState() : super(subscribeVisibilityEvents: true);
-
+    extends BaseStatefulPage<EnterAddressViewModel, EnterAddressPage> {
   @override
   ProviderBase provideBase() {
     return enterAddressViewModelProvider;
@@ -29,13 +26,4 @@ class EnterAddressPageState
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).primaryColor;
   }
-
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return stateBuild(context);
-  }
-
-  @override
-  bool get wantKeepAlive => true;
 }

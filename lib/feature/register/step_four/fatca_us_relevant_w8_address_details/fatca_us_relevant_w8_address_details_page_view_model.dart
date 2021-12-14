@@ -123,6 +123,7 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
       RequestManager(value,
           createCall: () => _fatcaUSRelevantW8AddressDetailsUseCase.execute(
               params: value)).asFlow().listen((event) {
+        updateLoader();
         _fatcaUSRelevantW8AddressDetailsResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -163,6 +164,8 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
         break;
       case ErrorType.DIFFERENT_POSTCODE:
         differentMailingPostCodeKey.currentState!.isValid = false;
+        break;
+      default:
         break;
     }
   }

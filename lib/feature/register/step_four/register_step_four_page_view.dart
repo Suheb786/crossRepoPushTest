@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,7 +10,7 @@ import 'package:neo_bank/feature/register/step_four/fatca_us_w9_tax_payer_detail
 import 'package:neo_bank/feature/register/step_four/register_step_four_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/taxation_details/taxation_details_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
+import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
@@ -23,7 +22,7 @@ class RegisterStepFourPageView
     extends BasePageViewWidget<RegisterStepFourViewModel> {
   RegisterStepFourPageView(ProviderBase model) : super(model);
 
-  List<Widget> pages = [
+  final List<Widget> pages = [
     TaxationDetailsPage(),
     FatcaUSRelevantW8Page(),
     FatcaUSRelevantW8AddressDetailsPage(),
@@ -82,26 +81,13 @@ class RegisterStepFourPageView
                 ),
               ),
               Expanded(
-                child: CarouselSlider.builder(
-                  itemCount: pages.length,
-                  carouselController: model.registrationStepFourPageController,
-                  itemBuilder: (BuildContext context, int itemIndex,
-                          int pageViewIndex) =>
-                      AppTiltCard(
-                          pageViewIndex: pageViewIndex,
-                          currentPage: currentStep,
-                          child: pages[itemIndex]),
-                  options: CarouselOptions(
-                      height: double.maxFinite,
-                      pageSnapping: true,
-                      enableInfiniteScroll: false,
-                      enlargeCenterPage: true,
-                      viewportFraction: 0.88,
-                      scrollPhysics: NeverScrollableScrollPhysics(),
-                      onPageChanged: (index, reason) {
-                        model.updatePage(index);
-                      },
-                      enlargeStrategy: CenterPageEnlargeStrategy.height),
+                child: AppSwiper(
+                  pageController: model.registrationStepFourPageController,
+                  pages: pages,
+                  currentStep: currentStep,
+                  onIndexChanged: (index) {
+                    model.updatePage(index);
+                  },
                 ),
               ),
             ],

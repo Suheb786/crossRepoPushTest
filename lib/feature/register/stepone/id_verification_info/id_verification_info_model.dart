@@ -63,7 +63,8 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream =>
       _getAhwalDetailsResponse.stream;
 
-  ScannedDocumentInformation scannedDocumentInformation = ScannedDocumentInformation();
+  ScannedDocumentInformation scannedDocumentInformation =
+      ScannedDocumentInformation();
 
   IdVerificationInfoViewModel(this._idVerificationInfoUseCase,
       this._scanUserDocumentUseCase, this._getAhwalDetailsUseCase) {
@@ -97,6 +98,7 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
               createCall: () => _getAhwalDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _getAhwalDetailsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();

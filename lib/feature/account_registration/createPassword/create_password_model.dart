@@ -56,6 +56,7 @@ class CreatePasswordViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _createPasswordResponse.safeAdd(event);
+        updateLoader();
         if (event.status == Status.ERROR) {
           showErrorState();
         }
@@ -67,6 +68,7 @@ class CreatePasswordViewModel extends BasePageViewModel {
               createCall: () => _registerProspectUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _registerUserResponse.safeAdd(event);
       });
     });

@@ -123,6 +123,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
                   _setFatcaQuestionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _setFatcaQuestionsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -137,6 +138,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
                   _getFatcaQuestionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _getFatcaQuestionsResponseSubject.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -161,6 +163,8 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         countrySelectorKey.currentState!.isValid = false;
         break;
       case ErrorType.INVALID_DECLARATION_SELECTION:
+        break;
+      default:
         break;
     }
   }

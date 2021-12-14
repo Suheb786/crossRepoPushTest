@@ -24,8 +24,8 @@ class DatePicker {
             onSelected?.call(value.toString());
           })
         : DatePickerBottomSheet.show(context, onDateSelected: (date) {
-            Navigator.pop(context);
             onSelected?.call(date);
+            Navigator.pop(context);
           }, onCancel: () {
             onCancelled?.call();
           }, title: title);

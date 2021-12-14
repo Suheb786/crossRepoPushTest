@@ -50,39 +50,45 @@ class TaxationDetailsPageView
                     !model.usTaxResident &&
                     !model.isUSCitizen &&
                     !model.anyOtherCountryResident) {
-                  ProviderScope.containerOf(context)
-                      .read(registerViewModelProvider)
-                      .registrationStepsController
-                      .nextPage(
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeInOut);
+                  Future.delayed(Duration(milliseconds: 500), () {
+                    ProviderScope.containerOf(context)
+                        .read(registerViewModelProvider)
+                        .registrationStepsController
+                        .nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOut);
+                  });
                 } else if (model.usTaxResident &&
                     !model.bornInUS &&
                     !model.isPEP &&
                     !model.anyOtherCountryResident &&
                     !model.isUSCitizen) {
-                  ProviderScope.containerOf(context)
-                      .read(registerStepFourViewModelProvider)
-                      .registrationStepFourPageController
-                      .nextPage(
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeInOut);
+                  Future.delayed(Duration(milliseconds: 500), () {
+                    ProviderScope.containerOf(context)
+                        .read(registerStepFourViewModelProvider)
+                        .registrationStepFourPageController
+                        .next();
+                  });
                 } else if (model.usTaxResident &&
                     model.bornInUS &&
                     !model.isPEP &&
                     !model.anyOtherCountryResident &&
                     model.isUSCitizen) {
-                  ProviderScope.containerOf(context)
-                      .read(registerStepFourViewModelProvider)
-                      .registrationStepFourPageController
-                      .jumpToPage(4);
+                  Future.delayed(Duration(milliseconds: 500), () {
+                    ProviderScope.containerOf(context)
+                        .read(registerStepFourViewModelProvider)
+                        .registrationStepFourPageController
+                        .move(4);
+                  });
                 } else {
-                  ProviderScope.containerOf(context)
-                      .read(registerViewModelProvider)
-                      .registrationStepsController
-                      .nextPage(
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeInOut);
+                  Future.delayed(Duration(milliseconds: 500), () {
+                    ProviderScope.containerOf(context)
+                        .read(registerViewModelProvider)
+                        .registrationStepsController
+                        .nextPage(
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOut);
+                  });
                 }
               } else if (data.status == Status.ERROR) {
                 model.showToastWithError(data.appError!);
@@ -96,185 +102,190 @@ class TaxationDetailsPageView
                   }
                 },
                 child: Card(
-                  child: SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                    physics: ClampingScrollPhysics(),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        TaxationSwitchWidget(
-                          providerBase: areYouUSCitizenViewModelProvider,
-                          onToggle: (value) {
-                            model.isUSCitizen = value;
-                            return Container();
-                          },
-                          title: S.of(context).areYouUSCitizen,
-                        ),
-                        TaxationSwitchWidget(
-                          providerBase: areYouUSTaxResidentViewModelProvider,
-                          onToggle: (value) {
-                            model.usTaxResident = value;
-                            return Container();
-                          },
-                          title: S.of(context).areYouUSTaxResident,
-
-                          ///TODO:specify hint text when received from api
-                          hintText: S.of(context).areYouUSTaxResidentHint,
-                        ),
-                        TaxationSwitchWidget(
-                          providerBase: bornInUSViewModelProvider,
-                          onToggle: (value) {
-                            model.bornInUS = value;
-                            return Container();
-                          },
-                          title: S.of(context).wereBornInUS,
-                        ),
-                        TaxationSwitchWidget(
-                          providerBase: taxResidentOtherViewModelProvider,
-                          onToggle: (value) {
-                            model.anyOtherCountryResident = value;
-                            return Visibility(
-                              visible: value,
-                              child: AppTextField(
-                                labelText: S.of(context).taxCountry,
-                                hintText: S.of(context).pleaseSelect,
-                                controller: model.countrySelectorController,
-                                key: model.countrySelectorKey,
-                                readOnly: true,
-                                onPressed: () {
-                                  CountryDialog.show(context,
-                                      title: S.of(context).taxCountrySmall,
-                                      onDismissed: () {
-                                    Navigator.pop(context);
-                                  }, onSelected: (value) {
-                                    Navigator.pop(context);
-                                    model.countrySelectorController.text =
-                                        value;
-                                    model.isValid();
-                                  });
-                                },
-                                suffixIcon: (value, data) {
-                                  return Container(
-                                      height: 16,
-                                      width: 16,
-                                      padding: EdgeInsets.only(right: 8),
-                                      child: AppSvg.asset(AssetUtils.downArrow,
-                                          color: AppColor.dark_gray_1));
-                                },
-                              ),
-                            );
-                          },
-                          title: S.of(context).anyOtherCountryTaxResident,
-                        ),
-                        TaxationSwitchWidget(
-                          providerBase:
-                              areYouFirstDegreeRelativeViewModelProvider,
-                          onToggle: (value) {
-                            model.isPEP = value;
-                            return Visibility(
-                              visible: value,
-                              child: Column(
-                                children: [
-                                  AppTextField(
-                                    labelText:
-                                        S.of(context).relationShipWithPepCaps,
-                                    hintText: S.of(context).pleaseSelect,
-                                    inputType: TextInputType.text,
-                                    controller: model.relationShipController,
-                                    key: model.relationShipWithPepKey,
-                                    readOnly: true,
-                                    onPressed: () {
-                                      RelationshipWithPEPDialog.show(context,
-                                          onDismissed: () {
-                                        Navigator.pop(context);
-                                      }, onSelected: (value) {
-                                        Navigator.pop(context);
-                                        model.updateRelationShipWithPEP(value);
-                                        model.isValid();
-                                      });
-                                    },
-                                    suffixIcon: (enabled, value) {
-                                      return Container(
-                                          height: 16,
-                                          width: 16,
-                                          padding: EdgeInsets.only(right: 8),
-                                          child: AppSvg.asset(
-                                              AssetUtils.downArrow,
-                                              color: AppColor.dark_gray_1));
-                                    },
-                                  ),
-                                  SizedBox(height: 16),
-                                  AppTextField(
-                                    labelText: S.of(context).personName,
-                                    hintText: S.of(context).pleaseEnter,
-                                    inputType: TextInputType.text,
-                                    controller: model.personNameController,
-                                    key: model.personNameKey,
-                                    onChanged: (value) {
-                                      model.isValid();
-                                    },
-                                  ),
-                                  SizedBox(height: 16),
-                                  AppTextField(
-                                    labelText: S.of(context).personRole,
-                                    hintText: S.of(context).pleaseEnter,
-                                    inputType: TextInputType.text,
-                                    controller: model.personRoleController,
-                                    key: model.personRoleKey,
-                                    onChanged: (value) {
-                                      model.isValid();
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: MediaQuery.of(context)
-                                        .viewInsets
-                                        .bottom,
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                          title: S.of(context).areYouFirstDegreeRelativePEP,
-                          secondaryText: S.of(context).whatIsPEP,
-                          onSecondaryTextTap: () {
-                            PEPDialog.show(context, onSelected: () {
-                              Navigator.pop(context);
-                            });
-                          },
-                        ),
-                        AppStreamBuilder<bool>(
-                          stream: model.declarationSelectedStream,
-                          initialData: false,
-                          dataBuilder: (context, isSelected) {
-                            return DeclarationWidget(
-                              isSelected: isSelected,
-                              title1: S
-                                  .of(context)
-                                  .iConfirmThatAllInfoAccurateFatca,
-                              onTap: () {
-                                model
-                                    .updateDeclarationSelection(!(isSelected!));
-                                model.isValid();
-                              },
-                            );
-                          },
-                        ),
-                        Center(
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 32),
-                            child: AppStreamBuilder<bool>(
-                                stream: model.allFieldValidatorStream,
-                                initialData: false,
-                                dataBuilder: (context, isValid) {
-                                  return (isValid!)
-                                      ? AnimatedButton(
-                                          buttonText:
-                                              S.of(context).swipeToProceed)
-                                      : Container();
-                                }),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom - 50 <=
+                                0
+                            ? 0
+                            : MediaQuery.of(context).viewInsets.bottom - 48),
+                    child: SingleChildScrollView(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                      physics: ClampingScrollPhysics(),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          TaxationSwitchWidget(
+                            providerBase: areYouUSCitizenViewModelProvider,
+                            onToggle: (value) {
+                              model.isUSCitizen = value;
+                              return Container();
+                            },
+                            title: S.of(context).areYouUSCitizen,
                           ),
-                        )
-                      ],
+                          TaxationSwitchWidget(
+                            providerBase: areYouUSTaxResidentViewModelProvider,
+                            onToggle: (value) {
+                              model.usTaxResident = value;
+                              return Container();
+                            },
+                            title: S.of(context).areYouUSTaxResident,
+
+                            ///TODO:specify hint text when received from api
+                            hintText: S.of(context).areYouUSTaxResidentHint,
+                          ),
+                          TaxationSwitchWidget(
+                            providerBase: bornInUSViewModelProvider,
+                            onToggle: (value) {
+                              model.bornInUS = value;
+                              return Container();
+                            },
+                            title: S.of(context).wereBornInUS,
+                          ),
+                          TaxationSwitchWidget(
+                            providerBase: taxResidentOtherViewModelProvider,
+                            onToggle: (value) {
+                              model.anyOtherCountryResident = value;
+                              return Visibility(
+                                visible: value,
+                                child: AppTextField(
+                                  labelText: S.of(context).taxCountry,
+                                  hintText: S.of(context).pleaseSelect,
+                                  controller: model.countrySelectorController,
+                                  key: model.countrySelectorKey,
+                                  readOnly: true,
+                                  onPressed: () {
+                                    CountryDialog.show(context,
+                                        title: S.of(context).taxCountrySmall,
+                                        onDismissed: () {
+                                      Navigator.pop(context);
+                                    }, onSelected: (value) {
+                                      Navigator.pop(context);
+                                      model.countrySelectorController.text =
+                                          value;
+                                      model.isValid();
+                                    });
+                                  },
+                                  suffixIcon: (value, data) {
+                                    return Container(
+                                        height: 16,
+                                        width: 16,
+                                        padding: EdgeInsets.only(right: 8),
+                                        child: AppSvg.asset(
+                                            AssetUtils.downArrow,
+                                            color: AppColor.dark_gray_1));
+                                  },
+                                ),
+                              );
+                            },
+                            title: S.of(context).anyOtherCountryTaxResident,
+                          ),
+                          TaxationSwitchWidget(
+                            providerBase:
+                                areYouFirstDegreeRelativeViewModelProvider,
+                            onToggle: (value) {
+                              model.isPEP = value;
+                              return Visibility(
+                                visible: value,
+                                child: Column(
+                                  children: [
+                                    AppTextField(
+                                      labelText:
+                                          S.of(context).relationShipWithPepCaps,
+                                      hintText: S.of(context).pleaseSelect,
+                                      inputType: TextInputType.text,
+                                      controller: model.relationShipController,
+                                      key: model.relationShipWithPepKey,
+                                      readOnly: true,
+                                      onPressed: () {
+                                        RelationshipWithPEPDialog.show(context,
+                                            onDismissed: () {
+                                          Navigator.pop(context);
+                                        }, onSelected: (value) {
+                                          Navigator.pop(context);
+                                          model
+                                              .updateRelationShipWithPEP(value);
+                                          model.isValid();
+                                        });
+                                      },
+                                      suffixIcon: (enabled, value) {
+                                        return Container(
+                                            height: 16,
+                                            width: 16,
+                                            padding: EdgeInsets.only(right: 8),
+                                            child: AppSvg.asset(
+                                                AssetUtils.downArrow,
+                                                color: AppColor.dark_gray_1));
+                                      },
+                                    ),
+                                    SizedBox(height: 16),
+                                    AppTextField(
+                                      labelText: S.of(context).personName,
+                                      hintText: S.of(context).pleaseEnter,
+                                      inputType: TextInputType.text,
+                                      controller: model.personNameController,
+                                      key: model.personNameKey,
+                                      onChanged: (value) {
+                                        model.isValid();
+                                      },
+                                    ),
+                                    SizedBox(height: 16),
+                                    AppTextField(
+                                      labelText: S.of(context).personRole,
+                                      hintText: S.of(context).pleaseEnter,
+                                      inputType: TextInputType.text,
+                                      controller: model.personRoleController,
+                                      key: model.personRoleKey,
+                                      onChanged: (value) {
+                                        model.isValid();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            title: S.of(context).areYouFirstDegreeRelativePEP,
+                            secondaryText: S.of(context).whatIsPEP,
+                            onSecondaryTextTap: () {
+                              PEPDialog.show(context, onSelected: () {
+                                Navigator.pop(context);
+                              });
+                            },
+                          ),
+                          AppStreamBuilder<bool>(
+                            stream: model.declarationSelectedStream,
+                            initialData: false,
+                            dataBuilder: (context, isSelected) {
+                              return DeclarationWidget(
+                                isSelected: isSelected,
+                                title1: S
+                                    .of(context)
+                                    .iConfirmThatAllInfoAccurateFatca,
+                                onTap: () {
+                                  model.updateDeclarationSelection(
+                                      !(isSelected!));
+                                  model.isValid();
+                                },
+                              );
+                            },
+                          ),
+                          Center(
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 32),
+                              child: AppStreamBuilder<bool>(
+                                  stream: model.allFieldValidatorStream,
+                                  initialData: false,
+                                  dataBuilder: (context, isValid) {
+                                    return (isValid!)
+                                        ? AnimatedButton(
+                                            buttonText:
+                                                S.of(context).swipeToProceed)
+                                        : Container();
+                                  }),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),

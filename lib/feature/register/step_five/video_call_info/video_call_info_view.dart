@@ -1,6 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
@@ -11,7 +10,6 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:riverpod/src/framework.dart';
 
 class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
   VideoCallInfoView(ProviderBase model) : super(model);
@@ -30,19 +28,19 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
               child: GestureDetector(
                 onHorizontalDragUpdate: (details) {
                   if (details.primaryDelta!.isNegative) {
-                    ProviderScope.containerOf(context)
-                        .read(registerStepFiveViewModelProvider)
-                        .registrationStepFivePageController
-                        .nextPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
+                    Future.delayed(Duration(milliseconds: 500), () {
+                      ProviderScope.containerOf(context)
+                          .read(registerStepFiveViewModelProvider)
+                          .registrationStepFivePageController
+                          .next();
+                    });
                   } else {
-                    ProviderScope.containerOf(context)
-                        .read(registerStepFiveViewModelProvider)
-                        .registrationStepFivePageController
-                        .previousPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
+                    Future.delayed(Duration(milliseconds: 500), () {
+                      ProviderScope.containerOf(context)
+                          .read(registerStepFiveViewModelProvider)
+                          .registrationStepFivePageController
+                          .previous();
+                    });
                   }
                 },
                 child: Card(
@@ -118,11 +116,14 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                   // ),
                                   InkWell(
                                     onTap: () {
-                                      ProviderScope.containerOf(context)
-                                          .read(
-                                              registerStepFiveViewModelProvider)
-                                          .registrationStepFivePageController
-                                          .jumpToPage(3);
+                                      Future.delayed(
+                                          Duration(milliseconds: 500), () {
+                                        ProviderScope.containerOf(context)
+                                            .read(
+                                                registerStepFiveViewModelProvider)
+                                            .registrationStepFivePageController
+                                            .move(3);
+                                      });
                                     },
                                     child: Text(S.of(context).scheduleLater,
                                         style: TextStyle(

@@ -94,6 +94,7 @@ class EnterAddressViewModel extends BasePageViewModel {
               createCall: () => _enterAddressUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _enterAddressResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();

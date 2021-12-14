@@ -13,7 +13,6 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_inco
 import 'package:neo_bank/ui/molecules/register/add_income_widget.dart';
 import 'package:neo_bank/ui/molecules/register/additional_income_source_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -42,12 +41,14 @@ class StudentJobIncomePageView
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
-                        ProviderScope.containerOf(context)
-                            .read(registerViewModelProvider)
-                            .registrationStepsController
-                            .nextPage(
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.easeInOut);
+                        Future.delayed(Duration(milliseconds: 500), () {
+                          ProviderScope.containerOf(context)
+                              .read(registerViewModelProvider)
+                              .registrationStepsController
+                              .nextPage(
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut);
+                        });
                       }
                     },
                     dataBuilder: (context, jonResponse) {
@@ -58,95 +59,101 @@ class StudentJobIncomePageView
                           }
                         },
                         child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16)),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          elevation: 2,
-                          color: Theme.of(context)
-                              .cardTheme
-                              .copyWith(color: AppColor.white)
-                              .color,
-                          margin: EdgeInsets.zero,
-                          shadowColor: AppColor.black.withOpacity(0.32),
                           child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 32, horizontal: 24),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  AppStreamBuilder<List<AdditionalIncomeType>>(
-                                    stream:
-                                        model.additionalSourceIncomeListStream,
-                                    initialData: [],
-                                    dataBuilder: (context, dataList) {
-                                      if (dataList!.isNotEmpty) {
-                                        return ListView.builder(
-                                            itemCount: dataList.length + 1,
-                                            shrinkWrap: true,
-                                            physics: ClampingScrollPhysics(),
-                                            itemBuilder: (context, index) {
-                                              if (index == dataList.length) {
-                                                return AddIncomeWidget(
-                                                  label:
-                                                      S.of(context).addIncome,
+                              padding: EdgeInsets.only(
+                                  bottom:
+                                      MediaQuery.of(context).viewInsets.bottom -
+                                                  50 <=
+                                              0
+                                          ? 0
+                                          : MediaQuery.of(context)
+                                                  .viewInsets
+                                                  .bottom -
+                                              48),
+                              child: SingleChildScrollView(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 32, horizontal: 24),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    AppStreamBuilder<
+                                        List<AdditionalIncomeType>>(
+                                      stream: model
+                                          .additionalSourceIncomeListStream,
+                                      initialData: [],
+                                      dataBuilder: (context, dataList) {
+                                        if (dataList!.isNotEmpty) {
+                                          return ListView.builder(
+                                              itemCount: dataList.length + 1,
+                                              shrinkWrap: true,
+                                              primary: false,
+                                              physics: ClampingScrollPhysics(),
+                                              itemBuilder: (context, index) {
+                                                if (index == dataList.length) {
+                                                  return AddIncomeWidget(
+                                                    label:
+                                                        S.of(context).addIncome,
+                                                    onTap: () {
+                                                      AdditionalIncomeSourceDialog
+                                                          .show(context,
+                                                              onDismissed: () {
+                                                        Navigator.pop(context);
+                                                      }, onSelected: (value) {
+                                                        Navigator.pop(context);
+                                                        model
+                                                            .addAdditionalIncomeList(
+                                                                value);
+                                                      });
+                                                    },
+                                                  );
+                                                }
+                                                return AdditionalIncomeSourceWidget(
+                                                  additionalIncomeSourceParams:
+                                                      dataList[index],
                                                   onTap: () {
-                                                    AdditionalIncomeSourceDialog
-                                                        .show(context,
-                                                            onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    }, onSelected: (value) {
-                                                      Navigator.pop(context);
-                                                      model
-                                                          .addAdditionalIncomeList(
-                                                              value);
-                                                    });
+                                                    model.removeAdditionalItem(
+                                                        index);
                                                   },
                                                 );
-                                              }
-                                              return AdditionalIncomeSourceWidget(
-                                                additionalIncomeSourceParams:
-                                                    dataList[index],
-                                                onTap: () {
-                                                  model.removeAdditionalItem(
-                                                      index);
-                                                },
-                                              );
-                                            });
-                                      } else {
-                                        return AddIncomeWidget(
-                                          label: S.of(context).addIncome,
-                                          onTap: () {
-                                            AdditionalIncomeSourceDialog.show(
-                                                context, onDismissed: () {
-                                              Navigator.pop(context);
-                                            }, onSelected: (value) {
-                                              Navigator.pop(context);
-                                              model.addAdditionalIncomeList(
-                                                  value);
-                                            });
-                                          },
+                                              });
+                                        } else {
+                                          return AddIncomeWidget(
+                                            label: S.of(context).addIncome,
+                                            onTap: () {
+                                              AdditionalIncomeSourceDialog.show(
+                                                  context, onDismissed: () {
+                                                Navigator.pop(context);
+                                              }, onSelected: (value) {
+                                                Navigator.pop(context);
+                                                model.addAdditionalIncomeList(
+                                                    value);
+                                              });
+                                            },
+                                          );
+                                        }
+                                      },
+                                    ),
+                                    AppStreamBuilder<bool>(
+                                      stream: model.allFieldValidatorStream,
+                                      initialData: false,
+                                      dataBuilder: (context, data) {
+                                        return Visibility(
+                                          visible: data!,
+                                          child: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 8.0),
+                                            child: AnimatedButton(
+                                                buttonText: S
+                                                    .of(context)
+                                                    .swipeToProceed),
+                                          ),
                                         );
-                                      }
-                                    },
-                                  ),
-                                  AppStreamBuilder<bool>(
-                                    stream: model.allFieldValidatorStream,
-                                    initialData: false,
-                                    dataBuilder: (context, data) {
-                                      return Visibility(
-                                        visible: data!,
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 8.0),
-                                          child: AnimatedButton(
-                                              buttonText:
-                                                  S.of(context).swipeToProceed),
-                                        ),
-                                      );
-                                    },
-                                  )
-                                ],
+                                      },
+                                    )
+                                  ],
+                                ),
                               )),
                         ),
                       );

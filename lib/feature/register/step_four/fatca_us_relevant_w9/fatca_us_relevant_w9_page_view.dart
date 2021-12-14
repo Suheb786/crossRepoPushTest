@@ -39,12 +39,12 @@ class FatcaUSRelevantW9PageView
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
-                      ProviderScope.containerOf(context)
-                          .read(registerStepFourViewModelProvider)
-                          .registrationStepFourPageController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope.containerOf(context)
+                            .read(registerStepFourViewModelProvider)
+                            .registrationStepFourPageController
+                            .next();
+                      });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -55,10 +55,12 @@ class FatcaUSRelevantW9PageView
                         if (details.primaryVelocity!.isNegative) {
                           model.validateFatcaUSRelevantW9Details();
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepFourViewModelProvider)
-                              .registrationStepFourPageController
-                              .jumpToPage(0);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFourViewModelProvider)
+                                .registrationStepFourPageController
+                                .move(0);
+                          });
                         }
                       },
                       child: Card(

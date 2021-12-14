@@ -11,10 +11,7 @@ class IdVerificationInfoPage extends BasePage<IdVerificationInfoViewModel> {
 }
 
 class IdVerificationInfoPageState extends BaseStatefulPage<
-    IdVerificationInfoViewModel,
-    IdVerificationInfoPage> with AutomaticKeepAliveClientMixin {
-  IdVerificationInfoPageState() : super(subscribeVisibilityEvents: true);
-
+    IdVerificationInfoViewModel, IdVerificationInfoPage> {
   @override
   ProviderBase provideBase() {
     return idVerificationInfoViewModelProvider;
@@ -29,13 +26,4 @@ class IdVerificationInfoPageState extends BaseStatefulPage<
   Widget buildView(BuildContext context, IdVerificationInfoViewModel model) {
     return IdVerificationInfoView(provideBase());
   }
-
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return stateBuild(context);
-  }
-
-  @override
-  bool get wantKeepAlive => true;
 }

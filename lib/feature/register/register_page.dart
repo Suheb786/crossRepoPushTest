@@ -18,12 +18,6 @@ class RegisterPageState
   }
 
   @override
-  void onModelReady(RegisterViewModel model) {
-    // model.registrationStepsController = PageController();
-    super.onModelReady(model);
-  }
-
-  @override
   Widget buildView(BuildContext context, RegisterViewModel model) {
     return RegisterPageView(provideBase());
   }

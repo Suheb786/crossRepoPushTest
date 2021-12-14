@@ -46,12 +46,12 @@ class ScheduleVideoCallPageView
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
-                      ProviderScope.containerOf(context)
-                          .read(registerStepFiveViewModelProvider)
-                          .registrationStepFivePageController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope.containerOf(context)
+                            .read(registerStepFiveViewModelProvider)
+                            .registrationStepFivePageController
+                            .next();
+                      });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -62,10 +62,12 @@ class ScheduleVideoCallPageView
                         if (details.primaryVelocity!.isNegative) {
                           model.validateScheduleVideoCallDetails();
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepFiveViewModelProvider)
-                              .registrationStepFivePageController
-                              .jumpToPage(1);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFiveViewModelProvider)
+                                .registrationStepFivePageController
+                                .move(1);
+                          });
                         }
                       },
                       child: Card(
