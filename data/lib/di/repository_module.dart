@@ -2,6 +2,7 @@ import 'package:data/di/local_module.dart';
 import 'package:data/di/network_module.dart';
 import 'package:data/repository/account/account_repository_impl.dart';
 import 'package:data/repository/bank_smart/bank_smart_repository_impl.dart';
+import 'package:data/repository/card/card_repository_impl.dart';
 import 'package:data/repository/country/country_repository_impl.dart';
 import 'package:data/repository/enter_address/home_address_dialog_repository_impl.dart';
 import 'package:data/repository/fatca_crs/fatca_crs_repository_impl.dart';
@@ -14,6 +15,7 @@ import 'package:data/repository/upload_document/upload_document_repository_impl.
 import 'package:data/repository/user/user_repository_impl.dart';
 import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
+import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
@@ -37,10 +39,8 @@ var userRepoProvider = Provider<UserRepository>(
 
 /// inject [CountryRepository] provider
 var countryRepoProvider = Provider<CountryRepository>(
-  (ref) => CountryRepositoryImpl(
-    ref.read(countryLocalDataProvider),
-    ref.read(countryRemoteDataSourceProvider)
-  ),
+  (ref) => CountryRepositoryImpl(ref.read(countryLocalDataProvider),
+      ref.read(countryRemoteDataSourceProvider)),
 );
 
 var registerRepoProvider = Provider<RegisterRepository>(
@@ -83,3 +83,7 @@ var fatcaCrsRepositoryProvider = Provider<FatcaCrsRepository>(
 /// inject [AccountRepository] provider
 var accountRepositoryProvider = Provider<AccountRepository>(
     (ref) => AccountRepositoryImpl(ref.read(accountRemoteDS)));
+
+/// inject [CardRepository] provider
+var cardRepositoryProvider = Provider<CardRepository>(
+    (ref) => CardRepositoryImpl(ref.read(cardRemoteDataSourceProvider)));

@@ -5,6 +5,8 @@ import 'package:data/source/account/account_datasource.dart';
 import 'package:data/source/account/remote/account_remote_ds_impl.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:data/source/bank_smart/remote/bank_smart_remote_ds_impl.dart';
+import 'package:data/source/card/card_datasource.dart';
+import 'package:data/source/card/remote/card_remote_ds_impl.dart';
 import 'package:data/source/country/country_datasource.dart';
 import 'package:data/source/country/remote/country_remote_ds_impl.dart';
 import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
@@ -116,4 +118,9 @@ var uploadDocumentRemoteDataSourceProvider = Provider<UploadDocumentRemoteDS>(
 ///country remote DS
 var countryRemoteDataSourceProvider = Provider<CountryRemoteDs>((ref) =>
     CountryRemoteDSImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///card remote DS
+var cardRemoteDataSourceProvider = Provider<CardRemoteDs>((ref) =>
+    CardRemoteDsImpl(
         ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
