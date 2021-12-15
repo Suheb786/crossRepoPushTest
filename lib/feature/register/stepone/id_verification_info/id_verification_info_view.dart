@@ -80,8 +80,8 @@ class IdVerificationInfoView
                                     .data!.contentData!.ahwalinfo!.thirdNameEn;
                                 scannedDocument.familyName = data
                                     .data!.contentData!.ahwalinfo!.familyNameEn;
-                                scannedDocument.motherName = data.data!
-                                    .contentData!.ahwalinfo!.motherFirstName;
+                                // scannedDocument.motherName = data.data!
+                                //     .contentData!.ahwalinfo!.motherFirstName;
                                 scannedDocument.placeOfBirth = data
                                     .data!.contentData!.ahwalinfo!.placeOfBirth;
 

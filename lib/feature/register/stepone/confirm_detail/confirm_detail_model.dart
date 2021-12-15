@@ -134,6 +134,17 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     _scanUserDocumentRequest.safeAdd(ScanUserDocumentUseCaseParams());
   }
 
+  bool isNameReadOnly = false;
+  bool isIdNoReadOnly = false;
+  bool isDobReadOnly = false;
+  bool isNationalityReadOnly = false;
+  bool isExpiryDateReadOnly = false;
+  bool isGenderReadOnly = false;
+  bool isMotherNameReadOnly = false;
+  bool isLegalDocumentReadOnly = false;
+  bool isIssuingDateReadOnly = false;
+  bool isIssuingPlaceReadOnly = false;
+
   void confirmDetail() {
     _confirmDetailRequest.safeAdd(ConfirmDetailUseCaseParams(
         name: nameController.text,
@@ -204,5 +215,20 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         ? TimeUtils.getFormattedDOB(data.doe!.toString())
         : '';
     issuingPlaceController.text = data.issuingPlace!;
+
+    setVisibility();
+  }
+
+  void setVisibility() {
+    isNameReadOnly = nameController.text.isNotEmpty;
+    isIdNoReadOnly = idNumberController.text.isNotEmpty;
+    isDobReadOnly = dobController.text.isNotEmpty;
+    isNationalityReadOnly = nationalityController.text.isNotEmpty;
+    isGenderReadOnly = genderController.text.isNotEmpty;
+    isMotherNameReadOnly = motherNameController.text.isNotEmpty;
+    isLegalDocumentReadOnly = legalDocumentController.text.isNotEmpty;
+    isIssuingDateReadOnly = issuingDateController.text.isNotEmpty;
+    isIssuingPlaceReadOnly = issuingPlaceController.text.isNotEmpty;
+    isExpiryDateReadOnly = expiryDateController.text.isNotEmpty;
   }
 }
