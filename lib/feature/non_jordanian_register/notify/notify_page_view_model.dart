@@ -56,6 +56,8 @@ class NotifyPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_EMAIL:
         emailKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 

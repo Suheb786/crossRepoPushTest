@@ -99,7 +99,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   @override
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
       {String? mobileNumber, String? countryCode}) async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    // BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     Map<String, dynamic> content = Map();
     content.putIfAbsent("MobileNumber", () => mobileNumber);
     content.putIfAbsent("CountryCode", () => countryCode);
@@ -149,6 +149,12 @@ class UserRemoteDSImpl extends UserRemoteDS {
       String? fullName,
       String? firstName,
       String? middleName,
+      String? secondNameEn,
+      String? placeOfBirth,
+      String? familyNameAr,
+      String? secNameAr,
+      String? thirdNameAr,
+      String? firstNameAr,
       String? familyName,
       String? idNumber,
       String? dob,
@@ -170,8 +176,6 @@ class UserRemoteDSImpl extends UserRemoteDS {
       String? instanceID,
       double? scanPercentage}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-
-    ///TODO:change to dynamic data
     return _apiService.saveIdInfo(SaveIdInfoRequest(
         baseData: baseData.toJson(),
         getToken: true,
@@ -179,7 +183,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
         dob: dob,
         id: DateTime.now().microsecondsSinceEpoch.toString(),
         backCardImage: backCardImage,
-        documentCode: 'I',
+        documentCode: documentCode ?? 'I',
         documentNumber: documentNumber,
         doe: doe,
         familyName: familyName,
@@ -190,7 +194,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
         idNumber: idNumber,
         instanceID: instanceID,
         isimtfBlacklist: false,
-        issuer: nationality,
+        issuer: issuer,
         middleName: middleName,
         motherName: motherName,
         mrtDraw: mrtDraw,
@@ -198,7 +202,13 @@ class UserRemoteDSImpl extends UserRemoteDS {
         optionalData1: optionalData1,
         optionalData2: optionalData2,
         personFaceImage: personFaceImage,
-        scanPercentage: 0));
+        scanPercentage: 0,
+        secondNameEn: secondNameEn,
+        placeOfBirth: placeOfBirth,
+        familyNameAr: familyNameAr,
+        secNameAr: secNameAr,
+        firstNameAr: familyNameAr,
+        thirdNameAr: thirdNameAr));
   }
 
   @override

@@ -62,10 +62,10 @@ Future<Either<NetworkError, T>?> safeApiCall<T>(Future<T> apiCall) async {
 }
 
 extension RetrofitResponse on HttpResponse {
-  /**
-   * Returns true if the code is in [200..300), which means the request was successfully received,
-   * understood, and accepted.
-   */
+  ///
+  /// Returns true if the code is in [200..300), which means the request was successfully received,
+  /// understood, and accepted.
+  ///
   bool isSuccessful() {
     return response.statusCode! >= 200 && response.statusCode! < 300;
   }

@@ -11,10 +11,7 @@ class ConfirmDetailPage extends BasePage<ConfirmDetailViewModel> {
 }
 
 class ConfirmDetailPageState
-    extends BaseStatefulPage<ConfirmDetailViewModel, ConfirmDetailPage>
-    with AutomaticKeepAliveClientMixin {
-  ConfirmDetailPageState() : super(subscribeVisibilityEvents: true);
-
+    extends BaseStatefulPage<ConfirmDetailViewModel, ConfirmDetailPage> {
   @override
   ProviderBase provideBase() {
     return confirmDetailViewModelProvider;
@@ -26,16 +23,7 @@ class ConfirmDetailPageState
   }
 
   @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return stateBuild(context);
-  }
-
-  @override
   Widget buildView(BuildContext context, ConfirmDetailViewModel model) {
     return ConfirmDetailView(provideBase());
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

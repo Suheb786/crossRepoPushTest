@@ -81,9 +81,11 @@ packages:
   card_swiper:
     dependency: "direct main"
     description:
-      name: card_swiper
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: "4322bae5a779d93e619f8a52c3b2d679796f5cb8"
+      url: "https://github.com/TheAnkurPanchani/card_swiper.git"
+    source: git
     version: "1.0.4"
   carousel_slider:
     dependency: "direct main"
@@ -399,6 +401,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  image_cropper:
+    dependency: "direct main"
+    description:
+      name: image_cropper
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.4.1"
   image_picker:
     dependency: transitive
     description:

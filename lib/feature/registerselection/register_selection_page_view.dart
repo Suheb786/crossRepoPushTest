@@ -81,7 +81,7 @@ class RegisterSelectionPageView
                         padding: EdgeInsets.only(top: 56),
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushReplacementNamed(
+                            Navigator.pushNamed(
                                 context, RoutePaths.AccountRegistration);
                           },
                           child: Container(

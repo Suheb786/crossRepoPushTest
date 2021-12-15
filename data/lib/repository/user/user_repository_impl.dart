@@ -188,6 +188,12 @@ class UserRepositoryImpl extends UserRepository {
       String? backCardImage,
       String? personFaceImage,
       bool? getToken,
+      String? secondNameEn,
+      String? placeOfBirth,
+      String? familyNameAr,
+      String? secNameAr,
+      String? thirdNameAr,
+      String? firstNameAr,
       bool? isimtfBlacklist,
       String? instanceID,
       double? scanPercentage}) async {
@@ -216,7 +222,14 @@ class UserRepositoryImpl extends UserRepository {
           getToken: getToken,
           isimtfBlacklist: isimtfBlacklist,
           instanceID: instanceID,
-          scanPercentage: scanPercentage),
+          scanPercentage: scanPercentage,
+          firstName: firstName,
+          thirdNameAr: thirdNameAr,
+          firstNameAr: firstNameAr,
+          secNameAr: secNameAr,
+          familyNameAr: familyNameAr,
+          placeOfBirth: placeOfBirth,
+          secondNameEn: secondNameEn),
     );
     return result!.fold(
       (l) => Left(l),
@@ -327,37 +340,44 @@ class UserRepositoryImpl extends UserRepository {
     return document.fold(
         (l) => Left(l),
         (r) => Right(ScannedDocumentInformation(
-              fullName: r.fullName,
-              firstName: r.firstName,
-              middleName: r.fathersName,
-              familyName: r.lastName,
-              idNumber:
-                  r.personalIdNumber!.isNotEmpty ? r.personalIdNumber : '',
-              dob: r.dateOfBirth != null
-                  ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
-                      r.dateOfBirth!.day!)
-                  : DateTime(0),
-              nationality: r.nationality!.isNotEmpty ? r.nationality : '',
-              doe: r.dateOfExpiry != null
-                  ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!,
-                      r.dateOfExpiry!.day!)
-                  : DateTime(0),
-              gender: r.sex!.isNotEmpty ? r.sex : '',
-              motherName: r.mothersName!.isNotEmpty ? r.mothersName : '',
-              documentCode: r.documentAdditionalNumber!.isNotEmpty
-                  ? r.documentAdditionalNumber
-                  : '',
-              documentNumber: r.documentNumber,
-              issuer: r.issuingAuthority,
-              frontCardImage: r.fullDocumentFrontImage,
-              backCardImage: r.fullDocumentBackImage,
-              personFaceImage: r.faceImage,
-              issuingPlace: r.address,
-              issuingDate: r.dateOfIssue != null
-                  ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
-                      r.dateOfIssue!.day!)
-                  : DateTime(0),
-            )));
+            fullName: r.fullName,
+            firstName: r.firstName,
+            middleName: r.fathersName,
+            familyName: r.lastName,
+            idNumber: r.personalIdNumber!.isNotEmpty ? r.personalIdNumber : '',
+            dob: r.dateOfBirth != null
+                ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
+                    r.dateOfBirth!.day!)
+                : DateTime(0),
+            nationality: r.nationality!.isNotEmpty ? r.nationality : '',
+            doe: r.dateOfExpiry != null
+                ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!,
+                    r.dateOfExpiry!.day!)
+                : DateTime(0),
+            gender: r.sex!.isNotEmpty ? r.sex : '',
+            motherName: r.mothersName!.isNotEmpty ? r.mothersName : '',
+            documentCode: r.mrzResult!.documentCode!.isNotEmpty
+                ? r.mrzResult!.documentCode
+                : '',
+            documentNumber:
+                r.documentNumber!.isNotEmpty ? r.documentNumber : '',
+            issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                ? r.mrzResult!.sanitizedIssuer
+                : '',
+            frontCardImage: r.fullDocumentFrontImage,
+            backCardImage: r.fullDocumentBackImage,
+            personFaceImage: r.faceImage,
+            issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                ? r.mrzResult!.sanitizedIssuer
+                : '',
+            issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                ? r.mrzResult!.sanitizedIssuer
+                : '',
+            issuingDate: r.dateOfIssue != null
+                ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
+                    r.dateOfIssue!.day!)
+                : DateTime(0),
+            nationalityIsoCode3: r.mrzResult?.nationality ?? "")));
   }
 
   @override
@@ -507,7 +527,6 @@ class UserRepositoryImpl extends UserRepository {
             ),
           );
         }
-        break;
       default:
         return Left(
           LocalError(

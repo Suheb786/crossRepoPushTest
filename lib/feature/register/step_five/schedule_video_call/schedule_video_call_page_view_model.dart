@@ -84,6 +84,8 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_PREFERRED_TIME:
         preferredTimeKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 

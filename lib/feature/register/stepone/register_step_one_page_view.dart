@@ -67,8 +67,9 @@ class RegisterStepOnePageView
                   ),
                 ),
               ),
-              Expanded(
+              Flexible(
                 child: AppSwiper(
+                  key: ValueKey(currentStep),
                   pages: pages,
                   pageController: model.pageController,
                   onIndexChanged: (index) {

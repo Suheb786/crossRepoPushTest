@@ -1,12 +1,12 @@
-import 'package:carousel_slider/carousel_controller.dart';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:domain/model/fatca_crs/fatca_set_data.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RegisterStepFourViewModel extends BasePageViewModel {
-  final CarouselController registrationStepFourPageController =
-      CarouselController();
+  final SwiperController registrationStepFourPageController =
+      SwiperController();
 
   PublishSubject<int> _currentStep = PublishSubject();
 

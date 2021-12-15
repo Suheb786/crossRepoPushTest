@@ -55,6 +55,7 @@ class LoginViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _loginResponse.safeAdd(event);
+        updateLoader();
         if (event.status == Status.ERROR) {
           if (event.appError!.type == ErrorType.EMPTY_EMAIL ||
               event.appError!.type == ErrorType.INVALID_EMAIL) {

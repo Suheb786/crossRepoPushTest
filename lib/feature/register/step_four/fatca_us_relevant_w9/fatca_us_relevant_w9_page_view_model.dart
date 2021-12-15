@@ -58,6 +58,7 @@ class FatcaUSRelevantW9PageViewModel extends BasePageViewModel {
                   _fatcaUSRelevantW8UseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _fatcaUSRelevantW8Response.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -71,6 +72,8 @@ class FatcaUSRelevantW9PageViewModel extends BasePageViewModel {
     switch (event.appError!.type) {
       case ErrorType.INVALID_NAME_AS_PER_TAX_RETURN:
         nameAsPerTaxReturnKey.currentState!.isValid = false;
+        break;
+      default:
         break;
     }
   }

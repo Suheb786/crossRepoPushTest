@@ -39,12 +39,12 @@ class FatcaUSRelevantW8PageView
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
-                      ProviderScope.containerOf(context)
-                          .read(registerStepFourViewModelProvider)
-                          .registrationStepFourPageController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope.containerOf(context)
+                            .read(registerStepFourViewModelProvider)
+                            .registrationStepFourPageController
+                            .next();
+                      });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -55,12 +55,12 @@ class FatcaUSRelevantW8PageView
                         if (details.primaryVelocity!.isNegative) {
                           model.validateFatcaUSRelevantW8Details();
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepFourViewModelProvider)
-                              .registrationStepFourPageController
-                              .previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFourViewModelProvider)
+                                .registrationStepFourPageController
+                                .previous();
+                          });
                         }
                       },
                       child: Card(
@@ -108,7 +108,7 @@ class FatcaUSRelevantW8PageView
                                           hintText: S.of(context).pleaseEnter,
                                           controller:
                                               model.dateOfBirthController,
-                                          inputType: TextInputType.text,
+                                          inputType: TextInputType.datetime,
                                           inputAction: TextInputAction.go,
                                           key: model.dateOfBirthKey,
                                           onChanged: (value) {

@@ -1,11 +1,15 @@
-import 'package:carousel_slider/carousel_slider.dart';
+import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/register/register_modules.dart';
+import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
+import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income_page.dart';
 import 'package:neo_bank/feature/register/step_two/register_step_two_page_view_model.dart';
+import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
+import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
@@ -16,6 +20,29 @@ class RegisterStepTwoPageView
 
   @override
   Widget build(BuildContext context, model) {
+    List<Widget> pages = [];
+    switch (ProviderScope.containerOf(context)
+        .read(profileDetailsPageViewModelProvider)
+        .employeeStatusController
+        .text
+        .fromEmploymentValue()) {
+      case EmploymentStatusEnum.STUDENT:
+      case EmploymentStatusEnum.FREELANCE:
+      case EmploymentStatusEnum.RETIRED:
+      case EmploymentStatusEnum.UNEMPLOYED:
+        pages = [StudentJobIncomePage(), BaseCardPage()];
+        break;
+      default:
+        pages = [
+          JobAndIncomePage(
+            key: UniqueKey(),
+          ),
+          BaseCardPage()
+        ];
+    }
+    Future.delayed(Duration(milliseconds: 1000), () {
+      model.updatePages(pages);
+    });
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 36),
       child: AppStreamBuilder<int>(
@@ -56,26 +83,20 @@ class RegisterStepTwoPageView
                 ),
               ),
               Expanded(
-                child: CarouselSlider.builder(
-                  itemCount: model.pages.length,
-                  carouselController: model.registrationStepTwoPageController,
-                  itemBuilder: (BuildContext context, int itemIndex,
-                          int pageViewIndex) =>
-                      AppTiltCard(
-                          pageViewIndex: pageViewIndex,
-                          currentPage: currentStep,
-                          child: model.pages[itemIndex]),
-                  options: CarouselOptions(
-                      height: double.maxFinite,
-                      pageSnapping: true,
-                      enableInfiniteScroll: false,
-                      enlargeCenterPage: true,
-                      viewportFraction: 0.88,
-                      scrollPhysics: NeverScrollableScrollPhysics(),
-                      onPageChanged: (index, reason) {
+                child: AppStreamBuilder<List<Widget>>(
+                  initialData: [Container()],
+                  stream: model.registrationStepTwoPage,
+                  dataBuilder: (context, data) {
+                    print("dataBuilder $data");
+                    return AppSwiper(
+                      pageController: model.registrationStepTwoPageController,
+                      pages: data!,
+                      currentStep: currentStep,
+                      onIndexChanged: (index) {
                         model.updatePage(index);
                       },
-                      enlargeStrategy: CenterPageEnlargeStrategy.height),
+                    );
+                  },
                 ),
               ),
             ],

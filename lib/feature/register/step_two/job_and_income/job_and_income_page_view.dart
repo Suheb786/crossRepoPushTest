@@ -46,17 +46,21 @@ class JobAndIncomePageView
             initialData: Resource.none(),
             onData: (data) {
               if (data.status == Status.SUCCESS) {
-                ProviderScope.containerOf(context)
-                    .read(registerViewModelProvider)
-                    .registrationStepsController
-                    .nextPage(
-                        duration: Duration(milliseconds: 500),
-                        curve: Curves.easeInOut);
+                Future.delayed(Duration(milliseconds: 500), () {
+                  ProviderScope.containerOf(context)
+                      .read(registerViewModelProvider)
+                      .registrationStepsController
+                      .nextPage(
+                          duration: Duration(milliseconds: 500),
+                          curve: Curves.easeInOut);
+                });
               } else if (data.status == Status.ERROR) {
                 model.showToastWithError(data.appError!);
               }
             },
             dataBuilder: (context, response) {
+              print(
+                  "model.employmentStatusEnum ${model.employmentStatusEnum} /// ${ProviderScope.containerOf(context).read(profileDetailsPageViewModelProvider).employeeStatusController.text}");
               return GestureDetector(
                 onHorizontalDragEnd: (details) {
                   if (details.primaryVelocity!.isNegative) {
@@ -66,11 +70,13 @@ class JobAndIncomePageView
                 child: Card(
                   child: Padding(
                     padding: EdgeInsets.only(
-                        bottom: MediaQuery.of(context).viewInsets.bottom == 0
+                        bottom: MediaQuery.of(context).viewInsets.bottom - 50 <=
+                                0
                             ? 0
                             : MediaQuery.of(context).viewInsets.bottom - 48),
                     child: SingleChildScrollView(
-                      padding: EdgeInsets.only(top: 32, right: 24, left: 24),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                       physics: ClampingScrollPhysics(),
                       child: Column(
                         children: [
@@ -85,32 +91,34 @@ class JobAndIncomePageView
                                   labelText: S.of(context).occupation,
                                   hintText: S.of(context).pleaseSelect,
                                   controller: model.occupationController,
-                                  readOnly: true,
+                                  inputType: TextInputType.text,
+                                  inputAction: TextInputAction.go,
+                                  // readOnly: true,
                                   key: model.occupationKey,
-                                  onPressed: () {
-                                    OccupationDialog.show(context,
-                                        employmentStatusEnum:
-                                            model.employmentStatusEnum,
-                                        title: S.of(context).occupationSmall,
-                                        onDismissed: () {
-                                      Navigator.pop(context);
-                                    }, onSelected: (data) {
-                                      Navigator.pop(context);
-                                      model.occupationController.text = data;
-                                      model.isValid();
-                                    },
-                                        businessTypeList:
-                                            model.businessTypeList);
-                                  },
-                                  suffixIcon: (value, data) {
-                                    return Container(
-                                        height: 16,
-                                        width: 16,
-                                        padding: EdgeInsets.only(right: 8),
-                                        child: AppSvg.asset(
-                                            AssetUtils.downArrow,
-                                            color: AppColor.dark_gray_1));
-                                  },
+                                  // onPressed: () {
+                                  //   OccupationDialog.show(context,
+                                  //       employmentStatusEnum:
+                                  //           model.employmentStatusEnum,
+                                  //       title: S.of(context).occupationSmall,
+                                  //       onDismissed: () {
+                                  //     Navigator.pop(context);
+                                  //   }, onSelected: (data) {
+                                  //     Navigator.pop(context);
+                                  //     model.occupationController.text = data;
+                                  //     model.isValid();
+                                  //   },
+                                  //       businessTypeList:
+                                  //           model.businessTypeList);
+                                  // },
+                                  // suffixIcon: (value, data) {
+                                  //   return Container(
+                                  //       height: 16,
+                                  //       width: 16,
+                                  //       padding: EdgeInsets.only(right: 8),
+                                  //       child: AppSvg.asset(
+                                  //           AssetUtils.downArrow,
+                                  //           color: AppColor.dark_gray_1));
+                                  // },
                                 ),
                                 SizedBox(
                                   height: 16,

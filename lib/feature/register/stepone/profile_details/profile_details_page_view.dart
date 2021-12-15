@@ -48,12 +48,14 @@ class ProfileDetailsPageView
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
                           model.setKeysStatusValid();
-                          ProviderScope.containerOf(context)
-                              .read(registerViewModelProvider)
-                              .registrationStepsController
-                              .nextPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerViewModelProvider)
+                                .registrationStepsController
+                                .nextPage(
+                                    duration: Duration(milliseconds: 500),
+                                    curve: Curves.easeInOut);
+                          });
                         } else if (data.status == Status.ERROR) {
                           model.checkKeyStatus(data.appError!.type);
                           model.showToastWithError(data.appError!);
@@ -74,15 +76,15 @@ class ProfileDetailsPageView
                           child: Card(
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  bottom: MediaQuery.of(context)
-                                              .viewInsets
-                                              .bottom ==
-                                          0
-                                      ? 0
-                                      : MediaQuery.of(context)
-                                              .viewInsets
-                                              .bottom -
-                                          48),
+                                  bottom:
+                                      MediaQuery.of(context).viewInsets.bottom -
+                                                  50 <=
+                                              0
+                                          ? 0
+                                          : MediaQuery.of(context)
+                                                  .viewInsets
+                                                  .bottom -
+                                              48),
                               child: SingleChildScrollView(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),

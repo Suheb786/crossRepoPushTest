@@ -22,12 +22,12 @@ class GetAccountDetailsContentData {
   final String? accountNumber;
   final String? iban;
   final String? cif;
-  final dynamic? promoCode;
+  final dynamic promoCode;
   final String? balance;
   final String? currencyCode;
   final int? zPoints;
   List<dynamic>? dailyLimitLeft;
-  final dynamic? dailyTransferLimit;
+  final dynamic dailyTransferLimit;
   final String? bankName;
   final String? countryName;
   final String? swiftCode;
