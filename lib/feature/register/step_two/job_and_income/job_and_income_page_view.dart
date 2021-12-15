@@ -59,6 +59,8 @@ class JobAndIncomePageView
               }
             },
             dataBuilder: (context, response) {
+              print(
+                  "model.employmentStatusEnum ${model.employmentStatusEnum} /// ${ProviderScope.containerOf(context).read(profileDetailsPageViewModelProvider).employeeStatusController.text}");
               return GestureDetector(
                 onHorizontalDragEnd: (details) {
                   if (details.primaryVelocity!.isNegative) {
@@ -89,32 +91,34 @@ class JobAndIncomePageView
                                   labelText: S.of(context).occupation,
                                   hintText: S.of(context).pleaseSelect,
                                   controller: model.occupationController,
-                                  readOnly: true,
+                                  inputType: TextInputType.text,
+                                  inputAction: TextInputAction.go,
+                                  // readOnly: true,
                                   key: model.occupationKey,
-                                  onPressed: () {
-                                    OccupationDialog.show(context,
-                                        employmentStatusEnum:
-                                            model.employmentStatusEnum,
-                                        title: S.of(context).occupationSmall,
-                                        onDismissed: () {
-                                      Navigator.pop(context);
-                                    }, onSelected: (data) {
-                                      Navigator.pop(context);
-                                      model.occupationController.text = data;
-                                      model.isValid();
-                                    },
-                                        businessTypeList:
-                                            model.businessTypeList);
-                                  },
-                                  suffixIcon: (value, data) {
-                                    return Container(
-                                        height: 16,
-                                        width: 16,
-                                        padding: EdgeInsets.only(right: 8),
-                                        child: AppSvg.asset(
-                                            AssetUtils.downArrow,
-                                            color: AppColor.dark_gray_1));
-                                  },
+                                  // onPressed: () {
+                                  //   OccupationDialog.show(context,
+                                  //       employmentStatusEnum:
+                                  //           model.employmentStatusEnum,
+                                  //       title: S.of(context).occupationSmall,
+                                  //       onDismissed: () {
+                                  //     Navigator.pop(context);
+                                  //   }, onSelected: (data) {
+                                  //     Navigator.pop(context);
+                                  //     model.occupationController.text = data;
+                                  //     model.isValid();
+                                  //   },
+                                  //       businessTypeList:
+                                  //           model.businessTypeList);
+                                  // },
+                                  // suffixIcon: (value, data) {
+                                  //   return Container(
+                                  //       height: 16,
+                                  //       width: 16,
+                                  //       padding: EdgeInsets.only(right: 8),
+                                  //       child: AppSvg.asset(
+                                  //           AssetUtils.downArrow,
+                                  //           color: AppColor.dark_gray_1));
+                                  // },
                                 ),
                                 SizedBox(
                                   height: 16,
