@@ -80,8 +80,10 @@ final captureViewModelProvider =
 ///[ConfirmDetailViewModel] provider
 final confirmDetailViewModelProvider =
     ChangeNotifierProvider.autoDispose<ConfirmDetailViewModel>((ref) =>
-        ConfirmDetailViewModel(ref.read(confirmDetailUseCaseProvider),
-            ref.read(scanUserDocumentUseCaseProvider)));
+        ConfirmDetailViewModel(
+            ref.read(confirmDetailUseCaseProvider),
+            ref.read(scanUserDocumentUseCaseProvider),
+            ref.read(getAhwalDetailsUseCaseProvider)));
 
 ///[EnterAddressViewModel] provider
 final enterAddressViewModelProvider =

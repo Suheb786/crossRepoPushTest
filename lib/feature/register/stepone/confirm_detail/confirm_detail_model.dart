@@ -1,5 +1,7 @@
+import 'package:domain/model/id_card/ahwal_details_response.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:domain/usecase/id_card/get_ahwal_details_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +17,7 @@ import 'package:rxdart/rxdart.dart';
 class ConfirmDetailViewModel extends BasePageViewModel {
   final ConfirmDetailUseCase _confirmDetailUseCase;
   final ScanUserDocumentUseCase _scanUserDocumentUseCase;
+  final GetAhwalDetailsUseCase _getAhwalDetailsUseCase;
 
   TextEditingController nameController = new TextEditingController();
   TextEditingController idNumberController = new TextEditingController();
@@ -99,11 +102,23 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
+  ///get ahwal details subject holder
+  final PublishSubject<GetAhwalDetailsUseCaseParams> _getAhwalDetailsRequest =
+      PublishSubject();
+
+  ///get ahwal details subject response holder
+  final PublishSubject<Resource<AhwalDetailResponse>> _getAhwalDetailsResponse =
+      PublishSubject();
+
+  ///get ahwal details response stream
+  Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream =>
+      _getAhwalDetailsResponse.stream;
+
   ScannedDocumentInformation scannedDocumentResult =
       ScannedDocumentInformation();
 
-  ConfirmDetailViewModel(
-      this._confirmDetailUseCase, this._scanUserDocumentUseCase) {
+  ConfirmDetailViewModel(this._confirmDetailUseCase,
+      this._scanUserDocumentUseCase, this._getAhwalDetailsUseCase) {
     _confirmDetailRequest.listen((value) {
       RequestManager(value,
               createCall: () => _confirmDetailUseCase.execute(params: value))
@@ -126,6 +141,44 @@ class ConfirmDetailViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _scanUserDocumentResponse.safeAdd(event);
+        if (event.status == Status.SUCCESS) {
+          getAhwalResponse(event.data!.idNumber ?? "");
+        }
+      });
+    });
+
+    _getAhwalDetailsRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getAhwalDetailsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getAhwalDetailsResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+        } else if (event.status == Status.SUCCESS) {
+          scannedDocumentResult.firstName =
+              event.data!.contentData!.ahwalinfo!.firstNameEn;
+          scannedDocumentResult.middleName =
+              event.data!.contentData!.ahwalinfo!.thirdNameEn;
+
+          scannedDocumentResult.firstNameAr =
+              event.data!.contentData!.ahwalinfo!.firstNameAr;
+          scannedDocumentResult.secNameAr =
+              event.data!.contentData!.ahwalinfo!.secNameAr;
+          scannedDocumentResult.thirdNameAr =
+              event.data!.contentData!.ahwalinfo!.thirdNameAr;
+          scannedDocumentResult.familyNameAr =
+              event.data!.contentData!.ahwalinfo!.familyNameAr;
+
+          scannedDocumentResult.secondNameEn =
+              event.data!.contentData!.ahwalinfo!.secondNameEn;
+          scannedDocumentResult.thirdNameEn =
+              event.data!.contentData!.ahwalinfo!.thirdNameEn;
+          scannedDocumentResult.familyName =
+              event.data!.contentData!.ahwalinfo!.familyNameEn;
+          setData(scannedDocumentResult);
+        }
       });
     });
   }
@@ -153,7 +206,6 @@ class ConfirmDetailViewModel extends BasePageViewModel {
             ? selectedDobDate
             : scannedDocumentResult.dob.toString(),
         nationality: scannedDocumentResult.nationalityIsoCode3,
-        //nationalityController.text,
         expiryDate: scannedDocumentResult.doe!.year == 0
             ? selectedExpiryDate
             : scannedDocumentResult.doe!.toString(),
@@ -186,6 +238,10 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     }
   }
 
+  void getAhwalResponse(String id) {
+    _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
+  }
+
   @override
   void dispose() {
     _confirmDetailRequest.close();
@@ -204,7 +260,6 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     dobController.text = data.dob!.year != 0
         ? TimeUtils.getFormattedDOB(data.dob!.toString())
         : '';
-    nationalityController.text = data.nationality!;
     genderController.text = data.gender!;
     motherNameController.text = data.motherName!;
     legalDocumentController.text = data.documentNumber!;

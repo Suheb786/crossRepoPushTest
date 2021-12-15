@@ -27,6 +27,8 @@ class JobAndIncomePageState
 
   @override
   void onModelReady(JobAndIncomePageViewModel model) {
+    print(
+        "This is enum :: ${ProviderScope.containerOf(context).read(profileDetailsPageViewModelProvider).employeeStatusController.text}");
     model.employmentStatusEnum = ProviderScope.containerOf(context)
         .read(profileDetailsPageViewModelProvider)
         .employeeStatusController

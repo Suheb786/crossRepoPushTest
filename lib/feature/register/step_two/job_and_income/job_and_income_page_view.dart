@@ -59,6 +59,8 @@ class JobAndIncomePageView
               }
             },
             dataBuilder: (context, response) {
+              print(
+                  "model.employmentStatusEnum ${model.employmentStatusEnum} /// ${ProviderScope.containerOf(context).read(profileDetailsPageViewModelProvider).employeeStatusController.text}");
               return GestureDetector(
                 onHorizontalDragEnd: (details) {
                   if (details.primaryVelocity!.isNegative) {
@@ -91,7 +93,7 @@ class JobAndIncomePageView
                                   controller: model.occupationController,
                                   inputType: TextInputType.text,
                                   inputAction: TextInputAction.go,
-                                  //readOnly: true,
+                                  // readOnly: true,
                                   key: model.occupationKey,
                                   // onPressed: () {
                                   //   OccupationDialog.show(context,

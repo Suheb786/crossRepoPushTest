@@ -86,7 +86,11 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                 children: [
                                   AccountDetails(
                                       title: S.of(context).refTitle,
-                                      value: S.of(context).refNumber),
+                                      value: response
+                                          .data!
+                                          .getAccountDetailsContent!
+                                          .data!
+                                          .accountNumber),
                                   SizedBox(
                                     height: 16,
                                   ),

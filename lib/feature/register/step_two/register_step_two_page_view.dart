@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
+import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income_page.dart';
 import 'package:neo_bank/feature/register/step_two/register_step_two_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page.dart';
@@ -29,14 +30,14 @@ class RegisterStepTwoPageView
       case EmploymentStatusEnum.FREELANCE:
       case EmploymentStatusEnum.RETIRED:
       case EmploymentStatusEnum.UNEMPLOYED:
-        pages = [StudentJobIncomePage(), Expanded(child: Container())];
+        pages = [StudentJobIncomePage(), BaseCardPage()];
         break;
       default:
         pages = [
           JobAndIncomePage(
             key: UniqueKey(),
           ),
-          Expanded(child: Container())
+          BaseCardPage()
         ];
     }
     Future.delayed(Duration(milliseconds: 1000), () {

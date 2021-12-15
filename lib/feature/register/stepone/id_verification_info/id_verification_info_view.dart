@@ -58,33 +58,6 @@ class IdVerificationInfoView
                             initialData: Resource.none(),
                             onData: (data) {
                               if (data.status == Status.SUCCESS) {
-                                ScannedDocumentInformation scannedDocument =
-                                    model.scannedDocumentInformation;
-                                scannedDocument.firstName = data
-                                    .data!.contentData!.ahwalinfo!.firstNameEn;
-                                scannedDocument.middleName = data
-                                    .data!.contentData!.ahwalinfo!.thirdNameEn;
-                                scannedDocument.firstNameAr = data
-                                    .data!.contentData!.ahwalinfo!.firstNameAr;
-                                scannedDocument.secNameAr = data
-                                    .data!.contentData!.ahwalinfo!.secNameAr;
-                                scannedDocument.thirdNameAr = data
-                                    .data!.contentData!.ahwalinfo!.thirdNameAr;
-                                scannedDocument.familyNameAr = data
-                                    .data!.contentData!.ahwalinfo!.familyNameAr;
-                                scannedDocument.familyName = data
-                                    .data!.contentData!.ahwalinfo!.firstNameEn;
-                                scannedDocument.secondNameEn = data
-                                    .data!.contentData!.ahwalinfo!.secondNameEn;
-                                scannedDocument.thirdNameEn = data
-                                    .data!.contentData!.ahwalinfo!.thirdNameEn;
-                                scannedDocument.familyName = data
-                                    .data!.contentData!.ahwalinfo!.familyNameEn;
-                                // scannedDocument.motherName = data.data!
-                                //     .contentData!.ahwalinfo!.motherFirstName;
-                                scannedDocument.placeOfBirth = data
-                                    .data!.contentData!.ahwalinfo!.placeOfBirth;
-
                                 ProviderScope.containerOf(context)
                                     .read(registerStepOneViewModelProvider)
                                     .pageController
@@ -92,7 +65,8 @@ class IdVerificationInfoView
                                 Future.delayed(Duration(milliseconds: 500), () {
                                   ProviderScope.containerOf(context)
                                       .read(confirmDetailViewModelProvider)
-                                      .setData(scannedDocument);
+                                      .setData(
+                                          model.scannedDocumentInformation);
                                 });
                               } else if (data.status == Status.ERROR) {
                                 model.showToastWithError(data.appError!);
@@ -108,8 +82,6 @@ class IdVerificationInfoView
                                     if (data.data!.issuer == 'JOR') {
                                       model.getAhwalResponse(
                                           data.data!.idNumber!);
-                                      model.scannedDocumentInformation =
-                                          data.data!;
                                     } else {
                                       model.showToastWithError(AppError(
                                           cause: Exception(),
