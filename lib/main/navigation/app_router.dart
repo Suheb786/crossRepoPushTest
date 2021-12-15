@@ -10,6 +10,9 @@ import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
+import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
+import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
+import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
@@ -159,6 +162,17 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => MyDocumentsPage(),
             settings: RouteSettings(name: RoutePaths.MyDocuments));
+
+      case RoutePaths.ManageContactsList:
+        return CupertinoPageRoute(
+            builder: (context) => ManageContactListPage(),
+            settings: RouteSettings(name: RoutePaths.ManageContactsList));
+
+      case RoutePaths.ManageContactsDetail:
+        return CupertinoPageRoute(
+            builder: (context) => ManageContactDetailsPage(
+                settings.arguments as ContactsListModel),
+            settings: RouteSettings(name: RoutePaths.ManageContactsDetail));
 
       default:
         return CupertinoPageRoute(

@@ -5080,6 +5080,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Manage Contacts`
+  String get manageContacts {
+    return Intl.message(
+      'Manage Contacts',
+      name: 'manageContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search contacts`
+  String get searchContacts {
+    return Intl.message(
+      'Search contacts',
+      name: 'searchContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adding contacts is coming soon. You can simply send or request money and add a contact along the way.`
+  String get addingContactsDesc {
+    return Intl.message(
+      'Adding contacts is coming soon. You can simply send or request money and add a contact along the way.',
+      name: 'addingContactsDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nickname`
+  String get nickName {
+    return Intl.message(
+      'Nickname',
+      name: 'nickName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN / Mobile No. / ALIAS`
+  String get ibanMobileNoAlias {
+    return Intl.message(
+      'IBAN / Mobile No. / ALIAS',
+      name: 'ibanMobileNoAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BANK NAME`
+  String get bankName {
+    return Intl.message(
+      'BANK NAME',
+      name: 'bankName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PURPOSE`
+  String get purpose {
+    return Intl.message(
+      'PURPOSE',
+      name: 'purpose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PURPOSE DETAILS`
+  String get purposeDetail {
+    return Intl.message(
+      'PURPOSE DETAILS',
+      name: 'purposeDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove from contact`
+  String get removeFromContact {
+    return Intl.message(
+      'Remove from contact',
+      name: 'removeFromContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `account holder name`
+  String get accountHolderName {
+    return Intl.message(
+      'account holder name',
+      name: 'accountHolderName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your contact details has been saved.`
+  String get yourContactDetailsUpdated {
+    return Intl.message(
+      'Your contact details has been saved.',
+      name: 'yourContactDetailsUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save changes`
+  String get saveChanges {
+    return Intl.message(
+      'Save changes',
+      name: 'saveChanges',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
