@@ -28,4 +28,11 @@ class CardRemoteDsImpl extends CardRemoteDs {
     return _apiService.setCardPin(SetCardPinRequest(
         baseData: baseData.toJson(), getToken: true, pinCode: pin));
   }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> confirmCardDelivery() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.confirmCardDelivery(
+        CardIssuanceRequest(baseData: baseData.toJson(), getToken: true));
+  }
 }

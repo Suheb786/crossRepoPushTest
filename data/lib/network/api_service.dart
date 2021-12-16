@@ -293,4 +293,8 @@ abstract class ApiService {
   @POST("/CardTracking/SetCardPin")
   Future<HttpResponse<ResponseEntity>> setCardPin(
       @Body() SetCardPinRequest setCardPinRequest);
+
+  @POST("/CardTracking/ConfirmDelivery")
+  Future<HttpResponse<ResponseEntity>> confirmCardDelivery(
+      @Body() CardIssuanceRequest cardIssuanceRequest);
 }

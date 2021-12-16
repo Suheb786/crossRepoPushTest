@@ -9,8 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 ///[FetchCountriesUseCase] provider
 final fetchCountriesUseCaseProvider =
     Provider.autoDispose<FetchCountriesUseCase>(
-  (ref) => FetchCountriesUseCase(
-      ref.read(countryRepoProvider), ref.read(userRepoProvider)),
+  (ref) => FetchCountriesUseCase(ref.read(countryRepoProvider)),
 );
 
 ///[FetchCountryByCodeUseCase] provider

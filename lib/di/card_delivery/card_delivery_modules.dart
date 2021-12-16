@@ -27,7 +27,7 @@ final confirmPinViewModelProvider =
 ///visa card view model provider
 final visaCardViewModelProvider =
     ChangeNotifierProvider.autoDispose<VisaCardPageViewModel>(
-  (ref) => VisaCardPageViewModel(),
+  (ref) => VisaCardPageViewModel(ref.read(cardIssuanceCaseProvider)),
 );
 
 ///card ready success view model provider

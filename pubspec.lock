@@ -274,6 +274,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_3des:
+    dependency: "direct main"
+    description:
+      name: flutter_3des
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
   flutter_countdown_timer:
     dependency: "direct main"
     description:
@@ -679,6 +686,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.1"
+  steel_crypt:
+    dependency: "direct main"
+    description:
+      name: steel_crypt
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0+1"
   stream_channel:
     dependency: transitive
     description:

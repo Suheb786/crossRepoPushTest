@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -13,16 +14,17 @@ import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
 
 class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
   VisaCardPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
-    return AppStreamBuilder<bool>(
-      stream: model.errorDetectorStream,
-      initialData: false,
-      dataBuilder: (context, isValid) {
+    return AppStreamBuilder<Resource<CardIssuanceDetails>>(
+      stream: model.cardIssuanceStream,
+      initialData: Resource.none(),
+      dataBuilder: (context, data) {
         return GestureDetector(
           onHorizontalDragEnd: (details) {
             ProviderScope.containerOf(context)
@@ -33,8 +35,7 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
           child: Card(
             margin: EdgeInsets.zero,
             child: Container(
-                padding:
-                    EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                padding: EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -63,8 +64,8 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                     child: Container(
                                       height: 60,
                                       width: 60,
-                                      child: AppSvg.asset(
-                                          AssetUtils.flipButton),
+                                      child:
+                                          AppSvg.asset(AssetUtils.flipButton),
                                     ),
                                   )),
                             )
@@ -83,46 +84,56 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(
-                                          top: 18.52, bottom: 51.18),
+                                          top: 18.52, bottom: 52),
                                       child: Container(
                                         height: 42,
-                                        color: Theme.of(context)
-                                            .primaryColorDark,
+                                        color:
+                                            Theme.of(context).primaryColorDark,
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.symmetric(
+                                      padding: EdgeInsets.symmetric(
                                           horizontal: 20.0),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              Text(
-                                                'ABDUL SALAM',
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.w700,
-                                                    fontSize: 12,
-                                                    color: Theme.of(
-                                                            context)
-                                                        .primaryColorDark),
+                                          Flexible(
+                                            child: Padding(
+                                              padding:
+                                                  EdgeInsets.only(right: 8.0),
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    data!.data
+                                                            ?.cardHolderName ??
+                                                        "-",
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    maxLines: 1,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 12,
+                                                        color: Theme.of(context)
+                                                            .primaryColorDark),
+                                                  ),
+                                                  Text(
+                                                    data.data?.cardNumber ??
+                                                        "XXXX",
+                                                    maxLines: 1,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 10,
+                                                        color: Theme.of(context)
+                                                            .primaryColorDark),
+                                                  ),
+                                                ],
                                               ),
-                                              Text(
-                                                '1234',
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.w700,
-                                                    fontSize: 10,
-                                                    color: Theme.of(
-                                                            context)
-                                                        .primaryColorDark),
-                                              ),
-                                            ],
+                                            ),
                                           ),
                                           Image.asset(AssetUtils.birdPng)
                                         ],
@@ -132,9 +143,7 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                       alignment: Alignment.centerRight,
                                       child: Padding(
                                         padding: const EdgeInsets.only(
-                                            top: 5.0,
-                                            bottom: 15.2,
-                                            right: 20),
+                                            top: 5.0, bottom: 15.2, right: 20),
                                         child: Text(
                                           'Debit',
                                           style: TextStyle(
@@ -151,8 +160,8 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                 onTap: () {
                                   model.cardController.toggleCard();
                                 },
-                                child:
-                                    AppSvg.asset(AssetUtils.flipButton))
+                                child: AppSvg.asset(AssetUtils.flipButton,
+                                    width: 50, height: 50))
                           ],
                         ),
                       ),
