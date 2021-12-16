@@ -11,12 +11,10 @@ import 'package:domain/usecase/register/get_occupation_list_usecase.dart';
 import 'package:domain/usecase/register/get_purpose_of_account_opening_usecase.dart';
 import 'package:domain/usecase/register/job_and_income_usecase.dart';
 import 'package:domain/usecase/register/nature_of_special_needs_usecase.dart';
-import 'package:domain/usecase/register/purpose_of_account_opening_usecase.dart';
 import 'package:domain/usecase/register/relationship_with_pep_usecase.dart';
 import 'package:domain/usecase/register/review_app_usecase.dart';
 import 'package:domain/usecase/register/schedule_video_call_usecase.dart';
 import 'package:domain/usecase/register/tax_report_information_usecase.dart';
-import 'package:domain/usecase/register/taxation_details_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[GetOccupationUseCase] provider
@@ -38,13 +36,7 @@ final additionalIncomeSourceUseCaseProvider =
 
 ///[JobAndIncomeUseCase] provider
 final jobAndIncomeUseCaseProvider = Provider.autoDispose<JobAndIncomeUseCase>(
-  (ref) => JobAndIncomeUseCase(),
-);
-
-///[TaxationDetailsUseCase] provider
-final taxationDetailsUseCaseProvider =
-    Provider.autoDispose<TaxationDetailsUseCase>(
-  (ref) => TaxationDetailsUseCase(),
+  (ref) => JobAndIncomeUseCase(ref.read(userRepoProvider)),
 );
 
 ///[TaxReportInformationUseCase] provider
@@ -56,7 +48,7 @@ final taxReportInformationUseCaseProvider =
 ///[TaxReportInformationUseCase] provider
 final reviewApplicationUseCaseProvider =
     Provider.autoDispose<ReviewApplicationUseCase>(
-  (ref) => ReviewApplicationUseCase(ref.read(registerStepFourRepoProvider)),
+  (ref) => ReviewApplicationUseCase(ref.read(userRepoProvider)),
 );
 
 ///[NatureOfSpecialNeedsUseCase] provider
@@ -77,11 +69,6 @@ final employmentStatusDialogUseCaseProvider =
   (ref) =>
       EmploymentStatusDialogUseCase(ref.read(registerStepThreeRepoProvider)),
 );
-
-///[PurposeOfAccountOpeningUseCase] provider
-final purposeOfAccountsOpeningUseCaseProvider =
-    Provider.autoDispose<PurposeOfAccountOpeningUseCase>(
-        (ref) => PurposeOfAccountOpeningUseCase());
 
 ///[FatcaUSRelevantW8UseCase] provider
 final fatcaUSRelevantW8UseCaseProvider =
@@ -116,5 +103,5 @@ final fatcaUSW8TaxPayerDetailsUseCaseProvider =
 ///[ScheduleVideoCallUseCase] provider
 final scheduleVideoCallUseCaseProvider =
     Provider.autoDispose<ScheduleVideoCallUseCase>(
-  (ref) => ScheduleVideoCallUseCase(),
+  (ref) => ScheduleVideoCallUseCase(ref.read(accountRepositoryProvider)),
 );

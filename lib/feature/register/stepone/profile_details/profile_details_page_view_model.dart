@@ -1,5 +1,6 @@
 import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/usecase/user/profile_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -40,9 +41,10 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
   PublishSubject<ProfileDetailsUseCaseParams> _profileDetailsRequest =
       PublishSubject();
 
-  PublishSubject<Resource<bool>> _profileDetailsResponse = PublishSubject();
+  PublishSubject<Resource<SaveProfileStatusResponse>> _profileDetailsResponse =
+      PublishSubject();
 
-  Stream<Resource<bool>> get profileDetailsStream =>
+  Stream<Resource<SaveProfileStatusResponse>> get profileDetailsStream =>
       _profileDetailsResponse.stream;
 
   ///nature of special needs text field value
@@ -105,6 +107,7 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
               createCall: () => _profileUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _profileDetailsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();

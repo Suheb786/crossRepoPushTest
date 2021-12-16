@@ -1,0 +1,6 @@
+class ScannerHelper {
+  static String ANDROID_BLINK_ID =
+      "sRwAAAANY29tLmJsaW5rLmNidCVzzduerpjJxlozk+PPM+VgJfB3BrLhPDWLg6Sx/QBwQStb6WJOHt1F7GEdd8Zw4P5au/sLqf7dee1dwzzeNNIYntug8fu1W3O34aiS5IoWAD/218kYckC3qcc1hxSKY7G4GK53jOkF0LxP9BNyUPRJ5+8Sp1M72Hs8ze/1DKWi8O+zWdfa2QoLnlFoqKPHuty5L3Rom3iDIr6kvbRMQkOZspG6jwy/OD96Za5cC2TX";
+  static String IOS_BLINK_ID =
+      "sRwAAAENY29tLmJsaW5rLmNidJjsn03Yn0rdg8AM49Kp+eUpFngnaoNCUBiWbB+7gsfR2A98lew/Cdq5coxQ676hyF8DxwpzsLdH4nUyM+i3fsbSbji8QBpZYi41LI58PDtKEqWYiXBLTXCxeyqznd1jkEqwjLfw4agePV1iudEno/9MQcN5YmRXKQyw0wYBj7X7C6JO+uOgJZx6481zhzM1sdwN26Tx9wL7g2OfySByP4IQNrclIKFLDkyb2Jck+OV+";
+}

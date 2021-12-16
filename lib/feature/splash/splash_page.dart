@@ -10,7 +10,8 @@ class SplashPage extends BasePage<SplashViewModel> {
   SplashPageState createState() => SplashPageState();
 }
 
-class SplashPageState extends BaseStatefulPage<SplashViewModel, SplashPage> {
+class SplashPageState extends BaseStatefulPage<SplashViewModel, SplashPage>
+    with TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return splashViewModelProvider;
@@ -18,7 +19,7 @@ class SplashPageState extends BaseStatefulPage<SplashViewModel, SplashPage> {
 
   @override
   void onModelReady(SplashViewModel model) {
-    model.startTimer();
+    model.animationController = AnimationController(vsync: this);
   }
 
   @override

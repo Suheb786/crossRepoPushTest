@@ -1,7 +1,16 @@
+import 'dart:async';
+import 'dart:isolate';
+
+import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:neo_bank/base/base_view_model.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/request_manager.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
+import 'package:rxdart/rxdart.dart';
 
 GlobalKey<NavigatorState> appLevelKey = GlobalKey(debugLabel: 'app-key');
 
@@ -165,6 +174,7 @@ class AppViewModel extends BaseViewModel {
           iconTheme: IconThemeData(
             color: AppColor.white,
           ),
+          errorColor: AppColor.vivid_red,
           indicatorColor: AppColor.veryDarkGray2,
           buttonTheme: ButtonThemeData(
             shape:
@@ -178,6 +188,58 @@ class AppViewModel extends BaseViewModel {
     return _themeData;
   }
 
+  late ReceivePort _receivePort;
+  Isolate? _isolate;
+
+  final GetTokenUseCase _getTokenUseCase;
+
+  static PublishSubject<GetTokenUseCaseParams> _getTokenRequest =
+      PublishSubject();
+
+  static PublishSubject<Resource<bool>> _getTokenResponse = PublishSubject();
+
+  Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
+
+  AppViewModel(this._getTokenUseCase) {
+    _getTokenRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getTokenUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        if (event.status == Status.ERROR) {
+          print("error");
+        }
+        _getTokenResponse.safeAdd(event);
+      });
+    });
+  }
+
+  void getToken() async {
+    if (_isolate != null) {
+      return;
+    }
+    _receivePort = ReceivePort();
+    _isolate = await Isolate.spawn(_getTokenCallBack, _receivePort.sendPort);
+    _receivePort.listen(_handleMessage, onDone: () {
+      print('Done');
+    });
+  }
+
+  void _handleMessage(dynamic data) {
+    print('data $data');
+    _callGetToken();
+  }
+
+  static void _getTokenCallBack(SendPort sendPort) async {
+    Timer.periodic(Duration(minutes: 2), (Timer t) {
+      sendPort.send('Send');
+    });
+  }
+
+  void _callGetToken() {
+    _getTokenRequest.add(GetTokenUseCaseParams());
+  }
+
   ThemeData toggleTheme() {
     if (appTheme == AppTheme.dark) {
       _appTheme = AppTheme.light;
@@ -185,6 +247,13 @@ class AppViewModel extends BaseViewModel {
       _appTheme = AppTheme.dark;
     }
     return themeData;
+  }
+
+  @override
+  void dispose() {
+    _receivePort.close();
+    _isolate?.kill();
+    super.dispose();
   }
 }
 

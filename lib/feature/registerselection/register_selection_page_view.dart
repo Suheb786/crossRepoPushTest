@@ -18,64 +18,56 @@ class RegisterSelectionPageView
 
   @override
   Widget build(BuildContext context, model) {
-    return Container(
-      color: Theme.of(context).primaryColor,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            height: 40,
-            decoration: BoxDecoration(
-                color: Theme.of(context).accentColor,
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(16))),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 33.0),
-            child: Text(
-              S.of(context).letsCreateYourAccount,
-              textAlign: TextAlign.center,
-              style: TextStyle(
+    return GestureDetector(
+      onVerticalDragUpdate: (details) {
+        if (!details.primaryDelta!.isNegative && details.primaryDelta != 0) {
+          ProviderScope.containerOf(context)
+              .read(onBoardingViewModelProvider)
+              .onBoardingPageController
+              .previousPage(
+                  duration: Duration(milliseconds: 500),
+                  curve: Curves.easeInOut);
+        }
+      },
+      child: Container(
+        color: Theme.of(context).primaryColor,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              padding:
+                  EdgeInsets.only(left: 128, right: 128, bottom: 8, top: 44),
+              width: double.infinity,
+              decoration: BoxDecoration(
                   color: Theme.of(context).accentColor,
-                  fontSize: 32,
-                  fontWeight: FontWeight.w600),
+                  borderRadius:
+                      BorderRadius.vertical(bottom: Radius.circular(16))),
+              child: Container(
+                height: 4,
+                width: 128,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(2),
+                    color: AppColor.whiteGray),
+              ),
             ),
-          ),
-          Expanded(
-            child: GestureDetector(
-              onVerticalDragUpdate: (details) {
-                if (!details.primaryDelta!.isNegative &&
-                    details.primaryDelta != 0) {
-                  ProviderScope.containerOf(context)
-                      .read(onBoardingViewModelProvider)
-                      .onBoardingPageController
-                      .previousPage(
-                          duration: Duration(milliseconds: 500),
-                          curve: Curves.easeInOut);
-                }
-              },
-              child: Card(
-                margin: EdgeInsets.only(top: 24, right: 24, left: 24),
-                // clipBehavior: Clip.antiAlias,
-                // padding: EdgeInsets.symmetric(vertical: 32),
-                // decoration: BoxDecoration(
-                //     borderRadius: BorderRadius.circular(16),
-                //     gradient: LinearGradient(colors: [
-                //       AppColor.dark_violet,
-                //       AppColor.dark_moderate_blue
-                //     ], begin: Alignment.bottomCenter, end: Alignment.topCenter),
-                //     boxShadow: [
-                //       BoxShadow(
-                //           color: AppColor.black.withOpacity(0.32),
-                //           blurRadius: 24,
-                //           offset: Offset(0, 8)),
-                //     ]),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 32),
+            Expanded(
+              child: SingleChildScrollView(
+                physics: ClampingScrollPhysics(),
+                child: Container(
+                  padding: EdgeInsets.only(top: 74),
+                  width: 295,
                   child: Column(
                     children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                      Text(
+                        S.of(context).letsCreateYourProfile,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                            fontSize: 32,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 41),
                         child: NotifyMeWidget(
                           onTap: () {
                             Navigator.pushReplacementNamed(
@@ -85,63 +77,58 @@ class RegisterSelectionPageView
                           labelText: S.of(context).notifyMeExC,
                         ),
                       ),
-                      Spacer(),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushReplacementNamed(
-                              context, RoutePaths.AccountRegistration);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(18),
-                          width: double.maxFinite,
-                          margin: EdgeInsets.symmetric(horizontal: 24),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            color: Theme.of(context).primaryColorDark,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: AppColor.black.withOpacity(0.32),
-                                  blurRadius: 12,
-                                  spreadRadius: -4,
-                                  offset: Offset(0, 12)),
-                            ],
-                          ),
-                          child: Center(
-                            child: Text(S.of(context).registerViaEmail,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: AppColor.white)),
+                      Padding(
+                        padding: EdgeInsets.only(top: 56),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.AccountRegistration);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(18),
+                            width: double.maxFinite,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(100),
+                              color: Theme.of(context)
+                                  .accentTextTheme
+                                  .bodyText1
+                                  ?.color,
+                            ),
+                            child: Center(
+                              child: Text(S.of(context).registerViaEmail,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600,
+                                      letterSpacing: 1,
+                                      color: Theme.of(context).accentColor)),
+                            ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 24),
                         child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             AppDivider(
-                              color: AppColor.white.withOpacity(0.3),
-                              indent: 24,
+                              color: Theme.of(context).accentColor,
+                              indent: 0,
                               endIndent: 12,
                             ),
                             Text(
                               S.of(context).orContinueWith,
                               style: TextStyle(
-                                  color: AppColor.dark_grayish_violet1,
+                                  color: Theme.of(context).accentColor,
                                   fontSize: 12),
                             ),
                             AppDivider(
-                              color: AppColor.white.withOpacity(0.3),
-                              endIndent: 24,
+                              color: Theme.of(context).accentColor,
+                              endIndent: 0,
                               indent: 12,
                             ),
                           ],
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 24),
                         child: Row(
                           children: <Widget>[
                             Expanded(
@@ -164,18 +151,19 @@ class RegisterSelectionPageView
                 ),
               ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 25),
-            child: Text(
-              S.of(context).swipeDownToLogin,
-              style: TextStyle(
-                  fontSize: 16,
-                  color: Theme.of(context).accentColor,
-                  fontWeight: FontWeight.w500),
-            ),
-          )
-        ],
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 25),
+              child: Text(
+                S.of(context).swipeDownToLogin,
+                style: TextStyle(
+                    fontSize: 14,
+                    color: Theme.of(context).accentColor,
+                    letterSpacing: 1,
+                    fontWeight: FontWeight.w500),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

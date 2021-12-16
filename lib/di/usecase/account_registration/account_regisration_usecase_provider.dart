@@ -9,9 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 ///[FetchCountriesUseCase] provider
 final fetchCountriesUseCaseProvider =
     Provider.autoDispose<FetchCountriesUseCase>(
-  (ref) => FetchCountriesUseCase(
-    ref.read(countryRepoProvider),
-  ),
+  (ref) => FetchCountriesUseCase(ref.read(countryRepoProvider)),
 );
 
 ///[FetchCountryByCodeUseCase] provider
@@ -30,7 +28,7 @@ final registerNumberUseCaseProvider =
 
 ///[VerifyOtpUseCase] provider
 final verifyOtpUseCaseProvider = Provider.autoDispose<VerifyOtpUseCase>(
-  (ref) => VerifyOtpUseCase(),
+  (ref) => VerifyOtpUseCase(ref.read(userRepoProvider)),
 );
 
 ///[CreatePasswordUseCase] provider

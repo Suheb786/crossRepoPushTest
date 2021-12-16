@@ -11,4 +11,22 @@ class RoutePaths {
   static const String NonJordanianRegister = '/nonJordanianRegister';
   static const String Dashboard = '/dashboard';
   static const String TermsAndCondition = '/termsAndCondition';
+  static const String Capture = '/capture';
+  static const String FatcaCertification = '/fatcaCertification';
+  static const String ExemptPayeeCode = '/exemptPayeeCode';
+  static const String ExemptionFromFatcaReportingCode =
+      '/exemptionFromFatcaReportingCode';
+  static const String UsTaxPayerIdentificationNo =
+      '/usTaxPayerIdentificationNo';
+  static const String ReferenceNumber = '/referenceNumber';
+  static const String TaxTreatyBenefits = '/taxTreatyBenefits';
+  static const String CardDelivery = '/cardDelivery';
+  static const String CardReadySuccess = '/cardReadySuccess';
+  static const String AccountSetting = '/accountSetting';
+  static const String ChangeEmailAddress = '/changeEmailAddress';
+  static const String ChangeMobileNumber = '/ChangeMobileNumber';
+  static const String ChangePassword = '/changePassword';
+  static const String MyDocuments = '/myDocuments';
+  static const String ManageContactsList = '/manageContactsList';
+  static const String ManageContactsDetail = '/manageContactsDetail';
 }

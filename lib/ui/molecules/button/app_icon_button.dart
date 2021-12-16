@@ -23,15 +23,10 @@ class AppIconButton extends StatelessWidget {
       child: Container(
         height: height,
         decoration: BoxDecoration(
-            color: Theme.of(context).accentColor,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColor.veryLightGray2, width: 1),
-            boxShadow: [
-              BoxShadow(
-                  color: AppColor.veryDarkRed.withOpacity(0.1),
-                  offset: Offset(0, 1),
-                  blurRadius: 16)
-            ]),
+          color: Theme.of(context).accentColor,
+          borderRadius: BorderRadius.circular(100),
+          border: Border.all(color: AppColor.veryLightGray2, width: 1),
+        ),
         alignment: Alignment.center,
         child: AppSvg.asset(icon,
             color: Theme.of(context).primaryColorDark,

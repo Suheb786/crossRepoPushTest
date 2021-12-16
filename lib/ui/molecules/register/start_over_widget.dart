@@ -14,7 +14,8 @@ class StartOverWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
       decoration: BoxDecoration(
-          color: AppColor.vividYellow, borderRadius: BorderRadius.circular(16)),
+          color: AppColor.vividYellow,
+          borderRadius: BorderRadius.circular(16)),
       child: Column(
         children: [
           Text(
@@ -25,14 +26,14 @@ class StartOverWidget extends StatelessWidget {
                 fontFamily: 'Montserrat',
                 color: Theme.of(context).primaryColorDark),
           ),
-          SizedBox(
-            height: 24,
-          ),
+          // SizedBox(
+          //   height: 24,
+          // ),
           // Container(
           //   padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
           //   decoration: BoxDecoration(
           //       borderRadius: BorderRadius.circular(8),
-          //       border: Border.all(color: AppColor.vividYellow, width: 1)),
+          //       border: Border.all(color: AppColor.veryLightGray1, width: 1)),
           //   child: Row(
           //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
           //     children: [

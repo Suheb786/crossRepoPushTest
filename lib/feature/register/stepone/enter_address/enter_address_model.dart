@@ -1,3 +1,4 @@
+import 'package:domain/model/user/save_country_residence_info_response.dart';
 import 'package:domain/usecase/user/enter_address_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -61,10 +62,11 @@ class EnterAddressViewModel extends BasePageViewModel {
       PublishSubject();
 
   /// enter address response subject holder
-  PublishSubject<Resource<bool>> _enterAddressResponse = PublishSubject();
+  PublishSubject<Resource<SaveCountryResidenceInfoResponse>>
+      _enterAddressResponse = PublishSubject();
 
-  Stream<Resource<bool>> get enterAddressResponseStream =>
-      _enterAddressResponse.stream;
+  Stream<Resource<SaveCountryResidenceInfoResponse>>
+      get enterAddressResponseStream => _enterAddressResponse.stream;
 
   /// show button Subject holder
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -92,6 +94,7 @@ class EnterAddressViewModel extends BasePageViewModel {
               createCall: () => _enterAddressUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _enterAddressResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -103,7 +106,7 @@ class EnterAddressViewModel extends BasePageViewModel {
   void enterAddress() {
     _enterAddressRequest.safeAdd(EnterAddressUseCaseParams(
         residentCountry: residentCountryController.text,
-        district: districtController.text,
+        residentArea: districtController.text,
         city: cityController.text,
         streetAddress: streetAddressController.text,
         buildingNameOrNo: buildingNameOrNumberController.text,

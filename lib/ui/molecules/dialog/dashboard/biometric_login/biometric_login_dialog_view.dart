@@ -11,8 +11,9 @@ import 'package:neo_bank/utils/color_utils.dart';
 
 class BiometricLoginDialogView extends StatelessWidget {
   final Function? mayBeLater;
+  final Function? enableBioMetric;
 
-  const BiometricLoginDialogView({this.mayBeLater});
+  const BiometricLoginDialogView({this.mayBeLater, this.enableBioMetric});
 
   ProviderBase providerBase() {
     return biometricLoginViewModelProvider;
@@ -61,7 +62,9 @@ class BiometricLoginDialogView extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        enableBioMetric?.call();
+                      },
                       child: Container(
                         padding: EdgeInsets.all(18),
                         width: double.maxFinite,
@@ -80,10 +83,11 @@ class BiometricLoginDialogView extends StatelessWidget {
                           ],
                         ),
                         child: Center(
-                          child: Text(S.of(context).allowBiometric,
+                          child: Text(S.of(context).enable,
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
+                                  letterSpacing: 1,
                                   color: AppColor.white)),
                         ),
                       ),
@@ -99,6 +103,7 @@ class BiometricLoginDialogView extends StatelessWidget {
                             S.of(context).mayBeLater,
                             style: TextStyle(
                                 fontSize: 14,
+                                letterSpacing: 1,
                                 fontWeight: FontWeight.w600,
                                 color: AppColor.brightBlue),
                           ),

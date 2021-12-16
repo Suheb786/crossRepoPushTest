@@ -6,6 +6,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w9_address_details/fatca_us_relevant_w9_address_details_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -42,28 +43,29 @@ class FatcaUSRelevantW9AddressDetailsPageView
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
-                      ProviderScope.containerOf(context)
-                          .read(registerStepFourViewModelProvider)
-                          .registrationStepFourPageController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                      model.updateData(context);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope.containerOf(context)
+                            .read(registerStepFourViewModelProvider)
+                            .registrationStepFourPageController
+                            .next();
+                      });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
                   },
                   dataBuilder: (context, response) {
                     return GestureDetector(
-                      onHorizontalDragUpdate: (details) {
-                        if (details.primaryDelta!.isNegative) {
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity!.isNegative) {
                           model.validateFatcaUSRelevantW9AddressDetails();
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepFourViewModelProvider)
-                              .registrationStepFourPageController
-                              .previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFourViewModelProvider)
+                                .registrationStepFourPageController
+                                .previous();
+                          });
                         }
                       },
                       child: Card(
@@ -180,25 +182,25 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                         S.of(context).accountNumberOptional,
                                     hintText: S.of(context).pleaseEnter,
                                     controller: model.accountNumberController,
-                                    labelIcon: () {
-                                      return InkWell(
-                                        onTap: () async {},
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 5.0),
-                                          child: Container(
-                                              height: 14,
-                                              width: 14,
-                                              child: AppSvg.asset(
-                                                  AssetUtils.info,
-                                                  color: Theme.of(context)
-                                                      .inputDecorationTheme
-                                                      .focusedBorder!
-                                                      .borderSide
-                                                      .color)),
-                                        ),
-                                      );
-                                    },
+                                    // labelIcon: () {
+                                    //   return InkWell(
+                                    //     onTap: () async {},
+                                    //     child: Padding(
+                                    //       padding:
+                                    //           const EdgeInsets.only(left: 5.0),
+                                    //       child: Container(
+                                    //           height: 14,
+                                    //           width: 14,
+                                    //           child: AppSvg.asset(
+                                    //               AssetUtils.info,
+                                    //               color: Theme.of(context)
+                                    //                   .inputDecorationTheme
+                                    //                   .focusedBorder!
+                                    //                   .borderSide
+                                    //                   .color)),
+                                    //     ),
+                                    //   );
+                                    // },
                                     key: model.accountNumberKey,
                                     inputAction: TextInputAction.go,
                                     onChanged: (value) {
@@ -216,7 +218,10 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                         model.exemptPayeeCodeNumberController,
                                     labelIcon: () {
                                       return InkWell(
-                                        onTap: () async {},
+                                        onTap: () async {
+                                          Navigator.pushNamed(context,
+                                              RoutePaths.ExemptPayeeCode);
+                                        },
                                         child: Padding(
                                           padding:
                                               const EdgeInsets.only(left: 5.0),
@@ -429,8 +434,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                   ),
                                   Center(
                                     child: Padding(
-                                      padding:
-                                          EdgeInsets.only(top: 32, right: 45),
+                                      padding: EdgeInsets.only(top: 32),
                                       child: AppStreamBuilder<bool>(
                                           stream: model.allFieldValidatorStream,
                                           initialData: false,

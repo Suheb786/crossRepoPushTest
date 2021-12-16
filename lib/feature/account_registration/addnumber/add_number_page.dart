@@ -11,16 +11,13 @@ class AddNumberPage extends BasePage<AddNumberViewModel> {
 }
 
 class AddNumberPageState
-    extends BaseStatefulPage<AddNumberViewModel, AddNumberPage> {
+    extends BaseStatefulPage<AddNumberViewModel, AddNumberPage>
+    with AutomaticKeepAliveClientMixin {
+  AddNumberPageState() : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return addNumberViewModelProvider;
-  }
-
-  @override
-  void onModelReady(AddNumberViewModel model) {
-    super.onModelReady(model);
-    model.fetchCountryByCode(context, "JO");
   }
 
   @override
@@ -29,7 +26,16 @@ class AddNumberPageState
   }
 
   @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
   Widget buildView(BuildContext context, AddNumberViewModel model) {
     return AddNumberPageView(provideBase());
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

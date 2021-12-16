@@ -4,6 +4,7 @@ class AssetUtils {
 
   static const String svg = "assets/svg/";
   static const String drawable = "assets/drawable/";
+  static const String _animation = "assets/animation/";
 
   static const String check = svg + "check.svg";
   static const String info = svg + "info.svg";
@@ -55,6 +56,25 @@ class AssetUtils {
   static const String scanIcon = svg + "scan_icon.svg";
   static const String shieldIcon = svg + "shield_icon.svg";
   static const String transactionHistory = svg + "transaction_history.svg";
+  static const String right = svg + "right.svg";
+  static const String copy = svg + "copy.svg";
+  static const String welcomeIcon = svg + "welcome_icon.svg";
+  static const String lock = svg + "lock.svg";
+  static const String informationSave = svg + "information_saved.svg";
+  static const String swiggleHello = svg + "swiggle_hello.svg";
+  static const String marker_icon = svg + "marker.svg";
+  static const String flipButton = svg + "flip_button.svg";
+  static const String visaCard = svg + "visa_card.svg";
+  static const String bird = svg + "bird.svg";
+  static const String email = svg + "email.svg";
+  static const String biometric = svg + "biometric.svg";
+  static const String documents = svg + "documents.svg";
+  static const String emailSetting = svg + "email.svg";
+  static const String password = svg + "password.svg";
+  static const String termsCondition = svg + "terms_condition.svg";
+  static const String mobile = svg + "mobile.svg";
+  static const String dummy = svg + "dummy.svg";
+  static const String contacts = svg + "contacts.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -72,4 +92,12 @@ class AssetUtils {
   static const String contactLess = drawable + "contact_less.png";
   static const String cardLogo = drawable + "card_logo.png";
   static const String jordan_flag = drawable + "jordan_flag.png";
+  static const String blink = drawable + "blink.png";
+  static const String welcome = drawable + "welcome.png";
+  static const String line = drawable + "line.png";
+  static const String birdPng = drawable + "bird_png.png";
+  static const String dummyProfile = drawable + "dummy_profile.png";
+
+  /// Animations
+  static const String splashAnimation = _animation + "blink-splash.json";
 }

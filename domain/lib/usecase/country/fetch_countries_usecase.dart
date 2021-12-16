@@ -22,8 +22,9 @@ class FetchCountriesUseCase
 
 class FetchCountriesUseParams extends Params {
   final BuildContext context;
+  final bool? getToken;
 
-  FetchCountriesUseParams({required this.context});
+  FetchCountriesUseParams({required this.context, this.getToken: false});
 
   @override
   Either<AppError, bool> verify() {

@@ -9,7 +9,7 @@ import 'package:neo_bank/feature/registerselection/register_selection_page.dart'
 class OnBoardingPageView extends BasePageViewWidget<OnBoardingViewModel> {
   OnBoardingPageView(ProviderBase model) : super(model);
 
-  List<Widget> pages = [
+  final List<Widget> pages = [
     LoginPage(),
     RegisterSelectionPage(),
   ];

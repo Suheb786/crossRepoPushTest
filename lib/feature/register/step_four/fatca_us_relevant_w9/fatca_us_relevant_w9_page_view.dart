@@ -38,26 +38,29 @@ class FatcaUSRelevantW9PageView
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
-                      ProviderScope.containerOf(context)
-                          .read(registerStepFourViewModelProvider)
-                          .registrationStepFourPageController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                      model.updateData(context);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope.containerOf(context)
+                            .read(registerStepFourViewModelProvider)
+                            .registrationStepFourPageController
+                            .next();
+                      });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
                   },
                   dataBuilder: (context, response) {
                     return GestureDetector(
-                      onHorizontalDragUpdate: (details) {
-                        if (details.primaryDelta!.isNegative) {
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity!.isNegative) {
                           model.validateFatcaUSRelevantW9Details();
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepFourViewModelProvider)
-                              .registrationStepFourPageController
-                              .jumpToPage(0);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFourViewModelProvider)
+                                .registrationStepFourPageController
+                                .move(0);
+                          });
                         }
                       },
                       child: Card(
@@ -143,8 +146,7 @@ class FatcaUSRelevantW9PageView
                                 ),
                                 Center(
                                   child: Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 32, right: 45),
+                                    padding: EdgeInsets.only(top: 32),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.allFieldValidatorStream,
                                         initialData: false,

@@ -1,5 +1,10 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/account/account_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/account_registration/account_regisration_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/fatca_crs/fatca_crs_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/id_card/id_card_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
@@ -11,6 +16,7 @@ import 'package:neo_bank/feature/register/step_five/review_application/review_ap
 import 'package:neo_bank/feature/register/step_five/schedule_video_call/schedule_video_call_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/upload_documents/upload_documents_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/video_call_info/video_call_info_model.dart';
+import 'package:neo_bank/feature/register/step_four/fatca_signature/fatca_signature_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8/fatca_us_relevant_w8_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8_address_details/fatca_us_relevant_w8_address_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w9/fatca_us_relevant_w9_page_view_model.dart';
@@ -25,6 +31,7 @@ import 'package:neo_bank/feature/register/step_three/register_step_three_page_vi
 import 'package:neo_bank/feature/register/step_two/job_and_income/job_and_income_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_two/register_step_two_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_two/student_job_income/student_job_income_page_view_model.dart';
+import 'package:neo_bank/feature/register/stepone/capture/capture_model.dart';
 import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_model.dart';
 import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_model.dart';
 import 'package:neo_bank/feature/register/stepone/id_verification_info/id_verification_info_model.dart';
@@ -38,6 +45,7 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_inco
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/employment_status/employment_status_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/home_address_dialog/home_address_dialog_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/mobile_number_dialog/mobile_number_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/nature_special_needs/nature_special_needs_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/occupation/occupation_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_account_opening/purpose_of_account_opening_dialog_view_model.dart';
@@ -60,12 +68,22 @@ final registerStepOneViewModelProvider =
 final idVerificationInfoViewModelProvider =
     ChangeNotifierProvider.autoDispose<IdVerificationInfoViewModel>((ref) =>
         IdVerificationInfoViewModel(
-            ref.read(idVerificationInfoUseCaseProvider)));
+            ref.read(idVerificationInfoUseCaseProvider),
+            ref.read(scanUserDocumentUseCaseProvider),
+            ref.read(getAhwalDetailsUseCaseProvider)));
+
+///[CaptureViewModel] provider
+final captureViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CaptureViewModel>(
+        (ref) => CaptureViewModel(ref.read(uploadSelfieImageUseCaseProvider)));
 
 ///[ConfirmDetailViewModel] provider
 final confirmDetailViewModelProvider =
     ChangeNotifierProvider.autoDispose<ConfirmDetailViewModel>((ref) =>
-        ConfirmDetailViewModel(ref.read(confirmDetailUseCaseProvider)));
+        ConfirmDetailViewModel(
+            ref.read(confirmDetailUseCaseProvider),
+            ref.read(scanUserDocumentUseCaseProvider),
+            ref.read(getAhwalDetailsUseCaseProvider)));
 
 ///[EnterAddressViewModel] provider
 final enterAddressViewModelProvider =
@@ -87,7 +105,8 @@ final registerStepThreeViewModelProvider =
 ///job and income page view model provider
 final jobAndIncomePageViewModelProvider =
     ChangeNotifierProvider.autoDispose<JobAndIncomePageViewModel>(
-  (ref) => JobAndIncomePageViewModel(ref.read(jobAndIncomeUseCaseProvider)),
+  (ref) => JobAndIncomePageViewModel(ref.read(jobAndIncomeUseCaseProvider),
+      ref.read(getComboValuesUseCaseProvider)),
 );
 
 ///employment status dialog view model provider
@@ -109,7 +128,8 @@ final purposeOfAccountOpeningDialogViwModelProvider =
 ///get employer Country dialog view model provider
 final employerCountryDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<CountryDialogViewModel>((ref) =>
-        CountryDialogViewModel(ref.read(fetchCountriesUseCaseProvider)));
+        CountryDialogViewModel(ref.read(fetchCountriesUseCaseProvider),
+            ref.read(getCountriesListUseCaseProvider)));
 
 ///additional income source dialog view model provider
 final additionalIncomeSourceDialogViwModelProvider =
@@ -120,8 +140,9 @@ final additionalIncomeSourceDialogViwModelProvider =
 ///taxation details page view model provider
 final taxationDetailsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<TaxationDetailsPageViewModel>(
-  (ref) =>
-      TaxationDetailsPageViewModel(ref.read(taxationDetailsUseCaseProvider)),
+  (ref) => TaxationDetailsPageViewModel(
+      ref.read(setFatcaQuestionsResponseUseCaseProvider),
+      ref.read(getFatcaQuestionsUseCaseProvider)),
 );
 
 final areYouUSCitizenViewModelProvider =
@@ -225,7 +246,11 @@ final registerStepFourViewModelProvider =
 final reviewApplicationPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ReviewApplicationPageViewModel>(
   (ref) => ReviewApplicationPageViewModel(
-      ref.read(reviewApplicationUseCaseProvider)),
+      ref.read(reviewApplicationUseCaseProvider),
+      ref.read(checkVideoCallStatusUseCaseProvider),
+      ref.read(getAccountUseCaseProvider),
+      ref.read(createAccountUseCaseProvider),
+      ref.read(getConfirmApplicationDataUseCaseProvider)),
 );
 
 ///upload documents page
@@ -233,13 +258,16 @@ final uploadDocumentsPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<UploadDocumentsPageViewModel>(
   (ref) => UploadDocumentsPageViewModel(
       ref.read(sendDocumentsUseCaseUseCaseProvider),
-      ref.read(uploadDocumentUseCaseProvider)),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(checkOtherNationalityStatusUseCaseProvider),
+      ref.read(fileUploadUseCaseProvider),
+      ref.read(removeDebitLockUseCaseProvider)),
 );
 
 ///account ready page
 final accountReadyPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountReadyViewModel>(
-  (ref) => AccountReadyViewModel(ref.read(accountReadyUseCaseProvider)),
+  (ref) => AccountReadyViewModel(ref.read(getAccountDetailsUseCaseProvider)),
 );
 
 /// purpose of account opening  view model provider
@@ -323,9 +351,8 @@ final agentSelectionViewModelProvider =
 ///student income page
 final studentIncomePageViewModelProvider =
     ChangeNotifierProvider.autoDispose<StudentJobIncomePageViewModel>(
-  (ref) => StudentJobIncomePageViewModel(
-      ref.read(studentJobIncomeUseCaseProvider),
-      ref.read(uploadDocumentUseCaseProvider)),
+  (ref) =>
+      StudentJobIncomePageViewModel(ref.read(studentJobIncomeUseCaseProvider)),
 );
 
 ///state city dialog view model provider
@@ -347,3 +374,17 @@ final yearMonthDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<YearMonthDialogViewModel>(
   (ref) => YearMonthDialogViewModel(),
 );
+
+///fatca signaturepage view model provider
+final fatcaSignaturePageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<FatcaSignaturePageViewModel>(
+  (ref) => FatcaSignaturePageViewModel(
+      ref.read(uploadSignatureUseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(setFatcaQuestionsResponseUseCaseProvider)),
+);
+
+///mobile number dialog view model provider
+final mobileNumberDialogViwModelProvider =
+    ChangeNotifierProvider.autoDispose<MobileNumberDialogViewModel>(
+        (ref) => MobileNumberDialogViewModel());

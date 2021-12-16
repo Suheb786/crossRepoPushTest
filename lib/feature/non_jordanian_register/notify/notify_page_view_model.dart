@@ -1,4 +1,5 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/user/register_interest/register_interest_response.dart';
 import 'package:domain/usecase/notify/notify_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -20,10 +21,12 @@ class NotifyPageViewModel extends BasePageViewModel {
   PublishSubject<NotifyUseCaseParams> _notifyRequest = PublishSubject();
 
   ///notify response holder
-  PublishSubject<Resource<bool>> _notifyResponse = PublishSubject();
+  PublishSubject<Resource<RegisterInterestResponse>> _notifyResponse =
+      PublishSubject();
 
   ///notify request stream
-  Stream<Resource<bool>> get notifyStream => _notifyResponse.stream;
+  Stream<Resource<RegisterInterestResponse>> get notifyStream =>
+      _notifyResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -45,13 +48,15 @@ class NotifyPageViewModel extends BasePageViewModel {
     });
   }
 
-  void getError(Resource<bool> event) {
+  void getError(Resource<RegisterInterestResponse> event) {
     switch (event.appError!.type) {
       case ErrorType.EMPTY_EMAIL:
         emailKey.currentState!.isValid = false;
         break;
       case ErrorType.INVALID_EMAIL:
         emailKey.currentState!.isValid = false;
+        break;
+      default:
         break;
     }
   }

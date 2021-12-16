@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/calendar_enum.dart';
+import 'package:domain/model/account/save_customer_schedule_time_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -39,31 +40,34 @@ class ScheduleVideoCallPageView
                 duration: Duration(milliseconds: 100),
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
-                child: AppStreamBuilder<Resource<bool>>(
+                child: AppStreamBuilder<
+                    Resource<SaveCustomerScheduleTimeResponse>>(
                   stream: model.scheduleVideoCallStream,
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
-                      ProviderScope.containerOf(context)
-                          .read(registerStepFiveViewModelProvider)
-                          .registrationStepFivePageController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope.containerOf(context)
+                            .read(registerStepFiveViewModelProvider)
+                            .registrationStepFivePageController
+                            .next();
+                      });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
                   },
                   dataBuilder: (context, response) {
                     return GestureDetector(
-                      onHorizontalDragUpdate: (details) {
-                        if (details.primaryDelta!.isNegative) {
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity!.isNegative) {
                           model.validateScheduleVideoCallDetails();
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepFiveViewModelProvider)
-                              .registrationStepFivePageController
-                              .jumpToPage(1);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope.containerOf(context)
+                                .read(registerStepFiveViewModelProvider)
+                                .registrationStepFivePageController
+                                .move(1);
+                          });
                         }
                       },
                       child: Card(
@@ -173,7 +177,7 @@ class ScheduleVideoCallPageView
                                 ),
                                 Center(
                                   child: Padding(
-                                    padding: EdgeInsets.only(right: 45),
+                                    padding: EdgeInsets.only(top: 8),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.allFieldValidatorStream,
                                         initialData: false,

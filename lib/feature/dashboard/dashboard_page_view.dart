@@ -1,5 +1,7 @@
-import 'package:animated_widgets/widgets/rotation_animated.dart';
-import 'package:animated_widgets/widgets/shake_animated_widget.dart';
+import 'dart:io';
+
+import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
+import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,156 +10,198 @@ import 'package:neo_bank/feature/dashboard/dashboard_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric_login_dialog.dart';
 import 'package:neo_bank/ui/molecules/information_text.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 
 class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
   DashboardPageView(ProviderBase model) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 50),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Align(
-            alignment: Alignment.centerRight,
-            child: InkWell(
-              onTap: () {},
-              child: AppSvg.asset(AssetUtils.menuIcon,
-                  color: Theme.of(context).accentColor),
-            ),
-          ),
-          SizedBox(
-            height: 25,
-          ),
-          Expanded(
-            child: ShakeAnimatedWidget(
-              enabled: false,
-              duration: Duration(milliseconds: 100),
-              shakeAngle: Rotation.deg(z: 1),
-              curve: Curves.easeInOutSine,
-              child: GestureDetector(
-                onHorizontalDragUpdate: (details) {},
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  elevation: 2,
-                  color: Theme.of(context)
-                      .cardTheme
-                      .copyWith(color: AppColor.white)
-                      .color,
-                  margin: EdgeInsets.zero,
-                  shadowColor: AppColor.black.withOpacity(0.32),
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: 24, right: 24, bottom: 32, top: 32),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              AppSvg.asset(AssetUtils.loader,color: AppColor.dark_gray),
-                              SizedBox(
-                                width: 8,
-                              ),
-                              Text(
-                                S.of(context).welcome,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                    color: AppColor.dark_gray),
-                              )
-                            ],
-                          ),
-                          SizedBox(
-                            height: 48,
-                          ),
-                          Text(
-                            S.of(context).successfullyCreatedLoginAccount,
-                            style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w400,
-                                color: AppColor.dark_gray_1),
-                          ),
-                          SizedBox(
-                            height: 32,
-                          ),
-                          InformationText(
-                              image: AssetUtils.shieldIcon,
-                              title: S.of(context).saveEarningsDigitally),
-                          SizedBox(
-                            height: 24,
-                          ),
-                          InformationText(
-                              image: AssetUtils.transactionHistory,
-                              title: S.of(context).sendMoneyToFriendAndFamily),
-                          SizedBox(
-                            height: 42,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.pushReplacementNamed(
-                                  context, RoutePaths.Registration);
-                            },
-                            child: Container(
-                              padding: EdgeInsets.all(18),
-                              width: double.maxFinite,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(8),
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color!,
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: AppColor.black.withOpacity(0.32),
-                                      blurRadius: 12,
-                                      spreadRadius: -4,
-                                      offset: Offset(0, 12)),
-                                ],
-                              ),
-                              child: Center(
-                                child: Text(S.of(context).openAccountNow,
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600,
-                                        color: AppColor.white)),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+    return GestureDetector(
+      onHorizontalDragUpdate: (details) {
+        if (details.primaryDelta!.isNegative) {
+          Navigator.pushReplacementNamed(context, RoutePaths.Registration);
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 24),
+        child: SingleChildScrollView(
+          physics: ClampingScrollPhysics(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: AppSvg.asset(AssetUtils.swiggleHello),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: Text(
+                      S.of(context).successfullyCreatedLoginAccount,
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
-                ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                    child: InformationText(
+                      image: AssetUtils.informationSave,
+                      title: S.of(context).informationSave,
+                      containerColor: Theme.of(context).accentColor,
+                      textColor: Theme.of(context).accentColor,
+                    ),
+                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  //   child: InformationText(
+                  //     image: AssetUtils.lock,
+                  //     title: S.of(context).saveEarningsDigitally,
+                  //     containerColor: Theme.of(context).accentColor,
+                  //     textColor: Theme.of(context).accentColor,
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 16,
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  //   child: InformationText(
+                  //     image: AssetUtils.transactionHistory,
+                  //     containerColor: Theme.of(context).accentColor,
+                  //     title: S.of(context).sendMoneyToFriendAndFamily,
+                  //     textColor: Theme.of(context).accentColor,
+                  //   ),
+                  // ),
+                  SizedBox(
+                    height: 92,
+                  ),
+                  Center(
+                    child: AnimatedButton(
+                      buttonText: S.of(context).swipeToProceed,
+                      borderColor: Theme.of(context).accentColor,
+                      textColor: Theme.of(context).accentColor,
+                    ),
+                  ),
+                  AppStreamBuilder<Resource<bool>>(
+                    stream: model.enableBiometricStream,
+                    initialData: Resource.none(),
+                    onData: (data) {
+                      if (data.status == Status.SUCCESS) {}
+                    },
+                    dataBuilder: (context, bioMetricResponse) {
+                      return AppStreamBuilder<
+                          Resource<GenerateKeyPairResponse>>(
+                        stream: model.generateKeyPairStream,
+                        initialData: Resource.none(),
+                        onData: (data) {
+                          if (data.status == Status.SUCCESS) {
+                            print('success');
+                            model.enableBiometric();
+                          }
+                        },
+                        dataBuilder: (context, keyPair) {
+                          return AppStreamBuilder<Resource<bool>>(
+                            stream: model.authenticateBioMetricStream,
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
+                                print('authenticated success');
+                                model.generateKeyPair();
+                              }
+                            },
+                            initialData: Resource.none(),
+                            dataBuilder: (context, data) =>
+                                AppStreamBuilder<Resource<bool>>(
+                              stream: model.checkBioMetricStream,
+                              initialData: Resource.none(),
+                              onData: (data) {
+                                if (data.status == Status.SUCCESS) {
+                                  if (data.data ?? false) {
+                                    BiometricLoginDialog.show(context,
+                                        mayBeLater: () {
+                                      Navigator.pop(context);
+                                    }, enableBioMetric: () {
+                                      model.authenticateBioMetric(
+                                          title: S
+                                              .of(context)
+                                              .enableBiometricLoginTitle,
+                                          localisedReason: Platform.isAndroid
+                                              ? S
+                                                  .of(context)
+                                                  .enableBiometricLoginDescriptionAndroid
+                                              : S
+                                                  .of(context)
+                                                  .enableBiometricLoginDescriptionIos);
+                                    });
+                                  }
+                                }
+                              },
+                              dataBuilder: (context, data) {
+                                return Container();
+                              },
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  )
+                ],
               ),
-            ),
-          ),
-          SizedBox(
-            height: 32,
-          ),
-          Center(
-            child: InkWell(
-              onTap: () {
-                Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    RoutePaths.OnBoarding,
-                    ModalRoute.withName(RoutePaths.Splash));
-              },
-              child: Text(
-                S.of(context).logoutAndContinueLater,
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Theme.of(context).accentColor),
+              SizedBox(
+                height: 76,
               ),
-            ),
-          )
-        ],
+              AppStreamBuilder<Resource<LogoutResponse>>(
+                stream: model.logoutStream,
+                initialData: Resource.none(),
+                onData: (response) {
+                  if (response.status == Status.SUCCESS) {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RoutePaths.OnBoarding,
+                        ModalRoute.withName(RoutePaths.Splash));
+                  }
+                },
+                dataBuilder: (context, data) {
+                  return Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 36.0),
+                      child: InkWell(
+                        onTap: () {
+                          model.logout();
+                        },
+                        child: Text(
+                          S.of(context).logoutAndContinueLater,
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1,
+                              color: Theme.of(context).accentColor),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              )
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -1,19 +1,24 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
-import 'package:domain/error/local_error.dart';
+import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/user/user.dart';
+import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class LoginUseCase extends BaseUseCase<LocalError, LoginUseCaseParams, bool> {
-  LoginUseCase();
+class LoginUseCase extends BaseUseCase<NetworkError, LoginUseCaseParams, User> {
+  final UserRepository _repository;
+
+  LoginUseCase(this._repository);
 
   @override
-  Future<Either<LocalError, bool>> execute(
+  Future<Either<NetworkError, User>> execute(
       {required LoginUseCaseParams params}) {
-    return Future.value(Right(true));
+    return _repository.loginUser(
+        email: params.email, password: params.password);
   }
 }
 

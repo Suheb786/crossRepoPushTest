@@ -13,7 +13,10 @@ class FatcaUSW9TaxPayersDetailsPage
 }
 
 class FatcaUSW9TaxPayersDetailsPageState extends BaseStatefulPage<
-    FatcaUSW9TaxPayersDetailsPageViewModel, FatcaUSW9TaxPayersDetailsPage> {
+    FatcaUSW9TaxPayersDetailsPageViewModel,
+    FatcaUSW9TaxPayersDetailsPage> with AutomaticKeepAliveClientMixin {
+  FatcaUSW9TaxPayersDetailsPageState() : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return fatcaUSW9TaxPayerDetailsPageViewModelProvider;
@@ -29,4 +32,13 @@ class FatcaUSW9TaxPayersDetailsPageState extends BaseStatefulPage<
       BuildContext context, FatcaUSW9TaxPayersDetailsPageViewModel model) {
     return FatcaUSW9TaxPayersDetailsPageView(provideBase());
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

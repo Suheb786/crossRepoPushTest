@@ -20,7 +20,7 @@ class NotifyMeWidget extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
         decoration: BoxDecoration(
-            border: Border.all(color: AppColor.veryLightGray1),
+            color: Theme.of(context).accentColor,
             borderRadius: BorderRadius.circular(16)),
         child: Column(
           children: [
@@ -34,7 +34,8 @@ class NotifyMeWidget extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 16, vertical: 17),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
+                  color: Theme.of(context).accentTextTheme.bodyText1?.color,
+                  borderRadius: BorderRadius.circular(100),
                   border: Border.all(color: AppColor.veryLightGray1, width: 1)),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,15 +43,15 @@ class NotifyMeWidget extends StatelessWidget {
                   Text(
                     labelText!,
                     style: TextStyle(
-                        fontSize: 12,
+                        fontSize: 14,
                         fontWeight: FontWeight.w600,
-                        color: AppColor.brightBlue),
+                        color: Theme.of(context).accentColor),
                   ),
                   Container(
                       height: 16,
                       width: 16,
                       child: AppSvg.asset(AssetUtils.message,
-                          color: AppColor.brightBlue))
+                          color: Theme.of(context).accentColor))
                 ],
               ),
             )

@@ -46,12 +46,14 @@ class AppTextField extends StatefulWidget {
   final Color? textColor;
   final Color? labelColor;
   final double suffixIconSize;
+  final Color? color;
 
   AppTextField(
       {this.height,
       this.width,
       this.child,
       this.onPressed,
+      this.color = AppColor.white,
       this.controller,
       this.inputAction: TextInputAction.done,
       this.inputType,
@@ -140,6 +142,7 @@ class AppTextFieldState extends State<AppTextField> {
               Container(
                 padding: EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
+                    color: widget.color,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
                         width: 1,
@@ -169,15 +172,15 @@ class AppTextFieldState extends State<AppTextField> {
                       text: TextSpan(children: [
                         TextSpan(
                             text: widget.labelText,
-                            style: DefaultTextStyle.of(context).style.copyWith(
-                                  color: widget.labelColor ??
-                                      Theme.of(context)
-                                          .inputDecorationTheme
-                                          .labelStyle!
-                                          .color,
-                                  fontSize: 10,
-                                  fontFamily: "Montserrat",
-                                )),
+                            style: TextStyle(
+                              color: widget.labelColor ??
+                                  Theme.of(context)
+                                      .inputDecorationTheme
+                                      .labelStyle!
+                                      .color,
+                              fontSize: 10,
+                              fontFamily: "Montserrat",
+                            )),
                         WidgetSpan(
                             child: widget.labelIcon?.call() ?? Container())
                       ]),
@@ -187,7 +190,8 @@ class AppTextFieldState extends State<AppTextField> {
                       maxLength: widget.maxLength,
                       textAlign: widget.textAlign,
                       style: TextStyle(
-                        // color: widget.textColor ?? AppColor.very_light_gray,
+                        color: widget.textColor ??
+                            Theme.of(context).primaryColorDark,
                         fontSize: widget.fontSize,
                         fontWeight: FontWeight.w600,
                       ),
@@ -234,7 +238,7 @@ class AppTextFieldState extends State<AppTextField> {
                       controller: widget.controller,
                       validator: this.widget.validator,
                       onSaved: this.widget.onSaved,
-                      onTap: this.widget.onPressed,
+                      onTap: () => this.widget.onPressed?.call(),
                       onFieldSubmitted: this.widget.onFieldSubmitted,
                       onChanged: (value) {
                         setState(() {});

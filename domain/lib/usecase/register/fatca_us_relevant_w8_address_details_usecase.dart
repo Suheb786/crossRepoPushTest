@@ -21,13 +21,25 @@ class FatcaUSRelevantW8AddressDetailsUseCaseParams extends Params {
   final String? state;
   final String? city;
   final String? postCode;
+  final bool isMailingAddressDifferent;
+  final String? differentAddress;
+  final String? differentCountry;
+  final String? differentState;
+  final String? differentCity;
+  final String? differentPostCode;
 
   FatcaUSRelevantW8AddressDetailsUseCaseParams(
       {this.permanentAddress,
       this.city,
       this.country,
       this.postCode,
-      this.state});
+      this.state,
+      this.differentAddress,
+      this.differentCity,
+      this.differentCountry,
+      this.differentPostCode,
+      this.differentState,
+      required this.isMailingAddressDifferent});
 
   @override
   Either<AppError, bool> verify() {
@@ -56,6 +68,33 @@ class FatcaUSRelevantW8AddressDetailsUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_POSTCODE,
           cause: Exception()));
+    } else if (isMailingAddressDifferent) {
+      if (differentAddress!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.DIFFERENT_ADDRESS_LINE,
+            cause: Exception()));
+      } else if (differentCountry!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.DIFFERENT_COUNTRY,
+            cause: Exception()));
+      } else if (differentState!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.DIFFERENT_STATE,
+            cause: Exception()));
+      } else if (differentCity!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.DIFFERENT_CITY,
+            cause: Exception()));
+      } else if (differentPostCode!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.DIFFERENT_POSTCODE,
+            cause: Exception()));
+      }
     }
     return Right(true);
   }

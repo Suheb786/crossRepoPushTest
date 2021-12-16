@@ -11,10 +11,19 @@ class CreatePasswordPage extends BasePage<CreatePasswordViewModel> {
 }
 
 class CreatePasswordPageState
-    extends BaseStatefulPage<CreatePasswordViewModel, CreatePasswordPage> {
+    extends BaseStatefulPage<CreatePasswordViewModel, CreatePasswordPage>
+    with AutomaticKeepAliveClientMixin {
+  CreatePasswordPageState() : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return createPasswordViewModelProvider;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
   }
 
   @override
@@ -26,4 +35,7 @@ class CreatePasswordPageState
   Widget buildView(BuildContext context, CreatePasswordViewModel model) {
     return CreatePasswordView(provideBase());
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
