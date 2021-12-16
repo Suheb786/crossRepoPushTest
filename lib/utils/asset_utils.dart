@@ -74,6 +74,7 @@ class AssetUtils {
   static const String termsCondition = svg + "terms_condition.svg";
   static const String mobile = svg + "mobile.svg";
   static const String dummy = svg + "dummy.svg";
+  static const String contacts = svg + "contacts.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
