@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
+import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
@@ -70,6 +71,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => TermsAndConditionPage(),
             settings: RouteSettings(name: RoutePaths.TermsAndCondition));
+
+      case RoutePaths.AppHome:
+        return CupertinoPageRoute(
+            builder: (context) => AppHomePage(),
+            settings: RouteSettings(name: RoutePaths.AppHome));
 
       default:
         return CupertinoPageRoute(

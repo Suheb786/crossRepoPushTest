@@ -445,5 +445,8 @@
   "cvv": "CVV",
   "sendMoney": "Send Money",
   "requestMoney": "Request money",
-  "addSendContact": "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money"
+  "addSendContact": "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money",
+  "bornBlink": "Born blink.\nBe blink.",
+  "spendJod": "Spend 1 JOD and stand a chance\nto win 1,000 JOD daily.",
+  "findOutMore": "Find out more"
 }

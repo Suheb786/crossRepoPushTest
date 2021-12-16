@@ -13,9 +13,8 @@ import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_
 import 'package:neo_bank/feature/dashboard_home/home/home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/credit_card_detail/credit_card_detail_dialog_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric_login_dialog_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/debit_card_detail/debit_card_detail_dialog_view_model.dart';
 
 final dashboardViewModelProvider =
     ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
@@ -27,19 +26,14 @@ final biometricLoginViewModelProvider =
   (ref) => BiometricLoginDialogViewModel(),
 );
 
-final debitCardDetailDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DebitCardDetailDialogViewModel>(
-  (ref) => DebitCardDetailDialogViewModel(),
-);
-
-final creditCardDetailDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreditCardDetailDialogViewModel>(
-  (ref) => CreditCardDetailDialogViewModel(),
-);
-
 final getCreditCardViewModelProvider =
     ChangeNotifierProvider.autoDispose<GetCreditCardViewModel>(
   (ref) => GetCreditCardViewModel(ref.read(getCardUseCaseProvider)),
+);
+
+final placeholderViewModelProvider =
+    ChangeNotifierProvider.autoDispose<PlaceholderViewModel>(
+  (ref) => PlaceholderViewModel(ref.read(placeholderUseCaseProvider)),
 );
 
 final appHomeViewModelProvider =

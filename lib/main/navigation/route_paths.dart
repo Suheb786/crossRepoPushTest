@@ -11,4 +11,5 @@ class RoutePaths {
   static const String NonJordanianRegister = '/nonJordanianRegister';
   static const String Dashboard = '/dashboard';
   static const String TermsAndCondition = '/termsAndCondition';
+  static const String AppHome = "/appHome";
 }

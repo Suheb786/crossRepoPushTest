@@ -4360,6 +4360,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Born blink.\nBe blink.`
+  String get bornBlink {
+    return Intl.message(
+      'Born blink.\nBe blink.',
+      name: 'bornBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spend 1 JOD and stand a chance\nto win 1,000 JOD daily.`
+  String get spendJod {
+    return Intl.message(
+      'Spend 1 JOD and stand a chance\nto win 1,000 JOD daily.',
+      name: 'spendJod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Find out more`
+  String get findOutMore {
+    return Intl.message(
+      'Find out more',
+      name: 'findOutMore',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
