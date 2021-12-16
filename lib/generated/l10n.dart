@@ -4361,151 +4361,31 @@ class S {
     );
   }
 
-  /// `Ways you can add\nmoney into your account`
-  String get waysYocCanAddMoneyToAccount {
+  /// `Born blink.\nBe blink.`
+  String get bornBlink {
     return Intl.message(
-      'Ways you can add\nmoney into your account',
-      name: 'waysYocCanAddMoneyToAccount',
+      'Born blink.\nBe blink.',
+      name: 'bornBlink',
       desc: '',
       args: [],
     );
   }
 
-  /// `Request money from other banks`
-  String get requestMoneyFromOtherBank {
+  /// `Spend 1 JOD and stand a chance\nto win 1,000 JOD daily.`
+  String get spendJod {
     return Intl.message(
-      'Request money from other banks',
-      name: 'requestMoneyFromOtherBank',
+      'Spend 1 JOD and stand a chance\nto win 1,000 JOD daily.',
+      name: 'spendJod',
       desc: '',
       args: [],
     );
   }
 
-  /// `If you have money from other banks, you can easily send money request to move it into your blink account.`
-  String get requestMoneyFromOtherBankDesc {
+  /// `Find out more`
+  String get findOutMore {
     return Intl.message(
-      'If you have money from other banks, you can easily send money request to move it into your blink account.',
-      name: 'requestMoneyFromOtherBankDesc',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Receive money from others`
-  String get receiveMoneyFromOthers {
-    return Intl.message(
-      'Receive money from others',
-      name: 'receiveMoneyFromOthers',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Share your account details to your friends and family, let them know you are on blink!`
-  String get receiveMoneyFromOthersDesc {
-    return Intl.message(
-      'Share your account details to your friends and family, let them know you are on blink!',
-      name: 'receiveMoneyFromOthersDesc',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Deposit via ATM`
-  String get depositViaATM {
-    return Intl.message(
-      'Deposit via ATM',
-      name: 'depositViaATM',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Don’t worry, you can deposit cash into the account with or without your card. Just locate nearest Capital Bank ATM.`
-  String get depositViaATMDesc {
-    return Intl.message(
-      'Don’t worry, you can deposit cash into the account with or without your card. Just locate nearest Capital Bank ATM.',
-      name: 'depositViaATMDesc',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Share account info`
-  String get shareAccountInfo {
-    return Intl.message(
-      'Share account info',
-      name: 'shareAccountInfo',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Locate ATM`
-  String get locateATM {
-    return Intl.message(
-      'Locate ATM',
-      name: 'locateATM',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Get My Credit Card`
-  String get getMyCreditCard {
-    return Intl.message(
-      'Get My Credit Card',
-      name: 'getMyCreditCard',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `or`
-  String get or {
-    return Intl.message(
-      'or',
-      name: 'or',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Swipe to view list`
-  String get swipeToViewList {
-    return Intl.message(
-      'Swipe to view list',
-      name: 'swipeToViewList',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Swipe to view map`
-  String get swipeToViewMap {
-    return Intl.message(
-      'Swipe to view map',
-      name: 'swipeToViewMap',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Get Directions`
-  String get getDirections {
-    return Intl.message(
-      'Get Directions',
-      name: 'getDirections',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Drag & move the map to adjust the location`
-  String get dragMap {
-    return Intl.message(
-      'Drag & move the map to adjust the location',
-      name: 'dragMap',
+      'Find out more',
+      name: 'findOutMore',
       desc: '',
       args: [],
     );

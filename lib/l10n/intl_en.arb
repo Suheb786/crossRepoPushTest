@@ -460,6 +460,8 @@
   "swipeToViewList": "Swipe to view list",
   "swipeToViewMap": "Swipe to view map",
   "getDirections": "Get Directions",
-  "dragMap": "Drag & move the map to adjust the location"
-
+  "dragMap": "Drag & move the map to adjust the location",
+  "bornBlink": "Born blink.\nBe blink.",
+  "spendJod": "Spend 1 JOD and stand a chance\nto win 1,000 JOD daily.",
+  "findOutMore": "Find out more"
 }

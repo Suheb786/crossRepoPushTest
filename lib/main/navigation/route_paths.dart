@@ -13,4 +13,5 @@ class RoutePaths {
   static const String TermsAndCondition = '/termsAndCondition';
   static const String AddMoneyOptionSelector = '/addMoneyOptionSelector';
   static const String LocateATM = '/locateATM';
+  static const String AppHome = "/appHome";
 }
