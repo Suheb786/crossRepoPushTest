@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/payment/request_money/request_money_view_model.dart';
+import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -233,7 +234,13 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                                   fontWeight: FontWeight.w400, fontSize: 28),
                             ),
                             InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              RequestPaymentFromNewRecipientPage()));
+                                },
                                 child: AppSvg.asset(AssetUtils.next))
                           ],
                         ),

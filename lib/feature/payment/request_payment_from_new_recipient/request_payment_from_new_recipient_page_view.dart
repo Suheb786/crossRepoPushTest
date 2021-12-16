@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/payment/enter_otp/enter_otp_page.dart';
+import 'package:neo_bank/feature/payment/request_from_new_recipient/request_from_new_recipient_page.dart';
 import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_view_model.dart';
-import 'package:neo_bank/feature/payment/send_to_new_recipient/send_to_new_recipient_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -16,7 +16,7 @@ class RequestPaymentFromNewRecipientPageView
     extends BasePageViewWidget<RequestPaymentFromNewRecipientViewModel> {
   RequestPaymentFromNewRecipientPageView(ProviderBase model) : super(model);
 
-  final pages = [SendToNewRecipientPage(), EnterOtpPage()];
+  final pages = [RequestFromNewRecipientPage(), EnterOtpPage()];
 
   @override
   Widget build(BuildContext context, model) {
@@ -46,9 +46,9 @@ class RequestPaymentFromNewRecipientPageView
                         spacing: EdgeInsets.symmetric(horizontal: 1),
                         activeShape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
-                        activeColor: Theme.of(context).accentColor,
+                        activeColor: Theme.of(context).primaryColorDark,
                         color: Theme.of(context)
-                            .primaryColorLight
+                            .primaryColorDark
                             .withOpacity(0.3)),
                   ),
                 ),
@@ -66,10 +66,8 @@ class RequestPaymentFromNewRecipientPageView
                         Column(
                           children: [
                             Text(
-                              S.of(context).sending,
-                              style: TextStyle(
-                                  color: Theme.of(context).accentColor,
-                                  fontSize: 20),
+                              S.of(context).requesting,
+                              style: TextStyle(fontSize: 20),
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 6),
@@ -79,7 +77,6 @@ class RequestPaymentFromNewRecipientPageView
                                   Text(
                                     "350.0",
                                     style: TextStyle(
-                                        color: Theme.of(context).accentColor,
                                         fontSize: 28,
                                         fontWeight: FontWeight.w700),
                                   ),
@@ -88,7 +85,7 @@ class RequestPaymentFromNewRecipientPageView
                                     child: Text(
                                       "JOD",
                                       style: TextStyle(
-                                          color: AppColor.very_light_red,
+                                          color: AppColor.very_dark_gray1,
                                           fontSize: 14,
                                           fontWeight: FontWeight.w700),
                                     ),
@@ -103,7 +100,7 @@ class RequestPaymentFromNewRecipientPageView
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 12,
-                                    color: AppColor.very_light_red),
+                                    color: AppColor.very_dark_gray1),
                               ),
                             )
                           ],

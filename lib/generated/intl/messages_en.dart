@@ -633,6 +633,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestedFrom": MessageLookupByLibrary.simpleMessage("Requested from"),
         "requesterName":
             MessageLookupByLibrary.simpleMessage("requester’s name"),
+        "requesting": MessageLookupByLibrary.simpleMessage("Requesting"),
         "resendIn": m1,
         "residentCountry":
             MessageLookupByLibrary.simpleMessage("RESIDENT COUNTRY"),

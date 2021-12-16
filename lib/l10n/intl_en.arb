@@ -470,5 +470,6 @@
   "ibanOrMobile": "IBAN / Mobile No.",
   "selectPurpose": "Select purpose",
   "addRecipientToContact": "Add this receipient to your blink contacts",
-  "enterCode": "Enter the 6-digit code sent to  \n+962 79 322 8080"
+  "enterCode": "Enter the 6-digit code sent to  \n+962 79 322 8080",
+  "requesting": "Requesting"
 }

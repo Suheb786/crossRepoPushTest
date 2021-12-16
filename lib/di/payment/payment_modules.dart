@@ -6,6 +6,7 @@ import 'package:neo_bank/feature/payment/enter_otp/enter_otp_view_model.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.dart';
 import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_view_model.dart';
+import 'package:neo_bank/feature/payment/request_from_new_recipient/request_from_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/request_money/request_money_view_model.dart';
 import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_view_model.dart';
 import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_view_model.dart';
@@ -77,6 +78,12 @@ final sendToNewRecipientViewModelProvider =
 final enterOtpViewModelProvider =
     ChangeNotifierProvider.autoDispose<EnterOtpViewModel>(
   (ref) => EnterOtpViewModel(ref.read(enterOtpUseCaseProvider)),
+);
+
+final requestFromNewRecipientViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RequestFromNewRecipientViewModel>(
+  (ref) => RequestFromNewRecipientViewModel(
+      ref.read(requestFromNewRecipientUseCaseProvider)),
 );
 
 final paymentToNewRecipientViewModelProvider =
