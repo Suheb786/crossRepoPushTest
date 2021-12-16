@@ -20,6 +20,9 @@ import 'package:data/entity/remote/bank_smart/get_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
+import 'package:data/entity/remote/card/card_issuance_request.dart';
+import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
+import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
@@ -72,10 +75,9 @@ import 'package:data/entity/remote/user/save_residence_information_request.dart'
 import 'package:data/entity/remote/user/save_selfie_image_request.dart';
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
+import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-
-import 'network_properties.dart';
 
 part 'api_service.g.dart';
 
@@ -283,4 +285,16 @@ abstract class ApiService {
   @POST("/AdditionalFieldsResp/getcombovalues")
   Future<HttpResponse<GetComboValuesResponseEntity>> getComboValues(
       @Body() GetComboValuesRequestEntity getComboValuesRequestEntity);
+
+  @POST("/CardTracking/CardIssuance")
+  Future<HttpResponse<CardIssuanceResponseEntity>> getCardIssuanceDetails(
+      @Body() CardIssuanceRequest request);
+
+  @POST("/CardTracking/SetCardPin")
+  Future<HttpResponse<ResponseEntity>> setCardPin(
+      @Body() SetCardPinRequest setCardPinRequest);
+
+  @POST("/CardTracking/ConfirmDelivery")
+  Future<HttpResponse<ResponseEntity>> confirmCardDelivery(
+      @Body() CardIssuanceRequest cardIssuanceRequest);
 }

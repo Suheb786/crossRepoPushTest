@@ -49,7 +49,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.5.0"
+    version: "2.6.1"
   blinkid_flutter:
     dependency: transitive
     description:
@@ -274,6 +274,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_3des:
+    dependency: "direct main"
+    description:
+      name: flutter_3des
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
   flutter_countdown_timer:
     dependency: "direct main"
     description:
@@ -636,7 +643,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.0"
+    version: "1.8.1"
   sqflite:
     dependency: transitive
     description:
@@ -679,6 +686,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.7.1"
+  steel_crypt:
+    dependency: "direct main"
+    description:
+      name: steel_crypt
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0+1"
   stream_channel:
     dependency: transitive
     description:
@@ -727,7 +741,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.2.19"
+    version: "0.3.0"
   top_snackbar_flutter:
     dependency: "direct main"
     description:

@@ -11,19 +11,10 @@ class ConfirmPinPage extends BasePage<ConfirmPinPageViewModel> {
 }
 
 class ConfirmPinPageState
-    extends BaseStatefulPage<ConfirmPinPageViewModel, ConfirmPinPage>
-    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  ConfirmPinPageState() : super(subscribeVisibilityEvents: true);
-
+    extends BaseStatefulPage<ConfirmPinPageViewModel, ConfirmPinPage> {
   @override
   ProviderBase provideBase() {
     return confirmPinViewModelProvider;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return stateBuild(context);
   }
 
   @override
@@ -35,7 +26,4 @@ class ConfirmPinPageState
   Widget buildView(BuildContext context, ConfirmPinPageViewModel model) {
     return ConfirmPinPageView(provideBase());
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

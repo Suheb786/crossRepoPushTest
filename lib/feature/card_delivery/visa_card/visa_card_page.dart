@@ -12,18 +12,10 @@ class VisaCardPage extends BasePage<VisaCardPageViewModel> {
 
 class VisaCardPageState
     extends BaseStatefulPage<VisaCardPageViewModel, VisaCardPage>
-    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  VisaCardPageState() : super(subscribeVisibilityEvents: true);
-
+    with TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return visaCardViewModelProvider;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return stateBuild(context);
   }
 
   @override
@@ -35,7 +27,4 @@ class VisaCardPageState
   Widget buildView(BuildContext context, VisaCardPageViewModel model) {
     return VisaCardPageView(provideBase());
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
