@@ -521,5 +521,19 @@
   "biometricLoginActivated": "Biometric login is successfully activated",
   "proofOfIncomeDescSetting": "If you have a salary, upload either your job certificate or salary slip",
   "proofOfAddressDescSetting": "To confirm your address, upload your latest utility bills",
-  "invalidIDCard": "ID Card is not valid. Please scan JORDANIAN ID Card."
+  "invalidIDCard": "ID Card is not valid. Please scan JORDANIAN ID Card.",
+  "manageContacts": "Manage Contacts",
+  "searchContacts": "Search contacts",
+  "addingContactsDesc": "Adding contacts is coming soon. You can simply send or request money and add a contact along the way.",
+  "nickName": "Nickname",
+  "ibanMobileNoAlias": "IBAN / Mobile No. / ALIAS",
+  "bankName": "BANK NAME",
+  "purpose": "PURPOSE",
+  "purposeDetail": "PURPOSE DETAILS",
+  "removeFromContact": "Remove from contact",
+  "accountHolderName": "account holder name",
+  "yourContactDetailsUpdated": "Your contact details has been saved.",
+  "saveChanges": "Save changes",
+  "noContactsYetDesc": "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money"
+
 }

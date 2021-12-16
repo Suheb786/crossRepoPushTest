@@ -40,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Account has been created successfully."),
         "accountDetails":
             MessageLookupByLibrary.simpleMessage("ACCOUNT DETAILS"),
+        "accountHolderName":
+            MessageLookupByLibrary.simpleMessage("account holder name"),
         "accountInquiryWentWrong":
             MessageLookupByLibrary.simpleMessage("Account Inquiry went wrong"),
         "accountLocked": MessageLookupByLibrary.simpleMessage(
@@ -61,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addIncome2": MessageLookupByLibrary.simpleMessage("Add. Income 2"),
         "addMobileHeader":
             MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
+        "addingContactsDesc": MessageLookupByLibrary.simpleMessage(
+            "Adding contacts is coming soon. You can simply send or request money and add a contact along the way."),
         "additionIncomeSource":
             MessageLookupByLibrary.simpleMessage("Additional Source of Income"),
         "additionalIncome":
@@ -108,6 +112,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "area": MessageLookupByLibrary.simpleMessage("AREA"),
         "areaSmall": MessageLookupByLibrary.simpleMessage("Area"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
+        "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
         "biometricLogin":
@@ -391,6 +396,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "iHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("I have an account"),
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
+        "ibanMobileNoAlias":
+            MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
         "ibanNumber":
             MessageLookupByLibrary.simpleMessage("84118220000022123444"),
         "idCardExpired": MessageLookupByLibrary.simpleMessage(
@@ -551,6 +558,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mainSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
+        "manageContacts":
+            MessageLookupByLibrary.simpleMessage("Manage Contacts"),
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
         "mobileNoExist":
             MessageLookupByLibrary.simpleMessage("Mobile Number Exist"),
@@ -583,7 +592,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
+        "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
         "no": MessageLookupByLibrary.simpleMessage("NO"),
+        "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
+            "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money"),
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("No matching country found"),
         "noMatchingYearFound":
@@ -699,6 +711,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "If you have a salary, upload either your job certificate or salary slip"),
         "provisionClaim": MessageLookupByLibrary.simpleMessage(
             "provisions CLAIM of Article & paragraph"),
+        "purpose": MessageLookupByLibrary.simpleMessage("PURPOSE"),
+        "purposeDetail":
+            MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
         "purposeOfAccount":
             MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
         "purposeOfAccountOpening":
@@ -723,6 +738,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("RELATIONSHIP WITH PEP"),
         "relationshipWithPEP":
             MessageLookupByLibrary.simpleMessage("Relationship with PEP"),
+        "removeFromContact":
+            MessageLookupByLibrary.simpleMessage("Remove from contact"),
         "removePhoto": MessageLookupByLibrary.simpleMessage("Remove Photo"),
         "requesterName":
             MessageLookupByLibrary.simpleMessage("requester’s name"),
@@ -737,6 +754,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please accept the above terms and conditions"),
         "reviewApplication":
             MessageLookupByLibrary.simpleMessage("REVIEW APPLICATION"),
+        "saveChanges": MessageLookupByLibrary.simpleMessage("Save changes"),
         "saveEarningsDigitally": MessageLookupByLibrary.simpleMessage(
             "Save your earnings digitally and securely"),
         "scanIDAgain": MessageLookupByLibrary.simpleMessage(
@@ -745,6 +763,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Schedule for later"),
         "scrollToSetDate": m3,
         "searchCity": MessageLookupByLibrary.simpleMessage("Search city"),
+        "searchContacts":
+            MessageLookupByLibrary.simpleMessage("Search contacts"),
         "searchCountry": MessageLookupByLibrary.simpleMessage("Search country"),
         "searchState": MessageLookupByLibrary.simpleMessage("Search state"),
         "searchYear": MessageLookupByLibrary.simpleMessage("Search year"),
@@ -917,6 +937,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Your card is ready!"),
         "yourCardReadyDesc": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately."),
+        "yourContactDetailsUpdated": MessageLookupByLibrary.simpleMessage(
+            "Your contact details has been saved."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature")
       };
 }

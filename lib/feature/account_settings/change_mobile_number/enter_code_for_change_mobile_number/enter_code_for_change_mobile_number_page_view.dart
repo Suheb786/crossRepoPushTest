@@ -97,6 +97,7 @@ class EnterCodeForChangeMobileNumberPageView
                                               'Resend Code',
                                               style: TextStyle(
                                                   fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
                                                   color: Theme.of(context)
                                                       .accentTextTheme
                                                       .bodyText1!
@@ -107,6 +108,7 @@ class EnterCodeForChangeMobileNumberPageView
                                                 '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
                                             style: TextStyle(
                                                 fontSize: 14,
+                                                fontWeight: FontWeight.w600,
                                                 color: Theme.of(context)
                                                     .accentTextTheme
                                                     .bodyText1!
@@ -129,6 +131,10 @@ class EnterCodeForChangeMobileNumberPageView
                                           ),
                                         );
                                       }),
+                                ),
+                                SizedBox(
+                                  height:
+                                  MediaQuery.of(context).viewInsets.bottom,
                                 )
                               ],
                             ),

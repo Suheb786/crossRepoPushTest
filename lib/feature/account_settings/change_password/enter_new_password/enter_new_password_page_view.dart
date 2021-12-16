@@ -114,7 +114,7 @@ class EnterNewPasswordPageView
                                                                     context)
                                                                 .inputDecorationTheme
                                                                 .labelStyle!
-                                                                .color),
+                                                                .color!.withOpacity(0.3)),
                                                       )
                                                     : Icon(
                                                         Icons.visibility_off,
@@ -169,7 +169,7 @@ class EnterNewPasswordPageView
                                                                     context)
                                                                 .inputDecorationTheme
                                                                 .labelStyle!
-                                                                .color),
+                                                                .color!.withOpacity(0.3)),
                                                       )
                                                     : Icon(
                                                         Icons.visibility_off,
