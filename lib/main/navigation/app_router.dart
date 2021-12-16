@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
+import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
+import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
@@ -70,6 +72,16 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => TermsAndConditionPage(),
             settings: RouteSettings(name: RoutePaths.TermsAndCondition));
+
+      case RoutePaths.AddMoneyOptionSelector:
+        return CupertinoPageRoute(
+            builder: (context) => AddMoneyOptionSelectorPage(),
+            settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
+
+      case RoutePaths.LocateATM:
+        return CupertinoPageRoute(
+            builder: (context) => LocateATMPage(),
+            settings: RouteSettings(name: RoutePaths.LocateATM));
 
       default:
         return CupertinoPageRoute(

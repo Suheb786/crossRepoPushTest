@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_view_model.dart';
@@ -11,6 +12,7 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_t
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/home/home_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/credit_card_detail/credit_card_detail_dialog_view_model.dart';
@@ -99,4 +101,16 @@ final debitCardTimeLineViewModelProvider =
     ChangeNotifierProvider.autoDispose<DebitCardTimeLineViewModel>(
   (ref) =>
       DebitCardTimeLineViewModel(ref.read(debitCardTimeLineUseCaseProvider)),
+);
+
+///add money option selector view model
+final addMoneyOptionSelectorViewModelProvider =
+    ChangeNotifierProvider.autoDispose<AddMoneyOptionSelectorViewModel>(
+  (ref) => AddMoneyOptionSelectorViewModel(),
+);
+
+///locate pin page view model
+final locatePinViewModelProvider =
+    ChangeNotifierProvider.autoDispose<LocateATMPageViewModel>(
+  (ref) => LocateATMPageViewModel(),
 );

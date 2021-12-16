@@ -4,9 +4,11 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:share_plus/share_plus.dart';
 
 class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
   MyAccountPageView(ProviderBase model) : super(model);
@@ -179,29 +181,45 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              height: 36,
-                              width: 105,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Theme.of(context)
-                                      .accentTextTheme
-                                      .bodyText1!
-                                      .color),
-                              child: Center(
-                                child: Text(
-                                  S.of(context).addMoney,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14,
-                                      color: Theme.of(context).accentColor),
+                            InkWell(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, RoutePaths.AddMoneyOptionSelector);
+                              },
+                              child: Container(
+                                height: 36,
+                                width: 105,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    color: Theme.of(context)
+                                        .accentTextTheme
+                                        .bodyText1!
+                                        .color),
+                                child: Center(
+                                  child: Text(
+                                    S.of(context).addMoney,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 14,
+                                        color: Theme.of(context).accentColor),
+                                  ),
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(right: 33.0),
-                              child: AppSvg.asset(AssetUtils.share,
-                                  height: 24, width: 24),
+                            InkWell(
+                              onTap: () {
+                                _shareFiles(model, context);
+                              },
+                              child: Padding(
+                                padding: EdgeInsets.only(right: 33.0),
+                                child: AppSvg.asset(AssetUtils.share,
+                                    color: Theme.of(context)
+                                        .accentTextTheme
+                                        .bodyText1!
+                                        .color,
+                                    height: 24,
+                                    width: 24),
+                              ),
                             )
                           ],
                         ),
@@ -215,5 +233,13 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
         ),
       ),
     );
+  }
+
+  void _shareFiles(MyAccountViewModel model, BuildContext context) async {
+    final box = context.findRenderObject() as RenderBox?;
+    await Share.share(
+        'Hello! Here’s my blink account details:\n\nZein Malhas \nJOD120315314513451341234567312\n\nGet your blink account today. Blink now!',
+        subject: 'Share account info',
+        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }
 }

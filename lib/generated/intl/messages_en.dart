@@ -185,6 +185,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "declaration is true and correct."),
         "deliveryIssue":
             MessageLookupByLibrary.simpleMessage("I have delivery issue"),
+        "depositViaATM":
+            MessageLookupByLibrary.simpleMessage("Deposit via ATM"),
+        "depositViaATMDesc": MessageLookupByLibrary.simpleMessage(
+            "Don’t worry, you can deposit cash into the account with or without your card. Just locate nearest Capital Bank ATM."),
         "deviceNotFound":
             MessageLookupByLibrary.simpleMessage("Device Not Found"),
         "district": MessageLookupByLibrary.simpleMessage("District"),
@@ -197,6 +201,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you have TIN No available?"),
         "dob": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dobHint": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
+        "dragMap": MessageLookupByLibrary.simpleMessage(
+            "Drag & move the map to adjust the location"),
         "editInformation":
             MessageLookupByLibrary.simpleMessage("Edit Information"),
         "eightCharacters": MessageLookupByLibrary.simpleMessage("8 characters"),
@@ -316,7 +322,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "genderSmall": MessageLookupByLibrary.simpleMessage("Gender"),
         "getCardNow":
             MessageLookupByLibrary.simpleMessage("Get your card now!"),
+        "getDirections": MessageLookupByLibrary.simpleMessage("Get Directions"),
         "getLater": MessageLookupByLibrary.simpleMessage("I’ll get it later"),
+        "getMyCreditCard":
+            MessageLookupByLibrary.simpleMessage("Get My Credit Card"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
         "homeAddressHint":
@@ -447,6 +456,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
         "linkedAccountNumber":
             MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
+        "locateATM": MessageLookupByLibrary.simpleMessage("Locate ATM"),
         "logoutAndContinueLater":
             MessageLookupByLibrary.simpleMessage("Log out and continue later"),
         "lookingFor":
@@ -515,6 +525,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
         "openAccountNow":
             MessageLookupByLibrary.simpleMessage("Open Account Now"),
+        "or": MessageLookupByLibrary.simpleMessage("or"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
         "orYouCanUpload":
@@ -600,6 +611,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
         "reasonOfUnavailabilitySmall":
             MessageLookupByLibrary.simpleMessage("Reason of Unavailability"),
+        "receiveMoneyFromOthers":
+            MessageLookupByLibrary.simpleMessage("Receive money from others"),
+        "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
+            "Share your account details to your friends and family, let them know you are on blink!"),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
         "registerViaEmail":
@@ -609,6 +624,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "relationshipWithPEP":
             MessageLookupByLibrary.simpleMessage("Relationship with PEP"),
         "requestMoney": MessageLookupByLibrary.simpleMessage("Request money"),
+        "requestMoneyFromOtherBank": MessageLookupByLibrary.simpleMessage(
+            "Request money from other banks"),
+        "requestMoneyFromOtherBankDesc": MessageLookupByLibrary.simpleMessage(
+            "If you have money from other banks, you can easily send money request to move it into your blink account."),
         "requesterName":
             MessageLookupByLibrary.simpleMessage("requester’s name"),
         "resendIn": m1,
@@ -639,6 +658,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
         "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage(
             "Send money to your friends and family"),
+        "shareAccountInfo":
+            MessageLookupByLibrary.simpleMessage("Share account info"),
         "socialSecurityCard":
             MessageLookupByLibrary.simpleMessage("Social Security Card"),
         "socialSecurityCardDesc": MessageLookupByLibrary.simpleMessage(
@@ -669,6 +690,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Swipe to confirm"),
         "swipeToProceed":
             MessageLookupByLibrary.simpleMessage("Swipe to proceed"),
+        "swipeToViewList":
+            MessageLookupByLibrary.simpleMessage("Swipe to view list"),
+        "swipeToViewMap":
+            MessageLookupByLibrary.simpleMessage("Swipe to view map"),
         "swipeUpToRegister":
             MessageLookupByLibrary.simpleMessage("Swipe up to register"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take Photo"),
@@ -753,6 +778,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "If you already have a physical pre-filled W9 form please upload below."),
         "wantToClaimTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
             "Do you want to Claim of Tax Treaty Benefits?"),
+        "waysYocCanAddMoneyToAccount": MessageLookupByLibrary.simpleMessage(
+            "Ways you can add\nmoney into your account"),
         "weNeedToMatchNamesONTaxReturn": MessageLookupByLibrary.simpleMessage(
             "We need to match the names on your tax return"),
         "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),

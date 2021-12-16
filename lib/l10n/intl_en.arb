@@ -445,5 +445,21 @@
   "cvv": "CVV",
   "sendMoney": "Send Money",
   "requestMoney": "Request money",
-  "addSendContact": "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money"
+  "addSendContact": "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money",
+  "waysYocCanAddMoneyToAccount": "Ways you can add\nmoney into your account",
+  "requestMoneyFromOtherBank": "Request money from other banks",
+  "requestMoneyFromOtherBankDesc": "If you have money from other banks, you can easily send money request to move it into your blink account.",
+  "receiveMoneyFromOthers": "Receive money from others",
+  "receiveMoneyFromOthersDesc": "Share your account details to your friends and family, let them know you are on blink!",
+  "depositViaATM": "Deposit via ATM",
+  "depositViaATMDesc": "Don’t worry, you can deposit cash into the account with or without your card. Just locate nearest Capital Bank ATM.",
+  "shareAccountInfo": "Share account info",
+  "locateATM": "Locate ATM",
+  "getMyCreditCard": "Get My Credit Card",
+  "or": "or",
+  "swipeToViewList": "Swipe to view list",
+  "swipeToViewMap": "Swipe to view map",
+  "getDirections": "Get Directions",
+  "dragMap": "Drag & move the map to adjust the location"
+
 }
