@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/dashboard/add_money_selector_option_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -58,6 +59,9 @@ class AddMoneyOptionSelectorPageView
               title: S.of(context).depositViaATM,
               desc: S.of(context).depositViaATMDesc,
               buttonText: S.of(context).locateATM,
+              onTap: () {
+                Navigator.pushNamed(context, RoutePaths.LocateATM);
+              },
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 24),

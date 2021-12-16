@@ -73,8 +73,7 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
                                       .bodyText1!
                                       .color,
                                   borderRadius: BorderRadius.circular(100)),
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 71, vertical: 16),
+                              padding: EdgeInsets.symmetric(vertical: 16),
                               child: Center(
                                   child: Text(
                                 S.of(context).findOutMore,
