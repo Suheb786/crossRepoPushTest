@@ -5200,6 +5200,16 @@ class S {
       args: [],
     );
   }
+
+  /// `You don’t have any contacts yet.\nAdd your blink contacts while\nsending money`
+  String get noContactsYetDesc {
+    return Intl.message(
+      'You don’t have any contacts yet.\nAdd your blink contacts while\nsending money',
+      name: 'noContactsYetDesc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

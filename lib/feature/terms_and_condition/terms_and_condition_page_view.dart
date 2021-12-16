@@ -44,13 +44,101 @@ class TermsAndConditionPageView
               SizedBox(
                 height: 31,
               ),
-              Text(
-                '''1. I further certify that I am not a U.S permanent resident and I do not hold a Green Card, and \n2. I further certify that I do not have a U.S residence or mailing/residential address or U.S corresponding address or telephone number, andp \n3. I further certify that I do not make regular payments to or from financial institution in the U.S, and\n4. I further certify that I do not granted any power of attorney to a person who is defined as a U.S person, and
-                  ''',
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: AppColor.very_dark_gray_black),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '1.',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: AppColor.very_dark_gray_black),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: Text(
+                      'I further certify that I am not a U.S permanent resident and I do not hold a Green Card, and',
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColor.very_dark_gray_black),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '2.',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: AppColor.very_dark_gray_black),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: Text(
+                      'I further certify that I do not have a U.S residence or mailing/residential address or U.S corresponding address or telephone number, andp',
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColor.very_dark_gray_black),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '3.',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: AppColor.very_dark_gray_black),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: Text(
+                      'I further certify that I do not make regular payments to or from financial institution in the U.S, and',
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColor.very_dark_gray_black),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '4.',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400,
+                        color: AppColor.very_dark_gray_black),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    child: Text(
+                      'I further certify that I do not granted any power of attorney to a person who is defined as a U.S person, and',
+                      style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColor.very_dark_gray_black),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
                 height: 21,

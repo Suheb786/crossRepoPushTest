@@ -37,9 +37,16 @@ class ManageContactListPageView
             AppTextField(
               labelText: '',
               controller: model.contactSearchController,
-              textFieldBorderColor:
-                  Theme.of(context).textTheme.bodyText1!.color,
-              hintTextColor: Theme.of(context).textTheme.bodyText1!.color,
+              textFieldBorderColor: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .color!
+                  .withOpacity(0.3),
+              hintTextColor: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .color!
+                  .withOpacity(0.5),
               textColor: Theme.of(context).primaryColorDark,
               hintText: S.of(context).searchContacts,
               onChanged: (value) {},
@@ -55,55 +62,93 @@ class ManageContactListPageView
                 );
               },
             ),
-            SizedBox(
-              height: 16,
-            ),
-            Container(
-                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
-                decoration: BoxDecoration(
-                    color: AppColor.vividYellow,
-                    borderRadius: BorderRadius.circular(16)),
-                child: Text(
-                  S.of(context).addingContactsDesc,
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).primaryColorDark),
-                )),
-            Expanded(
-              child: Container(
-                margin: EdgeInsets.symmetric(vertical: 16),
-                decoration: BoxDecoration(
-                    color: Theme.of(context).accentColor,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Theme.of(context)
-                            .primaryColorDark
-                            .withOpacity(0.08),
-                        blurRadius: 20.0,
-                      )
-                    ],
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(16),
-                        topRight: Radius.circular(16))),
-                child: ListView.builder(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  itemBuilder: (context, index) {
-                    return ContactListWidget(
-                      contactsListModel: model.contactList[index],
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, RoutePaths.ManageContactsDetail,
-                            arguments: model.contactList[index]);
-                      },
-                    );
-                  },
-                  shrinkWrap: true,
-                  physics: ClampingScrollPhysics(),
-                  itemCount: model.contactList.length,
-                ),
-              ),
-            )
+            model.contactList.length > 0
+                ? Expanded(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 16,
+                        ),
+                        Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 24),
+                            decoration: BoxDecoration(
+                                color: AppColor.vividYellow,
+                                borderRadius: BorderRadius.circular(16)),
+                            child: Text(
+                              S.of(context).addingContactsDesc,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
+                                  color: Theme.of(context).primaryColorDark),
+                            )),
+                        Expanded(
+                          child: Container(
+                            margin: EdgeInsets.symmetric(vertical: 16),
+                            decoration: BoxDecoration(
+                                color: Theme.of(context).accentColor,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Theme.of(context)
+                                        .primaryColorDark
+                                        .withOpacity(0.08),
+                                    blurRadius: 20.0,
+                                  )
+                                ],
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(16),
+                                    topRight: Radius.circular(16))),
+                            child: ListView.builder(
+                              padding: EdgeInsets.symmetric(vertical: 20),
+                              itemBuilder: (context, index) {
+                                return ContactListWidget(
+                                  contactsListModel: model.contactList[index],
+                                  onTap: () {
+                                    Navigator.pushNamed(context,
+                                        RoutePaths.ManageContactsDetail,
+                                        arguments: model.contactList[index]);
+                                  },
+                                );
+                              },
+                              shrinkWrap: true,
+                              physics: ClampingScrollPhysics(),
+                              itemCount: model.contactList.length,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )
+                : Expanded(
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 96,
+                            width: 96,
+                            margin: EdgeInsets.only(bottom: 12),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                    color: Theme.of(context)
+                                        .inputDecorationTheme
+                                        .hintStyle!
+                                        .color!)),
+                            child: Container(
+                                padding: EdgeInsets.all(32),
+                                child: AppSvg.asset(AssetUtils.contacts)),
+                          ),
+                          Text(
+                            S.of(context).noContactsYetDesc,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 12, fontWeight: FontWeight.w600),
+                          )
+                        ],
+                      ),
+                    ),
+                  )
           ],
         ));
   }

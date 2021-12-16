@@ -594,6 +594,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
         "no": MessageLookupByLibrary.simpleMessage("NO"),
+        "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
+            "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money"),
         "noCountriesFound":
             MessageLookupByLibrary.simpleMessage("No matching country found"),
         "noMatchingYearFound":

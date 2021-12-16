@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class BiometricSwitchWidget extends StatelessWidget {
@@ -31,7 +30,7 @@ class BiometricSwitchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        AppSvg.asset(AssetUtils.email),
+        AppSvg.asset(image!),
         SizedBox(
           width: 16,
         ),

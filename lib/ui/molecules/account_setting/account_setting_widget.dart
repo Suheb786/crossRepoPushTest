@@ -11,7 +11,7 @@ class AccountSettingWidget extends StatelessWidget {
   final Function()? onTap;
 
   const AccountSettingWidget(
-      {Key? key, this.image, this.title, this.subtitle:'', this.onTap})
+      {Key? key, this.image, this.title, this.subtitle: '', this.onTap})
       : super(key: key);
 
   @override
@@ -33,7 +33,9 @@ class AccountSettingWidget extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                     color: Theme.of(context).textTheme.bodyText1!.color),
               ),
-              SizedBox(height: 2,),
+              SizedBox(
+                height: 2,
+              ),
               subtitle!.isNotEmpty
                   ? Text(
                       subtitle ?? '',
@@ -56,7 +58,9 @@ class AccountSettingWidget extends StatelessWidget {
           child: Container(
               height: 24,
               width: 24,
-              child: AppSvg.asset(AssetUtils.rightChevron)),
+              child: AppSvg.asset(AssetUtils.rightChevron,
+                  color:
+                      Theme.of(context).inputDecorationTheme.hintStyle!.color)),
         )
       ],
     );

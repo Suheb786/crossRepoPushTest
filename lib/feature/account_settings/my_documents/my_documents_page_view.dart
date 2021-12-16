@@ -257,7 +257,7 @@ class MyDocumentsPageView extends BasePageViewWidget<MyDocumentsPageViewModel> {
                                               child: Text(
                                                 S
                                                     .of(context)
-                                                    .proofOfAddressDesc,
+                                                    .proofOfAddressDescSetting,
                                                 softWrap: true,
                                                 style: TextStyle(
                                                     fontSize: 12,
