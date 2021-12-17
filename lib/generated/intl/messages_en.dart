@@ -589,6 +589,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "linkedAccountNumber":
             MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
         "locateATM": MessageLookupByLibrary.simpleMessage("Locate ATM"),
+        "logout": MessageLookupByLibrary.simpleMessage("Log out"),
         "logoutAndContinueLater":
             MessageLookupByLibrary.simpleMessage("Log out and continue later"),
         "lookingFor":
@@ -613,6 +614,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
         "manageContacts":
             MessageLookupByLibrary.simpleMessage("Manage Contacts"),
+        "manageContactsSettings":
+            MessageLookupByLibrary.simpleMessage("Manage\nContacts"),
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
         "mobileNoExist":
             MessageLookupByLibrary.simpleMessage("Mobile Number Exist"),
@@ -757,6 +760,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Are you employed?"),
         "profilePhotoUpdated": MessageLookupByLibrary.simpleMessage(
             "Profile photo is successfully updated"),
+        "profileSettings":
+            MessageLookupByLibrary.simpleMessage("Profile\nSettings"),
         "proofOfAddress":
             MessageLookupByLibrary.simpleMessage("Proof of Address"),
         "proofOfAddressDesc": MessageLookupByLibrary.simpleMessage(

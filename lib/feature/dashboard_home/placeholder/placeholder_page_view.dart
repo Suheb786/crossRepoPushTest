@@ -28,18 +28,14 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
               }
             },
             child: Card(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16)),
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              elevation: 2,
               color: Theme.of(context).primaryColor,
               margin: EdgeInsets.zero,
-              shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
               child: Container(
+                margin: EdgeInsets.zero,
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: AssetImage(AssetUtils.placeholder),
-                        fit: BoxFit.fill)),
+                        fit: BoxFit.cover)),
                 child: SingleChildScrollView(
                     physics: NeverScrollableScrollPhysics(),
                     child: Container(

@@ -589,6 +589,9 @@
   "accountHolderName": "account holder name",
   "yourContactDetailsUpdated": "Your contact details has been saved.",
   "saveChanges": "Save changes",
-  "noContactsYetDesc": "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money"
+  "noContactsYetDesc": "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money",
+  "profileSettings": "Profile\nSettings",
+  "logout": "Log out",
+  "manageContactsSettings": "Manage\nContacts"
 
 }

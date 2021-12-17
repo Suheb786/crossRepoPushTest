@@ -5740,6 +5740,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Profile\nSettings`
+  String get profileSettings {
+    return Intl.message(
+      'Profile\nSettings',
+      name: 'profileSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log out`
+  String get logout {
+    return Intl.message(
+      'Log out',
+      name: 'logout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage\nContacts`
+  String get manageContactsSettings {
+    return Intl.message(
+      'Manage\nContacts',
+      name: 'manageContactsSettings',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
