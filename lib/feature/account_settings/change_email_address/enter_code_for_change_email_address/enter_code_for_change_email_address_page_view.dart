@@ -36,8 +36,9 @@ class EnterCodeForChangeEmailAddressPageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pop(context);
                   model.showSuccessToast(data.data!.data!.data!);
+                  print('popped');
+                  Navigator.pop(context, true);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }

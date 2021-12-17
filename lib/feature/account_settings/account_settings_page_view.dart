@@ -36,216 +36,235 @@ class AccountSettingPageView
                 initialData: Resource.none(),
                 stream: model.getProfileInfoStream,
                 dataBuilder: (context, profileData) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      AppStreamBuilder<String>(
-                        stream: model.uploadProfilePhotoStream,
-                        initialData: '',
-                        onData: (data) {
-                          if (data != null && data.isNotEmpty) {
-                            model.selectedProfile = data;
-                            model.addImage(data);
-                            _cropImage(data, model, context);
-                            // model.showSuccessToast(
-                            //     S.of(context).profilePhotoUpdated);
-                          }
-                        },
-                        dataBuilder: (context, data) {
-                          return AppStreamBuilder<String>(
-                            stream: model.selectedImageValue,
+                  print('received success');
+                  switch (profileData!.status) {
+                    case Status.SUCCESS:
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          AppStreamBuilder<String>(
+                            stream: model.uploadProfilePhotoStream,
                             initialData: '',
-                            dataBuilder: (context, image) {
-                              return InkWell(
-                                  onTap: () {
-                                    ChooseProfileWidget.show(context,
-                                        onCameraTap: () {
-                                          Navigator.pop(context);
-                                          model.uploadProfilePhoto(
-                                              DocumentTypeEnum.CAMERA);
-                                        },
-                                        onGalleryTap: () {
-                                          Navigator.pop(context);
-                                          model.uploadProfilePhoto(
-                                              DocumentTypeEnum.PICK_IMAGE);
-                                        },
-                                        onRemoveTap: () {},
-                                        onCancelled: () {
-                                          Navigator.pop(context);
-                                        },
-                                        title: S
-                                            .of(context)
-                                            .pleaseSelectYourAction);
-                                  },
-                                  child: CircleAvatar(
-                                    backgroundColor:
-                                        Theme.of(context).primaryColor,
-                                    radius: 48,
-                                    child: CircleAvatar(
-                                      radius: 48,
-                                      backgroundImage: image!.isEmpty
-                                          ? Image.asset(
-                                              AssetUtils.dummyProfile,
-                                              fit: BoxFit.cover,
-                                            ).image
-                                          : Image.file(
-                                              File(image),
-                                              fit: BoxFit.cover,
-                                            ).image,
-                                    ),
-                                  ));
+                            onData: (data) {
+                              if (data != null && data.isNotEmpty) {
+                                model.selectedProfile = data;
+                                model.addImage(data);
+                                _cropImage(data, model, context);
+                                // model.showSuccessToast(
+                                //     S.of(context).profilePhotoUpdated);
+                              }
                             },
-                          );
-                        },
-                      ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Center(
-                        child: Text(
-                          S.of(context).tapToEditPhoto,
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context)
-                                  .inputDecorationTheme
-                                  .hintStyle!
-                                  .color),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 32.0, bottom: 16),
-                        child: Container(
-                          height: 1,
-                          color: Theme.of(context).backgroundColor,
-                        ),
-                      ),
-                      AccountSettingWidget(
-                        image: AssetUtils.email,
-                        title: S.of(context).emailAddressSmall,
-                        subtitle:
-                            (profileData!.data!.content!.email!.isNotEmpty ||
+                            dataBuilder: (context, data) {
+                              return AppStreamBuilder<String>(
+                                stream: model.selectedImageValue,
+                                initialData: '',
+                                dataBuilder: (context, image) {
+                                  return InkWell(
+                                      onTap: () {
+                                        ChooseProfileWidget.show(context,
+                                            onCameraTap: () {
+                                              Navigator.pop(context);
+                                              model.uploadProfilePhoto(
+                                                  DocumentTypeEnum.CAMERA);
+                                            },
+                                            onGalleryTap: () {
+                                              Navigator.pop(context);
+                                              model.uploadProfilePhoto(
+                                                  DocumentTypeEnum.PICK_IMAGE);
+                                            },
+                                            onRemoveTap: () {},
+                                            onCancelled: () {
+                                              Navigator.pop(context);
+                                            },
+                                            title: S
+                                                .of(context)
+                                                .pleaseSelectYourAction);
+                                      },
+                                      child: CircleAvatar(
+                                        backgroundColor:
+                                            Theme.of(context).primaryColor,
+                                        radius: 48,
+                                        child: CircleAvatar(
+                                          radius: 48,
+                                          backgroundImage: image!.isEmpty
+                                              ? Image.asset(
+                                                  AssetUtils.dummyProfile,
+                                                  fit: BoxFit.cover,
+                                                ).image
+                                              : Image.file(
+                                                  File(image),
+                                                  fit: BoxFit.cover,
+                                                ).image,
+                                        ),
+                                      ));
+                                },
+                              );
+                            },
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Center(
+                            child: Text(
+                              S.of(context).tapToEditPhoto,
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                  color: Theme.of(context)
+                                      .inputDecorationTheme
+                                      .hintStyle!
+                                      .color),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 32.0, bottom: 16),
+                            child: Container(
+                              height: 1,
+                              color: Theme.of(context).backgroundColor,
+                            ),
+                          ),
+                          AccountSettingWidget(
+                            image: AssetUtils.email,
+                            title: S.of(context).emailAddressSmall,
+                            subtitle: (profileData
+                                        .data!.content!.email!.isNotEmpty ||
                                     profileData.data!.content!.email != null)
                                 ? profileData.data!.content!.email!
                                 : 'test@email.com',
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, RoutePaths.ChangeEmailAddress);
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16.0, bottom: 16),
-                        child: Container(
-                          height: 1,
-                          color: Theme.of(context).backgroundColor,
-                        ),
-                      ),
-                      AccountSettingWidget(
-                        image: AssetUtils.mobile,
-                        title: S.of(context).mobileNumber,
-                        subtitle: (profileData
-                                    .data!.content!.mobileNumber!.isNotEmpty ||
-                                profileData.data!.content!.mobileNumber != null)
-                            ? profileData.data!.content!.mobileNumber!
-                            : '+962 79 322 8080',
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, RoutePaths.ChangeMobileNumber);
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16.0, bottom: 16),
-                        child: Container(
-                          height: 1,
-                          color: Theme.of(context).backgroundColor,
-                        ),
-                      ),
-                      AccountSettingWidget(
-                        image: AssetUtils.password,
-                        title: S.of(context).changePassword,
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, RoutePaths.ChangePassword);
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16.0, bottom: 16),
-                        child: Container(
-                          height: 1,
-                          color: Theme.of(context).backgroundColor,
-                        ),
-                      ),
-                      AppStreamBuilder<bool>(
-                        stream: model.switchValue,
-                        initialData: profileData.data!.content!.biometric!,
-                        dataBuilder: (context, isActive) {
-                          return AppStreamBuilder<Resource<bool>>(
-                            stream: model.enableBiometricStream,
-                            initialData: Resource.none(),
-                            onData: (data) {
-                              if (data.status == Status.SUCCESS) {
-                                model.updateSwitchValue(true);
-                              } else if (data.status == Status.ERROR) {
-                                model.updateSwitchValue(false);
+                            onTap: () async {
+                              var isSuccess = await Navigator.pushNamed(
+                                  context, RoutePaths.ChangeEmailAddress);
+                              if (isSuccess != null) {
+                                //model.getProfileDetails();
                               }
                             },
-                            dataBuilder: (context, isBiometricEnabled) {
-                              return AppStreamBuilder<
-                                  Resource<GenerateKeyPairResponse>>(
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 16.0, bottom: 16),
+                            child: Container(
+                              height: 1,
+                              color: Theme.of(context).backgroundColor,
+                            ),
+                          ),
+                          AccountSettingWidget(
+                            image: AssetUtils.mobile,
+                            title: S.of(context).mobileNumber,
+                            subtitle: (profileData.data!.content!.mobileNumber!
+                                        .isNotEmpty ||
+                                    profileData.data!.content!.mobileNumber !=
+                                        null)
+                                ? profileData.data!.content!.mobileNumber!
+                                : '+962 79 322 8080',
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.ChangeMobileNumber);
+                            },
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 16.0, bottom: 16),
+                            child: Container(
+                              height: 1,
+                              color: Theme.of(context).backgroundColor,
+                            ),
+                          ),
+                          AccountSettingWidget(
+                            image: AssetUtils.password,
+                            title: S.of(context).changePassword,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.ChangePassword);
+                            },
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 16.0, bottom: 16),
+                            child: Container(
+                              height: 1,
+                              color: Theme.of(context).backgroundColor,
+                            ),
+                          ),
+                          AppStreamBuilder<bool>(
+                            stream: model.switchValue,
+                            initialData: profileData.data!.content!.biometric!,
+                            dataBuilder: (context, isActive) {
+                              return AppStreamBuilder<Resource<bool>>(
+                                stream: model.enableBiometricStream,
                                 initialData: Resource.none(),
-                                stream: model.generateKeyPairStream,
                                 onData: (data) {
                                   if (data.status == Status.SUCCESS) {
-                                    model.enableBiometric();
+                                    model.updateSwitchValue(true);
+                                  } else if (data.status == Status.ERROR) {
+                                    model.updateSwitchValue(false);
                                   }
                                 },
-                                dataBuilder: (context, keyPairResponse) {
-                                  return AppStreamBuilder<Resource<bool>>(
-                                    stream: model.authenticateBioMetricStream,
+                                dataBuilder: (context, isBiometricEnabled) {
+                                  return AppStreamBuilder<
+                                      Resource<GenerateKeyPairResponse>>(
                                     initialData: Resource.none(),
+                                    stream: model.generateKeyPairStream,
                                     onData: (data) {
                                       if (data.status == Status.SUCCESS) {
-                                        print('authenticated success');
-                                        model.generateKeyPair();
-                                        // model.showSuccessToast(
-                                        //     S.of(context).biometricLoginActivated);
+                                        model.enableBiometric();
                                       }
                                     },
-                                    dataBuilder:
-                                        (context, biometricAuthenticated) {
+                                    dataBuilder: (context, keyPairResponse) {
                                       return AppStreamBuilder<Resource<bool>>(
-                                        stream: model.checkBioMetricStream,
+                                        stream:
+                                            model.authenticateBioMetricStream,
                                         initialData: Resource.none(),
                                         onData: (data) {
                                           if (data.status == Status.SUCCESS) {
-                                            print('success');
-                                            model.authenticateBioMetric(
-                                                title: S
-                                                    .of(context)
-                                                    .enableBiometricLoginTitle,
-                                                localisedReason: Platform
-                                                        .isAndroid
-                                                    ? S
-                                                        .of(context)
-                                                        .enableBiometricLoginDescriptionAndroid
-                                                    : S
-                                                        .of(context)
-                                                        .enableBiometricLoginDescriptionIos);
+                                            print('authenticated success');
+                                            model.generateKeyPair();
+                                            // model.showSuccessToast(
+                                            //     S.of(context).biometricLoginActivated);
                                           }
                                         },
-                                        dataBuilder: (context, isAvailable) {
-                                          return BiometricSwitchWidget(
-                                            onToggle: (value) {
-                                              if (value) {
-                                                model.checkBiometric();
+                                        dataBuilder:
+                                            (context, biometricAuthenticated) {
+                                          return AppStreamBuilder<
+                                              Resource<bool>>(
+                                            stream: model.checkBioMetricStream,
+                                            initialData: Resource.none(),
+                                            onData: (data) {
+                                              if (data.status ==
+                                                  Status.SUCCESS) {
+                                                print('success');
+                                                model.authenticateBioMetric(
+                                                    title: S
+                                                        .of(context)
+                                                        .enableBiometricLoginTitle,
+                                                    localisedReason: Platform
+                                                            .isAndroid
+                                                        ? S
+                                                            .of(context)
+                                                            .enableBiometricLoginDescriptionAndroid
+                                                        : S
+                                                            .of(context)
+                                                            .enableBiometricLoginDescriptionIos);
                                               }
                                             },
-                                            isActive: isActive,
-                                            title: S.of(context).biometricLogin,
-                                            image: AssetUtils.biometric,
-                                            inActiveText: S.of(context).no,
-                                            activeText: S.of(context).yes,
+                                            dataBuilder:
+                                                (context, isAvailable) {
+                                              return BiometricSwitchWidget(
+                                                onToggle: (value) {
+                                                  if (value) {
+                                                    model.checkBiometric();
+                                                  }
+                                                },
+                                                isActive: isActive,
+                                                title: S
+                                                    .of(context)
+                                                    .biometricLogin,
+                                                image: AssetUtils.biometric,
+                                                inActiveText: S.of(context).no,
+                                                activeText: S.of(context).yes,
+                                              );
+                                            },
                                           );
                                         },
                                       );
@@ -254,43 +273,52 @@ class AccountSettingPageView
                                 },
                               );
                             },
-                          );
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16.0, bottom: 16),
-                        child: Container(
-                          height: 1,
-                          color: Theme.of(context).backgroundColor,
-                        ),
-                      ),
-                      AccountSettingWidget(
-                        image: AssetUtils.documents,
-                        title: S.of(context).myDocuments,
-                        onTap: () {
-                          Navigator.pushNamed(context, RoutePaths.MyDocuments);
-                        },
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16.0, bottom: 16),
-                        child: Container(
-                          height: 1,
-                          color: Theme.of(context).backgroundColor,
-                        ),
-                      ),
-                      AccountSettingWidget(
-                        image: AssetUtils.termsCondition,
-                        title: S.of(context).termsAndConditionsSetting,
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, RoutePaths.TermsAndCondition);
-                        },
-                      ),
-                      SizedBox(
-                        height: 60,
-                      )
-                    ],
-                  );
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 16.0, bottom: 16),
+                            child: Container(
+                              height: 1,
+                              color: Theme.of(context).backgroundColor,
+                            ),
+                          ),
+                          AccountSettingWidget(
+                            image: AssetUtils.documents,
+                            title: S.of(context).myDocuments,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.MyDocuments);
+                            },
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.only(top: 16.0, bottom: 16),
+                            child: Container(
+                              height: 1,
+                              color: Theme.of(context).backgroundColor,
+                            ),
+                          ),
+                          AccountSettingWidget(
+                            image: AssetUtils.termsCondition,
+                            title: S.of(context).termsAndConditionsSetting,
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.TermsAndCondition);
+                            },
+                          ),
+                          SizedBox(
+                            height: 60,
+                          )
+                        ],
+                      );
+
+                    case Status.ERROR:
+                      return Center(
+                        child: Text('Something went wrong'),
+                      );
+                    default:
+                      return Container();
+                  }
                 },
               ),
             ),

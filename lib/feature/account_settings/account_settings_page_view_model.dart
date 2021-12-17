@@ -228,6 +228,8 @@ class AccountSettingPageViewModel extends BasePageViewModel {
     _checkBioMetricResponse.close();
     _authenticateBioMetricRequest.close();
     _authenticateBioMetricResponse.close();
+    _getProfileInfoRequest.close();
+    _getProfileInfoResponse.close();
     super.dispose();
   }
 }
