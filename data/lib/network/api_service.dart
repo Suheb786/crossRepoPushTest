@@ -8,6 +8,12 @@ import 'package:data/entity/remote/account/doc_status_request_entity.dart';
 import 'package:data/entity/remote/account/doc_status_response_entity.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_request_entity.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_response_entity.dart';
+import 'package:data/entity/remote/accountsettings/change_email_request.dart';
+import 'package:data/entity/remote/accountsettings/change_mobile_request.dart';
+import 'package:data/entity/remote/accountsettings/change_password_request.dart';
+import 'package:data/entity/remote/accountsettings/profile_details_response_entity.dart';
+import 'package:data/entity/remote/accountsettings/update_profile_image_request.dart';
+import 'package:data/entity/remote/accountsettings/verify_change_email_request.dart';
 import 'package:data/entity/remote/ahwal/ahwal_detail_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
@@ -20,6 +26,7 @@ import 'package:data/entity/remote/bank_smart/get_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
+import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/card_issuance_request.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
@@ -297,4 +304,32 @@ abstract class ApiService {
   @POST("/CardTracking/ConfirmDelivery")
   Future<HttpResponse<ResponseEntity>> confirmCardDelivery(
       @Body() CardIssuanceRequest cardIssuanceRequest);
+
+  @POST("/auth/ChangeEmail")
+  Future<HttpResponse<ResponseEntity>> changeEmail(
+      @Body() ChangeEmailRequest changeEmailRequest);
+
+  @POST("/auth/ChangeMobile")
+  Future<HttpResponse<ResponseEntity>> changeMobile(
+      @Body() ChangeMobileRequest changeMobileRequest);
+
+  @POST("/CustomerDetails/GetProfileInfo")
+  Future<HttpResponse<ProfileDetailsResponseEntity>> getProfileDetails(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/auth/ChangePassword")
+  Future<HttpResponse<ResponseEntity>> changePassword(
+      @Body() ChangePasswordRequest changePasswordRequest);
+
+  @POST("/CustomerDetails/ChangeProfileImage")
+  Future<HttpResponse<ResponseEntity>> updateProfileImage(
+      @Body() UpdateProfileImageRequest updateProfileImageRequest);
+
+  @POST("/auth/VerifyChangeEmail")
+  Future<HttpResponse<ResponseEntity>> verifyChangeEmail(
+      @Body() VerifyChangeEmailRequest verifyChangeEmailRequest);
+
+  @POST("/auth/VerifyChangeMobile")
+  Future<HttpResponse<ResponseEntity>> verifyChangeMobile(
+      @Body() VerifyChangeEmailRequest verifyChangeEmailRequest);
 }

@@ -3,6 +3,8 @@ import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:data/source/account/account_datasource.dart';
 import 'package:data/source/account/remote/account_remote_ds_impl.dart';
+import 'package:data/source/account_settings/account_settings_datasource.dart';
+import 'package:data/source/account_settings/remote/account_settings_remote_ds_impl.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:data/source/bank_smart/remote/bank_smart_remote_ds_impl.dart';
 import 'package:data/source/card/card_datasource.dart';
@@ -123,4 +125,9 @@ var countryRemoteDataSourceProvider = Provider<CountryRemoteDs>((ref) =>
 ///card remote DS
 var cardRemoteDataSourceProvider = Provider<CardRemoteDs>((ref) =>
     CardRemoteDsImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///Account Settings remote DS
+var accountSettingDataSourceProvider = Provider<AccountSettingsRemoteDs>(
+    (ref) => AccountSettingsRemoteDsImpl(
         ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
