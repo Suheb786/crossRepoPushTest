@@ -9,6 +9,8 @@ import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:data/source/bank_smart/remote/bank_smart_remote_ds_impl.dart';
 import 'package:data/source/card/card_datasource.dart';
 import 'package:data/source/card/remote/card_remote_ds_impl.dart';
+import 'package:data/source/contact/contact_data_source.dart';
+import 'package:data/source/contact/remote/contact_remote_ds_impl.dart';
 import 'package:data/source/country/country_datasource.dart';
 import 'package:data/source/country/remote/country_remote_ds_impl.dart';
 import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
@@ -130,4 +132,9 @@ var cardRemoteDataSourceProvider = Provider<CardRemoteDs>((ref) =>
 ///Account Settings remote DS
 var accountSettingDataSourceProvider = Provider<AccountSettingsRemoteDs>(
     (ref) => AccountSettingsRemoteDsImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///Manage Contacts remote DS
+var contactsDataSourceProvider = Provider<ContactRemoteDS>((ref) =>
+    ContactRemoteDsImpl(
         ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));

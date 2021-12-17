@@ -31,6 +31,11 @@ import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/card_issuance_request.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
+import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
+import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
 import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
@@ -333,4 +338,32 @@ abstract class ApiService {
   @POST("/auth/VerifyChangeMobile")
   Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
       @Body() VerifyChangeEmailRequest verifyChangeEmailRequest);
+
+  @POST("/beneficiary/GetBeneficiaries")
+  Future<HttpResponse<ResponseEntity>> getBeneficiaries(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/beneficiary/GetContacts")
+  Future<HttpResponse<ResponseEntity>> getContacts(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/beneficiary/AddBeneficiary")
+  Future<HttpResponse<ResponseEntity>> addBeneficiary(
+      @Body() AddBeneficiaryRequest addBeneficiaryRequest);
+
+  @POST("/beneficiary/UpdateBeneficiary")
+  Future<HttpResponse<ResponseEntity>> updateBeneficiary(
+      @Body() UpdateBeneficiaryRequest updateBeneficiaryRequest);
+
+  @POST("/beneficiary/DeleteBeneficiary")
+  Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
+      @Body() DeleteBeneficiaryRequest deleteBeneficiaryRequest);
+
+  @POST("/beneficiary/VerifyBeneficiaryOTP")
+  Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp(
+      @Body() VerifyBeneficiaryOtpRequest verifyBeneficiaryOtpRequest);
+
+  @POST("/beneficiary/UploadBeneficiaryImage")
+  Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage(
+      @Body() UploadBeneficiaryImageRequest uploadBeneficiaryImageRequest);
 }
