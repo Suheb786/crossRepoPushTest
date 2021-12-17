@@ -17,6 +17,7 @@ import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric_login_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 
 final dashboardViewModelProvider =
     ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
@@ -107,4 +108,10 @@ final addMoneyOptionSelectorViewModelProvider =
 final locatePinViewModelProvider =
     ChangeNotifierProvider.autoDispose<LocateATMPageViewModel>(
   (ref) => LocateATMPageViewModel(),
+);
+
+///settings dialog view model
+final settingsDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SettingsDialogViewModel>(
+  (ref) => SettingsDialogViewModel(),
 );

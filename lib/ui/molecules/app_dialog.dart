@@ -4,11 +4,10 @@ import 'package:flutter/widgets.dart';
 class AppDialog {
   AppDialog._();
 
-  static Future show(
-    BuildContext context, {
-    required Widget Function(BuildContext context) builder,
-    bool isDismissible: true,
-  }) {
+  static Future show(BuildContext context,
+      {required Widget Function(BuildContext context) builder,
+      bool isDismissible: true,
+      Color? barrierColor}) {
     return showGeneralDialog(
         context: context,
         barrierLabel: '',
@@ -20,7 +19,8 @@ class AppDialog {
           );
         },
         transitionDuration: Duration(milliseconds: 300),
-        barrierColor: Theme.of(context).primaryColorDark.withOpacity(0.5),
+        barrierColor:
+            barrierColor ?? Theme.of(context).primaryColorDark.withOpacity(0.5),
         pageBuilder: (ctx, anim1, anim2) => builder(ctx));
   }
 }
