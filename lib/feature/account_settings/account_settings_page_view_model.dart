@@ -1,19 +1,30 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
+import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
+import 'package:domain/usecase/account_setting/get_profile_info/get_profile_info_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
+import 'package:domain/usecase/user/enable_biometric_usecase.dart';
+import 'package:domain/usecase/user/generate_key_pair_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AccountSettingPageViewModel extends BasePageViewModel {
+  final GetProfileInfoUseCase _getProfileInfoUseCase;
   final UploadDocumentUseCase _uploadDocumentUseCase;
 
   final CheckBioMetricSupportUseCase _checkBioMetricSupportUseCase;
 
   final AuthenticateBioMetricUseCase _authenticateBioMetricUseCase;
+
+  final GenerateKeyPairUseCase _generateKeyPairUseCase;
+
+  final EnableBiometricUseCase _enableBiometricUseCase;
 
   ///cupertino switch value subject
   final BehaviorSubject<bool> _switchSubject = BehaviorSubject.seeded(false);
@@ -60,8 +71,48 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get authenticateBioMetricStream =>
       _authenticateBioMetricResponse.stream;
 
-  AccountSettingPageViewModel(this._uploadDocumentUseCase,
-      this._checkBioMetricSupportUseCase, this._authenticateBioMetricUseCase) {
+  /// get profile info  request
+  PublishSubject<GetProfileInfoUseCaseParams> _getProfileInfoRequest =
+      PublishSubject();
+
+  /// get profile info response
+  PublishSubject<Resource<ProfileInfoResponse>> _getProfileInfoResponse =
+      PublishSubject();
+
+  /// get profile info response stream
+  Stream<Resource<ProfileInfoResponse>> get getProfileInfoStream =>
+      _getProfileInfoResponse.stream;
+
+  /// generate key pair request
+  PublishSubject<GenerateKeyPairUseCaseParams> _generateKeyPairRequest =
+      PublishSubject();
+
+  /// generate key pair response
+  PublishSubject<Resource<GenerateKeyPairResponse>> _generateKeyPairResponse =
+      PublishSubject();
+
+  /// generate key pair response stream
+  Stream<Resource<GenerateKeyPairResponse>> get generateKeyPairStream =>
+      _generateKeyPairResponse.stream;
+
+  /// enable biometric request
+  PublishSubject<EnableBiometricUseCaseParams> _enableBiometricRequest =
+      PublishSubject();
+
+  /// enable biometric response
+  PublishSubject<Resource<bool>> _enableBiometricResponse = PublishSubject();
+
+  /// enable biometric response stream
+  Stream<Resource<bool>> get enableBiometricStream =>
+      _enableBiometricResponse.stream;
+
+  AccountSettingPageViewModel(
+      this._uploadDocumentUseCase,
+      this._checkBioMetricSupportUseCase,
+      this._authenticateBioMetricUseCase,
+      this._getProfileInfoUseCase,
+      this._generateKeyPairUseCase,
+      this._enableBiometricUseCase) {
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value,
               createCall: () => _uploadDocumentUseCase.execute(params: value))
@@ -88,6 +139,46 @@ class AccountSettingPageViewModel extends BasePageViewModel {
         _authenticateBioMetricResponse.safeAdd(event);
       });
     });
+
+    _getProfileInfoRequest.listen((value) {
+      RequestManager(
+        value,
+        createCall: () => _getProfileInfoUseCase.execute(params: value),
+      ).asFlow().listen((event) {
+        _getProfileInfoResponse.safeAdd(event);
+        updateLoader();
+      });
+    });
+
+    _generateKeyPairRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _generateKeyPairUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _generateKeyPairResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _enableBiometricRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _enableBiometricUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _enableBiometricResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    getProfileDetails();
   }
 
   void uploadProfilePhoto(DocumentTypeEnum type) {
@@ -116,6 +207,19 @@ class AccountSettingPageViewModel extends BasePageViewModel {
       AuthenticateBioMetricUseCaseParams(
           title: title, localisedReason: localisedReason),
     );
+  }
+
+  ///get profile details
+  void getProfileDetails() {
+    _getProfileInfoRequest.safeAdd(GetProfileInfoUseCaseParams());
+  }
+
+  void generateKeyPair() {
+    _generateKeyPairRequest.safeAdd(GenerateKeyPairUseCaseParams());
+  }
+
+  void enableBiometric() {
+    _enableBiometricRequest.safeAdd(EnableBiometricUseCaseParams());
   }
 
   @override

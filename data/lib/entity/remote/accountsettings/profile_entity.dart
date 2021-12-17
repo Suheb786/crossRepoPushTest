@@ -1,10 +1,12 @@
+import 'package:domain/model/profile_settings/get_profile_info/profile_info_content.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'profile_entity.g.dart';
 
 @JsonSerializable()
-class ProfileEntity extends BaseLayerDataTransformer<ProfileEntity, String> {
+class ProfileEntity
+    extends BaseLayerDataTransformer<ProfileEntity, ProfileInfoContent> {
   @JsonKey(name: "email")
   final String? email;
   @JsonKey(name: "mobileNumber")
@@ -26,12 +28,16 @@ class ProfileEntity extends BaseLayerDataTransformer<ProfileEntity, String> {
   Map<String, dynamic> toJson() => _$ProfileEntityToJson(this);
 
   @override
-  ProfileEntity restore(String response) {
+  ProfileEntity restore(ProfileInfoContent response) {
     return ProfileEntity();
   }
 
   @override
-  String transform() {
-    return "";
+  ProfileInfoContent transform() {
+    return ProfileInfoContent(
+        email: this.email,
+        mobileNumber: this.mobileNumber,
+        biometric: this.biometric,
+        profileImage: this.profileImage);
   }
 }

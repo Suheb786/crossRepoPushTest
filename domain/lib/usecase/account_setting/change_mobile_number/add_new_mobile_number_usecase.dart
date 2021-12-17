@@ -3,15 +3,20 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/repository/account_settings/account_settings_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class AddNewMobileNumberUseCase
     extends BaseUseCase<NetworkError, AddNewMobileNumberUseCaseParams, bool> {
+  final AccountSettingsRepository _accountSettingsRepository;
+
+  AddNewMobileNumberUseCase(this._accountSettingsRepository);
+
   @override
   Future<Either<NetworkError, bool>> execute(
       {required AddNewMobileNumberUseCaseParams params}) {
-    return Future.value(Right(true));
+    return _accountSettingsRepository.changeMobile(mobile: params.mobileNumber);
   }
 }
 

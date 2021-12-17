@@ -1,6 +1,7 @@
 import 'package:data/di/local_module.dart';
 import 'package:data/di/network_module.dart';
 import 'package:data/repository/account/account_repository_impl.dart';
+import 'package:data/repository/account_settings/account_settings_impl.dart';
 import 'package:data/repository/bank_smart/bank_smart_repository_impl.dart';
 import 'package:data/repository/card/card_repository_impl.dart';
 import 'package:data/repository/country/country_repository_impl.dart';
@@ -14,6 +15,7 @@ import 'package:data/repository/register/register_step_three_repository_impl.dar
 import 'package:data/repository/upload_document/upload_document_repository_impl.dart';
 import 'package:data/repository/user/user_repository_impl.dart';
 import 'package:domain/repository/account/account_repository.dart';
+import 'package:domain/repository/account_settings/account_settings_repository.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/repository/country/country_repository.dart';
@@ -87,3 +89,8 @@ var accountRepositoryProvider = Provider<AccountRepository>(
 /// inject [CardRepository] provider
 var cardRepositoryProvider = Provider<CardRepository>(
     (ref) => CardRepositoryImpl(ref.read(cardRemoteDataSourceProvider)));
+
+/// inject [AccountSettingsRepository] provider
+var accountSettingRepositoryProvider = Provider<AccountSettingsRepository>(
+    (ref) => AccountSettingsRepositoryImpl(
+        ref.read(accountSettingDataSourceProvider)));

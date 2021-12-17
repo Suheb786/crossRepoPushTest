@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account/account_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/account_setting/account_setting_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/account_settings/account_settings_page_view_model.dart';
@@ -20,10 +21,12 @@ import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page
 final accountSettingViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountSettingPageViewModel>(
   (ref) => AccountSettingPageViewModel(
-    ref.read(uploadDocumentUseCaseProvider),
-    ref.read(checkBioMetricSupportUseCaseProvider),
-    ref.read(authenticateBioMetricUseCaseProvider),
-  ),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(checkBioMetricSupportUseCaseProvider),
+      ref.read(authenticateBioMetricUseCaseProvider),
+      ref.read(getProfileInfoUseCaseProvider),
+      ref.read(generateKeyPairUseCaseProvider),
+      ref.read(enableBiometricUseCaseProvider)),
 );
 
 ///change email address view model provider
@@ -55,8 +58,9 @@ final changeMobileNumberViewModelProvider =
 ///add new number view model provider
 final addNewMobileNumberViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddNewMobileNumberPageViewModel>(
-  (ref) =>
-      AddNewMobileNumberPageViewModel(ref.read(addNewNumberUseCaseProvider)),
+  (ref) => AddNewMobileNumberPageViewModel(
+      ref.read(addNewNumberUseCaseProvider),
+      ref.read(getAllowedCodeCountriesListUseCaseProvider)),
 );
 
 ///enter otp for mobile no change view model provider
