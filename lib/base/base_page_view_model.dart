@@ -11,6 +11,10 @@ class BasePageViewModel extends BaseViewModel {
 
   Stream<bool> get errorDetectorStream => _errorDetectorSubject.stream;
 
+  BehaviorSubject<bool> _isFlippedSubject = BehaviorSubject.seeded(false);
+
+  Stream<bool> get isFlippedStream => _isFlippedSubject.stream;
+
   ///success subject
   PublishSubject<String> _successSubject = PublishSubject<String>();
 
@@ -32,6 +36,11 @@ class BasePageViewModel extends BaseViewModel {
 
   void showToastWithString(String message) {
     _toast.sink.add(message);
+  }
+
+  void updateFlipValue(bool value) {
+    _isFlippedSubject.safeAdd(value);
+    notify();
   }
 
   void showSuccessToast(String success) {
@@ -64,6 +73,7 @@ class BasePageViewModel extends BaseViewModel {
     _error.close();
     _toast.close();
     _errorDetectorSubject.close();
+    _isFlippedSubject.close();
     _successSubject.close();
     _loading.close();
     super.dispose();

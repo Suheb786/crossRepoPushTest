@@ -9,6 +9,9 @@ import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page
 import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
+import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
+import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
+import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
@@ -90,6 +93,21 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => TermsAndConditionPage(),
             settings: RouteSettings(name: RoutePaths.TermsAndCondition));
+
+      case RoutePaths.AddMoneyOptionSelector:
+        return CupertinoPageRoute(
+            builder: (context) => AddMoneyOptionSelectorPage(),
+            settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
+
+      case RoutePaths.LocateATM:
+        return CupertinoPageRoute(
+            builder: (context) => LocateATMPage(),
+            settings: RouteSettings(name: RoutePaths.LocateATM));
+
+      case RoutePaths.AppHome:
+        return CupertinoPageRoute(
+            builder: (context) => AppHomePage(),
+            settings: RouteSettings(name: RoutePaths.AppHome));
 
       case RoutePaths.Capture:
         return CupertinoPageRoute(
