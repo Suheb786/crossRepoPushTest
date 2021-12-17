@@ -3,34 +3,47 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class ConfirmDetailUseCase
-    extends BaseUseCase<NetworkError, ConfirmDetailUseCaseParams, bool> {
+class ConfirmDetailUseCase extends BaseUseCase<NetworkError,
+    ConfirmDetailUseCaseParams, SaveIdInfoResponse> {
   final UserRepository _repository;
 
   ConfirmDetailUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
+  Future<Either<NetworkError, SaveIdInfoResponse>> execute(
       {required ConfirmDetailUseCaseParams params}) {
-    return Future.value(Right(true));
-
-    ///TODO:uncomment once gets response
-    // return _repository.saveIdInfo(
-    //   fullName: params.name,
-    //   idNumber: params.idNumber,
-    //   dob: params.dateOfBirth,
-    //   nationality: params.nationality,
-    //   doe: params.expiryDate,
-    //   gender: params.gender,
-    //   motherName: params.motherName,
-    //   documentNumber: params.legalDocumentNo,
-    // );
+    return _repository.saveIdInfo(
+      type: params.scannedDocumentInformation!.type,
+      fullName: params.name,
+      firstName: params.scannedDocumentInformation!.firstName ?? '',
+      middleName: params.scannedDocumentInformation!.middleName ?? '',
+      familyName: params.scannedDocumentInformation!.familyName ?? '',
+      idNumber: params.idNumber,
+      dob: params.dateOfBirth,
+      nationality: params.nationality,
+      doe: params.expiryDate,
+      gender: params.gender,
+      motherName: params.motherName,
+      documentCode: params.scannedDocumentInformation!.documentCode ?? '',
+      documentNumber: params.legalDocumentNo,
+      frontCardImage: params.scannedDocumentInformation!.frontCardImage ?? '',
+      backCardImage: params.scannedDocumentInformation!.backCardImage ?? '',
+      personFaceImage: params.scannedDocumentInformation!.personFaceImage ?? '',
+      issuer: params.scannedDocumentInformation!.issuer ?? '',
+      secondNameEn: params.scannedDocumentInformation!.secondNameEn ?? '',
+      placeOfBirth: params.scannedDocumentInformation!.issuer ?? '',
+      familyNameAr: params.scannedDocumentInformation!.familyNameAr ?? '',
+      secNameAr: params.scannedDocumentInformation!.secNameAr ?? '',
+      firstNameAr: params.scannedDocumentInformation!.familyNameAr ?? '',
+      thirdNameAr: params.scannedDocumentInformation!.thirdNameAr ?? '',
+    );
   }
 }
 

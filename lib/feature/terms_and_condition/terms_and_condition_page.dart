@@ -7,7 +7,6 @@ import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page_vi
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class TermsAndConditionPage extends BasePage<TermsAndConditionPageViewModel> {
   @override
@@ -24,7 +23,7 @@ class TermsAndConditionPageState extends BaseStatefulPage<
   @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
-        preferredSize: Size(double.maxFinite, 106),
+        preferredSize: Size(double.maxFinite, 85),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -34,7 +33,8 @@ class TermsAndConditionPageState extends BaseStatefulPage<
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 24.0),
-                child: AppSvg.asset(AssetUtils.leftArrow),
+                child: AppSvg.asset(AssetUtils.leftArrow,
+                    color: Theme.of(context).accentColor),
               ),
             ),
             Text(
@@ -42,7 +42,7 @@ class TermsAndConditionPageState extends BaseStatefulPage<
               style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: AppColor.very_dark_gray),
+                  color: Theme.of(context).accentColor),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 18.0),
@@ -60,8 +60,8 @@ class TermsAndConditionPageState extends BaseStatefulPage<
   }
 
   @override
-  Color scaffoldBackgroundColor() {
-    return AppColor.very_pale_blue_white;
+  Color? scaffoldBackgroundColor() {
+    return Theme.of(context).primaryColor;
   }
 
   @override

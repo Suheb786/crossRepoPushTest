@@ -1,10 +1,12 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
+import 'package:domain/model/user/register_interest/register_interest_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/notify/notify_page_view_model.dart';
+import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -33,21 +35,24 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<bool>>(
+                    child: AppStreamBuilder<Resource<RegisterInterestResponse>>(
                       stream: model.notifyStream,
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
                           Navigator.pushReplacementNamed(
-                              context, RoutePaths.NotifySuccess);
+                              context, RoutePaths.NotifySuccess,
+                              arguments: NotifySuccessArguments(
+                                  referenceNo: data.data!
+                                      .registerInterestContent!.referenceNo!));
                         } else if (data.status == Status.ERROR) {
                           model.showToastWithError(data.appError!);
                         }
                       },
                       dataBuilder: (context, data) {
                         return GestureDetector(
-                          onHorizontalDragUpdate: (details) {
-                            if (details.primaryDelta!.isNegative) {
+                          onHorizontalDragEnd: (details) {
+                            if (details.primaryVelocity!.isNegative) {
                               model.notifyDetails();
                             }
                           },

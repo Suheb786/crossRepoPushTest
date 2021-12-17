@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "kyc_status_request.g.dart";
@@ -8,7 +7,7 @@ class KYCStatusRequest {
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String,dynamic> baseData;
 
   KYCStatusRequest({required this.baseData, this.getToken: true});
 

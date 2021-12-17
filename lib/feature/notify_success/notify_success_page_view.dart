@@ -94,7 +94,7 @@ class NotifySuccessPageView
                           EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                       child: AccountDetails(
                           title: S.of(context).refTitle,
-                          value: S.of(context).refNumber),
+                          value: model.arguments.referenceNo),
                     ),
                   ],
                 ),

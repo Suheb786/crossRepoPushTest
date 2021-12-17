@@ -1,9 +1,12 @@
 import 'package:domain/constants/enum/us_relevant_w9_tax_payer_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/fatca_crs/fatca_set_data.dart';
 import 'package:domain/usecase/register/fatca_us_w9_tax_payer_details_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -55,43 +58,15 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
     _socialSecurityVisibilitySubject.safeAdd(value);
   }
 
-  ///declaration selected  subject
-  BehaviorSubject<bool> _declarationSelected = BehaviorSubject.seeded(false);
-
-  ///declaration selected stream
-  Stream<bool> get declarationSelectedStream => _declarationSelected.stream;
-
-  ///update declaration selection function
-  void updateDeclarationSelection(bool value) {
-    _declarationSelected.safeAdd(value);
-  }
-
-  ///verify info declaration selected  subject
-  BehaviorSubject<bool> _verifyInfoDeclarationSelected =
-      BehaviorSubject.seeded(false);
-
-  ///verify info declaration selected stream
-  Stream<bool> get verifyInfoDeclarationSelectedStream =>
-      _verifyInfoDeclarationSelected.stream;
-
-  ///update declaration selection function
-  void updateVerifyInfoDeclarationSelection(bool value) {
-    _verifyInfoDeclarationSelected.safeAdd(value);
-  }
-
   bool isValid() {
     bool valid = false;
     if (_socialSecurityVisibilitySubject.value) {
       if (taxPayerTypeController.text.isNotEmpty &&
-          socialSecurityNumberController.text.isNotEmpty &&
-          _declarationSelected.value &&
-          _verifyInfoDeclarationSelected.value) {
+          socialSecurityNumberController.text.isNotEmpty) {
         valid = true;
       }
     } else {
-      if (taxPayerTypeController.text.isNotEmpty &&
-          _declarationSelected.value &&
-          _verifyInfoDeclarationSelected.value) {
+      if (taxPayerTypeController.text.isNotEmpty) {
         valid = true;
       }
     }
@@ -107,6 +82,7 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
                   _fatcaUSW9taxPayerDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _fatcaUSW9taxPayerDetailsResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -124,9 +100,7 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_SECURITY_NUMBER:
         socialSecurityNumberKey.currentState!.isValid = false;
         break;
-      case ErrorType.INVALID_DECLARATION_SELECTION:
-        break;
-      case ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION:
+      default:
         break;
     }
   }
@@ -136,10 +110,7 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
         FatcaUSW9TaxPayerDetailsUseCaseParams(
             isSocialSecurityTaxPayer: _socialSecurityVisibilitySubject.value,
             socialSecurityNumber: socialSecurityNumberController.text,
-            taxPayerType: taxPayerTypeController.text,
-            declarationSelected: _declarationSelected.value,
-            verifyInfoDeclarationSelected:
-                _verifyInfoDeclarationSelected.value));
+            taxPayerType: taxPayerTypeController.text));
   }
 
   void updateTaxPayerTypeField(String value) {
@@ -149,6 +120,19 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
     } else {
       updateVisibilityValue(false);
     }
+  }
+
+  ///update data to main page
+  void updateData(BuildContext context) {
+    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .fatcaData;
+    fatcaSetData.requesterTaxPayer = taxPayerTypeController.text;
+    fatcaSetData.requesterSocialSecurityNo =
+        socialSecurityNumberController.text;
+    ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .setFatcaData(fatcaSetData);
   }
 
   @override

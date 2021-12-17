@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "save_fatca_information_request_entity.g.dart";
@@ -6,13 +5,21 @@ part "save_fatca_information_request_entity.g.dart";
 @JsonSerializable()
 class SaveFatcaInformationRequestEntity {
   @JsonKey(name: "Response1")
-  final String? response1;
+  final bool? response1;
   @JsonKey(name: "Response2")
-  final String? response2;
+  final bool? response2;
   @JsonKey(name: "Response3")
-  final String? response3;
+  final bool? response3;
   @JsonKey(name: "Response4")
-  final String? response4;
+  final bool? response4;
+  @JsonKey(name: "Response5")
+  final bool? response5;
+  @JsonKey(name: "RelationshipWithPEP")
+  final String? relationshipWithPEP;
+  @JsonKey(name: "PersonName")
+  final String? personName;
+  @JsonKey(name: "PersonRole")
+  final String? personRole;
   @JsonKey(name: "IsTinNoRes4")
   final bool? isTinNoRes4;
   @JsonKey(name: "TaxResidenceCountry")
@@ -26,19 +33,23 @@ class SaveFatcaInformationRequestEntity {
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String, dynamic> baseData;
 
   SaveFatcaInformationRequestEntity(
       {this.response1,
       this.response2,
       this.response3,
       this.response4,
+      this.response5,
       this.isTinNoRes4,
       this.taxResidenceCountry,
       this.tinNoRes4,
       this.reasonUnavailableRes4,
       this.reasonBRes4,
       required this.baseData,
+      this.relationshipWithPEP,
+      this.personName,
+      this.personRole,
       this.getToken: true});
 
   factory SaveFatcaInformationRequestEntity.fromJson(

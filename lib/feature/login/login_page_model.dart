@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:domain/usecase/kyc/check_kyc_status_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -12,6 +16,8 @@ import 'package:rxdart/rxdart.dart';
 
 class LoginViewModel extends BasePageViewModel {
   final LoginUseCase _loginUseCase;
+  final CheckKYCStatusUseCase _kycStatusUseCase;
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final ScrollController scrollController = ScrollController();
@@ -30,13 +36,26 @@ class LoginViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  LoginViewModel(this._loginUseCase) {
+  ///kyc status request
+  PublishSubject<CheckKYCStatusUseCaseParams> _kycStatusRequest =
+      PublishSubject();
+
+  ///kyc status response
+  PublishSubject<Resource<CheckKycResponse>> _kycStatusResponse =
+      PublishSubject();
+
+  ///kyc status response stream
+  Stream<Resource<CheckKycResponse>> get kycStatusStream =>
+      _kycStatusResponse.stream;
+
+  LoginViewModel(this._loginUseCase, this._kycStatusUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value,
               createCall: () => _loginUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _loginResponse.safeAdd(event);
+        updateLoader();
         if (event.status == Status.ERROR) {
           if (event.appError!.type == ErrorType.EMPTY_EMAIL ||
               event.appError!.type == ErrorType.INVALID_EMAIL) {
@@ -49,11 +68,28 @@ class LoginViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _kycStatusRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _kycStatusUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _kycStatusResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
   void validateEmail() {
     _loginRequest.safeAdd(LoginUseCaseParams(
         email: emailController.text, password: passwordController.text));
+  }
+
+  void checkKycStatus() {
+    _kycStatusRequest.safeAdd(CheckKYCStatusUseCaseParams(getToken: true));
   }
 
   void validate() {
@@ -69,6 +105,8 @@ class LoginViewModel extends BasePageViewModel {
     _loginRequest.close();
     _loginResponse.close();
     _showButtonSubject.close();
+    _kycStatusRequest.close();
+    _kycStatusResponse.close();
     super.dispose();
   }
 }

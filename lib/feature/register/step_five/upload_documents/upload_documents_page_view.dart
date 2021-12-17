@@ -1,7 +1,8 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
-import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/upload_document/file_upload_response.dart';
+import 'package:domain/model/upload_document/save_upload_document_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -42,418 +43,191 @@ class UploadDocumentsPageView
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
                     child: AppStreamBuilder<Resource<bool>>(
-                      stream: model.documentsStream,
+                      stream: model.removeDebitLockStream,
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
                           Navigator.pushReplacementNamed(
                               context, RoutePaths.AccountReady);
-                        } else if (data.status == Status.ERROR) {
-                          if (data.appError!.type ==
-                              ErrorType.EMPTY_INCOME_DOCUMENT) {
-                            model.incomeDocumentKey.currentState!.isValid =
-                                false;
-                          } else if (data.appError!.type ==
-                              ErrorType.EMPTY_ADDRESS_DOCUMENT) {
-                            model.addressDocumentKey.currentState!.isValid =
-                                false;
-                          }
-                          model.showToastWithError(data.appError!);
                         }
                       },
-                      dataBuilder: (context, data) {
-                        return GestureDetector(
-                          onHorizontalDragUpdate: (details) {
-                            if (details.primaryDelta!.isNegative) {
-                              model.validateDocuments();
-                            } else {
-                              ProviderScope.containerOf(context)
-                                  .read(registerStepFiveViewModelProvider)
-                                  .registrationStepFivePageController
-                                  .jumpToPage(1);
+                      dataBuilder: (context, debitLockResponse) {
+                        return AppStreamBuilder<
+                            Resource<SaveUploadDocumentResponse>>(
+                          stream: model.documentsStream,
+                          initialData: Resource.none(),
+                          onData: (data) {
+                            if (data.status == Status.SUCCESS) {
+                              model.removeDebitLock();
+                            } else if (data.status == Status.ERROR) {
+                              // if (data.appError!.type ==
+                              //     ErrorType.EMPTY_INCOME_DOCUMENT) {
+                              //   model.incomeDocumentKey.currentState!.isValid =
+                              //       false;
+                              // } else if (data.appError!.type ==
+                              //     ErrorType.EMPTY_ADDRESS_DOCUMENT) {
+                              //   model.addressDocumentKey.currentState!.isValid =
+                              //       false;
+                              // } else if (data.appError!.type ==
+                              //     ErrorType.EMPTY_NATIONALITY_DOCUMENT) {
+                              //   model.additionalNationalityKey.currentState!
+                              //       .isValid = false;
+                              // }
+                              model.showToastWithError(data.appError!);
                             }
                           },
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
-                            clipBehavior: Clip.antiAliasWithSaveLayer,
-                            elevation: 2,
-                            color: Theme.of(context)
-                                .cardTheme
-                                .copyWith(color: AppColor.white)
-                                .color,
-                            margin: EdgeInsets.zero,
-                            shadowColor: Theme.of(context)
-                                .primaryColorDark
-                                .withOpacity(0.32),
-                            child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 32, horizontal: 24),
-                                child: SingleChildScrollView(
-                                    physics: ClampingScrollPhysics(),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          S.of(context).proofOfIncome,
-                                          softWrap: true,
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                              color: Theme.of(context)
-                                                  .primaryColorDark),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 8.0, bottom: 16),
-                                          child: Text(
-                                            S.of(context).proofOfIncomeDesc,
-                                            softWrap: true,
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                                color: Theme.of(context)
-                                                    .primaryColorDark),
-                                          ),
-                                        ),
-                                        AppStreamBuilder<String>(
-                                          stream: model.uploadIncomePoofStream,
-                                          initialData: '',
-                                          onData: (documentResponse) {
-                                            if (documentResponse.isNotEmpty) {
-                                              model.updateIncomeDocumentField(
-                                                  documentResponse);
-                                            }
-                                          },
-                                          dataBuilder: (context, document) {
-                                            return AppStreamBuilder<bool>(
+                          dataBuilder: (context, data) {
+                            return GestureDetector(
+                              onHorizontalDragEnd: (details) {
+                                if (details.primaryVelocity!.isNegative) {
+                                  model.validateDocuments();
+                                } else {
+                                  Future.delayed(Duration(milliseconds: 500),
+                                      () {
+                                    ProviderScope.containerOf(context)
+                                        .read(registerStepFiveViewModelProvider)
+                                        .registrationStepFivePageController
+                                        .move(0);
+                                  });
+                                }
+                              },
+                              child: Card(
+                                child: Padding(
+                                    padding: EdgeInsets.only(
+                                        bottom: MediaQuery.of(context)
+                                                        .viewInsets
+                                                        .bottom -
+                                                    50 <=
+                                                0
+                                            ? 0
+                                            : MediaQuery.of(context)
+                                                    .viewInsets
+                                                    .bottom -
+                                                48),
+                                    child: SingleChildScrollView(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 32, horizontal: 24),
+                                        physics: ClampingScrollPhysics(),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              S.of(context).proofOfIncome,
+                                              softWrap: true,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Theme.of(context)
+                                                      .primaryColorDark),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 8.0, bottom: 16),
+                                              child: Text(
+                                                S.of(context).proofOfIncomeDesc,
+                                                softWrap: true,
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Theme.of(context)
+                                                        .primaryColorDark),
+                                              ),
+                                            ),
+                                            AppStreamBuilder<String>(
                                               stream:
-                                                  model.documentIncomeStream,
-                                              initialData: false,
-                                              dataBuilder:
-                                                  (context, isUploaded) {
-                                                return AppTextField(
-                                                  labelText: '',
-                                                  hintText: S
-                                                      .of(context)
-                                                      .uploadDocumentsSmall,
-                                                  controller:
-                                                      model.incomeController,
-                                                  key: model.incomeDocumentKey,
-                                                  readOnly: true,
-                                                  hintTextColor:
-                                                      Theme.of(context)
-                                                          .primaryColorDark,
-                                                  textFieldBorderColor:
-                                                      Theme.of(context)
-                                                          .accentTextTheme
-                                                          .bodyText1!
-                                                          .color,
-                                                  textColor: Theme.of(context)
-                                                      .primaryColorDark,
-                                                  suffixIcon: (value, data) {
-                                                    return InkWell(
-                                                      onTap: !(isUploaded!)
-                                                          ? () async {
-                                                              UploadDocumentSelectionWidget.show(
-                                                                  context,
-                                                                  onCameraTap:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.uploadIncomeDocument(
-                                                                    DocumentTypeEnum
-                                                                        .CAMERA);
-                                                              }, onUploadDocumentTap:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.uploadIncomeDocument(
-                                                                    DocumentTypeEnum
-                                                                        .GALLERY);
-                                                              }, onCancelled:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              },
-                                                                  title: S
-                                                                      .of(context)
-                                                                      .pleaseSelectYourAction);
-                                                            }
-                                                          : () {
-                                                              model
-                                                                  .incomeController
-                                                                  .clear();
-                                                              model
-                                                                  .updateIncomeUploadedStream(
-                                                                      false);
-                                                            },
-                                                      child: Container(
-                                                          height: 16,
-                                                          width: 16,
-                                                          padding:
-                                                              EdgeInsets.all(5),
-                                                          child: isUploaded
-                                                              ? AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .delete,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark,
-                                                                )
-                                                              : AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .upload,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark,
-                                                                )),
-                                                    );
-                                                  },
-                                                );
+                                                  model.uploadIncomePoofStream,
+                                              initialData: '',
+                                              onData: (documentResponse) {
+                                                if (documentResponse
+                                                    .isNotEmpty) {
+                                                  model
+                                                      .updateIncomeDocumentField(
+                                                          documentResponse);
+                                                }
                                               },
-                                            );
-                                          },
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 24.0, bottom: 24),
-                                          child: Container(
-                                            height: 1,
-                                            color: AppColor.dark_gray_1,
-                                          ),
-                                        ),
-                                        Text(
-                                          S.of(context).proofOfAddress,
-                                          softWrap: true,
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                              color: Theme.of(context)
-                                                  .primaryColorDark),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              top: 8.0, bottom: 16),
-                                          child: Text(
-                                            S.of(context).proofOfAddressDesc,
-                                            softWrap: true,
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                                color: Theme.of(context)
-                                                    .primaryColorDark),
-                                          ),
-                                        ),
-                                        AppStreamBuilder<String>(
-                                          stream: model.uploadAddressPoofStream,
-                                          initialData: '',
-                                          onData: (documentResponse) {
-                                            if (documentResponse.isNotEmpty) {
-                                              model.updateAddressDocumentField(
-                                                  documentResponse);
-                                            }
-                                          },
-                                          dataBuilder: (context, document) {
-                                            return AppStreamBuilder<bool>(
-                                              stream:
-                                                  model.documentAddressStream,
-                                              initialData: false,
-                                              dataBuilder:
-                                                  (context, isUploaded) {
-                                                return AppTextField(
-                                                  labelText: '',
-                                                  hintText: S
-                                                      .of(context)
-                                                      .uploadDocumentsSmall,
-                                                  controller:
-                                                      model.addressController,
-                                                  key: model.addressDocumentKey,
-                                                  readOnly: true,
-                                                  textFieldBorderColor:
-                                                      Theme.of(context)
-                                                          .accentTextTheme
-                                                          .bodyText1!
-                                                          .color,
-                                                  hintTextColor:
-                                                      Theme.of(context)
-                                                          .primaryColorDark,
-                                                  textColor: Theme.of(context)
-                                                      .primaryColorDark,
-                                                  suffixIcon: (value, data) {
-                                                    return InkWell(
-                                                      onTap: !(isUploaded!)
-                                                          ? () async {
-                                                              UploadDocumentSelectionWidget.show(
-                                                                  context,
-                                                                  onCameraTap:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.uploadAddressDocument(
-                                                                    DocumentTypeEnum
-                                                                        .CAMERA);
-                                                              }, onUploadDocumentTap:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.uploadAddressDocument(
-                                                                    DocumentTypeEnum
-                                                                        .GALLERY);
-                                                              }, onCancelled:
-                                                                      () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              },
-                                                                  title: S
-                                                                      .of(context)
-                                                                      .pleaseSelectYourAction);
-                                                            }
-                                                          : () {
-                                                              model
-                                                                  .addressController
-                                                                  .clear();
-                                                              model
-                                                                  .updateAddressUploadedStream(
-                                                                      false);
-                                                            },
-                                                      child: Container(
-                                                          height: 16,
-                                                          width: 16,
-                                                          padding:
-                                                              EdgeInsets.all(5),
-                                                          child: isUploaded
-                                                              ? AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .delete,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark,
-                                                                )
-                                                              : AppSvg.asset(
-                                                                  AssetUtils
-                                                                      .upload,
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .primaryColorDark,
-                                                                )),
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            );
-                                          },
-                                        ),
-
-                                        ///TODO:change visibility based on additional nationality
-                                        Visibility(
-                                            visible: false,
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 24),
-                                                  child: Container(
-                                                    height: 1,
-                                                    color:
-                                                        AppColor.strong_violet,
-                                                  ),
-                                                ),
-                                                Text(
-                                                  S
-                                                      .of(context)
-                                                      .additionalNationalityPassport,
-                                                  softWrap: true,
-                                                  style: TextStyle(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.w600,
-                                                      color: AppColor.white),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      top: 8.0, bottom: 16),
-                                                  child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .additionalNationalityPassportDesc,
-                                                    softWrap: true,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                        color: AppColor.white),
-                                                  ),
-                                                ),
-                                                AppStreamBuilder<String>(
+                                              dataBuilder: (context, document) {
+                                                return AppStreamBuilder<bool>(
                                                   stream: model
-                                                      .additionalNationalityProofStream,
-                                                  initialData: '',
-                                                  onData: (documentResponse) {
-                                                    if (documentResponse
-                                                        .isNotEmpty) {
-                                                      model
-                                                          .updateAdditionalNationalityField(
-                                                              documentResponse);
-                                                    }
-                                                  },
+                                                      .documentIncomeStream,
+                                                  initialData: false,
                                                   dataBuilder:
-                                                      (context, document) {
+                                                      (context, isUploaded) {
                                                     return AppStreamBuilder<
-                                                        bool>(
+                                                        Resource<
+                                                            FileUploadResponse>>(
                                                       stream: model
-                                                          .documentNationalityStream,
-                                                      initialData: false,
+                                                          .uploadIncomeProofDocumentStream,
+                                                      initialData:
+                                                          Resource.none(),
+                                                      onData: (data) {
+                                                        if (data.status ==
+                                                            Status.SUCCESS) {
+                                                          model.incomeProofDocumentId =
+                                                              data
+                                                                  .data!
+                                                                  .fileUploadContent!
+                                                                  .documentId!;
+                                                          model.isIncomeDocumentUploaded =
+                                                              true;
+                                                          model
+                                                              .validateFields();
+                                                        }
+                                                      },
                                                       dataBuilder: (context,
-                                                          isUploaded) {
+                                                          incomeUploadedResponse) {
                                                         return AppTextField(
                                                           labelText: '',
                                                           hintText: S
                                                               .of(context)
                                                               .uploadDocumentsSmall,
                                                           controller: model
-                                                              .additionalNationalityController,
-                                                          key: model
-                                                              .additionalNationalityKey,
+                                                              .incomeController,
+                                                          // key: model
+                                                          //     .incomeDocumentKey,
+                                                          readOnly: true,
+                                                          hintTextColor: Theme
+                                                                  .of(context)
+                                                              .primaryColorDark,
                                                           textFieldBorderColor:
                                                               Theme.of(context)
                                                                   .accentTextTheme
                                                                   .bodyText1!
                                                                   .color,
-                                                          readOnly: true,
-                                                          hintTextColor:
-                                                              AppColor
-                                                                  .vivid_orange,
-                                                          textColor: AppColor
-                                                              .vivid_orange,
+                                                          textColor: Theme.of(
+                                                                  context)
+                                                              .primaryColorDark,
                                                           suffixIcon:
                                                               (value, data) {
                                                             return InkWell(
                                                               onTap:
                                                                   !(isUploaded!)
                                                                       ? () async {
-                                                                          UploadDocumentSelectionWidget.show(context, title: S.of(context).pleaseSelectYourAction, onCameraTap:
+                                                                          UploadDocumentSelectionWidget.show(context, onCameraTap:
                                                                               () {
                                                                             Navigator.pop(context);
-                                                                            model.uploadAdditionalNationalityDocument(DocumentTypeEnum.CAMERA);
+                                                                            model.uploadIncomeDocument(DocumentTypeEnum.CAMERA);
                                                                           }, onUploadDocumentTap:
                                                                               () {
                                                                             Navigator.pop(context);
-                                                                            model.uploadAdditionalNationalityDocument(DocumentTypeEnum.GALLERY);
+                                                                            model.uploadIncomeDocument(DocumentTypeEnum.GALLERY);
                                                                           }, onCancelled:
                                                                               () {
                                                                             Navigator.pop(context);
-                                                                          });
+                                                                          }, title: S.of(context).pleaseSelectYourAction);
                                                                         }
                                                                       : () {
                                                                           model
-                                                                              .additionalNationalityController
+                                                                              .incomeController
                                                                               .clear();
-                                                                          model.updateAdditionalNationalityUploadedStream(
+                                                                          model.updateIncomeUploadedStream(
                                                                               false);
+                                                                          model.isIncomeDocumentUploaded =
+                                                                              false;
+                                                                          model.incomeProofDocumentId =
+                                                                              '';
+                                                                          model
+                                                                              .validateFields();
                                                                         },
                                                               child: Container(
                                                                   height: 16,
@@ -465,53 +239,418 @@ class UploadDocumentsPageView
                                                                   child: isUploaded
                                                                       ? AppSvg.asset(
                                                                           AssetUtils
-                                                                              .delete)
+                                                                              .delete,
+                                                                          color:
+                                                                              Theme.of(context).primaryColorDark,
+                                                                        )
                                                                       : AppSvg.asset(
                                                                           AssetUtils
-                                                                              .upload)),
+                                                                              .upload,
+                                                                          color:
+                                                                              Theme.of(context).primaryColorDark,
+                                                                        )),
                                                             );
                                                           },
                                                         );
                                                       },
                                                     );
                                                   },
-                                                ),
-                                              ],
-                                            )),
-                                        Center(
-                                          child: Padding(
+                                                );
+                                              },
+                                            ),
+                                            Padding(
                                               padding: EdgeInsets.only(
-                                                  top: 40.0, bottom: 16),
-                                              child: TextButton(
-                                                  onPressed: () {
-                                                    UploadDocumentLaterDialog
-                                                        .show(context,
-                                                            onSelected: () {
-                                                      Navigator.pop(context);
-                                                    });
+                                                  top: 24.0, bottom: 24),
+                                              child: Container(
+                                                height: 1,
+                                                color: AppColor.dark_gray_1,
+                                              ),
+                                            ),
+                                            Text(
+                                              S.of(context).proofOfAddress,
+                                              softWrap: true,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Theme.of(context)
+                                                      .primaryColorDark),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  top: 8.0, bottom: 16),
+                                              child: Text(
+                                                S
+                                                    .of(context)
+                                                    .proofOfAddressDesc,
+                                                softWrap: true,
+                                                style: TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Theme.of(context)
+                                                        .primaryColorDark),
+                                              ),
+                                            ),
+                                            AppStreamBuilder<String>(
+                                              stream:
+                                                  model.uploadAddressPoofStream,
+                                              initialData: '',
+                                              onData: (documentResponse) {
+                                                if (documentResponse
+                                                    .isNotEmpty) {
+                                                  model
+                                                      .updateAddressDocumentField(
+                                                          documentResponse);
+                                                }
+                                              },
+                                              dataBuilder: (context, document) {
+                                                return AppStreamBuilder<bool>(
+                                                  stream: model
+                                                      .documentAddressStream,
+                                                  initialData: false,
+                                                  dataBuilder:
+                                                      (context, isUploaded) {
+                                                    return AppStreamBuilder<
+                                                        Resource<
+                                                            FileUploadResponse>>(
+                                                      stream: model
+                                                          .uploadAddressProofDocumentStream,
+                                                      initialData:
+                                                          Resource.none(),
+                                                      onData:
+                                                          (addressProofResponse) {
+                                                        if (addressProofResponse
+                                                                .status ==
+                                                            Status.SUCCESS) {
+                                                          model.addressProofDocumentId =
+                                                              addressProofResponse
+                                                                  .data!
+                                                                  .fileUploadContent!
+                                                                  .documentId!;
+                                                          model.isAddressDocumentUploaded =
+                                                              true;
+                                                          model
+                                                              .validateFields();
+                                                        }
+                                                      },
+                                                      dataBuilder:
+                                                          (context, data) {
+                                                        return AppTextField(
+                                                          labelText: '',
+                                                          hintText: S
+                                                              .of(context)
+                                                              .uploadDocumentsSmall,
+                                                          controller: model
+                                                              .addressController,
+                                                          // key: model
+                                                          //     .addressDocumentKey,
+                                                          readOnly: true,
+                                                          textFieldBorderColor:
+                                                              Theme.of(context)
+                                                                  .accentTextTheme
+                                                                  .bodyText1!
+                                                                  .color,
+                                                          hintTextColor: Theme
+                                                                  .of(context)
+                                                              .primaryColorDark,
+                                                          textColor: Theme.of(
+                                                                  context)
+                                                              .primaryColorDark,
+                                                          suffixIcon:
+                                                              (value, data) {
+                                                            return InkWell(
+                                                              onTap:
+                                                                  !(isUploaded!)
+                                                                      ? () async {
+                                                                          UploadDocumentSelectionWidget.show(context, onCameraTap:
+                                                                              () {
+                                                                            Navigator.pop(context);
+                                                                            model.uploadAddressDocument(DocumentTypeEnum.CAMERA);
+                                                                          }, onUploadDocumentTap:
+                                                                              () {
+                                                                            Navigator.pop(context);
+                                                                            model.uploadAddressDocument(DocumentTypeEnum.GALLERY);
+                                                                          }, onCancelled:
+                                                                              () {
+                                                                            Navigator.pop(context);
+                                                                          }, title: S.of(context).pleaseSelectYourAction);
+                                                                        }
+                                                                      : () {
+                                                                          model
+                                                                              .addressController
+                                                                              .clear();
+                                                                          model.updateAddressUploadedStream(
+                                                                              false);
+                                                                          model.isAddressDocumentUploaded =
+                                                                              false;
+                                                                          model.addressProofDocumentId =
+                                                                              '';
+                                                                          model
+                                                                              .validateFields();
+                                                                        },
+                                                              child: Container(
+                                                                  height: 16,
+                                                                  width: 16,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              5),
+                                                                  child: isUploaded
+                                                                      ? AppSvg.asset(
+                                                                          AssetUtils
+                                                                              .delete,
+                                                                          color:
+                                                                              Theme.of(context).primaryColorDark,
+                                                                        )
+                                                                      : AppSvg.asset(
+                                                                          AssetUtils
+                                                                              .upload,
+                                                                          color:
+                                                                              Theme.of(context).primaryColorDark,
+                                                                        )),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                    );
                                                   },
-                                                  child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .uploadDocumentLater,
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color: Theme.of(context)
-                                                            .accentTextTheme
-                                                            .bodyText1!
-                                                            .color),
-                                                  ))),
-                                        ),
-                                        Center(
-                                          child: AnimatedButton(
-                                              buttonText:
-                                                  S.of(context).swipeToProceed),
-                                        )
-                                      ],
-                                    ))),
-                          ),
+                                                );
+                                              },
+                                            ),
+                                            // AppStreamBuilder<
+                                            //     Resource<
+                                            //         CheckOtherNationalityResponse>>(
+                                            //   initialData: Resource.none(),
+                                            //   stream: model
+                                            //       .checkOtherNationalityStatusStream,
+                                            //   onData: (data) {
+                                            //     if (data.status == Status.SUCCESS) {
+                                            //       model.isOtherNationality = data
+                                            //           .data!
+                                            //           .checkOtherNationalityResponseContent!
+                                            //           .status!;
+                                            //     }
+                                            //   },
+                                            //   dataBuilder: (context, status) {
+                                            //     return Visibility(
+                                            //         visible: status!
+                                            //             .data!
+                                            //             .checkOtherNationalityResponseContent!
+                                            //             .status!,
+                                            //         child: Column(
+                                            //           crossAxisAlignment:
+                                            //               CrossAxisAlignment.start,
+                                            //           children: [
+                                            //             Padding(
+                                            //               padding:
+                                            //                   EdgeInsets.symmetric(
+                                            //                       vertical: 24),
+                                            //               child: Container(
+                                            //                 height: 1,
+                                            //                 color: AppColor
+                                            //                     .dark_gray_1,
+                                            //               ),
+                                            //             ),
+                                            //             Text(
+                                            //               S
+                                            //                   .of(context)
+                                            //                   .additionalNationalityPassport,
+                                            //               softWrap: true,
+                                            //               style: TextStyle(
+                                            //                   fontSize: 14,
+                                            //                   fontWeight:
+                                            //                       FontWeight.w600,
+                                            //                   color: Theme.of(
+                                            //                           context)
+                                            //                       .primaryColorDark),
+                                            //             ),
+                                            //             Padding(
+                                            //               padding: EdgeInsets.only(
+                                            //                   top: 8.0, bottom: 16),
+                                            //               child: Text(
+                                            //                 S
+                                            //                     .of(context)
+                                            //                     .additionalNationalityPassportDesc,
+                                            //                 softWrap: true,
+                                            //                 style: TextStyle(
+                                            //                     fontSize: 12,
+                                            //                     fontWeight:
+                                            //                         FontWeight.w400,
+                                            //                     color: Theme.of(
+                                            //                             context)
+                                            //                         .primaryColorDark),
+                                            //               ),
+                                            //             ),
+                                            //             AppStreamBuilder<String>(
+                                            //               stream: model
+                                            //                   .additionalNationalityProofStream,
+                                            //               initialData: '',
+                                            //               onData:
+                                            //                   (documentResponse) {
+                                            //                 if (documentResponse
+                                            //                     .isNotEmpty) {
+                                            //                   model.updateAdditionalNationalityField(
+                                            //                       documentResponse);
+                                            //                 }
+                                            //               },
+                                            //               dataBuilder:
+                                            //                   (context, document) {
+                                            //                 return AppStreamBuilder<
+                                            //                     bool>(
+                                            //                   stream: model
+                                            //                       .documentNationalityStream,
+                                            //                   initialData: false,
+                                            //                   dataBuilder: (context,
+                                            //                       isUploaded) {
+                                            //                     return AppStreamBuilder<
+                                            //                         Resource<
+                                            //                             FileUploadResponse>>(
+                                            //                       stream: model
+                                            //                           .uploadOtherNationalityProofDocumentStream,
+                                            //                       initialData:
+                                            //                           Resource
+                                            //                               .none(),
+                                            //                       onData:
+                                            //                           (otherNationalityUploadResponse) {
+                                            //                         if (otherNationalityUploadResponse
+                                            //                                 .status ==
+                                            //                             Status
+                                            //                                 .SUCCESS) {
+                                            //                           model.otherNationalityProofDocumentId =
+                                            //                               otherNationalityUploadResponse
+                                            //                                   .data!
+                                            //                                   .fileUploadContent!
+                                            //                                   .documentId!;
+                                            //                           model.isOtherNationalityDocumentUploaded =
+                                            //                               true;
+                                            //                           model
+                                            //                               .validateFields();
+                                            //                         }
+                                            //                       },
+                                            //                       dataBuilder:
+                                            //                           (context,
+                                            //                               data) {
+                                            //                         return AppTextField(
+                                            //                           labelText: '',
+                                            //                           hintText: S
+                                            //                               .of(context)
+                                            //                               .uploadDocumentsSmall,
+                                            //                           controller: model
+                                            //                               .additionalNationalityController,
+                                            //                           key: model
+                                            //                               .additionalNationalityKey,
+                                            //                           textFieldBorderColor: Theme.of(
+                                            //                                   context)
+                                            //                               .accentTextTheme
+                                            //                               .bodyText1!
+                                            //                               .color,
+                                            //                           readOnly:
+                                            //                               true,
+                                            //                           hintTextColor:
+                                            //                               Theme.of(
+                                            //                                       context)
+                                            //                                   .primaryColorDark,
+                                            //                           textColor: Theme.of(
+                                            //                                   context)
+                                            //                               .primaryColorDark,
+                                            //                           suffixIcon:
+                                            //                               (value,
+                                            //                                   data) {
+                                            //                             return InkWell(
+                                            //                               onTap: !(isUploaded!)
+                                            //                                   ? () async {
+                                            //                                       UploadDocumentSelectionWidget.show(context, title: S.of(context).pleaseSelectYourAction, onCameraTap: () {
+                                            //                                         Navigator.pop(context);
+                                            //                                         model.uploadAdditionalNationalityDocument(DocumentTypeEnum.CAMERA);
+                                            //                                       }, onUploadDocumentTap: () {
+                                            //                                         Navigator.pop(context);
+                                            //                                         model.uploadAdditionalNationalityDocument(DocumentTypeEnum.GALLERY);
+                                            //                                       }, onCancelled: () {
+                                            //                                         Navigator.pop(context);
+                                            //                                       });
+                                            //                                     }
+                                            //                                   : () {
+                                            //                                       model.additionalNationalityController.clear();
+                                            //                                       model.isOtherNationalityDocumentUploaded = false;
+                                            //                                       model.otherNationalityProofDocumentId = '';
+                                            //                                       model.validateFields();
+                                            //                                       model.updateAdditionalNationalityUploadedStream(false);
+                                            //                                     },
+                                            //                               child: Container(
+                                            //                                   height: 16,
+                                            //                                   width: 16,
+                                            //                                   padding: EdgeInsets.all(5),
+                                            //                                   child: isUploaded
+                                            //                                       ? AppSvg.asset(
+                                            //                                           AssetUtils.delete,
+                                            //                                           color: Theme.of(context).primaryColorDark,
+                                            //                                         )
+                                            //                                       : AppSvg.asset(
+                                            //                                           AssetUtils.upload,
+                                            //                                           color: Theme.of(context).primaryColorDark,
+                                            //                                         )),
+                                            //                             );
+                                            //                           },
+                                            //                         );
+                                            //                       },
+                                            //                     );
+                                            //                   },
+                                            //                 );
+                                            //               },
+                                            //             ),
+                                            //           ],
+                                            //         ));
+                                            //   },
+                                            // ),
+                                            Center(
+                                              child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      top: 40.0, bottom: 16),
+                                                  child: TextButton(
+                                                      onPressed: () {
+                                                        UploadDocumentLaterDialog
+                                                            .show(context,
+                                                                onSelected: () {
+                                                          Navigator.pop(
+                                                              context);
+                                                        });
+                                                      },
+                                                      child: Text(
+                                                        S
+                                                            .of(context)
+                                                            .uploadDocumentLater,
+                                                        style: TextStyle(
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .accentTextTheme
+                                                                .bodyText1!
+                                                                .color),
+                                                      ))),
+                                            ),
+                                            Center(
+                                              child: AppStreamBuilder<bool>(
+                                                stream: model
+                                                    .showAnimatedButtonStream,
+                                                initialData: false,
+                                                dataBuilder:
+                                                    (context, isValid) {
+                                                  return Visibility(
+                                                    visible: isValid!,
+                                                    child: AnimatedButton(
+                                                        buttonText: S
+                                                            .of(context)
+                                                            .swipeToProceed),
+                                                  );
+                                                },
+                                              ),
+                                            )
+                                          ],
+                                        ))),
+                              ),
+                            );
+                          },
                         );
                       },
                     ),

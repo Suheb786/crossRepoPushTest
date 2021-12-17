@@ -3,11 +3,11 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class InformationText extends StatelessWidget {
-  String? image;
-  String? title;
-  Color? iconColor;
-  Color? containerColor;
-  Color? textColor;
+  final String? image;
+  final String? title;
+  final Color? iconColor;
+  final Color? containerColor;
+  final Color? textColor;
 
   InformationText(
       {required this.image,

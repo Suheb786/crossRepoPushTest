@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "save_id_info_request.g.dart";
@@ -15,8 +14,18 @@ class SaveIdInfoRequest {
   final String? firstName;
   @JsonKey(name: "middleName")
   final String? middleName;
+  @JsonKey(name: "SecondNameEn")
+  final String? secondNameEn;
   @JsonKey(name: "familyName")
   final String? familyName;
+  @JsonKey(name: "FirstNameAr")
+  final String? firstNameAr;
+  @JsonKey(name: "SecNameAr")
+  final String? secNameAr;
+  @JsonKey(name: "ThirdNameAr")
+  final String? thirdNameAr;
+  @JsonKey(name: "FamilyNameAr")
+  final String? familyNameAr;
   @JsonKey(name: "idNumber")
   final String? idNumber;
   @JsonKey(name: "dob")
@@ -27,7 +36,7 @@ class SaveIdInfoRequest {
   final String? doe;
   @JsonKey(name: "gender")
   final String? gender;
-  @JsonKey(name: "motherName")
+  @JsonKey(name: "MotherFirstName")
   final String? motherName;
   @JsonKey(name: "documentCode")
   final String? documentCode;
@@ -54,9 +63,11 @@ class SaveIdInfoRequest {
   @JsonKey(name: "instanceID")
   final String? instanceID;
   @JsonKey(name: "scanPercentage")
-  final double? scanPercentage;
+  final num? scanPercentage;
+  @JsonKey(name: "PlaceOfBirth")
+  final String? placeOfBirth;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String, dynamic> baseData;
 
   SaveIdInfoRequest(
       {this.id,
@@ -84,7 +95,13 @@ class SaveIdInfoRequest {
       this.isimtfBlacklist,
       this.instanceID,
       this.scanPercentage,
-      required this.baseData});
+      required this.baseData,
+      this.secondNameEn,
+      this.placeOfBirth,
+      this.familyNameAr,
+      this.secNameAr,
+      this.thirdNameAr,
+      this.firstNameAr});
 
   factory SaveIdInfoRequest.fromJson(Map<String, dynamic> json) =>
       _$SaveIdInfoRequestFromJson(json);

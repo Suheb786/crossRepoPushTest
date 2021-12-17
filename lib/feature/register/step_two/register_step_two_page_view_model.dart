@@ -1,26 +1,35 @@
-import 'package:carousel_slider/carousel_controller.dart';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RegisterStepTwoViewModel extends BasePageViewModel {
-  final CarouselController registrationStepTwoPageController =
-      new CarouselController();
+  final SwiperController registrationStepTwoPageController =
+      new SwiperController();
 
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;
 
+  PublishSubject<List<Widget>> _registrationStepTwoPage = PublishSubject();
+
+  Stream<List<Widget>> get registrationStepTwoPage =>
+      _registrationStepTwoPage.stream;
+
   void updatePage(int index) {
     _currentStep.safeAdd(index);
   }
 
-  List<Widget> pages = [];
+  void updatePages(List<Widget> pages) {
+    print("I AM updatePages $pages");
+    _registrationStepTwoPage.safeAdd(pages);
+  }
 
   @override
   void dispose() {
     _currentStep.close();
+    _registrationStepTwoPage.close();
     super.dispose();
   }
 }

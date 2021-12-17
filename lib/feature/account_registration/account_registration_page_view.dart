@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/addnumber/add_number_page.dart';
 import 'package:neo_bank/feature/account_registration/createPassword/create_password_page.dart';
@@ -76,7 +77,7 @@ class AccountRegistrationPageView
                     Padding(
                       padding: EdgeInsets.only(
                           top: 8.0,
-                          bottom: currentStep == 1 ? 0 : 32,
+                          bottom: currentStep == 2 ? 0 : 32,
                           left: 24,
                           right: 24),
                       child: ShowUpAnimation(
@@ -89,7 +90,7 @@ class AccountRegistrationPageView
                         child: Text(
                           StepTextHelper.accountRegistrationTextHelper(
                             currentStep ?? 0,
-                            S.of(context).whatYourEmailAndMobileNumber,
+                            S.of(context).enterYourEmailAndMobile,
                             S.of(context).createPasswordHeader,
                             S.of(context).enterOtpHeader,
                           ),
@@ -102,7 +103,7 @@ class AccountRegistrationPageView
                       ),
                     ),
                     Visibility(
-                      visible: currentStep == 1,
+                      visible: currentStep == 2,
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 32),
                         child: ShowUpAnimation(
@@ -112,8 +113,8 @@ class AccountRegistrationPageView
                           direction: Direction.vertical,
                           offset: 0.5,
                           child: Text(
-                            "",
-                            //"${ProviderScope?.containerOf(context).read(addNumberViewModelProvider).selectedCountry.countryCallingCode ?? ""} ${ProviderScope.containerOf(context).read(addNumberViewModelProvider).mobileNumberController.text ?? ""}",
+                            "${ProviderScope?.containerOf(context).read(addNumberViewModelProvider).selectedCountry.countryCallingCode ?? ""} "
+                            "${ProviderScope.containerOf(context).read(addNumberViewModelProvider).mobileNumberController.text}",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Theme.of(context).accentColor,

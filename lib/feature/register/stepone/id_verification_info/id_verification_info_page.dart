@@ -11,8 +11,7 @@ class IdVerificationInfoPage extends BasePage<IdVerificationInfoViewModel> {
 }
 
 class IdVerificationInfoPageState extends BaseStatefulPage<
-    IdVerificationInfoViewModel,
-    IdVerificationInfoPage> with TickerProviderStateMixin {
+    IdVerificationInfoViewModel, IdVerificationInfoPage> {
   @override
   ProviderBase provideBase() {
     return idVerificationInfoViewModelProvider;

@@ -16,11 +16,11 @@ SaveJobInfoRequest _$SaveJobInfoRequestFromJson(Map<String, dynamic> json) {
     employerContact: json['EmployerContact'] as String?,
     additionalIncomes: json['AdditionalIncomes'] as bool?,
     mainSource: json['MainSource'] as String?,
+    businessType: json['BusinessType'] as String?,
     additionalIncome: (json['AdditionalIncome'] as List<dynamic>?)
         ?.map((e) => AdditionalIncome.fromJson(e as Map<String, dynamic>))
         .toList(),
-    baseData:
-        BaseClassEntity.fromJson(json['baseClass'] as Map<String, dynamic>),
+    baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }
 
@@ -28,6 +28,7 @@ Map<String, dynamic> _$SaveJobInfoRequestToJson(SaveJobInfoRequest instance) =>
     <String, dynamic>{
       'EmployeeName': instance.employeeName,
       'Occupation': instance.occupation,
+      'BusinessType': instance.businessType,
       'AnnualIncome': instance.annualIncome,
       'EmployerCountries': instance.employerCountries,
       'EmployerCity': instance.employerCity,

@@ -11,7 +11,10 @@ class FatcaUSRelevantW8Page extends BasePage<FatcaUSRelevantW8PageViewModel> {
 }
 
 class FatcaUSRelevantW8PageState extends BaseStatefulPage<
-    FatcaUSRelevantW8PageViewModel, FatcaUSRelevantW8Page> {
+    FatcaUSRelevantW8PageViewModel,
+    FatcaUSRelevantW8Page> with AutomaticKeepAliveClientMixin {
+  FatcaUSRelevantW8PageState() : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return fatcaUSRelevantW8PageViewModelProvider;
@@ -26,4 +29,13 @@ class FatcaUSRelevantW8PageState extends BaseStatefulPage<
   Widget buildView(BuildContext context, FatcaUSRelevantW8PageViewModel model) {
     return FatcaUSRelevantW8PageView(provideBase());
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

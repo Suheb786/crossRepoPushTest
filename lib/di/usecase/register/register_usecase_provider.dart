@@ -15,7 +15,6 @@ import 'package:domain/usecase/register/relationship_with_pep_usecase.dart';
 import 'package:domain/usecase/register/review_app_usecase.dart';
 import 'package:domain/usecase/register/schedule_video_call_usecase.dart';
 import 'package:domain/usecase/register/tax_report_information_usecase.dart';
-import 'package:domain/usecase/register/taxation_details_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[GetOccupationUseCase] provider
@@ -40,12 +39,6 @@ final jobAndIncomeUseCaseProvider = Provider.autoDispose<JobAndIncomeUseCase>(
   (ref) => JobAndIncomeUseCase(ref.read(userRepoProvider)),
 );
 
-///[TaxationDetailsUseCase] provider
-final taxationDetailsUseCaseProvider =
-    Provider.autoDispose<TaxationDetailsUseCase>(
-  (ref) => TaxationDetailsUseCase(),
-);
-
 ///[TaxReportInformationUseCase] provider
 final taxReportInformationUseCaseProvider =
     Provider.autoDispose<TaxReportInformationUseCase>(
@@ -55,7 +48,7 @@ final taxReportInformationUseCaseProvider =
 ///[TaxReportInformationUseCase] provider
 final reviewApplicationUseCaseProvider =
     Provider.autoDispose<ReviewApplicationUseCase>(
-  (ref) => ReviewApplicationUseCase(ref.read(registerStepFourRepoProvider)),
+  (ref) => ReviewApplicationUseCase(ref.read(userRepoProvider)),
 );
 
 ///[NatureOfSpecialNeedsUseCase] provider
@@ -110,5 +103,5 @@ final fatcaUSW8TaxPayerDetailsUseCaseProvider =
 ///[ScheduleVideoCallUseCase] provider
 final scheduleVideoCallUseCaseProvider =
     Provider.autoDispose<ScheduleVideoCallUseCase>(
-  (ref) => ScheduleVideoCallUseCase(),
+  (ref) => ScheduleVideoCallUseCase(ref.read(accountRepositoryProvider)),
 );

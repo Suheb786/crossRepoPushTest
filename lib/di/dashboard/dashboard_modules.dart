@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page_view_model.dart';
@@ -21,12 +22,18 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_
 
 final dashboardViewModelProvider =
     ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
-  (ref) => DashboardPageViewModel(),
+  (ref) => DashboardPageViewModel(
+      ref.read(logoutUseCaseProvider),
+      ref.read(checkBioMetricSupportUseCaseProvider),
+      ref.read(authenticateBioMetricUseCaseProvider),
+      ref.read(generateKeyPairUseCaseProvider),
+      ref.read(enableBiometricUseCaseProvider)),
 );
 
 final biometricLoginViewModelProvider =
     ChangeNotifierProvider.autoDispose<BiometricLoginDialogViewModel>(
-  (ref) => BiometricLoginDialogViewModel(),
+  (ref) =>
+      BiometricLoginDialogViewModel(ref.read(enableFingerPrintUseCaseProvider)),
 );
 
 final getCreditCardViewModelProvider =

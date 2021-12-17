@@ -1,3 +1,4 @@
+import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/user/create_password_usecase.dart';
 import 'package:domain/usecase/user/register_prospect_usecase.dart';
 import 'package:domain/utils/validator.dart';
@@ -38,9 +39,9 @@ class CreatePasswordViewModel extends BasePageViewModel {
       PublishSubject();
 
   /// Register user response subject holder
-  PublishSubject<Resource<bool>> _registerUserResponse = PublishSubject();
+  PublishSubject<Resource<User>> _registerUserResponse = PublishSubject();
 
-  Stream<Resource<bool>> get registerUserStream => _registerUserResponse.stream;
+  Stream<Resource<User>> get registerUserStream => _registerUserResponse.stream;
 
   /// show button Subject holder
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -55,6 +56,7 @@ class CreatePasswordViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _createPasswordResponse.safeAdd(event);
+        updateLoader();
         if (event.status == Status.ERROR) {
           showErrorState();
         }
@@ -66,6 +68,7 @@ class CreatePasswordViewModel extends BasePageViewModel {
               createCall: () => _registerProspectUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _registerUserResponse.safeAdd(event);
       });
     });
@@ -93,7 +96,8 @@ class CreatePasswordViewModel extends BasePageViewModel {
 
   void validateAllFields() {
     if (createPasswordController.text.isNotEmpty &&
-        confirmPasswordController.text.isNotEmpty) {
+        confirmPasswordController.text.isNotEmpty &&
+        confirmPasswordController.text == createPasswordController.text) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);

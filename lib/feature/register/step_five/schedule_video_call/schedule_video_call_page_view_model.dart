@@ -1,4 +1,5 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/account/save_customer_schedule_time_response.dart';
 import 'package:domain/usecase/register/schedule_video_call_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -36,11 +37,12 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
       PublishSubject();
 
   ///schedule Video call response holder
-  PublishSubject<Resource<bool>> _scheduleVideoCallResponse = PublishSubject();
+  PublishSubject<Resource<SaveCustomerScheduleTimeResponse>>
+      _scheduleVideoCallResponse = PublishSubject();
 
   ///schedule Video call stream
-  Stream<Resource<bool>> get scheduleVideoCallStream =>
-      _scheduleVideoCallResponse.stream;
+  Stream<Resource<SaveCustomerScheduleTimeResponse>>
+      get scheduleVideoCallStream => _scheduleVideoCallResponse.stream;
 
   ///all filed validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();
@@ -74,13 +76,15 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
     });
   }
 
-  void getError(Resource<bool> event) {
+  void getError(Resource<SaveCustomerScheduleTimeResponse> event) {
     switch (event.appError!.type) {
       case ErrorType.INVALID_PREFERRED_DATE:
         preferredDateKey.currentState!.isValid = false;
         break;
       case ErrorType.INVALID_PREFERRED_TIME:
         preferredTimeKey.currentState!.isValid = false;
+        break;
+      default:
         break;
     }
   }

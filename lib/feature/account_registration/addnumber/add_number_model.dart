@@ -1,7 +1,10 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/country/country.dart';
+import 'package:domain/model/country/country_list/country_data.dart';
+import 'package:domain/model/country/get_allowed_code/allowed_country_list_response.dart';
 import 'package:domain/model/user/check_username.dart';
 import 'package:domain/usecase/country/fetch_country_by_code_usecase.dart';
+import 'package:domain/usecase/country/get_allowed_code_country_list_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
 import 'package:domain/usecase/user/register_number_usecase.dart';
@@ -20,6 +23,7 @@ class AddNumberViewModel extends BasePageViewModel {
   final FetchCountryByCodeUseCase _fetchCountryByCodeUseCase;
   final CheckUserNameUseCase _checkUserNameUseCase;
   final CheckUserNameMobileUseCase _checkUserNameMobileUseCase;
+  final GetAllowedCodeCountryListUseCase _allowedCodeCountryListUseCase;
 
   ///controllers and keys
   final TextEditingController mobileNumberController = TextEditingController();
@@ -78,19 +82,43 @@ class AddNumberViewModel extends BasePageViewModel {
 
   bool isEmailAvailable = false;
   bool isNumberAvailable = false;
-  late Country selectedCountry;
+  Country selectedCountry = Country();
+
+  CountryData countryData = CountryData();
+
+  ///get allowed code country request holder
+  PublishSubject<GetAllowedCodeCountryListUseCaseParams>
+      _getAllowedCountryRequest = PublishSubject();
+
+  ///get allowed code country response holder
+  PublishSubject<Resource<AllowedCountryListResponse>>
+      _getAllowedCountryResponse = PublishSubject();
+
+  ///get allowed code country response stream
+  Stream<Resource<AllowedCountryListResponse>> get getAllowedCountryStream =>
+      _getAllowedCountryResponse.stream;
+
+  ///selected country response holder
+  BehaviorSubject<CountryData> _selectedCountryResponse =
+      BehaviorSubject.seeded(CountryData());
+
+  ///get allowed code country response stream
+  Stream<CountryData> get getSelectedCountryStream =>
+      _selectedCountryResponse.stream;
 
   AddNumberViewModel(
       this._registerNumberUseCase,
       this._fetchCountryByCodeUseCase,
       this._checkUserNameUseCase,
-      this._checkUserNameMobileUseCase) {
+      this._checkUserNameMobileUseCase,
+      this._allowedCodeCountryListUseCase) {
     _registerNumberRequest.listen((value) {
       RequestManager(value,
               createCall: () => _registerNumberUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _registerNumberResponse.safeAdd(event);
+        updateLoader();
         if (event.status == Status.ERROR) {
           getError(event);
           showErrorState();
@@ -105,8 +133,27 @@ class AddNumberViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _fetchCountryResponse.safeAdd(event);
+        updateLoader();
         if (event.status == Status.SUCCESS) {
           selectedCountry = event.data!;
+        }
+      });
+    });
+
+    _getAllowedCountryRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _allowedCodeCountryListUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _getAllowedCountryResponse.safeAdd(event);
+        updateLoader();
+        if (event.status == Status.SUCCESS) {
+          countryData = event.data!.contentData!.countryData!.first;
+          setSelectedCountry(countryData);
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+          showErrorState();
         }
       });
     });
@@ -125,6 +172,7 @@ class AddNumberViewModel extends BasePageViewModel {
               createCall: () => _checkUserNameUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         if (event.status == Status.SUCCESS) {
           isEmailAvailable = event.data?.isAvailable ?? false;
         }
@@ -137,7 +185,7 @@ class AddNumberViewModel extends BasePageViewModel {
         .debounceTime(Duration(milliseconds: 800))
         .distinct()
         .listen((phone) {
-      if (phone.length > 8) {
+      if (phone.length > 7) {
         checkPhoneAvailability();
       }
     });
@@ -148,6 +196,7 @@ class AddNumberViewModel extends BasePageViewModel {
                   _checkUserNameMobileUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         if (event.status == Status.SUCCESS) {
           isNumberAvailable = event.data?.isAvailable ?? false;
         }
@@ -155,6 +204,7 @@ class AddNumberViewModel extends BasePageViewModel {
         validate();
       });
     });
+    getAllowedCountryCode();
   }
 
   void fetchCountryByCode(BuildContext context, String code) {
@@ -173,16 +223,18 @@ class AddNumberViewModel extends BasePageViewModel {
       case ErrorType.INVALID_MOBILE:
         mobileNumberKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 
   void validateNumber() {
-    // if (isEmailAvailable && isNumberAvailable) {
-    _registerNumberRequest.safeAdd(RegisterNumberUseCaseParams(
-        emailAddress: emailController.text,
-        countryCode: selectedCountry.countryCallingCode,
-        mobileNumber: mobileNumberController.text));
-    // }
+    if (isEmailAvailable && isNumberAvailable) {
+      _registerNumberRequest.safeAdd(RegisterNumberUseCaseParams(
+          emailAddress: emailController.text,
+          countryCode: selectedCountry.countryCallingCode,
+          mobileNumber: mobileNumberController.text));
+    }
   }
 
   /// Check Request for email is registered already or not
@@ -215,6 +267,15 @@ class AddNumberViewModel extends BasePageViewModel {
     }
   }
 
+  /// get allowed country code
+  void getAllowedCountryCode() {
+    _getAllowedCountryRequest.safeAdd(GetAllowedCodeCountryListUseCaseParams());
+  }
+
+  void setSelectedCountry(CountryData data) {
+    _selectedCountryResponse.safeAdd(data);
+  }
+
   @override
   void dispose() {
     _registerNumberRequest.close();
@@ -228,6 +289,9 @@ class AddNumberViewModel extends BasePageViewModel {
     _phoneInputStream.close();
     _checkUserMobileRequest.close();
     _checkUserMobileResponse.close();
+    _getAllowedCountryRequest.close();
+    _getAllowedCountryResponse.close();
+    _selectedCountryResponse.close();
     super.dispose();
   }
 }

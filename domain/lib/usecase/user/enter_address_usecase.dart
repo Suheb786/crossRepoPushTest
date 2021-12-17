@@ -20,10 +20,10 @@ class EnterAddressUseCase extends BaseUseCase<NetworkError,
       {required EnterAddressUseCaseParams params}) {
     return _repository.saveResidenceInformation(
         residentCountry: params.residentCountry,
-        residentDistrict: params.district,
+        residentArea: params.residentArea,
         residentCity: params.city,
-        streetAddress: params.streetAddress,
-        homeAddress: params.buildingNameOrNo,
+        streetName: params.streetAddress,
+        buildingName: params.buildingNameOrNo,
         permanentResidentCountry: params.permanentResidentCountry,
         permanentResidentCity: params.permanentCity);
   }
@@ -31,7 +31,7 @@ class EnterAddressUseCase extends BaseUseCase<NetworkError,
 
 class EnterAddressUseCaseParams extends Params {
   final String? residentCountry;
-  final String? district;
+  final String? residentArea;
   final String? city;
   final String? streetAddress;
   final String? buildingNameOrNo;
@@ -41,7 +41,7 @@ class EnterAddressUseCaseParams extends Params {
 
   EnterAddressUseCaseParams(
       {required this.residentCountry,
-      required this.district,
+      required this.residentArea,
       this.city,
       required this.streetAddress,
       required this.buildingNameOrNo,
@@ -66,7 +66,7 @@ class EnterAddressUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_STREET_ADDRESS,
           cause: Exception()));
-    } else if (Validator.isEmpty(district!)) {
+    } else if (Validator.isEmpty(residentArea!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_DISTRICT,

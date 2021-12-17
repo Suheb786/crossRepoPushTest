@@ -172,15 +172,15 @@ class AppTextFieldState extends State<AppTextField> {
                       text: TextSpan(children: [
                         TextSpan(
                             text: widget.labelText,
-                            style: DefaultTextStyle.of(context).style.copyWith(
-                                  color: widget.labelColor ??
-                                      Theme.of(context)
-                                          .inputDecorationTheme
-                                          .labelStyle!
-                                          .color,
-                                  fontSize: 10,
-                                  fontFamily: "Montserrat",
-                                )),
+                            style: TextStyle(
+                              color: widget.labelColor ??
+                                  Theme.of(context)
+                                      .inputDecorationTheme
+                                      .labelStyle!
+                                      .color,
+                              fontSize: 10,
+                              fontFamily: "Montserrat",
+                            )),
                         WidgetSpan(
                             child: widget.labelIcon?.call() ?? Container())
                       ]),
@@ -190,7 +190,8 @@ class AppTextFieldState extends State<AppTextField> {
                       maxLength: widget.maxLength,
                       textAlign: widget.textAlign,
                       style: TextStyle(
-                        // color: widget.textColor ?? AppColor.very_light_gray,
+                        color: widget.textColor ??
+                            Theme.of(context).primaryColorDark,
                         fontSize: widget.fontSize,
                         fontWeight: FontWeight.w600,
                       ),
@@ -237,7 +238,7 @@ class AppTextFieldState extends State<AppTextField> {
                       controller: widget.controller,
                       validator: this.widget.validator,
                       onSaved: this.widget.onSaved,
-                      onTap: this.widget.onPressed,
+                      onTap: () => this.widget.onPressed?.call(),
                       onFieldSubmitted: this.widget.onFieldSubmitted,
                       onChanged: (value) {
                         setState(() {});

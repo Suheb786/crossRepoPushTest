@@ -8,8 +8,7 @@ part of 'kyc_status_request.dart';
 
 KYCStatusRequest _$KYCStatusRequestFromJson(Map<String, dynamic> json) {
   return KYCStatusRequest(
-    baseData:
-        BaseClassEntity.fromJson(json['baseClass'] as Map<String, dynamic>),
+    baseData: json['baseClass'] as Map<String, dynamic>,
     getToken: json['GetToken'] as bool?,
   );
 }

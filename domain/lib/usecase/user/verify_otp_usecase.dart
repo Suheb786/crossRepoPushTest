@@ -16,19 +16,14 @@ class VerifyOtpUseCase
   @override
   Future<Either<NetworkError, bool>> execute(
       {required VerifyOtpUseCaseParams params}) {
-    return Future.value(Right(true));
-
-    ///TODO:uncomment once gets response
-    // return _repository.verifyMobileOtp(
-    //     otpCode: params.otp, getToken: params.getToken);
+    return _repository.verifyMobileOtp(otpCode: params.otp);
   }
 }
 
 class VerifyOtpUseCaseParams extends Params {
   final String otp;
-  final bool? getToken;
 
-  VerifyOtpUseCaseParams({required this.otp, this.getToken: false});
+  VerifyOtpUseCaseParams({required this.otp});
 
   @override
   Either<AppError, bool> verify() {

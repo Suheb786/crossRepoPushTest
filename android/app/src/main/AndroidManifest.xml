@@ -1,10 +1,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.codebaseneo.neo_bank">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+
     <application
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true"
-        android:label="neo_bank">
+        android:label="Blink">
         <meta-data android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCuEgnAmuXOuVXT0lF2_NtqUEelRbH4F_k"/>
         <activity
@@ -34,6 +41,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.yalantis.ucrop.UCropActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

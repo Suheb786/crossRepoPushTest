@@ -1,11 +1,13 @@
 import 'dart:ui';
 
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/di/onboarding/onboarding_module.dart';
 import 'package:neo_bank/feature/login/login_page_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -31,161 +33,194 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
         child: Column(
           children: [
             Expanded(
-              child: SingleChildScrollView(
-                controller: model.scrollController,
-                padding: MediaQuery.of(context).viewInsets,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(top: 112.0),
-                      child: Image.asset(
-                        AssetUtils.blink,
-                        width: 195,
-                        height: 91.14,
+              child: GestureDetector(
+                onHorizontalDragEnd: (details) {
+                  if (details.primaryVelocity!.isNegative) {
+                    model.validateEmail();
+                  }
+                },
+                child: SingleChildScrollView(
+                  controller: model.scrollController,
+                  padding: MediaQuery.of(context).viewInsets,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 112.0),
+                        child: Image.asset(
+                          AssetUtils.blink,
+                          width: 195,
+                          height: 91.14,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 100.0),
-                      child: Text(
-                        S.of(context).enterLoginDetails,
-                        style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).accentColor,
-                            fontWeight: FontWeight.w600),
+                      Padding(
+                        padding: EdgeInsets.only(top: 100.0),
+                        child: Text(
+                          S.of(context).enterLoginDetails,
+                          style: TextStyle(
+                              fontSize: 14,
+                              color: Theme.of(context).accentColor,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ),
-                    ),
-                    AppStreamBuilder<bool>(
-                        initialData: false,
-                        stream: model.errorDetectorStream,
-                        dataBuilder: (context, isError) {
-                          return ShakeAnimatedWidget(
-                            enabled: isError ?? false,
-                            duration: Duration(milliseconds: 100),
-                            shakeAngle: Rotation.deg(z: 1),
-                            curve: Curves.easeInOutSine,
-                            child: AppStreamBuilder<Resource<User>>(
-                              stream: model.loginStream,
-                              initialData: Resource.none(),
-                              onData: (data) {
-                                if (data.status == Status.SUCCESS) {
-                                  model.emailKey.currentState!.isValid = true;
-                                  Navigator.pushReplacementNamed(
-                                      context, RoutePaths.Registration);
-                                } else if (data.status == Status.ERROR) {
-                                  model.emailKey.currentState!.isValid = false;
-                                  model.showToastWithError(data.appError!);
-                                }
-                              },
-                              dataBuilder: (context, data) {
-                                return GestureDetector(
-                                  onHorizontalDragEnd: (details) {
-                                    if (details.primaryVelocity!.isNegative) {
-                                      model.validateEmail();
-                                    }
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 40, right: 40, top: 25),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        AppTextField(
-                                            textFieldBorderColor:
-                                                AppColor.whiteGray,
-                                            textFieldFocusBorderColor:
-                                                Theme.of(context)
-                                                    .primaryColorDark,
-                                            labelText:
-                                                S.of(context).emailAddress,
-                                            hintText: S.of(context).pleaseEnter,
-                                            key: model.emailKey,
-                                            controller: model.emailController,
-                                            inputType:
-                                                TextInputType.emailAddress,
-                                            inputAction: TextInputAction.next,
-                                            onSaved: (value) {
-                                              model.validateEmail();
-                                            },
-                                            suffixIcon: (_, __) {
-                                              return Visibility(
-                                                visible: false,
-                                                child: AppSvg.asset(
-                                                    AssetUtils.fingerPrint),
-                                              );
-                                            },
-                                            suffixIconSize: 24,
-                                            onChanged: (value) =>
-                                                model.validate()),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 16),
-                                          child: AppTextField(
-                                            textFieldBorderColor:
-                                                AppColor.whiteGray,
-                                            textFieldFocusBorderColor:
-                                                Theme.of(context)
-                                                    .primaryColorDark,
-                                            labelText: S.of(context).password,
-                                            hintText: S.of(context).pleaseEnter,
-                                            key: model.passwordKey,
-                                            controller:
-                                                model.passwordController,
-                                            inputAction: TextInputAction.done,
-                                            onSaved: (value) {
-                                              model.validateEmail();
-                                            },
-                                            onChanged: (value) =>
-                                                model.validate(),
-                                            obscureText: true,
-                                          ),
+                      AppStreamBuilder<bool>(
+                          initialData: false,
+                          stream: model.errorDetectorStream,
+                          dataBuilder: (context, isError) {
+                            return ShakeAnimatedWidget(
+                              enabled: isError ?? false,
+                              duration: Duration(milliseconds: 100),
+                              shakeAngle: Rotation.deg(z: 1),
+                              curve: Curves.easeInOutSine,
+                              child: AppStreamBuilder<Resource<User>>(
+                                stream: model.loginStream,
+                                initialData: Resource.none(),
+                                onData: (data) {
+                                  if (data.status == Status.SUCCESS) {
+                                    ProviderScope.containerOf(context)
+                                        .read(appViewModel)
+                                        .getToken();
+                                    //model.checkKycStatus();
+                                    model.emailKey.currentState!.isValid = true;
+                                    Future.delayed(Duration(milliseconds: 500),
+                                        () {
+                                      // Navigator.pushReplacementNamed(
+                                      //     context, RoutePaths.Registration);
+                                      Navigator.pushReplacementNamed(
+                                          context, RoutePaths.CardDelivery);
+                                    });
+                                  } else if (data.status == Status.ERROR) {
+                                    model.emailKey.currentState!.isValid =
+                                        false;
+                                    model.showToastWithError(data.appError!);
+                                  }
+                                },
+                                dataBuilder: (context, data) {
+                                  return AppStreamBuilder<
+                                      Resource<CheckKycResponse>>(
+                                    stream: model.kycStatusStream,
+                                    initialData: Resource.none(),
+                                    onData: (data) {
+                                      if (data.status == Status.SUCCESS) {
+                                        ///TODO:Navigate according to kyc response
+                                        Navigator.pushReplacementNamed(
+                                            context, RoutePaths.Registration);
+                                      }
+                                    },
+                                    dataBuilder: (context, kycResponse) {
+                                      return Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 40, right: 40, top: 25),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.stretch,
+                                          children: [
+                                            AppTextField(
+                                                textFieldBorderColor:
+                                                    AppColor.whiteGray,
+                                                textFieldFocusBorderColor:
+                                                    Theme.of(context)
+                                                        .primaryColorDark,
+                                                labelText:
+                                                    S.of(context).emailAddress,
+                                                hintText:
+                                                    S.of(context).pleaseEnter,
+                                                key: model.emailKey,
+                                                controller:
+                                                    model.emailController,
+                                                inputType:
+                                                    TextInputType.emailAddress,
+                                                inputAction:
+                                                    TextInputAction.next,
+                                                onSaved: (value) {
+                                                  model.validateEmail();
+                                                },
+                                                suffixIcon: (_, __) {
+                                                  return Visibility(
+                                                    visible: false,
+                                                    child: AppSvg.asset(
+                                                        AssetUtils.fingerPrint),
+                                                  );
+                                                },
+                                                suffixIconSize: 24,
+                                                onChanged: (value) =>
+                                                    model.validate()),
+                                            Padding(
+                                              padding: EdgeInsets.only(top: 16),
+                                              child: AppTextField(
+                                                textFieldBorderColor:
+                                                    AppColor.whiteGray,
+                                                textFieldFocusBorderColor:
+                                                    Theme.of(context)
+                                                        .primaryColorDark,
+                                                labelText:
+                                                    S.of(context).password,
+                                                hintText:
+                                                    S.of(context).pleaseEnter,
+                                                key: model.passwordKey,
+                                                controller:
+                                                    model.passwordController,
+                                                inputAction:
+                                                    TextInputAction.done,
+                                                onSaved: (value) {
+                                                  model.validateEmail();
+                                                },
+                                                onChanged: (value) =>
+                                                    model.validate(),
+                                                obscureText: true,
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(top: 24),
+                                              child: Text(
+                                                S.of(context).forgotPassword,
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Theme.of(context)
+                                                        .accentColor),
+                                              ),
+                                            ),
+                                            Center(
+                                              child: AppStreamBuilder<bool>(
+                                                  stream:
+                                                      model.showButtonStream,
+                                                  initialData: false,
+                                                  dataBuilder:
+                                                      (context, isValid) {
+                                                    return Visibility(
+                                                      visible: isValid!,
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 24),
+                                                        child: AnimatedButton(
+                                                          buttonText: S
+                                                              .of(context)
+                                                              .swipeToProceed,
+                                                          borderColor:
+                                                              Theme.of(context)
+                                                                  .accentColor,
+                                                          textColor:
+                                                              Theme.of(context)
+                                                                  .accentColor,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }),
+                                            )
+                                          ],
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.only(top: 24),
-                                          child: Text(
-                                            S.of(context).forgotPassword,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                                color: Theme.of(context)
-                                                    .accentColor),
-                                          ),
-                                        ),
-                                        Center(
-                                          child: AppStreamBuilder<bool>(
-                                              stream: model.showButtonStream,
-                                              initialData: false,
-                                              dataBuilder: (context, isValid) {
-                                                return Visibility(
-                                                  visible: isValid!,
-                                                  child: Padding(
-                                                    padding: EdgeInsets.only(
-                                                        top: 24),
-                                                    child: AnimatedButton(
-                                                      buttonText: S
-                                                          .of(context)
-                                                          .swipeToProceed,
-                                                      borderColor:
-                                                          Theme.of(context)
-                                                              .accentColor,
-                                                      textColor:
-                                                          Theme.of(context)
-                                                              .accentColor,
-                                                    ),
-                                                  ),
-                                                );
-                                              }),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          );
-                        }),
-                  ],
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+                            );
+                          }),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -228,14 +263,15 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(16))),
                       child: Text(
-                        S.of(context).swipeUpToRegister,
+                        S.of(context).swipeUpToJoinOurCommunity,
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 14,
                             color: Theme.of(context)
                                 .accentTextTheme
                                 .bodyText1
                                 ?.color,
-                            fontWeight: FontWeight.w600),
+                            letterSpacing: 1,
+                            fontWeight: FontWeight.w500),
                       )),
                 ],
               ),

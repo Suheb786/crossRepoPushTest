@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class ReviewApplicationNonEditableItem extends StatelessWidget {
-  final String title;
-  final String value;
+  final String? title;
+  final String? value;
 
   const ReviewApplicationNonEditableItem(
       {Key? key, required this.title, required this.value})
@@ -20,7 +20,7 @@ class ReviewApplicationNonEditableItem extends StatelessWidget {
         children: <Widget>[
           Flexible(
             child: Text(
-              title,
+              title!,
               softWrap: true,
               style: TextStyle(
                   fontSize: 12,
@@ -30,7 +30,7 @@ class ReviewApplicationNonEditableItem extends StatelessWidget {
           ),
           Flexible(
             child: Text(
-              value,
+              value!,
               softWrap: true,
               style: TextStyle(
                   fontSize: 12,

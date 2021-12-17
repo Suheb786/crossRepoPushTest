@@ -1,7 +1,10 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/fatca_crs/fatca_set_data.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w8_useCase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -62,6 +65,7 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
                   _fatcaUSRelevantW8UseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _fatcaUSRelevantW8Response.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -82,6 +86,8 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_CITIZENSHIP:
         countryOfCitizenshipKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 
@@ -90,6 +96,19 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
         name: nameAsPerTaxReturnController.text,
         country: countryOfCitizenshipController.text,
         dob: dateOfBirthController.text));
+  }
+
+  ///update data to main page
+  void updateData(BuildContext context) {
+    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .fatcaData;
+    fatcaSetData.namePerIncomeTaxReturn = nameAsPerTaxReturnController.text;
+    fatcaSetData.dob = dateOfBirthController.text;
+    fatcaSetData.citizenShipCountry = countryOfCitizenshipController.text;
+    ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .setFatcaData(fatcaSetData);
   }
 
   @override
