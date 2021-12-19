@@ -4,7 +4,7 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
-class DashboardDialogViewModel extends BasePageViewModel {
+class PaymentHomeViewModel extends BasePageViewModel {
   final SwiperController pageController = SwiperController();
   PageController controller =
       PageController(viewportFraction: 0.8, keepPage: true, initialPage: 0);

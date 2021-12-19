@@ -6,12 +6,13 @@ import 'package:neo_bank/feature/account_settings/change_email_address/change_em
 import 'package:neo_bank/feature/account_settings/change_mobile_number/change_mobile_number_page.dart';
 import 'package:neo_bank/feature/account_settings/change_password/change_password_page.dart';
 import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page.dart';
+import 'package:neo_bank/feature/activity/activity_home/activity_home_page.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
-import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
+import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
@@ -19,6 +20,7 @@ import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_con
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
+import 'package:neo_bank/feature/payment/payment_home/payment_home_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
@@ -189,10 +191,19 @@ class AppRouter {
 
       case RoutePaths.ManageContactsDetail:
         return CupertinoPageRoute(
-            builder: (context) =>
-                ManageContactDetailsPage(
-                    settings.arguments as ContactsListModel),
+            builder: (context) => ManageContactDetailsPage(
+                settings.arguments as ContactsListModel),
             settings: RouteSettings(name: RoutePaths.ManageContactsDetail));
+
+      case RoutePaths.PaymentHome:
+        return CupertinoPageRoute(
+            builder: (context) => PaymentHomePage(),
+            settings: RouteSettings(name: RoutePaths.PaymentHome));
+
+      case RoutePaths.ActivityHome:
+        return CupertinoPageRoute(
+            builder: (context) => ActivityHomePage(),
+            settings: RouteSettings(name: RoutePaths.ActivityHome));
 
       default:
         return CupertinoPageRoute(

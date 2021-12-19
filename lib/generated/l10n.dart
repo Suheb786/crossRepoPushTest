@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4010,16 +4011,6 @@ class S {
     );
   }
 
-  /// `You have entered an invalid username or password, please try again`
-  String get invalidUserNamePassword {
-    return Intl.message(
-      'You have entered an invalid username or password, please try again',
-      name: 'invalidUserNamePassword',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `I’ll get it later`
   String get getLater {
     return Intl.message(
@@ -4380,6 +4371,256 @@ class S {
     );
   }
 
+  /// `Payments`
+  String get payments {
+    return Intl.message(
+      'Payments',
+      name: 'payments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See all contacts`
+  String get seeAllContacts {
+    return Intl.message(
+      'See all contacts',
+      name: 'seeAllContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Payments`
+  String get backToPayments {
+    return Intl.message(
+      'Back to Payments',
+      name: 'backToPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send money to`
+  String get sendMoneyTo {
+    return Intl.message(
+      'Send money to',
+      name: 'sendMoneyTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction Purpose`
+  String get transactionPurpose {
+    return Intl.message(
+      'Transaction Purpose',
+      name: 'transactionPurpose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message(
+      'Edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account balance`
+  String get accountBalance {
+    return Intl.message(
+      'Account balance',
+      name: 'accountBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sent to`
+  String get sentTo {
+    return Intl.message(
+      'Sent to',
+      name: 'sentTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ref No.`
+  String get refno {
+    return Intl.message(
+      'Ref No.',
+      name: 'refno',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date`
+  String get date {
+    return Intl.message(
+      'Date',
+      name: 'date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share my receipt`
+  String get shareMyReceipt {
+    return Intl.message(
+      'Share my receipt',
+      name: 'shareMyReceipt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Undo transaction`
+  String get undoTransaction {
+    return Intl.message(
+      'Undo transaction',
+      name: 'undoTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request money from`
+  String get requestMoneyFrom {
+    return Intl.message(
+      'Request money from',
+      name: 'requestMoneyFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Requested from`
+  String get requestedFrom {
+    return Intl.message(
+      'Requested from',
+      name: 'requestedFrom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will be notified once your contact\naccepts your request and money is\nadded into your account.`
+  String get youWillBeNotified {
+    return Intl.message(
+      'You will be notified once your contact\naccepts your request and money is\nadded into your account.',
+      name: 'youWillBeNotified',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Undo request`
+  String get undoRequest {
+    return Intl.message(
+      'Undo request',
+      name: 'undoRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `PURPOSE DETAILS`
+  String get purposeDetails {
+    return Intl.message(
+      'PURPOSE DETAILS',
+      name: 'purposeDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Transaction Purpose`
+  String get editTransactionPurpose {
+    return Intl.message(
+      'Edit Transaction Purpose',
+      name: 'editTransactionPurpose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to edit amount`
+  String get tapToEdit {
+    return Intl.message(
+      'Tap to edit amount',
+      name: 'tapToEdit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sending`
+  String get sending {
+    return Intl.message(
+      'Sending',
+      name: 'sending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN / Mobile No. / ALIAS`
+  String get ibanOrMobile {
+    return Intl.message(
+      'IBAN / Mobile No. / ALIAS',
+      name: 'ibanOrMobile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select purpose`
+  String get selectPurpose {
+    return Intl.message(
+      'Select purpose',
+      name: 'selectPurpose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add this receipient to your blink contacts`
+  String get addRecipientToContact {
+    return Intl.message(
+      'Add this receipient to your blink contacts',
+      name: 'addRecipientToContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the 6-digit code sent to  \n+962 79 322 8080`
+  String get enterCode {
+    return Intl.message(
+      'Enter the 6-digit code sent to  \n+962 79 322 8080',
+      name: 'enterCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Requesting`
+  String get requesting {
+    return Intl.message(
+      'Requesting',
+      name: 'requesting',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Ways you can add\nmoney into your account`
   String get waysYocCanAddMoneyToAccount {
     return Intl.message(
@@ -4555,6 +4796,16 @@ class S {
     return Intl.message(
       'Find out more',
       name: 'findOutMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have entered an invalid username or password, please try again`
+  String get invalidUserNamePassword {
+    return Intl.message(
+      'You have entered an invalid username or password, please try again',
+      name: 'invalidUserNamePassword',
       desc: '',
       args: [],
     );
@@ -5765,6 +6016,66 @@ class S {
     return Intl.message(
       'Manage\nContacts',
       name: 'manageContactsSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request money via`
+  String get requestedMoneyVia {
+    return Intl.message(
+      'Request money via',
+      name: 'requestedMoneyVia',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activity`
+  String get activity {
+    return Intl.message(
+      'Activity',
+      name: 'activity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment activity`
+  String get paymentActivity {
+    return Intl.message(
+      'Payment activity',
+      name: 'paymentActivity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Transactions`
+  String get allTransaction {
+    return Intl.message(
+      'All Transactions',
+      name: 'allTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All Time`
+  String get allTime {
+    return Intl.message(
+      'All Time',
+      name: 'allTime',
       desc: '',
       args: [],
     );

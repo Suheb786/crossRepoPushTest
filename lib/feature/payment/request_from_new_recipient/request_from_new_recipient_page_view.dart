@@ -5,6 +5,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/payment/request_from_new_recipient/request_from_new_recipient_view_model.dart';
+import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -64,13 +65,18 @@ class RequestFromNewRecipientPageView
                           return GestureDetector(
                             onHorizontalDragEnd: (details) {
                               if (details.primaryVelocity!.isNegative) {
-                                model.sendToNewRecipient();
+                                // model.sendToNewRecipient();
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            RequestAmountFromContactSuccessPage()));
                               } else {
-                                ProviderScope.containerOf(context)
-                                    .read(
-                                        paymentToNewRecipientViewModelProvider)
-                                    .pageController
-                                    .previous();
+                                // ProviderScope.containerOf(context)
+                                //     .read(
+                                //         paymentToNewRecipientViewModelProvider)
+                                //     .pageController
+                                //     .previous();
                               }
                             },
                             child: Card(
@@ -100,7 +106,7 @@ class RequestFromNewRecipientPageView
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              S.of(context).sendMoneyTo,
+                                              S.of(context).requestedMoneyVia,
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600),
@@ -137,6 +143,32 @@ class RequestFromNewRecipientPageView
                                                     ),
                                                     Text(
                                                       "Shakila Naseem",
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                      ),
+                                                    )
+                                                  ],
+                                                )),
+                                            Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 16),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Text(
+                                                      "Bank",
+                                                      style: TextStyle(
+                                                        fontSize: 12,
+                                                        fontWeight:
+                                                            FontWeight.w400,
+                                                      ),
+                                                    ),
+                                                    Text(
+                                                      "Jordan Kuwait Bank",
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         fontWeight:

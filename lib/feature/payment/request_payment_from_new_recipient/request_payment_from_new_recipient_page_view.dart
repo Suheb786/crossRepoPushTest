@@ -2,7 +2,6 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/payment/enter_otp/enter_otp_page.dart';
 import 'package:neo_bank/feature/payment/request_from_new_recipient/request_from_new_recipient_page.dart';
 import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -16,7 +15,7 @@ class RequestPaymentFromNewRecipientPageView
     extends BasePageViewWidget<RequestPaymentFromNewRecipientViewModel> {
   RequestPaymentFromNewRecipientPageView(ProviderBase model) : super(model);
 
-  final pages = [RequestFromNewRecipientPage(), EnterOtpPage()];
+  final pages = [RequestFromNewRecipientPage()];
 
   @override
   Widget build(BuildContext context, model) {
@@ -28,7 +27,12 @@ class RequestPaymentFromNewRecipientPageView
         dataBuilder: (context, currentStep) {
           print("got current step : $currentStep");
           return GestureDetector(
-            onVerticalDragEnd: (details) {},
+            onVerticalDragEnd: (details) {
+              if (details.primaryVelocity!.isNegative) {
+              } else {
+                Navigator.pop(context);
+              }
+            },
             child: Column(
               children: [
                 Padding(
@@ -108,11 +112,9 @@ class RequestPaymentFromNewRecipientPageView
                         Column(
                           children: [
                             Text(
-                              S.of(context).sendMoney,
+                              S.of(context).requestMoney,
                               style: TextStyle(
-                                  color: Theme.of(context).accentColor,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 10),
+                                  fontWeight: FontWeight.w600, fontSize: 10),
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 8),
@@ -120,9 +122,9 @@ class RequestPaymentFromNewRecipientPageView
                                 S.of(context).enterCode,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 20,
-                                    color: Theme.of(context).accentColor),
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 20,
+                                ),
                               ),
                             )
                           ],

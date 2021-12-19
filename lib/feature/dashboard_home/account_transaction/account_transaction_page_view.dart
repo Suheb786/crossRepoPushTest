@@ -1221,25 +1221,3 @@ class AccountTransactionPageView
     );
   }
 }
-
-class TimeLineHeaderWidget extends StatelessWidget {
-  final String? header;
-
-  const TimeLineHeaderWidget({Key? key, this.header}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(16),
-      color: AppColor.soft_red,
-      child: Text(
-        header!,
-        style: TextStyle(
-          color: AppColor.dark_gray_1,
-          fontSize: 14,
-          fontWeight: FontWeight.w300,
-        ),
-      ),
-    );
-  }
-}
