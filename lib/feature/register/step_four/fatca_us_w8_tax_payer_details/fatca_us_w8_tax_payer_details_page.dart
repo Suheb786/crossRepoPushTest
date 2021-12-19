@@ -13,7 +13,11 @@ class FatcaUSW8TaxPayersDetailsPage
 }
 
 class FatcaUSW8TaxPayersDetailsPageState extends BaseStatefulPage<
-    FatcaUSW8TaxPayersDetailsPageViewModel, FatcaUSW8TaxPayersDetailsPage> {
+    FatcaUSW8TaxPayersDetailsPageViewModel,
+    FatcaUSW8TaxPayersDetailsPage>
+    with AutomaticKeepAliveClientMixin {
+  FatcaUSW8TaxPayersDetailsPageState() : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return fatcaUSW8TaxPayerDetailsPageViewModelProvider;
@@ -21,12 +25,23 @@ class FatcaUSW8TaxPayersDetailsPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override
-  Widget buildView(
-      BuildContext context, FatcaUSW8TaxPayersDetailsPageViewModel model) {
+  Widget buildView(BuildContext context,
+      FatcaUSW8TaxPayersDetailsPageViewModel model) {
     return FatcaUSW8TaxPayersDetailsPageView(provideBase());
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

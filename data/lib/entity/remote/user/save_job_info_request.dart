@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -10,6 +9,8 @@ class SaveJobInfoRequest {
   final String? employeeName;
   @JsonKey(name: "Occupation")
   final String? occupation;
+  @JsonKey(name: "BusinessType")
+  final String? businessType;
   @JsonKey(name: "AnnualIncome")
   final String? annualIncome;
   @JsonKey(name: "EmployerCountries")
@@ -25,19 +26,19 @@ class SaveJobInfoRequest {
   @JsonKey(name: "AdditionalIncome")
   final List<AdditionalIncome>? additionalIncome;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String, dynamic> baseData;
 
-  SaveJobInfoRequest(
-      {this.employeeName,
-      this.occupation,
-      this.annualIncome,
-      this.employerCountries,
-      this.employerCity,
-      this.employerContact,
-      this.additionalIncomes,
-      this.mainSource,
-      this.additionalIncome,
-      required this.baseData});
+  SaveJobInfoRequest({this.employeeName,
+    this.occupation,
+    this.annualIncome,
+    this.employerCountries,
+    this.employerCity,
+    this.employerContact,
+    this.additionalIncomes,
+    this.mainSource,
+    this.businessType,
+    this.additionalIncome,
+    required this.baseData});
 
   factory SaveJobInfoRequest.fromJson(Map<String, dynamic> json) =>
       _$SaveJobInfoRequestFromJson(json);

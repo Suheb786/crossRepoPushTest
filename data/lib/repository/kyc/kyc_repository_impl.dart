@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/kyc/kyc_datasource.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/repository/kyc/kyc_repository.dart';
 
 class KYCRepositoryImpl extends KYCRepository {
@@ -10,14 +11,14 @@ class KYCRepositoryImpl extends KYCRepository {
   KYCRepositoryImpl(this._kycRemoteDS);
 
   @override
-  Future<Either<NetworkError, String>> checkKYCStatus(
+  Future<Either<NetworkError, CheckKycResponse>> checkKYCStatus(
       {required bool getToken}) async {
     final result = await safeApiCall(
       _kycRemoteDS.checkKYCStatus(getToken: getToken),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 }

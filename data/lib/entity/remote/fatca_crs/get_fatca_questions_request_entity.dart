@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "get_fatca_questions_request_entity.g.dart";
@@ -8,7 +7,7 @@ class GetFatcaQuestionsRequestEntity {
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String, dynamic> baseData;
 
   GetFatcaQuestionsRequestEntity({required this.baseData, this.getToken: true});
 

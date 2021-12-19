@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'get_account_request_entity.g.dart';
@@ -7,13 +6,10 @@ part 'get_account_request_entity.g.dart';
 class GetAccountRequestEntity {
   @JsonKey(name: "GetToken")
   final bool? getToken;
-  @JsonKey(name: "productCode")
-  final String? productCode;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String, dynamic> baseData;
 
-  GetAccountRequestEntity(
-      {this.getToken: false, this.productCode, required this.baseData});
+  GetAccountRequestEntity({this.getToken: false, required this.baseData});
 
   factory GetAccountRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetAccountRequestEntityFromJson(json);

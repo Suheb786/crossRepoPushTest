@@ -88,13 +88,17 @@ class NotifySuccessPageView
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 24),
                       decoration: BoxDecoration(
-                          color: Theme.of(context).accentColor,
+                          color: Theme
+                              .of(context)
+                              .accentColor,
                           borderRadius: BorderRadius.circular(16)),
                       padding:
-                          EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                      EdgeInsets.symmetric(horizontal: 16, vertical: 24),
                       child: AccountDetails(
-                          title: S.of(context).refTitle,
-                          value: S.of(context).refNumber),
+                          title: S
+                              .of(context)
+                              .refTitle,
+                          value: model.arguments.referenceNo),
                     ),
                   ],
                 ),

@@ -81,7 +81,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `user` (`email` TEXT, `id` TEXT, `firstName` TEXT, `lastName` TEXT, `mobile` TEXT, `isCurrent` INTEGER, `token` TEXT, `refreshToken` TEXT, `expiresIn` INTEGER, `tokenType` TEXT, PRIMARY KEY (`email`))');
+            'CREATE TABLE IF NOT EXISTS `user` (`email` TEXT, `id` TEXT, `firstName` TEXT, `lastName` TEXT, `mobile` TEXT, `isCurrent` INTEGER, `token` TEXT, `refreshToken` TEXT, `expiresIn` INTEGER, `tokenType` TEXT, `privatePEM` TEXT, `publicPEM` TEXT, `isBiometricEnabled` INTEGER, PRIMARY KEY (`email`))');
         await database.execute(
             'CREATE UNIQUE INDEX `index_user_email` ON `user` (`email`)');
 
@@ -104,54 +104,69 @@ class _$UserDao extends UserDao {
             database,
             'user',
             (UserDBEntity item) => <String, Object?>{
-                  'email': item.email,
-                  'id': item.id,
-                  'firstName': item.firstName,
-                  'lastName': item.lastName,
-                  'mobile': item.mobile,
-                  'isCurrent':
-                      item.isCurrent == null ? null : (item.isCurrent! ? 1 : 0),
-                  'token': item.token,
-                  'refreshToken': item.refreshToken,
-                  'expiresIn': item.expiresIn,
-                  'tokenType': item.tokenType
-                },
+              'email': item.email,
+              'id': item.id,
+              'firstName': item.firstName,
+              'lastName': item.lastName,
+              'mobile': item.mobile,
+              'isCurrent':
+              item.isCurrent == null ? null : (item.isCurrent! ? 1 : 0),
+              'token': item.token,
+              'refreshToken': item.refreshToken,
+              'expiresIn': item.expiresIn,
+              'tokenType': item.tokenType,
+              'privatePEM': item.privatePEM,
+              'publicPEM': item.publicPEM,
+              'isBiometricEnabled': item.isBiometricEnabled == null
+                  ? null
+                  : (item.isBiometricEnabled! ? 1 : 0)
+            },
             changeListener),
         _userDBEntityUpdateAdapter = UpdateAdapter(
             database,
             'user',
             ['email'],
             (UserDBEntity item) => <String, Object?>{
-                  'email': item.email,
-                  'id': item.id,
-                  'firstName': item.firstName,
-                  'lastName': item.lastName,
-                  'mobile': item.mobile,
-                  'isCurrent':
-                      item.isCurrent == null ? null : (item.isCurrent! ? 1 : 0),
-                  'token': item.token,
-                  'refreshToken': item.refreshToken,
-                  'expiresIn': item.expiresIn,
-                  'tokenType': item.tokenType
-                },
+              'email': item.email,
+              'id': item.id,
+              'firstName': item.firstName,
+              'lastName': item.lastName,
+              'mobile': item.mobile,
+              'isCurrent':
+              item.isCurrent == null ? null : (item.isCurrent! ? 1 : 0),
+              'token': item.token,
+              'refreshToken': item.refreshToken,
+              'expiresIn': item.expiresIn,
+              'tokenType': item.tokenType,
+              'privatePEM': item.privatePEM,
+              'publicPEM': item.publicPEM,
+              'isBiometricEnabled': item.isBiometricEnabled == null
+                  ? null
+                  : (item.isBiometricEnabled! ? 1 : 0)
+            },
             changeListener),
         _userDBEntityDeletionAdapter = DeletionAdapter(
             database,
             'user',
             ['email'],
             (UserDBEntity item) => <String, Object?>{
-                  'email': item.email,
-                  'id': item.id,
-                  'firstName': item.firstName,
-                  'lastName': item.lastName,
-                  'mobile': item.mobile,
-                  'isCurrent':
-                      item.isCurrent == null ? null : (item.isCurrent! ? 1 : 0),
-                  'token': item.token,
-                  'refreshToken': item.refreshToken,
-                  'expiresIn': item.expiresIn,
-                  'tokenType': item.tokenType
-                },
+              'email': item.email,
+              'id': item.id,
+              'firstName': item.firstName,
+              'lastName': item.lastName,
+              'mobile': item.mobile,
+              'isCurrent':
+              item.isCurrent == null ? null : (item.isCurrent! ? 1 : 0),
+              'token': item.token,
+              'refreshToken': item.refreshToken,
+              'expiresIn': item.expiresIn,
+              'tokenType': item.tokenType,
+              'privatePEM': item.privatePEM,
+              'publicPEM': item.publicPEM,
+              'isBiometricEnabled': item.isBiometricEnabled == null
+                  ? null
+                  : (item.isBiometricEnabled! ? 1 : 0)
+            },
             changeListener);
 
   final sqflite.DatabaseExecutor database;
@@ -181,7 +196,12 @@ class _$UserDao extends UserDao {
                 : (row['isCurrent'] as int) != 0,
             refreshToken: row['refreshToken'] as String?,
             tokenType: row['tokenType'] as String?,
-            expiresIn: row['expiresIn'] as int?),
+            expiresIn: row['expiresIn'] as int?,
+            isBiometricEnabled: row['isBiometricEnabled'] == null
+                ? null
+                : (row['isBiometricEnabled'] as int) != 0,
+            privatePEM: row['privatePEM'] as String?,
+            publicPEM: row['publicPEM'] as String?),
         queryableName: 'user',
         isView: false);
   }
@@ -201,7 +221,12 @@ class _$UserDao extends UserDao {
                 : (row['isCurrent'] as int) != 0,
             refreshToken: row['refreshToken'] as String?,
             tokenType: row['tokenType'] as String?,
-            expiresIn: row['expiresIn'] as int?));
+            expiresIn: row['expiresIn'] as int?,
+            isBiometricEnabled: row['isBiometricEnabled'] == null
+                ? null
+                : (row['isBiometricEnabled'] as int) != 0,
+            privatePEM: row['privatePEM'] as String?,
+            publicPEM: row['publicPEM'] as String?));
   }
 
   @override
@@ -219,7 +244,12 @@ class _$UserDao extends UserDao {
                 : (row['isCurrent'] as int) != 0,
             refreshToken: row['refreshToken'] as String?,
             tokenType: row['tokenType'] as String?,
-            expiresIn: row['expiresIn'] as int?),
+            expiresIn: row['expiresIn'] as int?,
+            isBiometricEnabled: row['isBiometricEnabled'] == null
+                ? null
+                : (row['isBiometricEnabled'] as int) != 0,
+            privatePEM: row['privatePEM'] as String?,
+            publicPEM: row['publicPEM'] as String?),
         arguments: [email]);
   }
 
@@ -238,7 +268,12 @@ class _$UserDao extends UserDao {
                 : (row['isCurrent'] as int) != 0,
             refreshToken: row['refreshToken'] as String?,
             tokenType: row['tokenType'] as String?,
-            expiresIn: row['expiresIn'] as int?),
+            expiresIn: row['expiresIn'] as int?,
+            isBiometricEnabled: row['isBiometricEnabled'] == null
+                ? null
+                : (row['isBiometricEnabled'] as int) != 0,
+            privatePEM: row['privatePEM'] as String?,
+            publicPEM: row['publicPEM'] as String?),
         queryableName: 'user',
         isView: false);
   }

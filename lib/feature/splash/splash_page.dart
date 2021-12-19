@@ -12,8 +12,6 @@ class SplashPage extends BasePage<SplashViewModel> {
 
 class SplashPageState extends BaseStatefulPage<SplashViewModel, SplashPage>
     with TickerProviderStateMixin {
-  late final AnimationController _controller;
-
   @override
   ProviderBase provideBase() {
     return splashViewModelProvider;

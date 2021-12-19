@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/base/base_class.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "verify_mobile_otp_request.g.dart";
@@ -10,7 +9,7 @@ class VerifyMobileOtpRequest {
   @JsonKey(name: "getToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
-  final BaseClassEntity baseData;
+  final Map<String, dynamic> baseData;
 
   VerifyMobileOtpRequest(
       {this.otpCode: "", this.getToken: false, required this.baseData});

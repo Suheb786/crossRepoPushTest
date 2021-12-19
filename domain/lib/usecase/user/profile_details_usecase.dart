@@ -25,6 +25,7 @@ class ProfileDetailsUseCase extends BaseUseCase<NetworkError,
         beneficialOwnerAccount: params.isBeneficialOwnerACcount,
         natureOfSpecialNeeds: params.natureOfNeeds,
         specialPerson: params.isPerson,
+        isEmployed: true,
         spouseName: params.spouseName);
   }
 }

@@ -14,7 +14,9 @@ class DatePickerBottomSheet {
   }) async {
     CupertinoBottomSheet.show(context, builder: (context) {
       return DatePickerBottomSheetView(
-          onDateSelected: onDateSelected, title: title, onCancel: onCancel);
+          onDateSelected: (_) => onDateSelected?.call(_),
+          title: title,
+          onCancel: () => onCancel?.call());
     });
   }
 }

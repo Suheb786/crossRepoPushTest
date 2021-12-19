@@ -1,8 +1,8 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/register/step_four/fatca_signature/fatca_signature_page.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8/fatca_us_relevant_w8_page.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w9/fatca_us_relevant_w9_page.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_w8_tax_payer_details/fatca_us_w8_tax_payer_details_page.dart';
@@ -10,7 +10,7 @@ import 'package:neo_bank/feature/register/step_four/fatca_us_w9_tax_payer_detail
 import 'package:neo_bank/feature/register/step_four/register_step_four_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_four/taxation_details/taxation_details_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
+import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
@@ -22,7 +22,7 @@ class RegisterStepFourPageView
     extends BasePageViewWidget<RegisterStepFourViewModel> {
   RegisterStepFourPageView(ProviderBase model) : super(model);
 
-  List<Widget> pages = [
+  final List<Widget> pages = [
     TaxationDetailsPage(),
     FatcaUSRelevantW8Page(),
     FatcaUSRelevantW8AddressDetailsPage(),
@@ -30,7 +30,7 @@ class RegisterStepFourPageView
     FatcaUSRelevantW9Page(),
     FatcaUSRelevantW9AddressDetailsPage(),
     FatcaUSW9TaxPayersDetailsPage(),
-    //TaxReportInformationPage(),
+    FatcaSignaturePage()
   ];
 
   @override
@@ -44,9 +44,13 @@ class RegisterStepFourPageView
           return Column(
             children: [
               Text(
-                S.of(context).fatcaandPep,
+                S
+                    .of(context)
+                    .otherDetails,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
+                    color: Theme
+                        .of(context)
+                        .accentColor,
                     fontSize: 10,
                     fontWeight: FontWeight.w600),
               ),
@@ -63,14 +67,30 @@ class RegisterStepFourPageView
                   child: Text(
                     StepTextHelper.registrationFourStepTextHelper(
                       currentStep ?? 0,
-                      S.of(context).tellUsAboutImportantInformations,
-                      S.of(context).weNeedToMatchNamesONTaxReturn,
-                      S.of(context).pleaseProvideInformationIfAppliesToYou,
-                      S.of(context).pleaseProvideInformationIfAppliesToYou,
-                      S.of(context).weNeedToMatchNamesONTaxReturn,
-                      S.of(context).pleaseProvideInformationIfAppliesToYou,
-                      S.of(context).pleaseProvideInformationIfAppliesToYou,
-                      S.of(context).taxReportInfoDesc,
+                      S
+                          .of(context)
+                          .fewMoreQuestions,
+                      S
+                          .of(context)
+                          .weNeedToMatchNamesONTaxReturn,
+                      S
+                          .of(context)
+                          .pleaseProvideInformationIfAppliesToYou,
+                      S
+                          .of(context)
+                          .pleaseProvideInformationIfAppliesToYou,
+                      S
+                          .of(context)
+                          .weNeedToMatchNamesONTaxReturn,
+                      S
+                          .of(context)
+                          .pleaseProvideInformationIfAppliesToYou,
+                      S
+                          .of(context)
+                          .pleaseProvideInformationIfAppliesToYou,
+                      S
+                          .of(context)
+                          .consentForSignatureUpload,
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -81,26 +101,13 @@ class RegisterStepFourPageView
                 ),
               ),
               Expanded(
-                child: CarouselSlider.builder(
-                  itemCount: pages.length,
-                  carouselController: model.registrationStepFourPageController,
-                  itemBuilder: (BuildContext context, int itemIndex,
-                          int pageViewIndex) =>
-                      AppTiltCard(
-                          pageViewIndex: pageViewIndex,
-                          currentPage: currentStep,
-                          child: pages[itemIndex]),
-                  options: CarouselOptions(
-                      height: double.maxFinite,
-                      pageSnapping: true,
-                      enableInfiniteScroll: false,
-                      enlargeCenterPage: true,
-                      viewportFraction: 0.88,
-                      scrollPhysics: NeverScrollableScrollPhysics(),
-                      onPageChanged: (index, reason) {
-                        model.updatePage(index);
-                      },
-                      enlargeStrategy: CenterPageEnlargeStrategy.height),
+                child: AppSwiper(
+                  pageController: model.registrationStepFourPageController,
+                  pages: pages,
+                  currentStep: currentStep,
+                  onIndexChanged: (index) {
+                    model.updatePage(index);
+                  },
                 ),
               ),
             ],

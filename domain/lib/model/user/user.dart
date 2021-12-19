@@ -9,16 +9,23 @@ class User {
   String? refreshToken;
   String? tokenType;
   int? expiredIn;
+  bool? isExisting;
+  String? privatePEM;
+  String? publicPEM;
+  bool? isBiometricEnabled;
 
-  User(
-      {this.token,
-      this.id,
-      this.firstName,
-      this.lastName,
-      this.email,
-      this.mobile,
-      this.isCurrent,
-      this.refreshToken,
-      this.tokenType,
-      this.expiredIn});
+  User({this.token,
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.mobile,
+    this.isCurrent,
+    this.refreshToken,
+    this.tokenType,
+    this.expiredIn,
+    this.isExisting,
+    this.publicPEM,
+    this.privatePEM,
+    this.isBiometricEnabled: false});
 }

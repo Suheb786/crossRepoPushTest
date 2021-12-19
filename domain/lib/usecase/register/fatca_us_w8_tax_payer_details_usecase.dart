@@ -21,23 +21,22 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
   bool wantToClaimTaxTreatyBenefits;
   final String? beneficialAddress;
   final String? identificationNumber;
-  final String? beneficialIdentificationNumber;
+  final String? referenceNumber;
   final String? typeOfIncome;
   final String? explanation;
-  final bool declarationSelected;
-  final bool verifyInfoDeclarationSelected;
+  final String? provisionClaimArticle;
+  final String? treatyClaimRate;
 
-  FatcaUSW8TaxPayerDetailsUseCaseParams(
-      {this.taxPayerType,
-      this.beneficialAddress,
-      required this.isUSTaxPayer,
-      this.identificationNumber,
-      this.beneficialIdentificationNumber,
-      this.explanation,
-      this.typeOfIncome,
-      required this.wantToClaimTaxTreatyBenefits,
-      required this.declarationSelected,
-      required this.verifyInfoDeclarationSelected});
+  FatcaUSW8TaxPayerDetailsUseCaseParams({this.taxPayerType,
+    this.beneficialAddress,
+    required this.isUSTaxPayer,
+    this.identificationNumber,
+    this.referenceNumber,
+    this.explanation,
+    this.typeOfIncome,
+    required this.wantToClaimTaxTreatyBenefits,
+    this.treatyClaimRate,
+    this.provisionClaimArticle});
 
   @override
   Either<AppError, bool> verify() {
@@ -46,21 +45,33 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_TAX_PAYER,
           cause: Exception()));
-    } else if (isUSTaxPayer && identificationNumber!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_IDENTIFICATION_NUMBER,
-          cause: Exception()));
+    } else if (isUSTaxPayer) {
+      if (identificationNumber!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_IDENTIFICATION_NUMBER,
+            cause: Exception()));
+      } else if (referenceNumber!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_REFERENCE_NO,
+            cause: Exception()));
+      }
     } else if (wantToClaimTaxTreatyBenefits) {
       if (beneficialAddress!.isEmpty) {
         return Left(AppError(
             error: ErrorInfo(message: ''),
             type: ErrorType.INVALID_BENEFICIAL_ADDRESS,
             cause: Exception()));
-      } else if (beneficialIdentificationNumber!.isEmpty) {
+      } else if (provisionClaimArticle!.isEmpty) {
         return Left(AppError(
             error: ErrorInfo(message: ''),
-            type: ErrorType.INVALID_BENEFICIAL_IDENTIFICATION_NUMBER,
+            type: ErrorType.INVALID_PROVISION_CLAIM,
+            cause: Exception()));
+      } else if (treatyClaimRate!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_TREATY_CLAIM_RATE,
             cause: Exception()));
       } else if (typeOfIncome!.isEmpty) {
         return Left(AppError(
@@ -73,17 +84,6 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
             type: ErrorType.INVALID_EXPLANATION,
             cause: Exception()));
       }
-    }
-    if (!declarationSelected) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_DECLARATION_SELECTION,
-          cause: Exception()));
-    } else if (!verifyInfoDeclarationSelected) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION,
-          cause: Exception()));
     }
     return Right(true);
   }

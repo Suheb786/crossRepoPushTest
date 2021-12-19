@@ -19,15 +19,10 @@ class FatcaUSW9TaxPayerDetailsUseCaseParams extends Params {
   final String? taxPayerType;
   bool isSocialSecurityTaxPayer;
   final String? socialSecurityNumber;
-  final bool declarationSelected;
-  final bool verifyInfoDeclarationSelected;
 
-  FatcaUSW9TaxPayerDetailsUseCaseParams(
-      {this.taxPayerType,
-      this.socialSecurityNumber,
-      required this.isSocialSecurityTaxPayer,
-      required this.declarationSelected,
-      required this.verifyInfoDeclarationSelected});
+  FatcaUSW9TaxPayerDetailsUseCaseParams({this.taxPayerType,
+    this.socialSecurityNumber,
+    required this.isSocialSecurityTaxPayer});
 
   @override
   Either<AppError, bool> verify() {
@@ -43,17 +38,6 @@ class FatcaUSW9TaxPayerDetailsUseCaseParams extends Params {
             type: ErrorType.INVALID_SECURITY_NUMBER,
             cause: Exception()));
       }
-    }
-    if (!declarationSelected) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_DECLARATION_SELECTION,
-          cause: Exception()));
-    } else if (!verifyInfoDeclarationSelected) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_VERIFY_INFO_DECLARATION_SELECTION,
-          cause: Exception()));
     }
     return Right(true);
   }

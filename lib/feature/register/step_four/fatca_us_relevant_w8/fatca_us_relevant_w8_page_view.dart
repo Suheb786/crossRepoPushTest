@@ -38,28 +38,31 @@ class FatcaUSRelevantW8PageView
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
-                      ProviderScope.containerOf(context)
-                          .read(registerStepFourViewModelProvider)
-                          .registrationStepFourPageController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                      model.updateData(context);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope
+                            .containerOf(context)
+                            .read(registerStepFourViewModelProvider)
+                            .registrationStepFourPageController
+                            .next();
+                      });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
                   },
                   dataBuilder: (context, response) {
                     return GestureDetector(
-                      onHorizontalDragUpdate: (details) {
-                        if (details.primaryDelta!.isNegative) {
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity!.isNegative) {
                           model.validateFatcaUSRelevantW8Details();
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepFourViewModelProvider)
-                              .registrationStepFourPageController
-                              .previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope
+                                .containerOf(context)
+                                .read(registerStepFourViewModelProvider)
+                                .registrationStepFourPageController
+                                .previous();
+                          });
                         }
                       },
                       child: Card(
@@ -103,11 +106,15 @@ class FatcaUSRelevantW8PageView
                                           height: 16,
                                         ),
                                         AppTextField(
-                                          labelText: S.of(context).dateOfBirth,
-                                          hintText: S.of(context).pleaseEnter,
+                                          labelText: S
+                                              .of(context)
+                                              .dateOfBirth,
+                                          hintText: S
+                                              .of(context)
+                                              .pleaseEnter,
                                           controller:
-                                              model.dateOfBirthController,
-                                          inputType: TextInputType.text,
+                                          model.dateOfBirthController,
+                                          inputType: TextInputType.datetime,
                                           inputAction: TextInputAction.go,
                                           key: model.dateOfBirthKey,
                                           onChanged: (value) {
@@ -142,18 +149,17 @@ class FatcaUSRelevantW8PageView
                                 ),
                                 Center(
                                   child: Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 32),
+                                    padding: EdgeInsets.only(top: 32),
                                     child: AppStreamBuilder<bool>(
                                         stream: model.allFieldValidatorStream,
                                         initialData: false,
                                         dataBuilder: (context, isValid) {
                                           return (isValid!)
                                               ? AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed,
-                                                  buttonHeight: 50,
+                                            buttonText: S
+                                                .of(context)
+                                                .swipeToProceed,
+                                            buttonHeight: 50,
                                                 )
                                               : Container();
                                         }),

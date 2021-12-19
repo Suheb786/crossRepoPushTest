@@ -8,6 +8,7 @@ import 'package:domain/usecase/dashboard/debit_card_verification_success_usecase
 import 'package:domain/usecase/dashboard/get_card_usecase.dart';
 import 'package:domain/usecase/dashboard/my_account_usecase.dart';
 import 'package:domain/usecase/dashboard/my_debit_card_usecase.dart';
+import 'package:domain/usecase/dashboard/placeholder_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[GetCardUseCase] provider
@@ -17,23 +18,28 @@ final getCardUseCaseProvider = Provider.autoDispose<GetCardUseCase>(
 
 ///[MyAccountUseCase] provider
 final myAccountUseCaseProvider = Provider.autoDispose<MyAccountUseCase>(
-  (ref) => MyAccountUseCase(),
+      (ref) => MyAccountUseCase(),
 );
 
 ///[<MyDebitCardUseCase>] provider
 final myDebitCardUseCaseProvider = Provider.autoDispose<MyDebitCardUseCase>(
-  (ref) => MyDebitCardUseCase(),
+      (ref) => MyDebitCardUseCase(),
+);
+
+///[<MyDebitCardUseCase>] provider
+final placeholderUseCaseProvider = Provider.autoDispose<PlaceholderUseCase>(
+      (ref) => PlaceholderUseCase(),
 );
 
 ///[<CardDeliveredUseCase>] provider
 final cardDeliveredUseCaseProvider =
-    Provider.autoDispose<DebitCardDeliveredUseCase>(
-  (ref) => DebitCardDeliveredUseCase(),
+Provider.autoDispose<DebitCardDeliveredUseCase>(
+      (ref) => DebitCardDeliveredUseCase(),
 );
 
 ///[<DebitCardVerificationSuccessUseCase>] provider
 final debitCardVerificationSuccessUseCaseProvider =
-    Provider.autoDispose<DebitCardVerificationSuccessUseCase>(
+Provider.autoDispose<DebitCardVerificationSuccessUseCase>(
   (ref) => DebitCardVerificationSuccessUseCase(),
 );
 

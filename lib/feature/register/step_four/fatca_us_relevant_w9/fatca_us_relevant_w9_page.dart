@@ -11,7 +11,11 @@ class FatcaUSRelevantW9Page extends BasePage<FatcaUSRelevantW9PageViewModel> {
 }
 
 class FatcaUSRelevantW9PageState extends BaseStatefulPage<
-    FatcaUSRelevantW9PageViewModel, FatcaUSRelevantW9Page> {
+    FatcaUSRelevantW9PageViewModel,
+    FatcaUSRelevantW9Page>
+    with AutomaticKeepAliveClientMixin {
+  FatcaUSRelevantW9PageState() : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return fatcaUSRelevantW9PageViewModelProvider;
@@ -19,11 +23,22 @@ class FatcaUSRelevantW9PageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override
   Widget buildView(BuildContext context, FatcaUSRelevantW9PageViewModel model) {
     return FatcaUSRelevantW9PageView(provideBase());
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

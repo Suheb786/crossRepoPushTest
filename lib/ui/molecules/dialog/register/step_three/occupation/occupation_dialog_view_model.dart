@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/employment_status_enum.dart';
+import 'package:domain/model/user/get_combo_values/get_combo_values_data.dart';
 import 'package:domain/usecase/register/get_occupation_list_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -25,20 +26,22 @@ class OccupationDialogViewModel extends BasePageViewModel {
 
   ///get occupation list request holder
   PublishSubject<GetOccupationUseCaseParams> _getOccupationRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///get occupation list response holder
   PublishSubject<Resource<List<String>>> _getOccupationResponse =
-      PublishSubject();
+  PublishSubject();
 
   ///get occupation list stream
   Stream<Resource<List<String>>> get getOccupationStream =>
       _getOccupationResponse.stream;
 
+  List<GetComboValuesData> businessTypeList = [];
+
   OccupationDialogViewModel(this._getOccupationUseCase) {
     _getOccupationRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _getOccupationUseCase.execute(params: value))
+          createCall: () => _getOccupationUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getOccupationResponse.safeAdd(event);

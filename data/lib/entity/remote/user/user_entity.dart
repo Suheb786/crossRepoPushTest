@@ -36,26 +36,28 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
   final String? nameOnCard;
   @JsonKey(name: "userId")
   final String? userId;
+  @JsonKey(name: "existing")
+  final bool? existing;
 
   factory UserEntity.fromJson(Map<String, dynamic> json) =>
       _$UserEntityFromJson(json);
 
-  UserEntity(
-      {this.languageCode,
-      this.fullName,
-      this.emailId,
-      this.mobileStatus,
-      this.mobileNumber,
-      this.emailStatus,
-      this.nationality,
-      this.firstName,
-      this.lastName,
-      this.gender,
-      this.dob,
-      this.userName,
-      this.image,
-      this.userId,
-      this.nameOnCard});
+  UserEntity({this.languageCode,
+    this.fullName,
+    this.emailId,
+    this.mobileStatus,
+    this.mobileNumber,
+    this.emailStatus,
+    this.nationality,
+    this.firstName,
+    this.lastName,
+    this.gender,
+    this.dob,
+    this.userName,
+    this.image,
+    this.userId,
+    this.existing,
+    this.nameOnCard});
 
   Map<String, dynamic> toJson() => _$UserEntityToJson(this);
 
@@ -68,11 +70,11 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
   @override
   User transform() {
     return User(
-      id: this.userId ?? "",
-      email: this.emailId ?? "",
-      firstName: this.firstName ?? "",
-      lastName: this.lastName ?? "",
-      mobile: this.mobileNumber ?? "",
-    );
+        id: this.userId ?? "",
+        email: this.emailId ?? "",
+        firstName: this.firstName ?? "",
+        lastName: this.lastName ?? "",
+        mobile: this.mobileNumber ?? "",
+        isExisting: this.existing ?? false);
   }
 }

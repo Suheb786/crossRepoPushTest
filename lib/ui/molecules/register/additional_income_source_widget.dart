@@ -1,12 +1,12 @@
+import 'package:domain/model/user/additional_income_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class AdditionalIncomeSourceWidget extends StatelessWidget {
-  final AdditionalIncomeSourceParams? additionalIncomeSourceParams;
+  final AdditionalIncomeType? additionalIncomeSourceParams;
   final Function()? onTap;
 
   const AdditionalIncomeSourceWidget(
@@ -32,13 +32,15 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 8.0),
                   child: Text(
-                    additionalIncomeSourceParams!.incomeSourceType!,
+                    additionalIncomeSourceParams!.additionalIncomeSource!,
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.ellipsis,
                     softWrap: false,
                     maxLines: 5,
                     style: TextStyle(
-                        color: Theme.of(context).primaryColorDark,
+                        color: Theme
+                            .of(context)
+                            .primaryColorDark,
                         fontSize: 14,
                         fontWeight: FontWeight.w600),
                   ),
@@ -47,10 +49,12 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
                   height: 4,
                 ),
                 Text(
-                  '${additionalIncomeSourceParams!.currency} ${additionalIncomeSourceParams!.amount}',
+                  '${'JOD'} ${additionalIncomeSourceParams!.totalIncome}',
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                      color: Theme.of(context).primaryColorDark,
+                      color: Theme
+                          .of(context)
+                          .primaryColorDark,
                       fontSize: 12,
                       fontWeight: FontWeight.w600),
                 ),

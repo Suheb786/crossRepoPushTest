@@ -1,7 +1,10 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/fatca_crs/fatca_set_data.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w9_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -55,6 +58,7 @@ class FatcaUSRelevantW9PageViewModel extends BasePageViewModel {
                   _fatcaUSRelevantW8UseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _fatcaUSRelevantW8Response.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -69,6 +73,8 @@ class FatcaUSRelevantW9PageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_NAME_AS_PER_TAX_RETURN:
         nameAsPerTaxReturnKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 
@@ -76,6 +82,19 @@ class FatcaUSRelevantW9PageViewModel extends BasePageViewModel {
     _fatcaUSRelevantW8Request.safeAdd(FatcaUSRelevantW9UseCaseParams(
         nameAsPerTax: nameAsPerTaxReturnController.text,
         businessName: businessNameController.text));
+  }
+
+  ///update data to main page
+  void updateData(BuildContext context) {
+    FatcaSetData fatcaSetData = ProviderScope
+        .containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .fatcaData;
+    fatcaSetData.namePerIncomeTaxReturn = nameAsPerTaxReturnController.text;
+    fatcaSetData.businessName = businessNameController.text;
+    ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .setFatcaData(fatcaSetData);
   }
 
   @override

@@ -10,8 +10,11 @@ class TaxationDetailsPage extends BasePage<TaxationDetailsPageViewModel> {
   TaxationDetailsPageState createState() => TaxationDetailsPageState();
 }
 
-class TaxationDetailsPageState extends BaseStatefulPage<
-    TaxationDetailsPageViewModel, TaxationDetailsPage> {
+class TaxationDetailsPageState
+    extends BaseStatefulPage<TaxationDetailsPageViewModel, TaxationDetailsPage>
+    with AutomaticKeepAliveClientMixin {
+  TaxationDetailsPageState() : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return taxationDetailsPageViewModelProvider;
@@ -19,11 +22,22 @@ class TaxationDetailsPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override
   Widget buildView(BuildContext context, TaxationDetailsPageViewModel model) {
     return TaxationDetailsPageView(provideBase());
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

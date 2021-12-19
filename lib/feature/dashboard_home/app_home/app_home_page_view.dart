@@ -10,10 +10,11 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_page.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_page.dart';
-import 'package:neo_bank/feature/payment/payment_home/payment_home_page.dart';
+import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/dashboard_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -27,6 +28,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
     MyAccountPage(),
     GetCreditCardPage(),
     MyDebitCardPage(),
+    PlaceholderPage()
   ];
 
   @override
@@ -161,58 +163,54 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                   ),
                                 ),
                                 SmoothPageIndicator(
-                                  controller: model.controller,
-                                  count: pages.length,
-                                  effect: ScrollingDotsEffect(
-                                    activeStrokeWidth: 2.6,
-                                    activeDotScale: 1.3,
-                                    activeDotColor:
-                                        Theme.of(context).primaryColorDark,
-                                    dotColor: Theme.of(context)
-                                        .primaryColorDark
-                                        .withOpacity(0.6),
-                                    maxVisibleDots: 5,
-                                    radius: 8,
-                                    spacing: 10,
-                                    dotHeight: 10,
-                                    dotWidth: 10,
-                                  ),
-                                ),
+                                    controller: model.controller,
+                                    count: pages.length,
+                                    effect: ScrollingDotsEffect(
+                                      activeStrokeWidth: 2.6,
+                                      activeDotScale: 1.3,
+                                      activeDotColor:
+                                      Theme
+                                          .of(context)
+                                          .primaryColorDark,
+                                      dotColor: Theme
+                                          .of(context)
+                                          .primaryColorDark
+                                          .withOpacity(0.6),
+                                      maxVisibleDots: 5,
+                                      radius: 8,
+                                      spacing: 10,
+                                      dotHeight: 10,
+                                      dotWidth: 10,
+                                    )),
                                 Align(
                                   alignment: Alignment.bottomCenter,
                                   child: Padding(
                                     padding:
-                                        EdgeInsets.only(top: 47, bottom: 24),
+                                    EdgeInsets.only(top: 47, bottom: 24),
                                     child: ConvexAppBar(
                                       elevation: 0,
                                       style: TabStyle.fixedCircle,
                                       backgroundColor:
-                                          Theme.of(context).accentColor,
+                                      Theme
+                                          .of(context)
+                                          .accentColor,
                                       items: [
                                         TabItem(
                                             icon:
                                                 AppSvg.asset(AssetUtils.house),
                                             title: " "),
                                         TabItem(
-                                          icon: InkWell(
-                                            onTap: () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          PaymentHomePage()));
-                                            },
-                                            child: Container(
-                                              height: 80,
-                                              width: 80,
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .primaryColorDark,
-                                                  shape: BoxShape.circle),
-                                              child: Center(
-                                                child: AppSvg.asset(
-                                                    AssetUtils.logoWhite),
-                                              ),
+                                          icon: Container(
+                                            height: 80,
+                                            width: 80,
+                                            decoration: BoxDecoration(
+                                                color: Theme
+                                                    .of(context)
+                                                    .primaryColorDark,
+                                                shape: BoxShape.circle),
+                                            child: Center(
+                                              child: AppSvg.asset(
+                                                  AssetUtils.logoWhite),
                                             ),
                                           ),
                                         ),
@@ -223,7 +221,17 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                             title: " "),
                                       ],
                                       initialActiveIndex: 1,
-                                      onTap: (i) => print("got index $i"),
+                                      onTap: (i) {
+                                        switch (i) {
+                                          case 0:
+                                            break;
+                                          case 1:
+                                            SettingsDialog.show(
+                                              context,
+                                            );
+                                            break;
+                                        }
+                                      },
                                     ),
                                   ),
                                 )

@@ -14,7 +14,11 @@ class FatcaUSRelevantW9AddressDetailsPage
 
 class FatcaUSRelevantW9AddressDetailsPageState extends BaseStatefulPage<
     FatcaUSRelevantW9AddressDetailsPageViewModel,
-    FatcaUSRelevantW9AddressDetailsPage> {
+    FatcaUSRelevantW9AddressDetailsPage>
+    with AutomaticKeepAliveClientMixin {
+  FatcaUSRelevantW9AddressDetailsPageState()
+      : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return fatcaUSRelevantW9AddressPageViewModelProvider;
@@ -22,7 +26,9 @@ class FatcaUSRelevantW9AddressDetailsPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override
@@ -30,4 +36,13 @@ class FatcaUSRelevantW9AddressDetailsPageState extends BaseStatefulPage<
       FatcaUSRelevantW9AddressDetailsPageViewModel model) {
     return FatcaUSRelevantW9AddressDetailsPageView(provideBase());
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

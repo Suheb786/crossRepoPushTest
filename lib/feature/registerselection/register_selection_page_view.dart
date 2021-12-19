@@ -59,10 +59,14 @@ class RegisterSelectionPageView
                   child: Column(
                     children: [
                       Text(
-                        S.of(context).letsCreateYourAccount,
+                        S
+                            .of(context)
+                            .letsCreateYourProfile,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Theme.of(context).accentColor,
+                            color: Theme
+                                .of(context)
+                                .accentColor,
                             fontSize: 32,
                             fontWeight: FontWeight.w600),
                       ),
@@ -81,7 +85,7 @@ class RegisterSelectionPageView
                         padding: EdgeInsets.only(top: 56),
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushReplacementNamed(
+                            Navigator.pushNamed(
                                 context, RoutePaths.AccountRegistration);
                           },
                           child: Container(
@@ -99,7 +103,10 @@ class RegisterSelectionPageView
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
-                                      color: Theme.of(context).accentColor)),
+                                      letterSpacing: 1,
+                                      color: Theme
+                                          .of(context)
+                                          .accentColor)),
                             ),
                           ),
                         ),
@@ -145,21 +152,26 @@ class RegisterSelectionPageView
                           ],
                         ),
                       ),
-                      Container(
-                        margin: EdgeInsets.symmetric(vertical: 25),
-                        child: Text(
-                          S.of(context).swipeDownToLogin,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: Theme.of(context).accentColor,
-                              fontWeight: FontWeight.w500),
-                        ),
-                      )
                     ],
                   ),
                 ),
               ),
             ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 25),
+              child: Text(
+                S
+                    .of(context)
+                    .swipeDownToLogin,
+                style: TextStyle(
+                    fontSize: 14,
+                    color: Theme
+                        .of(context)
+                        .accentColor,
+                    letterSpacing: 1,
+                    fontWeight: FontWeight.w500),
+              ),
+            )
           ],
         ),
       ),

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/home_address_dialog/home_address_dialog_model.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -103,12 +104,15 @@ class HomeAddressDialogView extends StatelessWidget {
                       dataBuilder: (context, currentLocation) {
                         return AppTextField(
                             controller: model.addressController,
-                            labelText: "Home Address",
+                            labelText: S
+                                .of(context)
+                                .buildingNameOrNo,
                             hintText: "",
                             labelFontSize: 12,
                             labelColor: AppColor.black,
                             textColor: AppColor.black,
-                            suffixIcon: (isValid, value) => Container(
+                            suffixIcon: (isValid, value) =>
+                                Container(
                                   height: 20,
                                   width: 16,
                                   padding: EdgeInsets.only(left: 4, top: 2),

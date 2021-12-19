@@ -107,6 +107,7 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
               createCall: () => _profileUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _profileDetailsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();

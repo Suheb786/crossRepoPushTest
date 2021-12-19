@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -91,10 +90,10 @@ class S {
     );
   }
 
-  /// `Enter 6-digit OTP sent to`
+  /// `Enter the 6-digit code sent to`
   String get enterOtpHeader {
     return Intl.message(
-      'Enter 6-digit OTP sent to',
+      'Enter the 6-digit code sent to',
       name: 'enterOtpHeader',
       desc: '',
       args: [],
@@ -161,10 +160,10 @@ class S {
     );
   }
 
-  /// `Next, let's create your\nlogin password`
+  /// `Next, let’s create\nyour password`
   String get createPasswordHeader {
     return Intl.message(
-      'Next, let\'s create your\nlogin password',
+      'Next, let’s create\nyour password',
       name: 'createPasswordHeader',
       desc: '',
       args: [],
@@ -221,20 +220,20 @@ class S {
     );
   }
 
-  /// `Please get your ID ready\nto be scanned`
+  /// `Grab your ID and let's\nget scanning`
   String get idVerificationInfoHeader {
     return Intl.message(
-      'Please get your ID ready\nto be scanned',
+      'Grab your ID and let\'s\nget scanning',
       name: 'idVerificationInfoHeader',
       desc: '',
       args: [],
     );
   }
 
-  /// `Make sure you’re in bright place and surrounding`
+  /// `Make sure you're in a bright place`
   String get idVerificationPlaceInfo {
     return Intl.message(
-      'Make sure you’re in bright place and surrounding',
+      'Make sure you\'re in a bright place',
       name: 'idVerificationPlaceInfo',
       desc: '',
       args: [],
@@ -261,10 +260,10 @@ class S {
     );
   }
 
-  /// `I agree for the bank to retrieve my AHWAL data necessarily.`
+  /// `I agree for blink to retrieve my data from the Civil Department`
   String get termsAndConditions {
     return Intl.message(
-      'I agree for the bank to retrieve my AHWAL data necessarily.',
+      'I agree for blink to retrieve my data from the Civil Department',
       name: 'termsAndConditions',
       desc: '',
       args: [],
@@ -1001,10 +1000,10 @@ class S {
     );
   }
 
-  /// `Tell us a bit about your\nprofile status`
+  /// `Tell us a bit \nabout yourself`
   String get tellUsAboutYourProfile {
     return Intl.message(
-      'Tell us a bit about your\nprofile status',
+      'Tell us a bit \nabout yourself',
       name: 'tellUsAboutYourProfile',
       desc: '',
       args: [],
@@ -1101,10 +1100,10 @@ class S {
     );
   }
 
-  /// `Please swipe through and confirm your information`
+  /// `Review and confirm\nyour details`
   String get confirmYourInformation {
     return Intl.message(
-      'Please swipe through and confirm your information',
+      'Review and confirm\nyour details',
       name: 'confirmYourInformation',
       desc: '',
       args: [],
@@ -1831,10 +1830,10 @@ class S {
     );
   }
 
-  /// `Next, tell us how do\nmake a living`
+  /// `Bear with us, just a few more questions about your income`
   String get tellUsHowDoMakeLiving {
     return Intl.message(
-      'Next, tell us how do\nmake a living',
+      'Bear with us, just a few more questions about your income',
       name: 'tellUsHowDoMakeLiving',
       desc: '',
       args: [],
@@ -1931,10 +1930,10 @@ class S {
     );
   }
 
-  /// `Almost there! We have few account related questions`
+  /// `Now, tell us what\nthe account is for`
   String get accountRelatedQuestions {
     return Intl.message(
-      'Almost there! We have few account related questions',
+      'Now, tell us what\nthe account is for',
       name: 'accountRelatedQuestions',
       desc: '',
       args: [],
@@ -2151,10 +2150,10 @@ class S {
     );
   }
 
-  /// `Permanent residence address Line`
+  /// `Permanent residence address`
   String get permanentResidentAddressLine {
     return Intl.message(
-      'Permanent residence address Line',
+      'Permanent residence address',
       name: 'permanentResidentAddressLine',
       desc: '',
       args: [],
@@ -2251,10 +2250,10 @@ class S {
     );
   }
 
-  /// `Select Post Code`
+  /// `Enter Post Code`
   String get invalidPostCode {
     return Intl.message(
-      'Select Post Code',
+      'Enter Post Code',
       name: 'invalidPostCode',
       desc: '',
       args: [],
@@ -2311,10 +2310,10 @@ class S {
     );
   }
 
-  /// `ACCOUNT NUMBER (OPTIONAL)`
+  /// `LIST OF ACCOUNT NUMBER (OPTIONAL)`
   String get accountNumberOptional {
     return Intl.message(
-      'ACCOUNT NUMBER (OPTIONAL)',
+      'LIST OF ACCOUNT NUMBER (OPTIONAL)',
       name: 'accountNumberOptional',
       desc: '',
       args: [],
@@ -2571,10 +2570,10 @@ class S {
     );
   }
 
-  /// `Please select your preferred agent for a video call`
+  /// `Schedule your call\nfor later`
   String get pleaseSelectPreferredAgentForVideoCall {
     return Intl.message(
-      'Please select your preferred agent for a video call',
+      'Schedule your call\nfor later',
       name: 'pleaseSelectPreferredAgentForVideoCall',
       desc: '',
       args: [],
@@ -2751,10 +2750,10 @@ class S {
     );
   }
 
-  /// `Get ready to verify yourself \nvia video call`
+  /// `It’s time for a quick\nvideo call`
   String get videoCallInfoHeader {
     return Intl.message(
-      'Get ready to verify yourself \nvia video call',
+      'It’s time for a quick\nvideo call',
       name: 'videoCallInfoHeader',
       desc: '',
       args: [],
@@ -3021,10 +3020,10 @@ class S {
     );
   }
 
-  /// `Next, tell us how do\nmake a living`
+  /// `Bear with us, just a few more questions about your income`
   String get jobIncomeMsg {
     return Intl.message(
-      'Next, tell us how do\nmake a living',
+      'Bear with us, just a few more questions about your income',
       name: 'jobIncomeMsg',
       desc: '',
       args: [],
@@ -3091,10 +3090,10 @@ class S {
     );
   }
 
-  /// `Please confirm and complete your ID details below`
+  /// `Now let's confirm your\nID details`
   String get pleaseConfirmYourIDDetailsBelow {
     return Intl.message(
-      'Please confirm and complete your ID details below',
+      'Now let\'s confirm your\nID details',
       name: 'pleaseConfirmYourIDDetailsBelow',
       desc: '',
       args: [],
@@ -3111,20 +3110,20 @@ class S {
     );
   }
 
-  /// `Account opening is only available for Jordanian citizen, for now. Hey, don’t be fret. We’ll expand to other countries, soon!`
+  /// `Account opening is only available for Jordanians for now, but don’t worry we’re expanding into new countries, soon!`
   String get accountOpeningDescription {
     return Intl.message(
-      'Account opening is only available for Jordanian citizen, for now. Hey, don’t be fret. We’ll expand to other countries, soon!',
+      'Account opening is only available for Jordanians for now, but don’t worry we’re expanding into new countries, soon!',
       name: 'accountOpeningDescription',
       desc: '',
       args: [],
     );
   }
 
-  /// `Notify me!`
+  /// `Notify me`
   String get notifyMeExC {
     return Intl.message(
-      'Notify me!',
+      'Notify me',
       name: 'notifyMeExC',
       desc: '',
       args: [],
@@ -3221,10 +3220,10 @@ class S {
     );
   }
 
-  /// `Please upload necessary document to proof yourself`
+  /// `You’re done! Just upload\nyour documents`
   String get pleaseUploadNecessaryInfo {
     return Intl.message(
-      'Please upload necessary document to proof yourself',
+      'You’re done! Just upload\nyour documents',
       name: 'pleaseUploadNecessaryInfo',
       desc: '',
       args: [],
@@ -3291,10 +3290,10 @@ class S {
     );
   }
 
-  /// `Scan ID again`
+  /// `Something wrong, scan ID again`
   String get scanIDAgain {
     return Intl.message(
-      'Scan ID again',
+      'Something wrong, scan ID again',
       name: 'scanIDAgain',
       desc: '',
       args: [],
@@ -3461,10 +3460,10 @@ class S {
     );
   }
 
-  /// `Thank you for waiting. Call will start automatically as soon as our call customer agent is ready.`
+  /// `Thank you for waiting, the video call will start automatically`
   String get thankYouForWaitingCallWillStartAutomatically {
     return Intl.message(
-      'Thank you for waiting. Call will start automatically as soon as our call customer agent is ready.',
+      'Thank you for waiting, the video call will start automatically',
       name: 'thankYouForWaitingCallWillStartAutomatically',
       desc: '',
       args: [],
@@ -3531,10 +3530,10 @@ class S {
     );
   }
 
-  /// `You have successfully created your login. Would you like to proceed with account opening?`
+  /// `You have successfully created your profile, now let's get your account up and running.`
   String get successfullyCreatedLoginAccount {
     return Intl.message(
-      'You have successfully created your login. Would you like to proceed with account opening?',
+      'You have successfully created your profile, now let\'s get your account up and running.',
       name: 'successfullyCreatedLoginAccount',
       desc: '',
       args: [],
@@ -3731,10 +3730,10 @@ class S {
     );
   }
 
-  /// `Would you like to enable biometric for a more seamless login experience?`
+  /// `To blink in more seamlessly, please enable biometric login`
   String get biometricLoginDesc {
     return Intl.message(
-      'Would you like to enable biometric for a more seamless login experience?',
+      'To blink in more seamlessly, please enable biometric login',
       name: 'biometricLoginDesc',
       desc: '',
       args: [],
@@ -3976,6 +3975,26 @@ class S {
     return Intl.message(
       'to Card Delivery',
       name: 'cardDelivery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While saving IDCard`
+  String get errorSavingIdCard {
+    return Intl.message(
+      'Error While saving IDCard',
+      name: 'errorSavingIdCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Id card is expired, cannot proceed.`
+  String get idCardExpired {
+    return Intl.message(
+      'Id card is expired, cannot proceed.',
+      name: 'idCardExpired',
       desc: '',
       args: [],
     );
@@ -4361,161 +4380,1291 @@ class S {
     );
   }
 
-  /// `Payments`
-  String get payments {
+  /// `Ways you can add\nmoney into your account`
+  String get waysYocCanAddMoneyToAccount {
     return Intl.message(
-      'Payments',
-      name: 'payments',
+      'Ways you can add\nmoney into your account',
+      name: 'waysYocCanAddMoneyToAccount',
       desc: '',
       args: [],
     );
   }
 
-  /// `See all contacts`
-  String get seeAllContacts {
+  /// `Request money from other banks`
+  String get requestMoneyFromOtherBank {
     return Intl.message(
-      'See all contacts',
-      name: 'seeAllContacts',
+      'Request money from other banks',
+      name: 'requestMoneyFromOtherBank',
       desc: '',
       args: [],
     );
   }
 
-  /// `Back to Payments`
-  String get backToPayments {
+  /// `If you have money from other banks, you can easily send money request to move it into your blink account.`
+  String get requestMoneyFromOtherBankDesc {
     return Intl.message(
-      'Back to Payments',
-      name: 'backToPayments',
+      'If you have money from other banks, you can easily send money request to move it into your blink account.',
+      name: 'requestMoneyFromOtherBankDesc',
       desc: '',
       args: [],
     );
   }
 
-  /// `Send money to`
-  String get sendMoneyTo {
+  /// `Receive money from others`
+  String get receiveMoneyFromOthers {
     return Intl.message(
-      'Send money to',
-      name: 'sendMoneyTo',
+      'Receive money from others',
+      name: 'receiveMoneyFromOthers',
       desc: '',
       args: [],
     );
   }
 
-  /// `Transaction Purpose`
-  String get transactionPurpose {
+  /// `Share your account details to your friends and family, let them know you are on blink!`
+  String get receiveMoneyFromOthersDesc {
     return Intl.message(
-      'Transaction Purpose',
-      name: 'transactionPurpose',
+      'Share your account details to your friends and family, let them know you are on blink!',
+      name: 'receiveMoneyFromOthersDesc',
       desc: '',
       args: [],
     );
   }
 
-  /// `Edit`
-  String get edit {
+  /// `Deposit via ATM`
+  String get depositViaATM {
     return Intl.message(
-      'Edit',
-      name: 'edit',
+      'Deposit via ATM',
+      name: 'depositViaATM',
       desc: '',
       args: [],
     );
   }
 
-  /// `Account balance`
-  String get accountBalance {
+  /// `Don’t worry, you can deposit cash into the account with or without your card. Just locate nearest Capital Bank ATM.`
+  String get depositViaATMDesc {
     return Intl.message(
-      'Account balance',
-      name: 'accountBalance',
+      'Don’t worry, you can deposit cash into the account with or without your card. Just locate nearest Capital Bank ATM.',
+      name: 'depositViaATMDesc',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sent to`
-  String get sentTo {
+  /// `Share account info`
+  String get shareAccountInfo {
     return Intl.message(
-      'Sent to',
-      name: 'sentTo',
+      'Share account info',
+      name: 'shareAccountInfo',
       desc: '',
       args: [],
     );
   }
 
-  /// `Ref No.`
-  String get refno {
+  /// `Locate ATM`
+  String get locateATM {
     return Intl.message(
-      'Ref No.',
-      name: 'refno',
+      'Locate ATM',
+      name: 'locateATM',
       desc: '',
       args: [],
     );
   }
 
-  /// `Date`
-  String get date {
+  /// `Get My Credit Card`
+  String get getMyCreditCard {
     return Intl.message(
-      'Date',
-      name: 'date',
+      'Get My Credit Card',
+      name: 'getMyCreditCard',
       desc: '',
       args: [],
     );
   }
 
-  /// `Share my receipt`
-  String get shareMyReceipt {
+  /// `or`
+  String get or {
     return Intl.message(
-      'Share my receipt',
-      name: 'shareMyReceipt',
+      'or',
+      name: 'or',
       desc: '',
       args: [],
     );
   }
 
-  /// `Undo transaction`
-  String get undoTransaction {
+  /// `Swipe to view list`
+  String get swipeToViewList {
     return Intl.message(
-      'Undo transaction',
-      name: 'undoTransaction',
+      'Swipe to view list',
+      name: 'swipeToViewList',
       desc: '',
       args: [],
     );
   }
 
-  /// `Request money from`
-  String get requestMoneyFrom {
+  /// `Swipe to view map`
+  String get swipeToViewMap {
     return Intl.message(
-      'Request money from',
-      name: 'requestMoneyFrom',
+      'Swipe to view map',
+      name: 'swipeToViewMap',
       desc: '',
       args: [],
     );
   }
 
-  /// `Requested from`
-  String get requestedFrom {
+  /// `Get Directions`
+  String get getDirections {
     return Intl.message(
-      'Requested from',
-      name: 'requestedFrom',
+      'Get Directions',
+      name: 'getDirections',
       desc: '',
       args: [],
     );
   }
 
-  /// `You will be notified once your contact\naccepts your request and money is\nadded into your account.`
-  String get youWillBeNotified {
+  /// `Drag & move the map to adjust the location`
+  String get dragMap {
     return Intl.message(
-      'You will be notified once your contact\naccepts your request and money is\nadded into your account.',
-      name: 'youWillBeNotified',
+      'Drag & move the map to adjust the location',
+      name: 'dragMap',
       desc: '',
       args: [],
     );
   }
 
-  /// `Undo request`
-  String get undoRequest {
+  /// `Born blink.\nBe blink.`
+  String get bornBlink {
     return Intl.message(
-      'Undo request',
-      name: 'undoRequest',
+      'Born blink.\nBe blink.',
+      name: 'bornBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spend 1 JOD and stand a chance\nto win 1,000 JOD daily.`
+  String get spendJod {
+    return Intl.message(
+      'Spend 1 JOD and stand a chance\nto win 1,000 JOD daily.',
+      name: 'spendJod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Find out more`
+  String get findOutMore {
+    return Intl.message(
+      'Find out more',
+      name: 'findOutMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Saving Status`
+  String get errorSavingStatus {
+    return Intl.message(
+      'Error While Saving Status',
+      name: 'errorSavingStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload valid nationality document.`
+  String get emptyNationalityDocument {
+    return Intl.message(
+      'Upload valid nationality document.',
+      name: 'emptyNationalityDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Upload Image`
+  String get errorUploadImage {
+    return Intl.message(
+      'Error While Upload Image',
+      name: 'errorUploadImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have entered an invalid OTP code, please enter a valid one`
+  String get invalidOtp {
+    return Intl.message(
+      'You have entered an invalid OTP code, please enter a valid one',
+      name: 'invalidOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your OTP code is expired, please request for a new OTP code`
+  String get otpExpired {
+    return Intl.message(
+      'Your OTP code is expired, please request for a new OTP code',
+      name: 'otpExpired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email already exist`
+  String get emailAlreadyExist {
+    return Intl.message(
+      'Email already exist',
+      name: 'emailAlreadyExist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID card is not allowed for NeoBank.`
+  String get idCardNotAllowed {
+    return Intl.message(
+      'ID card is not allowed for NeoBank.',
+      name: 'idCardNotAllowed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Otp Limit Exceeds, Please Try again Later`
+  String get otpLimitExceed {
+    return Intl.message(
+      'Otp Limit Exceeds, Please Try again Later',
+      name: 'otpLimitExceed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Creating Account`
+  String get errorCreatingAccount {
+    return Intl.message(
+      'Error While Creating Account',
+      name: 'errorCreatingAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent Country`
+  String get permanentCountry {
+    return Intl.message(
+      'Permanent Country',
+      name: 'permanentCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Permanent City`
+  String get permanentCity {
+    return Intl.message(
+      'Permanent City',
+      name: 'permanentCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add. Income \n{additionalIncomeList}`
+  String additionalIncomeList(Object additionalIncomeList) {
+    return Intl.message(
+      'Add. Income \n$additionalIncomeList',
+      name: 'additionalIncomeList',
+      desc: 'additionalIncomeList',
+      args: [additionalIncomeList],
+    );
+  }
+
+  /// `Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777.`
+  String get unableToVerifyIDCard {
+    return Intl.message(
+      'Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777.',
+      name: 'unableToVerifyIDCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid User.`
+  String get invalidUser {
+    return Intl.message(
+      'Invalid User.',
+      name: 'invalidUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Logout`
+  String get errorWhileLogout {
+    return Intl.message(
+      'Error While Logout',
+      name: 'errorWhileLogout',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile Number Exist`
+  String get mobileNoExist {
+    return Intl.message(
+      'Mobile Number Exist',
+      name: 'mobileNoExist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Not Register`
+  String get userNotRegister {
+    return Intl.message(
+      'User Not Register',
+      name: 'userNotRegister',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error has occurred during Registration Process, please try again`
+  String get errorWhileRegistration {
+    return Intl.message(
+      'An error has occurred during Registration Process, please try again',
+      name: 'errorWhileRegistration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while Get Additional Documentation`
+  String get errorWhileGetAdditionalDocument {
+    return Intl.message(
+      'Error while Get Additional Documentation',
+      name: 'errorWhileGetAdditionalDocument',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account is locked, please contact customer service on 7777-7777 to unlock`
+  String get accountLocked {
+    return Intl.message(
+      'Your account is locked, please contact customer service on 7777-7777 to unlock',
+      name: 'accountLocked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide selfie to proceed further.`
+  String get pleaseProvideSelfie {
+    return Intl.message(
+      'Please provide selfie to proceed further.',
+      name: 'pleaseProvideSelfie',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable Biometric Login`
+  String get enableBiometricLoginTitle {
+    return Intl.message(
+      'Enable Biometric Login',
+      name: 'enableBiometricLoginTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan your finger to log in`
+  String get enableBiometricLoginDescriptionAndroid {
+    return Intl.message(
+      'Scan your finger to log in',
+      name: 'enableBiometricLoginDescriptionAndroid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Scan your face to log in`
+  String get enableBiometricLoginDescriptionIos {
+    return Intl.message(
+      'Scan your face to log in',
+      name: 'enableBiometricLoginDescriptionIos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe up to join our community`
+  String get swipeUpToJoinOurCommunity {
+    return Intl.message(
+      'Swipe up to join our community',
+      name: 'swipeUpToJoinOurCommunity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let’s Create\nYour Profile`
+  String get letsCreateYourProfile {
+    return Intl.message(
+      'Let’s Create\nYour Profile',
+      name: 'letsCreateYourProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email and\nmobile number`
+  String get enterYourEmailAndMobile {
+    return Intl.message(
+      'Enter your email and\nmobile number',
+      name: 'enterYourEmailAndMobile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable`
+  String get enable {
+    return Intl.message(
+      'Enable',
+      name: 'enable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't worry, if you log out your information will be saved and you can login at any time.`
+  String get informationSave {
+    return Intl.message(
+      'Don\'t worry, if you log out your information will be saved and you can login at any time.',
+      name: 'informationSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload ID instead`
+  String get uploadIdInstead {
+    return Intl.message(
+      'Upload ID instead',
+      name: 'uploadIdInstead',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `AREA`
+  String get area {
+    return Intl.message(
+      'AREA',
+      name: 'area',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `INCOME DETAILS`
+  String get incomeDetails {
+    return Intl.message(
+      'INCOME DETAILS',
+      name: 'incomeDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ACCOUNT DETAILS`
+  String get accountDetails {
+    return Intl.message(
+      'ACCOUNT DETAILS',
+      name: 'accountDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MAILING address Line`
+  String get mailingAddressLine {
+    return Intl.message(
+      'MAILING address Line',
+      name: 'mailingAddressLine',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter mailing address`
+  String get enterMailingAddress {
+    return Intl.message(
+      'Enter mailing address',
+      name: 'enterMailingAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What is Claim of Tax Treaty Benefits?`
+  String get whatIsTaxTreatyBenefits {
+    return Intl.message(
+      'What is Claim of Tax Treaty Benefits?',
+      name: 'whatIsTaxTreatyBenefits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `REFERENCE NUMBER`
+  String get referenceNumber {
+    return Intl.message(
+      'REFERENCE NUMBER',
+      name: 'referenceNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter reference number`
+  String get invalidReferenceNumber {
+    return Intl.message(
+      'Enter reference number',
+      name: 'invalidReferenceNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `provisions CLAIM of Article & paragraph`
+  String get provisionClaim {
+    return Intl.message(
+      'provisions CLAIM of Article & paragraph',
+      name: 'provisionClaim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `treaty identified to Claim Rate (%)`
+  String get treatyClaimRate {
+    return Intl.message(
+      'treaty identified to Claim Rate (%)',
+      name: 'treatyClaimRate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter provision claim article and paragraph`
+  String get invalidProvisionClaim {
+    return Intl.message(
+      'Enter provision claim article and paragraph',
+      name: 'invalidProvisionClaim',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter treaty identified to claim rate`
+  String get invalidTreatyClaimRate {
+    return Intl.message(
+      'Enter treaty identified to claim rate',
+      name: 'invalidTreatyClaimRate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We need your consent by uploading the signature`
+  String get consentForSignatureUpload {
+    return Intl.message(
+      'We need your consent by uploading the signature',
+      name: 'consentForSignatureUpload',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please upload signature`
+  String get emptySignature {
+    return Intl.message(
+      'Please upload signature',
+      name: 'emptySignature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Signature`
+  String get yourSignature {
+    return Intl.message(
+      'Your Signature',
+      name: 'yourSignature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Simply sign on a plain white paper and upload it as a declaration of your FATCA information`
+  String get signatureUploadDes {
+    return Intl.message(
+      'Simply sign on a plain white paper and upload it as a declaration of your FATCA information',
+      name: 'signatureUploadDes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload Signature`
+  String get uploadSignature {
+    return Intl.message(
+      'Upload Signature',
+      name: 'uploadSignature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OTHER DETAILS`
+  String get otherDetails {
+    return Intl.message(
+      'OTHER DETAILS',
+      name: 'otherDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I confirm that all information provided is accurate.`
+  String get iConfirmThatAllInfoAccurateFatca {
+    return Intl.message(
+      'I confirm that all information provided is accurate.',
+      name: 'iConfirmThatAllInfoAccurateFatca',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Almost there, just a few\nmore questions`
+  String get fewMoreQuestions {
+    return Intl.message(
+      'Almost there, just a few\nmore questions',
+      name: 'fewMoreQuestions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `VIDEO CALL`
+  String get videoCall {
+    return Intl.message(
+      'VIDEO CALL',
+      name: 'videoCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please get ready to meet our Engagement Team, we will now connect you.`
+  String get videoCallInfoDescription {
+    return Intl.message(
+      'Please get ready to meet our Engagement Team, we will now connect you.',
+      name: 'videoCallInfoDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will connect you\nin blink...`
+  String get weWillConnectYouInBlink {
+    return Intl.message(
+      'We will connect you\nin blink...',
+      name: 'weWillConnectYouInBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `FATCA Certification`
+  String get fatcaCertification {
+    return Intl.message(
+      'FATCA Certification',
+      name: 'fatcaCertification',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exempt Payee Code`
+  String get exemptPayeeCode {
+    return Intl.message(
+      'Exempt Payee Code',
+      name: 'exemptPayeeCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Exemption from FATCA Reporting Code`
+  String get exemptionFromFatcaReportingCode {
+    return Intl.message(
+      'Exemption from FATCA Reporting Code',
+      name: 'exemptionFromFatcaReportingCode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `U.S. Tax Payer\nIdentification Number `
+  String get usTaxPayerIdentificationNumber {
+    return Intl.message(
+      'U.S. Tax Payer\nIdentification Number ',
+      name: 'usTaxPayerIdentificationNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reference Number`
+  String get referenceNumberSmall {
+    return Intl.message(
+      'Reference Number',
+      name: 'referenceNumberSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Claim of Tax Treaty Benefits`
+  String get claimOfTaxTreatyBenefits {
+    return Intl.message(
+      'Claim of Tax Treaty Benefits',
+      name: 'claimOfTaxTreatyBenefits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong. Please try again.`
+  String get genericError {
+    return Intl.message(
+      'Something went wrong. Please try again.',
+      name: 'genericError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid UserName`
+  String get invalidUserName {
+    return Intl.message(
+      'Please enter a valid UserName',
+      name: 'invalidUserName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click to edit the fields, some may be disabled.`
+  String get clickToEditSomeMayBeDisabled {
+    return Intl.message(
+      'Click to edit the fields, some may be disabled.',
+      name: 'clickToEditSomeMayBeDisabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Area`
+  String get areaSmall {
+    return Intl.message(
+      'Area',
+      name: 'areaSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Occupation/Business Type`
+  String get occupationBusinessType {
+    return Intl.message(
+      'Occupation/Business Type',
+      name: 'occupationBusinessType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Employer Phone Number `
+  String get employerPhoneNo {
+    return Intl.message(
+      'Employer Phone Number ',
+      name: 'employerPhoneNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Other Income`
+  String get otherIncome {
+    return Intl.message(
+      'Other Income',
+      name: 'otherIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expected Transactions`
+  String get expectedTransactions {
+    return Intl.message(
+      'Expected Transactions',
+      name: 'expectedTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expected Monthly Amount`
+  String get expectedMonthlyAmount {
+    return Intl.message(
+      'Expected Monthly Amount',
+      name: 'expectedMonthlyAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expected Annual Amount`
+  String get expectedAnnualAmount {
+    return Intl.message(
+      'Expected Annual Amount',
+      name: 'expectedAnnualAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DEBIT CARD`
+  String get debitCard {
+    return Intl.message(
+      'DEBIT CARD',
+      name: 'debitCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card has\nbeen issued`
+  String get yourCardHasBeenIssued {
+    return Intl.message(
+      'Your card has\nbeen issued',
+      name: 'yourCardHasBeenIssued',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Let’s set your\n4-digit PIN`
+  String get letsSet4DigitPin {
+    return Intl.message(
+      'Let’s set your\n4-digit PIN',
+      name: 'letsSet4DigitPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Now, confirm\nyour PIN`
+  String get nowConfirmPin {
+    return Intl.message(
+      'Now, confirm\nyour PIN',
+      name: 'nowConfirmPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card is ready!`
+  String get yourCardReady {
+    return Intl.message(
+      'Your card is ready!',
+      name: 'yourCardReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately.`
+  String get yourCardReadyDesc {
+    return Intl.message(
+      'Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately.',
+      name: 'yourCardReadyDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While get Account`
+  String get errorWhileGetAccount {
+    return Intl.message(
+      'Error While get Account',
+      name: 'errorWhileGetAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Pin`
+  String get emptyPin {
+    return Intl.message(
+      'Enter Pin',
+      name: 'emptyPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Length of pin cannot be less than 4`
+  String get invalidPinLength {
+    return Intl.message(
+      'Length of pin cannot be less than 4',
+      name: 'invalidPinLength',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pin does not match`
+  String get pinDoesNotMatch {
+    return Intl.message(
+      'Pin does not match',
+      name: 'pinDoesNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Inquiry went wrong`
+  String get accountInquiryWentWrong {
+    return Intl.message(
+      'Account Inquiry went wrong',
+      name: 'accountInquiryWentWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CHANGE EMAIL ADDRESS`
+  String get changeEmailAddress {
+    return Intl.message(
+      'CHANGE EMAIL ADDRESS',
+      name: 'changeEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your\nnew email`
+  String get enterNewEmailAddress {
+    return Intl.message(
+      'Please enter your\nnew email',
+      name: 'enterNewEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap to edit photo`
+  String get tapToEditPhoto {
+    return Intl.message(
+      'Tap to edit photo',
+      name: 'tapToEditPhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Password`
+  String get changePassword {
+    return Intl.message(
+      'Change Password',
+      name: 'changePassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biometric Login`
+  String get biometricLogin {
+    return Intl.message(
+      'Biometric Login',
+      name: 'biometricLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Documents`
+  String get myDocuments {
+    return Intl.message(
+      'My Documents',
+      name: 'myDocuments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms & Conditions`
+  String get termsAndConditionsSetting {
+    return Intl.message(
+      'Terms & Conditions',
+      name: 'termsAndConditionsSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CHANGE MOBILE NUMBER`
+  String get changeMobileNumber {
+    return Intl.message(
+      'CHANGE MOBILE NUMBER',
+      name: 'changeMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your\nnew mobile number`
+  String get enterNewMobileNo {
+    return Intl.message(
+      'Please enter your\nnew mobile number',
+      name: 'enterNewMobileNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select from Library`
+  String get selectFromLibrary {
+    return Intl.message(
+      'Select from Library',
+      name: 'selectFromLibrary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove Photo`
+  String get removePhoto {
+    return Intl.message(
+      'Remove Photo',
+      name: 'removePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SUCCESS`
+  String get success {
+    return Intl.message(
+      'SUCCESS',
+      name: 'success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile number is successfully updated`
+  String get mobileNumberUpdated {
+    return Intl.message(
+      'Mobile number is successfully updated',
+      name: 'mobileNumberUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email address is successfully updated`
+  String get emailAddressUpdated {
+    return Intl.message(
+      'Email address is successfully updated',
+      name: 'emailAddressUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile photo is successfully updated`
+  String get profilePhotoUpdated {
+    return Intl.message(
+      'Profile photo is successfully updated',
+      name: 'profilePhotoUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter New Password`
+  String get emptyNewPassword {
+    return Intl.message(
+      'Enter New Password',
+      name: 'emptyNewPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next, let’s create your \nlogin password`
+  String get createYourLoginPassword {
+    return Intl.message(
+      'Next, let’s create your \nlogin password',
+      name: 'createYourLoginPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CURRENT PASSWORD`
+  String get currentPassword {
+    return Intl.message(
+      'CURRENT PASSWORD',
+      name: 'currentPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `NEW PASSWORD`
+  String get newPassword {
+    return Intl.message(
+      'NEW PASSWORD',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is successfully updated`
+  String get passwordUpdatedSuccessfully {
+    return Intl.message(
+      'Password is successfully updated',
+      name: 'passwordUpdatedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biometric login is successfully activated`
+  String get biometricLoginActivated {
+    return Intl.message(
+      'Biometric login is successfully activated',
+      name: 'biometricLoginActivated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you have a salary, upload either your job certificate or salary slip`
+  String get proofOfIncomeDescSetting {
+    return Intl.message(
+      'If you have a salary, upload either your job certificate or salary slip',
+      name: 'proofOfIncomeDescSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To confirm your address, upload your latest utility bills`
+  String get proofOfAddressDescSetting {
+    return Intl.message(
+      'To confirm your address, upload your latest utility bills',
+      name: 'proofOfAddressDescSetting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID Card is not valid. Please scan JORDANIAN ID Card.`
+  String get invalidIDCard {
+    return Intl.message(
+      'ID Card is not valid. Please scan JORDANIAN ID Card.',
+      name: 'invalidIDCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage Contacts`
+  String get manageContacts {
+    return Intl.message(
+      'Manage Contacts',
+      name: 'manageContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search contacts`
+  String get searchContacts {
+    return Intl.message(
+      'Search contacts',
+      name: 'searchContacts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Adding contacts is coming soon. You can simply send or request money and add a contact along the way.`
+  String get addingContactsDesc {
+    return Intl.message(
+      'Adding contacts is coming soon. You can simply send or request money and add a contact along the way.',
+      name: 'addingContactsDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nickname`
+  String get nickName {
+    return Intl.message(
+      'Nickname',
+      name: 'nickName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN / Mobile No. / ALIAS`
+  String get ibanMobileNoAlias {
+    return Intl.message(
+      'IBAN / Mobile No. / ALIAS',
+      name: 'ibanMobileNoAlias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `BANK NAME`
+  String get bankName {
+    return Intl.message(
+      'BANK NAME',
+      name: 'bankName',
       desc: '',
       args: [],
     );
@@ -4532,90 +5681,90 @@ class S {
   }
 
   /// `PURPOSE DETAILS`
-  String get purposeDetails {
+  String get purposeDetail {
     return Intl.message(
       'PURPOSE DETAILS',
-      name: 'purposeDetails',
+      name: 'purposeDetail',
       desc: '',
       args: [],
     );
   }
 
-  /// `Edit Transaction Purpose`
-  String get editTransactionPurpose {
+  /// `Remove from contact`
+  String get removeFromContact {
     return Intl.message(
-      'Edit Transaction Purpose',
-      name: 'editTransactionPurpose',
+      'Remove from contact',
+      name: 'removeFromContact',
       desc: '',
       args: [],
     );
   }
 
-  /// `Tap to edit amount`
-  String get tapToEdit {
+  /// `account holder name`
+  String get accountHolderName {
     return Intl.message(
-      'Tap to edit amount',
-      name: 'tapToEdit',
+      'account holder name',
+      name: 'accountHolderName',
       desc: '',
       args: [],
     );
   }
 
-  /// `Sending`
-  String get sending {
+  /// `Your contact details has been saved.`
+  String get yourContactDetailsUpdated {
     return Intl.message(
-      'Sending',
-      name: 'sending',
+      'Your contact details has been saved.',
+      name: 'yourContactDetailsUpdated',
       desc: '',
       args: [],
     );
   }
 
-  /// `IBAN / Mobile No.`
-  String get ibanOrMobile {
+  /// `Save changes`
+  String get saveChanges {
     return Intl.message(
-      'IBAN / Mobile No.',
-      name: 'ibanOrMobile',
+      'Save changes',
+      name: 'saveChanges',
       desc: '',
       args: [],
     );
   }
 
-  /// `Select purpose`
-  String get selectPurpose {
+  /// `You don’t have any contacts yet.\nAdd your blink contacts while\nsending money`
+  String get noContactsYetDesc {
     return Intl.message(
-      'Select purpose',
-      name: 'selectPurpose',
+      'You don’t have any contacts yet.\nAdd your blink contacts while\nsending money',
+      name: 'noContactsYetDesc',
       desc: '',
       args: [],
     );
   }
 
-  /// `Add this receipient to your blink contacts`
-  String get addRecipientToContact {
+  /// `Profile\nSettings`
+  String get profileSettings {
     return Intl.message(
-      'Add this receipient to your blink contacts',
-      name: 'addRecipientToContact',
+      'Profile\nSettings',
+      name: 'profileSettings',
       desc: '',
       args: [],
     );
   }
 
-  /// `Enter the 6-digit code sent to  \n+962 79 322 8080`
-  String get enterCode {
+  /// `Log out`
+  String get logout {
     return Intl.message(
-      'Enter the 6-digit code sent to  \n+962 79 322 8080',
-      name: 'enterCode',
+      'Log out',
+      name: 'logout',
       desc: '',
       args: [],
     );
   }
 
-  /// `Requesting`
-  String get requesting {
+  /// `Manage\nContacts`
+  String get manageContactsSettings {
     return Intl.message(
-      'Requesting',
-      name: 'requesting',
+      'Manage\nContacts',
+      name: 'manageContactsSettings',
       desc: '',
       args: [],
     );

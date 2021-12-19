@@ -1,5 +1,6 @@
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
 import 'package:domain/constants/enum/employment_status_enum.dart';
+import 'package:domain/model/user/get_combo_values/get_combo_values_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,12 +22,13 @@ class OccupationDialogView extends StatelessWidget {
   final Function(String)? onSelected;
   final String? title;
   final EmploymentStatusEnum? employmentStatusEnum;
+  final List<GetComboValuesData>? businessTypeList;
 
-  const OccupationDialogView(
-      {this.onDismissed,
-      this.onSelected,
-      this.employmentStatusEnum,
-      this.title});
+  const OccupationDialogView({this.onDismissed,
+    this.onSelected,
+    this.employmentStatusEnum,
+    this.businessTypeList,
+    this.title});
 
   ProviderBase providerBase() {
     return occupationDialogViwModelProvider;
@@ -83,7 +85,7 @@ class OccupationDialogView extends StatelessWidget {
                               child: ClickableListWheelScrollView(
                                 scrollController: model.scrollController,
                                 itemHeight: 64,
-                                itemCount: data!.data!.length,
+                                itemCount: model.businessTypeList.length,
                                 onItemTapCallback: (index) {
                                   model.currentIndexUpdate(index);
                                 },
@@ -97,14 +99,18 @@ class OccupationDialogView extends StatelessWidget {
                                     perspective: 0.0000000001,
                                     childDelegate:
                                         ListWheelChildBuilderDelegate(
-                                            childCount: data.data!.length,
+                                            childCount:
+                                            model.businessTypeList.length,
                                             builder: (BuildContext context,
                                                 int index) {
                                               return ListScrollWheelListWidget(
-                                                label: data.data![index],
+                                                label: model
+                                                    .businessTypeList[index]
+                                                    .labelEn!,
                                                 textColor: currentIndex == index
-                                                    ? Theme.of(context)
-                                                        .primaryColorDark
+                                                    ? Theme
+                                                    .of(context)
+                                                    .primaryColorDark
                                                     : AppColor.dark_gray_1,
                                                 widgetColor: Colors.transparent,
                                               );
@@ -115,7 +121,8 @@ class OccupationDialogView extends StatelessWidget {
                         )),
                         InkWell(
                           onTap: () {
-                            onSelected!.call(data.data![currentIndex!]);
+                            onSelected!.call(
+                                model.businessTypeList[currentIndex!].labelEn!);
                           },
                           child: Container(
                             padding: EdgeInsets.all(16),
@@ -153,6 +160,7 @@ class OccupationDialogView extends StatelessWidget {
       providerBase: providerBase(),
       onModelReady: (model) {
         model.getOccupationList(employmentStatusEnum!);
+        model.businessTypeList = businessTypeList!;
       },
     );
   }

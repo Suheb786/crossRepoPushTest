@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AccountReadyHeader extends StatelessWidget {
-  String? title;
-  String? subTitle;
+  final String? title;
+  final String? subTitle;
 
   AccountReadyHeader({required this.title, required this.subTitle});
 

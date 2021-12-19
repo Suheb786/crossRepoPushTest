@@ -73,11 +73,29 @@ class AssetUtils {
   static const String addCircle = svg + "add_circle.svg";
   static const String cardCircle = svg + "card_circle.svg";
   static const String filter = svg + "filter.svg";
+  static const String dollar = svg + "dollar.svg";
+  static const String requestMoney = svg + "request_money.svg";
   static const String profileCircle = svg + "profile_circle.svg";
-  static const String payments = svg + "payments.svg";
-  static const String backspaceBlue = svg + "backspace_blue.svg";
-  static const String next = svg + "next.svg";
-  static const String personCircle = svg + "person_circle.svg";
+  static const String swiggle = svg + "swiggle.svg";
+  static const String receiveMoneyOther = svg + "receive_money_other.svg";
+  static const String blinkMarker = svg + "blink_marker.svg";
+  static const String pinMarker = svg + "pin_marker.svg";
+  static const String download = svg + "download.svg";
+  static const String informationSave = svg + "information_saved.svg";
+  static const String swiggleHello = svg + "swiggle_hello.svg";
+  static const String marker_icon = svg + "marker.svg";
+  static const String flipButton = svg + "flip_button.svg";
+  static const String visaCard = svg + "visa_card.svg";
+  static const String bird = svg + "bird.svg";
+  static const String email = svg + "email.svg";
+  static const String biometric = svg + "biometric.svg";
+  static const String documents = svg + "documents.svg";
+  static const String emailSetting = svg + "email.svg";
+  static const String password = svg + "password.svg";
+  static const String termsCondition = svg + "terms_condition.svg";
+  static const String mobile = svg + "mobile.svg";
+  static const String dummy = svg + "dummy.svg";
+  static const String contacts = svg + "contacts.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -110,7 +128,11 @@ class AssetUtils {
   static const String creditCard = drawable + "credit_card.png";
   static const String ellipseYellow = drawable + "ellipse_yellow.png";
   static const String debitCard = drawable + "debit_card.png";
-  static const String image = drawable + "image.png";
+  static const String placeholder = drawable + "placeholder.png";
+  static const String swigglePng = drawable + "swiggle.png";
+  static const String blinkMarkerPng = drawable + "blink_marker.png";
+  static const String birdPng = drawable + "bird_png.png";
+  static const String dummyProfile = drawable + "dummy_profile.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";

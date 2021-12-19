@@ -14,6 +14,9 @@ SaveProfileInformationRequest _$SaveProfileInformationRequestFromJson(
     employmentStatus: json['EmploymentStatus'] as String?,
     spauseName: json['SpauseName'] as String?,
     natureSP: json['NatureSP'] as String?,
+    additionalNationality: json['AdditionalNationality'] as String?,
+    isAdditionalNational: json['IsAdditionalNational'] as bool?,
+    isEmployed: json['IsEmployed'] as bool?,
     baseData: json['baseClass'] as Map<String, dynamic>,
   );
 }
@@ -26,5 +29,8 @@ Map<String, dynamic> _$SaveProfileInformationRequestToJson(
       'EmploymentStatus': instance.employmentStatus,
       'SpauseName': instance.spauseName,
       'NatureSP': instance.natureSP,
+      'IsAdditionalNational': instance.isAdditionalNational,
+      'IsEmployed': instance.isEmployed,
+      'AdditionalNationality': instance.additionalNationality,
       'baseClass': instance.baseData,
     };

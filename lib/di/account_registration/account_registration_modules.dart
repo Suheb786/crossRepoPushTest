@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account_registration/account_regisration_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/addnumber/add_number_model.dart';
@@ -22,11 +23,13 @@ final countrySelectionViewModelProvider =
 
 final addNumberViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddNumberViewModel>(
-  (ref) => AddNumberViewModel(
-      ref.read(registerNumberUseCaseProvider),
-      ref.read(fetchCountryByCodeUseCaseProvider),
-      ref.read(checkUserNameUseCaseProvider),
-      ref.read(checkUserNameMobileUseCaseProvider)),
+          (ref) =>
+          AddNumberViewModel(
+              ref.read(registerNumberUseCaseProvider),
+              ref.read(fetchCountryByCodeUseCaseProvider),
+              ref.read(checkUserNameUseCaseProvider),
+              ref.read(checkUserNameMobileUseCaseProvider),
+              ref.read(getAllowedCodeCountriesListUseCaseProvider)),
 );
 
 ///[ValidateOtpViewModel] provider

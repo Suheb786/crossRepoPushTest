@@ -2,31 +2,34 @@ import 'package:dartz/dartz.dart';
 import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
-import 'package:domain/error/local_error.dart';
+import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class JobAndIncomeUseCase
-    extends BaseUseCase<LocalError, JobAndIncomeUseCaseParams, bool> {
+class JobAndIncomeUseCase extends BaseUseCase<NetworkError,
+    JobAndIncomeUseCaseParams,
+    SaveJobDetailsResponse> {
   final UserRepository _repository;
 
   JobAndIncomeUseCase(this._repository);
 
   @override
-  Future<Either<LocalError, bool>> execute(
+  Future<Either<NetworkError, SaveJobDetailsResponse>> execute(
       {required JobAndIncomeUseCaseParams params}) {
-    return Future.value(Right(true));
-
-    ///TODO:uncomment once gets response
-    //   return _repository.saveJobInformation(
-    //       occupation: params.occupation,
-    //       annualIncome: params.annualIncome,
-    //       employeeName: params.employerName,
-    //       employerCountry: params.employerCountry,
-    //       employerCity: params.employerCity,
-    //       employerContact: params.employerContact);
+    return _repository.saveJobInformation(
+        occupation: params.occupation,
+        businessType: params.businessType,
+        annualIncome: params.annualIncome,
+        employeeName: params.employerName,
+        employerCountry: params.employerCountry,
+        employerCity: params.employerCity,
+        employerContact: params.employerContact,
+        additionalIncome: params.isAdditionalIncome,
+        additionalIncomeType: params.additionalIncomeList);
   }
 }
 
@@ -41,18 +44,21 @@ class JobAndIncomeUseCaseParams extends Params {
   final String? specifyBusiness;
   final EmploymentStatusEnum employmentStatusEnum;
   final bool businessTypeOther;
+  final bool isAdditionalIncome;
+  final List<AdditionalIncomeType> additionalIncomeList;
 
-  JobAndIncomeUseCaseParams(
-      {this.employerContact,
-      this.employerCity,
-      this.employerCountry,
-      this.employerName,
-      this.annualIncome,
-      this.occupation,
-      this.businessType,
-      this.specifyBusiness,
-      required this.employmentStatusEnum,
-      required this.businessTypeOther});
+  JobAndIncomeUseCaseParams({this.employerContact,
+    this.employerCity,
+    this.employerCountry,
+    this.employerName,
+    this.annualIncome,
+    this.occupation,
+    this.businessType,
+    this.specifyBusiness,
+    required this.employmentStatusEnum,
+    required this.businessTypeOther,
+    required this.isAdditionalIncome,
+    required this.additionalIncomeList});
 
   @override
   Either<AppError, bool> verify() {

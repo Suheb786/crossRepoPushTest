@@ -1,4 +1,5 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/bank_smart/purpose_of_account_opening_response.dart';
 import 'package:domain/model/register/expected_Transactionss.dart';
 import 'package:domain/usecase/bank_smart/purpose_of_account_opening_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -41,14 +42,15 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
 
   ///purpose of account opening request subject holder
   PublishSubject<PurposeOfAccountOpeningUseCaseParams>
-      _purposeOfAccountOpeningRequest = PublishSubject();
+  _purposeOfAccountOpeningRequest = PublishSubject();
 
   ///purpose of account opening response holder
-  PublishSubject<Resource<bool>> _purposeOfAccountOpeningResponse =
-      PublishSubject();
+  PublishSubject<Resource<PurposeOfAccountOpeningResponse>>
+  _purposeOfAccountOpeningResponse = PublishSubject();
 
   ///purpose of account opening stream
-  Stream<Resource<bool>> get purposeOfAccountOpeningStream =>
+  Stream<Resource<PurposeOfAccountOpeningResponse>>
+  get purposeOfAccountOpeningStream =>
       _purposeOfAccountOpeningResponse.stream;
 
   ///all field validate subject
@@ -100,6 +102,7 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
                   _purposeOfAccountOpeningUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _purposeOfAccountOpeningResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -111,7 +114,7 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
         .safeAdd(Resource.success(data: expectedTransactionsList));
   }
 
-  void getError(Resource<bool> event) {
+  void getError(Resource<PurposeOfAccountOpeningResponse> event) {
     switch (event.appError!.type) {
       case ErrorType.INVALID_PURPOSE_OF_ACCOUNT_OPENING:
         purposeOfAccountOpeningKey.currentState!.isValid = false;
@@ -121,6 +124,8 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
         break;
       case ErrorType.INVALID_EXPECTED_MONTHLY_TRANSACTION:
         expectedMonthlyTransactionKey.currentState!.isValid = false;
+        break;
+      default:
         break;
     }
   }

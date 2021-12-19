@@ -15,7 +15,7 @@ class NonJordanianRegisterPageView
     extends BasePageViewWidget<NonJordanianRegisterPageViewModel> {
   NonJordanianRegisterPageView(ProviderBase model) : super(model);
 
-  List pages = [NotifyPage()];
+  final List pages = [NotifyPage()];
 
   @override
   Widget build(BuildContext context, model) {

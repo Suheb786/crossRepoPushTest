@@ -12,7 +12,7 @@ class IdVerificationInfoPage extends BasePage<IdVerificationInfoViewModel> {
 
 class IdVerificationInfoPageState extends BaseStatefulPage<
     IdVerificationInfoViewModel,
-    IdVerificationInfoPage> with TickerProviderStateMixin {
+    IdVerificationInfoPage> {
   @override
   ProviderBase provideBase() {
     return idVerificationInfoViewModelProvider;
@@ -20,7 +20,9 @@ class IdVerificationInfoPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override

@@ -67,4 +67,56 @@ extension PageExtensions on BaseStatefulPage {
         hideOutAnimationDuration: Duration(milliseconds: 500),
         showOutAnimationDuration: Duration(milliseconds: 700));
   }
+
+  showTopSuccess(String message) {
+    showTopSnackBar(
+        context,
+        Material(
+          color: AppColor.white.withOpacity(0),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                  color: AppColor.darkModerateLimeGreen,
+                  borderRadius: BorderRadius.circular(16)),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          S
+                              .of(context)
+                              .success,
+                          style: TextStyle(
+                              color: AppColor.light_grayish_violet,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 4.0, right: 16),
+                          child: Text(message,
+                              style: TextStyle(
+                                  color: AppColor.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.close,
+                    size: 16,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+        displayDuration: Duration(milliseconds: 1500),
+        hideOutAnimationDuration: Duration(milliseconds: 500),
+        showOutAnimationDuration: Duration(milliseconds: 700));
+  }
 }

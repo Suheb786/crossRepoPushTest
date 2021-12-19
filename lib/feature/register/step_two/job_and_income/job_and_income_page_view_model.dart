@@ -1,9 +1,13 @@
 import 'package:domain/constants/enum/employment_status_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/get_combo_values/get_combo_values_data.dart';
+import 'package:domain/model/user/get_combo_values/get_combo_values_response.dart';
+import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:domain/usecase/register/job_and_income_usecase.dart';
+import 'package:domain/usecase/user/get_combo_values_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -14,41 +18,43 @@ import 'package:rxdart/rxdart.dart';
 class JobAndIncomePageViewModel extends BasePageViewModel {
   final JobAndIncomeUseCase _jobAndIncomeUseCase;
 
+  final GetComboValuesUseCase _getComboValuesUseCase;
+
   ///controllers and keys
   final TextEditingController occupationController = TextEditingController();
-  final GlobalKey<AppTextFieldState> occupationKey =
-      GlobalKey(debugLabel: "occupation");
+  GlobalKey<AppTextFieldState> occupationKey =
+  new GlobalKey(debugLabel: "occupation");
 
   final TextEditingController businessTypeController = TextEditingController();
-  final GlobalKey<AppTextFieldState> businessTypeKey =
-      GlobalKey(debugLabel: "businessType");
+  GlobalKey<AppTextFieldState> businessTypeKey =
+  new GlobalKey(debugLabel: "businessType");
 
   final TextEditingController businessTypeOtherController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> businessTypeOtherKey =
-      GlobalKey(debugLabel: "businessTypeOther");
+  TextEditingController();
+  GlobalKey<AppTextFieldState> businessTypeOtherKey =
+  new GlobalKey(debugLabel: "businessTypeOther");
 
   final TextEditingController annualIncomeController = TextEditingController();
-  final GlobalKey<AppTextFieldState> annualIncomeKey =
-      GlobalKey(debugLabel: "annualIncome");
+  GlobalKey<AppTextFieldState> annualIncomeKey =
+  new GlobalKey(debugLabel: "annualIncome");
 
   final TextEditingController employerNameController = TextEditingController();
-  final GlobalKey<AppTextFieldState> employerNameKey =
-      GlobalKey(debugLabel: "employerName");
+  GlobalKey<AppTextFieldState> employerNameKey =
+  new GlobalKey(debugLabel: "employerName");
 
   final TextEditingController employerCountryController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> employerCountryKey =
-      GlobalKey(debugLabel: "employerCountry");
+  TextEditingController();
+  GlobalKey<AppTextFieldState> employerCountryKey =
+  new GlobalKey(debugLabel: "employerCountry");
 
   final TextEditingController employerCityController = TextEditingController();
-  final GlobalKey<AppTextFieldState> employerCityKey =
-      GlobalKey(debugLabel: "employerCity");
+  GlobalKey<AppTextFieldState> employerCityKey =
+  new GlobalKey(debugLabel: "employerCity");
 
   final TextEditingController employerContactController =
-      TextEditingController();
-  final GlobalKey<AppTextFieldState> employerContactKey =
-      GlobalKey(debugLabel: "employerContact");
+  TextEditingController();
+  GlobalKey<AppTextFieldState> employerContactKey =
+  new GlobalKey(debugLabel: "employerContact");
 
   ///update occupation  textfield value
   void updateOccupation(String value) {
@@ -79,13 +85,15 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
 
   ///employment details request subject holder
   PublishSubject<JobAndIncomeUseCaseParams> _jobAndIncomeRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///employment details response holder
-  PublishSubject<Resource<bool>> _jobAndIncomeResponse = PublishSubject();
+  PublishSubject<Resource<SaveJobDetailsResponse>> _jobAndIncomeResponse =
+  PublishSubject();
 
   ///employment details stream
-  Stream<Resource<bool>> get jobAndIncomeStream => _jobAndIncomeResponse.stream;
+  Stream<Resource<SaveJobDetailsResponse>> get jobAndIncomeStream =>
+      _jobAndIncomeResponse.stream;
 
   ///all filed validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();
@@ -102,16 +110,29 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     _switchSubject.safeAdd(value);
   }
 
-  List<AdditionalIncomeSourceParams> additionalSourceIncome = [];
+  List<AdditionalIncomeType> additionalSourceIncome = [];
+
+  List<GetComboValuesData> businessTypeList = [];
 
   ///additional income source list holder
-  final BehaviorSubject<List<AdditionalIncomeSourceParams>>
-      _additionalIncomeSourceSubject = BehaviorSubject.seeded([]);
+  final BehaviorSubject<List<AdditionalIncomeType>>
+  _additionalIncomeSourceSubject = BehaviorSubject.seeded([]);
 
   ///additional income source response stream
-  Stream<List<AdditionalIncomeSourceParams>>
-      get additionalSourceIncomeListStream =>
-          _additionalIncomeSourceSubject.stream;
+  Stream<List<AdditionalIncomeType>> get additionalSourceIncomeListStream =>
+      _additionalIncomeSourceSubject.stream;
+
+  ///get combo values request subject holder
+  PublishSubject<GetComboValuesUseCaseParams> _getComboValuesRequest =
+  PublishSubject();
+
+  ///get combo values response holder
+  PublishSubject<Resource<GetComboValuesResponse>> _getComboValuesResponse =
+  PublishSubject();
+
+  ///get combo values stream
+  Stream<Resource<GetComboValuesResponse>> get getComboValuesStream =>
+      _getComboValuesResponse.stream;
 
   bool isValid() {
     bool valid = false;
@@ -150,12 +171,14 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  JobAndIncomePageViewModel(this._jobAndIncomeUseCase) {
+  JobAndIncomePageViewModel(this._jobAndIncomeUseCase,
+      this._getComboValuesUseCase) {
     _jobAndIncomeRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _jobAndIncomeUseCase.execute(params: value))
+          createCall: () => _jobAndIncomeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _jobAndIncomeResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -163,9 +186,28 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getComboValuesRequest.listen((value) {
+      RequestManager(value,
+          createCall: () => _getComboValuesUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getComboValuesResponse.add(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          businessTypeList = event.data!.getComboValuesContent!
+              .getComboValuesContentData!.businessType!;
+        }
+      });
+    });
+
+    getComboValues();
   }
 
-  void getError(Resource<bool> event) {
+  void getError(Resource<SaveJobDetailsResponse> event) {
     switch (event.appError!.type) {
       case ErrorType.INVALID_OCCUPATION:
         occupationKey.currentState!.isValid = false;
@@ -191,11 +233,13 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
       case ErrorType.EMPTY_BUSINESS:
         businessTypeOtherKey.currentState!.isValid = false;
         break;
+      default:
+        break;
     }
   }
 
   ///add items to list
-  void addAdditionalIncomeList(AdditionalIncomeSourceParams value) {
+  void addAdditionalIncomeList(AdditionalIncomeType value) {
     additionalSourceIncome.add(value);
     _additionalIncomeSourceSubject.safeAdd(additionalSourceIncome);
   }
@@ -217,7 +261,13 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
         businessType: businessTypeController.text,
         businessTypeOther: _businessTypeOtherVisibilitySubject.value,
         employmentStatusEnum: employmentStatusEnum,
-        specifyBusiness: businessTypeOtherController.text));
+        specifyBusiness: businessTypeOtherController.text,
+        isAdditionalIncome: _switchSubject.value,
+        additionalIncomeList: additionalSourceIncome));
+  }
+
+  void getComboValues() {
+    _getComboValuesRequest.safeAdd(GetComboValuesUseCaseParams());
   }
 
   @override

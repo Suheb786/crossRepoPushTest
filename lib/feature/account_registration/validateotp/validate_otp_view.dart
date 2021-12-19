@@ -7,6 +7,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -34,21 +35,19 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  ProviderScope.containerOf(context)
-                      .read(accountRegistrationViewModelProvider)
-                      .pageController
-                      .next(animation: true);
+                  Navigator.pushReplacementNamed(context, RoutePaths.Dashboard);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
               },
               dataBuilder: (context, isOtpVerified) {
                 return GestureDetector(
-                  onHorizontalDragUpdate: (details) {
-                    if (details.primaryDelta!.isNegative) {
+                  onHorizontalDragEnd: (details) {
+                    if (details.primaryVelocity!.isNegative) {
                       model.validateOtp();
                     } else {
-                      ProviderScope.containerOf(context)
+                      ProviderScope
+                          .containerOf(context)
                           .read(accountRegistrationViewModelProvider)
                           .pageController
                           .previous(animation: true);
@@ -68,7 +67,6 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                 children: [
                                   AppOtpFields(
                                     length: 6,
-                                    // controller: model.otpController,
                                     onChanged: (val) {
                                       if (val.length == 6) model.validate(val);
                                     },
@@ -77,11 +75,21 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                       child: Padding(
                                     padding: const EdgeInsets.only(top: 32.0),
                                     child: InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        ProviderScope
+                                            .containerOf(context)
+                                            .read(
+                                            accountRegistrationViewModelProvider)
+                                            .pageController
+                                            .move(0);
+                                      },
                                       child: Text(
-                                        S.of(context).changeMyNumber,
+                                        S
+                                            .of(context)
+                                            .changeMyNumber,
                                         style: TextStyle(
-                                          color: Theme.of(context)
+                                          color: Theme
+                                              .of(context)
                                               .accentTextTheme
                                               .bodyText1!
                                               .color!,

@@ -9,27 +9,27 @@ class ErrorParser {
       {AppError? error, required S localisedHelper}) {
     switch (error?.type) {
       case ErrorType.IOEXCEPTION:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.UI:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.NETWORK:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.NET_SERVER_MESSAGE:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.NET_NO_INTERNET_CONNECTION:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.DATABASE:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.DATABASE_NOT_SUPPORTED:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.DB_ERROR1:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.DB_USER_NOT_FOUND:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.INVALID_PIN:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.NO_DOCUMENT_FOUND:
-        return localisedHelper.appName;
+        return localisedHelper.genericError;
       case ErrorType.INVALID_MOBILE:
         return localisedHelper.enterValidMobileNumber;
       case ErrorType.INVALID_OTP:
@@ -158,6 +158,8 @@ class ErrorParser {
         return localisedHelper.invalidIncomeType;
       case ErrorType.INVALID_EXPLANATION:
         return localisedHelper.invalidExplanation;
+      case ErrorType.INVALID_REFERENCE_NO:
+        return localisedHelper.invalidReferenceNumber;
       case ErrorType.INVALID_PREFERRED_DATE:
         return localisedHelper.invalidPreferredDate;
       case ErrorType.INVALID_PREFERRED_TIME:
@@ -206,8 +208,80 @@ class ErrorParser {
         return localisedHelper.emptyCity;
       case ErrorType.DEVICE_NOT_FOUND:
         return localisedHelper.deviceNotFound;
+      case ErrorType.ERROR_SAVING_ID_CARD:
+        return localisedHelper.errorSavingIdCard;
+      case ErrorType.ID_CARD_EXPIRED:
+        return localisedHelper.idCardExpired;
       case ErrorType.INVALID_USERNAME_PASSWORD:
         return localisedHelper.invalidUserNamePassword;
+      case ErrorType.ID_CARD_NOT_ALLOWED:
+        return localisedHelper.idCardNotAllowed;
+      case ErrorType.ERROR_SAVING_STATUS:
+        return localisedHelper.errorSavingStatus;
+      case ErrorType.EMPTY_NATIONALITY_DOCUMENT:
+        return localisedHelper.emptyNationalityDocument;
+      case ErrorType.ERROR_WHILE_UPLOADING_IMAGE:
+        return localisedHelper.errorUploadImage;
+      case ErrorType.INVALID_NETWORK_OTP:
+        return localisedHelper.invalidOtp;
+      case ErrorType.OTP_EXPIRED:
+        return localisedHelper.otpExpired;
+      case ErrorType.EMAIL_ALREADY_EXIST:
+        return localisedHelper.emailAlreadyExist;
+      case ErrorType.OTP_VERIFY_LIMIT_EXCEEDED:
+        return localisedHelper.otpLimitExceed;
+      case ErrorType.ERROR_CREATING_ACCOUNT:
+        return localisedHelper.errorCreatingAccount;
+      case ErrorType.UNABLE_TO_VERIFY_ID_CARD:
+        return localisedHelper.unableToVerifyIDCard;
+      case ErrorType.INVALID_USER:
+        return localisedHelper.invalidUser;
+      case ErrorType.ERROR_WHILE_LOGOUT:
+        return localisedHelper.errorWhileLogout;
+      case ErrorType.MOBILE_NUMBER_EXIST:
+        return localisedHelper.mobileNoExist;
+      case ErrorType.USER_NOT_REGISTER:
+        return localisedHelper.userNotRegister;
+      case ErrorType.ERROR_WHILE_REGISTRATION:
+        return localisedHelper.errorWhileRegistration;
+      case ErrorType.ERROR_GET_ADDITIONAL_DOCUMENTATION:
+        return localisedHelper.errorWhileGetAdditionalDocument;
+      case ErrorType.ACCOUNT_LOCKED:
+        return localisedHelper.accountLocked;
+      case ErrorType.IMAGE_UPLOAD_ERROR:
+        return localisedHelper.pleaseProvideSelfie;
+      case ErrorType.DIFFERENT_ADDRESS_LINE:
+        return localisedHelper.enterMailingAddress;
+      case ErrorType.DIFFERENT_COUNTRY:
+        return localisedHelper.invalidCountry;
+      case ErrorType.DIFFERENT_STATE:
+        return localisedHelper.invalidState;
+      case ErrorType.DIFFERENT_CITY:
+        return localisedHelper.invalidCity;
+      case ErrorType.DIFFERENT_POSTCODE:
+        return localisedHelper.invalidPostCode;
+      case ErrorType.INVALID_TREATY_CLAIM_RATE:
+        return localisedHelper.invalidProvisionClaim;
+      case ErrorType.INVALID_PROVISION_CLAIM:
+        return localisedHelper.invalidTreatyClaimRate;
+      case ErrorType.INVALID_SIGNATURE:
+        return localisedHelper.emptySignature;
+      case ErrorType.INVALID_USERNAME:
+        return localisedHelper.invalidUserName;
+      case ErrorType.ERROR_WHILE_GET_ACCOUNT:
+        return localisedHelper.errorWhileGetAccount;
+      case ErrorType.EMPTY_PIN:
+        return localisedHelper.emptyPin;
+      case ErrorType.INVALID_PIN_LENGTH:
+        return localisedHelper.invalidPinLength;
+      case ErrorType.PIN_NOT_MATCH:
+        return localisedHelper.pinDoesNotMatch;
+      case ErrorType.ACCOUNT_INQUIRY_WENT_WRONG:
+        return localisedHelper.accountInquiryWentWrong;
+      case ErrorType.EMPTY_NEW_PASSWORD:
+        return localisedHelper.emptyNewPassword;
+      case ErrorType.INVALID_ID_CARD:
+        return localisedHelper.invalidIDCard;
 
       default:
         return "";

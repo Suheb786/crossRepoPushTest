@@ -11,7 +11,6 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_payer_dialog.dart';
-import 'package:neo_bank/ui/molecules/register/declaration_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -43,28 +42,31 @@ class FatcaUSW9TaxPayersDetailsPageView
                   initialData: Resource.none(),
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
-                      ProviderScope.containerOf(context)
-                          .read(registerViewModelProvider)
-                          .registrationStepsController
-                          .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                      model.updateData(context);
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope
+                            .containerOf(context)
+                            .read(registerStepFourViewModelProvider)
+                            .registrationStepFourPageController
+                            .move(7);
+                      });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
                   },
                   dataBuilder: (context, response) {
                     return GestureDetector(
-                      onHorizontalDragUpdate: (details) {
-                        if (details.primaryDelta!.isNegative) {
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity!.isNegative) {
                           model.validateFatcaUSW9TaxPayersDetails();
                         } else {
-                          ProviderScope.containerOf(context)
-                              .read(registerStepFourViewModelProvider)
-                              .registrationStepFourPageController
-                              .previousPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                          Future.delayed(Duration(milliseconds: 500), () {
+                            ProviderScope
+                                .containerOf(context)
+                                .read(registerStepFourViewModelProvider)
+                                .registrationStepFourPageController
+                                .previous();
+                          });
                         }
                       },
                       child: Card(
@@ -153,7 +155,8 @@ class FatcaUSW9TaxPayersDetailsPageView
                                           },
                                         ),
                                         SizedBox(
-                                          height: MediaQuery.of(context)
+                                          height: MediaQuery
+                                              .of(context)
                                               .viewInsets
                                               .bottom,
                                         ),
@@ -161,68 +164,24 @@ class FatcaUSW9TaxPayersDetailsPageView
                                     ),
                                   ),
                                 ),
-                                Column(
-                                  children: [
-                                    AppStreamBuilder<bool>(
-                                      stream: model.declarationSelectedStream,
-                                      initialData: false,
-                                      dataBuilder: (context, isSelected) {
-                                        return DeclarationWidget(
-                                          isSelected: isSelected,
-                                          title1: S.of(context).iConfirmThatMy,
-                                          title2: S.of(context).fatca,
-                                          title3: S
-                                              .of(context)
-                                              .declarationIsTrueAndCorrect,
-                                          onTap: () {
-                                            model.updateDeclarationSelection(
-                                                !(isSelected!));
-                                            model.isValid();
-                                          },
-                                        );
-                                      },
-                                    ),
-                                    AppStreamBuilder<bool>(
-                                      stream: model
-                                          .verifyInfoDeclarationSelectedStream,
-                                      initialData: false,
-                                      dataBuilder: (context, isSelected) {
-                                        return DeclarationWidget(
-                                          isSelected: isSelected,
-                                          title1: S
-                                              .of(context)
-                                              .verifyInformationDirectlyOrUsingThirdPartyAgentDesc,
-                                          onTap: () {
-                                            model
-                                                .updateVerifyInfoDeclarationSelection(
-                                                    !(isSelected!));
-                                            model.isValid();
-                                          },
-                                        );
-                                      },
-                                    ),
-                                    Center(
-                                      child: Padding(
-                                        padding:
-                                            EdgeInsets.only(top: 26),
-                                        child: AppStreamBuilder<bool>(
-                                            stream:
-                                                model.allFieldValidatorStream,
-                                            initialData: false,
-                                            dataBuilder: (context, isValid) {
-                                              return (isValid!)
-                                                  ? AnimatedButton(
-                                                      buttonText: S
-                                                          .of(context)
-                                                          .swipeToProceed,
-                                                      buttonHeight: 50,
-                                                    )
-                                                  : Container();
-                                            }),
-                                      ),
-                                    ),
-                                  ],
-                                )
+                                Center(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 26),
+                                    child: AppStreamBuilder<bool>(
+                                        stream: model.allFieldValidatorStream,
+                                        initialData: false,
+                                        dataBuilder: (context, isValid) {
+                                          return (isValid!)
+                                              ? AnimatedButton(
+                                            buttonText: S
+                                                .of(context)
+                                                .swipeToProceed,
+                                            buttonHeight: 50,
+                                          )
+                                              : Container();
+                                        }),
+                                  ),
+                                ),
                               ],
                             )),
                       ),
