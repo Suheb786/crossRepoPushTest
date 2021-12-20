@@ -6,6 +6,7 @@ import 'package:domain/usecase/account_setting/change_mobile_number/validate_otp
 import 'package:domain/usecase/account_setting/change_password/enter_new_password_usecase.dart';
 import 'package:domain/usecase/account_setting/get_profile_info/get_profile_info_usecase.dart';
 import 'package:domain/usecase/account_setting/my_documents/my_documents_usecase.dart';
+import 'package:domain/usecase/account_setting/upload_profile_image/upload_profile_image_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[AddNewEmailAddressUseCase] provider
@@ -51,4 +52,11 @@ final myDocumentUseCaseProvider = Provider.autoDispose<MyDocumentsUseCase>(
 final getProfileInfoUseCaseProvider =
     Provider.autoDispose<GetProfileInfoUseCase>(
   (ref) => GetProfileInfoUseCase(ref.read(accountSettingRepositoryProvider)),
+);
+
+///[UploadProfileImageUseCase] provider
+final uploadProfileImageUseCaseProvider =
+    Provider.autoDispose<UploadProfileImageUseCase>(
+  (ref) =>
+      UploadProfileImageUseCase(ref.read(accountSettingRepositoryProvider)),
 );

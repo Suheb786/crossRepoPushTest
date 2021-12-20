@@ -2,6 +2,7 @@ import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/usecase/account_setting/get_profile_info/get_profile_info_usecase.dart';
+import 'package:domain/usecase/account_setting/upload_profile_image/upload_profile_image_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
@@ -25,6 +26,8 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   final GenerateKeyPairUseCase _generateKeyPairUseCase;
 
   final EnableBiometricUseCase _enableBiometricUseCase;
+
+  final UploadProfileImageUseCase _uploadProfileImageUseCase;
 
   ///cupertino switch value subject
   final BehaviorSubject<bool> _switchSubject = BehaviorSubject.seeded(false);
@@ -106,13 +109,23 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get enableBiometricStream =>
       _enableBiometricResponse.stream;
 
+  ///upload profile image
+  PublishSubject<UploadProfileImageUseCaseParams> _uploadProfileImageRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _uploadProfileImageResponse = PublishSubject();
+
+  Stream<Resource<bool>> get uploadProfileImageStream =>
+      _uploadProfileImageResponse.stream;
+
   AccountSettingPageViewModel(
       this._uploadDocumentUseCase,
       this._checkBioMetricSupportUseCase,
       this._authenticateBioMetricUseCase,
       this._getProfileInfoUseCase,
       this._generateKeyPairUseCase,
-      this._enableBiometricUseCase) {
+      this._enableBiometricUseCase,
+      this._uploadProfileImageUseCase) {
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value,
               createCall: () => _uploadDocumentUseCase.execute(params: value))
@@ -178,6 +191,21 @@ class AccountSettingPageViewModel extends BasePageViewModel {
       });
     });
 
+    _uploadProfileImageRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _uploadProfileImageUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _uploadProfileImageResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
     getProfileDetails();
   }
 
@@ -220,6 +248,11 @@ class AccountSettingPageViewModel extends BasePageViewModel {
 
   void enableBiometric() {
     _enableBiometricRequest.safeAdd(EnableBiometricUseCaseParams());
+  }
+
+  void uploadProfileImage() {
+    _uploadProfileImageRequest
+        .safeAdd(UploadProfileImageUseCaseParams(imagePath: selectedProfile));
   }
 
   @override

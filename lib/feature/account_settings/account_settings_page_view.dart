@@ -43,61 +43,75 @@ class AccountSettingPageView
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          AppStreamBuilder<String>(
-                            stream: model.uploadProfilePhotoStream,
-                            initialData: '',
+                          AppStreamBuilder<Resource<bool>>(
+                            stream: model.uploadProfileImageStream,
+                            initialData: Resource.none(),
                             onData: (data) {
-                              if (data != null && data.isNotEmpty) {
-                                model.selectedProfile = data;
-                                model.addImage(data);
-                                _cropImage(data, model, context);
-                                // model.showSuccessToast(
-                                //     S.of(context).profilePhotoUpdated);
+                              if (data.status == Status.SUCCESS) {
+                                model.addImage(model.selectedProfile);
+                                model.showSuccessToast(
+                                    S.of(context).profilePhotoUpdated);
                               }
                             },
-                            dataBuilder: (context, data) {
+                            dataBuilder: (context, dataUpload) {
                               return AppStreamBuilder<String>(
-                                stream: model.selectedImageValue,
+                                stream: model.uploadProfilePhotoStream,
                                 initialData: '',
-                                dataBuilder: (context, image) {
-                                  return InkWell(
-                                      onTap: () {
-                                        ChooseProfileWidget.show(context,
-                                            onCameraTap: () {
-                                              Navigator.pop(context);
-                                              model.uploadProfilePhoto(
-                                                  DocumentTypeEnum.CAMERA);
-                                            },
-                                            onGalleryTap: () {
-                                              Navigator.pop(context);
-                                              model.uploadProfilePhoto(
-                                                  DocumentTypeEnum.PICK_IMAGE);
-                                            },
-                                            onRemoveTap: () {},
-                                            onCancelled: () {
-                                              Navigator.pop(context);
-                                            },
-                                            title: S
-                                                .of(context)
-                                                .pleaseSelectYourAction);
-                                      },
-                                      child: CircleAvatar(
-                                        backgroundColor:
-                                            Theme.of(context).primaryColor,
-                                        radius: 48,
-                                        child: CircleAvatar(
-                                          radius: 48,
-                                          backgroundImage: image!.isEmpty
-                                              ? Image.asset(
-                                                  AssetUtils.dummyProfile,
-                                                  fit: BoxFit.cover,
-                                                ).image
-                                              : Image.file(
-                                                  File(image),
-                                                  fit: BoxFit.cover,
-                                                ).image,
-                                        ),
-                                      ));
+                                onData: (data) {
+                                  if (data != null && data.isNotEmpty) {
+                                    model.selectedProfile = data;
+                                    //model.addImage(data);
+                                    _cropImage(data, model, context);
+                                    // model.showSuccessToast(
+                                    //     S.of(context).profilePhotoUpdated);
+                                  }
+                                },
+                                dataBuilder: (context, data) {
+                                  return AppStreamBuilder<String>(
+                                    stream: model.selectedImageValue,
+                                    initialData: '',
+                                    dataBuilder: (context, image) {
+                                      return InkWell(
+                                          onTap: () {
+                                            ChooseProfileWidget.show(context,
+                                                onCameraTap: () {
+                                                  Navigator.pop(context);
+                                                  model.uploadProfilePhoto(
+                                                      DocumentTypeEnum.CAMERA);
+                                                },
+                                                onGalleryTap: () {
+                                                  Navigator.pop(context);
+                                                  model.uploadProfilePhoto(
+                                                      DocumentTypeEnum
+                                                          .PICK_IMAGE);
+                                                },
+                                                onRemoveTap: () {},
+                                                onCancelled: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                title: S
+                                                    .of(context)
+                                                    .pleaseSelectYourAction);
+                                          },
+                                          child: CircleAvatar(
+                                            backgroundColor:
+                                                Theme.of(context).primaryColor,
+                                            radius: 48,
+                                            child: CircleAvatar(
+                                              radius: 48,
+                                              backgroundImage: image!.isEmpty
+                                                  ? Image.asset(
+                                                      AssetUtils.dummyProfile,
+                                                      fit: BoxFit.cover,
+                                                    ).image
+                                                  : Image.file(
+                                                      File(image),
+                                                      fit: BoxFit.cover,
+                                                    ).image,
+                                            ),
+                                          ));
+                                    },
+                                  );
                                 },
                               );
                             },
@@ -341,8 +355,9 @@ class AccountSettingPageView
         aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
     if (cropped != null) {
       model.selectedProfile = cropped.path;
-      model.addImage(cropped.path);
-      model.showSuccessToast(S.of(context).profilePhotoUpdated);
+      model.uploadProfileImage();
+      // model.addImage(cropped.path);
+      // model.showSuccessToast(S.of(context).profilePhotoUpdated);
     }
   }
 }

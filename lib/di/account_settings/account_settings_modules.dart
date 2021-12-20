@@ -26,7 +26,8 @@ final accountSettingViewModelProvider =
       ref.read(authenticateBioMetricUseCaseProvider),
       ref.read(getProfileInfoUseCaseProvider),
       ref.read(generateKeyPairUseCaseProvider),
-      ref.read(enableBiometricUseCaseProvider)),
+      ref.read(enableBiometricUseCaseProvider),
+      ref.read(uploadProfileImageUseCaseProvider)),
 );
 
 ///change email address view model provider
