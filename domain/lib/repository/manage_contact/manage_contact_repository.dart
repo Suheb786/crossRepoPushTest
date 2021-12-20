@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 
 abstract class ManageContactRepository {
-  Future<Either<NetworkError, bool>> getBeneficiaries();
+  Future<Either<NetworkError, GetBeneficiaryListResponse>> getBeneficiaries();
 
-  Future<Either<NetworkError, bool>> getContacts();
+  //Future<Either<NetworkError, bool>> getContacts();
 
   Future<Either<NetworkError, bool>> addBeneficiary(
       {String nickName,

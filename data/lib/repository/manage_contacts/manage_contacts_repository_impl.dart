@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/contact/contact_data_source.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/repository/manage_contact/manage_contact_repository.dart';
 
 class ManageContactsRepositoryImpl with ManageContactRepository {
@@ -49,26 +50,27 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> getBeneficiaries() async {
+  Future<Either<NetworkError, GetBeneficiaryListResponse>>
+      getBeneficiaries() async {
     final result = await safeApiCall(
       _contactRemoteDS.getBeneficiaries(),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
-  @override
-  Future<Either<NetworkError, bool>> getContacts() async {
-    final result = await safeApiCall(
-      _contactRemoteDS.getContacts(),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
+  // @override
+  // Future<Either<NetworkError, bool>> getContacts() async {
+  //   final result = await safeApiCall(
+  //     _contactRemoteDS.getContacts(),
+  //   );
+  //   return result!.fold(
+  //     (l) => Left(l),
+  //     (r) => Right(r.isSuccessful()),
+  //   );
+  // }
 
   @override
   Future<Either<NetworkError, bool>> updateBeneficiary(

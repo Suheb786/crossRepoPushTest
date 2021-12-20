@@ -1,3 +1,5 @@
+import 'package:data/entity/local/base/image_utils.dart';
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -5,7 +7,7 @@ part "beneficiary_entity.g.dart";
 
 @JsonSerializable()
 class BeneficiaryEntity
-    extends BaseLayerDataTransformer<BeneficiaryEntity, String> {
+    extends BaseLayerDataTransformer<BeneficiaryEntity, Beneficiary> {
   @JsonKey(name: "nickName")
   final String? nickName;
   @JsonKey(name: "fullName")
@@ -22,12 +24,17 @@ class BeneficiaryEntity
   Map<String, dynamic> toJson() => _$BeneficiaryEntityToJson(this);
 
   @override
-  BeneficiaryEntity restore(String response) {
+  BeneficiaryEntity restore(Beneficiary response) {
     return BeneficiaryEntity();
   }
 
   @override
-  String transform() {
-    return "";
+  Beneficiary transform() {
+    return Beneficiary(
+        nickName: this.nickName,
+        fullName: this.fullName,
+        imageUrl: this.profileImage != null
+            ? ImageUtils.dataFromBase64String(this.profileImage!)
+            : '');
   }
 }

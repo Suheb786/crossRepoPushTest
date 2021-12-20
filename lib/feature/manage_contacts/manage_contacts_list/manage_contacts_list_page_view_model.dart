@@ -1,3 +1,4 @@
+import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -64,9 +65,10 @@ class ManageContactListPageViewModel extends BasePageViewModel {
   PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryListRequest =
       PublishSubject();
 
-  PublishSubject<Resource<bool>> _getBeneficiaryListResponse = PublishSubject();
+  PublishSubject<Resource<GetBeneficiaryListResponse>>
+      _getBeneficiaryListResponse = PublishSubject();
 
-  Stream<Resource<bool>> get getBeneficiaryListStream =>
+  Stream<Resource<GetBeneficiaryListResponse>> get getBeneficiaryListStream =>
       _getBeneficiaryListResponse.stream;
 
   ManageContactListPageViewModel(this._getBeneficiaryUseCase) {
@@ -83,6 +85,8 @@ class ManageContactListPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    getBeneficiaryList();
   }
 
   void getBeneficiaryList() {

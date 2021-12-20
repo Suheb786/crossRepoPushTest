@@ -14,7 +14,8 @@ class GetContactsUseCase
   @override
   Future<Either<NetworkError, bool>> execute(
       {required GetContactsUseCaseParams params}) {
-    return _repository.getContacts();
+    //return _repository.getContacts();
+    return Future.value(Right(true));
   }
 }
 

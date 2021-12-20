@@ -1,7 +1,8 @@
 class Beneficiary {
   final String? beneficiaryId;
-  final String? imageUrl;
-  final String? name;
+  final dynamic? imageUrl;
+  final String? nickName;
+  final String? fullName;
   final String? iban;
   final String? accountHolderName;
   final String? bankName;
@@ -11,7 +12,8 @@ class Beneficiary {
   Beneficiary(
       {this.beneficiaryId: "",
       this.imageUrl: "",
-      this.name: "",
+      this.nickName: "",
+      this.fullName: "",
       this.bankName,
       this.iban: "",
       this.accountHolderName: "",
