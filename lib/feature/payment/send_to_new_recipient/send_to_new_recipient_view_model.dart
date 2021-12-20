@@ -20,6 +20,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   TextEditingController purposeDetailController = TextEditingController();
 
   bool? dropDownEnabled = true;
+  String selectedProfile = '';
 
   PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
 
