@@ -1,3 +1,4 @@
+import 'package:data/entity/local/base/image_utils.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_content.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -38,6 +39,8 @@ class ProfileEntity
         email: this.email,
         mobileNumber: this.mobileNumber,
         biometric: this.biometric,
-        profileImage: this.profileImage);
+        profileImage: this.profileImage != null
+            ? ImageUtils.dataFromBase64String(this.profileImage!)
+            : '');
   }
 }

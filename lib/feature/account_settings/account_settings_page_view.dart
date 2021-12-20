@@ -99,15 +99,49 @@ class AccountSettingPageView
                                             radius: 48,
                                             child: CircleAvatar(
                                               radius: 48,
-                                              backgroundImage: image!.isEmpty
-                                                  ? Image.asset(
-                                                      AssetUtils.dummyProfile,
-                                                      fit: BoxFit.cover,
-                                                    ).image
-                                                  : Image.file(
-                                                      File(image),
-                                                      fit: BoxFit.cover,
-                                                    ).image,
+                                              child: image!.isEmpty
+                                                  ? ((profileData.data!.content!
+                                                          .profileImage
+                                                          .toString()
+                                                          .isNotEmpty)
+                                                      ? CircleAvatar(
+                                                          radius: 48,
+                                                          backgroundImage:
+                                                              Image.memory(
+                                                            profileData
+                                                                .data!
+                                                                .content!
+                                                                .profileImage!,
+                                                            fit: BoxFit.cover,
+                                                          ).image,
+                                                        )
+                                                      : CircleAvatar(
+                                                          radius: 48,
+                                                          backgroundColor:
+                                                              Theme.of(context)
+                                                                  .primaryColor,
+                                                          // child: Text(
+                                                          //   StringUtils
+                                                          //       .getFirstInitials(
+                                                          //           'Santoshi Bisht'),
+                                                          //   style: TextStyle(
+                                                          //       fontWeight:
+                                                          //           FontWeight
+                                                          //               .w700,
+                                                          //       fontSize: 14,
+                                                          //       color: Theme.of(
+                                                          //               context)
+                                                          //           .accentColor),
+                                                          // ),
+                                                        ))
+                                                  : CircleAvatar(
+                                                      radius: 48,
+                                                      backgroundImage:
+                                                          Image.file(
+                                                        File(image),
+                                                        fit: BoxFit.cover,
+                                                      ).image,
+                                                    ),
                                             ),
                                           ));
                                     },
