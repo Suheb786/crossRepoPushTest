@@ -1,8 +1,15 @@
+import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/request_manager.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
+import 'package:rxdart/rxdart.dart';
 
 class ManageContactListPageViewModel extends BasePageViewModel {
+  final GetBeneficiaryUseCase _getBeneficiaryUseCase;
   final TextEditingController contactSearchController = TextEditingController();
 
   final List<ContactsListModel> contactList = [
@@ -52,9 +59,46 @@ class ManageContactListPageViewModel extends BasePageViewModel {
         purpose: 'Personal',
         purposeDetails: 'Transfer'),
   ];
+
+  ///get beneficiary list
+  PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryListRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _getBeneficiaryListResponse = PublishSubject();
+
+  Stream<Resource<bool>> get getBeneficiaryListStream =>
+      _getBeneficiaryListResponse.stream;
+
+  ManageContactListPageViewModel(this._getBeneficiaryUseCase) {
+    _getBeneficiaryListRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getBeneficiaryUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getBeneficiaryListResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+  }
+
+  void getBeneficiaryList() {
+    _getBeneficiaryListRequest.safeAdd(GetBeneficiaryUseCaseParams());
+  }
+
+  @override
+  void dispose() {
+    _getBeneficiaryListRequest.close();
+    _getBeneficiaryListResponse.close();
+    super.dispose();
+  }
 }
 
 class ContactsListModel {
+  final String? beneficiaryId;
   final String? imageUrl;
   final String? name;
   final String? iban;
@@ -64,7 +108,8 @@ class ContactsListModel {
   final String? purposeDetails;
 
   ContactsListModel(
-      {this.imageUrl: "",
+      {this.beneficiaryId: "",
+      this.imageUrl: "",
       this.name: "",
       this.bankName,
       this.iban,

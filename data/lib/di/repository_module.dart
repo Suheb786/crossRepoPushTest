@@ -9,6 +9,7 @@ import 'package:data/repository/enter_address/home_address_dialog_repository_imp
 import 'package:data/repository/fatca_crs/fatca_crs_repository_impl.dart';
 import 'package:data/repository/id_card/id_card_repository_impl.dart';
 import 'package:data/repository/kyc/kyc_repository_impl.dart';
+import 'package:data/repository/manage_contacts/manage_contacts_repository_impl.dart';
 import 'package:data/repository/register/register_repository_impl.dart';
 import 'package:data/repository/register/register_step_four_repository_impl.dart';
 import 'package:data/repository/register/register_step_three_repository_impl.dart';
@@ -23,6 +24,7 @@ import 'package:domain/repository/enter_address/home_address_dialog_repository.d
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/repository/id_card/id_card_repository.dart';
 import 'package:domain/repository/kyc/kyc_repository.dart';
+import 'package:domain/repository/manage_contact/manage_contact_repository.dart';
 import 'package:domain/repository/register/register_repository.dart';
 import 'package:domain/repository/register/register_step_four_repository.dart';
 import 'package:domain/repository/register/register_step_three_repository.dart';
@@ -94,3 +96,7 @@ var cardRepositoryProvider = Provider<CardRepository>(
 var accountSettingRepositoryProvider = Provider<AccountSettingsRepository>(
     (ref) => AccountSettingsRepositoryImpl(
         ref.read(accountSettingDataSourceProvider)));
+
+/// inject [ManageContactRepository] provider
+var manageContactRepositoryProvider = Provider<ManageContactRepository>((ref) =>
+    ManageContactsRepositoryImpl(ref.read(contactsDataSourceProvider)));
