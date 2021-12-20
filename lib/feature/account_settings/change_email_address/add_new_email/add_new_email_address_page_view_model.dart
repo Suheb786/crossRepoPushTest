@@ -40,6 +40,7 @@ class AddNewEmailAddressPageViewModel extends BasePageViewModel {
               createCall: () => _addNewEmailUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _addNewEmailAddressResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           getError(event);

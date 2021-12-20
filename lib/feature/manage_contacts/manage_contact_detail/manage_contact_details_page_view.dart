@@ -40,7 +40,7 @@ class ManageContactDetailsPageView
                         initialData: '',
                         onData: (data) {
                           if (data != null && data.isNotEmpty) {
-                            model.selectedProfile = data;
+                            //model.selectedProfile = data;
                             model.addImage(data);
                             _cropImage(data, model, context);
                           }

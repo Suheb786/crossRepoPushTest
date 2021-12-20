@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -30,13 +31,13 @@ class EnterCodeForChangeMobileNumberPageView
             duration: Duration(milliseconds: 100),
             shakeAngle: Rotation.deg(z: 1),
             curve: Curves.easeInOutSine,
-            child: AppStreamBuilder<Resource<bool>>(
+            child: AppStreamBuilder<Resource<ProfileChangedSuccessResponse>>(
               stream: model.verifyOtpStream,
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
                   Navigator.pop(context);
-                  model.showSuccessToast(S.of(context).mobileNumberUpdated);
+                  model.showSuccessToast(data.data!.data!.data!);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -134,7 +135,7 @@ class EnterCodeForChangeMobileNumberPageView
                                 ),
                                 SizedBox(
                                   height:
-                                  MediaQuery.of(context).viewInsets.bottom,
+                                      MediaQuery.of(context).viewInsets.bottom,
                                 )
                               ],
                             ),

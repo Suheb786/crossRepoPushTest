@@ -11,6 +11,7 @@ import 'package:data/entity/remote/account/save_customer_schedule_time_response_
 import 'package:data/entity/remote/accountsettings/change_email_request.dart';
 import 'package:data/entity/remote/accountsettings/change_mobile_request.dart';
 import 'package:data/entity/remote/accountsettings/change_password_request.dart';
+import 'package:data/entity/remote/accountsettings/profile_changed_success_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/profile_details_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/update_profile_image_request.dart';
 import 'package:data/entity/remote/accountsettings/verify_change_email_request.dart';
@@ -323,7 +324,7 @@ abstract class ApiService {
       @Body() BaseRequest baseRequest);
 
   @POST("/auth/ChangePassword")
-  Future<HttpResponse<ResponseEntity>> changePassword(
+  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> changePassword(
       @Body() ChangePasswordRequest changePasswordRequest);
 
   @POST("/CustomerDetails/ChangeProfileImage")
@@ -331,11 +332,11 @@ abstract class ApiService {
       @Body() UpdateProfileImageRequest updateProfileImageRequest);
 
   @POST("/auth/VerifyChangeEmail")
-  Future<HttpResponse<ResponseEntity>> verifyChangeEmail(
+  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeEmail(
       @Body() VerifyChangeEmailRequest verifyChangeEmailRequest);
 
   @POST("/auth/VerifyChangeMobile")
-  Future<HttpResponse<ResponseEntity>> verifyChangeMobile(
+  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
       @Body() VerifyChangeEmailRequest verifyChangeEmailRequest);
 
   @POST("/beneficiary/GetBeneficiaries")

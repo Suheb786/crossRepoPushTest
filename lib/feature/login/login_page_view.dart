@@ -82,6 +82,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                         .getToken();
                                     //model.checkKycStatus();
                                     model.emailKey.currentState!.isValid = true;
+                                    ///TODO: change routing to onboarding
                                     Future.delayed(Duration(milliseconds: 500),
                                         () {
                                       Navigator.pushReplacementNamed(
@@ -102,7 +103,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                       if (data.status == Status.SUCCESS) {
                                         ///TODO:Navigate according to kyc response
                                         Navigator.pushReplacementNamed(
-                                            context, RoutePaths.Registration);
+                                            context, RoutePaths.AppHome);
                                       }
                                     },
                                     dataBuilder: (context, kycResponse) {

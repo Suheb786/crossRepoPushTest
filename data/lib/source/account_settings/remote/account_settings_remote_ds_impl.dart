@@ -3,6 +3,7 @@ import 'package:data/entity/local/base/image_utils.dart';
 import 'package:data/entity/remote/accountsettings/change_email_request.dart';
 import 'package:data/entity/remote/accountsettings/change_mobile_request.dart';
 import 'package:data/entity/remote/accountsettings/change_password_request.dart';
+import 'package:data/entity/remote/accountsettings/profile_changed_success_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/profile_details_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/update_profile_image_request.dart';
 import 'package:data/entity/remote/accountsettings/verify_change_email_request.dart';
@@ -36,7 +37,7 @@ class AccountSettingsRemoteDsImpl extends AccountSettingsRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> changePassword(
+  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> changePassword(
       {required String oldPassword,
       required String newPassword,
       required String confirmNewPassword}) async {
@@ -66,7 +67,7 @@ class AccountSettingsRemoteDsImpl extends AccountSettingsRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> verifyChangeEmail(
+  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeEmail(
       {required String otp}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.verifyChangeEmail(VerifyChangeEmailRequest(
@@ -76,7 +77,7 @@ class AccountSettingsRemoteDsImpl extends AccountSettingsRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> verifyChangeMobile(
+  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
       {required String otp}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.verifyChangeMobile(VerifyChangeEmailRequest(
