@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -48,6 +47,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "Your account is locked, please contact customer service on 7777-7777 to unlock"),
         "accountNo": MessageLookupByLibrary.simpleMessage("ACCOUNT NO."),
+        "accountNotFound":
+            MessageLookupByLibrary.simpleMessage("Account Not Found"),
         "accountNumberOptional": MessageLookupByLibrary.simpleMessage(
             "LIST OF ACCOUNT NUMBER (OPTIONAL)"),
         "accountOpeningDescription": MessageLookupByLibrary.simpleMessage(
@@ -363,6 +364,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
             "Error While Creating Account"),
+        "errorGetAccountDetails": MessageLookupByLibrary.simpleMessage(
+            "Error While Get Account Details"),
         "errorSavingIdCard":
             MessageLookupByLibrary.simpleMessage("Error While saving IDCard"),
         "errorSavingStatus":
@@ -526,6 +529,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidOccupation":
             MessageLookupByLibrary.simpleMessage("Enter Occupation"),
         "invalidOtp": MessageLookupByLibrary.simpleMessage(
+            "You have entered an invalid OTP code, please enter a valid one"),
+        "invalidOtpEntered": MessageLookupByLibrary.simpleMessage(
             "You have entered an invalid OTP code, please enter a valid one"),
         "invalidPermanentAddress": MessageLookupByLibrary.simpleMessage(
             "Enter Permanent Residence Address"),
@@ -1008,6 +1013,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),
         "welcomeToNeuBank":
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),
+        "wentWrongWhileLogin": MessageLookupByLibrary.simpleMessage(
+            "An error has occurred while login, please try again"),
         "wereBornInUS":
             MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("What is P.E.P?"),

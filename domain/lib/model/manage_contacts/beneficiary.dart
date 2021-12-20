@@ -1,8 +1,13 @@
 class Beneficiary {
-  final String? beneficiaryId;
+  final String? id;
+
+  //final String? beneficiaryId;
   final dynamic? imageUrl;
   final String? nickName;
   final String? fullName;
+  final String? accountNo;
+  final String? mobileNumber;
+  final String? beneficiaryAddress;
   final String? iban;
   final String? accountHolderName;
   final String? bankName;
@@ -10,7 +15,7 @@ class Beneficiary {
   final String? purposeDetails;
 
   Beneficiary(
-      {this.beneficiaryId: "",
+      {this.id: "",
       this.imageUrl: "",
       this.nickName: "",
       this.fullName: "",
@@ -18,5 +23,8 @@ class Beneficiary {
       this.iban: "",
       this.accountHolderName: "",
       this.purpose: "",
-      this.purposeDetails: ""});
+      this.purposeDetails: "",
+      this.mobileNumber: "",
+      this.accountNo: "",
+      this.beneficiaryAddress: ""});
 }

@@ -14,6 +14,8 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageContactDetailsPageView
@@ -41,7 +43,7 @@ class ManageContactDetailsPageView
                         onData: (data) {
                           if (data != null && data.isNotEmpty) {
                             //model.selectedProfile = data;
-                            model.addImage(data);
+                            //model.addImage(data);
                             _cropImage(data, model, context);
                           }
                         },
@@ -78,13 +80,12 @@ class ManageContactDetailsPageView
                                     child: CircleAvatar(
                                       radius: 48,
                                       child: image!.isEmpty
-                                          ? (model.contactsListModel.imageUrl!
+                                          ? (model.beneficiary.imageUrl!
                                                   .isNotEmpty
                                               ? CircleAvatar(
                                                   radius: 48,
-                                                  backgroundImage: Image.asset(
-                                                    model.contactsListModel
-                                                        .imageUrl!,
+                                                  backgroundImage: Image.memory(
+                                                    model.beneficiary.imageUrl!,
                                                     fit: BoxFit.cover,
                                                   ).image,
                                                 )
@@ -96,8 +97,8 @@ class ManageContactDetailsPageView
                                                   child: Text(
                                                     StringUtils
                                                         .getFirstInitials(model
-                                                            .contactsListModel
-                                                            .name),
+                                                            .beneficiary
+                                                            .nickName),
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w700,
@@ -145,6 +146,7 @@ class ManageContactDetailsPageView
                         maxLength: 25,
                         onChanged: (text) {
                           model.showSaveButton();
+                          model.updateType = UpdateType.details;
                         },
                       ),
                       SizedBox(height: 13),
@@ -221,68 +223,109 @@ class ManageContactDetailsPageView
                                   color: AppColor.dark_gray_1));
                         },
                       ),
-                      InkWell(
-                        onTap: () {},
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 45, bottom: 11),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              AppSvg.asset(AssetUtils.delete,
-                                  color: Theme.of(context).primaryColor),
-                              SizedBox(
-                                width: 15,
+                      AppStreamBuilder<Resource<bool>>(
+                        stream: model.deleteBeneficiaryStream,
+                        initialData: Resource.none(),
+                        onData: (data) {
+                          if (data.status == Status.SUCCESS) {
+                            model.showSuccessToast(
+                                S.of(context).yourContactDetailsUpdated);
+                            Navigator.pop(context, true);
+                          }
+                        },
+                        dataBuilder: (context, deleteBeneficiary) {
+                          return InkWell(
+                            onTap: () {
+                              model.deleteBeneficiary();
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 45, bottom: 11),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  AppSvg.asset(AssetUtils.delete,
+                                      color: Theme.of(context).primaryColor),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text(
+                                    S.of(context).removeFromContact,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context).primaryColor),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                S.of(context).removeFromContact,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).primaryColor),
-                              ),
-                            ],
-                          ),
-                        ),
+                            ),
+                          );
+                        },
                       )
                     ],
                   ),
                 ),
-                AppStreamBuilder<bool>(
-                  stream: model.showSaveButtonStream,
-                  initialData: false,
-                  dataBuilder: (context, isVisible) {
-                    return Visibility(
-                        visible: isVisible!,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: InkWell(
-                            onTap: () {
-                              model.showSuccessToast(
-                                  S.of(context).yourContactDetailsUpdated);
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 20),
-                              height: 56,
-                              decoration: BoxDecoration(
-                                  color: Theme.of(context)
-                                      .accentTextTheme
-                                      .bodyText1!
-                                      .color,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: Center(
-                                child: Text(
-                                  S.of(context).saveChanges,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: Theme.of(context).accentColor),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ));
+                AppStreamBuilder<Resource<bool>>(
+                  stream: model.uploadBeneficiaryProfileImageStream,
+                  initialData: Resource.none(),
+                  onData: (data) {
+                    if (data.status == Status.SUCCESS) {
+                      model.showSuccessToast(
+                          S.of(context).yourContactDetailsUpdated);
+                      Navigator.pop(context, true);
+                    }
+                  },
+                  dataBuilder: (context, uploadProfilePhoto) {
+                    return AppStreamBuilder<Resource<bool>>(
+                      stream: model.updateBeneficiaryStream,
+                      initialData: Resource.none(),
+                      onData: (data) {
+                        if (data.status == Status.SUCCESS) {
+                          model.showSuccessToast(
+                              S.of(context).yourContactDetailsUpdated);
+                          Navigator.pop(context, true);
+                        }
+                      },
+                      dataBuilder: (context, beneficiaryUpdate) {
+                        return AppStreamBuilder<bool>(
+                          stream: model.showSaveButtonStream,
+                          initialData: false,
+                          dataBuilder: (context, isVisible) {
+                            return Visibility(
+                                visible: isVisible!,
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: InkWell(
+                                    onTap: () {
+                                      model.updateBeneficiary();
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: 24, vertical: 20),
+                                      height: 56,
+                                      decoration: BoxDecoration(
+                                          color: Theme.of(context)
+                                              .accentTextTheme
+                                              .bodyText1!
+                                              .color,
+                                          borderRadius:
+                                              BorderRadius.circular(100)),
+                                      child: Center(
+                                        child: Text(
+                                          S.of(context).saveChanges,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: Theme.of(context)
+                                                  .accentColor),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ));
+                          },
+                        );
+                      },
+                    );
                   },
                 )
               ],
@@ -297,10 +340,16 @@ class ManageContactDetailsPageView
       BuildContext context) async {
     File? cropped = await ImageCropper.cropImage(
         sourcePath: data,
+        iosUiSettings: IOSUiSettings(
+            resetButtonHidden: true,
+            rotateButtonsHidden: true,
+            aspectRatioPickerButtonHidden: true,
+            doneButtonTitle: 'Choose'),
         aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
     if (cropped != null) {
       model.selectedProfile = cropped.path;
       model.addImage(cropped.path);
+      model.updateType = UpdateType.image;
       model.showSaveButton();
     }
   }

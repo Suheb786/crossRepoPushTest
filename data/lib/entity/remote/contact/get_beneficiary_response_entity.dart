@@ -1,4 +1,4 @@
-import 'package:data/entity/remote/contact/beneficiary_response_entity.dart';
+import 'package:data/entity/remote/contact/beneficiary_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
@@ -27,8 +27,8 @@ class GetBeneficiaryResponseEntity extends BaseLayerDataTransformer<
   @override
   GetBeneficiaryListResponse transform() {
     return GetBeneficiaryListResponse(
-        beneficiaryList:
-            BeneficiaryResponseEntity.fromJson(responseEntity!.content)
-                .transform());
+        beneficiaryList: (this.responseEntity!.content as List<dynamic>)
+            .map((e) => BeneficiaryEntity.fromJson(e).transform())
+            .toList());
   }
 }

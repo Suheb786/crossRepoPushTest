@@ -8,7 +8,7 @@ part "beneficiary_response_entity.g.dart";
 @JsonSerializable()
 class BeneficiaryResponseEntity extends BaseLayerDataTransformer<
     BeneficiaryResponseEntity, BeneficiaryList> {
-  @JsonKey(name: "beneficiaryList")
+  @JsonKey(name: "content")
   final List<BeneficiaryEntity>? beneficiaryList;
 
   BeneficiaryResponseEntity({this.beneficiaryList});

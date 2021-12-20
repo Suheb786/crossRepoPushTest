@@ -69,9 +69,7 @@ class ManageContactListPageView
                 stream: model.getBeneficiaryListStream,
                 initialData: Resource.none(),
                 dataBuilder: (context, beneficiaryList) {
-                  return beneficiaryList!
-                              .data!.beneficiaryList!.beneficiaryList!.length >
-                          0
+                  return beneficiaryList!.data!.beneficiaryList!.length > 0
                       ? Expanded(
                           child: Column(
                             children: [
@@ -93,45 +91,48 @@ class ManageContactListPageView
                                             Theme.of(context).primaryColorDark),
                                   )),
                               Expanded(
-                                child: Container(
+                                child: Card(
                                   margin: EdgeInsets.symmetric(vertical: 16),
-                                  decoration: BoxDecoration(
-                                      color: Theme.of(context).accentColor,
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Theme.of(context)
-                                              .primaryColorDark
-                                              .withOpacity(0.08),
-                                          blurRadius: 20.0,
-                                        )
-                                      ],
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(16),
-                                          topRight: Radius.circular(16))),
+                                  // decoration: BoxDecoration(
+                                  //     color: Theme.of(context).accentColor,
+                                  //     boxShadow: [
+                                  //       BoxShadow(
+                                  //         color: Theme.of(context)
+                                  //             .primaryColorDark
+                                  //             .withOpacity(0.08),
+                                  //         blurRadius: 20.0,
+                                  //       )
+                                  //     ],
+                                  //     borderRadius: BorderRadius.only(
+                                  //         topLeft: Radius.circular(16),
+                                  //         topRight: Radius.circular(16))),
                                   child: ListView.builder(
                                     padding: EdgeInsets.symmetric(vertical: 20),
                                     itemBuilder: (context, index) {
                                       ///send data from api response once updated
                                       return ContactListWidget(
                                         beneficiary: beneficiaryList
-                                            .data!
-                                            .beneficiaryList!
-                                            .beneficiaryList![index],
-                                        onTap: () {
-                                          Navigator.pushNamed(context,
-                                              RoutePaths.ManageContactsDetail,
-                                              arguments:
-                                                  model.contactList[index]);
+                                            .data!.beneficiaryList![index],
+                                        onTap: () async {
+                                          var result =
+                                              await Navigator.pushNamed(
+                                                  context,
+                                                  RoutePaths
+                                                      .ManageContactsDetail,
+                                                  arguments: beneficiaryList
+                                                      .data!
+                                                      .beneficiaryList![index]);
+
+                                          if (result != null) {
+                                            model.getBeneficiaryList();
+                                          }
                                         },
                                       );
                                     },
                                     shrinkWrap: true,
                                     physics: ClampingScrollPhysics(),
                                     itemCount: beneficiaryList
-                                        .data!
-                                        .beneficiaryList!
-                                        .beneficiaryList!
-                                        .length,
+                                        .data!.beneficiaryList!.length,
                                   ),
                                 ),
                               )

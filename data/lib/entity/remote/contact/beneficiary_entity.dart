@@ -14,9 +14,35 @@ class BeneficiaryEntity
   final String? fullName;
   @JsonKey(name: "profileImage")
   final String? profileImage;
+  @JsonKey(name: "id")
+  final String? id;
+  @JsonKey(name: "accountNo")
+  final String? accountNo;
+  @JsonKey(name: "iban")
+  final String? iban;
+  @JsonKey(name: "purpose")
+  final String? purpose;
+  @JsonKey(name: "purposeDetails")
+  final String? purposeDetails;
+  @JsonKey(name: "mobileNumber")
+  final String? mobileNumber;
+  @JsonKey(name: "beneficiaryAddress")
+  final String? beneficiaryAddress;
+  @JsonKey(name: "bankName")
+  final String? bankName;
 
   BeneficiaryEntity(
-      {this.nickName: "", this.fullName: "", this.profileImage: ""});
+      {this.nickName: "",
+      this.fullName: "",
+      this.profileImage: "",
+      this.beneficiaryAddress: "",
+      this.accountNo: "",
+      this.mobileNumber: "",
+      this.purposeDetails: "",
+      this.bankName: "",
+      this.iban: "",
+      this.purpose: "",
+      this.id: ""});
 
   factory BeneficiaryEntity.fromJson(Map<String, dynamic> json) =>
       _$BeneficiaryEntityFromJson(json);
@@ -31,10 +57,19 @@ class BeneficiaryEntity
   @override
   Beneficiary transform() {
     return Beneficiary(
+        id: this.id,
+        bankName: this.bankName,
         nickName: this.nickName,
         fullName: this.fullName,
         imageUrl: this.profileImage != null
             ? ImageUtils.dataFromBase64String(this.profileImage!)
-            : '');
+            : '',
+        purpose: this.purpose,
+        purposeDetails: this.purposeDetails,
+        mobileNumber: this.mobileNumber,
+        iban: this.iban,
+        accountHolderName: this.fullName,
+        accountNo: this.accountNo,
+        beneficiaryAddress: this.beneficiaryAddress);
   }
 }

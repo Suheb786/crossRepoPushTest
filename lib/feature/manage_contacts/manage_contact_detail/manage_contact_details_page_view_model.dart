@@ -1,11 +1,11 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/usecase/manage_contacts/delete_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/upload_beneficiary_profile_image_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -15,7 +15,7 @@ import 'package:rxdart/rxdart.dart';
 class ManageContactDetailsPageViewModel extends BasePageViewModel {
   final UploadDocumentUseCase _uploadDocumentUseCase;
 
-  final ContactsListModel contactsListModel;
+  final Beneficiary beneficiary;
 
   final UpdateBeneficiaryUseCase _updateBeneficiaryUseCase;
 
@@ -83,9 +83,11 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get uploadBeneficiaryProfileImageStream =>
       _uploadBeneficiaryProfileImageResponse.stream;
 
+  UpdateType updateType = UpdateType.none;
+
   ManageContactDetailsPageViewModel(
       this._uploadDocumentUseCase,
-      this.contactsListModel,
+      this.beneficiary,
       this._updateBeneficiaryUseCase,
       this._deleteBeneficiaryUseCase,
       this._uploadBeneficiaryProfileImageUseCase) {
@@ -94,6 +96,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
               createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _uploadProfilePhotoResponse.safeAdd(event.data!);
       });
     });
@@ -150,23 +153,27 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
   }
 
   void updateBeneficiary() {
-    _updateBeneficiaryRequest.safeAdd(UpdateBeneficiaryUseCaseParams(
-        beneficiaryId: contactsListModel.beneficiaryId!,
-        nickName: contactsListModel.name!,
-        purposeDetails: contactsListModel.purposeDetails!,
-        purpose: contactsListModel.purpose!));
+    if (updateType == UpdateType.details) {
+      _updateBeneficiaryRequest.safeAdd(UpdateBeneficiaryUseCaseParams(
+          beneficiaryId: beneficiary.id!,
+          nickName: nickNameController.text,
+          purposeDetails: purposeDetailsController.text,
+          purpose: purposeController.text));
+    } else {
+      uploadBeneficiaryImageProfile();
+    }
   }
 
   void deleteBeneficiary() {
     _deleteBeneficiaryRequest.safeAdd(DeleteBeneficiaryUseCaseParams(
-      beneficiaryId: contactsListModel.beneficiaryId!,
+      beneficiaryId: beneficiary.id!,
     ));
   }
 
   void uploadBeneficiaryImageProfile() {
     _uploadBeneficiaryProfileImageRequest
         .safeAdd(UploadBeneficiaryProfileImageUseCaseParams(
-      beneficiaryId: contactsListModel.beneficiaryId!,
+      beneficiaryId: beneficiary.id!,
       filePath: selectedProfile,
     ));
   }
@@ -176,19 +183,19 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
   }
 
   void setData() {
-    nickNameController.text = contactsListModel.name!;
-    ibanController.text = contactsListModel.iban!;
-    accountHolderNameController.text = contactsListModel.accounHolderName!;
-    bankNameController.text = contactsListModel.bankName!;
-    purposeController.text = contactsListModel.purpose!;
-    purposeDetailsController.text = contactsListModel.purposeDetails!;
+    nickNameController.text = beneficiary.nickName!;
+    ibanController.text = beneficiary.iban!;
+    accountHolderNameController.text = beneficiary.fullName!;
+    bankNameController.text = beneficiary.bankName!;
+    purposeController.text = beneficiary.purpose!;
+    purposeDetailsController.text = beneficiary.purposeDetails!;
   }
 
   void showSaveButton() {
     bool show = false;
-    if (nickNameController.text != contactsListModel.name ||
-        purposeController.text != contactsListModel.purpose ||
-        purposeDetailsController.text != contactsListModel.purposeDetails ||
+    if (nickNameController.text != beneficiary.nickName ||
+        purposeController.text != beneficiary.purpose ||
+        purposeDetailsController.text != beneficiary.purposeDetails ||
         selectedProfile.isNotEmpty) {
       show = true;
     }
@@ -204,3 +211,5 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
     super.dispose();
   }
 }
+
+enum UpdateType { image, details, none }
