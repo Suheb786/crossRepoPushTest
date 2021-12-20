@@ -4,8 +4,6 @@ import 'package:domain/error/network_error.dart';
 abstract class ManageContactRepository {
   Future<Either<NetworkError, bool>> getBeneficiaries();
 
-  Future<Either<NetworkError, bool>> getContacts();
-
   Future<Either<NetworkError, bool>> addBeneficiary(
       {String nickName,
       String fullName,

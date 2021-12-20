@@ -60,17 +60,6 @@ class ManageContactsRepositoryImpl with ManageContactRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> getContacts() async {
-    final result = await safeApiCall(
-      _contactRemoteDS.getContacts(),
-    );
-    return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
-    );
-  }
-
-  @override
   Future<Either<NetworkError, bool>> updateBeneficiary(
       {String? beneficiaryId,
       String? nickName,

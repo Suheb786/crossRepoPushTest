@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'card_issuance_request.dart';
+part of 'dashboard_data_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-CardIssuanceRequest _$CardIssuanceRequestFromJson(Map<String, dynamic> json) {
-  return CardIssuanceRequest(
+DashboardDataRequest _$DashboardDataRequestFromJson(Map<String, dynamic> json) {
+  return DashboardDataRequest(
     baseData: json['baseClass'] as Map<String, dynamic>,
-    getToken: json['GetToken'] as bool?,
+    accountId: json['AccountId'] as int,
   );
 }
 
-Map<String, dynamic> _$CardIssuanceRequestToJson(
-        CardIssuanceRequest instance) =>
+Map<String, dynamic> _$DashboardDataRequestToJson(
+        DashboardDataRequest instance) =>
     <String, dynamic>{
-      'GetToken': instance.getToken,
+      'AccountId': instance.accountId,
       'baseClass': instance.baseData,
     };
