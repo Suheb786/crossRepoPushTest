@@ -342,10 +342,6 @@ abstract class ApiService {
   Future<HttpResponse<ResponseEntity>> getBeneficiaries(
       @Body() BaseRequest baseRequest);
 
-  @POST("/beneficiary/GetContacts")
-  Future<HttpResponse<ResponseEntity>> getContacts(
-      @Body() BaseRequest baseRequest);
-
   @POST("/beneficiary/AddBeneficiary")
   Future<HttpResponse<ResponseEntity>> addBeneficiary(
       @Body() AddBeneficiaryRequest addBeneficiaryRequest);

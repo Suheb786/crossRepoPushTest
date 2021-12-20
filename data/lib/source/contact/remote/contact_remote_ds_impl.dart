@@ -57,12 +57,6 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getContacts() async {
-    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getContacts(BaseRequest(baseData: baseData.toJson()));
-  }
-
-  @override
   Future<HttpResponse<ResponseEntity>> updateBeneficiary(
       {String? beneficiaryId,
       String? nickName,
