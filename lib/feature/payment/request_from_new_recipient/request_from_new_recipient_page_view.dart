@@ -269,7 +269,7 @@ class RequestFromNewRecipientPageView
                                                                 top: 16),
                                                         child: Row(
                                                           children: [
-                                                            AppSvg.asset(AssetUtils
+                                                            Image.asset(AssetUtils
                                                                 .personCircle),
                                                             Padding(
                                                               padding: EdgeInsets

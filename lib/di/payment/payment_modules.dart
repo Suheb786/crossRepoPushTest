@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/feature/payment/add_request_money_contact/add_request_money_contact_view_model.dart';
 import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_contact_view_model.dart';
 import 'package:neo_bank/feature/payment/enter_otp/enter_otp_view_model.dart';
@@ -86,8 +87,9 @@ final requestMoneyViewModelProvider =
 
 final sendToNewRecipientViewModelProvider =
     ChangeNotifierProvider.autoDispose<SendToNewRecipientViewModel>(
-  (ref) =>
-      SendToNewRecipientViewModel(ref.read(sendToNewRecipientUseCaseProvider)),
+            (ref) => SendToNewRecipientViewModel(
+      ref.read(sendToNewRecipientUseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider)),
 );
 
 final enterOtpViewModelProvider =
