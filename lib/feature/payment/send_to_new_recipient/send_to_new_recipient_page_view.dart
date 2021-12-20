@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -43,19 +44,24 @@ class SendToNewRecipientPageView
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            // model.ibanOrMobileKey.currentState!.isValid =
-                            //     true;
+                            print("value: clicked");
                             ProviderScope.containerOf(context)
                                 .read(paymentToNewRecipientViewModelProvider)
                                 .pageController
                                 .next();
-                            print("swiped from here");
                           } else if (data.status == Status.ERROR) {
-                            // if (data.appError!.type ==
-                            //     ErrorType.EMPTY_RESIDENT_COUNTRY) {
-                            //   model.residentCountryKey.currentState!.isValid =
-                            //       false;
-                            // }
+                            if (data.appError!.type ==
+                                ErrorType.EMPTY_IBAN_MOBILE) {
+                              model.ibanOrMobileKey.currentState!.isValid =
+                                  false;
+                            } else if (data.appError!.type ==
+                                ErrorType.EMPTY_PURPOSE) {
+                              model.purposeKey.currentState!.isValid = false;
+                            } else if (data.appError!.type ==
+                                ErrorType.EMPTY_PURPOSE_DETAIL) {
+                              model.purposeDetailKey.currentState!.isValid =
+                                  false;
+                            }
                             model.showToastWithError(data.appError!);
                           }
                         },
@@ -112,7 +118,7 @@ class SendToNewRecipientPageView
                                                     S.of(context).ibanOrMobile,
                                                 hintText:
                                                     S.of(context).pleaseEnter,
-                                                readOnly: true,
+                                                key: model.ibanOrMobileKey,
                                                 controller: model
                                                     .ibanOrMobileController,
                                                 onPressed: () {},
@@ -162,6 +168,7 @@ class SendToNewRecipientPageView
                                                 hintText:
                                                     S.of(context).pleaseEnter,
                                                 readOnly: true,
+                                                key: model.purposeKey,
                                                 controller:
                                                     model.purposeController,
                                                 onPressed: () {
@@ -197,6 +204,7 @@ class SendToNewRecipientPageView
                                                 readOnly: true,
                                                 controller: model
                                                     .purposeDetailController,
+                                                key: model.purposeDetailKey,
                                                 onPressed: () {
                                                   PurposeDetailDialog.show(
                                                       context,

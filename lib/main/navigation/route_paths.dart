@@ -34,4 +34,6 @@ class RoutePaths {
   static const String ManageContactsDetail = '/manageContactsDetail';
   static const String PaymentHome = '/paymentHome';
   static const String ActivityHome = '/activityHome';
+  static const String RequestMoneyFailure = "/requestMoneyFailure";
+  static const String SendMoneyFailure = "/sendMoneyFailure";
 }

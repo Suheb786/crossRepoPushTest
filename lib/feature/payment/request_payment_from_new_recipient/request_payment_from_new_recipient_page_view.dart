@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/feature/payment/request_from_new_recipient/request_from_new_recipient_page.dart';
 import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -15,7 +16,7 @@ class RequestPaymentFromNewRecipientPageView
     extends BasePageViewWidget<RequestPaymentFromNewRecipientViewModel> {
   RequestPaymentFromNewRecipientPageView(ProviderBase model) : super(model);
 
-  final pages = [RequestFromNewRecipientPage()];
+  final pages = [RequestFromNewRecipientPage(), BaseCardPage()];
 
   @override
   Widget build(BuildContext context, model) {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
+import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/feature/payment/enter_otp/enter_otp_page.dart';
 import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/send_to_new_recipient/send_to_new_recipient_page.dart';
@@ -17,7 +18,7 @@ class PaymentToNewRecipientPageView
     extends BasePageViewWidget<PaymentToNewRecipientViewModel> {
   PaymentToNewRecipientPageView(ProviderBase model) : super(model);
 
-  final pages = [SendToNewRecipientPage(), EnterOtpPage()];
+  final pages = [SendToNewRecipientPage(), EnterOtpPage(), BaseCardPage()];
 
   @override
   Widget build(BuildContext context, model) {

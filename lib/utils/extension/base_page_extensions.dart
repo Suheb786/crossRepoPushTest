@@ -26,7 +26,7 @@ extension PageExtensions on BaseStatefulPage {
             child: Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  color: AppColor.vivid_red,
+                  color: AppColor.dark_brown,
                   borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [

@@ -307,6 +307,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Gender field cannot be empty"),
         "emptyHomeAddress": MessageLookupByLibrary.simpleMessage(
             "Home address field cannot be empty"),
+        "emptyIbanOrMobile": MessageLookupByLibrary.simpleMessage(
+            "IBAN / Mobie / Alias should not be empty"),
         "emptyIdNumber": MessageLookupByLibrary.simpleMessage(
             "Id Number field cannot be empty"),
         "emptyIncomeDocument": MessageLookupByLibrary.simpleMessage(
@@ -322,6 +324,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyNewPassword":
             MessageLookupByLibrary.simpleMessage("Enter New Password"),
         "emptyPin": MessageLookupByLibrary.simpleMessage("Enter Pin"),
+        "emptyPurpose":
+            MessageLookupByLibrary.simpleMessage("Purpose should not be empty"),
+        "emptyPurposeDetail": MessageLookupByLibrary.simpleMessage(
+            "Purpose detail should not be empty"),
         "emptyResidentCountry": MessageLookupByLibrary.simpleMessage(
             "Resident country field cannot be empty"),
         "emptySignature":
@@ -460,10 +466,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "iban": MessageLookupByLibrary.simpleMessage("IBAN"),
         "ibanMobileNoAlias":
             MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
+        "ibanNotBlink":
+            MessageLookupByLibrary.simpleMessage("IBAN is\nnot in blink"),
         "ibanNumber":
             MessageLookupByLibrary.simpleMessage("84118220000022123444"),
         "ibanOrMobile":
             MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
+        "ibanOutsideBlink": MessageLookupByLibrary.simpleMessage(
+            "We’ve found that the recipient’s IBAN  you entered is outside blink. You will be able to send money outside blink, soon! You can send money from blink, today."),
         "idCardExpired": MessageLookupByLibrary.simpleMessage(
             "Id card is expired, cannot proceed."),
         "idCardNotAllowed": MessageLookupByLibrary.simpleMessage(
@@ -883,6 +893,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select from Library"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
+        "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
+            "Send money was not\nsuccessful."),
         "sendMoneyTo": MessageLookupByLibrary.simpleMessage("Send money to"),
         "sendMoneyToFriendAndFamily": MessageLookupByLibrary.simpleMessage(
             "Send money to your friends and family"),
@@ -989,6 +1001,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Transaction Purpose"),
         "treatyClaimRate": MessageLookupByLibrary.simpleMessage(
             "treaty identified to Claim Rate (%)"),
+        "tryAgainLater": MessageLookupByLibrary.simpleMessage(
+            "There was some issues to send your\npayment, please try again later."),
         "typeOfExpectedTransactions": MessageLookupByLibrary.simpleMessage(
             "Type of expected transactions"),
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("Type of Income"),

@@ -2,7 +2,6 @@ import 'package:animated_widgets/animated_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/payment/request_from_new_recipient/request_from_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_page.dart';
@@ -44,14 +43,11 @@ class RequestFromNewRecipientPageView
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            // model.ibanOrMobileKey.currentState!.isValid =
-                            //     true;
-                            ProviderScope.containerOf(context)
-                                .read(
-                                    requestPaymentFromNewRecipientViewModelProvider)
-                                .pageController
-                                .next();
-                            print("swiped from here");
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        RequestAmountFromContactSuccessPage()));
                           } else if (data.status == Status.ERROR) {
                             // if (data.appError!.type ==
                             //     ErrorType.EMPTY_RESIDENT_COUNTRY) {
@@ -65,12 +61,7 @@ class RequestFromNewRecipientPageView
                           return GestureDetector(
                             onHorizontalDragEnd: (details) {
                               if (details.primaryVelocity!.isNegative) {
-                                // model.sendToNewRecipient();
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            RequestAmountFromContactSuccessPage()));
+                                model.sendToNewRecipient();
                               } else {
                                 // ProviderScope.containerOf(context)
                                 //     .read(
@@ -119,7 +110,6 @@ class RequestFromNewRecipientPageView
                                                     S.of(context).ibanOrMobile,
                                                 hintText:
                                                     S.of(context).pleaseEnter,
-                                                readOnly: true,
                                                 controller: model
                                                     .ibanOrMobileController,
                                                 onPressed: () {},

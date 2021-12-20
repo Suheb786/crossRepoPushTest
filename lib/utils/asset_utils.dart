@@ -57,6 +57,7 @@ class AssetUtils {
   static const String shieldIcon = svg + "shield_icon.svg";
   static const String transactionHistory = svg + "transaction_history.svg";
   static const String right = svg + "right.svg";
+  static const String cancel = svg + "cancel.svg";
   static const String copy = svg + "copy.svg";
   static const String welcomeIcon = svg + "welcome_icon.svg";
   static const String lock = svg + "lock.svg";

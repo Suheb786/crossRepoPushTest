@@ -21,6 +21,8 @@ import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_p
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_page.dart';
+import 'package:neo_bank/feature/payment/request_money_failure/request_money_failure_page.dart';
+import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
@@ -204,6 +206,16 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => ActivityHomePage(),
             settings: RouteSettings(name: RoutePaths.ActivityHome));
+
+      case RoutePaths.RequestMoneyFailure:
+        return CupertinoPageRoute(
+            builder: (context) => RequestMoneyFailurePage(),
+            settings: RouteSettings(name: RoutePaths.RequestMoneyFailure));
+
+      case RoutePaths.SendMoneyFailure:
+        return CupertinoPageRoute(
+            builder: (context) => SendMoneyFailurePage(),
+            settings: RouteSettings(name: RoutePaths.SendMoneyFailure));
 
       default:
         return CupertinoPageRoute(

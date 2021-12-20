@@ -621,5 +621,12 @@
   "notifications": "Notifications",
   "paymentActivity": "Payment activity",
   "allTransaction": "All Transactions",
-  "allTime": "All Time"
+  "allTime": "All Time",
+  "sendMoneyNotSuccessful": "Send money was not\nsuccessful.",
+  "tryAgainLater": "There was some issues to send your\npayment, please try again later.",
+  "ibanNotBlink": "IBAN is\nnot in blink",
+  "ibanOutsideBlink": "We’ve found that the recipient’s IBAN  you entered is outside blink. You will be able to send money outside blink, soon! You can send money from blink, today.",
+  "emptyIbanOrMobile": "IBAN / Mobie / Alias should not be empty",
+  "emptyPurpose": "Purpose should not be empty",
+  "emptyPurposeDetail": "Purpose detail should not be empty"
 }

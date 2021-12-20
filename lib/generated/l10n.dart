@@ -6080,6 +6080,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Send money was not\nsuccessful.`
+  String get sendMoneyNotSuccessful {
+    return Intl.message(
+      'Send money was not\nsuccessful.',
+      name: 'sendMoneyNotSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There was some issues to send your\npayment, please try again later.`
+  String get tryAgainLater {
+    return Intl.message(
+      'There was some issues to send your\npayment, please try again later.',
+      name: 'tryAgainLater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN is\nnot in blink`
+  String get ibanNotBlink {
+    return Intl.message(
+      'IBAN is\nnot in blink',
+      name: 'ibanNotBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We’ve found that the recipient’s IBAN  you entered is outside blink. You will be able to send money outside blink, soon! You can send money from blink, today.`
+  String get ibanOutsideBlink {
+    return Intl.message(
+      'We’ve found that the recipient’s IBAN  you entered is outside blink. You will be able to send money outside blink, soon! You can send money from blink, today.',
+      name: 'ibanOutsideBlink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN / Mobie / Alias should not be empty`
+  String get emptyIbanOrMobile {
+    return Intl.message(
+      'IBAN / Mobie / Alias should not be empty',
+      name: 'emptyIbanOrMobile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purpose should not be empty`
+  String get emptyPurpose {
+    return Intl.message(
+      'Purpose should not be empty',
+      name: 'emptyPurpose',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purpose detail should not be empty`
+  String get emptyPurposeDetail {
+    return Intl.message(
+      'Purpose detail should not be empty',
+      name: 'emptyPurposeDetail',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

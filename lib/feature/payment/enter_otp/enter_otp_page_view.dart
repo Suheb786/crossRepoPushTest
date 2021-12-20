@@ -34,7 +34,13 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
               stream: model.enterOtpResponseStream,
               initialData: Resource.none(),
               onData: (data) {
+                print("clicked");
                 if (data.status == Status.SUCCESS) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              SendAmountToContactSuccessPage()));
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -43,12 +49,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
-                      // model.enterOtp();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  SendAmountToContactSuccessPage()));
+                      model.enterOtp();
                     } else {
                       ProviderScope.containerOf(context)
                           .read(paymentToNewRecipientViewModelProvider)

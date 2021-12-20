@@ -56,8 +56,8 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   void sendToNewRecipient() {
     _sendToNewRecipientRequest.safeAdd(SendToNewRecipientUseCaseParams(
         ibanOrMobile: ibanOrMobileController.text,
-        purpose: "",
-        purposeDetail: ""));
+        purpose: purposeController.text,
+        purposeDetail: purposeDetailController.text));
   }
 
   void updatePurpose(String value) {

@@ -9,13 +9,16 @@ import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_view_model.dart';
 import 'package:neo_bank/feature/payment/request_from_new_recipient/request_from_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/request_money/request_money_view_model.dart';
+import 'package:neo_bank/feature/payment/request_money_failure/request_money_failure_view_model.dart';
 import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_view_model.dart';
 import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_contact_view_model.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_view_model.dart';
 import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';
+import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_view_model.dart';
 import 'package:neo_bank/feature/payment/send_to_new_recipient/send_to_new_recipient_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/edit_transaction_purpose_dialog/edit_transaction_purpose_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/iban_dialog/iban_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dialog_view_model.dart';
 
@@ -58,6 +61,17 @@ final requestAmountFromContactSuccessViewModelProvider = ChangeNotifierProvider
     .autoDispose<RequestAmountFromContactSuccessViewModel>(
   (ref) => RequestAmountFromContactSuccessViewModel(
       ref.read(requestAmountFromContactSuccessUseCaseProvider)),
+);
+
+final requestMoneyFailureViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RequestMoneyFailureViewModel>(
+  (ref) => RequestMoneyFailureViewModel(
+      ref.read(requestMoneyFailureUseCaseProvider)),
+);
+
+final sendMoneyFailureViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SendMoneyFailureViewModel>(
+  (ref) => SendMoneyFailureViewModel(ref.read(sendMoneyFailureUseCaseProvider)),
 );
 
 final sendMoneyViewModelProvider =
@@ -106,6 +120,11 @@ final requestPaymentFromNewRecipientViewModelProvider =
 final editTransactionPurposeDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<EditTransactionPurposeDialogViewModel>(
         (ref) => EditTransactionPurposeDialogViewModel());
+
+///iban dialog view model provider
+final ibanDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<IbanDialogViewModel>(
+        (ref) => IbanDialogViewModel());
 
 ///transaction purpose Detail dialog view model provider
 final purposeDetailDialogViewModelProvider =
