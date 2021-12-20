@@ -4,7 +4,9 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/activity/activity_home/activity_home_view_model.dart';
 import 'package:neo_bank/feature/activity/notification/notification_page.dart';
 import 'package:neo_bank/feature/activity/payment_activity/payment_activity_page.dart';
+import 'package:neo_bank/feature/activity/payment_activity_transaction/payment_activity_transaction_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/pager/payment_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -27,14 +29,14 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
         dataBuilder: (context, currentStep) {
           return GestureDetector(
             onVerticalDragEnd: (details) {
-              // if (details.primaryVelocity!.isNegative) {
-              //   if (currentStep == 1) {
-              //     Navigator.push(
-              //         context,
-              //         CustomRoute.createRoute(
-              //             PaymentActivityTransactionPage()));
-              //   }
-              // }
+              if (details.primaryVelocity!.isNegative) {
+                if (currentStep == 1) {
+                  Navigator.push(
+                      context,
+                      CustomRoute.createRoute(
+                          PaymentActivityTransactionPage()));
+                }
+              }
             },
             behavior: HitTestBehavior.translucent,
             child: Padding(

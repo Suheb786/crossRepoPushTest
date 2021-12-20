@@ -76,10 +76,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
               createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _uploadProfilePhotoResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-        }
+        _uploadProfilePhotoResponse.safeAdd(event.data!);
       });
     });
   }
@@ -106,6 +103,10 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
 
   void updatePurposeDetail(String value) {
     purposeDetailController.text = value;
+  }
+
+  void removeImage() {
+    _selectedImageSubject.value = "";
   }
 
   void validateAddress() {}

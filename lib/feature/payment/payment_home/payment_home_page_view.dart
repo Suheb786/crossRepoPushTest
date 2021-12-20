@@ -27,6 +27,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
         stream: model.currentStep,
         initialData: 0,
         dataBuilder: (context, currentStep) {
+          print("current step : $currentStep");
           return GestureDetector(
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
@@ -51,7 +52,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                     child: Text(
                       S.of(context).payments,
                       style:
-                          TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                      TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                   ),
                   Expanded(
@@ -85,7 +86,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                               activeStrokeWidth: 2.6,
                               activeDotScale: 1.3,
                               activeDotColor:
-                                  Theme.of(context).primaryColorDark,
+                              Theme.of(context).primaryColorDark,
                               dotColor: Theme.of(context)
                                   .primaryColorDark
                                   .withOpacity(0.6),

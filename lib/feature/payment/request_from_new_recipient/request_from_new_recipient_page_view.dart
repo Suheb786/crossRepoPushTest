@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/payment/request_from_new_recipient/request_from_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/account_setting/choose_profile_widget.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -19,8 +24,7 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
-class RequestFromNewRecipientPageView
-    extends BasePageViewWidget<RequestFromNewRecipientViewModel> {
+class RequestFromNewRecipientPageView extends BasePageViewWidget<RequestFromNewRecipientViewModel> {
   RequestFromNewRecipientPageView(ProviderBase model) : super(model);
 
   @override
@@ -88,13 +92,13 @@ class RequestFromNewRecipientPageView
                                     top: 32, left: 24, right: 24),
                                 child: Column(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: SingleChildScrollView(
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               S.of(context).requestedMoneyVia,
@@ -104,12 +108,12 @@ class RequestFromNewRecipientPageView
                                             ),
                                             Padding(
                                               padding:
-                                                  EdgeInsets.only(top: 16.0),
+                                              EdgeInsets.only(top: 16.0),
                                               child: AppTextField(
                                                 labelText:
-                                                    S.of(context).ibanOrMobile,
+                                                S.of(context).ibanOrMobile,
                                                 hintText:
-                                                    S.of(context).pleaseEnter,
+                                                S.of(context).pleaseEnter,
                                                 controller: model
                                                     .ibanOrMobileController,
                                                 onPressed: () {},
@@ -117,18 +121,18 @@ class RequestFromNewRecipientPageView
                                             ),
                                             Padding(
                                                 padding:
-                                                    EdgeInsets.only(top: 16),
+                                                EdgeInsets.only(top: 16),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                                   children: [
                                                     Text(
                                                       "Name",
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         fontWeight:
-                                                            FontWeight.w400,
+                                                        FontWeight.w400,
                                                       ),
                                                     ),
                                                     Text(
@@ -136,25 +140,25 @@ class RequestFromNewRecipientPageView
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         fontWeight:
-                                                            FontWeight.w600,
+                                                        FontWeight.w600,
                                                       ),
                                                     )
                                                   ],
                                                 )),
                                             Padding(
                                                 padding:
-                                                    EdgeInsets.only(top: 16),
+                                                EdgeInsets.only(top: 16),
                                                 child: Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                                   children: [
                                                     Text(
                                                       "Bank",
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         fontWeight:
-                                                            FontWeight.w400,
+                                                        FontWeight.w400,
                                                       ),
                                                     ),
                                                     Text(
@@ -162,7 +166,7 @@ class RequestFromNewRecipientPageView
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         fontWeight:
-                                                            FontWeight.w600,
+                                                        FontWeight.w600,
                                                       ),
                                                     )
                                                   ],
@@ -174,27 +178,27 @@ class RequestFromNewRecipientPageView
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     fontWeight:
-                                                        FontWeight.w600),
+                                                    FontWeight.w600),
                                               ),
                                             ),
                                             Padding(
                                               padding: EdgeInsets.only(top: 16),
                                               child: AppTextField(
                                                 labelText:
-                                                    S.of(context).purpose,
+                                                S.of(context).purpose,
                                                 hintText:
-                                                    S.of(context).pleaseEnter,
+                                                S.of(context).pleaseEnter,
                                                 readOnly: true,
                                                 controller:
-                                                    model.purposeController,
+                                                model.purposeController,
                                                 onPressed: () {
                                                   PurposeDialog.show(context,
                                                       onSelected: (value) {
-                                                    model.updatePurpose(value);
-                                                    Navigator.pop(context);
-                                                  }, onDismissed: () {
-                                                    Navigator.pop(context);
-                                                  });
+                                                        model.updatePurpose(value);
+                                                        Navigator.pop(context);
+                                                      }, onDismissed: () {
+                                                        Navigator.pop(context);
+                                                      });
                                                 },
                                                 suffixIcon: (value, data) {
                                                   return Container(
@@ -216,7 +220,7 @@ class RequestFromNewRecipientPageView
                                                     .of(context)
                                                     .purposeDetails,
                                                 hintText:
-                                                    S.of(context).pleaseEnter,
+                                                S.of(context).pleaseEnter,
                                                 readOnly: true,
                                                 controller: model
                                                     .purposeDetailController,
@@ -224,10 +228,10 @@ class RequestFromNewRecipientPageView
                                                   PurposeDetailDialog.show(
                                                       context,
                                                       onSelected: (value) {
-                                                    model.updatePurposeDetail(
-                                                        value);
-                                                    Navigator.pop(context);
-                                                  }, onDismissed: () {
+                                                        model.updatePurposeDetail(
+                                                            value);
+                                                        Navigator.pop(context);
+                                                      }, onDismissed: () {
                                                     Navigator.pop(context);
                                                   });
                                                 },
@@ -254,7 +258,7 @@ class RequestFromNewRecipientPageView
                                                 activeText: S.of(context).yes,
                                                 inactiveText: S.of(context).no,
                                                 providerBase:
-                                                    anyOtherNationalityViewModelProvider,
+                                                anyOtherNationalityViewModelProvider,
                                                 onToggle: (isActive) {
                                                   model.isAnyOtherNationality =
                                                       isActive;
@@ -265,12 +269,99 @@ class RequestFromNewRecipientPageView
                                                           top: 16.0),
                                                       child: Container(
                                                         padding:
-                                                            EdgeInsets.only(
-                                                                top: 16),
+                                                        EdgeInsets.only(
+                                                            top: 16),
                                                         child: Row(
                                                           children: [
-                                                            Image.asset(AssetUtils
-                                                                .personCircle),
+                                                            AppStreamBuilder<
+                                                                String>(
+                                                              stream: model
+                                                                  .uploadProfilePhotoStream,
+                                                              initialData: '',
+                                                              onData: (data) {
+                                                                if (data !=
+                                                                        null &&
+                                                                    data.isNotEmpty) {
+                                                                  model.selectedProfile =
+                                                                      data;
+                                                                  model
+                                                                      .addImage(
+                                                                          data);
+                                                                  _cropImage(
+                                                                      data,
+                                                                      model,
+                                                                      context);
+                                                                  // model.showSuccessToast(
+                                                                  //     S.of(context).profilePhotoUpdated);
+                                                                }
+                                                              },
+                                                              dataBuilder:
+                                                                  (context,
+                                                                      data) {
+                                                                print(
+                                                                    "got data : ${data}");
+                                                                return AppStreamBuilder<
+                                                                    String>(
+                                                                  stream: model
+                                                                      .selectedImageValue,
+                                                                  initialData:
+                                                                      '',
+                                                                  dataBuilder:
+                                                                      (context,
+                                                                          image) {
+                                                                    return InkWell(
+                                                                      onTap:
+                                                                          () {
+                                                                        ChooseProfileWidget.show(context, onCameraTap:
+                                                                            () {
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                          model.uploadProfilePhoto(
+                                                                              DocumentTypeEnum.CAMERA);
+                                                                        }, onGalleryTap:
+                                                                            () {
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                          model.uploadProfilePhoto(
+                                                                              DocumentTypeEnum.PICK_IMAGE);
+                                                                        }, onRemoveTap:
+                                                                            () {
+                                                                          model
+                                                                              .removeImage();
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                        }, onCancelled:
+                                                                            () {
+                                                                          Navigator.pop(
+                                                                              context);
+                                                                        }, title: S.of(context).pleaseSelectYourAction);
+                                                                      },
+                                                                      child:
+                                                                          Container(
+                                                                        height:
+                                                                            50,
+                                                                        width:
+                                                                            50,
+                                                                        decoration:
+                                                                            BoxDecoration(shape: BoxShape.circle),
+                                                                        child:
+                                                                            ClipOval(
+                                                                          child: image!.isEmpty
+                                                                              ? AppSvg.asset(
+                                                                                  AssetUtils.personCircle,
+                                                                                  fit: BoxFit.fill,
+                                                                                )
+                                                                              : Image.file(
+                                                                                  File(image),
+                                                                                  fit: BoxFit.fill,
+                                                                                ),
+                                                                        ),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                );
+                                                              },
+                                                            ),
                                                             Padding(
                                                               padding: EdgeInsets
                                                                   .only(
@@ -282,9 +373,9 @@ class RequestFromNewRecipientPageView
                                                                         14,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w600,
+                                                                        .w600,
                                                                     color: Theme.of(
-                                                                            context)
+                                                                        context)
                                                                         .accentTextTheme
                                                                         .bodyText1!
                                                                         .color),
@@ -306,7 +397,7 @@ class RequestFromNewRecipientPageView
                                                 alignment: Alignment.center,
                                                 child: AppStreamBuilder<bool>(
                                                     stream:
-                                                        model.showButtonStream,
+                                                    model.showButtonStream,
                                                     initialData: true,
                                                     dataBuilder:
                                                         (context, isValid) {
@@ -327,7 +418,7 @@ class RequestFromNewRecipientPageView
                                     ),
                                     Padding(
                                       padding:
-                                          EdgeInsets.only(top: 20, bottom: 16),
+                                      EdgeInsets.only(top: 20, bottom: 16),
                                       child: Text(
                                         S.of(context).swipeDownToCancel,
                                         style: TextStyle(
@@ -348,5 +439,16 @@ class RequestFromNewRecipientPageView
         ],
       ),
     );
+  }
+
+  void _cropImage(String data, RequestFromNewRecipientViewModel model,
+      BuildContext context) async {
+    File? cropped = await ImageCropper.cropImage(
+        sourcePath: data,
+        aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
+    if (cropped != null) {
+      model.selectedProfile = cropped.path;
+      model.addImage(cropped.path);
+    }
   }
 }

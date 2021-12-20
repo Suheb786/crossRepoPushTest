@@ -103,6 +103,7 @@ class AssetUtils {
   static const String paymentCircle = svg + "payment_circle.svg";
   static const String activityCircle = svg + "activity_circle.svg";
   static const String book = svg + "book.svg";
+  static const String personCircle = svg + "person_circle.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -141,7 +142,6 @@ class AssetUtils {
   static const String birdPng = drawable + "bird_png.png";
   static const String dummyProfile = drawable + "dummy_profile.png";
   static const String image = drawable + "image.png";
-  static const String personCircle = drawable + "personCircle.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";

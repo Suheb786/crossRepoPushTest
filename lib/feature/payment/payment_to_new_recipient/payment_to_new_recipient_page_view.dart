@@ -45,7 +45,7 @@ class PaymentToNewRecipientPageView
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: DotsIndicator(
-                    dotsCount: pages.length,
+                    dotsCount: pages.length - 1,
                     position: currentStep!.toDouble(),
                     decorator: DotsDecorator(
                         shape: RoundedRectangleBorder(

@@ -283,48 +283,53 @@ class SendToNewRecipientPageView
                                                                           Navigator.pop(
                                                                               context);
                                                                           model.uploadProfilePhoto(
-                                                                              DocumentTypeEnum.CAMERA);
-                                                                        },
-                                                                        onGalleryTap:
+                                                                          DocumentTypeEnum
+                                                                              .CAMERA);
+                                                                    }, onGalleryTap:
                                                                             () {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                          model.uploadProfilePhoto(
-                                                                              DocumentTypeEnum.PICK_IMAGE);
-                                                                        },
-                                                                        onRemoveTap:
-                                                                            () {},
-                                                                        onCancelled:
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                      model.uploadProfilePhoto(
+                                                                          DocumentTypeEnum
+                                                                              .PICK_IMAGE);
+                                                                    }, onRemoveTap:
                                                                             () {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                        },
+                                                                      model
+                                                                          .removeImage();
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    }, onCancelled:
+                                                                            () {
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    },
                                                                         title: S
                                                                             .of(context)
                                                                             .pleaseSelectYourAction);
                                                                   },
                                                                   child:
                                                                       Container(
-                                                                    height: 50,
+                                                                        height: 50,
                                                                     width: 50,
                                                                     decoration:
                                                                         BoxDecoration(
                                                                             shape:
                                                                                 BoxShape.circle),
-                                                                    child: image!
-                                                                            .isEmpty
-                                                                        ? Image
-                                                                            .asset(
-                                                                            AssetUtils.personCircle,
-                                                                            fit:
-                                                                                BoxFit.cover,
-                                                                          )
-                                                                        : Image
-                                                                            .file(
-                                                                            File(image),
-                                                                            fit:
-                                                                                BoxFit.cover,
-                                                                          ),
+                                                                    child:
+                                                                        ClipOval(
+                                                                      child: image!
+                                                                              .isEmpty
+                                                                          ? AppSvg
+                                                                              .asset(
+                                                                              AssetUtils.personCircle,
+                                                                              fit: BoxFit.fill,
+                                                                            )
+                                                                          : Image
+                                                                              .file(
+                                                                              File(image),
+                                                                              fit: BoxFit.fill,
+                                                                            ),
+                                                                    ),
                                                                   ),
                                                                 );
                                                               },
@@ -417,7 +422,6 @@ class SendToNewRecipientPageView
     if (cropped != null) {
       model.selectedProfile = cropped.path;
       model.addImage(cropped.path);
-      model.showSuccessToast(S.of(context).profilePhotoUpdated);
     }
   }
 }
