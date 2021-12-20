@@ -28,8 +28,9 @@ import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_respons
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
 import 'package:data/entity/remote/base/base_request.dart';
-import 'package:data/entity/remote/card/card_issuance_request.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
+import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
+import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
@@ -41,6 +42,8 @@ import 'package:data/entity/remote/country/country_list/country_list_request_ent
 import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_response_entity.dart';
+import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
+import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
@@ -302,7 +305,7 @@ abstract class ApiService {
 
   @POST("/CardTracking/CardIssuance")
   Future<HttpResponse<CardIssuanceResponseEntity>> getCardIssuanceDetails(
-      @Body() CardIssuanceRequest request);
+      @Body() BaseRequest request);
 
   @POST("/CardTracking/SetCardPin")
   Future<HttpResponse<ResponseEntity>> setCardPin(
@@ -310,7 +313,11 @@ abstract class ApiService {
 
   @POST("/CardTracking/ConfirmDelivery")
   Future<HttpResponse<ResponseEntity>> confirmCardDelivery(
-      @Body() CardIssuanceRequest cardIssuanceRequest);
+      @Body() BaseRequest cardIssuanceRequest);
+
+  @POST("/CardTracking/ConfirmCreditCardDelivery")
+  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery(
+      @Body() ConfirmCreditCardDeliveryRequest cardIssuanceRequest);
 
   @POST("/auth/ChangeEmail")
   Future<HttpResponse<ResponseEntity>> changeEmail(
@@ -363,4 +370,16 @@ abstract class ApiService {
   @POST("/beneficiary/UploadBeneficiaryImage")
   Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage(
       @Body() UploadBeneficiaryImageRequest uploadBeneficiaryImageRequest);
+
+  @POST("/DashBoard/GetDashboardData")
+  Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
+      @Body() DashboardDataRequest dashboardDataRequest);
+
+  @POST("/MoneyThor/GetDebitCardTransactionsList")
+  Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/MoneyThor/GetCreditCardTransactionsList")
+  Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
+      @Body() ConfirmCreditCardDeliveryRequest baseRequest);
 }
