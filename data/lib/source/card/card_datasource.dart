@@ -17,4 +17,15 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<CardTransactionResponseEntity>>
       getCreditCardTransactions();
+
+  Future<HttpResponse<ResponseEntity>> requestCreditCard(
+      {required double cardLimit});
+
+  Future<HttpResponse<ResponseEntity>> getCreditYears();
+
+  Future<HttpResponse<ResponseEntity>> getDebitYears();
+
+  Future<HttpResponse<ResponseEntity>> getCreditCardStatement();
+
+  Future<HttpResponse<ResponseEntity>> getDebitCardStatement();
 }

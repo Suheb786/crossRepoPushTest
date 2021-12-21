@@ -31,6 +31,9 @@ import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
+import 'package:data/entity/remote/card/credit_card_statement_request.dart';
+import 'package:data/entity/remote/card/debit_card_statement_request.dart';
+import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
@@ -385,4 +388,25 @@ abstract class ApiService {
 
   @POST("/BankSmart/GetAtms")
   Future<HttpResponse<ResponseEntity>> getAtms(@Body() BaseRequest baseRequest);
+
+  @POST("/CardTracking/CreditCardReq")
+  Future<HttpResponse<ResponseEntity>> requestCreditCard(
+      @Body() RequestCardRequest requestCardRequest);
+
+  @POST("/CardTracking/GetCreditCardStatement")
+  Future<HttpResponse<ResponseEntity>> getCreditCardStatement(
+      @Body() CreditCardStatementRequest cardStatementRequest);
+
+  @POST("/CardTracking/GetDebitCardStatement")
+  Future<HttpResponse<ResponseEntity>> getDebitCardStatement(
+      @Body() DebitCardStatementRequest cardStatementRequest);
+
+  @POST("/CardTracking/GetCreditYears")
+  Future<HttpResponse<ResponseEntity>> getCreditYears(
+      @Body()
+          ConfirmCreditCardDeliveryRequest confirmCreditCardDeliveryRequest);
+
+  @POST("/CardTracking/GetCreditYears")
+  Future<HttpResponse<ResponseEntity>> getDebitYears(
+      @Body() BaseRequest baseRequest);
 }
