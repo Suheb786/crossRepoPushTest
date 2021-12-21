@@ -16,6 +16,32 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   SendAmountToContactViewModel(this._useCase);
 
+  List<String> myList = [];
+  String currentPinValue = '0';
+
+  void changeValue(String value) {
+    myList.add(value);
+    currentPinValue = myList.join("");
+    notifyListeners();
+  }
+
+  void updateValue() {
+    currentPinValue = currentPinValue.substring(0, currentPinValue.length - 1);
+    myList.clear();
+    if (currentPinValue.length < 1) {
+      currentPinValue = '0';
+    }
+    notifyListeners();
+  }
+
+  void clearValue() {
+    if (myList.isNotEmpty) {
+      myList.clear();
+      currentPinValue = "0";
+    }
+    notifyListeners();
+  }
+
   void updatePurposeDetail(String value) {
     _purposeDetailSubject.safeAdd(value);
   }

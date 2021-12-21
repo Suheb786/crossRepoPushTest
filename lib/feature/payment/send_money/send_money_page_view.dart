@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -6,6 +7,7 @@ import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/numeric_keyboard.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
@@ -17,8 +19,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
     return AppKeyBoardHide(
       child: GestureDetector(
         onVerticalDragEnd: (details) {
-          if (details.primaryVelocity!.isNegative) {
-          } else {
+          if (details.primaryVelocity!.isNegative) {} else {
             Navigator.pop(context);
           }
         },
@@ -81,10 +82,15 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "0",
+                        AutoSizeText(
+                          model.currentPinValue,
+                          textAlign: TextAlign.center,
+                          maxLines: 1,
                           style: TextStyle(
-                              fontWeight: FontWeight.w700, fontSize: 40),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 40,
+                              fontFamily: 'Montserrat',
+                              color: AppColor.black),
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 15, left: 4),
@@ -101,8 +107,13 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                   ),
                   Align(
                     alignment: Alignment.centerRight,
-                    child: AppSvg.asset(AssetUtils.backspaceBlue),
-                  )
+                    child: InkWell(
+                      onTap: () {
+                        model.clearValue();
+                      },
+                      child: AppSvg.asset(AssetUtils.backspaceBlue),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -141,114 +152,141 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                 ],
               ),
             ),
+            // Expanded(
+            //   child: Padding(
+            //     padding: EdgeInsets.only(top: 44.0),
+            //     child: SingleChildScrollView(
+            //       child: Column(
+            //         children: [
+            //           Padding(
+            //             padding: const EdgeInsets.symmetric(horizontal: 78),
+            //             child: Row(
+            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //               children: [
+            //                 Text(
+            //                   "1",
+            //                   style: TextStyle(
+            //                       fontWeight: FontWeight.w400, fontSize: 28),
+            //                 ),
+            //                 Text(
+            //                   "2",
+            //                   style: TextStyle(
+            //                       fontWeight: FontWeight.w400, fontSize: 28),
+            //                 ),
+            //                 Text(
+            //                   "3",
+            //                   style: TextStyle(
+            //                       fontWeight: FontWeight.w400, fontSize: 28),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //           Padding(
+            //             padding: EdgeInsets.only(top: 48, left: 78, right: 78),
+            //             child: Row(
+            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //               children: [
+            //                 Text(
+            //                   "4",
+            //                   style: TextStyle(
+            //                       fontWeight: FontWeight.w400, fontSize: 28),
+            //                 ),
+            //                 Text(
+            //                   "5",
+            //                   style: TextStyle(
+            //                       fontWeight: FontWeight.w400, fontSize: 28),
+            //                 ),
+            //                 Text(
+            //                   "6",
+            //                   style: TextStyle(
+            //                       fontWeight: FontWeight.w400, fontSize: 28),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //           Padding(
+            //             padding: EdgeInsets.only(top: 48, left: 78, right: 78),
+            //             child: Row(
+            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //               children: [
+            //                 Text(
+            //                   "7",
+            //                   style: TextStyle(
+            //                       fontWeight: FontWeight.w400, fontSize: 28),
+            //                 ),
+            //                 Text(
+            //                   "8",
+            //                   style: TextStyle(
+            //                       fontWeight: FontWeight.w400, fontSize: 28),
+            //                 ),
+            //                 Text(
+            //                   "9",
+            //                   style: TextStyle(
+            //                       fontWeight: FontWeight.w400, fontSize: 28),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //           Padding(
+            //             padding: EdgeInsets.only(
+            //                 top: 31, left: 78, right: 51, bottom: 40),
+            //             child: Row(
+            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //               children: [
+            //                 Text(
+            //                   ".",
+            //                   textAlign: TextAlign.center,
+            //                   style: TextStyle(
+            //                       fontWeight: FontWeight.w400, fontSize: 28),
+            //                 ),
+            //                 Text(
+            //                   "0",
+            //                   style: TextStyle(
+            //                       fontWeight: FontWeight.w400, fontSize: 28),
+            //                 ),
+            //                 InkWell(
+            //                     onTap: () {
+            //                       Navigator.push(
+            //                           context,
+            //                           MaterialPageRoute(
+            //                               builder: (context) =>
+            //                                   PaymentToNewRecipientPage()));
+            //                     },
+            //                     child: AppSvg.asset(AssetUtils.next))
+            //               ],
+            //             ),
+            //           )
+            //         ],
+            //       ),
+            //     ),
+            //   ),
+            // )
             Expanded(
-              child: Padding(
-                padding: EdgeInsets.only(top: 44.0),
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 78),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "1",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 28),
-                            ),
-                            Text(
-                              "2",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 28),
-                            ),
-                            Text(
-                              "3",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 28),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 48, left: 78, right: 78),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "4",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 28),
-                            ),
-                            Text(
-                              "5",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 28),
-                            ),
-                            Text(
-                              "6",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 28),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 48, left: 78, right: 78),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "7",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 28),
-                            ),
-                            Text(
-                              "8",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 28),
-                            ),
-                            Text(
-                              "9",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 28),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                            top: 31, left: 78, right: 51, bottom: 40),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              ".",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 28),
-                            ),
-                            Text(
-                              "0",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 28),
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              PaymentToNewRecipientPage()));
-                                },
-                                child: AppSvg.asset(AssetUtils.next))
-                          ],
-                        ),
-                      )
-                    ],
+              child: NumericKeyboard(
+                  onKeyboardTap: (value) {
+                    model.changeValue(value);
+                  },
+                  textColor: Colors.black,
+                  rightButtonFn: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => PaymentToNewRecipientPage()));
+                  },
+                  leftIcon: Icon(
+                    Icons.circle,
+                    color: AppColor.black,
+                    size: 5,
                   ),
-                ),
-              ),
+                  rightWidget: CircleAvatar(
+                    radius: 30,
+                    backgroundColor: Color(0xFF3CB4E5),
+                    child: Center(
+                      child: AppSvg.asset(AssetUtils.next),
+                    ),
+                  ),
+                  leftButtonFn: () {
+                    print('left button clicked');
+                  },
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly),
             )
           ],
         ),
