@@ -5,6 +5,7 @@ import 'package:data/repository/account_settings/account_settings_impl.dart';
 import 'package:data/repository/bank_smart/bank_smart_repository_impl.dart';
 import 'package:data/repository/card/card_repository_impl.dart';
 import 'package:data/repository/country/country_repository_impl.dart';
+import 'package:data/repository/dashboard/dashboard_repository_impl.dart';
 import 'package:data/repository/enter_address/home_address_dialog_repository_impl.dart';
 import 'package:data/repository/fatca_crs/fatca_crs_repository_impl.dart';
 import 'package:data/repository/id_card/id_card_repository_impl.dart';
@@ -20,6 +21,7 @@ import 'package:domain/repository/account_settings/account_settings_repository.d
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/repository/country/country_repository.dart';
+import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/repository/id_card/id_card_repository.dart';
@@ -100,3 +102,7 @@ var accountSettingRepositoryProvider = Provider<AccountSettingsRepository>(
 /// inject [ManageContactRepository] provider
 var manageContactRepositoryProvider = Provider<ManageContactRepository>((ref) =>
     ManageContactsRepositoryImpl(ref.read(contactsDataSourceProvider)));
+
+/// inject [ManageContactRepository] provider
+var dashboardRepositoryProvider = Provider<DashboardRepository>(
+    (ref) => DashboardRepositoryImpl(ref.read(dashboardDataSourceProvider)));

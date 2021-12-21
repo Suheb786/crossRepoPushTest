@@ -1,10 +1,12 @@
+import 'package:domain/model/dashboard/get_atms/atm_content_data.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part "atms_entity.g.dart";
 
 @JsonSerializable()
-class AtmsEntity implements BaseLayerDataTransformer<AtmsEntity, String> {
+class AtmsEntity
+    implements BaseLayerDataTransformer<AtmsEntity, AtmContentData> {
   @JsonKey(name: "bankName")
   final String? bankName;
   @JsonKey(name: "bankAddress")
@@ -32,12 +34,18 @@ class AtmsEntity implements BaseLayerDataTransformer<AtmsEntity, String> {
   Map<String, dynamic> toJson() => _$AtmsEntityToJson(this);
 
   @override
-  AtmsEntity restore(String response) {
+  AtmsEntity restore(AtmContentData response) {
     return AtmsEntity();
   }
 
   @override
-  String transform() {
-    return "";
+  AtmContentData transform() {
+    return AtmContentData(
+        bankName: this.bankName,
+        city: this.city,
+        longitude: this.longitude,
+        latitude: this.latitude,
+        country: this.country,
+        bankAddress: this.bankAddress);
   }
 }

@@ -1,13 +1,13 @@
+import 'package:domain/model/dashboard/get_atms/atm_content_data.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class LocateATMListWidget extends StatelessWidget {
-  final ATMLocationModel? atmLocationModel;
+  final AtmContentData? atmContentData;
   final Function()? onTap;
 
-  const LocateATMListWidget({Key? key, this.atmLocationModel, this.onTap})
+  const LocateATMListWidget({Key? key, this.atmContentData, this.onTap})
       : super(key: key);
 
   @override
@@ -19,23 +19,25 @@ class LocateATMListWidget extends StatelessWidget {
             horizontal: 20,
           ),
           child: Row(
-crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      atmLocationModel!.name!,
+                      atmContentData!.bankName!,
                       maxLines: 3,
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
                       height: 16,
                     ),
                     Text(
-                      atmLocationModel!.address!,
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                      atmContentData!.bankAddress!,
+                      style:
+                          TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
                       height: 18,
@@ -60,7 +62,7 @@ crossAxisAlignment: CrossAxisAlignment.start,
                 width: 39,
               ),
               Text(
-                atmLocationModel!.distance!,
+                '0.8 km',
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
               ),
             ],

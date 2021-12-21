@@ -42,6 +42,7 @@ import 'package:data/entity/remote/country/country_list/country_list_request_ent
 import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_response_entity.dart';
+import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
@@ -384,5 +385,6 @@ abstract class ApiService {
       @Body() ConfirmCreditCardDeliveryRequest baseRequest);
 
   @POST("/BankSmart/GetAtms")
-  Future<HttpResponse<ResponseEntity>> getAtms(@Body() BaseRequest baseRequest);
+  Future<HttpResponse<AtmsResponseEntity>> getAtms(
+      @Body() BaseRequest baseRequest);
 }

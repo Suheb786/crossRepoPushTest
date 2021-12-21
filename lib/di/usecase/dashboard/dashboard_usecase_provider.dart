@@ -1,3 +1,4 @@
+import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/dashboard/account_transaction_usecase.dart';
 import 'package:domain/usecase/dashboard/card_transaction_usecase.dart';
 import 'package:domain/usecase/dashboard/credit_card_delivered_usecase.dart';
@@ -5,6 +6,7 @@ import 'package:domain/usecase/dashboard/credit_card_verification_success_usecas
 import 'package:domain/usecase/dashboard/debit_card_delivered_usecase.dart';
 import 'package:domain/usecase/dashboard/debit_card_timeline_usecase.dart';
 import 'package:domain/usecase/dashboard/debit_card_verification_success_usecase.dart';
+import 'package:domain/usecase/dashboard/get_atms_usecase.dart';
 import 'package:domain/usecase/dashboard/get_card_usecase.dart';
 import 'package:domain/usecase/dashboard/my_account_usecase.dart';
 import 'package:domain/usecase/dashboard/my_debit_card_usecase.dart';
@@ -71,4 +73,9 @@ final accountTransactionUseCaseProvider =
 final debitCardTimeLineUseCaseProvider =
     Provider.autoDispose<DebitCardTimeLineUseCase>(
   (ref) => DebitCardTimeLineUseCase(),
+);
+
+///[GetAtmsUseCase] provider
+final getAtmUseCaseProvider = Provider.autoDispose<GetAtmsUseCase>(
+  (ref) => GetAtmsUseCase(ref.read(dashboardRepositoryProvider)),
 );

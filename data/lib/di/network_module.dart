@@ -13,6 +13,8 @@ import 'package:data/source/contact/contact_data_source.dart';
 import 'package:data/source/contact/remote/contact_remote_ds_impl.dart';
 import 'package:data/source/country/country_datasource.dart';
 import 'package:data/source/country/remote/country_remote_ds_impl.dart';
+import 'package:data/source/dashboard/dashboard_datasource.dart';
+import 'package:data/source/dashboard/remote/dashboard_remote_ds_impl.dart';
 import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
 import 'package:data/source/fatca_crs/remote/fatca_crs_remote_ds_impl.dart';
 import 'package:data/source/id_card/id_card_datasource.dart';
@@ -137,4 +139,9 @@ var accountSettingDataSourceProvider = Provider<AccountSettingsRemoteDs>(
 ///Manage Contacts remote DS
 var contactsDataSourceProvider = Provider<ContactRemoteDS>((ref) =>
     ContactRemoteDsImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///Dashboard remote DS
+var dashboardDataSourceProvider = Provider<DashboardRemoteDs>((ref) =>
+    DashboardRemoteDsImpl(
         ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));

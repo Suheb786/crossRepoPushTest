@@ -114,7 +114,7 @@ final addMoneyOptionSelectorViewModelProvider =
 ///locate pin page view model
 final locatePinViewModelProvider =
     ChangeNotifierProvider.autoDispose<LocateATMPageViewModel>(
-  (ref) => LocateATMPageViewModel(),
+  (ref) => LocateATMPageViewModel(ref.read(getAtmUseCaseProvider)),
 );
 
 ///settings dialog view model
