@@ -34,6 +34,7 @@ import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
 import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
@@ -347,7 +348,7 @@ abstract class ApiService {
       @Body() VerifyChangeEmailRequest verifyChangeEmailRequest);
 
   @POST("/beneficiary/GetBeneficiaries")
-  Future<HttpResponse<ResponseEntity>> getBeneficiaries(
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(
       @Body() BaseRequest baseRequest);
 
   @POST("/beneficiary/AddBeneficiary")

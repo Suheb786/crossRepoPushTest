@@ -4,6 +4,7 @@ import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
 import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
@@ -50,7 +51,7 @@ class ContactRemoteDsImpl extends ContactRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getBeneficiaries() async {
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService
         .getBeneficiaries(BaseRequest(baseData: baseData.toJson()));

@@ -282,6 +282,14 @@ class ErrorParser {
         return localisedHelper.emptyNewPassword;
       case ErrorType.INVALID_ID_CARD:
         return localisedHelper.invalidIDCard;
+      case ErrorType.WENT_WRONG_WHILE_LOGIN:
+        return localisedHelper.wentWrongWhileLogin;
+      case ErrorType.ERROR_GET_ACCOUNT_DETAILS:
+        return localisedHelper.errorGetAccountDetails;
+      case ErrorType.ACCOUNT_NOT_FOUND:
+        return localisedHelper.accountNotFound;
+      case ErrorType.INVALID_OTP_ENTERED:
+        return localisedHelper.invalidOtpEntered;
 
       default:
         return "";

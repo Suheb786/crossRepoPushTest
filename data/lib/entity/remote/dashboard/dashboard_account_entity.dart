@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/account.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -5,7 +6,7 @@ part "dashboard_account_entity.g.dart";
 
 @JsonSerializable()
 class DashboardAccountEntity
-    implements BaseLayerDataTransformer<DashboardAccountEntity, String> {
+    implements BaseLayerDataTransformer<DashboardAccountEntity, Account> {
   @JsonKey(name: "accountTitle")
   final String? accountTitle;
   @JsonKey(name: "availableBalance")
@@ -30,12 +31,17 @@ class DashboardAccountEntity
   Map<String, dynamic> toJson() => _$DashboardAccountEntityToJson(this);
 
   @override
-  DashboardAccountEntity restore(String response) {
+  DashboardAccountEntity restore(Account response) {
     return DashboardAccountEntity();
   }
 
   @override
-  String transform() {
-    return "";
+  Account transform() {
+    return Account(
+        accountNo: this.accountNo,
+        iban: this.iban,
+        accountTitle: this.accountTitle,
+        availableBalance: this.availableBalance,
+        cardNo: this.cardNo);
   }
 }

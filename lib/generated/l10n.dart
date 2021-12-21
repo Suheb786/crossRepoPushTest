@@ -5770,6 +5770,46 @@ class S {
       args: [],
     );
   }
+
+  /// `An error has occurred while login, please try again`
+  String get wentWrongWhileLogin {
+    return Intl.message(
+      'An error has occurred while login, please try again',
+      name: 'wentWrongWhileLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Get Account Details`
+  String get errorGetAccountDetails {
+    return Intl.message(
+      'Error While Get Account Details',
+      name: 'errorGetAccountDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account Not Found`
+  String get accountNotFound {
+    return Intl.message(
+      'Account Not Found',
+      name: 'accountNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have entered an invalid OTP code, please enter a valid one`
+  String get invalidOtpEntered {
+    return Intl.message(
+      'You have entered an invalid OTP code, please enter a valid one',
+      name: 'invalidOtpEntered',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

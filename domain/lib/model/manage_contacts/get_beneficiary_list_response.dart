@@ -1,7 +1,7 @@
-import 'package:domain/model/manage_contacts/beneficiary_list.dart';
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 
 class GetBeneficiaryListResponse {
-  final BeneficiaryList? beneficiaryList;
+  final List<Beneficiary>? beneficiaryList;
 
   GetBeneficiaryListResponse({this.beneficiaryList});
 }

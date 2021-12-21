@@ -1,18 +1,18 @@
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/manage_contacts/manage_contacts_modules.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
-import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
 class ManageContactDetailsPage
     extends BasePage<ManageContactDetailsPageViewModel> {
-  final ContactsListModel _contactsListModel;
+  final Beneficiary _beneficiary;
 
-  ManageContactDetailsPage(this._contactsListModel);
+  ManageContactDetailsPage(this._beneficiary);
 
   @override
   ManageContactDetailsPageState createState() =>
@@ -23,8 +23,7 @@ class ManageContactDetailsPageState extends BaseStatefulPage<
     ManageContactDetailsPageViewModel, ManageContactDetailsPage> {
   @override
   ProviderBase provideBase() {
-    return manageContactDetailsViewModelProvider
-        .call(widget._contactsListModel);
+    return manageContactDetailsViewModelProvider.call(widget._beneficiary);
   }
 
   @override

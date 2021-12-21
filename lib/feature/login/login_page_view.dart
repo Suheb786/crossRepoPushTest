@@ -82,7 +82,6 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                         .getToken();
                                     //model.checkKycStatus();
                                     model.emailKey.currentState!.isValid = true;
-                                    ///TODO: change routing to onboarding
                                     Future.delayed(Duration(milliseconds: 500),
                                         () {
                                       Navigator.pushReplacementNamed(

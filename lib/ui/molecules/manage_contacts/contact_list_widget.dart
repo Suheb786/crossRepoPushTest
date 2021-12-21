@@ -1,15 +1,15 @@
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ContactListWidget extends StatelessWidget {
-  final ContactsListModel? contactsListModel;
+  final Beneficiary? beneficiary;
   final Function()? onTap;
 
-  const ContactListWidget({Key? key, this.contactsListModel, this.onTap})
+  const ContactListWidget({Key? key, this.beneficiary, this.onTap})
       : super(key: key);
 
   @override
@@ -22,15 +22,19 @@ class ContactListWidget extends StatelessWidget {
           ),
           child: Row(
             children: [
-              contactsListModel!.imageUrl!.isNotEmpty
+              beneficiary!.imageUrl.toString().isNotEmpty
                   ? CircleAvatar(
                       radius: 25,
-                      backgroundImage: AssetImage(contactsListModel!.imageUrl!))
+                      backgroundImage: Image.memory(
+                        beneficiary!.imageUrl,
+                        fit: BoxFit.cover,
+                      ).image,
+                    )
                   : CircleAvatar(
                       radius: 25,
                       backgroundColor: Theme.of(context).primaryColor,
                       child: Text(
-                        StringUtils.getFirstInitials(contactsListModel!.name),
+                        StringUtils.getFirstInitials(beneficiary!.nickName),
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 14,
@@ -42,7 +46,7 @@ class ContactListWidget extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  contactsListModel!.name!,
+                  beneficiary!.nickName!,
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
               ),
