@@ -122,7 +122,7 @@ class LocateATMPageView extends BasePageViewWidget<LocateATMPageViewModel> {
                           model.setPinPointMarker();
                         },
                         onTap: (latLng) {},
-                        markers: markerResponse!);
+                        markers: markerResponse);
                   },
                 ),
                 Positioned(

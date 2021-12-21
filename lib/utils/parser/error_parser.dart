@@ -290,6 +290,8 @@ class ErrorParser {
         return localisedHelper.accountNotFound;
       case ErrorType.INVALID_OTP_ENTERED:
         return localisedHelper.invalidOtpEntered;
+      case ErrorType.LOCATION_SERVICE_NOT_ENABLED:
+        return localisedHelper.locationServiceDisabled;
 
       default:
         return "";

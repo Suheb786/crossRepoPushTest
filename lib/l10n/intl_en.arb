@@ -596,6 +596,7 @@
   "wentWrongWhileLogin": "An error has occurred while login, please try again",
   "errorGetAccountDetails": "Error While Get Account Details",
   "accountNotFound": "Account Not Found",
-  "invalidOtpEntered": "You have entered an invalid OTP code, please enter a valid one"
+  "invalidOtpEntered": "You have entered an invalid OTP code, please enter a valid one",
+  "locationServiceDisabled": "Location services are disabled. Please allow access to NeoBank"
 
 }

@@ -1,7 +1,11 @@
 import 'dart:typed_data';
 
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/dashboard/get_atms/get_atms_response.dart';
 import 'package:domain/usecase/dashboard/get_atms_usecase.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -67,6 +71,14 @@ class LocateATMPageViewModel extends BasePageViewModel {
   /// listen to panel open response stream holder
   Stream<bool> get panelOpenStream => _panelOpenSubject.stream;
 
+  ///set current location request handler
+  final PublishSubject<Position> _currentLocationRequest =
+      PublishSubject();
+
+  ///set current location response stream
+  Stream<Position> get currentLocationResponseStream =>
+      _currentLocationRequest.stream;
+
   LocateATMPageViewModel(this._getAtmsUseCase) {
     _getAtmsRequest.listen((value) {
       RequestManager(value,
@@ -84,6 +96,7 @@ class LocateATMPageViewModel extends BasePageViewModel {
       });
     });
     //generateMarkers();
+    determineCurrentPosition();
     setPinPointMarker();
     getAtms();
   }
@@ -97,6 +110,35 @@ class LocateATMPageViewModel extends BasePageViewModel {
         await MapMarkerUtils.getCustomMarker(AssetUtils.blinkMarkerPng, 80);
     pinPointMarker = markerIcon;
     //notifyListeners();
+  }
+
+  /// get current location
+  determineCurrentPosition() async {
+    LocationPermission permission;
+    permission = await Geolocator.checkPermission();
+    print(permission);
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied ||
+          permission == LocationPermission.deniedForever) {
+        showToastWithError(AppError(
+            type: ErrorType.LOCATION_SERVICE_NOT_ENABLED,
+            error: ErrorInfo(
+              message: '',
+            ),
+            cause: Exception()));
+      }
+    } else {
+      await setCurrentUserLocation();
+    }
+  }
+
+  Future setCurrentUserLocation() async {
+    var userCurrentPosition = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best);
+    print('location---->${userCurrentPosition.longitude}');
+    _currentLocationRequest.add(userCurrentPosition);
   }
 
   void getAtms() {

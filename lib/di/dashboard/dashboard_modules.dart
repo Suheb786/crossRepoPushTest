@@ -48,7 +48,7 @@ final placeholderViewModelProvider =
 
 final appHomeViewModelProvider =
     ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
-  (ref) => AppHomeViewModel(),
+  (ref) => AppHomeViewModel(ref.read(getDashboardDataUseCaseProvider)),
 );
 
 final myAccountViewModelProvider =

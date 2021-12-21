@@ -5810,6 +5810,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Location services are disabled. Please allow access to NeoBank`
+  String get locationServiceDisabled {
+    return Intl.message(
+      'Location services are disabled. Please allow access to NeoBank',
+      name: 'locationServiceDisabled',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
