@@ -390,7 +390,6 @@ abstract class ApiService {
   @POST("/BankSmart/GetAtms")
   Future<HttpResponse<AtmsResponseEntity>> getAtms(
       @Body() BaseRequest baseRequest);
-  Future<HttpResponse<ResponseEntity>> getAtms(@Body() BaseRequest baseRequest);
 
   @POST("/CardTracking/CreditCardReq")
   Future<HttpResponse<ResponseEntity>> requestCreditCard(
