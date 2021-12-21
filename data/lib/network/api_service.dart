@@ -381,4 +381,7 @@ abstract class ApiService {
   @POST("/MoneyThor/GetCreditCardTransactionsList")
   Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
       @Body() ConfirmCreditCardDeliveryRequest baseRequest);
+
+  @POST("/BankSmart/GetAtms")
+  Future<HttpResponse<ResponseEntity>> getAtms(@Body() BaseRequest baseRequest);
 }
