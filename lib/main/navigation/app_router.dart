@@ -9,8 +9,14 @@ import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page
 import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
+import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
+import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
+import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
+import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_card_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
@@ -32,6 +38,7 @@ import 'package:neo_bank/feature/static_content/fatca_certification/fatca_certif
 import 'package:neo_bank/feature/static_content/reference_number/reference_number_page.dart';
 import 'package:neo_bank/feature/static_content/us_tax_payer_identification_number/us_tax_payer_identification_number_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 
 class AppRouter {
@@ -199,6 +206,34 @@ class AppRouter {
             builder: (context) =>
                 DownloadTransactionPage(arguments[0], arguments[1]),
             settings: RouteSettings(name: RoutePaths.DownloadTransaction));
+
+      case RoutePaths.CardTransaction:
+        return CustomRoute.createRoute(CardTransactionPage());
+
+      case RoutePaths.AccountTransaction:
+        return CustomRoute.createRoute(AccountTransactionPage());
+
+      case RoutePaths.CreditCardDelivered:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardDeliveredPage(),
+            settings: RouteSettings(name: RoutePaths.CreditCardDelivered));
+
+      case RoutePaths.DebitCardDelivered:
+        return CupertinoPageRoute(
+            builder: (context) => DebitCardDeliveredPage(),
+            settings: RouteSettings(name: RoutePaths.DebitCardDelivered));
+
+      case RoutePaths.CreditCardVerificationSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardVerificationSuccessPage(),
+            settings:
+                RouteSettings(name: RoutePaths.CreditCardVerificationSuccess));
+
+      case RoutePaths.DebitCardVerificationSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => DebitCardVerificationSuccessPage(),
+            settings:
+                RouteSettings(name: RoutePaths.DebitCardVerificationSuccess));
 
       default:
         return CupertinoPageRoute(

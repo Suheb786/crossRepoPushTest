@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -43,11 +43,8 @@ class CreditCardDeliveredPageView
                     padding: EdgeInsets.only(top: 106.0, left: 24),
                     child: GestureDetector(
                       onHorizontalDragEnd: (details) {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    CreditCardVerificationSuccessPage()));
+                        Navigator.pushNamed(
+                            context, RoutePaths.CreditCardVerificationSuccess);
                       },
                       child: Card(
                         shape: RoundedRectangleBorder(

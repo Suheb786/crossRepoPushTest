@@ -2,17 +2,13 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
-import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
-import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_page.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_page.dart';
 import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/cutom_route.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/dashboard_swiper.dart';
@@ -84,12 +80,11 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                         model.updateShowTimeLineStream(!showTimeLine);
                         return;
                       } else {
-                        Navigator.push(context,
-                            CustomRoute.createRoute(CardTransactionPage()));
+                        Navigator.pushNamed(
+                            context, RoutePaths.CardTransaction);
                       }
                     } else if (currentStep == 0) {
-                      Navigator.push(context,
-                          CustomRoute.createRoute(AccountTransactionPage()));
+                      Navigator.pushNamed(context, RoutePaths.CardTransaction);
                     } else if (currentStep == 2) {
                       model.updateShowTimeLineStream(!showTimeLine!);
                     }
@@ -301,19 +296,15 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     child: InkWell(
                                                       onTap: () {
                                                         if (currentStep == 1) {
-                                                          Navigator.push(
+                                                          Navigator.pushNamed(
                                                               context,
-                                                              MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          CreditCardDeliveredPage()));
+                                                              RoutePaths
+                                                                  .CreditCardDelivered);
                                                         } else {
-                                                          Navigator.push(
+                                                          Navigator.pushNamed(
                                                               context,
-                                                              MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          DebitCardDeliveredPage()));
+                                                              RoutePaths
+                                                                  .DebitCardDelivered);
                                                         }
                                                       },
                                                       child: Container(
