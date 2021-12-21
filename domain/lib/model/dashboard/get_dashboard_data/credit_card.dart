@@ -9,7 +9,7 @@ class CreditCard {
   });
 
   String? name;
-  double? availableBalance;
+  num? availableBalance;
   String? accountNo;
   String? iban;
   String? cardNo;
