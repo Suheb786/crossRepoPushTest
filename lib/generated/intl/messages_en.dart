@@ -854,6 +854,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "shareAccountInfo":
             MessageLookupByLibrary.simpleMessage("Share account info"),
+        "sharePdf": MessageLookupByLibrary.simpleMessage("Share PDF"),
         "signatureUploadDes": MessageLookupByLibrary.simpleMessage(
             "Simply sign on a plain white paper and upload it as a declaration of your FATCA information"),
         "socialSecurityCard":

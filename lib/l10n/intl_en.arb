@@ -592,6 +592,6 @@
   "noContactsYetDesc": "You don’t have any contacts yet.\nAdd your blink contacts while\nsending money",
   "profileSettings": "Profile\nSettings",
   "logout": "Log out",
-  "manageContactsSettings": "Manage\nContacts"
-
+  "manageContactsSettings": "Manage\nContacts",
+  "sharePdf": "Share PDF"
 }

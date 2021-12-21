@@ -19,7 +19,7 @@ class AccountTransactionViewModel extends BasePageViewModel {
     TransactionItem(
         createdAt: "13 September 2021",
         to: "Host International Inc Dubai\nAED 533.03",
-        amount: "102.92",
+        amount: "91.92",
         type: "debit",
         time: "8:32 pm"),
     TransactionItem(
@@ -38,6 +38,8 @@ class AccountTransactionViewModel extends BasePageViewModel {
 
   List<String> _searchTextList = [];
 
+  List<TransactionItem> tempList = [];
+
   void updateSearchList(int index) {
     for (int i = 0; i < searchTransactionList.length; i++) {
       if ((searchTransactionList[i].to!.contains(_searchTextList[index]) ||
@@ -55,14 +57,23 @@ class AccountTransactionViewModel extends BasePageViewModel {
       }
     }
     _searchTextList.removeAt(index);
+    print("_searchlist: ${_searchTextList}");
     _searchTextSubject.safeAdd(_searchTextList);
-    if (searchTransactionList.length > 0) {
-      _transactionListSubject.safeAdd(searchTransactionList);
-    } else {
+    if (_searchTextList.isEmpty) {
       searchController.clear();
       _transactionListSubject.safeAdd(transactionList);
+    } else if (searchTransactionList.length > 0) {
+      print("list: $searchTransactionList");
+      _transactionListSubject.safeAdd(searchTransactionList);
+    } else {
+      if (tempList.isEmpty) {
+        searchController.clear();
+        _transactionListSubject.safeAdd(transactionList);
+      } else {
+        searchTransactionList.addAll(tempList);
+        _transactionListSubject.safeAdd(searchTransactionList);
+      }
     }
-    print("length ${searchTransactionList.length}");
   }
 
   BehaviorSubject<List<TransactionItem>> _transactionListSubject =
@@ -82,31 +93,65 @@ class AccountTransactionViewModel extends BasePageViewModel {
   }
 
   onSearchTextChanged(String text) async {
-    if (text.isNotEmpty) {
-      List<TransactionItem> searchList = [];
-      transactionList.forEach((element) {
-        if ((element.to!.contains(text) ||
-                element.to!.toLowerCase().contains(text.toLowerCase())) ||
-            (element.amount!.contains(text) ||
-                element.amount!.toLowerCase().contains(text.toLowerCase())))
-          searchList.add(element);
-      });
-      searchTransactionList.clear();
-      searchTransactionList.addAll(searchList);
-      _searchTextList.clear();
-      if (searchTransactionList.length > 0) {
-        _searchTextList.add(text);
+    int flag = 0;
+    if (_searchTextList.length > 0) {
+      for (int i = 0; i < _searchTextList.length; i++) {
+        if (_searchTextList[i] == text) {
+          flag = 1;
+          break;
+        }
       }
-      _transactionListSubject.safeAdd(searchTransactionList);
-      _searchTextSubject.safeAdd(_searchTextList);
-      return;
-    } else {
-      searchTransactionList.clear();
-      searchTransactionList.addAll(transactionList);
-      _transactionListSubject.safeAdd(searchTransactionList);
-      _searchTextList.clear();
-      _searchTextSubject.safeAdd(_searchTextList);
-      print(searchTransactionList.first.to);
+    }
+    if (flag == 0) {
+      if (text.isNotEmpty) {
+        if (_searchTextList.length == 0) {
+          searchTransactionList.clear();
+        }
+        List<TransactionItem> searchList = [];
+        searchTransactionList.isEmpty
+            ? transactionList.forEach((element) {
+                if ((element.to!.contains(text) ||
+                        element.to!
+                            .toLowerCase()
+                            .contains(text.toLowerCase())) ||
+                    (element.amount!.contains(text) ||
+                        element.amount!
+                            .toLowerCase()
+                            .contains(text.toLowerCase())))
+                  searchList.add(element);
+              })
+            : searchTransactionList.forEach((element) {
+                print("for loop");
+                if ((element.to!.contains(text) ||
+                        element.to!
+                            .toLowerCase()
+                            .contains(text.toLowerCase())) ||
+                    (element.amount!.contains(text) ||
+                        element.amount!
+                            .toLowerCase()
+                            .contains(text.toLowerCase())))
+                  searchList.add(element);
+              });
+        if (searchTransactionList.isNotEmpty)
+          tempList.addAll(searchTransactionList);
+        else
+          tempList.clear();
+        searchTransactionList.clear();
+        searchTransactionList.addAll(searchList);
+        print("searchTransactionList: $searchTransactionList");
+        if (searchTransactionList.length > 0) {
+          _searchTextList.add(text);
+        }
+        _transactionListSubject.safeAdd(searchTransactionList);
+        _searchTextSubject.safeAdd(_searchTextList);
+        return;
+      } else {
+        searchTransactionList.clear();
+        searchTransactionList.addAll(transactionList);
+        _transactionListSubject.safeAdd(searchTransactionList);
+        _searchTextSubject.safeAdd(_searchTextList);
+        print(searchTransactionList.first.to);
+      }
     }
   }
 

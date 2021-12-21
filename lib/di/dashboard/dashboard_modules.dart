@@ -11,6 +11,7 @@ import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/download_card_transaction/download_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/home/home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page_view_model.dart';
@@ -18,6 +19,8 @@ import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/biometric_login/biometric_login_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dialog/download_transaction_page_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 
 final dashboardViewModelProvider =
@@ -50,6 +53,10 @@ final appHomeViewModelProvider =
     ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
   (ref) => AppHomeViewModel(),
 );
+
+final filterTransactionDialogViewModelProvier =
+    ChangeNotifierProvider.autoDispose<FilterTransactionDialogViewModel>(
+        (ref) => FilterTransactionDialogViewModel());
 
 final myAccountViewModelProvider =
     ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
@@ -121,4 +128,18 @@ final locatePinViewModelProvider =
 final settingsDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<SettingsDialogViewModel>(
   (ref) => SettingsDialogViewModel(),
+);
+
+final downloadTransactionDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<DownloadTransactionDialogViewModel>(
+        (ref) => DownloadTransactionDialogViewModel());
+
+final downloadTransactionViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<DownloadTransactionViewModel, List<String>>(
+  (
+    ref,
+    args,
+  ) =>
+      DownloadTransactionViewModel(
+          ref.read(downloadCardTransactionUseCaseProvider), args),
 );

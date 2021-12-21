@@ -41,6 +41,8 @@ PODS:
     - DKImagePickerController/PhotoGallery
     - Flutter
   - Flutter (1.0.0)
+  - flutter_3des (0.0.1):
+    - Flutter
   - flutter_sim_country_code (0.0.1):
     - Flutter
   - fluttertoast (0.0.2):
@@ -74,12 +76,16 @@ PODS:
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
+  - share_plus (0.0.1):
+    - Flutter
   - sqflite (0.0.2):
     - Flutter
     - FMDB (>= 2.7.5)
   - SwiftyGif (5.4.0)
   - Toast (4.0.0)
   - TOCropViewController (2.6.0)
+  - url_launcher (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - blinkid_flutter (from `.symlinks/plugins/blinkid_flutter/ios`)
@@ -87,6 +93,7 @@ DEPENDENCIES:
   - device_info (from `.symlinks/plugins/device_info/ios`)
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
+  - flutter_3des (from `.symlinks/plugins/flutter_3des/ios`)
   - flutter_sim_country_code (from `.symlinks/plugins/flutter_sim_country_code/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - geocoding (from `.symlinks/plugins/geocoding/ios`)
@@ -96,7 +103,9 @@ DEPENDENCIES:
   - local_auth (from `.symlinks/plugins/local_auth/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
   - r_get_ip (from `.symlinks/plugins/r_get_ip/ios`)
+  - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
+  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
 
 SPEC REPOS:
   trunk:
@@ -121,6 +130,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/file_picker/ios"
   Flutter:
     :path: Flutter
+  flutter_3des:
+    :path: ".symlinks/plugins/flutter_3des/ios"
   flutter_sim_country_code:
     :path: ".symlinks/plugins/flutter_sim_country_code/ios"
   fluttertoast:
@@ -139,8 +150,12 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/package_info/ios"
   r_get_ip:
     :path: ".symlinks/plugins/r_get_ip/ios"
+  share_plus:
+    :path: ".symlinks/plugins/share_plus/ios"
   sqflite:
     :path: ".symlinks/plugins/sqflite/ios"
+  url_launcher:
+    :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
   blinkid_flutter: b62068dbc3f20f822468f3ad69b49fd6641bd7a2
@@ -150,6 +165,7 @@ SPEC CHECKSUMS:
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
   file_picker: 3e6c3790de664ccf9b882732d9db5eaf6b8d4eb1
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  flutter_3des: b3e82de7e7b4a0b0328b00101418ae0b1c74df63
   flutter_sim_country_code: 364e91e71f067cdec1dd1228eb4d1f13ab1a54e5
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
@@ -163,10 +179,12 @@ SPEC CHECKSUMS:
   PPBlinkID: c432c90e04d59698e9675d945e401720471a3ebb
   r_get_ip: 5b7a232114eacec8935eef83b7400d8d63baba48
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
+  url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
 PODFILE CHECKSUM: a75497545d4391e2d394c3668e20cfb1c2bbd4aa
 

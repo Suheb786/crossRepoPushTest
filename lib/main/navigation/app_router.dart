@@ -10,8 +10,9 @@ import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
-import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
+import 'package:neo_bank/feature/dashboard_home/download_card_transaction/download_transaction_page.dart';
+import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
@@ -191,6 +192,13 @@ class AppRouter {
             builder: (context) => ManageContactDetailsPage(
                 settings.arguments as ContactsListModel),
             settings: RouteSettings(name: RoutePaths.ManageContactsDetail));
+
+      case RoutePaths.DownloadTransaction:
+        List<String> arguments = settings.arguments as List<String>;
+        return CupertinoPageRoute(
+            builder: (context) =>
+                DownloadTransactionPage(arguments[0], arguments[1]),
+            settings: RouteSettings(name: RoutePaths.DownloadTransaction));
 
       default:
         return CupertinoPageRoute(

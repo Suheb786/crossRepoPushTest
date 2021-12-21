@@ -32,4 +32,5 @@ class RoutePaths {
   static const String MyDocuments = '/myDocuments';
   static const String ManageContactsList = '/manageContactsList';
   static const String ManageContactsDetail = '/manageContactsDetail';
+  static const String DownloadTransaction = '/downloadTransaction';
 }

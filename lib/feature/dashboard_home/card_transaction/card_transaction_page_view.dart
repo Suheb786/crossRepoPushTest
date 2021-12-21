@@ -4,9 +4,11 @@ import 'package:grouped_list/grouped_list.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/model/transaction_item.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dialog/download_transaction_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -53,7 +55,17 @@ class CardTransactionPageView
                     ),
                     Align(
                         alignment: Alignment.centerRight,
-                        child: AppSvg.asset(AssetUtils.download))
+                        child: InkWell(
+                            onTap: () {
+                              DownloadTransactionDialog.show(context,
+                                  onSelected: (value) {
+                                Navigator.pop(context);
+                                Navigator.pushNamed(
+                                    context, RoutePaths.DownloadTransaction,
+                                    arguments: ["Card", value]);
+                              });
+                            },
+                            child: AppSvg.asset(AssetUtils.download)))
                   ],
                 ),
               ),
@@ -70,6 +82,7 @@ class CardTransactionPageView
                     child: Padding(
                       padding: EdgeInsets.only(top: 8),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Center(
                             child: Container(
@@ -82,7 +95,7 @@ class CardTransactionPageView
                           ),
                           Padding(
                             padding:
-                                EdgeInsets.only(top: 24.0, left: 24, right: 38),
+                            EdgeInsets.only(top: 24.0, left: 24, right: 38),
                             child: Row(
                               children: [
                                 Expanded(
@@ -91,7 +104,7 @@ class CardTransactionPageView
                                     hintText: S.of(context).lookingFor,
                                     controller: model.searchController,
                                     onPressed: () {},
-                                    onChanged: (text) =>
+                                    onFieldSubmitted: (text) =>
                                         model.onSearchTextChanged(text),
                                     suffixIcon: (value, data) {
                                       return Padding(
@@ -120,61 +133,72 @@ class CardTransactionPageView
                               ],
                             ),
                           ),
-                          AppStreamBuilder<List<String>>(
-                              stream: model.searchTextStream,
-                              initialData: [],
-                              dataBuilder: (context, textList) {
-                                return Visibility(
-                                  visible: textList!.length > 0,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 21),
-                                    child: Container(
-                                      height: 40,
-                                      child: ListView.builder(
-                                        itemCount: textList.length,
-                                        shrinkWrap: true,
-                                        scrollDirection: Axis.horizontal,
-                                        itemBuilder: (context, index) {
-                                          return Container(
-                                            decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .primaryColor,
-                                              borderRadius:
-                                                  BorderRadius.circular(100),
-                                            ),
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 9, vertical: 2),
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  textList[index],
-                                                  style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .accentColor),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 24),
+                            child: AppStreamBuilder<List<String>>(
+                                stream: model.searchTextStream,
+                                initialData: [],
+                                dataBuilder: (context, textList) {
+                                  return Visibility(
+                                    visible: textList!.length > 0,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(top: 21),
+                                      child: Container(
+                                        height: 40,
+                                        child: ListView.builder(
+                                          itemCount: textList.length,
+                                          shrinkWrap: true,
+                                          scrollDirection: Axis.horizontal,
+                                          itemBuilder: (context, index) {
+                                            return Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: index == 0 ? 0 : 9),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: Theme.of(context)
+                                                      .primaryColor,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          100),
                                                 ),
-                                                Padding(
-                                                  padding:
-                                                      EdgeInsets.only(left: 9),
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      model.updateSearchList(
-                                                          index);
-                                                    },
-                                                    child: AppSvg.asset(
-                                                        AssetUtils.close,
-                                                        color: Theme.of(context)
-                                                            .accentColor),
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          );
-                                        },
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 9, vertical: 2),
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      textList[index],
+                                                      style: TextStyle(
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .accentColor),
+                                                    ),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: 9),
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          model
+                                                              .updateSearchList(
+                                                                  index);
+                                                        },
+                                                        child: AppSvg.asset(
+                                                            AssetUtils.close,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .accentColor),
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              }),
+                                  );
+                                }),
+                          ),
                           Expanded(
                             child: Padding(
                               padding: EdgeInsets.only(left: 24, right: 24),
@@ -197,7 +221,7 @@ class CardTransactionPageView
                                         groupHeaderBuilder: (element) =>
                                             Container(
                                               color:
-                                                  Theme.of(context).accentColor,
+                                              Theme.of(context).accentColor,
                                               child: Padding(
                                                 padding: EdgeInsets.only(
                                                     top: 16, bottom: 16),
@@ -205,7 +229,7 @@ class CardTransactionPageView
                                                   element.createdAt!,
                                                   style: TextStyle(
                                                       fontWeight:
-                                                          FontWeight.w600,
+                                                      FontWeight.w600,
                                                       fontSize: 14),
                                                 ),
                                               ),
@@ -221,17 +245,17 @@ class CardTransactionPageView
                                                       right: 17),
                                                   child: Row(
                                                     mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
                                                     crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
+                                                    CrossAxisAlignment
+                                                        .start,
                                                     children: [
                                                       Expanded(
                                                         child: Column(
                                                           crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
+                                                          CrossAxisAlignment
+                                                              .start,
                                                           children: [
                                                             Text(
                                                               element.to!,
@@ -239,8 +263,8 @@ class CardTransactionPageView
                                                               style: TextStyle(
                                                                 fontSize: 12,
                                                                 fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
+                                                                FontWeight
+                                                                    .w600,
                                                               ),
                                                             ),
                                                             Padding(
@@ -250,7 +274,7 @@ class CardTransactionPageView
                                                                 element.time!,
                                                                 style: TextStyle(
                                                                     color: Theme.of(
-                                                                            context)
+                                                                        context)
                                                                         .inputDecorationTheme
                                                                         .hintStyle!
                                                                         .color),
@@ -261,30 +285,30 @@ class CardTransactionPageView
                                                       ),
                                                       Row(
                                                         mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .end,
+                                                        MainAxisAlignment
+                                                            .end,
                                                         children: [
                                                           Text(
                                                             element.type ==
-                                                                    "debit"
+                                                                "debit"
                                                                 ? "-${element.amount!}"
                                                                 : element
-                                                                    .amount!,
+                                                                .amount!,
                                                             style: TextStyle(
                                                                 fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
+                                                                FontWeight
+                                                                    .w600,
                                                                 fontSize: 14),
                                                           ),
                                                           Text(
                                                             "JOD",
                                                             style: TextStyle(
                                                                 fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
+                                                                FontWeight
+                                                                    .w600,
                                                                 fontSize: 14,
                                                                 color: Theme.of(
-                                                                        context)
+                                                                    context)
                                                                     .inputDecorationTheme
                                                                     .hintStyle!
                                                                     .color),
@@ -296,7 +320,7 @@ class CardTransactionPageView
                                                 ),
                                                 Padding(
                                                   padding:
-                                                      EdgeInsets.only(top: 4),
+                                                  EdgeInsets.only(top: 4),
                                                   child: Divider(),
                                                 )
                                               ],

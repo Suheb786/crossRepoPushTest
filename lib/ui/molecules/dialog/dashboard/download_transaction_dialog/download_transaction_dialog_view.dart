@@ -6,25 +6,25 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dialog/download_transaction_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_wheel_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
-class FilterTransactionDialogView extends StatelessWidget {
+class DownloadTransactionDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(String)? onSelected;
 
-  const FilterTransactionDialogView({this.onDismissed, this.onSelected});
+  const DownloadTransactionDialogView({this.onDismissed, this.onSelected});
 
   ProviderBase providerBase() {
-    return filterTransactionDialogViewModelProvier;
+    return downloadTransactionDialogViewModelProvider;
   }
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget<FilterTransactionDialogViewModel>(
+    return BaseWidget<DownloadTransactionDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(

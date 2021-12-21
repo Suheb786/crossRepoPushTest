@@ -5770,6 +5770,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Share PDF`
+  String get sharePdf {
+    return Intl.message(
+      'Share PDF',
+      name: 'sharePdf',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
