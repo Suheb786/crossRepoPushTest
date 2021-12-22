@@ -11,9 +11,11 @@ class TransactionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          TimeUtils.getFormattedDateForTransaction(transactions!.label!),
+          // TimeUtils.getFormattedDateForTransaction(transactions!.label!),
+          transactions!.label!,
           style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
@@ -21,7 +23,9 @@ class TransactionWidget extends StatelessWidget {
         ),
         Card(
           margin: EdgeInsets.only(top: 16, bottom: 32),
+          color: Theme.of(context).accentColor,
           child: ListView.separated(
+            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 17),
             itemBuilder: (context, index) {
               return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -49,11 +53,16 @@ class TransactionWidget extends StatelessWidget {
                                 color: Theme.of(context)
                                     .inputDecorationTheme
                                     .hintStyle!
-                                    .color),
+                                    .color,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600),
                           ),
                         )
                       ],
                     ),
+                  ),
+                  SizedBox(
+                    width: 8,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -67,7 +76,7 @@ class TransactionWidget extends StatelessWidget {
                         "JOD",
                         style: TextStyle(
                             fontWeight: FontWeight.w600,
-                            fontSize: 14,
+                            fontSize: 10,
                             color: Theme.of(context)
                                 .inputDecorationTheme
                                 .hintStyle!

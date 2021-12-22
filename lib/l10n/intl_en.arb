@@ -597,6 +597,6 @@
   "errorGetAccountDetails": "Error While Get Account Details",
   "accountNotFound": "Account Not Found",
   "invalidOtpEntered": "You have entered an invalid OTP code, please enter a valid one",
-  "locationServiceDisabled": "Location services are disabled. Please allow access to NeoBank"
-
+  "locationServiceDisabled": "Location services are disabled. Please allow access to NeoBank",
+  "minDueBy": "MIN. DUE BY "
 }

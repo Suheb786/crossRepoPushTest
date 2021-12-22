@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/transactions/transactions.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -5,13 +6,13 @@ part "transaction_entity.g.dart";
 
 @JsonSerializable()
 class TransactionEntity
-    implements BaseLayerDataTransformer<TransactionEntity, String> {
+    implements BaseLayerDataTransformer<TransactionEntity, Transactions> {
   @JsonKey(name: "id")
   final int? id;
   @JsonKey(name: "description")
   final String? description;
   @JsonKey(name: "time")
-  final String? transactionTime;
+  final DateTime? transactionTime;
   @JsonKey(name: "amount")
   final num? amount;
 
@@ -24,12 +25,16 @@ class TransactionEntity
   Map<String, dynamic> toJson() => _$TransactionEntityToJson(this);
 
   @override
-  TransactionEntity restore(String response) {
+  TransactionEntity restore(Transactions response) {
     return TransactionEntity();
   }
 
   @override
-  String transform() {
-    return "";
+  Transactions transform() {
+    return Transactions(
+        id: this.id,
+        amount: this.amount,
+        description: this.description,
+        time: this.transactionTime);
   }
 }

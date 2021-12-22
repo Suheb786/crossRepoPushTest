@@ -5820,6 +5820,16 @@ class S {
       args: [],
     );
   }
+
+  /// `MIN. DUE BY `
+  String get minDueBy {
+    return Intl.message(
+      'MIN. DUE BY ',
+      name: 'minDueBy',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -22,9 +22,15 @@ DashboardDataEntity _$DashboardDataEntityFromJson(Map<String, dynamic> json) {
     blinkJoinedDate: json['youJoinedBlink'] == null
         ? null
         : DateTime.parse(json['youJoinedBlink'] as String),
-    debitCardActivated: json['debitCardActivated'] as bool?,
+    debitCardActivated: json['debitCardActivated'],
     isApplied: json['isApplied'] as bool?,
-    isDelivered: json['isDelivered'] as bool?,
+    isDebitDelivered: json['isDebitDelivered'],
+    creditCardActivated: json['creditCardActivated'] as String?,
+    isCreditDelivered: json['isCreditDelivered'],
+    debitCard: json['debitCard'] == null
+        ? null
+        : DashboardDebitCardEntity.fromJson(
+            json['debitCard'] as Map<String, dynamic>),
   );
 }
 
@@ -33,9 +39,12 @@ Map<String, dynamic> _$DashboardDataEntityToJson(
     <String, dynamic>{
       'account': instance.account,
       'creditCard': instance.creditCard,
+      'debitCard': instance.debitCard,
       'isApplied': instance.isApplied,
-      'isDelivered': instance.isDelivered,
+      'isCreditDelivered': instance.isCreditDelivered,
+      'isDebitDelivered': instance.isDebitDelivered,
       'debitCardActivated': instance.debitCardActivated,
+      'creditCardActivated': instance.creditCardActivated,
       'youJoinedBlink': instance.blinkJoinedDate?.toIso8601String(),
       'blinkWasBorn': instance.blinkBornDate?.toIso8601String(),
     };

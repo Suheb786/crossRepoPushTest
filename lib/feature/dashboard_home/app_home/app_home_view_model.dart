@@ -32,6 +32,14 @@ class AppHomeViewModel extends BasePageViewModel {
 
   GetDashboardDataContent dashboardDataContent = GetDashboardDataContent();
 
+  ///dashboard card data response
+  BehaviorSubject<GetDashboardDataContent> _dashboardCardResponse =
+      BehaviorSubject.seeded(GetDashboardDataContent());
+
+  ///dashboard card data response stream
+  Stream<GetDashboardDataContent> get getDashboardCardDataStream =>
+      _dashboardCardResponse.stream;
+
   ///get dashboard data request
   PublishSubject<GetDashboardDataUseCaseParams> _getDashboardDataRequest =
       PublishSubject();
@@ -50,12 +58,14 @@ class AppHomeViewModel extends BasePageViewModel {
               createCall: () => _getDashboardDataUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _getDashboardDataResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           dashboardDataContent = event.data!.dashboardDataContent!;
+          _dashboardCardResponse.safeAdd(event.data!.dashboardDataContent);
         }
       });
     });

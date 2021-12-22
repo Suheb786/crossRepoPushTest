@@ -9,6 +9,6 @@ class Transactions {
   int? id;
   String? description;
   DateTime? time;
-  int? amount;
+  num? amount;
 
 }

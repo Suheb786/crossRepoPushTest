@@ -11,7 +11,10 @@ class MyAccountPage extends BasePage<MyAccountViewModel> {
 }
 
 class MyAccountPageState
-    extends BaseStatefulPage<MyAccountViewModel, MyAccountPage> {
+    extends BaseStatefulPage<MyAccountViewModel, MyAccountPage>
+    with AutomaticKeepAliveClientMixin {
+  MyAccountPageState() : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return myAccountViewModelProvider;
@@ -26,4 +29,13 @@ class MyAccountPageState
   Widget buildView(BuildContext context, MyAccountViewModel model) {
     return MyAccountPageView(provideBase());
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

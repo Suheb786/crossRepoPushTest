@@ -625,6 +625,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "manageContactsSettings":
             MessageLookupByLibrary.simpleMessage("Manage\nContacts"),
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
+        "minDueBy": MessageLookupByLibrary.simpleMessage("MIN. DUE BY "),
         "mobileNoExist":
             MessageLookupByLibrary.simpleMessage("Mobile Number Exist"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),

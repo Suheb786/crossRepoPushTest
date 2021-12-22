@@ -4,7 +4,6 @@ import 'package:data/source/dashboard/dashboard_datasource.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/dashboard/get_atms/get_atms_response.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
-import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:domain/repository/dashboard/dashboard_repository.dart';
 
 class DashboardRepositoryImpl extends DashboardRepository {
@@ -33,11 +32,5 @@ class DashboardRepositoryImpl extends DashboardRepository {
       (l) => Left(l),
       (r) => Right(r.data.transform()),
     );
-  }
-
-  @override
-  Future<Either<NetworkError, GetTransactionsResponse>> getDebitCardTransactions() {
-    // TODO: implement getDebitCardTransactions
-    throw UnimplementedError();
   }
 }

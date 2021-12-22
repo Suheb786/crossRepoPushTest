@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page_view_model.dart';
@@ -91,8 +92,9 @@ final creditCardVerificationSuccessViewModelProvider =
 
 final accountTransactionViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountTransactionViewModel>(
-  (ref) =>
-      AccountTransactionViewModel(ref.read(accountTransactionUseCaseProvider)),
+  (ref) => AccountTransactionViewModel(
+      ref.read(accountTransactionUseCaseProvider),
+      ref.read(debitCardTransactionUseCaseProvider)),
 );
 
 final homeViewModelProvider = ChangeNotifierProvider.autoDispose<HomeViewModel>(

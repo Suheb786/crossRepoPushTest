@@ -11,7 +11,10 @@ class MyDebitCardPage extends BasePage<MyDebitCardViewModel> {
 }
 
 class MyDebitCardPageState
-    extends BaseStatefulPage<MyDebitCardViewModel, MyDebitCardPage> {
+    extends BaseStatefulPage<MyDebitCardViewModel, MyDebitCardPage>
+    with AutomaticKeepAliveClientMixin {
+  MyDebitCardPageState() : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return myDebitCardViewModelProvider;
@@ -26,4 +29,13 @@ class MyDebitCardPageState
   Widget buildView(BuildContext context, MyDebitCardViewModel model) {
     return MyDebitCardPageView(provideBase());
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

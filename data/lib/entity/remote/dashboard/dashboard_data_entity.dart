@@ -1,5 +1,6 @@
 import 'package:data/entity/remote/dashboard/dashboard_account_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_card_entity.dart';
+import 'package:data/entity/remote/dashboard/dashboard_debit_card_entity.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -14,12 +15,18 @@ class DashboardDataEntity
   final DashboardAccountEntity? account;
   @JsonKey(name: "creditCard")
   final DashboardCardEntity? creditCard;
+  @JsonKey(name: "debitCard")
+  final DashboardDebitCardEntity? debitCard;
   @JsonKey(name: "isApplied")
   final bool? isApplied;
-  @JsonKey(name: "isDelivered")
-  final bool? isDelivered;
+  @JsonKey(name: "isCreditDelivered")
+  final dynamic? isCreditDelivered;
+  @JsonKey(name: "isDebitDelivered")
+  final dynamic? isDebitDelivered;
   @JsonKey(name: "debitCardActivated")
-  final bool? debitCardActivated;
+  final dynamic? debitCardActivated;
+  @JsonKey(name: "creditCardActivated")
+  final String? creditCardActivated;
   @JsonKey(name: "youJoinedBlink")
   final DateTime? blinkJoinedDate;
   @JsonKey(name: "blinkWasBorn")
@@ -32,7 +39,10 @@ class DashboardDataEntity
       this.blinkJoinedDate,
       this.debitCardActivated,
       this.isApplied,
-      this.isDelivered});
+      this.isDebitDelivered,
+      this.creditCardActivated,
+      this.isCreditDelivered,
+      this.debitCard});
 
   factory DashboardDataEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardDataEntityFromJson(json);
@@ -49,8 +59,11 @@ class DashboardDataEntity
     return GetDashboardDataContent(
         account: this.account!.transform(),
         creditCard: this.creditCard!.transform(),
+        debitCard: this.debitCard!.transform(),
         isApplied: this.isApplied,
-        isDelivered: this.isDelivered,
+        isCreditDelivered: this.isCreditDelivered,
+        isDebitDelivered: this.isDebitDelivered,
+        creditCardActivated: this.creditCardActivated,
         debitCardActivated: this.debitCardActivated,
         blinkWasBorn: this.blinkBornDate,
         youJoinedBlink: this.blinkJoinedDate);

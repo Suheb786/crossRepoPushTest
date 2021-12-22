@@ -1,17 +1,21 @@
 class CreditCard {
   CreditCard({
     this.name,
-    this.availableBalance,
-    this.accountNo,
-    this.iban,
-    this.cardNo,
+    this.cardNumber,
     this.expiryDate,
+    this.cvv,
+    this.minDue,
+    this.availableBalance,
+    this.totalAmount,
+    this.maxLimit,
   });
 
   String? name;
-  num? availableBalance;
-  String? accountNo;
-  String? iban;
-  String? cardNo;
+  String? cardNumber;
   String? expiryDate;
+  String? cvv;
+  num? minDue;
+  num? availableBalance;
+  num? totalAmount;
+  num? maxLimit;
 }

@@ -8,20 +8,26 @@ part of 'dashboard_card_entity.dart';
 
 DashboardCardEntity _$DashboardCardEntityFromJson(Map<String, dynamic> json) {
   return DashboardCardEntity(
-    accountTitle: json['accountTitle'] as String?,
+    name: json['name'] as String?,
     availableBalance: json['availableBalance'] as num?,
-    accountNo: json['accountNo'] as String?,
-    iban: json['iban'] as String?,
-    cardNo: json['cardNo'] as String?,
+    minDue: json['minDue'] as num?,
+    totalAmount: json['totalAmount'] as num?,
+    cardNumber: json['cardNumber'] as String?,
+    expiryDate: json['expiryDate'] as String?,
+    maxLimit: json['maxLimit'] as num?,
+    cvv: json['cvv'] as String?,
   );
 }
 
 Map<String, dynamic> _$DashboardCardEntityToJson(
         DashboardCardEntity instance) =>
     <String, dynamic>{
-      'accountTitle': instance.accountTitle,
+      'name': instance.name,
       'availableBalance': instance.availableBalance,
-      'accountNo': instance.accountNo,
-      'iban': instance.iban,
-      'cardNo': instance.cardNo,
+      'minDue': instance.minDue,
+      'totalAmount': instance.totalAmount,
+      'cardNumber': instance.cardNumber,
+      'expiryDate': instance.expiryDate,
+      'cvv': instance.cvv,
+      'maxLimit': instance.maxLimit,
     };
