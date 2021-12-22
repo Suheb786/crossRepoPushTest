@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_view_model.dart';
-import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/edit_transaction_purpose_dialog/edit_transaction_purpose_dialog.dart';
@@ -368,8 +368,8 @@ class RequestAmountFromContactPageView
                   },
                   textColor: Colors.black,
                   rightButtonFn: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => RequestAmountFromContactSuccessPage()));
+                    Navigator.pushNamed(
+                        context, RoutePaths.RequestAmountFromContactSuccess);
                   },
                   leftIcon: Icon(
                     Icons.circle,

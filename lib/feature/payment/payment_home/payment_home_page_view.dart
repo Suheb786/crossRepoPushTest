@@ -4,10 +4,8 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/payment/add_request_money_contact/add_request_money_contact_page.dart';
 import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_contact_page.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.dart';
-import 'package:neo_bank/feature/payment/request_money/request_money_page.dart';
-import 'package:neo_bank/feature/payment/send_money/send_money_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/cutom_route.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/pager/payment_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -32,11 +30,9 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
                 if (currentStep == 0) {
-                  Navigator.push(
-                      context, CustomRoute.createRoute(SendMoneyPage()));
+                  Navigator.pushNamed(context, RoutePaths.SendMoney);
                 } else {
-                  Navigator.push(
-                      context, CustomRoute.createRoute(RequestMoneyPage()));
+                  Navigator.pushNamed(context, RoutePaths.RequestMoney);
                 }
               }
             },

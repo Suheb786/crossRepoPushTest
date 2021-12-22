@@ -36,4 +36,14 @@ class RoutePaths {
   static const String ActivityHome = '/activityHome';
   static const String RequestMoneyFailure = "/requestMoneyFailure";
   static const String SendMoneyFailure = "/sendMoneyFailure";
+  static const String RequestAmountFromContact = "/requestAmountFromContact";
+  static const String SendAmountToContact = "/sendAmountToContactPage";
+  static const String SendAmountToContactSuccess = "SendAmountToContactSuccess";
+  static const String SendMoney = "/sendMoneyPage";
+  static const String RequestMoney = "/requestMoney";
+  static const String RequestAmountFromContactSuccess =
+      "/requestAmountFromContactSuccessPage";
+  static const String RequestPaymentFromNewRecipient =
+      "/requestPaymentFromNewRecipient";
+  static const String PaymentToNewRecipient = "/paymentToNewRecipientPage";
 }

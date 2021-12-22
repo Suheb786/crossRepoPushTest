@@ -2,9 +2,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_page.dart';
 import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/numeric_keyboard.dart';
@@ -268,8 +268,8 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                   },
                   textColor: Colors.black,
                   rightButtonFn: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => PaymentToNewRecipientPage()));
+                    Navigator.pushNamed(
+                        context, RoutePaths.PaymentToNewRecipient);
                   },
                   leftIcon: Icon(
                     Icons.circle,

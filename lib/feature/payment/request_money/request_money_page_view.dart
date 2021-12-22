@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/payment/request_money/request_money_view_model.dart';
-import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/numeric_keyboard.dart';
@@ -267,8 +267,8 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                   },
                   textColor: Colors.black,
                   rightButtonFn: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => RequestPaymentFromNewRecipientPage()));
+                    Navigator.pushNamed(
+                        context, RoutePaths.RequestPaymentFromNewRecipient);
                   },
                   leftIcon: Icon(
                     Icons.circle,

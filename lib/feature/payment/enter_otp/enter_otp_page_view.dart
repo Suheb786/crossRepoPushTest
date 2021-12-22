@@ -6,8 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/enter_otp/enter_otp_view_model.dart';
-import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -36,11 +36,8 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
               onData: (data) {
                 print("clicked");
                 if (data.status == Status.SUCCESS) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              SendAmountToContactSuccessPage()));
+                  Navigator.pushNamed(
+                      context, RoutePaths.SendAmountToContactSuccess);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }

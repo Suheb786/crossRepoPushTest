@@ -21,7 +21,15 @@ import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_p
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_page.dart';
+import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_page.dart';
+import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_page.dart';
+import 'package:neo_bank/feature/payment/request_money/request_money_page.dart';
 import 'package:neo_bank/feature/payment/request_money_failure/request_money_failure_page.dart';
+import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_page.dart';
+import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_page.dart';
+import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_contact_page.dart';
+import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_page.dart';
+import 'package:neo_bank/feature/payment/send_money/send_money_page.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
@@ -35,6 +43,7 @@ import 'package:neo_bank/feature/static_content/fatca_certification/fatca_certif
 import 'package:neo_bank/feature/static_content/reference_number/reference_number_page.dart';
 import 'package:neo_bank/feature/static_content/us_tax_payer_identification_number/us_tax_payer_identification_number_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
+import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 
 class AppRouter {
@@ -216,6 +225,41 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => SendMoneyFailurePage(),
             settings: RouteSettings(name: RoutePaths.SendMoneyFailure));
+
+      case RoutePaths.RequestAmountFromContact:
+        return CustomRoute.createRoute(RequestAmountFromContactPage());
+
+      case RoutePaths.SendAmountToContact:
+        return CustomRoute.createRoute(SendAmountToContactPage());
+
+      case RoutePaths.SendAmountToContactSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => SendAmountToContactSuccessPage(),
+            settings:
+                RouteSettings(name: RoutePaths.SendAmountToContactSuccess));
+
+      case RoutePaths.SendMoney:
+        return CustomRoute.createRoute(SendMoneyPage());
+
+      case RoutePaths.RequestMoney:
+        return CustomRoute.createRoute(RequestMoneyPage());
+
+      case RoutePaths.RequestAmountFromContactSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => RequestAmountFromContactSuccessPage(),
+            settings: RouteSettings(
+                name: RoutePaths.RequestAmountFromContactSuccess));
+
+      case RoutePaths.RequestPaymentFromNewRecipient:
+        return CupertinoPageRoute(
+            builder: (context) => RequestPaymentFromNewRecipientPage(),
+            settings:
+                RouteSettings(name: RoutePaths.RequestPaymentFromNewRecipient));
+
+      case RoutePaths.PaymentToNewRecipient:
+        return CupertinoPageRoute(
+            builder: (context) => PaymentToNewRecipientPage(),
+            settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
 
       default:
         return CupertinoPageRoute(
