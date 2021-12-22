@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:grouped_list/grouped_list.dart';
@@ -10,11 +11,13 @@ import 'package:neo_bank/model/transaction_item.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dialog/download_transaction_dialog.dart';
+import 'package:neo_bank/ui/molecules/dashboard/transactions_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
 
 class AccountTransactionPageView
     extends BasePageViewWidget<AccountTransactionViewModel> {
@@ -132,438 +135,326 @@ class AccountTransactionPageView
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 24, right: 24),
-                            child: AppStreamBuilder<List<String>>(
-                                stream: model.searchTextStream,
-                                initialData: [],
-                                dataBuilder: (context, textList) {
-                                  return Visibility(
-                                    visible: textList!.length > 0,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(top: 21),
-                                      child: Container(
-                                        height: 40,
-                                        child: ListView.builder(
-                                          itemCount: textList.length,
-                                          shrinkWrap: true,
-                                          scrollDirection: Axis.horizontal,
-                                          itemBuilder: (context, index) {
-                                            return Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: index == 0 ? 0 : 9),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .primaryColorDark,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          100),
-                                                ),
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 9, vertical: 2),
-                                                child: Row(
-                                                  children: [
-                                                    Text(
-                                                      textList[index],
-                                                      style: TextStyle(
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .accentColor),
-                                                    ),
-                                                    Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: 9),
-                                                      child: InkWell(
-                                                        onTap: () {
-                                                          model
-                                                              .updateSearchList(
-                                                                  index);
-                                                        },
-                                                        child: AppSvg.asset(
-                                                            AssetUtils.close,
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .accentColor),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: EdgeInsets.only(left: 24, right: 24),
-                              // child: model.searchTransactionList.length > 0
-                              //     ? GroupedListView<TransactionItem, String>(
-                              //         scrollDirection: Axis.vertical,
-                              //         elements: model.searchTransactionList,
-                              //         order: GroupedListOrder.DESC,
-                              //         shrinkWrap: true,
-                              //         primary: false,
-                              //         padding: EdgeInsets.zero,
-                              //         floatingHeader: false,
-                              //         groupBy: (TransactionItem element) {
-                              //           return element.createdAt!;
-                              //         },
-                              //         groupHeaderBuilder: (element) =>
-                              //             Container(
-                              //               color:
-                              //                   Theme.of(context).accentColor,
-                              //               child: Padding(
-                              //                 padding: EdgeInsets.only(
-                              //                     top: 16, bottom: 16),
-                              //                 child: Text(
-                              //                   element.createdAt!,
-                              //                   style: TextStyle(
-                              //                       fontWeight: FontWeight.w600,
-                              //                       fontSize: 14),
-                              //                 ),
-                              //               ),
-                              //             ),
-                              //         itemBuilder: (context, element) {
-                              //           return Container(
-                              //             child: Column(
-                              //               children: [
-                              //                 Padding(
-                              //                   padding: EdgeInsets.only(
-                              //                       top: 17,
-                              //                       left: 17,
-                              //                       right: 17),
-                              //                   child: Row(
-                              //                     mainAxisAlignment:
-                              //                         MainAxisAlignment
-                              //                             .spaceBetween,
-                              //                     crossAxisAlignment:
-                              //                         CrossAxisAlignment.start,
-                              //                     children: [
-                              //                       Expanded(
-                              //                         child: Column(
-                              //                           crossAxisAlignment:
-                              //                               CrossAxisAlignment
-                              //                                   .start,
-                              //                           children: [
-                              //                             Text(
-                              //                               element.to!,
-                              //                               maxLines: 2,
-                              //                               style: TextStyle(
-                              //                                 fontSize: 12,
-                              //                                 fontWeight:
-                              //                                     FontWeight
-                              //                                         .w600,
-                              //                               ),
-                              //                             ),
-                              //                             Padding(
-                              //                               padding:
-                              //                                   EdgeInsets.only(
-                              //                                       top: 4),
-                              //                               child: Text(
-                              //                                 element.time!,
-                              //                                 style: TextStyle(
-                              //                                     color: Theme.of(
-                              //                                             context)
-                              //                                         .inputDecorationTheme
-                              //                                         .hintStyle!
-                              //                                         .color),
-                              //                               ),
-                              //                             )
-                              //                           ],
-                              //                         ),
-                              //                       ),
-                              //                       Row(
-                              //                         mainAxisAlignment:
-                              //                             MainAxisAlignment.end,
-                              //                         children: [
-                              //                           Text(
-                              //                             element.type ==
-                              //                                     "debit"
-                              //                                 ? "-${element.amount!}"
-                              //                                 : element.amount!,
-                              //                             style: TextStyle(
-                              //                                 fontWeight:
-                              //                                     FontWeight
-                              //                                         .w600,
-                              //                                 fontSize: 14),
-                              //                           ),
-                              //                           Text(
-                              //                             "JOD",
-                              //                             style: TextStyle(
-                              //                                 fontWeight:
-                              //                                     FontWeight
-                              //                                         .w600,
-                              //                                 fontSize: 14,
-                              //                                 color: Theme.of(
-                              //                                         context)
-                              //                                     .inputDecorationTheme
-                              //                                     .hintStyle!
-                              //                                     .color),
-                              //                           ),
-                              //                         ],
-                              //                       )
-                              //                     ],
-                              //                   ),
-                              //                 ),
-                              //                 Padding(
-                              //                   padding:
-                              //                       EdgeInsets.only(top: 4),
-                              //                   child: Divider(),
-                              //                 )
-                              //               ],
-                              //             ),
-                              //           );
-                              //         })
-                              //     : GroupedListView<TransactionItem, String>(
-                              //         scrollDirection: Axis.vertical,
-                              //         elements: model.transactionList,
-                              //         order: GroupedListOrder.DESC,
-                              //         shrinkWrap: true,
-                              //         primary: false,
-                              //         padding: EdgeInsets.zero,
-                              //         floatingHeader: false,
-                              //         groupBy: (TransactionItem element) {
-                              //           return element.createdAt!;
-                              //         },
-                              //         groupHeaderBuilder: (element) =>
-                              //             Container(
-                              //               color:
-                              //                   Theme.of(context).accentColor,
-                              //               child: Padding(
-                              //                 padding: EdgeInsets.only(
-                              //                     top: 16, bottom: 16),
-                              //                 child: Text(
-                              //                   element.createdAt!,
-                              //                   style: TextStyle(
-                              //                       fontWeight: FontWeight.w600,
-                              //                       fontSize: 14),
-                              //                 ),
-                              //               ),
-                              //             ),
-                              //         itemBuilder: (context, element) {
-                              //           return Container(
-                              //             child: Column(
-                              //               children: [
-                              //                 Padding(
-                              //                   padding: EdgeInsets.only(
-                              //                       top: 17,
-                              //                       left: 17,
-                              //                       right: 17),
-                              //                   child: Row(
-                              //                     mainAxisAlignment:
-                              //                         MainAxisAlignment
-                              //                             .spaceBetween,
-                              //                     crossAxisAlignment:
-                              //                         CrossAxisAlignment.start,
-                              //                     children: [
-                              //                       Expanded(
-                              //                         child: Column(
-                              //                           crossAxisAlignment:
-                              //                               CrossAxisAlignment
-                              //                                   .start,
-                              //                           children: [
-                              //                             Text(
-                              //                               element.to!,
-                              //                               maxLines: 2,
-                              //                               style: TextStyle(
-                              //                                 fontSize: 12,
-                              //                                 fontWeight:
-                              //                                     FontWeight
-                              //                                         .w600,
-                              //                               ),
-                              //                             ),
-                              //                             Padding(
-                              //                               padding:
-                              //                                   EdgeInsets.only(
-                              //                                       top: 4),
-                              //                               child: Text(
-                              //                                 element.time!,
-                              //                                 style: TextStyle(
-                              //                                     color: Theme.of(
-                              //                                             context)
-                              //                                         .inputDecorationTheme
-                              //                                         .hintStyle!
-                              //                                         .color),
-                              //                               ),
-                              //                             )
-                              //                           ],
-                              //                         ),
-                              //                       ),
-                              //                       Row(
-                              //                         mainAxisAlignment:
-                              //                             MainAxisAlignment.end,
-                              //                         children: [
-                              //                           Text(
-                              //                             element.type ==
-                              //                                     "debit"
-                              //                                 ? "-${element.amount!}"
-                              //                                 : element.amount!,
-                              //                             style: TextStyle(
-                              //                                 fontWeight:
-                              //                                     FontWeight
-                              //                                         .w600,
-                              //                                 fontSize: 14),
-                              //                           ),
-                              //                           Text(
-                              //                             "JOD",
-                              //                             style: TextStyle(
-                              //                                 fontWeight:
-                              //                                     FontWeight
-                              //                                         .w600,
-                              //                                 fontSize: 14,
-                              //                                 color: Theme.of(
-                              //                                         context)
-                              //                                     .inputDecorationTheme
-                              //                                     .hintStyle!
-                              //                                     .color),
-                              //                           ),
-                              //                         ],
-                              //                       )
-                              //                     ],
-                              //                   ),
-                              //                 ),
-                              //                 Padding(
-                              //                   padding:
-                              //                       EdgeInsets.only(top: 4),
-                              //                   child: Divider(),
-                              //                 )
-                              //               ],
-                              //             ),
-                              //           );
-                              //         }),
-                              child: AppStreamBuilder<List<TransactionItem>>(
-                                  stream: model.transactionListStream,
-                                  initialData: model.transactionList,
-                                  dataBuilder: (context, data) {
-                                    return GroupedListView<TransactionItem,
-                                        String>(
-                                        scrollDirection: Axis.vertical,
-                                        elements: data!,
-                                        order: GroupedListOrder.DESC,
+                          AppStreamBuilder<List<String>>(
+                              stream: model.searchTextStream,
+                              initialData: [],
+                              dataBuilder: (context, textList) {
+                                return Visibility(
+                                  visible: textList!.length > 0,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 21),
+                                    child: Container(
+                                      height: 40,
+                                      child: ListView.builder(
+                                        itemCount: textList.length,
                                         shrinkWrap: true,
-                                        primary: false,
-                                        padding: EdgeInsets.zero,
-                                        floatingHeader: false,
-                                        groupBy: (TransactionItem element) {
-                                          return element.createdAt!;
-                                        },
-                                        groupHeaderBuilder: (element) =>
-                                            Container(
-                                              color:
-                                              Theme.of(context).accentColor,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    top: 16, bottom: 16),
-                                                child: Text(
-                                                  element.createdAt!,
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                      FontWeight.w600,
-                                                      fontSize: 14),
-                                                ),
-                                              ),
-                                            ),
-                                        itemBuilder: (context, element) {
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (context, index) {
                                           return Container(
-                                            child: Column(
+                                            decoration: BoxDecoration(
+                                              color: Theme.of(context)
+                                                  .primaryColorDark,
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                            ),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 9, vertical: 2),
+                                            child: Row(
                                               children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(
-                                                      top: 17,
-                                                      left: 17,
-                                                      right: 17),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment
-                                                        .start,
-                                                    children: [
-                                                      Expanded(
-                                                        child: Column(
-                                                          crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                          children: [
-                                                            Text(
-                                                              element.to!,
-                                                              maxLines: 2,
-                                                              style: TextStyle(
-                                                                fontSize: 12,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w600,
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(top: 4),
-                                                              child: Text(
-                                                                element.time!,
-                                                                style: TextStyle(
-                                                                    color: Theme.of(
-                                                                        context)
-                                                                        .inputDecorationTheme
-                                                                        .hintStyle!
-                                                                        .color),
-                                                              ),
-                                                            )
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .end,
-                                                        children: [
-                                                          Text(
-                                                            element.type ==
-                                                                "debit"
-                                                                ? "-${element.amount!}"
-                                                                : element
-                                                                .amount!,
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w600,
-                                                                fontSize: 14),
-                                                          ),
-                                                          Text(
-                                                            "JOD",
-                                                            style: TextStyle(
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w600,
-                                                                fontSize: 14,
-                                                                color: Theme.of(
-                                                                    context)
-                                                                    .inputDecorationTheme
-                                                                    .hintStyle!
-                                                                    .color),
-                                                          ),
-                                                        ],
-                                                      )
-                                                    ],
-                                                  ),
+                                                Text(
+                                                  textList[index],
+                                                  style: TextStyle(
+                                                      color: Theme.of(context)
+                                                          .accentColor),
                                                 ),
                                                 Padding(
                                                   padding:
-                                                  EdgeInsets.only(top: 4),
-                                                  child: Divider(),
+                                                      EdgeInsets.only(left: 9),
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      model.updateSearchList(
+                                                          index);
+                                                    },
+                                                    child: AppSvg.asset(
+                                                        AssetUtils.close,
+                                                        color: Theme.of(context)
+                                                            .accentColor),
+                                                  ),
                                                 )
                                               ],
                                             ),
                                           );
-                                        });
-                                  }),
-                            ),
-                          ),
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
+                          AppStreamBuilder<Resource<GetTransactionsResponse>>(
+                              stream: model.getTransactionsStream,
+                              initialData: Resource.none(),
+                              dataBuilder: (context, transaction) {
+                                return Expanded(
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 24, right: 24),
+                                    // child: model.searchTransactionList.length > 0
+                                    //     ? GroupedListView<TransactionItem, String>(
+                                    //         scrollDirection: Axis.vertical,
+                                    //         elements: model.searchTransactionList,
+                                    //         order: GroupedListOrder.DESC,
+                                    //         shrinkWrap: true,
+                                    //         primary: false,
+                                    //         padding: EdgeInsets.zero,
+                                    //         floatingHeader: false,
+                                    //         groupBy: (TransactionItem element) {
+                                    //           return element.createdAt!;
+                                    //         },
+                                    //         groupHeaderBuilder: (element) =>
+                                    //             Container(
+                                    //               color:
+                                    //                   Theme.of(context).accentColor,
+                                    //               child: Padding(
+                                    //                 padding: EdgeInsets.only(
+                                    //                     top: 16, bottom: 16),
+                                    //                 child: Text(
+                                    //                   element.createdAt!,
+                                    //                   style: TextStyle(
+                                    //                       fontWeight: FontWeight.w600,
+                                    //                       fontSize: 14),
+                                    //                 ),
+                                    //               ),
+                                    //             ),
+                                    //         itemBuilder: (context, element) {
+                                    //           return Container(
+                                    //             child: Column(
+                                    //               children: [
+                                    //                 Padding(
+                                    //                   padding: EdgeInsets.only(
+                                    //                       top: 17,
+                                    //                       left: 17,
+                                    //                       right: 17),
+                                    //                   child: Row(
+                                    //                     mainAxisAlignment:
+                                    //                         MainAxisAlignment
+                                    //                             .spaceBetween,
+                                    //                     crossAxisAlignment:
+                                    //                         CrossAxisAlignment.start,
+                                    //                     children: [
+                                    //                       Expanded(
+                                    //                         child: Column(
+                                    //                           crossAxisAlignment:
+                                    //                               CrossAxisAlignment
+                                    //                                   .start,
+                                    //                           children: [
+                                    //                             Text(
+                                    //                               element.to!,
+                                    //                               maxLines: 2,
+                                    //                               style: TextStyle(
+                                    //                                 fontSize: 12,
+                                    //                                 fontWeight:
+                                    //                                     FontWeight
+                                    //                                         .w600,
+                                    //                               ),
+                                    //                             ),
+                                    //                             Padding(
+                                    //                               padding:
+                                    //                                   EdgeInsets.only(
+                                    //                                       top: 4),
+                                    //                               child: Text(
+                                    //                                 element.time!,
+                                    //                                 style: TextStyle(
+                                    //                                     color: Theme.of(
+                                    //                                             context)
+                                    //                                         .inputDecorationTheme
+                                    //                                         .hintStyle!
+                                    //                                         .color),
+                                    //                               ),
+                                    //                             )
+                                    //                           ],
+                                    //                         ),
+                                    //                       ),
+                                    //                       Row(
+                                    //                         mainAxisAlignment:
+                                    //                             MainAxisAlignment.end,
+                                    //                         children: [
+                                    //                           Text(
+                                    //                             element.type ==
+                                    //                                     "debit"
+                                    //                                 ? "-${element.amount!}"
+                                    //                                 : element.amount!,
+                                    //                             style: TextStyle(
+                                    //                                 fontWeight:
+                                    //                                     FontWeight
+                                    //                                         .w600,
+                                    //                                 fontSize: 14),
+                                    //                           ),
+                                    //                           Text(
+                                    //                             "JOD",
+                                    //                             style: TextStyle(
+                                    //                                 fontWeight:
+                                    //                                     FontWeight
+                                    //                                         .w600,
+                                    //                                 fontSize: 14,
+                                    //                                 color: Theme.of(
+                                    //                                         context)
+                                    //                                     .inputDecorationTheme
+                                    //                                     .hintStyle!
+                                    //                                     .color),
+                                    //                           ),
+                                    //                         ],
+                                    //                       )
+                                    //                     ],
+                                    //                   ),
+                                    //                 ),
+                                    //                 Padding(
+                                    //                   padding:
+                                    //                       EdgeInsets.only(top: 4),
+                                    //                   child: Divider(),
+                                    //                 )
+                                    //               ],
+                                    //             ),
+                                    //           );
+                                    //         })
+                                    //     : GroupedListView<TransactionItem, String>(
+                                    //         scrollDirection: Axis.vertical,
+                                    //         elements: model.transactionList,
+                                    //         order: GroupedListOrder.DESC,
+                                    //         shrinkWrap: true,
+                                    //         primary: false,
+                                    //         padding: EdgeInsets.zero,
+                                    //         floatingHeader: false,
+                                    //         groupBy: (TransactionItem element) {
+                                    //           return element.createdAt!;
+                                    //         },
+                                    //         groupHeaderBuilder: (element) =>
+                                    //             Container(
+                                    //               color:
+                                    //                   Theme.of(context).accentColor,
+                                    //               child: Padding(
+                                    //                 padding: EdgeInsets.only(
+                                    //                     top: 16, bottom: 16),
+                                    //                 child: Text(
+                                    //                   element.createdAt!,
+                                    //                   style: TextStyle(
+                                    //                       fontWeight: FontWeight.w600,
+                                    //                       fontSize: 14),
+                                    //                 ),
+                                    //               ),
+                                    //             ),
+                                    //         itemBuilder: (context, element) {
+                                    //           return Container(
+                                    //             child: Column(
+                                    //               children: [
+                                    //                 Padding(
+                                    //                   padding: EdgeInsets.only(
+                                    //                       top: 17,
+                                    //                       left: 17,
+                                    //                       right: 17),
+                                    //                   child: Row(
+                                    //                     mainAxisAlignment:
+                                    //                         MainAxisAlignment
+                                    //                             .spaceBetween,
+                                    //                     crossAxisAlignment:
+                                    //                         CrossAxisAlignment.start,
+                                    //                     children: [
+                                    //                       Expanded(
+                                    //                         child: Column(
+                                    //                           crossAxisAlignment:
+                                    //                               CrossAxisAlignment
+                                    //                                   .start,
+                                    //                           children: [
+                                    //                             Text(
+                                    //                               element.to!,
+                                    //                               maxLines: 2,
+                                    //                               style: TextStyle(
+                                    //                                 fontSize: 12,
+                                    //                                 fontWeight:
+                                    //                                     FontWeight
+                                    //                                         .w600,
+                                    //                               ),
+                                    //                             ),
+                                    //                             Padding(
+                                    //                               padding:
+                                    //                                   EdgeInsets.only(
+                                    //                                       top: 4),
+                                    //                               child: Text(
+                                    //                                 element.time!,
+                                    //                                 style: TextStyle(
+                                    //                                     color: Theme.of(
+                                    //                                             context)
+                                    //                                         .inputDecorationTheme
+                                    //                                         .hintStyle!
+                                    //                                         .color),
+                                    //                               ),
+                                    //                             )
+                                    //                           ],
+                                    //                         ),
+                                    //                       ),
+                                    //                       Row(
+                                    //                         mainAxisAlignment:
+                                    //                             MainAxisAlignment.end,
+                                    //                         children: [
+                                    //                           Text(
+                                    //                             element.type ==
+                                    //                                     "debit"
+                                    //                                 ? "-${element.amount!}"
+                                    //                                 : element.amount!,
+                                    //                             style: TextStyle(
+                                    //                                 fontWeight:
+                                    //                                     FontWeight
+                                    //                                         .w600,
+                                    //                                 fontSize: 14),
+                                    //                           ),
+                                    //                           Text(
+                                    //                             "JOD",
+                                    //                             style: TextStyle(
+                                    //                                 fontWeight:
+                                    //                                     FontWeight
+                                    //                                         .w600,
+                                    //                                 fontSize: 14,
+                                    //                                 color: Theme.of(
+                                    //                                         context)
+                                    //                                     .inputDecorationTheme
+                                    //                                     .hintStyle!
+                                    //                                     .color),
+                                    //                           ),
+                                    //                         ],
+                                    //                       )
+                                    //                     ],
+                                    //                   ),
+                                    //                 ),
+                                    //                 Padding(
+                                    //                   padding:
+                                    //                       EdgeInsets.only(top: 4),
+                                    //                   child: Divider(),
+                                    //                 )
+                                    //               ],
+                                    //             ),
+                                    //           );
+                                    //         }),
+                                    child: transaction!.data!
+                                                .transactionResponse!.length >
+                                            0
+                                        ? ListView.builder(
+                                            itemBuilder: (context, index) {
+                                              return TransactionWidget(
+                                                transactions: transaction.data!
+                                                        .transactionResponse![
+                                                    index],
+                                              );
+                                            },
+                                            shrinkWrap: true,
+                                            itemCount: transaction.data!
+                                                .transactionResponse!.length,
+                                          )
+                                        : Center(
+                                            child: Text(
+                                                'No Transactions to display'),
+                                          ),
+                                  ),
+                                );
+                              }),
                           // Padding(
                           //   padding:
                           //       EdgeInsets.only(top: 24, left: 24, right: 24),

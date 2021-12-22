@@ -1,3 +1,4 @@
+import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:domain/usecase/account_setting/change_password/enter_new_password_usecase.dart';
 import 'package:domain/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,9 +28,10 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
   PublishSubject();
 
   /// create password response subject holder
-  PublishSubject<Resource<bool>> _createPasswordResponse = PublishSubject();
+  PublishSubject<Resource<ProfileChangedSuccessResponse>>
+      _createPasswordResponse = PublishSubject();
 
-  Stream<Resource<bool>> get createPasswordStream =>
+  Stream<Resource<ProfileChangedSuccessResponse>> get createPasswordStream =>
       _createPasswordResponse.stream;
 
   /// show button Subject holder
@@ -43,6 +45,7 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
           createCall: () => _enterPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _createPasswordResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -73,8 +76,7 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
 
   void validateAllFields() {
     if (currentPasswordController.text.isNotEmpty &&
-        newPasswordController.text.isNotEmpty &&
-        currentPasswordController.text == newPasswordController.text) {
+        newPasswordController.text.isNotEmpty) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);

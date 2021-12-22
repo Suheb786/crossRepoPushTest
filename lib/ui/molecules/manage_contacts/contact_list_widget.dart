@@ -1,3 +1,4 @@
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -6,10 +7,10 @@ import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ContactListWidget extends StatelessWidget {
-  final ContactsListModel? contactsListModel;
+  final Beneficiary? beneficiary;
   final Function()? onTap;
 
-  const ContactListWidget({Key? key, this.contactsListModel, this.onTap})
+  const ContactListWidget({Key? key, this.beneficiary, this.onTap})
       : super(key: key);
 
   @override
@@ -22,31 +23,31 @@ class ContactListWidget extends StatelessWidget {
           ),
           child: Row(
             children: [
-              contactsListModel!.imageUrl!.isNotEmpty
+              beneficiary!.imageUrl.toString().isNotEmpty
                   ? CircleAvatar(
-                  radius: 25,
-                  backgroundImage: AssetImage(contactsListModel!.imageUrl!))
+                      radius: 25,
+                      backgroundImage: Image.memory(
+                        beneficiary!.imageUrl,
+                        fit: BoxFit.cover,
+                      ).image,
+                    )
                   : CircleAvatar(
-                radius: 25,
-                backgroundColor: Theme
-                    .of(context)
-                    .primaryColor,
-                child: Text(
-                  StringUtils.getFirstInitials(contactsListModel!.name),
-                  style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 14,
-                      color: Theme
-                          .of(context)
-                          .accentColor),
-                ),
-              ),
+                      radius: 25,
+                      backgroundColor: Theme.of(context).primaryColor,
+                      child: Text(
+                        StringUtils.getFirstInitials(beneficiary!.nickName),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 14,
+                            color: Theme.of(context).accentColor),
+                      ),
+                    ),
               SizedBox(
                 width: 14,
               ),
               Expanded(
                 child: Text(
-                  contactsListModel!.name!,
+                  beneficiary!.nickName!,
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
               ),
@@ -57,8 +58,7 @@ class ContactListWidget extends StatelessWidget {
                 child: AppSvg.asset(AssetUtils.rightChevron,
                     width: 18,
                     height: 18,
-                    color: Theme
-                        .of(context)
+                    color: Theme.of(context)
                         .inputDecorationTheme
                         .hintStyle!
                         .color),

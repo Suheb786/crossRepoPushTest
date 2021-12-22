@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -17,15 +18,13 @@ class CardReadySuccessPageView
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
-          ///TODO:Navigate to dashboard
+          Navigator.pushNamed(context, RoutePaths.AppHome);
         }
       },
       child: Container(
           height: double.infinity,
           width: double.infinity,
-          color: Theme
-              .of(context)
-              .primaryColor,
+          color: Theme.of(context).primaryColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -48,7 +47,7 @@ class CardReadySuccessPageView
                                 color: AppColor.vividYellow,
                               ),
                               child:
-                              Center(child: AppSvg.asset(AssetUtils.right)),
+                                  Center(child: AppSvg.asset(AssetUtils.right)),
                             ),
                           ),
                         ],
@@ -62,33 +61,25 @@ class CardReadySuccessPageView
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            S
-                                .of(context)
-                                .yourCardReady,
+                            S.of(context).yourCardReady,
                             style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 24,
-                                color: Theme
-                                    .of(context)
-                                    .accentColor),
+                                color: Theme.of(context).accentColor),
                           ),
                           SizedBox(
                             height: 4,
                           ),
                           Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 48.0),
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
-                              S
-                                  .of(context)
-                                  .yourCardReadyDesc,
+                              S.of(context).yourCardReadyDesc,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,
-                                  color: Theme
-                                      .of(context)
-                                      .accentColor),
+                                  color: Theme.of(context).accentColor),
                             ),
                           ),
                         ],
@@ -102,15 +93,9 @@ class CardReadySuccessPageView
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   AnimatedButton(
-                    buttonText: S
-                        .of(context)
-                        .swipeToProceed,
-                    textColor: Theme
-                        .of(context)
-                        .accentColor,
-                    borderColor: Theme
-                        .of(context)
-                        .accentColor,
+                    buttonText: S.of(context).swipeToProceed,
+                    textColor: Theme.of(context).accentColor,
+                    borderColor: Theme.of(context).accentColor,
                   ),
                   SizedBox(
                     height: 5,
@@ -121,13 +106,9 @@ class CardReadySuccessPageView
                     ),
                     child: Center(
                       child: Text(
-                        S
-                            .of(context)
-                            .toDashboard,
+                        S.of(context).toDashboard,
                         style: TextStyle(
-                          color: Theme
-                              .of(context)
-                              .accentColor,
+                          color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
                         ),

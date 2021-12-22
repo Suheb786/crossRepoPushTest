@@ -13,6 +13,8 @@ class GetCreditCardPage extends BasePage<GetCreditCardViewModel> {
 class GetCreditCardPageState
     extends BaseStatefulPage<GetCreditCardViewModel, GetCreditCardPage>
     with AutomaticKeepAliveClientMixin {
+  GetCreditCardPageState() : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return getCreditCardViewModelProvider;

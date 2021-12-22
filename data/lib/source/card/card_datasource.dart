@@ -1,4 +1,5 @@
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
+import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -8,4 +9,23 @@ abstract class CardRemoteDs {
   Future<HttpResponse<ResponseEntity>> setCardPin(String pin);
 
   Future<HttpResponse<ResponseEntity>> confirmCardDelivery();
+
+  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery();
+
+  Future<HttpResponse<CardTransactionResponseEntity>>
+      getDebitCardTransactions();
+
+  Future<HttpResponse<CardTransactionResponseEntity>>
+      getCreditCardTransactions();
+
+  Future<HttpResponse<ResponseEntity>> requestCreditCard(
+      {required double cardLimit});
+
+  Future<HttpResponse<ResponseEntity>> getCreditYears();
+
+  Future<HttpResponse<ResponseEntity>> getDebitYears();
+
+  Future<HttpResponse<ResponseEntity>> getCreditCardStatement();
+
+  Future<HttpResponse<ResponseEntity>> getDebitCardStatement();
 }

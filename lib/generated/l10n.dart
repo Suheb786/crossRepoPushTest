@@ -4251,6 +4251,16 @@ class S {
     );
   }
 
+  /// `to Dashboard`
+  String get toDashboard {
+    return Intl.message(
+      'to Dashboard',
+      name: 'toDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Debit card\nhas been verified.`
   String get debitCardVerified {
     return Intl.message(
@@ -4366,256 +4376,6 @@ class S {
     return Intl.message(
       'You don’t have any contacts yet.\nAdd your blink contacts while\nsending money',
       name: 'addSendContact',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Payments`
-  String get payments {
-    return Intl.message(
-      'Payments',
-      name: 'payments',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `See all contacts`
-  String get seeAllContacts {
-    return Intl.message(
-      'See all contacts',
-      name: 'seeAllContacts',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Back to Payments`
-  String get backToPayments {
-    return Intl.message(
-      'Back to Payments',
-      name: 'backToPayments',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Send money to`
-  String get sendMoneyTo {
-    return Intl.message(
-      'Send money to',
-      name: 'sendMoneyTo',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Transaction Purpose`
-  String get transactionPurpose {
-    return Intl.message(
-      'Transaction Purpose',
-      name: 'transactionPurpose',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Edit`
-  String get edit {
-    return Intl.message(
-      'Edit',
-      name: 'edit',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Account balance`
-  String get accountBalance {
-    return Intl.message(
-      'Account balance',
-      name: 'accountBalance',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sent to`
-  String get sentTo {
-    return Intl.message(
-      'Sent to',
-      name: 'sentTo',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Ref No.`
-  String get refno {
-    return Intl.message(
-      'Ref No.',
-      name: 'refno',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Date`
-  String get date {
-    return Intl.message(
-      'Date',
-      name: 'date',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Share my receipt`
-  String get shareMyReceipt {
-    return Intl.message(
-      'Share my receipt',
-      name: 'shareMyReceipt',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Undo transaction`
-  String get undoTransaction {
-    return Intl.message(
-      'Undo transaction',
-      name: 'undoTransaction',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Request money from`
-  String get requestMoneyFrom {
-    return Intl.message(
-      'Request money from',
-      name: 'requestMoneyFrom',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Requested from`
-  String get requestedFrom {
-    return Intl.message(
-      'Requested from',
-      name: 'requestedFrom',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `You will be notified once your contact\naccepts your request and money is\nadded into your account.`
-  String get youWillBeNotified {
-    return Intl.message(
-      'You will be notified once your contact\naccepts your request and money is\nadded into your account.',
-      name: 'youWillBeNotified',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Undo request`
-  String get undoRequest {
-    return Intl.message(
-      'Undo request',
-      name: 'undoRequest',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `PURPOSE DETAILS`
-  String get purposeDetails {
-    return Intl.message(
-      'PURPOSE DETAILS',
-      name: 'purposeDetails',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Edit Transaction Purpose`
-  String get editTransactionPurpose {
-    return Intl.message(
-      'Edit Transaction Purpose',
-      name: 'editTransactionPurpose',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Tap to edit amount`
-  String get tapToEdit {
-    return Intl.message(
-      'Tap to edit amount',
-      name: 'tapToEdit',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Sending`
-  String get sending {
-    return Intl.message(
-      'Sending',
-      name: 'sending',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `IBAN / Mobile No. / ALIAS`
-  String get ibanOrMobile {
-    return Intl.message(
-      'IBAN / Mobile No. / ALIAS',
-      name: 'ibanOrMobile',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Select purpose`
-  String get selectPurpose {
-    return Intl.message(
-      'Select purpose',
-      name: 'selectPurpose',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Add this receipient to your blink contacts`
-  String get addRecipientToContact {
-    return Intl.message(
-      'Add this receipient to your blink contacts',
-      name: 'addRecipientToContact',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Enter the 6-digit code sent to  \n+962 79 322 8080`
-  String get enterCode {
-    return Intl.message(
-      'Enter the 6-digit code sent to  \n+962 79 322 8080',
-      name: 'enterCode',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Requesting`
-  String get requesting {
-    return Intl.message(
-      'Requesting',
-      name: 'requesting',
       desc: '',
       args: [],
     );
@@ -5591,16 +5351,6 @@ class S {
     );
   }
 
-  /// `to Dashboard`
-  String get toDashboard {
-    return Intl.message(
-      'to Dashboard',
-      name: 'toDashboard',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Account Inquiry went wrong`
   String get accountInquiryWentWrong {
     return Intl.message(
@@ -6021,141 +5771,61 @@ class S {
     );
   }
 
-  /// `Share PDF`
-  String get sharePdf {
+  /// `An error has occurred while login, please try again`
+  String get wentWrongWhileLogin {
     return Intl.message(
-      'Share PDF',
-      name: 'sharePdf',
+      'An error has occurred while login, please try again',
+      name: 'wentWrongWhileLogin',
       desc: '',
       args: [],
     );
   }
 
-  /// `Request money via`
-  String get requestedMoneyVia {
+  /// `Error While Get Account Details`
+  String get errorGetAccountDetails {
     return Intl.message(
-      'Request money via',
-      name: 'requestedMoneyVia',
+      'Error While Get Account Details',
+      name: 'errorGetAccountDetails',
       desc: '',
       args: [],
     );
   }
 
-  /// `Activity`
-  String get activity {
+  /// `Account Not Found`
+  String get accountNotFound {
     return Intl.message(
-      'Activity',
-      name: 'activity',
+      'Account Not Found',
+      name: 'accountNotFound',
       desc: '',
       args: [],
     );
   }
 
-  /// `Notifications`
-  String get notifications {
+  /// `You have entered an invalid OTP code, please enter a valid one`
+  String get invalidOtpEntered {
     return Intl.message(
-      'Notifications',
-      name: 'notifications',
+      'You have entered an invalid OTP code, please enter a valid one',
+      name: 'invalidOtpEntered',
       desc: '',
       args: [],
     );
   }
 
-  /// `Payment activity`
-  String get paymentActivity {
+  /// `Location services are disabled. Please allow access to NeoBank`
+  String get locationServiceDisabled {
     return Intl.message(
-      'Payment activity',
-      name: 'paymentActivity',
+      'Location services are disabled. Please allow access to NeoBank',
+      name: 'locationServiceDisabled',
       desc: '',
       args: [],
     );
   }
 
-  /// `All Transactions`
-  String get allTransaction {
+  /// `MIN. DUE BY `
+  String get minDueBy {
     return Intl.message(
-      'All Transactions',
-      name: 'allTransaction',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `All Time`
-  String get allTime {
-    return Intl.message(
-      'All Time',
-      name: 'allTime',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Send money was not\nsuccessful.`
-  String get sendMoneyNotSuccessful {
-    return Intl.message(
-      'Send money was not\nsuccessful.',
-      name: 'sendMoneyNotSuccessful',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `There was some issues to send your\npayment, please try again later.`
-  String get tryAgainLater {
-    return Intl.message(
-      'There was some issues to send your\npayment, please try again later.',
-      name: 'tryAgainLater',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `IBAN is\nnot in blink`
-  String get ibanNotBlink {
-    return Intl.message(
-      'IBAN is\nnot in blink',
-      name: 'ibanNotBlink',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `We’ve found that the recipient’s IBAN  you entered is outside blink. You will be able to send money outside blink, soon! You can send money from blink, today.`
-  String get ibanOutsideBlink {
-    return Intl.message(
-      'We’ve found that the recipient’s IBAN  you entered is outside blink. You will be able to send money outside blink, soon! You can send money from blink, today.',
-      name: 'ibanOutsideBlink',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `IBAN / Mobie / Alias should not be empty`
-  String get emptyIbanOrMobile {
-    return Intl.message(
-      'IBAN / Mobie / Alias should not be empty',
-      name: 'emptyIbanOrMobile',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Purpose should not be empty`
-  String get emptyPurpose {
-    return Intl.message(
-      'Purpose should not be empty',
-      name: 'emptyPurpose',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Purpose detail should not be empty`
-  String get emptyPurposeDetail {
-    return Intl.message(
-      'Purpose detail should not be empty',
-      name: 'emptyPurposeDetail',
+      'MIN. DUE BY ',
+      name: 'minDueBy',
       desc: '',
       args: [],
     );

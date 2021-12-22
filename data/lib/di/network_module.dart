@@ -3,12 +3,18 @@ import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:data/source/account/account_datasource.dart';
 import 'package:data/source/account/remote/account_remote_ds_impl.dart';
+import 'package:data/source/account_settings/account_settings_datasource.dart';
+import 'package:data/source/account_settings/remote/account_settings_remote_ds_impl.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:data/source/bank_smart/remote/bank_smart_remote_ds_impl.dart';
 import 'package:data/source/card/card_datasource.dart';
 import 'package:data/source/card/remote/card_remote_ds_impl.dart';
+import 'package:data/source/contact/contact_data_source.dart';
+import 'package:data/source/contact/remote/contact_remote_ds_impl.dart';
 import 'package:data/source/country/country_datasource.dart';
 import 'package:data/source/country/remote/country_remote_ds_impl.dart';
+import 'package:data/source/dashboard/dashboard_datasource.dart';
+import 'package:data/source/dashboard/remote/dashboard_remote_ds_impl.dart';
 import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
 import 'package:data/source/fatca_crs/remote/fatca_crs_remote_ds_impl.dart';
 import 'package:data/source/id_card/id_card_datasource.dart';
@@ -130,4 +136,19 @@ var countryRemoteDataSourceProvider = Provider<CountryRemoteDs>((ref) =>
 ///card remote DS
 var cardRemoteDataSourceProvider = Provider<CardRemoteDs>((ref) =>
     CardRemoteDsImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///Account Settings remote DS
+var accountSettingDataSourceProvider = Provider<AccountSettingsRemoteDs>(
+    (ref) => AccountSettingsRemoteDsImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///Manage Contacts remote DS
+var contactsDataSourceProvider = Provider<ContactRemoteDS>((ref) =>
+    ContactRemoteDsImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+///Dashboard remote DS
+var dashboardDataSourceProvider = Provider<DashboardRemoteDs>((ref) =>
+    DashboardRemoteDsImpl(
         ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));

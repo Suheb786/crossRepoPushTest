@@ -14,6 +14,8 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class ManageContactDetailsPageView
@@ -40,8 +42,8 @@ class ManageContactDetailsPageView
                         initialData: '',
                         onData: (data) {
                           if (data != null && data.isNotEmpty) {
-                            model.selectedProfile = data;
-                            model.addImage(data);
+                            //model.selectedProfile = data;
+                            //model.addImage(data);
                             _cropImage(data, model, context);
                           }
                         },
@@ -73,54 +75,45 @@ class ManageContactDetailsPageView
                                   },
                                   child: CircleAvatar(
                                     backgroundColor:
-                                    Theme
-                                        .of(context)
-                                        .primaryColor,
+                                        Theme.of(context).primaryColor,
                                     radius: 48,
                                     child: CircleAvatar(
                                       radius: 48,
                                       child: image!.isEmpty
-                                          ? (model.contactsListModel.imageUrl!
-                                          .isNotEmpty
-                                          ? CircleAvatar(
-                                        radius: 48,
-                                        backgroundImage: Image
-                                            .asset(
-                                          model.contactsListModel
-                                              .imageUrl!,
-                                          fit: BoxFit.cover,
-                                        )
-                                            .image,
-                                      )
+                                          ? (model.beneficiary.imageUrl!
+                                                  .isNotEmpty
+                                              ? CircleAvatar(
+                                                  radius: 48,
+                                                  backgroundImage: Image.memory(
+                                                    model.beneficiary.imageUrl!,
+                                                    fit: BoxFit.cover,
+                                                  ).image,
+                                                )
+                                              : CircleAvatar(
+                                                  radius: 48,
+                                                  backgroundColor:
+                                                      Theme.of(context)
+                                                          .primaryColor,
+                                                  child: Text(
+                                                    StringUtils
+                                                        .getFirstInitials(model
+                                                            .beneficiary
+                                                            .nickName),
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w700,
+                                                        fontSize: 14,
+                                                        color: Theme.of(context)
+                                                            .accentColor),
+                                                  ),
+                                                ))
                                           : CircleAvatar(
-                                        radius: 48,
-                                        backgroundColor:
-                                        Theme
-                                            .of(context)
-                                            .primaryColor,
-                                        child: Text(
-                                          StringUtils
-                                              .getFirstInitials(model
-                                              .contactsListModel
-                                              .name),
-                                          style: TextStyle(
-                                              fontWeight:
-                                              FontWeight.w700,
-                                              fontSize: 14,
-                                              color: Theme
-                                                  .of(context)
-                                                  .accentColor),
-                                        ),
-                                      ))
-                                          : CircleAvatar(
-                                        radius: 48,
-                                        backgroundImage: Image
-                                            .file(
-                                          File(image),
-                                          fit: BoxFit.cover,
-                                        )
-                                            .image,
-                                      ),
+                                              radius: 48,
+                                              backgroundImage: Image.file(
+                                                File(image),
+                                                fit: BoxFit.cover,
+                                              ).image,
+                                            ),
                                     ),
                                   ));
                             },
@@ -132,14 +125,11 @@ class ManageContactDetailsPageView
                       ),
                       Center(
                         child: Text(
-                          S
-                              .of(context)
-                              .tapToEditPhoto,
+                          S.of(context).tapToEditPhoto,
                           style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
-                              color: Theme
-                                  .of(context)
+                              color: Theme.of(context)
                                   .inputDecorationTheme
                                   .hintStyle!
                                   .color),
@@ -149,35 +139,25 @@ class ManageContactDetailsPageView
                         height: 19,
                       ),
                       AppTextField(
-                        labelText: S
-                            .of(context)
-                            .nickName
-                            .toUpperCase(),
-                        hintText: S
-                            .of(context)
-                            .pleaseEnter,
+                        labelText: S.of(context).nickName.toUpperCase(),
+                        hintText: S.of(context).pleaseEnter,
                         inputType: TextInputType.text,
                         controller: model.nickNameController,
                         maxLength: 25,
                         onChanged: (text) {
                           model.showSaveButton();
+                          model.updateType = UpdateType.details;
                         },
                       ),
                       SizedBox(height: 13),
                       AppTextField(
                         labelText:
-                        S
-                            .of(context)
-                            .ibanMobileNoAlias
-                            .toUpperCase(),
-                        hintText: S
-                            .of(context)
-                            .pleaseEnter,
+                            S.of(context).ibanMobileNoAlias.toUpperCase(),
+                        hintText: S.of(context).pleaseEnter,
                         inputType: TextInputType.text,
                         controller: model.ibanController,
                         enabled: false,
-                        textColor: Theme
-                            .of(context)
+                        textColor: Theme.of(context)
                             .inputDecorationTheme
                             .hintStyle!
                             .color,
@@ -185,47 +165,32 @@ class ManageContactDetailsPageView
                       SizedBox(height: 13),
                       AppTextField(
                         labelText:
-                        S
-                            .of(context)
-                            .accountHolderName
-                            .toUpperCase(),
-                        hintText: S
-                            .of(context)
-                            .pleaseEnter,
+                            S.of(context).accountHolderName.toUpperCase(),
+                        hintText: S.of(context).pleaseEnter,
                         inputType: TextInputType.text,
                         controller: model.accountHolderNameController,
                         enabled: false,
-                        textColor: Theme
-                            .of(context)
+                        textColor: Theme.of(context)
                             .inputDecorationTheme
                             .hintStyle!
                             .color,
                       ),
                       SizedBox(height: 13),
                       AppTextField(
-                        labelText: S
-                            .of(context)
-                            .bankName,
-                        hintText: S
-                            .of(context)
-                            .pleaseEnter,
+                        labelText: S.of(context).bankName,
+                        hintText: S.of(context).pleaseEnter,
                         inputType: TextInputType.text,
                         controller: model.bankNameController,
                         enabled: false,
-                        textColor: Theme
-                            .of(context)
+                        textColor: Theme.of(context)
                             .inputDecorationTheme
                             .hintStyle!
                             .color,
                       ),
                       SizedBox(height: 13),
                       AppTextField(
-                        labelText: S
-                            .of(context)
-                            .purpose,
-                        hintText: S
-                            .of(context)
-                            .pleaseSelect,
+                        labelText: S.of(context).purpose,
+                        hintText: S.of(context).pleaseSelect,
                         inputType: TextInputType.text,
                         controller: model.purposeController,
                         readOnly: true,
@@ -243,12 +208,8 @@ class ManageContactDetailsPageView
                       ),
                       SizedBox(height: 13),
                       AppTextField(
-                        labelText: S
-                            .of(context)
-                            .purposeDetail,
-                        hintText: S
-                            .of(context)
-                            .pleaseSelect,
+                        labelText: S.of(context).purposeDetail,
+                        hintText: S.of(context).pleaseSelect,
                         inputType: TextInputType.text,
                         readOnly: true,
                         controller: model.purposeDetailsController,
@@ -262,81 +223,109 @@ class ManageContactDetailsPageView
                                   color: AppColor.dark_gray_1));
                         },
                       ),
-                      InkWell(
-                        onTap: () {},
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 45, bottom: 11),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              AppSvg.asset(AssetUtils.delete,
-                                  color: Theme
-                                      .of(context)
-                                      .primaryColor),
-                              SizedBox(
-                                width: 15,
+                      AppStreamBuilder<Resource<bool>>(
+                        stream: model.deleteBeneficiaryStream,
+                        initialData: Resource.none(),
+                        onData: (data) {
+                          if (data.status == Status.SUCCESS) {
+                            model.showSuccessToast(
+                                S.of(context).yourContactDetailsUpdated);
+                            Navigator.pop(context, true);
+                          }
+                        },
+                        dataBuilder: (context, deleteBeneficiary) {
+                          return InkWell(
+                            onTap: () {
+                              model.deleteBeneficiary();
+                            },
+                            child: Padding(
+                              padding: EdgeInsets.only(top: 45, bottom: 11),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  AppSvg.asset(AssetUtils.delete,
+                                      color: Theme.of(context).primaryColor),
+                                  SizedBox(
+                                    width: 15,
+                                  ),
+                                  Text(
+                                    S.of(context).removeFromContact,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600,
+                                        color: Theme.of(context).primaryColor),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                S
-                                    .of(context)
-                                    .removeFromContact,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600,
-                                    color: Theme
-                                        .of(context)
-                                        .primaryColor),
-                              ),
-                            ],
-                          ),
-                        ),
+                            ),
+                          );
+                        },
                       )
                     ],
                   ),
                 ),
-                AppStreamBuilder<bool>(
-                  stream: model.showSaveButtonStream,
-                  initialData: false,
-                  dataBuilder: (context, isVisible) {
-                    return Visibility(
-                        visible: isVisible!,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          child: InkWell(
-                            onTap: () {
-                              model.showSuccessToast(
-                                  S
-                                      .of(context)
-                                      .yourContactDetailsUpdated);
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 20),
-                              height: 56,
-                              decoration: BoxDecoration(
-                                  color: Theme
-                                      .of(context)
-                                      .accentTextTheme
-                                      .bodyText1!
-                                      .color,
-                                  borderRadius: BorderRadius.circular(100)),
-                              child: Center(
-                                child: Text(
-                                  S
-                                      .of(context)
-                                      .saveChanges,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: Theme
-                                          .of(context)
-                                          .accentColor),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ));
+                AppStreamBuilder<Resource<bool>>(
+                  stream: model.uploadBeneficiaryProfileImageStream,
+                  initialData: Resource.none(),
+                  onData: (data) {
+                    if (data.status == Status.SUCCESS) {
+                      model.showSuccessToast(
+                          S.of(context).yourContactDetailsUpdated);
+                      Navigator.pop(context, true);
+                    }
+                  },
+                  dataBuilder: (context, uploadProfilePhoto) {
+                    return AppStreamBuilder<Resource<bool>>(
+                      stream: model.updateBeneficiaryStream,
+                      initialData: Resource.none(),
+                      onData: (data) {
+                        if (data.status == Status.SUCCESS) {
+                          model.showSuccessToast(
+                              S.of(context).yourContactDetailsUpdated);
+                          Navigator.pop(context, true);
+                        }
+                      },
+                      dataBuilder: (context, beneficiaryUpdate) {
+                        return AppStreamBuilder<bool>(
+                          stream: model.showSaveButtonStream,
+                          initialData: false,
+                          dataBuilder: (context, isVisible) {
+                            return Visibility(
+                                visible: isVisible!,
+                                child: Align(
+                                  alignment: Alignment.bottomCenter,
+                                  child: InkWell(
+                                    onTap: () {
+                                      model.updateBeneficiary();
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.symmetric(
+                                          horizontal: 24, vertical: 20),
+                                      height: 56,
+                                      decoration: BoxDecoration(
+                                          color: Theme.of(context)
+                                              .accentTextTheme
+                                              .bodyText1!
+                                              .color,
+                                          borderRadius:
+                                              BorderRadius.circular(100)),
+                                      child: Center(
+                                        child: Text(
+                                          S.of(context).saveChanges,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: Theme.of(context)
+                                                  .accentColor),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ));
+                          },
+                        );
+                      },
+                    );
                   },
                 )
               ],
@@ -351,10 +340,16 @@ class ManageContactDetailsPageView
       BuildContext context) async {
     File? cropped = await ImageCropper.cropImage(
         sourcePath: data,
+        iosUiSettings: IOSUiSettings(
+            resetButtonHidden: true,
+            rotateButtonsHidden: true,
+            aspectRatioPickerButtonHidden: true,
+            doneButtonTitle: 'Choose'),
         aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
     if (cropped != null) {
       model.selectedProfile = cropped.path;
       model.addImage(cropped.path);
+      model.updateType = UpdateType.image;
       model.showSaveButton();
     }
   }

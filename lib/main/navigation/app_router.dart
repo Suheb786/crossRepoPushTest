@@ -1,3 +1,4 @@
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
@@ -12,6 +13,8 @@ import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
+import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
+import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
@@ -209,8 +212,8 @@ class AppRouter {
 
       case RoutePaths.ManageContactsDetail:
         return CupertinoPageRoute(
-            builder: (context) => ManageContactDetailsPage(
-                settings.arguments as ContactsListModel),
+            builder: (context) =>
+                ManageContactDetailsPage(settings.arguments as Beneficiary),
             settings: RouteSettings(name: RoutePaths.ManageContactsDetail));
 
       case RoutePaths.DownloadTransaction:

@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -30,15 +31,14 @@ class EnterCodeForChangeEmailAddressPageView
             duration: Duration(milliseconds: 100),
             shakeAngle: Rotation.deg(z: 1),
             curve: Curves.easeInOutSine,
-            child: AppStreamBuilder<Resource<bool>>(
+            child: AppStreamBuilder<Resource<ProfileChangedSuccessResponse>>(
               stream: model.verifyOtpStream,
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pop(context);
-                  model.showSuccessToast(S
-                      .of(context)
-                      .emailAddressUpdated);
+                  model.showSuccessToast(data.data!.data!.data!);
+                  print('popped');
+                  Navigator.pop(context, true);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -49,8 +49,7 @@ class EnterCodeForChangeEmailAddressPageView
                     if (details.primaryVelocity!.isNegative) {
                       model.validateOtp();
                     } else {
-                      ProviderScope
-                          .containerOf(context)
+                      ProviderScope.containerOf(context)
                           .read(changeEmailAddressViewModelProvider)
                           .swiperController
                           .previous(animation: true);
@@ -60,7 +59,7 @@ class EnterCodeForChangeEmailAddressPageView
                     margin: EdgeInsets.zero,
                     child: Container(
                         padding:
-                        EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -85,8 +84,7 @@ class EnterCodeForChangeEmailAddressPageView
                                   endTime: model.endTime,
                                   textStyle: TextStyle(
                                       fontSize: 16,
-                                      color: Theme
-                                          .of(context)
+                                      color: Theme.of(context)
                                           .accentTextTheme
                                           .bodyText1!
                                           .color!),
@@ -94,34 +92,30 @@ class EnterCodeForChangeEmailAddressPageView
                                       (context, currentTimeRemaining) {
                                     return currentTimeRemaining == null
                                         ? TextButton(
-                                        onPressed: () {
-                                          model.updateTime();
-                                        },
-                                        child: Text(
-                                          'Resend Code',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                              color: Theme
-                                                  .of(context)
-                                                  .accentTextTheme
-                                                  .bodyText1!
-                                                  .color!),
-                                        ))
+                                            onPressed: () {
+                                              model.updateTime();
+                                            },
+                                            child: Text(
+                                              'Resend Code',
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Theme.of(context)
+                                                      .accentTextTheme
+                                                      .bodyText1!
+                                                      .color!),
+                                            ))
                                         : Text(
-                                      S.of(context).resendIn(
-                                          '${currentTimeRemaining.min ??
-                                              00}:${currentTimeRemaining.sec ??
-                                              00}'),
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: Theme
-                                              .of(context)
-                                              .accentTextTheme
-                                              .bodyText1!
-                                              .color!),
-                                    );
+                                            S.of(context).resendIn(
+                                                '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                                color: Theme.of(context)
+                                                    .accentTextTheme
+                                                    .bodyText1!
+                                                    .color!),
+                                          );
                                   },
                                 ),
                                 Padding(
@@ -135,19 +129,14 @@ class EnterCodeForChangeEmailAddressPageView
                                           child: AnimatedButton(
                                             buttonHeight: 50,
                                             buttonText:
-                                            S
-                                                .of(context)
-                                                .swipeToProceed,
+                                                S.of(context).swipeToProceed,
                                           ),
                                         );
                                       }),
                                 ),
                                 SizedBox(
                                   height:
-                                  MediaQuery
-                                      .of(context)
-                                      .viewInsets
-                                      .bottom,
+                                      MediaQuery.of(context).viewInsets.bottom,
                                 )
                               ],
                             ),

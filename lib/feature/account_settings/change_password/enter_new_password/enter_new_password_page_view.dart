@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -31,26 +32,19 @@ class EnterNewPasswordPageView
                 duration: Duration(milliseconds: 100),
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
-                child: AppStreamBuilder<Resource<bool>>(
+                child: AppStreamBuilder<
+                        Resource<ProfileChangedSuccessResponse>>(
                     stream: model.createPasswordStream,
                     initialData: Resource.none(),
                     onData: (passwordData) {
                       if (passwordData.status == Status.SUCCESS) {
                         Navigator.pop(context);
-                        model.showSuccessToast(
-                            S
-                                .of(context)
-                                .passwordUpdatedSuccessfully);
+                        model.showSuccessToast(passwordData.data!.data!.data!);
                       } else if (passwordData.status == Status.ERROR) {
                         if (passwordData.appError!.type ==
-                            ErrorType.PASSWORD_MISMATCH) {
-                          model.currentPasswordKey.currentState!.isValid =
-                          false;
-                          model.newPasswordKey.currentState!.isValid = false;
-                        } else if (passwordData.appError!.type ==
                             ErrorType.EMPTY_PASSWORD) {
                           model.currentPasswordKey.currentState!.isValid =
-                          false;
+                              false;
                         } else if (passwordData.appError!.type ==
                             ErrorType.EMPTY_NEW_PASSWORD) {
                           model.newPasswordKey.currentState!.isValid = false;
@@ -71,25 +65,23 @@ class EnterNewPasswordPageView
                                   vertical: 32, horizontal: 24),
                               child: Column(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Expanded(
                                     child: SingleChildScrollView(
                                       child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           AppTextField(
                                             key: model.currentPasswordKey,
                                             labelText:
-                                            S
-                                                .of(context)
-                                                .currentPassword,
+                                                S.of(context).currentPassword,
                                             obscureText: true,
-                                            hintText: S
-                                                .of(context)
-                                                .pleaseEnter,
+                                            hintText: S.of(context).pleaseEnter,
                                             inputType: TextInputType.text,
                                             controller:
-                                            model.currentPasswordController,
+                                                model.currentPasswordController,
                                             onChanged: (value) {
                                               model.validateAllFields();
                                             },
@@ -97,41 +89,40 @@ class EnterNewPasswordPageView
                                               return InkWell(
                                                 onTap: () {
                                                   model
-                                                      .currentPasswordKey
-                                                      .currentState!
-                                                      .secureText =
-                                                  !model
-                                                      .currentPasswordKey
-                                                      .currentState!
-                                                      .secureText;
+                                                          .currentPasswordKey
+                                                          .currentState!
+                                                          .secureText =
+                                                      !model
+                                                          .currentPasswordKey
+                                                          .currentState!
+                                                          .secureText;
                                                 },
                                                 child: model
-                                                    .currentPasswordKey
-                                                    .currentState!
-                                                    .secureText
+                                                        .currentPasswordKey
+                                                        .currentState!
+                                                        .secureText
                                                     ? Container(
-                                                  width: 16,
-                                                  height: 16,
-                                                  padding:
-                                                  EdgeInsets.all(4),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.eye,
-                                                      color: Theme
-                                                          .of(
-                                                          context)
-                                                          .inputDecorationTheme
-                                                          .labelStyle!
-                                                          .color!
-                                                          .withOpacity(0.3)),
-                                                )
+                                                        width: 16,
+                                                        height: 16,
+                                                        padding:
+                                                            EdgeInsets.all(4),
+                                                        child: AppSvg.asset(
+                                                            AssetUtils.eye,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .inputDecorationTheme
+                                                                .labelStyle!
+                                                                .color!
+                                                                .withOpacity(
+                                                                    0.3)),
+                                                      )
                                                     : Icon(
-                                                  Icons.visibility_off,
-                                                  color: Theme
-                                                      .of(context)
-                                                      .inputDecorationTheme
-                                                      .labelStyle!
-                                                      .color,
-                                                ),
+                                                        Icons.visibility_off,
+                                                        color: Theme.of(context)
+                                                            .inputDecorationTheme
+                                                            .labelStyle!
+                                                            .color,
+                                                      ),
                                               );
                                             },
                                           ),
@@ -141,12 +132,8 @@ class EnterNewPasswordPageView
                                           AppTextField(
                                             key: model.newPasswordKey,
                                             labelText:
-                                            S
-                                                .of(context)
-                                                .newPassword,
-                                            hintText: S
-                                                .of(context)
-                                                .pleaseEnter,
+                                                S.of(context).newPassword,
+                                            hintText: S.of(context).pleaseEnter,
                                             inputType: TextInputType.text,
                                             obscureText: true,
                                             onChanged: (value) {
@@ -154,46 +141,45 @@ class EnterNewPasswordPageView
                                               model.validateAllFields();
                                             },
                                             controller:
-                                            model.newPasswordController,
+                                                model.newPasswordController,
                                             suffixIcon: (isChecked, value) {
                                               return InkWell(
                                                 onTap: () {
                                                   model
-                                                      .newPasswordKey
-                                                      .currentState!
-                                                      .secureText =
-                                                  !model
-                                                      .newPasswordKey
-                                                      .currentState!
-                                                      .secureText;
+                                                          .newPasswordKey
+                                                          .currentState!
+                                                          .secureText =
+                                                      !model
+                                                          .newPasswordKey
+                                                          .currentState!
+                                                          .secureText;
                                                 },
                                                 child: model
-                                                    .newPasswordKey
-                                                    .currentState!
-                                                    .secureText
+                                                        .newPasswordKey
+                                                        .currentState!
+                                                        .secureText
                                                     ? Container(
-                                                  width: 16,
-                                                  height: 16,
-                                                  padding:
-                                                  EdgeInsets.all(4),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils.eye,
-                                                      color: Theme
-                                                          .of(
-                                                          context)
-                                                          .inputDecorationTheme
-                                                          .labelStyle!
-                                                          .color!
-                                                          .withOpacity(0.3)),
-                                                )
+                                                        width: 16,
+                                                        height: 16,
+                                                        padding:
+                                                            EdgeInsets.all(4),
+                                                        child: AppSvg.asset(
+                                                            AssetUtils.eye,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .inputDecorationTheme
+                                                                .labelStyle!
+                                                                .color!
+                                                                .withOpacity(
+                                                                    0.3)),
+                                                      )
                                                     : Icon(
-                                                  Icons.visibility_off,
-                                                  color: Theme
-                                                      .of(context)
-                                                      .inputDecorationTheme
-                                                      .labelStyle!
-                                                      .color,
-                                                ),
+                                                        Icons.visibility_off,
+                                                        color: Theme.of(context)
+                                                            .inputDecorationTheme
+                                                            .labelStyle!
+                                                            .color,
+                                                      ),
                                               );
                                             },
                                           ),
@@ -219,24 +205,19 @@ class EnterNewPasswordPageView
                                                 ),
                                                 PasswordHintWidget(
                                                   label:
-                                                  S
-                                                      .of(context)
-                                                      .oneNumber,
+                                                      S.of(context).oneNumber,
                                                   isValid: model.containsDigit,
                                                 ),
                                                 PasswordHintWidget(
                                                   label:
-                                                  S
-                                                      .of(context)
-                                                      .oneSymbol,
+                                                      S.of(context).oneSymbol,
                                                   isValid: model.hasSymbol,
                                                 ),
                                               ],
                                             ),
                                           ),
                                           SizedBox(
-                                            height: MediaQuery
-                                                .of(context)
+                                            height: MediaQuery.of(context)
                                                 .viewInsets
                                                 .bottom,
                                           )

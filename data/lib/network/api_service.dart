@@ -8,6 +8,13 @@ import 'package:data/entity/remote/account/doc_status_request_entity.dart';
 import 'package:data/entity/remote/account/doc_status_response_entity.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_request_entity.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_response_entity.dart';
+import 'package:data/entity/remote/accountsettings/change_email_request.dart';
+import 'package:data/entity/remote/accountsettings/change_mobile_request.dart';
+import 'package:data/entity/remote/accountsettings/change_password_request.dart';
+import 'package:data/entity/remote/accountsettings/profile_changed_success_response_entity.dart';
+import 'package:data/entity/remote/accountsettings/profile_details_response_entity.dart';
+import 'package:data/entity/remote/accountsettings/update_profile_image_request.dart';
+import 'package:data/entity/remote/accountsettings/verify_change_email_request.dart';
 import 'package:data/entity/remote/ahwal/ahwal_detail_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
@@ -20,13 +27,27 @@ import 'package:data/entity/remote/bank_smart/get_account_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_response_entity.dart';
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
-import 'package:data/entity/remote/card/card_issuance_request.dart';
+import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
+import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
+import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
+import 'package:data/entity/remote/card/credit_card_statement_request.dart';
+import 'package:data/entity/remote/card/debit_card_statement_request.dart';
+import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
+import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/delete_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart';
+import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
+import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
+import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
 import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_response_entity.dart';
+import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
+import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
+import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
@@ -276,7 +297,7 @@ abstract class ApiService {
 
   @POST("/CardTracking/CardIssuance")
   Future<HttpResponse<CardIssuanceResponseEntity>> getCardIssuanceDetails(
-      @Body() CardIssuanceRequest request);
+      @Body() BaseRequest request);
 
   @POST("/CardTracking/SetCardPin")
   Future<HttpResponse<ResponseEntity>> setCardPin(
@@ -284,5 +305,98 @@ abstract class ApiService {
 
   @POST("/CardTracking/ConfirmDelivery")
   Future<HttpResponse<ResponseEntity>> confirmCardDelivery(
-      @Body() CardIssuanceRequest cardIssuanceRequest);
+      @Body() BaseRequest cardIssuanceRequest);
+
+  @POST("/CardTracking/ConfirmCreditCardDelivery")
+  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery(
+      @Body() ConfirmCreditCardDeliveryRequest cardIssuanceRequest);
+
+  @POST("/auth/ChangeEmail")
+  Future<HttpResponse<ResponseEntity>> changeEmail(
+      @Body() ChangeEmailRequest changeEmailRequest);
+
+  @POST("/auth/ChangeMobile")
+  Future<HttpResponse<ResponseEntity>> changeMobile(
+      @Body() ChangeMobileRequest changeMobileRequest);
+
+  @POST("/CustomerDetails/GetProfileInfo")
+  Future<HttpResponse<ProfileDetailsResponseEntity>> getProfileDetails(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/auth/ChangePassword")
+  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> changePassword(
+      @Body() ChangePasswordRequest changePasswordRequest);
+
+  @POST("/CustomerDetails/ChangeProfileImage")
+  Future<HttpResponse<ResponseEntity>> updateProfileImage(
+      @Body() UpdateProfileImageRequest updateProfileImageRequest);
+
+  @POST("/auth/VerifyChangeEmail")
+  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeEmail(
+      @Body() VerifyChangeEmailRequest verifyChangeEmailRequest);
+
+  @POST("/auth/VerifyChangeMobile")
+  Future<HttpResponse<ProfileChangedSuccessResponseEntity>> verifyChangeMobile(
+      @Body() VerifyChangeEmailRequest verifyChangeEmailRequest);
+
+  @POST("/beneficiary/GetBeneficiaries")
+  Future<HttpResponse<GetBeneficiaryResponseEntity>> getBeneficiaries(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/beneficiary/AddBeneficiary")
+  Future<HttpResponse<ResponseEntity>> addBeneficiary(
+      @Body() AddBeneficiaryRequest addBeneficiaryRequest);
+
+  @POST("/beneficiary/UpdateBeneficiary")
+  Future<HttpResponse<ResponseEntity>> updateBeneficiary(
+      @Body() UpdateBeneficiaryRequest updateBeneficiaryRequest);
+
+  @POST("/beneficiary/DeleteBeneficiary")
+  Future<HttpResponse<ResponseEntity>> deleteBeneficiary(
+      @Body() DeleteBeneficiaryRequest deleteBeneficiaryRequest);
+
+  @POST("/beneficiary/VerifyBeneficiaryOTP")
+  Future<HttpResponse<ResponseEntity>> verifyBeneficiaryOtp(
+      @Body() VerifyBeneficiaryOtpRequest verifyBeneficiaryOtpRequest);
+
+  @POST("/beneficiary/UploadBeneficiaryImage")
+  Future<HttpResponse<ResponseEntity>> uploadBeneficiaryImage(
+      @Body() UploadBeneficiaryImageRequest uploadBeneficiaryImageRequest);
+
+  @POST("/DashBoard/GetDashboardData")
+  Future<HttpResponse<DashboardDataResponseEntity>> getDashboardData(
+      @Body() DashboardDataRequest dashboardDataRequest);
+
+  @POST("/MoneyThor/GetDebitCardTransactionsList")
+  Future<HttpResponse<CardTransactionResponseEntity>> getDebitCardTransactions(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/MoneyThor/GetCreditCardTransactionsList")
+  Future<HttpResponse<CardTransactionResponseEntity>> getCreditCardTransactions(
+      @Body() ConfirmCreditCardDeliveryRequest baseRequest);
+
+  @POST("/BankSmart/GetAtms")
+  Future<HttpResponse<AtmsResponseEntity>> getAtms(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/CardTracking/CreditCardReq")
+  Future<HttpResponse<ResponseEntity>> requestCreditCard(
+      @Body() RequestCardRequest requestCardRequest);
+
+  @POST("/CardTracking/GetCreditCardStatement")
+  Future<HttpResponse<ResponseEntity>> getCreditCardStatement(
+      @Body() CreditCardStatementRequest cardStatementRequest);
+
+  @POST("/CardTracking/GetDebitCardStatement")
+  Future<HttpResponse<ResponseEntity>> getDebitCardStatement(
+      @Body() DebitCardStatementRequest cardStatementRequest);
+
+  @POST("/CardTracking/GetCreditYears")
+  Future<HttpResponse<ResponseEntity>> getCreditYears(
+      @Body()
+          ConfirmCreditCardDeliveryRequest confirmCreditCardDeliveryRequest);
+
+  @POST("/CardTracking/GetCreditYears")
+  Future<HttpResponse<ResponseEntity>> getDebitYears(
+      @Body() BaseRequest baseRequest);
 }

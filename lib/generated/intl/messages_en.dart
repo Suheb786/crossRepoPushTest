@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "accountLocked": MessageLookupByLibrary.simpleMessage(
             "Your account is locked, please contact customer service on 7777-7777 to unlock"),
         "accountNo": MessageLookupByLibrary.simpleMessage("ACCOUNT NO."),
+        "accountNotFound":
+            MessageLookupByLibrary.simpleMessage("Account Not Found"),
         "accountNumberOptional": MessageLookupByLibrary.simpleMessage(
             "LIST OF ACCOUNT NUMBER (OPTIONAL)"),
         "accountOpeningDescription": MessageLookupByLibrary.simpleMessage(
@@ -384,6 +386,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
             "Error While Creating Account"),
+        "errorGetAccountDetails": MessageLookupByLibrary.simpleMessage(
+            "Error While Get Account Details"),
         "errorSavingIdCard":
             MessageLookupByLibrary.simpleMessage("Error While saving IDCard"),
         "errorSavingStatus":
@@ -554,6 +558,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Occupation"),
         "invalidOtp": MessageLookupByLibrary.simpleMessage(
             "You have entered an invalid OTP code, please enter a valid one"),
+        "invalidOtpEntered": MessageLookupByLibrary.simpleMessage(
+            "You have entered an invalid OTP code, please enter a valid one"),
         "invalidPermanentAddress": MessageLookupByLibrary.simpleMessage(
             "Enter Permanent Residence Address"),
         "invalidPinLength": MessageLookupByLibrary.simpleMessage(
@@ -617,6 +623,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "linkedAccountNumber":
             MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
         "locateATM": MessageLookupByLibrary.simpleMessage("Locate ATM"),
+        "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
+            "Location services are disabled. Please allow access to NeoBank"),
         "logout": MessageLookupByLibrary.simpleMessage("Log out"),
         "logoutAndContinueLater":
             MessageLookupByLibrary.simpleMessage("Log out and continue later"),
@@ -645,6 +653,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "manageContactsSettings":
             MessageLookupByLibrary.simpleMessage("Manage\nContacts"),
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
+        "minDueBy": MessageLookupByLibrary.simpleMessage("MIN. DUE BY "),
         "mobileNoExist":
             MessageLookupByLibrary.simpleMessage("Mobile Number Exist"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
@@ -1067,6 +1076,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),
         "welcomeToNeuBank":
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),
+        "wentWrongWhileLogin": MessageLookupByLibrary.simpleMessage(
+            "An error has occurred while login, please try again"),
         "wereBornInUS":
             MessageLookupByLibrary.simpleMessage("Were you born in the U.S.?"),
         "whatIsPEP": MessageLookupByLibrary.simpleMessage("What is P.E.P?"),

@@ -1,13 +1,31 @@
+import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
+import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
 import 'package:domain/usecase/dashboard/account_transaction_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/model/transaction_item.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/request_manager.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AccountTransactionViewModel extends BasePageViewModel {
+  final GetDebitCardTransactionsUseCase _cardTransactionsUseCase;
   AccountTransactionUseCase _useCase;
   TextEditingController searchController = TextEditingController();
+
+  ///get transaction request
+  PublishSubject<GetDebitCardTransactionsUseCaseParams>
+      _getTransactionsRequest = PublishSubject();
+
+  ///get transaction response
+  PublishSubject<Resource<GetTransactionsResponse>> _getTransactionsResponse =
+      PublishSubject();
+
+  ///get transaction response stream
+  Stream<Resource<GetTransactionsResponse>> get getTransactionsStream =>
+      _getTransactionsResponse.stream;
 
   List<TransactionItem> transactionList = [
     TransactionItem(
@@ -88,8 +106,24 @@ class AccountTransactionViewModel extends BasePageViewModel {
 
   List<TransactionItem> searchTransactionList = [];
 
-  AccountTransactionViewModel(this._useCase) {
+  AccountTransactionViewModel(this._useCase, this._cardTransactionsUseCase) {
     _transactionListSubject.safeAdd(transactionList);
+
+    _getTransactionsRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _cardTransactionsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getTransactionsResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    getTransactions();
   }
 
   onSearchTextChanged(String text) async {
@@ -153,6 +187,10 @@ class AccountTransactionViewModel extends BasePageViewModel {
         print(searchTransactionList.first.to);
       }
     }
+  }
+
+  void getTransactions() {
+    _getTransactionsRequest.safeAdd(GetDebitCardTransactionsUseCaseParams());
   }
 
   @override
