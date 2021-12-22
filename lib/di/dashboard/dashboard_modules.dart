@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
@@ -62,9 +63,10 @@ final myDebitCardViewModelProvider =
   (ref) => MyDebitCardViewModel(ref.read(myDebitCardUseCaseProvider)),
 );
 
-final cardDeliveredViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DebitCardDeliveredViewModel>(
-  (ref) => DebitCardDeliveredViewModel(ref.read(cardDeliveredUseCaseProvider)),
+final cardDeliveredViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<DebitCardDeliveredViewModel, DebitCard>(
+  (ref, args) =>
+      DebitCardDeliveredViewModel(ref.read(cardDeliveredUseCaseProvider), args),
 );
 
 final debitCardVerificationSuccessViewModelProvider =

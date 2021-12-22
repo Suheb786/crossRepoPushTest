@@ -6,6 +6,7 @@ import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
+import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
@@ -53,8 +54,8 @@ class CardRemoteDsImpl extends CardRemoteDs {
   Future<HttpResponse<CardTransactionResponseEntity>>
       getDebitCardTransactions() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .getDebitCardTransactions(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.getDebitCardTransactions(GetDebitCardTransactionRequest(
+        baseData: baseData.toJson(), getToken: true, isDebit: true));
   }
 
   @override

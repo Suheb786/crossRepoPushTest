@@ -89,7 +89,7 @@ class TimeUtils {
 
   static String getFormattedDateForTransaction(String date) {
     DateTime dateTime = DateTime.parse(date).toLocal();
-    final DateFormat formatter = DateFormat('d MMMM');
+    final DateFormat formatter = DateFormat('d MMM');
     return formatter.format(dateTime);
   }
 
