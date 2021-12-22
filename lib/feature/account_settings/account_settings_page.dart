@@ -31,7 +31,9 @@ class AccountSettingPageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override
@@ -48,15 +50,21 @@ class AccountSettingPageState
               child: Padding(
                 padding: const EdgeInsets.only(left: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    color: Theme.of(context).accentColor),
+                    color: Theme
+                        .of(context)
+                        .accentColor),
               ),
             ),
             Text(
-              S.of(context).settings,
+              S
+                  .of(context)
+                  .settings,
               style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: Theme.of(context).accentColor),
+                  color: Theme
+                      .of(context)
+                      .accentColor),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 18.0),

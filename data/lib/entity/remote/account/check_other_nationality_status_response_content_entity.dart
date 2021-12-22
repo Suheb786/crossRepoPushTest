@@ -7,7 +7,8 @@ part 'check_other_nationality_status_response_content_entity.g.dart';
 @JsonSerializable()
 class CheckOtherNationalityStatusResponseContentEntity
     implements
-        BaseLayerDataTransformer<CheckOtherNationalityStatusResponseContentEntity,
+        BaseLayerDataTransformer<
+            CheckOtherNationalityStatusResponseContentEntity,
             CheckOtherNationalityResponseContent> {
   @JsonKey(name: "status")
   final bool? status;

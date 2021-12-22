@@ -37,6 +37,7 @@ import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_mo
 import 'package:neo_bank/feature/register/stepone/id_verification_info/id_verification_info_model.dart';
 import 'package:neo_bank/feature/register/stepone/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_payer_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/calendar_dialog/calendar_dialog_view_model.dart';
@@ -374,6 +375,10 @@ final yearMonthDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<YearMonthDialogViewModel>(
   (ref) => YearMonthDialogViewModel(),
 );
+
+final filterTransactionDialogViewModelProvier =
+ChangeNotifierProvider.autoDispose<FilterTransactionDialogViewModel>(
+        (ref) => FilterTransactionDialogViewModel());
 
 ///fatca signaturepage view model provider
 final fatcaSignaturePageViewModelProvider =

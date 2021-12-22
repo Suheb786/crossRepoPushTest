@@ -22,7 +22,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
 
   ///selected image subject
   final BehaviorSubject<String> _selectedImageSubject =
-      BehaviorSubject.seeded('');
+  BehaviorSubject.seeded('');
 
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
 
@@ -30,7 +30,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
 
   ///upload profile
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
 
@@ -39,7 +39,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
 
   /// check whether biometric is supported or not request
   PublishSubject<CheckBioMetricSupportUseCaseParams> _checkBioMetricRequest =
-      PublishSubject();
+  PublishSubject();
 
   /// check whether biometric is supported or not response
   BehaviorSubject<Resource<bool>> _checkBioMetricResponse = BehaviorSubject();
@@ -50,11 +50,11 @@ class AccountSettingPageViewModel extends BasePageViewModel {
 
   /// authenticate using biometric request
   PublishSubject<AuthenticateBioMetricUseCaseParams>
-      _authenticateBioMetricRequest = PublishSubject();
+  _authenticateBioMetricRequest = PublishSubject();
 
   /// authenticate using biometric response
   PublishSubject<Resource<bool>> _authenticateBioMetricResponse =
-      PublishSubject();
+  PublishSubject();
 
   /// authenticate using biometric response stream
   Stream<Resource<bool>> get authenticateBioMetricStream =>
@@ -64,7 +64,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
       this._checkBioMetricSupportUseCase, this._authenticateBioMetricUseCase) {
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
+          createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _uploadProfilePhotoResponse.safeAdd(event.data!);

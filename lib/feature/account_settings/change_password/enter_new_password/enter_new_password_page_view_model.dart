@@ -13,18 +13,18 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
   final EnterNewPasswordUseCase _enterPasswordUseCase;
 
   final TextEditingController currentPasswordController =
-      TextEditingController();
+  TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
 
   final GlobalKey<AppTextFieldState> currentPasswordKey =
-      GlobalKey(debugLabel: "currentPassword");
+  GlobalKey(debugLabel: "currentPassword");
 
   final GlobalKey<AppTextFieldState> newPasswordKey =
-      GlobalKey(debugLabel: "newPassword");
+  GlobalKey(debugLabel: "newPassword");
 
   ///create password request subject holder
   PublishSubject<EnterNewPasswordUseCaseParams> _createPasswordRequest =
-      PublishSubject();
+  PublishSubject();
 
   /// create password response subject holder
   PublishSubject<Resource<bool>> _createPasswordResponse = PublishSubject();
@@ -40,7 +40,7 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
   EnterNewPasswordPageViewModel(this._enterPasswordUseCase) {
     _createPasswordRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _enterPasswordUseCase.execute(params: value))
+          createCall: () => _enterPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _createPasswordResponse.safeAdd(event);

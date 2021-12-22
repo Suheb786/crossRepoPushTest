@@ -29,7 +29,11 @@ class FatcaCertificationPageView
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme
+                        .of(context)
+                        .primaryTextTheme
+                        .bodyText1!
+                        .color),
               ),
               SizedBox(
                 height: 16,
@@ -46,7 +50,11 @@ class FatcaCertificationPageView
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color:
-                          Theme.of(context).primaryTextTheme.bodyText1!.color),
+                      Theme
+                          .of(context)
+                          .primaryTextTheme
+                          .bodyText1!
+                          .color),
                 ),
               ),
               SizedBox(
@@ -61,7 +69,11 @@ other than interest and dividends, you are not required to sign the certificatio
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme
+                        .of(context)
+                        .primaryTextTheme
+                        .bodyText1!
+                        .color),
               ),
             ],
           ),

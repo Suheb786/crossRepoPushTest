@@ -12,7 +12,8 @@ class ManageContactListPage extends BasePage<ManageContactListPageViewModel> {
 }
 
 class ManageContactListPageState extends BaseStatefulPage<
-    ManageContactListPageViewModel, ManageContactListPage> {
+    ManageContactListPageViewModel,
+    ManageContactListPage> {
   @override
   ProviderBase provideBase() {
     return manageContactsListViewModelProvider;
@@ -24,11 +25,15 @@ class ManageContactListPageState extends BaseStatefulPage<
       preferredSize: Size(double.maxFinite, 85),
       child: Center(
         child: Text(
-          S.of(context).manageContacts,
+          S
+              .of(context)
+              .manageContacts,
           style: TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w600,
-              color: Theme.of(context).accentColor),
+              color: Theme
+                  .of(context)
+                  .accentColor),
         ),
       ),
     );
@@ -41,7 +46,9 @@ class ManageContactListPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override

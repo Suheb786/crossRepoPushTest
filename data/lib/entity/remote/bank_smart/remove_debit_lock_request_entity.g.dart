@@ -15,7 +15,7 @@ RemoveDebitLockRequestEntity _$RemoveDebitLockRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$RemoveDebitLockRequestEntityToJson(
-        RemoveDebitLockRequestEntity instance) =>
+    RemoveDebitLockRequestEntity instance) =>
     <String, dynamic>{
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,

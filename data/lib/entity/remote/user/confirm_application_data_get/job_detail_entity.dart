@@ -28,14 +28,14 @@ class JobDetailEntity
             .map((e) => AdditionalIncomeEntity().restore(e))
             .toList(),
         jobDetailContent:
-            JobDetailContentEntity().restore(response.jobDetailContentInfo!));
+        JobDetailContentEntity().restore(response.jobDetailContentInfo!));
   }
 
   @override
   JobDetailInfo transform() {
     return JobDetailInfo(
         additionalIncomeInfo:
-            this.additionalIncomeList!.map((e) => e.transform()).toList(),
+        this.additionalIncomeList!.map((e) => e.transform()).toList(),
         jobDetailContentInfo: this.jobDetailContent!.transform());
   }
 }

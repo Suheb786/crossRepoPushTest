@@ -9,12 +9,11 @@ class InformationText extends StatelessWidget {
   final Color? containerColor;
   final Color? textColor;
 
-  InformationText(
-      {required this.image,
-      required this.title,
-      this.iconColor,
-      this.containerColor: AppColor.vividYellow,
-      this.textColor});
+  InformationText({required this.image,
+    required this.title,
+    this.iconColor,
+    this.containerColor: AppColor.vividYellow,
+    this.textColor});
 
   @override
   Widget build(BuildContext context) {

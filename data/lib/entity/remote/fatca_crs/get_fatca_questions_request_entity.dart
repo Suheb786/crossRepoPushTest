@@ -7,7 +7,7 @@ class GetFatcaQuestionsRequestEntity {
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
-  final Map<String,dynamic> baseData;
+  final Map<String, dynamic> baseData;
 
   GetFatcaQuestionsRequestEntity({required this.baseData, this.getToken: true});
 

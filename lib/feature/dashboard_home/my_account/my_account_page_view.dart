@@ -191,17 +191,22 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                 width: 105,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(20),
-                                    color: Theme.of(context)
+                                    color: Theme
+                                        .of(context)
                                         .accentTextTheme
                                         .bodyText1!
                                         .color),
                                 child: Center(
                                   child: Text(
-                                    S.of(context).addMoney,
+                                    S
+                                        .of(context)
+                                        .addMoney,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
                                         fontSize: 14,
-                                        color: Theme.of(context).accentColor),
+                                        color: Theme
+                                            .of(context)
+                                            .accentColor),
                                   ),
                                 ),
                               ),
@@ -213,7 +218,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                               child: Padding(
                                 padding: EdgeInsets.only(right: 33.0),
                                 child: AppSvg.asset(AssetUtils.share,
-                                    color: Theme.of(context)
+                                    color: Theme
+                                        .of(context)
                                         .accentTextTheme
                                         .bodyText1!
                                         .color,

@@ -14,7 +14,7 @@ CardIssuanceRequest _$CardIssuanceRequestFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$CardIssuanceRequestToJson(
-        CardIssuanceRequest instance) =>
+    CardIssuanceRequest instance) =>
     <String, dynamic>{
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,

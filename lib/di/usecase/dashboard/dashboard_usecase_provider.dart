@@ -19,28 +19,28 @@ final getCardUseCaseProvider = Provider.autoDispose<GetCardUseCase>(
 
 ///[MyAccountUseCase] provider
 final myAccountUseCaseProvider = Provider.autoDispose<MyAccountUseCase>(
-  (ref) => MyAccountUseCase(),
+      (ref) => MyAccountUseCase(),
 );
 
 ///[<MyDebitCardUseCase>] provider
 final myDebitCardUseCaseProvider = Provider.autoDispose<MyDebitCardUseCase>(
-  (ref) => MyDebitCardUseCase(),
+      (ref) => MyDebitCardUseCase(),
 );
 
 ///[<MyDebitCardUseCase>] provider
 final placeholderUseCaseProvider = Provider.autoDispose<PlaceholderUseCase>(
-  (ref) => PlaceholderUseCase(),
+      (ref) => PlaceholderUseCase(),
 );
 
 ///[<CardDeliveredUseCase>] provider
 final cardDeliveredUseCaseProvider =
-    Provider.autoDispose<DebitCardDeliveredUseCase>(
-  (ref) => DebitCardDeliveredUseCase(),
+Provider.autoDispose<DebitCardDeliveredUseCase>(
+      (ref) => DebitCardDeliveredUseCase(),
 );
 
 ///[<DebitCardVerificationSuccessUseCase>] provider
 final debitCardVerificationSuccessUseCaseProvider =
-    Provider.autoDispose<DebitCardVerificationSuccessUseCase>(
+Provider.autoDispose<DebitCardVerificationSuccessUseCase>(
   (ref) => DebitCardVerificationSuccessUseCase(),
 );
 

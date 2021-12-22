@@ -28,11 +28,10 @@ class MyDocumentsUseCaseParams extends Params {
   final String? nationalityProof;
   final bool isOtherNationality;
 
-  MyDocumentsUseCaseParams(
-      {this.incomeProof,
-      this.addressProof,
-      this.nationalityProof,
-      required this.isOtherNationality});
+  MyDocumentsUseCaseParams({this.incomeProof,
+    this.addressProof,
+    this.nationalityProof,
+    required this.isOtherNationality});
 
   @override
   Either<AppError, bool> verify() {

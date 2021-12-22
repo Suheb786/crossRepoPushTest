@@ -8,7 +8,10 @@ class SettingsDialog {
 
   static show(BuildContext mContext) {
     AppDialog.show(mContext,
-        barrierColor: Theme.of(mContext).primaryColorDark.withOpacity(0.5),
+        barrierColor: Theme
+            .of(mContext)
+            .primaryColorDark
+            .withOpacity(0.5),
         isDismissible: true,
         builder: (context) => SettingsDialogView());
   }

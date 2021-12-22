@@ -15,12 +15,11 @@ class SaveUploadDocumentRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  SaveUploadDocumentRequestEntity(
-      {this.proofOfAddressId,
-      this.proofOfIncomeId,
-      this.proofOfNationalityId,
-      this.getToken,
-      required this.baseData});
+  SaveUploadDocumentRequestEntity({this.proofOfAddressId,
+    this.proofOfIncomeId,
+    this.proofOfNationalityId,
+    this.getToken,
+    required this.baseData});
 
   factory SaveUploadDocumentRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$SaveUploadDocumentRequestEntityFromJson(json);

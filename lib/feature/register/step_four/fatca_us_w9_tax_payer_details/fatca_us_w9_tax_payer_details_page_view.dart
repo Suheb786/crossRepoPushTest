@@ -44,7 +44,8 @@ class FatcaUSW9TaxPayersDetailsPageView
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope.containerOf(context)
+                        ProviderScope
+                            .containerOf(context)
                             .read(registerStepFourViewModelProvider)
                             .registrationStepFourPageController
                             .move(7);
@@ -60,7 +61,8 @@ class FatcaUSW9TaxPayersDetailsPageView
                           model.validateFatcaUSW9TaxPayersDetails();
                         } else {
                           Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope.containerOf(context)
+                            ProviderScope
+                                .containerOf(context)
                                 .read(registerStepFourViewModelProvider)
                                 .registrationStepFourPageController
                                 .previous();
@@ -153,7 +155,8 @@ class FatcaUSW9TaxPayersDetailsPageView
                                           },
                                         ),
                                         SizedBox(
-                                          height: MediaQuery.of(context)
+                                          height: MediaQuery
+                                              .of(context)
                                               .viewInsets
                                               .bottom,
                                         ),
@@ -170,11 +173,11 @@ class FatcaUSW9TaxPayersDetailsPageView
                                         dataBuilder: (context, isValid) {
                                           return (isValid!)
                                               ? AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed,
-                                                  buttonHeight: 50,
-                                                )
+                                            buttonText: S
+                                                .of(context)
+                                                .swipeToProceed,
+                                            buttonHeight: 50,
+                                          )
                                               : Container();
                                         }),
                                   ),

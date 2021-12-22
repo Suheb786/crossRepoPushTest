@@ -16,7 +16,7 @@ GetAllowedCountryResponseEntity _$GetAllowedCountryResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$GetAllowedCountryResponseEntityToJson(
-        GetAllowedCountryResponseEntity instance) =>
+    GetAllowedCountryResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

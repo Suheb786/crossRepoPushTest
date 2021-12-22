@@ -37,7 +37,8 @@ class AddNewMobileNumberPageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  ProviderScope.containerOf(context)
+                  ProviderScope
+                      .containerOf(context)
                       .read(changeMobileNumberViewModelProvider)
                       .swiperController
                       .next(animation: true);
@@ -63,7 +64,7 @@ class AddNewMobileNumberPageView
                     margin: EdgeInsets.zero,
                     child: Container(
                         padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -75,7 +76,9 @@ class AddNewMobileNumberPageView
                                         .of(context)
                                         .mobileNumber
                                         .toUpperCase(),
-                                    hintText: S.of(context).mobileNumberHint,
+                                    hintText: S
+                                        .of(context)
+                                        .mobileNumberHint,
                                     inputType: TextInputType.number,
                                     inputAction: TextInputAction.done,
                                     inputFormatters: [
@@ -98,7 +101,8 @@ class AddNewMobileNumberPageView
                                                   height: 16,
                                                   width: 16,
                                                   decoration: BoxDecoration(
-                                                    color: Theme.of(context)
+                                                    color: Theme
+                                                        .of(context)
                                                         .primaryColorDark,
                                                     shape: BoxShape.circle,
                                                   )),
@@ -108,7 +112,8 @@ class AddNewMobileNumberPageView
                                                 child: Text(
                                                   '+962',
                                                   style: TextStyle(
-                                                    color: Theme.of(context)
+                                                    color: Theme
+                                                        .of(context)
                                                         .textTheme
                                                         .bodyText1!
                                                         .color,
@@ -121,10 +126,11 @@ class AddNewMobileNumberPageView
                                                   height: 16,
                                                   width: 16,
                                                   margin:
-                                                      EdgeInsets.only(right: 8),
+                                                  EdgeInsets.only(right: 8),
                                                   child: AppSvg.asset(
                                                       AssetUtils.downArrow,
-                                                      color: Theme.of(context)
+                                                      color: Theme
+                                                          .of(context)
                                                           .primaryTextTheme
                                                           .bodyText1!
                                                           .color))
@@ -146,7 +152,9 @@ class AddNewMobileNumberPageView
                                       child: AnimatedButton(
                                         buttonHeight: 50,
                                         buttonText:
-                                            S.of(context).swipeToProceed,
+                                        S
+                                            .of(context)
+                                            .swipeToProceed,
                                       ),
                                     );
                                   }),

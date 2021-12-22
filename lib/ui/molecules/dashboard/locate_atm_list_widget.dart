@@ -19,7 +19,7 @@ class LocateATMListWidget extends StatelessWidget {
             horizontal: 20,
           ),
           child: Row(
-crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: Column(
@@ -28,14 +28,16 @@ crossAxisAlignment: CrossAxisAlignment.start,
                     Text(
                       atmLocationModel!.name!,
                       maxLines: 3,
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
                       height: 16,
                     ),
                     Text(
                       atmLocationModel!.address!,
-                      style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(
                       height: 18,
@@ -43,11 +45,14 @@ crossAxisAlignment: CrossAxisAlignment.start,
                     InkWell(
                       onTap: () {},
                       child: Text(
-                        S.of(context).getDirections,
+                        S
+                            .of(context)
+                            .getDirections,
                         style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
-                            color: Theme.of(context)
+                            color: Theme
+                                .of(context)
                                 .accentTextTheme
                                 .bodyText1!
                                 .color),

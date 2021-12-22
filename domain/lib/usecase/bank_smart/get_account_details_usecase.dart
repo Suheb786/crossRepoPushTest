@@ -7,7 +7,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class GetAccountDetailsUseCase extends BaseUseCase<NetworkError,
-    GetAccountDetailsUseCaseParams, GetAccountDetailsResponse> {
+    GetAccountDetailsUseCaseParams,
+    GetAccountDetailsResponse> {
   final BankSmartRepository _bankSmartRepository;
 
   GetAccountDetailsUseCase(this._bankSmartRepository);

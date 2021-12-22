@@ -39,8 +39,9 @@ var userRepoProvider = Provider<UserRepository>(
 
 /// inject [CountryRepository] provider
 var countryRepoProvider = Provider<CountryRepository>(
-  (ref) => CountryRepositoryImpl(ref.read(countryLocalDataProvider),
-      ref.read(countryRemoteDataSourceProvider)),
+      (ref) =>
+      CountryRepositoryImpl(ref.read(countryLocalDataProvider),
+          ref.read(countryRemoteDataSourceProvider)),
 );
 
 var registerRepoProvider = Provider<RegisterRepository>(
@@ -48,42 +49,46 @@ var registerRepoProvider = Provider<RegisterRepository>(
 );
 
 var registerStepThreeRepoProvider = Provider<RegisterStepThreeRepository>(
-  (ref) => RegisterStepThreeRepositoryImpl(ref.read(registerStepThreeRemoteDS)),
+      (ref) =>
+      RegisterStepThreeRepositoryImpl(ref.read(registerStepThreeRemoteDS)),
 );
 
 var registerStepFourRepoProvider = Provider<RegisterStepFourRepository>(
-  (ref) => RegisterStepFourRepositoryImpl(ref.read(registerStepFourRemoteDS)),
+      (ref) =>
+      RegisterStepFourRepositoryImpl(ref.read(registerStepFourRemoteDS)),
 );
 
 var uploadDocumentRepositoryProvider = Provider<UploadDocumentRepository>(
-    (ref) => UploadDocumentRepositoryImpl(
-        ref.read(uploadDocumentDataSourceProvider),
-        ref.read(uploadDocumentRemoteDataSourceProvider)));
+        (ref) =>
+        UploadDocumentRepositoryImpl(
+            ref.read(uploadDocumentDataSourceProvider),
+            ref.read(uploadDocumentRemoteDataSourceProvider)));
 
 var homeAddressDialogRepositoryProvider = Provider<HomeAddressDialogRepository>(
-    (ref) => HomeAddressDialogRepositoryImpl(
-        ref.read(homeAddressDialogDataSourceProvider)));
+        (ref) =>
+        HomeAddressDialogRepositoryImpl(
+            ref.read(homeAddressDialogDataSourceProvider)));
 
 /// inject [KYCRepository] provider
 var kycRepositoryProvider =
-    Provider<KYCRepository>((ref) => KYCRepositoryImpl(ref.read(kycRemoteDS)));
+Provider<KYCRepository>((ref) => KYCRepositoryImpl(ref.read(kycRemoteDS)));
 
 /// inject [IdCardRepository] provider
 var idCardRepositoryProvider = Provider<IdCardRepository>(
-    (ref) => IdCardRepositoryImpl(ref.read(idCardRemoteDS)));
+        (ref) => IdCardRepositoryImpl(ref.read(idCardRemoteDS)));
 
 /// inject [BankSmartRepository] provider
 var bankSmartRepositoryProvider = Provider<BankSmartRepository>(
-    (ref) => BankSmartRepositoryImpl(ref.read(bankSmartRemoteDS)));
+        (ref) => BankSmartRepositoryImpl(ref.read(bankSmartRemoteDS)));
 
 /// inject [FatcaCrsRepository] provider
 var fatcaCrsRepositoryProvider = Provider<FatcaCrsRepository>(
-    (ref) => FatcaCrsRepositoryImpl(ref.read(fatcaCrsRemoteDS)));
+        (ref) => FatcaCrsRepositoryImpl(ref.read(fatcaCrsRemoteDS)));
 
 /// inject [AccountRepository] provider
 var accountRepositoryProvider = Provider<AccountRepository>(
-    (ref) => AccountRepositoryImpl(ref.read(accountRemoteDS)));
+        (ref) => AccountRepositoryImpl(ref.read(accountRemoteDS)));
 
 /// inject [CardRepository] provider
 var cardRepositoryProvider = Provider<CardRepository>(
-    (ref) => CardRepositoryImpl(ref.read(cardRemoteDataSourceProvider)));
+        (ref) => CardRepositoryImpl(ref.read(cardRemoteDataSourceProvider)));

@@ -4,6 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[CheckKYCStatusUseCase] provider
 final checkKycStatusUseCaseProvider =
-    Provider.autoDispose<CheckKYCStatusUseCase>(
-  (ref) => CheckKYCStatusUseCase(ref.read(kycRepositoryProvider)),
+Provider.autoDispose<CheckKYCStatusUseCase>(
+      (ref) => CheckKYCStatusUseCase(ref.read(kycRepositoryProvider)),
 );

@@ -5,7 +5,7 @@ import 'package:rxdart/rxdart.dart';
 
 class RegisterStepFiveViewModel extends BasePageViewModel {
   final SwiperController registrationStepFivePageController =
-      SwiperController();
+  SwiperController();
 
   PublishSubject<int> _currentStep = PublishSubject();
 

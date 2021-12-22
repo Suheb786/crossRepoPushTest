@@ -19,40 +19,40 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
   ///controllers and keys
   final TextEditingController taxPayerTypeController = TextEditingController();
   final GlobalKey<AppTextFieldState> taxPayerTypeKey =
-      GlobalKey(debugLabel: "taxPayerType");
+  GlobalKey(debugLabel: "taxPayerType");
 
   final TextEditingController identificationNumberController =
-      TextEditingController();
+  TextEditingController();
   final GlobalKey<AppTextFieldState> identificationNumberKey =
-      GlobalKey(debugLabel: "identificationNumber");
+  GlobalKey(debugLabel: "identificationNumber");
 
   final TextEditingController referenceNumberController =
-      TextEditingController();
+  TextEditingController();
   final GlobalKey<AppTextFieldState> referenceNumberKey =
-      GlobalKey(debugLabel: "referenceNumber");
+  GlobalKey(debugLabel: "referenceNumber");
 
   final TextEditingController beneficialCountryController =
-      TextEditingController();
+  TextEditingController();
   final GlobalKey<AppTextFieldState> beneficialCountryKey =
-      GlobalKey(debugLabel: "beneficialCountry");
+  GlobalKey(debugLabel: "beneficialCountry");
 
   final TextEditingController provisionClaimController =
-      TextEditingController();
+  TextEditingController();
   final GlobalKey<AppTextFieldState> provisionClaimKey =
-      GlobalKey(debugLabel: "provisionClaim");
+  GlobalKey(debugLabel: "provisionClaim");
 
   final TextEditingController treatyClaimRateController =
-      TextEditingController();
+  TextEditingController();
   final GlobalKey<AppTextFieldState> treatyClaimRateKey =
-      GlobalKey(debugLabel: "treatyClaimRate");
+  GlobalKey(debugLabel: "treatyClaimRate");
 
   final TextEditingController incomeTypeController = TextEditingController();
   final GlobalKey<AppTextFieldState> incomeTypeKey =
-      GlobalKey(debugLabel: "incomeType");
+  GlobalKey(debugLabel: "incomeType");
 
   final TextEditingController explanationController = TextEditingController();
   final GlobalKey<AppTextFieldState> explanationKey =
-      GlobalKey(debugLabel: "explanation");
+  GlobalKey(debugLabel: "explanation");
 
   ///fatca us w9 taxPayer details request subject holder
   PublishSubject<FatcaUSW8TaxPayerDetailsUseCaseParams>
@@ -212,7 +212,8 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+    FatcaSetData fatcaSetData = ProviderScope
+        .containerOf(context)
         .read(registerStepFourViewModelProvider)
         .fatcaData;
     fatcaSetData.taxPayer = taxPayerTypeController.text;

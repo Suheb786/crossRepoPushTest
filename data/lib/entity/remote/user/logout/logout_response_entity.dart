@@ -23,6 +23,6 @@ class LogoutResponseEntity
   LogoutResponse transform() {
     return LogoutResponse(
         logoutContent:
-            LogoutContentEntity.fromJson(this.response!.content).transform());
+        LogoutContentEntity.fromJson(this.response!.content).transform());
   }
 }

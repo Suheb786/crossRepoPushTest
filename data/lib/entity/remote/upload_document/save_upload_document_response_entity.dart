@@ -16,7 +16,7 @@ class SaveUploadDocumentResponseEntity
   SaveUploadDocumentResponseEntity({this.response});
 
   factory SaveUploadDocumentResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$SaveUploadDocumentResponseEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

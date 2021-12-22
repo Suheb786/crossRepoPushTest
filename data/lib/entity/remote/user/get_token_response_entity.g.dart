@@ -16,7 +16,7 @@ GetTokenResponseEntity _$GetTokenResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$GetTokenResponseEntityToJson(
-        GetTokenResponseEntity instance) =>
+    GetTokenResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

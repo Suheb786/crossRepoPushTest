@@ -24,19 +24,23 @@ class ContactListWidget extends StatelessWidget {
             children: [
               contactsListModel!.imageUrl!.isNotEmpty
                   ? CircleAvatar(
-                      radius: 25,
-                      backgroundImage: AssetImage(contactsListModel!.imageUrl!))
+                  radius: 25,
+                  backgroundImage: AssetImage(contactsListModel!.imageUrl!))
                   : CircleAvatar(
-                      radius: 25,
-                      backgroundColor: Theme.of(context).primaryColor,
-                      child: Text(
-                        StringUtils.getFirstInitials(contactsListModel!.name),
-                        style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 14,
-                            color: Theme.of(context).accentColor),
-                      ),
-                    ),
+                radius: 25,
+                backgroundColor: Theme
+                    .of(context)
+                    .primaryColor,
+                child: Text(
+                  StringUtils.getFirstInitials(contactsListModel!.name),
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: 14,
+                      color: Theme
+                          .of(context)
+                          .accentColor),
+                ),
+              ),
               SizedBox(
                 width: 14,
               ),
@@ -53,7 +57,8 @@ class ContactListWidget extends StatelessWidget {
                 child: AppSvg.asset(AssetUtils.rightChevron,
                     width: 18,
                     height: 18,
-                    color: Theme.of(context)
+                    color: Theme
+                        .of(context)
                         .inputDecorationTheme
                         .hintStyle!
                         .color),

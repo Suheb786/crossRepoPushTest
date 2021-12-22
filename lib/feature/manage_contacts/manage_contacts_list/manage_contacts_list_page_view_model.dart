@@ -63,12 +63,11 @@ class ContactsListModel {
   final String? purpose;
   final String? purposeDetails;
 
-  ContactsListModel(
-      {this.imageUrl: "",
-      this.name: "",
-      this.bankName,
-      this.iban,
-      this.accounHolderName,
-      this.purpose,
-      this.purposeDetails});
+  ContactsListModel({this.imageUrl: "",
+    this.name: "",
+    this.bankName,
+    this.iban,
+    this.accounHolderName,
+    this.purpose,
+    this.purposeDetails});
 }

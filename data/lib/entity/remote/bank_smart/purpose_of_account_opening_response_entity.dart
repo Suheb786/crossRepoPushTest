@@ -16,7 +16,7 @@ class PurposeOfAccountOpeningResponseEntity
   PurposeOfAccountOpeningResponseEntity({this.response});
 
   factory PurposeOfAccountOpeningResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$PurposeOfAccountOpeningResponseEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

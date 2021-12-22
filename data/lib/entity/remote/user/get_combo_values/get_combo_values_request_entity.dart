@@ -9,8 +9,7 @@ class GetComboValuesRequestEntity {
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  GetComboValuesRequestEntity(
-      {this.getToken, required this.baseData});
+  GetComboValuesRequestEntity({this.getToken, required this.baseData});
 
   factory GetComboValuesRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$GetComboValuesRequestEntityFromJson(json);

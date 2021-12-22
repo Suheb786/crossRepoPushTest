@@ -11,7 +11,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class JobAndIncomeUseCase extends BaseUseCase<NetworkError,
-    JobAndIncomeUseCaseParams, SaveJobDetailsResponse> {
+    JobAndIncomeUseCaseParams,
+    SaveJobDetailsResponse> {
   final UserRepository _repository;
 
   JobAndIncomeUseCase(this._repository);
@@ -46,19 +47,18 @@ class JobAndIncomeUseCaseParams extends Params {
   final bool isAdditionalIncome;
   final List<AdditionalIncomeType> additionalIncomeList;
 
-  JobAndIncomeUseCaseParams(
-      {this.employerContact,
-      this.employerCity,
-      this.employerCountry,
-      this.employerName,
-      this.annualIncome,
-      this.occupation,
-      this.businessType,
-      this.specifyBusiness,
-      required this.employmentStatusEnum,
-      required this.businessTypeOther,
-      required this.isAdditionalIncome,
-      required this.additionalIncomeList});
+  JobAndIncomeUseCaseParams({this.employerContact,
+    this.employerCity,
+    this.employerCountry,
+    this.employerName,
+    this.annualIncome,
+    this.occupation,
+    this.businessType,
+    this.specifyBusiness,
+    required this.employmentStatusEnum,
+    required this.businessTypeOther,
+    required this.isAdditionalIncome,
+    required this.additionalIncomeList});
 
   @override
   Either<AppError, bool> verify() {

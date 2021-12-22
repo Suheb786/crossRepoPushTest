@@ -8,35 +8,35 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[AddNewEmailAddressUseCase] provider
 final addNewEmailAddressUseCaseProvider =
-    Provider.autoDispose<AddNewEmailAddressUseCase>(
-  (ref) => AddNewEmailAddressUseCase(),
+Provider.autoDispose<AddNewEmailAddressUseCase>(
+      (ref) => AddNewEmailAddressUseCase(),
 );
 
 ///[ValidateOtpForNewEmailAddressUseCase] provider
 final validateOtpNewEmailAddressUseCaseProvider =
-    Provider.autoDispose<ValidateOtpForNewEmailAddressUseCase>(
-  (ref) => ValidateOtpForNewEmailAddressUseCase(),
+Provider.autoDispose<ValidateOtpForNewEmailAddressUseCase>(
+      (ref) => ValidateOtpForNewEmailAddressUseCase(),
 );
 
 ///[AddNewMobileNumberUseCase] provider
 final addNewNumberUseCaseProvider =
-    Provider.autoDispose<AddNewMobileNumberUseCase>(
-  (ref) => AddNewMobileNumberUseCase(),
+Provider.autoDispose<AddNewMobileNumberUseCase>(
+      (ref) => AddNewMobileNumberUseCase(),
 );
 
 ///[ValidateOtpForNewMobileNumberUseCase] provider
 final validateOtpNewMobileNumberUseCaseProvider =
-    Provider.autoDispose<ValidateOtpForNewMobileNumberUseCase>(
-  (ref) => ValidateOtpForNewMobileNumberUseCase(),
+Provider.autoDispose<ValidateOtpForNewMobileNumberUseCase>(
+      (ref) => ValidateOtpForNewMobileNumberUseCase(),
 );
 
 ///[EnterNewPasswordUseCase] provider
 final enterNewPasswordUseCaseProvider =
-    Provider.autoDispose<EnterNewPasswordUseCase>(
-  (ref) => EnterNewPasswordUseCase(),
+Provider.autoDispose<EnterNewPasswordUseCase>(
+      (ref) => EnterNewPasswordUseCase(),
 );
 
 ///[MyDocumentsUseCase] provider
 final myDocumentUseCaseProvider = Provider.autoDispose<MyDocumentsUseCase>(
-  (ref) => MyDocumentsUseCase(),
+      (ref) => MyDocumentsUseCase(),
 );

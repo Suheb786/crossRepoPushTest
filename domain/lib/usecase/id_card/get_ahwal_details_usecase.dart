@@ -7,7 +7,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class GetAhwalDetailsUseCase extends BaseUseCase<NetworkError,
-    GetAhwalDetailsUseCaseParams, AhwalDetailResponse> {
+    GetAhwalDetailsUseCaseParams,
+    AhwalDetailResponse> {
   final IdCardRepository _repository;
 
   GetAhwalDetailsUseCase(this._repository);

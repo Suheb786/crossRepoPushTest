@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class StepTextHelper {
   StepTextHelper._();
 
@@ -53,16 +55,15 @@ class StepTextHelper {
   }
 
   static String registrationFourStepTextHelper(
-    int index,
-    String step1,
-    String step2,
-    String step3,
-    String step4,
-    String step5,
-    String step6,
-    String step7,
-    String step8,
-  ) {
+      int index,
+      String step1,
+      String step2,
+      String step3,
+      String step4,
+      String step5,
+      String step6,
+      String step7,
+      String step8) {
     switch (index) {
       case 0:
         return step1;
@@ -149,6 +150,19 @@ class StepTextHelper {
     switch (index) {
       case 0:
         return step1;
+      default:
+        return step1;
+    }
+  }
+
+  static Widget paymentToNewRecipientStepTextHelper(
+      int index, Widget step1, Widget step2) {
+    print("got index : ${index}");
+    switch (index) {
+      case 0:
+        return step1;
+      case 1:
+        return step2;
       default:
         return step1;
     }

@@ -9,7 +9,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
-class NotifyUseCase extends BaseUseCase<NetworkError, NotifyUseCaseParams,
+class NotifyUseCase extends BaseUseCase<NetworkError,
+    NotifyUseCaseParams,
     RegisterInterestResponse> {
   final UserRepository _repository;
 

@@ -24,34 +24,35 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_view_model.dart';
 
 final dashboardViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
-  (ref) => DashboardPageViewModel(
-      ref.read(logoutUseCaseProvider),
-      ref.read(checkBioMetricSupportUseCaseProvider),
-      ref.read(authenticateBioMetricUseCaseProvider),
-      ref.read(generateKeyPairUseCaseProvider),
-      ref.read(enableBiometricUseCaseProvider)),
+ChangeNotifierProvider.autoDispose<DashboardPageViewModel>(
+      (ref) =>
+      DashboardPageViewModel(
+          ref.read(logoutUseCaseProvider),
+          ref.read(checkBioMetricSupportUseCaseProvider),
+          ref.read(authenticateBioMetricUseCaseProvider),
+          ref.read(generateKeyPairUseCaseProvider),
+          ref.read(enableBiometricUseCaseProvider)),
 );
 
 final biometricLoginViewModelProvider =
-    ChangeNotifierProvider.autoDispose<BiometricLoginDialogViewModel>(
-  (ref) =>
+ChangeNotifierProvider.autoDispose<BiometricLoginDialogViewModel>(
+      (ref) =>
       BiometricLoginDialogViewModel(ref.read(enableFingerPrintUseCaseProvider)),
 );
 
 final getCreditCardViewModelProvider =
-    ChangeNotifierProvider.autoDispose<GetCreditCardViewModel>(
-  (ref) => GetCreditCardViewModel(ref.read(getCardUseCaseProvider)),
+ChangeNotifierProvider.autoDispose<GetCreditCardViewModel>(
+      (ref) => GetCreditCardViewModel(ref.read(getCardUseCaseProvider)),
 );
 
 final placeholderViewModelProvider =
-    ChangeNotifierProvider.autoDispose<PlaceholderViewModel>(
-  (ref) => PlaceholderViewModel(ref.read(placeholderUseCaseProvider)),
+ChangeNotifierProvider.autoDispose<PlaceholderViewModel>(
+      (ref) => PlaceholderViewModel(ref.read(placeholderUseCaseProvider)),
 );
 
 final appHomeViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
-  (ref) => AppHomeViewModel(),
+ChangeNotifierProvider.autoDispose<AppHomeViewModel>(
+      (ref) => AppHomeViewModel(),
 );
 
 final filterTransactionDialogViewModelProvier =
@@ -59,8 +60,8 @@ final filterTransactionDialogViewModelProvier =
         (ref) => FilterTransactionDialogViewModel());
 
 final myAccountViewModelProvider =
-    ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
-  (ref) => MyAccountViewModel(ref.read(myAccountUseCaseProvider)),
+ChangeNotifierProvider.autoDispose<MyAccountViewModel>(
+      (ref) => MyAccountViewModel(ref.read(myAccountUseCaseProvider)),
 );
 
 final myDebitCardViewModelProvider =
@@ -103,31 +104,31 @@ final accountTransactionViewModelProvider =
 );
 
 final homeViewModelProvider = ChangeNotifierProvider.autoDispose<HomeViewModel>(
-  (ref) => HomeViewModel(),
+      (ref) => HomeViewModel(),
 );
 
 final debitCardTimeLineViewModelProvider =
-    ChangeNotifierProvider.autoDispose<DebitCardTimeLineViewModel>(
-  (ref) =>
+ChangeNotifierProvider.autoDispose<DebitCardTimeLineViewModel>(
+      (ref) =>
       DebitCardTimeLineViewModel(ref.read(debitCardTimeLineUseCaseProvider)),
 );
 
 ///add money option selector view model
 final addMoneyOptionSelectorViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AddMoneyOptionSelectorViewModel>(
-  (ref) => AddMoneyOptionSelectorViewModel(),
+ChangeNotifierProvider.autoDispose<AddMoneyOptionSelectorViewModel>(
+      (ref) => AddMoneyOptionSelectorViewModel(),
 );
 
 ///locate pin page view model
 final locatePinViewModelProvider =
-    ChangeNotifierProvider.autoDispose<LocateATMPageViewModel>(
-  (ref) => LocateATMPageViewModel(),
+ChangeNotifierProvider.autoDispose<LocateATMPageViewModel>(
+      (ref) => LocateATMPageViewModel(),
 );
 
 ///settings dialog view model
 final settingsDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<SettingsDialogViewModel>(
-  (ref) => SettingsDialogViewModel(),
+ChangeNotifierProvider.autoDispose<SettingsDialogViewModel>(
+      (ref) => SettingsDialogViewModel(),
 );
 
 final downloadTransactionDialogViewModelProvider =

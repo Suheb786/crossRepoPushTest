@@ -21,20 +21,20 @@ class AccountRepositoryImpl extends AccountRepository {
       _accountRemoteDS.checkVideoCallStatus(getToken: getToken),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, CheckOtherNationalityResponse>>
-      checkOtherNationalityStatus({required bool getToken}) async {
+  checkOtherNationalityStatus({required bool getToken}) async {
     final result = await safeApiCall(
       _accountRemoteDS.checkOtherNationalityStatus(getToken: getToken),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -44,34 +44,34 @@ class AccountRepositoryImpl extends AccountRepository {
       _accountRemoteDS.docStatus(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, CheckAgentStatusResponse>>
-      checkAgentStatus() async {
+  checkAgentStatus() async {
     final result = await safeApiCall(
       _accountRemoteDS.checkAgentStatus(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, SaveCustomerScheduleTimeResponse>>
-      saveCustomerVideoCallScheduleTime(
-          {required String scheduleDate, required String scheduleTime}) async {
+  saveCustomerVideoCallScheduleTime(
+      {required String scheduleDate, required String scheduleTime}) async {
     final result = await safeApiCall(
       _accountRemoteDS.saveCustomerVideoCallScheduleTime(
           scheduleDate: scheduleDate, scheduleTime: scheduleTime),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 }

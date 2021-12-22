@@ -16,14 +16,14 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
   TextEditingController nickNameController = new TextEditingController();
   TextEditingController ibanController = new TextEditingController();
   TextEditingController accountHolderNameController =
-      new TextEditingController();
+  new TextEditingController();
   TextEditingController bankNameController = new TextEditingController();
   TextEditingController purposeController = new TextEditingController();
   TextEditingController purposeDetailsController = new TextEditingController();
 
   ///selected image subject
   final BehaviorSubject<String> _selectedImageSubject =
-      BehaviorSubject.seeded('');
+  BehaviorSubject.seeded('');
 
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
 
@@ -31,7 +31,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
 
   ///upload profile
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
 
@@ -43,11 +43,11 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showSaveButtonStream => _showSaveButtonSubject.stream;
 
-  ManageContactDetailsPageViewModel(
-      this._uploadDocumentUseCase, this.contactsListModel) {
+  ManageContactDetailsPageViewModel(this._uploadDocumentUseCase,
+      this.contactsListModel) {
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
+          createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _uploadProfilePhotoResponse.safeAdd(event.data!);

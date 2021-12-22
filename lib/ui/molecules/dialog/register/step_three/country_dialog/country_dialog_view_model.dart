@@ -17,7 +17,7 @@ class CountryDialogViewModel extends BasePageViewModel {
   final TextEditingController countrySearchController = TextEditingController();
 
   final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  FixedExtentScrollController();
 
   Country? selectedCountry = Country();
 
@@ -38,7 +38,7 @@ class CountryDialogViewModel extends BasePageViewModel {
 
   ///get country response holder
   BehaviorSubject<Resource<List<Country>>> _getCountryResponse =
-      BehaviorSubject();
+  BehaviorSubject();
 
   ///get country response stream
   Stream<Resource<List<Country>>> get getCountryStream =>
@@ -46,11 +46,11 @@ class CountryDialogViewModel extends BasePageViewModel {
 
   ///get country list request holder
   PublishSubject<GetCountriesListUseCaseParams> _getCountryListRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///get country list response holder
   BehaviorSubject<Resource<CountryListContentData>> _getCountryListResponse =
-      BehaviorSubject();
+  BehaviorSubject();
 
   ///get country list response stream
   Stream<Resource<CountryListContentData>> get getCountryListStream =>
@@ -58,13 +58,13 @@ class CountryDialogViewModel extends BasePageViewModel {
 
   ///search country response holder
   BehaviorSubject<Resource<List<Country>>> _searchCountryResponse =
-      BehaviorSubject();
+  BehaviorSubject();
 
-  CountryDialogViewModel(
-      this._fetchCountriesUseCase, this._getCountriesListUseCase) {
+  CountryDialogViewModel(this._fetchCountriesUseCase,
+      this._getCountriesListUseCase) {
     _getCountryRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _fetchCountriesUseCase.execute(params: value))
+          createCall: () => _fetchCountriesUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getCountryResponse.safeAdd(event);
@@ -75,7 +75,7 @@ class CountryDialogViewModel extends BasePageViewModel {
 
     _getCountryListRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _getCountriesListUseCase.execute(params: value))
+          createCall: () => _getCountriesListUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getCountryListResponse.safeAdd(event);
@@ -98,7 +98,9 @@ class CountryDialogViewModel extends BasePageViewModel {
     countryList?.forEach((element) {
       element.isSelected = false;
     });
-    countryList?.elementAt(index).isSelected = true;
+    countryList
+        ?.elementAt(index)
+        .isSelected = true;
     selectedCountry = countryList?.firstWhere((element) => element.isSelected);
     _searchCountryResponse.safeAdd(Resource.success(data: countryList));
   }

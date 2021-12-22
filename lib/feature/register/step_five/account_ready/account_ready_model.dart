@@ -12,11 +12,11 @@ class AccountReadyViewModel extends BasePageViewModel {
 
   ///get account details request subject
   PublishSubject<GetAccountDetailsUseCaseParams> _getAccountDetailsRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///get account details response subject
   PublishSubject<Resource<GetAccountDetailsResponse>>
-      _getAccountDetailsResponse = PublishSubject();
+  _getAccountDetailsResponse = PublishSubject();
 
   ///get account details response stream
   Stream<Resource<GetAccountDetailsResponse>> get getAccountDetailsStream =>
@@ -25,8 +25,8 @@ class AccountReadyViewModel extends BasePageViewModel {
   AccountReadyViewModel(this._getAccountDetailsUseCase) {
     _getAccountDetailsRequest.listen((value) {
       RequestManager(value,
-              createCall: () =>
-                  _getAccountDetailsUseCase.execute(params: value))
+          createCall: () =>
+              _getAccountDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getAccountDetailsResponse.safeAdd(event);

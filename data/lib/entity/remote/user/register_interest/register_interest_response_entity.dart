@@ -8,7 +8,8 @@ part 'register_interest_response_entity.g.dart';
 
 @JsonSerializable()
 class RegisterInterestResponseEntity extends BaseLayerDataTransformer<
-    RegisterInterestResponseEntity, RegisterInterestResponse> {
+    RegisterInterestResponseEntity,
+    RegisterInterestResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -23,7 +24,7 @@ class RegisterInterestResponseEntity extends BaseLayerDataTransformer<
   RegisterInterestResponse transform() {
     return RegisterInterestResponse(
         registerInterestContent:
-            RegisterInterestContentEntity.fromJson(this.response!.content)
-                .transform());
+        RegisterInterestContentEntity.fromJson(this.response!.content)
+            .transform());
   }
 }

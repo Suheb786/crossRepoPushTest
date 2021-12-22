@@ -73,46 +73,54 @@ class ManageContactDetailsPageView
                                   },
                                   child: CircleAvatar(
                                     backgroundColor:
-                                        Theme.of(context).primaryColor,
+                                    Theme
+                                        .of(context)
+                                        .primaryColor,
                                     radius: 48,
                                     child: CircleAvatar(
                                       radius: 48,
                                       child: image!.isEmpty
                                           ? (model.contactsListModel.imageUrl!
-                                                  .isNotEmpty
-                                              ? CircleAvatar(
-                                                  radius: 48,
-                                                  backgroundImage: Image.asset(
-                                                    model.contactsListModel
-                                                        .imageUrl!,
-                                                    fit: BoxFit.cover,
-                                                  ).image,
-                                                )
-                                              : CircleAvatar(
-                                                  radius: 48,
-                                                  backgroundColor:
-                                                      Theme.of(context)
-                                                          .primaryColor,
-                                                  child: Text(
-                                                    StringUtils
-                                                        .getFirstInitials(model
-                                                            .contactsListModel
-                                                            .name),
-                                                    style: TextStyle(
-                                                        fontWeight:
-                                                            FontWeight.w700,
-                                                        fontSize: 14,
-                                                        color: Theme.of(context)
-                                                            .accentColor),
-                                                  ),
-                                                ))
+                                          .isNotEmpty
+                                          ? CircleAvatar(
+                                        radius: 48,
+                                        backgroundImage: Image
+                                            .asset(
+                                          model.contactsListModel
+                                              .imageUrl!,
+                                          fit: BoxFit.cover,
+                                        )
+                                            .image,
+                                      )
                                           : CircleAvatar(
-                                              radius: 48,
-                                              backgroundImage: Image.file(
-                                                File(image),
-                                                fit: BoxFit.cover,
-                                              ).image,
-                                            ),
+                                        radius: 48,
+                                        backgroundColor:
+                                        Theme
+                                            .of(context)
+                                            .primaryColor,
+                                        child: Text(
+                                          StringUtils
+                                              .getFirstInitials(model
+                                              .contactsListModel
+                                              .name),
+                                          style: TextStyle(
+                                              fontWeight:
+                                              FontWeight.w700,
+                                              fontSize: 14,
+                                              color: Theme
+                                                  .of(context)
+                                                  .accentColor),
+                                        ),
+                                      ))
+                                          : CircleAvatar(
+                                        radius: 48,
+                                        backgroundImage: Image
+                                            .file(
+                                          File(image),
+                                          fit: BoxFit.cover,
+                                        )
+                                            .image,
+                                      ),
                                     ),
                                   ));
                             },
@@ -124,11 +132,14 @@ class ManageContactDetailsPageView
                       ),
                       Center(
                         child: Text(
-                          S.of(context).tapToEditPhoto,
+                          S
+                              .of(context)
+                              .tapToEditPhoto,
                           style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
-                              color: Theme.of(context)
+                              color: Theme
+                                  .of(context)
                                   .inputDecorationTheme
                                   .hintStyle!
                                   .color),
@@ -138,8 +149,13 @@ class ManageContactDetailsPageView
                         height: 19,
                       ),
                       AppTextField(
-                        labelText: S.of(context).nickName.toUpperCase(),
-                        hintText: S.of(context).pleaseEnter,
+                        labelText: S
+                            .of(context)
+                            .nickName
+                            .toUpperCase(),
+                        hintText: S
+                            .of(context)
+                            .pleaseEnter,
                         inputType: TextInputType.text,
                         controller: model.nickNameController,
                         maxLength: 25,
@@ -150,12 +166,18 @@ class ManageContactDetailsPageView
                       SizedBox(height: 13),
                       AppTextField(
                         labelText:
-                            S.of(context).ibanMobileNoAlias.toUpperCase(),
-                        hintText: S.of(context).pleaseEnter,
+                        S
+                            .of(context)
+                            .ibanMobileNoAlias
+                            .toUpperCase(),
+                        hintText: S
+                            .of(context)
+                            .pleaseEnter,
                         inputType: TextInputType.text,
                         controller: model.ibanController,
                         enabled: false,
-                        textColor: Theme.of(context)
+                        textColor: Theme
+                            .of(context)
                             .inputDecorationTheme
                             .hintStyle!
                             .color,
@@ -163,32 +185,47 @@ class ManageContactDetailsPageView
                       SizedBox(height: 13),
                       AppTextField(
                         labelText:
-                            S.of(context).accountHolderName.toUpperCase(),
-                        hintText: S.of(context).pleaseEnter,
+                        S
+                            .of(context)
+                            .accountHolderName
+                            .toUpperCase(),
+                        hintText: S
+                            .of(context)
+                            .pleaseEnter,
                         inputType: TextInputType.text,
                         controller: model.accountHolderNameController,
                         enabled: false,
-                        textColor: Theme.of(context)
+                        textColor: Theme
+                            .of(context)
                             .inputDecorationTheme
                             .hintStyle!
                             .color,
                       ),
                       SizedBox(height: 13),
                       AppTextField(
-                        labelText: S.of(context).bankName,
-                        hintText: S.of(context).pleaseEnter,
+                        labelText: S
+                            .of(context)
+                            .bankName,
+                        hintText: S
+                            .of(context)
+                            .pleaseEnter,
                         inputType: TextInputType.text,
                         controller: model.bankNameController,
                         enabled: false,
-                        textColor: Theme.of(context)
+                        textColor: Theme
+                            .of(context)
                             .inputDecorationTheme
                             .hintStyle!
                             .color,
                       ),
                       SizedBox(height: 13),
                       AppTextField(
-                        labelText: S.of(context).purpose,
-                        hintText: S.of(context).pleaseSelect,
+                        labelText: S
+                            .of(context)
+                            .purpose,
+                        hintText: S
+                            .of(context)
+                            .pleaseSelect,
                         inputType: TextInputType.text,
                         controller: model.purposeController,
                         readOnly: true,
@@ -206,8 +243,12 @@ class ManageContactDetailsPageView
                       ),
                       SizedBox(height: 13),
                       AppTextField(
-                        labelText: S.of(context).purposeDetail,
-                        hintText: S.of(context).pleaseSelect,
+                        labelText: S
+                            .of(context)
+                            .purposeDetail,
+                        hintText: S
+                            .of(context)
+                            .pleaseSelect,
                         inputType: TextInputType.text,
                         readOnly: true,
                         controller: model.purposeDetailsController,
@@ -229,16 +270,22 @@ class ManageContactDetailsPageView
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               AppSvg.asset(AssetUtils.delete,
-                                  color: Theme.of(context).primaryColor),
+                                  color: Theme
+                                      .of(context)
+                                      .primaryColor),
                               SizedBox(
                                 width: 15,
                               ),
                               Text(
-                                S.of(context).removeFromContact,
+                                S
+                                    .of(context)
+                                    .removeFromContact,
                                 style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w600,
-                                    color: Theme.of(context).primaryColor),
+                                    color: Theme
+                                        .of(context)
+                                        .primaryColor),
                               ),
                             ],
                           ),
@@ -258,7 +305,9 @@ class ManageContactDetailsPageView
                           child: InkWell(
                             onTap: () {
                               model.showSuccessToast(
-                                  S.of(context).yourContactDetailsUpdated);
+                                  S
+                                      .of(context)
+                                      .yourContactDetailsUpdated);
                               Navigator.pop(context);
                             },
                             child: Container(
@@ -266,18 +315,23 @@ class ManageContactDetailsPageView
                                   horizontal: 24, vertical: 20),
                               height: 56,
                               decoration: BoxDecoration(
-                                  color: Theme.of(context)
+                                  color: Theme
+                                      .of(context)
                                       .accentTextTheme
                                       .bodyText1!
                                       .color,
                                   borderRadius: BorderRadius.circular(100)),
                               child: Center(
                                 child: Text(
-                                  S.of(context).saveChanges,
+                                  S
+                                      .of(context)
+                                      .saveChanges,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
-                                      color: Theme.of(context).accentColor),
+                                      color: Theme
+                                          .of(context)
+                                          .accentColor),
                                 ),
                               ),
                             ),

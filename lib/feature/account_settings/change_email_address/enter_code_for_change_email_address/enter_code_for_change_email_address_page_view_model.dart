@@ -9,21 +9,25 @@ import 'package:rxdart/rxdart.dart';
 
 class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
   final ValidateOtpForNewEmailAddressUseCase
-      _validateOtpForNewEmailAddressUseCase;
+  _validateOtpForNewEmailAddressUseCase;
 
   ///countdown controller
   late CountdownTimerController countDownController;
 
-  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+  int endTime = DateTime
+      .now()
+      .millisecondsSinceEpoch + 1000 * 120;
 
   void updateTime() {
-    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+    endTime = DateTime
+        .now()
+        .millisecondsSinceEpoch + 1000 * 120;
     notifyListeners();
   }
 
   ///verify otp request subject holder
   PublishSubject<ValidateOtpForNewEmailAddressUseCaseParams> _verifyOtpRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///verify otp response holder
   PublishSubject<Resource<bool>> _verifyOtpResponse = PublishSubject();
@@ -42,8 +46,8 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
       this._validateOtpForNewEmailAddressUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value,
-              createCall: () =>
-                  _validateOtpForNewEmailAddressUseCase.execute(params: value))
+          createCall: () =>
+              _validateOtpForNewEmailAddressUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _verifyOtpResponse.safeAdd(event);

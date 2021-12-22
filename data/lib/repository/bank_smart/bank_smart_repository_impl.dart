@@ -17,15 +17,14 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
 
   @override
   Future<Either<NetworkError, PurposeOfAccountOpeningResponse>>
-      addAccountPurpose(
-          {required bool getToken,
-          String? purpose,
-          bool? isCashDeposit,
-          bool? isTransfer,
-          bool? isBillPayment,
-          bool? isOther,
-          double? monthlyTransaction,
-          double? annualTransaction}) async {
+  addAccountPurpose({required bool getToken,
+    String? purpose,
+    bool? isCashDeposit,
+    bool? isTransfer,
+    bool? isBillPayment,
+    bool? isOther,
+    double? monthlyTransaction,
+    double? annualTransaction}) async {
     final result = await safeApiCall(
       _bankSmartRemoteDS.addAccountPurpose(
           getToken: getToken,
@@ -38,8 +37,8 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
           monthlyTransaction: monthlyTransaction),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -47,18 +46,18 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
   Future<Either<NetworkError, GetAccountResponse>> getAccount(
       {required bool getToken}) async {
     final result =
-        await safeApiCall(_bankSmartRemoteDS.getAccount(getToken: getToken));
+    await safeApiCall(_bankSmartRemoteDS.getAccount(getToken: getToken));
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, CreateAccountResponse>> createAccount(
       {required bool getToken,
-      CustomerInformation? customerInformation,
-      CustomerAccountDetails? accountDetails}) async {
+        CustomerInformation? customerInformation,
+        CustomerAccountDetails? accountDetails}) async {
     final result = await safeApiCall(
       _bankSmartRemoteDS.createAccount(
           getToken: getToken,
@@ -66,8 +65,8 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
           accountDetails: accountDetails),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -78,8 +77,8 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
       _bankSmartRemoteDS.getAccountDetails(getToken: getToken),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -89,8 +88,8 @@ class BankSmartRepositoryImpl extends BankSmartRepository {
       _bankSmartRemoteDS.removeDebitLock(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 }

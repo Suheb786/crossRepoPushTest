@@ -57,6 +57,7 @@ class AssetUtils {
   static const String shieldIcon = svg + "shield_icon.svg";
   static const String transactionHistory = svg + "transaction_history.svg";
   static const String right = svg + "right.svg";
+  static const String cancel = svg + "cancel.svg";
   static const String copy = svg + "copy.svg";
   static const String welcomeIcon = svg + "welcome_icon.svg";
   static const String lock = svg + "lock.svg";
@@ -76,6 +77,9 @@ class AssetUtils {
   static const String dollar = svg + "dollar.svg";
   static const String requestMoney = svg + "request_money.svg";
   static const String profileCircle = svg + "profile_circle.svg";
+  static const String payments = svg + "payments.svg";
+  static const String backspaceBlue = svg + "backspace_blue.svg";
+  static const String next = svg + "next.svg";
   static const String swiggle = svg + "swiggle.svg";
   static const String receiveMoneyOther = svg + "receive_money_other.svg";
   static const String blinkMarker = svg + "blink_marker.svg";
@@ -96,6 +100,10 @@ class AssetUtils {
   static const String mobile = svg + "mobile.svg";
   static const String dummy = svg + "dummy.svg";
   static const String contacts = svg + "contacts.svg";
+  static const String paymentCircle = svg + "payment_circle.svg";
+  static const String activityCircle = svg + "activity_circle.svg";
+  static const String book = svg + "book.svg";
+  static const String personCircle = svg + "person_circle.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
@@ -133,6 +141,7 @@ class AssetUtils {
   static const String blinkMarkerPng = drawable + "blink_marker.png";
   static const String birdPng = drawable + "bird_png.png";
   static const String dummyProfile = drawable + "dummy_profile.png";
+  static const String image = drawable + "image.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";

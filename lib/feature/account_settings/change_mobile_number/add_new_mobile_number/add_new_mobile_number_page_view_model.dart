@@ -16,11 +16,11 @@ class AddNewMobileNumberPageViewModel extends BasePageViewModel {
   final TextEditingController mobileController = TextEditingController();
 
   final GlobalKey<AppTextFieldState> mobileKey =
-      GlobalKey(debugLabel: "mobileNumber");
+  GlobalKey(debugLabel: "mobileNumber");
 
   ///add new mobile number request subject holder
   PublishSubject<AddNewMobileNumberUseCaseParams> _addNewMobileRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///add new mobile number response holder
   PublishSubject<Resource<bool>> _addNewMobileResponse = PublishSubject();
@@ -36,7 +36,7 @@ class AddNewMobileNumberPageViewModel extends BasePageViewModel {
   AddNewMobileNumberPageViewModel(this._addNewMobileUseCase) {
     _addNewMobileRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _addNewMobileUseCase.execute(params: value))
+          createCall: () => _addNewMobileUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _addNewMobileResponse.safeAdd(event);

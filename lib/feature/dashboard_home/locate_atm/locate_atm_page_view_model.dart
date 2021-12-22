@@ -20,7 +20,7 @@ class LocateATMPageViewModel extends BasePageViewModel {
     Iterable _markers = Iterable.generate(locationList.length, (index) {
       return Marker(
           markerId: MarkerId(LatLng(locationList[index].latLng!.latitude,
-                  locationList[index].latLng!.longitude)
+              locationList[index].latLng!.longitude)
               .toString()),
           icon: BitmapDescriptor.fromBytes(pinPointMarker),
           position: LatLng(locationList[index].latLng!.latitude,
@@ -67,7 +67,7 @@ class LocateATMPageViewModel extends BasePageViewModel {
         latLng: LatLng(25.2013373, 55.2721802))
   ];
 
-  LocateATMPageViewModel(){
+  LocateATMPageViewModel() {
     //generateMarkers();
     setPinPointMarker();
   }
@@ -78,7 +78,7 @@ class LocateATMPageViewModel extends BasePageViewModel {
 
   void setPinPointMarker() async {
     final Uint8List markerIcon =
-        await MapMarkerUtils.getCustomMarker(AssetUtils.blinkMarkerPng, 80);
+    await MapMarkerUtils.getCustomMarker(AssetUtils.blinkMarkerPng, 80);
     pinPointMarker = markerIcon;
     //notifyListeners();
   }

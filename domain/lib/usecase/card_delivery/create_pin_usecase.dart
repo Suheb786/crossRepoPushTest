@@ -27,7 +27,7 @@ class CreatePinUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_PIN,
           cause: Exception()));
-    }else if(pin.length<4){
+    } else if (pin.length < 4) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_PIN_LENGTH,

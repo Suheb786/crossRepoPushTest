@@ -14,8 +14,8 @@ class EnterCodeForChangeMobileNumberPage
 }
 
 class EnterCodeForChangeMobileNumberPageState extends BaseStatefulPage<
-        EnterCodeForChangeMobileNumberPageViewModel,
-        EnterCodeForChangeMobileNumberPage>
+    EnterCodeForChangeMobileNumberPageViewModel,
+    EnterCodeForChangeMobileNumberPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   EnterCodeForChangeMobileNumberPageState()
       : super(subscribeVisibilityEvents: true);
@@ -43,8 +43,8 @@ class EnterCodeForChangeMobileNumberPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, EnterCodeForChangeMobileNumberPageViewModel model) {
+  Widget buildView(BuildContext context,
+      EnterCodeForChangeMobileNumberPageViewModel model) {
     return EnterCodeForChangeMobileNumberPageView(provideBase());
   }
 

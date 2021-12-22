@@ -38,13 +38,12 @@ class ReviewApplicationUseCaseParams extends Params {
   final FatcaCrsInfo fatcaCrsInfo;
   final AccountPurposeInfo accountPurposeInfo;
 
-  ReviewApplicationUseCaseParams(
-      {required this.declarationSelected,
-      required this.countryResidenceInfo,
-      required this.profileStatusInfo,
-      required this.jobDetailInfo,
-      required this.fatcaCrsInfo,
-      required this.accountPurposeInfo});
+  ReviewApplicationUseCaseParams({required this.declarationSelected,
+    required this.countryResidenceInfo,
+    required this.profileStatusInfo,
+    required this.jobDetailInfo,
+    required this.fatcaCrsInfo,
+    required this.accountPurposeInfo});
 
   @override
   Either<AppError, bool> verify() {

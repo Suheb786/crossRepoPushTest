@@ -17,13 +17,16 @@ class AllowedMobileNumberListWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(16), color: Colors.transparent),
       child: Row(
         children: <Widget>[
+
           ///TODO: add flag
           Container(
               height: 32,
               width: 32,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Theme.of(context).primaryColorDark)),
+                  color: Theme
+                      .of(context)
+                      .primaryColorDark)),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -35,7 +38,9 @@ class AllowedMobileNumberListWidget extends StatelessWidget {
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: item.isSelected
-                        ? Theme.of(context).primaryColorDark
+                        ? Theme
+                        .of(context)
+                        .primaryColorDark
                         : AppColor.gray),
               ),
             ),

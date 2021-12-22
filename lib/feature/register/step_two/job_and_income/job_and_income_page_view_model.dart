@@ -23,38 +23,38 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
   ///controllers and keys
   final TextEditingController occupationController = TextEditingController();
   GlobalKey<AppTextFieldState> occupationKey =
-      new GlobalKey(debugLabel: "occupation");
+  new GlobalKey(debugLabel: "occupation");
 
   final TextEditingController businessTypeController = TextEditingController();
   GlobalKey<AppTextFieldState> businessTypeKey =
-      new GlobalKey(debugLabel: "businessType");
+  new GlobalKey(debugLabel: "businessType");
 
   final TextEditingController businessTypeOtherController =
-      TextEditingController();
+  TextEditingController();
   GlobalKey<AppTextFieldState> businessTypeOtherKey =
-      new GlobalKey(debugLabel: "businessTypeOther");
+  new GlobalKey(debugLabel: "businessTypeOther");
 
   final TextEditingController annualIncomeController = TextEditingController();
   GlobalKey<AppTextFieldState> annualIncomeKey =
-      new GlobalKey(debugLabel: "annualIncome");
+  new GlobalKey(debugLabel: "annualIncome");
 
   final TextEditingController employerNameController = TextEditingController();
   GlobalKey<AppTextFieldState> employerNameKey =
-      new GlobalKey(debugLabel: "employerName");
+  new GlobalKey(debugLabel: "employerName");
 
   final TextEditingController employerCountryController =
-      TextEditingController();
+  TextEditingController();
   GlobalKey<AppTextFieldState> employerCountryKey =
-      new GlobalKey(debugLabel: "employerCountry");
+  new GlobalKey(debugLabel: "employerCountry");
 
   final TextEditingController employerCityController = TextEditingController();
   GlobalKey<AppTextFieldState> employerCityKey =
-      new GlobalKey(debugLabel: "employerCity");
+  new GlobalKey(debugLabel: "employerCity");
 
   final TextEditingController employerContactController =
-      TextEditingController();
+  TextEditingController();
   GlobalKey<AppTextFieldState> employerContactKey =
-      new GlobalKey(debugLabel: "employerContact");
+  new GlobalKey(debugLabel: "employerContact");
 
   ///update occupation  textfield value
   void updateOccupation(String value) {
@@ -85,11 +85,11 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
 
   ///employment details request subject holder
   PublishSubject<JobAndIncomeUseCaseParams> _jobAndIncomeRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///employment details response holder
   PublishSubject<Resource<SaveJobDetailsResponse>> _jobAndIncomeResponse =
-      PublishSubject();
+  PublishSubject();
 
   ///employment details stream
   Stream<Resource<SaveJobDetailsResponse>> get jobAndIncomeStream =>
@@ -116,7 +116,7 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
 
   ///additional income source list holder
   final BehaviorSubject<List<AdditionalIncomeType>>
-      _additionalIncomeSourceSubject = BehaviorSubject.seeded([]);
+  _additionalIncomeSourceSubject = BehaviorSubject.seeded([]);
 
   ///additional income source response stream
   Stream<List<AdditionalIncomeType>> get additionalSourceIncomeListStream =>
@@ -124,11 +124,11 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
 
   ///get combo values request subject holder
   PublishSubject<GetComboValuesUseCaseParams> _getComboValuesRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///get combo values response holder
   PublishSubject<Resource<GetComboValuesResponse>> _getComboValuesResponse =
-      PublishSubject();
+  PublishSubject();
 
   ///get combo values stream
   Stream<Resource<GetComboValuesResponse>> get getComboValuesStream =>
@@ -171,11 +171,11 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  JobAndIncomePageViewModel(
-      this._jobAndIncomeUseCase, this._getComboValuesUseCase) {
+  JobAndIncomePageViewModel(this._jobAndIncomeUseCase,
+      this._getComboValuesUseCase) {
     _jobAndIncomeRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _jobAndIncomeUseCase.execute(params: value))
+          createCall: () => _jobAndIncomeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -189,7 +189,7 @@ class JobAndIncomePageViewModel extends BasePageViewModel {
 
     _getComboValuesRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _getComboValuesUseCase.execute(params: value))
+          createCall: () => _getComboValuesUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

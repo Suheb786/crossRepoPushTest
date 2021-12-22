@@ -15,8 +15,14 @@ class PasswordHintWidget extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: !isValid!
-              ? Theme.of(context).inputDecorationTheme.hintStyle!.color
-              : Theme.of(context).primaryColorDark,
+              ? Theme
+              .of(context)
+              .inputDecorationTheme
+              .hintStyle!
+              .color
+              : Theme
+              .of(context)
+              .primaryColorDark,
           borderRadius: BorderRadius.circular(100)),
       padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
       child: Row(
@@ -29,7 +35,9 @@ class PasswordHintWidget extends StatelessWidget {
           Text(
             label!,
             style: TextStyle(
-                fontSize: 12, height: 1, color: Theme.of(context).accentColor),
+                fontSize: 12, height: 1, color: Theme
+                .of(context)
+                .accentColor),
           )
         ],
       ),

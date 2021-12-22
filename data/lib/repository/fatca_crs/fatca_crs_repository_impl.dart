@@ -19,8 +19,9 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
       _crsRemoteDS.getFatcaQuestions(getToken: getToken),
     );
     return result!.fold(
-        (l) => Left(l),
-        (r) => Right(
+            (l) => Left(l),
+            (r) =>
+            Right(
               (r.data.transform()),
             ));
   }
@@ -28,19 +29,19 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
   @override
   Future<Either<NetworkError, SetFatcaQuestionsResponse>> saveFatcaInformation(
       {required bool response1,
-      required bool response2,
-      required bool response3,
-      required bool response4,
-      required bool response5,
-      String? relationshipWithPep,
-      String? personName,
-      String? personRole,
-      bool? isTinNoRes4,
-      String? taxResidenceCountry,
-      String? tinNoRes4,
-      String? reasonUnavailableRes4,
-      String? reasonBRes4,
-      required bool getToken}) async {
+        required bool response2,
+        required bool response3,
+        required bool response4,
+        required bool response5,
+        String? relationshipWithPep,
+        String? personName,
+        String? personRole,
+        bool? isTinNoRes4,
+        String? taxResidenceCountry,
+        String? tinNoRes4,
+        String? reasonUnavailableRes4,
+        String? reasonBRes4,
+        required bool getToken}) async {
     final result = await safeApiCall(
       _crsRemoteDS.saveFatcaInformation(
           response1: response1,
@@ -59,8 +60,8 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
           getToken: getToken),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -71,8 +72,9 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
       _crsRemoteDS.uploadSignature(image: image),
     );
     return result!.fold(
-        (l) => Left(l),
-        (r) => Right(
+            (l) => Left(l),
+            (r) =>
+            Right(
               (r.data.transform()),
             ));
   }

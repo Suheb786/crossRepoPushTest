@@ -41,7 +41,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                 },
                 child: SingleChildScrollView(
                   controller: model.scrollController,
-                  padding: MediaQuery.of(context).viewInsets,
+                  padding: MediaQuery
+                      .of(context)
+                      .viewInsets,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -56,10 +58,14 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                       Padding(
                         padding: EdgeInsets.only(top: 100.0),
                         child: Text(
-                          S.of(context).enterLoginDetails,
+                          S
+                              .of(context)
+                              .enterLoginDetails,
                           style: TextStyle(
                               fontSize: 14,
-                              color: Theme.of(context).accentColor,
+                              color: Theme
+                                  .of(context)
+                                  .accentColor,
                               fontWeight: FontWeight.w500),
                         ),
                       ),
@@ -83,13 +89,13 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     //model.checkKycStatus();
                                     model.emailKey.currentState!.isValid = true;
                                     Future.delayed(Duration(milliseconds: 500),
-                                        () {
-                                      Navigator.pushReplacementNamed(
-                                          context, RoutePaths.AppHome);
-                                    });
+                                            () {
+                                          Navigator.pushReplacementNamed(
+                                              context, RoutePaths.AppHome);
+                                        });
                                   } else if (data.status == Status.ERROR) {
                                     model.emailKey.currentState!.isValid =
-                                        false;
+                                    false;
                                     model.showToastWithError(data.appError!);
                                   }
                                 },
@@ -111,25 +117,30 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                             left: 40, right: 40, top: 25),
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
+                                          CrossAxisAlignment.stretch,
                                           children: [
                                             AppTextField(
                                                 textFieldBorderColor:
-                                                    AppColor.whiteGray,
+                                                AppColor.whiteGray,
                                                 textFieldFocusBorderColor:
-                                                    Theme.of(context)
-                                                        .primaryColorDark,
+                                                Theme
+                                                    .of(context)
+                                                    .primaryColorDark,
                                                 labelText:
-                                                    S.of(context).emailAddress,
+                                                S
+                                                    .of(context)
+                                                    .emailAddress,
                                                 hintText:
-                                                    S.of(context).pleaseEnter,
+                                                S
+                                                    .of(context)
+                                                    .pleaseEnter,
                                                 key: model.emailKey,
                                                 controller:
-                                                    model.emailController,
+                                                model.emailController,
                                                 inputType:
-                                                    TextInputType.emailAddress,
+                                                TextInputType.emailAddress,
                                                 inputAction:
-                                                    TextInputAction.next,
+                                                TextInputAction.next,
                                                 onSaved: (value) {
                                                   model.validateEmail();
                                                 },
@@ -147,19 +158,24 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                               padding: EdgeInsets.only(top: 16),
                                               child: AppTextField(
                                                 textFieldBorderColor:
-                                                    AppColor.whiteGray,
+                                                AppColor.whiteGray,
                                                 textFieldFocusBorderColor:
-                                                    Theme.of(context)
-                                                        .primaryColorDark,
+                                                Theme
+                                                    .of(context)
+                                                    .primaryColorDark,
                                                 labelText:
-                                                    S.of(context).password,
+                                                S
+                                                    .of(context)
+                                                    .password,
                                                 hintText:
-                                                    S.of(context).pleaseEnter,
+                                                S
+                                                    .of(context)
+                                                    .pleaseEnter,
                                                 key: model.passwordKey,
                                                 controller:
-                                                    model.passwordController,
+                                                model.passwordController,
                                                 inputAction:
-                                                    TextInputAction.done,
+                                                TextInputAction.done,
                                                 onSaved: (value) {
                                                   model.validateEmail();
                                                 },
@@ -171,19 +187,22 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                             Padding(
                                               padding: EdgeInsets.only(top: 24),
                                               child: Text(
-                                                S.of(context).forgotPassword,
+                                                S
+                                                    .of(context)
+                                                    .forgotPassword,
                                                 textAlign: TextAlign.center,
                                                 style: TextStyle(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.w500,
-                                                    color: Theme.of(context)
+                                                    color: Theme
+                                                        .of(context)
                                                         .accentColor),
                                               ),
                                             ),
                                             Center(
                                               child: AppStreamBuilder<bool>(
                                                   stream:
-                                                      model.showButtonStream,
+                                                  model.showButtonStream,
                                                   initialData: false,
                                                   dataBuilder:
                                                       (context, isValid) {
@@ -191,18 +210,20 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                       visible: isValid!,
                                                       child: Padding(
                                                         padding:
-                                                            EdgeInsets.only(
-                                                                top: 24),
+                                                        EdgeInsets.only(
+                                                            top: 24),
                                                         child: AnimatedButton(
                                                           buttonText: S
                                                               .of(context)
                                                               .swipeToProceed,
                                                           borderColor:
-                                                              Theme.of(context)
-                                                                  .accentColor,
+                                                          Theme
+                                                              .of(context)
+                                                              .accentColor,
                                                           textColor:
-                                                              Theme.of(context)
-                                                                  .accentColor,
+                                                          Theme
+                                                              .of(context)
+                                                              .accentColor,
                                                         ),
                                                       ),
                                                     );
@@ -261,10 +282,13 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                           borderRadius:
                               BorderRadius.vertical(top: Radius.circular(16))),
                       child: Text(
-                        S.of(context).swipeUpToJoinOurCommunity,
+                        S
+                            .of(context)
+                            .swipeUpToJoinOurCommunity,
                         style: TextStyle(
                             fontSize: 14,
-                            color: Theme.of(context)
+                            color: Theme
+                                .of(context)
                                 .accentTextTheme
                                 .bodyText1
                                 ?.color,

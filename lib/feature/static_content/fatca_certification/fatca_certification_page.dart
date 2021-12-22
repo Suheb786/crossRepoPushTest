@@ -14,7 +14,8 @@ class FatcaCertificationPage extends BasePage<FatcaCertificationPageViewModel> {
 }
 
 class FatcaCertificationPageState extends BaseStatefulPage<
-    FatcaCertificationPageViewModel, FatcaCertificationPage> {
+    FatcaCertificationPageViewModel,
+    FatcaCertificationPage> {
   @override
   ProviderBase provideBase() {
     return fatcaCertificationViewModelProvider;
@@ -34,15 +35,21 @@ class FatcaCertificationPageState extends BaseStatefulPage<
               child: Padding(
                 padding: const EdgeInsets.only(left: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    color: Theme.of(context).accentColor),
+                    color: Theme
+                        .of(context)
+                        .accentColor),
               ),
             ),
             Text(
-              S.of(context).fatcaCertification,
+              S
+                  .of(context)
+                  .fatcaCertification,
               style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w600,
-                  color: Theme.of(context).accentColor),
+                  color: Theme
+                      .of(context)
+                      .accentColor),
             ),
             Padding(
               padding: const EdgeInsets.only(right: 18.0),
@@ -61,12 +68,14 @@ class FatcaCertificationPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override
-  Widget buildView(
-      BuildContext context, FatcaCertificationPageViewModel model) {
+  Widget buildView(BuildContext context,
+      FatcaCertificationPageViewModel model) {
     return FatcaCertificationPageView(provideBase());
   }
 }

@@ -24,11 +24,10 @@ class MobileNumberDialogView extends StatelessWidget {
   final String? title;
   final List<CountryData> countryDataList;
 
-  const MobileNumberDialogView(
-      {this.onDismissed,
-      this.onSelected,
-      this.title,
-      required this.countryDataList});
+  const MobileNumberDialogView({this.onDismissed,
+    this.onSelected,
+    this.title,
+    required this.countryDataList});
 
   ProviderBase providerBase() {
     return mobileNumberDialogViwModelProvider;
@@ -42,7 +41,7 @@ class MobileNumberDialogView extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0)),
               insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
@@ -75,8 +74,12 @@ class MobileNumberDialogView extends StatelessWidget {
                                 controller: model.mobileNumberSearchController,
                                 textFieldBorderColor: AppColor.gray_1,
                                 hintTextColor: AppColor.gray_2,
-                                textColor: Theme.of(context).primaryColorDark,
-                                hintText: S.of(context).searchCountry,
+                                textColor: Theme
+                                    .of(context)
+                                    .primaryColorDark,
+                                hintText: S
+                                    .of(context)
+                                    .searchCountry,
                                 onChanged: (value) {
                                   print(value);
                                   model.searchMobileNumber(value);
@@ -96,70 +99,72 @@ class MobileNumberDialogView extends StatelessWidget {
                             Expanded(
                                 child: data!.data!.length > 0
                                     ? Stack(
-                                        alignment: Alignment.center,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 16.0),
-                                            child: Container(
-                                              height: 64,
-                                              width: double.infinity,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(16),
-                                                color: AppColor.vividYellow,
-                                              ),
-                                            ),
-                                          ),
-                                          AppScrollableListViewWidget(
-                                            child: ClickableListWheelScrollView(
-                                              scrollController:
-                                                  model.scrollController,
-                                              itemHeight: 72,
-                                              itemCount: data.data!.length,
-                                              onItemTapCallback: (index) {
-                                                model.selectMobileNumber(index);
-                                              },
-                                              child: ListWheelScrollView
-                                                  .useDelegate(
-                                                      controller: model
-                                                          .scrollController,
-                                                      itemExtent: 72,
-                                                      onSelectedItemChanged:
-                                                          (int index) {
-                                                        model
-                                                            .selectMobileNumber(
-                                                                index);
-                                                      },
-                                                      physics:
-                                                          FixedExtentScrollPhysics(),
-                                                      perspective: 0.0000000001,
-                                                      childDelegate:
-                                                          ListWheelChildBuilderDelegate(
-                                                              childCount: data
-                                                                  .data!.length,
-                                                              builder: (BuildContext
-                                                                      context,
-                                                                  int index) {
-                                                                return AllowedMobileNumberListWidget(
-                                                                  item: data
-                                                                          .data![
-                                                                      index],
-                                                                );
-                                                              })),
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                                    : Center(
-                                        child: Text(
-                                          S.of(context).noCountriesFound,
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w400,
-                                              color: AppColor.dark_violet_4),
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 16.0),
+                                      child: Container(
+                                        height: 64,
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(16),
+                                          color: AppColor.vividYellow,
                                         ),
-                                      )),
+                                      ),
+                                    ),
+                                    AppScrollableListViewWidget(
+                                      child: ClickableListWheelScrollView(
+                                        scrollController:
+                                        model.scrollController,
+                                        itemHeight: 72,
+                                        itemCount: data.data!.length,
+                                        onItemTapCallback: (index) {
+                                          model.selectMobileNumber(index);
+                                        },
+                                        child: ListWheelScrollView
+                                            .useDelegate(
+                                            controller: model
+                                                .scrollController,
+                                            itemExtent: 72,
+                                            onSelectedItemChanged:
+                                                (int index) {
+                                              model
+                                                  .selectMobileNumber(
+                                                  index);
+                                            },
+                                            physics:
+                                            FixedExtentScrollPhysics(),
+                                            perspective: 0.0000000001,
+                                            childDelegate:
+                                            ListWheelChildBuilderDelegate(
+                                                childCount: data
+                                                    .data!.length,
+                                                builder: (BuildContext
+                                                context,
+                                                    int index) {
+                                                  return AllowedMobileNumberListWidget(
+                                                    item: data
+                                                        .data![
+                                                    index],
+                                                  );
+                                                })),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                                    : Center(
+                                  child: Text(
+                                    S
+                                        .of(context)
+                                        .noCountriesFound,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColor.dark_violet_4),
+                                  ),
+                                )),
                             InkWell(
                               onTap: () {
                                 onSelected!.call(model.selectedCountryData!);
@@ -170,24 +175,29 @@ class MobileNumberDialogView extends StatelessWidget {
                                 width: 57,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: Theme.of(context)
+                                    color: Theme
+                                        .of(context)
                                         .accentTextTheme
                                         .bodyText1!
                                         .color!),
                                 child: AppSvg.asset(AssetUtils.tick,
-                                    color: Theme.of(context).accentColor),
+                                    color: Theme
+                                        .of(context)
+                                        .accentColor),
                               ),
                             ),
                             Padding(
                               padding:
-                                  const EdgeInsets.only(top: 8.0, bottom: 16),
+                              const EdgeInsets.only(top: 8.0, bottom: 16),
                               child: Center(
                                 child: InkWell(
                                   onTap: () {
                                     onDismissed?.call();
                                   },
                                   child: Text(
-                                    S.of(context).swipeDownToCancel,
+                                    S
+                                        .of(context)
+                                        .swipeDownToCancel,
                                     style: TextStyle(
                                         fontSize: 10,
                                         fontWeight: FontWeight.w400,

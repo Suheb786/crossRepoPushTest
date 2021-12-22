@@ -34,41 +34,41 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
 
   final TextEditingController postCodeController = TextEditingController();
   final GlobalKey<AppTextFieldState> postCodeKey =
-      GlobalKey(debugLabel: "postCode");
+  GlobalKey(debugLabel: "postCode");
 
   ///mailing address different controllers and keys
   final TextEditingController differentMailingAddressController =
-      TextEditingController();
+  TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingAddressKey =
-      GlobalKey(debugLabel: "differentMailingAddress");
+  GlobalKey(debugLabel: "differentMailingAddress");
 
   final TextEditingController differentMailingCountryController =
-      TextEditingController();
+  TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingCountryKey =
-      GlobalKey(debugLabel: "differentMailingCountry");
+  GlobalKey(debugLabel: "differentMailingCountry");
 
   final TextEditingController differentMailingStateController =
-      TextEditingController();
+  TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingStateKey =
-      GlobalKey(debugLabel: "differentMailingState");
+  GlobalKey(debugLabel: "differentMailingState");
 
   final TextEditingController differentMailingCityController =
-      TextEditingController();
+  TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingCityKey =
-      GlobalKey(debugLabel: "differentMailingCity");
+  GlobalKey(debugLabel: "differentMailingCity");
 
   final TextEditingController differentMailingPostCodeController =
-      TextEditingController();
+  TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingPostCodeKey =
-      GlobalKey(debugLabel: "differentMailingPostCode");
+  GlobalKey(debugLabel: "differentMailingPostCode");
 
   ///fatca us relevant address details request subject holder
   PublishSubject<FatcaUSRelevantW8AddressDetailsUseCaseParams>
-      _fatcaUSRelevantW8AddressDetailsRequest = PublishSubject();
+  _fatcaUSRelevantW8AddressDetailsRequest = PublishSubject();
 
   ///fatca us relevant address details response holder
   PublishSubject<Resource<bool>> _fatcaUSRelevantW8AddressDetailsResponse =
-      PublishSubject();
+  PublishSubject();
 
   ///fatca us relevant address details stream
   Stream<Resource<bool>> get fatcaUSRelevantW8AddressDetailsStream =>
@@ -188,7 +188,8 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+    FatcaSetData fatcaSetData = ProviderScope
+        .containerOf(context)
         .read(registerStepFourViewModelProvider)
         .fatcaData;
     fatcaSetData.permanentResidenceAddress = permanentAddressController.text;

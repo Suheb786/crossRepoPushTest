@@ -4,13 +4,14 @@ import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_co
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
 
 final manageContactsListViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ManageContactListPageViewModel>(
-  (ref) => ManageContactListPageViewModel(),
+ChangeNotifierProvider.autoDispose<ManageContactListPageViewModel>(
+      (ref) => ManageContactListPageViewModel(),
 );
 
 ///manage contact details
 final manageContactDetailsViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<ManageContactDetailsPageViewModel, ContactsListModel>(
-  (ref, args) => ManageContactDetailsPageViewModel(
-      ref.read(uploadDocumentUseCaseProvider), args),
+      (ref, args) =>
+      ManageContactDetailsPageViewModel(
+          ref.read(uploadDocumentUseCaseProvider), args),
 );

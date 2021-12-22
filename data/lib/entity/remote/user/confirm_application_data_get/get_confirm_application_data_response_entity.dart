@@ -17,7 +17,7 @@ class GetConfirmApplicationDataResponseEntity
   GetConfirmApplicationDataResponseEntity({this.response});
 
   factory GetConfirmApplicationDataResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$GetConfirmApplicationDataResponseEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>
@@ -33,7 +33,7 @@ class GetConfirmApplicationDataResponseEntity
   GetConfirmApplicationDataResponse transform() {
     return GetConfirmApplicationDataResponse(
         getApplicationData: GetConfirmApplicationDataEntity.fromJson(
-                this.response!.content as Map<String, dynamic>)
+            this.response!.content as Map<String, dynamic>)
             .transform());
   }
 }

@@ -36,5 +36,5 @@ class CountryRemoteDSImpl extends CountryRemoteDs {
     return _apiService.getAllowedCodeCountryList(
         GetAllowedCountryRequestEntity(
             baseData: baseData.toJson(), content: content));
-    }
+  }
 }

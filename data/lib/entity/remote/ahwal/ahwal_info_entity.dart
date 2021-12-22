@@ -28,17 +28,16 @@ class AhwalInfoEntity
   @JsonKey(name: "placeOfBirth")
   final String? placeOfBirth;
 
-  AhwalInfoEntity(
-      {this.firstNameAr,
-      this.secNameAr,
-      this.thirdNameAr,
-      this.familyNameAr,
-      this.motherFirstName,
-      this.placeOfBirth,
-      this.familyNameEn,
-      this.firstNameEn,
-      this.secondNameEn,
-      this.thirdNameEn});
+  AhwalInfoEntity({this.firstNameAr,
+    this.secNameAr,
+    this.thirdNameAr,
+    this.familyNameAr,
+    this.motherFirstName,
+    this.placeOfBirth,
+    this.familyNameEn,
+    this.firstNameEn,
+    this.secondNameEn,
+    this.thirdNameEn});
 
   factory AhwalInfoEntity.fromJson(Map<String, dynamic> json) =>
       _$AhwalInfoEntityFromJson(json);

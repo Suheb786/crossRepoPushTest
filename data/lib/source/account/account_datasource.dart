@@ -10,15 +10,14 @@ abstract class AccountRemoteDS {
       {bool getToken});
 
   Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
-      checkOtherNationalityStatus({bool getToken});
+  checkOtherNationalityStatus({bool getToken});
 
   Future<HttpResponse<DocStatusResponseEntity>> docStatus();
 
   Future<HttpResponse<CheckAgentStatusResponseEntity>> checkAgentStatus();
 
   Future<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>
-      saveCustomerVideoCallScheduleTime(
-          {String scheduleDate, String scheduleTime});
+  saveCustomerVideoCallScheduleTime({String scheduleDate, String scheduleTime});
 }
 
 abstract class AccountLocalDS {}

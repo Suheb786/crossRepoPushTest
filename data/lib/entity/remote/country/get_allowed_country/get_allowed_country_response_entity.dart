@@ -31,7 +31,7 @@ class GetAllowedCountryResponseEntity
   AllowedCountryListResponse transform() {
     return AllowedCountryListResponse(
         contentData:
-            GetAllowedCountryContentEntity.fromJson(this.response!.content)
-                .transform());
+        GetAllowedCountryContentEntity.fromJson(this.response!.content)
+            .transform());
   }
 }

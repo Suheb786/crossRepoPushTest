@@ -6,12 +6,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[CreatePinUseCase] provider
 final createPinUseCaseProvider =
-    Provider.autoDispose<CreatePinUseCase>((ref) => CreatePinUseCase());
+Provider.autoDispose<CreatePinUseCase>((ref) => CreatePinUseCase());
 
 ///[ConfirmPinUseCase] provider
 final confirmPinUseCaseProvider = Provider.autoDispose<ConfirmPinUseCase>(
-    (ref) => ConfirmPinUseCase(ref.read(cardRepositoryProvider)));
+        (ref) => ConfirmPinUseCase(ref.read(cardRepositoryProvider)));
 
 ///[CardIssuanceUseCase] provider
 final cardIssuanceCaseProvider = Provider.autoDispose<CardIssuanceUseCase>(
-    (ref) => CardIssuanceUseCase(ref.read(cardRepositoryProvider)));
+        (ref) => CardIssuanceUseCase(ref.read(cardRepositoryProvider)));

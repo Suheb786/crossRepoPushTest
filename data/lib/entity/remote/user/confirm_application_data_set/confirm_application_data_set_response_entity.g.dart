@@ -7,8 +7,7 @@ part of 'confirm_application_data_set_response_entity.dart';
 // **************************************************************************
 
 ConfirmApplicationDataSetResponseEntity
-    _$ConfirmApplicationDataSetResponseEntityFromJson(
-        Map<String, dynamic> json) {
+_$ConfirmApplicationDataSetResponseEntityFromJson(Map<String, dynamic> json) {
   return ConfirmApplicationDataSetResponseEntity(
     response: json['response'] == null
         ? null
@@ -17,7 +16,7 @@ ConfirmApplicationDataSetResponseEntity
 }
 
 Map<String, dynamic> _$ConfirmApplicationDataSetResponseEntityToJson(
-        ConfirmApplicationDataSetResponseEntity instance) =>
+    ConfirmApplicationDataSetResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

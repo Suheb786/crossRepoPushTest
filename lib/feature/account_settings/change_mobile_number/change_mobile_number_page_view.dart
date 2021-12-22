@@ -28,7 +28,9 @@ class ChangeMobileNumberPageView
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      color: Theme.of(context).primaryColor,
+      color: Theme
+          .of(context)
+          .primaryColor,
       padding: EdgeInsets.only(top: 56),
       child: AppStreamBuilder<int>(
         stream: model.currentPageStream,
@@ -47,7 +49,9 @@ class ChangeMobileNumberPageView
                     child: Padding(
                       padding: const EdgeInsets.only(left: 24.0),
                       child: AppSvg.asset(AssetUtils.leftArrow,
-                          color: Theme.of(context).accentColor),
+                          color: Theme
+                              .of(context)
+                              .accentColor),
                     ),
                   ),
                 ),
@@ -58,9 +62,13 @@ class ChangeMobileNumberPageView
                       child: Column(
                         children: [
                           Text(
-                            S.of(context).changeMobileNumber,
+                            S
+                                .of(context)
+                                .changeMobileNumber,
                             style: TextStyle(
-                                color: Theme.of(context).accentColor,
+                                color: Theme
+                                    .of(context)
+                                    .accentColor,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -80,12 +88,18 @@ class ChangeMobileNumberPageView
                               child: Text(
                                 StepTextHelper.changeEmailAddressTextHelper(
                                   currentStep ?? 0,
-                                  S.of(context).enterNewMobileNo,
-                                  S.of(context).enterOtpHeader,
+                                  S
+                                      .of(context)
+                                      .enterNewMobileNo,
+                                  S
+                                      .of(context)
+                                      .enterOtpHeader,
                                 ),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Theme.of(context).accentColor,
+                                    color: Theme
+                                        .of(context)
+                                        .accentColor,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
                               ),
@@ -105,7 +119,9 @@ class ChangeMobileNumberPageView
                                   '+962 79 322 8080',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: Theme.of(context).accentColor,
+                                      color: Theme
+                                          .of(context)
+                                          .accentColor,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600),
                                 ),

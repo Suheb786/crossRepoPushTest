@@ -10,7 +10,7 @@ class GetCreditCardViewModel extends BasePageViewModel {
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
 
   BehaviorSubject<bool> _isGetCardNowClickedSubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject.seeded(false);
 
   Stream<bool> get isGetCardNowClickedStream =>
       _isGetCardNowClickedSubject.stream;

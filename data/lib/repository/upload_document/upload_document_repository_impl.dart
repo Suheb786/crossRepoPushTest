@@ -12,8 +12,8 @@ class UploadDocumentRepositoryImpl extends UploadDocumentRepository {
   final UploadDocumentLocalDS _documentLocalDS;
   final UploadDocumentRemoteDS _uploadDocumentRemoteDS;
 
-  UploadDocumentRepositoryImpl(
-      this._documentLocalDS, this._uploadDocumentRemoteDS);
+  UploadDocumentRepositoryImpl(this._documentLocalDS,
+      this._uploadDocumentRemoteDS);
 
   @override
   Future<Either<BaseError, String>> pickUploadDocument(
@@ -38,16 +38,16 @@ class UploadDocumentRepositoryImpl extends UploadDocumentRepository {
       _uploadDocumentRemoteDS.uploadDocument(path: path!),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, SaveUploadDocumentResponse>> saveUploadDocument(
       {String? proofOfIncomeId,
-      String? proofOfAddressId,
-      String? proofOfNationalityId}) async {
+        String? proofOfAddressId,
+        String? proofOfNationalityId}) async {
     final result = await safeApiCall(
       _uploadDocumentRemoteDS.saveUploadDocument(
           proofOfIncomeId: proofOfIncomeId,
@@ -55,8 +55,8 @@ class UploadDocumentRepositoryImpl extends UploadDocumentRepository {
           proofOfNationalityId: proofOfNationalityId),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 }

@@ -16,7 +16,7 @@ class CardRemoteDsImpl extends CardRemoteDs {
 
   @override
   Future<HttpResponse<CardIssuanceResponseEntity>>
-      getCardIssuanceDetails() async {
+  getCardIssuanceDetails() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getCardIssuanceDetails(
         CardIssuanceRequest(baseData: baseData.toJson(), getToken: true));

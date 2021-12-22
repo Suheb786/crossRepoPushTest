@@ -40,11 +40,11 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
       {String? countryName,
-      String? email,
-      String? mobileNumber,
-      String? password,
-      String? confirmPassword,
-      String? userName});
+        String? email,
+        String? mobileNumber,
+        String? password,
+        String? confirmPassword,
+        String? userName});
 
   Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo({
     String? id,
@@ -82,37 +82,36 @@ abstract class UserRemoteDS {
 
   Future<HttpResponse<SaveJobDetailsResponseEntity>> saveJobInformation(
       {String? employeeName,
-      String? occupation,
-      String? annualIncome,
-      String? employerCountry,
-      String? employerCity,
-      String? employerContact,
-      bool? additionalIncome,
-      String? businessType,
-      String? specifyBusinessType,
-      String? mainSource,
-      List<AdditionalIncomeType>? additionalIncomeType});
+        String? occupation,
+        String? annualIncome,
+        String? employerCountry,
+        String? employerCity,
+        String? employerContact,
+        bool? additionalIncome,
+        String? businessType,
+        String? specifyBusinessType,
+        String? mainSource,
+        List<AdditionalIncomeType>? additionalIncomeType});
 
   Future<HttpResponse<SaveProfileStatusResponseEntity>> saveProfileInformation(
       {bool? married,
-      bool? specialPerson,
-      bool? anyOtherNationality,
-      bool? beneficialOwnerAccount,
-      String? otherNationality,
-      String? employmentStatus,
-      String? spouseName,
-      bool? isEmployed,
-      String? natureOfSpecialNeeds});
+        bool? specialPerson,
+        bool? anyOtherNationality,
+        bool? beneficialOwnerAccount,
+        String? otherNationality,
+        String? employmentStatus,
+        String? spouseName,
+        bool? isEmployed,
+        String? natureOfSpecialNeeds});
 
   Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
-      saveResidenceInformation(
-          {String? residentCountry,
-          String? buildingName,
-          String? streetName,
-          String? residentArea,
-          String? residentCity,
-          String? permanentResidentCountry,
-          String? permanentResidentCity});
+  saveResidenceInformation({String? residentCountry,
+    String? buildingName,
+    String? streetName,
+    String? residentArea,
+    String? residentCity,
+    String? permanentResidentCountry,
+    String? permanentResidentCity});
 
   Future<HttpResponse<VerifyOtpResponseEntity>> verifyMobileOtp(
       {String? otpCode});
@@ -122,7 +121,7 @@ abstract class UserRemoteDS {
   Future<HttpResponse<GetTokenResponseEntity>> getToken();
 
   Future<HttpResponse<GetConfirmApplicationDataResponseEntity>>
-      confirmApplicationDataGet();
+  confirmApplicationDataGet();
 
   Future<HttpResponse<RegisterInterestResponseEntity>> registerInterest(
       {String? email});
@@ -130,12 +129,11 @@ abstract class UserRemoteDS {
   Future<HttpResponse<LogoutResponseEntity>> logout();
 
   Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
-      confirmApplicationDataSet(
-          {CountryResidenceInfo? countryResidenceInfo,
-          ProfileStatusInfo? profileStatusInfo,
-          JobDetailInfo? jobDetailInfo,
-          FatcaCrsInfo? fatcaCrsInfo,
-          AccountPurposeInfo? accountPurposeInfo});
+  confirmApplicationDataSet({CountryResidenceInfo? countryResidenceInfo,
+    ProfileStatusInfo? profileStatusInfo,
+    JobDetailInfo? jobDetailInfo,
+    FatcaCrsInfo? fatcaCrsInfo,
+    AccountPurposeInfo? accountPurposeInfo});
 
   Future<bool> enableFingerPrint({String? cipher});
 
@@ -158,7 +156,7 @@ abstract class UserLocalDS {
   Future<bool> saveCurrentUser(UserDBEntity userDBEntity);
 
   Future<Either<LocalError, BlinkIdCombinedRecognizerResult>>
-      scanUserDocument();
+  scanUserDocument();
 
   Future<bool> checkBioMetricSupport();
 

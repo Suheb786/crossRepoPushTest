@@ -35,8 +35,14 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
               },
               dataBuilder: (context, data) {
                 return Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height,
                   child: CameraPreview(model.cameraController!,
                       child: Stack(
                         children: [
@@ -58,7 +64,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                                       decoration: BoxDecoration(
                                         color: Colors.black,
                                         borderRadius:
-                                            BorderRadius.circular(300),
+                                        BorderRadius.circular(300),
                                       ),
                                     ),
                                   ),
@@ -82,7 +88,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                               width: 271,
                               decoration: BoxDecoration(
                                 border:
-                                    Border.all(color: AppColor.white, width: 2),
+                                Border.all(color: AppColor.white, width: 2),
                                 borderRadius: BorderRadius.circular(300),
                               ),
                             ),

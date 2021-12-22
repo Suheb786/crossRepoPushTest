@@ -16,7 +16,7 @@ CheckKycContentEntity _$CheckKycContentEntityFromJson(
 }
 
 Map<String, dynamic> _$CheckKycContentEntityToJson(
-        CheckKycContentEntity instance) =>
+    CheckKycContentEntity instance) =>
     <String, dynamic>{
       'data': instance.data,
     };

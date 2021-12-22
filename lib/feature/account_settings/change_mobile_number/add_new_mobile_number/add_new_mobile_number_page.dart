@@ -11,7 +11,8 @@ class AddNewMobileNumberPage extends BasePage<AddNewMobileNumberPageViewModel> {
 }
 
 class AddNewMobileNumberPageState extends BaseStatefulPage<
-        AddNewMobileNumberPageViewModel, AddNewMobileNumberPage>
+    AddNewMobileNumberPageViewModel,
+    AddNewMobileNumberPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   AddNewMobileNumberPageState() : super(subscribeVisibilityEvents: true);
 
@@ -32,8 +33,8 @@ class AddNewMobileNumberPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, AddNewMobileNumberPageViewModel model) {
+  Widget buildView(BuildContext context,
+      AddNewMobileNumberPageViewModel model) {
     return AddNewMobileNumberPageView(provideBase());
   }
 

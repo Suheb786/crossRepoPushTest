@@ -9,7 +9,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class ScheduleVideoCallUseCase extends BaseUseCase<NetworkError,
-    ScheduleVideoCallUseCaseParams, SaveCustomerScheduleTimeResponse> {
+    ScheduleVideoCallUseCaseParams,
+    SaveCustomerScheduleTimeResponse> {
   final AccountRepository _accountRepository;
 
   ScheduleVideoCallUseCase(this._accountRepository);

@@ -16,7 +16,7 @@ SetFatcaQuestionsResponseEntity _$SetFatcaQuestionsResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$SetFatcaQuestionsResponseEntityToJson(
-        SetFatcaQuestionsResponseEntity instance) =>
+    SetFatcaQuestionsResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

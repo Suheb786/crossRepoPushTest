@@ -164,8 +164,11 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                       activeStrokeWidth: 2.6,
                                       activeDotScale: 1.3,
                                       activeDotColor:
-                                          Theme.of(context).primaryColorDark,
-                                      dotColor: Theme.of(context)
+                                      Theme
+                                          .of(context)
+                                          .primaryColorDark,
+                                      dotColor: Theme
+                                          .of(context)
                                           .primaryColorDark
                                           .withOpacity(0.6),
                                       maxVisibleDots: 5,
@@ -178,12 +181,14 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                   alignment: Alignment.bottomCenter,
                                   child: Padding(
                                     padding:
-                                        EdgeInsets.only(top: 47, bottom: 24),
+                                    EdgeInsets.only(top: 47, bottom: 24),
                                     child: ConvexAppBar(
                                       elevation: 0,
                                       style: TabStyle.fixedCircle,
                                       backgroundColor:
-                                          Theme.of(context).accentColor,
+                                      Theme
+                                          .of(context)
+                                          .accentColor,
                                       items: [
                                         TabItem(
                                             icon:
@@ -194,7 +199,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                             height: 80,
                                             width: 80,
                                             decoration: BoxDecoration(
-                                                color: Theme.of(context)
+                                                color: Theme
+                                                    .of(context)
                                                     .primaryColorDark,
                                                 shape: BoxShape.circle),
                                             child: Center(

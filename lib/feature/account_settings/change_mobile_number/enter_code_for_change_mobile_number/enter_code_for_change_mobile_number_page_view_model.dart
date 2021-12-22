@@ -9,21 +9,25 @@ import 'package:rxdart/rxdart.dart';
 
 class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
   final ValidateOtpForNewMobileNumberUseCase
-      _validateOtpForNewMobileNumberUseCase;
+  _validateOtpForNewMobileNumberUseCase;
 
   ///countdown controller
   late CountdownTimerController countDownController;
 
-  int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+  int endTime = DateTime
+      .now()
+      .millisecondsSinceEpoch + 1000 * 120;
 
   void updateTime() {
-    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+    endTime = DateTime
+        .now()
+        .millisecondsSinceEpoch + 1000 * 120;
     notifyListeners();
   }
 
   ///verify otp request subject holder
   PublishSubject<ValidateOtpForNewMobileNumberUseCaseParams> _verifyOtpRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///verify otp response holder
   PublishSubject<Resource<bool>> _verifyOtpResponse = PublishSubject();
@@ -42,8 +46,8 @@ class EnterCodeForChangeMobileNumberPageViewModel extends BasePageViewModel {
       this._validateOtpForNewMobileNumberUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value,
-              createCall: () =>
-                  _validateOtpForNewMobileNumberUseCase.execute(params: value))
+          createCall: () =>
+              _validateOtpForNewMobileNumberUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _verifyOtpResponse.safeAdd(event);

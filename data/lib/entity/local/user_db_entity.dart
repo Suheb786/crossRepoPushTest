@@ -22,20 +22,19 @@ class UserDBEntity extends BaseLayerDataTransformer<UserDBEntity, User> {
   String? publicPEM;
   bool? isBiometricEnabled;
 
-  UserDBEntity(
-      {this.id,
-      this.token,
-      this.firstName,
-      this.lastName,
-      this.email,
-      this.mobile,
-      this.isCurrent,
-      this.refreshToken,
-      this.tokenType,
-      this.expiresIn,
-      this.isBiometricEnabled,
-      this.privatePEM,
-      this.publicPEM});
+  UserDBEntity({this.id,
+    this.token,
+    this.firstName,
+    this.lastName,
+    this.email,
+    this.mobile,
+    this.isCurrent,
+    this.refreshToken,
+    this.tokenType,
+    this.expiresIn,
+    this.isBiometricEnabled,
+    this.privatePEM,
+    this.publicPEM});
 
   @override
   transform() {

@@ -6,9 +6,14 @@ class AppColor {
   AppColor._();
 
   static const white1 = const Color(0xffFAFAFA);
+  static const dark_brown = const Color(0xff890000);
+  static const light_red = const Color(0xffEC5162);
+  static const dark_yellow = const Color(0xff867C22);
+  static const very_light_red = const Color(0xffFFB1B1);
   static const very_light_gray_6 = const Color(0xffDFDFDF);
   static const very_light_grey = const Color(0xffF3F3F3);
   static const gray4 = const Color(0xff707070);
+  static const dark_gray_2 = const Color(0xff998E8E);
   static const dark_blue = const Color(0xff3516A4);
   static const darkGrey = const Color(0xff76777B);
   static const blurr = const Color(0xff272331);

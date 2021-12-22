@@ -27,7 +27,8 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
       dataBuilder: (context, data) {
         return GestureDetector(
           onHorizontalDragEnd: (details) {
-            ProviderScope.containerOf(context)
+            ProviderScope
+                .containerOf(context)
                 .read(cardDeliveryViewModelProvider)
                 .swiperController
                 .next(animation: true);
@@ -65,7 +66,7 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                       height: 60,
                                       width: 60,
                                       child:
-                                          AppSvg.asset(AssetUtils.flipButton),
+                                      AppSvg.asset(AssetUtils.flipButton),
                                     ),
                                   )),
                             )
@@ -88,7 +89,9 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                       child: Container(
                                         height: 42,
                                         color:
-                                            Theme.of(context).primaryColorDark,
+                                        Theme
+                                            .of(context)
+                                            .primaryColorDark,
                                       ),
                                     ),
                                     Padding(
@@ -96,28 +99,29 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                           horizontal: 20.0),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           Flexible(
                                             child: Padding(
                                               padding:
-                                                  EdgeInsets.only(right: 8.0),
+                                              EdgeInsets.only(right: 8.0),
                                               child: Column(
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                                CrossAxisAlignment.start,
                                                 children: [
                                                   Text(
                                                     data!.data
-                                                            ?.cardHolderName ??
+                                                        ?.cardHolderName ??
                                                         "-",
                                                     overflow:
-                                                        TextOverflow.ellipsis,
+                                                    TextOverflow.ellipsis,
                                                     maxLines: 1,
                                                     style: TextStyle(
                                                         fontWeight:
-                                                            FontWeight.w700,
+                                                        FontWeight.w700,
                                                         fontSize: 12,
-                                                        color: Theme.of(context)
+                                                        color: Theme
+                                                            .of(context)
                                                             .primaryColorDark),
                                                   ),
                                                   Text(
@@ -126,9 +130,10 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                                     maxLines: 1,
                                                     style: TextStyle(
                                                         fontWeight:
-                                                            FontWeight.w700,
+                                                        FontWeight.w700,
                                                         fontSize: 10,
-                                                        color: Theme.of(context)
+                                                        color: Theme
+                                                            .of(context)
                                                             .primaryColorDark),
                                                   ),
                                                 ],
@@ -149,7 +154,8 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                           style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               fontSize: 10,
-                                              color: Theme.of(context)
+                                              color: Theme
+                                                  .of(context)
                                                   .primaryColorDark),
                                         ),
                                       ),
@@ -171,7 +177,9 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                         padding: EdgeInsets.only(top: 16.0),
                         child: AnimatedButton(
                           buttonHeight: 50,
-                          buttonText: S.of(context).swipeToProceed,
+                          buttonText: S
+                              .of(context)
+                              .swipeToProceed,
                         ),
                       ),
                     ),

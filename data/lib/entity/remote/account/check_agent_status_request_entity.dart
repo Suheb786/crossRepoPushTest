@@ -11,8 +11,7 @@ class CheckAgentStatusRequestEntity {
 
   CheckAgentStatusRequestEntity({this.getToken, required this.baseData});
 
-  factory CheckAgentStatusRequestEntity.fromJson(
-      Map<String, dynamic> json) =>
+  factory CheckAgentStatusRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CheckAgentStatusRequestEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

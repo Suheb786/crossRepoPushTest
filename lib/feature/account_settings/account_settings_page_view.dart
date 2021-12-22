@@ -69,22 +69,30 @@ class AccountSettingPageView
                                       Navigator.pop(context);
                                     },
                                     title:
-                                        S.of(context).pleaseSelectYourAction);
+                                    S
+                                        .of(context)
+                                        .pleaseSelectYourAction);
                               },
                               child: CircleAvatar(
-                                backgroundColor: Theme.of(context).primaryColor,
+                                backgroundColor: Theme
+                                    .of(context)
+                                    .primaryColor,
                                 radius: 48,
                                 child: CircleAvatar(
                                   radius: 48,
                                   backgroundImage: image!.isEmpty
-                                      ? Image.asset(
-                                          AssetUtils.dummyProfile,
-                                          fit: BoxFit.cover,
-                                        ).image
-                                      : Image.file(
-                                          File(image),
-                                          fit: BoxFit.cover,
-                                        ).image,
+                                      ? Image
+                                      .asset(
+                                    AssetUtils.dummyProfile,
+                                    fit: BoxFit.cover,
+                                  )
+                                      .image
+                                      : Image
+                                      .file(
+                                    File(image),
+                                    fit: BoxFit.cover,
+                                  )
+                                      .image,
                                 ),
                               ));
                         },
@@ -96,11 +104,14 @@ class AccountSettingPageView
                   ),
                   Center(
                     child: Text(
-                      S.of(context).tapToEditPhoto,
+                      S
+                          .of(context)
+                          .tapToEditPhoto,
                       style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context)
+                          color: Theme
+                              .of(context)
                               .inputDecorationTheme
                               .hintStyle!
                               .color),
@@ -110,12 +121,16 @@ class AccountSettingPageView
                     padding: const EdgeInsets.only(top: 32.0, bottom: 16),
                     child: Container(
                       height: 1,
-                      color: Theme.of(context).backgroundColor,
+                      color: Theme
+                          .of(context)
+                          .backgroundColor,
                     ),
                   ),
                   AccountSettingWidget(
                     image: AssetUtils.email,
-                    title: S.of(context).emailAddressSmall,
+                    title: S
+                        .of(context)
+                        .emailAddressSmall,
                     subtitle: 'salam@email.com',
                     onTap: () {
                       Navigator.pushNamed(
@@ -126,12 +141,16 @@ class AccountSettingPageView
                     padding: const EdgeInsets.only(top: 16.0, bottom: 16),
                     child: Container(
                       height: 1,
-                      color: Theme.of(context).backgroundColor,
+                      color: Theme
+                          .of(context)
+                          .backgroundColor,
                     ),
                   ),
                   AccountSettingWidget(
                     image: AssetUtils.mobile,
-                    title: S.of(context).mobileNumber,
+                    title: S
+                        .of(context)
+                        .mobileNumber,
                     subtitle: '+962 79 322 8080',
                     onTap: () {
                       Navigator.pushNamed(
@@ -142,12 +161,16 @@ class AccountSettingPageView
                     padding: const EdgeInsets.only(top: 16.0, bottom: 16),
                     child: Container(
                       height: 1,
-                      color: Theme.of(context).backgroundColor,
+                      color: Theme
+                          .of(context)
+                          .backgroundColor,
                     ),
                   ),
                   AccountSettingWidget(
                     image: AssetUtils.password,
-                    title: S.of(context).changePassword,
+                    title: S
+                        .of(context)
+                        .changePassword,
                     onTap: () {
                       Navigator.pushNamed(context, RoutePaths.ChangePassword);
                     },
@@ -156,7 +179,9 @@ class AccountSettingPageView
                     padding: const EdgeInsets.only(top: 16.0, bottom: 16),
                     child: Container(
                       height: 1,
-                      color: Theme.of(context).backgroundColor,
+                      color: Theme
+                          .of(context)
+                          .backgroundColor,
                     ),
                   ),
                   AppStreamBuilder<bool>(
@@ -170,7 +195,9 @@ class AccountSettingPageView
                           if (data.status == Status.SUCCESS) {
                             print('authenticated success');
                             model.showSuccessToast(
-                                S.of(context).biometricLoginActivated);
+                                S
+                                    .of(context)
+                                    .biometricLoginActivated);
                           }
                         },
                         dataBuilder: (context, biometricAuthenticated) {
@@ -182,14 +209,16 @@ class AccountSettingPageView
                                 print('success');
                                 model.authenticateBioMetric(
                                     title:
-                                        S.of(context).enableBiometricLoginTitle,
+                                    S
+                                        .of(context)
+                                        .enableBiometricLoginTitle,
                                     localisedReason: Platform.isAndroid
                                         ? S
-                                            .of(context)
-                                            .enableBiometricLoginDescriptionAndroid
+                                        .of(context)
+                                        .enableBiometricLoginDescriptionAndroid
                                         : S
-                                            .of(context)
-                                            .enableBiometricLoginDescriptionIos);
+                                        .of(context)
+                                        .enableBiometricLoginDescriptionIos);
                               }
                             },
                             dataBuilder: (context, isAvailable) {
@@ -201,10 +230,16 @@ class AccountSettingPageView
                                   }
                                 },
                                 isActive: isActive,
-                                title: S.of(context).biometricLogin,
+                                title: S
+                                    .of(context)
+                                    .biometricLogin,
                                 image: AssetUtils.biometric,
-                                inActiveText: S.of(context).no,
-                                activeText: S.of(context).yes,
+                                inActiveText: S
+                                    .of(context)
+                                    .no,
+                                activeText: S
+                                    .of(context)
+                                    .yes,
                               );
                             },
                           );
@@ -216,12 +251,16 @@ class AccountSettingPageView
                     padding: const EdgeInsets.only(top: 16.0, bottom: 16),
                     child: Container(
                       height: 1,
-                      color: Theme.of(context).backgroundColor,
+                      color: Theme
+                          .of(context)
+                          .backgroundColor,
                     ),
                   ),
                   AccountSettingWidget(
                     image: AssetUtils.documents,
-                    title: S.of(context).myDocuments,
+                    title: S
+                        .of(context)
+                        .myDocuments,
                     onTap: () {
                       Navigator.pushNamed(context, RoutePaths.MyDocuments);
                     },
@@ -230,12 +269,16 @@ class AccountSettingPageView
                     padding: const EdgeInsets.only(top: 16.0, bottom: 16),
                     child: Container(
                       height: 1,
-                      color: Theme.of(context).backgroundColor,
+                      color: Theme
+                          .of(context)
+                          .backgroundColor,
                     ),
                   ),
                   AccountSettingWidget(
                     image: AssetUtils.termsCondition,
-                    title: S.of(context).termsAndConditionsSetting,
+                    title: S
+                        .of(context)
+                        .termsAndConditionsSetting,
                     onTap: () {
                       Navigator.pushNamed(
                           context, RoutePaths.TermsAndCondition);
@@ -261,7 +304,9 @@ class AccountSettingPageView
     if (cropped != null) {
       model.selectedProfile = cropped.path;
       model.addImage(cropped.path);
-      model.showSuccessToast(S.of(context).profilePhotoUpdated);
+      model.showSuccessToast(S
+          .of(context)
+          .profilePhotoUpdated);
     }
   }
 }

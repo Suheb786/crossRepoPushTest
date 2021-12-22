@@ -16,7 +16,7 @@ GetAllowedCountryContentEntity _$GetAllowedCountryContentEntityFromJson(
 }
 
 Map<String, dynamic> _$GetAllowedCountryContentEntityToJson(
-        GetAllowedCountryContentEntity instance) =>
+    GetAllowedCountryContentEntity instance) =>
     <String, dynamic>{
       'countries': instance.data,
     };

@@ -88,7 +88,9 @@ class RsaKeyHelper {
     var signer = RSASigner(SHA256Digest(), "0609608648016503040201");
     signer.init(true, PrivateKeyParameter<RSAPrivateKey>(privateKey));
     return base64Encode(
-        signer.generateSignature(createUint8ListFromString(plainText)).bytes);
+        signer
+            .generateSignature(createUint8ListFromString(plainText))
+            .bytes);
   }
 
   /// Creates a [Uint8List] from a string to be signed

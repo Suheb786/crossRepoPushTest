@@ -12,16 +12,16 @@ GetAccountContentEntity _$GetAccountContentEntityFromJson(
     account: json['account'] == null
         ? null
         : AccountDetailsEntity.fromJson(
-            json['account'] as Map<String, dynamic>),
+        json['account'] as Map<String, dynamic>),
     customer: json['customer'] == null
         ? null
         : CustomerDetailsEntity.fromJson(
-            json['customer'] as Map<String, dynamic>),
+        json['customer'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$GetAccountContentEntityToJson(
-        GetAccountContentEntity instance) =>
+    GetAccountContentEntity instance) =>
     <String, dynamic>{
       'account': instance.account,
       'customer': instance.customer,

@@ -4,5 +4,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[NotifyUseCase] provider
 final notifyUseCaseProvider = Provider.autoDispose<NotifyUseCase>(
-  (ref) => NotifyUseCase(ref.read(userRepoProvider)),
+      (ref) => NotifyUseCase(ref.read(userRepoProvider)),
 );

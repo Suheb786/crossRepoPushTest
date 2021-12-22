@@ -482,7 +482,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
           flipOnTouch: false,
           direction: FlipDirection.HORIZONTAL,
           front: Container(
-            color: Theme.of(context).accentColor,
+            color: Theme
+                .of(context)
+                .accentColor,
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -493,12 +495,14 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                     child: GestureDetector(
                       onHorizontalDragEnd: (details) {
                         if (details.primaryVelocity!.isNegative) {
-                          ProviderScope.containerOf(context)
+                          ProviderScope
+                              .containerOf(context)
                               .read(appHomeViewModelProvider)
                               .pageController
                               .next();
                         } else {
-                          ProviderScope.containerOf(context)
+                          ProviderScope
+                              .containerOf(context)
                               .read(appHomeViewModelProvider)
                               .pageController
                               .previous();
@@ -509,9 +513,12 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                             borderRadius: BorderRadius.circular(16)),
                         clipBehavior: Clip.antiAliasWithSaveLayer,
                         elevation: 2,
-                        color: Theme.of(context).canvasColor,
+                        color: Theme
+                            .of(context)
+                            .canvasColor,
                         margin: EdgeInsets.zero,
-                        shadowColor: Theme.of(context)
+                        shadowColor: Theme
+                            .of(context)
                             .primaryColorDark
                             .withOpacity(0.32),
                         child: AppStreamBuilder<bool>(
@@ -526,18 +533,21 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: [
                                     Row(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          S.of(context).myDebitCard,
+                                          S
+                                              .of(context)
+                                              .myDebitCard,
                                           style: TextStyle(
-                                              color: Theme.of(context)
+                                              color: Theme
+                                                  .of(context)
                                                   .primaryColorDark,
                                               fontSize: 12,
                                               fontWeight: FontWeight.w600),
@@ -550,7 +560,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                   .toggleCard();
                                             },
                                             child: Text(
-                                              S.of(context).flipCard,
+                                              S
+                                                  .of(context)
+                                                  .flipCard,
                                               style: TextStyle(
                                                   color: AppColor.green,
                                                   fontSize: 14,
@@ -598,14 +610,15 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                       padding: EdgeInsets.only(top: 10),
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                         children: [
                                           Container(
                                             height: 36,
                                             decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(20),
-                                                color: Theme.of(context)
+                                                BorderRadius.circular(20),
+                                                color: Theme
+                                                    .of(context)
                                                     .accentTextTheme
                                                     .bodyText1!
                                                     .color),
@@ -613,18 +626,21 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                               padding: EdgeInsets.symmetric(
                                                   vertical: 8, horizontal: 17),
                                               child: Text(
-                                                S.of(context).addMoney,
+                                                S
+                                                    .of(context)
+                                                    .addMoney,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 14,
-                                                    color: Theme.of(context)
+                                                    color: Theme
+                                                        .of(context)
                                                         .accentColor),
                                               ),
                                             ),
                                           ),
                                           Padding(
                                             padding:
-                                                EdgeInsets.only(right: 33.0),
+                                            EdgeInsets.only(right: 33.0),
                                             child: AppSvg.asset(
                                                 AssetUtils.settingsRed),
                                           )
@@ -651,9 +667,13 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                         borderRadius: BorderRadius.circular(100)),
                     child: Center(
                       child: Text(
-                        S.of(context).cardDelivered,
+                        S
+                            .of(context)
+                            .cardDelivered,
                         style: TextStyle(
-                            color: Theme.of(context).accentColor,
+                            color: Theme
+                                .of(context)
+                                .accentColor,
                             fontWeight: FontWeight.w600,
                             fontSize: 12),
                       ),
@@ -669,9 +689,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
               aspectRatio: 0.62,
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
-                  if (details.primaryVelocity!.isNegative) {
-                  } else {
-                    ProviderScope.containerOf(context)
+                  if (details.primaryVelocity!.isNegative) {} else {
+                    ProviderScope
+                        .containerOf(context)
                         .read(appHomeViewModelProvider)
                         .pageController
                         .previous();
@@ -682,10 +702,15 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                       borderRadius: BorderRadius.circular(16)),
                   clipBehavior: Clip.antiAliasWithSaveLayer,
                   elevation: 2,
-                  color: Theme.of(context).canvasColor,
+                  color: Theme
+                      .of(context)
+                      .canvasColor,
                   margin: EdgeInsets.zero,
                   shadowColor:
-                      Theme.of(context).primaryColorDark.withOpacity(0.32),
+                  Theme
+                      .of(context)
+                      .primaryColorDark
+                      .withOpacity(0.32),
                   child: AppStreamBuilder<bool>(
                     stream: model.isGetCardNowClickedStream,
                     initialData: false,
@@ -693,7 +718,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                       return SingleChildScrollView(
                         child: Padding(
                           padding:
-                              EdgeInsets.only(left: 29.0, top: 38, right: 25),
+                          EdgeInsets.only(left: 29.0, top: 38, right: 25),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
@@ -701,13 +726,15 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                               Row(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
                                     "Zein Malhas",
                                     style: TextStyle(
                                         color:
-                                            Theme.of(context).primaryColorDark,
+                                        Theme
+                                            .of(context)
+                                            .primaryColorDark,
                                         fontSize: 16,
                                         fontWeight: FontWeight.w600),
                                   ),
@@ -716,7 +743,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                       model.cardKey.currentState!.toggleCard();
                                     },
                                     child: Text(
-                                      S.of(context).flipBack,
+                                      S
+                                          .of(context)
+                                          .flipBack,
                                       style: TextStyle(
                                           color: AppColor.green,
                                           fontSize: 14,
@@ -738,7 +767,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                               Padding(
                                 padding: EdgeInsets.only(top: 8),
                                 child: Text(
-                                  S.of(context).cardNumber,
+                                  S
+                                      .of(context)
+                                      .cardNumber,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 10,
@@ -764,7 +795,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                               Padding(
                                 padding: EdgeInsets.only(top: 8),
                                 child: Text(
-                                  S.of(context).linkedAccountNumber,
+                                  S
+                                      .of(context)
+                                      .linkedAccountNumber,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w600,
                                       fontSize: 10,
@@ -783,7 +816,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                   children: [
                                     Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           "08/23",
@@ -795,7 +828,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                         Padding(
                                           padding: EdgeInsets.only(top: 8),
                                           child: Text(
-                                            S.of(context).expiryDate,
+                                            S
+                                                .of(context)
+                                                .expiryDate,
                                             style: TextStyle(
                                                 fontSize: 10,
                                                 color: AppColor.green,
@@ -808,7 +843,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                       padding: EdgeInsets.only(left: 59.0),
                                       child: Column(
                                         crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                         children: [
                                           Text(
                                             "688",
@@ -820,7 +855,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           Padding(
                                             padding: EdgeInsets.only(top: 8),
                                             child: Text(
-                                              S.of(context).cvv,
+                                              S
+                                                  .of(context)
+                                                  .cvv,
                                               style: TextStyle(
                                                   fontSize: 10,
                                                   color: AppColor.green,

@@ -7,7 +7,8 @@ part "get_combo_values_content_entity.g.dart";
 
 @JsonSerializable()
 class GetComboValuesContentEntity extends BaseLayerDataTransformer<
-    GetComboValuesContentEntity, GetComboValuesContent> {
+    GetComboValuesContentEntity,
+    GetComboValuesContent> {
   @JsonKey(name: "token")
   final String? token;
   @JsonKey(name: "data")

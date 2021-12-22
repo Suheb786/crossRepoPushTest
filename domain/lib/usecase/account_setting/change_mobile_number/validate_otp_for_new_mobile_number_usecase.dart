@@ -7,7 +7,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class ValidateOtpForNewMobileNumberUseCase extends BaseUseCase<NetworkError,
-    ValidateOtpForNewMobileNumberUseCaseParams, bool> {
+    ValidateOtpForNewMobileNumberUseCaseParams,
+    bool> {
   @override
   Future<Either<NetworkError, bool>> execute(
       {required ValidateOtpForNewMobileNumberUseCaseParams params}) {
