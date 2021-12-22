@@ -84,7 +84,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                             context, RoutePaths.CardTransaction);
                       }
                     } else if (currentStep == 0) {
-                      Navigator.pushNamed(context, RoutePaths.CardTransaction);
+                      Navigator.pushNamed(
+                          context, RoutePaths.AccountTransaction);
                     } else if (currentStep == 2) {
                       model.updateShowTimeLineStream(!showTimeLine!);
                     }
