@@ -85,32 +85,24 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                         //   }
                         // }
                         if (details.primaryVelocity!.isNegative) {
-                          if (details.primaryVelocity!.isNegative) {
-                            if (currentStep == 1) {
-                              if (showTimeLine!) {
-                                print("dragged here");
-                                model.updateShowTimeLineStream(!showTimeLine);
-                                return;
-                              } else {
-                                Navigator.push(
-                                    context,
-                                    CustomRoute.createRoute(
-                                        CardTransactionPage()));
-                              }
-                            } else if (currentStep == 0) {
+                          if (currentStep == 1) {
+                            if (showTimeLine!) {
+                              print("dragged here");
+                              model.updateShowTimeLineStream(!showTimeLine);
+                              return;
+                            } else {
                               Navigator.push(
                                   context,
                                   CustomRoute.createRoute(
-                                      AccountTransactionPage()));
-                            } else if (currentStep == 2) {
-                              model.updateShowTimeLineStream(!showTimeLine!);
+                                      CardTransactionPage()));
                             }
-                          } else {
-                            if (currentStep == 1 || currentStep == 2) {
-                              if (!showTimeLine!) {
-                                model.updateShowTimeLineStream(!showTimeLine);
-                              }
-                            }
+                          } else if (currentStep == 0) {
+                            Navigator.push(
+                                context,
+                                CustomRoute.createRoute(
+                                    AccountTransactionPage()));
+                          } else if (currentStep == 2) {
+                            model.updateShowTimeLineStream(!showTimeLine!);
                           }
                         } else {
                           if (currentStep == 1 || currentStep == 2) {

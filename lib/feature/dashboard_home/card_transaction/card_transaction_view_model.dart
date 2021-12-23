@@ -1,4 +1,6 @@
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
+import 'package:domain/model/dashboard/transactions/transactions.dart';
+import 'package:domain/model/dashboard/transactions/transactions_content.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecase.dart';
 import 'package:domain/usecase/dashboard/card_transaction_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,71 +29,19 @@ class CardTransactionViewModel extends BasePageViewModel {
   Stream<Resource<GetTransactionsResponse>> get getTransactionsStream =>
       _getTransactionsResponse.stream;
 
-  List<TransactionItem> transactionList = [
-    TransactionItem(
-        createdAt: "12 September 2021",
-        to: "Host International Inc Dubai\nAED 533.03",
-        amount: "102.92",
-        type: "debit",
-        time: "8:32 pm"),
-    TransactionItem(
-        createdAt: "13 September 2021",
-        to: "Host International Inc Dubai\nAED 533.03",
-        amount: "91.92",
-        type: "debit",
-        time: "8:32 pm"),
-    TransactionItem(
-        createdAt: "12 September 2021",
-        to: "Ahmed*Abdali Mall\nAED 533.03",
-        amount: "102.92",
-        type: "debit",
-        time: "8:32 pm"),
-    TransactionItem(
-        createdAt: "13 September 2021",
-        to: "Razer*Abdali Mall\nAED 533.03",
-        amount: "102.92",
-        type: "debit",
-        time: "8:32 pm"),
-  ];
+  Resource<GetTransactionsResponse>? transactionsResponse;
+
+  Resource<GetTransactionsResponse>? searchTransactionResponse;
+
+  List<GetTransactionsResponse> transactionList = [];
 
   List<String> _searchTextList = [];
 
-  List<TransactionItem> tempList = [];
-
   void updateSearchList(int index) {
-    for (int i = 0; i < searchTransactionList.length; i++) {
-      if ((searchTransactionList[i].to!.contains(_searchTextList[index]) ||
-              searchTransactionList[i]
-                  .to!
-                  .toLowerCase()
-                  .contains(_searchTextList[index].toLowerCase())) ||
-          (searchTransactionList[i].amount!.contains(_searchTextList[index]) ||
-              searchTransactionList[i]
-                  .amount!
-                  .toLowerCase()
-                  .contains(_searchTextList[index].toLowerCase()))) {
-        searchTransactionList.remove(searchTransactionList[i]);
-        break;
-      }
-    }
-    _searchTextList.removeAt(index);
-    print("_searchlist: ${_searchTextList}");
-    _searchTextSubject.safeAdd(_searchTextList);
-    if (_searchTextList.isEmpty) {
-      searchController.clear();
-      _transactionListSubject.safeAdd(transactionList);
-    } else if (searchTransactionList.length > 0) {
-      print("list: $searchTransactionList");
-      _transactionListSubject.safeAdd(searchTransactionList);
-    } else {
-      if (tempList.isEmpty) {
-        searchController.clear();
-        _transactionListSubject.safeAdd(transactionList);
-      } else {
-        searchTransactionList.addAll(tempList);
-        _transactionListSubject.safeAdd(searchTransactionList);
-      }
-    }
+    _searchTextList.clear();
+    _searchTextSubject.add(_searchTextList);
+    searchController.clear();
+    _getTransactionsResponse.safeAdd(transactionsResponse);
   }
 
   BehaviorSubject<List<TransactionItem>> _transactionListSubject =
@@ -104,10 +54,10 @@ class CardTransactionViewModel extends BasePageViewModel {
 
   Stream<List<String>> get searchTextStream => _searchTextSubject.stream;
 
-  List<TransactionItem> searchTransactionList = [];
+  List<GetTransactionsResponse> searchTransactionList = [];
 
   CardTransactionViewModel(this._useCase, this._cardTransactionsUseCase) {
-    _transactionListSubject.safeAdd(transactionList);
+    // _transactionListSubject.safeAdd(transactionList);
 
     _getTransactionsRequest.listen((value) {
       RequestManager(value,
@@ -115,7 +65,9 @@ class CardTransactionViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
+        transactionList.add(event.data!);
         _getTransactionsResponse.safeAdd(event);
+        transactionsResponse = event;
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
@@ -127,64 +79,52 @@ class CardTransactionViewModel extends BasePageViewModel {
   }
 
   onSearchTextChanged(String text) async {
-    int flag = 0;
-    if (_searchTextList.length > 0) {
-      for (int i = 0; i < _searchTextList.length; i++) {
-        if (_searchTextList[i] == text) {
-          flag = 1;
-          break;
+    if (text.isNotEmpty) {
+      List<TransactionContent> tempList = [];
+      GetTransactionsResponse getTransactionsResponse;
+      transactionsResponse!.data!.transactionResponse!.forEach((element) {
+        int i;
+        List<Transactions> searchList = [];
+        TransactionContent searchContent;
+        GetTransactionsResponse getTransactionsResponse;
+        for (i = 0; i < element.transactions!.length; i++) {
+          if ((element.transactions![i].amount.toString().toLowerCase() ==
+                  text.toLowerCase()) ||
+              (element.transactions![i].description.toString().toLowerCase() ==
+                  text.toLowerCase())) {
+            searchList.add(element.transactions![i]);
+            if (_searchTextList.isEmpty) {
+              _searchTextList.add(text);
+              _searchTextSubject.safeAdd(_searchTextList);
+            } else {
+              int flag = 0;
+              for (int i = 0; i < _searchTextList.length; i++) {
+                if (_searchTextList[i].toLowerCase() == text.toLowerCase()) {
+                  flag = 1;
+                  break;
+                }
+              }
+              if (flag == 0) {
+                _searchTextList.add(text);
+                _searchTextSubject.safeAdd(_searchTextList);
+              }
+            }
+          }
         }
-      }
-    }
-    if (flag == 0) {
-      if (text.isNotEmpty) {
-        if (_searchTextList.length == 0) {
-          searchTransactionList.clear();
+        if (searchList.isNotEmpty) {
+          searchContent = TransactionContent(
+              label: element.label!, transactions: searchList);
+          tempList.add(searchContent);
         }
-        List<TransactionItem> searchList = [];
-        searchTransactionList.isEmpty
-            ? transactionList.forEach((element) {
-                if ((element.to!.contains(text) ||
-                        element.to!
-                            .toLowerCase()
-                            .contains(text.toLowerCase())) ||
-                    (element.amount!.contains(text) ||
-                        element.amount!
-                            .toLowerCase()
-                            .contains(text.toLowerCase())))
-                  searchList.add(element);
-              })
-            : searchTransactionList.forEach((element) {
-                print("for loop");
-                if ((element.to!.contains(text) ||
-                        element.to!
-                            .toLowerCase()
-                            .contains(text.toLowerCase())) ||
-                    (element.amount!.contains(text) ||
-                        element.amount!
-                            .toLowerCase()
-                            .contains(text.toLowerCase())))
-                  searchList.add(element);
-              });
-        if (searchTransactionList.isNotEmpty)
-          tempList.addAll(searchTransactionList);
-        else
-          tempList.clear();
-        searchTransactionList.clear();
-        searchTransactionList.addAll(searchList);
-        print("searchTransactionList: $searchTransactionList");
-        if (searchTransactionList.length > 0) {
-          _searchTextList.add(text);
-        }
-        _transactionListSubject.safeAdd(searchTransactionList);
-        _searchTextSubject.safeAdd(_searchTextList);
-        return;
+      });
+      if (tempList.isNotEmpty) {
+        getTransactionsResponse =
+            GetTransactionsResponse(transactionResponse: tempList);
+        searchTransactionResponse =
+            Resource.success(data: getTransactionsResponse);
+        _getTransactionsResponse.safeAdd(searchTransactionResponse);
       } else {
-        searchTransactionList.clear();
-        searchTransactionList.addAll(transactionList);
-        _transactionListSubject.safeAdd(searchTransactionList);
-        _searchTextSubject.safeAdd(_searchTextList);
-        print(searchTransactionList.first.to);
+        _getTransactionsResponse.safeAdd(transactionsResponse);
       }
     }
   }
