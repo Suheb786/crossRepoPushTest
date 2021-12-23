@@ -83,13 +83,58 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(
-       int noOfDays) async {
+      int noOfDays) async {
     final result = await safeApiCall(
       _remoteDs.getDebitCardStatement(noOfDays: noOfDays),
     );
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> getCreditCardStatement() async {
+    final result = await safeApiCall(
+      _remoteDs.getCreditCardStatement(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> getCreditYears() async {
+    final result = await safeApiCall(
+      _remoteDs.getCreditYears(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> getDebitYears() async {
+    final result = await safeApiCall(
+      _remoteDs.getDebitYears(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> requestCreditCard(
+      {required double cardLimit}) async {
+    final result = await safeApiCall(
+      _remoteDs.requestCreditCard(cardLimit: cardLimit),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
     );
   }
 }
