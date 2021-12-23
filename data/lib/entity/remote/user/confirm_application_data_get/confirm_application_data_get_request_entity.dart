@@ -13,7 +13,7 @@ class ConfirmApplicationDataGetRequestEntity {
       {this.getToken, required this.baseData});
 
   factory ConfirmApplicationDataGetRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$ConfirmApplicationDataGetRequestEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

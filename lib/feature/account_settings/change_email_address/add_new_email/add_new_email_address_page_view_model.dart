@@ -16,11 +16,11 @@ class AddNewEmailAddressPageViewModel extends BasePageViewModel {
   final TextEditingController emailController = TextEditingController();
 
   final GlobalKey<AppTextFieldState> changeEmailKey =
-      GlobalKey(debugLabel: "changeEmail");
+  GlobalKey(debugLabel: "changeEmail");
 
   ///add new email address request subject holder
   PublishSubject<AddNewEmailAddressUseCaseParams> _addNewEmailAddressRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///add new email address response holder
   PublishSubject<Resource<bool>> _addNewEmailAddressResponse = PublishSubject();
@@ -37,7 +37,7 @@ class AddNewEmailAddressPageViewModel extends BasePageViewModel {
   AddNewEmailAddressPageViewModel(this._addNewEmailUseCase) {
     _addNewEmailAddressRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _addNewEmailUseCase.execute(params: value))
+          createCall: () => _addNewEmailUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

@@ -12,13 +12,13 @@ CreateAccountContentEntity _$CreateAccountContentEntityFromJson(
     data: json['data'] == null
         ? null
         : CreateAccountDataEntity.fromJson(
-            json['data'] as Map<String, dynamic>),
+        json['data'] as Map<String, dynamic>),
     isAccountBlackListed: json['isAccountBlackListed'] as bool?,
   );
 }
 
 Map<String, dynamic> _$CreateAccountContentEntityToJson(
-        CreateAccountContentEntity instance) =>
+    CreateAccountContentEntity instance) =>
     <String, dynamic>{
       'data': instance.data,
       'isAccountBlackListed': instance.isAccountBlackListed,

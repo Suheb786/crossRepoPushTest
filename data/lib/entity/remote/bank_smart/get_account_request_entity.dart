@@ -7,7 +7,7 @@ class GetAccountRequestEntity {
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
-  final Map<String,dynamic> baseData;
+  final Map<String, dynamic> baseData;
 
   GetAccountRequestEntity({this.getToken: false, required this.baseData});
 

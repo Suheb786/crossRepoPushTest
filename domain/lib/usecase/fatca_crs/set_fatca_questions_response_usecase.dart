@@ -9,7 +9,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class SetFatcaQuestionsResponseUseCase extends BaseUseCase<NetworkError,
-    SetFatcaQuestionsResponseUseCaseParams, SetFatcaQuestionsResponse> {
+    SetFatcaQuestionsResponseUseCaseParams,
+    SetFatcaQuestionsResponse> {
   final FatcaCrsRepository _repository;
 
   SetFatcaQuestionsResponseUseCase(this._repository);
@@ -43,17 +44,16 @@ class SetFatcaQuestionsResponseUseCaseParams extends Params {
   final bool isUSTaxResident;
   final bool wasBornInUS;
 
-  SetFatcaQuestionsResponseUseCaseParams(
-      {this.relationShipPEP,
-      this.personName,
-      required this.anyOtherCountryResident,
-      this.country,
-      this.personRole,
-      required this.isPEP,
-      required this.declarationSelected,
-      required this.isUSCitizen,
-      required this.isUSTaxResident,
-      required this.wasBornInUS});
+  SetFatcaQuestionsResponseUseCaseParams({this.relationShipPEP,
+    this.personName,
+    required this.anyOtherCountryResident,
+    this.country,
+    this.personRole,
+    required this.isPEP,
+    required this.declarationSelected,
+    required this.isUSCitizen,
+    required this.isUSTaxResident,
+    required this.wasBornInUS});
 
   @override
   Either<AppError, bool> verify() {

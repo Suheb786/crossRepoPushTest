@@ -7,21 +7,21 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[CheckVideoCallStatusUseCase] provider
 final checkVideoCallStatusUseCaseProvider =
-    Provider.autoDispose<CheckVideoCallStatusUseCase>((ref) =>
-        CheckVideoCallStatusUseCase(ref.read(accountRepositoryProvider)));
+Provider.autoDispose<CheckVideoCallStatusUseCase>((ref) =>
+    CheckVideoCallStatusUseCase(ref.read(accountRepositoryProvider)));
 
 ///[CheckOtherNationalityStatusUseCase] provider
 final checkOtherNationalityStatusUseCaseProvider =
-    Provider.autoDispose<CheckOtherNationalityStatusUseCase>((ref) =>
-        CheckOtherNationalityStatusUseCase(
-            ref.read(accountRepositoryProvider)));
+Provider.autoDispose<CheckOtherNationalityStatusUseCase>((ref) =>
+    CheckOtherNationalityStatusUseCase(
+        ref.read(accountRepositoryProvider)));
 
 ///[CheckDocStatusUseCase] provider
 final checkDocStatusUseCaseProvider =
-    Provider.autoDispose<CheckDocStatusUseCase>(
+Provider.autoDispose<CheckDocStatusUseCase>(
         (ref) => CheckDocStatusUseCase(ref.read(accountRepositoryProvider)));
 
 ///[CheckAgentStatusUseCase] provider
 final checkAgentStatusUseCaseProvider =
-    Provider.autoDispose<CheckAgentStatusUseCase>(
+Provider.autoDispose<CheckAgentStatusUseCase>(
         (ref) => CheckAgentStatusUseCase(ref.read(accountRepositoryProvider)));

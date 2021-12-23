@@ -70,7 +70,8 @@ class BiometricLoginDialogView extends StatelessWidget {
                         width: double.maxFinite,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
-                          color: Theme.of(context)
+                          color: Theme
+                              .of(context)
                               .accentTextTheme
                               .bodyText1!
                               .color!,
@@ -83,7 +84,9 @@ class BiometricLoginDialogView extends StatelessWidget {
                           ],
                         ),
                         child: Center(
-                          child: Text(S.of(context).enable,
+                          child: Text(S
+                              .of(context)
+                              .enable,
                               style: TextStyle(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,

@@ -27,13 +27,13 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
   @override
   Future<HttpResponse<PurposeOfAccountOpeningResponseEntity>> addAccountPurpose(
       {required bool getToken,
-      String? purpose,
-      bool? isCashDeposit,
-      bool? isTransfer,
-      bool? isBillPayment,
-      bool? isOther,
-      double? monthlyTransaction,
-      double? annualTransaction}) async {
+        String? purpose,
+        bool? isCashDeposit,
+        bool? isTransfer,
+        bool? isBillPayment,
+        bool? isOther,
+        double? monthlyTransaction,
+        double? annualTransaction}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.addAccountPurpose(AddAccountPurposeRequest(
         baseData: baseData.toJson(),
@@ -58,14 +58,14 @@ class BankSmartRemoteDSImpl extends BankSmartRemoteDS {
   @override
   Future<HttpResponse<CreateAccountResponseEntity>> createAccount(
       {bool? getToken,
-      CustomerInformation? customerInformation,
-      CustomerAccountDetails? accountDetails}) async {
+        CustomerInformation? customerInformation,
+        CustomerAccountDetails? accountDetails}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.createAccount(CreateAccountRequestEntity(
         baseData: baseData.toJson(),
         getToken: true,
         customerDetailsEntity:
-            CustomerDetailsEntity().restore(customerInformation!).toJson(),
+        CustomerDetailsEntity().restore(customerInformation!).toJson(),
         account: AccountDetailsEntity().restore(accountDetails!).toJson()));
   }
 

@@ -46,7 +46,9 @@ Future<String> encryptData(
       publicKey: _keyHelper.parsePublicKeyFromPem(publicKey),
       privateKey: _keyHelper.parsePrivateKeyFromPem(privateKey),
       encoding: encrypt.RSAEncoding.PKCS1));
-  return Future.value(encrypter.encrypt(content!).base64);
+  return Future.value(encrypter
+      .encrypt(content!)
+      .base64);
   // RSAEncoding.PKCS1
 }
 //

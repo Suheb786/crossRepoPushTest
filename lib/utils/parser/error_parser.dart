@@ -292,6 +292,12 @@ class ErrorParser {
         return localisedHelper.invalidOtpEntered;
       case ErrorType.LOCATION_SERVICE_NOT_ENABLED:
         return localisedHelper.locationServiceDisabled;
+      case ErrorType.EMPTY_IBAN_MOBILE:
+        return localisedHelper.emptyIbanOrMobile;
+      case ErrorType.EMPTY_PURPOSE:
+        return localisedHelper.emptyPurpose;
+      case ErrorType.EMPTY_PURPOSE_DETAIL:
+        return localisedHelper.emptyPurposeDetail;
 
       default:
         return "";

@@ -27,17 +27,16 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
   final String? provisionClaimArticle;
   final String? treatyClaimRate;
 
-  FatcaUSW8TaxPayerDetailsUseCaseParams(
-      {this.taxPayerType,
-      this.beneficialAddress,
-      required this.isUSTaxPayer,
-      this.identificationNumber,
-      this.referenceNumber,
-      this.explanation,
-      this.typeOfIncome,
-      required this.wantToClaimTaxTreatyBenefits,
-      this.treatyClaimRate,
-      this.provisionClaimArticle});
+  FatcaUSW8TaxPayerDetailsUseCaseParams({this.taxPayerType,
+    this.beneficialAddress,
+    required this.isUSTaxPayer,
+    this.identificationNumber,
+    this.referenceNumber,
+    this.explanation,
+    this.typeOfIncome,
+    required this.wantToClaimTaxTreatyBenefits,
+    this.treatyClaimRate,
+    this.provisionClaimArticle});
 
   @override
   Either<AppError, bool> verify() {

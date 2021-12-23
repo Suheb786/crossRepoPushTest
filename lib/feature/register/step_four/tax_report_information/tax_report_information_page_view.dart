@@ -44,12 +44,13 @@ class TaxReportInformationPageView
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope.containerOf(context)
+                        ProviderScope
+                            .containerOf(context)
                             .read(registerViewModelProvider)
                             .registrationStepsController
                             .nextPage(
-                                duration: Duration(milliseconds: 500),
-                                curve: Curves.easeInOut);
+                            duration: Duration(milliseconds: 500),
+                            curve: Curves.easeInOut);
                       });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
@@ -62,7 +63,8 @@ class TaxReportInformationPageView
                           model.validateTaxReportInformation();
                         } else {
                           Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope.containerOf(context)
+                            ProviderScope
+                                .containerOf(context)
                                 .read(registerStepFourViewModelProvider)
                                 .registrationStepFourPageController
                                 .move(0);

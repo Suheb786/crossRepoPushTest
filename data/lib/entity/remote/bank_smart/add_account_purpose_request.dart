@@ -21,17 +21,16 @@ class AddAccountPurposeRequest {
   @JsonKey(name: "AnualTransaction")
   final num? annualTransaction;
   @JsonKey(name: "baseClass")
-  final Map<String,dynamic> baseData;
+  final Map<String, dynamic> baseData;
 
-  AddAccountPurposeRequest(
-      {this.getToken: false,
-      this.purpose: "",
-      this.isCashDeposit: true,
-      this.isTransfer: true,
-      this.isBillPayment: true,
-      this.isOther: true,
-      this.monthlyTransaction: 0.0,
-      this.annualTransaction: 0.0,
+  AddAccountPurposeRequest({this.getToken: false,
+    this.purpose: "",
+    this.isCashDeposit: true,
+    this.isTransfer: true,
+    this.isBillPayment: true,
+    this.isOther: true,
+    this.monthlyTransaction: 0.0,
+    this.annualTransaction: 0.0,
       required this.baseData});
 
   factory AddAccountPurposeRequest.fromJson(Map<String, dynamic> json) =>

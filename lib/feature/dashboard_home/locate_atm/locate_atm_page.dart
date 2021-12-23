@@ -19,7 +19,9 @@ class LocateATMPageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).accentColor;
+    return Theme
+        .of(context)
+        .accentColor;
   }
 
   @override

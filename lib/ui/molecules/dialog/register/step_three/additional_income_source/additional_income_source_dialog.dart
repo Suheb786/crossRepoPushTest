@@ -10,7 +10,8 @@ class AdditionalIncomeSourceDialog {
       {Function? onDismissed, Function(AdditionalIncomeType)? onSelected}) {
     AppDialog.show(mContext,
         isDismissible: true,
-        builder: (context) => AdditionIncomeSourceDialogView(
+        builder: (context) =>
+            AdditionIncomeSourceDialogView(
               onDismissed: onDismissed,
               onSelected: onSelected,
             ));

@@ -28,7 +28,7 @@ CreateAccountDataEntity _$CreateAccountDataEntityFromJson(
 }
 
 Map<String, dynamic> _$CreateAccountDataEntityToJson(
-        CreateAccountDataEntity instance) =>
+    CreateAccountDataEntity instance) =>
     <String, dynamic>{
       'accountDate': instance.accountDate,
       'name': instance.name,

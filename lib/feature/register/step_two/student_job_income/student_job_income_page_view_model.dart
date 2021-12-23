@@ -13,7 +13,7 @@ class StudentJobIncomePageViewModel extends BasePageViewModel {
 
   ///additional income source list holder
   final BehaviorSubject<List<AdditionalIncomeType>>
-      _additionalIncomeSourceSubject = BehaviorSubject.seeded([]);
+  _additionalIncomeSourceSubject = BehaviorSubject.seeded([]);
 
   ///additional income source response stream
   Stream<List<AdditionalIncomeType>> get additionalSourceIncomeListStream =>
@@ -29,11 +29,11 @@ class StudentJobIncomePageViewModel extends BasePageViewModel {
 
   ///job income subject holder
   PublishSubject<StudentJobIncomeUseCaseParams> _jobAndIncomeRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///job income response holder
   PublishSubject<Resource<SaveJobDetailsResponse>> _jobAndIncomeResponse =
-      PublishSubject();
+  PublishSubject();
 
   ///job income stream
   Stream<Resource<SaveJobDetailsResponse>> get jobAndIncomeStream =>
@@ -42,7 +42,7 @@ class StudentJobIncomePageViewModel extends BasePageViewModel {
   StudentJobIncomePageViewModel(this._studentIncomeUseCase) {
     _jobAndIncomeRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _studentIncomeUseCase.execute(params: value))
+          createCall: () => _studentIncomeUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

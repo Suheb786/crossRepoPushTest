@@ -16,7 +16,7 @@ DisableFingerPrintRequestEntity _$DisableFingerPrintRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$DisableFingerPrintRequestEntityToJson(
-        DisableFingerPrintRequestEntity instance) =>
+    DisableFingerPrintRequestEntity instance) =>
     <String, dynamic>{
       'UniqueId': instance.uniqueId,
       'GetToken': instance.getToken,

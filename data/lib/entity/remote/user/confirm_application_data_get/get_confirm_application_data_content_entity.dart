@@ -30,15 +30,14 @@ class GetConfirmApplicationDataContentEntity
   @JsonKey(name: "fatcaCrs")
   final FatcaCrsEntity? fatcaCrs;
 
-  GetConfirmApplicationDataContentEntity(
-      {this.profileStatus,
-      this.countryResidence,
-      this.jobDetail,
-      this.accountPurpose,
-      this.fatcaCrs});
+  GetConfirmApplicationDataContentEntity({this.profileStatus,
+    this.countryResidence,
+    this.jobDetail,
+    this.accountPurpose,
+    this.fatcaCrs});
 
   factory GetConfirmApplicationDataContentEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$GetConfirmApplicationDataContentEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>
@@ -49,13 +48,13 @@ class GetConfirmApplicationDataContentEntity
       GetConfirmApplicationDataContent response) {
     return GetConfirmApplicationDataContentEntity(
         accountPurpose:
-            AccountPurposeEntity().restore(response.accountPurposeInfo!),
+        AccountPurposeEntity().restore(response.accountPurposeInfo!),
         countryResidence:
-            CountryResidenceEntity().restore(response.countryResidenceInfo!),
+        CountryResidenceEntity().restore(response.countryResidenceInfo!),
         fatcaCrs: FatcaCrsEntity().restore(response.fatcaCrsInfo!),
         jobDetail: JobDetailEntity().restore(response.jobDetailInfo!),
         profileStatus:
-            ProfileStatusEntity().restore(response.profileStatusInfo!));
+        ProfileStatusEntity().restore(response.profileStatusInfo!));
   }
 
   @override
@@ -68,7 +67,7 @@ class GetConfirmApplicationDataContentEntity
             ? this.countryResidence!.transform()
             : CountryResidenceInfo(),
         fatcaCrsInfo:
-            this.fatcaCrs != null ? this.fatcaCrs!.transform() : FatcaCrsInfo(),
+        this.fatcaCrs != null ? this.fatcaCrs!.transform() : FatcaCrsInfo(),
         jobDetailInfo: this.jobDetail != null
             ? this.jobDetail!.transform()
             : JobDetailInfo(),

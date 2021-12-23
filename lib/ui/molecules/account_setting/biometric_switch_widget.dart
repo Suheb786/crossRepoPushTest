@@ -14,16 +14,15 @@ class BiometricSwitchWidget extends StatelessWidget {
   final String? activeText;
   final String? inActiveText;
 
-  const BiometricSwitchWidget(
-      {Key? key,
-      this.image,
-      this.title,
-      this.subtitle: '',
-      this.onTap,
-      this.isActive: false,
-      this.inActiveText,
-      this.onToggle,
-      this.activeText})
+  const BiometricSwitchWidget({Key? key,
+    this.image,
+    this.title,
+    this.subtitle: '',
+    this.onTap,
+    this.isActive: false,
+    this.inActiveText,
+    this.onToggle,
+    this.activeText})
       : super(key: key);
 
   @override
@@ -43,16 +42,20 @@ class BiometricSwitchWidget extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).textTheme.bodyText1!.color),
+                    color: Theme
+                        .of(context)
+                        .textTheme
+                        .bodyText1!
+                        .color),
               ),
               subtitle!.isNotEmpty
                   ? Text(
-                      subtitle ?? '',
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: AppColor.gray),
-                    )
+                subtitle ?? '',
+                style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: AppColor.gray),
+              )
                   : Container(),
             ],
           ),
@@ -79,8 +82,14 @@ class BiometricSwitchWidget extends StatelessWidget {
           inactiveToggleColor: AppColor.lightGrayishMagenta,
           inactiveTextFontWeight: FontWeight.w500,
           inactiveSwitchBorder: Border.all(color: AppColor.gray_2),
-          activeColor: Theme.of(context).accentTextTheme.bodyText1!.color!,
-          inactiveColor: Theme.of(context).accentColor,
+          activeColor: Theme
+              .of(context)
+              .accentTextTheme
+              .bodyText1!
+              .color!,
+          inactiveColor: Theme
+              .of(context)
+              .accentColor,
         ),
       ],
     );

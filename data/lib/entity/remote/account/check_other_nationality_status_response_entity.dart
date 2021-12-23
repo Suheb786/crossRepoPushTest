@@ -16,7 +16,7 @@ class CheckOtherNationalityStatusResponseEntity
   CheckOtherNationalityStatusResponseEntity(this.response);
 
   factory CheckOtherNationalityStatusResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$CheckOtherNationalityStatusResponseEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>
@@ -26,8 +26,8 @@ class CheckOtherNationalityStatusResponseEntity
   CheckOtherNationalityResponse transform() {
     return CheckOtherNationalityResponse(
         checkOtherNationalityResponseContent:
-            CheckOtherNationalityStatusResponseContentEntity.fromJson(
-                    this.response!.content)
-                .transform());
+        CheckOtherNationalityStatusResponseContentEntity.fromJson(
+            this.response!.content)
+            .transform());
   }
 }

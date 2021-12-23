@@ -6,7 +6,7 @@ import 'package:rxdart/rxdart.dart';
 
 class RegisterStepTwoViewModel extends BasePageViewModel {
   final SwiperController registrationStepTwoPageController =
-      new SwiperController();
+  new SwiperController();
 
   PublishSubject<int> _currentStep = PublishSubject();
 

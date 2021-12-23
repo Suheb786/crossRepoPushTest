@@ -40,7 +40,8 @@ class FatcaUSRelevantW8PageView
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope.containerOf(context)
+                        ProviderScope
+                            .containerOf(context)
                             .read(registerStepFourViewModelProvider)
                             .registrationStepFourPageController
                             .next();
@@ -56,7 +57,8 @@ class FatcaUSRelevantW8PageView
                           model.validateFatcaUSRelevantW8Details();
                         } else {
                           Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope.containerOf(context)
+                            ProviderScope
+                                .containerOf(context)
                                 .read(registerStepFourViewModelProvider)
                                 .registrationStepFourPageController
                                 .previous();
@@ -104,10 +106,14 @@ class FatcaUSRelevantW8PageView
                                           height: 16,
                                         ),
                                         AppTextField(
-                                          labelText: S.of(context).dateOfBirth,
-                                          hintText: S.of(context).pleaseEnter,
+                                          labelText: S
+                                              .of(context)
+                                              .dateOfBirth,
+                                          hintText: S
+                                              .of(context)
+                                              .pleaseEnter,
                                           controller:
-                                              model.dateOfBirthController,
+                                          model.dateOfBirthController,
                                           inputType: TextInputType.datetime,
                                           inputAction: TextInputAction.go,
                                           key: model.dateOfBirthKey,
@@ -150,10 +156,10 @@ class FatcaUSRelevantW8PageView
                                         dataBuilder: (context, isValid) {
                                           return (isValid!)
                                               ? AnimatedButton(
-                                                  buttonText: S
-                                                      .of(context)
-                                                      .swipeToProceed,
-                                                  buttonHeight: 50,
+                                            buttonText: S
+                                                .of(context)
+                                                .swipeToProceed,
+                                            buttonHeight: 50,
                                                 )
                                               : Container();
                                         }),

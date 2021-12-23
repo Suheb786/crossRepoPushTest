@@ -33,19 +33,18 @@ class JobDetailContentEntity
   @JsonKey(name: "isActive")
   final bool? isActive;
 
-  JobDetailContentEntity(
-      {this.id,
-      this.userId,
-      this.profession,
-      this.mainSource,
-      this.annualIncome,
-      this.employeeName,
-      this.employerCountry,
-      this.employerCity,
-      this.employerContact,
-      this.createdOn,
-      this.additionalIncome,
-      this.isActive});
+  JobDetailContentEntity({this.id,
+    this.userId,
+    this.profession,
+    this.mainSource,
+    this.annualIncome,
+    this.employeeName,
+    this.employerCountry,
+    this.employerCity,
+    this.employerContact,
+    this.createdOn,
+    this.additionalIncome,
+    this.isActive});
 
   factory JobDetailContentEntity.fromJson(Map<String, dynamic> json) =>
       _$JobDetailContentEntityFromJson(json);

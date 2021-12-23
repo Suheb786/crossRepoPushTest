@@ -35,22 +35,21 @@ class SaveFatcaInformationRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  SaveFatcaInformationRequestEntity(
-      {this.response1,
-      this.response2,
-      this.response3,
-      this.response4,
-      this.response5,
-      this.isTinNoRes4,
-      this.taxResidenceCountry,
-      this.tinNoRes4,
-      this.reasonUnavailableRes4,
-      this.reasonBRes4,
-      required this.baseData,
-      this.relationshipWithPEP,
-      this.personName,
-      this.personRole,
-      this.getToken: true});
+  SaveFatcaInformationRequestEntity({this.response1,
+    this.response2,
+    this.response3,
+    this.response4,
+    this.response5,
+    this.isTinNoRes4,
+    this.taxResidenceCountry,
+    this.tinNoRes4,
+    this.reasonUnavailableRes4,
+    this.reasonBRes4,
+    required this.baseData,
+    this.relationshipWithPEP,
+    this.personName,
+    this.personRole,
+    this.getToken: true});
 
   factory SaveFatcaInformationRequestEntity.fromJson(
           Map<String, dynamic> json) =>

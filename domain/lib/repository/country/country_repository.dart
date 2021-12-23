@@ -16,5 +16,5 @@ mixin CountryRepository {
   Future<Either<NetworkError, CountryListContentData>> getCountryList();
 
   Future<Either<NetworkError, AllowedCountryListResponse>>
-      getAllowedCodeCountryList();
+  getAllowedCodeCountryList();
 }

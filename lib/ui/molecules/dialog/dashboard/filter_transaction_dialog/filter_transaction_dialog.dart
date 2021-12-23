@@ -9,7 +9,8 @@ class FilterTransactionDialog {
       {Function? onDismissed, Function(String)? onSelected}) {
     AppDialog.show(mContext,
         isDismissible: true,
-        builder: (context) => FilterTransactionDialogView(
-            onDismissed: onDismissed, onSelected: onSelected));
+        builder: (context) =>
+            FilterTransactionDialogView(
+                onDismissed: onDismissed, onSelected: onSelected));
   }
 }

@@ -54,11 +54,11 @@ class MyDocumentsPageView extends BasePageViewWidget<MyDocumentsPageViewModel> {
                               if (data.appError!.type ==
                                   ErrorType.EMPTY_INCOME_DOCUMENT) {
                                 model.incomeDocumentKey.currentState!.isValid =
-                                    false;
+                                false;
                               } else if (data.appError!.type ==
                                   ErrorType.EMPTY_ADDRESS_DOCUMENT) {
                                 model.addressDocumentKey.currentState!.isValid =
-                                    false;
+                                false;
                               } else if (data.appError!.type ==
                                   ErrorType.EMPTY_NATIONALITY_DOCUMENT) {
                                 model.additionalNationalityKey.currentState!
@@ -84,15 +84,18 @@ class MyDocumentsPageView extends BasePageViewWidget<MyDocumentsPageViewModel> {
                                         physics: ClampingScrollPhysics(),
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              S.of(context).proofOfIncome,
+                                              S
+                                                  .of(context)
+                                                  .proofOfIncome,
                                               softWrap: true,
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context)
+                                                  color: Theme
+                                                      .of(context)
                                                       .primaryColorDark),
                                             ),
                                             Padding(
@@ -106,20 +109,21 @@ class MyDocumentsPageView extends BasePageViewWidget<MyDocumentsPageViewModel> {
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Theme.of(context)
+                                                    color: Theme
+                                                        .of(context)
                                                         .primaryColorDark),
                                               ),
                                             ),
                                             AppStreamBuilder<String>(
                                               stream:
-                                                  model.uploadIncomePoofStream,
+                                              model.uploadIncomePoofStream,
                                               initialData: '',
                                               onData: (documentResponse) {
                                                 if (documentResponse
                                                     .isNotEmpty) {
                                                   model
                                                       .updateIncomeDocumentField(
-                                                          documentResponse);
+                                                      documentResponse);
                                                   model.validateFields();
                                                 }
                                               },
@@ -136,7 +140,7 @@ class MyDocumentsPageView extends BasePageViewWidget<MyDocumentsPageViewModel> {
                                                       stream: model
                                                           .uploadIncomeProofDocumentStream,
                                                       initialData:
-                                                          Resource.none(),
+                                                      Resource.none(),
                                                       onData: (data) {
                                                         ///uncomment once api integration done
                                                         // if (data.status ==
@@ -165,66 +169,100 @@ class MyDocumentsPageView extends BasePageViewWidget<MyDocumentsPageViewModel> {
                                                               .incomeDocumentKey,
                                                           readOnly: true,
                                                           hintTextColor: Theme
-                                                                  .of(context)
+                                                              .of(context)
                                                               .primaryColorDark,
                                                           textFieldBorderColor:
-                                                              Theme.of(context)
-                                                                  .primaryColorDark,
-                                                          textColor: Theme.of(
-                                                                  context)
+                                                          Theme
+                                                              .of(context)
+                                                              .primaryColorDark,
+                                                          textColor: Theme
+                                                              .of(
+                                                              context)
                                                               .primaryColorDark,
                                                           suffixIcon:
                                                               (value, data) {
                                                             return InkWell(
                                                               onTap:
-                                                                  !(isUploaded!)
-                                                                      ? () async {
-                                                                          UploadDocumentSelectionWidget.show(context, onCameraTap:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                            model.uploadIncomeDocument(DocumentTypeEnum.CAMERA);
-                                                                          }, onUploadDocumentTap:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                            model.uploadIncomeDocument(DocumentTypeEnum.GALLERY);
-                                                                          }, onCancelled:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                          }, title: S.of(context).pleaseSelectYourAction);
-                                                                        }
-                                                                      : () {
-                                                                          model
-                                                                              .incomeController
-                                                                              .clear();
-                                                                          model.updateIncomeUploadedStream(
-                                                                              false);
-                                                                          model.isIncomeDocumentUploaded =
-                                                                              false;
-                                                                          model.incomeProofDocumentId =
-                                                                              '';
-                                                                          model
-                                                                              .validateFields();
-                                                                        },
+                                                              !(isUploaded!)
+                                                                  ? () async {
+                                                                UploadDocumentSelectionWidget
+                                                                    .show(
+                                                                    context,
+                                                                    onCameraTap:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                      model
+                                                                          .uploadIncomeDocument(
+                                                                          DocumentTypeEnum
+                                                                              .CAMERA);
+                                                                    },
+                                                                    onUploadDocumentTap:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                      model
+                                                                          .uploadIncomeDocument(
+                                                                          DocumentTypeEnum
+                                                                              .GALLERY);
+                                                                    },
+                                                                    onCancelled:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                    },
+                                                                    title: S
+                                                                        .of(
+                                                                        context)
+                                                                        .pleaseSelectYourAction);
+                                                              }
+                                                                  : () {
+                                                                model
+                                                                    .incomeController
+                                                                    .clear();
+                                                                model
+                                                                    .updateIncomeUploadedStream(
+                                                                    false);
+                                                                model
+                                                                    .isIncomeDocumentUploaded =
+                                                                false;
+                                                                model
+                                                                    .incomeProofDocumentId =
+                                                                '';
+                                                                model
+                                                                    .validateFields();
+                                                              },
                                                               child: Container(
                                                                   height: 16,
                                                                   width: 16,
                                                                   padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              5),
+                                                                  EdgeInsets
+                                                                      .all(
+                                                                      5),
                                                                   child: isUploaded
-                                                                      ? AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .delete,
-                                                                          color:
-                                                                              Theme.of(context).primaryColorDark,
-                                                                        )
-                                                                      : AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .upload,
-                                                                          color:
-                                                                              Theme.of(context).primaryColorDark,
-                                                                        )),
+                                                                      ? AppSvg
+                                                                      .asset(
+                                                                    AssetUtils
+                                                                        .delete,
+                                                                    color:
+                                                                    Theme
+                                                                        .of(
+                                                                        context)
+                                                                        .primaryColorDark,
+                                                                  )
+                                                                      : AppSvg
+                                                                      .asset(
+                                                                    AssetUtils
+                                                                        .upload,
+                                                                    color:
+                                                                    Theme
+                                                                        .of(
+                                                                        context)
+                                                                        .primaryColorDark,
+                                                                  )),
                                                             );
                                                           },
                                                         );
@@ -243,12 +281,15 @@ class MyDocumentsPageView extends BasePageViewWidget<MyDocumentsPageViewModel> {
                                               ),
                                             ),
                                             Text(
-                                              S.of(context).proofOfAddress,
+                                              S
+                                                  .of(context)
+                                                  .proofOfAddress,
                                               softWrap: true,
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context)
+                                                  color: Theme
+                                                      .of(context)
                                                       .primaryColorDark),
                                             ),
                                             Padding(
@@ -262,20 +303,21 @@ class MyDocumentsPageView extends BasePageViewWidget<MyDocumentsPageViewModel> {
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Theme.of(context)
+                                                    color: Theme
+                                                        .of(context)
                                                         .primaryColorDark),
                                               ),
                                             ),
                                             AppStreamBuilder<String>(
                                               stream:
-                                                  model.uploadAddressPoofStream,
+                                              model.uploadAddressPoofStream,
                                               initialData: '',
                                               onData: (documentResponse) {
                                                 if (documentResponse
                                                     .isNotEmpty) {
                                                   model
                                                       .updateAddressDocumentField(
-                                                          documentResponse);
+                                                      documentResponse);
                                                   model.validateFields();
                                                 }
                                               },
@@ -292,9 +334,10 @@ class MyDocumentsPageView extends BasePageViewWidget<MyDocumentsPageViewModel> {
                                                       stream: model
                                                           .uploadAddressProofDocumentStream,
                                                       initialData:
-                                                          Resource.none(),
+                                                      Resource.none(),
                                                       onData:
-                                                          (addressProofResponse) {
+                                                          (
+                                                          addressProofResponse) {
                                                         // if (addressProofResponse
                                                         //         .status ==
                                                         //     Status.SUCCESS) {
@@ -322,66 +365,100 @@ class MyDocumentsPageView extends BasePageViewWidget<MyDocumentsPageViewModel> {
                                                               .addressDocumentKey,
                                                           readOnly: true,
                                                           textFieldBorderColor:
-                                                              Theme.of(context)
-                                                                  .primaryColorDark,
-                                                          hintTextColor: Theme
-                                                                  .of(context)
+                                                          Theme
+                                                              .of(context)
                                                               .primaryColorDark,
-                                                          textColor: Theme.of(
-                                                                  context)
+                                                          hintTextColor: Theme
+                                                              .of(context)
+                                                              .primaryColorDark,
+                                                          textColor: Theme
+                                                              .of(
+                                                              context)
                                                               .primaryColorDark,
                                                           suffixIcon:
                                                               (value, data) {
                                                             return InkWell(
                                                               onTap:
-                                                                  !(isUploaded!)
-                                                                      ? () async {
-                                                                          UploadDocumentSelectionWidget.show(context, onCameraTap:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                            model.uploadAddressDocument(DocumentTypeEnum.CAMERA);
-                                                                          }, onUploadDocumentTap:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                            model.uploadAddressDocument(DocumentTypeEnum.GALLERY);
-                                                                          }, onCancelled:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                          }, title: S.of(context).pleaseSelectYourAction);
-                                                                        }
-                                                                      : () {
-                                                                          model
-                                                                              .addressController
-                                                                              .clear();
-                                                                          model.updateAddressUploadedStream(
-                                                                              false);
-                                                                          model.isAddressDocumentUploaded =
-                                                                              false;
-                                                                          model.addressProofDocumentId =
-                                                                              '';
-                                                                          model
-                                                                              .validateFields();
-                                                                        },
+                                                              !(isUploaded!)
+                                                                  ? () async {
+                                                                UploadDocumentSelectionWidget
+                                                                    .show(
+                                                                    context,
+                                                                    onCameraTap:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                      model
+                                                                          .uploadAddressDocument(
+                                                                          DocumentTypeEnum
+                                                                              .CAMERA);
+                                                                    },
+                                                                    onUploadDocumentTap:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                      model
+                                                                          .uploadAddressDocument(
+                                                                          DocumentTypeEnum
+                                                                              .GALLERY);
+                                                                    },
+                                                                    onCancelled:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                    },
+                                                                    title: S
+                                                                        .of(
+                                                                        context)
+                                                                        .pleaseSelectYourAction);
+                                                              }
+                                                                  : () {
+                                                                model
+                                                                    .addressController
+                                                                    .clear();
+                                                                model
+                                                                    .updateAddressUploadedStream(
+                                                                    false);
+                                                                model
+                                                                    .isAddressDocumentUploaded =
+                                                                false;
+                                                                model
+                                                                    .addressProofDocumentId =
+                                                                '';
+                                                                model
+                                                                    .validateFields();
+                                                              },
                                                               child: Container(
                                                                   height: 16,
                                                                   width: 16,
                                                                   padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              5),
+                                                                  EdgeInsets
+                                                                      .all(
+                                                                      5),
                                                                   child: isUploaded
-                                                                      ? AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .delete,
-                                                                          color:
-                                                                              Theme.of(context).primaryColorDark,
-                                                                        )
-                                                                      : AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .upload,
-                                                                          color:
-                                                                              Theme.of(context).primaryColorDark,
-                                                                        )),
+                                                                      ? AppSvg
+                                                                      .asset(
+                                                                    AssetUtils
+                                                                        .delete,
+                                                                    color:
+                                                                    Theme
+                                                                        .of(
+                                                                        context)
+                                                                        .primaryColorDark,
+                                                                  )
+                                                                      : AppSvg
+                                                                      .asset(
+                                                                    AssetUtils
+                                                                        .upload,
+                                                                    color:
+                                                                    Theme
+                                                                        .of(
+                                                                        context)
+                                                                        .primaryColorDark,
+                                                                  )),
                                                             );
                                                           },
                                                         );

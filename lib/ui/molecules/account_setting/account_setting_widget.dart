@@ -31,19 +31,23 @@ class AccountSettingWidget extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).textTheme.bodyText1!.color),
+                    color: Theme
+                        .of(context)
+                        .textTheme
+                        .bodyText1!
+                        .color),
               ),
               SizedBox(
                 height: 2,
               ),
               subtitle!.isNotEmpty
                   ? Text(
-                      subtitle ?? '',
-                      style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                          color: AppColor.gray),
-                    )
+                subtitle ?? '',
+                style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600,
+                    color: AppColor.gray),
+              )
                   : Container(),
             ],
           ),
@@ -60,7 +64,11 @@ class AccountSettingWidget extends StatelessWidget {
               width: 24,
               child: AppSvg.asset(AssetUtils.rightChevron,
                   color:
-                      Theme.of(context).inputDecorationTheme.hintStyle!.color)),
+                  Theme
+                      .of(context)
+                      .inputDecorationTheme
+                      .hintStyle!
+                      .color)),
         )
       ],
     );

@@ -16,7 +16,7 @@ CountryListResponseEntity _$CountryListResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$CountryListResponseEntityToJson(
-        CountryListResponseEntity instance) =>
+    CountryListResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

@@ -12,19 +12,19 @@ abstract class FatcaCrsRepository {
   /// save fatca information
   Future<Either<NetworkError, SetFatcaQuestionsResponse>> saveFatcaInformation(
       {required bool response1,
-      required bool response2,
-      required bool response3,
-      required bool response4,
-      required bool response5,
-      String relationshipWithPep,
-      String personName,
-      String personRole,
-      bool isTinNoRes4,
-      String taxResidenceCountry,
-      String tinNoRes4,
-      String reasonUnavailableRes4,
-      String reasonBRes4,
-      required bool getToken});
+        required bool response2,
+        required bool response3,
+        required bool response4,
+        required bool response5,
+        String relationshipWithPep,
+        String personName,
+        String personRole,
+        bool isTinNoRes4,
+        String taxResidenceCountry,
+        String tinNoRes4,
+        String reasonUnavailableRes4,
+        String reasonBRes4,
+        required bool getToken});
 
   /// upload signature
   Future<Either<NetworkError, UploadSignatureResponse>> uploadSignature(

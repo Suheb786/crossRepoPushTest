@@ -9,7 +9,7 @@ class MyDebitCardViewModel extends BasePageViewModel {
   MyDebitCardUseCase _useCase;
 
   BehaviorSubject<bool> _isFlipCardClickedSubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject.seeded(false);
 
   GlobalKey<FlipCardState> cardKey = GlobalKey<FlipCardState>();
 

@@ -8,7 +8,8 @@ part 'upload_document_response_entity.g.dart';
 
 @JsonSerializable()
 class UploadDocumentResponseEntity extends BaseLayerDataTransformer<
-    UploadDocumentResponseEntity, FileUploadResponse> {
+    UploadDocumentResponseEntity,
+    FileUploadResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -23,7 +24,7 @@ class UploadDocumentResponseEntity extends BaseLayerDataTransformer<
   FileUploadResponse transform() {
     return FileUploadResponse(
         fileUploadContent:
-            UploadDocumentContentResponseEntity.fromJson(this.response!.content)
-                .transform());
+        UploadDocumentContentResponseEntity.fromJson(this.response!.content)
+            .transform());
   }
 }

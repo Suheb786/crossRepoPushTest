@@ -30,7 +30,7 @@ class AhwalDetailResponseEntity
   AhwalDetailResponse transform() {
     return AhwalDetailResponse(
         contentData:
-            AhwalInfoContentDataEntity.fromJson(this.responseEntity!.content)
-                .transform());
+        AhwalInfoContentDataEntity.fromJson(this.responseEntity!.content)
+            .transform());
   }
 }

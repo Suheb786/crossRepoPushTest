@@ -49,20 +49,21 @@ class FatcaSignaturePageView
                           model.fileId = data.data!.id!;
                           model.updateData(context);
                           Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope.containerOf(context)
+                            ProviderScope
+                                .containerOf(context)
                                 .read(registerViewModelProvider)
                                 .registrationStepsController
                                 .nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut);
+                                duration: Duration(milliseconds: 500),
+                                curve: Curves.easeInOut);
                           });
                         } else if (data.status == Status.ERROR) {
                           if (data.appError!.type ==
                               ErrorType.INVALID_SIGNATURE) {
                             model.signatureKey.currentState!.isValid = false;
                           } else if ((data.appError!.type ==
-                              ErrorType.INVALID_DECLARATION_SELECTION)) {
-                          } else if ((data.appError!.type ==
+                              ErrorType.INVALID_DECLARATION_SELECTION)) {} else
+                          if ((data.appError!.type ==
                               ErrorType
                                   .INVALID_VERIFY_INFO_DECLARATION_SELECTION)) {}
                           model.showToastWithError(data.appError!);
@@ -77,7 +78,8 @@ class FatcaSignaturePageView
                             } else {
                               ///TODO:Route based on w8 or w9
                               Future.delayed(Duration(milliseconds: 500), () {
-                                ProviderScope.containerOf(context)
+                                ProviderScope
+                                    .containerOf(context)
                                     .read(registerStepFourViewModelProvider)
                                     .registrationStepFourPageController
                                     .move(0);
@@ -87,21 +89,23 @@ class FatcaSignaturePageView
                           child: Card(
                             child: Padding(
                                 padding: EdgeInsets.only(
-                                    bottom: MediaQuery.of(context)
-                                                    .viewInsets
-                                                    .bottom -
-                                                50 <=
-                                            0
+                                    bottom: MediaQuery
+                                        .of(context)
+                                        .viewInsets
+                                        .bottom -
+                                        50 <=
+                                        0
                                         ? 0
-                                        : MediaQuery.of(context)
-                                                .viewInsets
-                                                .bottom -
-                                            48),
+                                        : MediaQuery
+                                        .of(context)
+                                        .viewInsets
+                                        .bottom -
+                                        48),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: SingleChildScrollView(
@@ -110,15 +114,18 @@ class FatcaSignaturePageView
                                         physics: ClampingScrollPhysics(),
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              S.of(context).yourSignature,
+                                              S
+                                                  .of(context)
+                                                  .yourSignature,
                                               softWrap: true,
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context)
+                                                  color: Theme
+                                                      .of(context)
                                                       .primaryColorDark),
                                             ),
                                             Padding(
@@ -132,7 +139,8 @@ class FatcaSignaturePageView
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Theme.of(context)
+                                                    color: Theme
+                                                        .of(context)
                                                         .primaryColorDark),
                                               ),
                                             ),
@@ -164,80 +172,92 @@ class FatcaSignaturePageView
                                                       key: model.signatureKey,
                                                       readOnly: true,
                                                       hintTextColor:
-                                                          Theme.of(context)
-                                                              .primaryColorDark,
+                                                      Theme
+                                                          .of(context)
+                                                          .primaryColorDark,
                                                       textFieldBorderColor:
-                                                          Theme.of(context)
-                                                              .accentTextTheme
-                                                              .bodyText1!
-                                                              .color,
+                                                      Theme
+                                                          .of(context)
+                                                          .accentTextTheme
+                                                          .bodyText1!
+                                                          .color,
                                                       textColor:
-                                                          Theme.of(context)
-                                                              .primaryColorDark,
+                                                      Theme
+                                                          .of(context)
+                                                          .primaryColorDark,
                                                       suffixIcon:
                                                           (value, data) {
                                                         return InkWell(
                                                           onTap: !(isUploaded!)
                                                               ? () async {
-                                                                  UploadDocumentSelectionWidget.show(
-                                                                      context,
-                                                                      onCameraTap:
-                                                                          () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                    model.getDocument(
-                                                                        DocumentTypeEnum
-                                                                            .CAMERA);
-                                                                  }, onUploadDocumentTap:
-                                                                          () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                    model.getDocument(
-                                                                        DocumentTypeEnum
-                                                                            .GALLERY);
-                                                                  }, onCancelled:
-                                                                          () {
-                                                                    Navigator.pop(
-                                                                        context);
-                                                                  },
-                                                                      title: S
-                                                                          .of(context)
-                                                                          .pleaseSelectYourAction);
-                                                                }
-                                                              : () {
+                                                            UploadDocumentSelectionWidget
+                                                                .show(
+                                                                context,
+                                                                onCameraTap:
+                                                                    () {
+                                                                  Navigator.pop(
+                                                                      context);
                                                                   model
-                                                                      .signatureController
-                                                                      .clear();
-                                                                  model.updateSignatureUploadedStream(
-                                                                      false);
-                                                                  model.isSignatureUploaded =
-                                                                      false;
-                                                                  model.selectedFile =
-                                                                      '';
-                                                                  model
-                                                                      .isValid();
+                                                                      .getDocument(
+                                                                      DocumentTypeEnum
+                                                                          .CAMERA);
                                                                 },
+                                                                onUploadDocumentTap:
+                                                                    () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                  model
+                                                                      .getDocument(
+                                                                      DocumentTypeEnum
+                                                                          .GALLERY);
+                                                                },
+                                                                onCancelled:
+                                                                    () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                },
+                                                                title: S
+                                                                    .of(context)
+                                                                    .pleaseSelectYourAction);
+                                                          }
+                                                              : () {
+                                                            model
+                                                                .signatureController
+                                                                .clear();
+                                                            model
+                                                                .updateSignatureUploadedStream(
+                                                                false);
+                                                            model
+                                                                .isSignatureUploaded =
+                                                            false;
+                                                            model.selectedFile =
+                                                            '';
+                                                            model
+                                                                .isValid();
+                                                          },
                                                           child: Container(
                                                               height: 16,
                                                               width: 16,
                                                               padding:
-                                                                  EdgeInsets
-                                                                      .all(5),
+                                                              EdgeInsets
+                                                                  .all(5),
                                                               child: isUploaded
                                                                   ? AppSvg
-                                                                      .asset(
-                                                                      AssetUtils
-                                                                          .delete,
-                                                                      color: Theme.of(
-                                                                              context)
-                                                                          .primaryColorDark,
-                                                                    )
+                                                                  .asset(
+                                                                AssetUtils
+                                                                    .delete,
+                                                                color: Theme
+                                                                    .of(
+                                                                    context)
+                                                                    .primaryColorDark,
+                                                              )
                                                                   : Icon(
-                                                                      Icons.add,
-                                                                      color: Theme.of(
-                                                                              context)
-                                                                          .primaryColorDark,
-                                                                    )),
+                                                                Icons.add,
+                                                                color: Theme
+                                                                    .of(
+                                                                    context)
+                                                                    .primaryColorDark,
+                                                              )),
                                                         );
                                                       },
                                                     );
@@ -268,14 +288,16 @@ class FatcaSignaturePageView
                                                           .of(context)
                                                           .iConfirmThatMy,
                                                       title2:
-                                                          S.of(context).fatca,
+                                                      S
+                                                          .of(context)
+                                                          .fatca,
                                                       title3: S
                                                           .of(context)
                                                           .declarationIsTrueAndCorrect,
                                                       onTap: () {
                                                         model
                                                             .updateDeclarationSelection(
-                                                                !(isSelected!));
+                                                            !(isSelected!));
                                                         model.isValid();
                                                       },
                                                     );
@@ -295,7 +317,7 @@ class FatcaSignaturePageView
                                                       onTap: () {
                                                         model
                                                             .updateVerifyInfoDeclarationSelection(
-                                                                !(isSelected!));
+                                                            !(isSelected!));
                                                         model.isValid();
                                                       },
                                                     );

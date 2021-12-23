@@ -16,7 +16,7 @@ SaveJobDetailsResponseEntity _$SaveJobDetailsResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$SaveJobDetailsResponseEntityToJson(
-        SaveJobDetailsResponseEntity instance) =>
+    SaveJobDetailsResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

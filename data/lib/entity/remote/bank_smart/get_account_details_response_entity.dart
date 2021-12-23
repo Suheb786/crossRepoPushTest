@@ -31,7 +31,7 @@ class GetAccountDetailsResponseEntity
   GetAccountDetailsResponse transform() {
     return GetAccountDetailsResponse(
         getAccountDetailsContent: GetAccountDetailsContentEntity.fromJson(
-                this.responseEntity!.content)
+            this.responseEntity!.content)
             .transform());
   }
 }

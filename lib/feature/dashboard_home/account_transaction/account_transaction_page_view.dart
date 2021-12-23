@@ -1,11 +1,16 @@
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:grouped_list/grouped_list.dart';
+import 'package:grouped_list/sliver_grouped_list.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/model/transaction_item.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/download_transaction_dialog/download_transaction_dialog.dart';
 import 'package:neo_bank/ui/molecules/dashboard/transactions_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -49,8 +54,20 @@ class AccountTransactionPageView
                       ),
                     ),
                     Align(
-                        alignment: Alignment.centerRight,
-                        child: AppSvg.asset(AssetUtils.download))
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        onTap: () {
+                          DownloadTransactionDialog.show(context,
+                              onSelected: (value) {
+                            Navigator.pop(context);
+                            Navigator.pushNamed(
+                                context, RoutePaths.DownloadTransaction,
+                                arguments: ["Account", value]);
+                          });
+                        },
+                        child: AppSvg.asset(AssetUtils.download),
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -67,6 +84,7 @@ class AccountTransactionPageView
                     child: Padding(
                       padding: EdgeInsets.only(top: 8),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Center(
                             child: Container(
@@ -79,7 +97,7 @@ class AccountTransactionPageView
                           ),
                           Padding(
                             padding:
-                                EdgeInsets.only(top: 24.0, left: 24, right: 38),
+                            EdgeInsets.only(top: 24.0, left: 24, right: 38),
                             child: Row(
                               children: [
                                 Expanded(
@@ -88,7 +106,7 @@ class AccountTransactionPageView
                                     hintText: S.of(context).lookingFor,
                                     controller: model.searchController,
                                     onPressed: () {},
-                                    onChanged: (text) =>
+                                    onFieldSubmitted: (text) =>
                                         model.onSearchTextChanged(text),
                                     suffixIcon: (value, data) {
                                       return Padding(

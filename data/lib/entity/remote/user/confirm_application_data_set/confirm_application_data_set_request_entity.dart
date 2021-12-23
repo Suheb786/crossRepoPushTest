@@ -5,7 +5,7 @@ part "confirm_application_data_set_request_entity.g.dart";
 @JsonSerializable()
 class ConfirmApplicationDataSetRequestEntity {
   @JsonKey(name: "ReviewDocumentResponse")
-  final Map<String,dynamic>? reviewDocumentResponse;
+  final Map<String, dynamic>? reviewDocumentResponse;
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "BaseClass")
@@ -15,7 +15,7 @@ class ConfirmApplicationDataSetRequestEntity {
       {this.reviewDocumentResponse, this.getToken, this.baseData});
 
   factory ConfirmApplicationDataSetRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$ConfirmApplicationDataSetRequestEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

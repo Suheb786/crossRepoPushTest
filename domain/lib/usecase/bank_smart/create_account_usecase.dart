@@ -9,7 +9,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class CreateAccountUseCase extends BaseUseCase<NetworkError,
-    CreateAccountUseCaseParams, CreateAccountResponse> {
+    CreateAccountUseCaseParams,
+    CreateAccountResponse> {
   final BankSmartRepository _bankSmartRepository;
 
   CreateAccountUseCase(this._bankSmartRepository);

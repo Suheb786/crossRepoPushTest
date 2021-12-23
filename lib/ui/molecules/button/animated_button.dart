@@ -94,41 +94,45 @@ class _AnimatedButtonState extends State<AnimatedButton>
           alignment: Alignment.centerRight,
           child: AnimatedBuilder(
             animation: animationController!,
-            builder: (context, child) => Container(
-              height: widget.buttonHeight!,
-              width: animation!.value,
-              decoration: BoxDecoration(
-                  color: widget.buttonColor ?? Colors.transparent,
-                  borderRadius: BorderRadius.circular(widget.buttonHeight! / 2),
-                  border: Border.all(
-                      width: 2,
-                      color: widget.borderColor != null
-                          ? widget.borderColor!
-                          : Theme.of(context)
+            builder: (context, child) =>
+                Container(
+                  height: widget.buttonHeight!,
+                  width: animation!.value,
+                  decoration: BoxDecoration(
+                      color: widget.buttonColor ?? Colors.transparent,
+                      borderRadius: BorderRadius.circular(
+                          widget.buttonHeight! / 2),
+                      border: Border.all(
+                          width: 2,
+                          color: widget.borderColor != null
+                              ? widget.borderColor!
+                              : Theme
+                              .of(context)
                               .accentTextTheme
                               .bodyText1!
                               .color!)),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    widget.buttonText!,
-                    style: TextStyle(
-                        color: widget.textColor != null
-                            ? widget.textColor
-                            : Theme.of(context)
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        widget.buttonText!,
+                        style: TextStyle(
+                            color: widget.textColor != null
+                                ? widget.textColor
+                                : Theme
+                                .of(context)
                                 .accentTextTheme
                                 .bodyText1!
                                 .color!,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500),
-                    maxLines: 1,
-                    overflow: TextOverflow.clip,
-                    softWrap: false,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500),
+                        maxLines: 1,
+                        overflow: TextOverflow.clip,
+                        softWrap: false,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
           ),
         ),
       ),

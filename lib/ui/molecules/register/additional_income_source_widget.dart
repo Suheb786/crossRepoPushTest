@@ -38,7 +38,9 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
                     softWrap: false,
                     maxLines: 5,
                     style: TextStyle(
-                        color: Theme.of(context).primaryColorDark,
+                        color: Theme
+                            .of(context)
+                            .primaryColorDark,
                         fontSize: 14,
                         fontWeight: FontWeight.w600),
                   ),
@@ -50,7 +52,9 @@ class AdditionalIncomeSourceWidget extends StatelessWidget {
                   '${'JOD'} ${additionalIncomeSourceParams!.totalIncome}',
                   textAlign: TextAlign.start,
                   style: TextStyle(
-                      color: Theme.of(context).primaryColorDark,
+                      color: Theme
+                          .of(context)
+                          .primaryColorDark,
                       fontSize: 12,
                       fontWeight: FontWeight.w600),
                 ),

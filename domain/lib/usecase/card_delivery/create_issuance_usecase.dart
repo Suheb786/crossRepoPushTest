@@ -7,7 +7,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class CardIssuanceUseCase extends BaseUseCase<NetworkError,
-    CardIssuanceUseCaseParams, CardIssuanceDetails> {
+    CardIssuanceUseCaseParams,
+    CardIssuanceDetails> {
   final CardRepository _repository;
 
   CardIssuanceUseCase(this._repository);

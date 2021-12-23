@@ -104,12 +104,15 @@ class HomeAddressDialogView extends StatelessWidget {
                       dataBuilder: (context, currentLocation) {
                         return AppTextField(
                             controller: model.addressController,
-                            labelText: S.of(context).buildingNameOrNo,
+                            labelText: S
+                                .of(context)
+                                .buildingNameOrNo,
                             hintText: "",
                             labelFontSize: 12,
                             labelColor: AppColor.black,
                             textColor: AppColor.black,
-                            suffixIcon: (isValid, value) => Container(
+                            suffixIcon: (isValid, value) =>
+                                Container(
                                   height: 20,
                                   width: 16,
                                   padding: EdgeInsets.only(left: 4, top: 2),

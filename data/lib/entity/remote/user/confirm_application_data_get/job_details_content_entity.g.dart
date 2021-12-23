@@ -27,7 +27,7 @@ JobDetailContentEntity _$JobDetailContentEntityFromJson(
 }
 
 Map<String, dynamic> _$JobDetailContentEntityToJson(
-        JobDetailContentEntity instance) =>
+    JobDetailContentEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,

@@ -23,17 +23,16 @@ class SaveCustomerScheduleTimeResponseDataEntity
   @JsonKey(name: "isActive")
   final bool? isActive;
 
-  SaveCustomerScheduleTimeResponseDataEntity(
-      {this.id,
-      this.customerId,
-      this.referenceNo,
-      this.scheduleDate,
-      this.scheduleTime,
-      this.createdOn,
-      this.isActive});
+  SaveCustomerScheduleTimeResponseDataEntity({this.id,
+    this.customerId,
+    this.referenceNo,
+    this.scheduleDate,
+    this.scheduleTime,
+    this.createdOn,
+    this.isActive});
 
   factory SaveCustomerScheduleTimeResponseDataEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$SaveCustomerScheduleTimeResponseDataEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

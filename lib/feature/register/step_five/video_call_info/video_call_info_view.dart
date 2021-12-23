@@ -29,14 +29,16 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                 onHorizontalDragUpdate: (details) {
                   if (details.primaryDelta!.isNegative) {
                     Future.delayed(Duration(milliseconds: 500), () {
-                      ProviderScope.containerOf(context)
+                      ProviderScope
+                          .containerOf(context)
                           .read(registerStepFiveViewModelProvider)
                           .registrationStepFivePageController
                           .next();
                     });
                   } else {
                     Future.delayed(Duration(milliseconds: 500), () {
-                      ProviderScope.containerOf(context)
+                      ProviderScope
+                          .containerOf(context)
                           .read(registerStepFiveViewModelProvider)
                           .registrationStepFivePageController
                           .previous();
@@ -77,17 +79,22 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                         shape: BoxShape.circle,
                                       ),
                                       child: AppSvg.asset(AssetUtils.maleAgent,
-                                          color: Theme.of(context)
+                                          color: Theme
+                                              .of(context)
                                               .primaryColorDark),
                                     ),
                                   ),
                                   Text(
-                                    S.of(context).videoCallInfoDescription,
+                                    S
+                                        .of(context)
+                                        .videoCallInfoDescription,
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
                                         color:
-                                            Theme.of(context).primaryColorDark),
+                                        Theme
+                                            .of(context)
+                                            .primaryColorDark),
                                   ),
                                   SizedBox(
                                     height: 43,
@@ -118,16 +125,20 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                     onTap: () {
                                       Future.delayed(
                                           Duration(milliseconds: 500), () {
-                                        ProviderScope.containerOf(context)
+                                        ProviderScope
+                                            .containerOf(context)
                                             .read(
-                                                registerStepFiveViewModelProvider)
+                                            registerStepFiveViewModelProvider)
                                             .registrationStepFivePageController
                                             .move(3);
                                       });
                                     },
-                                    child: Text(S.of(context).scheduleLater,
+                                    child: Text(S
+                                        .of(context)
+                                        .scheduleLater,
                                         style: TextStyle(
-                                            color: Theme.of(context)
+                                            color: Theme
+                                                .of(context)
                                                 .accentTextTheme
                                                 .bodyText1!
                                                 .color,

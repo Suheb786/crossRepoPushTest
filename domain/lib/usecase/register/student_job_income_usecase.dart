@@ -8,7 +8,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class StudentJobIncomeUseCase extends BaseUseCase<NetworkError,
-    StudentJobIncomeUseCaseParams, SaveJobDetailsResponse> {
+    StudentJobIncomeUseCaseParams,
+    SaveJobDetailsResponse> {
   final UserRepository _repository;
 
   StudentJobIncomeUseCase(this._repository);

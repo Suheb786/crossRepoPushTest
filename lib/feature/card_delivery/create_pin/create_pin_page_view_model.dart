@@ -32,7 +32,7 @@ class CreatePinPageViewModel extends BasePageViewModel {
   CreatePinPageViewModel(this._createPinUseCase) {
     _createPinRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _createPinUseCase.execute(params: value))
+          createCall: () => _createPinUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _createPinResponse.safeAdd(event);

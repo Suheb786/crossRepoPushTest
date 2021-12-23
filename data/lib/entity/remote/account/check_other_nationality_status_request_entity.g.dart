@@ -7,8 +7,7 @@ part of 'check_other_nationality_status_request_entity.dart';
 // **************************************************************************
 
 CheckOtherNationalityStatusRequestEntity
-    _$CheckOtherNationalityStatusRequestEntityFromJson(
-        Map<String, dynamic> json) {
+_$CheckOtherNationalityStatusRequestEntityFromJson(Map<String, dynamic> json) {
   return CheckOtherNationalityStatusRequestEntity(
     getToken: json['GetToken'] as bool?,
     baseData: json['baseClass'] as Map<String, dynamic>,
@@ -16,7 +15,7 @@ CheckOtherNationalityStatusRequestEntity
 }
 
 Map<String, dynamic> _$CheckOtherNationalityStatusRequestEntityToJson(
-        CheckOtherNationalityStatusRequestEntity instance) =>
+    CheckOtherNationalityStatusRequestEntity instance) =>
     <String, dynamic>{
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,

@@ -7,8 +7,7 @@ part of 'fatca_questions_response_content_data_entity.dart';
 // **************************************************************************
 
 FatcaQuestionsResponseContentDataEntity
-    _$FatcaQuestionsResponseContentDataEntityFromJson(
-        Map<String, dynamic> json) {
+_$FatcaQuestionsResponseContentDataEntityFromJson(Map<String, dynamic> json) {
   return FatcaQuestionsResponseContentDataEntity(
     labelEn: json['labelEn'] as String?,
     labelAr: json['labelAr'] as String?,
@@ -21,7 +20,7 @@ FatcaQuestionsResponseContentDataEntity
 }
 
 Map<String, dynamic> _$FatcaQuestionsResponseContentDataEntityToJson(
-        FatcaQuestionsResponseContentDataEntity instance) =>
+    FatcaQuestionsResponseContentDataEntity instance) =>
     <String, dynamic>{
       'labelEn': instance.labelEn,
       'labelAr': instance.labelAr,

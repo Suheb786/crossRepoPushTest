@@ -30,7 +30,7 @@ class DashboardPageViewModel extends BasePageViewModel {
 
   /// check whether biometric is supported or not request
   PublishSubject<CheckBioMetricSupportUseCaseParams> _checkBioMetricRequest =
-      PublishSubject();
+  PublishSubject();
 
   /// check whether biometric is supported or not response
   BehaviorSubject<Resource<bool>> _checkBioMetricResponse = BehaviorSubject();
@@ -41,11 +41,11 @@ class DashboardPageViewModel extends BasePageViewModel {
 
   /// authenticate using biometric request
   PublishSubject<AuthenticateBioMetricUseCaseParams>
-      _authenticateBioMetricRequest = PublishSubject();
+  _authenticateBioMetricRequest = PublishSubject();
 
   /// authenticate using biometric response
   PublishSubject<Resource<bool>> _authenticateBioMetricResponse =
-      PublishSubject();
+  PublishSubject();
 
   /// authenticate using biometric response stream
   Stream<Resource<bool>> get authenticateBioMetricStream =>
@@ -53,11 +53,11 @@ class DashboardPageViewModel extends BasePageViewModel {
 
   /// generate key pair request
   PublishSubject<GenerateKeyPairUseCaseParams> _generateKeyPairRequest =
-      PublishSubject();
+  PublishSubject();
 
   /// generate key pair response
   PublishSubject<Resource<GenerateKeyPairResponse>> _generateKeyPairResponse =
-      PublishSubject();
+  PublishSubject();
 
   /// generate key pair response stream
   Stream<Resource<GenerateKeyPairResponse>> get generateKeyPairStream =>
@@ -65,7 +65,7 @@ class DashboardPageViewModel extends BasePageViewModel {
 
   /// enable biometric request
   PublishSubject<EnableBiometricUseCaseParams> _enableBiometricRequest =
-      PublishSubject();
+  PublishSubject();
 
   /// enable biometric response
   PublishSubject<Resource<bool>> _enableBiometricResponse = PublishSubject();
@@ -74,15 +74,14 @@ class DashboardPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get enableBiometricStream =>
       _enableBiometricResponse.stream;
 
-  DashboardPageViewModel(
-      this._logoutUseCase,
+  DashboardPageViewModel(this._logoutUseCase,
       this._checkBioMetricSupportUseCase,
       this._authenticateBioMetricUseCase,
       this._generateKeyPairUseCase,
       this._enableBiometricUseCase) {
     _logoutRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _logoutUseCase.execute(params: value))
+          createCall: () => _logoutUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _logoutResponse.safeAdd(event);
@@ -113,7 +112,7 @@ class DashboardPageViewModel extends BasePageViewModel {
 
     _generateKeyPairRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _generateKeyPairUseCase.execute(params: value))
+          createCall: () => _generateKeyPairUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _generateKeyPairResponse.safeAdd(event);
@@ -126,7 +125,7 @@ class DashboardPageViewModel extends BasePageViewModel {
 
     _enableBiometricRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _enableBiometricUseCase.execute(params: value))
+          createCall: () => _enableBiometricUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _enableBiometricResponse.safeAdd(event);

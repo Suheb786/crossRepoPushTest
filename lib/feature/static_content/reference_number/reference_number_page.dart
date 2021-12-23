@@ -14,7 +14,8 @@ class ReferenceNumberPage extends BasePage<ReferenceNumberPageViewModel> {
 }
 
 class ReferenceNumberPageState extends BaseStatefulPage<
-    ReferenceNumberPageViewModel, ReferenceNumberPage> {
+    ReferenceNumberPageViewModel,
+    ReferenceNumberPage> {
   @override
   ProviderBase provideBase() {
     return referenceNumberViewModelProvider;
@@ -34,19 +35,25 @@ class ReferenceNumberPageState extends BaseStatefulPage<
               child: Padding(
                 padding: const EdgeInsets.only(left: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    color: Theme.of(context).accentColor),
+                    color: Theme
+                        .of(context)
+                        .accentColor),
               ),
             ),
             Flexible(
               child: Text(
-                S.of(context).referenceNumberSmall,
+                S
+                    .of(context)
+                    .referenceNumberSmall,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).accentColor),
+                    color: Theme
+                        .of(context)
+                        .accentColor),
               ),
             ),
             Padding(
@@ -66,7 +73,9 @@ class ReferenceNumberPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override

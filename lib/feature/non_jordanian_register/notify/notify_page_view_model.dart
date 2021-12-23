@@ -22,7 +22,7 @@ class NotifyPageViewModel extends BasePageViewModel {
 
   ///notify response holder
   PublishSubject<Resource<RegisterInterestResponse>> _notifyResponse =
-      PublishSubject();
+  PublishSubject();
 
   ///notify request stream
   Stream<Resource<RegisterInterestResponse>> get notifyStream =>
@@ -36,7 +36,7 @@ class NotifyPageViewModel extends BasePageViewModel {
   NotifyPageViewModel(this._notifyUseCase) {
     _notifyRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _notifyUseCase.execute(params: value))
+          createCall: () => _notifyUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _notifyResponse.safeAdd(event);

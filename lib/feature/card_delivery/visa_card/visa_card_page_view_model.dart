@@ -16,10 +16,10 @@ class VisaCardPageViewModel extends BasePageViewModel {
   final CardIssuanceUseCase _cardIssuanceUseCase;
 
   PublishSubject<CardIssuanceUseCaseParams> _cardIssuanceRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<Resource<CardIssuanceDetails>> _cardIssuanceResponse =
-      PublishSubject();
+  PublishSubject();
 
   Stream<Resource<CardIssuanceDetails>> get cardIssuanceStream =>
       _cardIssuanceResponse.stream;
@@ -27,7 +27,7 @@ class VisaCardPageViewModel extends BasePageViewModel {
   VisaCardPageViewModel(this._cardIssuanceUseCase) {
     _cardIssuanceRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _cardIssuanceUseCase.execute(params: value))
+          createCall: () => _cardIssuanceUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -59,7 +59,7 @@ class VisaCardPageViewModel extends BasePageViewModel {
     print("DECRYPT $decrypt");
 
     var aesCrypt = AesCrypt(
-        // key: "0123456789ABCDEFFEDCBA98765432100123456789ABCDEF",
+      // key: "0123456789ABCDEFFEDCBA98765432100123456789ABCDEF",
         key: "AB9B545DAEC2ABC74FB90D15CE04B997",
         padding: PaddingAES.iso78164);
     String decrypted = aesCrypt.ecb.decrypt(enc: hex);

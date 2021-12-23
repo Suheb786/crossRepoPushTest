@@ -15,7 +15,7 @@ DocStatusRequestEntity _$DocStatusRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$DocStatusRequestEntityToJson(
-        DocStatusRequestEntity instance) =>
+    DocStatusRequestEntity instance) =>
     <String, dynamic>{
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,

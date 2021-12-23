@@ -21,7 +21,7 @@ class DebitCardVerificationSuccessPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme.of(context).canvasColor;
   }
 
   @override

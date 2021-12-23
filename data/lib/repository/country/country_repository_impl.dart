@@ -20,7 +20,7 @@ class CountryRepositoryImpl with CountryRepository {
   Future<Either<LocalError, List<Country>>> fetchCountries(
       {required BuildContext context}) async {
     List<local.Country> countries =
-        await _localDs.fetchCountries(context: context);
+    await _localDs.fetchCountries(context: context);
 
     if (countries.isNotEmpty) {
       return Right(countries
@@ -57,20 +57,20 @@ class CountryRepositoryImpl with CountryRepository {
       _remoteDs.getCountryList(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, AllowedCountryListResponse>>
-      getAllowedCodeCountryList() async {
+  getAllowedCodeCountryList() async {
     final result = await safeApiCall(
       _remoteDs.getAllowedCodeCountryList(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 }

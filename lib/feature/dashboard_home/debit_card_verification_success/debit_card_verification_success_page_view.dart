@@ -7,7 +7,6 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class DebitCardVerificationSuccessPageView
     extends BasePageViewWidget<DebitCardVerificationSuccessViewModel> {
@@ -29,18 +28,22 @@ class DebitCardVerificationSuccessPageView
               Stack(
                 alignment: Alignment.center,
                 children: [
-                  Image.asset(AssetUtils.line),
+                  Image.asset(
+                    AssetUtils.line,
+                    color: Theme.of(context).accentColor,
+                  ),
                   Align(
                     alignment: Alignment.center,
                     child: Container(
                       height: 111.37,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: AppColor.vividYellow,
+                        color: Theme.of(context).primaryColor,
                       ),
                       child: Center(
-                          child: AppSvg.asset(AssetUtils.right,
-                              color: Theme.of(context).accentColor)),
+                          child: AppSvg.asset(
+                        AssetUtils.right,
+                      )),
                     ),
                   ),
                 ],
@@ -51,7 +54,6 @@ class DebitCardVerificationSuccessPageView
                   S.of(context).debitCardVerified,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w800,
                       fontSize: 24),
                 ),
@@ -62,7 +64,6 @@ class DebitCardVerificationSuccessPageView
                   S.of(context).physicalCardUse,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                      color: Theme.of(context).accentColor,
                       fontWeight: FontWeight.w500,
                       fontSize: 16),
                 ),
@@ -71,8 +72,8 @@ class DebitCardVerificationSuccessPageView
                 padding: EdgeInsets.only(top: 285),
                 child: AnimatedButton(
                   buttonText: S.of(context).swipeToProceed,
-                  borderColor: Theme.of(context).accentColor,
-                  textColor: Theme.of(context).accentColor,
+                  borderColor: Theme.of(context).primaryColorDark,
+                  textColor: Theme.of(context).primaryColorDark,
                 ),
               ),
               InkWell(
@@ -84,7 +85,6 @@ class DebitCardVerificationSuccessPageView
                   child: Text(
                     S.of(context).toDashboard,
                     style: TextStyle(
-                        color: Theme.of(context).accentColor,
                         fontSize: 12,
                         fontWeight: FontWeight.w600),
                   ),

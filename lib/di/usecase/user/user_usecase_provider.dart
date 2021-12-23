@@ -42,7 +42,8 @@ final profileDetailsUseCaseProvider =
 ///[SendDocumentsUseCase] provider
 final sendDocumentsUseCaseUseCaseProvider =
     Provider.autoDispose<SendDocumentsUseCase>(
-  (ref) => SendDocumentsUseCase(ref.read(uploadDocumentRepositoryProvider)),
+          (ref) =>
+          SendDocumentsUseCase(ref.read(uploadDocumentRepositoryProvider)),
 );
 
 ///[IdVerificationInfoUseCase] provider
@@ -89,7 +90,7 @@ final agentSelectionUseCaseProvider =
 ///[StudentJobIncomeUseCase] provider
 final studentJobIncomeUseCaseProvider =
     Provider.autoDispose<StudentJobIncomeUseCase>(
-  (ref) => StudentJobIncomeUseCase(ref.read(userRepoProvider)),
+          (ref) => StudentJobIncomeUseCase(ref.read(userRepoProvider)),
 );
 
 ///[CheckUserNameUseCase] provider
@@ -107,78 +108,83 @@ final checkUserNameMobileUseCaseProvider =
 final registerProspectUseCaseProvider =
     Provider.autoDispose<RegisterProspectUseCase>(
   (ref) => RegisterProspectUseCase(ref.read(userRepoProvider)),
-);
+    );
 
 ///[VerifyOtpUseCase] provider
 final verifyMobileOtpUseCaseProvider = Provider.autoDispose<VerifyOtpUseCase>(
-  (ref) => VerifyOtpUseCase(ref.read(userRepoProvider)),
+      (ref) => VerifyOtpUseCase(ref.read(userRepoProvider)),
 );
 
 ///[ScanUserDocumentUseCase] provider
 final scanUserDocumentUseCaseProvider = Provider<ScanUserDocumentUseCase>(
-    (ref) => ScanUserDocumentUseCase(ref.read(userRepoProvider)));
+        (ref) => ScanUserDocumentUseCase(ref.read(userRepoProvider)));
 
 ///[GetTokenUseCase] provider
 final getTokenUseCaseProvider = Provider<GetTokenUseCase>(
-    (ref) => GetTokenUseCase(ref.read(userRepoProvider)));
+        (ref) => GetTokenUseCase(ref.read(userRepoProvider)));
 
 ///[ConfirmApplicationDataGetUseCase] provider
 final getConfirmApplicationDataUseCaseProvider =
-    Provider<ConfirmApplicationDataGetUseCase>(
+Provider<ConfirmApplicationDataGetUseCase>(
         (ref) => ConfirmApplicationDataGetUseCase(ref.read(userRepoProvider)));
 
 ///[LogoutUseCase] provider
 final logoutUseCaseProvider =
-    Provider<LogoutUseCase>((ref) => LogoutUseCase(ref.read(userRepoProvider)));
+Provider<LogoutUseCase>((ref) => LogoutUseCase(ref.read(userRepoProvider)));
 
 ///[EnableFingerPrintUseCase] provider
 final enableFingerPrintUseCaseProvider = Provider<EnableFingerPrintUseCase>(
-    (ref) => EnableFingerPrintUseCase(ref.read(userRepoProvider)));
+        (ref) => EnableFingerPrintUseCase(ref.read(userRepoProvider)));
 
 ///[DisableFingerPrintUseCase] provider
 final disableFingerPrintUseCaseProvider = Provider<DisableFingerPrintUseCase>(
-    (ref) => DisableFingerPrintUseCase(ref.read(userRepoProvider)));
+        (ref) => DisableFingerPrintUseCase(ref.read(userRepoProvider)));
 
 ///[UploadSelfieImageUseCase] provider
 final uploadSelfieImageUseCaseProvider = Provider<UploadSelfieImageUseCase>(
-    (ref) => UploadSelfieImageUseCase(ref.read(userRepoProvider)));
+        (ref) => UploadSelfieImageUseCase(ref.read(userRepoProvider)));
 
 ///[CheckBioMetricSupportUseCase] provider
 final checkBioMetricSupportUseCaseProvider =
-    Provider.autoDispose<CheckBioMetricSupportUseCase>(
-  (ref) => CheckBioMetricSupportUseCase(
-    ref.read(userRepoProvider),
-  ),
+Provider.autoDispose<CheckBioMetricSupportUseCase>(
+      (ref) =>
+      CheckBioMetricSupportUseCase(
+        ref.read(userRepoProvider),
+      ),
 );
 
 ///[AuthenticateBioMetricUseCase] provider
 final authenticateBioMetricUseCaseProvider =
-    Provider.autoDispose<AuthenticateBioMetricUseCase>(
-  (ref) => AuthenticateBioMetricUseCase(
-    ref.read(userRepoProvider),
-  ),
+Provider.autoDispose<AuthenticateBioMetricUseCase>(
+      (ref) =>
+      AuthenticateBioMetricUseCase(
+        ref.read(userRepoProvider),
+      ),
 );
 
 ///[GenerateKeyPairUseCase] provider
 final generateKeyPairUseCaseProvider =
-    Provider.autoDispose<GenerateKeyPairUseCase>(
-  (ref) => GenerateKeyPairUseCase(
-    ref.read(userRepoProvider),
-  ),
+Provider.autoDispose<GenerateKeyPairUseCase>(
+      (ref) =>
+      GenerateKeyPairUseCase(
+        ref.read(userRepoProvider),
+      ),
 );
 
 ///[EnableBiometricUseCase] provider
 final enableBiometricUseCaseProvider =
-    Provider.autoDispose<EnableBiometricUseCase>(
-  (ref) => EnableBiometricUseCase(
-    ref.read(userRepoProvider),
-  ),
+Provider.autoDispose<EnableBiometricUseCase>(
+      (ref) =>
+      EnableBiometricUseCase(
+        ref.read(userRepoProvider),
+      ),
 );
 
 ///[GetComboValuesUseCase] provider
 final getComboValuesUseCaseProvider =
-    Provider.autoDispose<GetComboValuesUseCase>(
-  (ref) => GetComboValuesUseCase(
-    ref.read(userRepoProvider),
-  ),
+Provider.autoDispose<GetComboValuesUseCase>(
+      (ref) =>
+      GetComboValuesUseCase(
+        ref.read(userRepoProvider),
+      ),
 );

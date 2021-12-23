@@ -6,7 +6,8 @@ part 'upload_signature_response_entity.g.dart';
 
 @JsonSerializable()
 class UploadSignatureResponseEntity extends BaseLayerDataTransformer<
-    UploadSignatureResponseEntity, UploadSignatureResponse> {
+    UploadSignatureResponseEntity,
+    UploadSignatureResponse> {
   @JsonKey(name: "code")
   final int? code;
   @JsonKey(name: "message")
@@ -20,13 +21,12 @@ class UploadSignatureResponseEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "id")
   final String? id;
 
-  UploadSignatureResponseEntity(
-      {this.code,
-      this.content,
-      this.exceptionMessage,
-      this.message,
-      this.token,
-      this.id});
+  UploadSignatureResponseEntity({this.code,
+    this.content,
+    this.exceptionMessage,
+    this.message,
+    this.token,
+    this.id});
 
   factory UploadSignatureResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$UploadSignatureResponseEntityFromJson(json);

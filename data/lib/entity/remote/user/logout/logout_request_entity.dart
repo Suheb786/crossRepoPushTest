@@ -25,17 +25,16 @@ class LogoutRequestEntity {
   @JsonKey(name: "AppVersion")
   final String? appVersion;
 
-  LogoutRequestEntity(
-      {this.appVersion,
-      this.mobileModel,
-      this.browser,
-      this.platform,
-      this.longitude,
-      this.latitude,
-      this.deviceID,
-      this.vkeySessionId,
-      this.channelType,
-      this.iP});
+  LogoutRequestEntity({this.appVersion,
+    this.mobileModel,
+    this.browser,
+    this.platform,
+    this.longitude,
+    this.latitude,
+    this.deviceID,
+    this.vkeySessionId,
+    this.channelType,
+    this.iP});
 
   factory LogoutRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$LogoutRequestEntityFromJson(json);

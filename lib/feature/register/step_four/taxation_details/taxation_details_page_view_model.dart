@@ -22,11 +22,11 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
 
   final TextEditingController relationShipController = TextEditingController();
   final GlobalKey<AppTextFieldState> relationShipWithPepKey =
-      GlobalKey(debugLabel: "relationShipWithPep");
+  GlobalKey(debugLabel: "relationShipWithPep");
 
   final TextEditingController personNameController = TextEditingController();
   final GlobalKey<AppTextFieldState> personNameKey =
-      GlobalKey(debugLabel: "personName");
+  GlobalKey(debugLabel: "personName");
 
   final TextEditingController personRoleController = TextEditingController();
   final GlobalKey<AppTextFieldState> personRoleKey =
@@ -55,11 +55,11 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
 
   ///set fatca questions request subject holder
   PublishSubject<SetFatcaQuestionsResponseUseCaseParams>
-      _setFatcaQuestionsRequest = PublishSubject();
+  _setFatcaQuestionsRequest = PublishSubject();
 
   ///set fatca questions response holder
   PublishSubject<Resource<SetFatcaQuestionsResponse>>
-      _setFatcaQuestionsResponse = PublishSubject();
+  _setFatcaQuestionsResponse = PublishSubject();
 
   ///set fatca questions stream
   Stream<Resource<SetFatcaQuestionsResponse>> get setFatcaQuestionsStream =>
@@ -100,11 +100,11 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
 
   ///get fatca question request subject holder
   PublishSubject<GetFatcaQuestionsUseCaseParams> _getFatcaQuestionsRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///get fatca question response holder
   PublishSubject<Resource<GetFatcaQuestionsResponse>>
-      _getFatcaQuestionsResponseSubject = PublishSubject();
+  _getFatcaQuestionsResponseSubject = PublishSubject();
 
   ///get fatca question stream
   Stream<Resource<GetFatcaQuestionsResponse>> get getFatcaQuestionsStream =>
@@ -115,12 +115,12 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         .safeAdd(GetFatcaQuestionsUseCaseParams(getToken: true));
   }
 
-  TaxationDetailsPageViewModel(
-      this._setFatcaQuestionsUseCase, this._getFatcaQuestionsUseCase) {
+  TaxationDetailsPageViewModel(this._setFatcaQuestionsUseCase,
+      this._getFatcaQuestionsUseCase) {
     _setFatcaQuestionsRequest.listen((value) {
       RequestManager(value,
-              createCall: () =>
-                  _setFatcaQuestionsUseCase.execute(params: value))
+          createCall: () =>
+              _setFatcaQuestionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -134,8 +134,8 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
 
     _getFatcaQuestionsRequest.listen((value) {
       RequestManager(value,
-              createCall: () =>
-                  _getFatcaQuestionsUseCase.execute(params: value))
+          createCall: () =>
+              _getFatcaQuestionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -185,7 +185,8 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
 
   ///TODO: need to complete this
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+    FatcaSetData fatcaSetData = ProviderScope
+        .containerOf(context)
         .read(registerStepFourViewModelProvider)
         .fatcaData;
     fatcaSetData.response1 = isUSCitizen;

@@ -32,19 +32,18 @@ class CountryDataEntity
   @JsonKey(name: "mobileMax")
   final int? mobileMax;
 
-  CountryDataEntity(
-      {this.isoCode3,
-      this.isoCode,
-      this.phoneCode,
-      this.countryName,
-      this.isAllowedCountry,
-      this.nationality,
-      this.gfxCode,
-      this.isRestrictedNationality,
-      this.isMobileAllowed,
-      this.isNationalityAllowed,
-      this.isIssuerAllowed,
-      this.mobileMax});
+  CountryDataEntity({this.isoCode3,
+    this.isoCode,
+    this.phoneCode,
+    this.countryName,
+    this.isAllowedCountry,
+    this.nationality,
+    this.gfxCode,
+    this.isRestrictedNationality,
+    this.isMobileAllowed,
+    this.isNationalityAllowed,
+    this.isIssuerAllowed,
+    this.mobileMax});
 
   factory CountryDataEntity.fromJson(Map<String, dynamic> json) =>
       _$CountryDataEntityFromJson(json);

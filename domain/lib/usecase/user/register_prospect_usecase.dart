@@ -17,12 +17,12 @@ class RegisterProspectUseCase
       {required RegisterProspectUseCaseParams params}) async {
     return Future.value(
       (await _repository.registerProspectUser(
-              mobileNumber: params.mobileNumber,
-              countryName: params.countryName,
-              userName: params.userName,
-              password: params.password,
-              confirmPassword: params.confirmPassword,
-              email: params.email))
+          mobileNumber: params.mobileNumber,
+          countryName: params.countryName,
+          userName: params.userName,
+          password: params.password,
+          confirmPassword: params.confirmPassword,
+          email: params.email))
           .fold((l) => Left(l), (user) async {
         return _repository.saveUser(user);
       }),

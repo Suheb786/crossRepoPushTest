@@ -11,7 +11,8 @@ class CardReadySuccessPage extends BasePage<CardReadySuccessPageViewModel> {
 }
 
 class CardReadySuccessPageState extends BaseStatefulPage<
-    CardReadySuccessPageViewModel, CardReadySuccessPage> {
+    CardReadySuccessPageViewModel,
+    CardReadySuccessPage> {
   @override
   ProviderBase provideBase() {
     return cardReadySuccessViewModelProvider;

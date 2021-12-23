@@ -8,7 +8,8 @@ part 'get_fatca_questions_response_entity.g.dart';
 
 @JsonSerializable()
 class GetFatcaQuestionsResponseEntity extends BaseLayerDataTransformer<
-    GetFatcaQuestionsResponseEntity, GetFatcaQuestionsResponse> {
+    GetFatcaQuestionsResponseEntity,
+    GetFatcaQuestionsResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -24,7 +25,7 @@ class GetFatcaQuestionsResponseEntity extends BaseLayerDataTransformer<
   GetFatcaQuestionsResponse transform() {
     return GetFatcaQuestionsResponse(
         getFatcaQuestionsResponseContent:
-            FatcaQuestionsResponseContentEntity.fromJson(this.response!.content)
-                .transform());
+        FatcaQuestionsResponseContentEntity.fromJson(this.response!.content)
+            .transform());
   }
 }

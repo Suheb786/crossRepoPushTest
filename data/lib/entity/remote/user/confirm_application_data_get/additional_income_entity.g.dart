@@ -20,7 +20,7 @@ AdditionalIncomeEntity _$AdditionalIncomeEntityFromJson(
 }
 
 Map<String, dynamic> _$AdditionalIncomeEntityToJson(
-        AdditionalIncomeEntity instance) =>
+    AdditionalIncomeEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
