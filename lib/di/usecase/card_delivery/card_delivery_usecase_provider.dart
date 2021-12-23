@@ -1,4 +1,5 @@
 import 'package:data/di/repository_module.dart';
+import 'package:domain/usecase/card_delivery/confirm_card_delivery_usecase.dart';
 import 'package:domain/usecase/card_delivery/confirm_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_issuance_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_pin_usecase.dart';
@@ -16,6 +17,11 @@ final confirmPinUseCaseProvider = Provider.autoDispose<ConfirmPinUseCase>(
 ///[CardIssuanceUseCase] provider
 final cardIssuanceCaseProvider = Provider.autoDispose<CardIssuanceUseCase>(
     (ref) => CardIssuanceUseCase(ref.read(cardRepositoryProvider)));
+
+///[ConfirmCardDeliveryUseCase] provider
+final creditCardConfirmDeliveryCaseProvider =
+    Provider.autoDispose<ConfirmCardDeliveryUseCase>(
+        (ref) => ConfirmCardDeliveryUseCase(ref.read(cardRepositoryProvider)));
 
 ///[GetDebitCardTransactionsUseCase] provider
 final debitCardTransactionUseCaseProvider =

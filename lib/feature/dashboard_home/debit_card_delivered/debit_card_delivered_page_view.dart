@@ -74,7 +74,7 @@ class DebitCardDeliveredPageView
                                 Padding(
                                   padding: EdgeInsets.only(top: 9),
                                   child: Text(
-                                    "9010",
+                                    model.debitCard.cardNumber ?? '',
                                     style: TextStyle(
                                         fontSize: 30,
                                         fontWeight: FontWeight.w400),
@@ -129,7 +129,7 @@ class DebitCardDeliveredPageView
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "ZEIN MALHAS",
+                                    model.debitCard.accountTitle ?? '',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 12,
@@ -137,7 +137,7 @@ class DebitCardDeliveredPageView
                                   ),
                                   Padding(
                                       padding: EdgeInsets.only(top: 10),
-                                      child: Text("1234",
+                                      child: Text(model.debitCard.cardNumber ?? '',
                                           style: TextStyle(
                                               fontSize: 12,
                                               fontWeight: FontWeight.w700)))

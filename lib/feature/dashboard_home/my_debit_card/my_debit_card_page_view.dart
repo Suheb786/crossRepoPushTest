@@ -652,6 +652,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                       ),
                     ),
                   ),
+                  ///delivered button
                   Positioned(
                     top: 0,
                     child: Container(
