@@ -29,10 +29,6 @@ class CardTransactionPageView
           onVerticalDragUpdate: (details) {
             if (details.primaryDelta!.isNegative) {
             } else {
-              // ProviderScope.containerOf(context)
-              //     .read(homeViewModelProvider)
-              //     .homeController
-              //     .jumpToPage(0);
               Navigator.pop(context);
             }
           },

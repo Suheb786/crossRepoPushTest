@@ -124,7 +124,8 @@ class CardTransactionViewModel extends BasePageViewModel {
             Resource.success(data: getTransactionsResponse);
         _getTransactionsResponse.safeAdd(searchTransactionResponse);
       } else {
-        _getTransactionsResponse.safeAdd(transactionsResponse);
+        _getTransactionsResponse
+            .safeAdd(Resource.none<GetTransactionsResponse>());
       }
     }
   }
