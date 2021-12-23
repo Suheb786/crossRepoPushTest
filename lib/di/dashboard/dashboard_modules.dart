@@ -12,7 +12,7 @@ import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/download_card_transaction/download_transaction_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/home/home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page_view_model.dart';
