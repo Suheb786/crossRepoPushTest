@@ -12,13 +12,13 @@ GetAccountDetailsContentEntity _$GetAccountDetailsContentEntityFromJson(
     data: json['data'] == null
         ? null
         : CreateAccountDataEntity.fromJson(
-        json['data'] as Map<String, dynamic>),
+            json['data'] as Map<String, dynamic>),
     openDate: json['openDate'] as String?,
   );
 }
 
 Map<String, dynamic> _$GetAccountDetailsContentEntityToJson(
-    GetAccountDetailsContentEntity instance) =>
+        GetAccountDetailsContentEntity instance) =>
     <String, dynamic>{
       'data': instance.data,
       'openDate': instance.openDate,

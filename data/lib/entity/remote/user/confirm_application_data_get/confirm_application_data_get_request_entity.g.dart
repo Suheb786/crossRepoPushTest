@@ -7,7 +7,8 @@ part of 'confirm_application_data_get_request_entity.dart';
 // **************************************************************************
 
 ConfirmApplicationDataGetRequestEntity
-_$ConfirmApplicationDataGetRequestEntityFromJson(Map<String, dynamic> json) {
+    _$ConfirmApplicationDataGetRequestEntityFromJson(
+        Map<String, dynamic> json) {
   return ConfirmApplicationDataGetRequestEntity(
     getToken: json['GetToken'] as bool?,
     baseData: json['BaseClass'] as Map<String, dynamic>,
@@ -15,7 +16,7 @@ _$ConfirmApplicationDataGetRequestEntityFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$ConfirmApplicationDataGetRequestEntityToJson(
-    ConfirmApplicationDataGetRequestEntity instance) =>
+        ConfirmApplicationDataGetRequestEntity instance) =>
     <String, dynamic>{
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,

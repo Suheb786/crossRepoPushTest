@@ -5,8 +5,11 @@ import 'package:domain/usecase/card_delivery/confirm_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_issuance_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_statement_usecase.dart';
+import 'package:domain/usecase/card_delivery/get_credit_card_statement_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecase.dart';
+import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
+import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[CreatePinUseCase] provider
@@ -45,3 +48,17 @@ final confirmCreditCardDeliveryUseCaseProvider =
 final cardStatementUseCaseProvider =
     Provider.autoDispose<GetCardStatementUseCase>(
         (ref) => GetCardStatementUseCase(ref.read(cardRepositoryProvider)));
+
+///[GetCreditCardStatementUseCase] provider
+final creditCardStatementUseCaseProvider =
+    Provider.autoDispose<GetCreditCardStatementUseCase>((ref) =>
+        GetCreditCardStatementUseCase(ref.read(cardRepositoryProvider)));
+
+///[GetDebitYearsUseCase] provider
+final getDebitYearsUseCaseProvider = Provider.autoDispose<GetDebitYearsUseCase>(
+    (ref) => GetDebitYearsUseCase(ref.read(cardRepositoryProvider)));
+
+///[GetCreditYearsUseCase] provider
+final getCreditYearsUseCaseProvider =
+    Provider.autoDispose<GetCreditYearsUseCase>(
+        (ref) => GetCreditYearsUseCase(ref.read(cardRepositoryProvider)));

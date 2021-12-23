@@ -61,7 +61,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<LoginResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/auth/login',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = LoginResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -79,7 +79,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<RegisterResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/auth/RegisterV2',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = RegisterResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -97,7 +97,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<VerifyOtpResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/auth/VerifyMobileOtp',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = VerifyOtpResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -130,7 +130,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<SaveIdInfoResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/IdCard/set',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = SaveIdInfoResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -148,7 +148,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<ResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/Account/SelfeeCheck',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -166,7 +166,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<SaveJobDetailsResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/AddFeilds/SaveJobDetails',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = SaveJobDetailsResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -221,7 +221,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckKycStatusResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/kyc/getstatus',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckKycStatusResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -239,7 +239,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<AhwalDetailResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/idcard/CheckAhwal',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = AhwalDetailResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -257,7 +257,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<PurposeOfAccountOpeningResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/Banksmart/AddAccountPurpose',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = PurposeOfAccountOpeningResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -275,7 +275,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GetFatcaQuestionsResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/FatcaCrs/get',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetFatcaQuestionsResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -293,7 +293,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<SetFatcaQuestionsResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/FatcaCrs/set',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = SetFatcaQuestionsResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -311,7 +311,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GetAccountResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/BankSmart/GetAccountV1',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetAccountResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -329,7 +329,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CreateAccountResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/BankSmart/CreateAccountV1',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CreateAccountResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -347,7 +347,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GetAccountDetailsResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/BankSmart/GetAccountDetails',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetAccountDetailsResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -363,7 +363,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GetTokenResponseEntity>>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/auth/verifyToken',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetTokenResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -381,7 +381,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckVideoCallStatusResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/Account/CheckVideoCallStatus',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckVideoCallStatusResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -390,7 +390,8 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
-  checkOtherNationalityStatus(checkOtherNationalityStatusRequestEntity) async {
+      checkOtherNationalityStatus(
+          checkOtherNationalityStatusRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -399,10 +400,10 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckOtherNationalityStatusResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/Account/CheckOtherNationalityStatus',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value =
-    CheckOtherNationalityStatusResponseEntity.fromJson(_result.data!);
+        CheckOtherNationalityStatusResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -418,7 +419,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<UploadDocumentResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/FileUpload/UploadDocuments',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = UploadDocumentResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -436,7 +437,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<SaveUploadDocumentResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/FileUpload/SaveUploadDocumentsDocs',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = SaveUploadDocumentResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -445,7 +446,7 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<GetConfirmApplicationDataResponseEntity>>
-  confirmApplicationDataGet(confirmApplicationDataGetRequestEntity) async {
+      confirmApplicationDataGet(confirmApplicationDataGetRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -454,11 +455,11 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GetConfirmApplicationDataResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(
-                _dio.options, '/AdditionalDoc/ConfirmApplicationDataGet',
-                queryParameters: queryParameters, data: _data)
+                    _dio.options, '/AdditionalDoc/ConfirmApplicationDataGet',
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value =
-    GetConfirmApplicationDataResponseEntity.fromJson(_result.data!);
+        GetConfirmApplicationDataResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -474,7 +475,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<DocStatusResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/account/DocsStatus',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = DocStatusResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -492,7 +493,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<RegisterInterestResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/auth/RegisterInterest',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = RegisterInterestResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -509,7 +510,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<LogoutResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/auth/logout',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = LogoutResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -518,7 +519,7 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
-  confirmApplicationDataSet(confirmApplicationDataSetRequestEntity) async {
+      confirmApplicationDataSet(confirmApplicationDataSetRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -527,11 +528,11 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<ConfirmApplicationDataSetResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(
-                _dio.options, '/AdditionalDoc/ConfirmApplicationDataSave',
-                queryParameters: queryParameters, data: _data)
+                    _dio.options, '/AdditionalDoc/ConfirmApplicationDataSave',
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value =
-    ConfirmApplicationDataSetResponseEntity.fromJson(_result.data!);
+        ConfirmApplicationDataSetResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -545,7 +546,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<bool>(_setStreamType<bool>(
         Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
             .compose(_dio.options, '/auth/enableFingerPrint',
-            queryParameters: queryParameters, data: _data)
+                queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data!;
     return value;
@@ -560,7 +561,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<bool>(_setStreamType<bool>(
         Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
             .compose(_dio.options, '/auth/DisableFingerPrint',
-            queryParameters: queryParameters, data: _data)
+                queryParameters: queryParameters, data: _data)
             .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = _result.data!;
     return value;
@@ -577,7 +578,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckAgentStatusResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/Account/CheckAgentStatus',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckAgentStatusResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -595,7 +596,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CountryListResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/transfer/GetCountriesV1',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CountryListResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -604,7 +605,7 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<GetAllowedCountryResponseEntity>>
-  getAllowedCodeCountryList(getAllowedCountryRequestEntity) async {
+      getAllowedCodeCountryList(getAllowedCountryRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -613,8 +614,8 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GetAllowedCountryResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
-                'http://192.168.181.2:2821/api/Country/GetAllowedCode',
-                queryParameters: queryParameters, data: _data)
+                    'http://192.168.181.2:2821/api/Country/GetAllowedCode',
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetAllowedCountryResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -632,7 +633,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GenerateKeyPairResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/auth/GenerateKeyPair',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GenerateKeyPairResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -650,7 +651,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<ResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/auth/EnableBioMetric',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -668,7 +669,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<UploadSignatureResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/FatcaCrs/UploadSignatureFatca',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = UploadSignatureResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -677,8 +678,8 @@ class _ApiService implements ApiService {
 
   @override
   Future<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>
-  saveCustomerVideoCallScheduleTime(
-      saveCustomerScheduleTimeRequestEntity) async {
+      saveCustomerVideoCallScheduleTime(
+          saveCustomerScheduleTimeRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
@@ -687,10 +688,10 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/account/SaveCustomerScheduledTime',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value =
-    SaveCustomerScheduleTimeResponseEntity.fromJson(_result.data!);
+        SaveCustomerScheduleTimeResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -706,7 +707,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<RemoveDebitLockResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/BankSmart/RemoveDebitLock',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = RemoveDebitLockResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -724,7 +725,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<GetComboValuesResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/AdditionalFieldsResp/getcombovalues',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetComboValuesResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -742,7 +743,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CardIssuanceResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/CardTracking/CardIssuance',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CardIssuanceResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -759,7 +760,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<ResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/CardTracking/SetCardPin',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -777,7 +778,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<ResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/CardTracking/ConfirmDelivery',
-                queryParameters: queryParameters, data: _data)
+                    queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
@@ -1163,36 +1164,37 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getCreditYears(
+  Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears(
       confirmCreditCardDeliveryRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(confirmCreditCardDeliveryRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
+        _setStreamType<HttpResponse<DebitYearsResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/CardTracking/GetCreditYears',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = DebitYearsResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getDebitYears(baseRequest) async {
+  Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears(
+      baseRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(baseRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ResponseEntity>>(
+        _setStreamType<HttpResponse<DebitYearsResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/CardTracking/GetCreditYears',
+                .compose(_dio.options, '/CardTracking/GetDebitYears',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ResponseEntity.fromJson(_result.data!);
+    final value = DebitYearsResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

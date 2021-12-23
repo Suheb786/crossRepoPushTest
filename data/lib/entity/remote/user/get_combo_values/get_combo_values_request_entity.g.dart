@@ -15,7 +15,7 @@ GetComboValuesRequestEntity _$GetComboValuesRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$GetComboValuesRequestEntityToJson(
-    GetComboValuesRequestEntity instance) =>
+        GetComboValuesRequestEntity instance) =>
     <String, dynamic>{
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,

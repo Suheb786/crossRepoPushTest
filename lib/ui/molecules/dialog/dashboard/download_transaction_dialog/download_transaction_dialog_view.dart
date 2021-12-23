@@ -15,8 +15,10 @@ import 'package:neo_bank/utils/color_utils.dart';
 class DownloadTransactionDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(String)? onSelected;
+  final List<String>? years;
 
-  const DownloadTransactionDialogView({this.onDismissed, this.onSelected});
+  const DownloadTransactionDialogView(
+      {this.onDismissed, this.onSelected, this.years});
 
   ProviderBase providerBase() {
     return downloadTransactionDialogViewModelProvider;
@@ -43,7 +45,7 @@ class DownloadTransactionDialogView extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 32.0),
                         child: Center(
                           child: Text(
-                            S.of(context).employmentStatusSmall,
+                            S.of(context).downloadStatement,
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w600),
                           ),
@@ -65,45 +67,49 @@ class DownloadTransactionDialogView extends StatelessWidget {
                               ),
                             ),
                           ),
-                          AppScrollableListViewWidget(
-                            child: ClickableListWheelScrollView(
-                              scrollController: model.scrollController,
-                              itemHeight: 64,
-                              itemCount: model.filterTransactionList.length,
-                              onItemTapCallback: (index) {
-                                model.currentIndexUpdate(index);
-                              },
-                              child: ListWheelScrollView.useDelegate(
-                                  controller: model.scrollController,
-                                  itemExtent: 64,
-                                  onSelectedItemChanged: (int index) {
-                                    model.currentIndexUpdate(index);
-                                  },
-                                  physics: FixedExtentScrollPhysics(),
-                                  perspective: 0.0000000001,
-                                  childDelegate: ListWheelChildBuilderDelegate(
-                                      childCount:
-                                          model.filterTransactionList.length,
-                                      builder:
-                                          (BuildContext context, int index) {
-                                        return ListScrollWheelListWidget(
-                                          label: model
-                                              .filterTransactionList[index],
-                                          textColor: currentIndex == index
-                                              ? Theme.of(context)
-                                                  .primaryColorDark
-                                              : AppColor.dark_gray_1,
-                                          widgetColor: Colors.transparent,
-                                        );
-                                      })),
-                            ),
-                          ),
+                          years!.length > 0
+                              ? AppScrollableListViewWidget(
+                                  child: ClickableListWheelScrollView(
+                                    scrollController: model.scrollController,
+                                    itemHeight: 64,
+                                    itemCount: years!.length,
+                                    onItemTapCallback: (index) {
+                                      model.currentIndexUpdate(index);
+                                    },
+                                    child: ListWheelScrollView.useDelegate(
+                                        controller: model.scrollController,
+                                        itemExtent: 64,
+                                        onSelectedItemChanged: (int index) {
+                                          model.currentIndexUpdate(index);
+                                        },
+                                        physics: FixedExtentScrollPhysics(),
+                                        perspective: 0.0000000001,
+                                        childDelegate:
+                                            ListWheelChildBuilderDelegate(
+                                                childCount: years!.length,
+                                                builder: (BuildContext context,
+                                                    int index) {
+                                                  return ListScrollWheelListWidget(
+                                                    label: years![index],
+                                                    textColor: currentIndex ==
+                                                            index
+                                                        ? Theme.of(context)
+                                                            .primaryColorDark
+                                                        : AppColor.dark_gray_1,
+                                                    widgetColor:
+                                                        Colors.transparent,
+                                                  );
+                                                })),
+                                  ),
+                                )
+                              : Center(
+                                  child: Text('No Data to Display'),
+                                ),
                         ],
                       )),
                       InkWell(
                         onTap: () {
-                          onSelected!
-                              .call(model.filterTransactionList[currentIndex!]);
+                          onSelected!.call(years![currentIndex!]);
                         },
                         child: Container(
                           padding: EdgeInsets.all(16),

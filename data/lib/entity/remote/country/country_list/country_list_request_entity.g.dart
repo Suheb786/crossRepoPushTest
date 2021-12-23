@@ -15,7 +15,7 @@ CountryListRequestEntity _$CountryListRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$CountryListRequestEntityToJson(
-    CountryListRequestEntity instance) =>
+        CountryListRequestEntity instance) =>
     <String, dynamic>{
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,

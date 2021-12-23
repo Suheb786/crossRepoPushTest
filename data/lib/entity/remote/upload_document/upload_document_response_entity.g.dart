@@ -16,7 +16,7 @@ UploadDocumentResponseEntity _$UploadDocumentResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$UploadDocumentResponseEntityToJson(
-    UploadDocumentResponseEntity instance) =>
+        UploadDocumentResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

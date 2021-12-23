@@ -12,13 +12,13 @@ GetComboValuesContentEntity _$GetComboValuesContentEntityFromJson(
     contentData: json['data'] == null
         ? null
         : GetComboValuesContentDataEntity.fromJson(
-        json['data'] as Map<String, dynamic>),
+            json['data'] as Map<String, dynamic>),
     token: json['token'] as String?,
   );
 }
 
 Map<String, dynamic> _$GetComboValuesContentEntityToJson(
-    GetComboValuesContentEntity instance) =>
+        GetComboValuesContentEntity instance) =>
     <String, dynamic>{
       'token': instance.token,
       'data': instance.contentData,

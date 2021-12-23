@@ -16,7 +16,7 @@ CheckVideoCallStatusResponseEntity _$CheckVideoCallStatusResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$CheckVideoCallStatusResponseEntityToJson(
-    CheckVideoCallStatusResponseEntity instance) =>
+        CheckVideoCallStatusResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

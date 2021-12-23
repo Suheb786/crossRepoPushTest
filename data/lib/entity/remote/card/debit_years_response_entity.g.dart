@@ -1,23 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'confirm_application_data_set_response_entity.dart';
+part of 'debit_years_response_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ConfirmApplicationDataSetResponseEntity
-    _$ConfirmApplicationDataSetResponseEntityFromJson(
-        Map<String, dynamic> json) {
-  return ConfirmApplicationDataSetResponseEntity(
+DebitYearsResponseEntity _$DebitYearsResponseEntityFromJson(
+    Map<String, dynamic> json) {
+  return DebitYearsResponseEntity(
     response: json['response'] == null
         ? null
         : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 
-Map<String, dynamic> _$ConfirmApplicationDataSetResponseEntityToJson(
-        ConfirmApplicationDataSetResponseEntity instance) =>
+Map<String, dynamic> _$DebitYearsResponseEntityToJson(
+        DebitYearsResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

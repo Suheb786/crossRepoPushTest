@@ -26,7 +26,7 @@ CountryResidenceEntity _$CountryResidenceEntityFromJson(
 }
 
 Map<String, dynamic> _$CountryResidenceEntityToJson(
-    CountryResidenceEntity instance) =>
+        CountryResidenceEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,
