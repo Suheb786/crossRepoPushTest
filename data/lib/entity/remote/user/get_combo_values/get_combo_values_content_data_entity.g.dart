@@ -25,7 +25,7 @@ GetComboValuesContentDataEntity _$GetComboValuesContentDataEntityFromJson(
 }
 
 Map<String, dynamic> _$GetComboValuesContentDataEntityToJson(
-        GetComboValuesContentDataEntity instance) =>
+    GetComboValuesContentDataEntity instance) =>
     <String, dynamic>{
       'EmploymentStatus': instance.employmentStatus,
       'NatureOfSpecialNeed': instance.natureOfSpecialNeed,

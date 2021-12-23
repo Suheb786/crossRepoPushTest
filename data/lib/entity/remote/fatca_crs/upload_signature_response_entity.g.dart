@@ -19,7 +19,7 @@ UploadSignatureResponseEntity _$UploadSignatureResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$UploadSignatureResponseEntityToJson(
-        UploadSignatureResponseEntity instance) =>
+    UploadSignatureResponseEntity instance) =>
     <String, dynamic>{
       'code': instance.code,
       'message': instance.message,

@@ -16,7 +16,7 @@ RegisterInterestResponseEntity _$RegisterInterestResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$RegisterInterestResponseEntityToJson(
-        RegisterInterestResponseEntity instance) =>
+    RegisterInterestResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

@@ -11,7 +11,8 @@ import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
 class ConfirmDetailUseCase extends BaseUseCase<NetworkError,
-    ConfirmDetailUseCaseParams, SaveIdInfoResponse> {
+    ConfirmDetailUseCaseParams,
+    SaveIdInfoResponse> {
   final UserRepository _repository;
 
   ConfirmDetailUseCase(this._repository);

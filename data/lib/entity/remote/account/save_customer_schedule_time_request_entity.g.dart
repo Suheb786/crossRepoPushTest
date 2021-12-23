@@ -7,7 +7,7 @@ part of 'save_customer_schedule_time_request_entity.dart';
 // **************************************************************************
 
 SaveCustomerScheduleTimeRequestEntity
-    _$SaveCustomerScheduleTimeRequestEntityFromJson(Map<String, dynamic> json) {
+_$SaveCustomerScheduleTimeRequestEntityFromJson(Map<String, dynamic> json) {
   return SaveCustomerScheduleTimeRequestEntity(
     scheduleDate: json['ScheduleDate'] as String?,
     baseData: json['baseClass'] as Map<String, dynamic>,
@@ -16,7 +16,7 @@ SaveCustomerScheduleTimeRequestEntity
 }
 
 Map<String, dynamic> _$SaveCustomerScheduleTimeRequestEntityToJson(
-        SaveCustomerScheduleTimeRequestEntity instance) =>
+    SaveCustomerScheduleTimeRequestEntity instance) =>
     <String, dynamic>{
       'ScheduleTime': instance.scheduleTime,
       'ScheduleDate': instance.scheduleDate,

@@ -19,12 +19,11 @@ class AdditionalIncomeEntity
   @JsonKey(name: "createdOn")
   final DateTime? createdOn;
 
-  AdditionalIncomeEntity(
-      {this.id,
-      this.userId,
-      this.additionalIncomeSource,
-      this.totalIncome,
-      this.createdOn});
+  AdditionalIncomeEntity({this.id,
+    this.userId,
+    this.additionalIncomeSource,
+    this.totalIncome,
+    this.createdOn});
 
   factory AdditionalIncomeEntity.fromJson(Map<String, dynamic> json) =>
       _$AdditionalIncomeEntityFromJson(json);

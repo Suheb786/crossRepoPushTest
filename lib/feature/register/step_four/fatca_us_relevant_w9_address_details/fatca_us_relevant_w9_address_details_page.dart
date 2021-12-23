@@ -14,7 +14,8 @@ class FatcaUSRelevantW9AddressDetailsPage
 
 class FatcaUSRelevantW9AddressDetailsPageState extends BaseStatefulPage<
     FatcaUSRelevantW9AddressDetailsPageViewModel,
-    FatcaUSRelevantW9AddressDetailsPage> with AutomaticKeepAliveClientMixin {
+    FatcaUSRelevantW9AddressDetailsPage>
+    with AutomaticKeepAliveClientMixin {
   FatcaUSRelevantW9AddressDetailsPageState()
       : super(subscribeVisibilityEvents: true);
 
@@ -25,7 +26,9 @@ class FatcaUSRelevantW9AddressDetailsPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override

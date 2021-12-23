@@ -8,7 +8,8 @@ part 'check_agent_status_response_entity.g.dart';
 
 @JsonSerializable()
 class CheckAgentStatusResponseEntity extends BaseLayerDataTransformer<
-    CheckAgentStatusResponseEntity, CheckAgentStatusResponse> {
+    CheckAgentStatusResponseEntity,
+    CheckAgentStatusResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -23,7 +24,7 @@ class CheckAgentStatusResponseEntity extends BaseLayerDataTransformer<
   CheckAgentStatusResponse transform() {
     return CheckAgentStatusResponse(
         checkAgentStatusContent:
-            CheckAgentStatusContentEntity.fromJson(this.response!.content)
-                .transform());
+        CheckAgentStatusContentEntity.fromJson(this.response!.content)
+            .transform());
   }
 }

@@ -22,7 +22,9 @@ class ChangePasswordPageView
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      color: Theme.of(context).primaryColor,
+      color: Theme
+          .of(context)
+          .primaryColor,
       padding: EdgeInsets.only(top: 56),
       child: Column(
         children: [
@@ -35,63 +37,74 @@ class ChangePasswordPageView
               child: Padding(
                 padding: const EdgeInsets.only(left: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    color: Theme.of(context).accentColor),
+                    color: Theme
+                        .of(context)
+                        .accentColor),
               ),
             ),
           ),
           Expanded(
               child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 36),
-            child: AppStreamBuilder<int>(
-              stream: model.currentPageStream,
-              initialData: 0,
-              dataBuilder: (context, currentStep) {
-                return Column(
-                  children: [
-                    Text(
-                      S.of(context).changePassword.toUpperCase(),
-                      style: TextStyle(
-                          color: Theme.of(context).accentColor,
-                          fontSize: 10,
-                          fontWeight: FontWeight.w600),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(
-                          top: 8.0, bottom: 32, left: 24, right: 24),
-                      child: ShowUpAnimation(
-                        key: ValueKey(currentStep),
-                        delayStart: Duration(milliseconds: 50),
-                        animationDuration: Duration(milliseconds: 750),
-                        curve: Curves.easeInOut,
-                        direction: Direction.vertical,
-                        offset: 0.5,
-                        child: Text(
-                          StepTextHelper.changePasswordTextHelper(
-                              currentStep ?? 0,
-                              S.of(context).createYourLoginPassword),
-                          textAlign: TextAlign.center,
+                padding: EdgeInsets.symmetric(vertical: 36),
+                child: AppStreamBuilder<int>(
+                  stream: model.currentPageStream,
+                  initialData: 0,
+                  dataBuilder: (context, currentStep) {
+                    return Column(
+                      children: [
+                        Text(
+                          S
+                              .of(context)
+                              .changePassword
+                              .toUpperCase(),
                           style: TextStyle(
-                              color: Theme.of(context).accentColor,
-                              fontSize: 20,
+                              color: Theme
+                                  .of(context)
+                                  .accentColor,
+                              fontSize: 10,
                               fontWeight: FontWeight.w600),
                         ),
-                      ),
-                    ),
-                    Expanded(
-                      child: AppSwiper(
-                        pages: pages,
-                        pageController: model.swiperController,
-                        onIndexChanged: (index) {
-                          model.changeCurrentPage(index);
-                        },
-                        currentStep: currentStep,
-                      ),
-                    )
-                  ],
-                );
-              },
-            ),
-          )),
+                        Padding(
+                          padding: EdgeInsets.only(
+                              top: 8.0, bottom: 32, left: 24, right: 24),
+                          child: ShowUpAnimation(
+                            key: ValueKey(currentStep),
+                            delayStart: Duration(milliseconds: 50),
+                            animationDuration: Duration(milliseconds: 750),
+                            curve: Curves.easeInOut,
+                            direction: Direction.vertical,
+                            offset: 0.5,
+                            child: Text(
+                              StepTextHelper.changePasswordTextHelper(
+                                  currentStep ?? 0,
+                                  S
+                                      .of(context)
+                                      .createYourLoginPassword),
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Theme
+                                      .of(context)
+                                      .accentColor,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: AppSwiper(
+                            pages: pages,
+                            pageController: model.swiperController,
+                            onIndexChanged: (index) {
+                              model.changeCurrentPage(index);
+                            },
+                            currentStep: currentStep,
+                          ),
+                        )
+                      ],
+                    );
+                  },
+                ),
+              )),
         ],
       ),
     );

@@ -30,7 +30,7 @@ class GenerateKeyPairResponseEntity
   GenerateKeyPairResponse transform() {
     return GenerateKeyPairResponse(
         content: GenerateKeyPairContentEntity.fromJson(
-                response!.content as Map<String, dynamic>)
+            response!.content as Map<String, dynamic>)
             .transform());
   }
 }

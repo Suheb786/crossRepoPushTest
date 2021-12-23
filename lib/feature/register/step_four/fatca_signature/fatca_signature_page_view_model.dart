@@ -26,21 +26,21 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   final TextEditingController signatureController = TextEditingController();
 
   final GlobalKey<AppTextFieldState> signatureKey =
-      GlobalKey(debugLabel: "signatureKey");
+  GlobalKey(debugLabel: "signatureKey");
 
   ///upload signature
   PublishSubject<UploadSignatureUseCaseParams> _uploadSignatureRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<Resource<UploadSignatureResponse>> _uploadSignatureResponse =
-      PublishSubject();
+  PublishSubject();
 
   Stream<Resource<UploadSignatureResponse>> get uploadSignatureStream =>
       _uploadSignatureResponse.stream;
 
   ///get document
   PublishSubject<UploadDocumentUseCaseParams> _getDocumentRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<String> _getDocumentResponse = PublishSubject();
 
@@ -59,7 +59,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
 
   /// animated button visibility subject
   BehaviorSubject<bool> _showAnimatedButtonSubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject.seeded(false);
 
   Stream<bool> get showAnimatedButtonStream =>
       _showAnimatedButtonSubject.stream;
@@ -77,7 +77,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
 
   ///verify info declaration selected  subject
   BehaviorSubject<bool> _verifyInfoDeclarationSelected =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject.seeded(false);
 
   ///verify info declaration selected stream
   Stream<bool> get verifyInfoDeclarationSelectedStream =>
@@ -90,11 +90,11 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
 
   ///set fatca questions request subject holder
   PublishSubject<SetFatcaQuestionsResponseUseCaseParams>
-      _setFatcaQuestionsRequest = PublishSubject();
+  _setFatcaQuestionsRequest = PublishSubject();
 
   ///set fatca questions response holder
   PublishSubject<Resource<SetFatcaQuestionsResponse>>
-      _setFatcaQuestionsResponse = PublishSubject();
+  _setFatcaQuestionsResponse = PublishSubject();
 
   ///set fatca questions stream
   Stream<Resource<SetFatcaQuestionsResponse>> get setFatcaQuestionsStream =>
@@ -104,7 +104,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
       this._uploadDocumentUseCase, this._setFatcaQuestionsUseCase) {
     _uploadSignatureRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _uploadSignatureUseCase.execute(params: value))
+          createCall: () => _uploadSignatureUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -117,7 +117,7 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
 
     _getDocumentRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
+          createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -130,8 +130,8 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
 
     _setFatcaQuestionsRequest.listen((value) {
       RequestManager(value,
-              createCall: () =>
-                  _setFatcaQuestionsUseCase.execute(params: value))
+          createCall: () =>
+              _setFatcaQuestionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -150,7 +150,9 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
   }
 
   void updateSignatureField(String value) {
-    signatureController.text = value.split("/").last;
+    signatureController.text = value
+        .split("/")
+        .last;
     selectedFile = value;
     updateSignatureUploadedStream(true);
   }
@@ -198,7 +200,8 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+    FatcaSetData fatcaSetData = ProviderScope
+        .containerOf(context)
         .read(registerStepFourViewModelProvider)
         .fatcaData;
     fatcaSetData.signatureId = fileId;

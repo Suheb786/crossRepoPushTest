@@ -16,7 +16,7 @@ RemoveDebitLockResponseEntity _$RemoveDebitLockResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$RemoveDebitLockResponseEntityToJson(
-        RemoveDebitLockResponseEntity instance) =>
+    RemoveDebitLockResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

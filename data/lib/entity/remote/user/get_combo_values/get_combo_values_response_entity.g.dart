@@ -16,7 +16,7 @@ GetComboValuesResponseEntity _$GetComboValuesResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$GetComboValuesResponseEntityToJson(
-        GetComboValuesResponseEntity instance) =>
+    GetComboValuesResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

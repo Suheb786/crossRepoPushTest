@@ -12,12 +12,12 @@ class FatcaQuestionsResponseContentEntity
             GetFatcaQuestionsResponseContent> {
   @JsonKey(name: "data")
   final List<FatcaQuestionsResponseContentDataEntity>?
-      fatcaQuestionResponseDataContent;
+  fatcaQuestionResponseDataContent;
 
   FatcaQuestionsResponseContentEntity({this.fatcaQuestionResponseDataContent});
 
   factory FatcaQuestionsResponseContentEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$FatcaQuestionsResponseContentEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

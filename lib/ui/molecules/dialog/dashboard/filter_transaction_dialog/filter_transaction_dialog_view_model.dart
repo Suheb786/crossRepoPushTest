@@ -4,7 +4,7 @@ import 'package:rxdart/rxdart.dart';
 
 class FilterTransactionDialogViewModel extends BasePageViewModel {
   final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  FixedExtentScrollController();
 
   List<String> filterTransactionList = [
     "Last 30 days",

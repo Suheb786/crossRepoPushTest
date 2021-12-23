@@ -24,17 +24,16 @@ class FatcaQuestionsResponseContentDataEntity
   @JsonKey(name: "docId")
   final dynamic? docId;
 
-  FatcaQuestionsResponseContentDataEntity(
-      {this.labelEn,
-      this.labelAr,
-      this.isMandatory,
-      this.orderNo,
-      this.type,
-      this.answer,
-      this.docId});
+  FatcaQuestionsResponseContentDataEntity({this.labelEn,
+    this.labelAr,
+    this.isMandatory,
+    this.orderNo,
+    this.type,
+    this.answer,
+    this.docId});
 
   factory FatcaQuestionsResponseContentDataEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$FatcaQuestionsResponseContentDataEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

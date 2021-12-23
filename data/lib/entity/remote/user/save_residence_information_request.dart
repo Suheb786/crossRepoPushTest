@@ -21,15 +21,14 @@ class SaveResidenceInformationRequest {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  SaveResidenceInformationRequest(
-      {this.residantCountry: "",
-      this.buildingName: "",
-      this.streetName: "",
-      this.area: "",
-      this.city: "",
-      this.perCountry: "",
-      this.perCity: "",
-      required this.baseData});
+  SaveResidenceInformationRequest({this.residantCountry: "",
+    this.buildingName: "",
+    this.streetName: "",
+    this.area: "",
+    this.city: "",
+    this.perCountry: "",
+    this.perCity: "",
+    required this.baseData});
 
   factory SaveResidenceInformationRequest.fromJson(Map<String, dynamic> json) =>
       _$SaveResidenceInformationRequestFromJson(json);

@@ -33,7 +33,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   final TextEditingController addressController = TextEditingController();
   final TextEditingController incomeController = TextEditingController();
   final TextEditingController additionalNationalityController =
-      TextEditingController();
+  TextEditingController();
 
   // GlobalKey<AppTextFieldState> addressDocumentKey =
   //     new GlobalKey(debugLabel: "addressDocument");
@@ -44,17 +44,17 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   ///documents
   PublishSubject<SendDocumentsUseCaseParams> _documentsRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<Resource<SaveUploadDocumentResponse>> _documentsResponse =
-      PublishSubject();
+  PublishSubject();
 
   Stream<Resource<SaveUploadDocumentResponse>> get documentsStream =>
       _documentsResponse.stream;
 
   ///upload income proof
   PublishSubject<UploadDocumentUseCaseParams> _uploadIncomePoofRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<String> _uploadIncomePoofResponse = PublishSubject();
 
@@ -96,14 +96,14 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   ///check other nationality
   PublishSubject<CheckOtherNationalityStatusUseCaseParams>
-      _checkOtherNationalityStatusRequest = PublishSubject();
+  _checkOtherNationalityStatusRequest = PublishSubject();
 
   PublishSubject<Resource<CheckOtherNationalityResponse>>
-      _checkOtherNationalityStatusResponse = PublishSubject();
+  _checkOtherNationalityStatusResponse = PublishSubject();
 
   Stream<Resource<CheckOtherNationalityResponse>>
-      get checkOtherNationalityStatusStream =>
-          _checkOtherNationalityStatusResponse.stream;
+  get checkOtherNationalityStatusStream =>
+      _checkOtherNationalityStatusResponse.stream;
 
   void checkOtherNationality() {
     _checkOtherNationalityStatusRequest
@@ -113,10 +113,10 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   ///upload income proof
   String incomeProofDocumentId = '';
   PublishSubject<FileUploadUseCaseParams> _uploadIncomeProofDocumentRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<Resource<FileUploadResponse>>
-      _uploadIncomeProofDocumentResponse = PublishSubject();
+  _uploadIncomeProofDocumentResponse = PublishSubject();
 
   Stream<Resource<FileUploadResponse>> get uploadIncomeProofDocumentStream =>
       _uploadIncomeProofDocumentResponse.stream;
@@ -124,10 +124,10 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   ///upload address proof
   String addressProofDocumentId = '';
   PublishSubject<FileUploadUseCaseParams> _uploadAddressProofDocumentRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<Resource<FileUploadResponse>>
-      _uploadAddressProofDocumentResponse = PublishSubject();
+  _uploadAddressProofDocumentResponse = PublishSubject();
 
   Stream<Resource<FileUploadResponse>> get uploadAddressProofDocumentStream =>
       _uploadAddressProofDocumentResponse.stream;
@@ -135,14 +135,14 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   ///upload other nationality proof
   String otherNationalityProofDocumentId = '';
   PublishSubject<FileUploadUseCaseParams>
-      _uploadOtherNationalityProofDocumentRequest = PublishSubject();
+  _uploadOtherNationalityProofDocumentRequest = PublishSubject();
 
   PublishSubject<Resource<FileUploadResponse>>
-      _uploadOtherNationalityProofDocumentResponse = PublishSubject();
+  _uploadOtherNationalityProofDocumentResponse = PublishSubject();
 
   Stream<Resource<FileUploadResponse>>
-      get uploadOtherNationalityProofDocumentStream =>
-          _uploadOtherNationalityProofDocumentResponse.stream;
+  get uploadOtherNationalityProofDocumentStream =>
+      _uploadOtherNationalityProofDocumentResponse.stream;
 
   bool isOtherNationality = false;
 
@@ -152,29 +152,28 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   /// animated button visibility subject
   BehaviorSubject<bool> _showAnimatedButtonSubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject.seeded(false);
 
   Stream<bool> get showAnimatedButtonStream =>
       _showAnimatedButtonSubject.stream;
 
   ///remove debit lock
   PublishSubject<RemoveDebitLockUseCaseParams> _removeDebitLockRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<Resource<bool>> _removeDebitLockResponse = PublishSubject();
 
   Stream<Resource<bool>> get removeDebitLockStream =>
       _removeDebitLockResponse.stream;
 
-  UploadDocumentsPageViewModel(
-      this._documentsUseCase,
+  UploadDocumentsPageViewModel(this._documentsUseCase,
       this._uploadDocumentUseCase,
       this._checkOtherNationalityStatusUseCase,
       this._fileUploadUseCase,
       this._removeDebitLockUseCase) {
     _documentsRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _documentsUseCase.execute(params: value))
+          createCall: () => _documentsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -207,7 +206,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
     _additionalNationalityProofRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
+          createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _additionalNationalityProofResponse.safeAdd(event.data!);
@@ -216,7 +215,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
     _uploadIncomeProofDocumentRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _fileUploadUseCase.execute(params: value))
+          createCall: () => _fileUploadUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -230,7 +229,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
     _uploadAddressProofDocumentRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _fileUploadUseCase.execute(params: value))
+          createCall: () => _fileUploadUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -244,7 +243,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
     _uploadOtherNationalityProofDocumentRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _fileUploadUseCase.execute(params: value))
+          createCall: () => _fileUploadUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -258,8 +257,8 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
     _checkOtherNationalityStatusRequest.listen((value) {
       RequestManager(value,
-              createCall: () =>
-                  _checkOtherNationalityStatusUseCase.execute(params: value))
+          createCall: () =>
+              _checkOtherNationalityStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -273,7 +272,7 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
     _removeDebitLockRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _removeDebitLockUseCase.execute(params: value))
+          createCall: () => _removeDebitLockUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -296,7 +295,9 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   void updateIncomeDocumentField(String value) {
     print('income value:--->$value');
-    incomeController.text = value.split("/").last;
+    incomeController.text = value
+        .split("/")
+        .last;
     uploadIncomeProof(value);
     updateIncomeUploadedStream(true);
   }
@@ -315,7 +316,9 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   }
 
   void updateAdditionalNationalityField(String value) {
-    additionalNationalityController.text = value.split("/").last;
+    additionalNationalityController.text = value
+        .split("/")
+        .last;
     uploadOtherNationalityProof(value);
     updateAdditionalNationalityUploadedStream(true);
   }
@@ -326,7 +329,9 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   }
 
   void updateAddressDocumentField(String value) {
-    addressController.text = value.split("/").last;
+    addressController.text = value
+        .split("/")
+        .last;
     uploadAddressProof(value);
     updateAddressUploadedStream(true);
   }

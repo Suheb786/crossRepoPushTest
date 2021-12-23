@@ -7,7 +7,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class CheckKYCStatusUseCase extends BaseUseCase<NetworkError,
-    CheckKYCStatusUseCaseParams, CheckKycResponse> {
+    CheckKYCStatusUseCaseParams,
+    CheckKycResponse> {
   final KYCRepository _repository;
 
   CheckKYCStatusUseCase(this._repository);

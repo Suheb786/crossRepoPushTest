@@ -38,11 +38,11 @@ class ApiInterceptor extends InterceptorsWrapper {
     if (response.statusCode == 200) {
       if (response.data != null) {
         if (((response.data as Map<String, dynamic>)['response']['token']
-                    as String?)
-                ?.isNotEmpty ??
+        as String?)
+            ?.isNotEmpty ??
             false) {
           authToken = (response.data as Map<String, dynamic>)['response']
-                  ['token'] ??
+          ['token'] ??
               '';
         }
       }

@@ -45,7 +45,8 @@ class FatcaUSRelevantW8AddressDetailsPageView
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope.containerOf(context)
+                        ProviderScope
+                            .containerOf(context)
                             .read(registerStepFourViewModelProvider)
                             .registrationStepFourPageController
                             .next();
@@ -61,7 +62,8 @@ class FatcaUSRelevantW8AddressDetailsPageView
                           model.validateFatcaUSRelevantW8AddressDetails();
                         } else {
                           Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope.containerOf(context)
+                            ProviderScope
+                                .containerOf(context)
                                 .read(registerStepFourViewModelProvider)
                                 .registrationStepFourPageController
                                 .previous();
@@ -71,14 +73,18 @@ class FatcaUSRelevantW8AddressDetailsPageView
                       child: Card(
                         child: Padding(
                             padding: EdgeInsets.only(
-                                bottom: MediaQuery.of(context)
-                                                .viewInsets
-                                                .bottom -
-                                            50 <=
-                                        0
+                                bottom: MediaQuery
+                                    .of(context)
+                                    .viewInsets
+                                    .bottom -
+                                    50 <=
+                                    0
                                     ? 0
-                                    : MediaQuery.of(context).viewInsets.bottom -
-                                        48),
+                                    : MediaQuery
+                                    .of(context)
+                                    .viewInsets
+                                    .bottom -
+                                    48),
                             child: SingleChildScrollView(
                               padding: EdgeInsets.symmetric(
                                   vertical: 32, horizontal: 24),
@@ -90,7 +96,9 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                         .of(context)
                                         .permanentResidentAddressLine
                                         .toUpperCase(),
-                                    hintText: S.of(context).pleaseEnter,
+                                    hintText: S
+                                        .of(context)
+                                        .pleaseEnter,
                                     controller:
                                         model.permanentAddressController,
                                     key: model.permanentAddressKey,
@@ -197,8 +205,12 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                     height: 16,
                                   ),
                                   AppTextField(
-                                    labelText: S.of(context).postCode,
-                                    hintText: S.of(context).pleaseEnter,
+                                    labelText: S
+                                        .of(context)
+                                        .postCode,
+                                    hintText: S
+                                        .of(context)
+                                        .pleaseEnter,
                                     controller: model.postCodeController,
                                     key: model.postCodeKey,
                                     inputType: TextInputType.number,
@@ -220,8 +232,12 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                               label: S
                                                   .of(context)
                                                   .mailingAddressDifferentFromResidence,
-                                              inActiveText: S.of(context).no,
-                                              activeText: S.of(context).yes,
+                                              inActiveText: S
+                                                  .of(context)
+                                                  .no,
+                                              activeText: S
+                                                  .of(context)
+                                                  .yes,
                                               onToggle: (value) {
                                                 model.updateSwitchValue(value);
                                                 model.isValid();
@@ -248,7 +264,7 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                       key: model
                                                           .differentMailingAddressKey,
                                                       inputAction:
-                                                          TextInputAction.go,
+                                                      TextInputAction.go,
                                                       onChanged: (value) {
                                                         model.isValid();
                                                       },
@@ -258,7 +274,9 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                     ),
                                                     AppTextField(
                                                       labelText:
-                                                          S.of(context).country,
+                                                      S
+                                                          .of(context)
+                                                          .country,
                                                       hintText: S
                                                           .of(context)
                                                           .pleaseSelect,
@@ -274,16 +292,18 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                                 .of(context)
                                                                 .taxCountrySmall,
                                                             onDismissed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        }, onSelected: (value) {
-                                                          Navigator.pop(
-                                                              context);
-                                                          model
-                                                              .differentMailingCountryController
-                                                              .text = value;
-                                                          model.isValid();
-                                                        });
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            onSelected: (
+                                                                value) {
+                                                              Navigator.pop(
+                                                                  context);
+                                                              model
+                                                                  .differentMailingCountryController
+                                                                  .text = value;
+                                                              model.isValid();
+                                                            });
                                                       },
                                                       suffixIcon:
                                                           (value, data) {
@@ -291,8 +311,8 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                             height: 16,
                                                             width: 16,
                                                             padding:
-                                                                EdgeInsets.only(
-                                                                    right: 8),
+                                                            EdgeInsets.only(
+                                                                right: 8),
                                                             child: AppSvg.asset(
                                                                 AssetUtils
                                                                     .downArrow,
@@ -305,7 +325,9 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                     ),
                                                     AppTextField(
                                                       labelText:
-                                                          S.of(context).state,
+                                                      S
+                                                          .of(context)
+                                                          .state,
                                                       hintText: S
                                                           .of(context)
                                                           .pleaseSelect,
@@ -321,19 +343,21 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                                 .of(context)
                                                                 .stateSmall,
                                                             onDismissed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        }, onSelected: (value) {
-                                                          Navigator.pop(
-                                                              context);
-                                                          model
-                                                              .differentMailingStateController
-                                                              .text = value;
-                                                          model.isValid();
-                                                        },
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            onSelected: (
+                                                                value) {
+                                                              Navigator.pop(
+                                                                  context);
+                                                              model
+                                                                  .differentMailingStateController
+                                                                  .text = value;
+                                                              model.isValid();
+                                                            },
                                                             stateCityTypeEnum:
-                                                                StateCityTypeEnum
-                                                                    .STATE);
+                                                            StateCityTypeEnum
+                                                                .STATE);
                                                       },
                                                       suffixIcon:
                                                           (value, data) {
@@ -341,8 +365,8 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                             height: 16,
                                                             width: 16,
                                                             padding:
-                                                                EdgeInsets.only(
-                                                                    right: 8),
+                                                            EdgeInsets.only(
+                                                                right: 8),
                                                             child: AppSvg.asset(
                                                                 AssetUtils
                                                                     .downArrow,
@@ -355,7 +379,9 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                     ),
                                                     AppTextField(
                                                       labelText:
-                                                          S.of(context).city,
+                                                      S
+                                                          .of(context)
+                                                          .city,
                                                       hintText: S
                                                           .of(context)
                                                           .pleaseSelect,
@@ -371,19 +397,21 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                                 .of(context)
                                                                 .citySmall,
                                                             onDismissed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        }, onSelected: (value) {
-                                                          Navigator.pop(
-                                                              context);
-                                                          model
-                                                              .differentMailingCityController
-                                                              .text = value;
-                                                          model.isValid();
-                                                        },
+                                                              Navigator.pop(
+                                                                  context);
+                                                            },
+                                                            onSelected: (
+                                                                value) {
+                                                              Navigator.pop(
+                                                                  context);
+                                                              model
+                                                                  .differentMailingCityController
+                                                                  .text = value;
+                                                              model.isValid();
+                                                            },
                                                             stateCityTypeEnum:
-                                                                StateCityTypeEnum
-                                                                    .CITY);
+                                                            StateCityTypeEnum
+                                                                .CITY);
                                                       },
                                                       suffixIcon:
                                                           (value, data) {
@@ -391,8 +419,8 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                             height: 16,
                                                             width: 16,
                                                             padding:
-                                                                EdgeInsets.only(
-                                                                    right: 8),
+                                                            EdgeInsets.only(
+                                                                right: 8),
                                                             child: AppSvg.asset(
                                                                 AssetUtils
                                                                     .downArrow,
@@ -415,7 +443,7 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                       key: model
                                                           .differentMailingPostCodeKey,
                                                       inputAction:
-                                                          TextInputAction.go,
+                                                      TextInputAction.go,
                                                       onChanged: (value) {
                                                         model.isValid();
                                                       },
@@ -436,10 +464,10 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                           dataBuilder: (context, isValid) {
                                             return (isValid!)
                                                 ? AnimatedButton(
-                                                    buttonText: S
-                                                        .of(context)
-                                                        .swipeToProceed,
-                                                    buttonHeight: 50,
+                                              buttonText: S
+                                                  .of(context)
+                                                  .swipeToProceed,
+                                              buttonHeight: 50,
                                                   )
                                                 : Container();
                                           }),

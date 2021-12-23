@@ -19,16 +19,18 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
           aspectRatio: 0.62,
           child: GestureDetector(
             onHorizontalDragEnd: (details) {
-              if (details.primaryVelocity!.isNegative) {
-              } else {
-                ProviderScope.containerOf(context)
+              if (details.primaryVelocity!.isNegative) {} else {
+                ProviderScope
+                    .containerOf(context)
                     .read(appHomeViewModelProvider)
                     .pageController
                     .previous();
               }
             },
             child: Card(
-              color: Theme.of(context).primaryColor,
+              color: Theme
+                  .of(context)
+                  .primaryColor,
               margin: EdgeInsets.zero,
               child: Container(
                 margin: EdgeInsets.zero,
@@ -42,29 +44,38 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
                       padding: EdgeInsets.only(top: 232),
                       child: Column(
                         children: [
-                          Text(S.of(context).bornBlink,
+                          Text(S
+                              .of(context)
+                              .bornBlink,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme
+                                      .of(context)
+                                      .accentColor,
                                   fontSize: 32,
                                   fontWeight: FontWeight.w700)),
                           Padding(
                             padding: EdgeInsets.only(top: 8),
                             child: Text(
-                              S.of(context).spendJod,
+                              S
+                                  .of(context)
+                                  .spendJod,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: Theme.of(context).accentColor,
+                                  color: Theme
+                                      .of(context)
+                                      .accentColor,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 12),
                             ),
                           ),
                           Padding(
                             padding:
-                                EdgeInsets.only(top: 30, left: 24, right: 24),
+                            EdgeInsets.only(top: 30, left: 24, right: 24),
                             child: Container(
                               decoration: BoxDecoration(
-                                  color: Theme.of(context)
+                                  color: Theme
+                                      .of(context)
                                       .accentTextTheme
                                       .bodyText1!
                                       .color,
@@ -72,12 +83,16 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
                               padding: EdgeInsets.symmetric(vertical: 16),
                               child: Center(
                                   child: Text(
-                                S.of(context).findOutMore,
-                                style: TextStyle(
-                                    color: Theme.of(context).accentColor,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600),
-                              )),
+                                    S
+                                        .of(context)
+                                        .findOutMore,
+                                    style: TextStyle(
+                                        color: Theme
+                                            .of(context)
+                                            .accentColor,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600),
+                                  )),
                             ),
                           )
                         ],

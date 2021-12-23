@@ -42,23 +42,22 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
   factory UserEntity.fromJson(Map<String, dynamic> json) =>
       _$UserEntityFromJson(json);
 
-  UserEntity(
-      {this.languageCode,
-      this.fullName,
-      this.emailId,
-      this.mobileStatus,
-      this.mobileNumber,
-      this.emailStatus,
-      this.nationality,
-      this.firstName,
-      this.lastName,
-      this.gender,
-      this.dob,
-      this.userName,
-      this.image,
-      this.userId,
-      this.existing,
-      this.nameOnCard});
+  UserEntity({this.languageCode,
+    this.fullName,
+    this.emailId,
+    this.mobileStatus,
+    this.mobileNumber,
+    this.emailStatus,
+    this.nationality,
+    this.firstName,
+    this.lastName,
+    this.gender,
+    this.dob,
+    this.userName,
+    this.image,
+    this.userId,
+    this.existing,
+    this.nameOnCard});
 
   Map<String, dynamic> toJson() => _$UserEntityToJson(this);
 

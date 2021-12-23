@@ -42,16 +42,16 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
 
   ///purpose of account opening request subject holder
   PublishSubject<PurposeOfAccountOpeningUseCaseParams>
-      _purposeOfAccountOpeningRequest = PublishSubject();
+  _purposeOfAccountOpeningRequest = PublishSubject();
 
   ///purpose of account opening response holder
   PublishSubject<Resource<PurposeOfAccountOpeningResponse>>
-      _purposeOfAccountOpeningResponse = PublishSubject();
+  _purposeOfAccountOpeningResponse = PublishSubject();
 
   ///purpose of account opening stream
   Stream<Resource<PurposeOfAccountOpeningResponse>>
-      get purposeOfAccountOpeningStream =>
-          _purposeOfAccountOpeningResponse.stream;
+  get purposeOfAccountOpeningStream =>
+      _purposeOfAccountOpeningResponse.stream;
 
   ///all field validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();

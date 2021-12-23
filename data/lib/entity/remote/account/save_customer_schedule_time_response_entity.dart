@@ -8,14 +8,15 @@ part 'save_customer_schedule_time_response_entity.g.dart';
 
 @JsonSerializable()
 class SaveCustomerScheduleTimeResponseEntity extends BaseLayerDataTransformer<
-    SaveCustomerScheduleTimeResponseEntity, SaveCustomerScheduleTimeResponse> {
+    SaveCustomerScheduleTimeResponseEntity,
+    SaveCustomerScheduleTimeResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
   SaveCustomerScheduleTimeResponseEntity(this.response);
 
   factory SaveCustomerScheduleTimeResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$SaveCustomerScheduleTimeResponseEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>
@@ -25,7 +26,7 @@ class SaveCustomerScheduleTimeResponseEntity extends BaseLayerDataTransformer<
   SaveCustomerScheduleTimeResponse transform() {
     return SaveCustomerScheduleTimeResponse(
         content: SaveCustomerScheduleTimeResponseDataEntity.fromJson(
-                this.response!.content)
+            this.response!.content)
             .transform());
   }
 }

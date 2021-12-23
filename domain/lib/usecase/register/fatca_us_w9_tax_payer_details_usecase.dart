@@ -20,10 +20,9 @@ class FatcaUSW9TaxPayerDetailsUseCaseParams extends Params {
   bool isSocialSecurityTaxPayer;
   final String? socialSecurityNumber;
 
-  FatcaUSW9TaxPayerDetailsUseCaseParams(
-      {this.taxPayerType,
-      this.socialSecurityNumber,
-      required this.isSocialSecurityTaxPayer});
+  FatcaUSW9TaxPayerDetailsUseCaseParams({this.taxPayerType,
+    this.socialSecurityNumber,
+    required this.isSocialSecurityTaxPayer});
 
   @override
   Either<AppError, bool> verify() {

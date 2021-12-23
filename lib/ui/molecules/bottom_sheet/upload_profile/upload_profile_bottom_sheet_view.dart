@@ -10,12 +10,11 @@ class UploadProfileBottomSheetView extends StatefulWidget {
   final Function()? onRemoveTap;
   final String? title;
 
-  const UploadProfileBottomSheetView(
-      {this.onTakePhoto,
-      this.onGalleryTap,
-      this.title,
-      this.onCancel,
-      this.onRemoveTap});
+  const UploadProfileBottomSheetView({this.onTakePhoto,
+    this.onGalleryTap,
+    this.title,
+    this.onCancel,
+    this.onRemoveTap});
 
   @override
   _UploadProfileBottomSheetViewState createState() =>
@@ -37,7 +36,9 @@ class _UploadProfileBottomSheetViewState
       ),
       actions: [
         CupertinoActionSheetAction(
-          child: Text(S.of(context).takePhoto,
+          child: Text(S
+              .of(context)
+              .takePhoto,
               style: TextStyle(
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w400,
@@ -48,7 +49,9 @@ class _UploadProfileBottomSheetViewState
           },
         ),
         CupertinoActionSheetAction(
-          child: Text(S.of(context).selectFromLibrary,
+          child: Text(S
+              .of(context)
+              .selectFromLibrary,
               style: TextStyle(
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w400,
@@ -59,19 +62,25 @@ class _UploadProfileBottomSheetViewState
           },
         ),
         CupertinoActionSheetAction(
-          child: Text(S.of(context).removePhoto,
+          child: Text(S
+              .of(context)
+              .removePhoto,
               style: TextStyle(
                   fontFamily: 'SF Pro Display',
                   fontWeight: FontWeight.w400,
                   fontSize: 20,
-                  color: Theme.of(context).errorColor)),
+                  color: Theme
+                      .of(context)
+                      .errorColor)),
           onPressed: () {
             widget.onRemoveTap?.call();
           },
         ),
       ],
       cancelButton: CupertinoActionSheetAction(
-        child: Text(S.of(context).cancel,
+        child: Text(S
+            .of(context)
+            .cancel,
             style: TextStyle(
                 fontFamily: 'SF Pro Display',
                 fontWeight: FontWeight.w600,

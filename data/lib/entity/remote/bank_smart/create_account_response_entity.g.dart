@@ -16,7 +16,7 @@ CreateAccountResponseEntity _$CreateAccountResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$CreateAccountResponseEntityToJson(
-        CreateAccountResponseEntity instance) =>
+    CreateAccountResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.responseEntity,
     };

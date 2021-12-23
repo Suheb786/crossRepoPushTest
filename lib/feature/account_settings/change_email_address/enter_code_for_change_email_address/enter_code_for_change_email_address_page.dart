@@ -14,8 +14,8 @@ class EnterCodeForChangeEmailAddressPage
 }
 
 class EnterCodeForChangeEmailAddressPageState extends BaseStatefulPage<
-        EnterCodeForChangeEmailAddressPageViewModel,
-        EnterCodeForChangeEmailAddressPage>
+    EnterCodeForChangeEmailAddressPageViewModel,
+    EnterCodeForChangeEmailAddressPage>
     with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   EnterCodeForChangeEmailAddressPageState()
       : super(subscribeVisibilityEvents: true);
@@ -43,8 +43,8 @@ class EnterCodeForChangeEmailAddressPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget buildView(
-      BuildContext context, EnterCodeForChangeEmailAddressPageViewModel model) {
+  Widget buildView(BuildContext context,
+      EnterCodeForChangeEmailAddressPageViewModel model) {
     return EnterCodeForChangeEmailAddressPageView(provideBase());
   }
 

@@ -42,12 +42,13 @@ class StudentJobIncomePageView
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
                         Future.delayed(Duration(milliseconds: 500), () {
-                          ProviderScope.containerOf(context)
+                          ProviderScope
+                              .containerOf(context)
                               .read(registerViewModelProvider)
                               .registrationStepsController
                               .nextPage(
-                                  duration: Duration(milliseconds: 500),
-                                  curve: Curves.easeInOut);
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeInOut);
                         });
                       }
                     },
@@ -62,20 +63,24 @@ class StudentJobIncomePageView
                           child: Padding(
                               padding: EdgeInsets.only(
                                   bottom:
-                                      MediaQuery.of(context).viewInsets.bottom -
-                                                  50 <=
-                                              0
-                                          ? 0
-                                          : MediaQuery.of(context)
-                                                  .viewInsets
-                                                  .bottom -
-                                              48),
+                                  MediaQuery
+                                      .of(context)
+                                      .viewInsets
+                                      .bottom -
+                                      50 <=
+                                      0
+                                      ? 0
+                                      : MediaQuery
+                                      .of(context)
+                                      .viewInsets
+                                      .bottom -
+                                      48),
                               child: SingleChildScrollView(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),
                                 child: Column(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     AppStreamBuilder<
@@ -94,24 +99,29 @@ class StudentJobIncomePageView
                                                 if (index == dataList.length) {
                                                   return AddIncomeWidget(
                                                     label:
-                                                        S.of(context).addIncome,
+                                                    S
+                                                        .of(context)
+                                                        .addIncome,
                                                     onTap: () {
                                                       AdditionalIncomeSourceDialog
                                                           .show(context,
-                                                              onDismissed: () {
-                                                        Navigator.pop(context);
-                                                      }, onSelected: (value) {
-                                                        Navigator.pop(context);
-                                                        model
-                                                            .addAdditionalIncomeList(
+                                                          onDismissed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          },
+                                                          onSelected: (value) {
+                                                            Navigator.pop(
+                                                                context);
+                                                            model
+                                                                .addAdditionalIncomeList(
                                                                 value);
-                                                      });
+                                                          });
                                                     },
                                                   );
                                                 }
                                                 return AdditionalIncomeSourceWidget(
                                                   additionalIncomeSourceParams:
-                                                      dataList[index],
+                                                  dataList[index],
                                                   onTap: () {
                                                     model.removeAdditionalItem(
                                                         index);
@@ -120,7 +130,9 @@ class StudentJobIncomePageView
                                               });
                                         } else {
                                           return AddIncomeWidget(
-                                            label: S.of(context).addIncome,
+                                            label: S
+                                                .of(context)
+                                                .addIncome,
                                             onTap: () {
                                               AdditionalIncomeSourceDialog.show(
                                                   context, onDismissed: () {
@@ -143,7 +155,7 @@ class StudentJobIncomePageView
                                           visible: data!,
                                           child: Padding(
                                             padding:
-                                                const EdgeInsets.only(top: 8.0),
+                                            const EdgeInsets.only(top: 8.0),
                                             child: AnimatedButton(
                                                 buttonText: S
                                                     .of(context)

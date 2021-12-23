@@ -16,18 +16,19 @@ class EnableBiometricUseCase
       {required EnableBiometricUseCaseParams params}) async {
     return Future.value(
       (await _repository.enableBiometric()).fold((l) => Left(l),
-          (isSuccess) async {
-        return (await _repository.getCurrentUser()).fold((l) => Left(l),
-            (user) async {
-          user.isBiometricEnabled = true;
-          return (await _repository.saveUser(user)).fold((l) => Left(l), (r) {
-            print('save user--->${r.isBiometricEnabled}');
-            print('save user--->${r.id}');
-            print('save user--->${r.privatePEM}');
-            return Right(isSuccess);
-          });
-        });
-      }),
+              (isSuccess) async {
+            return (await _repository.getCurrentUser()).fold((l) => Left(l),
+                    (user) async {
+                  user.isBiometricEnabled = true;
+                  return (await _repository.saveUser(user)).fold((l) =>
+                      Left(l), (r) {
+                    print('save user--->${r.isBiometricEnabled}');
+                    print('save user--->${r.id}');
+                    print('save user--->${r.privatePEM}');
+                    return Right(isSuccess);
+                  });
+                });
+          }),
     );
     // return _repository.enableBiometric();
   }

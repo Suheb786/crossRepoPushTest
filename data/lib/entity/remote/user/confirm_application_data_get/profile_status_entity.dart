@@ -27,16 +27,15 @@ class ProfileStatusEntity
   @JsonKey(name: "isActive")
   final bool? isActive;
 
-  ProfileStatusEntity(
-      {this.id,
-      this.userId,
-      this.employmentStatus,
-      this.married,
-      this.specialPerson,
-      this.spouseName,
-      this.natureSp,
-      this.createdOn,
-      this.isActive});
+  ProfileStatusEntity({this.id,
+    this.userId,
+    this.employmentStatus,
+    this.married,
+    this.specialPerson,
+    this.spouseName,
+    this.natureSp,
+    this.createdOn,
+    this.isActive});
 
   factory ProfileStatusEntity.fromJson(Map<String, dynamic> json) =>
       _$ProfileStatusEntityFromJson(json);

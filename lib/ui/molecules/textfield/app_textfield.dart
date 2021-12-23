@@ -174,7 +174,8 @@ class AppTextFieldState extends State<AppTextField> {
                             text: widget.labelText,
                             style: TextStyle(
                               color: widget.labelColor ??
-                                  Theme.of(context)
+                                  Theme
+                                      .of(context)
                                       .inputDecorationTheme
                                       .labelStyle!
                                       .color,
@@ -191,7 +192,9 @@ class AppTextFieldState extends State<AppTextField> {
                       textAlign: widget.textAlign,
                       style: TextStyle(
                         color: widget.textColor ??
-                            Theme.of(context).primaryColorDark,
+                            Theme
+                                .of(context)
+                                .primaryColorDark,
                         fontSize: widget.fontSize,
                         fontWeight: FontWeight.w600,
                       ),

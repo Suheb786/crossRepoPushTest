@@ -15,7 +15,7 @@ LogoutResponseEntity _$LogoutResponseEntityFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$LogoutResponseEntityToJson(
-        LogoutResponseEntity instance) =>
+    LogoutResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

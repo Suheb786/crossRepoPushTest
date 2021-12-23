@@ -31,18 +31,17 @@ class CountryResidenceEntity
   @JsonKey(name: "isActive")
   final bool? isActive;
 
-  CountryResidenceEntity(
-      {this.id,
-      this.userId,
-      this.residantCountry,
-      this.perCity,
-      this.city,
-      this.perResidantCountry,
-      this.area,
-      this.buildingName,
-      this.streetName,
-      this.createdOn,
-      this.isActive});
+  CountryResidenceEntity({this.id,
+    this.userId,
+    this.residantCountry,
+    this.perCity,
+    this.city,
+    this.perResidantCountry,
+    this.area,
+    this.buildingName,
+    this.streetName,
+    this.createdOn,
+    this.isActive});
 
   factory CountryResidenceEntity.fromJson(Map<String, dynamic> json) =>
       _$CountryResidenceEntityFromJson(json);

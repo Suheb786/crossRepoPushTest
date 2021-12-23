@@ -28,19 +28,19 @@ class FatcaCrsRemoteDSImpl extends FatcaCrsRemoteDS {
   @override
   Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
       {bool? response1,
-      bool? response2,
-      bool? response3,
-      bool? response4,
-      bool? response5,
-      String? relationshipWithPep,
-      String? personName,
-      String? personRole,
-      bool? isTinNoRes4,
-      String? taxResidenceCountry,
-      String? tinNoRes4,
-      String? reasonUnavailableRes4,
-      String? reasonBRes4,
-      bool? getToken}) async {
+        bool? response2,
+        bool? response3,
+        bool? response4,
+        bool? response5,
+        String? relationshipWithPep,
+        String? personName,
+        String? personRole,
+        bool? isTinNoRes4,
+        String? taxResidenceCountry,
+        String? tinNoRes4,
+        String? reasonUnavailableRes4,
+        String? reasonBRes4,
+        bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveFatcaInformation(SaveFatcaInformationRequestEntity(
         response1: response1,

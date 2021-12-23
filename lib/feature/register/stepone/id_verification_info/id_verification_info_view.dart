@@ -58,7 +58,8 @@ class IdVerificationInfoView
                             initialData: Resource.none(),
                             onData: (data) {
                               if (data.status == Status.SUCCESS) {
-                                ProviderScope.containerOf(context)
+                                ProviderScope
+                                    .containerOf(context)
                                     .read(registerStepOneViewModelProvider)
                                     .pageController
                                     .next();
@@ -66,7 +67,7 @@ class IdVerificationInfoView
                                   ProviderScope.containerOf(context)
                                       .read(confirmDetailViewModelProvider)
                                       .setData(
-                                          model.scannedDocumentInformation);
+                                      model.scannedDocumentInformation);
                                 });
                               } else if (data.status == Status.ERROR) {
                                 model.showToastWithError(data.appError!);
@@ -103,7 +104,7 @@ class IdVerificationInfoView
                                               vertical: 32, horizontal: 24),
                                           child: Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Column(
@@ -118,7 +119,7 @@ class IdVerificationInfoView
                                                   ),
                                                   InformationText(
                                                       image:
-                                                          AssetUtils.scanIcon,
+                                                      AssetUtils.scanIcon,
                                                       title: S
                                                           .of(context)
                                                           .idScanInfo),
@@ -143,10 +144,11 @@ class IdVerificationInfoView
                                                       style: TextStyle(
                                                           fontSize: 14,
                                                           fontWeight:
-                                                              FontWeight.w600,
+                                                          FontWeight.w600,
                                                           letterSpacing: 1,
-                                                          color: Theme.of(
-                                                                  context)
+                                                          color: Theme
+                                                              .of(
+                                                              context)
                                                               .accentTextTheme
                                                               .bodyText1!
                                                               .color),
@@ -169,9 +171,10 @@ class IdVerificationInfoView
                                                                     false) {
                                                                   model
                                                                       .updateIsRetrievedConditionStream(
-                                                                          true);
+                                                                      true);
                                                                 } else {
-                                                                  model.updateIsRetrievedConditionStream(
+                                                                  model
+                                                                      .updateIsRetrievedConditionStream(
                                                                       false);
                                                                 }
                                                               },
@@ -182,32 +185,45 @@ class IdVerificationInfoView
                                                                     shape: BoxShape
                                                                         .circle,
                                                                     color: isChecked!
-                                                                        ? Theme.of(context)
+                                                                        ? Theme
+                                                                        .of(
+                                                                        context)
+                                                                        .accentTextTheme
+                                                                        .bodyText1!
+                                                                        .color!
+                                                                        : Colors
+                                                                        .transparent,
+                                                                    border: Border
+                                                                        .all(
+                                                                        color: !isChecked
+                                                                            ? Theme
+                                                                            .of(
+                                                                            context)
                                                                             .accentTextTheme
                                                                             .bodyText1!
                                                                             .color!
-                                                                        : Colors
-                                                                            .transparent,
-                                                                    border: Border.all(
-                                                                        color: !isChecked
-                                                                            ? Theme.of(context).accentTextTheme.bodyText1!.color!
-                                                                            : Colors.transparent)),
+                                                                            : Colors
+                                                                            .transparent)),
                                                                 child: isChecked
                                                                     ? Container(
-                                                                        height:
-                                                                            16,
-                                                                        width:
-                                                                            16,
-                                                                        padding:
-                                                                            EdgeInsets.all(10),
-                                                                        child: AppSvg
-                                                                            .asset(
-                                                                          AssetUtils
-                                                                              .checkIcon,
-                                                                          color:
-                                                                              Theme.of(context).accentColor,
-                                                                        ),
-                                                                      )
+                                                                  height:
+                                                                  16,
+                                                                  width:
+                                                                  16,
+                                                                  padding:
+                                                                  EdgeInsets
+                                                                      .all(10),
+                                                                  child: AppSvg
+                                                                      .asset(
+                                                                    AssetUtils
+                                                                        .checkIcon,
+                                                                    color:
+                                                                    Theme
+                                                                        .of(
+                                                                        context)
+                                                                        .accentColor,
+                                                                  ),
+                                                                )
                                                                     : Container(),
                                                               ),
                                                             );
@@ -222,8 +238,8 @@ class IdVerificationInfoView
                                                               .termsAndConditions,
                                                           style: TextStyle(
                                                               fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
+                                                              FontWeight
+                                                                  .w600,
                                                               fontSize: 12),
                                                         ),
                                                       )
@@ -237,14 +253,14 @@ class IdVerificationInfoView
                                                           (context, isChecked) {
                                                         return Padding(
                                                           padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 32,
-                                                                  bottom: 8),
+                                                          const EdgeInsets
+                                                              .only(
+                                                              top: 32,
+                                                              bottom: 8),
                                                           child: Visibility(
                                                             visible: isChecked!,
                                                             child:
-                                                                AnimatedButton(
+                                                            AnimatedButton(
                                                               buttonText: S
                                                                   .of(context)
                                                                   .swipeToProceed,

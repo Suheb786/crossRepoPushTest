@@ -6,7 +6,8 @@ part "get_combo_values_data_entity.g.dart";
 
 @JsonSerializable()
 class GetComboValuesDataEntity extends BaseLayerDataTransformer<
-    GetComboValuesDataEntity, GetComboValuesData> {
+    GetComboValuesDataEntity,
+    GetComboValuesData> {
   @JsonKey(name: "id")
   final int? id;
   @JsonKey(name: "type")
@@ -24,15 +25,14 @@ class GetComboValuesDataEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "orderNo")
   final int? orderNo;
 
-  GetComboValuesDataEntity(
-      {this.id,
-      this.type,
-      this.intCode,
-      this.strCode,
-      this.labelEn,
-      this.labelAr,
-      this.ageGroup,
-      this.orderNo});
+  GetComboValuesDataEntity({this.id,
+    this.type,
+    this.intCode,
+    this.strCode,
+    this.labelEn,
+    this.labelAr,
+    this.ageGroup,
+    this.orderNo});
 
   factory GetComboValuesDataEntity.fromJson(Map<String, dynamic> json) =>
       _$GetComboValuesDataEntityFromJson(json);

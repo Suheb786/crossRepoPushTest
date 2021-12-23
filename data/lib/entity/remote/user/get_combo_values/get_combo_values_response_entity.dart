@@ -8,7 +8,8 @@ part "get_combo_values_response_entity.g.dart";
 
 @JsonSerializable()
 class GetComboValuesResponseEntity extends BaseLayerDataTransformer<
-    GetComboValuesResponseEntity, GetComboValuesResponse> {
+    GetComboValuesResponseEntity,
+    GetComboValuesResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -23,7 +24,7 @@ class GetComboValuesResponseEntity extends BaseLayerDataTransformer<
   GetComboValuesResponse transform() {
     return GetComboValuesResponse(
         getComboValuesContent:
-            GetComboValuesContentEntity.fromJson(this.response!.content)
-                .transform());
+        GetComboValuesContentEntity.fromJson(this.response!.content)
+            .transform());
   }
 }

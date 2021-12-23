@@ -13,7 +13,7 @@ abstract class AccountRepository {
 
   /// check other nationality status
   Future<Either<NetworkError, CheckOtherNationalityResponse>>
-      checkOtherNationalityStatus({required bool getToken});
+  checkOtherNationalityStatus({required bool getToken});
 
   /// check document status
   Future<Either<NetworkError, DocStatusResponse>> docStatus();
@@ -23,6 +23,6 @@ abstract class AccountRepository {
 
   /// save customer schedule time
   Future<Either<NetworkError, SaveCustomerScheduleTimeResponse>>
-      saveCustomerVideoCallScheduleTime(
-          {required String scheduleDate, required String scheduleTime});
+  saveCustomerVideoCallScheduleTime(
+      {required String scheduleDate, required String scheduleTime});
 }

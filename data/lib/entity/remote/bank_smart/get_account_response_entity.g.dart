@@ -16,7 +16,7 @@ GetAccountResponseEntity _$GetAccountResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$GetAccountResponseEntityToJson(
-        GetAccountResponseEntity instance) =>
+    GetAccountResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

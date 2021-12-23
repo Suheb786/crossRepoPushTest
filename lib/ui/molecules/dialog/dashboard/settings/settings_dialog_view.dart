@@ -43,7 +43,7 @@ class SettingsDialogView extends StatelessWidget {
                           InkWell(
                             onTap: () {
                               Navigator.pushNamed(
-                                  context, RoutePaths.ManageContactsList);
+                                  context, RoutePaths.PaymentHome);
                             },
                             child: Container(
                               height: 174,
@@ -70,8 +70,110 @@ class SettingsDialogView extends StatelessWidget {
                                           border: Border.all(
                                               color: AppColor.whiteGrey,
                                               width: 1)),
-                                      child: AppSvg.asset(AssetUtils.contacts,
+                                      child: AppSvg.asset(
+                                          AssetUtils.paymentCircle,
                                           color: currentStep == 0
+                                              ? Theme.of(context).accentColor
+                                              : Theme.of(context)
+                                                  .primaryColorDark)),
+                                  Text(
+                                    S.of(context).payments,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: currentStep == 0
+                                            ? Theme.of(context).accentColor
+                                            : Theme.of(context)
+                                                .primaryColorDark,
+                                        fontSize: 12),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.ActivityHome);
+                            },
+                            child: Container(
+                              height: 174,
+                              width: 112,
+                              decoration: BoxDecoration(
+                                  color: currentStep == 1
+                                      ? Theme.of(context)
+                                          .accentTextTheme
+                                          .bodyText1!
+                                          .color
+                                      : Theme.of(context).accentColor,
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      height: 64,
+                                      width: 64,
+                                      padding: EdgeInsets.all(14),
+                                      margin: EdgeInsets.only(bottom: 16),
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                              color: AppColor.whiteGrey,
+                                              width: 1)),
+                                      child: AppSvg.asset(
+                                          AssetUtils.activityCircle,
+                                          color: currentStep == 1
+                                              ? Theme.of(context).accentColor
+                                              : Theme.of(context)
+                                                  .primaryColorDark)),
+                                  Text(
+                                    S.of(context).activity,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: currentStep == 1
+                                            ? Theme.of(context).accentColor
+                                            : Theme.of(context)
+                                                .primaryColorDark,
+                                        fontSize: 12),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.ManageContactsList);
+                            },
+                            child: Container(
+                              height: 174,
+                              width: 112,
+                              decoration: BoxDecoration(
+                                  color: currentStep == 2
+                                      ? Theme.of(context)
+                                          .accentTextTheme
+                                          .bodyText1!
+                                          .color
+                                      : Theme.of(context).accentColor,
+                                  borderRadius: BorderRadius.circular(8)),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Container(
+                                      height: 64,
+                                      width: 64,
+                                      padding: EdgeInsets.all(14),
+                                      margin: EdgeInsets.only(bottom: 16),
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          border: Border.all(
+                                              color: AppColor.whiteGrey,
+                                              width: 1)),
+                                      child: AppSvg.asset(AssetUtils.contacts,
+                                          color: currentStep == 2
                                               ? Theme.of(context).accentColor
                                               : Theme.of(context)
                                                   .primaryColorDark)),
@@ -80,7 +182,7 @@ class SettingsDialogView extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        color: currentStep == 0
+                                        color: currentStep == 2
                                             ? Theme.of(context).accentColor
                                             : Theme.of(context)
                                                 .primaryColorDark,
@@ -99,7 +201,7 @@ class SettingsDialogView extends StatelessWidget {
                               height: 174,
                               width: 112,
                               decoration: BoxDecoration(
-                                  color: currentStep == 1
+                                  color: currentStep == 3
                                       ? Theme.of(context)
                                           .accentTextTheme
                                           .bodyText1!
@@ -132,7 +234,7 @@ class SettingsDialogView extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w600,
-                                        color: currentStep == 1
+                                        color: currentStep == 3
                                             ? Theme.of(context).accentColor
                                             : Theme.of(context)
                                                 .primaryColorDark,

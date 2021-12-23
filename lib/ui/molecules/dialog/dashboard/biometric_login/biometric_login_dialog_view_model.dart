@@ -12,7 +12,7 @@ class BiometricLoginDialogViewModel extends BasePageViewModel {
   final EnableFingerPrintUseCase _enableFingerPrintUseCase;
 
   PublishSubject<EnableFingerPrintUseCaseParams> _enableFingerPrintRequest =
-      PublishSubject();
+  PublishSubject();
 
   PublishSubject<Resource<bool>> _enableFingerPrintResponse = PublishSubject();
 
@@ -22,8 +22,8 @@ class BiometricLoginDialogViewModel extends BasePageViewModel {
   BiometricLoginDialogViewModel(this._enableFingerPrintUseCase) {
     _enableFingerPrintRequest.listen((value) {
       RequestManager(value,
-              createCall: () =>
-                  _enableFingerPrintUseCase.execute(params: value))
+          createCall: () =>
+              _enableFingerPrintUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _enableFingerPrintResponse.safeAdd(event);

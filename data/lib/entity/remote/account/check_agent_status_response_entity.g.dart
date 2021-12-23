@@ -16,7 +16,7 @@ CheckAgentStatusResponseEntity _$CheckAgentStatusResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$CheckAgentStatusResponseEntityToJson(
-        CheckAgentStatusResponseEntity instance) =>
+    CheckAgentStatusResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

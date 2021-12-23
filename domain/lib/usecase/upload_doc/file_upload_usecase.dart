@@ -7,7 +7,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class FileUploadUseCase extends BaseUseCase<NetworkError,
-    FileUploadUseCaseParams, FileUploadResponse> {
+    FileUploadUseCaseParams,
+    FileUploadResponse> {
   final UploadDocumentRepository _repository;
 
   FileUploadUseCase(this._repository);

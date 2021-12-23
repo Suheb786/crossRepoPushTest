@@ -10,7 +10,8 @@ import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
 class SendDocumentsUseCase extends BaseUseCase<NetworkError,
-    SendDocumentsUseCaseParams, SaveUploadDocumentResponse> {
+    SendDocumentsUseCaseParams,
+    SaveUploadDocumentResponse> {
   final UploadDocumentRepository _repository;
 
   SendDocumentsUseCase(this._repository);
@@ -32,11 +33,10 @@ class SendDocumentsUseCaseParams extends Params {
   final String? nationalityProof;
   final bool isOtherNationality;
 
-  SendDocumentsUseCaseParams(
-      {this.incomeProof,
-      this.addressProof,
-      this.nationalityProof,
-      required this.isOtherNationality});
+  SendDocumentsUseCaseParams({this.incomeProof,
+    this.addressProof,
+    this.nationalityProof,
+    required this.isOtherNationality});
 
   @override
   Either<AppError, bool> verify() {

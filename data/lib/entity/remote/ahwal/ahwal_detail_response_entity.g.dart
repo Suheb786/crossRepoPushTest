@@ -16,7 +16,7 @@ AhwalDetailResponseEntity _$AhwalDetailResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$AhwalDetailResponseEntityToJson(
-        AhwalDetailResponseEntity instance) =>
+    AhwalDetailResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.responseEntity,
     };

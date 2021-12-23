@@ -50,7 +50,9 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24),
                     child: Text(
-                      S.of(context).successfullyCreatedLoginAccount,
+                      S
+                          .of(context)
+                          .successfullyCreatedLoginAccount,
                       style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.w500,
@@ -64,9 +66,15 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
                     child: InformationText(
                       image: AssetUtils.informationSave,
-                      title: S.of(context).informationSave,
-                      containerColor: Theme.of(context).accentColor,
-                      textColor: Theme.of(context).accentColor,
+                      title: S
+                          .of(context)
+                          .informationSave,
+                      containerColor: Theme
+                          .of(context)
+                          .accentColor,
+                      textColor: Theme
+                          .of(context)
+                          .accentColor,
                     ),
                   ),
                   // Padding(
@@ -95,9 +103,15 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                   ),
                   Center(
                     child: AnimatedButton(
-                      buttonText: S.of(context).swipeToProceed,
-                      borderColor: Theme.of(context).accentColor,
-                      textColor: Theme.of(context).accentColor,
+                      buttonText: S
+                          .of(context)
+                          .swipeToProceed,
+                      borderColor: Theme
+                          .of(context)
+                          .accentColor,
+                      textColor: Theme
+                          .of(context)
+                          .accentColor,
                     ),
                   ),
                   AppStreamBuilder<Resource<bool>>(
@@ -129,34 +143,35 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                             initialData: Resource.none(),
                             dataBuilder: (context, data) =>
                                 AppStreamBuilder<Resource<bool>>(
-                              stream: model.checkBioMetricStream,
-                              initialData: Resource.none(),
-                              onData: (data) {
-                                if (data.status == Status.SUCCESS) {
-                                  if (data.data ?? false) {
-                                    BiometricLoginDialog.show(context,
-                                        mayBeLater: () {
-                                      Navigator.pop(context);
-                                    }, enableBioMetric: () {
-                                      model.authenticateBioMetric(
-                                          title: S
-                                              .of(context)
-                                              .enableBiometricLoginTitle,
-                                          localisedReason: Platform.isAndroid
-                                              ? S
-                                                  .of(context)
-                                                  .enableBiometricLoginDescriptionAndroid
-                                              : S
-                                                  .of(context)
-                                                  .enableBiometricLoginDescriptionIos);
-                                    });
-                                  }
-                                }
-                              },
-                              dataBuilder: (context, data) {
-                                return Container();
-                              },
-                            ),
+                                  stream: model.checkBioMetricStream,
+                                  initialData: Resource.none(),
+                                  onData: (data) {
+                                    if (data.status == Status.SUCCESS) {
+                                      if (data.data ?? false) {
+                                        BiometricLoginDialog.show(context,
+                                            mayBeLater: () {
+                                              Navigator.pop(context);
+                                            }, enableBioMetric: () {
+                                              model.authenticateBioMetric(
+                                                  title: S
+                                                      .of(context)
+                                                      .enableBiometricLoginTitle,
+                                                  localisedReason: Platform
+                                                      .isAndroid
+                                                      ? S
+                                                      .of(context)
+                                                      .enableBiometricLoginDescriptionAndroid
+                                                      : S
+                                                      .of(context)
+                                                      .enableBiometricLoginDescriptionIos);
+                                            });
+                                      }
+                                    }
+                                  },
+                                  dataBuilder: (context, data) {
+                                    return Container();
+                                  },
+                                ),
                           );
                         },
                       );
@@ -187,12 +202,16 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                           model.logout();
                         },
                         child: Text(
-                          S.of(context).logoutAndContinueLater,
+                          S
+                              .of(context)
+                              .logoutAndContinueLater,
                           style: TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w600,
                               letterSpacing: 1,
-                              color: Theme.of(context).accentColor),
+                              color: Theme
+                                  .of(context)
+                                  .accentColor),
                         ),
                       ),
                     ),

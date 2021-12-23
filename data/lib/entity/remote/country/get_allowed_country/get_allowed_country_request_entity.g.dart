@@ -16,7 +16,7 @@ GetAllowedCountryRequestEntity _$GetAllowedCountryRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$GetAllowedCountryRequestEntityToJson(
-        GetAllowedCountryRequestEntity instance) =>
+    GetAllowedCountryRequestEntity instance) =>
     <String, dynamic>{
       'channelId': instance.channelId,
       'content': instance.content,

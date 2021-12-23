@@ -30,7 +30,7 @@ class CreateAccountResponseEntity
   CreateAccountResponse transform() {
     return CreateAccountResponse(
         content:
-            CreateAccountContentEntity.fromJson(this.responseEntity!.content)
-                .transform());
+        CreateAccountContentEntity.fromJson(this.responseEntity!.content)
+            .transform());
   }
 }

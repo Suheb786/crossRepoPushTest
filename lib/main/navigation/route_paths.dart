@@ -32,4 +32,27 @@ class RoutePaths {
   static const String MyDocuments = '/myDocuments';
   static const String ManageContactsList = '/manageContactsList';
   static const String ManageContactsDetail = '/manageContactsDetail';
+  static const String PaymentHome = '/paymentHome';
+  static const String ActivityHome = '/activityHome';
+  static const String RequestMoneyFailure = "/requestMoneyFailure";
+  static const String SendMoneyFailure = "/sendMoneyFailure";
+  static const String RequestAmountFromContact = "/requestAmountFromContact";
+  static const String SendAmountToContact = "/sendAmountToContactPage";
+  static const String SendAmountToContactSuccess = "SendAmountToContactSuccess";
+  static const String SendMoney = "/sendMoneyPage";
+  static const String RequestMoney = "/requestMoney";
+  static const String RequestAmountFromContactSuccess =
+      "/requestAmountFromContactSuccessPage";
+  static const String RequestPaymentFromNewRecipient =
+      "/requestPaymentFromNewRecipient";
+  static const String PaymentToNewRecipient = "/paymentToNewRecipientPage";
+  static const String DownloadTransaction = '/downloadTransaction';
+  static const String CardTransaction = "/cardTransaction";
+  static const String AccountTransaction = "/accountTransaction";
+  static const String CreditCardDelivered = "/creditCardDelivered";
+  static const String DebitCardDelivered = "/debitCardDelivered";
+  static const String CreditCardVerificationSuccess =
+      "/creditCardVerificationSuccess";
+  static const String DebitCardVerificationSuccess =
+      "/debitCardVerificationSuccess";
 }

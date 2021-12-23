@@ -7,7 +7,8 @@ part "get_combo_values_content_data_entity.g.dart";
 
 @JsonSerializable()
 class GetComboValuesContentDataEntity extends BaseLayerDataTransformer<
-    GetComboValuesContentDataEntity, GetComboValuesContentData> {
+    GetComboValuesContentDataEntity,
+    GetComboValuesContentData> {
   @JsonKey(name: "EmploymentStatus")
   final List<GetComboValuesDataEntity>? employmentStatus;
   @JsonKey(name: "NatureOfSpecialNeed")
@@ -28,9 +29,9 @@ class GetComboValuesContentDataEntity extends BaseLayerDataTransformer<
   GetComboValuesContentData transform() {
     return GetComboValuesContentData(
         employmentStatus:
-            this.employmentStatus!.map((e) => e.transform()).toList(),
+        this.employmentStatus!.map((e) => e.transform()).toList(),
         natureOfSpecialNeed:
-            this.natureOfSpecialNeed!.map((e) => e.transform()).toList(),
+        this.natureOfSpecialNeed!.map((e) => e.transform()).toList(),
         businessType: this.businessType!.map((e) => e.transform()).toList());
   }
 }

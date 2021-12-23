@@ -32,7 +32,7 @@ class ConfirmPinPageViewModel extends BasePageViewModel {
   ConfirmPinPageViewModel(this._confirmPinUseCase) {
     _confirmPinRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _confirmPinUseCase.execute(params: value))
+          createCall: () => _confirmPinUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();

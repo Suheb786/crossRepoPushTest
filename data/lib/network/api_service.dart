@@ -153,9 +153,7 @@ abstract class ApiService {
 
   @POST("/AddFeilds/SaveCountryResidenceInfo")
   Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
-      saveResidenceInformation(
-          @Body()
-              SaveResidenceInformationRequest saveResidenceInformationRequest);
+  saveResidenceInformation(@Body() SaveResidenceInformationRequest saveResidenceInformationRequest);
 
   @POST("/kyc/getstatus")
   Future<HttpResponse<CheckKycStatusResponseEntity>> checkKYCStatus(
@@ -175,8 +173,7 @@ abstract class ApiService {
 
   @POST("/FatcaCrs/set")
   Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
-      @Body()
-          SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
+      @Body() SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
 
   @POST("/BankSmart/GetAccountV1")
   Future<HttpResponse<GetAccountResponseEntity>> getAccount(
@@ -197,16 +194,13 @@ abstract class ApiService {
   ///check video call status
   @POST("/Account/CheckVideoCallStatus")
   Future<HttpResponse<CheckVideoCallStatusResponseEntity>> checkVideoCallStatus(
-      @Body()
-          CheckVideoCallStatusRequestEntity checkVideoCallStatusRequestEntity);
+      @Body() CheckVideoCallStatusRequestEntity checkVideoCallStatusRequestEntity);
 
   ///check other nationality status
   @POST("/Account/CheckOtherNationalityStatus")
   Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
-      checkOtherNationalityStatus(
-          @Body()
-              CheckOtherNationalityStatusRequestEntity
-                  checkOtherNationalityStatusRequestEntity);
+  checkOtherNationalityStatus(@Body() CheckOtherNationalityStatusRequestEntity
+  checkOtherNationalityStatusRequestEntity);
 
   ///upload document
   @POST("/FileUpload/UploadDocuments")
@@ -221,10 +215,8 @@ abstract class ApiService {
   ///get confirm application data
   @POST("/AdditionalDoc/ConfirmApplicationDataGet")
   Future<HttpResponse<GetConfirmApplicationDataResponseEntity>>
-      confirmApplicationDataGet(
-          @Body()
-              ConfirmApplicationDataGetRequestEntity
-                  confirmApplicationDataGetRequestEntity);
+  confirmApplicationDataGet(@Body() ConfirmApplicationDataGetRequestEntity
+  confirmApplicationDataGetRequestEntity);
 
   ///doc status
   @POST("/account/DocsStatus")
@@ -244,10 +236,8 @@ abstract class ApiService {
   ///confirm application data set
   @POST("/AdditionalDoc/ConfirmApplicationDataSave")
   Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
-      confirmApplicationDataSet(
-          @Body()
-              ConfirmApplicationDataSetRequestEntity
-                  confirmApplicationDataSetRequestEntity);
+  confirmApplicationDataSet(@Body() ConfirmApplicationDataSetRequestEntity
+  confirmApplicationDataSetRequestEntity);
 
   ///enable fingerprint
   @POST("/auth/enableFingerPrint")
@@ -272,9 +262,8 @@ abstract class ApiService {
   ///get allowed country code list
   @POST("${NetworkProperties.BASE_ROUTER_URL}/Country/GetAllowedCode")
   Future<HttpResponse<GetAllowedCountryResponseEntity>>
-      getAllowedCodeCountryList(
-          @Body()
-              GetAllowedCountryRequestEntity getAllowedCountryRequestEntity);
+  getAllowedCodeCountryList(
+      @Body() GetAllowedCountryRequestEntity getAllowedCountryRequestEntity);
 
   ///generate key pair
   @POST("/auth/GenerateKeyPair")
@@ -294,10 +283,9 @@ abstract class ApiService {
   ///schedule video call time
   @POST("/account/SaveCustomerScheduledTime")
   Future<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>
-      saveCustomerVideoCallScheduleTime(
-          @Body()
-              SaveCustomerScheduleTimeRequestEntity
-                  saveCustomerScheduleTimeRequestEntity);
+  saveCustomerVideoCallScheduleTime(
+      @Body() SaveCustomerScheduleTimeRequestEntity
+      saveCustomerScheduleTimeRequestEntity);
 
   ///remove debit lock
   @POST("/BankSmart/RemoveDebitLock")

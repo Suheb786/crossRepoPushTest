@@ -9,13 +9,12 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
   final String? buttonText;
   final Function()? onTap;
 
-  const AddMoneySelectorOptionsWidget(
-      {Key? key,
-      this.onTap,
-      this.title: "",
-      this.image,
-      this.buttonText: "",
-      this.desc: ""})
+  const AddMoneySelectorOptionsWidget({Key? key,
+    this.onTap,
+    this.title: "",
+    this.image,
+    this.buttonText: "",
+    this.desc: ""})
       : super(key: key);
 
   @override
@@ -38,7 +37,9 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).accentColor),
+                    color: Theme
+                        .of(context)
+                        .accentColor),
               ),
               SizedBox(
                 height: 10,
@@ -51,7 +52,9 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: Theme.of(context).accentColor),
+                    color: Theme
+                        .of(context)
+                        .accentColor),
               ),
               SizedBox(
                 height: 16,
@@ -63,7 +66,11 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                 child: Container(
                   height: 48,
                   decoration: BoxDecoration(
-                      color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                      color: Theme
+                          .of(context)
+                          .accentTextTheme
+                          .bodyText1!
+                          .color,
                       borderRadius: BorderRadius.circular(100)),
                   child: Center(
                     child: Text(
@@ -72,7 +79,9 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
-                          color: Theme.of(context).accentColor),
+                          color: Theme
+                              .of(context)
+                              .accentColor),
                     ),
                   ),
                 ),

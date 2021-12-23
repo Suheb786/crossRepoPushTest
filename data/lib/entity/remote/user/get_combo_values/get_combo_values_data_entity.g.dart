@@ -21,7 +21,7 @@ GetComboValuesDataEntity _$GetComboValuesDataEntityFromJson(
 }
 
 Map<String, dynamic> _$GetComboValuesDataEntityToJson(
-        GetComboValuesDataEntity instance) =>
+    GetComboValuesDataEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': instance.type,

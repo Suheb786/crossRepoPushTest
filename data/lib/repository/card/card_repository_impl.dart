@@ -14,13 +14,13 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, CardIssuanceDetails>>
-      getCardIssuanceDetails() async {
+  getCardIssuanceDetails() async {
     final result = await safeApiCall(
       _remoteDs.getCardIssuanceDetails(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 
@@ -30,8 +30,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.setCardPin(pin),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -41,8 +41,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.confirmCardDelivery(),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+          (l) => Left(l),
+          (r) => Right(r.isSuccessful()),
     );
   }
 

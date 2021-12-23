@@ -25,7 +25,7 @@ AccountPurposeEntity _$AccountPurposeEntityFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$AccountPurposeEntityToJson(
-        AccountPurposeEntity instance) =>
+    AccountPurposeEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,

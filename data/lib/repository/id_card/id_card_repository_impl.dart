@@ -17,8 +17,8 @@ class IdCardRepositoryImpl extends IdCardRepository {
       _idCardRemoteDS.getAhwalDetails(idNo: idNo),
     );
     return result!.fold(
-      (l) => Left(l),
-      (r) => Right(r.data.transform()),
+          (l) => Left(l),
+          (r) => Right(r.data.transform()),
     );
   }
 }

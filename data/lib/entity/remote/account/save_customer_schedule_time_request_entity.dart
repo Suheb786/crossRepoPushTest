@@ -15,7 +15,7 @@ class SaveCustomerScheduleTimeRequestEntity {
       {this.scheduleDate, required this.baseData, this.scheduleTime});
 
   factory SaveCustomerScheduleTimeRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$SaveCustomerScheduleTimeRequestEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

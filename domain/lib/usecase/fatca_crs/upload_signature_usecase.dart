@@ -9,7 +9,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class UploadSignatureUseCase extends BaseUseCase<NetworkError,
-    UploadSignatureUseCaseParams, UploadSignatureResponse> {
+    UploadSignatureUseCaseParams,
+    UploadSignatureResponse> {
   final FatcaCrsRepository _repository;
 
   UploadSignatureUseCase(this._repository);
@@ -26,10 +27,9 @@ class UploadSignatureUseCaseParams extends Params {
   final bool declarationSelected;
   final bool verifyInfoDeclarationSelected;
 
-  UploadSignatureUseCaseParams(
-      {required this.signature,
-      required this.declarationSelected,
-      required this.verifyInfoDeclarationSelected});
+  UploadSignatureUseCaseParams({required this.signature,
+    required this.declarationSelected,
+    required this.verifyInfoDeclarationSelected});
 
   @override
   Either<AppError, bool> verify() {

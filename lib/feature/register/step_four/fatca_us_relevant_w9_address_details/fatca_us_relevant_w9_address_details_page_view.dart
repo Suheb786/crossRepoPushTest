@@ -45,7 +45,8 @@ class FatcaUSRelevantW9AddressDetailsPageView
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope.containerOf(context)
+                        ProviderScope
+                            .containerOf(context)
                             .read(registerStepFourViewModelProvider)
                             .registrationStepFourPageController
                             .next();
@@ -61,7 +62,8 @@ class FatcaUSRelevantW9AddressDetailsPageView
                           model.validateFatcaUSRelevantW9AddressDetails();
                         } else {
                           Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope.containerOf(context)
+                            ProviderScope
+                                .containerOf(context)
                                 .read(registerStepFourViewModelProvider)
                                 .registrationStepFourPageController
                                 .previous();
@@ -179,8 +181,12 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                   ),
                                   AppTextField(
                                     labelText:
-                                        S.of(context).accountNumberOptional,
-                                    hintText: S.of(context).pleaseEnter,
+                                    S
+                                        .of(context)
+                                        .accountNumberOptional,
+                                    hintText: S
+                                        .of(context)
+                                        .pleaseEnter,
                                     controller: model.accountNumberController,
                                     // labelIcon: () {
                                     //   return InkWell(
@@ -224,13 +230,14 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                         },
                                         child: Padding(
                                           padding:
-                                              const EdgeInsets.only(left: 5.0),
+                                          const EdgeInsets.only(left: 5.0),
                                           child: Container(
                                               height: 14,
                                               width: 14,
                                               child: AppSvg.asset(
                                                   AssetUtils.info,
-                                                  color: Theme.of(context)
+                                                  color: Theme
+                                                      .of(context)
                                                       .inputDecorationTheme
                                                       .focusedBorder!
                                                       .borderSide
@@ -441,10 +448,10 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                           dataBuilder: (context, isValid) {
                                             return (isValid!)
                                                 ? AnimatedButton(
-                                                    buttonText: S
-                                                        .of(context)
-                                                        .swipeToProceed,
-                                                    buttonHeight: 50,
+                                              buttonText: S
+                                                  .of(context)
+                                                  .swipeToProceed,
+                                              buttonHeight: 50,
                                                   )
                                                 : Container();
                                           }),

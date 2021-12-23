@@ -44,9 +44,13 @@ class RegisterStepFourPageView
           return Column(
             children: [
               Text(
-                S.of(context).otherDetails,
+                S
+                    .of(context)
+                    .otherDetails,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
+                    color: Theme
+                        .of(context)
+                        .accentColor,
                     fontSize: 10,
                     fontWeight: FontWeight.w600),
               ),
@@ -63,14 +67,30 @@ class RegisterStepFourPageView
                   child: Text(
                     StepTextHelper.registrationFourStepTextHelper(
                       currentStep ?? 0,
-                      S.of(context).fewMoreQuestions,
-                      S.of(context).weNeedToMatchNamesONTaxReturn,
-                      S.of(context).pleaseProvideInformationIfAppliesToYou,
-                      S.of(context).pleaseProvideInformationIfAppliesToYou,
-                      S.of(context).weNeedToMatchNamesONTaxReturn,
-                      S.of(context).pleaseProvideInformationIfAppliesToYou,
-                      S.of(context).pleaseProvideInformationIfAppliesToYou,
-                      S.of(context).consentForSignatureUpload,
+                      S
+                          .of(context)
+                          .fewMoreQuestions,
+                      S
+                          .of(context)
+                          .weNeedToMatchNamesONTaxReturn,
+                      S
+                          .of(context)
+                          .pleaseProvideInformationIfAppliesToYou,
+                      S
+                          .of(context)
+                          .pleaseProvideInformationIfAppliesToYou,
+                      S
+                          .of(context)
+                          .weNeedToMatchNamesONTaxReturn,
+                      S
+                          .of(context)
+                          .pleaseProvideInformationIfAppliesToYou,
+                      S
+                          .of(context)
+                          .pleaseProvideInformationIfAppliesToYou,
+                      S
+                          .of(context)
+                          .consentForSignatureUpload,
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(

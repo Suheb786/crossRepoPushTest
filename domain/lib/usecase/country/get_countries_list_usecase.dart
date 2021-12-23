@@ -7,7 +7,8 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class GetCountriesListUseCase extends BaseUseCase<NetworkError,
-    GetCountriesListUseCaseParams, CountryListContentData> {
+    GetCountriesListUseCaseParams,
+    CountryListContentData> {
   final CountryRepository _countryRepository;
 
   GetCountriesListUseCase(this._countryRepository);

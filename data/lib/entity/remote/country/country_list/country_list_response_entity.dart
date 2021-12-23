@@ -30,6 +30,6 @@ class CountryListResponseEntity
   CountryListContentData transform() {
     return CountryListContentData(
         content:
-            CountryContentEntity.fromJson(this.response!.content).transform());
+        CountryContentEntity.fromJson(this.response!.content).transform());
   }
 }

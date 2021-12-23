@@ -7,7 +7,7 @@ part of 'purpose_of_account_opening_response_entity.dart';
 // **************************************************************************
 
 PurposeOfAccountOpeningResponseEntity
-    _$PurposeOfAccountOpeningResponseEntityFromJson(Map<String, dynamic> json) {
+_$PurposeOfAccountOpeningResponseEntityFromJson(Map<String, dynamic> json) {
   return PurposeOfAccountOpeningResponseEntity(
     response: json['response'] == null
         ? null
@@ -16,7 +16,7 @@ PurposeOfAccountOpeningResponseEntity
 }
 
 Map<String, dynamic> _$PurposeOfAccountOpeningResponseEntityToJson(
-        PurposeOfAccountOpeningResponseEntity instance) =>
+    PurposeOfAccountOpeningResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

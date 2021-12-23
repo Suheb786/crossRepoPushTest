@@ -14,7 +14,8 @@ class FatcaUSW8TaxPayersDetailsPage
 
 class FatcaUSW8TaxPayersDetailsPageState extends BaseStatefulPage<
     FatcaUSW8TaxPayersDetailsPageViewModel,
-    FatcaUSW8TaxPayersDetailsPage> with AutomaticKeepAliveClientMixin {
+    FatcaUSW8TaxPayersDetailsPage>
+    with AutomaticKeepAliveClientMixin {
   FatcaUSW8TaxPayersDetailsPageState() : super(subscribeVisibilityEvents: true);
 
   @override
@@ -24,12 +25,14 @@ class FatcaUSW8TaxPayersDetailsPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override
-  Widget buildView(
-      BuildContext context, FatcaUSW8TaxPayersDetailsPageViewModel model) {
+  Widget buildView(BuildContext context,
+      FatcaUSW8TaxPayersDetailsPageViewModel model) {
     return FatcaUSW8TaxPayersDetailsPageView(provideBase());
   }
 
