@@ -327,9 +327,10 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                 Navigator.push(
                                                                     context,
                                                                     MaterialPageRoute(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                CreditCardDeliveredPage()));
+                                                                        builder: (context) =>
+                                                                            CreditCardDeliveredPage(
+                                                                              creditCard: cardData!.data!.dashboardDataContent!.creditCard!,
+                                                                            )));
                                                               } else {
                                                                 Navigator.push(
                                                                     context,

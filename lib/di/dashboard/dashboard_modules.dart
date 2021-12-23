@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
@@ -72,8 +73,8 @@ final myDebitCardViewModelProvider =
 
 final cardDeliveredViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<DebitCardDeliveredViewModel, DebitCard>(
-  (ref, args) =>
-      DebitCardDeliveredViewModel(ref.read(cardDeliveredUseCaseProvider), args),
+  (ref, args) => DebitCardDeliveredViewModel(
+      ref.read(debitCardConfirmDeliveryCaseProvider), args),
 );
 
 final debitCardVerificationSuccessViewModelProvider =
@@ -84,13 +85,14 @@ final debitCardVerificationSuccessViewModelProvider =
 
 final cardTransactionViewModelProvider =
     ChangeNotifierProvider.autoDispose<CardTransactionViewModel>(
-  (ref) => CardTransactionViewModel(ref.read(cardTransactionUseCaseProvider)),
+  (ref) => CardTransactionViewModel(ref.read(cardTransactionUseCaseProvider),
+      ref.read(creditCardTransactionUseCaseProvider)),
 );
 
-final creditCardDeliveredViewModelProvider =
-    ChangeNotifierProvider.autoDispose<CreditCardDeliveredViewModel>(
-  (ref) => CreditCardDeliveredViewModel(
-      ref.read(creditCardDeliveredUseCaseProvider)),
+final creditCardDeliveredViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<CreditCardDeliveredViewModel, CreditCard>(
+  (ref, args) => CreditCardDeliveredViewModel(
+      ref.read(confirmCreditCardDeliveryUseCaseProvider), args),
 );
 
 final creditCardVerificationSuccessViewModelProvider =

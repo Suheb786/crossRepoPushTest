@@ -2,6 +2,7 @@ import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
+import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
@@ -81,10 +82,11 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getDebitCardStatement() async {
+  Future<HttpResponse<CardStatementResponseEntity>> getDebitCardStatement(
+      {int? noOfDays}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.getDebitCardStatement(
-        DebitCardStatementRequest(baseData: baseData.toJson()));
+    return _apiService.getDebitCardStatement(DebitCardStatementRequest(
+        baseData: baseData.toJson(), days: noOfDays, getToken: true));
   }
 
   @override
