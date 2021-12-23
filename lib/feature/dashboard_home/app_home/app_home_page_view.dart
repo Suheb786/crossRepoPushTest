@@ -14,7 +14,6 @@ import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_page
 import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/dashboard_swiper.dart';
@@ -86,24 +85,32 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                         //   }
                         // }
                         if (details.primaryVelocity!.isNegative) {
-                          if (currentStep == 1) {
-                            if (showTimeLine!) {
-                              print("dragged here");
-                              model.updateShowTimeLineStream(!showTimeLine);
-                              return;
-                            } else {
+                          if (details.primaryVelocity!.isNegative) {
+                            if (currentStep == 1) {
+                              if (showTimeLine!) {
+                                print("dragged here");
+                                model.updateShowTimeLineStream(!showTimeLine);
+                                return;
+                              } else {
+                                Navigator.push(
+                                    context,
+                                    CustomRoute.createRoute(
+                                        CardTransactionPage()));
+                              }
+                            } else if (currentStep == 0) {
                               Navigator.push(
                                   context,
                                   CustomRoute.createRoute(
-                                      CardTransactionPage()));
+                                      AccountTransactionPage()));
+                            } else if (currentStep == 2) {
+                              model.updateShowTimeLineStream(!showTimeLine!);
                             }
-                          } else if (currentStep == 0) {
-                            Navigator.push(
-                                context,
-                                CustomRoute.createRoute(
-                                    AccountTransactionPage()));
-                          } else if (currentStep == 2) {
-                            model.updateShowTimeLineStream(!showTimeLine!);
+                          } else {
+                            if (currentStep == 1 || currentStep == 2) {
+                              if (!showTimeLine!) {
+                                model.updateShowTimeLineStream(!showTimeLine);
+                              }
+                            }
                           }
                         } else {
                           if (currentStep == 1 || currentStep == 2) {

@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/cupertino.dart';
@@ -228,7 +229,8 @@ class AppRouter {
 
       case RoutePaths.CreditCardDelivered:
         return CupertinoPageRoute(
-            builder: (context) => CreditCardDeliveredPage(),
+            builder: (context) => CreditCardDeliveredPage(
+                creditCard: settings.arguments as CreditCard),
             settings: RouteSettings(name: RoutePaths.CreditCardDelivered));
 
       case RoutePaths.DebitCardDelivered:
