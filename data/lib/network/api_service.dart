@@ -29,6 +29,7 @@ import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.d
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
+import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
@@ -401,7 +402,7 @@ abstract class ApiService {
       @Body() CreditCardStatementRequest cardStatementRequest);
 
   @POST("/CardTracking/GetDebitCardStatement")
-  Future<HttpResponse<ResponseEntity>> getDebitCardStatement(
+  Future<HttpResponse<CardStatementResponseEntity>> getDebitCardStatement(
       @Body() DebitCardStatementRequest cardStatementRequest);
 
   @POST("/CardTracking/GetCreditYears")
