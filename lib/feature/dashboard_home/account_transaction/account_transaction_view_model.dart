@@ -49,33 +49,6 @@ class AccountTransactionViewModel extends BasePageViewModel {
   Stream<Resource<GetDebitYearsResponse>> get getDebitYearsStream =>
       _getDebitYearsResponse.stream;
 
-  List<TransactionItem> transactionList = [
-    TransactionItem(
-        createdAt: "12 September 2021",
-        to: "Host International Inc Dubai\nAED 533.03",
-        amount: "102.92",
-        type: "debit",
-        time: "8:32 pm"),
-    TransactionItem(
-        createdAt: "13 September 2021",
-        to: "Host International Inc Dubai\nAED 533.03",
-        amount: "91.92",
-        type: "debit",
-        time: "8:32 pm"),
-    TransactionItem(
-        createdAt: "12 September 2021",
-        to: "Ahmed*Abdali Mall\nAED 533.03",
-        amount: "102.92",
-        type: "debit",
-        time: "8:32 pm"),
-    TransactionItem(
-        createdAt: "13 September 2021",
-        to: "Razer*Abdali Mall\nAED 533.03",
-        amount: "102.92",
-        type: "debit",
-        time: "8:32 pm"),
-  ];
-
   List<String> _searchTextList = [];
 
   void updateSearchList(int index) {
@@ -107,7 +80,6 @@ class AccountTransactionViewModel extends BasePageViewModel {
 
   AccountTransactionViewModel(
       this._useCase, this._cardTransactionsUseCase, this._debitYearsUseCase) {
-    _transactionListSubject.safeAdd(transactionList);
 
     _getTransactionsRequest.listen((value) {
       RequestManager(value,
