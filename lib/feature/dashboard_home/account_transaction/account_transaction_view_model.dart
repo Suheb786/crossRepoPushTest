@@ -1,5 +1,7 @@
+import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
+import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
 import 'package:domain/usecase/dashboard/account_transaction_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -12,6 +14,7 @@ import 'package:rxdart/rxdart.dart';
 
 class AccountTransactionViewModel extends BasePageViewModel {
   final GetDebitCardTransactionsUseCase _cardTransactionsUseCase;
+  final GetDebitYearsUseCase _debitYearsUseCase;
   AccountTransactionUseCase _useCase;
   TextEditingController searchController = TextEditingController();
 
@@ -26,6 +29,18 @@ class AccountTransactionViewModel extends BasePageViewModel {
   ///get transaction response stream
   Stream<Resource<GetTransactionsResponse>> get getTransactionsStream =>
       _getTransactionsResponse.stream;
+
+  ///get debit years
+  PublishSubject<GetDebitYearsUseCaseParams> _getDebitYearsRequest =
+      PublishSubject();
+
+  ///get debit response
+  PublishSubject<Resource<GetDebitYearsResponse>> _getDebitYearsResponse =
+      PublishSubject();
+
+  ///get debit response stream
+  Stream<Resource<GetDebitYearsResponse>> get getDebitYearsStream =>
+      _getDebitYearsResponse.stream;
 
   List<TransactionItem> transactionList = [
     TransactionItem(
@@ -106,7 +121,8 @@ class AccountTransactionViewModel extends BasePageViewModel {
 
   List<TransactionItem> searchTransactionList = [];
 
-  AccountTransactionViewModel(this._useCase, this._cardTransactionsUseCase) {
+  AccountTransactionViewModel(
+      this._useCase, this._cardTransactionsUseCase, this._debitYearsUseCase) {
     _transactionListSubject.safeAdd(transactionList);
 
     _getTransactionsRequest.listen((value) {
@@ -116,6 +132,22 @@ class AccountTransactionViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getTransactionsResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          _getDebitYearsRequest.safeAdd(GetDebitYearsUseCaseParams());
+        }
+      });
+    });
+
+    _getDebitYearsRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _debitYearsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getDebitYearsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);

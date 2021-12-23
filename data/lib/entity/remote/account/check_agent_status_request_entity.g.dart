@@ -15,7 +15,7 @@ CheckAgentStatusRequestEntity _$CheckAgentStatusRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$CheckAgentStatusRequestEntityToJson(
-    CheckAgentStatusRequestEntity instance) =>
+        CheckAgentStatusRequestEntity instance) =>
     <String, dynamic>{
       'GetToken': instance.getToken,
       'baseClass': instance.baseData,

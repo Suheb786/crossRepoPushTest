@@ -18,7 +18,7 @@ SaveUploadDocumentRequestEntity _$SaveUploadDocumentRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$SaveUploadDocumentRequestEntityToJson(
-    SaveUploadDocumentRequestEntity instance) =>
+        SaveUploadDocumentRequestEntity instance) =>
     <String, dynamic>{
       'ProofOfIncomeId': instance.proofOfIncomeId,
       'ProofOfAddressId': instance.proofOfAddressId,

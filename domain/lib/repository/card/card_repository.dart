@@ -2,6 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:domain/model/card/card_statement_response.dart';
+import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 
 abstract class CardRepository {
@@ -27,7 +28,7 @@ abstract class CardRepository {
   Future<Either<NetworkError, bool>> requestCreditCard(
       {required double cardLimit});
 
-  Future<Either<NetworkError, bool>> getCreditYears();
+  Future<Either<NetworkError, GetDebitYearsResponse>> getCreditYears();
 
-  Future<Either<NetworkError, bool>> getDebitYears();
+  Future<Either<NetworkError, GetDebitYearsResponse>> getDebitYears();
 }

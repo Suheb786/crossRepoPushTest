@@ -4,6 +4,7 @@ import 'package:data/source/card/card_datasource.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:domain/model/card/card_statement_response.dart';
+import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:domain/repository/card/card_repository.dart';
 
@@ -14,13 +15,13 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, CardIssuanceDetails>>
-  getCardIssuanceDetails() async {
+      getCardIssuanceDetails() async {
     final result = await safeApiCall(
       _remoteDs.getCardIssuanceDetails(),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -30,8 +31,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.setCardPin(pin),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.isSuccessful()),
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -41,8 +42,8 @@ class CardRepositoryImpl extends CardRepository {
       _remoteDs.confirmCardDelivery(),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.isSuccessful()),
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -105,24 +106,24 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> getCreditYears() async {
+  Future<Either<NetworkError, GetDebitYearsResponse>> getCreditYears() async {
     final result = await safeApiCall(
       _remoteDs.getCreditYears(),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, bool>> getDebitYears() async {
+  Future<Either<NetworkError, GetDebitYearsResponse>> getDebitYears() async {
     final result = await safeApiCall(
       _remoteDs.getDebitYears(),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 

@@ -1,12 +1,10 @@
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:grouped_list/grouped_list.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/model/transaction_item.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dashboard/transactions_widget.dart';
@@ -60,7 +58,7 @@ class CardTransactionPageView
                         alignment: Alignment.centerRight,
                         child: InkWell(
                             onTap: () {
-                              DownloadTransactionDialog.show(context,
+                              DownloadTransactionDialog.show(context, years: [],
                                   onSelected: (value) {
                                 Navigator.pop(context);
                                 Navigator.pushNamed(
@@ -98,7 +96,7 @@ class CardTransactionPageView
                           ),
                           Padding(
                             padding:
-                            EdgeInsets.only(top: 24.0, left: 24, right: 38),
+                                EdgeInsets.only(top: 24.0, left: 24, right: 38),
                             child: Row(
                               children: [
                                 Expanded(

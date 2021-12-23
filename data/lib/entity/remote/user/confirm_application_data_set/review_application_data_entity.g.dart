@@ -18,7 +18,7 @@ ReviewApplicationDataEntity _$ReviewApplicationDataEntityFromJson(
 }
 
 Map<String, dynamic> _$ReviewApplicationDataEntityToJson(
-    ReviewApplicationDataEntity instance) =>
+        ReviewApplicationDataEntity instance) =>
     <String, dynamic>{
       'countryResidence': instance.countryResidence,
       'profileStatus': instance.profileStatus,

@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6216,6 +6215,16 @@ class S {
     return Intl.message(
       'Purpose detail should not be empty',
       name: 'emptyPurposeDetail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Download Statement`
+  String get downloadStatement {
+    return Intl.message(
+      'Download Statement',
+      name: 'downloadStatement',
       desc: '',
       args: [],
     );

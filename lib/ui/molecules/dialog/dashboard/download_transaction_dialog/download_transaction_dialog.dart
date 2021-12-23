@@ -6,10 +6,12 @@ class DownloadTransactionDialog {
   DownloadTransactionDialog._();
 
   static show(BuildContext mContext,
-      {Function? onDismissed, Function(String)? onSelected}) {
+      {Function? onDismissed,
+      required List<String> years,
+      Function(String)? onSelected}) {
     AppDialog.show(mContext,
         isDismissible: false,
         builder: (context) => DownloadTransactionDialogView(
-            onDismissed: onDismissed, onSelected: onSelected));
+            onDismissed: onDismissed, onSelected: onSelected, years: years));
   }
 }

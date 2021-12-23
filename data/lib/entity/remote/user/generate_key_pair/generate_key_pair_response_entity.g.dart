@@ -16,7 +16,7 @@ GenerateKeyPairResponseEntity _$GenerateKeyPairResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$GenerateKeyPairResponseEntityToJson(
-    GenerateKeyPairResponseEntity instance) =>
+        GenerateKeyPairResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

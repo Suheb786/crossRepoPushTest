@@ -22,7 +22,7 @@ LogoutRequestEntity _$LogoutRequestEntityFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$LogoutRequestEntityToJson(
-    LogoutRequestEntity instance) =>
+        LogoutRequestEntity instance) =>
     <String, dynamic>{
       'IP': instance.iP,
       'DeviceID': instance.deviceID,

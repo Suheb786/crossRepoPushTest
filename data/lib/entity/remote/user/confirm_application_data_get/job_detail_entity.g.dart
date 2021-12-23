@@ -14,7 +14,7 @@ JobDetailEntity _$JobDetailEntityFromJson(Map<String, dynamic> json) {
     jobDetailContent: json['jobDetail1'] == null
         ? null
         : JobDetailContentEntity.fromJson(
-        json['jobDetail1'] as Map<String, dynamic>),
+            json['jobDetail1'] as Map<String, dynamic>),
   );
 }
 
