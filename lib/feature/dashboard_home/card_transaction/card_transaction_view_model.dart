@@ -38,10 +38,18 @@ class CardTransactionViewModel extends BasePageViewModel {
   List<String> _searchTextList = [];
 
   void updateSearchList(int index) {
-    _searchTextList.clear();
-    _searchTextSubject.add(_searchTextList);
-    searchController.clear();
-    _getTransactionsResponse.safeAdd(transactionsResponse);
+    _searchTextList.removeAt(index);
+    if (_searchTextList.isEmpty) {
+      _searchTextList.clear();
+      _searchTextSubject.add(_searchTextList);
+      searchController.clear();
+      _getTransactionsResponse.safeAdd(transactionsResponse);
+    } else {
+      _searchTextSubject.add(_searchTextList);
+      _searchTextList.forEach((element) {
+        onSearchTextChanged(element, true);
+      });
+    }
   }
 
   BehaviorSubject<List<TransactionItem>> _transactionListSubject =
@@ -54,7 +62,7 @@ class CardTransactionViewModel extends BasePageViewModel {
 
   Stream<List<String>> get searchTextStream => _searchTextSubject.stream;
 
-  List<GetTransactionsResponse> searchTransactionList = [];
+  List<TransactionContent> searchTransactionList = [];
 
   CardTransactionViewModel(this._useCase, this._cardTransactionsUseCase) {
     // _transactionListSubject.safeAdd(transactionList);
@@ -65,7 +73,6 @@ class CardTransactionViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        transactionList.add(event.data!);
         _getTransactionsResponse.safeAdd(event);
         transactionsResponse = event;
         if (event.status == Status.ERROR) {
@@ -78,51 +85,105 @@ class CardTransactionViewModel extends BasePageViewModel {
     getTransactions();
   }
 
-  onSearchTextChanged(String text) async {
+  onSearchTextChanged(String text, [bool? isUpdated = false]) async {
     if (text.isNotEmpty) {
+      print("here");
       List<TransactionContent> tempList = [];
       GetTransactionsResponse getTransactionsResponse;
-      transactionsResponse!.data!.transactionResponse!.forEach((element) {
-        int i;
-        List<Transactions> searchList = [];
-        TransactionContent searchContent;
-        GetTransactionsResponse getTransactionsResponse;
-        for (i = 0; i < element.transactions!.length; i++) {
-          if ((element.transactions![i].amount.toString().toLowerCase() ==
-                  text.toLowerCase()) ||
-              (element.transactions![i].description.toString().toLowerCase() ==
-                  text.toLowerCase())) {
-            searchList.add(element.transactions![i]);
-            if (_searchTextList.isEmpty) {
-              _searchTextList.add(text);
-              _searchTextSubject.safeAdd(_searchTextList);
-            } else {
-              int flag = 0;
-              for (int i = 0; i < _searchTextList.length; i++) {
-                if (_searchTextList[i].toLowerCase() == text.toLowerCase()) {
-                  flag = 1;
-                  break;
-                }
-              }
-              if (flag == 0) {
+      if (searchTransactionList.isEmpty || isUpdated!) {
+        transactionsResponse!.data!.transactionResponse!.forEach((element) {
+          int i;
+          List<Transactions> searchList = [];
+          TransactionContent searchContent;
+          GetTransactionsResponse getTransactionsResponse;
+          for (i = 0; i < element.transactions!.length; i++) {
+            print("description: ${element.transactions![i].description}");
+            if ((element.transactions![i].amount
+                    .toString()
+                    .toLowerCase()
+                    .contains(text.toLowerCase())) ||
+                (element.transactions![i].description
+                    .toString()
+                    .toLowerCase()
+                    .contains(text.toLowerCase()))) {
+              searchList.add(element.transactions![i]);
+              print("element found");
+              if (_searchTextList.isEmpty) {
                 _searchTextList.add(text);
                 _searchTextSubject.safeAdd(_searchTextList);
+              } else {
+                int flag = 0;
+                for (int i = 0; i < _searchTextList.length; i++) {
+                  if (_searchTextList[i].toLowerCase() == text.toLowerCase()) {
+                    flag = 1;
+                    break;
+                  }
+                }
+                if (flag == 0) {
+                  _searchTextList.add(text);
+                  _searchTextSubject.safeAdd(_searchTextList);
+                }
               }
             }
           }
-        }
-        if (searchList.isNotEmpty) {
-          searchContent = TransactionContent(
-              label: element.label!, transactions: searchList);
-          tempList.add(searchContent);
-        }
-      });
+          if (searchList.isNotEmpty) {
+            searchContent = TransactionContent(
+                label: element.label!, transactions: searchList);
+            tempList.add(searchContent);
+          }
+        });
+      } else {
+        print("here");
+        searchTransactionList.forEach((element) {
+          int i;
+          print("search transaction : $searchTransactionList}");
+          List<Transactions> searchList = [];
+          TransactionContent searchContent;
+          GetTransactionsResponse getTransactionsResponse;
+          for (i = 0; i < element.transactions!.length; i++) {
+            if ((element.transactions![i].amount
+                    .toString()
+                    .toLowerCase()
+                    .contains(text.toLowerCase())) ||
+                (element.transactions![i].description
+                    .toString()
+                    .toLowerCase()
+                    .contains(text.toLowerCase()))) {
+              print("got it");
+              searchList.add(element.transactions![i]);
+              if (_searchTextList.isEmpty) {
+                _searchTextList.add(text);
+                _searchTextSubject.safeAdd(_searchTextList);
+              } else {
+                int flag = 0;
+                for (int i = 0; i < _searchTextList.length; i++) {
+                  if (_searchTextList[i].toLowerCase() == text.toLowerCase()) {
+                    flag = 1;
+                    break;
+                  }
+                }
+                if (flag == 0) {
+                  _searchTextList.add(text);
+                  _searchTextSubject.safeAdd(_searchTextList);
+                }
+              }
+            }
+          }
+          if (searchList.isNotEmpty) {
+            searchContent = TransactionContent(
+                label: element.label!, transactions: searchList);
+            tempList.add(searchContent);
+          }
+        });
+      }
       if (tempList.isNotEmpty) {
         getTransactionsResponse =
             GetTransactionsResponse(transactionResponse: tempList);
         searchTransactionResponse =
             Resource.success(data: getTransactionsResponse);
         _getTransactionsResponse.safeAdd(searchTransactionResponse);
+        searchTransactionList = [];
+        searchTransactionList.addAll(tempList);
       } else {
         _getTransactionsResponse
             .safeAdd(Resource.none<GetTransactionsResponse>());
