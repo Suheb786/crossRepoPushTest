@@ -1,3 +1,4 @@
+import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -84,9 +85,9 @@ class AppRouter {
       case RoutePaths.NotifySuccess:
         return CupertinoPageRoute(
             builder: (context) => NotifySuccessPage(
-                  notifySuccessArguments:
-                      settings.arguments as NotifySuccessArguments,
-                ),
+              notifySuccessArguments:
+              settings.arguments as NotifySuccessArguments,
+            ),
             settings: RouteSettings(name: RoutePaths.NotifySuccess));
 
       case RoutePaths.AccountRegistration:
@@ -154,7 +155,7 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => UsTaxPayerIdentificationNumberPage(),
             settings:
-                RouteSettings(name: RoutePaths.UsTaxPayerIdentificationNo));
+            RouteSettings(name: RoutePaths.UsTaxPayerIdentificationNo));
 
       case RoutePaths.ReferenceNumber:
         return CupertinoPageRoute(
@@ -232,20 +233,21 @@ class AppRouter {
 
       case RoutePaths.DebitCardDelivered:
         return CupertinoPageRoute(
-            builder: (context) => DebitCardDeliveredPage(),
+            builder: (context) => DebitCardDeliveredPage(
+                debitCard: settings.arguments as DebitCard),
             settings: RouteSettings(name: RoutePaths.DebitCardDelivered));
 
       case RoutePaths.CreditCardVerificationSuccess:
         return CupertinoPageRoute(
             builder: (context) => CreditCardVerificationSuccessPage(),
             settings:
-                RouteSettings(name: RoutePaths.CreditCardVerificationSuccess));
+            RouteSettings(name: RoutePaths.CreditCardVerificationSuccess));
 
       case RoutePaths.DebitCardVerificationSuccess:
         return CupertinoPageRoute(
             builder: (context) => DebitCardVerificationSuccessPage(),
             settings:
-                RouteSettings(name: RoutePaths.DebitCardVerificationSuccess));
+            RouteSettings(name: RoutePaths.DebitCardVerificationSuccess));
 
       case RoutePaths.PaymentHome:
         return CupertinoPageRoute(
@@ -277,7 +279,7 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => SendAmountToContactSuccessPage(),
             settings:
-                RouteSettings(name: RoutePaths.SendAmountToContactSuccess));
+            RouteSettings(name: RoutePaths.SendAmountToContactSuccess));
 
       case RoutePaths.SendMoney:
         return CustomRoute.createRoute(SendMoneyPage());
@@ -295,7 +297,7 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => RequestPaymentFromNewRecipientPage(),
             settings:
-                RouteSettings(name: RoutePaths.RequestPaymentFromNewRecipient));
+            RouteSettings(name: RoutePaths.RequestPaymentFromNewRecipient));
 
       case RoutePaths.PaymentToNewRecipient:
         return CupertinoPageRoute(
