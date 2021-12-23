@@ -16,7 +16,7 @@ CheckKycStatusResponseEntity _$CheckKycStatusResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$CheckKycStatusResponseEntityToJson(
-    CheckKycStatusResponseEntity instance) =>
+        CheckKycStatusResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

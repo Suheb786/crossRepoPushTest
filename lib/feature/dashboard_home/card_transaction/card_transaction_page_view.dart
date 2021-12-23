@@ -54,7 +54,7 @@ class CardTransactionPageView
                         alignment: Alignment.centerRight,
                         child: InkWell(
                             onTap: () {
-                              DownloadTransactionDialog.show(context,
+                              DownloadTransactionDialog.show(context, years: [],
                                   onSelected: (value) {
                                 Navigator.pop(context);
                                 Navigator.pushNamed(
@@ -92,7 +92,7 @@ class CardTransactionPageView
                           ),
                           Padding(
                             padding:
-                            EdgeInsets.only(top: 24.0, left: 24, right: 38),
+                                EdgeInsets.only(top: 24.0, left: 24, right: 38),
                             child: Row(
                               children: [
                                 Expanded(

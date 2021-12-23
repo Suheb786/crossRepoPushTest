@@ -104,69 +104,69 @@ class _$UserDao extends UserDao {
             database,
             'user',
             (UserDBEntity item) => <String, Object?>{
-              'email': item.email,
-              'id': item.id,
-              'firstName': item.firstName,
-              'lastName': item.lastName,
-              'mobile': item.mobile,
-              'isCurrent':
-              item.isCurrent == null ? null : (item.isCurrent! ? 1 : 0),
-              'token': item.token,
-              'refreshToken': item.refreshToken,
-              'expiresIn': item.expiresIn,
-              'tokenType': item.tokenType,
-              'privatePEM': item.privatePEM,
-              'publicPEM': item.publicPEM,
-              'isBiometricEnabled': item.isBiometricEnabled == null
-                  ? null
-                  : (item.isBiometricEnabled! ? 1 : 0)
-            },
+                  'email': item.email,
+                  'id': item.id,
+                  'firstName': item.firstName,
+                  'lastName': item.lastName,
+                  'mobile': item.mobile,
+                  'isCurrent':
+                      item.isCurrent == null ? null : (item.isCurrent! ? 1 : 0),
+                  'token': item.token,
+                  'refreshToken': item.refreshToken,
+                  'expiresIn': item.expiresIn,
+                  'tokenType': item.tokenType,
+                  'privatePEM': item.privatePEM,
+                  'publicPEM': item.publicPEM,
+                  'isBiometricEnabled': item.isBiometricEnabled == null
+                      ? null
+                      : (item.isBiometricEnabled! ? 1 : 0)
+                },
             changeListener),
         _userDBEntityUpdateAdapter = UpdateAdapter(
             database,
             'user',
             ['email'],
             (UserDBEntity item) => <String, Object?>{
-              'email': item.email,
-              'id': item.id,
-              'firstName': item.firstName,
-              'lastName': item.lastName,
-              'mobile': item.mobile,
-              'isCurrent':
-              item.isCurrent == null ? null : (item.isCurrent! ? 1 : 0),
-              'token': item.token,
-              'refreshToken': item.refreshToken,
-              'expiresIn': item.expiresIn,
-              'tokenType': item.tokenType,
-              'privatePEM': item.privatePEM,
-              'publicPEM': item.publicPEM,
-              'isBiometricEnabled': item.isBiometricEnabled == null
-                  ? null
-                  : (item.isBiometricEnabled! ? 1 : 0)
-            },
+                  'email': item.email,
+                  'id': item.id,
+                  'firstName': item.firstName,
+                  'lastName': item.lastName,
+                  'mobile': item.mobile,
+                  'isCurrent':
+                      item.isCurrent == null ? null : (item.isCurrent! ? 1 : 0),
+                  'token': item.token,
+                  'refreshToken': item.refreshToken,
+                  'expiresIn': item.expiresIn,
+                  'tokenType': item.tokenType,
+                  'privatePEM': item.privatePEM,
+                  'publicPEM': item.publicPEM,
+                  'isBiometricEnabled': item.isBiometricEnabled == null
+                      ? null
+                      : (item.isBiometricEnabled! ? 1 : 0)
+                },
             changeListener),
         _userDBEntityDeletionAdapter = DeletionAdapter(
             database,
             'user',
             ['email'],
             (UserDBEntity item) => <String, Object?>{
-              'email': item.email,
-              'id': item.id,
-              'firstName': item.firstName,
-              'lastName': item.lastName,
-              'mobile': item.mobile,
-              'isCurrent':
-              item.isCurrent == null ? null : (item.isCurrent! ? 1 : 0),
-              'token': item.token,
-              'refreshToken': item.refreshToken,
-              'expiresIn': item.expiresIn,
-              'tokenType': item.tokenType,
-              'privatePEM': item.privatePEM,
-              'publicPEM': item.publicPEM,
-              'isBiometricEnabled': item.isBiometricEnabled == null
-                  ? null
-                  : (item.isBiometricEnabled! ? 1 : 0)
-            },
+                  'email': item.email,
+                  'id': item.id,
+                  'firstName': item.firstName,
+                  'lastName': item.lastName,
+                  'mobile': item.mobile,
+                  'isCurrent':
+                      item.isCurrent == null ? null : (item.isCurrent! ? 1 : 0),
+                  'token': item.token,
+                  'refreshToken': item.refreshToken,
+                  'expiresIn': item.expiresIn,
+                  'tokenType': item.tokenType,
+                  'privatePEM': item.privatePEM,
+                  'publicPEM': item.publicPEM,
+                  'isBiometricEnabled': item.isBiometricEnabled == null
+                      ? null
+                      : (item.isBiometricEnabled! ? 1 : 0)
+                },
             changeListener);
 
   final sqflite.DatabaseExecutor database;

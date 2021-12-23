@@ -16,7 +16,7 @@ RegisterResponseEntity _$RegisterResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$RegisterResponseEntityToJson(
-    RegisterResponseEntity instance) =>
+        RegisterResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

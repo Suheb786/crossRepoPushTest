@@ -1,7 +1,9 @@
+import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:domain/model/dashboard/transactions/transactions.dart';
 import 'package:domain/model/dashboard/transactions/transactions_content.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
+import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
 import 'package:domain/usecase/dashboard/account_transaction_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -14,6 +16,7 @@ import 'package:rxdart/rxdart.dart';
 
 class AccountTransactionViewModel extends BasePageViewModel {
   final GetDebitCardTransactionsUseCase _cardTransactionsUseCase;
+  final GetDebitYearsUseCase _debitYearsUseCase;
   AccountTransactionUseCase _useCase;
   TextEditingController searchController = TextEditingController();
 
@@ -34,6 +37,44 @@ class AccountTransactionViewModel extends BasePageViewModel {
   Resource<GetTransactionsResponse>? searchTransactionResponse;
 
   List<GetTransactionsResponse> transactionList = [];
+  ///get debit years
+  PublishSubject<GetDebitYearsUseCaseParams> _getDebitYearsRequest =
+      PublishSubject();
+
+  ///get debit response
+  PublishSubject<Resource<GetDebitYearsResponse>> _getDebitYearsResponse =
+      PublishSubject();
+
+  ///get debit response stream
+  Stream<Resource<GetDebitYearsResponse>> get getDebitYearsStream =>
+      _getDebitYearsResponse.stream;
+
+  List<TransactionItem> transactionList = [
+    TransactionItem(
+        createdAt: "12 September 2021",
+        to: "Host International Inc Dubai\nAED 533.03",
+        amount: "102.92",
+        type: "debit",
+        time: "8:32 pm"),
+    TransactionItem(
+        createdAt: "13 September 2021",
+        to: "Host International Inc Dubai\nAED 533.03",
+        amount: "91.92",
+        type: "debit",
+        time: "8:32 pm"),
+    TransactionItem(
+        createdAt: "12 September 2021",
+        to: "Ahmed*Abdali Mall\nAED 533.03",
+        amount: "102.92",
+        type: "debit",
+        time: "8:32 pm"),
+    TransactionItem(
+        createdAt: "13 September 2021",
+        to: "Razer*Abdali Mall\nAED 533.03",
+        amount: "102.92",
+        type: "debit",
+        time: "8:32 pm"),
+  ];
 
   List<String> _searchTextList = [];
 
@@ -64,7 +105,10 @@ class AccountTransactionViewModel extends BasePageViewModel {
 
   List<TransactionContent> searchTransactionList = [];
 
-  AccountTransactionViewModel(this._useCase, this._cardTransactionsUseCase) {
+  AccountTransactionViewModel(
+      this._useCase, this._cardTransactionsUseCase, this._debitYearsUseCase) {
+    _transactionListSubject.safeAdd(transactionList);
+
     _getTransactionsRequest.listen((value) {
       RequestManager(value,
               createCall: () => _cardTransactionsUseCase.execute(params: value))
@@ -73,6 +117,22 @@ class AccountTransactionViewModel extends BasePageViewModel {
         updateLoader();
         _getTransactionsResponse.safeAdd(event);
         transactionsResponse = event;
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          _getDebitYearsRequest.safeAdd(GetDebitYearsUseCaseParams());
+        }
+      });
+    });
+
+    _getDebitYearsRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _debitYearsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getDebitYearsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);

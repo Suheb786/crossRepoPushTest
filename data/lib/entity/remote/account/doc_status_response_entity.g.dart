@@ -16,7 +16,7 @@ DocStatusResponseEntity _$DocStatusResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$DocStatusResponseEntityToJson(
-    DocStatusResponseEntity instance) =>
+        DocStatusResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

@@ -12,12 +12,12 @@ GetConfirmApplicationDataEntity _$GetConfirmApplicationDataEntityFromJson(
     data: json['data'] == null
         ? null
         : GetConfirmApplicationDataContentEntity.fromJson(
-        json['data'] as Map<String, dynamic>),
+            json['data'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$GetConfirmApplicationDataEntityToJson(
-    GetConfirmApplicationDataEntity instance) =>
+        GetConfirmApplicationDataEntity instance) =>
     <String, dynamic>{
       'data': instance.data,
     };

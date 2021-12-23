@@ -105,7 +105,8 @@ final accountTransactionViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountTransactionViewModel>(
   (ref) => AccountTransactionViewModel(
       ref.read(accountTransactionUseCaseProvider),
-      ref.read(debitCardTransactionUseCaseProvider)),
+      ref.read(debitCardTransactionUseCaseProvider),
+      ref.read(getDebitYearsUseCaseProvider)),
 );
 
 final homeViewModelProvider = ChangeNotifierProvider.autoDispose<HomeViewModel>(

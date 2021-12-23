@@ -635,5 +635,6 @@
   "ibanOutsideBlink": "We’ve found that the recipient’s IBAN  you entered is outside blink. You will be able to send money outside blink, soon! You can send money from blink, today.",
   "emptyIbanOrMobile": "IBAN / Mobie / Alias should not be empty",
   "emptyPurpose": "Purpose should not be empty",
-  "emptyPurposeDetail": "Purpose detail should not be empty"
+  "emptyPurposeDetail": "Purpose detail should not be empty",
+  "downloadStatement": "Download Statement"
 }

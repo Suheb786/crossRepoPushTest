@@ -7,6 +7,7 @@ import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
+import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
@@ -23,7 +24,7 @@ class CardRemoteDsImpl extends CardRemoteDs {
 
   @override
   Future<HttpResponse<CardIssuanceResponseEntity>>
-  getCardIssuanceDetails() async {
+      getCardIssuanceDetails() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getCardIssuanceDetails(
         BaseRequest(baseData: baseData.toJson(), getToken: true));
@@ -55,8 +56,9 @@ class CardRemoteDsImpl extends CardRemoteDs {
   Future<HttpResponse<CardTransactionResponseEntity>>
       getDebitCardTransactions() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    ///TODO:change value to true (getToken)
     return _apiService.getDebitCardTransactions(GetDebitCardTransactionRequest(
-        baseData: baseData.toJson(), getToken: true, isDebit: true));
+        baseData: baseData.toJson(), getToken: false, isDebit: true));
   }
 
   @override
@@ -75,7 +77,7 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getCreditYears() async {
+  Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getCreditYears(
         ConfirmCreditCardDeliveryRequest(baseData: baseData.toJson()));
@@ -90,7 +92,7 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getDebitYears() async {
+  Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getDebitYears(BaseRequest(baseData: baseData.toJson()));
   }

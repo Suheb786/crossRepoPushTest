@@ -225,7 +225,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    _shareFiles(model, context);
+                                    _shareFiles(model, context, cardData);
                                   },
                                   child: Padding(
                                     padding: EdgeInsets.only(right: 33.0),
@@ -254,10 +254,11 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
     );
   }
 
-  void _shareFiles(MyAccountViewModel model, BuildContext context) async {
+  void _shareFiles(MyAccountViewModel model, BuildContext context,
+      GetDashboardDataContent cardData) async {
     final box = context.findRenderObject() as RenderBox?;
     await Share.share(
-        'Hello! Here’s my blink account details:\n\nZein Malhas \nJOD120315314513451341234567312\n\nGet your blink account today. Blink now!',
+        'Hello! Here’s my blink account details:\n\n${cardData.account!.accountTitle ?? ''} \n${cardData.account!.iban ?? '-'}\n\nGet your blink account today. Blink now!',
         subject: 'Share account info',
         sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }

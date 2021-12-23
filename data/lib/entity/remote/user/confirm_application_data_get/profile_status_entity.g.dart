@@ -23,7 +23,7 @@ ProfileStatusEntity _$ProfileStatusEntityFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$ProfileStatusEntityToJson(
-    ProfileStatusEntity instance) =>
+        ProfileStatusEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
       'userId': instance.userId,

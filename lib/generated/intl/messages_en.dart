@@ -254,6 +254,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you have TIN No available?"),
         "dob": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dobHint": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
+        "downloadStatement":
+            MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
             "Drag & move the map to adjust the location"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),

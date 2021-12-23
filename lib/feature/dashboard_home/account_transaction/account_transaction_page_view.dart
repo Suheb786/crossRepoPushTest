@@ -1,3 +1,4 @@
+import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -50,21 +51,27 @@ class AccountTransactionPageView
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: InkWell(
-                        onTap: () {
-                          DownloadTransactionDialog.show(context,
-                              onSelected: (value) {
-                            Navigator.pop(context);
-                            Navigator.pushNamed(
-                                context, RoutePaths.DownloadTransaction,
-                                arguments: ["Account", value]);
-                          });
-                        },
-                        child: AppSvg.asset(AssetUtils.download),
-                      ),
-                    )
+                    AppStreamBuilder<Resource<GetDebitYearsResponse>>(
+                        stream: model.getDebitYearsStream,
+                        initialData: Resource.none(),
+                        dataBuilder: (context, debitYears) {
+                          return Align(
+                            alignment: Alignment.centerRight,
+                            child: InkWell(
+                              onTap: () {
+                                DownloadTransactionDialog.show(context,
+                                    years: debitYears!.data!.years,
+                                    onSelected: (value) {
+                                  Navigator.pop(context);
+                                  Navigator.pushNamed(
+                                      context, RoutePaths.DownloadTransaction,
+                                      arguments: ["Account", value]);
+                                });
+                              },
+                              child: AppSvg.asset(AssetUtils.download),
+                            ),
+                          );
+                        })
                   ],
                 ),
               ),
@@ -94,7 +101,7 @@ class AccountTransactionPageView
                           ),
                           Padding(
                             padding:
-                            EdgeInsets.only(top: 24.0, left: 24, right: 38),
+                                EdgeInsets.only(top: 24.0, left: 24, right: 38),
                             child: Row(
                               children: [
                                 Expanded(

@@ -17,7 +17,7 @@ AhwalInfoContentDataEntity _$AhwalInfoContentDataEntityFromJson(
 }
 
 Map<String, dynamic> _$AhwalInfoContentDataEntityToJson(
-    AhwalInfoContentDataEntity instance) =>
+        AhwalInfoContentDataEntity instance) =>
     <String, dynamic>{
       'ahwalImageStatus': instance.ahwalImageStatus,
       'ahwalinfo': instance.ahwalInfo,
