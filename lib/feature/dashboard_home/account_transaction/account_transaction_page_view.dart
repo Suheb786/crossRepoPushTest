@@ -146,7 +146,8 @@ class AccountTransactionPageView
                                 return Visibility(
                                   visible: textList!.length > 0,
                                   child: Padding(
-                                    padding: EdgeInsets.only(top: 21),
+                                    padding: EdgeInsets.only(
+                                        top: 21, left: 24, right: 24),
                                     child: Container(
                                       height: 40,
                                       child: ListView.builder(
@@ -154,38 +155,43 @@ class AccountTransactionPageView
                                         shrinkWrap: true,
                                         scrollDirection: Axis.horizontal,
                                         itemBuilder: (context, index) {
-                                          return Container(
-                                            decoration: BoxDecoration(
-                                              color: Theme.of(context)
-                                                  .primaryColorDark,
-                                              borderRadius:
-                                                  BorderRadius.circular(100),
-                                            ),
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 9, vertical: 2),
-                                            child: Row(
-                                              children: [
-                                                Text(
-                                                  textList[index],
-                                                  style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .accentColor),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      EdgeInsets.only(left: 9),
-                                                  child: InkWell(
-                                                    onTap: () {
-                                                      model.updateSearchList(
-                                                          index);
-                                                    },
-                                                    child: AppSvg.asset(
-                                                        AssetUtils.close,
+                                          return Padding(
+                                            padding: EdgeInsets.only(
+                                                left: index == 0 ? 0 : 9),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                color: Theme.of(context)
+                                                    .primaryColorDark,
+                                                borderRadius:
+                                                    BorderRadius.circular(100),
+                                              ),
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 9, vertical: 2),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    textList[index],
+                                                    style: TextStyle(
                                                         color: Theme.of(context)
                                                             .accentColor),
                                                   ),
-                                                )
-                                              ],
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        left: 9),
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        model.updateSearchList(
+                                                            index);
+                                                      },
+                                                      child: AppSvg.asset(
+                                                          AssetUtils.close,
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .accentColor),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
                                             ),
                                           );
                                         },
