@@ -636,5 +636,6 @@
   "emptyIbanOrMobile": "IBAN / Mobie / Alias should not be empty",
   "emptyPurpose": "Purpose should not be empty",
   "emptyPurposeDetail": "Purpose detail should not be empty",
-  "downloadStatement": "Download Statement"
+  "downloadStatement": "Download Statement",
+  "statementPDF": "Statement PDF"
 }

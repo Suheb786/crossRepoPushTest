@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6225,6 +6226,16 @@ class S {
     return Intl.message(
       'Download Statement',
       name: 'downloadStatement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Statement PDF`
+  String get statementPDF {
+    return Intl.message(
+      'Statement PDF',
+      name: 'statementPDF',
       desc: '',
       args: [],
     );

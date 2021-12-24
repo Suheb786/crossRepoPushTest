@@ -399,7 +399,7 @@ abstract class ApiService {
       @Body() RequestCardRequest requestCardRequest);
 
   @POST("/CardTracking/GetCreditCardStatement")
-  Future<HttpResponse<ResponseEntity>> getCreditCardStatement(
+  Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
       @Body() CreditCardStatementRequest cardStatementRequest);
 
   @POST("/CardTracking/GetDebitCardStatement")

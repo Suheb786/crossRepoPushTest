@@ -11,14 +11,14 @@ DebitCardStatementRequest _$DebitCardStatementRequestFromJson(
   return DebitCardStatementRequest(
     baseData: json['baseClass'] as Map<String, dynamic>,
     getToken: json['getToken'] as bool?,
-    days: json['NoOfDays'] as int?,
+    monthYear: json['MonthYear'] as String?,
   );
 }
 
 Map<String, dynamic> _$DebitCardStatementRequestToJson(
         DebitCardStatementRequest instance) =>
     <String, dynamic>{
-      'NoOfDays': instance.days,
+      'MonthYear': instance.monthYear,
       'getToken': instance.getToken,
       'baseClass': instance.baseData,
     };

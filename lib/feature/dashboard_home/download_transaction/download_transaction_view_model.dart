@@ -1,15 +1,55 @@
+import 'package:domain/model/card/card_statement_response.dart';
+import 'package:domain/usecase/card_delivery/get_card_statement_usecase.dart';
 import 'package:domain/usecase/dashboard/download_card_transaction_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/request_manager.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
+import 'package:rxdart/rxdart.dart';
 
 class DownloadTransactionViewModel extends BasePageViewModel {
+  final GetCardStatementUseCase _cardStatementUseCase;
+
   DownloadCardTransactionUseCase _useCase;
 
-  String? type;
+  final DownloadStatementArguments arguments;
 
-  String? transactionDate;
+  ///card statement request
+  PublishSubject<GetCardStatementUseCaseParams> _cardStatementRequest =
+      PublishSubject();
 
-  DownloadTransactionViewModel(this._useCase, arguments) {
-    this.type = arguments[0];
-    this.transactionDate = arguments[1];
+  ///card statement response
+  PublishSubject<Resource<CardStatementResponse>> _cardStatementResponse =
+      PublishSubject();
+
+  ///card statement response stream
+  Stream<Resource<CardStatementResponse>> get cardStatementStream =>
+      _cardStatementResponse.stream;
+
+  DownloadTransactionViewModel(
+      this._useCase, this._cardStatementUseCase, this.arguments) {
+    _cardStatementRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _cardStatementUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _cardStatementResponse.safeAdd(event);
+        updateLoader();
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    getStatements();
+  }
+
+  void getStatements() {
+    _cardStatementRequest.safeAdd(GetCardStatementUseCaseParams(
+        monthYear: arguments.transactionDate,
+        statementType: arguments.statementType));
   }
 }

@@ -1,5 +1,7 @@
+import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecase.dart';
+import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
 import 'package:domain/usecase/dashboard/card_transaction_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -12,6 +14,7 @@ import 'package:rxdart/rxdart.dart';
 
 class CardTransactionViewModel extends BasePageViewModel {
   CardTransactionUseCase _useCase;
+  final GetCreditYearsUseCase _creditYearsUseCase;
   final GetCreditCardTransactionsUseCase _cardTransactionsUseCase;
   TextEditingController searchController = TextEditingController();
 
@@ -26,6 +29,18 @@ class CardTransactionViewModel extends BasePageViewModel {
   ///get transaction response stream
   Stream<Resource<GetTransactionsResponse>> get getTransactionsStream =>
       _getTransactionsResponse.stream;
+
+  ///get credit years
+  PublishSubject<GetCreditYearsUseCaseParams> _getCreditYearsRequest =
+      PublishSubject();
+
+  ///get credit response
+  PublishSubject<Resource<GetDebitYearsResponse>> _getCreditYearsResponse =
+      PublishSubject();
+
+  ///get credit response stream
+  Stream<Resource<GetDebitYearsResponse>> get getCreditYearsStream =>
+      _getCreditYearsResponse.stream;
 
   List<TransactionItem> transactionList = [
     TransactionItem(
@@ -106,7 +121,8 @@ class CardTransactionViewModel extends BasePageViewModel {
 
   List<TransactionItem> searchTransactionList = [];
 
-  CardTransactionViewModel(this._useCase, this._cardTransactionsUseCase) {
+  CardTransactionViewModel(
+      this._useCase, this._cardTransactionsUseCase, this._creditYearsUseCase) {
     _transactionListSubject.safeAdd(transactionList);
 
     _getTransactionsRequest.listen((value) {
@@ -116,6 +132,22 @@ class CardTransactionViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getTransactionsResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          _getCreditYearsRequest.safeAdd(GetCreditYearsUseCaseParams());
+        }
+      });
+    });
+
+    _getCreditYearsRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _creditYearsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getCreditYearsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);

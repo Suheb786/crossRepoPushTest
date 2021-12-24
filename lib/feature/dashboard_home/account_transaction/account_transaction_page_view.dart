@@ -1,9 +1,11 @@
+import 'package:domain/constants/enum/statement_type.dart';
 import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -65,7 +67,9 @@ class AccountTransactionPageView
                                   Navigator.pop(context);
                                   Navigator.pushNamed(
                                       context, RoutePaths.DownloadTransaction,
-                                      arguments: ["Account", value]);
+                                      arguments: DownloadStatementArguments(
+                                          statementType: StatementType.Debit,
+                                          transactionDate: value));
                                 });
                               },
                               child: AppSvg.asset(AssetUtils.download),

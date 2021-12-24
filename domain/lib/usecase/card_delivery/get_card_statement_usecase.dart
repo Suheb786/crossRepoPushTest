@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:domain/constants/enum/statement_type.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/card/card_statement_response.dart';
@@ -15,14 +16,18 @@ class GetCardStatementUseCase extends BaseUseCase<NetworkError,
   @override
   Future<Either<NetworkError, CardStatementResponse>> execute(
       {required GetCardStatementUseCaseParams params}) {
-    return _repository.getDebitCardStatement( params.noOfDays);
+    return params.statementType == StatementType.Debit
+        ? _repository.getDebitCardStatement(params.monthYear)
+        : _repository.getCreditCardStatement(params.monthYear);
   }
 }
 
 class GetCardStatementUseCaseParams extends Params {
-  int noOfDays;
+  String monthYear;
+  StatementType statementType;
 
-  GetCardStatementUseCaseParams({required this.noOfDays});
+  GetCardStatementUseCaseParams(
+      {required this.monthYear, required this.statementType});
 
   @override
   Either<AppError, bool> verify() {

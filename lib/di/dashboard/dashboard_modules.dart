@@ -14,6 +14,7 @@ import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/home/home_view_model.dart';
@@ -85,8 +86,10 @@ final debitCardVerificationSuccessViewModelProvider =
 
 final cardTransactionViewModelProvider =
     ChangeNotifierProvider.autoDispose<CardTransactionViewModel>(
-  (ref) => CardTransactionViewModel(ref.read(cardTransactionUseCaseProvider),
-      ref.read(creditCardTransactionUseCaseProvider)),
+  (ref) => CardTransactionViewModel(
+      ref.read(cardTransactionUseCaseProvider),
+      ref.read(creditCardTransactionUseCaseProvider),
+      ref.read(getCreditYearsUseCaseProvider)),
 );
 
 final creditCardDeliveredViewModelProvider = ChangeNotifierProvider.autoDispose
@@ -142,11 +145,14 @@ final downloadTransactionDialogViewModelProvider =
         (ref) => DownloadTransactionDialogViewModel());
 
 final downloadTransactionViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<DownloadTransactionViewModel, List<String>>(
+    .family<DownloadTransactionViewModel, DownloadStatementArguments>(
   (
     ref,
     args,
   ) =>
       DownloadTransactionViewModel(
-          ref.read(downloadCardTransactionUseCaseProvider), args),
+    ref.read(downloadCardTransactionUseCaseProvider),
+    ref.read(cardStatementUseCaseProvider),
+    args,
+  ),
 );

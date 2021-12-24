@@ -27,8 +27,8 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears();
 
-  Future<HttpResponse<ResponseEntity>> getCreditCardStatement();
+  Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement({String? monthYear});
 
   Future<HttpResponse<CardStatementResponseEntity>> getDebitCardStatement(
-      {int noOfDays});
+      {String monthYear});
 }

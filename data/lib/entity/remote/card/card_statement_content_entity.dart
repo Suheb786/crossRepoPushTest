@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:data/entity/local/base/image_utils.dart';
 import 'package:domain/model/card/card_statement_content.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -29,6 +32,10 @@ class CardStatementContentEntity
   @override
   CardStatementContent transform() {
     return CardStatementContent(
-        pdfBase64String: this.pdfBase64String, pdfFileName: this.pdfFileName);
+        pdfBase64String: this.pdfBase64String != null
+            ? ImageUtils.pdfFileFromBase64String(
+                this.pdfBase64String!, this.pdfFileName ?? 'statement')
+            : File(''),
+        pdfFileName: this.pdfFileName);
   }
 }

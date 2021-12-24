@@ -4,20 +4,15 @@ part 'credit_card_statement_request.g.dart';
 
 @JsonSerializable()
 class CreditCardStatementRequest {
-  @JsonKey(name: "Days")
-  final int? days;
-  @JsonKey(name: "AccountId")
-  final String? accountId;
+  @JsonKey(name: "MonthYear")
+  final String? monthYear;
   @JsonKey(name: "getToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
   CreditCardStatementRequest(
-      {required this.baseData,
-      this.getToken: true,
-      this.days: 90,
-      this.accountId: "1"});
+      {required this.baseData, this.getToken: true, this.monthYear: ''});
 
   factory CreditCardStatementRequest.fromJson(Map<String, dynamic> json) =>
       _$CreditCardStatementRequestFromJson(json);

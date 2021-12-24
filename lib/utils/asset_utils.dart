@@ -142,6 +142,7 @@ class AssetUtils {
   static const String birdPng = drawable + "bird_png.png";
   static const String dummyProfile = drawable + "dummy_profile.png";
   static const String image = drawable + "image.png";
+  static const String statementPicture = drawable + "statement_picture.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";

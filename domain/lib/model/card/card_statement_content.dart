@@ -1,3 +1,5 @@
+
+
 class CardStatementContent {
   CardStatementContent({
     this.pdfFileName,
@@ -5,5 +7,5 @@ class CardStatementContent {
   });
 
   String? pdfFileName;
-  String? pdfBase64String;
+  dynamic pdfBase64String;
 }

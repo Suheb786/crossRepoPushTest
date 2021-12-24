@@ -934,6 +934,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Quick edit is disabled for some informations. Would you like to start over? Don’t worry, we keep your filled informations."),
         "state": MessageLookupByLibrary.simpleMessage("STATE"),
         "stateSmall": MessageLookupByLibrary.simpleMessage("State"),
+        "statementPDF": MessageLookupByLibrary.simpleMessage("Statement PDF"),
         "storage": MessageLookupByLibrary.simpleMessage("Storage"),
         "streetAddress": MessageLookupByLibrary.simpleMessage("STREET ADDRESS"),
         "streetAddressHint":

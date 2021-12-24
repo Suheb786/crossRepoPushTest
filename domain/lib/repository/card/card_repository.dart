@@ -21,9 +21,10 @@ abstract class CardRepository {
   Future<Either<NetworkError, bool>> confirmCreditCardDelivery();
 
   Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(
-      int noOfDays);
+      String monthYear);
 
-  Future<Either<NetworkError, bool>> getCreditCardStatement();
+  Future<Either<NetworkError, CardStatementResponse>> getCreditCardStatement(
+      String monthYear);
 
   Future<Either<NetworkError, bool>> requestCreditCard(
       {required double cardLimit});
