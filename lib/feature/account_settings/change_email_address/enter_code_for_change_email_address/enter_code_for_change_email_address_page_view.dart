@@ -37,8 +37,7 @@ class EnterCodeForChangeEmailAddressPageView
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
                   model.showSuccessToast(data.data!.data!.data!);
-                  print('popped');
-                  Navigator.pop(context, true);
+                  Navigator.pop(context);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -47,7 +46,11 @@ class EnterCodeForChangeEmailAddressPageView
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
-                      model.validateOtp();
+                      model.validateOtp(
+                          email: ProviderScope.containerOf(context)
+                              .read(addNewEmailAddressViewModelProvider)
+                              .emailController
+                              .text);
                     } else {
                       ProviderScope.containerOf(context)
                           .read(changeEmailAddressViewModelProvider)

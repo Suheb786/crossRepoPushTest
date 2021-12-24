@@ -16,7 +16,7 @@ EnableBiometricRequestEntity _$EnableBiometricRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$EnableBiometricRequestEntityToJson(
-    EnableBiometricRequestEntity instance) =>
+        EnableBiometricRequestEntity instance) =>
     <String, dynamic>{
       'Cipher': instance.cipher,
       'PublicKey': instance.publicKey,

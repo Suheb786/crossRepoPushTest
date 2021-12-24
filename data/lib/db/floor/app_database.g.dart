@@ -207,6 +207,29 @@ class _$UserDao extends UserDao {
   }
 
   @override
+  Future<List<UserDBEntity>> getAllUsers() async {
+    return _queryAdapter.queryList('SELECT * FROM user',
+        mapper: (Map<String, Object?> row) => UserDBEntity(
+            id: row['id'] as String?,
+            token: row['token'] as String?,
+            firstName: row['firstName'] as String?,
+            lastName: row['lastName'] as String?,
+            email: row['email'] as String?,
+            mobile: row['mobile'] as String?,
+            isCurrent: row['isCurrent'] == null
+                ? null
+                : (row['isCurrent'] as int) != 0,
+            refreshToken: row['refreshToken'] as String?,
+            tokenType: row['tokenType'] as String?,
+            expiresIn: row['expiresIn'] as int?,
+            isBiometricEnabled: row['isBiometricEnabled'] == null
+                ? null
+                : (row['isBiometricEnabled'] as int) != 0,
+            privatePEM: row['privatePEM'] as String?,
+            publicPEM: row['publicPEM'] as String?));
+  }
+
+  @override
   Future<UserDBEntity?> getCurrentUser() async {
     return _queryAdapter.query('SELECT * FROM user WHERE isCurrent = 1',
         mapper: (Map<String, Object?> row) => UserDBEntity(
@@ -276,6 +299,11 @@ class _$UserDao extends UserDao {
             publicPEM: row['publicPEM'] as String?),
         queryableName: 'user',
         isView: false);
+  }
+
+  @override
+  Future<bool?> updateIsCurrentColumn() async {
+    await _queryAdapter.queryNoReturn('UPDATE user SET isCurrent = 0');
   }
 
   @override

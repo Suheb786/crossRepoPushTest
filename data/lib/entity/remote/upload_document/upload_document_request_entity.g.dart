@@ -16,7 +16,7 @@ UploadDocumentRequestEntity _$UploadDocumentRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$UploadDocumentRequestEntityToJson(
-    UploadDocumentRequestEntity instance) =>
+        UploadDocumentRequestEntity instance) =>
     <String, dynamic>{
       'DocumentBase64': instance.documentBase64,
       'GetToken': instance.getToken,

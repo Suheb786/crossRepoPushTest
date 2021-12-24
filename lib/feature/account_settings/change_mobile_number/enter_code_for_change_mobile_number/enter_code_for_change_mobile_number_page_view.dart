@@ -46,7 +46,10 @@ class EnterCodeForChangeMobileNumberPageView
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
-                      model.validateOtp();
+                      model.validateOtp(
+                          mobile: ProviderScope.containerOf(context)
+                              .read(addNewMobileNumberViewModelProvider)
+                              .mobileNumber);
                     } else {
                       ProviderScope.containerOf(context)
                           .read(changeMobileNumberViewModelProvider)

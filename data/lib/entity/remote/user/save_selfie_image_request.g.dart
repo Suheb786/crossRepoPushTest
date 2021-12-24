@@ -16,7 +16,7 @@ SaveSelfieImageRequest _$SaveSelfieImageRequestFromJson(
 }
 
 Map<String, dynamic> _$SaveSelfieImageRequestToJson(
-    SaveSelfieImageRequest instance) =>
+        SaveSelfieImageRequest instance) =>
     <String, dynamic>{
       'GetToken': instance.getToken,
       'SelfeeImage': instance.selfieImage,

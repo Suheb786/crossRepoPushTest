@@ -15,7 +15,7 @@ GenerateKeyPairContentEntity _$GenerateKeyPairContentEntityFromJson(
 }
 
 Map<String, dynamic> _$GenerateKeyPairContentEntityToJson(
-    GenerateKeyPairContentEntity instance) =>
+        GenerateKeyPairContentEntity instance) =>
     <String, dynamic>{
       'privatePEM': instance.privatePEM,
       'publicPEM': instance.publicPEM,

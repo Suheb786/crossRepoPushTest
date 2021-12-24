@@ -8,6 +8,9 @@ abstract class UserDao extends BaseDao<UserDBEntity> {
   @Query("SELECT * FROM ${Table.USER}")
   Stream<List<UserDBEntity>> getUsers();
 
+  @Query("SELECT * FROM ${Table.USER}")
+  Future<List<UserDBEntity>> getAllUsers();
+
   @Query("SELECT * FROM ${Table.USER} WHERE isCurrent = 1")
   Future<UserDBEntity?> getCurrentUser();
 
@@ -16,6 +19,9 @@ abstract class UserDao extends BaseDao<UserDBEntity> {
 
   @Query("SELECT * FROM ${Table.USER} WHERE isCurrent = 1")
   Stream<UserDBEntity?> listenCurrentUser();
+
+  @Query("UPDATE ${Table.USER} SET isCurrent = 0")
+  Future<bool?> updateIsCurrentColumn();
 
   @update
   Future<int> updateUser(UserDBEntity user);
@@ -42,13 +48,28 @@ abstract class UserDao extends BaseDao<UserDBEntity> {
     try {
       UserDBEntity? userEntity = await getUserByEmail(user.email!);
       if (userEntity != null) {
+        var allUsers = await getAllUsers();
+        if (allUsers.length > 0) {
+          await updateIsCurrentColumn();
+        }
         userEntity.isCurrent = true;
-        await updateUser(userEntity);
-        int index = await insertData(user);
+        var index = await updateUser(userEntity);
+        UserDBEntity? userEntity1 = await getUserByEmail(userEntity.email!);
+        print('updated user in if--->${userEntity1!.email}');
+        print('updated user in if--->${userEntity1.mobile}');
+        print('updated user in if--->${userEntity1.isCurrent}');
+        //int index = await insertData(user);
         return index > 0;
       } else {
+        var allUsers = await getAllUsers();
+        if (allUsers.length > 0) {
+          await updateIsCurrentColumn();
+        }
         user.isCurrent = true;
+        print('user--->${user.email}');
+        print('user--->${user.mobile}');
         int index = await insertData(user);
+        print('saved:----->$index');
         return index > 0;
       }
     } catch (exception) {

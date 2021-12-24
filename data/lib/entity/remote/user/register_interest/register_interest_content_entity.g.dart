@@ -14,7 +14,7 @@ RegisterInterestContentEntity _$RegisterInterestContentEntityFromJson(
 }
 
 Map<String, dynamic> _$RegisterInterestContentEntityToJson(
-    RegisterInterestContentEntity instance) =>
+        RegisterInterestContentEntity instance) =>
     <String, dynamic>{
       'referenceNo': instance.referenceNo,
     };

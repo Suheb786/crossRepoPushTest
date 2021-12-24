@@ -11,16 +11,15 @@ class ChangeEmailAddressPage extends BasePage<ChangeEmailAddressPageViewModel> {
 }
 
 class ChangeEmailAddressPageState extends BaseStatefulPage<
-    ChangeEmailAddressPageViewModel,
-    ChangeEmailAddressPage> {
+    ChangeEmailAddressPageViewModel, ChangeEmailAddressPage> {
   @override
   ProviderBase provideBase() {
     return changeEmailAddressViewModelProvider;
   }
 
   @override
-  Widget buildView(BuildContext context,
-      ChangeEmailAddressPageViewModel model) {
+  Widget buildView(
+      BuildContext context, ChangeEmailAddressPageViewModel model) {
     return ChangeEmailAddressPageView(provideBase());
   }
 }

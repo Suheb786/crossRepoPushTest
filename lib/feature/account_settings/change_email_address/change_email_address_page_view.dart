@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/account_settings/account_settings_modules.dart';
 import 'package:neo_bank/feature/account_settings/change_email_address/add_new_email/add_new_email_address_page.dart';
 import 'package:neo_bank/feature/account_settings/change_email_address/change_email_address_page_view_model.dart';
 import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
@@ -28,9 +29,7 @@ class ChangeEmailAddressPageView
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      color: Theme
-          .of(context)
-          .primaryColor,
+      color: Theme.of(context).primaryColor,
       padding: EdgeInsets.only(top: 56),
       child: AppStreamBuilder<int>(
         stream: model.currentPageStream,
@@ -49,9 +48,7 @@ class ChangeEmailAddressPageView
                     child: Padding(
                       padding: const EdgeInsets.only(left: 24.0),
                       child: AppSvg.asset(AssetUtils.leftArrow,
-                          color: Theme
-                              .of(context)
-                              .accentColor),
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
                 ),
@@ -62,13 +59,9 @@ class ChangeEmailAddressPageView
                       child: Column(
                         children: [
                           Text(
-                            S
-                                .of(context)
-                                .changeEmailAddress,
+                            S.of(context).changeEmailAddress,
                             style: TextStyle(
-                                color: Theme
-                                    .of(context)
-                                    .accentColor,
+                                color: Theme.of(context).accentColor,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -88,18 +81,12 @@ class ChangeEmailAddressPageView
                               child: Text(
                                 StepTextHelper.changeEmailAddressTextHelper(
                                   currentStep ?? 0,
-                                  S
-                                      .of(context)
-                                      .enterNewEmailAddress,
-                                  S
-                                      .of(context)
-                                      .enterOtpHeader,
+                                  S.of(context).enterNewEmailAddress,
+                                  S.of(context).enterOtpHeader,
                                 ),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Theme
-                                        .of(context)
-                                        .accentColor,
+                                    color: Theme.of(context).accentColor,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
                               ),
@@ -116,12 +103,12 @@ class ChangeEmailAddressPageView
                                 direction: Direction.vertical,
                                 offset: 0.5,
                                 child: Text(
-                                  '+962 79 322 8080',
+                                  ProviderScope.containerOf(context)
+                                      .read(accountSettingViewModelProvider)
+                                      .mobile,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: Theme
-                                          .of(context)
-                                          .accentColor,
+                                      color: Theme.of(context).accentColor,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600),
                                 ),

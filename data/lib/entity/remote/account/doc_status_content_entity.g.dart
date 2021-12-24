@@ -15,7 +15,7 @@ DocStatusContentEntity _$DocStatusContentEntityFromJson(
 }
 
 Map<String, dynamic> _$DocStatusContentEntityToJson(
-    DocStatusContentEntity instance) =>
+        DocStatusContentEntity instance) =>
     <String, dynamic>{
       'showDoc': instance.showDoc,
       'docs': instance.docs,

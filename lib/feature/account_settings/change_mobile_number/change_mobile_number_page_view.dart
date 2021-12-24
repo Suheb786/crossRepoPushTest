@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/account_settings/account_settings_modules.dart';
 import 'package:neo_bank/feature/account_settings/change_mobile_number/add_new_mobile_number/add_new_mobile_number_page.dart';
 import 'package:neo_bank/feature/account_settings/change_mobile_number/change_mobile_number_page_view_model.dart';
 import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
@@ -28,9 +29,7 @@ class ChangeMobileNumberPageView
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      color: Theme
-          .of(context)
-          .primaryColor,
+      color: Theme.of(context).primaryColor,
       padding: EdgeInsets.only(top: 56),
       child: AppStreamBuilder<int>(
         stream: model.currentPageStream,
@@ -49,9 +48,7 @@ class ChangeMobileNumberPageView
                     child: Padding(
                       padding: const EdgeInsets.only(left: 24.0),
                       child: AppSvg.asset(AssetUtils.leftArrow,
-                          color: Theme
-                              .of(context)
-                              .accentColor),
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
                 ),
@@ -62,13 +59,9 @@ class ChangeMobileNumberPageView
                       child: Column(
                         children: [
                           Text(
-                            S
-                                .of(context)
-                                .changeMobileNumber,
+                            S.of(context).changeMobileNumber,
                             style: TextStyle(
-                                color: Theme
-                                    .of(context)
-                                    .accentColor,
+                                color: Theme.of(context).accentColor,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -88,18 +81,12 @@ class ChangeMobileNumberPageView
                               child: Text(
                                 StepTextHelper.changeEmailAddressTextHelper(
                                   currentStep ?? 0,
-                                  S
-                                      .of(context)
-                                      .enterNewMobileNo,
-                                  S
-                                      .of(context)
-                                      .enterOtpHeader,
+                                  S.of(context).enterNewMobileNo,
+                                  S.of(context).enterOtpHeader,
                                 ),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Theme
-                                        .of(context)
-                                        .accentColor,
+                                    color: Theme.of(context).accentColor,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
                               ),
@@ -116,12 +103,12 @@ class ChangeMobileNumberPageView
                                 direction: Direction.vertical,
                                 offset: 0.5,
                                 child: Text(
-                                  '+962 79 322 8080',
+                                  ProviderScope.containerOf(context)
+                                      .read(addNewMobileNumberViewModelProvider)
+                                      .mobileNumber,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: Theme
-                                          .of(context)
-                                          .accentColor,
+                                      color: Theme.of(context).accentColor,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600),
                                 ),

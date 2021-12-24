@@ -20,7 +20,7 @@ final addNewEmailAddressUseCaseProvider =
 final validateOtpNewEmailAddressUseCaseProvider =
     Provider.autoDispose<ValidateOtpForNewEmailAddressUseCase>(
   (ref) => ValidateOtpForNewEmailAddressUseCase(
-      ref.read(accountSettingRepositoryProvider)),
+      ref.read(accountSettingRepositoryProvider), ref.read(userRepoProvider)),
 );
 
 ///[AddNewMobileNumberUseCase] provider
@@ -34,7 +34,7 @@ final addNewNumberUseCaseProvider =
 final validateOtpNewMobileNumberUseCaseProvider =
     Provider.autoDispose<ValidateOtpForNewMobileNumberUseCase>(
   (ref) => ValidateOtpForNewMobileNumberUseCase(
-      ref.read(accountSettingRepositoryProvider)),
+      ref.read(accountSettingRepositoryProvider), ref.read(userRepoProvider)),
 );
 
 ///[EnterNewPasswordUseCase] provider

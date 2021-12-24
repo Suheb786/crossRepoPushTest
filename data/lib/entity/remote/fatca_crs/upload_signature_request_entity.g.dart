@@ -15,7 +15,7 @@ UploadSignatureRequestEntity _$UploadSignatureRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$UploadSignatureRequestEntityToJson(
-    UploadSignatureRequestEntity instance) =>
+        UploadSignatureRequestEntity instance) =>
     <String, dynamic>{
       'Image': instance.image,
       'baseClass': instance.baseData,

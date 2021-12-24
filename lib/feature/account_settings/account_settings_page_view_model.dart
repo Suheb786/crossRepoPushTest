@@ -36,15 +36,17 @@ class AccountSettingPageViewModel extends BasePageViewModel {
 
   ///selected image subject
   final BehaviorSubject<String> _selectedImageSubject =
-  BehaviorSubject.seeded('');
+      BehaviorSubject.seeded('');
 
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
 
   String selectedProfile = '';
 
+  String mobile = '';
+
   ///upload profile
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest =
-  PublishSubject();
+      PublishSubject();
 
   PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
 
@@ -53,7 +55,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
 
   /// check whether biometric is supported or not request
   PublishSubject<CheckBioMetricSupportUseCaseParams> _checkBioMetricRequest =
-  PublishSubject();
+      PublishSubject();
 
   /// check whether biometric is supported or not response
   BehaviorSubject<Resource<bool>> _checkBioMetricResponse = BehaviorSubject();
@@ -64,11 +66,11 @@ class AccountSettingPageViewModel extends BasePageViewModel {
 
   /// authenticate using biometric request
   PublishSubject<AuthenticateBioMetricUseCaseParams>
-  _authenticateBioMetricRequest = PublishSubject();
+      _authenticateBioMetricRequest = PublishSubject();
 
   /// authenticate using biometric response
   PublishSubject<Resource<bool>> _authenticateBioMetricResponse =
-  PublishSubject();
+      PublishSubject();
 
   /// authenticate using biometric response stream
   Stream<Resource<bool>> get authenticateBioMetricStream =>
@@ -128,7 +130,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
       this._uploadProfileImageUseCase) {
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _uploadDocumentUseCase.execute(params: value))
+              createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _uploadProfilePhotoResponse.safeAdd(event.data!);
@@ -158,8 +160,8 @@ class AccountSettingPageViewModel extends BasePageViewModel {
         value,
         createCall: () => _getProfileInfoUseCase.execute(params: value),
       ).asFlow().listen((event) {
-        _getProfileInfoResponse.safeAdd(event);
         updateLoader();
+        _getProfileInfoResponse.safeAdd(event);
       });
     });
 
@@ -205,7 +207,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
         }
       });
     });
-
+    getCurrentUserStream();
     getProfileDetails();
   }
 
