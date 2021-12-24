@@ -4,7 +4,6 @@ import 'package:domain/model/dashboard/transactions/transactions.dart';
 import 'package:domain/model/dashboard/transactions/transactions_content.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
-import 'package:domain/usecase/dashboard/card_transaction_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/model/transaction_item.dart';
@@ -15,7 +14,6 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CardTransactionViewModel extends BasePageViewModel {
-  CardTransactionUseCase _useCase;
   final GetCreditYearsUseCase _creditYearsUseCase;
   final GetCreditCardTransactionsUseCase _cardTransactionsUseCase;
   TextEditingController searchController = TextEditingController();
@@ -44,32 +42,6 @@ class CardTransactionViewModel extends BasePageViewModel {
   Stream<Resource<GetDebitYearsResponse>> get getCreditYearsStream =>
       _getCreditYearsResponse.stream;
 
-  List<TransactionItem> transactionList = [
-    TransactionItem(
-        createdAt: "12 September 2021",
-        to: "Host International Inc Dubai\nAED 533.03",
-        amount: "102.92",
-        type: "debit",
-        time: "8:32 pm"),
-    TransactionItem(
-        createdAt: "13 September 2021",
-        to: "Host International Inc Dubai\nAED 533.03",
-        amount: "91.92",
-        type: "debit",
-        time: "8:32 pm"),
-    TransactionItem(
-        createdAt: "12 September 2021",
-        to: "Ahmed*Abdali Mall\nAED 533.03",
-        amount: "102.92",
-        type: "debit",
-        time: "8:32 pm"),
-    TransactionItem(
-        createdAt: "13 September 2021",
-        to: "Razer*Abdali Mall\nAED 533.03",
-        amount: "102.92",
-        type: "debit",
-        time: "8:32 pm"),
-  ];
   Resource<GetTransactionsResponse>? transactionsResponse;
 
   Resource<GetTransactionsResponse>? searchTransactionResponse;
@@ -99,6 +71,7 @@ class CardTransactionViewModel extends BasePageViewModel {
   Stream<List<TransactionItem>> get transactionListStream =>
       _transactionListSubject.stream;
 
+  ///filters stream
   BehaviorSubject<List<String>> _searchTextSubject = BehaviorSubject();
 
   Stream<List<String>> get searchTextStream => _searchTextSubject.stream;
@@ -106,9 +79,7 @@ class CardTransactionViewModel extends BasePageViewModel {
   List<TransactionContent> searchTransactionList = [];
 
   CardTransactionViewModel(
-      this._useCase, this._cardTransactionsUseCase, this._creditYearsUseCase) {
-    _transactionListSubject.safeAdd(transactionList);
-
+      this._cardTransactionsUseCase, this._creditYearsUseCase) {
     _getTransactionsRequest.listen((value) {
       RequestManager(value,
               createCall: () => _cardTransactionsUseCase.execute(params: value))

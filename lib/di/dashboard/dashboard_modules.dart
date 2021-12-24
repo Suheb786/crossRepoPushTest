@@ -87,7 +87,6 @@ final debitCardVerificationSuccessViewModelProvider =
 final cardTransactionViewModelProvider =
     ChangeNotifierProvider.autoDispose<CardTransactionViewModel>(
   (ref) => CardTransactionViewModel(
-      ref.read(cardTransactionUseCaseProvider),
       ref.read(creditCardTransactionUseCaseProvider),
       ref.read(getCreditYearsUseCaseProvider)),
 );
