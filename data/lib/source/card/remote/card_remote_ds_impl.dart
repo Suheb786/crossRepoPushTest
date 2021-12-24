@@ -1,9 +1,12 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
+import 'package:data/entity/remote/card/cancel_credit_card_request.dart';
+import 'package:data/entity/remote/card/cancel_debit_card_request.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
+import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
@@ -71,8 +74,8 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<CardStatementResponseEntity>>
-      getCreditCardStatement({String? monthYear}) async {
+  Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
+      {String? monthYear}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getCreditCardStatement(CreditCardStatementRequest(
         baseData: baseData.toJson(), monthYear: monthYear, getToken: true));
@@ -105,5 +108,71 @@ class CardRemoteDsImpl extends CardRemoteDs {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.requestCreditCard(
         RequestCardRequest(baseData: baseData.toJson(), cardLimit: cardLimit));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> cancelCreditCard(
+      {String? reason}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.cancelCreditCard(
+        CancelCreditCardRequest(baseData: baseData.toJson(), reason: reason));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .creditCardPinUnBlock(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> freezeCreditCard() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .freezeCreditCard(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .unFreezeCreditCard(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> cancelDebitCard({String? reason}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.cancelDebitCard(
+        CancelDebitCardRequest(baseData: baseData.toJson(), reason: reason));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> freezeDebitCard() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .freezeDebitCard(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> unFreezeDebitCard() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .unFreezeDebitCard(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
+      {String? status, required String pin}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.changeDebitCardPin(ChangeDebitCardPinRequest(
+        baseData: baseData.toJson(), pinCode: pin, status: status));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
+      {String? status, required String pin}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.unblockDebitCardPin(ChangeDebitCardPinRequest(
+        baseData: baseData.toJson(), pinCode: pin, status: status));
   }
 }

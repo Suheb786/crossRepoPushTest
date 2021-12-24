@@ -32,4 +32,24 @@ abstract class CardRepository {
   Future<Either<NetworkError, GetDebitYearsResponse>> getCreditYears();
 
   Future<Either<NetworkError, GetDebitYearsResponse>> getDebitYears();
+
+  Future<Either<NetworkError, bool>> freezeCreditCard();
+
+  Future<Either<NetworkError, bool>> unFreezeCreditCard();
+
+  Future<Either<NetworkError, bool>> cancelCreditCard({String reason});
+
+  Future<Either<NetworkError, bool>> creditCardPinUnblock();
+
+  Future<Either<NetworkError, bool>> freezeDebitCard();
+
+  Future<Either<NetworkError, bool>> unFreezeDebitCard();
+
+  Future<Either<NetworkError, bool>> cancelDebitCard({String reason});
+
+  Future<Either<NetworkError, bool>> changeDebitCardPin(
+      {String? status, required String pin});
+
+  Future<Either<NetworkError, bool>> unblockDebitCardPin(
+      {String status, required String pin});
 }
