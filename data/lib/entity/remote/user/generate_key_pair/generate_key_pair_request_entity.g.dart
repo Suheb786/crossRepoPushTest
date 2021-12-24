@@ -14,7 +14,7 @@ GenerateKeyPairRequestEntity _$GenerateKeyPairRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$GenerateKeyPairRequestEntityToJson(
-    GenerateKeyPairRequestEntity instance) =>
+        GenerateKeyPairRequestEntity instance) =>
     <String, dynamic>{
       'BaseClass': instance.baseData,
     };

@@ -16,7 +16,7 @@ CardIssuanceResponseEntity _$CardIssuanceResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$CardIssuanceResponseEntityToJson(
-    CardIssuanceResponseEntity instance) =>
+        CardIssuanceResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

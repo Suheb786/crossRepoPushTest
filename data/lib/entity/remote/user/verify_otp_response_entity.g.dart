@@ -16,7 +16,7 @@ VerifyOtpResponseEntity _$VerifyOtpResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$VerifyOtpResponseEntityToJson(
-    VerifyOtpResponseEntity instance) =>
+        VerifyOtpResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

@@ -14,7 +14,7 @@ CheckAgentStatusContentEntity _$CheckAgentStatusContentEntityFromJson(
 }
 
 Map<String, dynamic> _$CheckAgentStatusContentEntityToJson(
-    CheckAgentStatusContentEntity instance) =>
+        CheckAgentStatusContentEntity instance) =>
     <String, dynamic>{
       'status': instance.status,
     };

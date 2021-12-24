@@ -28,9 +28,12 @@ import 'package:data/entity/remote/bank_smart/purpose_of_account_opening_respons
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.dart';
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
 import 'package:data/entity/remote/base/base_request.dart';
+import 'package:data/entity/remote/card/cancel_credit_card_request.dart';
+import 'package:data/entity/remote/card/cancel_debit_card_request.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
+import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
@@ -414,4 +417,40 @@ abstract class ApiService {
   @POST("/CardTracking/GetDebitYears")
   Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears(
       @Body() BaseRequest baseRequest);
+
+  @POST("/RuleEngine/CancelCreditCard")
+  Future<HttpResponse<ResponseEntity>> cancelCreditCard(
+      @Body() CancelCreditCardRequest cancelCreditCardRequest);
+
+  @POST("/RuleEngine/PinUnblock")
+  Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/RuleEngine/FreezeCreditCard")
+  Future<HttpResponse<ResponseEntity>> freezeCreditCard(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/RuleEngine/UnfreezeCreditCard")
+  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/DebitCard/CancelCard")
+  Future<HttpResponse<ResponseEntity>> cancelDebitCard(
+      @Body() CancelDebitCardRequest cancelDebitCardRequest);
+
+  @POST("/DebitCard/FreezeCard")
+  Future<HttpResponse<ResponseEntity>> freezeDebitCard(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/DebitCard/unFreezeCard")
+  Future<HttpResponse<ResponseEntity>> unFreezeDebitCard(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/DebitCard/ChangePin")
+  Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
+      @Body() ChangeDebitCardPinRequest changeDebitCardPinRequest);
+
+  @POST("/DebitCard/UnblockPin")
+  Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
+      @Body() ChangeDebitCardPinRequest changeDebitCardPinRequest);
 }

@@ -16,7 +16,7 @@ SaveIdInfoResponseEntity _$SaveIdInfoResponseEntityFromJson(
 }
 
 Map<String, dynamic> _$SaveIdInfoResponseEntityToJson(
-    SaveIdInfoResponseEntity instance) =>
+        SaveIdInfoResponseEntity instance) =>
     <String, dynamic>{
       'response': instance.response,
     };

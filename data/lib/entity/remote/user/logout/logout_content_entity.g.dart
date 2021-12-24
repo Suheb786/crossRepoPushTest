@@ -13,7 +13,7 @@ LogoutContentEntity _$LogoutContentEntityFromJson(Map<String, dynamic> json) {
 }
 
 Map<String, dynamic> _$LogoutContentEntityToJson(
-    LogoutContentEntity instance) =>
+        LogoutContentEntity instance) =>
     <String, dynamic>{
       'bioMetricLogin': instance.bioMetricLogin,
     };

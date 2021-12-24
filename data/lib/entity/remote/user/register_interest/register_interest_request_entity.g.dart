@@ -16,7 +16,7 @@ RegisterInterestRequestEntity _$RegisterInterestRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$RegisterInterestRequestEntityToJson(
-    RegisterInterestRequestEntity instance) =>
+        RegisterInterestRequestEntity instance) =>
     <String, dynamic>{
       'UniqueId': instance.uniqueId,
       'Email': instance.email,

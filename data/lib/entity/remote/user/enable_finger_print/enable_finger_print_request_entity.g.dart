@@ -16,7 +16,7 @@ EnableFingerPrintRequestEntity _$EnableFingerPrintRequestEntityFromJson(
 }
 
 Map<String, dynamic> _$EnableFingerPrintRequestEntityToJson(
-    EnableFingerPrintRequestEntity instance) =>
+        EnableFingerPrintRequestEntity instance) =>
     <String, dynamic>{
       'Cipher': instance.cipher,
       'GetToken': instance.getToken,

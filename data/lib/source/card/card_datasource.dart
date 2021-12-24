@@ -27,8 +27,29 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears();
 
-  Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement({String? monthYear});
+  Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
+      {String? monthYear});
 
   Future<HttpResponse<CardStatementResponseEntity>> getDebitCardStatement(
       {String monthYear});
+
+  Future<HttpResponse<ResponseEntity>> freezeCreditCard();
+
+  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard();
+
+  Future<HttpResponse<ResponseEntity>> cancelCreditCard({String? reason});
+
+  Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock();
+
+  Future<HttpResponse<ResponseEntity>> cancelDebitCard({String? reason});
+
+  Future<HttpResponse<ResponseEntity>> unFreezeDebitCard();
+
+  Future<HttpResponse<ResponseEntity>> freezeDebitCard();
+
+  Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
+      {String? status, required String pin});
+
+  Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
+      {String? status, required String pin});
 }

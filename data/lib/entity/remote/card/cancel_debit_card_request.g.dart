@@ -1,22 +1,24 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'upload_signature_request_entity.dart';
+part of 'cancel_debit_card_request.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-UploadSignatureRequestEntity _$UploadSignatureRequestEntityFromJson(
+CancelDebitCardRequest _$CancelDebitCardRequestFromJson(
     Map<String, dynamic> json) {
-  return UploadSignatureRequestEntity(
-    image: json['Image'] as String?,
+  return CancelDebitCardRequest(
     baseData: json['baseClass'] as Map<String, dynamic>,
+    getToken: json['getToken'] as bool?,
+    reason: json['Status'] as String?,
   );
 }
 
-Map<String, dynamic> _$UploadSignatureRequestEntityToJson(
-        UploadSignatureRequestEntity instance) =>
+Map<String, dynamic> _$CancelDebitCardRequestToJson(
+        CancelDebitCardRequest instance) =>
     <String, dynamic>{
-      'Image': instance.image,
+      'Status': instance.reason,
+      'getToken': instance.getToken,
       'baseClass': instance.baseData,
     };
