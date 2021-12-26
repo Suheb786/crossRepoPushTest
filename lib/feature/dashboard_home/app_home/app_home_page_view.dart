@@ -2,6 +2,7 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
@@ -33,6 +34,60 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
     MyDebitCardPage(),
     PlaceholderPage()
   ];
+
+  int _currentPage = 0;
+
+  List<Widget> _buildPageIndicator() {
+    List<Widget> list = [];
+    for (int i = 0; i < 4; i++) {
+      list.add(i == _currentPage ? _indicator(true, i) : _indicator(false, i));
+    }
+    return list;
+  }
+
+  Widget _indicator(bool isActive, int i) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
+      margin: const EdgeInsets.symmetric(horizontal: 6.0),
+      height: _getSize(isActive, i),
+      width: _getSize(isActive, i),
+      decoration: BoxDecoration(
+        color: _getColor(isActive, i),
+        shape: BoxShape.circle,
+      ),
+    );
+  }
+
+  double _getSize(bool isActive, int i) {
+    if (isActive) {
+      return 13.0;
+    } else if (i == 0 && !isActive && _currentPage > 1) {
+      return 5.0;
+    } else if (i == 0 && !isActive && _currentPage == 1) {
+      return 5.0;
+    } else if (i == 3 && !isActive && _currentPage == 2) {
+      return 5.0;
+    } else if (i == 3 && !isActive && _currentPage < 2) {
+      return 5.0;
+    } else if (i == 1 && !isActive && _currentPage == 3) {
+      return 10.0;
+    } else if (i == 2 && !isActive && _currentPage == 0) {
+      return 10.0;
+    } else if (i == 1 && !isActive && _currentPage == 2) {
+      return 10.0;
+    } else if (i == 2 && !isActive && _currentPage == 1) {
+      return 10.0;
+    }
+    return 10.0;
+  }
+
+  Color _getColor(bool isActive, int i) {
+    if (isActive) {
+      return Colors.black;
+    } else {
+      return Color(0xFFA9A9A9);
+    }
+  }
 
   @override
   Widget build(BuildContext context, model) {
@@ -152,8 +207,13 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(top: 18),
-                                        child:
-                                            AppSvg.asset(AssetUtils.swipeDown),
+                                        child: LottieBuilder.asset(
+                                          'assets/animation/Swipe_Down.json',
+                                          width: 28.0,
+                                          height: 28.0,
+                                        ),
+                                        // child:
+                                        //     AppSvg.asset(AssetUtils.swipeDown),
                                       ),
                                       Expanded(
                                         child: Padding(
@@ -166,6 +226,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 pageController:
                                                     model.pageController,
                                                 onIndexChanged: (index) {
+                                                  _currentPage = index;
                                                   model.updatePage(index);
                                                   model
                                                       .updatePageControllerStream(
@@ -177,23 +238,29 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                           ),
                                         ),
                                       ),
-                                      SmoothPageIndicator(
-                                          controller: model.controller,
-                                          count: pages.length,
-                                          effect: ScrollingDotsEffect(
-                                            activeStrokeWidth: 2.6,
-                                            activeDotScale: 1.3,
-                                            activeDotColor: Theme.of(context)
-                                                .primaryColorDark,
-                                            dotColor: Theme.of(context)
-                                                .primaryColorDark
-                                                .withOpacity(0.6),
-                                            maxVisibleDots: 5,
-                                            radius: 8,
-                                            spacing: 10,
-                                            dotHeight: 10,
-                                            dotWidth: 10,
-                                          )),
+                                      const SizedBox(height: 20.0),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: _buildPageIndicator(),
+                                      ),
+                                      // SmoothPageIndicator(
+                                      //     controller: model.controller,
+                                      //     count: pages.length,
+                                      //     effect: ScrollingDotsEffect(
+                                      //       activeStrokeWidth: 2.6,
+                                      //       activeDotScale: 1.3,
+                                      //       activeDotColor: Theme.of(context)
+                                      //           .primaryColorDark,
+                                      //       dotColor: Theme.of(context)
+                                      //           .primaryColorDark
+                                      //           .withOpacity(0.6),
+                                      //       maxVisibleDots: 5,
+                                      //       radius: 8,
+                                      //       spacing: 10,
+                                      //       dotHeight: 10,
+                                      //       dotWidth: 10,
+                                      //     )),
                                       Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Padding(
@@ -211,8 +278,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                   title: " "),
                                               TabItem(
                                                 icon: Container(
-                                                  height: 80,
-                                                  width: 80,
+                                                  height: 120,
+                                                  width: 120,
                                                   decoration: BoxDecoration(
                                                       color: Theme.of(context)
                                                           .primaryColorDark,
