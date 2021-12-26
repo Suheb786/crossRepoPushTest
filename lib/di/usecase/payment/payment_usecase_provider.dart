@@ -1,3 +1,4 @@
+import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/payment/add_request_money_contact_usecase.dart';
 import 'package:domain/usecase/payment/add_send_money_contact_usecase.dart';
 import 'package:domain/usecase/payment/enter_otp_usecase.dart';
@@ -16,81 +17,82 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[<AddSendMoneyContactUseCase>] provider
 final addSendMoneyContactUseCaseProvider =
-    Provider.autoDispose<AddSendMoneyContactUseCase>(
-  (ref) => AddSendMoneyContactUseCase(),
+Provider.autoDispose<AddSendMoneyContactUseCase>(
+      (ref) => AddSendMoneyContactUseCase(),
 );
 
 ///[<AddRequestMoneyContactUseCase>] provider
 final addRequestMoneyContactUseCaseProvider =
-    Provider.autoDispose<AddRequestMoneyContactUseCase>(
-  (ref) => AddRequestMoneyContactUseCase(),
+Provider.autoDispose<AddRequestMoneyContactUseCase>(
+      (ref) =>
+      AddRequestMoneyContactUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
 ///[<SendAmountToContactUseCase>] provider
 final sendAmountToContactUseCaseProvider =
-    Provider.autoDispose<SendAmountToContactUseCase>(
-  (ref) => SendAmountToContactUseCase(),
+Provider.autoDispose<SendAmountToContactUseCase>(
+      (ref) => SendAmountToContactUseCase(),
 );
 
 ///[<SendAmountToContactSuccessUseCase>] provider
 final sendAmountToContactSuccessUseCaseProvider =
-    Provider.autoDispose<SendAmountToContactSuccessUseCase>(
-  (ref) => SendAmountToContactSuccessUseCase(),
+Provider.autoDispose<SendAmountToContactSuccessUseCase>(
+      (ref) => SendAmountToContactSuccessUseCase(),
 );
 
 ///[<RequestAmountFromContactUseCase>] provider
 final requestAmountFromContactUseCaseProvider =
-    Provider.autoDispose<RequestAmountFromContactUseCase>(
-  (ref) => RequestAmountFromContactUseCase(),
+Provider.autoDispose<RequestAmountFromContactUseCase>(
+      (ref) => RequestAmountFromContactUseCase(),
 );
 
 ///[<RequestAmountFromContactSuccessUseCase>] provider
 final requestAmountFromContactSuccessUseCaseProvider =
-    Provider.autoDispose<RequestAmountFromContactSuccessUseCase>(
-  (ref) => RequestAmountFromContactSuccessUseCase(),
+Provider.autoDispose<RequestAmountFromContactSuccessUseCase>(
+      (ref) => RequestAmountFromContactSuccessUseCase(),
 );
 
 ///[<RequestMoneyFailureUseCase>] provider
 final requestMoneyFailureUseCaseProvider =
-    Provider.autoDispose<RequestMoneyFailureUseCase>(
-  (ref) => RequestMoneyFailureUseCase(),
+Provider.autoDispose<RequestMoneyFailureUseCase>(
+      (ref) => RequestMoneyFailureUseCase(),
 );
 
 ///[<SendMoneyFailureUseCase>] provider
 final sendMoneyFailureUseCaseProvider =
-    Provider.autoDispose<SendMoneyFailureUseCase>(
-  (ref) => SendMoneyFailureUseCase(),
+Provider.autoDispose<SendMoneyFailureUseCase>(
+      (ref) => SendMoneyFailureUseCase(),
 );
 
 ///[<SendMoneyUseCase>] provider
 final sendMoneyUseCaseProvider = Provider.autoDispose<SendMoneyUseCase>(
-  (ref) => SendMoneyUseCase(),
+      (ref) => SendMoneyUseCase(),
 );
 
 ///[<SendMoneyUseCase>] provider
 final sendToNewRecipientUseCaseProvider =
-    Provider.autoDispose<SendToNewRecipientUseCase>(
-  (ref) => SendToNewRecipientUseCase(),
+Provider.autoDispose<SendToNewRecipientUseCase>(
+      (ref) => SendToNewRecipientUseCase(),
 );
 
 ///[<RequestFromNewRecipientUseCase>] provider
 final requestFromNewRecipientUseCaseProvider =
-    Provider.autoDispose<RequestFromNewRecipientUseCase>(
-  (ref) => RequestFromNewRecipientUseCase(),
+Provider.autoDispose<RequestFromNewRecipientUseCase>(
+      (ref) => RequestFromNewRecipientUseCase(),
 );
 
 ///[<EnterOtpUseCase>] provider
 final enterOtpUseCaseProvider = Provider.autoDispose<EnterOtpUseCase>(
-  (ref) => EnterOtpUseCase(),
+      (ref) => EnterOtpUseCase(),
 );
 
 ///[<EnterRequestOtpUseCase>] provider
 final enterRequestOtpUseCaseProvider =
-    Provider.autoDispose<EnterRequestOtpUseCase>(
-  (ref) => EnterRequestOtpUseCase(),
+Provider.autoDispose<EnterRequestOtpUseCase>(
+      (ref) => EnterRequestOtpUseCase(),
 );
 
 ///[<RequestMoneyUseCase>] provider
 final requestMoneyUseCaseProvider = Provider.autoDispose<RequestMoneyUseCase>(
-  (ref) => RequestMoneyUseCase(),
+      (ref) => RequestMoneyUseCase(),
 );
