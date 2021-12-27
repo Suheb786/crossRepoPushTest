@@ -640,5 +640,7 @@
   "statementPDF": "Statement PDF",
   "beneficiaryNotFound": "Beneficiary not found.",
   "errorWhileBalanceInquiry": "Error while getting Balance Inquiry",
-  "insufficientBalance": "insufficient Balance (Err-89)"
+  "insufficientBalance": "insufficient Balance (Err-89)",
+  "creditCardDelivered": "Credit card\ndelivered",
+  "debitCardDeliveredDate": "Debit Card\ndelivered"
 }

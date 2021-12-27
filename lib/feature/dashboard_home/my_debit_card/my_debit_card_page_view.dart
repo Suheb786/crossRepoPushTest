@@ -6,7 +6,6 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -652,22 +651,27 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                       ),
                     ),
                   ),
+
                   ///delivered button
-                  Positioned(
-                    top: 0,
-                    child: Container(
-                      height: 24,
-                      width: 125,
-                      decoration: BoxDecoration(
-                          color: AppColor.darkGrey,
-                          borderRadius: BorderRadius.circular(100)),
-                      child: Center(
-                        child: Text(
-                          S.of(context).cardDelivered,
-                          style: TextStyle(
-                              color: Theme.of(context).accentColor,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12),
+                  Visibility(
+                    visible: !(cardData!.isDebitDelivered != null &&
+                        cardData.isDebitDelivered),
+                    child: Positioned(
+                      top: 0,
+                      child: Container(
+                        height: 24,
+                        width: 125,
+                        decoration: BoxDecoration(
+                            color: AppColor.darkGrey,
+                            borderRadius: BorderRadius.circular(100)),
+                        child: Center(
+                          child: Text(
+                            S.of(context).cardDelivered,
+                            style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12),
+                          ),
                         ),
                       ),
                     ),
@@ -717,7 +721,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        cardData!.debitCard!.accountTitle ?? '',
+                                        cardData.debitCard!.accountTitle ?? '',
                                         maxLines: 2,
                                         style: TextStyle(
                                             color: Theme.of(context)

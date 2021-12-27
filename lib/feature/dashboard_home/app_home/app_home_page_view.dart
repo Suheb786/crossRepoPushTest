@@ -27,7 +27,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
   AppHomePageView(ProviderBase model) : super(model);
 
-  List pages = [
+  final List pages = [
     MyAccountPage(),
     GetCreditCardPage(),
     MyDebitCardPage(),
@@ -303,98 +303,167 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     EdgeInsets.only(left: 18),
                                                 child: Row(
                                                   children: [
-                                                    Column(
-                                                      children: [
-                                                        Text(
-                                                          S
-                                                              .of(context)
-                                                              .cardDelivered,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize: 12),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  top: 5),
-                                                          child: InkWell(
-                                                            onTap: () {
-                                                              if (currentStep ==
-                                                                  1) {
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder: (context) =>
-                                                                            CreditCardDeliveredPage(
-                                                                              creditCard: cardData!.data!.dashboardDataContent!.creditCard!,
-                                                                            )));
-                                                              } else {
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder: (context) =>
-                                                                            DebitCardDeliveredPage(
-                                                                              debitCard: cardData!.data!.dashboardDataContent!.debitCard!,
-                                                                            )));
-                                                              }
-                                                            },
-                                                            child: Container(
-                                                              padding: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          11,
-                                                                      vertical:
-                                                                          2),
-                                                              decoration: BoxDecoration(
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .accentColor,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              14),
-                                                                  border: Border.all(
-                                                                      color: Theme.of(
-                                                                              context)
-                                                                          .accentTextTheme
-                                                                          .bodyText1!
-                                                                          .color!)),
-                                                              child: Text(
-                                                                S
-                                                                    .of(context)
-                                                                    .confirm,
-                                                                style: TextStyle(
-                                                                    color: Theme.of(
+                                                    (currentStep == 1
+                                                            ? cardData!
+                                                                .data!
+                                                                .dashboardDataContent!
+                                                                .isCreditDelivered
+                                                            : cardData!
+                                                                .data!
+                                                                .dashboardDataContent!
+                                                                .isDebitDelivered)
+                                                        ? Column(
+                                                            children: [
+                                                              Text(
+                                                                currentStep == 1
+                                                                    ? S
+                                                                        .of(
                                                                             context)
-                                                                        .accentTextTheme
-                                                                        .bodyText1!
-                                                                        .color,
-                                                                    fontSize:
-                                                                        14,
+                                                                        .creditCardDelivered
+                                                                    : S
+                                                                        .of(context)
+                                                                        .debitCardDeliveredDate,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w600),
+                                                                            .w600,
+                                                                    fontSize:
+                                                                        12),
                                                               ),
-                                                            ),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: 5),
+                                                                child: Text(
+                                                                  currentStep ==
+                                                                          1
+                                                                      ? cardData.data!.dashboardDataContent!.creditDeliveredDatetime !=
+                                                                              null
+                                                                          ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                              .data!
+                                                                              .dashboardDataContent!
+                                                                              .creditDeliveredDatetime!
+                                                                              .toString())
+                                                                          : '-'
+                                                                      : cardData.data!.dashboardDataContent!.debitDeliveredDatetime !=
+                                                                              null
+                                                                          ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                              .data!
+                                                                              .dashboardDataContent!
+                                                                              .debitDeliveredDatetime!
+                                                                              .toString())
+                                                                          : '-',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .inputDecorationTheme
+                                                                          .hintStyle!
+                                                                          .color,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
+                                                                ),
+                                                              )
+                                                            ],
+                                                          )
+                                                        : Column(
+                                                            children: [
+                                                              Text(
+                                                                S
+                                                                    .of(context)
+                                                                    .cardDelivered,
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontSize:
+                                                                        12),
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: 5),
+                                                                child: InkWell(
+                                                                  onTap:
+                                                                      () async {
+                                                                    if (currentStep ==
+                                                                        1) {
+                                                                      Navigator.push(
+                                                                          context,
+                                                                          MaterialPageRoute(
+                                                                              builder: (context) => CreditCardDeliveredPage(
+                                                                                    creditCard: cardData.data!.dashboardDataContent!.creditCard!,
+                                                                                  )));
+                                                                    } else {
+                                                                      var result = await Navigator.push(
+                                                                          context,
+                                                                          MaterialPageRoute(
+                                                                              builder: (context) => DebitCardDeliveredPage(
+                                                                                    debitCard: cardData.data!.dashboardDataContent!.debitCard!,
+                                                                                  )));
+                                                                      if (result !=
+                                                                          null) {
+                                                                        print(
+                                                                            '$result');
+                                                                        model
+                                                                            .getDashboardData();
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    padding: EdgeInsets.symmetric(
+                                                                        horizontal:
+                                                                            11,
+                                                                        vertical:
+                                                                            2),
+                                                                    decoration: BoxDecoration(
+                                                                        color: Theme.of(context)
+                                                                            .accentColor,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                14),
+                                                                        border: Border.all(
+                                                                            color:
+                                                                                Theme.of(context).accentTextTheme.bodyText1!.color!)),
+                                                                    child: Text(
+                                                                      S
+                                                                          .of(context)
+                                                                          .confirm,
+                                                                      style: TextStyle(
+                                                                          color: Theme.of(context)
+                                                                              .accentTextTheme
+                                                                              .bodyText1!
+                                                                              .color,
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontWeight:
+                                                                              FontWeight.w600),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            ],
                                                           ),
-                                                        )
-                                                      ],
-                                                    ),
                                                     Padding(
                                                       padding: EdgeInsets.only(
                                                           left: 170),
                                                       child: Column(
                                                         children: [
                                                           Text(
-                                                            currentStep == 1
-                                                                ? S
-                                                                    .of(context)
-                                                                    .debitCardDelivered
-                                                                : S
-                                                                    .of(context)
-                                                                    .joinedBlink,
+                                                            // currentStep == 1
+                                                            //     ? S
+                                                            //         .of(context)
+                                                            //         .debitCardDelivered
+                                                            //     :
+                                                            S
+                                                                .of(context)
+                                                                .joinedBlink,
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
@@ -408,7 +477,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                 EdgeInsets.only(
                                                                     top: 5),
                                                             child: Text(
-                                                              cardData!
+                                                              cardData
                                                                           .data!
                                                                           .dashboardDataContent!
                                                                           .youJoinedBlink !=

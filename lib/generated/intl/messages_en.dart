@@ -218,6 +218,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Next, let’s create your \nlogin password"),
         "creditCardActivated":
             MessageLookupByLibrary.simpleMessage("Credit Card\nactivated."),
+        "creditCardDelivered":
+            MessageLookupByLibrary.simpleMessage("Credit card\ndelivered"),
         "creditCardVerified": MessageLookupByLibrary.simpleMessage(
             "Credit card\nhas been verified."),
         "currentPassword":
@@ -233,6 +235,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "debitCardActivated":
             MessageLookupByLibrary.simpleMessage("Debit Card\nactivated."),
         "debitCardDelivered":
+            MessageLookupByLibrary.simpleMessage("Debit Card\ndelivered"),
+        "debitCardDeliveredDate":
             MessageLookupByLibrary.simpleMessage("Debit Card\ndelivered"),
         "debitCardVerified": MessageLookupByLibrary.simpleMessage(
             "Debit card\nhas been verified."),

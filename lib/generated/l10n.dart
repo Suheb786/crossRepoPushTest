@@ -6270,6 +6270,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Credit card\ndelivered`
+  String get creditCardDelivered {
+    return Intl.message(
+      'Credit card\ndelivered',
+      name: 'creditCardDelivered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debit Card\ndelivered`
+  String get debitCardDeliveredDate {
+    return Intl.message(
+      'Debit Card\ndelivered',
+      name: 'debitCardDeliveredDate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
