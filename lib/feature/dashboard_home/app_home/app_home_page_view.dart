@@ -393,12 +393,19 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                       () async {
                                                                     if (currentStep ==
                                                                         1) {
-                                                                      Navigator.push(
+                                                                      var result = await Navigator.push(
                                                                           context,
                                                                           MaterialPageRoute(
                                                                               builder: (context) => CreditCardDeliveredPage(
                                                                                     creditCard: cardData.data!.dashboardDataContent!.creditCard!,
                                                                                   )));
+                                                                      if (result !=
+                                                                          null) {
+                                                                        print(
+                                                                            '$result');
+                                                                        model
+                                                                            .getDashboardData();
+                                                                      }
                                                                     } else {
                                                                       var result = await Navigator.push(
                                                                           context,
