@@ -28,10 +28,11 @@ class PaymentHomeViewModel extends BasePageViewModel {
   PublishSubject<GetBeneficiaryUseCaseParams> _getBeneficiaryRequest =
       PublishSubject();
 
-  PublishSubject<Resource<GetBeneficiaryListResponse>> _getBeneficiaryResponse =
-      PublishSubject();
+  BehaviorSubject<Resource<GetBeneficiaryListResponse>>
+      _getBeneficiaryResponse = BehaviorSubject();
 
-  Resource<GetBeneficiaryListResponse>? beneficiaryResponse;
+  Stream<Resource<GetBeneficiaryListResponse>> get beneficiaryResponse =>
+      _getBeneficiaryResponse.stream;
 
   void updatePage(int index) {
     _currentStep.safeAdd(index);
@@ -52,12 +53,9 @@ class PaymentHomeViewModel extends BasePageViewModel {
         print("in add request money constructor");
         updateLoader();
         _getBeneficiaryResponse.safeAdd(event);
-        beneficiaryResponse = event;
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
-        } else if (event.status == Status.SUCCESS) {
-          print("got: ${event.data!.beneficiaryList!}");
         }
       });
     });
