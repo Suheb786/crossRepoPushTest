@@ -4,6 +4,8 @@ import 'package:domain/usecase/payment/check_send_money_usecase.dart';
 import 'package:domain/usecase/payment/enter_otp_usecase.dart';
 import 'package:domain/usecase/payment/enter_request_otp_usecase.dart';
 import 'package:domain/usecase/payment/get_beneficiary_usecase.dart';
+import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
+import 'package:domain/usecase/payment/get_beneficiary_usecase.dart';
 import 'package:domain/usecase/payment/request_amount_from_contact_usecase.dart';
 import 'package:domain/usecase/payment/request_from_new_recipient_usecase.dart';
 import 'package:domain/usecase/payment/request_money_failure_usecase.dart';
@@ -26,6 +28,12 @@ final addSendMoneyContactUseCaseProvider =
 final getBeneficiaryUseCaseProvider =
     Provider.autoDispose<GetBeneficiaryUseCase>(
   (ref) => GetBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
+);
+
+///[<GetAccountByAliasUseCase>] provider
+final getAccountByAliasUseCaseProvider =
+    Provider.autoDispose<GetAccountByAliasUseCase>(
+  (ref) => GetAccountByAliasUseCase(ref.read(paymentRepositoryProvider)),
 );
 
 ///[<SendAmountToContactUseCase>] provider
