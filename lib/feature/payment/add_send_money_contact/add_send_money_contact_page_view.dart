@@ -78,6 +78,7 @@ class AddSendMoneyContactPageView
                                                     .data!
                                                     .beneficiaryList![index]);
                                           },
+                                          transferEnum: TransferEnum.send,
                                           beneficiary: beneficiaryResponse
                                               .data!.beneficiaryList![index],
                                         );

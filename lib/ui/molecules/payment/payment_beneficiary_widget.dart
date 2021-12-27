@@ -5,8 +5,10 @@ import 'package:neo_bank/utils/string_utils.dart';
 class PaymentBeneficiaryWidget extends StatelessWidget {
   final Function()? onTap;
   final Beneficiary? beneficiary;
+  final TransferEnum transferEnum;
 
-  const PaymentBeneficiaryWidget({Key? key, this.onTap, this.beneficiary})
+  const PaymentBeneficiaryWidget(
+      {Key? key, this.onTap, this.beneficiary, required this.transferEnum})
       : super(key: key);
 
   @override
@@ -27,16 +29,20 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
                   )
                 : CircleAvatar(
                     radius: 32,
-                    backgroundColor: Theme.of(context).canvasColor,
+                    backgroundColor: transferEnum == TransferEnum.send
+                        ? Theme.of(context).canvasColor
+                        : Theme.of(context).primaryColor,
                     child: Text(
                       StringUtils.getFirstInitials(beneficiary!.nickName),
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 20,
-                          color: Theme.of(context)
-                              .primaryTextTheme
-                              .bodyText1!
-                              .color),
+                          color: transferEnum == TransferEnum.send
+                              ? Theme.of(context)
+                                  .primaryTextTheme
+                                  .bodyText1!
+                                  .color
+                              : Theme.of(context).accentColor),
                     ),
                   )),
         Padding(
@@ -53,3 +59,5 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
     );
   }
 }
+
+enum TransferEnum { send, request }

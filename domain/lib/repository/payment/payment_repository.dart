@@ -9,4 +9,14 @@ abstract class PaymentRepository {
 
   Future<Either<NetworkError, CheckSendMoneyResponse>> checkSendMoney(
       String toAccount, num toAmount);
+
+  Future<Either<NetworkError, bool>> transfer(
+      String beneficiaryId,
+      String transferType,
+      String beneficiaryImage,
+      bool isFriend,
+      num toAmount,
+      num localEq,
+      String memo,
+      String toAccount);
 }

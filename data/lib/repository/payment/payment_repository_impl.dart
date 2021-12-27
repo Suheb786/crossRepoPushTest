@@ -34,4 +34,31 @@ class PaymentRepositoryImpl extends PaymentRepository {
       (r) => Right(r.data.transform()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> transfer(
+      String beneficiaryId,
+      String transferType,
+      String beneficiaryImage,
+      bool isFriend,
+      num toAmount,
+      num localEq,
+      String memo,
+      String toAccount) async {
+    final result = await safeApiCall(
+      paymentRemoteDs.transfer(
+          beneficiaryId: beneficiaryId,
+          transferType: transferType,
+          beneficiaryImage: beneficiaryImage,
+          isFriend: isFriend,
+          toAmount: toAmount,
+          localEq: localEq,
+          memo: memo,
+          toAccount: toAccount),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }
