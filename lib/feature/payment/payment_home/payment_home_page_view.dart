@@ -15,7 +15,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
   PaymentHomePageView(ProviderBase model) : super(model);
 
-  List pages = [AddSendMoneyContactPage(), AddRequestMoneyContactPage()];
+  final List pages = [AddSendMoneyContactPage(), AddRequestMoneyContactPage()];
 
   @override
   Widget build(BuildContext context, model) {
@@ -48,7 +48,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                     child: Text(
                       S.of(context).payments,
                       style:
-                      TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                          TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                   ),
                   Expanded(
@@ -82,7 +82,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                               activeStrokeWidth: 2.6,
                               activeDotScale: 1.3,
                               activeDotColor:
-                              Theme.of(context).primaryColorDark,
+                                  Theme.of(context).primaryColorDark,
                               dotColor: Theme.of(context)
                                   .primaryColorDark
                                   .withOpacity(0.6),

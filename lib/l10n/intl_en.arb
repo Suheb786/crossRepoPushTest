@@ -637,5 +637,8 @@
   "emptyPurpose": "Purpose should not be empty",
   "emptyPurposeDetail": "Purpose detail should not be empty",
   "downloadStatement": "Download Statement",
-  "statementPDF": "Statement PDF"
+  "statementPDF": "Statement PDF",
+  "beneficiaryNotFound": "Beneficiary not found.",
+  "errorWhileBalanceInquiry": "Error while getting Balance Inquiry",
+  "insufficientBalance": "insufficient Balance (Err-89)"
 }

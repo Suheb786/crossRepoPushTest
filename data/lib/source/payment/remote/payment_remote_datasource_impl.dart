@@ -1,5 +1,7 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
+import 'package:data/entity/remote/payment/check_send_money_request_entity.dart';
+import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
 import 'package:data/network/api_service.dart';
@@ -20,6 +22,17 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         baseData: baseData.toJson(),
         value: value,
         currency: currency,
+        getToken: true));
+  }
+
+  @override
+  Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
+      {String? toAccount, num? toAmount}) async {
+    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
+    return _apiService.checkSendMoney(CheckSendMoneyRequestEntity(
+        baseData: baseData.toJson(),
+        toAccount: toAccount,
+        toAmount: toAmount,
         getToken: true));
   }
 }

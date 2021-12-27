@@ -62,6 +62,8 @@ import 'package:data/entity/remote/fatca_crs/upload_signature_request_entity.dar
 import 'package:data/entity/remote/fatca_crs/upload_signature_response_entity.dart';
 import 'package:data/entity/remote/kyc/check_kyc_status_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
+import 'package:data/entity/remote/payment/check_send_money_request_entity.dart';
+import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
@@ -461,4 +463,8 @@ abstract class ApiService {
       getAccountByAlias(
           @Body()
               GetAccountByAliasRequestEntity getAccountByAliasRequestEntity);
+
+  @POST("/transfer/CheckSendMoney")
+  Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
+      @Body() CheckSendMoneyRequestEntity checkSendMoneyRequestEntity);
 }

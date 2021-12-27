@@ -188,6 +188,24 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.INVALID_OTP_ENTERED);
 
+          case "err-147":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.BENEFICIARY_NOT_FOUND);
+
+          case "err-166":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_BALANCE_INQUIRY);
+
+          case "err-148":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INSUFFICIENT_BALANCE);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

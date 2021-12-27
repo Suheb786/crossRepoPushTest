@@ -6240,6 +6240,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Beneficiary not found.`
+  String get beneficiaryNotFound {
+    return Intl.message(
+      'Beneficiary not found.',
+      name: 'beneficiaryNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while getting Balance Inquiry`
+  String get errorWhileBalanceInquiry {
+    return Intl.message(
+      'Error while getting Balance Inquiry',
+      name: 'errorWhileBalanceInquiry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `insufficient Balance (Err-89)`
+  String get insufficientBalance {
+    return Intl.message(
+      'insufficient Balance (Err-89)',
+      name: 'insufficientBalance',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

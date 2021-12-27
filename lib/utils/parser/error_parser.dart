@@ -298,6 +298,12 @@ class ErrorParser {
         return localisedHelper.emptyPurpose;
       case ErrorType.EMPTY_PURPOSE_DETAIL:
         return localisedHelper.emptyPurposeDetail;
+      case ErrorType.BENEFICIARY_NOT_FOUND:
+        return localisedHelper.beneficiaryNotFound;
+      case ErrorType.ERROR_WHILE_BALANCE_INQUIRY:
+        return localisedHelper.errorWhileBalanceInquiry;
+      case ErrorType.INSUFFICIENT_BALANCE:
+        return localisedHelper.insufficientBalance;
 
       default:
         return "";
