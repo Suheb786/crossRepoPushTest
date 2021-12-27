@@ -1,8 +1,9 @@
 import 'package:data/di/repository_module.dart';
-import 'package:domain/usecase/payment/get_beneficiary_usecase.dart';
 import 'package:domain/usecase/payment/add_send_money_contact_usecase.dart';
 import 'package:domain/usecase/payment/enter_otp_usecase.dart';
 import 'package:domain/usecase/payment/enter_request_otp_usecase.dart';
+import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
+import 'package:domain/usecase/payment/get_beneficiary_usecase.dart';
 import 'package:domain/usecase/payment/request_amount_from_contact_usecase.dart';
 import 'package:domain/usecase/payment/request_from_new_recipient_usecase.dart';
 import 'package:domain/usecase/payment/request_money_failure_usecase.dart';
@@ -27,6 +28,12 @@ final getBeneficiaryUseCaseProvider =
   (ref) => GetBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
+///[<GetAccountByAliasUseCase>] provider
+final getAccountByAliasUseCaseProvider =
+    Provider.autoDispose<GetAccountByAliasUseCase>(
+  (ref) => GetAccountByAliasUseCase(ref.read(paymentRepositoryProvider)),
+);
+
 ///[<SendAmountToContactUseCase>] provider
 final sendAmountToContactUseCaseProvider =
     Provider.autoDispose<SendAmountToContactUseCase>(
@@ -35,32 +42,32 @@ final sendAmountToContactUseCaseProvider =
 
 ///[<SendAmountToContactSuccessUseCase>] provider
 final sendAmountToContactSuccessUseCaseProvider =
-Provider.autoDispose<SendAmountToContactSuccessUseCase>(
-      (ref) => SendAmountToContactSuccessUseCase(),
+    Provider.autoDispose<SendAmountToContactSuccessUseCase>(
+  (ref) => SendAmountToContactSuccessUseCase(),
 );
 
 ///[<RequestAmountFromContactUseCase>] provider
 final requestAmountFromContactUseCaseProvider =
-Provider.autoDispose<RequestAmountFromContactUseCase>(
-      (ref) => RequestAmountFromContactUseCase(),
+    Provider.autoDispose<RequestAmountFromContactUseCase>(
+  (ref) => RequestAmountFromContactUseCase(),
 );
 
 ///[<RequestAmountFromContactSuccessUseCase>] provider
 final requestAmountFromContactSuccessUseCaseProvider =
-Provider.autoDispose<RequestAmountFromContactSuccessUseCase>(
-      (ref) => RequestAmountFromContactSuccessUseCase(),
+    Provider.autoDispose<RequestAmountFromContactSuccessUseCase>(
+  (ref) => RequestAmountFromContactSuccessUseCase(),
 );
 
 ///[<RequestMoneyFailureUseCase>] provider
 final requestMoneyFailureUseCaseProvider =
-Provider.autoDispose<RequestMoneyFailureUseCase>(
-      (ref) => RequestMoneyFailureUseCase(),
+    Provider.autoDispose<RequestMoneyFailureUseCase>(
+  (ref) => RequestMoneyFailureUseCase(),
 );
 
 ///[<SendMoneyFailureUseCase>] provider
 final sendMoneyFailureUseCaseProvider =
-Provider.autoDispose<SendMoneyFailureUseCase>(
-      (ref) => SendMoneyFailureUseCase(),
+    Provider.autoDispose<SendMoneyFailureUseCase>(
+  (ref) => SendMoneyFailureUseCase(),
 );
 
 ///[<SendMoneyUseCase>] provider
@@ -70,14 +77,14 @@ final sendMoneyUseCaseProvider = Provider.autoDispose<SendMoneyUseCase>(
 
 ///[<SendMoneyUseCase>] provider
 final sendToNewRecipientUseCaseProvider =
-Provider.autoDispose<SendToNewRecipientUseCase>(
-      (ref) => SendToNewRecipientUseCase(),
+    Provider.autoDispose<SendToNewRecipientUseCase>(
+  (ref) => SendToNewRecipientUseCase(),
 );
 
 ///[<RequestFromNewRecipientUseCase>] provider
 final requestFromNewRecipientUseCaseProvider =
-Provider.autoDispose<RequestFromNewRecipientUseCase>(
-      (ref) => RequestFromNewRecipientUseCase(),
+    Provider.autoDispose<RequestFromNewRecipientUseCase>(
+  (ref) => RequestFromNewRecipientUseCase(),
 );
 
 ///[<EnterOtpUseCase>] provider
@@ -87,8 +94,8 @@ final enterOtpUseCaseProvider = Provider.autoDispose<EnterOtpUseCase>(
 
 ///[<EnterRequestOtpUseCase>] provider
 final enterRequestOtpUseCaseProvider =
-Provider.autoDispose<EnterRequestOtpUseCase>(
-      (ref) => EnterRequestOtpUseCase(),
+    Provider.autoDispose<EnterRequestOtpUseCase>(
+  (ref) => EnterRequestOtpUseCase(),
 );
 
 ///[<RequestMoneyUseCase>] provider

@@ -25,7 +25,7 @@ import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dial
 
 final paymentHomeViewModelProvider =
 ChangeNotifierProvider.autoDispose<PaymentHomeViewModel>(
-  (ref) => PaymentHomeViewModel(),
+  (ref) => PaymentHomeViewModel(ref.read(getBeneficiaryUseCaseProvider)),
 );
 
 final addSendMoneyContactViewModelProvider =
@@ -36,8 +36,7 @@ ChangeNotifierProvider.autoDispose<AddSendMoneyContactViewModel>(
 
 final addRequestMoneyContactViewModelProvider =
 ChangeNotifierProvider.autoDispose<AddRequestMoneyContactViewModel>(
-  (ref) =>
-      AddRequestMoneyContactViewModel(ref.read(getBeneficiaryUseCaseProvider)),
+      (ref) => AddRequestMoneyContactViewModel(),
 );
 
 final sendAmountToContactViewModelProvider =
@@ -104,9 +103,10 @@ final enterRequestOtpViewModelProvider =
 
 final requestFromNewRecipientViewModelProvider =
     ChangeNotifierProvider.autoDispose<RequestFromNewRecipientViewModel>(
-  (ref) => RequestFromNewRecipientViewModel(
+          (ref) => RequestFromNewRecipientViewModel(
       ref.read(requestFromNewRecipientUseCaseProvider),
-      ref.read(uploadDocumentUseCaseProvider)),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(getAccountByAliasUseCaseProvider)),
 );
 
 final paymentToNewRecipientViewModelProvider =

@@ -115,6 +115,10 @@ class RequestFromNewRecipientPageView
                                                 controller: model
                                                     .ibanOrMobileController,
                                                 onPressed: () {},
+                                                onFieldSubmitted: (text) {
+                                                  model.getAccountByAlias(
+                                                      text, "JOD");
+                                                },
                                               ),
                                             ),
                                             Padding(
