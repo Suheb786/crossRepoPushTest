@@ -69,6 +69,11 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
 
+  PublishSubject<String> _showAccountDetailSubject = PublishSubject();
+
+  Stream<String> get showAccountDetailStream =>
+      _showAccountDetailSubject.stream;
+
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
   RequestFromNewRecipientViewModel(this._useCase, this._uploadDocumentUseCase,
@@ -104,8 +109,8 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
         } else if (event.status == Status.SUCCESS) {
-          print(
-              "got account value: ${event.data!.getAccountByAliasContent!.name}");
+          _showAccountDetailSubject
+              .safeAdd(event.data!.getAccountByAliasContent!.name);
         }
       });
     });

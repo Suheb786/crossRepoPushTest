@@ -4,6 +4,7 @@ import 'package:data/source/payment/payment_datasource.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
+import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:domain/repository/payment/payment_repository.dart';
 
 class PaymentRepositoryImpl extends PaymentRepository {
@@ -59,6 +60,23 @@ class PaymentRepositoryImpl extends PaymentRepository {
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, RequestToPayContentResponse>> requestToPay(
+      String ctgyPurp,
+      num amount,
+      String dbtrBic,
+      String dbtrAcct,
+      String dbtrName) async {
+    final result = await safeApiCall(
+      paymentRemoteDs.requestToPay(
+          ctgyPurp, amount, dbtrBic, dbtrAcct, dbtrName),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 }

@@ -557,7 +557,10 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                               child: Text(
                                                 S.of(context).flipCard,
                                                 style: TextStyle(
-                                                    color: AppColor.green,
+                                                    color: Theme.of(context)
+                                                        .accentTextTheme
+                                                        .bodyText1!
+                                                        .color!,
                                                     fontSize: 14,
                                                     fontWeight:
                                                         FontWeight.w600),
@@ -636,7 +639,11 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                               padding:
                                                   EdgeInsets.only(right: 33.0),
                                               child: AppSvg.asset(
-                                                  AssetUtils.settingsRed),
+                                                  AssetUtils.settingsRed,
+                                                  color: Theme.of(context)
+                                                      .accentTextTheme
+                                                      .bodyText1!
+                                                      .color!),
                                             )
                                           ],
                                         ),

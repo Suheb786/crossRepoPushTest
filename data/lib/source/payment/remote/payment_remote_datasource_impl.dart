@@ -4,6 +4,8 @@ import 'package:data/entity/remote/payment/check_send_money_request_entity.dart'
 import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
+import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
+import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
@@ -60,5 +62,22 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         memo: memo!,
         transferType: transferType!,
         getToken: true));
+  }
+
+  @override
+  Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
+      String ctgyPurp,
+      num amount,
+      String dbtrBic,
+      String dbtrAcct,
+      String dbtrName) async {
+    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
+    return _apiService.requestToPay(RequestToPayRequestEntity(
+        ctgyPurp: ctgyPurp,
+        amount: amount,
+        baseData: baseData.toJson(),
+        dbtrBic: dbtrBic,
+        dbtrAcct: dbtrAcct,
+        dbtrName: dbtrName));
   }
 }
