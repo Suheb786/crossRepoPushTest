@@ -1,5 +1,5 @@
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
-import 'package:domain/usecase/payment/add_request_money_contact_usecase.dart';
+import 'package:domain/usecase/payment/get_beneficiary_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -8,14 +8,14 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AddRequestMoneyContactViewModel extends BasePageViewModel {
-  AddRequestMoneyContactUseCase _addRequestMoneyContactUseCase;
+  GetBeneficiaryUseCase _addRequestMoneyContactUseCase;
 
   PublishSubject<bool> _addContactClickedSubject = PublishSubject();
 
   Stream<bool> get addContactClickedStream => _addContactClickedSubject.stream;
 
-  PublishSubject<AddRequestMoneyContactUseCaseParams>
-      _addRequestMoneyContactRequest = PublishSubject();
+  PublishSubject<GetBeneficiaryUseCaseParams> _addRequestMoneyContactRequest =
+      PublishSubject();
 
   PublishSubject<Resource<GetBeneficiaryListResponse>> _getBeneficiaryResponse =
       PublishSubject();
@@ -45,8 +45,7 @@ class AddRequestMoneyContactViewModel extends BasePageViewModel {
   }
 
   void getBeneficiaries() {
-    _addRequestMoneyContactRequest
-        .safeAdd(AddRequestMoneyContactUseCaseParams());
+    _addRequestMoneyContactRequest.safeAdd(GetBeneficiaryUseCaseParams());
   }
 
   void updateAddContactClickedValue(bool value) {

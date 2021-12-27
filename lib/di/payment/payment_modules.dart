@@ -36,8 +36,8 @@ ChangeNotifierProvider.autoDispose<AddSendMoneyContactViewModel>(
 
 final addRequestMoneyContactViewModelProvider =
 ChangeNotifierProvider.autoDispose<AddRequestMoneyContactViewModel>(
-  (ref) => AddRequestMoneyContactViewModel(
-      ref.read(addRequestMoneyContactUseCaseProvider)),
+  (ref) =>
+      AddRequestMoneyContactViewModel(ref.read(getBeneficiaryUseCaseProvider)),
 );
 
 final sendAmountToContactViewModelProvider =

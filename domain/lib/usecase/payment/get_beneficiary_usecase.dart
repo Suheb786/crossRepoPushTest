@@ -6,21 +6,21 @@ import 'package:domain/repository/manage_contact/manage_contact_repository.dart'
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class AddRequestMoneyContactUseCase extends BaseUseCase<NetworkError,
-    AddRequestMoneyContactUseCaseParams, GetBeneficiaryListResponse> {
+class GetBeneficiaryUseCase extends BaseUseCase<NetworkError,
+    GetBeneficiaryUseCaseParams, GetBeneficiaryListResponse> {
   final ManageContactRepository _repository;
 
-  AddRequestMoneyContactUseCase(this._repository);
+  GetBeneficiaryUseCase(this._repository);
 
   @override
   Future<Either<NetworkError, GetBeneficiaryListResponse>> execute(
-      {required AddRequestMoneyContactUseCaseParams params}) {
+      {required GetBeneficiaryUseCaseParams params}) {
     return _repository.getBeneficiaries();
   }
 }
 
-class AddRequestMoneyContactUseCaseParams extends Params {
-  AddRequestMoneyContactUseCaseParams();
+class GetBeneficiaryUseCaseParams extends Params {
+  GetBeneficiaryUseCaseParams();
 
   @override
   Either<AppError, bool> verify() {

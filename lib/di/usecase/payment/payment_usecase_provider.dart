@@ -1,5 +1,5 @@
 import 'package:data/di/repository_module.dart';
-import 'package:domain/usecase/payment/add_request_money_contact_usecase.dart';
+import 'package:domain/usecase/payment/get_beneficiary_usecase.dart';
 import 'package:domain/usecase/payment/add_send_money_contact_usecase.dart';
 import 'package:domain/usecase/payment/enter_otp_usecase.dart';
 import 'package:domain/usecase/payment/enter_request_otp_usecase.dart';
@@ -17,21 +17,20 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[<AddSendMoneyContactUseCase>] provider
 final addSendMoneyContactUseCaseProvider =
-Provider.autoDispose<AddSendMoneyContactUseCase>(
-      (ref) => AddSendMoneyContactUseCase(),
+    Provider.autoDispose<AddSendMoneyContactUseCase>(
+  (ref) => AddSendMoneyContactUseCase(),
 );
 
-///[<AddRequestMoneyContactUseCase>] provider
-final addRequestMoneyContactUseCaseProvider =
-Provider.autoDispose<AddRequestMoneyContactUseCase>(
-      (ref) =>
-      AddRequestMoneyContactUseCase(ref.read(manageContactRepositoryProvider)),
+///[<GetBeneficiaryUseCase>] provider
+final getBeneficiaryUseCaseProvider =
+    Provider.autoDispose<GetBeneficiaryUseCase>(
+  (ref) => GetBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
 ///[<SendAmountToContactUseCase>] provider
 final sendAmountToContactUseCaseProvider =
-Provider.autoDispose<SendAmountToContactUseCase>(
-      (ref) => SendAmountToContactUseCase(),
+    Provider.autoDispose<SendAmountToContactUseCase>(
+  (ref) => SendAmountToContactUseCase(),
 );
 
 ///[<SendAmountToContactSuccessUseCase>] provider
