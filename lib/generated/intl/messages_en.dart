@@ -135,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
         "beneficialOwnerIsAResidenceOf": MessageLookupByLibrary.simpleMessage(
             "Beneficial owner is a resident of"),
+        "beneficiaryNotFound":
+            MessageLookupByLibrary.simpleMessage("Beneficiary not found."),
         "biometricLogin":
             MessageLookupByLibrary.simpleMessage("Biometric Login"),
         "biometricLoginActivated": MessageLookupByLibrary.simpleMessage(
@@ -216,6 +218,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Next, let’s create your \nlogin password"),
         "creditCardActivated":
             MessageLookupByLibrary.simpleMessage("Credit Card\nactivated."),
+        "creditCardDelivered":
+            MessageLookupByLibrary.simpleMessage("Credit card\ndelivered"),
         "creditCardVerified": MessageLookupByLibrary.simpleMessage(
             "Credit card\nhas been verified."),
         "currentPassword":
@@ -231,6 +235,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "debitCardActivated":
             MessageLookupByLibrary.simpleMessage("Debit Card\nactivated."),
         "debitCardDelivered":
+            MessageLookupByLibrary.simpleMessage("Debit Card\ndelivered"),
+        "debitCardDeliveredDate":
             MessageLookupByLibrary.simpleMessage("Debit Card\ndelivered"),
         "debitCardVerified": MessageLookupByLibrary.simpleMessage(
             "Debit card\nhas been verified."),
@@ -396,6 +402,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error While Saving Status"),
         "errorUploadImage":
             MessageLookupByLibrary.simpleMessage("Error While Upload Image"),
+        "errorWhileBalanceInquiry": MessageLookupByLibrary.simpleMessage(
+            "Error while getting Balance Inquiry"),
         "errorWhileGetAccount":
             MessageLookupByLibrary.simpleMessage("Error While get Account"),
         "errorWhileGetAdditionalDocument": MessageLookupByLibrary.simpleMessage(
@@ -496,6 +504,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "incomeDetails": MessageLookupByLibrary.simpleMessage("INCOME DETAILS"),
         "informationSave": MessageLookupByLibrary.simpleMessage(
             "Don\'t worry, if you log out your information will be saved and you can login at any time."),
+        "insufficientBalance": MessageLookupByLibrary.simpleMessage(
+            "insufficient Balance (Err-89)"),
         "invalidAdditionSourceIncome": MessageLookupByLibrary.simpleMessage(
             "Select Additional Source Income"),
         "invalidAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),

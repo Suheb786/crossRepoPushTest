@@ -31,6 +31,10 @@ class DashboardDataEntity
   final DateTime? blinkJoinedDate;
   @JsonKey(name: "blinkWasBorn")
   final DateTime? blinkBornDate;
+  @JsonKey(name: "debitDeliveredDatetime")
+  final dynamic? debitDeliveredDatetime;
+  @JsonKey(name: "creditDeliveredDatetime")
+  final dynamic? creditDeliveredDatetime;
 
   DashboardDataEntity(
       {this.account,
@@ -42,7 +46,9 @@ class DashboardDataEntity
       this.isDebitDelivered,
       this.creditCardActivated,
       this.isCreditDelivered,
-      this.debitCard});
+      this.debitCard,
+      this.debitDeliveredDatetime,
+      this.creditDeliveredDatetime});
 
   factory DashboardDataEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardDataEntityFromJson(json);
@@ -66,6 +72,8 @@ class DashboardDataEntity
         creditCardActivated: this.creditCardActivated,
         debitCardActivated: this.debitCardActivated,
         blinkWasBorn: this.blinkBornDate,
-        youJoinedBlink: this.blinkJoinedDate);
+        youJoinedBlink: this.blinkJoinedDate,
+        debitDeliveredDatetime: this.debitDeliveredDatetime,
+        creditDeliveredDatetime: this.creditDeliveredDatetime);
   }
 }
