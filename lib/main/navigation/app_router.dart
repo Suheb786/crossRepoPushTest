@@ -274,7 +274,8 @@ class AppRouter {
         return CustomRoute.createRoute(RequestAmountFromContactPage());
 
       case RoutePaths.SendAmountToContact:
-        return CustomRoute.createRoute(SendAmountToContactPage());
+        return CustomRoute.createRoute(
+            SendAmountToContactPage(settings.arguments as Beneficiary));
 
       case RoutePaths.SendAmountToContactSuccess:
         return CupertinoPageRoute(

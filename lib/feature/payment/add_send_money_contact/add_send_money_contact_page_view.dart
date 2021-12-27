@@ -73,7 +73,10 @@ class AddSendMoneyContactPageView
                                         return PaymentBeneficiaryWidget(
                                           onTap: () {
                                             Navigator.pushNamed(context,
-                                                RoutePaths.SendAmountToContact);
+                                                RoutePaths.SendAmountToContact,
+                                                arguments: beneficiaryResponse
+                                                    .data!
+                                                    .beneficiaryList![index]);
                                           },
                                           beneficiary: beneficiaryResponse
                                               .data!.beneficiaryList![index],

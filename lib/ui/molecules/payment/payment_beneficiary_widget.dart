@@ -19,21 +19,24 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
             },
             child: beneficiary!.imageUrl.toString().isNotEmpty
                 ? CircleAvatar(
-                    radius: 25,
+                    radius: 32,
                     backgroundImage: Image.memory(
                       beneficiary!.imageUrl,
                       fit: BoxFit.cover,
                     ).image,
                   )
                 : CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Theme.of(context).primaryColor,
+                    radius: 32,
+                    backgroundColor: Theme.of(context).canvasColor,
                     child: Text(
                       StringUtils.getFirstInitials(beneficiary!.nickName),
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 14,
-                          color: Theme.of(context).accentColor),
+                          fontSize: 20,
+                          color: Theme.of(context)
+                              .primaryTextTheme
+                              .bodyText1!
+                              .color),
                     ),
                   )),
         Padding(

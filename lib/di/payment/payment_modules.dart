@@ -1,3 +1,4 @@
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
@@ -24,35 +25,35 @@ import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpo
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dialog_view_model.dart';
 
 final paymentHomeViewModelProvider =
-ChangeNotifierProvider.autoDispose<PaymentHomeViewModel>(
+    ChangeNotifierProvider.autoDispose<PaymentHomeViewModel>(
   (ref) => PaymentHomeViewModel(ref.read(getBeneficiaryUseCaseProvider)),
 );
 
 final addSendMoneyContactViewModelProvider =
-ChangeNotifierProvider.autoDispose<AddSendMoneyContactViewModel>(
+    ChangeNotifierProvider.autoDispose<AddSendMoneyContactViewModel>(
   (ref) => AddSendMoneyContactViewModel(
       ref.read(addSendMoneyContactUseCaseProvider)),
 );
 
 final addRequestMoneyContactViewModelProvider =
-ChangeNotifierProvider.autoDispose<AddRequestMoneyContactViewModel>(
-      (ref) => AddRequestMoneyContactViewModel(),
+    ChangeNotifierProvider.autoDispose<AddRequestMoneyContactViewModel>(
+  (ref) => AddRequestMoneyContactViewModel(),
 );
 
-final sendAmountToContactViewModelProvider =
-ChangeNotifierProvider.autoDispose<SendAmountToContactViewModel>(
-  (ref) => SendAmountToContactViewModel(
-      ref.read(sendAmountToContactUseCaseProvider)),
+final sendAmountToContactViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<SendAmountToContactViewModel, Beneficiary>(
+  (ref, args) => SendAmountToContactViewModel(
+      ref.read(sendAmountToContactUseCaseProvider), args),
 );
 
 final sendAmountToContactSuccessViewModelProvider =
-ChangeNotifierProvider.autoDispose<SendAmountToContactSuccessViewModel>(
+    ChangeNotifierProvider.autoDispose<SendAmountToContactSuccessViewModel>(
   (ref) => SendAmountToContactSuccessViewModel(
       ref.read(sendAmountToContactSuccessUseCaseProvider)),
 );
 
 final requestAmountFromContactViewModelProvider =
-ChangeNotifierProvider.autoDispose<RequestAmountFromContactViewModel>(
+    ChangeNotifierProvider.autoDispose<RequestAmountFromContactViewModel>(
   (ref) => RequestAmountFromContactViewModel(
       ref.read(requestAmountFromContactUseCaseProvider)),
 );
@@ -64,35 +65,35 @@ final requestAmountFromContactSuccessViewModelProvider = ChangeNotifierProvider
 );
 
 final requestMoneyFailureViewModelProvider =
-ChangeNotifierProvider.autoDispose<RequestMoneyFailureViewModel>(
+    ChangeNotifierProvider.autoDispose<RequestMoneyFailureViewModel>(
   (ref) => RequestMoneyFailureViewModel(
       ref.read(requestMoneyFailureUseCaseProvider)),
 );
 
 final sendMoneyFailureViewModelProvider =
-ChangeNotifierProvider.autoDispose<SendMoneyFailureViewModel>(
+    ChangeNotifierProvider.autoDispose<SendMoneyFailureViewModel>(
   (ref) => SendMoneyFailureViewModel(ref.read(sendMoneyFailureUseCaseProvider)),
 );
 
 final sendMoneyViewModelProvider =
-ChangeNotifierProvider.autoDispose<SendMoneyViewModel>(
+    ChangeNotifierProvider.autoDispose<SendMoneyViewModel>(
   (ref) => SendMoneyViewModel(ref.read(sendMoneyUseCaseProvider)),
 );
 
 final requestMoneyViewModelProvider =
-ChangeNotifierProvider.autoDispose<RequestMoneyViewModel>(
+    ChangeNotifierProvider.autoDispose<RequestMoneyViewModel>(
   (ref) => RequestMoneyViewModel(ref.read(requestMoneyUseCaseProvider)),
 );
 
 final sendToNewRecipientViewModelProvider =
-ChangeNotifierProvider.autoDispose<SendToNewRecipientViewModel>(
+    ChangeNotifierProvider.autoDispose<SendToNewRecipientViewModel>(
   (ref) => SendToNewRecipientViewModel(
       ref.read(sendToNewRecipientUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider)),
 );
 
 final enterOtpViewModelProvider =
-ChangeNotifierProvider.autoDispose<EnterOtpViewModel>(
+    ChangeNotifierProvider.autoDispose<EnterOtpViewModel>(
   (ref) => EnterOtpViewModel(ref.read(enterOtpUseCaseProvider)),
 );
 
@@ -103,7 +104,7 @@ final enterRequestOtpViewModelProvider =
 
 final requestFromNewRecipientViewModelProvider =
     ChangeNotifierProvider.autoDispose<RequestFromNewRecipientViewModel>(
-          (ref) => RequestFromNewRecipientViewModel(
+  (ref) => RequestFromNewRecipientViewModel(
       ref.read(requestFromNewRecipientUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
       ref.read(getAccountByAliasUseCaseProvider)),
@@ -121,20 +122,20 @@ final requestPaymentFromNewRecipientViewModelProvider =
 
 ///edit transaction purpose dialog view model provider
 final editTransactionPurposeDialogViewModelProvider =
-ChangeNotifierProvider.autoDispose<EditTransactionPurposeDialogViewModel>(
+    ChangeNotifierProvider.autoDispose<EditTransactionPurposeDialogViewModel>(
         (ref) => EditTransactionPurposeDialogViewModel());
 
 ///iban dialog view model provider
 final ibanDialogViewModelProvider =
-ChangeNotifierProvider.autoDispose<IbanDialogViewModel>(
+    ChangeNotifierProvider.autoDispose<IbanDialogViewModel>(
         (ref) => IbanDialogViewModel());
 
 ///transaction purpose Detail dialog view model provider
 final purposeDetailDialogViewModelProvider =
-ChangeNotifierProvider.autoDispose<PurposeDetailDialogViewModel>(
+    ChangeNotifierProvider.autoDispose<PurposeDetailDialogViewModel>(
         (ref) => PurposeDetailDialogViewModel());
 
 ///transaction purpose dialog view model provider
 final purposeDialogViewModelProvider =
-ChangeNotifierProvider.autoDispose<PurposeDialogViewModel>(
+    ChangeNotifierProvider.autoDispose<PurposeDialogViewModel>(
         (ref) => PurposeDialogViewModel());
