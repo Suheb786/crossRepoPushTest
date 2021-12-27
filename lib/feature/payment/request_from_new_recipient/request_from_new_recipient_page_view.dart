@@ -121,58 +121,47 @@ class RequestFromNewRecipientPageView
                                                 },
                                               ),
                                             ),
-                                            Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 16),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "Name",
-                                                      style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      "Shakila Naseem",
-                                                      style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    )
-                                                  ],
-                                                )),
-                                            Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 16),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "Bank",
-                                                      style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      "Jordan Kuwait Bank",
-                                                      style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    )
-                                                  ],
-                                                )),
+                                            AppStreamBuilder<String>(
+                                                stream: model
+                                                    .showAccountDetailStream,
+                                                initialData: "",
+                                                dataBuilder: (context, value) {
+                                                  if (!(value!.isEmpty)) {
+                                                    return Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 16),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Text(
+                                                              S
+                                                                  .of(context)
+                                                                  .name,
+                                                              style: TextStyle(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              value,
+                                                              style: TextStyle(
+                                                                fontSize: 12,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ));
+                                                  } else {
+                                                    return Container();
+                                                  }
+                                                }),
                                             Padding(
                                               padding: EdgeInsets.only(top: 24),
                                               child: Text(

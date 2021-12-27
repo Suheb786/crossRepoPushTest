@@ -86,7 +86,7 @@ final sendToNewRecipientUseCaseProvider =
 ///[<RequestFromNewRecipientUseCase>] provider
 final requestFromNewRecipientUseCaseProvider =
     Provider.autoDispose<RequestFromNewRecipientUseCase>(
-  (ref) => RequestFromNewRecipientUseCase(),
+  (ref) => RequestFromNewRecipientUseCase(ref.read(paymentRepositoryProvider)),
 );
 
 ///[<EnterOtpUseCase>] provider
