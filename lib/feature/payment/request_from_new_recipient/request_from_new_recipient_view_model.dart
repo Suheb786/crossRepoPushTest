@@ -1,10 +1,13 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
+import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
 import 'package:domain/usecase/payment/request_from_new_recipient_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -57,15 +60,17 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   bool isAnyOtherNationality = false;
 
   PublishSubject<RequestFromNewRecipientUseCaseParams>
-      _sendToNewRecipientRequest = PublishSubject();
+      _requestFromNewRecipientRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _sendToNewRecipientResponse = PublishSubject();
+  PublishSubject<Resource<RequestToPayContentResponse>>
+      _requestFromNewRecipientResponse = PublishSubject();
 
-  PublishSubject<Resource<GetAccountByAliasContentResponse>>
-      _getAccountByAliasResponse = PublishSubject();
+  BehaviorSubject<Resource<GetAccountByAliasContentResponse>>
+      _getAccountByAliasResponse = BehaviorSubject();
 
-  Stream<Resource<bool>> get sendToNewRecipientResponseStream =>
-      _sendToNewRecipientResponse.stream;
+  Stream<Resource<RequestToPayContentResponse>>
+      get requestFromNewRecipientResponseStream =>
+          _requestFromNewRecipientResponse.stream;
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
 
@@ -76,15 +81,20 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
+  String? dbtrBic;
+  String? dbtrAcct;
+  String? dbtrName;
+
   RequestFromNewRecipientViewModel(this._useCase, this._uploadDocumentUseCase,
       this._getAccountByAliasUseCase) {
-    _sendToNewRecipientRequest.listen((value) {
+    _requestFromNewRecipientRequest.listen((value) {
       RequestManager(value, createCall: () => _useCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _sendToNewRecipientResponse.safeAdd(event);
+        _requestFromNewRecipientResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -108,7 +118,12 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
         _getAccountByAliasResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
+          dbtrBic = event.data!.getAccountByAliasContent!.bic;
+          dbtrName = event.data!.getAccountByAliasContent!.name;
+          dbtrAcct = event.data!.getAccountByAliasContent!.acciban;
+          print("got value: ${event.data!.getAccountByAliasContent!.bic}");
           _showAccountDetailSubject
               .safeAdd(event.data!.getAccountByAliasContent!.name);
         }
@@ -121,11 +136,19 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
         GetAccountByAliasUseCaseParams(value: value, currency: currency));
   }
 
-  void sendToNewRecipient() {
-    _sendToNewRecipientRequest.safeAdd(RequestFromNewRecipientUseCaseParams(
-        ibanOrMobile: ibanOrMobileController.text,
-        purpose: purposeController.text,
-        purposeDetail: purposeDetailController.text));
+  void requestFromNewRecipient(BuildContext context) {
+    _requestFromNewRecipientRequest
+        .safeAdd(RequestFromNewRecipientUseCaseParams(
+      ibanOrMobile: ibanOrMobileController.text,
+      purpose: purposeController.text,
+      purposeDetail: purposeDetailController.text,
+      amount: int.parse(ProviderScope.containerOf(context)
+          .read(requestMoneyViewModelProvider)
+          .currentPinValue),
+      dbtrBic: dbtrBic ?? "",
+      dbtrAcct: dbtrAcct ?? "",
+      dbtrName: dbtrName ?? "",
+    ));
   }
 
   void updatePurpose(String value) {
@@ -154,8 +177,8 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   @override
   void dispose() {
     _showButtonSubject.close();
-    _sendToNewRecipientRequest.close();
-    _sendToNewRecipientResponse.close();
+    _requestFromNewRecipientRequest.close();
+    _requestFromNewRecipientResponse.close();
     super.dispose();
   }
 }

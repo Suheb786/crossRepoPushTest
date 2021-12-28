@@ -28,7 +28,8 @@ abstract class PaymentRemoteDs {
       num amount,
       String dbtrBic,
       String dbtrAcct,
-      String dbtrName);
+      String dbtrName,
+      String memo);
 
   Future<HttpResponse<ResponseEntity>> transferVerify();
 }

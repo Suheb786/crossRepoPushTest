@@ -6,7 +6,6 @@ import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_prov
 import 'package:neo_bank/feature/payment/add_request_money_contact/add_request_money_contact_view_model.dart';
 import 'package:neo_bank/feature/payment/add_send_money_contact/add_send_money_contact_view_model.dart';
 import 'package:neo_bank/feature/payment/enter_otp/enter_otp_view_model.dart';
-import 'package:neo_bank/feature/payment/enter_request_otp/enter_request_otp_view_model.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.dart';
 import 'package:neo_bank/feature/payment/payment_to_new_recipient/payment_to_new_recipient_view_model.dart';
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_view_model.dart';
@@ -57,16 +56,18 @@ final sendAmountToContactSuccessViewModelProvider = ChangeNotifierProvider
       ref.read(sendAmountToContactSuccessUseCaseProvider), args),
 );
 
-final requestAmountFromContactViewModelProvider =
-    ChangeNotifierProvider.autoDispose<RequestAmountFromContactViewModel>(
-  (ref) => RequestAmountFromContactViewModel(
-      ref.read(requestAmountFromContactUseCaseProvider)),
+final requestAmountFromContactViewModelProvider = ChangeNotifierProvider
+    .autoDispose
+    .family<RequestAmountFromContactViewModel, Beneficiary>(
+  (ref, args) => RequestAmountFromContactViewModel(
+      ref.read(requestAmountFromContactUseCaseProvider), args),
 );
 
 final requestAmountFromContactSuccessViewModelProvider = ChangeNotifierProvider
-    .autoDispose<RequestAmountFromContactSuccessViewModel>(
-  (ref) => RequestAmountFromContactSuccessViewModel(
-      ref.read(requestAmountFromContactSuccessUseCaseProvider)),
+    .autoDispose
+    .family<RequestAmountFromContactSuccessViewModel, List<String>>(
+  (ref, args) => RequestAmountFromContactSuccessViewModel(
+      ref.read(requestAmountFromContactSuccessUseCaseProvider), args),
 );
 
 final requestMoneyFailureViewModelProvider =
@@ -105,11 +106,6 @@ final enterOtpViewModelProvider =
       ref.read(enterOtpUseCaseProvider), ref.read(transferUseCaseProvider)),
 );
 
-final enterRequestOtpViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EnterRequestOtpViewModel>(
-  (ref) => EnterRequestOtpViewModel(ref.read(enterRequestOtpUseCaseProvider)),
-);
-
 final requestFromNewRecipientViewModelProvider =
     ChangeNotifierProvider.autoDispose<RequestFromNewRecipientViewModel>(
   (ref) => RequestFromNewRecipientViewModel(
@@ -123,9 +119,10 @@ final paymentToNewRecipientViewModelProvider =
   (ref) => PaymentToNewRecipientViewModel(),
 );
 
-final requestPaymentFromNewRecipientViewModelProvider =
-    ChangeNotifierProvider.autoDispose<RequestPaymentFromNewRecipientViewModel>(
-  (ref) => RequestPaymentFromNewRecipientViewModel(),
+final requestPaymentFromNewRecipientViewModelProvider = ChangeNotifierProvider
+    .autoDispose
+    .family<RequestPaymentFromNewRecipientViewModel, String>(
+  (ref, args) => RequestPaymentFromNewRecipientViewModel(args),
 );
 
 ///edit transaction purpose dialog view model provider

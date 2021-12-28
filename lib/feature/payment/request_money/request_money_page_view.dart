@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/request_money/request_money_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -19,7 +20,8 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
     return AppKeyBoardHide(
       child: GestureDetector(
         onVerticalDragEnd: (details) {
-          if (details.primaryVelocity!.isNegative) {} else {
+          if (details.primaryVelocity!.isNegative) {
+          } else {
             Navigator.pop(context);
           }
         },
@@ -132,7 +134,12 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "12,451.92",
+                    ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .account!
+                        .availableBalance!
+                        .toString(),
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
@@ -268,7 +275,8 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                   textColor: Colors.black,
                   rightButtonFn: () {
                     Navigator.pushNamed(
-                        context, RoutePaths.RequestPaymentFromNewRecipient);
+                        context, RoutePaths.RequestPaymentFromNewRecipient,
+                        arguments: model.currentPinValue);
                   },
                   leftIcon: Icon(
                     Icons.circle,

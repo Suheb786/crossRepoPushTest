@@ -14,8 +14,14 @@ class RequestToPayRequestEntity {
   final String? dbtrAcct;
   @JsonKey(name: "DbtrName")
   final String? dbtrName;
+  @JsonKey(name: "Memo")
+  final String? memo;
   @JsonKey(name: "getToken")
   final bool? getToken;
+  @JsonKey(name: "BeneImage")
+  final String? beneImage;
+  @JsonKey(name: "IsFriend")
+  final bool? isFriend;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic>? baseData;
 
@@ -24,8 +30,11 @@ class RequestToPayRequestEntity {
       this.amount,
       this.dbtrBic,
       this.dbtrAcct,
+      this.beneImage: "",
+      this.isFriend: false,
       this.dbtrName,
-      this.getToken,
+      this.memo,
+      this.getToken: true,
       this.baseData});
 
   factory RequestToPayRequestEntity.fromJson(Map<String, dynamic> json) =>

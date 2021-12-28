@@ -26,10 +26,10 @@ abstract class PaymentRepository {
   Future<Either<NetworkError, bool>> transferVerify();
 
   Future<Either<NetworkError, RequestToPayContentResponse>> requestToPay(
-    String ctgyPurp,
-    num amount,
-    String dbtrBic,
-    String dbtrAcct,
-    String dbtrName,
-  );
+      String ctgyPurp,
+      num amount,
+      String dbtrBic,
+      String dbtrAcct,
+      String dbtrName,
+      String memo);
 }

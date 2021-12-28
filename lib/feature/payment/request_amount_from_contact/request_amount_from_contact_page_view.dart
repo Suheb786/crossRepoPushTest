@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -22,7 +23,8 @@ class RequestAmountFromContactPageView
     return AppKeyBoardHide(
       child: GestureDetector(
         onVerticalDragEnd: (details) {
-          if (details.primaryVelocity!.isNegative) {} else {
+          if (details.primaryVelocity!.isNegative) {
+          } else {
             Navigator.pop(context);
           }
         },
@@ -103,7 +105,7 @@ class RequestAmountFromContactPageView
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: AppColor.whiteGray)),
                 padding:
-                EdgeInsets.only(top: 14, bottom: 14, left: 26, right: 34),
+                    EdgeInsets.only(top: 14, bottom: 14, left: 26, right: 34),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -134,13 +136,13 @@ class RequestAmountFromContactPageView
                             onTap: () {
                               EditTransactionPurposeDialog.show(context,
                                   onDismissed: () {
-                                    Navigator.pop(context);
-                                  }, onSelected: (value1, value2) {
-                                    print("got value: $value1");
-                                    model.updatePurpose(value1);
-                                    model.updatePurposeDetail(value2);
-                                    Navigator.pop(context);
-                                  });
+                                Navigator.pop(context);
+                              }, onSelected: (value1, value2) {
+                                print("got value: $value1");
+                                model.updatePurpose(value1);
+                                model.updatePurposeDetail(value2);
+                                Navigator.pop(context);
+                              });
                             },
                             child: Text(
                               S.of(context).edit,
@@ -233,7 +235,12 @@ class RequestAmountFromContactPageView
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "12,451.92",
+                    ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .account!
+                        .availableBalance!
+                        .toString(),
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14,

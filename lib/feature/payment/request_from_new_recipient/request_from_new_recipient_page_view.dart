@@ -2,10 +2,12 @@ import 'dart:io';
 
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/payment/request_from_new_recipient/request_from_new_recipient_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -43,13 +45,23 @@ class RequestFromNewRecipientPageView
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<bool>>(
-                        stream: model.sendToNewRecipientResponseStream,
+                    child: AppStreamBuilder<
+                            Resource<RequestToPayContentResponse>>(
+                        stream: model.requestFromNewRecipientResponseStream,
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
+                            print(
+                                "got event: ${data.data!.requestToPayContent!.dbtrAcct}");
                             Navigator.pushNamed(context,
-                                RoutePaths.RequestAmountFromContactSuccess);
+                                RoutePaths.RequestAmountFromContactSuccess,
+                                arguments: [
+                                  ProviderScope.containerOf(context)
+                                      .read(requestMoneyViewModelProvider)
+                                      .currentPinValue,
+                                  data.data!.requestToPayContent!.dbtrName!,
+                                  data.data!.requestToPayContent!.dbtrMcc!,
+                                ]);
                           } else if (data.status == Status.ERROR) {
                             // if (data.appError!.type ==
                             //     ErrorType.EMPTY_RESIDENT_COUNTRY) {
@@ -63,7 +75,7 @@ class RequestFromNewRecipientPageView
                           return GestureDetector(
                             onHorizontalDragEnd: (details) {
                               if (details.primaryVelocity!.isNegative) {
-                                model.sendToNewRecipient();
+                                model.requestFromNewRecipient(context);
                               } else {
                                 // ProviderScope.containerOf(context)
                                 //     .read(

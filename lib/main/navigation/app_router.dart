@@ -272,7 +272,8 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.SendMoneyFailure));
 
       case RoutePaths.RequestAmountFromContact:
-        return CustomRoute.createRoute(RequestAmountFromContactPage());
+        return CustomRoute.createRoute(RequestAmountFromContactPage(
+            beneficiary: settings.arguments as Beneficiary));
 
       case RoutePaths.SendAmountToContact:
         return CustomRoute.createRoute(
@@ -294,13 +295,16 @@ class AppRouter {
 
       case RoutePaths.RequestAmountFromContactSuccess:
         return CupertinoPageRoute(
-            builder: (context) => RequestAmountFromContactSuccessPage(),
+            builder: (context) => RequestAmountFromContactSuccessPage(
+                  successValues: settings.arguments as List<String>,
+                ),
             settings: RouteSettings(
                 name: RoutePaths.RequestAmountFromContactSuccess));
 
       case RoutePaths.RequestPaymentFromNewRecipient:
         return CupertinoPageRoute(
-            builder: (context) => RequestPaymentFromNewRecipientPage(),
+            builder: (context) => RequestPaymentFromNewRecipientPage(
+                requestValue: settings.arguments as String),
             settings:
                 RouteSettings(name: RoutePaths.RequestPaymentFromNewRecipient));
 

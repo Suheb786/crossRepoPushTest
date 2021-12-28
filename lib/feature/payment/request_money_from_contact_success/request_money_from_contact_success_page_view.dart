@@ -47,7 +47,7 @@ class RequestAmountFromContactSuccessPageView
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "35.00",
+                        model.successValues[0],
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontWeight: FontWeight.w700, fontSize: 28),
@@ -79,7 +79,7 @@ class RequestAmountFromContactSuccessPageView
                 Padding(
                   padding: EdgeInsets.only(top: 16.0),
                   child: Text(
-                    "Rose",
+                    model.successValues[1],
                     textAlign: TextAlign.center,
                     style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
                   ),
@@ -87,7 +87,7 @@ class RequestAmountFromContactSuccessPageView
                 Padding(
                   padding: EdgeInsets.only(top: 4.0),
                   child: Text(
-                    "ABC000012341234123819241213",
+                    model.successValues[2],
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color:
@@ -113,8 +113,10 @@ class RequestAmountFromContactSuccessPageView
                   padding: EdgeInsets.only(top: 130),
                   child: AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    borderColor: Theme.of(context).primaryColorDark,
-                    textColor: Theme.of(context).primaryColorDark,
+                    borderColor:
+                        Theme.of(context).accentTextTheme.bodyText1!.color,
+                    textColor:
+                        Theme.of(context).accentTextTheme.bodyText1!.color,
                   ),
                 ),
                 InkWell(
@@ -123,8 +125,13 @@ class RequestAmountFromContactSuccessPageView
                     padding: EdgeInsets.only(top: 9),
                     child: Text(
                       S.of(context).toDashboard,
-                      style:
-                          TextStyle(fontSize: 12, fontWeight: FontWeight.w400),
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: Theme.of(context)
+                              .accentTextTheme
+                              .bodyText1!
+                              .color),
                     ),
                   ),
                 ),

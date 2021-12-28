@@ -10,6 +10,10 @@ class RequestPaymentFromNewRecipientViewModel extends BasePageViewModel {
 
   Stream<int> get currentStep => _currentStep.stream;
 
+  String? sendValue;
+
+  RequestPaymentFromNewRecipientViewModel(this.sendValue);
+
   void updatePage(int index) {
     _currentStep.safeAdd(index);
   }

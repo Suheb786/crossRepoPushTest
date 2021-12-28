@@ -72,10 +72,11 @@ class PaymentRepositoryImpl extends PaymentRepository {
       num amount,
       String dbtrBic,
       String dbtrAcct,
-      String dbtrName) async {
+      String dbtrName,
+      String memo) async {
     final result = await safeApiCall(
       paymentRemoteDs.requestToPay(
-          ctgyPurp, amount, dbtrBic, dbtrAcct, dbtrName),
+          ctgyPurp, amount, dbtrBic, dbtrAcct, dbtrName, memo),
     );
     return result!.fold(
       (l) => Left(l),

@@ -80,7 +80,7 @@ class RequestPaymentFromNewRecipientPageView
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "350.0",
+                                    model.sendValue!,
                                     style: TextStyle(
                                         fontSize: 28,
                                         fontWeight: FontWeight.w700),
