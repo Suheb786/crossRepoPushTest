@@ -22,10 +22,10 @@ abstract class PaymentRepository {
       String toAccount);
 
   Future<Either<NetworkError, RequestToPayContentResponse>> requestToPay(
-    String ctgyPurp,
-    num amount,
-    String dbtrBic,
-    String dbtrAcct,
-    String dbtrName,
-  );
+      String ctgyPurp,
+      num amount,
+      String dbtrBic,
+      String dbtrAcct,
+      String dbtrName,
+      String memo);
 }

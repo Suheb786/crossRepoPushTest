@@ -17,8 +17,13 @@ class RequestFromNewRecipientUseCase extends BaseUseCase<NetworkError,
   @override
   Future<Either<NetworkError, RequestToPayContentResponse>> execute(
       {required RequestFromNewRecipientUseCaseParams params}) {
-    return _repository.requestToPay(params.ctgyPurp!, params.amount!,
-        params.dbtrBic!, params.dbtrAcct!, params.dbtrName!);
+    return _repository.requestToPay(
+        params.purpose!,
+        params.amount!,
+        params.dbtrBic!,
+        params.dbtrAcct!,
+        params.dbtrName!,
+        params.purposeDetail!);
   }
 }
 
@@ -30,17 +35,16 @@ class RequestFromNewRecipientUseCaseParams extends Params {
   String? dbtrBic;
   String? dbtrAcct;
   String? dbtrName;
-  String? ctgyPurp;
 
-  RequestFromNewRecipientUseCaseParams(
-      {this.ibanOrMobile,
-      this.purpose,
-      this.purposeDetail,
-      this.amount,
-      this.dbtrBic,
-      this.dbtrAcct,
-      this.dbtrName,
-      this.ctgyPurp});
+  RequestFromNewRecipientUseCaseParams({
+    this.ibanOrMobile,
+    this.purpose,
+    this.purposeDetail,
+    this.amount,
+    this.dbtrBic,
+    this.dbtrAcct,
+    this.dbtrName,
+  });
 
   @override
   Either<AppError, bool> verify() {

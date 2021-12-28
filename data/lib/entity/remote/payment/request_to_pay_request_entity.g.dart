@@ -13,7 +13,10 @@ RequestToPayRequestEntity _$RequestToPayRequestEntityFromJson(
     amount: json['Amount'] as num?,
     dbtrBic: json['DbtrBic'] as String?,
     dbtrAcct: json['DbtrAcct'] as String?,
+    beneImage: json['BeneImage'] as String?,
+    isFriend: json['IsFriend'] as bool?,
     dbtrName: json['DbtrName'] as String?,
+    memo: json['Memo'] as String?,
     getToken: json['getToken'] as bool?,
     baseData: json['baseClass'] as Map<String, dynamic>?,
   );
@@ -27,6 +30,9 @@ Map<String, dynamic> _$RequestToPayRequestEntityToJson(
       'DbtrBic': instance.dbtrBic,
       'DbtrAcct': instance.dbtrAcct,
       'DbtrName': instance.dbtrName,
+      'Memo': instance.memo,
       'getToken': instance.getToken,
+      'BeneImage': instance.beneImage,
+      'IsFriend': instance.isFriend,
       'baseClass': instance.baseData,
     };

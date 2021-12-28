@@ -51,7 +51,7 @@ final sendAmountToContactSuccessUseCaseProvider =
 ///[<RequestAmountFromContactUseCase>] provider
 final requestAmountFromContactUseCaseProvider =
     Provider.autoDispose<RequestAmountFromContactUseCase>(
-  (ref) => RequestAmountFromContactUseCase(),
+  (ref) => RequestAmountFromContactUseCase(ref.read(paymentRepositoryProvider)),
 );
 
 ///[<RequestAmountFromContactSuccessUseCase>] provider
