@@ -341,120 +341,118 @@ class SendToNewRecipientPageView
                                                             padding:
                                                                 EdgeInsets.only(
                                                                     top: 24),
-                                                            child:
+                                                            child: Column(
+                                                              children: [
                                                                 AppSwitchLabelWidget(
-                                                              label: S
-                                                                  .of(context)
-                                                                  .addRecipientToContact,
-                                                              inActiveText: S
-                                                                  .of(context)
-                                                                  .no,
-                                                              activeText: S
-                                                                  .of(context)
-                                                                  .yes,
-                                                              onToggle:
-                                                                  (value) {
-                                                                model.isFriend =
-                                                                    value;
-                                                                model
-                                                                    .updateSwitchValue(
+                                                                  label: S
+                                                                      .of(context)
+                                                                      .addRecipientToContact,
+                                                                  inActiveText: S
+                                                                      .of(context)
+                                                                      .no,
+                                                                  activeText: S
+                                                                      .of(context)
+                                                                      .yes,
+                                                                  onToggle:
+                                                                      (value) {
+                                                                    model.isFriend =
+                                                                        value;
+                                                                    model.updateSwitchValue(
                                                                         value);
-                                                                return Visibility(
+                                                                  },
+                                                                  isActive:
+                                                                      isActive,
+                                                                ),
+                                                                Visibility(
                                                                   visible:
                                                                       isActive!,
                                                                   child:
-                                                                      Padding(
+                                                                      Container(
                                                                     padding: EdgeInsets
                                                                         .only(
                                                                             top:
-                                                                                16.0),
-                                                                    child:
-                                                                        Container(
-                                                                      padding: EdgeInsets
-                                                                          .only(
-                                                                              top: 16),
-                                                                      child:
-                                                                          Row(
-                                                                        children: [
-                                                                          AppStreamBuilder<
-                                                                              String>(
-                                                                            stream:
-                                                                                model.uploadProfilePhotoStream,
-                                                                            initialData:
-                                                                                '',
-                                                                            onData:
-                                                                                (data) {
-                                                                              if (data != null && data.isNotEmpty) {
-                                                                                model.selectedProfile = data;
-                                                                                // model.addImage(
-                                                                                //     data);
-                                                                                _cropImage(data, model, context);
-                                                                                // model.showSuccessToast(
-                                                                                //     S.of(context).profilePhotoUpdated);
-                                                                              }
-                                                                            },
-                                                                            dataBuilder:
-                                                                                (context, data) {
-                                                                              print("got data : ${data}");
-                                                                              return AppStreamBuilder<String>(
-                                                                                stream: model.selectedImageValue,
-                                                                                initialData: '',
-                                                                                dataBuilder: (context, image) {
-                                                                                  return InkWell(
-                                                                                    onTap: () {
-                                                                                      ChooseProfileWidget.show(context, onCameraTap: () {
-                                                                                        Navigator.pop(context);
-                                                                                        model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
-                                                                                      }, onGalleryTap: () {
-                                                                                        Navigator.pop(context);
-                                                                                        model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
-                                                                                      }, onRemoveTap: () {
-                                                                                        model.removeImage();
-                                                                                        Navigator.pop(context);
-                                                                                      }, onCancelled: () {
-                                                                                        Navigator.pop(context);
-                                                                                      }, title: S.of(context).pleaseSelectYourAction);
-                                                                                    },
-                                                                                    child: Container(
-                                                                                      height: 50,
-                                                                                      width: 50,
-                                                                                      decoration: BoxDecoration(shape: BoxShape.circle),
-                                                                                      child: ClipOval(
-                                                                                        child: image!.isEmpty
-                                                                                            ? AppSvg.asset(
-                                                                                                AssetUtils.personCircle,
-                                                                                                fit: BoxFit.fill,
-                                                                                              )
-                                                                                            : Image.file(
-                                                                                                File(image),
-                                                                                                fit: BoxFit.fill,
-                                                                                              ),
-                                                                                      ),
+                                                                                16),
+                                                                    child: Row(
+                                                                      children: [
+                                                                        AppStreamBuilder<
+                                                                            String>(
+                                                                          stream:
+                                                                              model.uploadProfilePhotoStream,
+                                                                          initialData:
+                                                                              '',
+                                                                          onData:
+                                                                              (data) {
+                                                                            if (data != null &&
+                                                                                data.isNotEmpty) {
+                                                                              model.selectedProfile = data;
+                                                                              // model.addImage(
+                                                                              //     data);
+                                                                              _cropImage(data, model, context);
+                                                                              // model.showSuccessToast(
+                                                                              //     S.of(context).profilePhotoUpdated);
+                                                                            }
+                                                                          },
+                                                                          dataBuilder:
+                                                                              (context, data) {
+                                                                            print("got data : ${data}");
+                                                                            return AppStreamBuilder<String>(
+                                                                              stream: model.selectedImageValue,
+                                                                              initialData: '',
+                                                                              dataBuilder: (context, image) {
+                                                                                return InkWell(
+                                                                                  onTap: () {
+                                                                                    ChooseProfileWidget.show(context, onCameraTap: () {
+                                                                                      Navigator.pop(context);
+                                                                                      model.uploadProfilePhoto(DocumentTypeEnum.CAMERA);
+                                                                                    }, onGalleryTap: () {
+                                                                                      Navigator.pop(context);
+                                                                                      model.uploadProfilePhoto(DocumentTypeEnum.PICK_IMAGE);
+                                                                                    }, onRemoveTap: () {
+                                                                                      model.removeImage();
+                                                                                      Navigator.pop(context);
+                                                                                    }, onCancelled: () {
+                                                                                      Navigator.pop(context);
+                                                                                    }, title: S.of(context).pleaseSelectYourAction);
+                                                                                  },
+                                                                                  child: Container(
+                                                                                    height: 50,
+                                                                                    width: 50,
+                                                                                    decoration: BoxDecoration(shape: BoxShape.circle),
+                                                                                    child: ClipOval(
+                                                                                      child: image!.isEmpty
+                                                                                          ? AppSvg.asset(
+                                                                                              AssetUtils.personCircle,
+                                                                                              fit: BoxFit.fill,
+                                                                                            )
+                                                                                          : Image.file(
+                                                                                              File(image),
+                                                                                              fit: BoxFit.fill,
+                                                                                            ),
                                                                                     ),
-                                                                                  );
-                                                                                },
-                                                                              );
-                                                                            },
-                                                                          ),
-                                                                          Expanded(
+                                                                                  ),
+                                                                                );
+                                                                              },
+                                                                            );
+                                                                          },
+                                                                        ),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                EdgeInsets.only(left: 14),
                                                                             child:
-                                                                                Padding(
-                                                                              padding: EdgeInsets.only(left: 14),
-                                                                              child: Text(
-                                                                                (model.transferResponse.name != null && model.transferResponse.name!.isNotEmpty) ? model.transferResponse.name! : '-',
-                                                                                maxLines: 2,
-                                                                                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                                              ),
+                                                                                Text(
+                                                                              (model.transferResponse.name != null && model.transferResponse.name!.isNotEmpty) ? model.transferResponse.name! : '-',
+                                                                              maxLines: 2,
+                                                                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
                                                                             ),
-                                                                          )
-                                                                        ],
-                                                                      ),
+                                                                          ),
+                                                                        )
+                                                                      ],
                                                                     ),
                                                                   ),
-                                                                );
-                                                              },
-                                                              isActive:
-                                                                  isActive,
+                                                                )
+                                                              ],
                                                             ),
                                                           );
                                                         }),

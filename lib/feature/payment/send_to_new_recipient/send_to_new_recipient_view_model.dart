@@ -124,6 +124,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
               createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _uploadProfilePhotoResponse.safeAdd(event.data!);
       });
     });

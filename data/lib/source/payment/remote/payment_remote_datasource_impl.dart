@@ -1,4 +1,5 @@
 import 'package:data/entity/local/base/device_helper.dart';
+import 'package:data/entity/local/base/image_utils.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/payment/check_send_money_request_entity.dart';
@@ -59,7 +60,10 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         toAmount: toAmount!,
         toAccount: toAccount!,
         beneficiaryId: beneficiaryId,
-        beneficiaryImage: beneficiaryImage,
+        beneficiaryImage:
+            (beneficiaryImage!.isNotEmpty && beneficiaryImage != null)
+                ? ImageUtils.convertToBase64(beneficiaryImage)
+                : '',
         otpCode: otpCode,
         isFriend: isFriend!,
         localEq: localEq!,
