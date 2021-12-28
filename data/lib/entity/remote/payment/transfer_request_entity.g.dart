@@ -19,6 +19,7 @@ TransferRequestEntity _$TransferRequestEntityFromJson(
     toAccount: json['ToAccount'] as String,
     isFriend: json['IsFriend'] as bool,
     getToken: json['getToken'] as bool,
+    otpCode: json['OtpCode'] as String?,
   );
 }
 
@@ -26,6 +27,7 @@ Map<String, dynamic> _$TransferRequestEntityToJson(
         TransferRequestEntity instance) =>
     <String, dynamic>{
       'BeneficiaryId': instance.beneficiaryId,
+      'OtpCode': instance.otpCode,
       'TransferType': instance.transferType,
       'BeneficiaryImage': instance.beneficiaryImage,
       'IsFriend': instance.isFriend,

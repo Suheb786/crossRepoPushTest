@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6285,6 +6286,16 @@ class S {
     return Intl.message(
       'Debit Card\ndelivered',
       name: 'debitCardDeliveredDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You do not have sufficient balance to make payment.`
+  String get insufficientBalanceTransfer {
+    return Intl.message(
+      'You do not have sufficient balance to make payment.',
+      name: 'insufficientBalanceTransfer',
       desc: '',
       args: [],
     );

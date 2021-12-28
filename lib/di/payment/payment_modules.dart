@@ -1,4 +1,5 @@
 import 'package:domain/model/manage_contacts/beneficiary.dart';
+import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
@@ -43,13 +44,17 @@ final addRequestMoneyContactViewModelProvider =
 final sendAmountToContactViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<SendAmountToContactViewModel, Beneficiary>(
   (ref, args) => SendAmountToContactViewModel(
-      ref.read(sendAmountToContactUseCaseProvider), args),
+      ref.read(sendAmountToContactUseCaseProvider),
+      args,
+      ref.read(checkSendMoneyUseCaseProvider),
+      ref.read(transferUseCaseProvider)),
 );
 
-final sendAmountToContactSuccessViewModelProvider =
-    ChangeNotifierProvider.autoDispose<SendAmountToContactSuccessViewModel>(
-  (ref) => SendAmountToContactSuccessViewModel(
-      ref.read(sendAmountToContactSuccessUseCaseProvider)),
+final sendAmountToContactSuccessViewModelProvider = ChangeNotifierProvider
+    .autoDispose
+    .family<SendAmountToContactSuccessViewModel, TransferSuccessContent>(
+  (ref, args) => SendAmountToContactSuccessViewModel(
+      ref.read(sendAmountToContactSuccessUseCaseProvider), args),
 );
 
 final requestAmountFromContactViewModelProvider =
@@ -89,12 +94,15 @@ final sendToNewRecipientViewModelProvider =
     ChangeNotifierProvider.autoDispose<SendToNewRecipientViewModel>(
   (ref) => SendToNewRecipientViewModel(
       ref.read(sendToNewRecipientUseCaseProvider),
-      ref.read(uploadDocumentUseCaseProvider)),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(checkSendMoneyUseCaseProvider),
+      ref.read(transferVerifyUseCaseProvider)),
 );
 
 final enterOtpViewModelProvider =
     ChangeNotifierProvider.autoDispose<EnterOtpViewModel>(
-  (ref) => EnterOtpViewModel(ref.read(enterOtpUseCaseProvider)),
+  (ref) => EnterOtpViewModel(
+      ref.read(enterOtpUseCaseProvider), ref.read(transferUseCaseProvider)),
 );
 
 final enterRequestOtpViewModelProvider =

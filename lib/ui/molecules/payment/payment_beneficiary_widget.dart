@@ -33,7 +33,7 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
                         ? Theme.of(context).canvasColor
                         : Theme.of(context).primaryColor,
                     child: Text(
-                      StringUtils.getFirstInitials(beneficiary!.nickName),
+                      StringUtils.getFirstInitials(beneficiary!.fullName),
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 20,
@@ -48,7 +48,8 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: 6),
           child: Text(
-            beneficiary!.nickName!,
+            ///TODO:change to nickname
+            beneficiary!.fullName!,
             style: TextStyle(
                 color: transferEnum == TransferEnum.send
                     ? Theme.of(context).accentColor

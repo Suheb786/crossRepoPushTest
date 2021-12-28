@@ -118,14 +118,8 @@ class AddSendMoneyContactPageView
                                       padding: EdgeInsets.only(top: 90),
                                       child: Align(
                                         alignment: Alignment.center,
-                                        child: InkWell(
-                                            onTap: () {
-                                              model
-                                                  .updateAddContactClickedValue(
-                                                      true);
-                                            },
-                                            child: AppSvg.asset(
-                                                AssetUtils.profileCircle)),
+                                        child: AppSvg.asset(
+                                            AssetUtils.profileCircle),
                                       ),
                                     ),
                                     Padding(

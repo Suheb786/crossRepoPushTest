@@ -506,6 +506,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Don\'t worry, if you log out your information will be saved and you can login at any time."),
         "insufficientBalance": MessageLookupByLibrary.simpleMessage(
             "insufficient Balance (Err-89)"),
+        "insufficientBalanceTransfer": MessageLookupByLibrary.simpleMessage(
+            "You do not have sufficient balance to make payment."),
         "invalidAdditionSourceIncome": MessageLookupByLibrary.simpleMessage(
             "Select Additional Source Income"),
         "invalidAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),

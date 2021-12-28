@@ -1,7 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -19,7 +23,8 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
     return AppKeyBoardHide(
       child: GestureDetector(
         onVerticalDragEnd: (details) {
-          if (details.primaryVelocity!.isNegative) {} else {
+          if (details.primaryVelocity!.isNegative) {
+          } else {
             Navigator.pop(context);
           }
         },
@@ -133,7 +138,12 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "12,451.92",
+                    ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .account!
+                        .availableBalance
+                        .toString(),
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
@@ -268,8 +278,20 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                   },
                   textColor: Colors.black,
                   rightButtonFn: () {
-                    Navigator.pushNamed(
-                        context, RoutePaths.PaymentToNewRecipient);
+                    if (int.parse(model.currentPinValue) >
+                        ProviderScope.containerOf(context)
+                            .read(appHomeViewModelProvider)
+                            .dashboardDataContent
+                            .account!
+                            .availableBalance!) {
+                      model.showToastWithError(AppError(
+                          cause: Exception(),
+                          error: ErrorInfo(message: ''),
+                          type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
+                    } else {
+                      Navigator.pushNamed(
+                          context, RoutePaths.PaymentToNewRecipient);
+                    }
                   },
                   leftIcon: Icon(
                     Icons.circle,

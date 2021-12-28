@@ -1,7 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:domain/model/payment/check_send_money_response.dart';
+import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_contact_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -12,6 +15,8 @@ import 'package:neo_bank/ui/molecules/numeric_keyboard.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class SendAmountToContactPageView
@@ -86,7 +91,7 @@ class SendAmountToContactPageView
                       backgroundColor: Theme.of(context).canvasColor,
                       child: Text(
                         StringUtils.getFirstInitials(
-                            model.beneficiary.nickName),
+                            model.beneficiary.fullName),
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 20,
@@ -108,7 +113,8 @@ class SendAmountToContactPageView
               ),
             ),
             Text(
-              model.beneficiary.nickName ?? '',
+              ///TODO:change to nickname
+              model.beneficiary.fullName ?? '',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
@@ -252,7 +258,12 @@ class SendAmountToContactPageView
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "12,451.92",
+                    ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .account!
+                        .availableBalance
+                        .toString(),
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
@@ -380,33 +391,57 @@ class SendAmountToContactPageView
             //     ),
             //   ),
             // )
-            Expanded(
-              child: NumericKeyboard(
-                  onKeyboardTap: (value) {
-                    model.changeValue(value);
-                  },
-                  textColor: Colors.black,
-                  rightButtonFn: () {
+            AppStreamBuilder<Resource<TransferSuccessResponse>>(
+                stream: model.transferStream,
+                initialData: Resource.none(),
+                onData: (data) {
+                  if (data.status == Status.SUCCESS) {
                     Navigator.pushNamed(
-                        context, RoutePaths.SendAmountToContactSuccess);
-                  },
-                  leftIcon: Icon(
-                    Icons.circle,
-                    color: AppColor.black,
-                    size: 5,
-                  ),
-                  rightWidget: CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Color(0xFF3CB4E5),
-                    child: Center(
-                      child: AppSvg.asset(AssetUtils.next),
-                    ),
-                  ),
-                  leftButtonFn: () {
-                    print('left button clicked');
-                  },
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly),
-            )
+                        context, RoutePaths.SendAmountToContactSuccess,
+                        arguments: data.data!.transferSuccessContent);
+                  } else if (data.status == Status.ERROR) {
+                    Navigator.pushNamed(context, RoutePaths.SendMoneyFailure);
+                  }
+                },
+                dataBuilder: (context, snapshot) {
+                  return AppStreamBuilder<Resource<CheckSendMoneyResponse>>(
+                      stream: model.checkSendMoneyStream,
+                      initialData: Resource.none(),
+                      onData: (data) {
+                        if (data.status == Status.SUCCESS) {
+                          model.transfer(data
+                              .data!.checkSendMoneyContent!.transferResponse!);
+                        }
+                      },
+                      dataBuilder: (context, checkSendMoneyResponse) {
+                        return Expanded(
+                          child: NumericKeyboard(
+                              onKeyboardTap: (value) {
+                                model.changeValue(value);
+                              },
+                              textColor: Colors.black,
+                              rightButtonFn: () {
+                                model.checkSendMoney();
+                              },
+                              leftIcon: Icon(
+                                Icons.circle,
+                                color: AppColor.black,
+                                size: 5,
+                              ),
+                              rightWidget: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Color(0xFF3CB4E5),
+                                child: Center(
+                                  child: AppSvg.asset(AssetUtils.next),
+                                ),
+                              ),
+                              leftButtonFn: () {
+                                print('left button clicked');
+                              },
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                        );
+                      });
+                })
           ],
         ),
       ),

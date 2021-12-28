@@ -1,6 +1,7 @@
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
+import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
@@ -279,7 +280,9 @@ class AppRouter {
 
       case RoutePaths.SendAmountToContactSuccess:
         return CupertinoPageRoute(
-            builder: (context) => SendAmountToContactSuccessPage(),
+            builder: (context) => SendAmountToContactSuccessPage(
+                  arguments: settings.arguments as TransferSuccessContent,
+                ),
             settings:
                 RouteSettings(name: RoutePaths.SendAmountToContactSuccess));
 

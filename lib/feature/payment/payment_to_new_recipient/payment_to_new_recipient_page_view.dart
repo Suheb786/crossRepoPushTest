@@ -88,7 +88,9 @@ class PaymentToNewRecipientPageView
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "350.0",
+                                    ProviderScope.containerOf(context)
+                                        .read(sendMoneyViewModelProvider)
+                                        .currentPinValue,
                                     style: TextStyle(
                                         color: Theme.of(context).accentColor,
                                         fontSize: 28,
