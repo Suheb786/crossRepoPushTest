@@ -146,7 +146,10 @@ class SendAmountToContactPageView
                         children: [
                           AppStreamBuilder<String>(
                               stream: model.purposeStream,
-                              initialData: model.beneficiary.purpose ?? '',
+                              initialData: (model.beneficiary.purpose != null &&
+                                      model.beneficiary.purpose!.isNotEmpty)
+                                  ? model.beneficiary.purpose!
+                                  : 'Personal',
                               dataBuilder: (context, value) {
                                 return Text(
                                   value!,
@@ -165,7 +168,7 @@ class SendAmountToContactPageView
                                 model.updatePurpose(value1);
                                 model.updatePurposeDetail(value2);
                                 Navigator.pop(context);
-                              });
+                              }, beneficiary: model.beneficiary);
                             },
                             child: Text(
                               S.of(context).edit,
@@ -185,7 +188,11 @@ class SendAmountToContactPageView
                       padding: EdgeInsets.only(top: 2),
                       child: AppStreamBuilder<String>(
                           stream: model.purposeDetailStream,
-                          initialData: model.beneficiary.purposeDetails ?? '',
+                          initialData: (model.beneficiary.purposeDetails !=
+                                      null &&
+                                  model.beneficiary.purposeDetails!.isNotEmpty)
+                              ? model.beneficiary.purposeDetails!
+                              : 'Transfer to Friend or Family',
                           dataBuilder: (context, value) {
                             return Text(
                               value!,

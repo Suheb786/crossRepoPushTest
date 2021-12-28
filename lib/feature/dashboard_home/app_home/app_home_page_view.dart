@@ -128,7 +128,10 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text("0.00",
+                                Text(
+                                    cardData!.data!.dashboardDataContent!
+                                        .account!.availableBalance
+                                        .toString(),
                                     style: TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.w700,
@@ -304,11 +307,11 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 child: Row(
                                                   children: [
                                                     (currentStep == 1
-                                                            ? cardData!
+                                                            ? cardData
                                                                 .data!
                                                                 .dashboardDataContent!
                                                                 .isCreditDelivered
-                                                            : cardData!
+                                                            : cardData
                                                                 .data!
                                                                 .dashboardDataContent!
                                                                 .isDebitDelivered)

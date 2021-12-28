@@ -1,3 +1,4 @@
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
@@ -14,8 +15,10 @@ import 'package:neo_bank/utils/color_utils.dart';
 class EditTransactionPurposeDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(String, String)? onSelected;
+  final Beneficiary? beneficiary;
 
-  const EditTransactionPurposeDialogView({this.onDismissed, this.onSelected});
+  const EditTransactionPurposeDialogView(
+      {this.onDismissed, this.onSelected, this.beneficiary});
 
   ProviderBase providerBase() {
     return editTransactionPurposeDialogViewModelProvider;
@@ -47,7 +50,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "Rose",
+                          beneficiary!.fullName ?? '',
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
@@ -60,7 +63,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          "ABC000012341234123819241213",
+                          beneficiary!.iban ?? '',
                           style: TextStyle(
                             fontSize: 12,
                             color: AppColor.gray_1,

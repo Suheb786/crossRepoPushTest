@@ -84,7 +84,7 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
     _requestFromContactRequest.safeAdd(RequestAmountFromContactUseCaseParams(
       purpose: _purposeSubject.value,
       purposeDetail: _purposeDetailSubject.value,
-      amount: int.parse(currentPinValue!),
+      amount: int.parse(currentPinValue),
       dbtrBic: beneficiary!.iban ?? "",
       dbtrAcct: beneficiary!.accountNo ?? "",
       dbtrName: beneficiary!.fullName ?? "",

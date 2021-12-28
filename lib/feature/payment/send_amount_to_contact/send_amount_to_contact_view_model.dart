@@ -23,7 +23,8 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   Stream<String> get purposeStream => _purposeSubject.stream;
 
-  BehaviorSubject<String> _purposeDetailSubject = BehaviorSubject.seeded('');
+  BehaviorSubject<String> _purposeDetailSubject =
+      BehaviorSubject.seeded('Transfer to Friend or Family');
 
   Stream<String> get purposeDetailStream => _purposeDetailSubject.stream;
 
@@ -117,7 +118,8 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   void checkSendMoney() {
     _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(
-        toAccount: beneficiary.iban!, toAmount: int.parse(currentPinValue)));
+        toAccount: beneficiary.accountNo!,
+        toAmount: int.parse(currentPinValue)));
   }
 
   void transfer(TransferResponse transferResponse) {
