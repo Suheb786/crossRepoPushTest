@@ -153,29 +153,35 @@ class SendToNewRecipientPageView
                                                     Padding(
                                                       padding: EdgeInsets.only(
                                                           top: 16.0),
-                                                      child: AppTextField(
-                                                        labelText: S
-                                                            .of(context)
-                                                            .ibanOrMobile,
-                                                        hintText: S
-                                                            .of(context)
-                                                            .pleaseEnter,
-                                                        key: model
-                                                            .ibanOrMobileKey,
-                                                        controller: model
-                                                            .ibanOrMobileController,
-                                                        onFieldSubmitted:
-                                                            (value) {
-                                                          model.checkSendMoney(
-                                                              amount: ProviderScope
-                                                                      .containerOf(
-                                                                          context)
-                                                                  .read(
-                                                                      sendMoneyViewModelProvider)
-                                                                  .currentPinValue,
-                                                              iban: value);
+                                                      child: Focus(
+                                                        child: AppTextField(
+                                                          labelText: S
+                                                              .of(context)
+                                                              .ibanOrMobile,
+                                                          hintText: S
+                                                              .of(context)
+                                                              .pleaseEnter,
+                                                          key: model
+                                                              .ibanOrMobileKey,
+                                                          controller: model
+                                                              .ibanOrMobileController,
+                                                          onPressed: () {},
+                                                        ),
+                                                        onFocusChange:
+                                                            (hasFocus) {
+                                                          if (!hasFocus) {
+                                                            model.checkSendMoney(
+                                                                amount: ProviderScope
+                                                                        .containerOf(
+                                                                            context)
+                                                                    .read(
+                                                                        sendMoneyViewModelProvider)
+                                                                    .currentPinValue,
+                                                                iban: model
+                                                                    .ibanOrMobileController
+                                                                    .text);
+                                                          }
                                                         },
-                                                        onPressed: () {},
                                                       ),
                                                     ),
                                                     AppStreamBuilder<bool>(
@@ -394,7 +400,6 @@ class SendToNewRecipientPageView
                                                                           },
                                                                           dataBuilder:
                                                                               (context, data) {
-                                                                            print("got data : ${data}");
                                                                             return AppStreamBuilder<String>(
                                                                               stream: model.selectedImageValue,
                                                                               initialData: '',
