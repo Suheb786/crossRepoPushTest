@@ -98,7 +98,7 @@ class ManageContactDetailsPageView
                                                     StringUtils
                                                         .getFirstInitials(model
                                                             .beneficiary
-                                                            .nickName),
+                                                            .fullName),
                                                     style: TextStyle(
                                                         fontWeight:
                                                             FontWeight.w700,

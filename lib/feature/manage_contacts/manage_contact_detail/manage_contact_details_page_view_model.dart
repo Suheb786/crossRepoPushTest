@@ -4,6 +4,7 @@ import 'package:domain/usecase/manage_contacts/delete_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/upload_beneficiary_profile_image_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
+import 'package:domain/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -183,12 +184,19 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
   }
 
   void setData() {
-    nickNameController.text = beneficiary.nickName!;
+    nickNameController.text = Validator.isNotEmptyNull(beneficiary.nickName)
+        ? beneficiary.nickName!
+        : '';
     ibanController.text = beneficiary.iban!;
     accountHolderNameController.text = beneficiary.fullName!;
     bankNameController.text = beneficiary.bankName!;
-    purposeController.text = beneficiary.purpose!;
-    purposeDetailsController.text = beneficiary.purposeDetails!;
+    purposeController.text = Validator.isNotEmptyNull(beneficiary.purpose)
+        ? beneficiary.purpose!
+        : 'Personal';
+    purposeDetailsController.text =
+        Validator.isNotEmptyNull(beneficiary.purposeDetails)
+            ? beneficiary.purposeDetails!
+            : 'Transfer to Friend or Family';
   }
 
   void showSaveButton() {
