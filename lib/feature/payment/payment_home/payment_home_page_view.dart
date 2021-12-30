@@ -29,6 +29,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
           return GestureDetector(
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
+                ///TODO:
                 if (currentStep == 0) {
                   Navigator.pushNamed(context, RoutePaths.SendMoney);
                 } else {

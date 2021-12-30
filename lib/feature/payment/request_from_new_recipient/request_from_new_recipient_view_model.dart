@@ -94,10 +94,10 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   RequestFromNewRecipientViewModel(this._useCase, this._uploadDocumentUseCase,
       this._getAccountByAliasUseCase) {
     _requestFromNewRecipientRequest.listen((value) {
-      updateLoader();
       RequestManager(value, createCall: () => _useCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _requestFromNewRecipientResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();

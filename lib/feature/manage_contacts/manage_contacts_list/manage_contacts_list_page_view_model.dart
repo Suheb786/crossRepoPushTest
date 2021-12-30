@@ -22,6 +22,9 @@ class ManageContactListPageViewModel extends BasePageViewModel {
   Stream<Resource<GetBeneficiaryListResponse>> get getBeneficiaryListStream =>
       _getBeneficiaryListResponse.stream;
 
+  // BehaviorSubject<List<Beneficiary>> _searchBeneficiaryListResponse =
+  //     BehaviorSubject();
+
   ManageContactListPageViewModel(this._getBeneficiaryUseCase) {
     _getBeneficiaryListRequest.listen((value) {
       RequestManager(value,
@@ -33,6 +36,7 @@ class ManageContactListPageViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+          //_searchBeneficiaryListResponse.safeAdd(event.data!.beneficiaryList);
         }
       });
     });
@@ -44,10 +48,32 @@ class ManageContactListPageViewModel extends BasePageViewModel {
     _getBeneficiaryListRequest.safeAdd(GetBeneficiaryUseCaseParams());
   }
 
+  //
+  // void searchBeneficiary(String? searchText) {
+  //   searchResult!.clear();
+  //   List<Beneficiary>? beneficiaryList = _getBeneficiaryResponse.value.data;
+  //   if (searchText!.isNotEmpty) {
+  //     for (int i = 0; i < beneficiaryList!.length; i++) {
+  //       Beneficiary country = beneficiaryList[i];
+  //       if (country.countryName!
+  //           .toLowerCase()
+  //           .contains(searchText.toLowerCase())) {
+  //         searchResult!.add(country);
+  //       }
+  //     }
+  //     _searchBeneficiaryResponse.safeAdd(Resource.success(data: searchResult));
+  //     selectBeneficiary(0);
+  //   } else {
+  //     _searchBeneficiaryResponse
+  //         .safeAdd(Resource.success(data: _getBeneficiaryResponse.value.data));
+  //   }
+  // }
+
   @override
   void dispose() {
     _getBeneficiaryListRequest.close();
     _getBeneficiaryListResponse.close();
+    //_searchBeneficiaryListResponse.close();
     super.dispose();
   }
 }

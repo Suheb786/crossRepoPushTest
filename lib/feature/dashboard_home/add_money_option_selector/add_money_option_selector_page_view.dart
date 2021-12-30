@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/app_router.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/dashboard/add_money_selector_option_widget.dart';
@@ -30,31 +29,21 @@ class AddMoneyOptionSelectorPageView
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                S
-                    .of(context)
-                    .waysYocCanAddMoneyToAccount,
+                S.of(context).waysYocCanAddMoneyToAccount,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
-                    color: Theme
-                        .of(context)
-                        .accentColor),
+                    color: Theme.of(context).accentColor),
               ),
               SizedBox(
                 height: 46,
               ),
               AddMoneySelectorOptionsWidget(
                 image: AssetUtils.requestMoney,
-                title: S
-                    .of(context)
-                    .requestMoneyFromOtherBank,
-                desc: S
-                    .of(context)
-                    .requestMoneyFromOtherBankDesc,
-                buttonText: S
-                    .of(context)
-                    .requestMoney,
+                title: S.of(context).requestMoneyFromOtherBank,
+                desc: S.of(context).requestMoneyFromOtherBankDesc,
+                buttonText: S.of(context).requestMoney,
                 onTap: () {
                   Navigator.pushNamed(context, RoutePaths.PaymentHome);
                 },
@@ -64,15 +53,9 @@ class AddMoneyOptionSelectorPageView
               ),
               AddMoneySelectorOptionsWidget(
                 image: AssetUtils.receiveMoneyOther,
-                title: S
-                    .of(context)
-                    .receiveMoneyFromOthers,
-                desc: S
-                    .of(context)
-                    .receiveMoneyFromOthersDesc,
-                buttonText: S
-                    .of(context)
-                    .shareAccountInfo,
+                title: S.of(context).receiveMoneyFromOthers,
+                desc: S.of(context).receiveMoneyFromOthersDesc,
+                buttonText: S.of(context).shareAccountInfo,
                 onTap: () {
                   _shareFiles(model, context);
                 },
@@ -82,15 +65,9 @@ class AddMoneyOptionSelectorPageView
               ),
               AddMoneySelectorOptionsWidget(
                 image: AssetUtils.dollar,
-                title: S
-                    .of(context)
-                    .depositViaATM,
-                desc: S
-                    .of(context)
-                    .depositViaATMDesc,
-                buttonText: S
-                    .of(context)
-                    .locateATM,
+                title: S.of(context).depositViaATM,
+                desc: S.of(context).depositViaATMDesc,
+                buttonText: S.of(context).locateATM,
                 onTap: () {
                   Navigator.pushNamed(context, RoutePaths.LocateATM);
                 },
@@ -100,29 +77,19 @@ class AddMoneyOptionSelectorPageView
                 child: Row(
                   children: <Widget>[
                     AppDivider(
-                      color: Theme
-                          .of(context)
-                          .accentColor
-                          .withOpacity(0.3),
+                      color: Theme.of(context).accentColor.withOpacity(0.3),
                       indent: 0,
                       endIndent: 8,
                     ),
                     Text(
-                      S
-                          .of(context)
-                          .or,
+                      S.of(context).or,
                       style: TextStyle(
-                          color: Theme
-                              .of(context)
-                              .accentColor,
+                          color: Theme.of(context).accentColor,
                           fontWeight: FontWeight.w600,
                           fontSize: 12),
                     ),
                     AppDivider(
-                      color: Theme
-                          .of(context)
-                          .accentColor
-                          .withOpacity(0.3),
+                      color: Theme.of(context).accentColor.withOpacity(0.3),
                       endIndent: 0,
                       indent: 8,
                     ),
@@ -132,14 +99,12 @@ class AddMoneyOptionSelectorPageView
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 26, vertical: 32),
                 decoration: BoxDecoration(
-                    color: Theme
-                        .of(context)
-                        .primaryColor,
+                    color: Theme.of(context).primaryColor,
                     borderRadius: BorderRadius.circular(16),
                     image: DecorationImage(
                         image: AssetImage(
-                          AssetUtils.swigglePng,
-                        ))),
+                      AssetUtils.swigglePng,
+                    ))),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -152,27 +117,22 @@ class AddMoneyOptionSelectorPageView
                       onTap: () {},
                       child: Container(
                         padding:
-                        EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                            EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                         height: 36,
                         decoration: BoxDecoration(
-                            color: Theme
-                                .of(context)
+                            color: Theme.of(context)
                                 .accentTextTheme
                                 .bodyText1!
                                 .color,
                             borderRadius: BorderRadius.circular(100)),
                         child: Center(
                           child: Text(
-                            S
-                                .of(context)
-                                .getMyCreditCard,
+                            S.of(context).getMyCreditCard,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
-                                color: Theme
-                                    .of(context)
-                                    .accentColor),
+                                color: Theme.of(context).accentColor),
                           ),
                         ),
                       ),
@@ -187,8 +147,8 @@ class AddMoneyOptionSelectorPageView
     );
   }
 
-  void _shareFiles(AddMoneyOptionSelectorViewModel model,
-      BuildContext context) async {
+  void _shareFiles(
+      AddMoneyOptionSelectorViewModel model, BuildContext context) async {
     final box = context.findRenderObject() as RenderBox?;
     await Share.share(
         'Hello! Here’s my blink account details:\n\nZein Malhas \nJOD120315314513451341234567312\n\nGet your blink account today. Blink now!',
