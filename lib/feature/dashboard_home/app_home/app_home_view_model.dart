@@ -73,6 +73,60 @@ class AppHomeViewModel extends BasePageViewModel {
     getDashboardData();
   }
 
+  List<Widget> buildPageIndicator(int currentPage) {
+    List<Widget> list = [];
+    for (int i = 0; i < 4; i++) {
+      list.add(i == currentPage
+          ? indicator(true, i, currentPage)
+          : indicator(false, i, currentPage));
+    }
+    return list;
+  }
+
+  Widget indicator(bool isActive, int i, int currentPage) {
+    return AnimatedContainer(
+      duration: Duration(milliseconds: 300),
+      margin: const EdgeInsets.symmetric(horizontal: 6.0),
+      height: getSize(isActive, i, currentPage),
+      width: getSize(isActive, i, currentPage),
+      decoration: BoxDecoration(
+        color: getColor(isActive, i),
+        shape: BoxShape.circle,
+      ),
+    );
+  }
+
+  Color getColor(bool isActive, int i) {
+    if (isActive) {
+      return Colors.black;
+    } else {
+      return Color(0xFFA9A9A9);
+    }
+  }
+
+  double getSize(bool isActive, int i, int currentPage) {
+    if (isActive) {
+      return 13.0;
+    } else if (i == 0 && !isActive && currentPage > 1) {
+      return 5.0;
+    } else if (i == 0 && !isActive && currentPage == 1) {
+      return 5.0;
+    } else if (i == 3 && !isActive && currentPage == 2) {
+      return 5.0;
+    } else if (i == 3 && !isActive && currentPage < 2) {
+      return 5.0;
+    } else if (i == 1 && !isActive && currentPage == 3) {
+      return 10.0;
+    } else if (i == 2 && !isActive && currentPage == 0) {
+      return 10.0;
+    } else if (i == 1 && !isActive && currentPage == 2) {
+      return 10.0;
+    } else if (i == 2 && !isActive && currentPage == 1) {
+      return 10.0;
+    }
+    return 10.0;
+  }
+
   void updatePage(int index) {
     _currentStep.safeAdd(index);
   }

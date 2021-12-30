@@ -35,60 +35,6 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
     PlaceholderPage()
   ];
 
-  int _currentPage = 0;
-
-  List<Widget> _buildPageIndicator() {
-    List<Widget> list = [];
-    for (int i = 0; i < 4; i++) {
-      list.add(i == _currentPage ? _indicator(true, i) : _indicator(false, i));
-    }
-    return list;
-  }
-
-  Widget _indicator(bool isActive, int i) {
-    return AnimatedContainer(
-      duration: Duration(milliseconds: 300),
-      margin: const EdgeInsets.symmetric(horizontal: 6.0),
-      height: _getSize(isActive, i),
-      width: _getSize(isActive, i),
-      decoration: BoxDecoration(
-        color: _getColor(isActive, i),
-        shape: BoxShape.circle,
-      ),
-    );
-  }
-
-  double _getSize(bool isActive, int i) {
-    if (isActive) {
-      return 13.0;
-    } else if (i == 0 && !isActive && _currentPage > 1) {
-      return 5.0;
-    } else if (i == 0 && !isActive && _currentPage == 1) {
-      return 5.0;
-    } else if (i == 3 && !isActive && _currentPage == 2) {
-      return 5.0;
-    } else if (i == 3 && !isActive && _currentPage < 2) {
-      return 5.0;
-    } else if (i == 1 && !isActive && _currentPage == 3) {
-      return 10.0;
-    } else if (i == 2 && !isActive && _currentPage == 0) {
-      return 10.0;
-    } else if (i == 1 && !isActive && _currentPage == 2) {
-      return 10.0;
-    } else if (i == 2 && !isActive && _currentPage == 1) {
-      return 10.0;
-    }
-    return 10.0;
-  }
-
-  Color _getColor(bool isActive, int i) {
-    if (isActive) {
-      return Colors.black;
-    } else {
-      return Color(0xFFA9A9A9);
-    }
-  }
-
   @override
   Widget build(BuildContext context, model) {
     return Padding(
@@ -226,7 +172,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 pageController:
                                                     model.pageController,
                                                 onIndexChanged: (index) {
-                                                  _currentPage = index;
+                                                  // _currentPage = index;
                                                   model.updatePage(index);
                                                   model
                                                       .updatePageControllerStream(
@@ -242,7 +188,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        children: _buildPageIndicator(),
+                                        children: model
+                                            .buildPageIndicator(currentStep!),
                                       ),
                                       // SmoothPageIndicator(
                                       //     controller: model.controller,
