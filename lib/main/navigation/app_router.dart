@@ -118,9 +118,11 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.TermsAndCondition));
 
       case RoutePaths.AddMoneyOptionSelector:
-        return CupertinoPageRoute(
-            builder: (context) => AddMoneyOptionSelectorPage(),
-            settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
+      // return CupertinoPageRoute(
+      //     builder: (context) => AddMoneyOptionSelectorPage(),
+      //     settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
+        return CustomRoute.createRoute(
+            AddMoneyOptionSelectorPage(), reverse: true);
 
       case RoutePaths.LocateATM:
         return CupertinoPageRoute(
@@ -252,9 +254,7 @@ class AppRouter {
                 RouteSettings(name: RoutePaths.DebitCardVerificationSuccess));
 
       case RoutePaths.PaymentHome:
-        return CupertinoPageRoute(
-            builder: (context) => PaymentHomePage(),
-            settings: RouteSettings(name: RoutePaths.PaymentHome));
+        return CustomRoute.createRoute(PaymentHomePage());
 
       case RoutePaths.ActivityHome:
         return CupertinoPageRoute(

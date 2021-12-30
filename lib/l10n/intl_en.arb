@@ -643,5 +643,10 @@
   "insufficientBalance": "insufficient Balance (Err-89)",
   "creditCardDelivered": "Credit card\ndelivered",
   "debitCardDeliveredDate": "Debit Card\ndelivered",
-  "insufficientBalanceTransfer": "You do not have sufficient balance to make payment."
+  "insufficientBalanceTransfer": "You do not have sufficient balance to make payment.",
+  "invalidBeneficiary": "Invalid Beneficiary",
+  "invalidRequestedAmount": "Invalid requested amount",
+  "swipeToSend": "Swipe up to send money",
+  "swipeToRequest": "Swipe up to request money",
+  "swipeUpToViewTransaction": "Swipe up to view transactions"
 }

@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:domain/repository/payment/payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
@@ -21,7 +23,10 @@ class RequestAmountFromContactUseCase extends BaseUseCase<NetworkError,
         params.dbtrBic!,
         params.dbtrAcct!,
         params.dbtrName!,
-        params.purposeDetail!);
+        params.purposeDetail!,
+        params.isFriend!,
+        params.image!
+    );
   }
 }
 
@@ -32,17 +37,26 @@ class RequestAmountFromContactUseCaseParams extends Params {
   String? dbtrBic;
   String? dbtrAcct;
   String? dbtrName;
+  String? image;
+  bool? isFriend;
 
-  RequestAmountFromContactUseCaseParams(
-      {this.purpose,
-      this.purposeDetail,
-      this.amount,
-      this.dbtrBic,
-      this.dbtrName,
-      this.dbtrAcct});
+  RequestAmountFromContactUseCaseParams({this.purpose,
+    this.purposeDetail,
+    this.amount,
+    this.dbtrBic,
+    this.dbtrName,
+    this.dbtrAcct,
+    this.isFriend: false,
+    this.image: ""});
 
   @override
   Either<AppError, bool> verify() {
+    if (amount! == 0) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_REQUESTED_AMOUNT,
+          cause: Exception()));
+    }
     return Right(true);
   }
 }

@@ -1,5 +1,7 @@
 import 'package:domain/model/manage_contacts/beneficiary.dart';
+import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
+import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
 import 'package:domain/usecase/payment/request_amount_from_contact_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -10,7 +12,9 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class RequestAmountFromContactViewModel extends BasePageViewModel {
-  RequestAmountFromContactUseCase _useCase;
+  RequestAmountFromContactUseCase _requestAmountFromContactUseCase;
+
+  GetAccountByAliasUseCase _getAccountByAliasUseCase;
 
   BehaviorSubject<String> _purposeSubject = BehaviorSubject();
 
@@ -23,14 +27,24 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
   Beneficiary? beneficiary;
 
   PublishSubject<RequestAmountFromContactUseCaseParams>
-      _requestFromContactRequest = PublishSubject();
+  _requestFromContactRequest = PublishSubject();
 
   PublishSubject<Resource<RequestToPayContentResponse>>
-      _requestFromContactResponse = PublishSubject();
+  _requestFromContactResponse = PublishSubject();
+
+  BehaviorSubject<GetAccountByAliasUseCaseParams> _getAccountByAliasRequest =
+  BehaviorSubject();
+
+  BehaviorSubject<
+      Resource<GetAccountByAliasContentResponse>> _getAccountByAliasResponse =
+  BehaviorSubject();
+
+  Stream<Resource<GetAccountByAliasContentResponse>>
+  get getAccountByAliasResponseStream => _getAccountByAliasResponse.stream;
 
   Stream<Resource<RequestToPayContentResponse>>
-      get requestFromContactResponseStream =>
-          _requestFromContactResponse.stream;
+  get requestFromContactResponseStream =>
+      _requestFromContactResponse.stream;
 
   void updatePurposeDetail(String value) {
     _purposeDetailSubject.safeAdd(value);
@@ -40,9 +54,31 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
     _purposeSubject.safeAdd(value);
   }
 
-  RequestAmountFromContactViewModel(this._useCase, this.beneficiary) {
+  RequestAmountFromContactViewModel(this._requestAmountFromContactUseCase,
+      this._getAccountByAliasUseCase, this.beneficiary) {
+    _getAccountByAliasRequest.listen((value) {
+      print("got beneficiary iban: ${beneficiary!.iban}");
+      RequestManager(value,
+          createCall: () =>
+              _getAccountByAliasUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getAccountByAliasResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          print("got error type: ${event.appError!.type}");
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          print("got bic: ${event.data!.getAccountByAliasContent!.bic}");
+        }
+      });
+    });
+
     _requestFromContactRequest.listen((value) {
-      RequestManager(value, createCall: () => _useCase.execute(params: value))
+      RequestManager(value,
+          createCall: () =>
+              _requestAmountFromContactUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _requestFromContactResponse.safeAdd(event);
@@ -52,6 +88,13 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
         }
       });
     });
+
+    getAccountByAlias();
+  }
+
+  void getAccountByAlias() {
+    _getAccountByAliasRequest.safeAdd(GetAccountByAliasUseCaseParams(
+        value: beneficiary!.iban, currency: "JOD"));
   }
 
   List<String> myList = [];

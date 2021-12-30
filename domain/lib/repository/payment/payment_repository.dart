@@ -31,5 +31,7 @@ abstract class PaymentRepository {
       String dbtrBic,
       String dbtrAcct,
       String dbtrName,
-      String memo);
+      String memo,
+      bool? isFriend,
+      String? image);
 }

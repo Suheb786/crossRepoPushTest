@@ -14,6 +14,8 @@ class ErrorParser {
         return localisedHelper.genericError;
       case ErrorType.NETWORK:
         return localisedHelper.genericError;
+      case ErrorType.INVALID_BENEFICIARY:
+        return localisedHelper.invalidBeneficiary;
       case ErrorType.NET_SERVER_MESSAGE:
         return localisedHelper.genericError;
       case ErrorType.NET_NO_INTERNET_CONNECTION:
@@ -32,6 +34,10 @@ class ErrorParser {
         return localisedHelper.genericError;
       case ErrorType.INVALID_MOBILE:
         return localisedHelper.enterValidMobileNumber;
+      case ErrorType.INVALID_OTP:
+        return localisedHelper.enterValidOtp;
+      case ErrorType.INVALID_REQUESTED_AMOUNT:
+        return localisedHelper.invalidRequestedAmount;
       case ErrorType.INVALID_OTP:
         return localisedHelper.enterValidOtp;
       case ErrorType.INVALID_EMPLOYMENT_STATUS:

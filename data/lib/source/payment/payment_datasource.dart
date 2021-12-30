@@ -29,7 +29,9 @@ abstract class PaymentRemoteDs {
       String dbtrBic,
       String dbtrAcct,
       String dbtrName,
-      String memo);
+      String memo,
+      bool? isFriend,
+      String? image);
 
   Future<HttpResponse<ResponseEntity>> transferVerify();
 }

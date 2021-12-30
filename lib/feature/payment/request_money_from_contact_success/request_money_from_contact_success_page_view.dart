@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/request_money_from_contact_success/request_money_from_contact_success_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -16,6 +18,15 @@ class RequestAmountFromContactSuccessPageView
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
       child: GestureDetector(
+        onHorizontalDragEnd: (details) {
+          if (details.primaryVelocity!.isNegative) {
+            Navigator.popUntil(
+                context, ModalRoute.withName(RoutePaths.AppHome));
+            ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .getDashboardData();
+          }
+        },
         child: Padding(
           padding: EdgeInsets.only(top: 92),
           child: SingleChildScrollView(
@@ -25,7 +36,10 @@ class RequestAmountFromContactSuccessPageView
                   alignment: Alignment.center,
                   children: [
                     Image.asset(AssetUtils.line,
-                        color: Theme.of(context).accentColor.withOpacity(0.4)),
+                        color: Theme
+                            .of(context)
+                            .accentColor
+                            .withOpacity(0.4)),
                     Align(
                       alignment: Alignment.center,
                       child: Container(
@@ -91,7 +105,7 @@ class RequestAmountFromContactSuccessPageView
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color:
-                            Theme.of(context).primaryColorDark.withOpacity(0.5),
+                        Theme.of(context).primaryColorDark.withOpacity(0.5),
                         fontWeight: FontWeight.w600,
                         fontSize: 12),
                   ),
@@ -104,7 +118,7 @@ class RequestAmountFromContactSuccessPageView
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color:
-                            Theme.of(context).primaryColorDark.withOpacity(0.5),
+                        Theme.of(context).primaryColorDark.withOpacity(0.5),
                         fontWeight: FontWeight.w400,
                         fontSize: 14),
                   ),
@@ -114,9 +128,9 @@ class RequestAmountFromContactSuccessPageView
                   child: AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
                     borderColor:
-                        Theme.of(context).accentTextTheme.bodyText1!.color,
+                    Theme.of(context).accentTextTheme.bodyText1!.color,
                     textColor:
-                        Theme.of(context).accentTextTheme.bodyText1!.color,
+                    Theme.of(context).accentTextTheme.bodyText1!.color,
                   ),
                 ),
                 InkWell(
@@ -143,7 +157,7 @@ class RequestAmountFromContactSuccessPageView
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color:
-                            Theme.of(context).accentTextTheme.bodyText1!.color),
+                        Theme.of(context).accentTextTheme.bodyText1!.color),
                   ),
                 ),
                 Padding(

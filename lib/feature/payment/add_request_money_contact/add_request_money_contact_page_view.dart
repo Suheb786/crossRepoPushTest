@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/payment/payment_beneficiary_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 
 class AddRequestMoneyContactPageView
@@ -19,52 +20,70 @@ class AddRequestMoneyContactPageView
   @override
   Widget build(BuildContext context, model) {
     return Center(
-      child: AspectRatio(
-        aspectRatio: 0.62,
-        child: GestureDetector(
-          onHorizontalDragEnd: (details) {
-            if (!(details.primaryVelocity!.isNegative)) {
-              ProviderScope.containerOf(context)
-                  .read(paymentHomeViewModelProvider)
-                  .pageController
-                  .previous();
-            }
-          },
-          child: Card(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            clipBehavior: Clip.antiAliasWithSaveLayer,
-            elevation: 2,
-            color: Theme.of(context).canvasColor,
-            margin: EdgeInsets.zero,
-            shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
-            child: AppStreamBuilder<Resource<GetBeneficiaryListResponse>>(
-                stream: ProviderScope.containerOf(context)
-                    .read(paymentHomeViewModelProvider)
-                    .beneficiaryResponse,
-                initialData: Resource.none(),
-                dataBuilder: (context, beneficiaryResponse) {
-                  return Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                            padding: EdgeInsets.only(top: 30, left: 27),
-                            child: Text(S.of(context).requestMoney,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12))),
-                        beneficiaryResponse!.data!.beneficiaryList!.length > 0
-                            ? Column(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          Padding(
+            padding: EdgeInsets.only(bottom: 15),
+            child: AspectRatio(
+              aspectRatio: 0.62,
+              child: GestureDetector(
+                onHorizontalDragEnd: (details) {
+                  if (!(details.primaryVelocity!.isNegative)) {
+                    ProviderScope
+                        .containerOf(context)
+                        .read(paymentHomeViewModelProvider)
+                        .pageController
+                        .previous();
+                  }
+                },
+                child: Card(
+                  shape:
+                  RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16)),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  elevation: 2,
+                  color: Theme
+                      .of(context)
+                      .canvasColor,
+                  margin: EdgeInsets.zero,
+                  shadowColor: Theme
+                      .of(context)
+                      .primaryColorDark
+                      .withOpacity(0.32),
+                  child: AppStreamBuilder<Resource<GetBeneficiaryListResponse>>(
+                      stream: ProviderScope
+                          .containerOf(context)
+                          .read(paymentHomeViewModelProvider)
+                          .beneficiaryResponse,
+                      initialData: Resource.none(),
+                      dataBuilder: (context, beneficiaryResponse) {
+                        return Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                  padding: EdgeInsets.only(top: 30, left: 27),
+                                  child: Text(S
+                                      .of(context)
+                                      .requestMoney,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 12))),
+                              beneficiaryResponse!.data!.beneficiaryList!
+                                  .length > 0
+                                  ? Column(
+                                mainAxisAlignment: MainAxisAlignment
+                                    .spaceBetween,
                                 children: [
                                   GridView.builder(
                                     itemCount: beneficiaryResponse
                                         .data!.beneficiaryList!.length,
                                     gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                            crossAxisCount: 3,
-                                            childAspectRatio: 0.8,
-                                            mainAxisSpacing: 6),
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 3,
+                                        childAspectRatio: 0.5,
+                                        mainAxisSpacing: 6),
                                     shrinkWrap: true,
                                     padding: EdgeInsets.only(
                                         top: 22, right: 28, left: 27),
@@ -95,15 +114,20 @@ class AddRequestMoneyContactPageView
                                             vertical: 8, horizontal: 14),
                                         decoration: BoxDecoration(
                                             color:
-                                                Theme.of(context).accentColor,
+                                            Theme
+                                                .of(context)
+                                                .accentColor,
                                             borderRadius:
-                                                BorderRadius.circular(20)),
+                                            BorderRadius.circular(20)),
                                         child: Text(
-                                          S.of(context).seeAllContacts,
+                                          S
+                                              .of(context)
+                                              .seeAllContacts,
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w600,
-                                              color: Theme.of(context)
+                                              color: Theme
+                                                  .of(context)
                                                   .accentTextTheme
                                                   .bodyText1!
                                                   .color),
@@ -113,7 +137,7 @@ class AddRequestMoneyContactPageView
                                   )
                                 ],
                               )
-                            : Column(
+                                  : Column(
                                 children: [
                                   Padding(
                                     padding: EdgeInsets.only(top: 90),
@@ -133,12 +157,16 @@ class AddRequestMoneyContactPageView
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(
-                                        S.of(context).addSendContact,
+                                        S
+                                            .of(context)
+                                            .addSendContact,
                                         maxLines: 3,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
                                           fontSize: 12,
-                                          color: Theme.of(context).accentColor,
+                                          color: Theme
+                                              .of(context)
+                                              .accentColor,
                                           fontWeight: FontWeight.w600,
                                         ),
                                       ),
@@ -146,12 +174,36 @@ class AddRequestMoneyContactPageView
                                   ),
                                 ],
                               )
-                      ],
-                    ),
-                  );
-                }),
+                            ],
+                          ),
+                        );
+                      }),
+                ),
+              ),
+            ),
           ),
-        ),
+          Positioned(
+            bottom: 0,
+            child: Column(
+              children: [
+                AppSvg.asset(AssetUtils.swipeUp),
+                Padding(
+                  padding: EdgeInsets.only(top: 6),
+                  child: Text(
+                    S
+                        .of(context)
+                        .swipeToRequest,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 12,
+                        color: AppColor.dark_gray_1
+                    ),
+                  ),
+                )
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
