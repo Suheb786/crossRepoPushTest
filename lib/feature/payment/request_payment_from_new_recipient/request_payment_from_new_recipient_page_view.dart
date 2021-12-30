@@ -16,7 +16,10 @@ class RequestPaymentFromNewRecipientPageView
     extends BasePageViewWidget<RequestPaymentFromNewRecipientViewModel> {
   RequestPaymentFromNewRecipientPageView(ProviderBase model) : super(model);
 
-  final pages = [RequestFromNewRecipientPage(), BaseCardPage()];
+  final pages = [
+    RequestFromNewRecipientPage(),
+    Visibility(visible: false, child: BaseCardPage())
+  ];
 
   @override
   Widget build(BuildContext context, model) {
