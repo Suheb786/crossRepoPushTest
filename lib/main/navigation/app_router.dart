@@ -52,6 +52,7 @@ import 'package:neo_bank/feature/static_content/fatca_certification/fatca_certif
 import 'package:neo_bank/feature/static_content/reference_number/reference_number_page.dart';
 import 'package:neo_bank/feature/static_content/us_tax_payer_identification_number/us_tax_payer_identification_number_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
+import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 
@@ -304,6 +305,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => PaymentToNewRecipientPage(),
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
+
+      case RoutePaths.VideoKyc:
+        return CupertinoPageRoute(
+            builder: (context) => VideoKycPage(),
+            settings: RouteSettings(name: RoutePaths.VideoKyc));
 
       default:
         return CupertinoPageRoute(
