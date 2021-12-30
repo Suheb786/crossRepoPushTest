@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6345,6 +6346,16 @@ class S {
     return Intl.message(
       'Swipe up to view transactions',
       name: 'swipeUpToViewTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Request Is Not Completed`
+  String get requestNotCompleted {
+    return Intl.message(
+      'Your Request Is Not Completed',
+      name: 'requestNotCompleted',
       desc: '',
       args: [],
     );

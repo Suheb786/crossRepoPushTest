@@ -53,15 +53,11 @@ class RegisterStepFivePageView
                   child: Text(
                     StepTextHelper.registrationTwoStepTextHelper(
                       currentStep ?? 0,
-                      S
-                          .of(context)
-                          .confirmYourInformation,
+                      S.of(context).confirmYourInformation,
                       // S.of(context).videoCallInfoHeader,
                       // S.of(context).videoCallInfoHeader,
                       // S.of(context).pleaseSelectPreferredAgentForVideoCall,
-                      S
-                          .of(context)
-                          .pleaseUploadNecessaryInfo,
+                      S.of(context).pleaseUploadNecessaryInfo,
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -92,21 +88,15 @@ class RegisterStepFivePageView
   String getHeader(int? currentStep, BuildContext context) {
     switch (currentStep) {
       case 0:
-        return S
-            .of(context)
-            .reviewApplication;
-    // case 1:
-    // case 2:
-    // case 3:
-    //   return S.of(context).videoCall;
+        return S.of(context).reviewApplication;
+      // case 1:
+      // case 2:
+      // case 3:
+      //   return S.of(context).videoCall;
       case 1:
-        return S
-            .of(context)
-            .uploadDocuments;
+        return S.of(context).uploadDocuments;
       default:
-        return S
-            .of(context)
-            .reviewApplication;
+        return S.of(context).reviewApplication;
     }
   }
 }

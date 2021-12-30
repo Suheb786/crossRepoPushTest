@@ -310,8 +310,10 @@ class ErrorParser {
         return localisedHelper.errorWhileBalanceInquiry;
       case ErrorType.INSUFFICIENT_BALANCE:
         return localisedHelper.insufficientBalance;
-        case ErrorType.INSUFFICIENT_BALANCE_TRANSFER:
+      case ErrorType.INSUFFICIENT_BALANCE_TRANSFER:
         return localisedHelper.insufficientBalanceTransfer;
+      case ErrorType.REQUEST_NOT_COMPLETED:
+        return localisedHelper.requestNotCompleted;
 
       default:
         return "";

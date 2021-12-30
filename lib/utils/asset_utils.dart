@@ -146,4 +146,5 @@ class AssetUtils {
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";
+  static const String loaderAnimation = _animation + "Blink_Loader.json";
 }

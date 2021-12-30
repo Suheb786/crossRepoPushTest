@@ -212,6 +212,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.INSUFFICIENT_BALANCE);
 
+          case "err-304":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.REQUEST_NOT_COMPLETED);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

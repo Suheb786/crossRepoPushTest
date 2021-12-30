@@ -648,5 +648,6 @@
   "invalidRequestedAmount": "Invalid requested amount",
   "swipeToSend": "Swipe up to send money",
   "swipeToRequest": "Swipe up to request money",
-  "swipeUpToViewTransaction": "Swipe up to view transactions"
+  "swipeUpToViewTransaction": "Swipe up to view transactions",
+  "requestNotCompleted": "Your Request Is Not Completed"
 }
