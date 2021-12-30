@@ -34,6 +34,8 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                 } else {
                   Navigator.pushNamed(context, RoutePaths.RequestMoney);
                 }
+              } else {
+                Navigator.pop(context);
               }
             },
             behavior: HitTestBehavior.translucent,

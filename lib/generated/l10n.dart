@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6296,6 +6295,56 @@ class S {
     return Intl.message(
       'You do not have sufficient balance to make payment.',
       name: 'insufficientBalanceTransfer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid Beneficiary`
+  String get invalidBeneficiary {
+    return Intl.message(
+      'Invalid Beneficiary',
+      name: 'invalidBeneficiary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid requested amount`
+  String get invalidRequestedAmount {
+    return Intl.message(
+      'Invalid requested amount',
+      name: 'invalidRequestedAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe up to send money`
+  String get swipeToSend {
+    return Intl.message(
+      'Swipe up to send money',
+      name: 'swipeToSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe up to request money`
+  String get swipeToRequest {
+    return Intl.message(
+      'Swipe up to request money',
+      name: 'swipeToRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe up to view transactions`
+  String get swipeUpToViewTransaction {
+    return Intl.message(
+      'Swipe up to view transactions',
+      name: 'swipeUpToViewTransaction',
       desc: '',
       args: [],
     );

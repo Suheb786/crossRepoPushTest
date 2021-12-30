@@ -23,7 +23,10 @@ class RequestFromNewRecipientUseCase extends BaseUseCase<NetworkError,
         params.dbtrBic!,
         params.dbtrAcct!,
         params.dbtrName!,
-        params.purposeDetail!);
+        params.purposeDetail!,
+        params.isFriend!,
+        params.image!
+    );
   }
 }
 
@@ -35,6 +38,8 @@ class RequestFromNewRecipientUseCaseParams extends Params {
   String? dbtrBic;
   String? dbtrAcct;
   String? dbtrName;
+  String? image;
+  bool? isFriend;
 
   RequestFromNewRecipientUseCaseParams({
     this.ibanOrMobile,
@@ -44,6 +49,8 @@ class RequestFromNewRecipientUseCaseParams extends Params {
     this.dbtrBic,
     this.dbtrAcct,
     this.dbtrName,
+    this.image: "",
+    this.isFriend: false
   });
 
   @override

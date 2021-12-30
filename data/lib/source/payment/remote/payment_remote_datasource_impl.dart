@@ -79,16 +79,20 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
       String dbtrBic,
       String dbtrAcct,
       String dbtrName,
-      String memo) async {
+      String memo,
+      bool? isFriend,
+      String? image) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.requestToPay(RequestToPayRequestEntity(
-      ctgyPurp: ctgyPurp,
-      amount: amount,
-      memo: memo,
-      baseData: baseData.toJson(),
-      dbtrBic: dbtrBic,
-      dbtrAcct: dbtrAcct,
-      dbtrName: dbtrName,
+        ctgyPurp: ctgyPurp,
+        amount: amount,
+        memo: memo,
+        baseData: baseData.toJson(),
+        dbtrBic: dbtrBic,
+        dbtrAcct: dbtrAcct,
+        dbtrName: dbtrName,
+        isFriend: isFriend,
+        beneImage: image
     ));
   }
 

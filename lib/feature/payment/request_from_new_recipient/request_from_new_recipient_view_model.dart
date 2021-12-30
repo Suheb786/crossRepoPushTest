@@ -30,14 +30,17 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
   String selectedProfile = '';
 
-  PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
+  ScrollController scrollController = ScrollController();
+
+  BehaviorSubject<String> _uploadProfilePhotoResponse = BehaviorSubject.seeded(
+      "");
 
   Stream<String> get uploadProfilePhotoStream =>
       _uploadProfilePhotoResponse.stream;
 
   ///selected image subject
   final BehaviorSubject<String> _selectedImageSubject =
-      BehaviorSubject.seeded('');
+  BehaviorSubject.seeded('');
 
   ///upload profile
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest =
@@ -49,28 +52,31 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
       PublishSubject();
 
   final GlobalKey<AppTextFieldState> ibanOrMobileKey =
-      GlobalKey(debugLabel: "ibanOrMobileNo");
+  GlobalKey(debugLabel: "ibanOrMobileNo");
 
   final GlobalKey<AppTextFieldState> purposeKey =
-      GlobalKey(debugLabel: "purpose");
+  GlobalKey(debugLabel: "purpose");
 
   final GlobalKey<AppTextFieldState> purposeDetailKey =
-      GlobalKey(debugLabel: "purposeDetails");
+  GlobalKey(debugLabel: "purposeDetails");
 
-  bool isAnyOtherNationality = false;
+  bool addContact = false;
 
   PublishSubject<RequestFromNewRecipientUseCaseParams>
-      _requestFromNewRecipientRequest = PublishSubject();
+  _requestFromNewRecipientRequest = PublishSubject();
 
   PublishSubject<Resource<RequestToPayContentResponse>>
-      _requestFromNewRecipientResponse = PublishSubject();
+  _requestFromNewRecipientResponse = PublishSubject();
 
   BehaviorSubject<Resource<GetAccountByAliasContentResponse>>
-      _getAccountByAliasResponse = BehaviorSubject();
+  _getAccountByAliasResponse = BehaviorSubject();
+
+  Stream<Resource<GetAccountByAliasContentResponse>>
+  get getAccountByAliasResponseStream => _getAccountByAliasResponse.stream;
 
   Stream<Resource<RequestToPayContentResponse>>
-      get requestFromNewRecipientResponseStream =>
-          _requestFromNewRecipientResponse.stream;
+  get requestFromNewRecipientResponseStream =>
+      _requestFromNewRecipientResponse.stream;
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
 
@@ -88,6 +94,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   RequestFromNewRecipientViewModel(this._useCase, this._uploadDocumentUseCase,
       this._getAccountByAliasUseCase) {
     _requestFromNewRecipientRequest.listen((value) {
+      updateLoader();
       RequestManager(value, createCall: () => _useCase.execute(params: value))
           .asFlow()
           .listen((event) {
@@ -139,15 +146,18 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   void requestFromNewRecipient(BuildContext context) {
     _requestFromNewRecipientRequest
         .safeAdd(RequestFromNewRecipientUseCaseParams(
-      ibanOrMobile: ibanOrMobileController.text,
-      purpose: purposeController.text,
-      purposeDetail: purposeDetailController.text,
-      amount: int.parse(ProviderScope.containerOf(context)
-          .read(requestMoneyViewModelProvider)
-          .currentPinValue),
-      dbtrBic: dbtrBic ?? "",
-      dbtrAcct: dbtrAcct ?? "",
-      dbtrName: dbtrName ?? "",
+        ibanOrMobile: ibanOrMobileController.text,
+        purpose: purposeController.text,
+        purposeDetail: purposeDetailController.text,
+        amount: int.parse(ProviderScope
+            .containerOf(context)
+            .read(requestMoneyViewModelProvider)
+            .currentPinValue),
+        dbtrBic: dbtrBic ?? "",
+        dbtrAcct: dbtrAcct ?? "",
+        dbtrName: dbtrName ?? "",
+        isFriend: addContact,
+        image: _uploadProfilePhotoResponse.value
     ));
   }
 

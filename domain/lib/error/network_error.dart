@@ -78,7 +78,9 @@ class NetworkError extends BaseError {
 
           case "err-349":
             return AppError(
-                cause: cause, error: error, type: ErrorType.NETWORK);
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_BENEFICIARY);
 
           case "ex-055":
             return AppError(

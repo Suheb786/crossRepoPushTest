@@ -506,25 +506,27 @@ class MessageLookup extends MessageLookupByLibrary {
             "Don\'t worry, if you log out your information will be saved and you can login at any time."),
         "insufficientBalance": MessageLookupByLibrary.simpleMessage(
             "insufficient Balance (Err-89)"),
-        "insufficientBalanceTransfer": MessageLookupByLibrary.simpleMessage(
-            "You do not have sufficient balance to make payment."),
-        "invalidAdditionSourceIncome": MessageLookupByLibrary.simpleMessage(
-            "Select Additional Source Income"),
-        "invalidAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),
-        "invalidAnnualIncome":
-            MessageLookupByLibrary.simpleMessage("Enter Annual income"),
-        "invalidBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
-            "You must be the beneficial owner of the account to proceed"),
-        "invalidBusinessType":
-            MessageLookupByLibrary.simpleMessage("Select Business Type"),
-        "invalidCitizenship":
-            MessageLookupByLibrary.simpleMessage("Enter citizenship"),
-        "invalidCity": MessageLookupByLibrary.simpleMessage("Select City"),
-        "invalidCountry":
-            MessageLookupByLibrary.simpleMessage("Select Country"),
-        "invalidDOB":
-            MessageLookupByLibrary.simpleMessage("Enter Date Of Birth "),
-        "invalidDeclarationSelection": MessageLookupByLibrary.simpleMessage(
+    "insufficientBalanceTransfer": MessageLookupByLibrary.simpleMessage(
+        "You do not have sufficient balance to make payment."),
+    "invalidAdditionSourceIncome": MessageLookupByLibrary.simpleMessage(
+        "Select Additional Source Income"),
+    "invalidAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),
+    "invalidAnnualIncome":
+    MessageLookupByLibrary.simpleMessage("Enter Annual income"),
+    "invalidBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
+        "You must be the beneficial owner of the account to proceed"),
+    "invalidBeneficiary":
+    MessageLookupByLibrary.simpleMessage("Invalid Beneficiary"),
+    "invalidBusinessType":
+    MessageLookupByLibrary.simpleMessage("Select Business Type"),
+    "invalidCitizenship":
+    MessageLookupByLibrary.simpleMessage("Enter citizenship"),
+    "invalidCity": MessageLookupByLibrary.simpleMessage("Select City"),
+    "invalidCountry":
+    MessageLookupByLibrary.simpleMessage("Select Country"),
+    "invalidDOB":
+    MessageLookupByLibrary.simpleMessage("Enter Date Of Birth "),
+    "invalidDeclarationSelection": MessageLookupByLibrary.simpleMessage(
             "Confirm to the terms and condition to proceed."),
         "invalidDocumentNo":
             MessageLookupByLibrary.simpleMessage("Enter Legal Document No."),
@@ -584,26 +586,28 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select date"),
         "invalidPreferredTime":
             MessageLookupByLibrary.simpleMessage("Select time"),
-        "invalidProvisionClaim": MessageLookupByLibrary.simpleMessage(
-            "Enter provision claim article and paragraph"),
-        "invalidPurposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage(
-            "Select purpose of account opening"),
-        "invalidReasonUnavailability": MessageLookupByLibrary.simpleMessage(
-            "Select Reason of Unavailability"),
-        "invalidReferenceNumber":
-            MessageLookupByLibrary.simpleMessage("Enter reference number"),
-        "invalidRelationship":
-            MessageLookupByLibrary.simpleMessage("Select relationship"),
-        "invalidRole": MessageLookupByLibrary.simpleMessage("Enter role"),
-        "invalidSocialSecurityNumber": MessageLookupByLibrary.simpleMessage(
-            "Enter social security number"),
-        "invalidState": MessageLookupByLibrary.simpleMessage("Select State"),
-        "invalidTaxCountry":
-            MessageLookupByLibrary.simpleMessage("Select tax country"),
-        "invalidTaxPayer":
-            MessageLookupByLibrary.simpleMessage("Select Tax Payer"),
-        "invalidTinNumber":
-            MessageLookupByLibrary.simpleMessage("Enter correct tin number"),
+    "invalidProvisionClaim": MessageLookupByLibrary.simpleMessage(
+        "Enter provision claim article and paragraph"),
+    "invalidPurposeOfOpeningAccount": MessageLookupByLibrary.simpleMessage(
+        "Select purpose of account opening"),
+    "invalidReasonUnavailability": MessageLookupByLibrary.simpleMessage(
+        "Select Reason of Unavailability"),
+    "invalidReferenceNumber":
+    MessageLookupByLibrary.simpleMessage("Enter reference number"),
+    "invalidRelationship":
+    MessageLookupByLibrary.simpleMessage("Select relationship"),
+    "invalidRequestedAmount":
+    MessageLookupByLibrary.simpleMessage("Invalid requested amount"),
+    "invalidRole": MessageLookupByLibrary.simpleMessage("Enter role"),
+    "invalidSocialSecurityNumber": MessageLookupByLibrary.simpleMessage(
+        "Enter social security number"),
+    "invalidState": MessageLookupByLibrary.simpleMessage("Select State"),
+    "invalidTaxCountry":
+    MessageLookupByLibrary.simpleMessage("Select tax country"),
+    "invalidTaxPayer":
+    MessageLookupByLibrary.simpleMessage("Select Tax Payer"),
+    "invalidTinNumber":
+    MessageLookupByLibrary.simpleMessage("Enter correct tin number"),
         "invalidTotalAdditionalIncome": MessageLookupByLibrary.simpleMessage(
             "Enter total additional income"),
         "invalidTreatyClaimRate": MessageLookupByLibrary.simpleMessage(
@@ -955,34 +959,40 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Street Address"),
         "streetName": MessageLookupByLibrary.simpleMessage("STREET NAME"),
         "success": MessageLookupByLibrary.simpleMessage("SUCCESS"),
-        "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
-            "You have successfully created your profile, now let\'s get your account up and running."),
-        "swipeDownToCancel":
-            MessageLookupByLibrary.simpleMessage("Swipe down to cancel"),
-        "swipeDownToLogin":
-            MessageLookupByLibrary.simpleMessage("Swipe down to login"),
-        "swipeToConfirm":
-            MessageLookupByLibrary.simpleMessage("Swipe to confirm"),
-        "swipeToProceed":
-            MessageLookupByLibrary.simpleMessage("Swipe to proceed"),
-        "swipeToViewList":
-            MessageLookupByLibrary.simpleMessage("Swipe to view list"),
-        "swipeToViewMap":
-            MessageLookupByLibrary.simpleMessage("Swipe to view map"),
-        "swipeUpToJoinOurCommunity": MessageLookupByLibrary.simpleMessage(
-            "Swipe up to join our community"),
-        "swipeUpToRegister":
-            MessageLookupByLibrary.simpleMessage("Swipe up to register"),
-        "takePhoto": MessageLookupByLibrary.simpleMessage("Take Photo"),
-        "tapToEdit": MessageLookupByLibrary.simpleMessage("Tap to edit amount"),
-        "tapToEditPhoto":
-            MessageLookupByLibrary.simpleMessage("Tap to edit photo"),
-        "taxCountry": MessageLookupByLibrary.simpleMessage("TAX COUNTRY"),
-        "taxCountrySmall": MessageLookupByLibrary.simpleMessage("Tax Country"),
-        "taxReportInfoDesc": MessageLookupByLibrary.simpleMessage(
-            "Complete your tax report information below"),
-        "taxationDeclaration": MessageLookupByLibrary.simpleMessage(
-            "I confirm that my tax residency is accurate and agree to the Terms and Conditions of the bank."),
+    "successfullyCreatedLoginAccount": MessageLookupByLibrary.simpleMessage(
+        "You have successfully created your profile, now let\'s get your account up and running."),
+    "swipeDownToCancel":
+    MessageLookupByLibrary.simpleMessage("Swipe down to cancel"),
+    "swipeDownToLogin":
+    MessageLookupByLibrary.simpleMessage("Swipe down to login"),
+    "swipeToConfirm":
+    MessageLookupByLibrary.simpleMessage("Swipe to confirm"),
+    "swipeToProceed":
+    MessageLookupByLibrary.simpleMessage("Swipe to proceed"),
+    "swipeToRequest":
+    MessageLookupByLibrary.simpleMessage("Swipe up to request money"),
+    "swipeToSend":
+    MessageLookupByLibrary.simpleMessage("Swipe up to send money"),
+    "swipeToViewList":
+    MessageLookupByLibrary.simpleMessage("Swipe to view list"),
+    "swipeToViewMap":
+    MessageLookupByLibrary.simpleMessage("Swipe to view map"),
+    "swipeUpToJoinOurCommunity": MessageLookupByLibrary.simpleMessage(
+        "Swipe up to join our community"),
+    "swipeUpToRegister":
+    MessageLookupByLibrary.simpleMessage("Swipe up to register"),
+    "swipeUpToViewTransaction": MessageLookupByLibrary.simpleMessage(
+        "Swipe up to view transactions"),
+    "takePhoto": MessageLookupByLibrary.simpleMessage("Take Photo"),
+    "tapToEdit": MessageLookupByLibrary.simpleMessage("Tap to edit amount"),
+    "tapToEditPhoto":
+    MessageLookupByLibrary.simpleMessage("Tap to edit photo"),
+    "taxCountry": MessageLookupByLibrary.simpleMessage("TAX COUNTRY"),
+    "taxCountrySmall": MessageLookupByLibrary.simpleMessage("Tax Country"),
+    "taxReportInfoDesc": MessageLookupByLibrary.simpleMessage(
+        "Complete your tax report information below"),
+    "taxationDeclaration": MessageLookupByLibrary.simpleMessage(
+        "I confirm that my tax residency is accurate and agree to the Terms and Conditions of the bank."),
         "taxationDetailsDescription": MessageLookupByLibrary.simpleMessage(
             "By law, you are needed to declare your taxation details"),
         "tellUsAboutImportantInformations":

@@ -52,15 +52,18 @@ final sendAmountToContactViewModelProvider = ChangeNotifierProvider.autoDispose
 final sendAmountToContactSuccessViewModelProvider = ChangeNotifierProvider
     .autoDispose
     .family<SendAmountToContactSuccessViewModel, TransferSuccessContent>(
-  (ref, args) => SendAmountToContactSuccessViewModel(
-      ref.read(sendAmountToContactSuccessUseCaseProvider), args),
+      (ref, args) =>
+      SendAmountToContactSuccessViewModel(
+          ref.read(sendAmountToContactSuccessUseCaseProvider), args),
 );
 
 final requestAmountFromContactViewModelProvider = ChangeNotifierProvider
     .autoDispose
     .family<RequestAmountFromContactViewModel, Beneficiary>(
-  (ref, args) => RequestAmountFromContactViewModel(
-      ref.read(requestAmountFromContactUseCaseProvider), args),
+      (ref, args) =>
+      RequestAmountFromContactViewModel(
+          ref.read(requestAmountFromContactUseCaseProvider),
+          ref.read(getAccountByAliasUseCaseProvider), args),
 );
 
 final requestAmountFromContactSuccessViewModelProvider = ChangeNotifierProvider
