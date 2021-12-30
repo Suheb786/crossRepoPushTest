@@ -18,7 +18,11 @@ class PaymentToNewRecipientPageView
     extends BasePageViewWidget<PaymentToNewRecipientViewModel> {
   PaymentToNewRecipientPageView(ProviderBase model) : super(model);
 
-  final pages = [SendToNewRecipientPage(), EnterOtpPage(), BaseCardPage()];
+  final pages = [
+    SendToNewRecipientPage(),
+    EnterOtpPage(),
+    Visibility(visible: false, child: BaseCardPage())
+  ];
 
   @override
   Widget build(BuildContext context, model) {

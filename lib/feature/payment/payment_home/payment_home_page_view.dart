@@ -15,7 +15,11 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
   PaymentHomePageView(ProviderBase model) : super(model);
 
-  final List pages = [AddSendMoneyContactPage(), AddRequestMoneyContactPage()];
+  final List pages = [
+    AddSendMoneyContactPage(),
+    AddRequestMoneyContactPage(),
+    Container()
+  ];
 
   @override
   Widget build(BuildContext context, model) {
