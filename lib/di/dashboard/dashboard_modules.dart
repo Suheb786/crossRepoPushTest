@@ -3,6 +3,7 @@ import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/debit_card_settings/debit_card_settings_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_view_model.dart';
@@ -161,7 +162,10 @@ final downloadTransactionViewModelProvider = ChangeNotifierProvider.autoDispose
 /// DEBIT CArd Settings
 final debitCardSettingsViewModelProvider =
     ChangeNotifierProvider.autoDispose<DebitCardSettingsViewModel>(
-  (ref) => DebitCardSettingsViewModel(),
+  (ref) => DebitCardSettingsViewModel(
+      ref.read(freezeDebitCardUseCaseProvider),
+      ref.read(unFreezeDebitCardUseCaseProvider),
+      ref.read(cancelDebitCardUseCaseProvider)),
 );
 
 /// Credit CArd Settings

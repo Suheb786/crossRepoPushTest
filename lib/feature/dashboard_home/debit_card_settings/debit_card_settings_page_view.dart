@@ -1,3 +1,4 @@
+import 'package:domain/error/app_error.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
@@ -5,6 +6,8 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/card_cancel_dialog/card_cancel_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -58,11 +61,24 @@ class DebitCardSettingsPageView
                         AppStreamBuilder<bool>(
                           stream: model.freezeCardStream,
                           initialData: false,
+                          onData: (value) {
+                            if (value) {
+                              InformationDialog.show(context,
+                                  image: AssetUtils.cardFreeze,
+                                  title: S.of(context).freezeTheCard,
+                                  description:
+                                      S.of(context).freezeDebitCardDescription,
+                                  onSelected: () {
+                                Navigator.pop(context);
+                                model.freezeCard();
+                              }, onDismissed: () {
+                                Navigator.pop(context);
+                              });
+                            }
+                          },
                           dataBuilder: (context, data) {
                             return SettingTile(
-                              onTap: () {
-                                model.toggleFreezeCardStatus(!data!);
-                              },
+                              onTap: () {},
                               title: S.of(context).freezeThisCard,
                               tileIcon: AssetUtils.freeze,
                               trailing: FlutterSwitch(
@@ -96,7 +112,17 @@ class DebitCardSettingsPageView
                           },
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            CardCancelDialog.show(context,
+                                onSelected: (reasonValue) {
+                              Navigator.pop(context);
+                              model.cancelCard(reasonValue);
+                            }, onDismissed: () {
+                              Navigator.pop(context);
+                            }, onError: (AppError error) {
+                              model.showToastWithError(error);
+                            });
+                          },
                           title: S.of(context).cancelThisCard,
                           tileIcon: AssetUtils.cancelCard,
                         ),
