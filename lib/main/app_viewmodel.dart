@@ -83,7 +83,7 @@ class AppViewModel extends BaseViewModel {
           indicatorColor: AppColor.white,
           buttonTheme: ButtonThemeData(
             shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             textTheme: ButtonTextTheme.normal,
           ),
         );
@@ -177,10 +177,11 @@ class AppViewModel extends BaseViewModel {
             errorColor: AppColor.vivid_red,
             indicatorColor: AppColor.veryDarkGray2,
             buttonTheme: ButtonThemeData(
-              shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50)),
               textTheme: ButtonTextTheme.normal,
             ),
+            dividerColor: AppColor.lightGrayishBlue,
             canvasColor: AppColor.vividYellow);
         break;
     }
@@ -194,7 +195,7 @@ class AppViewModel extends BaseViewModel {
   final GetTokenUseCase _getTokenUseCase;
 
   static PublishSubject<GetTokenUseCaseParams> _getTokenRequest =
-  PublishSubject();
+      PublishSubject();
 
   static PublishSubject<Resource<bool>> _getTokenResponse = PublishSubject();
 
@@ -203,7 +204,7 @@ class AppViewModel extends BaseViewModel {
   AppViewModel(this._getTokenUseCase) {
     _getTokenRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _getTokenUseCase.execute(params: value))
+              createCall: () => _getTokenUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         if (event.status == Status.ERROR) {

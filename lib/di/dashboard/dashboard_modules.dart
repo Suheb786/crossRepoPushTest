@@ -10,8 +10,10 @@ import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_mo
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_timeline/debit_card_timeline_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
@@ -154,4 +156,16 @@ final downloadTransactionViewModelProvider = ChangeNotifierProvider.autoDispose
     ref.read(cardStatementUseCaseProvider),
     args,
   ),
+);
+
+/// DEBIT CArd Settings
+final debitCardSettingsViewModelProvider =
+    ChangeNotifierProvider.autoDispose<DebitCardSettingsViewModel>(
+  (ref) => DebitCardSettingsViewModel(),
+);
+
+/// Credit CArd Settings
+final creditCardSettingsViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CreditCardSettingsViewModel>(
+  (ref) => CreditCardSettingsViewModel(),
 );

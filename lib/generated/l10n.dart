@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6355,6 +6356,146 @@ class S {
     return Intl.message(
       'Your Request Is Not Completed',
       name: 'requestNotCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Debit Card Settings`
+  String get debitCardSettings {
+    return Intl.message(
+      'Debit Card Settings',
+      name: 'debitCardSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit Card Settings`
+  String get creditCardSettings {
+    return Intl.message(
+      'Credit Card Settings',
+      name: 'creditCardSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Freeze this card`
+  String get freezeThisCard {
+    return Intl.message(
+      'Freeze this card',
+      name: 'freezeThisCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel this card`
+  String get cancelThisCard {
+    return Intl.message(
+      'Cancel this card',
+      name: 'cancelThisCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage card limits`
+  String get manageCardLimits {
+    return Intl.message(
+      'Manage card limits',
+      name: 'manageCardLimits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage card PIN`
+  String get manageCardPin {
+    return Intl.message(
+      'Manage card PIN',
+      name: 'manageCardPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request supplementary card`
+  String get requestSupplementarycard {
+    return Intl.message(
+      'Request supplementary card',
+      name: 'requestSupplementarycard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Increase card limit`
+  String get increaseCardLimit {
+    return Intl.message(
+      'Increase card limit',
+      name: 'increaseCardLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Convert balance to instalments`
+  String get convertBalanceToInstalments {
+    return Intl.message(
+      'Convert balance to instalments',
+      name: 'convertBalanceToInstalments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change linked mobile number`
+  String get changeLinkedMobileNumber {
+    return Intl.message(
+      'Change linked mobile number',
+      name: 'changeLinkedMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change country restriction`
+  String get changeCountryRestriction {
+    return Intl.message(
+      'Change country restriction',
+      name: 'changeCountryRestriction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage settlement`
+  String get manageSettlement {
+    return Intl.message(
+      'Manage settlement',
+      name: 'manageSettlement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change linked account`
+  String get changeLinkAccount {
+    return Intl.message(
+      'Change linked account',
+      name: 'changeLinkAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report card issue`
+  String get reportCardIssue {
+    return Intl.message(
+      'Report card issue',
+      name: 'reportCardIssue',
       desc: '',
       args: [],
     );
