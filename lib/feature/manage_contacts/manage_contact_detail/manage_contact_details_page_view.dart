@@ -340,6 +340,7 @@ class ManageContactDetailsPageView
       BuildContext context) async {
     File? cropped = await ImageCropper.cropImage(
         sourcePath: data,
+        cropStyle: CropStyle.circle,
         iosUiSettings: IOSUiSettings(
             resetButtonHidden: true,
             rotateButtonsHidden: true,
