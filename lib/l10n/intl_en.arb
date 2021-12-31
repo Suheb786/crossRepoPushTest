@@ -667,4 +667,19 @@
   "reportCardIssue": "Report card issue",
   "freezeThisCard": "Freeze this card",
   "actionComeToYouSoon": "The actions with \uD83D\uDD34 will come to you soon"
+  "requestNotCompleted": "Your Request Is Not Completed",
+  "debitCardSettings": "Debit Card Settings",
+  "creditCardSettings": "Credit Card Settings",
+  "freezeThisCard": "Freeze this card",
+  "cancelThisCard": "Cancel this card",
+  "manageCardLimits": "Manage card limits",
+  "manageCardPin": "Manage card PIN",
+  "requestSupplementarycard": "Request supplementary card",
+  "increaseCardLimit": "Increase card limit",
+  "convertBalanceToInstalments": "Convert balance to instalments",
+  "changeLinkedMobileNumber": "Change linked mobile number",
+  "changeCountryRestriction": "Change country restriction",
+  "manageSettlement": "Manage settlement",
+  "changeLinkAccount": "Change linked account",
+  "reportCardIssue": "Report card issue"
 }
