@@ -104,6 +104,13 @@ class AssetUtils {
   static const String activityCircle = svg + "activity_circle.svg";
   static const String book = svg + "book.svg";
   static const String personCircle = svg + "person_circle.svg";
+  static const String cancelCard = svg + "cancel_card.svg";
+  static const String cardIcon = svg + "card.svg";
+  static const String cardShield = svg + "card_shield.svg";
+  static const String freeze = svg + "freeze.svg";
+  static const String link = svg + "link.svg";
+  static const String report = svg + "report.svg";
+  static const String settingBars = svg + "setting_bars.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

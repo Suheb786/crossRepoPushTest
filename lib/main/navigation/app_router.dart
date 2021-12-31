@@ -19,8 +19,10 @@ import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_mo
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
+import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
@@ -118,11 +120,11 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.TermsAndCondition));
 
       case RoutePaths.AddMoneyOptionSelector:
-      // return CupertinoPageRoute(
-      //     builder: (context) => AddMoneyOptionSelectorPage(),
-      //     settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
-        return CustomRoute.createRoute(
-            AddMoneyOptionSelectorPage(), reverse: true);
+        // return CupertinoPageRoute(
+        //     builder: (context) => AddMoneyOptionSelectorPage(),
+        //     settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
+        return CustomRoute.createRoute(AddMoneyOptionSelectorPage(),
+            reverse: true);
 
       case RoutePaths.LocateATM:
         return CupertinoPageRoute(
@@ -312,6 +314,16 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => PaymentToNewRecipientPage(),
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
+
+      case RoutePaths.DebitCardSettings:
+        return CupertinoPageRoute(
+            builder: (context) => DebitCardSettingsPage(),
+            settings: RouteSettings(name: RoutePaths.DebitCardSettings));
+
+      case RoutePaths.CreditCardSettings:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardSettingsPage(),
+            settings: RouteSettings(name: RoutePaths.CreditCardSettings));
 
       default:
         return CupertinoPageRoute(

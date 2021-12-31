@@ -649,5 +649,19 @@
   "swipeToSend": "Swipe up to send money",
   "swipeToRequest": "Swipe up to request money",
   "swipeUpToViewTransaction": "Swipe up to view transactions",
-  "requestNotCompleted": "Your Request Is Not Completed"
+  "requestNotCompleted": "Your Request Is Not Completed",
+  "debitCardSettings": "Debit Card Settings",
+  "creditCardSettings": "Credit Card Settings",
+  "freezeThisCard": "Freeze this card",
+  "cancelThisCard": "Cancel this card",
+  "manageCardLimits": "Manage card limits",
+  "manageCardPin": "Manage card PIN",
+  "requestSupplementarycard": "Request supplementary card",
+  "increaseCardLimit": "Increase card limit",
+  "convertBalanceToInstalments": "Convert balance to instalments",
+  "changeLinkedMobileNumber": "Change linked mobile number",
+  "changeCountryRestriction": "Change country restriction",
+  "manageSettlement": "Manage settlement",
+  "changeLinkAccount": "Change linked account",
+  "reportCardIssue": "Report card issue"
 }

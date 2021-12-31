@@ -40,8 +40,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                       child: GestureDetector(
                         onHorizontalDragEnd: (details) {
                           if (details.primaryVelocity!.isNegative) {
-                            ProviderScope
-                                .containerOf(context)
+                            ProviderScope.containerOf(context)
                                 .read(appHomeViewModelProvider)
                                 .pageController
                                 .next();
@@ -156,7 +155,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           children: [
                                             InkWell(
                                               onTap: () {
-                                                Navigator.pushNamed(context,
+                                                Navigator.pushNamed(
+                                                    context,
                                                     RoutePaths
                                                         .AddMoneyOptionSelector);
                                               },
@@ -164,9 +164,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                 height: 36,
                                                 decoration: BoxDecoration(
                                                     borderRadius:
-                                                    BorderRadius.circular(20),
-                                                    color: Theme
-                                                        .of(context)
+                                                        BorderRadius.circular(
+                                                            20),
+                                                    color: Theme.of(context)
                                                         .accentTextTheme
                                                         .bodyText1!
                                                         .color),
@@ -175,30 +175,34 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                       vertical: 8,
                                                       horizontal: 17),
                                                   child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .addMoney,
+                                                    S.of(context).addMoney,
                                                     style: TextStyle(
                                                         fontWeight:
-                                                        FontWeight.w600,
+                                                            FontWeight.w600,
                                                         fontSize: 14,
-                                                        color: Theme
-                                                            .of(context)
+                                                        color: Theme.of(context)
                                                             .accentColor),
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                            Padding(
-                                              padding:
-                                              EdgeInsets.only(right: 33.0),
-                                              child: AppSvg.asset(
-                                                  AssetUtils.settingsRed,
-                                                  color: Theme
-                                                      .of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color!),
+                                            InkWell(
+                                              onTap: () {
+                                                Navigator.pushNamed(
+                                                    context,
+                                                    RoutePaths
+                                                        .DebitCardSettings);
+                                              },
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    right: 33.0),
+                                                child: AppSvg.asset(
+                                                    AssetUtils.settingsRed,
+                                                    color: Theme.of(context)
+                                                        .accentTextTheme
+                                                        .bodyText1!
+                                                        .color!),
+                                              ),
                                             )
                                           ],
                                         ),
@@ -247,9 +251,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                 aspectRatio: 0.62,
                 child: GestureDetector(
                   onHorizontalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {} else {
-                      ProviderScope
-                          .containerOf(context)
+                    if (details.primaryVelocity!.isNegative) {
+                    } else {
+                      ProviderScope.containerOf(context)
                           .read(appHomeViewModelProvider)
                           .pageController
                           .previous();
