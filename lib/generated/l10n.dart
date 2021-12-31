@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6351,21 +6350,21 @@ class S {
     );
   }
 
-  /// `Your Request Is Not Completed`
-  String get requestNotCompleted {
-    return Intl.message(
-      'Your Request Is Not Completed',
-      name: 'requestNotCompleted',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Freeze this card?`
   String get freezeTheCard {
     return Intl.message(
       'Freeze this card?',
       name: 'freezeTheCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Freeze this card`
+  String get freezeThisCard {
+    return Intl.message(
+      'Freeze this card',
+      name: 'freezeThisCard',
       desc: '',
       args: [],
     );
@@ -6471,26 +6470,6 @@ class S {
     );
   }
 
-  /// `Report card issue`
-  String get reportCardIssue {
-    return Intl.message(
-      'Report card issue',
-      name: 'reportCardIssue',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Freeze this card`
-  String get freezeThisCard {
-    return Intl.message(
-      'Freeze this card',
-      name: 'freezeThisCard',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `The actions with 🔴 will come to you soon`
   String get actionComeToYouSoon {
     return Intl.message(
@@ -6561,11 +6540,11 @@ class S {
     );
   }
 
-  /// `Increase card limit`
-  String get increaseCardLimit {
+  /// `Increase credit limit`
+  String get increaseCreditLimit {
     return Intl.message(
-      'Increase card limit',
-      name: 'increaseCardLimit',
+      'Increase credit limit',
+      name: 'increaseCreditLimit',
       desc: '',
       args: [],
     );
@@ -6616,6 +6595,76 @@ class S {
     return Intl.message(
       'Change linked account',
       name: 'changeLinkAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report card issue`
+  String get reportCardIssue {
+    return Intl.message(
+      'Report card issue',
+      name: 'reportCardIssue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unblock card PIN`
+  String get unblockCardPin {
+    return Intl.message(
+      'Unblock card PIN',
+      name: 'unblockCardPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change card PIN`
+  String get changeCardPin {
+    return Intl.message(
+      'Change card PIN',
+      name: 'changeCardPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unblock PIN?`
+  String get unBlockPin {
+    return Intl.message(
+      'Unblock PIN?',
+      name: 'unBlockPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN.`
+  String get unBlockPinDescription {
+    return Intl.message(
+      'Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN.',
+      name: 'unBlockPinDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card PIN successfully\nunblocked`
+  String get cardPinSucccesFullyUnblocked {
+    return Intl.message(
+      'Card PIN successfully\nunblocked',
+      name: 'cardPinSucccesFullyUnblocked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your may use your card PIN for payments immediately.`
+  String get cardPinSucccesFullyUnblockedDesc {
+    return Intl.message(
+      'Your may use your card PIN for payments immediately.',
+      name: 'cardPinSucccesFullyUnblockedDesc',
       desc: '',
       args: [],
     );
@@ -6688,6 +6737,16 @@ class S {
       name: 'maximumLimit',
       desc: 'maximumLimit',
       args: [maximumLimit],
+    );
+  }
+
+  /// `Your Request Is Not Completed`
+  String get requestNotCompleted {
+    return Intl.message(
+      'Your Request Is Not Completed',
+      name: 'requestNotCompleted',
+      desc: '',
+      args: [],
     );
   }
 }

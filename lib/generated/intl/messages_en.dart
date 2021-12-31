@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -185,6 +186,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardNumber": MessageLookupByLibrary.simpleMessage("CARD NUMBER"),
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("to card personalization"),
+        "cardPinSucccesFullyUnblocked": MessageLookupByLibrary.simpleMessage(
+            "Card PIN successfully\nunblocked"),
+        "cardPinSucccesFullyUnblockedDesc":
+            MessageLookupByLibrary.simpleMessage(
+                "Your may use your card PIN for payments immediately."),
+        "changeCardPin":
+            MessageLookupByLibrary.simpleMessage("Change card PIN"),
         "changeCountryRestriction":
             MessageLookupByLibrary.simpleMessage("Change country restriction"),
         "changeEmailAddress":
@@ -540,8 +548,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "idVerificationPlaceInfo": MessageLookupByLibrary.simpleMessage(
             "Make sure you\'re in a bright place"),
         "incomeDetails": MessageLookupByLibrary.simpleMessage("INCOME DETAILS"),
-        "increaseCardLimit":
-            MessageLookupByLibrary.simpleMessage("Increase card limit"),
+        "increaseCreditLimit":
+            MessageLookupByLibrary.simpleMessage("Increase credit limit"),
         "informationSave": MessageLookupByLibrary.simpleMessage(
             "Don\'t worry, if you log out your information will be saved and you can login at any time."),
         "insufficientBalance": MessageLookupByLibrary.simpleMessage(
@@ -1112,8 +1120,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
         "typeOfTransactionsSmall": m5,
+        "unBlockPin": MessageLookupByLibrary.simpleMessage("Unblock PIN?"),
+        "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
+            "Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN."),
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
+        "unblockCardPin":
+            MessageLookupByLibrary.simpleMessage("Unblock card PIN"),
         "undoRequest": MessageLookupByLibrary.simpleMessage("Undo request"),
         "undoTransaction":
             MessageLookupByLibrary.simpleMessage("Undo transaction"),

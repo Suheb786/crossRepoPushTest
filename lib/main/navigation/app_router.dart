@@ -18,6 +18,7 @@ import 'package:neo_bank/feature/dashboard_home/account_transaction/account_tran
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
+import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page.dart';
@@ -26,6 +27,7 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_s
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
+import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
@@ -327,6 +329,20 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => CreditCardSettingsPage(),
             settings: RouteSettings(name: RoutePaths.CreditCardSettings));
+
+      case RoutePaths.ManageCardPin:
+        return CupertinoPageRoute(
+            builder: (context) => ManageCardPinPage(
+                manageCardPinArguments:
+                    settings.arguments as ManageCardPinArguments),
+            settings: RouteSettings(name: RoutePaths.ManageCardPin));
+
+      case RoutePaths.CardPinUnBlockSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => CardPinUnBlockSuccessPage(
+                manageCardPinArguments:
+                    settings.arguments as ManageCardPinArguments),
+            settings: RouteSettings(name: RoutePaths.CardPinUnBlockSuccess));
 
       case RoutePaths.DebitCardReplacement:
         return CupertinoPageRoute(

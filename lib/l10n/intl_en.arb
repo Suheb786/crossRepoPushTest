@@ -649,8 +649,8 @@
   "swipeToSend": "Swipe up to send money",
   "swipeToRequest": "Swipe up to request money",
   "swipeUpToViewTransaction": "Swipe up to view transactions",
-  "requestNotCompleted": "Your Request Is Not Completed",
   "freezeTheCard": "Freeze this card?",
+  "freezeThisCard": "Freeze this card",
   "pleaseSelectTheReason": "Please select the cancellation reason",
   "pleaseAgreeToTheTermAndCondition": "Please agree to the term and condition",
   "freezeDebitCardDescription": "Here is some information for you to acknowledge before freezing your card.\n\n \u2022 In freezed state, your card can’t be used for any transactions.\n\u2022In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n\u2022 You can unfreeze and activate your card at any time. ",
@@ -661,8 +661,6 @@
   "requestSupplementaryCard": "Request supplementary card",
   "changeLinkedMobileNo": "Change linked mobile number",
   "changeLinkedAccount": "Change linked account",
-  "reportCardIssue": "Report card issue",
-  "freezeThisCard": "Freeze this card",
   "actionComeToYouSoon": "The actions with \uD83D\uDD34 will come to you soon",
   "debitCardSettings": "Debit Card Settings",
   "creditCardSettings": "Credit Card Settings",
@@ -670,12 +668,19 @@
   "manageCardLimits": "Manage card limits",
   "manageCardPin": "Manage card PIN",
   "requestSupplementarycard": "Request supplementary card",
-  "increaseCardLimit": "Increase card limit",
+  "increaseCreditLimit": "Increase credit limit",
   "convertBalanceToInstalments": "Convert balance to instalments",
   "changeLinkedMobileNumber": "Change linked mobile number",
   "changeCountryRestriction": "Change country restriction",
   "manageSettlement": "Manage settlement",
   "changeLinkAccount": "Change linked account",
+  "reportCardIssue": "Report card issue",
+  "unblockCardPin": "Unblock card PIN",
+  "changeCardPin": "Change card PIN",
+  "unBlockPin": "Unblock PIN?",
+  "unBlockPinDescription": "Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN.",
+  "cardPinSucccesFullyUnblocked": "Card PIN successfully\nunblocked",
+  "cardPinSucccesFullyUnblockedDesc": "Your may use your card PIN for payments immediately.",
   "backToDashboard": "Back to Dashboard",
   "atmWithDrawal": "ATM Withdrawal",
   "merchantPayments": "Merchant Payments",
@@ -686,5 +691,6 @@
   "@maximumLimit": {
     "description": "maximumLimit",
     "type": "string"
-  }
+  },
+  "requestNotCompleted": "Your Request Is Not Completed"
 }

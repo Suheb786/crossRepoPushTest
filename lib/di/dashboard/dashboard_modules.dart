@@ -171,5 +171,8 @@ final debitCardSettingsViewModelProvider =
 /// Credit CArd Settings
 final creditCardSettingsViewModelProvider =
     ChangeNotifierProvider.autoDispose<CreditCardSettingsViewModel>(
-  (ref) => CreditCardSettingsViewModel(),
+  (ref) => CreditCardSettingsViewModel(
+      ref.read(freezeCreditCardUseCaseProvider),
+      ref.read(unFreezeCreditCardUseCaseProvider),
+      ref.read(cancelCreditCardUseCaseProvider)),
 );
