@@ -6441,36 +6441,6 @@ class S {
     );
   }
 
-  /// `Cancel this card`
-  String get cancelThisCard {
-    return Intl.message(
-      'Cancel this card',
-      name: 'cancelThisCard',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Manage card limits`
-  String get manageCardLimits {
-    return Intl.message(
-      'Manage card limits',
-      name: 'manageCardLimits',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Manage card PIN`
-  String get manageCardPin {
-    return Intl.message(
-      'Manage card PIN',
-      name: 'manageCardPin',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Request supplementary card`
   String get requestSupplementaryCard {
     return Intl.message(
@@ -6551,6 +6521,36 @@ class S {
     );
   }
 
+  /// `Cancel this card`
+  String get cancelThisCard {
+    return Intl.message(
+      'Cancel this card',
+      name: 'cancelThisCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage card limits`
+  String get manageCardLimits {
+    return Intl.message(
+      'Manage card limits',
+      name: 'manageCardLimits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manage card PIN`
+  String get manageCardPin {
+    return Intl.message(
+      'Manage card PIN',
+      name: 'manageCardPin',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Request supplementary card`
   String get requestSupplementarycard {
     return Intl.message(
@@ -6618,6 +6618,76 @@ class S {
       name: 'changeLinkAccount',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Back to Dashboard`
+  String get backToDashboard {
+    return Intl.message(
+      'Back to Dashboard',
+      name: 'backToDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ATM Withdrawal`
+  String get atmWithDrawal {
+    return Intl.message(
+      'ATM Withdrawal',
+      name: 'atmWithDrawal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Merchant Payments`
+  String get merchantPayments {
+    return Intl.message(
+      'Merchant Payments',
+      name: 'merchantPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Online Purchase`
+  String get onlinePurchase {
+    return Intl.message(
+      'Online Purchase',
+      name: 'onlinePurchase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contactless Payment`
+  String get contactLessPayments {
+    return Intl.message(
+      'Contactless Payment',
+      name: 'contactLessPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily Limit`
+  String get dailyLimit {
+    return Intl.message(
+      'Daily Limit',
+      name: 'dailyLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maximum {maximumLimit} JOD`
+  String maximumLimit(Object maximumLimit) {
+    return Intl.message(
+      'Maximum $maximumLimit JOD',
+      name: 'maximumLimit',
+      desc: 'maximumLimit',
+      args: [maximumLimit],
     );
   }
 }

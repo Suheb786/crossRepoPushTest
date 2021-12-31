@@ -31,6 +31,7 @@ import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_repla
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
+import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
@@ -332,10 +333,16 @@ class AppRouter {
             builder: (context) => DebitCardReplacementPage(),
             settings: RouteSettings(name: RoutePaths.DebitCardReplacement));
 
-        case RoutePaths.DebitCardReplacementSuccess:
+      case RoutePaths.DebitCardReplacementSuccess:
         return CupertinoPageRoute(
             builder: (context) => DebitCardReplacementSuccessPage(),
-            settings: RouteSettings(name: RoutePaths.DebitCardReplacementSuccess));
+            settings:
+                RouteSettings(name: RoutePaths.DebitCardReplacementSuccess));
+
+      case RoutePaths.manageDebitLimit:
+        return CupertinoPageRoute(
+            builder: (context) => ManageDebitCardLimitsPage(),
+            settings: RouteSettings(name: RoutePaths.manageDebitLimit));
 
       default:
         return CupertinoPageRoute(

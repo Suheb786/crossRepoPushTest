@@ -24,11 +24,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(estimatedTime) => "Estimated wait time \n${estimatedTime}";
 
-  static String m2(resendTime) => "Resend in ${resendTime}";
+  static String m2(maximumLimit) => "Maximum ${maximumLimit} JOD";
 
-  static String m3(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
+  static String m3(resendTime) => "Resend in ${resendTime}";
 
-  static String m4(noOfTransaction) =>
+  static String m4(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
+
+  static String m5(noOfTransaction) =>
       "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -127,11 +129,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("(e.g. Green Card Holder)"),
         "area": MessageLookupByLibrary.simpleMessage("AREA"),
         "areaSmall": MessageLookupByLibrary.simpleMessage("Area"),
+        "atmWithDrawal": MessageLookupByLibrary.simpleMessage("ATM Withdrawal"),
         "availableAmount":
             MessageLookupByLibrary.simpleMessage("AVAILABLE AMOUNT"),
         "availableBalance":
             MessageLookupByLibrary.simpleMessage("AVAILABLE BALANCE"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
+        "backToDashboard":
+            MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
         "backToPayments":
             MessageLookupByLibrary.simpleMessage("Back to Payments"),
         "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
@@ -225,6 +230,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Connecting to our agent to assist you"),
         "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
             "We need your consent by uploading the signature"),
+        "contactLessPayments":
+            MessageLookupByLibrary.simpleMessage("Contactless Payment"),
         "convertBalanceToInstalments": MessageLookupByLibrary.simpleMessage(
             "Convert balance to instalments"),
         "country": MessageLookupByLibrary.simpleMessage("COUNTRY"),
@@ -249,6 +256,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "customerService": MessageLookupByLibrary.simpleMessage(
             "24/7 Customer Service Service"),
         "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
+        "dailyLimit": MessageLookupByLibrary.simpleMessage("Daily Limit"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dateOfBirthSmall":
@@ -708,7 +716,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Manage\nContacts"),
         "manageSettlement":
             MessageLookupByLibrary.simpleMessage("Manage settlement"),
+        "maximumLimit": m2,
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
+        "merchantPayments":
+            MessageLookupByLibrary.simpleMessage("Merchant Payments"),
         "minDueBy": MessageLookupByLibrary.simpleMessage("MIN. DUE BY "),
         "mobileNoExist":
             MessageLookupByLibrary.simpleMessage("Mobile Number Exist"),
@@ -768,6 +779,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "oneSymbol": MessageLookupByLibrary.simpleMessage("1 symbol"),
         "oneUpperCaseLetter":
             MessageLookupByLibrary.simpleMessage("1 uppercase letter"),
+        "onlinePurchase":
+            MessageLookupByLibrary.simpleMessage("Online Purchase"),
         "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
         "openAccountNow":
             MessageLookupByLibrary.simpleMessage("Open Account Now"),
@@ -940,7 +953,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requesterName":
             MessageLookupByLibrary.simpleMessage("requester’s name"),
         "requesting": MessageLookupByLibrary.simpleMessage("Requesting"),
-        "resendIn": m2,
+        "resendIn": m3,
         "residentCountry":
             MessageLookupByLibrary.simpleMessage("RESIDENT COUNTRY"),
         "residentCountryHint": MessageLookupByLibrary.simpleMessage(
@@ -958,7 +971,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Something wrong, scan ID again"),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("Schedule for later"),
-        "scrollToSetDate": m3,
+        "scrollToSetDate": m4,
         "searchCity": MessageLookupByLibrary.simpleMessage("Search city"),
         "searchContacts":
             MessageLookupByLibrary.simpleMessage("Search contacts"),
@@ -1098,7 +1111,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("Type of Income"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
-        "typeOfTransactionsSmall": m4,
+        "typeOfTransactionsSmall": m5,
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
         "undoRequest": MessageLookupByLibrary.simpleMessage("Undo request"),

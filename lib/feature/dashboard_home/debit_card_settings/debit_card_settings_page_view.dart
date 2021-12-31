@@ -5,6 +5,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/card_cancel_dialog/card_cancel_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
@@ -28,14 +29,31 @@ class DebitCardSettingsPageView
         },
         child: Column(
           children: [
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.bottomCenter,
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 48),
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).canvasColor,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(16),
+                          bottomRight: Radius.circular(16))),
+                ),
+                Positioned(
+                    bottom: -8, child: AppSvg.asset(AssetUtils.swipeDown)),
+              ],
+            ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 24),
+              padding: EdgeInsets.only(top: 8),
               child: Text(
-                S.of(context).debitCardSettings,
+                S.of(context).backToDashboard,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
                     fontWeight: FontWeight.w600,
-                    fontSize: 14),
+                    fontSize: 12,
+                    color: AppColor.dark_gray_1),
               ),
             ),
             Expanded(
@@ -46,14 +64,6 @@ class DebitCardSettingsPageView
                       BorderRadius.vertical(top: Radius.circular(16))),
               child: Column(
                 children: [
-                  Container(
-                    height: 4,
-                    width: 64,
-                    margin: EdgeInsets.only(top: 8),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        color: AppColor.whiteGray),
-                  ),
                   Expanded(
                     child: SingleChildScrollView(
                       padding: EdgeInsets.symmetric(horizontal: 24),
@@ -162,6 +172,15 @@ class DebitCardSettingsPageView
                           isEnabled: false,
                           isNotify: true,
                         ),
+                        Text(
+                          S.of(context).actionComeToYouSoon,
+                          style: TextStyle(
+                            color: AppColor.gray_1,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 11,
+                          ),
+                        ),
+                        SizedBox(height: 10),
                       ]),
                     ),
                   ),
