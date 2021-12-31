@@ -123,6 +123,7 @@ class AssetUtils {
   static const String link = svg + "link.svg";
   static const String report = svg + "report.svg";
   static const String settingBars = svg + "setting_bars.svg";
+  static const String replacementVisaCard = svg + "replacement_visa_card.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

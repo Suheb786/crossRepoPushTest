@@ -57,4 +57,6 @@ class RoutePaths {
       "/debitCardVerificationSuccess";
   static const String DebitCardSettings = "/debitCardSettings";
   static const String CreditCardSettings = "/creditCardSettings";
+  static const String DebitCardReplacement = "/debitCardReplacement";
+  static const String DebitCardReplacementSuccess = "/debitCardReplacementSuccess";
 }
