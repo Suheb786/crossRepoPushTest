@@ -657,11 +657,13 @@
   "manageCardLimits": "Manage card limits",
   "manageCardPin": "Manage card PIN",
   "requestSupplementarycard": "Request supplementary card",
-  "increaseCardLimit": "Increase card limit",
+  "increaseCreditLimit": "Increase credit limit",
   "convertBalanceToInstalments": "Convert balance to instalments",
   "changeLinkedMobileNumber": "Change linked mobile number",
   "changeCountryRestriction": "Change country restriction",
   "manageSettlement": "Manage settlement",
   "changeLinkAccount": "Change linked account",
-  "reportCardIssue": "Report card issue"
+  "reportCardIssue": "Report card issue",
+  "unblockCardPin": "Unblock card PIN",
+  "changeCardPin": "Change card PIN"
 }

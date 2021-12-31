@@ -6431,11 +6431,11 @@ class S {
     );
   }
 
-  /// `Increase card limit`
-  String get increaseCardLimit {
+  /// `Increase credit limit`
+  String get increaseCreditLimit {
     return Intl.message(
-      'Increase card limit',
-      name: 'increaseCardLimit',
+      'Increase credit limit',
+      name: 'increaseCreditLimit',
       desc: '',
       args: [],
     );
@@ -6496,6 +6496,26 @@ class S {
     return Intl.message(
       'Report card issue',
       name: 'reportCardIssue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unblock card PIN`
+  String get unblockCardPin {
+    return Intl.message(
+      'Unblock card PIN',
+      name: 'unblockCardPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change card PIN`
+  String get changeCardPin {
+    return Intl.message(
+      'Change card PIN',
+      name: 'changeCardPin',
       desc: '',
       args: [],
     );

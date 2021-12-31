@@ -1,15 +1,18 @@
 import 'package:data/di/repository_module.dart';
+import 'package:domain/usecase/card_delivery/cancel_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/confirm_card_delivery_usecase.dart';
 import 'package:domain/usecase/card_delivery/confirm_credit_card_delivery_usecase.dart';
 import 'package:domain/usecase/card_delivery/confirm_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_issuance_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_pin_usecase.dart';
+import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_statement_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_statement_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
+import 'package:domain/usecase/card_delivery/unfreeze_credit_card_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[CreatePinUseCase] provider
@@ -62,3 +65,18 @@ final getDebitYearsUseCaseProvider = Provider.autoDispose<GetDebitYearsUseCase>(
 final getCreditYearsUseCaseProvider =
     Provider.autoDispose<GetCreditYearsUseCase>(
         (ref) => GetCreditYearsUseCase(ref.read(cardRepositoryProvider)));
+
+///[FreezeCreditCardUseCase] provider
+final freezeCreditCardUseCaseProvider =
+    Provider.autoDispose<FreezeCreditCardUseCase>(
+        (ref) => FreezeCreditCardUseCase(ref.read(cardRepositoryProvider)));
+
+///[UnFreezeCreditCardUseCase] provider
+final unFreezeCreditCardUseCaseProvider =
+    Provider.autoDispose<UnFreezeCreditCardUseCase>(
+        (ref) => UnFreezeCreditCardUseCase(ref.read(cardRepositoryProvider)));
+
+///[CancelCreditCardUseCase] provider
+final cancelCreditCardUseCaseProvider =
+Provider.autoDispose<CancelCreditCardUseCase>(
+        (ref) => CancelCreditCardUseCase(ref.read(cardRepositoryProvider)));

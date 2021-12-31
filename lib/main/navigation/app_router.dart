@@ -26,6 +26,7 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_s
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
+import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
@@ -324,6 +325,14 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => CreditCardSettingsPage(),
             settings: RouteSettings(name: RoutePaths.CreditCardSettings));
+
+      case RoutePaths.ManageCardPin:
+        return CupertinoPageRoute(
+            builder: (context) => ManageCardPinPage(
+                  manageCardPinArguments:
+                      settings.arguments as ManageCardPinArguments,
+                ),
+            settings: RouteSettings(name: RoutePaths.ManageCardPin));
 
       default:
         return CupertinoPageRoute(

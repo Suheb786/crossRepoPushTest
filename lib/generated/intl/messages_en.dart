@@ -175,6 +175,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardNumber": MessageLookupByLibrary.simpleMessage("CARD NUMBER"),
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("to card personalization"),
+        "changeCardPin":
+            MessageLookupByLibrary.simpleMessage("Change card PIN"),
         "changeCountryRestriction":
             MessageLookupByLibrary.simpleMessage("Change country restriction"),
         "changeEmailAddress":
@@ -519,8 +521,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "idVerificationPlaceInfo": MessageLookupByLibrary.simpleMessage(
             "Make sure you\'re in a bright place"),
         "incomeDetails": MessageLookupByLibrary.simpleMessage("INCOME DETAILS"),
-        "increaseCardLimit":
-            MessageLookupByLibrary.simpleMessage("Increase card limit"),
+        "increaseCreditLimit":
+            MessageLookupByLibrary.simpleMessage("Increase credit limit"),
         "informationSave": MessageLookupByLibrary.simpleMessage(
             "Don\'t worry, if you log out your information will be saved and you can login at any time."),
         "insufficientBalance": MessageLookupByLibrary.simpleMessage(
@@ -1077,6 +1079,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfTransactionsSmall": m4,
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
+        "unblockCardPin":
+            MessageLookupByLibrary.simpleMessage("Unblock card PIN"),
         "undoRequest": MessageLookupByLibrary.simpleMessage("Undo request"),
         "undoTransaction":
             MessageLookupByLibrary.simpleMessage("Undo transaction"),
