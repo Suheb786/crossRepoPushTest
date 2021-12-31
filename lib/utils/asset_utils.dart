@@ -104,6 +104,18 @@ class AssetUtils {
   static const String activityCircle = svg + "activity_circle.svg";
   static const String book = svg + "book.svg";
   static const String personCircle = svg + "person_circle.svg";
+  static const String cardIcon = svg + "card_icon.svg";
+  static const String cardCancelIcon = svg + "card_cancel_icon.svg";
+  static const String supplementaryCardIcon =
+      svg + "supplementary_card_icon.svg";
+  static const String reportIssueIcon = svg + "report_issue_icon.svg";
+  static const String freezeIcon = svg + "freeze_icon.svg";
+  static const String changeMobileNoIcon = svg + "change_mobile_no_icon.svg";
+  static const String changeLinkedAccountIcon =
+      svg + "change_linked_account_icon.svg";
+  static const String cardPinIcon = svg + "card_pin_icon.svg";
+  static const String cardLimitsIcon = svg + "card_limits_icon.svg";
+  static const String cancelIcon = svg + "cancel_icon.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";
