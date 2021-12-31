@@ -127,6 +127,7 @@ class AssetUtils {
   static const String globe = svg + "globe.svg";
   static const String chart = svg + "chart.svg";
   static const String add = svg + "add.svg";
+  static const String replacementVisaCard = svg + "replacement_visa_card.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

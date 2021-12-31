@@ -661,10 +661,8 @@
   "changeLinkedMobileNo": "Change linked mobile number",
   "changeLinkedAccount": "Change linked account",
   "actionComeToYouSoon": "The actions with \uD83D\uDD34 will come to you soon",
-  "requestNotCompleted": "Your Request Is Not Completed",
   "debitCardSettings": "Debit Card Settings",
   "creditCardSettings": "Credit Card Settings",
-  "freezeThisCard": "Freeze this card",
   "cancelThisCard": "Cancel this card",
   "manageCardLimits": "Manage card limits",
   "manageCardPin": "Manage card PIN",
@@ -681,5 +679,16 @@
   "unBlockPin": "Unblock PIN?",
   "unBlockPinDescription": "Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN.",
   "cardPinSucccesFullyUnblocked": "Card PIN successfully\nunblocked",
-  "cardPinSucccesFullyUnblockedDesc": "Your may use your card PIN for payments immediately."
+  "cardPinSucccesFullyUnblockedDesc": "Your may use your card PIN for payments immediately.",
+  "backToDashboard": "Back to Dashboard",
+  "atmWithDrawal": "ATM Withdrawal",
+  "merchantPayments": "Merchant Payments",
+  "onlinePurchase": "Online Purchase",
+  "contactLessPayments": "Contactless Payment",
+  "dailyLimit": "Daily Limit",
+  "maximumLimit": "Maximum {maximumLimit} JOD",
+  "@maximumLimit": {
+    "description": "maximumLimit",
+    "type": "string"
+  }
 }
