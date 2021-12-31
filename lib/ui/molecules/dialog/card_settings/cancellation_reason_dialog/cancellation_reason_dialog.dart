@@ -8,7 +8,7 @@ class CancellationReasonDialog {
   static show(BuildContext mContext,
       {Function? onDismissed, Function(String)? onSelected, String? title}) {
     AppDialog.show(mContext,
-        isDismissible: false,
+        isDismissible: true,
         builder: (context) => CancellationReasonDialogView(
             onDismissed: onDismissed, onSelected: onSelected, title: title));
   }

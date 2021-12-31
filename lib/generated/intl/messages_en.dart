@@ -180,11 +180,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardNumber": MessageLookupByLibrary.simpleMessage("CARD NUMBER"),
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("to card personalization"),
+        "changeCountryRestriction":
+            MessageLookupByLibrary.simpleMessage("Change country restriction"),
         "changeEmailAddress":
             MessageLookupByLibrary.simpleMessage("CHANGE EMAIL ADDRESS"),
+        "changeLinkAccount":
+            MessageLookupByLibrary.simpleMessage("Change linked account"),
         "changeLinkedAccount":
             MessageLookupByLibrary.simpleMessage("Change linked account"),
         "changeLinkedMobileNo":
+            MessageLookupByLibrary.simpleMessage("Change linked mobile number"),
+        "changeLinkedMobileNumber":
             MessageLookupByLibrary.simpleMessage("Change linked mobile number"),
         "changeMobileNumber":
             MessageLookupByLibrary.simpleMessage("CHANGE MOBILE NUMBER"),
@@ -219,6 +225,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Connecting to our agent to assist you"),
         "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
             "We need your consent by uploading the signature"),
+        "convertBalanceToInstalments": MessageLookupByLibrary.simpleMessage(
+            "Convert balance to instalments"),
         "country": MessageLookupByLibrary.simpleMessage("COUNTRY"),
         "countryOfCitizenship":
             MessageLookupByLibrary.simpleMessage("COUNTRY OF CITIZENSHIP"),
@@ -232,6 +240,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Credit Card\nactivated."),
         "creditCardDelivered":
             MessageLookupByLibrary.simpleMessage("Credit card\ndelivered"),
+        "creditCardSettings":
+            MessageLookupByLibrary.simpleMessage("Credit Card Settings"),
         "creditCardVerified": MessageLookupByLibrary.simpleMessage(
             "Credit card\nhas been verified."),
         "currentPassword":
@@ -250,6 +260,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Debit Card\ndelivered"),
         "debitCardDeliveredDate":
             MessageLookupByLibrary.simpleMessage("Debit Card\ndelivered"),
+        "debitCardSettings":
+            MessageLookupByLibrary.simpleMessage("Debit Card Settings"),
         "debitCardVerified": MessageLookupByLibrary.simpleMessage(
             "Debit card\nhas been verified."),
         "declarationIsTrueAndCorrect": MessageLookupByLibrary.simpleMessage(
@@ -520,6 +532,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "idVerificationPlaceInfo": MessageLookupByLibrary.simpleMessage(
             "Make sure you\'re in a bright place"),
         "incomeDetails": MessageLookupByLibrary.simpleMessage("INCOME DETAILS"),
+        "increaseCardLimit":
+            MessageLookupByLibrary.simpleMessage("Increase card limit"),
         "informationSave": MessageLookupByLibrary.simpleMessage(
             "Don\'t worry, if you log out your information will be saved and you can login at any time."),
         "insufficientBalance": MessageLookupByLibrary.simpleMessage(
@@ -692,6 +706,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Manage Contacts"),
         "manageContactsSettings":
             MessageLookupByLibrary.simpleMessage("Manage\nContacts"),
+        "manageSettlement":
+            MessageLookupByLibrary.simpleMessage("Manage settlement"),
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
         "minDueBy": MessageLookupByLibrary.simpleMessage("MIN. DUE BY "),
         "mobileNoExist":
@@ -915,6 +931,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "requestNotCompleted": MessageLookupByLibrary.simpleMessage(
             "Your Request Is Not Completed"),
         "requestSupplementaryCard":
+            MessageLookupByLibrary.simpleMessage("Request supplementary card"),
+        "requestSupplementarycard":
             MessageLookupByLibrary.simpleMessage("Request supplementary card"),
         "requestedFrom": MessageLookupByLibrary.simpleMessage("Requested from"),
         "requestedMoneyVia":

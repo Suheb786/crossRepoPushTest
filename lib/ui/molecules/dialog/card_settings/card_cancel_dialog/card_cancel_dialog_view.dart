@@ -1,4 +1,8 @@
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/debit_card_settings/debit_card_settings_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -12,22 +16,31 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class CardCancelDialogView extends StatelessWidget {
-  final Function(String, bool)? onSelected;
+  final Function(String)? onSelected;
+  final Function(AppError)? onError;
   final Function? onDismissed;
 
-  CardCancelDialogView({this.onSelected, this.onDismissed});
+  CardCancelDialogView({this.onSelected, this.onDismissed, this.onError});
+
+  ProviderBase providerBase() {
+    return cancelCardDialogViewModelProvider;
+  }
 
   @override
   Widget build(BuildContext context) {
     return BaseWidget<CardCancelDialogViewModel>(
-      providerBase: cancelCardDialogViewModelProvider,
+      providerBase: providerBase(),
       builder: (context, model, child) => Dialog(
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         insetPadding:
             EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
         child: GestureDetector(
-          onHorizontalDragUpdate: (details) {},
+          onVerticalDragEnd: (details) {
+            if (details.primaryVelocity!.isNegative) {
+              onDismissed?.call();
+            }
+          },
           child: Container(
             child: SingleChildScrollView(
               physics: NeverScrollableScrollPhysics(),
@@ -69,7 +82,19 @@ class CardCancelDialogView extends StatelessWidget {
                             S.of(context).reasonOfCancellation.toUpperCase(),
                         hintText: S.of(context).pleaseSelect,
                         readOnly: true,
-                        controller: model!.reasonCancellationController,
+                        key: model!.reasonKey,
+                        controller: model.reasonCancellationController,
+                        onPressed: () {
+                          CancellationReasonDialog.show(context,
+                              onDismissed: () {
+                                Navigator.pop(context);
+                              },
+                              title: S.of(context).reasonOfCancellation,
+                              onSelected: (value) {
+                                Navigator.pop(context);
+                                model.reasonCancellationController.text = value;
+                              });
+                        },
                         suffixIcon: (isChecked, value) {
                           return Container(
                             width: 16,
@@ -110,29 +135,41 @@ class CardCancelDialogView extends StatelessWidget {
                       },
                     ),
                   ),
-                  AppStreamBuilder<bool>(
-                    initialData: false,
-                    stream: model.declarationSelectedStream,
-                    dataBuilder: (context, data) => InkWell(
-                      onTap: () {
-                        if (model.isValidateFields()) {
-                          onSelected?.call(
-                              model.reasonCancellationController.text, data!);
-                        }
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(16),
-                        height: 57,
-                        width: 57,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color!),
-                        child: AppSvg.asset(AssetUtils.tick,
-                            color: Theme.of(context).accentColor),
-                      ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      if (model.reasonCancellationController.text.isEmpty) {
+                        model.reasonKey.currentState!.isValid = false;
+                        onError?.call(AppError(
+                          error: ErrorInfo(message: ''),
+                          type: ErrorType.SELECT_CANCELATION_REASON,
+                          cause: Exception(),
+                        ));
+                      } else if (!model.declarationSelected.value) {
+                        onError?.call(AppError(
+                          error: ErrorInfo(message: ''),
+                          type: ErrorType.INVALID_DECLARATION_SELECTION,
+                          cause: Exception(),
+                        ));
+                      } else {
+                        onSelected
+                            ?.call(model.reasonCancellationController.text);
+                      }
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(16),
+                      height: 57,
+                      width: 57,
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Theme.of(context)
+                              .accentTextTheme
+                              .bodyText1!
+                              .color!),
+                      child: AppSvg.asset(AssetUtils.tick,
+                          color: Theme.of(context).accentColor),
                     ),
                   ),
                   Padding(
