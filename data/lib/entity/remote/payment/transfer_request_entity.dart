@@ -6,6 +6,8 @@ part "transfer_request_entity.g.dart";
 class TransferRequestEntity {
   @JsonKey(name: "BeneficiaryId")
   final String? beneficiaryId;
+  @JsonKey(name: "OtpCode")
+  final String? otpCode;
   @JsonKey(name: "TransferType")
   final String? transferType;
   @JsonKey(name: "BeneficiaryImage")
@@ -35,7 +37,9 @@ class TransferRequestEntity {
       this.memo: "",
       this.toAccount: "",
       this.isFriend: false,
-      this.getToken: true});
+      this.getToken: true,
+      this.otpCode:""
+      });
 
   factory TransferRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$TransferRequestEntityFromJson(json);

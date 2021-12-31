@@ -15,7 +15,11 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
   PaymentHomePageView(ProviderBase model) : super(model);
 
-  final List pages = [AddSendMoneyContactPage(), AddRequestMoneyContactPage()];
+  final List pages = [
+    AddSendMoneyContactPage(),
+    AddRequestMoneyContactPage(),
+    Container()
+  ];
 
   @override
   Widget build(BuildContext context, model) {
@@ -29,11 +33,14 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
           return GestureDetector(
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
+                ///TODO:
                 if (currentStep == 0) {
                   Navigator.pushNamed(context, RoutePaths.SendMoney);
                 } else {
                   Navigator.pushNamed(context, RoutePaths.RequestMoney);
                 }
+              } else {
+                Navigator.pop(context);
               }
             },
             behavior: HitTestBehavior.translucent,

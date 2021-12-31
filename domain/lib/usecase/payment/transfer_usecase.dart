@@ -1,33 +1,36 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:domain/repository/payment/payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class TransferUseCase
-    extends BaseUseCase<NetworkError, TransferUseCaseParams, bool> {
+class TransferUseCase extends BaseUseCase<NetworkError, TransferUseCaseParams,
+    TransferSuccessResponse> {
   final PaymentRepository _repository;
 
   TransferUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, bool>> execute(
+  Future<Either<NetworkError, TransferSuccessResponse>> execute(
       {required TransferUseCaseParams params}) {
     return _repository.transfer(
-        params.beneficiaryId!,
-        params.transferType!,
-        params.beneficiaryImage!,
-        params.isFriend!,
-        params.toAmount!,
-        params.localEq!,
-        params.memo!,
-        params.toAccount!);
+        transferType: params.transferType!,
+        toAmount: params.toAmount!,
+        toAccount: params.toAccount!,
+        localEq: params.localEq!,
+        beneficiaryImage: params.beneficiaryImage!,
+        beneficiaryId: params.beneficiaryId!,
+        otpCode: params.otpCode!,
+        isFriend: params.isFriend!,
+        memo: params.memo!);
   }
 }
 
 class TransferUseCaseParams extends Params {
   final String? beneficiaryId;
+  final String? otpCode;
   final String? transferType;
   final String? beneficiaryImage;
   final bool? isFriend;
@@ -38,6 +41,7 @@ class TransferUseCaseParams extends Params {
 
   TransferUseCaseParams(
       {this.beneficiaryId,
+      this.otpCode,
       this.transferType,
       this.beneficiaryImage,
       this.isFriend,

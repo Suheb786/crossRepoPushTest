@@ -118,7 +118,9 @@ class DashboardPageView extends BasePageViewWidget<DashboardPageViewModel> {
                     stream: model.enableBiometricStream,
                     initialData: Resource.none(),
                     onData: (data) {
-                      if (data.status == Status.SUCCESS) {}
+                      if (data.status == Status.SUCCESS) {
+                        Navigator.pop(context);
+                      }
                     },
                     dataBuilder: (context, bioMetricResponse) {
                       return AppStreamBuilder<

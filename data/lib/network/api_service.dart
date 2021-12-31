@@ -69,6 +69,7 @@ import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.d
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
+import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
@@ -472,10 +473,14 @@ abstract class ApiService {
       @Body() CheckSendMoneyRequestEntity checkSendMoneyRequestEntity);
 
   @POST("/transfer/TransferAPIV2")
-  Future<HttpResponse<ResponseEntity>> transfer(
+  Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       @Body() TransferRequestEntity transferRequestEntity);
 
   @POST("/transfer/RequestToPay")
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
       @Body() RequestToPayRequestEntity requestToPayRequestEntity);
+
+  @POST("/transfer/TransferAPIVerify")
+  Future<HttpResponse<ResponseEntity>> transferVerify(
+      @Body() BaseRequest baseRequest);
 }

@@ -16,7 +16,10 @@ class RequestPaymentFromNewRecipientPageView
     extends BasePageViewWidget<RequestPaymentFromNewRecipientViewModel> {
   RequestPaymentFromNewRecipientPageView(ProviderBase model) : super(model);
 
-  final pages = [RequestFromNewRecipientPage(), BaseCardPage()];
+  final pages = [
+    RequestFromNewRecipientPage(),
+    Visibility(visible: false, child: BaseCardPage())
+  ];
 
   @override
   Widget build(BuildContext context, model) {
@@ -80,7 +83,7 @@ class RequestPaymentFromNewRecipientPageView
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "350.0",
+                                    model.sendValue!,
                                     style: TextStyle(
                                         fontSize: 28,
                                         fontWeight: FontWeight.w700),

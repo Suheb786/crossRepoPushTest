@@ -93,19 +93,6 @@ class ManageContactListPageView
                               Expanded(
                                 child: Card(
                                   margin: EdgeInsets.symmetric(vertical: 16),
-                                  // decoration: BoxDecoration(
-                                  //     color: Theme.of(context).accentColor,
-                                  //     boxShadow: [
-                                  //       BoxShadow(
-                                  //         color: Theme.of(context)
-                                  //             .primaryColorDark
-                                  //             .withOpacity(0.08),
-                                  //         blurRadius: 20.0,
-                                  //       )
-                                  //     ],
-                                  //     borderRadius: BorderRadius.only(
-                                  //         topLeft: Radius.circular(16),
-                                  //         topRight: Radius.circular(16))),
                                   child: ListView.builder(
                                     padding: EdgeInsets.symmetric(vertical: 20),
                                     itemBuilder: (context, index) {

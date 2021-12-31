@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -506,6 +507,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Don\'t worry, if you log out your information will be saved and you can login at any time."),
         "insufficientBalance": MessageLookupByLibrary.simpleMessage(
             "insufficient Balance (Err-89)"),
+        "insufficientBalanceTransfer": MessageLookupByLibrary.simpleMessage(
+            "You do not have sufficient balance to make payment."),
         "invalidAdditionSourceIncome": MessageLookupByLibrary.simpleMessage(
             "Select Additional Source Income"),
         "invalidAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),
@@ -513,6 +516,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Annual income"),
         "invalidBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
             "You must be the beneficial owner of the account to proceed"),
+        "invalidBeneficiary":
+            MessageLookupByLibrary.simpleMessage("Invalid Beneficiary"),
         "invalidBusinessType":
             MessageLookupByLibrary.simpleMessage("Select Business Type"),
         "invalidCitizenship":
@@ -592,6 +597,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter reference number"),
         "invalidRelationship":
             MessageLookupByLibrary.simpleMessage("Select relationship"),
+        "invalidRequestedAmount":
+            MessageLookupByLibrary.simpleMessage("Invalid requested amount"),
         "invalidRole": MessageLookupByLibrary.simpleMessage("Enter role"),
         "invalidSocialSecurityNumber": MessageLookupByLibrary.simpleMessage(
             "Enter social security number"),
@@ -873,6 +880,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Request money from other banks"),
         "requestMoneyFromOtherBankDesc": MessageLookupByLibrary.simpleMessage(
             "If you have money from other banks, you can easily send money request to move it into your blink account."),
+        "requestNotCompleted": MessageLookupByLibrary.simpleMessage(
+            "Your Request Is Not Completed"),
         "requestedFrom": MessageLookupByLibrary.simpleMessage("Requested from"),
         "requestedMoneyVia":
             MessageLookupByLibrary.simpleMessage("Request money via"),
@@ -963,6 +972,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Swipe to confirm"),
         "swipeToProceed":
             MessageLookupByLibrary.simpleMessage("Swipe to proceed"),
+        "swipeToRequest":
+            MessageLookupByLibrary.simpleMessage("Swipe up to request money"),
+        "swipeToSend":
+            MessageLookupByLibrary.simpleMessage("Swipe up to send money"),
         "swipeToViewList":
             MessageLookupByLibrary.simpleMessage("Swipe to view list"),
         "swipeToViewMap":
@@ -971,6 +984,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Swipe up to join our community"),
         "swipeUpToRegister":
             MessageLookupByLibrary.simpleMessage("Swipe up to register"),
+        "swipeUpToViewTransaction": MessageLookupByLibrary.simpleMessage(
+            "Swipe up to view transactions"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take Photo"),
         "tapToEdit": MessageLookupByLibrary.simpleMessage("Tap to edit amount"),
         "tapToEditPhoto":

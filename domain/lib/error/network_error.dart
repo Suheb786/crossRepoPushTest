@@ -76,6 +76,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_SAVING_STATUS);
 
+          case "err-349":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_BENEFICIARY);
+
           case "ex-055":
             return AppError(
                 cause: cause,
@@ -205,6 +211,12 @@ class NetworkError extends BaseError {
                 cause: cause,
                 error: error,
                 type: ErrorType.INSUFFICIENT_BALANCE);
+
+          case "err-304":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.REQUEST_NOT_COMPLETED);
 
           default:
             return AppError(

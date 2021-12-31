@@ -20,6 +20,8 @@ class TransferResponseEntity
   final num? localEq;
   @JsonKey(name: "toAccount")
   final String? toAccount;
+  @JsonKey(name: "name")
+  final String? name;
 
   TransferResponseEntity(
       {this.beneficiaryId,
@@ -27,7 +29,8 @@ class TransferResponseEntity
       this.beneficiaryImage,
       this.toAmount,
       this.localEq,
-      this.toAccount});
+      this.toAccount,
+      this.name: ""});
 
   factory TransferResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$TransferResponseEntityFromJson(json);
@@ -47,6 +50,7 @@ class TransferResponseEntity
         localEq: this.localEq,
         toAccount: this.toAccount,
         toAmount: this.toAmount,
-        transferType: this.transferType);
+        transferType: this.transferType,
+        name: this.name);
   }
 }

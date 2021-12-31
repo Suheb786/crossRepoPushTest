@@ -15,6 +15,7 @@ TransferResponseEntity _$TransferResponseEntityFromJson(
     toAmount: json['toAmount'] as num?,
     localEq: json['localEq'] as num?,
     toAccount: json['toAccount'] as String?,
+    name: json['name'] as String?,
   );
 }
 
@@ -27,4 +28,5 @@ Map<String, dynamic> _$TransferResponseEntityToJson(
       'toAmount': instance.toAmount,
       'localEq': instance.localEq,
       'toAccount': instance.toAccount,
+      'name': instance.name,
     };

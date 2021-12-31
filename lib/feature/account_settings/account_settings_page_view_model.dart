@@ -30,7 +30,7 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   final UploadProfileImageUseCase _uploadProfileImageUseCase;
 
   ///cupertino switch value subject
-  final BehaviorSubject<bool> _switchSubject = BehaviorSubject.seeded(false);
+  final BehaviorSubject<bool> _switchSubject = BehaviorSubject();
 
   Stream<bool> get switchValue => _switchSubject.stream;
 

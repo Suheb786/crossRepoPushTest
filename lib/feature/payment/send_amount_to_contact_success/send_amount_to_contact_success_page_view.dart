@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amount_to_contact_success_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -8,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 
 class SendAmountToContactSuccessPageView
     extends BasePageViewWidget<SendAmountToContactSuccessViewModel> {
@@ -19,6 +21,9 @@ class SendAmountToContactSuccessPageView
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
           Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+          ProviderScope.containerOf(context)
+              .read(appHomeViewModelProvider)
+              .getDashboardData();
         }
       },
       child: Padding(
@@ -49,7 +54,7 @@ class SendAmountToContactSuccessPageView
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "35.00",
+                      model.arguments.amount.toString(),
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Theme.of(context).accentColor,
@@ -84,7 +89,7 @@ class SendAmountToContactSuccessPageView
               Padding(
                 padding: EdgeInsets.only(top: 16.0),
                 child: Text(
-                  "Rose",
+                  model.arguments.name ?? '',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Theme.of(context).accentColor,
@@ -95,7 +100,7 @@ class SendAmountToContactSuccessPageView
               Padding(
                 padding: EdgeInsets.only(top: 4.0),
                 child: Text(
-                  "ABC000012341234123819241213",
+                  model.arguments.iban ?? '',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: AppColor.very_light_red,
@@ -123,7 +128,7 @@ class SendAmountToContactSuccessPageView
                             ),
                           ),
                           Text(
-                            "984893922",
+                            model.arguments.referenceNo ?? '',
                             style: TextStyle(
                               fontSize: 12,
                               fontWeight: FontWeight.w600,
@@ -146,14 +151,16 @@ class SendAmountToContactSuccessPageView
                             Text.rich(
                               TextSpan(children: [
                                 TextSpan(
-                                  text: "16 Dec 2021 - ",
+                                  text:
+                                      "${TimeUtils.getFormattedDateForCreditCard(model.arguments.transferDate.toString())} - ",
                                   style: TextStyle(
                                     fontSize: 12,
                                     fontWeight: FontWeight.w600,
                                   ),
                                 ),
                                 TextSpan(
-                                  text: "3:30 pm",
+                                  text:
+                                      "${TimeUtils.getFormattedTimeForTransaction(model.arguments.transferDate.toString())}",
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w600,

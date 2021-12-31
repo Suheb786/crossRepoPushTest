@@ -1,5 +1,7 @@
 import 'package:data/entity/local/base/device_helper.dart';
+import 'package:data/entity/local/base/image_utils.dart';
 import 'package:data/entity/remote/base/base_class.dart';
+import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/payment/check_send_money_request_entity.dart';
 import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
@@ -7,6 +9,7 @@ import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.d
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
+import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/payment/payment_datasource.dart';
@@ -41,8 +44,9 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> transfer(
+  Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       {String? beneficiaryId,
+      String? otpCode,
       String? transferType,
       String? beneficiaryImage,
       bool? isFriend,
@@ -55,8 +59,12 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         baseData: baseData.toJson(),
         toAmount: toAmount!,
         toAccount: toAccount!,
-        beneficiaryId: DateTime.now().microsecondsSinceEpoch.toString(),
-        beneficiaryImage: beneficiaryImage,
+        beneficiaryId: beneficiaryId,
+        beneficiaryImage:
+            (beneficiaryImage!.isNotEmpty && beneficiaryImage != null)
+                ? ImageUtils.convertToBase64(beneficiaryImage)
+                : '',
+        otpCode: otpCode,
         isFriend: isFriend!,
         localEq: localEq!,
         memo: memo!,
@@ -70,14 +78,28 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
       num amount,
       String dbtrBic,
       String dbtrAcct,
-      String dbtrName) async {
+      String dbtrName,
+      String memo,
+      bool? isFriend,
+      String? image) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.requestToPay(RequestToPayRequestEntity(
         ctgyPurp: ctgyPurp,
         amount: amount,
+        memo: memo,
         baseData: baseData.toJson(),
         dbtrBic: dbtrBic,
         dbtrAcct: dbtrAcct,
-        dbtrName: dbtrName));
+        dbtrName: dbtrName,
+        isFriend: isFriend,
+        beneImage: image
+    ));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> transferVerify() async {
+    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
+    return _apiService.transferVerify(
+        BaseRequest(baseData: baseData.toJson(), getToken: true));
   }
 }

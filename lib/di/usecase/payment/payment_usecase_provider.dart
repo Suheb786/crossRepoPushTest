@@ -16,6 +16,7 @@ import 'package:domain/usecase/payment/send_money_failure_usecase.dart';
 import 'package:domain/usecase/payment/send_money_usecase.dart';
 import 'package:domain/usecase/payment/send_to_new_recipient_usecase.dart';
 import 'package:domain/usecase/payment/transfer_usecase.dart';
+import 'package:domain/usecase/payment/transfer_verify_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[<AddSendMoneyContactUseCase>] provider
@@ -51,7 +52,7 @@ final sendAmountToContactSuccessUseCaseProvider =
 ///[<RequestAmountFromContactUseCase>] provider
 final requestAmountFromContactUseCaseProvider =
     Provider.autoDispose<RequestAmountFromContactUseCase>(
-  (ref) => RequestAmountFromContactUseCase(),
+  (ref) => RequestAmountFromContactUseCase(ref.read(paymentRepositoryProvider)),
 );
 
 ///[<RequestAmountFromContactSuccessUseCase>] provider
@@ -114,4 +115,10 @@ final checkSendMoneyUseCaseProvider =
 ///[TransferUseCase] provider
 final transferUseCaseProvider = Provider.autoDispose<TransferUseCase>(
   (ref) => TransferUseCase(ref.read(paymentRepositoryProvider)),
+);
+
+///[TransferVerifyUseCase] provider
+final transferVerifyUseCaseProvider =
+    Provider.autoDispose<TransferVerifyUseCase>(
+  (ref) => TransferVerifyUseCase(ref.read(paymentRepositoryProvider)),
 );
