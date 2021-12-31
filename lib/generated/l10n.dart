@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6496,6 +6495,26 @@ class S {
     return Intl.message(
       'Report card issue',
       name: 'reportCardIssue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Engagement Team`
+  String get engagementTeam {
+    return Intl.message(
+      'Engagement Team',
+      name: 'engagementTeam',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select your preferred communication. Your call or chat may be monitored or recorded to ensure the quality of service.`
+  String get engagementTeamDescription {
+    return Intl.message(
+      'Please select your preferred communication. Your call or chat may be monitored or recorded to ensure the quality of service.',
+      name: 'engagementTeamDescription',
       desc: '',
       args: [],
     );

@@ -368,6 +368,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Scan your face to log in"),
         "enableBiometricLoginTitle":
             MessageLookupByLibrary.simpleMessage("Enable Biometric Login"),
+        "engagementTeam":
+            MessageLookupByLibrary.simpleMessage("Engagement Team"),
+        "engagementTeamDescription": MessageLookupByLibrary.simpleMessage(
+            "Please select your preferred communication. Your call or chat may be monitored or recorded to ensure the quality of service."),
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
         "enterCode": MessageLookupByLibrary.simpleMessage(

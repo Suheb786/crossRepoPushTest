@@ -14,6 +14,8 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_account_opening/purpose_of_account_opening_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/dashboard_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -236,6 +238,15 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                   SettingsDialog.show(
                                                     context,
                                                   );
+                                                  break;
+                                                case 2:
+                                                  EngagementTeamDialog
+                                                      .show(context,
+                                                          onDismissed: () {
+                                                    Navigator.pop(context);
+                                                  }, onSelected: (value) {
+                                                    Navigator.pop(context);
+                                                  });
                                                   break;
                                               }
                                             },

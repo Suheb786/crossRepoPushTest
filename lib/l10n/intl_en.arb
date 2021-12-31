@@ -663,5 +663,8 @@
   "changeCountryRestriction": "Change country restriction",
   "manageSettlement": "Manage settlement",
   "changeLinkAccount": "Change linked account",
-  "reportCardIssue": "Report card issue"
+  "reportCardIssue": "Report card issue",
+  "engagementTeam": "Engagement Team",
+  "engagementTeamDescription" : "Please select your preferred communication. Your call or chat may be monitored or recorded to ensure the quality of service."
+
 }
