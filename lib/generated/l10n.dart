@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6361,6 +6360,16 @@ class S {
     );
   }
 
+  /// `Freeze this card`
+  String get freezeThisCard {
+    return Intl.message(
+      'Freeze this card',
+      name: 'freezeThisCard',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please select the cancellation reason`
   String get pleaseSelectTheReason {
     return Intl.message(
@@ -6471,16 +6480,6 @@ class S {
     );
   }
 
-  /// `Your Request Is Not Completed`
-  String get requestNotCompleted {
-    return Intl.message(
-      'Your Request Is Not Completed',
-      name: 'requestNotCompleted',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Debit Card Settings`
   String get debitCardSettings {
     return Intl.message(
@@ -6496,16 +6495,6 @@ class S {
     return Intl.message(
       'Credit Card Settings',
       name: 'creditCardSettings',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Freeze this card`
-  String get freezeThisCard {
-    return Intl.message(
-      'Freeze this card',
-      name: 'freezeThisCard',
       desc: '',
       args: [],
     );
@@ -6676,6 +6665,86 @@ class S {
     return Intl.message(
       'Your may use your card PIN for payments immediately.',
       name: 'cardPinSucccesFullyUnblockedDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Dashboard`
+  String get backToDashboard {
+    return Intl.message(
+      'Back to Dashboard',
+      name: 'backToDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ATM Withdrawal`
+  String get atmWithDrawal {
+    return Intl.message(
+      'ATM Withdrawal',
+      name: 'atmWithDrawal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Merchant Payments`
+  String get merchantPayments {
+    return Intl.message(
+      'Merchant Payments',
+      name: 'merchantPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Online Purchase`
+  String get onlinePurchase {
+    return Intl.message(
+      'Online Purchase',
+      name: 'onlinePurchase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contactless Payment`
+  String get contactLessPayments {
+    return Intl.message(
+      'Contactless Payment',
+      name: 'contactLessPayments',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Daily Limit`
+  String get dailyLimit {
+    return Intl.message(
+      'Daily Limit',
+      name: 'dailyLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maximum {maximumLimit} JOD`
+  String maximumLimit(Object maximumLimit) {
+    return Intl.message(
+      'Maximum $maximumLimit JOD',
+      name: 'maximumLimit',
+      desc: 'maximumLimit',
+      args: [maximumLimit],
+    );
+  }
+
+  /// `Your Request Is Not Completed`
+  String get requestNotCompleted {
+    return Intl.message(
+      'Your Request Is Not Completed',
+      name: 'requestNotCompleted',
       desc: '',
       args: [],
     );

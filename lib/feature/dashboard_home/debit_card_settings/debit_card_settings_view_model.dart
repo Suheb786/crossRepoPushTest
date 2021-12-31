@@ -40,17 +40,12 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         return _freezeDebitCardUseCase.execute(params: value);
       }).asFlow().listen((event) {
         updateLoader();
-
         _freezeCardResponseSubject.safeAdd(event);
-
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
-
           _freezeCardSubject.safeAdd(false);
-        }
-
-        if (event.status == Status.SUCCESS) {
+        } else if (event.status == Status.SUCCESS) {
           _freezeCardSubject.safeAdd(true);
         }
       });
@@ -61,17 +56,12 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         return _unFreezeDebitCardUseCase.execute(params: value);
       }).asFlow().listen((event) {
         updateLoader();
-
         _freezeCardResponseSubject.safeAdd(event);
-
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
-
           _freezeCardSubject.safeAdd(true);
-        }
-
-        if (event.status == Status.SUCCESS) {
+        } else if (event.status == Status.SUCCESS) {
           _freezeCardSubject.safeAdd(false);
         }
       });
@@ -82,22 +72,16 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         return _cancelDebitCardUseCase.execute(params: value);
       }).asFlow().listen((event) {
         updateLoader();
-
         _cancelCardResponseSubject.safeAdd(event);
-
         if (event.status == Status.ERROR) {
-          showErrorState();
           showToastWithError(event.appError!);
         }
-
-        if (event.status == Status.SUCCESS) {}
       });
     });
   }
 
   void toggleFreezeCardStatus(bool value) {
     _freezeCardSubject.safeAdd(value);
-
     if (!value) {
       unFreezeCard();
     }

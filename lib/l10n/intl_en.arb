@@ -650,6 +650,7 @@
   "swipeToRequest": "Swipe up to request money",
   "swipeUpToViewTransaction": "Swipe up to view transactions",
   "freezeTheCard": "Freeze this card?",
+  "freezeThisCard": "Freeze this card",
   "pleaseSelectTheReason": "Please select the cancellation reason",
   "pleaseAgreeToTheTermAndCondition": "Please agree to the term and condition",
   "freezeDebitCardDescription": "Here is some information for you to acknowledge before freezing your card.\n\n \u2022 In freezed state, your card can’t be used for any transactions.\n\u2022In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n\u2022 You can unfreeze and activate your card at any time. ",
@@ -690,5 +691,6 @@
   "@maximumLimit": {
     "description": "maximumLimit",
     "type": "string"
-  }
+  },
+  "requestNotCompleted": "Your Request Is Not Completed"
 }
