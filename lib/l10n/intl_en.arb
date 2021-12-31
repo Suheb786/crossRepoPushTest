@@ -658,19 +658,14 @@
   "cancelCardDesc": "Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address.",
   "reasonOfCancellation": "Reason of Cancellation",
   "requestNewCardImmediately": "I would like to request new card immediately",
-  "cancelThisCard": "Cancel this card",
-  "manageCardLimits": "Manage card limits",
-  "manageCardPin": "Manage card PIN",
   "requestSupplementaryCard": "Request supplementary card",
   "changeLinkedMobileNo": "Change linked mobile number",
   "changeLinkedAccount": "Change linked account",
   "reportCardIssue": "Report card issue",
   "freezeThisCard": "Freeze this card",
   "actionComeToYouSoon": "The actions with \uD83D\uDD34 will come to you soon",
-  "requestNotCompleted": "Your Request Is Not Completed",
   "debitCardSettings": "Debit Card Settings",
   "creditCardSettings": "Credit Card Settings",
-  "freezeThisCard": "Freeze this card",
   "cancelThisCard": "Cancel this card",
   "manageCardLimits": "Manage card limits",
   "manageCardPin": "Manage card PIN",
@@ -681,5 +676,15 @@
   "changeCountryRestriction": "Change country restriction",
   "manageSettlement": "Manage settlement",
   "changeLinkAccount": "Change linked account",
-  "reportCardIssue": "Report card issue"
+  "backToDashboard": "Back to Dashboard",
+  "atmWithDrawal": "ATM Withdrawal",
+  "merchantPayments": "Merchant Payments",
+  "onlinePurchase": "Online Purchase",
+  "contactLessPayments": "Contactless Payment",
+  "dailyLimit": "Daily Limit",
+  "maximumLimit": "Maximum {maximumLimit} JOD",
+  "@maximumLimit": {
+    "description": "maximumLimit",
+    "type": "string"
+  }
 }

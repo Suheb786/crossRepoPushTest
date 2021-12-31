@@ -17,9 +17,14 @@ class DebitCardSettingsPageState extends BaseStatefulPage<
     return debitCardSettingsViewModelProvider;
   }
 
+  // @override
+  // Color? scaffoldBackgroundColor() {
+  //   return Theme.of(context).canvasColor;
+  // }
+
   @override
-  Color? scaffoldBackgroundColor() {
-    return Theme.of(context).canvasColor;
+  bool extendBodyBehindAppBar() {
+    return true;
   }
 
   @override
