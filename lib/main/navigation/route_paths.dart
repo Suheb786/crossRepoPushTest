@@ -58,4 +58,5 @@ class RoutePaths {
   static const String DebitCardSettings = "/debitCardSettings";
   static const String CreditCardSettings = "/creditCardSettings";
   static const String ManageCardPin = "/manageCardPin";
+  static const String CardPinUnBlockSuccess = "/cardPinUnBlockSuccessPage";
 }

@@ -18,6 +18,7 @@ import 'package:neo_bank/feature/dashboard_home/account_transaction/account_tran
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
+import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page.dart';
@@ -329,10 +330,16 @@ class AppRouter {
       case RoutePaths.ManageCardPin:
         return CupertinoPageRoute(
             builder: (context) => ManageCardPinPage(
-                  manageCardPinArguments:
-                      settings.arguments as ManageCardPinArguments,
-                ),
+                manageCardPinArguments:
+                    settings.arguments as ManageCardPinArguments),
             settings: RouteSettings(name: RoutePaths.ManageCardPin));
+
+      case RoutePaths.CardPinUnBlockSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => CardPinUnBlockSuccessPage(
+                manageCardPinArguments:
+                    settings.arguments as ManageCardPinArguments),
+            settings: RouteSettings(name: RoutePaths.CardPinUnBlockSuccess));
 
       default:
         return CupertinoPageRoute(

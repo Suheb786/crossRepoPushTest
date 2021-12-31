@@ -5,6 +5,7 @@ import 'package:domain/usecase/card_delivery/confirm_credit_card_delivery_usecas
 import 'package:domain/usecase/card_delivery/confirm_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_issuance_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_pin_usecase.dart';
+import 'package:domain/usecase/card_delivery/credit_card_pin_unblock_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_statement_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_statement_usecase.dart';
@@ -12,6 +13,7 @@ import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecas
 import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
+import 'package:domain/usecase/card_delivery/unblock_debit_card_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/unfreeze_credit_card_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -78,5 +80,15 @@ final unFreezeCreditCardUseCaseProvider =
 
 ///[CancelCreditCardUseCase] provider
 final cancelCreditCardUseCaseProvider =
-Provider.autoDispose<CancelCreditCardUseCase>(
+    Provider.autoDispose<CancelCreditCardUseCase>(
         (ref) => CancelCreditCardUseCase(ref.read(cardRepositoryProvider)));
+
+///[UnblockDebitCardPinUseCase] provider
+final unBlockDebitCardUseCaseProvider =
+    Provider.autoDispose<UnblockDebitCardPinUseCase>(
+        (ref) => UnblockDebitCardPinUseCase(ref.read(cardRepositoryProvider)));
+
+///[CreditCardPinUnblockUseCase] provider
+final unBlockCreditCardUseCaseProvider =
+    Provider.autoDispose<CreditCardPinUnblockUseCase>(
+        (ref) => CreditCardPinUnblockUseCase(ref.read(cardRepositoryProvider)));

@@ -6351,6 +6351,126 @@ class S {
     );
   }
 
+  /// `Freeze this card?`
+  String get freezeTheCard {
+    return Intl.message(
+      'Freeze this card?',
+      name: 'freezeTheCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select the cancellation reason`
+  String get pleaseSelectTheReason {
+    return Intl.message(
+      'Please select the cancellation reason',
+      name: 'pleaseSelectTheReason',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please agree to the term and condition`
+  String get pleaseAgreeToTheTermAndCondition {
+    return Intl.message(
+      'Please agree to the term and condition',
+      name: 'pleaseAgreeToTheTermAndCondition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. `
+  String get freezeDebitCardDescription {
+    return Intl.message(
+      'Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. ',
+      name: 'freezeDebitCardDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel this card?`
+  String get cancelTheCard {
+    return Intl.message(
+      'Cancel this card?',
+      name: 'cancelTheCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address.`
+  String get cancelCardDesc {
+    return Intl.message(
+      'Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address.',
+      name: 'cancelCardDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reason of Cancellation`
+  String get reasonOfCancellation {
+    return Intl.message(
+      'Reason of Cancellation',
+      name: 'reasonOfCancellation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I would like to request new card immediately`
+  String get requestNewCardImmediately {
+    return Intl.message(
+      'I would like to request new card immediately',
+      name: 'requestNewCardImmediately',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request supplementary card`
+  String get requestSupplementaryCard {
+    return Intl.message(
+      'Request supplementary card',
+      name: 'requestSupplementaryCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change linked mobile number`
+  String get changeLinkedMobileNo {
+    return Intl.message(
+      'Change linked mobile number',
+      name: 'changeLinkedMobileNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change linked account`
+  String get changeLinkedAccount {
+    return Intl.message(
+      'Change linked account',
+      name: 'changeLinkedAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The actions with 🔴 will come to you soon`
+  String get actionComeToYouSoon {
+    return Intl.message(
+      'The actions with 🔴 will come to you soon',
+      name: 'actionComeToYouSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Your Request Is Not Completed`
   String get requestNotCompleted {
     return Intl.message(
@@ -6516,6 +6636,46 @@ class S {
     return Intl.message(
       'Change card PIN',
       name: 'changeCardPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unblock PIN?`
+  String get unBlockPin {
+    return Intl.message(
+      'Unblock PIN?',
+      name: 'unBlockPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN.`
+  String get unBlockPinDescription {
+    return Intl.message(
+      'Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN.',
+      name: 'unBlockPinDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card PIN successfully\nunblocked`
+  String get cardPinSucccesFullyUnblocked {
+    return Intl.message(
+      'Card PIN successfully\nunblocked',
+      name: 'cardPinSucccesFullyUnblocked',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your may use your card PIN for payments immediately.`
+  String get cardPinSucccesFullyUnblockedDesc {
+    return Intl.message(
+      'Your may use your card PIN for payments immediately.',
+      name: 'cardPinSucccesFullyUnblockedDesc',
       desc: '',
       args: [],
     );

@@ -36,8 +36,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
                   if (details.primaryVelocity!.isNegative) {
-                    // model.validateEmail();
-                    Navigator.pushNamed(context, RoutePaths.CreditCardSettings);
+                    model.validateEmail();
                   }
                 },
                 child: SingleChildScrollView(

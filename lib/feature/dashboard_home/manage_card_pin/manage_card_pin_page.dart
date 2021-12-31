@@ -19,7 +19,7 @@ class ManageCardPinPageState
     extends BaseStatefulPage<ManageCardPinViewModel, ManageCardPinPage> {
   @override
   ProviderBase provideBase() {
-    return manageCardPinViewModelProvider.call(widget.manageCardPinArguments!);
+    return manageCardPinViewModelProvider.call(widget.manageCardPinArguments);
   }
 
   @override
