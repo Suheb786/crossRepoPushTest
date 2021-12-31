@@ -15,12 +15,10 @@ class ManageDebitCardLimitsPageView
   @override
   Widget build(BuildContext context, model) {
     return GestureDetector(
-      onHorizontalDragUpdate: (details) {
-        // Note: Sensitivity is integer used when you don't want to mess up vertical drag
-        int sensitivity = 8;
-        if (details.delta.dx > sensitivity) {
-          Navigator.of(context).pop();
-        } else if (details.delta.dx < -sensitivity) {}
+      onVerticalDragEnd: (details) {
+        if (details.primaryVelocity!.isNegative) {
+          Navigator.pop(context);
+        }
       },
       child: Column(
         children: [
