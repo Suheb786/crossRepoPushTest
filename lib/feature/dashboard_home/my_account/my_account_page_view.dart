@@ -24,14 +24,13 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
           alignment: Alignment.center,
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 8.0, bottom: 15),
+              padding: EdgeInsets.only(bottom: 15),
               child: AspectRatio(
                 aspectRatio: 0.62,
                 child: GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
-                      ProviderScope
-                          .containerOf(context)
+                      ProviderScope.containerOf(context)
                           .read(appHomeViewModelProvider)
                           .pageController
                           .next();

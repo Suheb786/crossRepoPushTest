@@ -16,14 +16,14 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
     return AppKeyBoardHide(
       child: Center(
         child: Padding(
-          padding: EdgeInsets.only(top: 8.0, bottom: 15),
+          padding: EdgeInsets.only(bottom: 15),
           child: AspectRatio(
             aspectRatio: 0.62,
             child: GestureDetector(
               onHorizontalDragEnd: (details) {
-                if (details.primaryVelocity!.isNegative) {} else {
-                  ProviderScope
-                      .containerOf(context)
+                if (details.primaryVelocity!.isNegative) {
+                } else {
+                  ProviderScope.containerOf(context)
                       .read(appHomeViewModelProvider)
                       .pageController
                       .previous();
