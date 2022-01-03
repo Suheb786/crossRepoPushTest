@@ -35,7 +35,9 @@ import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
+import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
+import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
@@ -483,4 +485,16 @@ abstract class ApiService {
   @POST("/transfer/TransferAPIVerify")
   Future<HttpResponse<ResponseEntity>> transferVerify(
       @Body() BaseRequest baseRequest);
+
+  @POST("/DebitCard/UpdateLimit")
+  Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(
+      @Body()
+          DebitCardSLimitsUpdateRequestEntity
+              debitCardSLimitsUpdateRequestEntity);
+
+  @POST("/CreditCard/UpdateLimit")
+  Future<HttpResponse<ResponseEntity>> updateCreditCardLimits(
+      @Body()
+          CreditCardSLimitsUpdateRequestEntity
+              creditCardSLimitsUpdateRequestEntity);
 }

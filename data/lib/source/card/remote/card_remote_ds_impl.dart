@@ -8,7 +8,9 @@ import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
+import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
+import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
@@ -174,5 +176,55 @@ class CardRemoteDsImpl extends CardRemoteDs {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.unblockDebitCardPin(ChangeDebitCardPinRequest(
         baseData: baseData.toJson(), pinCode: pin, status: status));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(
+      {num? atmWithdrawal,
+      num? merchantsPayments,
+      num? onlinePurchase,
+      num? contactLessPayments,
+      bool? isAtmWithdrawal,
+      bool? isMerchantsPayments,
+      bool? isOnlinePurchase,
+      bool? isContactLessPayments}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.updateDebitCardLimits(
+        DebitCardSLimitsUpdateRequestEntity(
+            getToken: true,
+            atmWithdrawal: atmWithdrawal,
+            contactLessPayments: contactLessPayments,
+            merchantsPayments: merchantsPayments,
+            onlinePurchase: onlinePurchase,
+            isAtmWithdrawal: isAtmWithdrawal,
+            isContactLessPayments: isContactLessPayments,
+            isMerchantsPayments: isMerchantsPayments,
+            isOnlinePurchase: isOnlinePurchase,
+            baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> updateCreditCardLimits(
+      {num? atmWithdrawal,
+      num? merchantsPayments,
+      num? onlinePurchase,
+      num? contactLessPayments,
+      bool? isAtmWithdrawal,
+      bool? isMerchantsPayments,
+      bool? isOnlinePurchase,
+      bool? isContactLessPayments}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.updateCreditCardLimits(
+        CreditCardSLimitsUpdateRequestEntity(
+            getToken: true,
+            atmWithdrawal: atmWithdrawal,
+            contactLessPayments: contactLessPayments,
+            merchantsPayments: merchantsPayments,
+            onlinePurchase: onlinePurchase,
+            isAtmWithdrawal: isAtmWithdrawal,
+            isContactLessPayments: isContactLessPayments,
+            isMerchantsPayments: isMerchantsPayments,
+            isOnlinePurchase: isOnlinePurchase,
+            baseData: baseData.toJson()));
   }
 }

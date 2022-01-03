@@ -357,7 +357,8 @@ class AppRouter {
 
       case RoutePaths.manageDebitLimit:
         return CupertinoPageRoute(
-            builder: (context) => ManageDebitCardLimitsPage(),
+            builder: (context) => ManageDebitCardLimitsPage(
+                settings.arguments as ManageCardLimitsArguments),
             settings: RouteSettings(name: RoutePaths.manageDebitLimit));
 
       default:

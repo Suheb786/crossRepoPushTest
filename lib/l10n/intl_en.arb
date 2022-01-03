@@ -692,5 +692,6 @@
     "description": "maximumLimit",
     "type": "string"
   },
-  "requestNotCompleted": "Your Request Is Not Completed"
+  "requestNotCompleted": "Your Request Is Not Completed",
+  "invalidLimitValue": "Limit value cannot be set greater than max limit value"
 }

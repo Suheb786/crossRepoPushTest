@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6745,6 +6746,16 @@ class S {
     return Intl.message(
       'Your Request Is Not Completed',
       name: 'requestNotCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Limit value cannot be set greater than max limit value`
+  String get invalidLimitValue {
+    return Intl.message(
+      'Limit value cannot be set greater than max limit value',
+      name: 'invalidLimitValue',
       desc: '',
       args: [],
     );

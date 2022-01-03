@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -611,6 +610,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Issuing Place"),
         "invalidJobName":
             MessageLookupByLibrary.simpleMessage("Enter job name"),
+        "invalidLimitValue": MessageLookupByLibrary.simpleMessage(
+            "Limit value cannot be set greater than max limit value"),
         "invalidMainSourceIncome":
             MessageLookupByLibrary.simpleMessage("Enter source of income."),
         "invalidMonthlyIncome":

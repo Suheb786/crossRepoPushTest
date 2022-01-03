@@ -5,7 +5,9 @@ import 'package:domain/usecase/card_delivery/confirm_credit_card_delivery_usecas
 import 'package:domain/usecase/card_delivery/confirm_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_issuance_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_pin_usecase.dart';
+import 'package:domain/usecase/card_delivery/credit_card_limits_update_usecase.dart';
 import 'package:domain/usecase/card_delivery/credit_card_pin_unblock_usecase.dart';
+import 'package:domain/usecase/card_delivery/debit_card_limits_update_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_statement_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_statement_usecase.dart';
@@ -92,3 +94,13 @@ final unBlockDebitCardUseCaseProvider =
 final unBlockCreditCardUseCaseProvider =
     Provider.autoDispose<CreditCardPinUnblockUseCase>(
         (ref) => CreditCardPinUnblockUseCase(ref.read(cardRepositoryProvider)));
+
+///[DebitCardLimitsUpdateUseCase] provider
+final debitCardLimitsUpdateUseCaseProvider =
+    Provider.autoDispose<DebitCardLimitsUpdateUseCase>((ref) =>
+        DebitCardLimitsUpdateUseCase(ref.read(cardRepositoryProvider)));
+
+///[CreditCardLimitsUpdateUseCase] provider
+final creditCardLimitsUpdateUseCaseProvider =
+    Provider.autoDispose<CreditCardLimitsUpdateUseCase>((ref) =>
+        CreditCardLimitsUpdateUseCase(ref.read(cardRepositoryProvider)));
