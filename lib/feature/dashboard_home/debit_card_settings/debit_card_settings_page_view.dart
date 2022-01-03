@@ -1,13 +1,21 @@
+import 'package:domain/constants/enum/card_type.dart';
+import 'package:domain/error/app_error.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
+import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/card_cancel_dialog/card_cancel_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
 
 class DebitCardSettingsPageView
     extends BasePageViewWidget<DebitCardSettingsViewModel> {
@@ -25,14 +33,31 @@ class DebitCardSettingsPageView
         },
         child: Column(
           children: [
+            Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.bottomCenter,
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 48),
+                  height: 50,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).canvasColor,
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(16),
+                          bottomRight: Radius.circular(16))),
+                ),
+                Positioned(
+                    bottom: -8, child: AppSvg.asset(AssetUtils.swipeDown)),
+              ],
+            ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 24),
+              padding: EdgeInsets.only(top: 8),
               child: Text(
-                S.of(context).debitCardSettings,
+                S.of(context).backToDashboard,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
                     fontWeight: FontWeight.w600,
-                    fontSize: 14),
+                    fontSize: 12,
+                    color: AppColor.dark_gray_1),
               ),
             ),
             Expanded(
@@ -43,14 +68,6 @@ class DebitCardSettingsPageView
                       BorderRadius.vertical(top: Radius.circular(16))),
               child: Column(
                 children: [
-                  Container(
-                    height: 4,
-                    width: 64,
-                    margin: EdgeInsets.only(top: 8),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        color: AppColor.whiteGray),
-                  ),
                   Expanded(
                     child: SingleChildScrollView(
                       padding: EdgeInsets.symmetric(horizontal: 24),
@@ -58,6 +75,21 @@ class DebitCardSettingsPageView
                         AppStreamBuilder<bool>(
                           stream: model.freezeCardStream,
                           initialData: false,
+                          onData: (value) {
+                            if (value) {
+                              InformationDialog.show(context,
+                                  image: AssetUtils.cardFreeze,
+                                  title: S.of(context).freezeTheCard,
+                                  description:
+                                      S.of(context).freezeDebitCardDescription,
+                                  onSelected: () {
+                                Navigator.pop(context);
+                                model.freezeCard();
+                              }, onDismissed: () {
+                                Navigator.pop(context);
+                              });
+                            }
+                          },
                           dataBuilder: (context, data) {
                             return SettingTile(
                               onTap: () {
@@ -95,18 +127,43 @@ class DebitCardSettingsPageView
                             );
                           },
                         ),
-                        SettingTile(
-                          onTap: () {},
-                          title: S.of(context).cancelThisCard,
-                          tileIcon: AssetUtils.cancelCard,
+                        AppStreamBuilder<Resource<bool>>(
+                          initialData: Resource.none(),
+                          stream: model.cancelCardResponseStream,
+                          onData: (data) {},
+                          dataBuilder: (context, data) {
+                            return SettingTile(
+                              onTap: () {
+                                CardCancelDialog.show(context,
+                                    onSelected: (reasonValue) {
+                                  Navigator.pop(context);
+                                  model.cancelCard(reasonValue);
+                                }, onDismissed: () {
+                                  Navigator.pop(context);
+                                }, onError: (AppError error) {
+                                  model.showToastWithError(error);
+                                });
+                              },
+                              title: S.of(context).cancelThisCard,
+                              tileIcon: AssetUtils.cancelCard,
+                            );
+                          },
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.manageDebitLimit);
+                          },
                           title: S.of(context).manageCardLimits,
                           tileIcon: AssetUtils.settingBars,
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.ManageCardPin,
+                                arguments: ManageCardPinArguments(
+                                    cardType: CardType.DEBIT));
+                          },
                           title: S.of(context).manageCardPin,
                           tileIcon: AssetUtils.cardShield,
                         ),
@@ -136,6 +193,15 @@ class DebitCardSettingsPageView
                           isEnabled: false,
                           isNotify: true,
                         ),
+                        Text(
+                          S.of(context).actionComeToYouSoon,
+                          style: TextStyle(
+                            color: AppColor.gray_1,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 11,
+                          ),
+                        ),
+                        SizedBox(height: 10),
                       ]),
                     ),
                   ),

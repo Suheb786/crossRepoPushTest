@@ -18,6 +18,7 @@ import 'package:neo_bank/feature/dashboard_home/account_transaction/account_tran
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
+import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page.dart';
@@ -29,9 +30,13 @@ import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart'
 import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
 import 'package:neo_bank/feature/help_center/call_ended/call_ended_page.dart';
 import 'package:neo_bank/feature/help_center/help_center_page.dart';
+import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
+import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
+import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
+import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
@@ -342,6 +347,36 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => CallEndedPage(),
             settings: RouteSettings(name: RoutePaths.CallEndedPage));
+
+      case RoutePaths.ManageCardPin:
+        return CupertinoPageRoute(
+            builder: (context) => ManageCardPinPage(
+                manageCardPinArguments:
+                    settings.arguments as ManageCardPinArguments),
+            settings: RouteSettings(name: RoutePaths.ManageCardPin));
+
+      case RoutePaths.CardPinUnBlockSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => CardPinUnBlockSuccessPage(
+                manageCardPinArguments:
+                    settings.arguments as ManageCardPinArguments),
+            settings: RouteSettings(name: RoutePaths.CardPinUnBlockSuccess));
+
+      case RoutePaths.DebitCardReplacement:
+        return CupertinoPageRoute(
+            builder: (context) => DebitCardReplacementPage(),
+            settings: RouteSettings(name: RoutePaths.DebitCardReplacement));
+
+      case RoutePaths.DebitCardReplacementSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => DebitCardReplacementSuccessPage(),
+            settings:
+                RouteSettings(name: RoutePaths.DebitCardReplacementSuccess));
+
+      case RoutePaths.manageDebitLimit:
+        return CupertinoPageRoute(
+            builder: (context) => ManageDebitCardLimitsPage(),
+            settings: RouteSettings(name: RoutePaths.manageDebitLimit));
 
       default:
         return CupertinoPageRoute(

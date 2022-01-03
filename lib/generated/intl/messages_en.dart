@@ -25,11 +25,13 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(estimatedTime) => "Estimated wait time \n${estimatedTime}";
 
-  static String m2(resendTime) => "Resend in ${resendTime}";
+  static String m2(maximumLimit) => "Maximum ${maximumLimit} JOD";
 
-  static String m3(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
+  static String m3(resendTime) => "Resend in ${resendTime}";
 
-  static String m4(noOfTransaction) =>
+  static String m4(scrollToSetDate) => "Scroll to set ${scrollToSetDate}";
+
+  static String m5(noOfTransaction) =>
       "Type of Transactions ${noOfTransaction}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -64,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ACCOUNT REGISTRATION"),
         "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
             "Now, tell us what\nthe account is for"),
+        "actionComeToYouSoon": MessageLookupByLibrary.simpleMessage(
+            "The actions with 🔴 will come to you soon"),
         "activity": MessageLookupByLibrary.simpleMessage("Activity"),
         "addIncome": MessageLookupByLibrary.simpleMessage("Add Income"),
         "addIncome1": MessageLookupByLibrary.simpleMessage("Add. Income 1"),
@@ -126,11 +130,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("(e.g. Green Card Holder)"),
         "area": MessageLookupByLibrary.simpleMessage("AREA"),
         "areaSmall": MessageLookupByLibrary.simpleMessage("Area"),
+        "atmWithDrawal": MessageLookupByLibrary.simpleMessage("ATM Withdrawal"),
         "availableAmount":
             MessageLookupByLibrary.simpleMessage("AVAILABLE AMOUNT"),
         "availableBalance":
             MessageLookupByLibrary.simpleMessage("AVAILABLE BALANCE"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
+        "backToDashboard":
+            MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
         "backToPayments":
             MessageLookupByLibrary.simpleMessage("Back to Payments"),
         "bankName": MessageLookupByLibrary.simpleMessage("BANK NAME"),
@@ -163,6 +170,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "callHasEnded": MessageLookupByLibrary.simpleMessage("Call has ended"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cancelCardDesc": MessageLookupByLibrary.simpleMessage(
+            "Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address."),
+        "cancelTheCard":
+            MessageLookupByLibrary.simpleMessage("Cancel this card?"),
         "cancelThisCard":
             MessageLookupByLibrary.simpleMessage("Cancel this card"),
         "cardDelivered":
@@ -176,12 +187,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardNumber": MessageLookupByLibrary.simpleMessage("CARD NUMBER"),
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("to card personalization"),
+        "cardPinSucccesFullyUnblocked": MessageLookupByLibrary.simpleMessage(
+            "Card PIN successfully\nunblocked"),
+        "cardPinSucccesFullyUnblockedDesc":
+            MessageLookupByLibrary.simpleMessage(
+                "Your may use your card PIN for payments immediately."),
+        "changeCardPin":
+            MessageLookupByLibrary.simpleMessage("Change card PIN"),
         "changeCountryRestriction":
             MessageLookupByLibrary.simpleMessage("Change country restriction"),
         "changeEmailAddress":
             MessageLookupByLibrary.simpleMessage("CHANGE EMAIL ADDRESS"),
         "changeLinkAccount":
             MessageLookupByLibrary.simpleMessage("Change linked account"),
+        "changeLinkedAccount":
+            MessageLookupByLibrary.simpleMessage("Change linked account"),
+        "changeLinkedMobileNo":
+            MessageLookupByLibrary.simpleMessage("Change linked mobile number"),
         "changeLinkedMobileNumber":
             MessageLookupByLibrary.simpleMessage("Change linked mobile number"),
         "changeMobileNumber":
@@ -217,6 +239,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Connecting to our agent to assist you"),
         "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
             "We need your consent by uploading the signature"),
+        "contactLessPayments":
+            MessageLookupByLibrary.simpleMessage("Contactless Payment"),
         "convertBalanceToInstalments": MessageLookupByLibrary.simpleMessage(
             "Convert balance to instalments"),
         "country": MessageLookupByLibrary.simpleMessage("COUNTRY"),
@@ -241,6 +265,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "customerService": MessageLookupByLibrary.simpleMessage(
             "24/7 Customer Service Service"),
         "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
+        "dailyLimit": MessageLookupByLibrary.simpleMessage("Daily Limit"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "dateOfBirth": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dateOfBirthSmall":
@@ -473,6 +498,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "flipCard": MessageLookupByLibrary.simpleMessage("Flip card"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password"),
+        "freezeDebitCardDescription": MessageLookupByLibrary.simpleMessage(
+            "Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. "),
+        "freezeTheCard":
+            MessageLookupByLibrary.simpleMessage("Freeze this card?"),
         "freezeThisCard":
             MessageLookupByLibrary.simpleMessage("Freeze this card"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
@@ -526,8 +555,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "idVerificationPlaceInfo": MessageLookupByLibrary.simpleMessage(
             "Make sure you\'re in a bright place"),
         "incomeDetails": MessageLookupByLibrary.simpleMessage("INCOME DETAILS"),
-        "increaseCardLimit":
-            MessageLookupByLibrary.simpleMessage("Increase card limit"),
+        "increaseCreditLimit":
+            MessageLookupByLibrary.simpleMessage("Increase credit limit"),
         "informationSave": MessageLookupByLibrary.simpleMessage(
             "Don\'t worry, if you log out your information will be saved and you can login at any time."),
         "insufficientBalance": MessageLookupByLibrary.simpleMessage(
@@ -703,7 +732,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Manage\nContacts"),
         "manageSettlement":
             MessageLookupByLibrary.simpleMessage("Manage settlement"),
+        "maximumLimit": m2,
         "mayBeLater": MessageLookupByLibrary.simpleMessage("Maybe later"),
+        "merchantPayments":
+            MessageLookupByLibrary.simpleMessage("Merchant Payments"),
         "minDueBy": MessageLookupByLibrary.simpleMessage("MIN. DUE BY "),
         "mobileNoExist":
             MessageLookupByLibrary.simpleMessage("Mobile Number Exist"),
@@ -763,6 +795,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "oneSymbol": MessageLookupByLibrary.simpleMessage("1 symbol"),
         "oneUpperCaseLetter":
             MessageLookupByLibrary.simpleMessage("1 uppercase letter"),
+        "onlinePurchase":
+            MessageLookupByLibrary.simpleMessage("Online Purchase"),
         "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
         "openAccountNow":
             MessageLookupByLibrary.simpleMessage("Open Account Now"),
@@ -814,6 +848,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "pinDoesNotMatch":
             MessageLookupByLibrary.simpleMessage("Pin does not match"),
         "placeOfBirth": MessageLookupByLibrary.simpleMessage("Place of birth"),
+        "pleaseAgreeToTheTermAndCondition":
+            MessageLookupByLibrary.simpleMessage(
+                "Please agree to the term and condition"),
         "pleaseConfirmYourIDDetailsBelow": MessageLookupByLibrary.simpleMessage(
             "Now let\'s confirm your\nID details"),
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
@@ -828,6 +865,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseSelectPreferredAgentForVideoCall":
             MessageLookupByLibrary.simpleMessage(
                 "Schedule your call\nfor later"),
+        "pleaseSelectTheReason": MessageLookupByLibrary.simpleMessage(
+            "Please select the cancellation reason"),
         "pleaseSelectYourAction":
             MessageLookupByLibrary.simpleMessage("Please select your action"),
         "pleaseSpecify": MessageLookupByLibrary.simpleMessage("PLEASE SPECIFY"),
@@ -881,6 +920,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
         "quietSurrounding": MessageLookupByLibrary.simpleMessage(
             "Best if your surrounding is quiet and private"),
+        "reasonOfCancellation":
+            MessageLookupByLibrary.simpleMessage("Reason of Cancellation"),
         "reasonOfUnavailability":
             MessageLookupByLibrary.simpleMessage("REASON OF UNAVAILABILITY"),
         "reasonOfUnavailabilitySmall":
@@ -914,8 +955,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Request money from other banks"),
         "requestMoneyFromOtherBankDesc": MessageLookupByLibrary.simpleMessage(
             "If you have money from other banks, you can easily send money request to move it into your blink account."),
+        "requestNewCardImmediately": MessageLookupByLibrary.simpleMessage(
+            "I would like to request new card immediately"),
         "requestNotCompleted": MessageLookupByLibrary.simpleMessage(
             "Your Request Is Not Completed"),
+        "requestSupplementaryCard":
+            MessageLookupByLibrary.simpleMessage("Request supplementary card"),
         "requestSupplementarycard":
             MessageLookupByLibrary.simpleMessage("Request supplementary card"),
         "requestedFrom": MessageLookupByLibrary.simpleMessage("Requested from"),
@@ -924,7 +969,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "requesterName":
             MessageLookupByLibrary.simpleMessage("requester’s name"),
         "requesting": MessageLookupByLibrary.simpleMessage("Requesting"),
-        "resendIn": m2,
+        "resendIn": m3,
         "residentCountry":
             MessageLookupByLibrary.simpleMessage("RESIDENT COUNTRY"),
         "residentCountryHint": MessageLookupByLibrary.simpleMessage(
@@ -942,7 +987,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Something wrong, scan ID again"),
         "scheduleLater":
             MessageLookupByLibrary.simpleMessage("Schedule for later"),
-        "scrollToSetDate": m3,
+        "scrollToSetDate": m4,
         "searchCity": MessageLookupByLibrary.simpleMessage("Search city"),
         "searchContacts":
             MessageLookupByLibrary.simpleMessage("Search contacts"),
@@ -1088,9 +1133,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeOfIncome": MessageLookupByLibrary.simpleMessage("Type of Income"),
         "typeOfTransactions":
             MessageLookupByLibrary.simpleMessage("TYPE OF TRANSACTIONS"),
-        "typeOfTransactionsSmall": m4,
+        "typeOfTransactionsSmall": m5,
+        "unBlockPin": MessageLookupByLibrary.simpleMessage("Unblock PIN?"),
+        "unBlockPinDescription": MessageLookupByLibrary.simpleMessage(
+            "Your card PIN has been blocked for a security measure. To continue using PIN & payment services, you may proceed to unblock PIN."),
         "unableToVerifyIDCard": MessageLookupByLibrary.simpleMessage(
             "Dear Customer, we were unable to verify your ID card number. Kindly scan the card again or contact our customer service at 7777-7777."),
+        "unblockCardPin":
+            MessageLookupByLibrary.simpleMessage("Unblock card PIN"),
         "undoRequest": MessageLookupByLibrary.simpleMessage("Undo request"),
         "undoTransaction":
             MessageLookupByLibrary.simpleMessage("Undo transaction"),

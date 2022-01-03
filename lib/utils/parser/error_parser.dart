@@ -314,6 +314,10 @@ class ErrorParser {
         return localisedHelper.insufficientBalanceTransfer;
       case ErrorType.REQUEST_NOT_COMPLETED:
         return localisedHelper.requestNotCompleted;
+      case ErrorType.SELECT_CANCELATION_REASON:
+        return localisedHelper.pleaseSelectTheReason;
+      case ErrorType.AGREE_TO_THE_TERM_AND_CONDITION:
+        return localisedHelper.pleaseAgreeToTheTermAndCondition;
 
       default:
         return "";

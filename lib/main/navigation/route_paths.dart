@@ -60,4 +60,10 @@ class RoutePaths {
   static const String HelpCenter = "/helpCenter";
   static const String ActiveCallPage = "/activeCallPage";
   static const String CallEndedPage = "/callEndedPage";
+  static const String ManageCardPin = "/manageCardPin";
+  static const String CardPinUnBlockSuccess = "/cardPinUnBlockSuccessPage";
+  static const String DebitCardReplacement = "/debitCardReplacement";
+  static const String DebitCardReplacementSuccess =
+      "/debitCardReplacementSuccess";
+  static const String manageDebitLimit = "/manageDebitLimits";
 }

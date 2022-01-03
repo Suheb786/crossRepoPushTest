@@ -7,6 +7,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -26,132 +27,119 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
       dataBuilder: (context, cardData) {
         return !(cardData!.isApplied!)
             ? Center(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 8.0, bottom: 15),
-            child: AspectRatio(
-              aspectRatio: 0.62,
-              child: GestureDetector(
-                onHorizontalDragEnd: (details) {
-                  if (details.primaryVelocity!.isNegative) {
-                    ProviderScope
-                        .containerOf(context)
-                        .read(appHomeViewModelProvider)
-                        .pageController
-                        .next();
-                  } else {
-                    ProviderScope
-                        .containerOf(context)
-                        .read(appHomeViewModelProvider)
-                        .pageController
-                        .previous();
-                  }
-                },
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  elevation: 2,
-                  color: Theme
-                      .of(context)
-                      .primaryColor,
-                  margin: EdgeInsets.zero,
-                  shadowColor:
-                  Theme
-                      .of(context)
-                      .primaryColorDark
-                      .withOpacity(0.32),
-                  child: Container(
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image:
-                            AssetImage(AssetUtils.zigzagBackground))),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          InkWell(
-                            onTap: () {
-                              print("toggle button");
-                              BackdropToggleButton();
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 23, right: 23, left: 23),
-                              child: Image.asset(AssetUtils.blink,
-                                  height: 33.64, width: 72),
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 78),
-                            child: Align(
-                              alignment: Alignment.center,
-                              child: AppSvg.asset(AssetUtils.cardCircle),
-                            ),
-                          ),
-                          Padding(
-                              padding: EdgeInsets.only(top: 12),
-                              child: Align(
-                                alignment: Alignment.center,
-                                child: Text(
-                                  S
-                                      .of(context)
-                                      .blinkCreditCard,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w600,
-                                      color: Theme
-                                          .of(context)
-                                          .accentColor),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8.0, bottom: 15),
+                  child: AspectRatio(
+                    aspectRatio: 0.62,
+                    child: GestureDetector(
+                      onHorizontalDragEnd: (details) {
+                        if (details.primaryVelocity!.isNegative) {
+                          ProviderScope.containerOf(context)
+                              .read(appHomeViewModelProvider)
+                              .pageController
+                              .next();
+                        } else {
+                          ProviderScope.containerOf(context)
+                              .read(appHomeViewModelProvider)
+                              .pageController
+                              .previous();
+                        }
+                      },
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16)),
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        elevation: 2,
+                        color: Theme.of(context).primaryColor,
+                        margin: EdgeInsets.zero,
+                        shadowColor: Theme.of(context)
+                            .primaryColorDark
+                            .withOpacity(0.32),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage(AssetUtils.zigzagBackground))),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                InkWell(
+                                  onTap: () {
+                                    print("toggle button");
+                                    BackdropToggleButton();
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 23, right: 23, left: 23),
+                                    child: Image.asset(AssetUtils.blink,
+                                        height: 33.64, width: 72),
+                                  ),
                                 ),
-                              )),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: 88, bottom: 29, left: 24, right: 24),
-                            child: Center(
-                              child: InkWell(
-                                onTap: () {
-                                  // model.updateIsGetCardNowClicked(
-                                  //     !isValid!);
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal: 16, vertical: 17),
-                                  decoration: BoxDecoration(
-                                      color: Theme
-                                          .of(context)
-                                          .accentTextTheme
-                                          .bodyText1
-                                          ?.color,
-                                      borderRadius:
-                                      BorderRadius.circular(100)),
+                                Padding(
+                                  padding: EdgeInsets.only(top: 78),
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    child: AppSvg.asset(AssetUtils.cardCircle),
+                                  ),
+                                ),
+                                Padding(
+                                    padding: EdgeInsets.only(top: 12),
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        S.of(context).blinkCreditCard,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w600,
+                                            color:
+                                                Theme.of(context).accentColor),
+                                      ),
+                                    )),
+                                Padding(
+                                  padding: EdgeInsets.only(
+                                      top: 88, bottom: 29, left: 24, right: 24),
                                   child: Center(
-                                    child: Text(
-                                      S
-                                          .of(context)
-                                          .getCardNow,
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w600,
-                                          color: Theme
-                                              .of(context)
-                                              .accentColor),
+                                    child: InkWell(
+                                      onTap: () {
+                                        // model.updateIsGetCardNowClicked(
+                                        //     !isValid!);
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 16, vertical: 17),
+                                        decoration: BoxDecoration(
+                                            color: Theme.of(context)
+                                                .accentTextTheme
+                                                .bodyText1
+                                                ?.color,
+                                            borderRadius:
+                                                BorderRadius.circular(100)),
+                                        child: Center(
+                                          child: Text(
+                                            S.of(context).getCardNow,
+                                            style: TextStyle(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600,
+                                                color: Theme.of(context)
+                                                    .accentColor),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
                           ),
-                        ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          ),
-        )
+              )
             : FlipCard(
                 key: model.cardKey,
                 flipOnTouch: false,
@@ -167,8 +155,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                           child: GestureDetector(
                             onHorizontalDragEnd: (details) {
                               if (details.primaryVelocity!.isNegative) {
-                                ProviderScope
-                                    .containerOf(context)
+                                ProviderScope.containerOf(context)
                                     .read(appHomeViewModelProvider)
                                     .pageController
                                     .next();
@@ -395,6 +382,10 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                 onTap: () {
                                                   // model.updateIsGetCardNowClicked(
                                                   //     !isValid!);
+                                                  Navigator.pushNamed(
+                                                      context,
+                                                      RoutePaths
+                                                          .CreditCardSettings);
                                                 },
                                                 child: AppSvg.asset(
                                                     AssetUtils.settingsRed,
@@ -422,13 +413,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                 borderRadius: BorderRadius.circular(100)),
                             child: Center(
                               child: Text(
-                                S
-                                    .of(context)
-                                    .cardDelivered,
+                                S.of(context).cardDelivered,
                                 style: TextStyle(
-                                    color: Theme
-                                        .of(context)
-                                        .accentColor,
+                                    color: Theme.of(context).accentColor,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 12),
                               ),
@@ -444,14 +431,11 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                             Padding(
                               padding: EdgeInsets.only(top: 6),
                               child: Text(
-                                S
-                                    .of(context)
-                                    .swipeUpToViewTransaction,
+                                S.of(context).swipeUpToViewTransaction,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 12,
-                                    color: AppColor.dark_gray_1
-                                ),
+                                    color: AppColor.dark_gray_1),
                               ),
                             )
                           ],
