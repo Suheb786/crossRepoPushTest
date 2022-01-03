@@ -219,9 +219,9 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, bool>> changeDebitCardPin(
-      {String? status, required String pin}) async {
+      {required String pin}) async {
     final result = await safeApiCall(
-      _remoteDs.changeDebitCardPin(status: status, pin: pin),
+      _remoteDs.changeDebitCardPin(pin: pin),
     );
     return result!.fold(
       (l) => Left(l),
@@ -233,7 +233,7 @@ class CardRepositoryImpl extends CardRepository {
   Future<Either<NetworkError, bool>> unblockDebitCardPin(
       {String? status, required String pin}) async {
     final result = await safeApiCall(
-      _remoteDs.unblockDebitCardPin(status: status, pin: pin),
+      _remoteDs.unblockDebitCardPin(pin: pin),
     );
     return result!.fold(
       (l) => Left(l),

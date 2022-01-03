@@ -48,10 +48,10 @@ abstract class CardRemoteDs {
   Future<HttpResponse<ResponseEntity>> freezeDebitCard();
 
   Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
-      {String? status, required String pin});
+      {required String pin});
 
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
-      {String? status, required String pin});
+      {required String pin});
 
   Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(
       {num? atmWithdrawal,

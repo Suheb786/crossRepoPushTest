@@ -115,4 +115,4 @@ final otpForChangeCardPinUseCaseProvider =
 ///[EnterNewPinForCardUseCase] provider
 final enterNewPinForCardUseCaseProvider =
     Provider.autoDispose<EnterNewPinForCardUseCase>(
-        (ref) => EnterNewPinForCardUseCase());
+        (ref) => EnterNewPinForCardUseCase(ref.read(cardRepositoryProvider)));

@@ -57,7 +57,10 @@ class EnterNewPinForCardPageView
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
-                      model.enterNewPinForCard();
+                      model.enterNewPinForCard(
+                          ProviderScope.containerOf(context)
+                              .read(changeCardPinViewModelProvider)
+                              .cardType);
                     }
                   },
                   child: Card(

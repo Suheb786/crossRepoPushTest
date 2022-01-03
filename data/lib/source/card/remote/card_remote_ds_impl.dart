@@ -166,16 +166,16 @@ class CardRemoteDsImpl extends CardRemoteDs {
   Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
       {String? status, required String pin}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.changeDebitCardPin(ChangeDebitCardPinRequest(
-        baseData: baseData.toJson(), pinCode: pin, status: status));
+    return _apiService.changeDebitCardPin(
+        ChangeDebitCardPinRequest(baseData: baseData.toJson(), pinCode: pin));
   }
 
   @override
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
-      {String? status, required String pin}) async {
+      {required String pin}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.unblockDebitCardPin(ChangeDebitCardPinRequest(
-        baseData: baseData.toJson(), pinCode: pin, status: status));
+    return _apiService.unblockDebitCardPin(
+        ChangeDebitCardPinRequest(baseData: baseData.toJson(), pinCode: pin));
   }
 
   @override

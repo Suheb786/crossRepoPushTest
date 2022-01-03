@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/usecase/card_delivery/enter_new_pin_for_card_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -50,9 +51,11 @@ class EnterNewPinForCardPageViewModel extends BasePageViewModel {
     });
   }
 
-  void enterNewPinForCard() {
+  void enterNewPinForCard(CardType cardType) {
     _enterNewPinForCardRequest.safeAdd(EnterNewPinForCardUseCaseParams(
-        pin: newPinController.text, confirmPin: confirmPinController.text));
+        pin: newPinController.text,
+        confirmPin: confirmPinController.text,
+        cardType: cardType));
   }
 
   void validate() {
