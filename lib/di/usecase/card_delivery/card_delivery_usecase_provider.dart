@@ -8,6 +8,7 @@ import 'package:domain/usecase/card_delivery/create_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/credit_card_limits_update_usecase.dart';
 import 'package:domain/usecase/card_delivery/credit_card_pin_unblock_usecase.dart';
 import 'package:domain/usecase/card_delivery/debit_card_limits_update_usecase.dart';
+import 'package:domain/usecase/card_delivery/enter_new_pin_for_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_statement_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_statement_usecase.dart';
@@ -15,6 +16,7 @@ import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecas
 import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
+import 'package:domain/usecase/card_delivery/otp_for_change_card_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/unblock_debit_card_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/unfreeze_credit_card_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -104,3 +106,13 @@ final debitCardLimitsUpdateUseCaseProvider =
 final creditCardLimitsUpdateUseCaseProvider =
     Provider.autoDispose<CreditCardLimitsUpdateUseCase>((ref) =>
         CreditCardLimitsUpdateUseCase(ref.read(cardRepositoryProvider)));
+
+///[OtpForChangeCardPinUseCase] provider
+final otpForChangeCardPinUseCaseProvider =
+    Provider.autoDispose<OtpForChangeCardPinUseCase>(
+        (ref) => OtpForChangeCardPinUseCase());
+
+///[EnterNewPinForCardUseCase] provider
+final enterNewPinForCardUseCaseProvider =
+    Provider.autoDispose<EnterNewPinForCardUseCase>(
+        (ref) => EnterNewPinForCardUseCase());

@@ -13,6 +13,8 @@ import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page
 import 'package:neo_bank/feature/activity/activity_home/activity_home_page.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
+import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
+import 'package:neo_bank/feature/change_card_pin_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
@@ -360,6 +362,16 @@ class AppRouter {
             builder: (context) => ManageDebitCardLimitsPage(
                 settings.arguments as ManageCardLimitsArguments),
             settings: RouteSettings(name: RoutePaths.manageDebitLimit));
+
+      case RoutePaths.ChangeCardPin:
+        return CupertinoPageRoute(
+            builder: (context) => ChangeCardPinPage(),
+            settings: RouteSettings(name: RoutePaths.ChangeCardPin));
+
+      case RoutePaths.ChangeCardPinSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => ChangeCardPinSuccessPage(),
+            settings: RouteSettings(name: RoutePaths.ChangeCardPinSuccess));
 
       default:
         return CupertinoPageRoute(
