@@ -28,7 +28,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
         return !(cardData!.isApplied!)
             ? Center(
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 8.0, bottom: 15),
+                  padding: const EdgeInsets.only(bottom: 15),
                   child: AspectRatio(
                     aspectRatio: 0.62,
                     child: GestureDetector(
@@ -149,7 +149,12 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                     alignment: Alignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(top: 8.0, bottom: 15),
+                        padding: EdgeInsets.only(
+                            top: !(cardData.isCreditDelivered != null &&
+                                    cardData.isCreditDelivered)
+                                ? 8.0
+                                : 0.0,
+                            bottom: 15),
                         child: AspectRatio(
                           aspectRatio: 0.62,
                           child: GestureDetector(
@@ -445,186 +450,159 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                   ),
                 ),
                 back: Center(
-                  child: AspectRatio(
-                    aspectRatio: 0.62,
-                    child: GestureDetector(
-                      onHorizontalDragEnd: (details) {
-                        if (details.primaryVelocity!.isNegative) {
-                          ProviderScope.containerOf(context)
-                              .read(appHomeViewModelProvider)
-                              .pageController
-                              .next();
-                        } else {
-                          ProviderScope.containerOf(context)
-                              .read(appHomeViewModelProvider)
-                              .pageController
-                              .previous();
-                        }
-                      },
-                      child: Container(
-                        key: ValueKey(false),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16)),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          elevation: 2,
-                          color: Theme.of(context).primaryColor,
-                          margin: EdgeInsets.zero,
-                          shadowColor: Theme.of(context)
-                              .primaryColorDark
-                              .withOpacity(0.32),
-                          child: SingleChildScrollView(
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: 29.0, top: 38, right: 25),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        cardData.creditCard!.name ?? '',
-                                        style: TextStyle(
-                                            color:
-                                                Theme.of(context).accentColor,
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          model.cardKey.currentState!
-                                              .toggleCard();
-                                        },
-                                        child: Text(
-                                          S.of(context).flipBack,
+                  child: Padding(
+                    padding: EdgeInsets.only(bottom: 15.0),
+                    child: AspectRatio(
+                      aspectRatio: 0.62,
+                      child: GestureDetector(
+                        onHorizontalDragEnd: (details) {
+                          if (details.primaryVelocity!.isNegative) {
+                            ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .pageController
+                                .next();
+                          } else {
+                            ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .pageController
+                                .previous();
+                          }
+                        },
+                        child: Container(
+                          key: ValueKey(false),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16)),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            elevation: 2,
+                            color: Theme.of(context).primaryColor,
+                            margin: EdgeInsets.zero,
+                            shadowColor: Theme.of(context)
+                                .primaryColorDark
+                                .withOpacity(0.32),
+                            child: SingleChildScrollView(
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: 29.0, top: 38, right: 25),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          cardData.creditCard!.name ?? '',
                                           style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .accentTextTheme
-                                                  .bodyText1!
-                                                  .color,
-                                              fontSize: 14,
+                                              color:
+                                                  Theme.of(context).accentColor,
+                                              fontSize: 16,
                                               fontWeight: FontWeight.w600),
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 63),
-                                    child: Text(
-                                      cardData.creditCard!.cardNumber ?? '-',
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        color: Theme.of(context).accentColor,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 8),
-                                    child: Text(
-                                      S.of(context).cardNumber,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          color: Theme.of(context)
-                                              .accentColor
-                                              .withOpacity(0.6),
-                                          fontSize: 10),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 19),
-                                    child: Divider(
-                                      height: 1,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 21),
-                                    child: Text(
-                                      "140591314151414",
-                                      style: TextStyle(
-                                        color: Theme.of(context).accentColor,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 8),
-                                    child:
-                                        Text(S.of(context).linkedAccountNumber,
+                                        InkWell(
+                                          onTap: () {
+                                            model.cardKey.currentState!
+                                                .toggleCard();
+                                          },
+                                          child: Text(
+                                            S.of(context).flipBack,
                                             style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 10,
-                                              color: Theme.of(context)
-                                                  .accentColor
-                                                  .withOpacity(0.6),
-                                            )),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(top: 19),
-                                    child: Divider(
-                                      height: 1,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 21, bottom: 128),
-                                    child: Row(
-                                      children: [
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              cardData.creditCard!.expiryDate ??
-                                                  '-',
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 16,
                                                 color: Theme.of(context)
-                                                    .accentColor,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsets.only(top: 8),
-                                              child: Text(
-                                                S.of(context).expiryDate,
-                                                style: TextStyle(
-                                                    fontSize: 10,
-                                                    color: Theme.of(context)
-                                                        .accentColor
-                                                        .withOpacity(0.6),
-                                                    fontWeight:
-                                                        FontWeight.w600),
-                                              ),
-                                            )
-                                          ],
+                                                    .accentTextTheme
+                                                    .bodyText1!
+                                                    .color,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 63),
+                                      child: Text(
+                                        cardData.creditCard!.cardNumber ?? '-',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          color: Theme.of(context).accentColor,
+                                          fontSize: 16,
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.only(left: 59.0),
-                                          child: Column(
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 8),
+                                      child: Text(
+                                        S.of(context).cardNumber,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            color: Theme.of(context)
+                                                .accentColor
+                                                .withOpacity(0.6),
+                                            fontSize: 10),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 19),
+                                      child: Divider(
+                                        height: 1,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 21),
+                                      child: Text(
+                                        "140591314151414",
+                                        style: TextStyle(
+                                          color: Theme.of(context).accentColor,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 8),
+                                      child: Text(
+                                          S.of(context).linkedAccountNumber,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 10,
+                                            color: Theme.of(context)
+                                                .accentColor
+                                                .withOpacity(0.6),
+                                          )),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(top: 19),
+                                      child: Divider(
+                                        height: 1,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(top: 21, bottom: 128),
+                                      child: Row(
+                                        children: [
+                                          Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                cardData.creditCard!.cvv ?? '-',
+                                                cardData.creditCard!
+                                                        .expiryDate ??
+                                                    '-',
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.w600,
+                                                  fontSize: 16,
                                                   color: Theme.of(context)
                                                       .accentColor,
-                                                  fontSize: 16,
                                                 ),
                                               ),
                                               Padding(
                                                 padding:
                                                     EdgeInsets.only(top: 8),
                                                 child: Text(
-                                                  S.of(context).cvv,
+                                                  S.of(context).expiryDate,
                                                   style: TextStyle(
                                                       fontSize: 10,
                                                       color: Theme.of(context)
@@ -636,11 +614,45 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                               )
                                             ],
                                           ),
-                                        ),
-                                      ],
+                                          Padding(
+                                            padding:
+                                                EdgeInsets.only(left: 59.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  cardData.creditCard!.cvv ??
+                                                      '-',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Theme.of(context)
+                                                        .accentColor,
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      EdgeInsets.only(top: 8),
+                                                  child: Text(
+                                                    S.of(context).cvv,
+                                                    style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Theme.of(context)
+                                                            .accentColor
+                                                            .withOpacity(0.6),
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),

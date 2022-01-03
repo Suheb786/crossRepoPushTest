@@ -1,3 +1,4 @@
+import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:rxdart/rxdart.dart';
@@ -6,12 +7,7 @@ class PurposeDetailDialogViewModel extends BasePageViewModel {
   final FixedExtentScrollController scrollController =
       FixedExtentScrollController();
 
-  List<String> purposeDetailList = [
-    "Invoice Payment and Purchase",
-    "Utility Bill Payment",
-    "Prepaid Cards Recharging",
-    "Standing Orders"
-  ];
+  List<PurposeDetail>? purposeDetailList = [];
 
   ///current selected index subject
   PublishSubject<int> _currentSelectIndex = PublishSubject();
@@ -22,6 +18,8 @@ class PurposeDetailDialogViewModel extends BasePageViewModel {
   void currentIndexUpdate(int index) {
     _currentSelectIndex.add(index);
   }
+
+  PurposeDetailDialogViewModel(this.purposeDetailList);
 
   @override
   void dispose() {

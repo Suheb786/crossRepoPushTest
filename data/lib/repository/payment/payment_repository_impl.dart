@@ -6,6 +6,7 @@ import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
+import 'package:domain/model/purpose/purpose_response.dart';
 import 'package:domain/repository/payment/payment_repository.dart';
 
 class PaymentRepositoryImpl extends PaymentRepository {
@@ -101,6 +102,18 @@ class PaymentRepositoryImpl extends PaymentRepository {
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, PurposeResponse>> getPurpose(
+      String toAccount, String transferType) async {
+    final result = await safeApiCall(
+      paymentRemoteDs.getPurpose(toAccount, transferType),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 }

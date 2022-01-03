@@ -700,4 +700,6 @@
   "emptyConfirmPin": "Enter pin again",
   "cardPinChangedSuccessfully": "Card PIN changed successfully",
   "cardPinChangedDesc": "Your may use your new PIN for payments immediately."
+  "requestNotCompleted": "Your Request Is Not Completed",
+  "limitExceeded": "Limit exceeded"
 }

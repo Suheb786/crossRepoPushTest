@@ -86,7 +86,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                             Navigator.pop(context);
                           }, onSelected: (value) {
                             Navigator.pop(context);
-                            model.updatePurpose(value);
+                            // model.updatePurpose(value);
                           });
                         },
                         suffixIcon: (enabled, value) {
@@ -111,7 +111,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                             Navigator.pop(context);
                           }, onSelected: (value) {
                             Navigator.pop(context);
-                            model.updatePurposeDetail(value);
+                            // model.updatePurposeDetail(value);
                           });
                         },
                         suffixIcon: (enabled, value) {

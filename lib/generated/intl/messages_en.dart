@@ -697,6 +697,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Let’s Create\nYour Profile"),
         "letsSet4DigitPin":
             MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
+        "limitExceeded": MessageLookupByLibrary.simpleMessage("Limit exceeded"),
         "linkedAccountNumber":
             MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
         "locateATM": MessageLookupByLibrary.simpleMessage("Locate ATM"),

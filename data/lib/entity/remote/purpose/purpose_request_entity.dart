@@ -4,8 +4,8 @@ part "purpose_request_entity.g.dart";
 
 @JsonSerializable()
 class PurposeRequestEntity {
-  @JsonKey(name: "ToAmount")
-  final String? toAmount;
+  @JsonKey(name: "ToAccount")
+  final String? toAccount;
   @JsonKey(name: "TransferType")
   final String? transferType;
   @JsonKey(name: "getToken")
@@ -15,7 +15,7 @@ class PurposeRequestEntity {
 
   PurposeRequestEntity(
       {required this.baseData,
-      this.toAmount,
+      this.toAccount,
       this.transferType,
       this.getToken: true});
 
