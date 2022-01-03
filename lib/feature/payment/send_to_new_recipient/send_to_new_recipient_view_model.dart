@@ -1,12 +1,18 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/transfer_respone.dart';
+import 'package:domain/model/purpose/purpose.dart';
+import 'package:domain/model/purpose/purpose_detail.dart';
+import 'package:domain/model/purpose/purpose_response.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
+import 'package:domain/usecase/payment/get_purpose_usecase.dart';
 import 'package:domain/usecase/payment/send_to_new_recipient_usecase.dart';
 import 'package:domain/usecase/payment/transfer_verify_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -23,12 +29,22 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
 
   UploadDocumentUseCase _uploadDocumentUseCase;
 
+  GetPurposeUseCase _getPurposeUseCase;
+
   TextEditingController ibanOrMobileController = TextEditingController();
   TextEditingController purposeController = TextEditingController();
   TextEditingController purposeDetailController = TextEditingController();
 
   bool? dropDownEnabled = true;
   String selectedProfile = '';
+
+  List<Purpose> purposeList = [];
+
+  List<PurposeDetail> purposeDetaiList = [];
+
+  Purpose? purpose;
+
+  PurposeDetail? purposeDetail;
 
   PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
 
@@ -51,6 +67,8 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   ///upload profile
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest =
       PublishSubject();
+
+  PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
 
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
 
@@ -94,7 +112,15 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   Stream<bool> get showNameVisibilityStream =>
       _showNameVisibilityRequest.stream;
 
+  PublishSubject<Resource<PurposeResponse>> _getPurposeResponse =
+      PublishSubject();
+
+  Stream<Resource<PurposeResponse>> get getPurposeResponseStream =>
+      _getPurposeResponse.stream;
+
   bool isFriend = false;
+
+  num? limit;
 
   ///transfer verify request
   PublishSubject<TransferVerifyUseCaseParams> _transferVerifyRequest =
@@ -107,8 +133,12 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get transferVerifyStream =>
       _transferVerifyResponse.stream;
 
-  SendToNewRecipientViewModel(this._useCase, this._uploadDocumentUseCase,
-      this._checkSendMoneyUseCase, this._transferVerifyUseCase) {
+  SendToNewRecipientViewModel(
+      this._useCase,
+      this._uploadDocumentUseCase,
+      this._checkSendMoneyUseCase,
+      this._transferVerifyUseCase,
+      this._getPurposeUseCase) {
     _sendToNewRecipientRequest.listen((value) {
       RequestManager(value, createCall: () => _useCase.execute(params: value))
           .asFlow()
@@ -143,6 +173,9 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
           transferResponse =
               event.data!.checkSendMoneyContent!.transferResponse!;
           _showNameVisibilityRequest.safeAdd(true);
+          getPurpose(
+              event.data!.checkSendMoneyContent!.transferResponse!.toAccount!,
+              "TransferI");
         }
       });
     });
@@ -160,6 +193,37 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getPurposeRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getPurposeUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getPurposeResponse.safeAdd(event);
+        purposeList.clear();
+        purposeList
+            .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+        print("got purposeList: $purposeList");
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+  }
+
+  void getPurpose(String toAccount, String transferType) {
+    _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
+      toAccount: toAccount,
+      transferType: transferType,
+    ));
+  }
+
+  void updatePurposeDetaiList(List<PurposeDetail> list) {
+    purposeDetailController.clear();
+    purposeDetaiList.clear();
+    purposeDetaiList.addAll(list);
   }
 
   void checkSendMoney({required String iban, required String amount}) {
@@ -167,11 +231,15 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
         toAccount: iban, toAmount: int.parse(amount)));
   }
 
-  void sendToNewRecipient() {
+  void sendToNewRecipient(BuildContext context) {
     _sendToNewRecipientRequest.safeAdd(SendToNewRecipientUseCaseParams(
         ibanOrMobile: ibanOrMobileController.text,
         purpose: purposeController.text,
-        purposeDetail: purposeDetailController.text));
+        purposeDetail: purposeDetailController.text,
+        amount: int.parse(ProviderScope.containerOf(context)
+            .read(sendMoneyViewModelProvider)
+            .currentPinValue),
+        limit: limit));
   }
 
   void addImage(String image) {
@@ -183,12 +251,15 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
         .safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
 
-  void updatePurpose(String value) {
-    purposeController.text = value;
+  void updatePurpose(Purpose value) {
+    purposeController.text = value.labelEn!;
+    purpose = value;
   }
 
-  void updatePurposeDetail(String value) {
-    purposeDetailController.text = value;
+  void updatePurposeDetail(PurposeDetail value) {
+    purposeDetailController.text = value.labelEn!;
+    purposeDetail = value;
+    limit = value.limit!;
   }
 
   void removeImage() {

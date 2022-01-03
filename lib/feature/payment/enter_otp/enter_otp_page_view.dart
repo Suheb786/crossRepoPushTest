@@ -38,7 +38,8 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                   if (data.status == Status.SUCCESS) {
                     print('success');
                     Navigator.pushNamed(
-                        context, RoutePaths.SendAmountToContactSuccess,arguments: data.data!.transferSuccessContent);
+                        context, RoutePaths.SendAmountToContactSuccess,
+                        arguments: data.data!.transferSuccessContent);
                   } else if (data.status == Status.ERROR) {
                     print('error');
                     Navigator.pushNamed(context, RoutePaths.SendMoneyFailure);
@@ -56,8 +57,8 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                               .transferResponse,
                           ProviderScope.containerOf(context)
                               .read(sendToNewRecipientViewModelProvider)
-                              .purposeDetailController
-                              .text,
+                              .purposeDetail!
+                              .strCode!,
                           ProviderScope.containerOf(context)
                               .read(sendToNewRecipientViewModelProvider)
                               .isFriend,
