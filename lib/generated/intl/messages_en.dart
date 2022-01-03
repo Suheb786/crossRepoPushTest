@@ -160,6 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "businessNameOptional":
             MessageLookupByLibrary.simpleMessage("BUSINESS NAME (OPTIONAL)"),
         "businessType": MessageLookupByLibrary.simpleMessage("Business Type"),
+        "callHasEnded": MessageLookupByLibrary.simpleMessage("Call has ended"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cancelThisCard":
@@ -372,6 +373,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Engagement Team"),
         "engagementTeamDescription": MessageLookupByLibrary.simpleMessage(
             "Please select your preferred communication. Your call or chat may be monitored or recorded to ensure the quality of service."),
+        "engagementTeamGettingReady": MessageLookupByLibrary.simpleMessage(
+            "Our Engagement Team\nis getting ready"),
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
         "enterCode": MessageLookupByLibrary.simpleMessage(
@@ -663,6 +666,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
         "linkedAccountNumber":
             MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
+        "liveChat": MessageLookupByLibrary.simpleMessage("Live Chat"),
         "locateATM": MessageLookupByLibrary.simpleMessage("Locate ATM"),
         "locationServiceDisabled": MessageLookupByLibrary.simpleMessage(
             "Location services are disabled. Please allow access to NeoBank"),
@@ -998,6 +1002,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You have successfully created your profile, now let\'s get your account up and running."),
         "swipeDownToCancel":
             MessageLookupByLibrary.simpleMessage("Swipe down to cancel"),
+        "swipeDownToCancelVoiceCall": MessageLookupByLibrary.simpleMessage(
+            "Swipe down to cancel voice call"),
         "swipeDownToLogin":
             MessageLookupByLibrary.simpleMessage("Swipe down to login"),
         "swipeToConfirm":
@@ -1049,8 +1055,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "termsConditions":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
+        "thankYouForContacting": MessageLookupByLibrary.simpleMessage(
+            "Thank you for contacting\nBlink Engagement Team.\nFeel free to contact us anytime."),
         "thankYouForInterestWillSendUpdate": MessageLookupByLibrary.simpleMessage(
             "Thank you for your interest! We’ll\nsend an update to your email once\nthe access is available."),
+        "thankYouForWaiting": MessageLookupByLibrary.simpleMessage(
+            "Thank you for waiting, the voice call\nwill start automatically"),
         "thankYouForWaitingCallWillStartAutomatically":
             MessageLookupByLibrary.simpleMessage(
                 "Thank you for waiting, the video call will start automatically"),
@@ -1119,6 +1129,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "It’s time for a quick\nvideo call"),
         "visaPlatinumCard":
             MessageLookupByLibrary.simpleMessage("ViSA Platinum Credit Card"),
+        "voiceCall": MessageLookupByLibrary.simpleMessage("Voice Call"),
+        "voiceChat": MessageLookupByLibrary.simpleMessage("Voice Chat"),
         "w8Form": MessageLookupByLibrary.simpleMessage("W8 Form"),
         "w8FormDesc": MessageLookupByLibrary.simpleMessage(
             "If you already have a physical pre-filled W8 form please upload below."),
@@ -1131,6 +1143,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ways you can add\nmoney into your account"),
         "weNeedToMatchNamesONTaxReturn": MessageLookupByLibrary.simpleMessage(
             "We need to match the names on your tax return"),
+        "weWillConnectYou": MessageLookupByLibrary.simpleMessage(
+            "We will connect you\nin Blink..."),
         "weWillConnectYouInBlink": MessageLookupByLibrary.simpleMessage(
             "We will connect you\nin blink..."),
         "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),

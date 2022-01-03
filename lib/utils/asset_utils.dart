@@ -111,6 +111,12 @@ class AssetUtils {
   static const String link = svg + "link.svg";
   static const String report = svg + "report.svg";
   static const String settingBars = svg + "setting_bars.svg";
+  static const String voiceCall = svg + "voice_call.svg";
+  static const String liveChat = svg + "live_chat.svg";
+  static const String helpAgent = svg + "help_agent.svg";
+  static const String speaker = svg + "speaker.svg";
+  static const String micBlue = svg + "mic_blue.svg";
+  static const String hangUp = svg + "hang_up.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

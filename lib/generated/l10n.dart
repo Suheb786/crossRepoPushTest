@@ -6519,6 +6519,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Voice Call`
+  String get voiceCall {
+    return Intl.message(
+      'Voice Call',
+      name: 'voiceCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Live Chat`
+  String get liveChat {
+    return Intl.message(
+      'Live Chat',
+      name: 'liveChat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Voice Chat`
+  String get voiceChat {
+    return Intl.message(
+      'Voice Chat',
+      name: 'voiceChat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our Engagement Team\nis getting ready`
+  String get engagementTeamGettingReady {
+    return Intl.message(
+      'Our Engagement Team\nis getting ready',
+      name: 'engagementTeamGettingReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will connect you\nin Blink...`
+  String get weWillConnectYou {
+    return Intl.message(
+      'We will connect you\nin Blink...',
+      name: 'weWillConnectYou',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you for waiting, the voice call\nwill start automatically`
+  String get thankYouForWaiting {
+    return Intl.message(
+      'Thank you for waiting, the voice call\nwill start automatically',
+      name: 'thankYouForWaiting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Swipe down to cancel voice call`
+  String get swipeDownToCancelVoiceCall {
+    return Intl.message(
+      'Swipe down to cancel voice call',
+      name: 'swipeDownToCancelVoiceCall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Call has ended`
+  String get callHasEnded {
+    return Intl.message(
+      'Call has ended',
+      name: 'callHasEnded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you for contacting\nBlink Engagement Team.\nFeel free to contact us anytime.`
+  String get thankYouForContacting {
+    return Intl.message(
+      'Thank you for contacting\nBlink Engagement Team.\nFeel free to contact us anytime.',
+      name: 'thankYouForContacting',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
