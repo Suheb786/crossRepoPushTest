@@ -6820,6 +6820,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Limit exceeded`
+  String get limitExceeded {
+    return Intl.message(
+      'Limit exceeded',
+      name: 'limitExceeded',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

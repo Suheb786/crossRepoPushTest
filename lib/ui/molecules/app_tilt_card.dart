@@ -6,10 +6,12 @@ class AppTiltCard extends StatelessWidget {
   final int? pageViewIndex;
   final int? currentPage;
   final Widget? child;
+  final int degree;
 
   AppTiltCard(
       {required this.pageViewIndex,
       required this.currentPage,
+      this.degree: 2,
       required this.child});
 
   @override
@@ -25,8 +27,8 @@ class AppTiltCard extends StatelessWidget {
         transform: Matrix4.rotationZ(pageViewIndex! == currentPage!
             ? 0
             : pageViewIndex! < currentPage!
-                ? -2 * (math.pi / 180)
-                : 2 * (math.pi / 180)),
+                ? -degree * (math.pi / 180)
+                : degree * (math.pi / 180)),
         child: AnimatedContainer(
           duration: Duration(milliseconds: 500),
           transform: Matrix4.diagonal3Values(

@@ -323,10 +323,7 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
 
       case RoutePaths.DebitCardSettings:
-        return CupertinoPageRoute(
-            builder: (context) => DebitCardSettingsPage(),
-            settings: RouteSettings(name: RoutePaths.DebitCardSettings));
-
+        return CustomRoute.createRoute(DebitCardSettingsPage());
       case RoutePaths.CreditCardSettings:
         return CupertinoPageRoute(
             builder: (context) => CreditCardSettingsPage(),
