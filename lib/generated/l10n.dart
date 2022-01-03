@@ -6751,6 +6751,76 @@ class S {
     );
   }
 
+  /// `Limit value cannot be set greater than max limit value`
+  String get invalidLimitValue {
+    return Intl.message(
+      'Limit value cannot be set greater than max limit value',
+      name: 'invalidLimitValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter new card PIN\nand confirm PIN`
+  String get enterNewCardPinAndConfirmPin {
+    return Intl.message(
+      'Enter new card PIN\nand confirm PIN',
+      name: 'enterNewCardPinAndConfirmPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `new pin `
+  String get newPin {
+    return Intl.message(
+      'new pin ',
+      name: 'newPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CONFIRM new pin `
+  String get confirmNewPin {
+    return Intl.message(
+      'CONFIRM new pin ',
+      name: 'confirmNewPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter pin again`
+  String get emptyConfirmPin {
+    return Intl.message(
+      'Enter pin again',
+      name: 'emptyConfirmPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card PIN changed successfully`
+  String get cardPinChangedSuccessfully {
+    return Intl.message(
+      'Card PIN changed successfully',
+      name: 'cardPinChangedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your may use your new PIN for payments immediately.`
+  String get cardPinChangedDesc {
+    return Intl.message(
+      'Your may use your new PIN for payments immediately.',
+      name: 'cardPinChangedDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Limit exceeded`
   String get limitExceeded {
     return Intl.message(

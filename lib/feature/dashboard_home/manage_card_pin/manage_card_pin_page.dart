@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page_view.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_view_model.dart';
 
@@ -27,6 +28,12 @@ class ManageCardPinPageState
     return getViewModel().manageCardPinArguments!.cardType == CardType.CREDIT
         ? Theme.of(context).primaryColor
         : Theme.of(context).canvasColor;
+  }
+
+  @override
+  void onModelReady(ManageCardPinViewModel model) {
+    ProviderScope.containerOf(context).read(appHomeViewModelProvider).cardType =
+        model.manageCardPinArguments!.cardType;
   }
 
   @override

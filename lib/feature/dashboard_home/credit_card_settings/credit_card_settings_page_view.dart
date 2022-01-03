@@ -6,6 +6,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
+import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
@@ -134,7 +135,9 @@ class CreditCardSettingsPageView
                         SettingTile(
                           onTap: () {
                             Navigator.pushNamed(
-                                context, RoutePaths.manageDebitLimit);
+                                context, RoutePaths.manageDebitLimit,
+                                arguments: ManageCardLimitsArguments(
+                                    cardType: CardType.CREDIT));
                           },
                           title: S.of(context).manageCardLimits,
                           tileIcon: AssetUtils.settingBars,
