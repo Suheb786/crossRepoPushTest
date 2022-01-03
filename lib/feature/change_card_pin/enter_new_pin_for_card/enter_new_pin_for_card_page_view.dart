@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/feature/change_card_pin/enter_new_pin_for_card/enter_new_pin_for_card_page_view_model.dart';
+import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -35,7 +37,11 @@ class EnterNewPinForCardPageView
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  Navigator.pushNamed(context, RoutePaths.ChangeCardPinSuccess);
+                  Navigator.pushNamed(context, RoutePaths.ChangeCardPinSuccess,
+                      arguments: ChangeCardPinSuccessArguments(
+                          cardType: ProviderScope.containerOf(context)
+                              .read(changeCardPinViewModelProvider)
+                              .cardType));
                 } else if (data.status == Status.ERROR) {
                   if (data.appError!.type == ErrorType.EMPTY_PIN) {
                     model.newPinKey.currentState!.isValid = false;

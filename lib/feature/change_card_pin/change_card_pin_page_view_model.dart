@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
@@ -8,6 +9,8 @@ class ChangeCardPinPageViewModel extends BasePageViewModel {
 
   ///current page index request holder
   PublishSubject<int> _currentPageSubject = PublishSubject();
+
+  CardType cardType = CardType.DEBIT;
 
   ///current page index stream
   Stream<int> get currentPageStream => _currentPageSubject.stream;

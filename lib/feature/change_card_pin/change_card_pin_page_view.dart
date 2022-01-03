@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -25,7 +26,9 @@ class ChangeCardPinPageView
   @override
   Widget build(BuildContext context, model) {
     return Container(
-      color: Theme.of(context).canvasColor,
+      color: model.cardType == CardType.DEBIT
+          ? Theme.of(context).canvasColor
+          : Theme.of(context).primaryColor,
       padding: EdgeInsets.only(top: 56),
       child: AppStreamBuilder<int>(
         stream: model.currentPageStream,
@@ -41,7 +44,9 @@ class ChangeCardPinPageView
                           Text(
                             S.of(context).changeCardPin.toUpperCase(),
                             style: TextStyle(
-                                color: Theme.of(context).primaryColorDark,
+                                color: model.cardType == CardType.DEBIT
+                                    ? Theme.of(context).primaryColorDark
+                                    : Theme.of(context).accentColor,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w600),
                           ),
@@ -66,7 +71,9 @@ class ChangeCardPinPageView
                                 ),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    color: Theme.of(context).primaryColorDark,
+                                    color: model.cardType == CardType.DEBIT
+                                        ? Theme.of(context).primaryColorDark
+                                        : Theme.of(context).accentColor,
                                     fontSize: 20,
                                     fontWeight: FontWeight.w600),
                               ),
@@ -86,7 +93,9 @@ class ChangeCardPinPageView
                                   '+962 79 322 8080',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
-                                      color: Theme.of(context).primaryColorDark,
+                                      color: model.cardType == CardType.DEBIT
+                                          ? Theme.of(context).primaryColorDark
+                                          : Theme.of(context).accentColor,
                                       fontSize: 20,
                                       fontWeight: FontWeight.w600),
                                 ),

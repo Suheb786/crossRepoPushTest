@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -7,6 +8,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 
 class ChangeCardPinSuccessPageView
     extends BasePageViewWidget<ChangeCardPinSuccessPageViewModel> {
@@ -23,7 +25,9 @@ class ChangeCardPinSuccessPageView
       child: Container(
           height: double.infinity,
           width: double.infinity,
-          color: Theme.of(context).canvasColor,
+          color: model.arguments.cardType == CardType.DEBIT
+              ? Theme.of(context).canvasColor
+              : Theme.of(context).primaryColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -38,8 +42,9 @@ class ChangeCardPinSuccessPageView
                         children: [
                           Image.asset(
                             AssetUtils.line,
-                            color:
-                                Theme.of(context).accentColor.withOpacity(0.4),
+                            color: model.arguments.cardType == CardType.DEBIT
+                                ? Theme.of(context).accentColor.withOpacity(0.4)
+                                : AppColor.softRed,
                           ),
                           Align(
                             alignment: Alignment.center,
@@ -47,11 +52,18 @@ class ChangeCardPinSuccessPageView
                               height: 111.37,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context).primaryColor,
+                                color:
+                                    model.arguments.cardType == CardType.DEBIT
+                                        ? Theme.of(context).primaryColor
+                                        : Theme.of(context).canvasColor,
                               ),
                               child: Center(
                                   child: AppSvg.asset(AssetUtils.right,
-                                      color: Theme.of(context).accentColor)),
+                                      color: model.arguments.cardType ==
+                                              CardType.DEBIT
+                                          ? Theme.of(context).accentColor
+                                          : Theme.of(context)
+                                              .primaryColorDark)),
                             ),
                           ),
                         ],
@@ -73,7 +85,10 @@ class ChangeCardPinSuccessPageView
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 24,
-                                  color: Theme.of(context).primaryColorDark),
+                                  color:
+                                      model.arguments.cardType == CardType.DEBIT
+                                          ? Theme.of(context).primaryColorDark
+                                          : Theme.of(context).accentColor),
                             ),
                           ),
                           SizedBox(
@@ -88,7 +103,10 @@ class ChangeCardPinSuccessPageView
                               style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 14,
-                                  color: Theme.of(context).primaryColorDark),
+                                  color:
+                                      model.arguments.cardType == CardType.DEBIT
+                                          ? Theme.of(context).primaryColorDark
+                                          : Theme.of(context).accentColor),
                             ),
                           ),
                         ],
@@ -102,8 +120,12 @@ class ChangeCardPinSuccessPageView
                 children: [
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    textColor: Theme.of(context).primaryColorDark,
-                    borderColor: Theme.of(context).primaryColorDark,
+                    textColor: model.arguments.cardType == CardType.DEBIT
+                        ? Theme.of(context).primaryColorDark
+                        : Theme.of(context).accentColor,
+                    borderColor: model.arguments.cardType == CardType.DEBIT
+                        ? Theme.of(context).primaryColorDark
+                        : Theme.of(context).accentColor,
                   ),
                   SizedBox(
                     height: 5,
@@ -116,7 +138,9 @@ class ChangeCardPinSuccessPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
-                          color: Theme.of(context).primaryColorDark,
+                          color: model.arguments.cardType == CardType.DEBIT
+                              ? Theme.of(context).primaryColorDark
+                              : Theme.of(context).accentColor,
                           fontWeight: FontWeight.w400,
                           fontSize: 12,
                         ),

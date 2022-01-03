@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,7 +37,12 @@ class OtpForChangeCardPinPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).canvasColor;
+    return ProviderScope.containerOf(context)
+                .read(changeCardPinViewModelProvider)
+                .cardType ==
+            CardType.DEBIT
+        ? Theme.of(context).canvasColor
+        : Theme.of(context).primaryColor;
   }
 
   @override

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page_view.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page_view_model.dart';
 
@@ -15,6 +16,13 @@ class ChangeCardPinPageState
   @override
   ProviderBase provideBase() {
     return changeCardPinViewModelProvider;
+  }
+
+  @override
+  void onModelReady(ChangeCardPinPageViewModel model) {
+    model.cardType = ProviderScope.containerOf(context)
+        .read(appHomeViewModelProvider)
+        .cardType;
   }
 
   @override

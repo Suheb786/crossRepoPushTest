@@ -9,6 +9,7 @@ import 'package:neo_bank/feature/change_card_pin/change_card_pin_page_view_model
 import 'package:neo_bank/feature/change_card_pin/enter_new_pin_for_card/enter_new_pin_for_card_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin/otp_for_change_card_pin/otp_for_change_card_pin_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin_success/card_ready_success_page_view_model.dart';
+import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_view_model.dart';
@@ -80,7 +81,7 @@ final enterNewCardPinViewModelProvider =
 );
 
 ///change card pin success view model provider
-final changeCardPinSuccessViewModelProvider =
-    ChangeNotifierProvider.autoDispose<ChangeCardPinSuccessPageViewModel>(
-  (ref) => ChangeCardPinSuccessPageViewModel(),
+final changeCardPinSuccessViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<ChangeCardPinSuccessPageViewModel, ChangeCardPinSuccessArguments>(
+  (ref, args) => ChangeCardPinSuccessPageViewModel(args),
 );
