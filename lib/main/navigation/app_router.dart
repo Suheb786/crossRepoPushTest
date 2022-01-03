@@ -330,11 +330,11 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.CreditCardSettings));
 
       case RoutePaths.ManageCardPin:
-        return CupertinoPageRoute(
-            builder: (context) => ManageCardPinPage(
-                manageCardPinArguments:
-                    settings.arguments as ManageCardPinArguments),
-            settings: RouteSettings(name: RoutePaths.ManageCardPin));
+        return CustomRoute.createRoute(
+          ManageCardPinPage(
+              manageCardPinArguments:
+                  settings.arguments as ManageCardPinArguments),
+        );
 
       case RoutePaths.CardPinUnBlockSuccess:
         return CupertinoPageRoute(
@@ -355,10 +355,8 @@ class AppRouter {
                 RouteSettings(name: RoutePaths.DebitCardReplacementSuccess));
 
       case RoutePaths.manageDebitLimit:
-        return CupertinoPageRoute(
-            builder: (context) => ManageDebitCardLimitsPage(
-                settings.arguments as ManageCardLimitsArguments),
-            settings: RouteSettings(name: RoutePaths.manageDebitLimit));
+        return CustomRoute.createRoute(ManageDebitCardLimitsPage(
+            settings.arguments as ManageCardLimitsArguments));
 
       case RoutePaths.ChangeCardPin:
         return CupertinoPageRoute(
