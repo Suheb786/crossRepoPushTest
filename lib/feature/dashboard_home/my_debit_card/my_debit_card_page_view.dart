@@ -34,7 +34,12 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                 alignment: Alignment.center,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: 8.0, bottom: 15),
+                    padding: EdgeInsets.only(
+                        top: !(cardData!.isDebitDelivered != null &&
+                                cardData.isDebitDelivered)
+                            ? 8.0
+                            : 0.0,
+                        bottom: 15),
                     child: AspectRatio(
                       aspectRatio: 0.62,
                       child: GestureDetector(
@@ -127,7 +132,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                             child: Padding(
                                               padding: EdgeInsets.only(top: 21),
                                               child: Text(
-                                                cardData!.debitCard!
+                                                cardData.debitCard!
                                                         .accountTitle ??
                                                     '',
                                                 style: TextStyle(
@@ -220,7 +225,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
 
                   ///delivered button
                   Visibility(
-                    visible: !(cardData!.isDebitDelivered != null &&
+                    visible: !(cardData.isDebitDelivered != null &&
                         cardData.isDebitDelivered),
                     child: Positioned(
                       top: 0,
@@ -246,7 +251,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
               ),
             ),
             back: Padding(
-              padding: EdgeInsets.only(top: 8.0, bottom: 15),
+              padding: EdgeInsets.only(bottom: 15),
               child: AspectRatio(
                 aspectRatio: 0.62,
                 child: GestureDetector(

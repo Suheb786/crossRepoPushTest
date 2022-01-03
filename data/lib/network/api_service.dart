@@ -70,6 +70,8 @@ import 'package:data/entity/remote/payment/request_to_pay_content_response_entit
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
+import 'package:data/entity/remote/purpose/purpose_request_entity.dart';
+import 'package:data/entity/remote/purpose/purpose_response_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
@@ -483,4 +485,8 @@ abstract class ApiService {
   @POST("/transfer/TransferAPIVerify")
   Future<HttpResponse<ResponseEntity>> transferVerify(
       @Body() BaseRequest baseRequest);
+
+  @POST("/transfer/TransferPurpose")
+  Future<HttpResponse<PurposeResponseEntity>> getPurpose(
+      @Body() PurposeRequestEntity purposeRequestEntity);
 }

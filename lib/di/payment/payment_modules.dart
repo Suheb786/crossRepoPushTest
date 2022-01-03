@@ -1,5 +1,7 @@
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/transfer_success_content.dart';
+import 'package:domain/model/purpose/purpose.dart';
+import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/payment/payment_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
@@ -95,11 +97,12 @@ final requestMoneyViewModelProvider =
 
 final sendToNewRecipientViewModelProvider =
     ChangeNotifierProvider.autoDispose<SendToNewRecipientViewModel>(
-  (ref) => SendToNewRecipientViewModel(
+            (ref) => SendToNewRecipientViewModel(
       ref.read(sendToNewRecipientUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
       ref.read(checkSendMoneyUseCaseProvider),
-      ref.read(transferVerifyUseCaseProvider)),
+      ref.read(transferVerifyUseCaseProvider),
+      ref.read(getPurposeUseCaseProvider)),
 );
 
 final enterOtpViewModelProvider =
@@ -110,10 +113,11 @@ final enterOtpViewModelProvider =
 
 final requestFromNewRecipientViewModelProvider =
     ChangeNotifierProvider.autoDispose<RequestFromNewRecipientViewModel>(
-  (ref) => RequestFromNewRecipientViewModel(
+            (ref) => RequestFromNewRecipientViewModel(
       ref.read(requestFromNewRecipientUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
-      ref.read(getAccountByAliasUseCaseProvider)),
+      ref.read(getAccountByAliasUseCaseProvider),
+      ref.read(getPurposeUseCaseProvider)),
 );
 
 final paymentToNewRecipientViewModelProvider =
@@ -138,11 +142,11 @@ final ibanDialogViewModelProvider =
         (ref) => IbanDialogViewModel());
 
 ///transaction purpose Detail dialog view model provider
-final purposeDetailDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<PurposeDetailDialogViewModel>(
-        (ref) => PurposeDetailDialogViewModel());
+final purposeDetailDialogViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PurposeDetailDialogViewModel, List<PurposeDetail>>(
+        (ref, args) => PurposeDetailDialogViewModel(args));
 
 ///transaction purpose dialog view model provider
-final purposeDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<PurposeDialogViewModel>(
-        (ref) => PurposeDialogViewModel());
+final purposeDialogViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<PurposeDialogViewModel, List<Purpose>>(
+        (ref, args) => PurposeDialogViewModel(args));

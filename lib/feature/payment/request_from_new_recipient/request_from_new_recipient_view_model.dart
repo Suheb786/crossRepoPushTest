@@ -1,7 +1,11 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
+import 'package:domain/model/purpose/purpose.dart';
+import 'package:domain/model/purpose/purpose_detail.dart';
+import 'package:domain/model/purpose/purpose_response.dart';
 import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
+import 'package:domain/usecase/payment/get_purpose_usecase.dart';
 import 'package:domain/usecase/payment/request_from_new_recipient_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +26,8 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
   UploadDocumentUseCase _uploadDocumentUseCase;
 
+  GetPurposeUseCase _getPurposeUseCase;
+
   TextEditingController ibanOrMobileController = TextEditingController();
   TextEditingController purposeController = TextEditingController();
   TextEditingController purposeDetailController = TextEditingController();
@@ -30,21 +36,25 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
   String selectedProfile = '';
 
+  num? limit;
+
   ScrollController scrollController = ScrollController();
 
-  BehaviorSubject<String> _uploadProfilePhotoResponse = BehaviorSubject.seeded(
-      "");
+  BehaviorSubject<String> _uploadProfilePhotoResponse =
+      BehaviorSubject.seeded("");
 
   Stream<String> get uploadProfilePhotoStream =>
       _uploadProfilePhotoResponse.stream;
 
   ///selected image subject
   final BehaviorSubject<String> _selectedImageSubject =
-  BehaviorSubject.seeded('');
+      BehaviorSubject.seeded('');
 
   ///upload profile
   PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest =
       PublishSubject();
+
+  PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
 
   Stream<String> get selectedImageValue => _selectedImageSubject.stream;
 
@@ -52,31 +62,45 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
       PublishSubject();
 
   final GlobalKey<AppTextFieldState> ibanOrMobileKey =
-  GlobalKey(debugLabel: "ibanOrMobileNo");
+      GlobalKey(debugLabel: "ibanOrMobileNo");
 
   final GlobalKey<AppTextFieldState> purposeKey =
-  GlobalKey(debugLabel: "purpose");
+      GlobalKey(debugLabel: "purpose");
 
   final GlobalKey<AppTextFieldState> purposeDetailKey =
-  GlobalKey(debugLabel: "purposeDetails");
+      GlobalKey(debugLabel: "purposeDetails");
 
   bool addContact = false;
 
+  List<Purpose> purposeList = [];
+
+  List<PurposeDetail> purposeDetailList = [];
+
+  Purpose? purpose;
+
+  PurposeDetail? purposeDetail;
+
   PublishSubject<RequestFromNewRecipientUseCaseParams>
-  _requestFromNewRecipientRequest = PublishSubject();
+      _requestFromNewRecipientRequest = PublishSubject();
 
   PublishSubject<Resource<RequestToPayContentResponse>>
-  _requestFromNewRecipientResponse = PublishSubject();
+      _requestFromNewRecipientResponse = PublishSubject();
+
+  PublishSubject<Resource<PurposeResponse>> _getPurposeResponse =
+      PublishSubject();
+
+  Stream<Resource<PurposeResponse>> get getPurposeResponseStream =>
+      _getPurposeResponse.stream;
 
   BehaviorSubject<Resource<GetAccountByAliasContentResponse>>
-  _getAccountByAliasResponse = BehaviorSubject();
+      _getAccountByAliasResponse = BehaviorSubject();
 
   Stream<Resource<GetAccountByAliasContentResponse>>
-  get getAccountByAliasResponseStream => _getAccountByAliasResponse.stream;
+      get getAccountByAliasResponseStream => _getAccountByAliasResponse.stream;
 
   Stream<Resource<RequestToPayContentResponse>>
-  get requestFromNewRecipientResponseStream =>
-      _requestFromNewRecipientResponse.stream;
+      get requestFromNewRecipientResponseStream =>
+          _requestFromNewRecipientResponse.stream;
 
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(true);
 
@@ -92,7 +116,7 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   String? dbtrName;
 
   RequestFromNewRecipientViewModel(this._useCase, this._uploadDocumentUseCase,
-      this._getAccountByAliasUseCase) {
+      this._getAccountByAliasUseCase, this._getPurposeUseCase) {
     _requestFromNewRecipientRequest.listen((value) {
       RequestManager(value, createCall: () => _useCase.execute(params: value))
           .asFlow()
@@ -133,9 +157,32 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
           print("got value: ${event.data!.getAccountByAliasContent!.bic}");
           _showAccountDetailSubject
               .safeAdd(event.data!.getAccountByAliasContent!.name);
+          getPurpose(dbtrAcct!, "RTP");
         }
       });
     });
+
+    _getPurposeRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getPurposeUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getPurposeResponse.safeAdd(event);
+        purposeList.clear();
+        purposeList
+            .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+  }
+
+  void getPurpose(String toAccount, String transferType) {
+    _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
+        toAccount: toAccount, transferType: transferType));
   }
 
   void getAccountByAlias(String value, String currency) {
@@ -144,29 +191,40 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   }
 
   void requestFromNewRecipient(BuildContext context) {
-    _requestFromNewRecipientRequest
-        .safeAdd(RequestFromNewRecipientUseCaseParams(
-        ibanOrMobile: ibanOrMobileController.text,
-        purpose: purposeController.text,
-        purposeDetail: purposeDetailController.text,
-        amount: int.parse(ProviderScope
-            .containerOf(context)
-            .read(requestMoneyViewModelProvider)
-            .currentPinValue),
-        dbtrBic: dbtrBic ?? "",
-        dbtrAcct: dbtrAcct ?? "",
-        dbtrName: dbtrName ?? "",
-        isFriend: addContact,
-        image: _uploadProfilePhotoResponse.value
-    ));
+    print("got the limit : $limit");
+    _requestFromNewRecipientRequest.safeAdd(
+        RequestFromNewRecipientUseCaseParams(
+            ibanOrMobile: ibanOrMobileController.text,
+            purpose: purposeController.text,
+            purposeDetail: purposeDetailController.text,
+            amount: int.parse(ProviderScope.containerOf(context)
+                .read(requestMoneyViewModelProvider)
+                .currentPinValue),
+            limit: limit,
+            dbtrBic: dbtrBic ?? "",
+            dbtrAcct: dbtrAcct ?? "",
+            dbtrName: dbtrName ?? "",
+            isFriend: addContact,
+            image: _uploadProfilePhotoResponse.value,
+            purposeCode: purpose!.code ?? "",
+            purposeDetailCode: purposeDetail!.strCode ?? ""));
   }
 
-  void updatePurpose(String value) {
-    purposeController.text = value;
+  void updatePurpose(Purpose value) {
+    purpose = value;
+    purposeController.text = value.labelEn!;
   }
 
-  void updatePurposeDetail(String value) {
-    purposeDetailController.text = value;
+  void updatePurposeDetailList(List<PurposeDetail> purposeDetail) {
+    purposeDetailController.clear();
+    purposeDetailList.clear();
+    purposeDetailList.addAll(purposeDetail);
+  }
+
+  void updatePurposeDetail(PurposeDetail value) {
+    purposeDetailController.text = value.labelEn!;
+    purposeDetail = value;
+    limit = value.limit!;
   }
 
   void validateAddress() {}

@@ -9,7 +9,7 @@ part of 'purpose_request_entity.dart';
 PurposeRequestEntity _$PurposeRequestEntityFromJson(Map<String, dynamic> json) {
   return PurposeRequestEntity(
     baseData: json['baseClass'] as Map<String, dynamic>,
-    toAmount: json['ToAmount'] as String?,
+    toAccount: json['ToAccount'] as String?,
     transferType: json['TransferType'] as String?,
     getToken: json['getToken'] as bool,
   );
@@ -18,7 +18,7 @@ PurposeRequestEntity _$PurposeRequestEntityFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$PurposeRequestEntityToJson(
         PurposeRequestEntity instance) =>
     <String, dynamic>{
-      'ToAmount': instance.toAmount,
+      'ToAccount': instance.toAccount,
       'TransferType': instance.transferType,
       'getToken': instance.getToken,
       'baseClass': instance.baseData,

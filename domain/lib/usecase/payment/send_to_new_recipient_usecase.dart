@@ -19,9 +19,15 @@ class SendToNewRecipientUseCaseParams extends Params {
   String? ibanOrMobile;
   String? purpose;
   String? purposeDetail;
+  num? amount;
+  num? limit;
 
   SendToNewRecipientUseCaseParams(
-      {this.ibanOrMobile, this.purpose, this.purposeDetail});
+      {this.ibanOrMobile,
+      this.purpose,
+      this.purposeDetail,
+      this.amount,
+      this.limit});
 
   @override
   Either<AppError, bool> verify() {
@@ -39,6 +45,11 @@ class SendToNewRecipientUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_PURPOSE_DETAIL,
+          cause: Exception()));
+    } else if (limit! < amount!) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.LIMIT_EXCEEDED,
           cause: Exception()));
     }
     return Right(true);

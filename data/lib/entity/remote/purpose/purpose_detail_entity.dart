@@ -13,8 +13,10 @@ class PurposeDetailEntity
   final String? labelEn;
   @JsonKey(name: "labelAR")
   final String? labelAr;
+  @JsonKey(name: "limit")
+  final num? limit;
 
-  PurposeDetailEntity({this.strCode, this.labelEn, this.labelAr});
+  PurposeDetailEntity({this.strCode, this.labelEn, this.labelAr, this.limit});
 
   factory PurposeDetailEntity.fromJson(Map<String, dynamic> json) =>
       _$PurposeDetailEntityFromJson(json);
@@ -29,6 +31,9 @@ class PurposeDetailEntity
   @override
   PurposeDetail transform() {
     return PurposeDetail(
-        strCode: this.strCode, labelAr: this.labelAr, labelEn: this.labelEn);
+        strCode: this.strCode,
+        labelAr: this.labelAr,
+        labelEn: this.labelEn,
+        limit: this.limit);
   }
 }

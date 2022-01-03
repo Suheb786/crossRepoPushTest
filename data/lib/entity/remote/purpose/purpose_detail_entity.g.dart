@@ -11,6 +11,7 @@ PurposeDetailEntity _$PurposeDetailEntityFromJson(Map<String, dynamic> json) {
     strCode: json['strCode'] as String?,
     labelEn: json['labelEN'] as String?,
     labelAr: json['labelAR'] as String?,
+    limit: json['limit'] as num?,
   );
 }
 
@@ -20,4 +21,5 @@ Map<String, dynamic> _$PurposeDetailEntityToJson(
       'strCode': instance.strCode,
       'labelEN': instance.labelEn,
       'labelAR': instance.labelAr,
+      'limit': instance.limit,
     };

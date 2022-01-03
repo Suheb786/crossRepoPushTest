@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6745,6 +6746,16 @@ class S {
     return Intl.message(
       'Your Request Is Not Completed',
       name: 'requestNotCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Limit exceeded`
+  String get limitExceeded {
+    return Intl.message(
+      'Limit exceeded',
+      name: 'limitExceeded',
       desc: '',
       args: [],
     );
