@@ -2,6 +2,7 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
@@ -151,8 +152,13 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(top: 18),
-                                        child:
-                                            AppSvg.asset(AssetUtils.swipeDown),
+                                        child: LottieBuilder.asset(
+                                          'assets/animation/Swipe_Down.json',
+                                          width: 28.0,
+                                          height: 28.0,
+                                        ),
+                                        // child:
+                                        //     AppSvg.asset(AssetUtils.swipeDown),
                                       ),
                                       Expanded(
                                         child: Padding(
@@ -165,6 +171,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 pageController:
                                                     model.pageController,
                                                 onIndexChanged: (index) {
+                                                  // _currentPage = index;
                                                   model.updatePage(index);
                                                   model
                                                       .updatePageControllerStream(
@@ -176,23 +183,30 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                           ),
                                         ),
                                       ),
-                                      SmoothPageIndicator(
-                                          controller: model.controller,
-                                          count: pages.length,
-                                          effect: ScrollingDotsEffect(
-                                            activeStrokeWidth: 2.6,
-                                            activeDotScale: 1.3,
-                                            activeDotColor: Theme.of(context)
-                                                .primaryColorDark,
-                                            dotColor: Theme.of(context)
-                                                .primaryColorDark
-                                                .withOpacity(0.6),
-                                            maxVisibleDots: 5,
-                                            radius: 8,
-                                            spacing: 10,
-                                            dotHeight: 10,
-                                            dotWidth: 10,
-                                          )),
+                                      const SizedBox(height: 20.0),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: model
+                                            .buildPageIndicator(currentStep!),
+                                      ),
+                                      // SmoothPageIndicator(
+                                      //     controller: model.controller,
+                                      //     count: pages.length,
+                                      //     effect: ScrollingDotsEffect(
+                                      //       activeStrokeWidth: 2.6,
+                                      //       activeDotScale: 1.3,
+                                      //       activeDotColor: Theme.of(context)
+                                      //           .primaryColorDark,
+                                      //       dotColor: Theme.of(context)
+                                      //           .primaryColorDark
+                                      //           .withOpacity(0.6),
+                                      //       maxVisibleDots: 5,
+                                      //       radius: 8,
+                                      //       spacing: 10,
+                                      //       dotHeight: 10,
+                                      //       dotWidth: 10,
+                                      //     )),
                                       Align(
                                         alignment: Alignment.bottomCenter,
                                         child: Padding(
@@ -210,8 +224,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                   title: " "),
                                               TabItem(
                                                 icon: Container(
-                                                  height: 80,
-                                                  width: 80,
+                                                  height: 120,
+                                                  width: 120,
                                                   decoration: BoxDecoration(
                                                       color: Theme.of(context)
                                                           .primaryColorDark,
