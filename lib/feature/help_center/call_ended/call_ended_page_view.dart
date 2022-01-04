@@ -18,7 +18,7 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.pushReplacementNamed(context, RoutePaths.AppHome);
+          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
         }
       },
       child: Container(
