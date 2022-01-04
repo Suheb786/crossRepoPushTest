@@ -133,9 +133,11 @@ final requestPaymentFromNewRecipientViewModelProvider = ChangeNotifierProvider
 );
 
 ///edit transaction purpose dialog view model provider
-final editTransactionPurposeDialogViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EditTransactionPurposeDialogViewModel>(
-        (ref) => EditTransactionPurposeDialogViewModel());
+final editTransactionPurposeDialogViewModelProvider = ChangeNotifierProvider
+    .autoDispose
+    .family<EditTransactionPurposeDialogViewModel, Beneficiary>((ref, args) =>
+        EditTransactionPurposeDialogViewModel(
+            ref.read(getPurposeUseCaseProvider), args));
 
 ///iban dialog view model provider
 final ibanDialogViewModelProvider =

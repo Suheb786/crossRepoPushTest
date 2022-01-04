@@ -1,4 +1,6 @@
 import 'package:domain/model/manage_contacts/beneficiary.dart';
+import 'package:domain/model/purpose/purpose.dart';
+import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
@@ -14,14 +16,14 @@ import 'package:neo_bank/utils/color_utils.dart';
 
 class EditTransactionPurposeDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(String, String)? onSelected;
+  final Function(Purpose, PurposeDetail)? onSelected;
   final Beneficiary? beneficiary;
 
   const EditTransactionPurposeDialogView(
       {this.onDismissed, this.onSelected, this.beneficiary});
 
   ProviderBase providerBase() {
-    return editTransactionPurposeDialogViewModelProvider;
+    return editTransactionPurposeDialogViewModelProvider.call(beneficiary!);
   }
 
   @override
@@ -82,12 +84,19 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                         key: model.purposeKey,
                         readOnly: true,
                         onPressed: () {
-                          PurposeDialog.show(context, onDismissed: () {
-                            Navigator.pop(context);
-                          }, onSelected: (value) {
-                            Navigator.pop(context);
-                            // model.updatePurpose(value);
-                          });
+                          if (model.purposeList != null &&
+                              model.purposeList!.isNotEmpty) {
+                            PurposeDialog.show(context,
+                                purposeList: model.purposeList!,
+                                onDismissed: () {
+                              Navigator.pop(context);
+                            }, onSelected: (value) {
+                              Navigator.pop(context);
+                              model.updatePurpose(value);
+                              model.updatePurposeDetailList(
+                                  value.purposeDetails!);
+                            });
+                          }
                         },
                         suffixIcon: (enabled, value) {
                           return AppSvg.asset(AssetUtils.dropDown,
@@ -107,12 +116,17 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                         key: model.purposeDetailKey,
                         readOnly: true,
                         onPressed: () {
-                          PurposeDetailDialog.show(context, onDismissed: () {
-                            Navigator.pop(context);
-                          }, onSelected: (value) {
-                            Navigator.pop(context);
-                            // model.updatePurposeDetail(value);
-                          });
+                          if (model.purposeDetailList != null &&
+                              model.purposeDetailList!.isNotEmpty) {
+                            PurposeDetailDialog.show(context,
+                                purposeDetailList: model.purposeDetailList,
+                                onDismissed: () {
+                              Navigator.pop(context);
+                            }, onSelected: (value) {
+                              Navigator.pop(context);
+                              model.updatePurposeDetail(value);
+                            });
+                          }
                         },
                         suffixIcon: (enabled, value) {
                           return AppSvg.asset(AssetUtils.dropDown,
@@ -126,8 +140,8 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                       padding: EdgeInsets.only(top: 147),
                       child: InkWell(
                         onTap: () {
-                          onSelected!.call(model.purposeController.text,
-                              model.purposeDetailController.text);
+                          onSelected!
+                              .call(model.purpose!, model.purposeDetail!);
                         },
                         child: Container(
                           padding: EdgeInsets.all(16),

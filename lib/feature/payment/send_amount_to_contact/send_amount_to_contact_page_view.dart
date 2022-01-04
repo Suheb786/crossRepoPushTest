@@ -147,10 +147,7 @@ class SendAmountToContactPageView
                         children: [
                           AppStreamBuilder<String>(
                               stream: model.purposeStream,
-                              initialData: (model.beneficiary.purpose != null &&
-                                      model.beneficiary.purpose!.isNotEmpty)
-                                  ? model.beneficiary.purpose!
-                                  : 'Personal',
+                              initialData: model.beneficiary.purpose!,
                               dataBuilder: (context, value) {
                                 return Text(
                                   value!,
@@ -188,20 +185,15 @@ class SendAmountToContactPageView
                     Padding(
                       padding: EdgeInsets.only(top: 2),
                       child: AppStreamBuilder<String>(
-                          stream: model.purposeDetailStream,
-                          initialData: (model.beneficiary.purposeDetails !=
-                                      null &&
-                                  model.beneficiary.purposeDetails!.isNotEmpty)
-                              ? model.beneficiary.purposeDetails!
-                              : 'Transfer to Friend or Family',
-                          dataBuilder: (context, value) {
-                            return Text(
-                              value!,
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w600),
-                            );
-                          }),
-                    ),
+                            stream: model.purposeDetailStream,
+                            initialData: model.beneficiary.purposeDetails!,
+                            dataBuilder: (context, value) {
+                              return Text(
+                                value!,
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.w600),
+                              );
+                            })),
                   ],
                 ),
               ),

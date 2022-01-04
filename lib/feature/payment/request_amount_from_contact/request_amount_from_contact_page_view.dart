@@ -13,7 +13,6 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/edit_transaction_purpose_dialog/edit_transaction_purpose_dialog.dart';
 import 'package:neo_bank/ui/molecules/numeric_keyboard.dart';
-import 'package:neo_bank/ui/molecules/payment/payment_beneficiary_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -198,7 +197,8 @@ class RequestAmountFromContactPageView
                                     children: [
                                       AppStreamBuilder<String>(
                                           stream: model.purposeStream,
-                                          initialData: "Personal",
+                                          initialData:
+                                              model.beneficiary!.purpose!,
                                           dataBuilder: (context, value) {
                                             return Text(
                                               value!,
@@ -211,9 +211,10 @@ class RequestAmountFromContactPageView
                                         onTap: () {
                                           EditTransactionPurposeDialog.show(
                                               context,
+                                              beneficiary: model.beneficiary!,
                                               onDismissed: () {
-                                                Navigator.pop(context);
-                                              }, onSelected: (value1, value2) {
+                                            Navigator.pop(context);
+                                          }, onSelected: (value1, value2) {
                                             print("got value: $value1");
                                             model.updatePurpose(value1);
                                             model.updatePurposeDetail(value2);
@@ -241,7 +242,8 @@ class RequestAmountFromContactPageView
                                   padding: EdgeInsets.only(top: 2),
                                   child: AppStreamBuilder<String>(
                                       stream: model.purposeDetailStream,
-                                      initialData: "Transfer to Friend or Family",
+                                      initialData:
+                                          model.beneficiary!.purposeDetails!,
                                       dataBuilder: (context, value) {
                                         return Text(
                                           value!,
