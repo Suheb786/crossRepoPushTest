@@ -286,7 +286,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                   alignment: Alignment.bottomCenter,
                   child: LottieBuilder.asset(
                     'assets/animation/Swipe_Up.json',
-                    height: 70.0,
+                    height: 71.0,
                   ),
                 ),
               ],
