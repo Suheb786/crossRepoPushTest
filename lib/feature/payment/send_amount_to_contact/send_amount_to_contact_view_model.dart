@@ -85,7 +85,7 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
     _transferRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _transferUseCase.execute(params: value))
+              createCall: () => _transferUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -146,7 +146,9 @@ class SendAmountToContactViewModel extends BasePageViewModel {
       toAmount: transferResponse.toAmount,
       toAccount: transferResponse.toAccount,
       memo: purposeDetail == null
-          ? beneficiary.purposeDetails!
+          ? (beneficiary.purposeDetails == null
+              ? 'Transfer to Friend or Family'
+              : beneficiary.purposeDetails!)
           : purposeDetail!.strCode!,
       isFriend: false,
       transferType: transferResponse.transferType,
