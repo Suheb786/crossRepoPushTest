@@ -2,10 +2,13 @@ import 'dart:io';
 
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
+import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
+import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/payment/request_from_new_recipient/request_from_new_recipient_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -43,13 +46,23 @@ class RequestFromNewRecipientPageView
                     duration: Duration(milliseconds: 100),
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
-                    child: AppStreamBuilder<Resource<bool>>(
-                        stream: model.sendToNewRecipientResponseStream,
+                    child: AppStreamBuilder<
+                            Resource<RequestToPayContentResponse>>(
+                        stream: model.requestFromNewRecipientResponseStream,
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            Navigator.pushNamed(context,
-                                RoutePaths.RequestAmountFromContactSuccess);
+                            print(
+                                "got event: ${data.data!.requestToPayContent!.dbtrAcct}");
+                            Navigator.pushReplacementNamed(context,
+                                RoutePaths.RequestAmountFromContactSuccess,
+                                arguments: [
+                                  ProviderScope.containerOf(context)
+                                      .read(requestMoneyViewModelProvider)
+                                      .currentPinValue,
+                                  data.data!.requestToPayContent!.dbtrName!,
+                                  data.data!.requestToPayContent!.dbtrMcc!,
+                                ]);
                           } else if (data.status == Status.ERROR) {
                             // if (data.appError!.type ==
                             //     ErrorType.EMPTY_RESIDENT_COUNTRY) {
@@ -63,7 +76,7 @@ class RequestFromNewRecipientPageView
                           return GestureDetector(
                             onHorizontalDragEnd: (details) {
                               if (details.primaryVelocity!.isNegative) {
-                                model.sendToNewRecipient();
+                                model.requestFromNewRecipient(context);
                               } else {
                                 // ProviderScope.containerOf(context)
                                 //     .read(
@@ -107,68 +120,75 @@ class RequestFromNewRecipientPageView
                                             Padding(
                                               padding:
                                                   EdgeInsets.only(top: 16.0),
-                                              child: AppTextField(
-                                                labelText:
-                                                    S.of(context).ibanOrMobile,
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
-                                                controller: model
-                                                    .ibanOrMobileController,
-                                                onPressed: () {},
+                                              child: Focus(
+                                                child: AppTextField(
+                                                  labelText: S
+                                                      .of(context)
+                                                      .ibanOrMobile,
+                                                  hintText:
+                                                      S.of(context).pleaseEnter,
+                                                  controller: model
+                                                      .ibanOrMobileController,
+                                                ),
+                                                onFocusChange: (hasFocus) {
+                                                  if (!hasFocus) {
+                                                    model.getAccountByAlias(
+                                                        model
+                                                            .ibanOrMobileController
+                                                            .text,
+                                                        "JOD");
+                                                  }
+                                                },
                                               ),
                                             ),
-                                            Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 16),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "Name",
-                                                      style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      "Shakila Naseem",
-                                                      style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    )
-                                                  ],
-                                                )),
-                                            Padding(
-                                                padding:
-                                                    EdgeInsets.only(top: 16),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                      "Bank",
-                                                      style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w400,
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      "Jordan Kuwait Bank",
-                                                      style: TextStyle(
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    )
-                                                  ],
-                                                )),
+                                            AppStreamBuilder<String>(
+                                                stream: model
+                                                    .showAccountDetailStream,
+                                                initialData: "",
+                                                dataBuilder: (context, value) {
+                                                  if (!(value!.isEmpty)) {
+                                                    return Padding(
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                top: 16),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            Expanded(
+                                                              child: Text(
+                                                                S
+                                                                    .of(context)
+                                                                    .name,
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w400,
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Expanded(
+                                                              child: Text(
+                                                                value,
+                                                                maxLines: 2,
+                                                                style:
+                                                                    TextStyle(
+                                                                  fontSize: 12,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ));
+                                                  } else {
+                                                    return Container();
+                                                  }
+                                                }),
                                             Padding(
                                               padding: EdgeInsets.only(top: 24),
                                               child: Text(
@@ -190,13 +210,24 @@ class RequestFromNewRecipientPageView
                                                 controller:
                                                     model.purposeController,
                                                 onPressed: () {
-                                                  PurposeDialog.show(context,
-                                                      onSelected: (value) {
-                                                    model.updatePurpose(value);
-                                                    Navigator.pop(context);
-                                                  }, onDismissed: () {
-                                                    Navigator.pop(context);
-                                                  });
+                                                  if (model.purposeList !=
+                                                          null &&
+                                                      model.purposeList
+                                                          .isNotEmpty) {
+                                                    PurposeDialog.show(context,
+                                                        purposeList:
+                                                            model.purposeList,
+                                                        onSelected: (value) {
+                                                      model
+                                                          .updatePurpose(value);
+                                                      model.updatePurposeDetailList(
+                                                          value
+                                                              .purposeDetails!);
+                                                      Navigator.pop(context);
+                                                    }, onDismissed: () {
+                                                      Navigator.pop(context);
+                                                    });
+                                                  }
                                                 },
                                                 suffixIcon: (value, data) {
                                                   return Container(
@@ -223,15 +254,22 @@ class RequestFromNewRecipientPageView
                                                 controller: model
                                                     .purposeDetailController,
                                                 onPressed: () {
-                                                  PurposeDetailDialog.show(
-                                                      context,
-                                                      onSelected: (value) {
-                                                    model.updatePurposeDetail(
-                                                        value);
-                                                    Navigator.pop(context);
-                                                  }, onDismissed: () {
-                                                    Navigator.pop(context);
-                                                  });
+                                                  if (model.purposeDetailList !=
+                                                          null &&
+                                                      model.purposeDetailList
+                                                          .isNotEmpty) {
+                                                    PurposeDetailDialog.show(
+                                                        context,
+                                                        purposeDetailList: model
+                                                            .purposeDetailList,
+                                                        onSelected: (value) {
+                                                      model.updatePurposeDetail(
+                                                          value);
+                                                      Navigator.pop(context);
+                                                    }, onDismissed: () {
+                                                      Navigator.pop(context);
+                                                    });
+                                                  }
                                                 },
                                                 suffixIcon: (value, data) {
                                                   return Container(
@@ -258,8 +296,7 @@ class RequestFromNewRecipientPageView
                                                 providerBase:
                                                     anyOtherNationalityViewModelProvider,
                                                 onToggle: (isActive) {
-                                                  model.isAnyOtherNationality =
-                                                      isActive;
+                                                  model.addContact = isActive;
                                                   return Visibility(
                                                     visible: isActive,
                                                     child: Padding(
@@ -364,20 +401,32 @@ class RequestFromNewRecipientPageView
                                                               padding: EdgeInsets
                                                                   .only(
                                                                       left: 14),
-                                                              child: Text(
-                                                                "Shakila",
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        14,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    color: Theme.of(
-                                                                            context)
-                                                                        .accentTextTheme
-                                                                        .bodyText1!
-                                                                        .color),
-                                                              ),
+                                                              child: AppStreamBuilder<
+                                                                      Resource<
+                                                                          GetAccountByAliasContentResponse>>(
+                                                                  stream: model
+                                                                      .getAccountByAliasResponseStream,
+                                                                  initialData:
+                                                                      Resource
+                                                                          .none(),
+                                                                  dataBuilder:
+                                                                      (context,
+                                                                          val) {
+                                                                    return Text(
+                                                                      val!.data!.getAccountByAliasContent!
+                                                                              .nickName ??
+                                                                          "",
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontWeight: FontWeight
+                                                                              .w600,
+                                                                          color: Theme.of(context)
+                                                                              .accentTextTheme
+                                                                              .bodyText1!
+                                                                              .color),
+                                                                    );
+                                                                  }),
                                                             )
                                                           ],
                                                         ),

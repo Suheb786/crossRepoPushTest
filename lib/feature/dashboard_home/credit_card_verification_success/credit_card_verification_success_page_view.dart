@@ -20,7 +20,7 @@ class CreditCardVerificationSuccessPageView
         onHorizontalDragEnd: (details) {
           print("swiped");
           if (details.primaryVelocity!.isNegative) {
-            Navigator.of(context)..pop()..pop();
+            Navigator.of(context)..pop()..pop(true);
           }
         },
         child: Padding(

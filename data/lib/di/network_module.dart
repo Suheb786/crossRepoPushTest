@@ -21,6 +21,8 @@ import 'package:data/source/id_card/id_card_datasource.dart';
 import 'package:data/source/id_card/remote/id_card_remote_ds_impl.dart';
 import 'package:data/source/kyc/kyc_datasource.dart';
 import 'package:data/source/kyc/remote/kyc_remote_ds_impl.dart';
+import 'package:data/source/payment/payment_datasource.dart';
+import 'package:data/source/payment/remote/payment_remote_datasource_impl.dart';
 import 'package:data/source/register/register_datasource.dart';
 import 'package:data/source/register/register_step_four_datasource.dart';
 import 'package:data/source/register/register_step_three_datasource.dart';
@@ -151,4 +153,8 @@ var contactsDataSourceProvider = Provider<ContactRemoteDS>((ref) =>
 ///Dashboard remote DS
 var dashboardDataSourceProvider = Provider<DashboardRemoteDs>((ref) =>
     DashboardRemoteDsImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+var paymentDataSourceProvider = Provider<PaymentRemoteDs>((ref) =>
+    PaymentRemoteDataSourceImpl(
         ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));

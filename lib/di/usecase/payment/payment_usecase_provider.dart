@@ -1,7 +1,11 @@
-import 'package:domain/usecase/payment/add_request_money_contact_usecase.dart';
+import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/payment/add_send_money_contact_usecase.dart';
+import 'package:domain/usecase/payment/check_send_money_usecase.dart';
 import 'package:domain/usecase/payment/enter_otp_usecase.dart';
 import 'package:domain/usecase/payment/enter_request_otp_usecase.dart';
+import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
+import 'package:domain/usecase/payment/get_beneficiary_usecase.dart';
+import 'package:domain/usecase/payment/get_purpose_usecase.dart';
 import 'package:domain/usecase/payment/request_amount_from_contact_usecase.dart';
 import 'package:domain/usecase/payment/request_from_new_recipient_usecase.dart';
 import 'package:domain/usecase/payment/request_money_failure_usecase.dart';
@@ -12,6 +16,8 @@ import 'package:domain/usecase/payment/send_amount_to_contact_usecase.dart';
 import 'package:domain/usecase/payment/send_money_failure_usecase.dart';
 import 'package:domain/usecase/payment/send_money_usecase.dart';
 import 'package:domain/usecase/payment/send_to_new_recipient_usecase.dart';
+import 'package:domain/usecase/payment/transfer_usecase.dart';
+import 'package:domain/usecase/payment/transfer_verify_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[<AddSendMoneyContactUseCase>] provider
@@ -20,10 +26,16 @@ final addSendMoneyContactUseCaseProvider =
   (ref) => AddSendMoneyContactUseCase(),
 );
 
-///[<AddRequestMoneyContactUseCase>] provider
-final addRequestMoneyContactUseCaseProvider =
-    Provider.autoDispose<AddRequestMoneyContactUseCase>(
-  (ref) => AddRequestMoneyContactUseCase(),
+///[<GetBeneficiaryUseCase>] provider
+final getBeneficiaryUseCaseProvider =
+    Provider.autoDispose<GetBeneficiaryUseCase>(
+  (ref) => GetBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
+);
+
+///[<GetAccountByAliasUseCase>] provider
+final getAccountByAliasUseCaseProvider =
+    Provider.autoDispose<GetAccountByAliasUseCase>(
+  (ref) => GetAccountByAliasUseCase(ref.read(paymentRepositoryProvider)),
 );
 
 ///[<SendAmountToContactUseCase>] provider
@@ -41,7 +53,7 @@ final sendAmountToContactSuccessUseCaseProvider =
 ///[<RequestAmountFromContactUseCase>] provider
 final requestAmountFromContactUseCaseProvider =
     Provider.autoDispose<RequestAmountFromContactUseCase>(
-  (ref) => RequestAmountFromContactUseCase(),
+  (ref) => RequestAmountFromContactUseCase(ref.read(paymentRepositoryProvider)),
 );
 
 ///[<RequestAmountFromContactSuccessUseCase>] provider
@@ -76,7 +88,7 @@ final sendToNewRecipientUseCaseProvider =
 ///[<RequestFromNewRecipientUseCase>] provider
 final requestFromNewRecipientUseCaseProvider =
     Provider.autoDispose<RequestFromNewRecipientUseCase>(
-  (ref) => RequestFromNewRecipientUseCase(),
+  (ref) => RequestFromNewRecipientUseCase(ref.read(paymentRepositoryProvider)),
 );
 
 ///[<EnterOtpUseCase>] provider
@@ -93,4 +105,26 @@ final enterRequestOtpUseCaseProvider =
 ///[<RequestMoneyUseCase>] provider
 final requestMoneyUseCaseProvider = Provider.autoDispose<RequestMoneyUseCase>(
   (ref) => RequestMoneyUseCase(),
+);
+
+///[CheckSendMoneyUseCase] provider
+final checkSendMoneyUseCaseProvider =
+    Provider.autoDispose<CheckSendMoneyUseCase>(
+  (ref) => CheckSendMoneyUseCase(ref.read(paymentRepositoryProvider)),
+);
+
+///[TransferUseCase] provider
+final transferUseCaseProvider = Provider.autoDispose<TransferUseCase>(
+  (ref) => TransferUseCase(ref.read(paymentRepositoryProvider)),
+);
+
+///[TransferVerifyUseCase] provider
+final transferVerifyUseCaseProvider =
+    Provider.autoDispose<TransferVerifyUseCase>(
+  (ref) => TransferVerifyUseCase(ref.read(paymentRepositoryProvider)),
+);
+
+///[GetPurposeUseCase] provider
+final getPurposeUseCaseProvider = Provider.autoDispose<GetPurposeUseCase>(
+  (ref) => GetPurposeUseCase(ref.read(paymentRepositoryProvider)),
 );

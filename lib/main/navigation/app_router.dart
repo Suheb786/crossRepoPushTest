@@ -1,6 +1,7 @@
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
+import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
@@ -12,20 +13,32 @@ import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page
 import 'package:neo_bank/feature/activity/activity_home/activity_home_page.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
+import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
+import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_page.dart';
 import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
+import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
+import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
+import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
+import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
+import 'package:neo_bank/feature/help_center/call_ended/call_ended_page.dart';
+import 'package:neo_bank/feature/help_center/help_center_page.dart';
+import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
+import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
+import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
+import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page.dart';
 import 'package:neo_bank/feature/notify_success/notify_success_page.dart';
 import 'package:neo_bank/feature/onboarding/onboarding_page.dart';
@@ -117,9 +130,11 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.TermsAndCondition));
 
       case RoutePaths.AddMoneyOptionSelector:
-        return CupertinoPageRoute(
-            builder: (context) => AddMoneyOptionSelectorPage(),
-            settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
+        // return CupertinoPageRoute(
+        //     builder: (context) => AddMoneyOptionSelectorPage(),
+        //     settings: RouteSettings(name: RoutePaths.AddMoneyOptionSelector));
+        return CustomRoute.createRoute(AddMoneyOptionSelectorPage(),
+            reverse: true);
 
       case RoutePaths.LocateATM:
         return CupertinoPageRoute(
@@ -251,9 +266,7 @@ class AppRouter {
                 RouteSettings(name: RoutePaths.DebitCardVerificationSuccess));
 
       case RoutePaths.PaymentHome:
-        return CupertinoPageRoute(
-            builder: (context) => PaymentHomePage(),
-            settings: RouteSettings(name: RoutePaths.PaymentHome));
+        return CustomRoute.createRoute(PaymentHomePage());
 
       case RoutePaths.ActivityHome:
         return CupertinoPageRoute(
@@ -271,14 +284,18 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.SendMoneyFailure));
 
       case RoutePaths.RequestAmountFromContact:
-        return CustomRoute.createRoute(RequestAmountFromContactPage());
+        return CustomRoute.createRoute(RequestAmountFromContactPage(
+            beneficiary: settings.arguments as Beneficiary));
 
       case RoutePaths.SendAmountToContact:
-        return CustomRoute.createRoute(SendAmountToContactPage());
+        return CustomRoute.createRoute(
+            SendAmountToContactPage(settings.arguments as Beneficiary));
 
       case RoutePaths.SendAmountToContactSuccess:
         return CupertinoPageRoute(
-            builder: (context) => SendAmountToContactSuccessPage(),
+            builder: (context) => SendAmountToContactSuccessPage(
+                  arguments: settings.arguments as TransferSuccessContent,
+                ),
             settings:
                 RouteSettings(name: RoutePaths.SendAmountToContactSuccess));
 
@@ -290,13 +307,16 @@ class AppRouter {
 
       case RoutePaths.RequestAmountFromContactSuccess:
         return CupertinoPageRoute(
-            builder: (context) => RequestAmountFromContactSuccessPage(),
+            builder: (context) => RequestAmountFromContactSuccessPage(
+                  successValues: settings.arguments as List<String>,
+                ),
             settings: RouteSettings(
                 name: RoutePaths.RequestAmountFromContactSuccess));
 
       case RoutePaths.RequestPaymentFromNewRecipient:
         return CupertinoPageRoute(
-            builder: (context) => RequestPaymentFromNewRecipientPage(),
+            builder: (context) => RequestPaymentFromNewRecipientPage(
+                requestValue: settings.arguments as String),
             settings:
                 RouteSettings(name: RoutePaths.RequestPaymentFromNewRecipient));
 
@@ -304,6 +324,68 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => PaymentToNewRecipientPage(),
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
+
+      case RoutePaths.DebitCardSettings:
+        return CustomRoute.createRoute(DebitCardSettingsPage());
+      case RoutePaths.CreditCardSettings:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardSettingsPage(),
+            settings: RouteSettings(name: RoutePaths.CreditCardSettings));
+
+      case RoutePaths.HelpCenter:
+        return CupertinoPageRoute(
+            builder: (context) => HelpCenterPage(),
+            settings: RouteSettings(name: RoutePaths.HelpCenter));
+
+      case RoutePaths.ActiveCallPage:
+        return CupertinoPageRoute(
+            builder: (context) => ActiveCallPage(),
+            settings: RouteSettings(name: RoutePaths.ActiveCallPage));
+
+      case RoutePaths.CallEndedPage:
+        return CupertinoPageRoute(
+            builder: (context) => CallEndedPage(),
+            settings: RouteSettings(name: RoutePaths.CallEndedPage));
+
+      case RoutePaths.ManageCardPin:
+        return CustomRoute.createRoute(
+          ManageCardPinPage(
+              manageCardPinArguments:
+                  settings.arguments as ManageCardPinArguments),
+        );
+
+      case RoutePaths.CardPinUnBlockSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => CardPinUnBlockSuccessPage(
+                manageCardPinArguments:
+                    settings.arguments as ManageCardPinArguments),
+            settings: RouteSettings(name: RoutePaths.CardPinUnBlockSuccess));
+
+      case RoutePaths.DebitCardReplacement:
+        return CupertinoPageRoute(
+            builder: (context) => DebitCardReplacementPage(),
+            settings: RouteSettings(name: RoutePaths.DebitCardReplacement));
+
+      case RoutePaths.DebitCardReplacementSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => DebitCardReplacementSuccessPage(),
+            settings:
+                RouteSettings(name: RoutePaths.DebitCardReplacementSuccess));
+
+      case RoutePaths.manageDebitLimit:
+        return CustomRoute.createRoute(ManageDebitCardLimitsPage(
+            settings.arguments as ManageCardLimitsArguments));
+
+      case RoutePaths.ChangeCardPin:
+        return CupertinoPageRoute(
+            builder: (context) => ChangeCardPinPage(),
+            settings: RouteSettings(name: RoutePaths.ChangeCardPin));
+
+      case RoutePaths.ChangeCardPinSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => ChangeCardPinSuccessPage(
+                settings.arguments as ChangeCardPinSuccessArguments),
+            settings: RouteSettings(name: RoutePaths.ChangeCardPinSuccess));
 
       default:
         return CupertinoPageRoute(

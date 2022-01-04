@@ -15,7 +15,11 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
   PaymentHomePageView(ProviderBase model) : super(model);
 
-  List pages = [AddSendMoneyContactPage(), AddRequestMoneyContactPage()];
+  final List pages = [
+    AddSendMoneyContactPage(),
+    AddRequestMoneyContactPage(),
+    Container()
+  ];
 
   @override
   Widget build(BuildContext context, model) {
@@ -29,11 +33,14 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
           return GestureDetector(
             onVerticalDragEnd: (details) {
               if (details.primaryVelocity!.isNegative) {
+                ///TODO:
                 if (currentStep == 0) {
                   Navigator.pushNamed(context, RoutePaths.SendMoney);
                 } else {
                   Navigator.pushNamed(context, RoutePaths.RequestMoney);
                 }
+              } else {
+                Navigator.pop(context);
               }
             },
             behavior: HitTestBehavior.translucent,
@@ -48,7 +55,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                     child: Text(
                       S.of(context).payments,
                       style:
-                      TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
+                          TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
                     ),
                   ),
                   Expanded(
@@ -77,12 +84,12 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                           ),
                           SmoothPageIndicator(
                             controller: model.controller,
-                            count: pages.length,
+                            count: pages.length - 1,
                             effect: ScrollingDotsEffect(
                               activeStrokeWidth: 2.6,
                               activeDotScale: 1.3,
                               activeDotColor:
-                              Theme.of(context).primaryColorDark,
+                                  Theme.of(context).primaryColorDark,
                               dotColor: Theme.of(context)
                                   .primaryColorDark
                                   .withOpacity(0.6),

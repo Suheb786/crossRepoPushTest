@@ -7,6 +7,10 @@ import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/requ
 
 class RequestPaymentFromNewRecipientPage
     extends BasePage<RequestPaymentFromNewRecipientViewModel> {
+  String? requestValue;
+
+  RequestPaymentFromNewRecipientPage({this.requestValue});
+
   @override
   RequestPaymentFromNewRecipientPageState createState() =>
       RequestPaymentFromNewRecipientPageState();
@@ -17,7 +21,8 @@ class RequestPaymentFromNewRecipientPageState extends BaseStatefulPage<
     RequestPaymentFromNewRecipientPage> {
   @override
   ProviderBase provideBase() {
-    return requestPaymentFromNewRecipientViewModelProvider;
+    return requestPaymentFromNewRecipientViewModelProvider
+        .call(widget.requestValue!);
   }
 
   @override

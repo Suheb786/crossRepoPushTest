@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 
 class AppDivider extends StatelessWidget {
   final Color? color;
@@ -10,7 +9,7 @@ class AppDivider extends StatelessWidget {
 
   const AppDivider(
       {Key? key,
-      this.color: AppColor.white,
+      this.color,
       this.height: 1,
       this.thickness: 1,
       this.indent: 0,
@@ -19,13 +18,11 @@ class AppDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Divider(
-        height: height,
-        color: color,
-        indent: indent,
-        endIndent: endIndent,
-      ),
+    return Divider(
+      height: height,
+      color: color ?? Theme.of(context).dividerColor,
+      indent: indent,
+      endIndent: endIndent,
     );
   }
 }

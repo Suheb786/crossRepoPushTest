@@ -18,7 +18,7 @@ class DebitCardVerificationSuccessPageView
       child: GestureDetector(
         onHorizontalDragEnd: (details) {
           if (details.primaryVelocity!.isNegative) {
-            Navigator.of(context)..pop()..pop();
+            Navigator.of(context)..pop()..pop(true);
           }
         },
         child: Padding(
@@ -53,9 +53,7 @@ class DebitCardVerificationSuccessPageView
                 child: Text(
                   S.of(context).debitCardVerified,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w800,
-                      fontSize: 24),
+                  style: TextStyle(fontWeight: FontWeight.w800, fontSize: 24),
                 ),
               ),
               Padding(
@@ -63,9 +61,7 @@ class DebitCardVerificationSuccessPageView
                 child: Text(
                   S.of(context).physicalCardUse,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16),
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
                 ),
               ),
               Padding(
@@ -84,9 +80,7 @@ class DebitCardVerificationSuccessPageView
                   padding: EdgeInsets.only(top: 9),
                   child: Text(
                     S.of(context).toDashboard,
-                    style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
                   ),
                 ),
               )

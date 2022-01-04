@@ -14,6 +14,8 @@ class ErrorParser {
         return localisedHelper.genericError;
       case ErrorType.NETWORK:
         return localisedHelper.genericError;
+      case ErrorType.INVALID_BENEFICIARY:
+        return localisedHelper.invalidBeneficiary;
       case ErrorType.NET_SERVER_MESSAGE:
         return localisedHelper.genericError;
       case ErrorType.NET_NO_INTERNET_CONNECTION:
@@ -32,6 +34,10 @@ class ErrorParser {
         return localisedHelper.genericError;
       case ErrorType.INVALID_MOBILE:
         return localisedHelper.enterValidMobileNumber;
+      case ErrorType.INVALID_OTP:
+        return localisedHelper.enterValidOtp;
+      case ErrorType.INVALID_REQUESTED_AMOUNT:
+        return localisedHelper.invalidRequestedAmount;
       case ErrorType.INVALID_OTP:
         return localisedHelper.enterValidOtp;
       case ErrorType.INVALID_EMPLOYMENT_STATUS:
@@ -292,12 +298,32 @@ class ErrorParser {
         return localisedHelper.invalidOtpEntered;
       case ErrorType.LOCATION_SERVICE_NOT_ENABLED:
         return localisedHelper.locationServiceDisabled;
+      case ErrorType.LIMIT_EXCEEDED:
+        return localisedHelper.limitExceeded;
       case ErrorType.EMPTY_IBAN_MOBILE:
         return localisedHelper.emptyIbanOrMobile;
       case ErrorType.EMPTY_PURPOSE:
         return localisedHelper.emptyPurpose;
       case ErrorType.EMPTY_PURPOSE_DETAIL:
         return localisedHelper.emptyPurposeDetail;
+      case ErrorType.BENEFICIARY_NOT_FOUND:
+        return localisedHelper.beneficiaryNotFound;
+      case ErrorType.ERROR_WHILE_BALANCE_INQUIRY:
+        return localisedHelper.errorWhileBalanceInquiry;
+      case ErrorType.INSUFFICIENT_BALANCE:
+        return localisedHelper.insufficientBalance;
+      case ErrorType.INSUFFICIENT_BALANCE_TRANSFER:
+        return localisedHelper.insufficientBalanceTransfer;
+      case ErrorType.REQUEST_NOT_COMPLETED:
+        return localisedHelper.requestNotCompleted;
+      case ErrorType.SELECT_CANCELATION_REASON:
+        return localisedHelper.pleaseSelectTheReason;
+      case ErrorType.AGREE_TO_THE_TERM_AND_CONDITION:
+        return localisedHelper.pleaseAgreeToTheTermAndCondition;
+      case ErrorType.INVALID_LIMIT_VALUE:
+        return localisedHelper.invalidLimitValue;
+      case ErrorType.EMPTY_CONFIRM_PIN:
+        return localisedHelper.emptyConfirmPin;
 
       default:
         return "";

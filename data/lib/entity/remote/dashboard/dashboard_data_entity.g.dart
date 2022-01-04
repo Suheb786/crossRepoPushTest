@@ -31,6 +31,8 @@ DashboardDataEntity _$DashboardDataEntityFromJson(Map<String, dynamic> json) {
         ? null
         : DashboardDebitCardEntity.fromJson(
             json['debitCard'] as Map<String, dynamic>),
+    debitDeliveredDatetime: json['debitDeliveredDatetime'],
+    creditDeliveredDatetime: json['creditDeliveredDatetime'],
   );
 }
 
@@ -47,4 +49,6 @@ Map<String, dynamic> _$DashboardDataEntityToJson(
       'creditCardActivated': instance.creditCardActivated,
       'youJoinedBlink': instance.blinkJoinedDate?.toIso8601String(),
       'blinkWasBorn': instance.blinkBornDate?.toIso8601String(),
+      'debitDeliveredDatetime': instance.debitDeliveredDatetime,
+      'creditDeliveredDatetime': instance.creditDeliveredDatetime,
     };

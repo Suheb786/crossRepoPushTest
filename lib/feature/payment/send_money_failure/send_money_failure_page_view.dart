@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -16,6 +17,12 @@ class SendMoneyFailurePageView
   Widget build(BuildContext context, model) {
     return AppKeyBoardHide(
       child: GestureDetector(
+        onHorizontalDragEnd: (details) {
+          if (details.primaryVelocity!.isNegative) {
+            Navigator.popUntil(
+                context, ModalRoute.withName(RoutePaths.AppHome));
+          }
+        },
         child: Padding(
           padding: EdgeInsets.only(top: 92),
           child: SingleChildScrollView(

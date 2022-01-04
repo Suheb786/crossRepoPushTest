@@ -1,4 +1,5 @@
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:domain/model/purpose/purpose.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
@@ -14,12 +15,13 @@ import 'package:neo_bank/utils/color_utils.dart';
 
 class PurposeDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(String)? onSelected;
+  final Function(Purpose)? onSelected;
+  final List<Purpose>? purposeList;
 
-  const PurposeDialogView({this.onDismissed, this.onSelected});
+  PurposeDialogView({this.onDismissed, this.onSelected, this.purposeList});
 
   ProviderBase providerBase() {
-    return purposeDialogViewModelProvider;
+    return purposeDialogViewModelProvider.call(purposeList!);
   }
 
   @override
@@ -43,7 +45,9 @@ class PurposeDialogView extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 32.0),
                         child: Center(
                           child: Text(
-                            S.of(context).employmentStatusSmall,
+                            S
+                                .of(context)
+                                .purpose,
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w600),
                           ),
@@ -69,7 +73,7 @@ class PurposeDialogView extends StatelessWidget {
                             child: ClickableListWheelScrollView(
                               scrollController: model.scrollController,
                               itemHeight: 64,
-                              itemCount: model.purposeList.length,
+                              itemCount: model.purposeList!.length,
                               onItemTapCallback: (index) {
                                 model.currentIndexUpdate(index);
                               },
@@ -82,11 +86,12 @@ class PurposeDialogView extends StatelessWidget {
                                   physics: FixedExtentScrollPhysics(),
                                   perspective: 0.0000000001,
                                   childDelegate: ListWheelChildBuilderDelegate(
-                                      childCount: model.purposeList.length,
+                                      childCount: model.purposeList!.length,
                                       builder:
                                           (BuildContext context, int index) {
                                         return ListScrollWheelListWidget(
-                                          label: model.purposeList[index],
+                                          label: model
+                                              .purposeList![index].labelEn!,
                                           textColor: currentIndex == index
                                               ? Theme.of(context)
                                                   .primaryColorDark
@@ -100,7 +105,7 @@ class PurposeDialogView extends StatelessWidget {
                       )),
                       InkWell(
                         onTap: () {
-                          onSelected!.call(model.purposeList[currentIndex!]);
+                          onSelected!.call(model.purposeList![currentIndex!]);
                         },
                         child: Container(
                           padding: EdgeInsets.all(16),

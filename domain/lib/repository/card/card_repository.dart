@@ -47,9 +47,28 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> cancelDebitCard({String reason});
 
-  Future<Either<NetworkError, bool>> changeDebitCardPin(
-      {String? status, required String pin});
+  Future<Either<NetworkError, bool>> changeDebitCardPin({required String pin});
 
   Future<Either<NetworkError, bool>> unblockDebitCardPin(
       {String status, required String pin});
+
+  Future<Either<NetworkError, bool>> updateDebitCardLimits(
+      {num atmWithdrawal,
+      num merchantsPayments,
+      num onlinePurchase,
+      num contactLessPayments,
+      bool isAtmWithdrawal,
+      bool isMerchantsPayments,
+      bool isOnlinePurchase,
+      bool isContactLessPayments});
+
+  Future<Either<NetworkError, bool>> updateCreditCardLimits(
+      {num atmWithdrawal,
+      num contactLessPayments,
+      bool isAtmWithdrawal,
+      bool isContactLessPayments,
+      bool isMerchantsPayments,
+      bool isOnlinePurchase,
+      num merchantsPayments,
+      num onlinePurchase});
 }

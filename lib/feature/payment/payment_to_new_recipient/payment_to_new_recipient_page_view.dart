@@ -18,7 +18,11 @@ class PaymentToNewRecipientPageView
     extends BasePageViewWidget<PaymentToNewRecipientViewModel> {
   PaymentToNewRecipientPageView(ProviderBase model) : super(model);
 
-  final pages = [SendToNewRecipientPage(), EnterOtpPage(), BaseCardPage()];
+  final pages = [
+    SendToNewRecipientPage(),
+    EnterOtpPage(),
+    Visibility(visible: false, child: BaseCardPage())
+  ];
 
   @override
   Widget build(BuildContext context, model) {
@@ -88,7 +92,9 @@ class PaymentToNewRecipientPageView
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    "350.0",
+                                    ProviderScope.containerOf(context)
+                                        .read(sendMoneyViewModelProvider)
+                                        .currentPinValue,
                                     style: TextStyle(
                                         color: Theme.of(context).accentColor,
                                         fontSize: 28,

@@ -1,3 +1,4 @@
+import 'package:domain/model/payment/transfer_success_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -7,6 +8,10 @@ import 'package:neo_bank/feature/payment/send_amount_to_contact_success/send_amo
 
 class SendAmountToContactSuccessPage
     extends BasePage<SendAmountToContactSuccessViewModel> {
+  final TransferSuccessContent arguments;
+
+  SendAmountToContactSuccessPage({required this.arguments});
+
   @override
   SendAmountToContactSuccessPageState createState() =>
       SendAmountToContactSuccessPageState();
@@ -16,7 +21,7 @@ class SendAmountToContactSuccessPageState extends BaseStatefulPage<
     SendAmountToContactSuccessViewModel, SendAmountToContactSuccessPage> {
   @override
   ProviderBase provideBase() {
-    return sendAmountToContactSuccessViewModelProvider;
+    return sendAmountToContactSuccessViewModelProvider.call(widget.arguments);
   }
 
   @override
@@ -30,3 +35,18 @@ class SendAmountToContactSuccessPageState extends BaseStatefulPage<
     return SendAmountToContactSuccessPageView(provideBase());
   }
 }
+
+// class SendAmountToSuccessPageArguments {
+//   final TransferResponse transferResponse;
+//   final String otpCode;
+//   final String beneficiaryImage;
+//   final bool isFriend;
+//   final String memo;
+//
+//   SendAmountToSuccessPageArguments(
+//       {required this.transferResponse,
+//       required this.otpCode,
+//       required this.beneficiaryImage,
+//       required this.isFriend,
+//       required this.memo});
+// }

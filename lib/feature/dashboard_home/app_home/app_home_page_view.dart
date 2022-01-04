@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
-import 'package:neo_bank/feature/dashboard_home/card_transaction/card_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_page.dart';
@@ -14,9 +12,11 @@ import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart'
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_page.dart';
 import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/cutom_route.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_account_opening/purpose_of_account_opening_dialog.dart';
 import 'package:neo_bank/ui/molecules/pager/dashboard_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -28,7 +28,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
   AppHomePageView(ProviderBase model) : super(model);
 
-  List pages = [
+  final List pages = [
     MyAccountPage(),
     GetCreditCardPage(),
     MyDebitCardPage(),
@@ -92,16 +92,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               model.updateShowTimeLineStream(!showTimeLine);
                               return;
                             } else {
-                              Navigator.push(
-                                  context,
-                                  CustomRoute.createRoute(
-                                      CardTransactionPage()));
+                              Navigator.pushNamed(
+                                  context, RoutePaths.CardTransaction);
                             }
                           } else if (currentStep == 0) {
-                            Navigator.push(
-                                context,
-                                CustomRoute.createRoute(
-                                    AccountTransactionPage()));
+                            Navigator.pushNamed(
+                                context, RoutePaths.AccountTransaction);
                           } else if (currentStep == 2) {
                             model.updateShowTimeLineStream(!showTimeLine!);
                           }
@@ -129,7 +125,10 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text("0.00",
+                                Text(
+                                    cardData!.data!.dashboardDataContent!
+                                        .account!.availableBalance
+                                        .toString(),
                                     style: TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.w700,
@@ -254,6 +253,15 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     context,
                                                   );
                                                   break;
+                                                case 2:
+                                                  EngagementTeamDialog
+                                                      .show(context,
+                                                          onDismissed: () {
+                                                    Navigator.pop(context);
+                                                  }, onSelected: (value) {
+                                                    Navigator.pop(context);
+                                                  });
+                                                  break;
                                               }
                                             },
                                           ),
@@ -317,98 +325,184 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                     EdgeInsets.only(left: 18),
                                                 child: Row(
                                                   children: [
-                                                    Column(
-                                                      children: [
-                                                        Text(
-                                                          S
-                                                              .of(context)
-                                                              .cardDelivered,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontSize: 12),
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  top: 5),
-                                                          child: InkWell(
-                                                            onTap: () {
-                                                              if (currentStep ==
-                                                                  1) {
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder: (context) =>
-                                                                            CreditCardDeliveredPage(
-                                                                              creditCard: cardData!.data!.dashboardDataContent!.creditCard!,
-                                                                            )));
-                                                              } else {
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder: (context) =>
-                                                                            DebitCardDeliveredPage(
-                                                                              debitCard: cardData!.data!.dashboardDataContent!.debitCard!,
-                                                                            )));
-                                                              }
-                                                            },
-                                                            child: Container(
-                                                              padding: EdgeInsets
-                                                                  .symmetric(
-                                                                      horizontal:
-                                                                          11,
-                                                                      vertical:
-                                                                          2),
-                                                              decoration: BoxDecoration(
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .accentColor,
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              14),
-                                                                  border: Border.all(
-                                                                      color: Theme.of(
-                                                                              context)
-                                                                          .accentTextTheme
-                                                                          .bodyText1!
-                                                                          .color!)),
-                                                              child: Text(
-                                                                S
-                                                                    .of(context)
-                                                                    .confirm,
-                                                                style: TextStyle(
-                                                                    color: Theme.of(
+                                                    (currentStep == 1
+                                                            ? (cardData
+                                                                        .data!
+                                                                        .dashboardDataContent!
+                                                                        .isCreditDelivered !=
+                                                                    null &&
+                                                                cardData
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .isCreditDelivered)
+                                                            : (cardData
+                                                                        .data!
+                                                                        .dashboardDataContent!
+                                                                        .isDebitDelivered !=
+                                                                    null &&
+                                                                cardData
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .isDebitDelivered))
+                                                        ? Column(
+                                                            children: [
+                                                              Text(
+                                                                currentStep == 1
+                                                                    ? S
+                                                                        .of(
                                                                             context)
-                                                                        .accentTextTheme
-                                                                        .bodyText1!
-                                                                        .color,
-                                                                    fontSize:
-                                                                        14,
+                                                                        .creditCardDelivered
+                                                                    : S
+                                                                        .of(context)
+                                                                        .debitCardDeliveredDate,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: TextStyle(
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .w600),
+                                                                            .w600,
+                                                                    fontSize:
+                                                                        12),
                                                               ),
-                                                            ),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: 5),
+                                                                child: Text(
+                                                                  currentStep ==
+                                                                          1
+                                                                      ? cardData.data!.dashboardDataContent!.creditDeliveredDatetime !=
+                                                                              null
+                                                                          ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                              .data!
+                                                                              .dashboardDataContent!
+                                                                              .creditDeliveredDatetime!
+                                                                              .toString())
+                                                                          : '-'
+                                                                      : cardData.data!.dashboardDataContent!.debitDeliveredDatetime !=
+                                                                              null
+                                                                          ? TimeUtils.getFormattedDateForTransaction(cardData
+                                                                              .data!
+                                                                              .dashboardDataContent!
+                                                                              .debitDeliveredDatetime!
+                                                                              .toString())
+                                                                          : '-',
+                                                                  style: TextStyle(
+                                                                      fontSize:
+                                                                          12,
+                                                                      color: Theme.of(
+                                                                              context)
+                                                                          .inputDecorationTheme
+                                                                          .hintStyle!
+                                                                          .color,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600),
+                                                                ),
+                                                              )
+                                                            ],
+                                                          )
+                                                        : Column(
+                                                            children: [
+                                                              Text(
+                                                                S
+                                                                    .of(context)
+                                                                    .cardDelivered,
+                                                                style: TextStyle(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    fontSize:
+                                                                        12),
+                                                              ),
+                                                              Padding(
+                                                                padding: EdgeInsets
+                                                                    .only(
+                                                                        top: 5),
+                                                                child: InkWell(
+                                                                  onTap:
+                                                                      () async {
+                                                                    if (currentStep ==
+                                                                        1) {
+                                                                      var result = await Navigator.push(
+                                                                          context,
+                                                                          MaterialPageRoute(
+                                                                              builder: (context) => CreditCardDeliveredPage(
+                                                                                    creditCard: cardData.data!.dashboardDataContent!.creditCard!,
+                                                                                  )));
+                                                                      if (result !=
+                                                                          null) {
+                                                                        print(
+                                                                            '$result');
+                                                                        model
+                                                                            .getDashboardData();
+                                                                      }
+                                                                    } else {
+                                                                      var result = await Navigator.push(
+                                                                          context,
+                                                                          MaterialPageRoute(
+                                                                              builder: (context) => DebitCardDeliveredPage(
+                                                                                    debitCard: cardData.data!.dashboardDataContent!.debitCard!,
+                                                                                  )));
+                                                                      if (result !=
+                                                                          null) {
+                                                                        print(
+                                                                            '$result');
+                                                                        model
+                                                                            .getDashboardData();
+                                                                      }
+                                                                    }
+                                                                  },
+                                                                  child:
+                                                                      Container(
+                                                                    padding: EdgeInsets.symmetric(
+                                                                        horizontal:
+                                                                            11,
+                                                                        vertical:
+                                                                            2),
+                                                                    decoration: BoxDecoration(
+                                                                        color: Theme.of(context)
+                                                                            .accentColor,
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                14),
+                                                                        border: Border.all(
+                                                                            color:
+                                                                                Theme.of(context).accentTextTheme.bodyText1!.color!)),
+                                                                    child: Text(
+                                                                      S
+                                                                          .of(context)
+                                                                          .confirm,
+                                                                      style: TextStyle(
+                                                                          color: Theme.of(context)
+                                                                              .accentTextTheme
+                                                                              .bodyText1!
+                                                                              .color,
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontWeight:
+                                                                              FontWeight.w600),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              )
+                                                            ],
                                                           ),
-                                                        )
-                                                      ],
-                                                    ),
                                                     Padding(
                                                       padding: EdgeInsets.only(
                                                           left: 170),
                                                       child: Column(
                                                         children: [
                                                           Text(
-                                                            currentStep == 1
-                                                                ? S
-                                                                    .of(context)
-                                                                    .debitCardDelivered
-                                                                : S
-                                                                    .of(context)
-                                                                    .joinedBlink,
+                                                            // currentStep == 1
+                                                            //     ? S
+                                                            //         .of(context)
+                                                            //         .debitCardDelivered
+                                                            //     :
+                                                            S
+                                                                .of(context)
+                                                                .joinedBlink,
                                                             textAlign: TextAlign
                                                                 .center,
                                                             style: TextStyle(
@@ -422,7 +516,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                 EdgeInsets.only(
                                                                     top: 5),
                                                             child: Text(
-                                                              cardData!
+                                                              cardData
                                                                           .data!
                                                                           .dashboardDataContent!
                                                                           .youJoinedBlink !=

@@ -1,7 +1,10 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:domain/model/payment/check_send_money_response.dart';
+import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/send_amount_to_contact/send_amount_to_contact_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -12,6 +15,9 @@ import 'package:neo_bank/ui/molecules/numeric_keyboard.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class SendAmountToContactPageView
     extends BasePageViewWidget<SendAmountToContactViewModel> {
@@ -22,7 +28,8 @@ class SendAmountToContactPageView
     return AppKeyBoardHide(
       child: GestureDetector(
         onVerticalDragEnd: (details) {
-          if (details.primaryVelocity!.isNegative) {} else {
+          if (details.primaryVelocity!.isNegative) {
+          } else {
             Navigator.pop(context);
           }
         },
@@ -71,12 +78,29 @@ class SendAmountToContactPageView
             ),
             Padding(
               padding: EdgeInsets.only(top: 24.0),
-              child: Container(
-                height: 56,
-                width: 56,
-                decoration: BoxDecoration(shape: BoxShape.circle),
-                child: Image.asset(AssetUtils.image),
-              ),
+              child: model.beneficiary.imageUrl.toString().isNotEmpty
+                  ? CircleAvatar(
+                      radius: 28,
+                      backgroundImage: Image.memory(
+                        model.beneficiary.imageUrl,
+                        fit: BoxFit.cover,
+                      ).image,
+                    )
+                  : CircleAvatar(
+                      radius: 28,
+                      backgroundColor: Theme.of(context).canvasColor,
+                      child: Text(
+                        StringUtils.getFirstInitials(
+                            model.beneficiary.fullName),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 20,
+                            color: Theme.of(context)
+                                .primaryTextTheme
+                                .bodyText1!
+                                .color),
+                      ),
+                    ),
             ),
             Padding(
               padding: EdgeInsets.only(top: 8),
@@ -89,7 +113,8 @@ class SendAmountToContactPageView
               ),
             ),
             Text(
-              "Rose",
+              ///TODO:change to nickname
+              model.beneficiary.fullName ?? '',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
@@ -103,7 +128,7 @@ class SendAmountToContactPageView
                     borderRadius: BorderRadius.circular(15),
                     border: Border.all(color: AppColor.whiteGray)),
                 padding:
-                EdgeInsets.only(top: 14, bottom: 14, left: 26, right: 34),
+                    EdgeInsets.only(top: 14, bottom: 14, left: 26, right: 34),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -121,7 +146,10 @@ class SendAmountToContactPageView
                         children: [
                           AppStreamBuilder<String>(
                               stream: model.purposeStream,
-                              initialData: "Personal",
+                              initialData: (model.beneficiary.purpose != null &&
+                                      model.beneficiary.purpose!.isNotEmpty)
+                                  ? model.beneficiary.purpose!
+                                  : 'Personal',
                               dataBuilder: (context, value) {
                                 return Text(
                                   value!,
@@ -134,13 +162,13 @@ class SendAmountToContactPageView
                             onTap: () {
                               EditTransactionPurposeDialog.show(context,
                                   onDismissed: () {
-                                    Navigator.pop(context);
-                                  }, onSelected: (value1, value2) {
-                                    print("got value: $value1");
-                                    model.updatePurpose(value1);
-                                    model.updatePurposeDetail(value2);
-                                    Navigator.pop(context);
-                                  });
+                                Navigator.pop(context);
+                              }, onSelected: (value1, value2) {
+                                print("got value: $value1");
+                                model.updatePurpose(value1);
+                                model.updatePurposeDetail(value2);
+                                Navigator.pop(context);
+                              }, beneficiary: model.beneficiary);
                             },
                             child: Text(
                               S.of(context).edit,
@@ -160,7 +188,11 @@ class SendAmountToContactPageView
                       padding: EdgeInsets.only(top: 2),
                       child: AppStreamBuilder<String>(
                           stream: model.purposeDetailStream,
-                          initialData: "Transfer to Friend or Family",
+                          initialData: (model.beneficiary.purposeDetails !=
+                                      null &&
+                                  model.beneficiary.purposeDetails!.isNotEmpty)
+                              ? model.beneficiary.purposeDetails!
+                              : 'Transfer to Friend or Family',
                           dataBuilder: (context, value) {
                             return Text(
                               value!,
@@ -233,7 +265,12 @@ class SendAmountToContactPageView
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "12,451.92",
+                    ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .account!
+                        .availableBalance
+                        .toString(),
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
@@ -361,33 +398,57 @@ class SendAmountToContactPageView
             //     ),
             //   ),
             // )
-            Expanded(
-              child: NumericKeyboard(
-                  onKeyboardTap: (value) {
-                    model.changeValue(value);
-                  },
-                  textColor: Colors.black,
-                  rightButtonFn: () {
+            AppStreamBuilder<Resource<TransferSuccessResponse>>(
+                stream: model.transferStream,
+                initialData: Resource.none(),
+                onData: (data) {
+                  if (data.status == Status.SUCCESS) {
                     Navigator.pushNamed(
-                        context, RoutePaths.SendAmountToContactSuccess);
-                  },
-                  leftIcon: Icon(
-                    Icons.circle,
-                    color: AppColor.black,
-                    size: 5,
-                  ),
-                  rightWidget: CircleAvatar(
-                    radius: 30,
-                    backgroundColor: Color(0xFF3CB4E5),
-                    child: Center(
-                      child: AppSvg.asset(AssetUtils.next),
-                    ),
-                  ),
-                  leftButtonFn: () {
-                    print('left button clicked');
-                  },
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly),
-            )
+                        context, RoutePaths.SendAmountToContactSuccess,
+                        arguments: data.data!.transferSuccessContent);
+                  } else if (data.status == Status.ERROR) {
+                    Navigator.pushNamed(context, RoutePaths.SendMoneyFailure);
+                  }
+                },
+                dataBuilder: (context, snapshot) {
+                  return AppStreamBuilder<Resource<CheckSendMoneyResponse>>(
+                      stream: model.checkSendMoneyStream,
+                      initialData: Resource.none(),
+                      onData: (data) {
+                        if (data.status == Status.SUCCESS) {
+                          model.transfer(data
+                              .data!.checkSendMoneyContent!.transferResponse!);
+                        }
+                      },
+                      dataBuilder: (context, checkSendMoneyResponse) {
+                        return Expanded(
+                          child: NumericKeyboard(
+                              onKeyboardTap: (value) {
+                                model.changeValue(value);
+                              },
+                              textColor: Colors.black,
+                              rightButtonFn: () {
+                                model.checkSendMoney();
+                              },
+                              leftIcon: Icon(
+                                Icons.circle,
+                                color: AppColor.black,
+                                size: 5,
+                              ),
+                              rightWidget: CircleAvatar(
+                                radius: 30,
+                                backgroundColor: Color(0xFF3CB4E5),
+                                child: Center(
+                                  child: AppSvg.asset(AssetUtils.next),
+                                ),
+                              ),
+                              leftButtonFn: () {
+                                print('left button clicked');
+                              },
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly),
+                        );
+                      });
+                })
           ],
         ),
       ),
