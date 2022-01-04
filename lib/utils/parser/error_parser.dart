@@ -298,6 +298,8 @@ class ErrorParser {
         return localisedHelper.invalidOtpEntered;
       case ErrorType.LOCATION_SERVICE_NOT_ENABLED:
         return localisedHelper.locationServiceDisabled;
+      case ErrorType.LIMIT_EXCEEDED:
+        return localisedHelper.limitExceeded;
       case ErrorType.EMPTY_IBAN_MOBILE:
         return localisedHelper.emptyIbanOrMobile;
       case ErrorType.EMPTY_PURPOSE:
@@ -318,6 +320,10 @@ class ErrorParser {
         return localisedHelper.pleaseSelectTheReason;
       case ErrorType.AGREE_TO_THE_TERM_AND_CONDITION:
         return localisedHelper.pleaseAgreeToTheTermAndCondition;
+      case ErrorType.INVALID_LIMIT_VALUE:
+        return localisedHelper.invalidLimitValue;
+      case ErrorType.EMPTY_CONFIRM_PIN:
+        return localisedHelper.emptyConfirmPin;
 
       default:
         return "";

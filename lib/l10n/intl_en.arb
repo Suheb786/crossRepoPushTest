@@ -703,5 +703,13 @@
     "description": "maximumLimit",
     "type": "string"
   },
-  "requestNotCompleted": "Your Request Is Not Completed"
+  "requestNotCompleted": "Your Request Is Not Completed",
+  "invalidLimitValue": "Limit value cannot be set greater than max limit value",
+  "enterNewCardPinAndConfirmPin": "Enter new card PIN\nand confirm PIN",
+  "newPin": "new pin ",
+  "confirmNewPin": "CONFIRM new pin ",
+  "emptyConfirmPin": "Enter pin again",
+  "cardPinChangedSuccessfully": "Card PIN changed successfully",
+  "cardPinChangedDesc": "Your may use your new PIN for payments immediately.",
+  "limitExceeded": "Limit exceeded"
 }

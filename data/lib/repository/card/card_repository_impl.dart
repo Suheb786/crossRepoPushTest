@@ -219,9 +219,9 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, bool>> changeDebitCardPin(
-      {String? status, required String pin}) async {
+      {required String pin}) async {
     final result = await safeApiCall(
-      _remoteDs.changeDebitCardPin(status: status, pin: pin),
+      _remoteDs.changeDebitCardPin(pin: pin),
     );
     return result!.fold(
       (l) => Left(l),
@@ -233,7 +233,61 @@ class CardRepositoryImpl extends CardRepository {
   Future<Either<NetworkError, bool>> unblockDebitCardPin(
       {String? status, required String pin}) async {
     final result = await safeApiCall(
-      _remoteDs.unblockDebitCardPin(status: status, pin: pin),
+      _remoteDs.unblockDebitCardPin(pin: pin),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> updateDebitCardLimits(
+      {num? atmWithdrawal,
+      num? merchantsPayments,
+      num? onlinePurchase,
+      num? contactLessPayments,
+      bool? isAtmWithdrawal,
+      bool? isMerchantsPayments,
+      bool? isOnlinePurchase,
+      bool? isContactLessPayments}) async {
+    final result = await safeApiCall(
+      _remoteDs.updateDebitCardLimits(
+          atmWithdrawal: atmWithdrawal,
+          merchantsPayments: merchantsPayments,
+          onlinePurchase: onlinePurchase,
+          contactLessPayments: contactLessPayments,
+          isAtmWithdrawal: isAtmWithdrawal,
+          isMerchantsPayments: isMerchantsPayments,
+          isOnlinePurchase: isOnlinePurchase,
+          isContactLessPayments: isContactLessPayments),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> updateCreditCardLimits(
+      {num? atmWithdrawal,
+      num? contactLessPayments,
+      bool? isAtmWithdrawal,
+      bool? isContactLessPayments,
+      bool? isMerchantsPayments,
+      bool? isOnlinePurchase,
+      num? merchantsPayments,
+      num? onlinePurchase}) async {
+    final result = await safeApiCall(
+      _remoteDs.updateCreditCardLimits(
+          atmWithdrawal: atmWithdrawal,
+          merchantsPayments: merchantsPayments,
+          onlinePurchase: onlinePurchase,
+          contactLessPayments: contactLessPayments,
+          isAtmWithdrawal: isAtmWithdrawal,
+          isMerchantsPayments: isMerchantsPayments,
+          isOnlinePurchase: isOnlinePurchase,
+          isContactLessPayments: isContactLessPayments),
     );
     return result!.fold(
       (l) => Left(l),

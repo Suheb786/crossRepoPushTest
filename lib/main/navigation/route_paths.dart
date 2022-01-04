@@ -66,4 +66,6 @@ class RoutePaths {
   static const String DebitCardReplacementSuccess =
       "/debitCardReplacementSuccess";
   static const String manageDebitLimit = "/manageDebitLimits";
+  static const String ChangeCardPin = "/changeCardPin";
+  static const String ChangeCardPinSuccess = "/changeCardPinSuccess";
 }

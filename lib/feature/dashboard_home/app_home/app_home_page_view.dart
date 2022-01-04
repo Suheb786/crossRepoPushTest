@@ -312,14 +312,24 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 child: Row(
                                                   children: [
                                                     (currentStep == 1
-                                                            ? cardData
-                                                                .data!
-                                                                .dashboardDataContent!
-                                                                .isCreditDelivered
-                                                            : cardData
-                                                                .data!
-                                                                .dashboardDataContent!
-                                                                .isDebitDelivered)
+                                                            ? (cardData
+                                                                        .data!
+                                                                        .dashboardDataContent!
+                                                                        .isCreditDelivered !=
+                                                                    null &&
+                                                                cardData
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .isCreditDelivered)
+                                                            : (cardData
+                                                                        .data!
+                                                                        .dashboardDataContent!
+                                                                        .isDebitDelivered !=
+                                                                    null &&
+                                                                cardData
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .isDebitDelivered))
                                                         ? Column(
                                                             children: [
                                                               Text(

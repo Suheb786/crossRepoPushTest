@@ -110,7 +110,10 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                       ),
                       AppDivider(),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, RoutePaths.ChangeCardPin);
+                        },
                         child: Padding(
                           padding: EdgeInsets.all(24),
                           child: Row(

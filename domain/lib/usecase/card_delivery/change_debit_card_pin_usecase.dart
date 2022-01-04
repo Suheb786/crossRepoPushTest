@@ -14,16 +14,14 @@ class ChangeDebitCardPinUseCase
   @override
   Future<Either<NetworkError, bool>> execute(
       {required ChangeDebitCardPinUseCaseParams params}) {
-    return _repository.changeDebitCardPin(
-        status: params.status, pin: params.pin);
+    return _repository.changeDebitCardPin(pin: params.pin);
   }
 }
 
 class ChangeDebitCardPinUseCaseParams extends Params {
-  final String status;
   final String pin;
 
-  ChangeDebitCardPinUseCaseParams({this.status: "", this.pin: ""});
+  ChangeDebitCardPinUseCaseParams({this.pin: ""});
 
   @override
   Either<AppError, bool> verify() {

@@ -210,13 +210,24 @@ class RequestFromNewRecipientPageView
                                                 controller:
                                                     model.purposeController,
                                                 onPressed: () {
-                                                  PurposeDialog.show(context,
-                                                      onSelected: (value) {
-                                                    model.updatePurpose(value);
-                                                    Navigator.pop(context);
-                                                  }, onDismissed: () {
-                                                    Navigator.pop(context);
-                                                  });
+                                                  if (model.purposeList !=
+                                                          null &&
+                                                      model.purposeList
+                                                          .isNotEmpty) {
+                                                    PurposeDialog.show(context,
+                                                        purposeList:
+                                                            model.purposeList,
+                                                        onSelected: (value) {
+                                                      model
+                                                          .updatePurpose(value);
+                                                      model.updatePurposeDetailList(
+                                                          value
+                                                              .purposeDetails!);
+                                                      Navigator.pop(context);
+                                                    }, onDismissed: () {
+                                                      Navigator.pop(context);
+                                                    });
+                                                  }
                                                 },
                                                 suffixIcon: (value, data) {
                                                   return Container(
@@ -243,15 +254,22 @@ class RequestFromNewRecipientPageView
                                                 controller: model
                                                     .purposeDetailController,
                                                 onPressed: () {
-                                                  PurposeDetailDialog.show(
-                                                      context,
-                                                      onSelected: (value) {
-                                                    model.updatePurposeDetail(
-                                                        value);
-                                                    Navigator.pop(context);
-                                                  }, onDismissed: () {
-                                                    Navigator.pop(context);
-                                                  });
+                                                  if (model.purposeDetailList !=
+                                                          null &&
+                                                      model.purposeDetailList
+                                                          .isNotEmpty) {
+                                                    PurposeDetailDialog.show(
+                                                        context,
+                                                        purposeDetailList: model
+                                                            .purposeDetailList,
+                                                        onSelected: (value) {
+                                                      model.updatePurposeDetail(
+                                                          value);
+                                                      Navigator.pop(context);
+                                                    }, onDismissed: () {
+                                                      Navigator.pop(context);
+                                                    });
+                                                  }
                                                 },
                                                 suffixIcon: (value, data) {
                                                   return Container(

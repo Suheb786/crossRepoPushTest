@@ -18,15 +18,14 @@ class RequestFromNewRecipientUseCase extends BaseUseCase<NetworkError,
   Future<Either<NetworkError, RequestToPayContentResponse>> execute(
       {required RequestFromNewRecipientUseCaseParams params}) {
     return _repository.requestToPay(
-        params.purpose!,
+        params.purposeCode!,
         params.amount!,
         params.dbtrBic!,
         params.dbtrAcct!,
         params.dbtrName!,
-        params.purposeDetail!,
+        params.purposeDetailCode!,
         params.isFriend!,
-        params.image!
-    );
+        params.image!);
   }
 }
 
@@ -40,18 +39,23 @@ class RequestFromNewRecipientUseCaseParams extends Params {
   String? dbtrName;
   String? image;
   bool? isFriend;
+  num? limit;
+  String? purposeCode;
+  String? purposeDetailCode;
 
-  RequestFromNewRecipientUseCaseParams({
-    this.ibanOrMobile,
-    this.purpose,
-    this.purposeDetail,
-    this.amount,
-    this.dbtrBic,
-    this.dbtrAcct,
-    this.dbtrName,
-    this.image: "",
-    this.isFriend: false
-  });
+  RequestFromNewRecipientUseCaseParams(
+      {this.ibanOrMobile,
+      this.purpose,
+      this.purposeDetail,
+      this.amount,
+      this.dbtrBic,
+      this.dbtrAcct,
+      this.dbtrName,
+      this.image: "",
+      this.limit,
+      this.isFriend: false,
+      this.purposeCode,
+      this.purposeDetailCode});
 
   @override
   Either<AppError, bool> verify() {
@@ -69,6 +73,11 @@ class RequestFromNewRecipientUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_PURPOSE_DETAIL,
+          cause: Exception()));
+    } else if (limit! < amount!) {
+      return Left(AppError(
+          error: ErrorInfo(message: 'Limit should not be more that $limit'),
+          type: ErrorType.LIMIT_EXCEEDED,
           cause: Exception()));
     }
     return Right(true);

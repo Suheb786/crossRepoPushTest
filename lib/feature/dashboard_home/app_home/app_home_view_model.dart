@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:domain/usecase/dashboard/get_dashboard_data_usecase.dart';
@@ -29,6 +30,8 @@ class AppHomeViewModel extends BasePageViewModel {
       _pageControllerSubject.stream;
 
   bool showBody = true;
+
+  CardType cardType = CardType.DEBIT;
 
   GetDashboardDataContent dashboardDataContent = GetDashboardDataContent();
 

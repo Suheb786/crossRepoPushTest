@@ -13,6 +13,8 @@ import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page
 import 'package:neo_bank/feature/activity/activity_home/activity_home_page.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
+import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
+import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
@@ -324,10 +326,7 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
 
       case RoutePaths.DebitCardSettings:
-        return CupertinoPageRoute(
-            builder: (context) => DebitCardSettingsPage(),
-            settings: RouteSettings(name: RoutePaths.DebitCardSettings));
-
+        return CustomRoute.createRoute(DebitCardSettingsPage());
       case RoutePaths.CreditCardSettings:
         return CupertinoPageRoute(
             builder: (context) => CreditCardSettingsPage(),
@@ -349,11 +348,11 @@ class AppRouter {
             settings: RouteSettings(name: RoutePaths.CallEndedPage));
 
       case RoutePaths.ManageCardPin:
-        return CupertinoPageRoute(
-            builder: (context) => ManageCardPinPage(
-                manageCardPinArguments:
-                    settings.arguments as ManageCardPinArguments),
-            settings: RouteSettings(name: RoutePaths.ManageCardPin));
+        return CustomRoute.createRoute(
+          ManageCardPinPage(
+              manageCardPinArguments:
+                  settings.arguments as ManageCardPinArguments),
+        );
 
       case RoutePaths.CardPinUnBlockSuccess:
         return CupertinoPageRoute(
@@ -374,9 +373,19 @@ class AppRouter {
                 RouteSettings(name: RoutePaths.DebitCardReplacementSuccess));
 
       case RoutePaths.manageDebitLimit:
+        return CustomRoute.createRoute(ManageDebitCardLimitsPage(
+            settings.arguments as ManageCardLimitsArguments));
+
+      case RoutePaths.ChangeCardPin:
         return CupertinoPageRoute(
-            builder: (context) => ManageDebitCardLimitsPage(),
-            settings: RouteSettings(name: RoutePaths.manageDebitLimit));
+            builder: (context) => ChangeCardPinPage(),
+            settings: RouteSettings(name: RoutePaths.ChangeCardPin));
+
+      case RoutePaths.ChangeCardPinSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => ChangeCardPinSuccessPage(
+                settings.arguments as ChangeCardPinSuccessArguments),
+            settings: RouteSettings(name: RoutePaths.ChangeCardPinSuccess));
 
       default:
         return CupertinoPageRoute(

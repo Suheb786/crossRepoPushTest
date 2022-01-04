@@ -11,7 +11,6 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/send_to_new_recipient/send_to_new_recipient_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_setting/choose_profile_widget.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -114,14 +113,14 @@ class SendToNewRecipientPageView
                                     },
                                     onHorizontalDragEnd: (details) {
                                       if (details.primaryVelocity!.isNegative) {
-                                        model.sendToNewRecipient();
+                                        model.sendToNewRecipient(context);
                                       } else {
-                                        ProviderScope
-                                            .containerOf(context)
-                                            .read(
-                                            paymentToNewRecipientViewModelProvider)
-                                            .pageController
-                                            .previous();
+                                        // ProviderScope
+                                        //     .containerOf(context)
+                                        //     .read(
+                                        //     paymentToNewRecipientViewModelProvider)
+                                        //     .pageController
+                                        //     .previous();
                                       }
                                     },
                                     child: Card(
@@ -282,18 +281,29 @@ class SendToNewRecipientPageView
                                                         controller: model
                                                             .purposeController,
                                                         onPressed: () {
-                                                          PurposeDialog.show(
-                                                              context,
-                                                              onSelected:
-                                                                  (value) {
-                                                                model.updatePurpose(
-                                                                    value);
-                                                                Navigator.pop(
-                                                                    context);
-                                                              }, onDismissed: () {
-                                                            Navigator.pop(
-                                                                context);
-                                                          });
+                                                          if (model.purposeList !=
+                                                                  null &&
+                                                              model.purposeList
+                                                                  .isNotEmpty) {
+                                                            PurposeDialog.show(
+                                                                context,
+                                                                purposeList: model
+                                                                    .purposeList,
+                                                                onSelected:
+                                                                    (value) {
+                                                              model
+                                                                  .updatePurpose(
+                                                                      value);
+                                                              model.updatePurposeDetaiList(
+                                                                  value
+                                                                      .purposeDetails!);
+                                                              Navigator.pop(
+                                                                  context);
+                                                            }, onDismissed: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            });
+                                                          }
                                                         },
                                                         suffixIcon:
                                                             (value, data) {
@@ -327,19 +337,28 @@ class SendToNewRecipientPageView
                                                         key: model
                                                             .purposeDetailKey,
                                                         onPressed: () {
-                                                          PurposeDetailDialog
-                                                              .show(context,
-                                                              onSelected:
-                                                                  (value) {
-                                                                model
-                                                                    .updatePurposeDetail(
-                                                                    value);
-                                                                Navigator.pop(
-                                                                    context);
-                                                              }, onDismissed: () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              });
+                                                          if (model.purposeDetaiList !=
+                                                                  null &&
+                                                              model
+                                                                  .purposeDetaiList
+                                                                  .isNotEmpty) {
+                                                            PurposeDetailDialog.show(
+                                                                context,
+                                                                purposeDetailList:
+                                                                    model
+                                                                        .purposeDetaiList,
+                                                                onSelected:
+                                                                    (value) {
+                                                              model
+                                                                  .updatePurposeDetail(
+                                                                      value);
+                                                              Navigator.pop(
+                                                                  context);
+                                                            }, onDismissed: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            });
+                                                          }
                                                         },
                                                         suffixIcon:
                                                             (value, data) {

@@ -10,6 +10,8 @@ import 'package:data/entity/remote/payment/request_to_pay_content_response_entit
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
+import 'package:data/entity/remote/purpose/purpose_request_entity.dart';
+import 'package:data/entity/remote/purpose/purpose_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/payment/payment_datasource.dart';
@@ -92,8 +94,7 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         dbtrAcct: dbtrAcct,
         dbtrName: dbtrName,
         isFriend: isFriend,
-        beneImage: image
-    ));
+        beneImage: image));
   }
 
   @override
@@ -101,5 +102,16 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.transferVerify(
         BaseRequest(baseData: baseData.toJson(), getToken: true));
+  }
+
+  @override
+  Future<HttpResponse<PurposeResponseEntity>> getPurpose(
+      String toAccount, String transferType) async {
+    BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
+    return _apiService.getPurpose(PurposeRequestEntity(
+        baseData: baseData.toJson(),
+        toAccount: toAccount,
+        transferType: transferType,
+        getToken: true));
   }
 }

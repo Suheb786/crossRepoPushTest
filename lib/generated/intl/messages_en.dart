@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -187,6 +186,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardNumber": MessageLookupByLibrary.simpleMessage("CARD NUMBER"),
         "cardPersonalization":
             MessageLookupByLibrary.simpleMessage("to card personalization"),
+        "cardPinChangedDesc": MessageLookupByLibrary.simpleMessage(
+            "Your may use your new PIN for payments immediately."),
+        "cardPinChangedSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Card PIN changed successfully"),
         "cardPinSucccesFullyUnblocked": MessageLookupByLibrary.simpleMessage(
             "Card PIN successfully\nunblocked"),
         "cardPinSucccesFullyUnblockedDesc":
@@ -227,6 +230,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please confirm your\ndetails below"),
         "confirmInfoTC": MessageLookupByLibrary.simpleMessage(
             "I confirm that information above is correct and agree to the bank’s "),
+        "confirmNewPin":
+            MessageLookupByLibrary.simpleMessage("CONFIRM new pin "),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("CONFIRM PASSWORD"),
         "confirmTermsCondError": MessageLookupByLibrary.simpleMessage(
@@ -345,6 +350,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyBusiness":
             MessageLookupByLibrary.simpleMessage("Specify Business"),
         "emptyCity": MessageLookupByLibrary.simpleMessage("Enter City"),
+        "emptyConfirmPin":
+            MessageLookupByLibrary.simpleMessage("Enter pin again"),
         "emptyDistrict": MessageLookupByLibrary.simpleMessage("Enter district"),
         "emptyDob": MessageLookupByLibrary.simpleMessage(
             "Date of birth field cannot be empty"),
@@ -410,6 +417,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter your login details"),
         "enterMailingAddress":
             MessageLookupByLibrary.simpleMessage("Enter mailing address"),
+        "enterNewCardPinAndConfirmPin": MessageLookupByLibrary.simpleMessage(
+            "Enter new card PIN\nand confirm PIN"),
         "enterNewEmailAddress": MessageLookupByLibrary.simpleMessage(
             "Please enter your\nnew email"),
         "enterNewMobileNo": MessageLookupByLibrary.simpleMessage(
@@ -618,6 +627,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter Issuing Place"),
         "invalidJobName":
             MessageLookupByLibrary.simpleMessage("Enter job name"),
+        "invalidLimitValue": MessageLookupByLibrary.simpleMessage(
+            "Limit value cannot be set greater than max limit value"),
         "invalidMainSourceIncome":
             MessageLookupByLibrary.simpleMessage("Enter source of income."),
         "invalidMonthlyIncome":
@@ -693,6 +704,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Let’s Create\nYour Profile"),
         "letsSet4DigitPin":
             MessageLookupByLibrary.simpleMessage("Let’s set your\n4-digit PIN"),
+        "limitExceeded": MessageLookupByLibrary.simpleMessage("Limit exceeded"),
         "linkedAccountNumber":
             MessageLookupByLibrary.simpleMessage("LINKED ACCOUNT NUMBER"),
         "liveChat": MessageLookupByLibrary.simpleMessage("Live Chat"),
@@ -770,6 +782,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
+        "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
         "no": MessageLookupByLibrary.simpleMessage("NO"),
         "noContactsYetDesc": MessageLookupByLibrary.simpleMessage(
