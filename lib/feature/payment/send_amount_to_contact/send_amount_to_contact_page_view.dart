@@ -115,6 +115,7 @@ class SendAmountToContactPageView
             Text(
               ///TODO:change to nickname
               model.beneficiary.fullName ?? '',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 20,
@@ -188,19 +189,19 @@ class SendAmountToContactPageView
                       padding: EdgeInsets.only(top: 2),
                       child: AppStreamBuilder<String>(
                           stream: model.purposeDetailStream,
-                          initialData: (model.beneficiary.purposeDetails !=
-                                      null &&
-                                  model.beneficiary.purposeDetails!.isNotEmpty)
-                              ? model.beneficiary.purposeDetails!
-                              : 'Transfer to Friend or Family',
-                          dataBuilder: (context, value) {
-                            return Text(
-                              value!,
-                              style: TextStyle(
-                                  fontSize: 12, fontWeight: FontWeight.w600),
-                            );
-                          }),
-                    ),
+                            initialData:
+                                (model.beneficiary.purposeDetails != null &&
+                                        model.beneficiary.purposeDetails!
+                                            .isNotEmpty)
+                                    ? model.beneficiary.purposeDetails!
+                                    : 'Transfer to Friend or Family',
+                            dataBuilder: (context, value) {
+                              return Text(
+                                value!,
+                                style: TextStyle(
+                                    fontSize: 12, fontWeight: FontWeight.w600),
+                              );
+                            })),
                   ],
                 ),
               ),

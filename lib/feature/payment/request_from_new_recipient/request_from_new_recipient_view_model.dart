@@ -247,6 +247,11 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
     _showButtonSubject.close();
     _requestFromNewRecipientRequest.close();
     _requestFromNewRecipientResponse.close();
+    _getPurposeResponse.close();
+    _getPurposeRequest.close();
+    _uploadProfilePhotoResponse.close();
+    _getAccountByAliasResponse.close();
+    _getAccountByAliasRequest.close();
     super.dispose();
   }
 }

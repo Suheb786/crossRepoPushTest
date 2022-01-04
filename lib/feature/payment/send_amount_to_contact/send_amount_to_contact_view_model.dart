@@ -2,7 +2,10 @@ import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/transfer_respone.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
+import 'package:domain/model/purpose/purpose.dart';
+import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
+import 'package:domain/usecase/payment/get_purpose_usecase.dart';
 import 'package:domain/usecase/payment/send_amount_to_contact_usecase.dart';
 import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -17,14 +20,15 @@ class SendAmountToContactViewModel extends BasePageViewModel {
   final TransferUseCase _transferUseCase;
   SendAmountToContactUseCase _useCase;
 
+  GetPurposeUseCase _getPurposeUseCase;
+
   final Beneficiary beneficiary;
 
   PublishSubject<String> _purposeSubject = PublishSubject();
 
   Stream<String> get purposeStream => _purposeSubject.stream;
 
-  BehaviorSubject<String> _purposeDetailSubject =
-      BehaviorSubject.seeded('Transfer to Friend or Family');
+  PublishSubject<String> _purposeDetailSubject = PublishSubject();
 
   Stream<String> get purposeDetailStream => _purposeDetailSubject.stream;
 
@@ -51,8 +55,20 @@ class SendAmountToContactViewModel extends BasePageViewModel {
   Stream<Resource<TransferSuccessResponse>> get transferStream =>
       _transferResponse.stream;
 
-  SendAmountToContactViewModel(this._useCase, this.beneficiary,
-      this._checkSendMoneyUseCase, this._transferUseCase) {
+  Purpose? purpose;
+
+  PurposeDetail? purposeDetail;
+
+  List<Purpose>? purposeList = [];
+
+  SendAmountToContactViewModel(
+      this._useCase,
+      this.beneficiary,
+      this._checkSendMoneyUseCase,
+      this._transferUseCase,
+      this._getPurposeUseCase) {
+    _purposeSubject.safeAdd(beneficiary.purpose!);
+    _purposeDetailSubject.safeAdd(beneficiary.purposeDetails!);
     _checkSendMoneyRequest.listen((value) {
       RequestManager(value,
               createCall: () => _checkSendMoneyUseCase.execute(params: value))
@@ -108,12 +124,14 @@ class SendAmountToContactViewModel extends BasePageViewModel {
     notifyListeners();
   }
 
-  void updatePurposeDetail(String value) {
-    _purposeDetailSubject.safeAdd(value);
+  void updatePurposeDetail(PurposeDetail value) {
+    purposeDetail = value;
+    _purposeDetailSubject.safeAdd(value.labelEn!);
   }
 
-  void updatePurpose(String value) {
-    _purposeSubject.safeAdd(value);
+  void updatePurpose(Purpose value) {
+    purpose = value;
+    _purposeSubject.safeAdd(value.labelEn!);
   }
 
   void checkSendMoney() {
@@ -127,7 +145,11 @@ class SendAmountToContactViewModel extends BasePageViewModel {
       otpCode: '',
       toAmount: transferResponse.toAmount,
       toAccount: transferResponse.toAccount,
-      memo: _purposeDetailSubject.value,
+      memo: purposeDetail == null
+          ? (beneficiary.purposeDetails == null
+              ? 'Transfer to Friend or Family'
+              : beneficiary.purposeDetails!)
+          : purposeDetail!.strCode!,
       isFriend: false,
       transferType: transferResponse.transferType,
       localEq: transferResponse.localEq,
@@ -138,7 +160,6 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
-    _purposeDetailSubject.close();
     _purposeSubject.close();
     super.dispose();
   }
