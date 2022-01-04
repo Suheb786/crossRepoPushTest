@@ -115,6 +115,7 @@ class SendAmountToContactPageView
             Text(
               ///TODO:change to nickname
               model.beneficiary.fullName ?? '',
+              textAlign: TextAlign.center,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 20,

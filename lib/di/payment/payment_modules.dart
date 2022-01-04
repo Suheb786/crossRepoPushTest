@@ -48,7 +48,8 @@ final sendAmountToContactViewModelProvider = ChangeNotifierProvider.autoDispose
       ref.read(sendAmountToContactUseCaseProvider),
       args,
       ref.read(checkSendMoneyUseCaseProvider),
-      ref.read(transferUseCaseProvider)),
+      ref.read(transferUseCaseProvider),
+      ref.read(getPurposeUseCaseProvider)),
 );
 
 final sendAmountToContactSuccessViewModelProvider = ChangeNotifierProvider

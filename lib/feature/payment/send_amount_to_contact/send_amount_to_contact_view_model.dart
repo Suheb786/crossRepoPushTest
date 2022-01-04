@@ -2,7 +2,11 @@ import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/transfer_respone.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
+import 'package:domain/model/purpose/purpose.dart';
+import 'package:domain/model/purpose/purpose_detail.dart';
+import 'package:domain/model/purpose/purpose_response.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
+import 'package:domain/usecase/payment/get_purpose_usecase.dart';
 import 'package:domain/usecase/payment/send_amount_to_contact_usecase.dart';
 import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -16,6 +20,8 @@ class SendAmountToContactViewModel extends BasePageViewModel {
   final CheckSendMoneyUseCase _checkSendMoneyUseCase;
   final TransferUseCase _transferUseCase;
   SendAmountToContactUseCase _useCase;
+
+  GetPurposeUseCase _getPurposeUseCase;
 
   final Beneficiary beneficiary;
 
@@ -31,6 +37,8 @@ class SendAmountToContactViewModel extends BasePageViewModel {
   ///check send money request
   PublishSubject<CheckSendMoneyUseCaseParams> _checkSendMoneyRequest =
       PublishSubject();
+
+  PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
 
   ///check send money response
   PublishSubject<Resource<CheckSendMoneyResponse>> _checkSendMoneyResponse =
@@ -51,8 +59,22 @@ class SendAmountToContactViewModel extends BasePageViewModel {
   Stream<Resource<TransferSuccessResponse>> get transferStream =>
       _transferResponse.stream;
 
-  SendAmountToContactViewModel(this._useCase, this.beneficiary,
-      this._checkSendMoneyUseCase, this._transferUseCase) {
+  PublishSubject<Resource<PurposeResponse>> _getPurposeResponse =
+      PublishSubject();
+
+  Stream<Resource<PurposeResponse>> get getPurposeResponseStream =>
+      _getPurposeResponse.stream;
+
+  Purpose? purpose;
+
+  PurposeDetail? purposeDetail;
+
+  SendAmountToContactViewModel(
+      this._useCase,
+      this.beneficiary,
+      this._checkSendMoneyUseCase,
+      this._transferUseCase,
+      this._getPurposeUseCase) {
     _checkSendMoneyRequest.listen((value) {
       RequestManager(value,
               createCall: () => _checkSendMoneyUseCase.execute(params: value))
@@ -80,6 +102,26 @@ class SendAmountToContactViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getPurposeRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getPurposeUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getPurposeResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+    getPurpose();
+  }
+
+  void getPurpose() {
+    _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
+        toAccount: beneficiary.iban!, transferType: "TransferI"));
   }
 
   List<String> myList = [];
