@@ -42,7 +42,13 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
             ),
           ),
           SizedBox(height: 26),
-          Text('00 : 07',style: TextStyle(color: Theme.of(context).accentColor,fontWeight: FontWeight.w700,fontSize: 32),),
+          Text(
+            '00 : 07',
+            style: TextStyle(
+                color: Theme.of(context).accentColor,
+                fontWeight: FontWeight.w700,
+                fontSize: 32),
+          ),
           SizedBox(height: 206),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 56.0),
@@ -78,8 +84,9 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (){
-                    Navigator.pushReplacementNamed(context, RoutePaths.CallEndedPage);
+                  onTap: () {
+                    Navigator.pushReplacementNamed(
+                        context, RoutePaths.CallEndedPage);
                   },
                   child: Align(
                     alignment: Alignment.center,

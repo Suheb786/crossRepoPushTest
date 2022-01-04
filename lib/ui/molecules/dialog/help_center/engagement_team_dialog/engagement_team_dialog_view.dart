@@ -61,10 +61,9 @@ class EngagementTeamDialogView extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 24),
-                InkWell (
-                  onTap: (){
-                    Navigator.pop(context);
-                    Navigator.pushNamed(context, RoutePaths.HelpCenter);
+                InkWell(
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, RoutePaths.HelpCenter);
                   },
                   child: Container(
                     height: 72,

@@ -5,23 +5,20 @@ import 'package:neo_bank/di/help_center/help_center_modules.dart';
 import 'package:neo_bank/feature/help_center/call_ended/call_ended_page_view_model.dart';
 import 'package:neo_bank/feature/help_center/call_ended/call_ended_page_view.dart';
 
-class CallEndedPage
-    extends BasePage<CallEndedPageViewModel> {
+class CallEndedPage extends BasePage<CallEndedPageViewModel> {
   @override
-  CallEndedPagePageState createState() =>
-      CallEndedPagePageState();
+  CallEndedPagePageState createState() => CallEndedPagePageState();
 }
 
-class CallEndedPagePageState extends BaseStatefulPage<
-    CallEndedPageViewModel, CallEndedPage> {
+class CallEndedPagePageState
+    extends BaseStatefulPage<CallEndedPageViewModel, CallEndedPage> {
   @override
   ProviderBase provideBase() {
     return callEndedPageViewModelProvider;
   }
 
   @override
-  Widget buildView(
-      BuildContext context, CallEndedPageViewModel model) {
+  Widget buildView(BuildContext context, CallEndedPageViewModel model) {
     return CallEndedPageView(provideBase());
   }
 

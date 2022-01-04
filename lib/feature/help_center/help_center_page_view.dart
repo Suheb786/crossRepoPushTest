@@ -28,7 +28,8 @@ class HelpCenterPageView extends BasePageViewWidget<HelpCenterPageViewModel> {
                 stream: model.callEstablishStream,
                 initialData: false,
                 onData: (value) {
-                      Navigator.pushReplacementNamed(context, RoutePaths.ActiveCallPage);
+                  Navigator.pushReplacementNamed(
+                      context, RoutePaths.ActiveCallPage);
                 },
                 dataBuilder: (context, currentStep) {
                   return Column(

@@ -5,23 +5,20 @@ import 'package:neo_bank/di/help_center/help_center_modules.dart';
 import 'package:neo_bank/feature/help_center/help_center_page_view.dart';
 import 'package:neo_bank/feature/help_center/help_center_page_view_model.dart';
 
-class HelpCenterPage
-    extends BasePage<HelpCenterPageViewModel> {
+class HelpCenterPage extends BasePage<HelpCenterPageViewModel> {
   @override
-  HelpCenterPagePageState createState() =>
-      HelpCenterPagePageState();
+  HelpCenterPagePageState createState() => HelpCenterPagePageState();
 }
 
-class HelpCenterPagePageState extends BaseStatefulPage<
-    HelpCenterPageViewModel, HelpCenterPage> {
+class HelpCenterPagePageState
+    extends BaseStatefulPage<HelpCenterPageViewModel, HelpCenterPage> {
   @override
   ProviderBase provideBase() {
     return helpCenterViewModelProvider;
   }
 
   @override
-  Widget buildView(
-      BuildContext context, HelpCenterPageViewModel model) {
+  Widget buildView(BuildContext context, HelpCenterPageViewModel model) {
     return HelpCenterPageView(provideBase());
   }
 

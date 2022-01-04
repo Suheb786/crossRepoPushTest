@@ -4,6 +4,7 @@ import 'package:rxdart/rxdart.dart';
 
 class HelpCenterPageViewModel extends BasePageViewModel {
   PublishSubject<bool> _callEstablishSubject = PublishSubject();
+
   Stream<bool> get callEstablishStream => _callEstablishSubject.stream;
 
   void onCallEstablish() {
