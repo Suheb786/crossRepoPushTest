@@ -9,6 +9,7 @@ import 'package:data/repository/dashboard/dashboard_repository_impl.dart';
 import 'package:data/repository/enter_address/home_address_dialog_repository_impl.dart';
 import 'package:data/repository/fatca_crs/fatca_crs_repository_impl.dart';
 import 'package:data/repository/id_card/id_card_repository_impl.dart';
+import 'package:data/repository/infobip_audio/infobip_audio_repository_impl.dart';
 import 'package:data/repository/kyc/kyc_repository_impl.dart';
 import 'package:data/repository/manage_contacts/manage_contacts_repository_impl.dart';
 import 'package:data/repository/payment/payment_repository_impl.dart';
@@ -25,6 +26,7 @@ import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
+import 'package:domain/repository/help_center/help_canter.dart';
 import 'package:domain/repository/id_card/id_card_repository.dart';
 import 'package:domain/repository/kyc/kyc_repository.dart';
 import 'package:domain/repository/manage_contact/manage_contact_repository.dart';
@@ -112,3 +114,7 @@ var dashboardRepositoryProvider = Provider<DashboardRepository>(
 /// inject [PaymentRepository] provider
 var paymentRepositoryProvider = Provider<PaymentRepository>(
     (ref) => PaymentRepositoryImpl(ref.read(paymentDataSourceProvider)));
+
+/// inject [HelpCenterRepository] provider
+var helpCenterRepositoryProvider = Provider<HelpCenterRepository>(
+    (ref) => InfobipAudioRepositoryImpl(ref.read(infobipDatasourceProvider)));
