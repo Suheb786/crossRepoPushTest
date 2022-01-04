@@ -14,293 +14,293 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
-MyAccountPageView(ProviderBase model) : super(model);
+  MyAccountPageView(ProviderBase model) : super(model);
 
-@override
-Widget build(BuildContext context, model) {
-return AppKeyBoardHide(
-child: Center(
-child: AspectRatio(
-aspectRatio: 0.62,
-child: Stack(
-children: [
-GestureDetector(
-onHorizontalDragEnd: (details) {
-if (details.primaryVelocity!.isNegative) {
-ProviderScope.containerOf(context)
-.read(appHomeViewModelProvider)
-.pageController
-.next();
-}
-},
-child: SizedBox(
-width: double.infinity,
-height: double.infinity,
-child: Card(
-shape: RoundedRectangleBorder(
-borderRadius: BorderRadius.circular(16)),
-clipBehavior: Clip.antiAliasWithSaveLayer,
-elevation: 2,
-color: Theme.of(context).primaryColorDark,
-margin: EdgeInsets.zero,
-shadowColor:
-Theme.of(context).primaryColorDark.withOpacity(0.32),
-child: SingleChildScrollView(
-child: Padding(
-padding: EdgeInsets.only(left: 27.0, bottom: 29),
-child: AppStreamBuilder<GetDashboardDataContent>(
-stream: ProviderScope.containerOf(context)
-.read(appHomeViewModelProvider)
-.getDashboardCardDataStream,
-initialData: GetDashboardDataContent(),
-dataBuilder: (context, cardData) {
-return Column(
-crossAxisAlignment: CrossAxisAlignment.start,
-children: [
-Row(
-crossAxisAlignment:
-CrossAxisAlignment.start,
-mainAxisAlignment:
-MainAxisAlignment.spaceBetween,
-children: [
-Expanded(
-child: Padding(
-padding: EdgeInsets.only(top: 30.0),
-child: Column(
-crossAxisAlignment:
-CrossAxisAlignment.start,
-children: [
-Text(
-S.of(context).myAccount,
-style: TextStyle(
-fontWeight: FontWeight.w600,
-fontSize: 12,
-color: Theme.of(context)
-.accentColor),
-),
-Padding(
-padding:
-EdgeInsets.only(top: 66),
-child: Text(
-cardData!.account!
-.accountTitle ??
-'',
-style: TextStyle(
-fontSize: 16,
-fontWeight:
-FontWeight.w600,
-color: Theme.of(context)
-.accentColor),
-),
-),
-Padding(
-padding:
-EdgeInsets.only(top: 23),
-child: Row(
-crossAxisAlignment:
-CrossAxisAlignment.center,
-mainAxisAlignment:
-MainAxisAlignment.start,
-children: [
-Text(
-cardData.account!
-.availableBalance!
-.toString(),
-style: TextStyle(
-fontSize: 20,
-fontWeight:
-FontWeight.w700,
-color: Theme.of(
-context)
-.accentColor)),
-Padding(
-padding: EdgeInsets.only(
-top: 5, left: 5.0),
-child: Text("JOD",
-style: TextStyle(
-fontWeight:
-FontWeight
-.w600,
-fontSize: 10,
-color: Theme.of(
-context)
-.accentColor
-.withOpacity(
-0.4))),
-),
-],
-),
-),
-Padding(
-padding:
-EdgeInsets.only(top: 4),
-child: Text(
-S
-.of(context)
-.availableBalance,
-style: TextStyle(
-fontWeight:
-FontWeight.w600,
-fontSize: 10,
-color: Theme.of(context)
-.accentColor
-.withOpacity(0.4)),
-),
-),
-],
-),
-),
-),
-Image.asset(AssetUtils.zigzagRed)
-],
-),
-Padding(
-padding: EdgeInsets.only(top: 29),
-child: Row(
-children: [
-Text(
-cardData.account!.accountNo ?? '',
-maxLines: 2,
-style: TextStyle(
-fontSize: 12,
-fontWeight: FontWeight.w600,
-color: Theme.of(context)
-.accentColor),
-),
-Padding(
-padding: EdgeInsets.only(left: 8),
-child: AppSvg.asset(AssetUtils.copy),
-)
-],
-),
-),
-Padding(
-padding: EdgeInsets.only(top: 5),
-child: Text(
-S.of(context).accountNo,
-style: TextStyle(
-color: Theme.of(context)
-.accentColor
-.withOpacity(0.4),
-fontSize: 10,
-fontWeight: FontWeight.w600),
-),
-),
-Padding(
-padding: EdgeInsets.only(top: 20),
-child: Row(
-children: [
-Text(
-cardData.account!.iban!,
-style: TextStyle(
-color:
-Theme.of(context).accentColor,
-fontWeight: FontWeight.w600,
-fontSize: 12),
-),
-Padding(
-padding: EdgeInsets.only(left: 8),
-child: AppSvg.asset(AssetUtils.copy),
-)
-],
-),
-),
-Padding(
-padding: EdgeInsets.only(top: 6),
-child: Text(
-S.of(context).iban,
-style: TextStyle(
-color: Theme.of(context)
-.accentColor
-.withOpacity(0.4),
-fontSize: 10,
-fontWeight: FontWeight.w600),
-),
-),
-Padding(
-padding: EdgeInsets.only(top: 78.0),
-child: Row(
-mainAxisAlignment:
-MainAxisAlignment.spaceBetween,
-children: [
-InkWell(
-onTap: () {
-Navigator.pushNamed(
-context,
-RoutePaths
-.AddMoneyOptionSelector);
-},
-child: Container(
-height: 36,
-width: 105,
-decoration: BoxDecoration(
-borderRadius:
-BorderRadius.circular(20),
-color: Theme.of(context)
-.accentTextTheme
-.bodyText1!
-.color),
-child: Center(
-child: Text(
-S.of(context).addMoney,
-style: TextStyle(
-fontWeight: FontWeight.w600,
-fontSize: 14,
-color: Theme.of(context)
-.accentColor),
-),
-),
-),
-),
-InkWell(
-onTap: () {
-_shareFiles(
-model, context, cardData);
-},
-child: Padding(
-padding:
-EdgeInsets.only(right: 33.0),
-child: AppSvg.asset(
-AssetUtils.share,
-color: Theme.of(context)
-.accentTextTheme
-.bodyText1!
-.color,
-height: 24,
-width: 24),
-),
-)
-],
-),
-)
-],
-);
-},
-),
-),
-),
-),
-),
-),
-Align(
-alignment: Alignment.bottomCenter,
-child: LottieBuilder.asset(
-'assets/animation/Swipe_Up.json',
-height: 71.0,
-),
-),
-],
-)),
-),
-);
-}
+  @override
+  Widget build(BuildContext context, model) {
+    return AppKeyBoardHide(
+      child: Center(
+        child: AspectRatio(
+            aspectRatio: 0.62,
+            child: Stack(
+              children: [
+                GestureDetector(
+                  onHorizontalDragEnd: (details) {
+                    if (details.primaryVelocity!.isNegative) {
+                      ProviderScope.containerOf(context)
+                          .read(appHomeViewModelProvider)
+                          .pageController
+                          .next();
+                    }
+                  },
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: double.infinity,
+                    child: Card(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16)),
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      elevation: 2,
+                      color: Theme.of(context).primaryColorDark,
+                      margin: EdgeInsets.zero,
+                      shadowColor:
+                          Theme.of(context).primaryColorDark.withOpacity(0.32),
+                      child: SingleChildScrollView(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 27.0, bottom: 29),
+                          child: AppStreamBuilder<GetDashboardDataContent>(
+                            stream: ProviderScope.containerOf(context)
+                                .read(appHomeViewModelProvider)
+                                .getDashboardCardDataStream,
+                            initialData: GetDashboardDataContent(),
+                            dataBuilder: (context, cardData) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: Padding(
+                                          padding: EdgeInsets.only(top: 30.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                S.of(context).myAccount,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 12,
+                                                    color: Theme.of(context)
+                                                        .accentColor),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 66),
+                                                child: Text(
+                                                  cardData!.account!
+                                                          .accountTitle ??
+                                                      '',
+                                                  style: TextStyle(
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Theme.of(context)
+                                                          .accentColor),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 23),
+                                                child: Row(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                        cardData.account!
+                                                            .availableBalance!
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .accentColor)),
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          top: 5, left: 5.0),
+                                                      child: Text("JOD",
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600,
+                                                              fontSize: 10,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .accentColor
+                                                                  .withOpacity(
+                                                                      0.4))),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(top: 4),
+                                                child: Text(
+                                                  S
+                                                      .of(context)
+                                                      .availableBalance,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 10,
+                                                      color: Theme.of(context)
+                                                          .accentColor
+                                                          .withOpacity(0.4)),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Image.asset(AssetUtils.zigzagRed)
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 29),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          cardData.account!.accountNo ?? '',
+                                          maxLines: 2,
+                                          style: TextStyle(
+                                              fontSize: 12,
+                                              fontWeight: FontWeight.w600,
+                                              color: Theme.of(context)
+                                                  .accentColor),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 8),
+                                          child: AppSvg.asset(AssetUtils.copy),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 5),
+                                    child: Text(
+                                      S.of(context).accountNo,
+                                      style: TextStyle(
+                                          color: Theme.of(context)
+                                              .accentColor
+                                              .withOpacity(0.4),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 20),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          cardData.account!.iban!,
+                                          style: TextStyle(
+                                              color:
+                                                  Theme.of(context).accentColor,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12),
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(left: 8),
+                                          child: AppSvg.asset(AssetUtils.copy),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 6),
+                                    child: Text(
+                                      S.of(context).iban,
+                                      style: TextStyle(
+                                          color: Theme.of(context)
+                                              .accentColor
+                                              .withOpacity(0.4),
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(top: 78.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            Navigator.pushNamed(
+                                                context,
+                                                RoutePaths
+                                                    .AddMoneyOptionSelector);
+                                          },
+                                          child: Container(
+                                            height: 36,
+                                            width: 105,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                                color: Theme.of(context)
+                                                    .accentTextTheme
+                                                    .bodyText1!
+                                                    .color),
+                                            child: Center(
+                                              child: Text(
+                                                S.of(context).addMoney,
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 14,
+                                                    color: Theme.of(context)
+                                                        .accentColor),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        InkWell(
+                                          onTap: () {
+                                            _shareFiles(
+                                                model, context, cardData);
+                                          },
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsets.only(right: 33.0),
+                                            child: AppSvg.asset(
+                                                AssetUtils.share,
+                                                color: Theme.of(context)
+                                                    .accentTextTheme
+                                                    .bodyText1!
+                                                    .color,
+                                                height: 24,
+                                                width: 24),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: LottieBuilder.asset(
+                    'assets/animation/Swipe_Up.json',
+                    height: 71.0,
+                  ),
+                ),
+              ],
+            )),
+      ),
+    );
+  }
 
-void _shareFiles(MyAccountViewModel model, BuildContext context,
-GetDashboardDataContent cardData) async {
-final box = context.findRenderObject() as RenderBox?;
-await Share.share(
-'Hello! Here’s my blink account details:\n\n${cardData.account!.accountTitle ?? ''} \n${cardData.account!.iban ?? '-'}\n\nGet your blink account today. Blink now!',
-subject: 'Share account info',
-sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
-}
+  void _shareFiles(MyAccountViewModel model, BuildContext context,
+      GetDashboardDataContent cardData) async {
+    final box = context.findRenderObject() as RenderBox?;
+    await Share.share(
+        'Hello! Here’s my blink account details:\n\n${cardData.account!.accountTitle ?? ''} \n${cardData.account!.iban ?? '-'}\n\nGet your blink account today. Blink now!',
+        subject: 'Share account info',
+        sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
+  }
 }
