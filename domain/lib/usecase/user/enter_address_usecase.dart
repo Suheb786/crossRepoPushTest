@@ -39,15 +39,14 @@ class EnterAddressUseCaseParams extends Params {
   final String? permanentResidentCountry;
   final String? permanentCity;
 
-  EnterAddressUseCaseParams(
-      {required this.residentCountry,
-      required this.residentArea,
-      this.city,
-      required this.streetAddress,
-      required this.buildingNameOrNo,
-      required this.jordanianLivesAbroad,
-      this.permanentCity,
-      this.permanentResidentCountry});
+  EnterAddressUseCaseParams({required this.residentCountry,
+    required this.residentArea,
+    this.city,
+    required this.streetAddress,
+    required this.buildingNameOrNo,
+    required this.jordanianLivesAbroad,
+    this.permanentCity,
+    this.permanentResidentCountry});
 
   @override
   Either<AppError, bool> verify() {

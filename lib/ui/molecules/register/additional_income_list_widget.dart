@@ -42,7 +42,9 @@ class AdditionalIncomeListWidget extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: Theme.of(context).primaryColorDark),
+                      color: Theme
+                          .of(context)
+                          .primaryColorDark),
                 ),
               ),
               Flexible(
@@ -53,7 +55,9 @@ class AdditionalIncomeListWidget extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,
-                      color: Theme.of(context).primaryColorDark),
+                      color: Theme
+                          .of(context)
+                          .primaryColorDark),
                 ),
               ),
             ],

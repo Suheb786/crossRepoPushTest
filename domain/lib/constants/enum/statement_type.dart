@@ -1,0 +1,1 @@
+enum StatementType { Credit, Debit }

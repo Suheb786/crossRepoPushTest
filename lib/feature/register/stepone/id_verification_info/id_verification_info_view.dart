@@ -58,41 +58,16 @@ class IdVerificationInfoView
                             initialData: Resource.none(),
                             onData: (data) {
                               if (data.status == Status.SUCCESS) {
-                                ScannedDocumentInformation scannedDocument =
-                                    model.scannedDocumentInformation;
-                                scannedDocument.firstName = data
-                                    .data!.contentData!.ahwalinfo!.firstNameEn;
-                                scannedDocument.middleName = data
-                                    .data!.contentData!.ahwalinfo!.thirdNameEn;
-                                scannedDocument.firstNameAr = data
-                                    .data!.contentData!.ahwalinfo!.firstNameAr;
-                                scannedDocument.secNameAr = data
-                                    .data!.contentData!.ahwalinfo!.secNameAr;
-                                scannedDocument.thirdNameAr = data
-                                    .data!.contentData!.ahwalinfo!.thirdNameAr;
-                                scannedDocument.familyNameAr = data
-                                    .data!.contentData!.ahwalinfo!.familyNameAr;
-                                scannedDocument.familyName = data
-                                    .data!.contentData!.ahwalinfo!.firstNameEn;
-                                scannedDocument.secondNameEn = data
-                                    .data!.contentData!.ahwalinfo!.secondNameEn;
-                                scannedDocument.thirdNameEn = data
-                                    .data!.contentData!.ahwalinfo!.thirdNameEn;
-                                scannedDocument.familyName = data
-                                    .data!.contentData!.ahwalinfo!.familyNameEn;
-                                scannedDocument.motherName = data.data!
-                                    .contentData!.ahwalinfo!.motherFirstName;
-                                scannedDocument.placeOfBirth = data
-                                    .data!.contentData!.ahwalinfo!.placeOfBirth;
-
-                                ProviderScope.containerOf(context)
+                                ProviderScope
+                                    .containerOf(context)
                                     .read(registerStepOneViewModelProvider)
                                     .pageController
                                     .next();
                                 Future.delayed(Duration(milliseconds: 500), () {
                                   ProviderScope.containerOf(context)
                                       .read(confirmDetailViewModelProvider)
-                                      .setData(scannedDocument);
+                                      .setData(
+                                      model.scannedDocumentInformation);
                                 });
                               } else if (data.status == Status.ERROR) {
                                 model.showToastWithError(data.appError!);
@@ -108,8 +83,6 @@ class IdVerificationInfoView
                                     if (data.data!.issuer == 'JOR') {
                                       model.getAhwalResponse(
                                           data.data!.idNumber!);
-                                      model.scannedDocumentInformation =
-                                          data.data!;
                                     } else {
                                       model.showToastWithError(AppError(
                                           cause: Exception(),
@@ -131,7 +104,7 @@ class IdVerificationInfoView
                                               vertical: 32, horizontal: 24),
                                           child: Column(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            MainAxisAlignment.spaceBetween,
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Column(
@@ -146,7 +119,7 @@ class IdVerificationInfoView
                                                   ),
                                                   InformationText(
                                                       image:
-                                                          AssetUtils.scanIcon,
+                                                      AssetUtils.scanIcon,
                                                       title: S
                                                           .of(context)
                                                           .idScanInfo),
@@ -171,10 +144,11 @@ class IdVerificationInfoView
                                                       style: TextStyle(
                                                           fontSize: 14,
                                                           fontWeight:
-                                                              FontWeight.w600,
+                                                          FontWeight.w600,
                                                           letterSpacing: 1,
-                                                          color: Theme.of(
-                                                                  context)
+                                                          color: Theme
+                                                              .of(
+                                                              context)
                                                               .accentTextTheme
                                                               .bodyText1!
                                                               .color),
@@ -197,9 +171,10 @@ class IdVerificationInfoView
                                                                     false) {
                                                                   model
                                                                       .updateIsRetrievedConditionStream(
-                                                                          true);
+                                                                      true);
                                                                 } else {
-                                                                  model.updateIsRetrievedConditionStream(
+                                                                  model
+                                                                      .updateIsRetrievedConditionStream(
                                                                       false);
                                                                 }
                                                               },
@@ -210,32 +185,45 @@ class IdVerificationInfoView
                                                                     shape: BoxShape
                                                                         .circle,
                                                                     color: isChecked!
-                                                                        ? Theme.of(context)
+                                                                        ? Theme
+                                                                        .of(
+                                                                        context)
+                                                                        .accentTextTheme
+                                                                        .bodyText1!
+                                                                        .color!
+                                                                        : Colors
+                                                                        .transparent,
+                                                                    border: Border
+                                                                        .all(
+                                                                        color: !isChecked
+                                                                            ? Theme
+                                                                            .of(
+                                                                            context)
                                                                             .accentTextTheme
                                                                             .bodyText1!
                                                                             .color!
-                                                                        : Colors
-                                                                            .transparent,
-                                                                    border: Border.all(
-                                                                        color: !isChecked
-                                                                            ? Theme.of(context).accentTextTheme.bodyText1!.color!
-                                                                            : Colors.transparent)),
+                                                                            : Colors
+                                                                            .transparent)),
                                                                 child: isChecked
                                                                     ? Container(
-                                                                        height:
-                                                                            16,
-                                                                        width:
-                                                                            16,
-                                                                        padding:
-                                                                            EdgeInsets.all(10),
-                                                                        child: AppSvg
-                                                                            .asset(
-                                                                          AssetUtils
-                                                                              .checkIcon,
-                                                                          color:
-                                                                              Theme.of(context).accentColor,
-                                                                        ),
-                                                                      )
+                                                                  height:
+                                                                  16,
+                                                                  width:
+                                                                  16,
+                                                                  padding:
+                                                                  EdgeInsets
+                                                                      .all(10),
+                                                                  child: AppSvg
+                                                                      .asset(
+                                                                    AssetUtils
+                                                                        .checkIcon,
+                                                                    color:
+                                                                    Theme
+                                                                        .of(
+                                                                        context)
+                                                                        .accentColor,
+                                                                  ),
+                                                                )
                                                                     : Container(),
                                                               ),
                                                             );
@@ -250,8 +238,8 @@ class IdVerificationInfoView
                                                               .termsAndConditions,
                                                           style: TextStyle(
                                                               fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
+                                                              FontWeight
+                                                                  .w600,
                                                               fontSize: 12),
                                                         ),
                                                       )
@@ -265,14 +253,14 @@ class IdVerificationInfoView
                                                           (context, isChecked) {
                                                         return Padding(
                                                           padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  top: 32,
-                                                                  bottom: 8),
+                                                          const EdgeInsets
+                                                              .only(
+                                                              top: 32,
+                                                              bottom: 8),
                                                           child: Visibility(
                                                             visible: isChecked!,
                                                             child:
-                                                                AnimatedButton(
+                                                            AnimatedButton(
                                                               buttonText: S
                                                                   .of(context)
                                                                   .swipeToProceed,

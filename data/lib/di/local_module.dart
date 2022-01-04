@@ -16,28 +16,31 @@ import 'package:local_auth/local_auth.dart';
 import 'package:riverpod/riverpod.dart';
 
 final floorAppDatabase = Provider<FloorDbService>(
-  (ref) => FloorDbService(
-    DatabaseProperties.DB_NAME,
-  ),
+      (ref) =>
+      FloorDbService(
+        DatabaseProperties.DB_NAME,
+      ),
 );
 
 final localAuthenticationProvider = Provider<LocalAuthentication>(
-  (ref) => LocalAuthentication(),
+      (ref) => LocalAuthentication(),
 );
 
 final bioMetricSourceProvider = Provider<BioMetricService>(
-  (ref) => BioMetricService(
-    ref.read(localAuthenticationProvider),
-  ),
+      (ref) =>
+      BioMetricService(
+        ref.read(localAuthenticationProvider),
+      ),
 );
 
 var userLocalDSProvider = Provider<UserLocalDS>(
-  (ref) => UserLocalDSImpl(
-      ref.read(floorAppDatabase), ref.read(bioMetricSourceProvider)),
+      (ref) =>
+      UserLocalDSImpl(
+          ref.read(floorAppDatabase), ref.read(bioMetricSourceProvider)),
 );
 
 var deviceInfoPluginProvider = Provider<DeviceInfoPlugin>(
-  (ref) => DeviceInfoPlugin(),
+      (ref) => DeviceInfoPlugin(),
 );
 
 var countryLocalDataProvider = Provider<CountryLocalDs>(
@@ -45,13 +48,13 @@ var countryLocalDataProvider = Provider<CountryLocalDs>(
 );
 
 var uploadDocumentDataSourceProvider =
-    Provider<UploadDocumentLocalDS>((ref) => UploadDocumentLocalDSImpl());
+Provider<UploadDocumentLocalDS>((ref) => UploadDocumentLocalDSImpl());
 
 var homeAddressDialogDataSourceProvider =
-    Provider<HomeAddressDialogDS>((ref) => HomeAddressDialogDSImpl());
+Provider<HomeAddressDialogDS>((ref) => HomeAddressDialogDSImpl());
 
 var deviceInfoHelperProvider =
-    Provider<DeviceInfoHelper>((ref) => DeviceInfoHelper());
+Provider<DeviceInfoHelper>((ref) => DeviceInfoHelper());
 
 // ///cryptoUtil provider
 // final crytoUtilProvider = Provider<CryptoUtil>(
@@ -62,5 +65,5 @@ var deviceInfoHelperProvider =
 
 ///rsa Helper provider
 final rsaHelperProvider = Provider<RsaKeyHelper>(
-  (ref) => RsaKeyHelper(),
+      (ref) => RsaKeyHelper(),
 );

@@ -90,98 +90,99 @@ class AppViewModel extends BaseViewModel {
         break;
       case AppTheme.light:
         _themeData = _themeData.copyWith(
-          brightness: Brightness.light,
-          scaffoldBackgroundColor: AppColor.white,
-          primaryColor: AppColor.brightRed,
-          primaryColorDark: AppColor.black,
-          primaryColorLight: AppColor.verySoftRed,
-          accentColor: AppColor.white,
-          backgroundColor: AppColor.lightGray,
-          cardTheme: CardTheme(
-              color: AppColor.veryLightGray,
-              shadowColor: AppColor.black.withOpacity(0.24),
-              elevation: 8,
+            brightness: Brightness.light,
+            scaffoldBackgroundColor: AppColor.white,
+            primaryColor: AppColor.brightRed,
+            primaryColorDark: AppColor.black,
+            primaryColorLight: AppColor.verySoftRed,
+            accentColor: AppColor.white,
+            backgroundColor: AppColor.lightGray,
+            cardTheme: CardTheme(
+                color: AppColor.veryLightGray,
+                shadowColor: AppColor.black.withOpacity(0.24),
+                elevation: 8,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16))),
+            appBarTheme: AppBarTheme(
+                color: Colors.transparent,
+                elevation: 0,
+                iconTheme: IconThemeData(color: AppColor.dark_moderate_blue)),
+            textSelectionTheme: TextSelectionThemeData(
+              cursorColor: AppColor.veryDarkGray2,
+              selectionHandleColor: AppColor.veryDarkGray2,
+              selectionColor: AppColor.veryDarkGray2,
+            ),
+            inputDecorationTheme: InputDecorationTheme(
+                hintStyle: TextStyle(
+                  fontFamily: "Montserrat",
+                  color: AppColor.gray1,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                ),
+                //contentPadding: EdgeInsets.zero,
+                filled: false,
+                border: InputBorder.none,
+                enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 0.000001,
+                        color: AppColor.gray1,
+                        style: BorderStyle.none)),
+                focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 0.000001,
+                        color: AppColor.veryDarkGray1,
+                        style: BorderStyle.none)),
+                errorBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 0.000001,
+                        color: AppColor.strongRed,
+                        style: BorderStyle.none)),
+                focusedErrorBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 0.000001,
+                        color: AppColor.gray1,
+                        style: BorderStyle.none)),
+                isCollapsed: true,
+                errorStyle: TextStyle(
+                  fontFamily: "Montserrat",
+                  color: AppColor.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                ),
+                labelStyle: TextStyle(
+                  fontFamily: "Montserrat",
+                  color: AppColor.veryDarkGray2,
+                  fontSize: 18,
+                  height: 1.48,
+                  fontWeight: FontWeight.w400,
+                  fontStyle: FontStyle.normal,
+                )),
+            textTheme: _themeData.textTheme.apply(
+                fontFamily: "Montserrat",
+                bodyColor: AppColor.veryDarkGray2,
+                displayColor: AppColor.veryDarkGray2),
+            accentTextTheme: _themeData.textTheme.apply(
+                fontFamily: "Montserrat",
+                bodyColor: AppColor.brightBlue,
+                displayColor: AppColor.brightBlue),
+            primaryTextTheme: _themeData.textTheme.apply(
+                fontFamily: "Montserrat",
+                bodyColor: AppColor.very_dark_gray_black,
+                displayColor: AppColor.white),
+            iconTheme: IconThemeData(
+              color: AppColor.white,
+            ),
+            errorColor: AppColor.vivid_red,
+            indicatorColor: AppColor.veryDarkGray2,
+            buttonTheme: ButtonThemeData(
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(16))),
-          appBarTheme: AppBarTheme(
-              color: Colors.transparent,
-              elevation: 0,
-              iconTheme: IconThemeData(color: AppColor.dark_moderate_blue)),
-          textSelectionTheme: TextSelectionThemeData(
-            cursorColor: AppColor.veryDarkGray2,
-            selectionHandleColor: AppColor.veryDarkGray2,
-            selectionColor: AppColor.veryDarkGray2,
-          ),
-          inputDecorationTheme: InputDecorationTheme(
-              hintStyle: TextStyle(
-                fontFamily: "Montserrat",
-                color: AppColor.gray1,
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.normal,
-              ),
-              //contentPadding: EdgeInsets.zero,
-              filled: false,
-              border: InputBorder.none,
-              enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      width: 0.000001,
-                      color: AppColor.gray1,
-                      style: BorderStyle.none)),
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      width: 0.000001,
-                      color: AppColor.veryDarkGray1,
-                      style: BorderStyle.none)),
-              errorBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      width: 0.000001,
-                      color: AppColor.strongRed,
-                      style: BorderStyle.none)),
-              focusedErrorBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      width: 0.000001,
-                      color: AppColor.gray1,
-                      style: BorderStyle.none)),
-              isCollapsed: true,
-              errorStyle: TextStyle(
-                fontFamily: "Montserrat",
-                color: AppColor.white,
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.normal,
-              ),
-              labelStyle: TextStyle(
-                fontFamily: "Montserrat",
-                color: AppColor.veryDarkGray2,
-                fontSize: 18,
-                height: 1.48,
-                fontWeight: FontWeight.w400,
-                fontStyle: FontStyle.normal,
-              )),
-          textTheme: _themeData.textTheme.apply(
-              fontFamily: "Montserrat",
-              bodyColor: AppColor.veryDarkGray2,
-              displayColor: AppColor.veryDarkGray2),
-          accentTextTheme: _themeData.textTheme.apply(
-              fontFamily: "Montserrat",
-              bodyColor: AppColor.brightBlue,
-              displayColor: AppColor.brightBlue),
-          primaryTextTheme: _themeData.textTheme.apply(
-              fontFamily: "Montserrat",
-              bodyColor: AppColor.very_dark_gray_black,
-              displayColor: AppColor.white),
-          iconTheme: IconThemeData(
-            color: AppColor.white,
-          ),
-          errorColor: AppColor.vivid_red,
-          indicatorColor: AppColor.veryDarkGray2,
-          buttonTheme: ButtonThemeData(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
-            textTheme: ButtonTextTheme.normal,
-          ),
-        );
+                  borderRadius: BorderRadius.circular(50)),
+              textTheme: ButtonTextTheme.normal,
+            ),
+            dividerColor: AppColor.lightGrayishBlue,
+            canvasColor: AppColor.vividYellow);
         break;
     }
 

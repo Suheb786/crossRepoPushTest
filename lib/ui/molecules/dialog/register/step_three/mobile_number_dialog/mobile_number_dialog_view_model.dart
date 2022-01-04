@@ -7,10 +7,10 @@ import 'package:rxdart/rxdart.dart';
 
 class MobileNumberDialogViewModel extends BasePageViewModel {
   final TextEditingController mobileNumberSearchController =
-      TextEditingController();
+  TextEditingController();
 
   final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  FixedExtentScrollController();
 
   CountryData? selectedCountryData = CountryData();
 
@@ -22,7 +22,7 @@ class MobileNumberDialogViewModel extends BasePageViewModel {
 
   ///get country list response holder
   BehaviorSubject<Resource<List<CountryData>>> _getAllowedCountryCodeResponse =
-      BehaviorSubject();
+  BehaviorSubject();
 
   ///get country list response stream
   Stream<Resource<List<CountryData>>> get getAllowedCountryCodeStream =>
@@ -41,7 +41,9 @@ class MobileNumberDialogViewModel extends BasePageViewModel {
     countryList?.forEach((element) {
       element.isSelected = false;
     });
-    countryList?.elementAt(index).isSelected = true;
+    countryList
+        ?.elementAt(index)
+        .isSelected = true;
     selectedCountryData =
         countryList?.firstWhere((element) => element.isSelected);
     _getAllowedCountryCodeResponse.safeAdd(Resource.success(data: countryList));
@@ -70,7 +72,7 @@ class MobileNumberDialogViewModel extends BasePageViewModel {
 
   setResponse(List<CountryData> data) {
     _getAllowedCountryCodeResponse.safeAdd(Resource.success(data: data));
-    allCountryList= data;
+    allCountryList = data;
     selectMobileNumber(0);
   }
 

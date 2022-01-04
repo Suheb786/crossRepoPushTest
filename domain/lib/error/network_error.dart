@@ -76,6 +76,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_SAVING_STATUS);
 
+          case "err-349":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_BENEFICIARY);
+
           case "ex-055":
             return AppError(
                 cause: cause,
@@ -165,6 +171,52 @@ class NetworkError extends BaseError {
                 cause: cause,
                 error: error,
                 type: ErrorType.ACCOUNT_INQUIRY_WENT_WRONG);
+
+          case "err-064":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.WENT_WRONG_WHILE_LOGIN);
+
+          case "ex-019":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_GET_ACCOUNT_DETAILS);
+
+          case "err-208":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ACCOUNT_NOT_FOUND);
+
+          case "err-069":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_OTP_ENTERED);
+
+          case "err-147":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.BENEFICIARY_NOT_FOUND);
+
+          case "err-166":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_BALANCE_INQUIRY);
+
+          case "err-148":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INSUFFICIENT_BALANCE);
+
+          case "err-304":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.REQUEST_NOT_COMPLETED);
 
           default:
             return AppError(

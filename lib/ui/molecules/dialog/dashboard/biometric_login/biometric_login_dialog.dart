@@ -9,7 +9,8 @@ class BiometricLoginDialog {
       {Function? mayBeLater, Function? enableBioMetric}) {
     AppDialog.show(mContext,
         isDismissible: true,
-        builder: (context) => BiometricLoginDialogView(
+        builder: (context) =>
+            BiometricLoginDialogView(
               mayBeLater: mayBeLater,
               enableBioMetric: enableBioMetric,
             ));

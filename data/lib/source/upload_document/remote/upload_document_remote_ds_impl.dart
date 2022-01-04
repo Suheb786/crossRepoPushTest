@@ -28,8 +28,8 @@ class UploadDocumentRemoteDSImpl extends UploadDocumentRemoteDS {
   @override
   Future<HttpResponse<SaveUploadDocumentResponseEntity>> saveUploadDocument(
       {String? proofOfIncomeId,
-      String? proofOfAddressId,
-      String? proofOfNationalityId}) async {
+        String? proofOfAddressId,
+        String? proofOfNationalityId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveUploadDocument(SaveUploadDocumentRequestEntity(
         baseData: baseData.toJson(),

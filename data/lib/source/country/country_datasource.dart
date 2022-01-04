@@ -8,7 +8,7 @@ abstract class CountryRemoteDs {
   Future<HttpResponse<CountryListResponseEntity>> getCountryList();
 
   Future<HttpResponse<GetAllowedCountryResponseEntity>>
-      getAllowedCodeCountryList();
+  getAllowedCodeCountryList();
 }
 
 mixin CountryLocalDs {

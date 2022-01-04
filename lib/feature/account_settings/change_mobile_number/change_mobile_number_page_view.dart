@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/account_settings/account_settings_modules.dart';
 import 'package:neo_bank/feature/account_settings/change_mobile_number/add_new_mobile_number/add_new_mobile_number_page.dart';
 import 'package:neo_bank/feature/account_settings/change_mobile_number/change_mobile_number_page_view_model.dart';
 import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
@@ -102,7 +103,9 @@ class ChangeMobileNumberPageView
                                 direction: Direction.vertical,
                                 offset: 0.5,
                                 child: Text(
-                                  '+962 79 322 8080',
+                                  ProviderScope.containerOf(context)
+                                      .read(addNewMobileNumberViewModelProvider)
+                                      .mobileNumber,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: Theme.of(context).accentColor,

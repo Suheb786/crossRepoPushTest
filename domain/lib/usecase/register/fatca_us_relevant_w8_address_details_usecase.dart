@@ -28,18 +28,17 @@ class FatcaUSRelevantW8AddressDetailsUseCaseParams extends Params {
   final String? differentCity;
   final String? differentPostCode;
 
-  FatcaUSRelevantW8AddressDetailsUseCaseParams(
-      {this.permanentAddress,
-      this.city,
-      this.country,
-      this.postCode,
-      this.state,
-      this.differentAddress,
-      this.differentCity,
-      this.differentCountry,
-      this.differentPostCode,
-      this.differentState,
-      required this.isMailingAddressDifferent});
+  FatcaUSRelevantW8AddressDetailsUseCaseParams({this.permanentAddress,
+    this.city,
+    this.country,
+    this.postCode,
+    this.state,
+    this.differentAddress,
+    this.differentCity,
+    this.differentCountry,
+    this.differentPostCode,
+    this.differentState,
+    required this.isMailingAddressDifferent});
 
   @override
   Either<AppError, bool> verify() {

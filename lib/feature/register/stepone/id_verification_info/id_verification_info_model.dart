@@ -17,14 +17,14 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
 
   /// retrieve condition check subject holder
   BehaviorSubject<bool> _isRetrievedConditionSubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject.seeded(false);
 
   Stream<bool> get isRetrievedConditionStream =>
       _isRetrievedConditionSubject.stream;
 
   /// id verification info request subject holder
   PublishSubject<IdVerificationInfoUseCaseParams> _idVerificationInfoRequest =
-      PublishSubject();
+  PublishSubject();
 
   Stream<IdVerificationInfoUseCaseParams> get idVerificationRequestStream =>
       _idVerificationInfoRequest.stream;
@@ -41,11 +41,11 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
 
   ///scan document request holder
   final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///scan document response holder
   final PublishSubject<Resource<ScannedDocumentInformation>>
-      _scanUserDocumentResponse = PublishSubject();
+  _scanUserDocumentResponse = PublishSubject();
 
   ///scan document response stream
   Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream =>
@@ -53,25 +53,25 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
 
   ///get ahwal details subject holder
   final PublishSubject<GetAhwalDetailsUseCaseParams> _getAhwalDetailsRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///get ahwal details subject response holder
   final PublishSubject<Resource<AhwalDetailResponse>> _getAhwalDetailsResponse =
-      PublishSubject();
+  PublishSubject();
 
   ///get ahwal details response stream
   Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream =>
       _getAhwalDetailsResponse.stream;
 
   ScannedDocumentInformation scannedDocumentInformation =
-      ScannedDocumentInformation();
+  ScannedDocumentInformation();
 
   IdVerificationInfoViewModel(this._idVerificationInfoUseCase,
       this._scanUserDocumentUseCase, this._getAhwalDetailsUseCase) {
     _idVerificationInfoRequest.listen((value) {
       RequestManager(value,
-              createCall: () =>
-                  _idVerificationInfoUseCase.execute(params: value))
+          createCall: () =>
+              _idVerificationInfoUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _idVerificationInfoResponse.safeAdd(event);
@@ -86,22 +86,46 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
         .distinct()
         .listen((value) {
       RequestManager(value,
-              createCall: () => _scanUserDocumentUseCase.execute(params: value))
+          createCall: () => _scanUserDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        if (event.status == Status.SUCCESS) {
+          scannedDocumentInformation = event.data!;
+        }
         _scanUserDocumentResponse.safeAdd(event);
       });
     });
 
     _getAhwalDetailsRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _getAhwalDetailsUseCase.execute(params: value))
+          createCall: () => _getAhwalDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
         _getAhwalDetailsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+        } else if (event.status == Status.SUCCESS) {
+          scannedDocumentInformation.firstName =
+              event.data!.contentData!.ahwalinfo!.firstNameEn;
+          scannedDocumentInformation.middleName =
+              event.data!.contentData!.ahwalinfo!.thirdNameEn;
+
+          scannedDocumentInformation.firstNameAr =
+              event.data!.contentData!.ahwalinfo!.firstNameAr;
+          scannedDocumentInformation.secNameAr =
+              event.data!.contentData!.ahwalinfo!.secNameAr;
+          scannedDocumentInformation.thirdNameAr =
+              event.data!.contentData!.ahwalinfo!.thirdNameAr;
+          scannedDocumentInformation.familyNameAr =
+              event.data!.contentData!.ahwalinfo!.familyNameAr;
+
+          scannedDocumentInformation.secondNameEn =
+              event.data!.contentData!.ahwalinfo!.secondNameEn;
+          scannedDocumentInformation.thirdNameEn =
+              event.data!.contentData!.ahwalinfo!.thirdNameEn;
+          scannedDocumentInformation.familyName =
+              event.data!.contentData!.ahwalinfo!.familyNameEn;
         }
       });
     });

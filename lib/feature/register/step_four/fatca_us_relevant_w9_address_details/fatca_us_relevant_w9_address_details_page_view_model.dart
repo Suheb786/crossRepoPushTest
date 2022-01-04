@@ -181,16 +181,17 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
             isAdditionalRequester: _additionalRequesterSubject.value,
             additionalRequesterName: additionalRequesterNameController.text,
             additionalRequesterAddress:
-                additionalRequesterAddressController.text,
+            additionalRequesterAddressController.text,
             additionalRequesterCity: additionalRequesterCityController.text,
             additionalRequesterPostCode:
-                additionalRequesterPostCodeController.text,
+            additionalRequesterPostCodeController.text,
             additionalRequesterState: additionalRequesterStateController.text));
   }
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+    FatcaSetData fatcaSetData = ProviderScope
+        .containerOf(context)
         .read(registerStepFourViewModelProvider)
         .fatcaData;
     fatcaSetData.usAddress = addressController.text;

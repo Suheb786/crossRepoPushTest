@@ -30,9 +30,13 @@ class RegisterStepThreePageView
           return Column(
             children: [
               Text(
-                S.of(context).accountDetails,
+                S
+                    .of(context)
+                    .accountDetails,
                 style: TextStyle(
-                    color: Theme.of(context).accentColor,
+                    color: Theme
+                        .of(context)
+                        .accentColor,
                     fontSize: 10,
                     fontWeight: FontWeight.w600),
               ),

@@ -1,20 +1,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.codebaseneo.neo_bank">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
 
     <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-permission android:name="android.permission.USE_FINGERPRINT"/>
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
         android:icon="@mipmap/ic_launcher"
-        android:label="Blink"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:label="Blink">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCPizDLZPZ1Q1aAj4noRQyrdXZyE2ZS6FI" />
+            android:value="AIzaSyCuEgnAmuXOuVXT0lF2_NtqUEelRbH4F_k" />
+
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
@@ -45,7 +50,7 @@
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

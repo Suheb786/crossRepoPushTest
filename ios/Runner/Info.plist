@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>LSSupportsOpeningDocumentsInPlace</key>
@@ -33,6 +33,10 @@
 	<string>Can I use the camera please?</string>
 	<key>NSFaceIDUsageDescription</key>
 	<string>Why is my app authenticating using face id?</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>The app needs location permission to find your current location.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>The app needs location permission to find your current location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>The app needs location permission</string>
 	<key>NSMicrophoneUsageDescription</key>

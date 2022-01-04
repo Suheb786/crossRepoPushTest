@@ -15,7 +15,7 @@ class CheckVideoCallStatusResponseContentEntity
   CheckVideoCallStatusResponseContentEntity({this.status});
 
   factory CheckVideoCallStatusResponseContentEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$CheckVideoCallStatusResponseContentEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

@@ -24,12 +24,11 @@ class OccupationDialogView extends StatelessWidget {
   final EmploymentStatusEnum? employmentStatusEnum;
   final List<GetComboValuesData>? businessTypeList;
 
-  const OccupationDialogView(
-      {this.onDismissed,
-      this.onSelected,
-      this.employmentStatusEnum,
-      this.businessTypeList,
-      this.title});
+  const OccupationDialogView({this.onDismissed,
+    this.onSelected,
+    this.employmentStatusEnum,
+    this.businessTypeList,
+    this.title});
 
   ProviderBase providerBase() {
     return occupationDialogViwModelProvider;
@@ -101,7 +100,7 @@ class OccupationDialogView extends StatelessWidget {
                                     childDelegate:
                                         ListWheelChildBuilderDelegate(
                                             childCount:
-                                                model.businessTypeList.length,
+                                            model.businessTypeList.length,
                                             builder: (BuildContext context,
                                                 int index) {
                                               return ListScrollWheelListWidget(
@@ -109,8 +108,9 @@ class OccupationDialogView extends StatelessWidget {
                                                     .businessTypeList[index]
                                                     .labelEn!,
                                                 textColor: currentIndex == index
-                                                    ? Theme.of(context)
-                                                        .primaryColorDark
+                                                    ? Theme
+                                                    .of(context)
+                                                    .primaryColorDark
                                                     : AppColor.dark_gray_1,
                                                 widgetColor: Colors.transparent,
                                               );

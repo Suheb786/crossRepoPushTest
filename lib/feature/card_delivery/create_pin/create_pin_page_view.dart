@@ -33,7 +33,8 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  ProviderScope.containerOf(context)
+                  ProviderScope
+                      .containerOf(context)
                       .read(cardDeliveryViewModelProvider)
                       .swiperController
                       .next(animation: true);
@@ -47,7 +48,8 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
                     if (details.primaryVelocity!.isNegative) {
                       model.validatePin();
                     } else {
-                      ProviderScope.containerOf(context)
+                      ProviderScope
+                          .containerOf(context)
                           .read(cardDeliveryViewModelProvider)
                           .swiperController
                           .previous(animation: true);
@@ -57,7 +59,7 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
                     margin: EdgeInsets.zero,
                     child: Container(
                         padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+                        EdgeInsets.symmetric(vertical: 32, horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -66,7 +68,10 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
                                 physics: ClampingScrollPhysics(),
                                 child: AppOtpFields(
                                   length: 4,
-                                  fieldWidth: MediaQuery.of(context).size.width/6.4,
+                                  fieldWidth: MediaQuery
+                                      .of(context)
+                                      .size
+                                      .width / 6.4,
                                   fieldHeight: 52,
                                   onChanged: (val) {
                                     model.validate(val);
@@ -85,7 +90,9 @@ class CreatePinPageView extends BasePageViewWidget<CreatePinPageViewModel> {
                                       child: AnimatedButton(
                                         buttonHeight: 50,
                                         buttonText:
-                                            S.of(context).swipeToProceed,
+                                        S
+                                            .of(context)
+                                            .swipeToProceed,
                                       ),
                                     );
                                   }),

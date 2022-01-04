@@ -40,7 +40,11 @@ Submitting the form to a partnership that conducts a trade or business in the Un
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme
+                        .of(context)
+                        .primaryTextTheme
+                        .bodyText1!
+                        .color),
               ),
             ],
           ),

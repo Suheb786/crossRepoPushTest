@@ -16,7 +16,8 @@ class ClaimOfTaxTreatyBenefitsPage
 }
 
 class ClaimOfTaxTreatyBenefitsPageState extends BaseStatefulPage<
-    ClaimOfTaxTreatyBenefitsPageViewModel, ClaimOfTaxTreatyBenefitsPage> {
+    ClaimOfTaxTreatyBenefitsPageViewModel,
+    ClaimOfTaxTreatyBenefitsPage> {
   @override
   ProviderBase provideBase() {
     return claimOfTaxTreatyBenefitsViewModelProvider;
@@ -36,19 +37,25 @@ class ClaimOfTaxTreatyBenefitsPageState extends BaseStatefulPage<
               child: Padding(
                 padding: const EdgeInsets.only(left: 24.0),
                 child: AppSvg.asset(AssetUtils.leftArrow,
-                    color: Theme.of(context).accentColor),
+                    color: Theme
+                        .of(context)
+                        .accentColor),
               ),
             ),
             Flexible(
               child: Text(
-                S.of(context).claimOfTaxTreatyBenefits,
+                S
+                    .of(context)
+                    .claimOfTaxTreatyBenefits,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context).accentColor),
+                    color: Theme
+                        .of(context)
+                        .accentColor),
               ),
             ),
             Padding(
@@ -68,12 +75,14 @@ class ClaimOfTaxTreatyBenefitsPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override
-  Widget buildView(
-      BuildContext context, ClaimOfTaxTreatyBenefitsPageViewModel model) {
+  Widget buildView(BuildContext context,
+      ClaimOfTaxTreatyBenefitsPageViewModel model) {
     return ClaimOfTaxTreatyBenefitsPageView(provideBase());
   }
 }

@@ -83,67 +83,77 @@ class UploadDocumentsPageView
                                   model.validateDocuments();
                                 } else {
                                   Future.delayed(Duration(milliseconds: 500),
-                                      () {
-                                    ProviderScope.containerOf(context)
-                                        .read(registerStepFiveViewModelProvider)
-                                        .registrationStepFivePageController
-                                        .move(0);
-                                  });
+                                          () {
+                                        ProviderScope
+                                            .containerOf(context)
+                                            .read(
+                                            registerStepFiveViewModelProvider)
+                                            .registrationStepFivePageController
+                                            .move(0);
+                                      });
                                 }
                               },
                               child: Card(
                                 child: Padding(
                                     padding: EdgeInsets.only(
-                                        bottom: MediaQuery.of(context)
-                                                        .viewInsets
-                                                        .bottom -
-                                                    50 <=
-                                                0
+                                        bottom: MediaQuery
+                                            .of(context)
+                                            .viewInsets
+                                            .bottom -
+                                            50 <=
+                                            0
                                             ? 0
-                                            : MediaQuery.of(context)
-                                                    .viewInsets
-                                                    .bottom -
-                                                48),
+                                            : MediaQuery
+                                            .of(context)
+                                            .viewInsets
+                                            .bottom -
+                                            48),
                                     child: SingleChildScrollView(
                                         padding: EdgeInsets.symmetric(
                                             vertical: 32, horizontal: 24),
                                         physics: ClampingScrollPhysics(),
                                         child: Column(
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              S.of(context).proofOfIncome,
+                                              S
+                                                  .of(context)
+                                                  .proofOfIncome,
                                               softWrap: true,
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context)
+                                                  color: Theme
+                                                      .of(context)
                                                       .primaryColorDark),
                                             ),
                                             Padding(
                                               padding: EdgeInsets.only(
                                                   top: 8.0, bottom: 16),
                                               child: Text(
-                                                S.of(context).proofOfIncomeDesc,
+                                                S
+                                                    .of(context)
+                                                    .proofOfIncomeDesc,
                                                 softWrap: true,
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Theme.of(context)
+                                                    color: Theme
+                                                        .of(context)
                                                         .primaryColorDark),
                                               ),
                                             ),
                                             AppStreamBuilder<String>(
                                               stream:
-                                                  model.uploadIncomePoofStream,
+                                              model.uploadIncomePoofStream,
                                               initialData: '',
                                               onData: (documentResponse) {
                                                 if (documentResponse
                                                     .isNotEmpty) {
                                                   model
                                                       .updateIncomeDocumentField(
-                                                          documentResponse);
+                                                      documentResponse);
                                                 }
                                               },
                                               dataBuilder: (context, document) {
@@ -159,17 +169,19 @@ class UploadDocumentsPageView
                                                       stream: model
                                                           .uploadIncomeProofDocumentStream,
                                                       initialData:
-                                                          Resource.none(),
+                                                      Resource.none(),
                                                       onData: (data) {
                                                         if (data.status ==
                                                             Status.SUCCESS) {
-                                                          model.incomeProofDocumentId =
-                                                              data
-                                                                  .data!
-                                                                  .fileUploadContent!
-                                                                  .documentId!;
-                                                          model.isIncomeDocumentUploaded =
-                                                              true;
+                                                          model
+                                                              .incomeProofDocumentId =
+                                                          data
+                                                              .data!
+                                                              .fileUploadContent!
+                                                              .documentId!;
+                                                          model
+                                                              .isIncomeDocumentUploaded =
+                                                          true;
                                                           model
                                                               .validateFields();
                                                         }
@@ -187,68 +199,102 @@ class UploadDocumentsPageView
                                                           //     .incomeDocumentKey,
                                                           readOnly: true,
                                                           hintTextColor: Theme
-                                                                  .of(context)
+                                                              .of(context)
                                                               .primaryColorDark,
                                                           textFieldBorderColor:
-                                                              Theme.of(context)
-                                                                  .accentTextTheme
-                                                                  .bodyText1!
-                                                                  .color,
-                                                          textColor: Theme.of(
-                                                                  context)
+                                                          Theme
+                                                              .of(context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color,
+                                                          textColor: Theme
+                                                              .of(
+                                                              context)
                                                               .primaryColorDark,
                                                           suffixIcon:
                                                               (value, data) {
                                                             return InkWell(
                                                               onTap:
-                                                                  !(isUploaded!)
-                                                                      ? () async {
-                                                                          UploadDocumentSelectionWidget.show(context, onCameraTap:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                            model.uploadIncomeDocument(DocumentTypeEnum.CAMERA);
-                                                                          }, onUploadDocumentTap:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                            model.uploadIncomeDocument(DocumentTypeEnum.GALLERY);
-                                                                          }, onCancelled:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                          }, title: S.of(context).pleaseSelectYourAction);
-                                                                        }
-                                                                      : () {
-                                                                          model
-                                                                              .incomeController
-                                                                              .clear();
-                                                                          model.updateIncomeUploadedStream(
-                                                                              false);
-                                                                          model.isIncomeDocumentUploaded =
-                                                                              false;
-                                                                          model.incomeProofDocumentId =
-                                                                              '';
-                                                                          model
-                                                                              .validateFields();
-                                                                        },
+                                                              !(isUploaded!)
+                                                                  ? () async {
+                                                                UploadDocumentSelectionWidget
+                                                                    .show(
+                                                                    context,
+                                                                    onCameraTap:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                      model
+                                                                          .uploadIncomeDocument(
+                                                                          DocumentTypeEnum
+                                                                              .CAMERA);
+                                                                    },
+                                                                    onUploadDocumentTap:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                      model
+                                                                          .uploadIncomeDocument(
+                                                                          DocumentTypeEnum
+                                                                              .GALLERY);
+                                                                    },
+                                                                    onCancelled:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                    },
+                                                                    title: S
+                                                                        .of(
+                                                                        context)
+                                                                        .pleaseSelectYourAction);
+                                                              }
+                                                                  : () {
+                                                                model
+                                                                    .incomeController
+                                                                    .clear();
+                                                                model
+                                                                    .updateIncomeUploadedStream(
+                                                                    false);
+                                                                model
+                                                                    .isIncomeDocumentUploaded =
+                                                                false;
+                                                                model
+                                                                    .incomeProofDocumentId =
+                                                                '';
+                                                                model
+                                                                    .validateFields();
+                                                              },
                                                               child: Container(
                                                                   height: 16,
                                                                   width: 16,
                                                                   padding:
-                                                                      EdgeInsets
-                                                                          .all(
-                                                                              5),
+                                                                  EdgeInsets
+                                                                      .all(
+                                                                      5),
                                                                   child: isUploaded
-                                                                      ? AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .delete,
-                                                                          color:
-                                                                              Theme.of(context).primaryColorDark,
-                                                                        )
-                                                                      : AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .upload,
-                                                                          color:
-                                                                              Theme.of(context).primaryColorDark,
-                                                                        )),
+                                                                      ? AppSvg
+                                                                      .asset(
+                                                                    AssetUtils
+                                                                        .delete,
+                                                                    color:
+                                                                    Theme
+                                                                        .of(
+                                                                        context)
+                                                                        .primaryColorDark,
+                                                                  )
+                                                                      : AppSvg
+                                                                      .asset(
+                                                                    AssetUtils
+                                                                        .upload,
+                                                                    color:
+                                                                    Theme
+                                                                        .of(
+                                                                        context)
+                                                                        .primaryColorDark,
+                                                                  )),
                                                             );
                                                           },
                                                         );
@@ -267,12 +313,15 @@ class UploadDocumentsPageView
                                               ),
                                             ),
                                             Text(
-                                              S.of(context).proofOfAddress,
+                                              S
+                                                  .of(context)
+                                                  .proofOfAddress,
                                               softWrap: true,
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context)
+                                                  color: Theme
+                                                      .of(context)
                                                       .primaryColorDark),
                                             ),
                                             Padding(
@@ -286,20 +335,21 @@ class UploadDocumentsPageView
                                                 style: TextStyle(
                                                     fontSize: 12,
                                                     fontWeight: FontWeight.w400,
-                                                    color: Theme.of(context)
+                                                    color: Theme
+                                                        .of(context)
                                                         .primaryColorDark),
                                               ),
                                             ),
                                             AppStreamBuilder<String>(
                                               stream:
-                                                  model.uploadAddressPoofStream,
+                                              model.uploadAddressPoofStream,
                                               initialData: '',
                                               onData: (documentResponse) {
                                                 if (documentResponse
                                                     .isNotEmpty) {
                                                   model
                                                       .updateAddressDocumentField(
-                                                          documentResponse);
+                                                      documentResponse);
                                                 }
                                               },
                                               dataBuilder: (context, document) {
@@ -315,19 +365,22 @@ class UploadDocumentsPageView
                                                       stream: model
                                                           .uploadAddressProofDocumentStream,
                                                       initialData:
-                                                          Resource.none(),
+                                                      Resource.none(),
                                                       onData:
-                                                          (addressProofResponse) {
+                                                          (
+                                                          addressProofResponse) {
                                                         if (addressProofResponse
-                                                                .status ==
+                                                            .status ==
                                                             Status.SUCCESS) {
-                                                          model.addressProofDocumentId =
-                                                              addressProofResponse
-                                                                  .data!
-                                                                  .fileUploadContent!
-                                                                  .documentId!;
-                                                          model.isAddressDocumentUploaded =
-                                                              true;
+                                                          model
+                                                              .addressProofDocumentId =
+                                                          addressProofResponse
+                                                              .data!
+                                                              .fileUploadContent!
+                                                              .documentId!;
+                                                          model
+                                                              .isAddressDocumentUploaded =
+                                                          true;
                                                           model
                                                               .validateFields();
                                                         }
@@ -345,47 +398,73 @@ class UploadDocumentsPageView
                                                           //     .addressDocumentKey,
                                                           readOnly: true,
                                                           textFieldBorderColor:
-                                                              Theme.of(context)
-                                                                  .accentTextTheme
-                                                                  .bodyText1!
-                                                                  .color,
+                                                          Theme
+                                                              .of(context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color,
                                                           hintTextColor: Theme
-                                                                  .of(context)
+                                                              .of(context)
                                                               .primaryColorDark,
-                                                          textColor: Theme.of(
-                                                                  context)
+                                                          textColor: Theme
+                                                              .of(
+                                                              context)
                                                               .primaryColorDark,
                                                           suffixIcon:
                                                               (value, data) {
                                                             return InkWell(
                                                               onTap:
-                                                                  !(isUploaded!)
-                                                                      ? () async {
-                                                                          UploadDocumentSelectionWidget.show(context, onCameraTap:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                            model.uploadAddressDocument(DocumentTypeEnum.CAMERA);
-                                                                          }, onUploadDocumentTap:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                            model.uploadAddressDocument(DocumentTypeEnum.GALLERY);
-                                                                          }, onCancelled:
-                                                                              () {
-                                                                            Navigator.pop(context);
-                                                                          }, title: S.of(context).pleaseSelectYourAction);
+                                                              !(isUploaded!)
+                                                                  ? () async {
+                                                                UploadDocumentSelectionWidget
+                                                                    .show(
+                                                                    context,
+                                                                    onCameraTap:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                      model
+                                                                          .uploadAddressDocument(
+                                                                          DocumentTypeEnum
+                                                                              .CAMERA);
+                                                                    },
+                                                                    onUploadDocumentTap:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                      model
+                                                                          .uploadAddressDocument(
+                                                                          DocumentTypeEnum
+                                                                              .GALLERY);
+                                                                    },
+                                                                    onCancelled:
+                                                                        () {
+                                                                      Navigator
+                                                                          .pop(
+                                                                          context);
+                                                                    },
+                                                                    title: S
+                                                                        .of(
+                                                                        context)
+                                                                        .pleaseSelectYourAction);
                                                                         }
                                                                       : () {
-                                                                          model
-                                                                              .addressController
-                                                                              .clear();
-                                                                          model.updateAddressUploadedStream(
-                                                                              false);
-                                                                          model.isAddressDocumentUploaded =
-                                                                              false;
-                                                                          model.addressProofDocumentId =
-                                                                              '';
-                                                                          model
-                                                                              .validateFields();
+                                                                model
+                                                                    .addressController
+                                                                    .clear();
+                                                                model
+                                                                    .updateAddressUploadedStream(
+                                                                    false);
+                                                                model
+                                                                    .isAddressDocumentUploaded =
+                                                                false;
+                                                                model
+                                                                    .addressProofDocumentId =
+                                                                '';
+                                                                model
+                                                                    .validateFields();
                                                                         },
                                                               child: Container(
                                                                   height: 16,
@@ -393,20 +472,28 @@ class UploadDocumentsPageView
                                                                   padding:
                                                                       EdgeInsets
                                                                           .all(
-                                                                              5),
+                                                                          5),
                                                                   child: isUploaded
-                                                                      ? AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .delete,
-                                                                          color:
-                                                                              Theme.of(context).primaryColorDark,
-                                                                        )
-                                                                      : AppSvg.asset(
-                                                                          AssetUtils
-                                                                              .upload,
-                                                                          color:
-                                                                              Theme.of(context).primaryColorDark,
-                                                                        )),
+                                                                      ? AppSvg
+                                                                      .asset(
+                                                                    AssetUtils
+                                                                        .delete,
+                                                                    color:
+                                                                    Theme
+                                                                        .of(
+                                                                        context)
+                                                                        .primaryColorDark,
+                                                                  )
+                                                                      : AppSvg
+                                                                      .asset(
+                                                                    AssetUtils
+                                                                        .upload,
+                                                                    color:
+                                                                    Theme
+                                                                        .of(
+                                                                        context)
+                                                                        .primaryColorDark,
+                                                                  )),
                                                             );
                                                           },
                                                         );
@@ -609,10 +696,10 @@ class UploadDocumentsPageView
                                                       onPressed: () {
                                                         UploadDocumentLaterDialog
                                                             .show(context,
-                                                                onSelected: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        });
+                                                            onSelected: () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            });
                                                       },
                                                       child: Text(
                                                         S
@@ -621,9 +708,10 @@ class UploadDocumentsPageView
                                                         style: TextStyle(
                                                             fontSize: 14,
                                                             fontWeight:
-                                                                FontWeight.w600,
-                                                            color: Theme.of(
-                                                                    context)
+                                                            FontWeight.w600,
+                                                            color: Theme
+                                                                .of(
+                                                                context)
                                                                 .accentTextTheme
                                                                 .bodyText1!
                                                                 .color),

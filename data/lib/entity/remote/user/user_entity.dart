@@ -72,7 +72,7 @@ class UserEntity implements BaseLayerDataTransformer<UserEntity, User> {
   User transform() {
     return User(
         id: this.userId ?? "",
-        email: this.emailId ?? "",
+        email: this.userName ?? "",
         firstName: this.firstName ?? "",
         lastName: this.lastName ?? "",
         mobile: this.mobileNumber ?? "",

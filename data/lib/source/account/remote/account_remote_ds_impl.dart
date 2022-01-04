@@ -30,7 +30,7 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
 
   @override
   Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
-      checkOtherNationalityStatus({bool? getToken}) async {
+  checkOtherNationalityStatus({bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkOtherNationalityStatus(
         CheckOtherNationalityStatusRequestEntity(
@@ -46,7 +46,7 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
 
   @override
   Future<HttpResponse<CheckAgentStatusResponseEntity>>
-      checkAgentStatus() async {
+  checkAgentStatus() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkAgentStatus(CheckAgentStatusRequestEntity(
         baseData: baseData.toJson(), getToken: true));
@@ -54,8 +54,8 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
 
   @override
   Future<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>
-      saveCustomerVideoCallScheduleTime(
-          {String? scheduleDate, String? scheduleTime}) async {
+  saveCustomerVideoCallScheduleTime(
+      {String? scheduleDate, String? scheduleTime}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveCustomerVideoCallScheduleTime(
         SaveCustomerScheduleTimeRequestEntity(

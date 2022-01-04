@@ -7,7 +7,7 @@ class KYCStatusRequest {
   @JsonKey(name: "GetToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
-  final Map<String,dynamic> baseData;
+  final Map<String, dynamic> baseData;
 
   KYCStatusRequest({required this.baseData, this.getToken: true});
 

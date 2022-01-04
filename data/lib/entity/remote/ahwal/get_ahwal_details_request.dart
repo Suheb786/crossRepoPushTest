@@ -7,7 +7,7 @@ class GetAhwalDetailsRequest {
   @JsonKey(name: "IdNo")
   final String? idNo;
   @JsonKey(name: "baseClass")
-  final Map<String,dynamic> baseData;
+  final Map<String, dynamic> baseData;
 
   GetAhwalDetailsRequest({this.idNo: "", required this.baseData});
 

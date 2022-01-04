@@ -1,5 +1,7 @@
+import 'package:domain/model/id_card/ahwal_details_response.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:domain/usecase/id_card/get_ahwal_details_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,6 +17,7 @@ import 'package:rxdart/rxdart.dart';
 class ConfirmDetailViewModel extends BasePageViewModel {
   final ConfirmDetailUseCase _confirmDetailUseCase;
   final ScanUserDocumentUseCase _scanUserDocumentUseCase;
+  final GetAhwalDetailsUseCase _getAhwalDetailsUseCase;
 
   TextEditingController nameController = new TextEditingController();
   TextEditingController idNumberController = new TextEditingController();
@@ -34,24 +37,24 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   GlobalKey<AppTextFieldState> dobKey = GlobalKey(debugLabel: "dob");
 
   GlobalKey<AppTextFieldState> nationalityKey =
-      GlobalKey(debugLabel: "nationality");
+  GlobalKey(debugLabel: "nationality");
 
   GlobalKey<AppTextFieldState> expiryDateKey =
-      GlobalKey(debugLabel: "expiryDate");
+  GlobalKey(debugLabel: "expiryDate");
 
   GlobalKey<AppTextFieldState> genderKey = GlobalKey(debugLabel: "gender");
 
   GlobalKey<AppTextFieldState> motherNameKey =
-      GlobalKey(debugLabel: "mother's name");
+  GlobalKey(debugLabel: "mother's name");
 
   GlobalKey<AppTextFieldState> legalDocumentKey =
-      GlobalKey(debugLabel: "legalDocument");
+  GlobalKey(debugLabel: "legalDocument");
 
   GlobalKey<AppTextFieldState> issuingDateKey =
-      GlobalKey(debugLabel: "issuingDate");
+  GlobalKey(debugLabel: "issuingDate");
 
   GlobalKey<AppTextFieldState> issuingPlaceKey =
-      GlobalKey(debugLabel: "issuingPlace");
+  GlobalKey(debugLabel: "issuingPlace");
 
   String selectedDobDate = DateTime.now().toLocal().toString();
 
@@ -61,11 +64,11 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   ///scan document request holder
   final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///scan document response holder
   final PublishSubject<Resource<ScannedDocumentInformation>>
-      _scanUserDocumentResponse = PublishSubject();
+  _scanUserDocumentResponse = PublishSubject();
 
   ///scan document response stream
   Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream =>
@@ -73,7 +76,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   /// declaration selected subject holder
   BehaviorSubject<bool> _declarationSelectedSubject =
-      BehaviorSubject.seeded(false);
+  BehaviorSubject.seeded(false);
 
   /// declaration selected response stream
   Stream<bool> get declarationSelectedStream =>
@@ -85,11 +88,11 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   /// confirm detail request subject holder
   PublishSubject<ConfirmDetailUseCaseParams> _confirmDetailRequest =
-      PublishSubject();
+  PublishSubject();
 
   /// confirm detail response subject holder
   PublishSubject<Resource<SaveIdInfoResponse>> _confirmDetailResponse =
-      PublishSubject();
+  PublishSubject();
 
   Stream<Resource<SaveIdInfoResponse>> get confirmDetailResponseStream =>
       _confirmDetailResponse.stream;
@@ -99,14 +102,26 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  ScannedDocumentInformation scannedDocumentResult =
-      ScannedDocumentInformation();
+  ///get ahwal details subject holder
+  final PublishSubject<GetAhwalDetailsUseCaseParams> _getAhwalDetailsRequest =
+  PublishSubject();
 
-  ConfirmDetailViewModel(
-      this._confirmDetailUseCase, this._scanUserDocumentUseCase) {
+  ///get ahwal details subject response holder
+  final PublishSubject<Resource<AhwalDetailResponse>> _getAhwalDetailsResponse =
+  PublishSubject();
+
+  ///get ahwal details response stream
+  Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream =>
+      _getAhwalDetailsResponse.stream;
+
+  ScannedDocumentInformation scannedDocumentResult =
+  ScannedDocumentInformation();
+
+  ConfirmDetailViewModel(this._confirmDetailUseCase,
+      this._scanUserDocumentUseCase, this._getAhwalDetailsUseCase) {
     _confirmDetailRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _confirmDetailUseCase.execute(params: value))
+          createCall: () => _confirmDetailUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -122,10 +137,48 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         .distinct()
         .listen((value) {
       RequestManager(value,
-              createCall: () => _scanUserDocumentUseCase.execute(params: value))
+          createCall: () => _scanUserDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _scanUserDocumentResponse.safeAdd(event);
+        if (event.status == Status.SUCCESS) {
+          getAhwalResponse(event.data!.idNumber ?? "");
+        }
+      });
+    });
+
+    _getAhwalDetailsRequest.listen((value) {
+      RequestManager(value,
+          createCall: () => _getAhwalDetailsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getAhwalDetailsResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+        } else if (event.status == Status.SUCCESS) {
+          scannedDocumentResult.firstName =
+              event.data!.contentData!.ahwalinfo!.firstNameEn;
+          scannedDocumentResult.middleName =
+              event.data!.contentData!.ahwalinfo!.thirdNameEn;
+
+          scannedDocumentResult.firstNameAr =
+              event.data!.contentData!.ahwalinfo!.firstNameAr;
+          scannedDocumentResult.secNameAr =
+              event.data!.contentData!.ahwalinfo!.secNameAr;
+          scannedDocumentResult.thirdNameAr =
+              event.data!.contentData!.ahwalinfo!.thirdNameAr;
+          scannedDocumentResult.familyNameAr =
+              event.data!.contentData!.ahwalinfo!.familyNameAr;
+
+          scannedDocumentResult.secondNameEn =
+              event.data!.contentData!.ahwalinfo!.secondNameEn;
+          scannedDocumentResult.thirdNameEn =
+              event.data!.contentData!.ahwalinfo!.thirdNameEn;
+          scannedDocumentResult.familyName =
+              event.data!.contentData!.ahwalinfo!.familyNameEn;
+          setData(scannedDocumentResult);
+        }
       });
     });
   }
@@ -133,6 +186,17 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   void scanDocument() {
     _scanUserDocumentRequest.safeAdd(ScanUserDocumentUseCaseParams());
   }
+
+  bool isNameReadOnly = false;
+  bool isIdNoReadOnly = false;
+  bool isDobReadOnly = false;
+  bool isNationalityReadOnly = false;
+  bool isExpiryDateReadOnly = false;
+  bool isGenderReadOnly = false;
+  bool isMotherNameReadOnly = false;
+  bool isLegalDocumentReadOnly = false;
+  bool isIssuingDateReadOnly = false;
+  bool isIssuingPlaceReadOnly = false;
 
   void confirmDetail() {
     _confirmDetailRequest.safeAdd(ConfirmDetailUseCaseParams(
@@ -142,7 +206,6 @@ class ConfirmDetailViewModel extends BasePageViewModel {
             ? selectedDobDate
             : scannedDocumentResult.dob.toString(),
         nationality: scannedDocumentResult.nationalityIsoCode3,
-        //nationalityController.text,
         expiryDate: scannedDocumentResult.doe!.year == 0
             ? selectedExpiryDate
             : scannedDocumentResult.doe!.toString(),
@@ -175,6 +238,10 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     }
   }
 
+  void getAhwalResponse(String id) {
+    _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
+  }
+
   @override
   void dispose() {
     _confirmDetailRequest.close();
@@ -193,7 +260,6 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     dobController.text = data.dob!.year != 0
         ? TimeUtils.getFormattedDOB(data.dob!.toString())
         : '';
-    nationalityController.text = data.nationality!;
     genderController.text = data.gender!;
     motherNameController.text = data.motherName!;
     legalDocumentController.text = data.documentNumber!;
@@ -204,5 +270,20 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         ? TimeUtils.getFormattedDOB(data.doe!.toString())
         : '';
     issuingPlaceController.text = data.issuingPlace!;
+
+    setVisibility();
+  }
+
+  void setVisibility() {
+    isNameReadOnly = nameController.text.isNotEmpty;
+    isIdNoReadOnly = idNumberController.text.isNotEmpty;
+    isDobReadOnly = dobController.text.isNotEmpty;
+    isNationalityReadOnly = nationalityController.text.isNotEmpty;
+    isGenderReadOnly = genderController.text.isNotEmpty;
+    isMotherNameReadOnly = motherNameController.text.isNotEmpty;
+    isLegalDocumentReadOnly = legalDocumentController.text.isNotEmpty;
+    isIssuingDateReadOnly = issuingDateController.text.isNotEmpty;
+    isIssuingPlaceReadOnly = issuingPlaceController.text.isNotEmpty;
+    isExpiryDateReadOnly = expiryDateController.text.isNotEmpty;
   }
 }

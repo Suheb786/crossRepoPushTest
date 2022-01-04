@@ -1,5 +1,8 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/country/country_list/country_data.dart';
+import 'package:domain/model/country/get_allowed_code/allowed_country_list_response.dart';
 import 'package:domain/usecase/account_setting/change_mobile_number/add_new_mobile_number_usecase.dart';
+import 'package:domain/usecase/country/get_allowed_code_country_list_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -11,6 +14,8 @@ import 'package:rxdart/rxdart.dart';
 
 class AddNewMobileNumberPageViewModel extends BasePageViewModel {
   final AddNewMobileNumberUseCase _addNewMobileUseCase;
+
+  final GetAllowedCodeCountryListUseCase _allowedCodeCountryListUseCase;
 
   /// controller
   final TextEditingController mobileController = TextEditingController();
@@ -33,12 +38,38 @@ class AddNewMobileNumberPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  AddNewMobileNumberPageViewModel(this._addNewMobileUseCase) {
+  CountryData countryData = CountryData();
+
+  String mobileNumber = '';
+
+  ///get allowed code country request holder
+  PublishSubject<GetAllowedCodeCountryListUseCaseParams>
+      _getAllowedCountryRequest = PublishSubject();
+
+  ///get allowed code country response holder
+  PublishSubject<Resource<AllowedCountryListResponse>>
+      _getAllowedCountryResponse = PublishSubject();
+
+  ///get allowed code country response stream
+  Stream<Resource<AllowedCountryListResponse>> get getAllowedCountryStream =>
+      _getAllowedCountryResponse.stream;
+
+  ///selected country response holder
+  BehaviorSubject<CountryData> _selectedCountryResponse =
+      BehaviorSubject.seeded(CountryData());
+
+  ///get allowed code country response stream
+  Stream<CountryData> get getSelectedCountryStream =>
+      _selectedCountryResponse.stream;
+
+  AddNewMobileNumberPageViewModel(
+      this._addNewMobileUseCase, this._allowedCodeCountryListUseCase) {
     _addNewMobileRequest.listen((value) {
       RequestManager(value,
               createCall: () => _addNewMobileUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _addNewMobileResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -46,11 +77,32 @@ class AddNewMobileNumberPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getAllowedCountryRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _allowedCodeCountryListUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _getAllowedCountryResponse.safeAdd(event);
+        updateLoader();
+        if (event.status == Status.SUCCESS) {
+          countryData = event.data!.contentData!.countryData!.first;
+          setSelectedCountry(countryData);
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+          showErrorState();
+        }
+      });
+    });
+
+    getAllowedCountryCode();
   }
 
   void changeMobileNumber() {
-    _addNewMobileRequest.safeAdd(
-        AddNewMobileNumberUseCaseParams(mobileNumber: mobileController.text));
+    mobileNumber = '${countryData.phoneCode} ${mobileController.text}';
+    _addNewMobileRequest.safeAdd(AddNewMobileNumberUseCaseParams(
+        mobileNumber: '${countryData.phoneCode} ${mobileController.text}'));
   }
 
   void validate() {
@@ -69,6 +121,15 @@ class AddNewMobileNumberPageViewModel extends BasePageViewModel {
       default:
         break;
     }
+  }
+
+  void setSelectedCountry(CountryData data) {
+    _selectedCountryResponse.safeAdd(data);
+  }
+
+  /// get allowed country code
+  void getAllowedCountryCode() {
+    _getAllowedCountryRequest.safeAdd(GetAllowedCodeCountryListUseCaseParams());
   }
 
   @override

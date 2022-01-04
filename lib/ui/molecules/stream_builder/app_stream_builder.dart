@@ -83,14 +83,11 @@ class AppStreamBuilder<T> extends StreamBuilderBase<T, AsyncSnapshot<T>> {
   }
 
   Widget _handleData(BuildContext context, T? data) {
-    if (dataBuilder != null) {
-      try {
-        return dataBuilder(context, data);
-      } catch (exception) {
-        return _handleError(context, exception);
-      }
+    try {
+      return dataBuilder(context, data);
+    } catch (exception) {
+      return _handleError(context, exception);
     }
-    return _defaultWidget();
   }
 
   Widget _handleSnapshot(BuildContext context, AsyncSnapshot<T> snapshot) {

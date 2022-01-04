@@ -6,18 +6,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[GetFatcaQuestionsUseCase] provider
 final getFatcaQuestionsUseCaseProvider =
-    Provider.autoDispose<GetFatcaQuestionsUseCase>((ref) =>
-        GetFatcaQuestionsUseCase(ref.read(fatcaCrsRepositoryProvider)));
+Provider.autoDispose<GetFatcaQuestionsUseCase>((ref) =>
+    GetFatcaQuestionsUseCase(ref.read(fatcaCrsRepositoryProvider)));
 
 ///[SetFatcaQuestionsResponseUseCase] provider
 final setFatcaQuestionsResponseUseCaseProvider =
-    Provider.autoDispose<SetFatcaQuestionsResponseUseCase>(
-  (ref) =>
+Provider.autoDispose<SetFatcaQuestionsResponseUseCase>(
+      (ref) =>
       SetFatcaQuestionsResponseUseCase(ref.read(fatcaCrsRepositoryProvider)),
 );
 
 ///[UploadSignatureUseCase] provider
 final uploadSignatureUseCaseProvider =
-    Provider.autoDispose<UploadSignatureUseCase>(
-  (ref) => UploadSignatureUseCase(ref.read(fatcaCrsRepositoryProvider)),
+Provider.autoDispose<UploadSignatureUseCase>(
+      (ref) => UploadSignatureUseCase(ref.read(fatcaCrsRepositoryProvider)),
 );

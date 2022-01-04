@@ -1,3 +1,4 @@
+import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:domain/usecase/account_setting/change_email_address/validate_otp_for_new_email_address_usecase.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -26,10 +27,12 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
       PublishSubject();
 
   ///verify otp response holder
-  PublishSubject<Resource<bool>> _verifyOtpResponse = PublishSubject();
+  PublishSubject<Resource<ProfileChangedSuccessResponse>> _verifyOtpResponse =
+      PublishSubject();
 
   ///verify otp stream
-  Stream<Resource<bool>> get verifyOtpStream => _verifyOtpResponse.stream;
+  Stream<Resource<ProfileChangedSuccessResponse>> get verifyOtpStream =>
+      _verifyOtpResponse.stream;
 
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
@@ -46,6 +49,7 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
                   _validateOtpForNewEmailAddressUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _verifyOtpResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -54,9 +58,9 @@ class EnterCodeForChangeEmailAddressPageViewModel extends BasePageViewModel {
     });
   }
 
-  void validateOtp() {
-    _verifyOtpRequest.safeAdd(
-        ValidateOtpForNewEmailAddressUseCaseParams(otp: _otpSubject.value));
+  void validateOtp({required String email}) {
+    _verifyOtpRequest.safeAdd(ValidateOtpForNewEmailAddressUseCaseParams(
+        otp: _otpSubject.value, email: email));
   }
 
   void validate(String value) {

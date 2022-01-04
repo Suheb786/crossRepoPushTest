@@ -11,7 +11,7 @@ class ConfirmApplicationDataSetResponseEntity {
   ConfirmApplicationDataSetResponseEntity({this.response});
 
   factory ConfirmApplicationDataSetResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$ConfirmApplicationDataSetResponseEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

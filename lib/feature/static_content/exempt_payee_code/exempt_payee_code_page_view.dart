@@ -34,7 +34,11 @@ class ExemptPayeeCodePageView
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme
+                        .of(context)
+                        .primaryTextTheme
+                        .bodyText1!
+                        .color),
               ),
               SizedBox(
                 height: 32,
@@ -56,7 +60,11 @@ class ExemptPayeeCodePageView
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme
+                        .of(context)
+                        .primaryTextTheme
+                        .bodyText1!
+                        .color),
               ),
               SizedBox(
                 height: 32,
@@ -68,7 +76,11 @@ class ExemptPayeeCodePageView
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: Theme.of(context).primaryTextTheme.bodyText1!.color),
+                    color: Theme
+                        .of(context)
+                        .primaryTextTheme
+                        .bodyText1!
+                        .color),
               ),
             ],
           ),

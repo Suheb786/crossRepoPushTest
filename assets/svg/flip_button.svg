@@ -1,17 +1,20 @@
 <svg fill="none" height="59" viewBox="0 0 59 59" width="59" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_b_579_65863)">
-<circle cx="29.5" cy="29.5" fill="#8C8C8C" fill-opacity="0.25" r="29.5"/>
-</g>
-<circle cx="24.1429" cy="24.1429" fill="white" r="2.14286"/>
-<circle cx="34.8567" cy="24.1429" fill="white" r="2.14286"/>
-<circle cx="34.8567" cy="34.8577" fill="white" r="2.14286"/>
-<circle cx="24.1429" cy="34.8577" fill="white" r="2.14286"/>
-<defs>
-<filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="119" id="filter0_b_579_65863" width="119" x="-30" y="-30">
-<feFlood flood-opacity="0" result="BackgroundImageFix"/>
-<feGaussianBlur in="BackgroundImage" stdDeviation="15"/>
-<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_579_65863"/>
-<feBlend in="SourceGraphic" in2="effect1_backgroundBlur_579_65863" mode="normal" result="shape"/>
-</filter>
-</defs>
+    <g filter="url(#filter0_b_579_65863)">
+        <circle cx="29.5" cy="29.5" fill="#8C8C8C" fill-opacity="0.25" r="29.5" />
+    </g>
+    <circle cx="24.1429" cy="24.1429" fill="white" r="2.14286" />
+    <circle cx="34.8567" cy="24.1429" fill="white" r="2.14286" />
+    <circle cx="34.8567" cy="34.8577" fill="white" r="2.14286" />
+    <circle cx="24.1429" cy="34.8577" fill="white" r="2.14286" />
+    <defs>
+        <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="119"
+            id="filter0_b_579_65863" width="119" x="-30" y="-30">
+            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+            <feGaussianBlur in="BackgroundImage" stdDeviation="15" />
+            <feComposite in2="SourceAlpha" operator="in"
+                result="effect1_backgroundBlur_579_65863" />
+            <feBlend in="SourceGraphic" in2="effect1_backgroundBlur_579_65863" mode="normal"
+                result="shape" />
+        </filter>
+    </defs>
 </svg>

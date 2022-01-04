@@ -26,7 +26,7 @@ extension PageExtensions on BaseStatefulPage {
             child: Container(
               padding: EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  color: AppColor.vivid_red,
+                  color: AppColor.dark_brown,
                   borderRadius: BorderRadius.circular(16)),
               child: Row(
                 children: [
@@ -87,7 +87,9 @@ extension PageExtensions on BaseStatefulPage {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          S.of(context).success,
+                          S
+                              .of(context)
+                              .success,
                           style: TextStyle(
                               color: AppColor.light_grayish_violet,
                               fontWeight: FontWeight.w400,

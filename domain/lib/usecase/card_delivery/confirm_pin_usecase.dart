@@ -3,15 +3,20 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
+import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class ConfirmPinUseCase
     extends BaseUseCase<NetworkError, ConfirmPinUseCaseParams, bool> {
+  final CardRepository _repository;
+
+  ConfirmPinUseCase(this._repository);
+
   @override
   Future<Either<NetworkError, bool>> execute(
       {required ConfirmPinUseCaseParams params}) {
-    return Future.value(Right(true));
+    return _repository.setCardPin(params.currentPin);
   }
 }
 
@@ -34,7 +39,7 @@ class ConfirmPinUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_PIN_LENGTH,
           cause: Exception()));
-    }else if (!(currentPin==previousPin)) {
+    } else if (!(currentPin == previousPin)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.PIN_NOT_MATCH,

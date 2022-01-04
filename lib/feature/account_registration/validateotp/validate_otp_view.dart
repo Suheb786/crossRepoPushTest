@@ -46,7 +46,8 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                     if (details.primaryVelocity!.isNegative) {
                       model.validateOtp();
                     } else {
-                      ProviderScope.containerOf(context)
+                      ProviderScope
+                          .containerOf(context)
                           .read(accountRegistrationViewModelProvider)
                           .pageController
                           .previous(animation: true);
@@ -75,16 +76,20 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                     padding: const EdgeInsets.only(top: 32.0),
                                     child: InkWell(
                                       onTap: () {
-                                        ProviderScope.containerOf(context)
+                                        ProviderScope
+                                            .containerOf(context)
                                             .read(
-                                                accountRegistrationViewModelProvider)
+                                            accountRegistrationViewModelProvider)
                                             .pageController
                                             .move(0);
                                       },
                                       child: Text(
-                                        S.of(context).changeMyNumber,
+                                        S
+                                            .of(context)
+                                            .changeMyNumber,
                                         style: TextStyle(
-                                          color: Theme.of(context)
+                                          color: Theme
+                                              .of(context)
                                               .accentTextTheme
                                               .bodyText1!
                                               .color!,

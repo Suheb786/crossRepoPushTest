@@ -13,6 +13,6 @@ abstract class UploadDocumentRepository {
 
   Future<Either<NetworkError, SaveUploadDocumentResponse>> saveUploadDocument(
       {String proofOfIncomeId,
-      String proofOfAddressId,
-      String proofOfNationalityId});
+        String proofOfAddressId,
+        String proofOfNationalityId});
 }

@@ -30,6 +30,6 @@ class CheckKycStatusResponseEntity
   CheckKycResponse transform() {
     return CheckKycResponse(
         content:
-            CheckKycContentEntity.fromJson(this.response!.content).transform());
+        CheckKycContentEntity.fromJson(this.response!.content).transform());
   }
 }

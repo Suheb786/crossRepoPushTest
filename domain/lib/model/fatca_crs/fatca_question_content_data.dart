@@ -7,12 +7,11 @@ class FatcaQuestionContentData {
   final String? answer;
   final dynamic? docId;
 
-  FatcaQuestionContentData(
-      {this.labelEn,
-      this.labelAr,
-      this.isMandatory,
-      this.orderNo,
-      this.type,
-      this.answer,
-      this.docId});
+  FatcaQuestionContentData({this.labelEn,
+    this.labelAr,
+    this.isMandatory,
+    this.orderNo,
+    this.type,
+    this.answer,
+    this.docId});
 }

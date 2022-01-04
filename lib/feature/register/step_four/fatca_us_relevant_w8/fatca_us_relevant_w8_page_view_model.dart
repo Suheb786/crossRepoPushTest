@@ -100,7 +100,8 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+    FatcaSetData fatcaSetData = ProviderScope
+        .containerOf(context)
         .read(registerStepFourViewModelProvider)
         .fatcaData;
     fatcaSetData.namePerIncomeTaxReturn = nameAsPerTaxReturnController.text;

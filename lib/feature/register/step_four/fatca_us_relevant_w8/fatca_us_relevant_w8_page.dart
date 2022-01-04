@@ -12,7 +12,8 @@ class FatcaUSRelevantW8Page extends BasePage<FatcaUSRelevantW8PageViewModel> {
 
 class FatcaUSRelevantW8PageState extends BaseStatefulPage<
     FatcaUSRelevantW8PageViewModel,
-    FatcaUSRelevantW8Page> with AutomaticKeepAliveClientMixin {
+    FatcaUSRelevantW8Page>
+    with AutomaticKeepAliveClientMixin {
   FatcaUSRelevantW8PageState() : super(subscribeVisibilityEvents: true);
 
   @override
@@ -22,7 +23,9 @@ class FatcaUSRelevantW8PageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme
+        .of(context)
+        .primaryColor;
   }
 
   @override

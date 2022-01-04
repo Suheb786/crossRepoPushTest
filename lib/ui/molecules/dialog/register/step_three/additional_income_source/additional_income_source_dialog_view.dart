@@ -115,8 +115,9 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                         onTap: () {
                           onSelected!.call(AdditionalIncomeType(
                               additionalIncomeSource:
-                                  model.selectedAdditionalIncome!.type!,
-                              totalIncome: model.totalAnnualIncomeController.text));
+                              model.selectedAdditionalIncome!.type!,
+                              totalIncome: model.totalAnnualIncomeController
+                                  .text));
                         },
                         child: Container(
                           padding: EdgeInsets.all(16),

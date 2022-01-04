@@ -32,9 +32,10 @@ class ConfirmPinPageViewModel extends BasePageViewModel {
   ConfirmPinPageViewModel(this._confirmPinUseCase) {
     _confirmPinRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _confirmPinUseCase.execute(params: value))
+          createCall: () => _confirmPinUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _confirmPinResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -45,7 +46,6 @@ class ConfirmPinPageViewModel extends BasePageViewModel {
   }
 
   void validatePin(String previousPin) {
-    print('previousPin--->$previousPin}');
     _confirmPinRequest.safeAdd(ConfirmPinUseCaseParams(
         currentPin: _pinSubject.value, previousPin: previousPin));
   }

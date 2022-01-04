@@ -16,6 +16,6 @@ abstract class UploadDocumentRemoteDS {
 
   Future<HttpResponse<SaveUploadDocumentResponseEntity>> saveUploadDocument(
       {String? proofOfIncomeId,
-      String? proofOfAddressId,
-      String? proofOfNationalityId});
+        String? proofOfAddressId,
+        String? proofOfNationalityId});
 }

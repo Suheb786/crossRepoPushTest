@@ -86,4 +86,22 @@ class TimeUtils {
     final DateFormat formatter = DateFormat('dd/MM/y');
     return formatter.format(dateTime);
   }
+
+  static String getFormattedDateForTransaction(String date) {
+    DateTime dateTime = DateTime.parse(date).toLocal();
+    final DateFormat formatter = DateFormat('d MMM');
+    return formatter.format(dateTime);
+  }
+
+  static String getFormattedTimeForTransaction(String date) {
+    DateTime dateTime = DateTime.parse(date).toLocal();
+    final DateFormat formatter = DateFormat('HH:mm a');
+    return formatter.format(dateTime);
+  }
+
+  static String getFormattedDateForCreditCard(String date) {
+    DateTime dateTime = DateTime.parse(date).toLocal();
+    final DateFormat formatter = DateFormat('d MMM y');
+    return formatter.format(dateTime);
+  }
 }

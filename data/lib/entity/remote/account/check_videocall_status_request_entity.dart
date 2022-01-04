@@ -12,7 +12,7 @@ class CheckVideoCallStatusRequestEntity {
   CheckVideoCallStatusRequestEntity({this.getToken, required this.baseData});
 
   factory CheckVideoCallStatusRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$CheckVideoCallStatusRequestEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>

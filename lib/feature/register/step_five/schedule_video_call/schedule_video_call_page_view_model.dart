@@ -34,15 +34,15 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
 
   ///schedule Video call request subject holder
   PublishSubject<ScheduleVideoCallUseCaseParams> _scheduleVideoCallRequest =
-      PublishSubject();
+  PublishSubject();
 
   ///schedule Video call response holder
   PublishSubject<Resource<SaveCustomerScheduleTimeResponse>>
-      _scheduleVideoCallResponse = PublishSubject();
+  _scheduleVideoCallResponse = PublishSubject();
 
   ///schedule Video call stream
   Stream<Resource<SaveCustomerScheduleTimeResponse>>
-      get scheduleVideoCallStream => _scheduleVideoCallResponse.stream;
+  get scheduleVideoCallStream => _scheduleVideoCallResponse.stream;
 
   ///all filed validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();

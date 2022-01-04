@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -31,21 +32,16 @@ class EnterNewPasswordPageView
                 duration: Duration(milliseconds: 100),
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
-                child: AppStreamBuilder<Resource<bool>>(
+                child: AppStreamBuilder<
+                        Resource<ProfileChangedSuccessResponse>>(
                     stream: model.createPasswordStream,
                     initialData: Resource.none(),
                     onData: (passwordData) {
                       if (passwordData.status == Status.SUCCESS) {
                         Navigator.pop(context);
-                        model.showSuccessToast(
-                            S.of(context).passwordUpdatedSuccessfully);
+                        model.showSuccessToast(passwordData.data!.data!.data!);
                       } else if (passwordData.status == Status.ERROR) {
                         if (passwordData.appError!.type ==
-                            ErrorType.PASSWORD_MISMATCH) {
-                          model.currentPasswordKey.currentState!.isValid =
-                              false;
-                          model.newPasswordKey.currentState!.isValid = false;
-                        } else if (passwordData.appError!.type ==
                             ErrorType.EMPTY_PASSWORD) {
                           model.currentPasswordKey.currentState!.isValid =
                               false;
@@ -74,6 +70,8 @@ class EnterNewPasswordPageView
                                   Expanded(
                                     child: SingleChildScrollView(
                                       child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           AppTextField(
                                             key: model.currentPasswordKey,
@@ -114,7 +112,9 @@ class EnterNewPasswordPageView
                                                                     context)
                                                                 .inputDecorationTheme
                                                                 .labelStyle!
-                                                                .color),
+                                                                .color!
+                                                                .withOpacity(
+                                                                    0.3)),
                                                       )
                                                     : Icon(
                                                         Icons.visibility_off,
@@ -169,7 +169,9 @@ class EnterNewPasswordPageView
                                                                     context)
                                                                 .inputDecorationTheme
                                                                 .labelStyle!
-                                                                .color),
+                                                                .color!
+                                                                .withOpacity(
+                                                                    0.3)),
                                                       )
                                                     : Icon(
                                                         Icons.visibility_off,

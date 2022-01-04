@@ -5,8 +5,7 @@ import 'package:neo_bank/ui/molecules/cupertino_bottom_sheet.dart';
 class UploadProfileBottomSheet {
   UploadProfileBottomSheet._();
 
-  static show(
-    BuildContext context, {
+  static show(BuildContext context, {
     String? title,
     Function()? onTakePhoto,
     Function()? onGalleryTap,

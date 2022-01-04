@@ -11,7 +11,8 @@ import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
 class ConfirmDetailUseCase extends BaseUseCase<NetworkError,
-    ConfirmDetailUseCaseParams, SaveIdInfoResponse> {
+    ConfirmDetailUseCaseParams,
+    SaveIdInfoResponse> {
   final UserRepository _repository;
 
   ConfirmDetailUseCase(this._repository);
@@ -38,7 +39,7 @@ class ConfirmDetailUseCase extends BaseUseCase<NetworkError,
       personFaceImage: params.scannedDocumentInformation!.personFaceImage ?? '',
       issuer: params.scannedDocumentInformation!.issuer ?? '',
       secondNameEn: params.scannedDocumentInformation!.secondNameEn ?? '',
-      placeOfBirth: params.scannedDocumentInformation!.placeOfBirth ?? '',
+      placeOfBirth: params.scannedDocumentInformation!.issuer ?? '',
       familyNameAr: params.scannedDocumentInformation!.familyNameAr ?? '',
       secNameAr: params.scannedDocumentInformation!.secNameAr ?? '',
       firstNameAr: params.scannedDocumentInformation!.familyNameAr ?? '',

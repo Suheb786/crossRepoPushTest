@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -30,13 +31,13 @@ class EnterCodeForChangeEmailAddressPageView
             duration: Duration(milliseconds: 100),
             shakeAngle: Rotation.deg(z: 1),
             curve: Curves.easeInOutSine,
-            child: AppStreamBuilder<Resource<bool>>(
+            child: AppStreamBuilder<Resource<ProfileChangedSuccessResponse>>(
               stream: model.verifyOtpStream,
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
+                  model.showSuccessToast(data.data!.data!.data!);
                   Navigator.pop(context);
-                  model.showSuccessToast(S.of(context).emailAddressUpdated);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -45,7 +46,11 @@ class EnterCodeForChangeEmailAddressPageView
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
-                      model.validateOtp();
+                      model.validateOtp(
+                          email: ProviderScope.containerOf(context)
+                              .read(addNewEmailAddressViewModelProvider)
+                              .emailController
+                              .text);
                     } else {
                       ProviderScope.containerOf(context)
                           .read(changeEmailAddressViewModelProvider)
@@ -97,6 +102,7 @@ class EnterCodeForChangeEmailAddressPageView
                                               'Resend Code',
                                               style: TextStyle(
                                                   fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
                                                   color: Theme.of(context)
                                                       .accentTextTheme
                                                       .bodyText1!
@@ -107,6 +113,7 @@ class EnterCodeForChangeEmailAddressPageView
                                                 '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
                                             style: TextStyle(
                                                 fontSize: 14,
+                                                fontWeight: FontWeight.w600,
                                                 color: Theme.of(context)
                                                     .accentTextTheme
                                                     .bodyText1!
@@ -129,6 +136,10 @@ class EnterCodeForChangeEmailAddressPageView
                                           ),
                                         );
                                       }),
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).viewInsets.bottom,
                                 )
                               ],
                             ),

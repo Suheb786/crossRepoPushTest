@@ -31,18 +31,17 @@ class AccountPurposeEntity
   @JsonKey(name: "isActive")
   final bool? isActive;
 
-  AccountPurposeEntity(
-      {this.id,
-      this.userId,
-      this.purpose,
-      this.isCashDeposit,
-      this.isTransfer,
-      this.isBillPayment,
-      this.isOther,
-      this.monthlyTransaction,
-      this.anualTransaction,
-      this.createdOn,
-      this.isActive});
+  AccountPurposeEntity({this.id,
+    this.userId,
+    this.purpose,
+    this.isCashDeposit,
+    this.isTransfer,
+    this.isBillPayment,
+    this.isOther,
+    this.monthlyTransaction,
+    this.anualTransaction,
+    this.createdOn,
+    this.isActive});
 
   factory AccountPurposeEntity.fromJson(Map<String, dynamic> json) =>
       _$AccountPurposeEntityFromJson(json);

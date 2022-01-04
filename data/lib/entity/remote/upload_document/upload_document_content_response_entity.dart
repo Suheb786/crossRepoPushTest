@@ -15,7 +15,7 @@ class UploadDocumentContentResponseEntity
   UploadDocumentContentResponseEntity({this.documentId});
 
   factory UploadDocumentContentResponseEntity.fromJson(
-          Map<String, dynamic> json) =>
+      Map<String, dynamic> json) =>
       _$UploadDocumentContentResponseEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>
