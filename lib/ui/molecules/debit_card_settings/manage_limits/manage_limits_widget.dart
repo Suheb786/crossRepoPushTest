@@ -15,6 +15,7 @@ class ManageLimitsWidget extends StatelessWidget {
   final String amountSet;
   final Function(bool)? onToggle;
   final ProviderBase providerBase;
+  final Function(String value) onDone;
 
   const ManageLimitsWidget({
     Key? key,
@@ -23,12 +24,16 @@ class ManageLimitsWidget extends StatelessWidget {
     this.maxAmount: "",
     this.amountSet: "",
     required this.onToggle,
+    required this.onDone,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BaseWidget<ManageLimitsWidgetViewModel>(
       providerBase: providerBase,
+      onModelReady: (model) {
+        model.controller.text = amountSet;
+      },
       builder: (context, model, widget) {
         return AppStreamBuilder<bool>(
           initialData: false,
@@ -121,15 +126,50 @@ class ManageLimitsWidget extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            Text(
-                              '$amountSet JOD',
-                              style: TextStyle(
-                                  color: Theme.of(context)
-                                      .accentTextTheme
-                                      .bodyText1!
-                                      .color,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 14),
+                            Expanded(
+                              child: TextFormField(
+                                controller: model.controller,
+                                textAlign: TextAlign.end,
+                                keyboardType: TextInputType.number,
+                                textInputAction: TextInputAction.done,
+                                cursorColor: Theme.of(context)
+                                    .accentTextTheme
+                                    .bodyText1!
+                                    .color,
+                                style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context)
+                                        .accentTextTheme
+                                        .bodyText1!
+                                        .color),
+                                decoration: InputDecoration(
+                                    border: InputBorder.none,
+                                    isCollapsed: true,
+                                    hintText: amountSet,
+                                    suffixIconConstraints:
+                                        BoxConstraints.tightForFinite(),
+                                    suffixIcon: Padding(
+                                      padding: const EdgeInsets.only(left: 5.0),
+                                      child: Text(
+                                        'JOD',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: Theme.of(context)
+                                              .accentTextTheme
+                                              .bodyText1!
+                                              .color,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    )),
+                                onFieldSubmitted: (value) {
+                                  if (int.parse(maxAmount) > int.parse(value)) {
+                                    model.showErrorToast();
+                                  }
+                                  onDone.call(value);
+                                },
+                              ),
                             ),
                           ],
                         ),

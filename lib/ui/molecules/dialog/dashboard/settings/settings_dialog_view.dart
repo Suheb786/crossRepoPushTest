@@ -260,19 +260,23 @@ class SettingsDialogView extends StatelessWidget {
                           carouselController: model.controller,
                           itemBuilder: (BuildContext context, int itemIndex,
                                   int pageViewIndex) =>
-                              AppTiltCard(
-                                  pageViewIndex: pageViewIndex,
-                                  currentPage: currentStep,
-                                  child: pages[itemIndex]),
+                              Padding(
+                            padding: const EdgeInsets.only(bottom: 5.0),
+                            child: AppTiltCard(
+                                pageViewIndex: pageViewIndex,
+                                degree: 8,
+                                currentPage: currentStep,
+                                child: pages[itemIndex]),
+                          ),
                           options: CarouselOptions(
-                              pageSnapping: true,
-                              viewportFraction: 0.45,
-                              enableInfiniteScroll: false,
-                              onPageChanged: (index, reason) {
-                                model.updatePage(index);
-                              },
-                              enlargeStrategy:
-                                  CenterPageEnlargeStrategy.height),
+                            height: 180,
+                            pageSnapping: true,
+                            viewportFraction: 0.4,
+                            enableInfiniteScroll: false,
+                            onPageChanged: (index, reason) {
+                              model.updatePage(index);
+                            },
+                          ),
                         ),
                       ),
                     ),

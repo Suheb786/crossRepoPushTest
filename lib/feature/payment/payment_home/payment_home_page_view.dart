@@ -84,7 +84,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
                           ),
                           SmoothPageIndicator(
                             controller: model.controller,
-                            count: pages.length,
+                            count: pages.length - 1,
                             effect: ScrollingDotsEffect(
                               activeStrokeWidth: 2.6,
                               activeDotScale: 1.3,
