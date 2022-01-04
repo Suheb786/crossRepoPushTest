@@ -6830,6 +6830,146 @@ class S {
       args: [],
     );
   }
+
+  /// `What is your relationship\nwith cardholder?`
+  String get whatRelationshipWithCardHolder {
+    return Intl.message(
+      'What is your relationship\nwith cardholder?',
+      name: 'whatRelationshipWithCardHolder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Relationship`
+  String get relationship {
+    return Intl.message(
+      'Relationship',
+      name: 'relationship',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide supplementary cardholder’s ID`
+  String get provideSupplementaryCardId {
+    return Intl.message(
+      'Please provide supplementary cardholder’s ID',
+      name: 'provideSupplementaryCardId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set up and personalize your new credit card`
+  String get setupAndPersonalizeYourNewCreditCard {
+    return Intl.message(
+      'Set up and personalize your new credit card',
+      name: 'setupAndPersonalizeYourNewCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit Limit Settings`
+  String get creditLimitSettings {
+    return Intl.message(
+      'Credit Limit Settings',
+      name: 'creditLimitSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minimum Settlement`
+  String get minimumSettlements {
+    return Intl.message(
+      'Minimum Settlement',
+      name: 'minimumSettlements',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(Optional)`
+  String get optional {
+    return Intl.message(
+      '(Optional)',
+      name: 'optional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Credit Limit Settings`
+  String get selectCreditLimitSettings {
+    return Intl.message(
+      'Select Credit Limit Settings',
+      name: 'selectCreditLimitSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Minimum Settlement`
+  String get selectMinimumSettlement {
+    return Intl.message(
+      'Select Minimum Settlement',
+      name: 'selectMinimumSettlement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Empty Nickname`
+  String get emptyNickname {
+    return Intl.message(
+      'Empty Nickname',
+      name: 'emptyNickname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your card is ready!`
+  String get yourCardIsReady {
+    return Intl.message(
+      'Your card is ready!',
+      name: 'yourCardIsReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aramex will contact you soon to deliver your physical card. `
+  String get aramaxWillConnectYouSoon {
+    return Intl.message(
+      'Aramex will contact you soon to deliver your physical card. ',
+      name: 'aramaxWillConnectYouSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will receive your card PIN via SMS. You can contact our Engagement Team in case not received.`
+  String get youWillReceiveCardPinViaSms {
+    return Intl.message(
+      'You will receive your card PIN via SMS. You can contact our Engagement Team in case not received.',
+      name: 'youWillReceiveCardPinViaSms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `APPLY CREDIT CARD`
+  String get applyCreditCard {
+    return Intl.message(
+      'APPLY CREDIT CARD',
+      name: 'applyCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

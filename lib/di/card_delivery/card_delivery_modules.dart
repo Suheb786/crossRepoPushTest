@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
+import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page_view_model.dart';
 import 'package:neo_bank/feature/card_delivery/confirm_pin/confirm_pin_page_view_model.dart';
 import 'package:neo_bank/feature/card_delivery/create_pin/create_pin_page_view_model.dart';
@@ -13,6 +14,12 @@ import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success
 import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_view_model.dart';
+import 'package:neo_bank/feature/supplementary_credit_card/id_scan_verification_info/supplementary_id_scan_verification_info_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_credit_card/personalize_credit_card/personalize_credit_card_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_credit_card/relationship_with_cardholder/relationship_with_cardholder_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_credit_card/supplementary_credit_card_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_credit_card_ready/supplementary_credit_card_ready_page_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/relationship_with_cardholder_dialog_view_model.dart';
 
 ///card delivery view model provider
 final cardDeliveryViewModelProvider =
@@ -84,4 +91,45 @@ final enterNewCardPinViewModelProvider =
 final changeCardPinSuccessViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<ChangeCardPinSuccessPageViewModel, ChangeCardPinSuccessArguments>(
   (ref, args) => ChangeCardPinSuccessPageViewModel(args),
+);
+
+///credit card supplementary view model provider
+final supplementaryCreditCardViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SupplementaryCreditCardPageViewModel>(
+  (ref) => SupplementaryCreditCardPageViewModel(),
+);
+
+///relationship with card holder view model provider
+final relationShipWithCardHolderViewModelProvider =
+    ChangeNotifierProvider.autoDispose<RelationshipWithCardholderPageViewModel>(
+  (ref) => RelationshipWithCardholderPageViewModel(
+      ref.read(relationshipWithCardHolderUseCaseProvider)),
+);
+
+///relationship with card holder dialog view model provider
+final relationShipWithCardHolderDialogViewModelProvider = ChangeNotifierProvider
+    .autoDispose<RelationshipWithCardHolderDialogViewModel>(
+  (ref) => RelationshipWithCardHolderDialogViewModel(),
+);
+
+///supplementary id scan view model provider
+final supplementaryIdScanInfoViewModelProvider = ChangeNotifierProvider
+    .autoDispose<SupplementaryIdScanVerificationInfoPageViewModel>(
+  (ref) => SupplementaryIdScanVerificationInfoPageViewModel(
+      ref.read(idVerificationInfoUseCaseProvider),
+      ref.read(scanUserDocumentUseCaseProvider)),
+);
+
+///personalize credit card view model provider
+final personalizeCreditCardViewModelProvider =
+    ChangeNotifierProvider.autoDispose<PersonalizeCreditCardPageViewModel>(
+  (ref) => PersonalizeCreditCardPageViewModel(
+    ref.read(personalizeCreditCardUseCaseProvider),
+  ),
+);
+
+///supplementary credit card ready view model provider
+final supplementaryCreditCardReadyViewModelProvider = ChangeNotifierProvider
+    .autoDispose<SupplementaryCreditCardReadyPageViewModel>(
+  (ref) => SupplementaryCreditCardReadyPageViewModel(),
 );

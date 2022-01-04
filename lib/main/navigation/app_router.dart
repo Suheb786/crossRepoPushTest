@@ -61,6 +61,8 @@ import 'package:neo_bank/feature/static_content/exemption_from_fatca_reporting_c
 import 'package:neo_bank/feature/static_content/fatca_certification/fatca_certification_page.dart';
 import 'package:neo_bank/feature/static_content/reference_number/reference_number_page.dart';
 import 'package:neo_bank/feature/static_content/us_tax_payer_identification_number/us_tax_payer_identification_number_page.dart';
+import 'package:neo_bank/feature/supplementary_credit_card/supplementary_credit_card_page.dart';
+import 'package:neo_bank/feature/supplementary_credit_card_ready/supplementary_credit_card_ready_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -368,6 +370,16 @@ class AppRouter {
             builder: (context) => ChangeCardPinSuccessPage(
                 settings.arguments as ChangeCardPinSuccessArguments),
             settings: RouteSettings(name: RoutePaths.ChangeCardPinSuccess));
+
+      case RoutePaths.SupplementaryCreditCard:
+        return CupertinoPageRoute(
+            builder: (context) => SupplementaryCreditCardPage(),
+            settings: RouteSettings(name: RoutePaths.SupplementaryCreditCard));
+
+      case RoutePaths.SupplementaryCreditCardReady:
+        return CupertinoPageRoute(
+            builder: (context) => SupplementaryCreditCardReadyPage(),
+            settings: RouteSettings(name: RoutePaths.SupplementaryCreditCardReady));
 
       default:
         return CupertinoPageRoute(
