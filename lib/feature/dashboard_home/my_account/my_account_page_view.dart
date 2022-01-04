@@ -1,6 +1,8 @@
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
@@ -41,20 +43,15 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                         borderRadius: BorderRadius.circular(16)),
                     clipBehavior: Clip.antiAliasWithSaveLayer,
                     elevation: 2,
-                    color: Theme
-                        .of(context)
-                        .primaryColorDark,
+                    color: Theme.of(context).primaryColorDark,
                     margin: EdgeInsets.zero,
-                    shadowColor: Theme
-                        .of(context)
-                        .primaryColorDark
-                        .withOpacity(0.32),
+                    shadowColor:
+                        Theme.of(context).primaryColorDark.withOpacity(0.32),
                     child: SingleChildScrollView(
                       child: Padding(
                         padding: EdgeInsets.only(left: 27.0, bottom: 29),
                         child: AppStreamBuilder<GetDashboardDataContent>(
-                          stream: ProviderScope
-                              .containerOf(context)
+                          stream: ProviderScope.containerOf(context)
                               .read(appHomeViewModelProvider)
                               .getDashboardCardDataStream,
                           initialData: GetDashboardDataContent(),
@@ -64,38 +61,34 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                               children: [
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment
-                                      .spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: Padding(
                                         padding: EdgeInsets.only(top: 30.0),
                                         child: Column(
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              S
-                                                  .of(context)
-                                                  .myAccount,
+                                              S.of(context).myAccount,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 12,
-                                                  color:
-                                                  Theme
-                                                      .of(context)
+                                                  color: Theme.of(context)
                                                       .accentColor),
                                             ),
                                             Padding(
                                               padding: EdgeInsets.only(top: 66),
                                               child: Text(
                                                 cardData!.account!
-                                                    .accountTitle ?? '',
+                                                        .accountTitle ??
+                                                    '',
                                                 style: TextStyle(
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.w600,
-                                                    color: Theme
-                                                        .of(context)
+                                                    color: Theme.of(context)
                                                         .accentColor),
                                               ),
                                             ),
@@ -103,21 +96,20 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               padding: EdgeInsets.only(top: 23),
                                               child: Row(
                                                 crossAxisAlignment:
-                                                CrossAxisAlignment.center,
+                                                    CrossAxisAlignment.center,
                                                 mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                                    MainAxisAlignment.start,
                                                 children: [
                                                   Text(
-                                                      cardData
-                                                          .account!
+                                                      cardData.account!
                                                           .availableBalance!
                                                           .toString(),
                                                       style: TextStyle(
                                                           fontSize: 20,
-                                                          fontWeight: FontWeight
-                                                              .w700,
-                                                          color: Theme
-                                                              .of(context)
+                                                          fontWeight:
+                                                              FontWeight.w700,
+                                                          color: Theme.of(
+                                                                  context)
                                                               .accentColor)),
                                                   Padding(
                                                     padding: EdgeInsets.only(
@@ -125,13 +117,13 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                     child: Text("JOD",
                                                         style: TextStyle(
                                                             fontWeight:
-                                                            FontWeight.w600,
+                                                                FontWeight.w600,
                                                             fontSize: 10,
-                                                            color: Theme
-                                                                .of(context)
+                                                            color: Theme.of(
+                                                                    context)
                                                                 .accentColor
                                                                 .withOpacity(
-                                                                0.4))),
+                                                                    0.4))),
                                                   ),
                                                 ],
                                               ),
@@ -139,14 +131,11 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                             Padding(
                                               padding: EdgeInsets.only(top: 4),
                                               child: Text(
-                                                S
-                                                    .of(context)
-                                                    .availableBalance,
+                                                S.of(context).availableBalance,
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     fontSize: 10,
-                                                    color: Theme
-                                                        .of(context)
+                                                    color: Theme.of(context)
                                                         .accentColor
                                                         .withOpacity(0.4)),
                                               ),
@@ -168,13 +157,24 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                         style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
-                                            color: Theme
-                                                .of(context)
-                                                .accentColor),
+                                            color:
+                                                Theme.of(context).accentColor),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 8),
-                                        child: AppSvg.asset(AssetUtils.copy),
+                                      InkWell(
+                                        onTap: () {
+                                          Clipboard.setData(ClipboardData(
+                                                  text: cardData
+                                                          .account!.accountNo ??
+                                                      ''))
+                                              .then((value) =>
+                                                  Fluttertoast.showToast(
+                                                      msg:
+                                                          'Account No. Copied'));
+                                        },
+                                        child: Padding(
+                                          padding: EdgeInsets.only(left: 8),
+                                          child: AppSvg.asset(AssetUtils.copy),
+                                        ),
                                       )
                                     ],
                                   ),
@@ -182,12 +182,9 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                 Padding(
                                   padding: EdgeInsets.only(top: 5),
                                   child: Text(
-                                    S
-                                        .of(context)
-                                        .accountNo,
+                                    S.of(context).accountNo,
                                     style: TextStyle(
-                                        color: Theme
-                                            .of(context)
+                                        color: Theme.of(context)
                                             .accentColor
                                             .withOpacity(0.4),
                                         fontSize: 10,
@@ -203,16 +200,26 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           cardData.account!.iban!,
                                           maxLines: 2,
                                           style: TextStyle(
-                                              color: Theme
-                                                  .of(context)
-                                                  .accentColor,
+                                              color:
+                                                  Theme.of(context).accentColor,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(left: 8),
-                                        child: AppSvg.asset(AssetUtils.copy),
+                                      InkWell(
+                                        onTap: () {
+                                          Clipboard.setData(ClipboardData(
+                                                  text:
+                                                      cardData.account!.iban!))
+                                              .then((value) =>
+                                                  Fluttertoast.showToast(
+                                                      msg: 'IBAN Copied'));
+                                        },
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          child: AppSvg.asset(AssetUtils.copy),
+                                        ),
                                       )
                                     ],
                                   ),
@@ -220,12 +227,9 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                 Padding(
                                   padding: EdgeInsets.only(top: 6),
                                   child: Text(
-                                    S
-                                        .of(context)
-                                        .iban,
+                                    S.of(context).iban,
                                     style: TextStyle(
-                                        color: Theme
-                                            .of(context)
+                                        color: Theme.of(context)
                                             .accentColor
                                             .withOpacity(0.4),
                                         fontSize: 10,
@@ -235,12 +239,13 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                 Padding(
                                   padding: EdgeInsets.only(top: 78.0),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment
-                                        .spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       InkWell(
                                         onTap: () {
-                                          Navigator.pushNamed(context,
+                                          Navigator.pushNamed(
+                                              context,
                                               RoutePaths
                                                   .AddMoneyOptionSelector);
                                         },
@@ -248,24 +253,19 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           height: 36,
                                           width: 105,
                                           decoration: BoxDecoration(
-                                              borderRadius: BorderRadius
-                                                  .circular(20),
-                                              color: Theme
-                                                  .of(context)
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              color: Theme.of(context)
                                                   .accentTextTheme
                                                   .bodyText1!
                                                   .color),
                                           child: Center(
                                             child: Text(
-                                              S
-                                                  .of(context)
-                                                  .addMoney,
+                                              S.of(context).addMoney,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w600,
                                                   fontSize: 14,
-                                                  color:
-                                                  Theme
-                                                      .of(context)
+                                                  color: Theme.of(context)
                                                       .accentColor),
                                             ),
                                           ),
@@ -278,8 +278,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                         child: Padding(
                                           padding: EdgeInsets.only(right: 33.0),
                                           child: AppSvg.asset(AssetUtils.share,
-                                              color: Theme
-                                                  .of(context)
+                                              color: Theme.of(context)
                                                   .accentTextTheme
                                                   .bodyText1!
                                                   .color,
@@ -308,14 +307,11 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                   Padding(
                     padding: EdgeInsets.only(top: 6),
                     child: Text(
-                      S
-                          .of(context)
-                          .swipeUpToViewTransaction,
+                      S.of(context).swipeUpToViewTransaction,
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
                           fontSize: 12,
-                          color: AppColor.dark_gray_1
-                      ),
+                          color: AppColor.dark_gray_1),
                     ),
                   )
                 ],
