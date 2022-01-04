@@ -29,6 +29,9 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_s
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
+import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
+import 'package:neo_bank/feature/help_center/call_ended/call_ended_page.dart';
+import 'package:neo_bank/feature/help_center/help_center_page.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
@@ -330,6 +333,21 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => CreditCardSettingsPage(),
             settings: RouteSettings(name: RoutePaths.CreditCardSettings));
+
+      case RoutePaths.HelpCenter:
+        return CupertinoPageRoute(
+            builder: (context) => HelpCenterPage(),
+            settings: RouteSettings(name: RoutePaths.HelpCenter));
+
+      case RoutePaths.ActiveCallPage:
+        return CupertinoPageRoute(
+            builder: (context) => ActiveCallPage(),
+            settings: RouteSettings(name: RoutePaths.ActiveCallPage));
+
+      case RoutePaths.CallEndedPage:
+        return CupertinoPageRoute(
+            builder: (context) => CallEndedPage(),
+            settings: RouteSettings(name: RoutePaths.CallEndedPage));
 
       case RoutePaths.ManageCardPin:
         return CustomRoute.createRoute(

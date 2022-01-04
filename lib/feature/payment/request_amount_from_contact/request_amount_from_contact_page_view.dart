@@ -181,7 +181,13 @@ class RequestAmountFromContactPageView
                                     children: [
                                       AppStreamBuilder<String>(
                                           stream: model.purposeStream,
-                                          initialData: "Personal",
+                                          initialData:
+                                              (model.beneficiary!.purpose !=
+                                                          null &&
+                                                      model.beneficiary!
+                                                          .purpose!.isNotEmpty)
+                                                  ? model.beneficiary!.purpose!
+                                                  : 'Personal',
                                           dataBuilder: (context, value) {
                                             return Text(
                                               value!,
@@ -220,8 +226,13 @@ class RequestAmountFromContactPageView
                                   padding: EdgeInsets.only(top: 2),
                                   child: AppStreamBuilder<String>(
                                       stream: model.purposeDetailStream,
-                                      initialData:
-                                          "Transfer to Friend or Family",
+                                      initialData: (model.beneficiary!
+                                                      .purposeDetails !=
+                                                  null &&
+                                              model.beneficiary!.purposeDetails!
+                                                  .isNotEmpty)
+                                          ? model.beneficiary!.purposeDetails!
+                                          : 'Transfer to Friend or Family',
                                       dataBuilder: (context, value) {
                                         return Text(
                                           value!,
