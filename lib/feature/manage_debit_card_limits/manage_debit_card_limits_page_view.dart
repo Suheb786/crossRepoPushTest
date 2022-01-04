@@ -94,7 +94,7 @@ class ManageDebitCardLimitsPageView
                                         model.isAtmWithdrawal = value;
                                       },
                                       title: S.of(context).atmWithDrawal,
-                                      amountSet: '500',
+                                      amountSet: '3000',
                                       maxAmount: '5000',
                                       providerBase:
                                           atmWithdrawalViewModelProvider,
@@ -148,8 +148,8 @@ class ManageDebitCardLimitsPageView
                                         model.isContactLessPayments = value;
                                       },
                                       title: S.of(context).contactLessPayments,
-                                      amountSet: '240',
-                                      maxAmount: '5000',
+                                      amountSet: '40',
+                                      maxAmount: '150',
                                       providerBase:
                                           contactLessPaymentViewModelProvider,
                                       onDone: (contactLessPaymentValue) {

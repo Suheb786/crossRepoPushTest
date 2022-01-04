@@ -204,7 +204,9 @@ class ManageContactDetailsPageView
                               model.updatePurpose(value);
                               model.updatePurposeDetailList(
                                   value.purposeDetails!);
+                              model.showSaveButton();
                               Navigator.pop(context);
+                              model.updateType = UpdateType.details;
                             }, onDismissed: () {
                               Navigator.pop(context);
                             });
@@ -233,6 +235,8 @@ class ManageContactDetailsPageView
                                 onSelected: (value) {
                               model.updatePurposeDetail(value);
                               Navigator.pop(context);
+                              model.showSaveButton();
+                              model.updateType = UpdateType.details;
                             }, onDismissed: () {
                               Navigator.pop(context);
                             });
@@ -370,6 +374,7 @@ class ManageContactDetailsPageView
             rotateButtonsHidden: true,
             aspectRatioPickerButtonHidden: true,
             doneButtonTitle: 'Choose'),
+        androidUiSettings: AndroidUiSettings(hideBottomControls: true),
         aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
     if (cropped != null) {
       model.selectedProfile = cropped.path;

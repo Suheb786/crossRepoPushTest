@@ -178,11 +178,12 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
         updateLoader();
         _getPurposeResponse.safeAdd(event);
         purposeList.clear();
-        purposeList
-            .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          purposeList
+              .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
         }
       });
     });
@@ -255,11 +256,11 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
     bankNameController.text = beneficiary.bankName!;
     purposeController.text = Validator.isNotEmptyNull(beneficiary.purpose)
         ? beneficiary.purpose!
-        : 'Personal';
+        : '';
     purposeDetailsController.text =
         Validator.isNotEmptyNull(beneficiary.purposeDetails)
             ? beneficiary.purposeDetails!
-            : 'Transfer to Friend or Family';
+            : '';
   }
 
   void showSaveButton() {

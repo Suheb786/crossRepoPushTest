@@ -48,17 +48,14 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsets.only(top: 6),
           child: Text(
-            ///TODO:change to nickname
-            beneficiary!.fullName!,
+            (beneficiary!.nickName != null && beneficiary!.nickName!.isNotEmpty)
+                ? beneficiary!.nickName!
+                : beneficiary!.fullName!,
             textAlign: TextAlign.center,
             style: TextStyle(
                 color: transferEnum == TransferEnum.send
-                    ? Theme
-                    .of(context)
-                    .accentColor
-                    : Theme
-                    .of(context)
-                    .primaryColorDark,
+                    ? Theme.of(context).accentColor
+                    : Theme.of(context).primaryColorDark,
                 fontSize: 9,
                 fontWeight: FontWeight.w600),
           ),

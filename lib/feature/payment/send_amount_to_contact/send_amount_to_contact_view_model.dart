@@ -23,8 +23,7 @@ class SendAmountToContactViewModel extends BasePageViewModel {
 
   Stream<String> get purposeStream => _purposeSubject.stream;
 
-  BehaviorSubject<String> _purposeDetailSubject =
-      BehaviorSubject.seeded('Transfer to Friend or Family');
+  BehaviorSubject<String> _purposeDetailSubject = BehaviorSubject();
 
   Stream<String> get purposeDetailStream => _purposeDetailSubject.stream;
 

@@ -113,8 +113,10 @@ class SendAmountToContactPageView
               ),
             ),
             Text(
-              ///TODO:change to nickname
-              model.beneficiary.fullName ?? '',
+              (model.beneficiary.nickName != null &&
+                      model.beneficiary.nickName!.isNotEmpty)
+                  ? model.beneficiary.nickName!
+                  : model.beneficiary.fullName!,
               style: TextStyle(
                 fontWeight: FontWeight.w600,
                 fontSize: 20,

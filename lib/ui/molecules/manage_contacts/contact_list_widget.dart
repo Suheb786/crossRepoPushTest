@@ -47,7 +47,10 @@ class ContactListWidget extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  beneficiary!.fullName!,
+                  (beneficiary!.nickName != null &&
+                          beneficiary!.nickName!.isNotEmpty)
+                      ? beneficiary!.nickName!
+                      : beneficiary!.fullName!,
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
               ),
