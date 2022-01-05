@@ -7179,6 +7179,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Selfie Check!`
+  String get selfieCheck {
+    return Intl.message(
+      'Selfie Check!',
+      name: 'selfieCheck',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make sure your face fits into the frame`
+  String get makeSureYourFaceFitsTheFrame {
+    return Intl.message(
+      'Make sure your face fits into the frame',
+      name: 'makeSureYourFaceFitsTheFrame',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

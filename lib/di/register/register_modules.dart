@@ -377,7 +377,7 @@ final yearMonthDialogViewModelProvider =
 );
 
 final filterTransactionDialogViewModelProvier =
-ChangeNotifierProvider.autoDispose<FilterTransactionDialogViewModel>(
+    ChangeNotifierProvider.autoDispose<FilterTransactionDialogViewModel>(
         (ref) => FilterTransactionDialogViewModel());
 
 ///fatca signaturepage view model provider

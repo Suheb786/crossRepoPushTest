@@ -61,12 +61,15 @@ class UserLocalDSImpl extends UserLocalDS {
     idRecognizer.returnFaceImage = true;
 
     DocumentVerificationOverlaySettings settings =
-    DocumentVerificationOverlaySettings();
+        DocumentVerificationOverlaySettings();
     settings.firstSideInstructions =
-    'Place the front of your ID. It will scan automatically';
+        'Front ID\nID will be scanned automatically when placed within the frame';
     settings.secondSideInstructions =
-    'Place the back side of your ID. It will scan automatically';
+        'Back ID\nID will be scanned automatically when placed within the frame';
     settings.enableBeep = true;
+    settings.firstSideSplashMessage = 'Scanning...';
+    settings.scanningDoneSplashMessage = 'Scan successful';
+    settings.secondSideSplashMessage = 'Scanning...';
 
     try {
       List<RecognizerResult> results = await MicroblinkScanner.scanWithCamera(
@@ -95,21 +98,18 @@ class UserLocalDSImpl extends UserLocalDS {
           print("I AM sex:  ${result.sex}");
           print("I AM fullName:  ${result.fullName}");
           print(
-              "I AM additionalAddressInformation : ${result
-                  .additionalAddressInformation}");
+              "I AM additionalAddressInformation : ${result.additionalAddressInformation}");
           print("I AM address : ${result.address}");
           print("I AM age:  ${result.age}");
           print(
-              "I AM additionalNameInformation : ${result
-                  .additionalNameInformation}");
+              "I AM additionalNameInformation : ${result.additionalNameInformation}");
           print("I AM dateOfIssue : ${result.dateOfIssue}");
           print("I AM fathersName:  ${result.fathersName}");
           print("I AM mothersName : ${result.mothersName}");
           print(
               "I AM mrzResult documentCode :${result.mrzResult!.documentCode}");
           print(
-              "I AM mrzResult documentNumber : ${result.mrzResult!
-                  .documentNumber}");
+              "I AM mrzResult documentNumber : ${result.mrzResult!.documentNumber}");
           print("I AM mrzResult primaryId : ${result.mrzResult!.primaryId}");
           print(
               "I AM mrzResult secondaryId : ${result.mrzResult!.secondaryId}");
@@ -118,26 +118,19 @@ class UserLocalDSImpl extends UserLocalDS {
           print("I AM mrzResult mrzText:  ${result.mrzResult!.mrzText}");
           print("I AM mrzResult alienNumber : ${result.mrzResult!.issuer}");
           print(
-              "I AM mrzResult applicationReceiptNumber : ${result.mrzResult!
-                  .applicationReceiptNumber}");
+              "I AM mrzResult applicationReceiptNumber : ${result.mrzResult!.applicationReceiptNumber}");
           print(
-              "I AM mrzResult documentType : ${result.mrzResult!
-                  .documentType}");
+              "I AM mrzResult documentType : ${result.mrzResult!.documentType}");
           print(
-              "I AM mrzResult sanitizedDocumentCode : ${result.mrzResult!
-                  .sanitizedDocumentCode}");
+              "I AM mrzResult sanitizedDocumentCode : ${result.mrzResult!.sanitizedDocumentCode}");
           print(
-              "I AM mrzResult sanitizedDocumentNumber:  ${result.mrzResult!
-                  .sanitizedDocumentNumber}");
+              "I AM mrzResult sanitizedDocumentNumber:  ${result.mrzResult!.sanitizedDocumentNumber}");
           print(
-              "I AM mrzResult sanitizedIssuer:  ${result.mrzResult!
-                  .sanitizedIssuer}");
+              "I AM mrzResult sanitizedIssuer:  ${result.mrzResult!.sanitizedIssuer}");
           print(
-              "I AM mrzResult sanitizedOpt1 : ${result.mrzResult!
-                  .sanitizedOpt1}");
+              "I AM mrzResult sanitizedOpt1 : ${result.mrzResult!.sanitizedOpt1}");
           print(
-              "I AM mrzResult sanitizedOpt2:  ${result.mrzResult!
-                  .sanitizedOpt2}");
+              "I AM mrzResult sanitizedOpt2:  ${result.mrzResult!.sanitizedOpt2}");
           return Right(result);
         }
       }
@@ -148,7 +141,7 @@ class UserLocalDSImpl extends UserLocalDS {
               "Some error occurred while processing. Please try again later"),
           localError: 1212,
           message:
-          "Some error occurred while processing. Please try again later"));
+              "Some error occurred while processing. Please try again later"));
     }
   }
 

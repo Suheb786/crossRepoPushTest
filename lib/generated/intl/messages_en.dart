@@ -748,6 +748,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Main Source of Income"),
         "mainSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
+        "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
+            "Make sure your face fits into the frame"),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
         "manageCardLimits":
             MessageLookupByLibrary.simpleMessage("Manage card limits"),
@@ -1045,6 +1047,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectMinimumSettlement":
             MessageLookupByLibrary.simpleMessage("Select Minimum Settlement"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
+        "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Send money was not\nsuccessful."),

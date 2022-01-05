@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/stepone/capture/capture_model.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -35,14 +36,8 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
               },
               dataBuilder: (context, data) {
                 return Container(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
-                  height: MediaQuery
-                      .of(context)
-                      .size
-                      .height,
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
                   child: CameraPreview(model.cameraController!,
                       child: Stack(
                         children: [
@@ -64,7 +59,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                                       decoration: BoxDecoration(
                                         color: Colors.black,
                                         borderRadius:
-                                        BorderRadius.circular(300),
+                                            BorderRadius.circular(300),
                                       ),
                                     ),
                                   ),
@@ -88,9 +83,36 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                               width: 271,
                               decoration: BoxDecoration(
                                 border:
-                                Border.all(color: AppColor.white, width: 2),
+                                    Border.all(color: AppColor.white, width: 2),
                                 borderRadius: BorderRadius.circular(300),
                               ),
+                            ),
+                          ),
+                          Positioned(
+                            left: 0,
+                            right: 0,
+                            bottom: 60,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  S.of(context).selfieCheck,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w600,
+                                      color: Theme.of(context).accentColor),
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Text(
+                                  S.of(context).makeSureYourFaceFitsTheFrame,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: Theme.of(context).accentColor),
+                                )
+                              ],
                             ),
                           ),
                           Positioned(
