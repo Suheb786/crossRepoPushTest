@@ -1038,6 +1038,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hello! Which country\nare you from?"),
         "selectCreditLimitSettings": MessageLookupByLibrary.simpleMessage(
             "Select Credit Limit Settings"),
+        "selectExpectedTransaction":
+            MessageLookupByLibrary.simpleMessage("Select expected transaction"),
         "selectFromLibrary":
             MessageLookupByLibrary.simpleMessage("Select from Library"),
         "selectMinimumSettlement":

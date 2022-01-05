@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7166,6 +7165,16 @@ class S {
     return Intl.message(
       'Current password is invalid. Password does not meet requirement.',
       name: 'currentPasswordInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select expected transaction`
+  String get selectExpectedTransaction {
+    return Intl.message(
+      'Select expected transaction',
+      name: 'selectExpectedTransaction',
       desc: '',
       args: [],
     );

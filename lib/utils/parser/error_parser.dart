@@ -330,6 +330,8 @@ class ErrorParser {
         return localisedHelper.passwordNotMeetCriteria;
       case ErrorType.CURRENT_PASSWORD_INVALID:
         return localisedHelper.currentPasswordInvalid;
+      case ErrorType.SELECT_EXPECTED_TRANSACTION:
+        return localisedHelper.selectExpectedTransaction;
 
       default:
         return "";

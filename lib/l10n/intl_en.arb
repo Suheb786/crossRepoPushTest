@@ -734,5 +734,6 @@
   "accountReadyMsg": "Account ready!",
   "yourFreeVirtualDebitCardHasBeenIssued": "Your free virtual debit card has been issued, and the physical one is\non its way.",
   "passwordNotMeetCriteria": "Password does not meet requirement. \nPlease try again.",
-  "currentPasswordInvalid": "Current password is invalid. Password does not meet requirement."
+  "currentPasswordInvalid": "Current password is invalid. Password does not meet requirement.",
+  "selectExpectedTransaction": "Select expected transaction"
 }
