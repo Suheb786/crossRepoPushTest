@@ -725,6 +725,9 @@
   "yourCardIsReady": "Your card is ready!",
   "aramaxWillConnectYouSoon": "Aramex will contact you soon to deliver your physical card. ",
   "youWillReceiveCardPinViaSms": "You will receive your card PIN via SMS. You can contact our Engagement Team in case not received.",
-  "applyCreditCard": "APPLY CREDIT CARD"
-
+  "applyCreditCard": "APPLY CREDIT CARD",
+  "applyDebitCard": "APPLY DEBIT CARD",
+  "setupAndPersonalizeYourNewDebitCard": "Set up and personalize your new debit card",
+  "yourApplicationInReview": "Your application is\nin review",
+  "weWillNotifyOnceReady": "We will notify you once it’s ready"
 }

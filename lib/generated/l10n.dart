@@ -7079,6 +7079,46 @@ class S {
       args: [],
     );
   }
+
+  /// `APPLY DEBIT CARD`
+  String get applyDebitCard {
+    return Intl.message(
+      'APPLY DEBIT CARD',
+      name: 'applyDebitCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set up and personalize your new debit card`
+  String get setupAndPersonalizeYourNewDebitCard {
+    return Intl.message(
+      'Set up and personalize your new debit card',
+      name: 'setupAndPersonalizeYourNewDebitCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your application is\nin review`
+  String get yourApplicationInReview {
+    return Intl.message(
+      'Your application is\nin review',
+      name: 'yourApplicationInReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will notify you once it’s ready`
+  String get weWillNotifyOnceReady {
+    return Intl.message(
+      'We will notify you once it’s ready',
+      name: 'weWillNotifyOnceReady',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

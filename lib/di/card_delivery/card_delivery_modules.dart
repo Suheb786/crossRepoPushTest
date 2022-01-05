@@ -14,11 +14,17 @@ import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success
 import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_view_model.dart';
+import 'package:neo_bank/feature/supplementary_card_in_review/supplementary_card_in_review_page.dart';
+import 'package:neo_bank/feature/supplementary_card_in_review/supplementary_card_in_review_page_view_model.dart';
 import 'package:neo_bank/feature/supplementary_credit_card/id_scan_verification_info/supplementary_id_scan_verification_info_page_view_model.dart';
 import 'package:neo_bank/feature/supplementary_credit_card/personalize_credit_card/personalize_credit_card_page_view_model.dart';
 import 'package:neo_bank/feature/supplementary_credit_card/relationship_with_cardholder/relationship_with_cardholder_page_view_model.dart';
 import 'package:neo_bank/feature/supplementary_credit_card/supplementary_credit_card_page_view_model.dart';
 import 'package:neo_bank/feature/supplementary_credit_card_ready/supplementary_credit_card_ready_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_debit_card/id_scan_verification_info/supplementary_id_scan_verification_info_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_debit_card/personalize_debit_card/personalize_debit_card_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_debit_card/relationship_with_cardholder_debit/relationship_with_cardholder_debit_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_debit_card/supplementary_debit_card_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/relationship_with_cardholder_dialog_view_model.dart';
 
 ///card delivery view model provider
@@ -132,4 +138,39 @@ final personalizeCreditCardViewModelProvider =
 final supplementaryCreditCardReadyViewModelProvider = ChangeNotifierProvider
     .autoDispose<SupplementaryCreditCardReadyPageViewModel>(
   (ref) => SupplementaryCreditCardReadyPageViewModel(),
+);
+
+///debit card supplementary view model provider
+final supplementaryDebitCardViewModelProvider =
+    ChangeNotifierProvider.autoDispose<SupplementaryDebitCardPageViewModel>(
+  (ref) => SupplementaryDebitCardPageViewModel(),
+);
+
+///relationship with card holder debit view model provider
+final relationShipWithCardHolderDebitViewModelProvider = ChangeNotifierProvider
+    .autoDispose<RelationshipWithCardholderDebitPageViewModel>(
+  (ref) => RelationshipWithCardholderDebitPageViewModel(
+      ref.read(relationshipWithCardHolderUseCaseProvider)),
+);
+
+///supplementary debit id scan view model provider
+final supplementaryDebitIdScanInfoViewModelProvider = ChangeNotifierProvider
+    .autoDispose<SupplementaryIdScanVerificationInfoDebitPageViewModel>(
+  (ref) => SupplementaryIdScanVerificationInfoDebitPageViewModel(
+      ref.read(scanUserDocumentUseCaseProvider)),
+);
+
+///personalize debit view model provider
+final personalizeDebitViewModelProvider =
+    ChangeNotifierProvider.autoDispose<PersonalizeDebitCardPageViewModel>(
+  (ref) => PersonalizeDebitCardPageViewModel(
+      ref.read(personalizeDebitCardUseCaseProvider)),
+);
+
+///supplementary card in review view model provider
+final supplementaryCardInReviewViewModelProvider =
+    ChangeNotifierProvider.autoDispose.family<
+        SupplementaryCardInReviewPageViewModel,
+        SupplementaryCardInReviewArguments>(
+  (ref, args) => SupplementaryCardInReviewPageViewModel(args),
 );

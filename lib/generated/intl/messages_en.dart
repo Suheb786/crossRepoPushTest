@@ -115,6 +115,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "appName": MessageLookupByLibrary.simpleMessage("Neo Bank"),
         "applyCreditCard":
             MessageLookupByLibrary.simpleMessage("APPLY CREDIT CARD"),
+        "applyDebitCard":
+            MessageLookupByLibrary.simpleMessage("APPLY DEBIT CARD"),
         "aramaxWillConnectYouSoon": MessageLookupByLibrary.simpleMessage(
             "Aramex will contact you soon to deliver your physical card. "),
         "areYouAnyFirstDegreeQ": MessageLookupByLibrary.simpleMessage(
@@ -1045,6 +1047,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "setupAndPersonalizeYourNewCreditCard":
             MessageLookupByLibrary.simpleMessage(
                 "Set up and personalize your new credit card"),
+        "setupAndPersonalizeYourNewDebitCard":
+            MessageLookupByLibrary.simpleMessage(
+                "Set up and personalize your new debit card"),
         "shareAccountInfo":
             MessageLookupByLibrary.simpleMessage("Share account info"),
         "shareMyReceipt":
@@ -1230,6 +1235,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "We will connect you\nin Blink..."),
         "weWillConnectYouInBlink": MessageLookupByLibrary.simpleMessage(
             "We will connect you\nin blink..."),
+        "weWillNotifyOnceReady": MessageLookupByLibrary.simpleMessage(
+            "We will notify you once it’s ready"),
         "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),
         "welcomeToNeuBank":
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),
@@ -1257,6 +1264,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You will be notified once your contact\naccepts your request and money is\nadded into your account."),
         "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(
             "You will receive your card PIN via SMS. You can contact our Engagement Team in case not received."),
+        "yourApplicationInReview": MessageLookupByLibrary.simpleMessage(
+            "Your application is\nin review"),
         "yourCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage("Your card has\nbeen issued"),
         "yourCardIsReady":

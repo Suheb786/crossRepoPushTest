@@ -171,7 +171,10 @@ class DebitCardSettingsPageView
                           tileIcon: AssetUtils.cardShield,
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushReplacementNamed(
+                                context, RoutePaths.SupplementaryDebitCard);
+                          },
                           title: S.of(context).requestSupplementarycard,
                           tileIcon: AssetUtils.cardIcon,
                         ),

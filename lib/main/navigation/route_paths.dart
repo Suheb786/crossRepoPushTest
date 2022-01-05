@@ -71,4 +71,6 @@ class RoutePaths {
   static const String SupplementaryCreditCard = "/supplementaryCreditCard";
   static const String SupplementaryCreditCardReady =
       "/supplementaryCreditCardReady";
+  static const String SupplementaryDebitCard = "/supplementaryDebitCard";
+  static const String SupplementaryCardInReview = "/supplementaryCardInReview";
 }
