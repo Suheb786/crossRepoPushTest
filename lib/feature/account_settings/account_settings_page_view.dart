@@ -469,6 +469,7 @@ class AccountSettingPageView
             rotateButtonsHidden: true,
             aspectRatioPickerButtonHidden: true,
             doneButtonTitle: 'Choose'),
+        androidUiSettings: AndroidUiSettings(hideBottomControls: true),
         aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
     if (cropped != null) {
       model.selectedProfile = cropped.path;

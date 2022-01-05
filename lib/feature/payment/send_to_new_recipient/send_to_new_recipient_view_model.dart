@@ -278,6 +278,8 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
     _showButtonSubject.close();
     _sendToNewRecipientRequest.close();
     _sendToNewRecipientResponse.close();
+    _getPurposeRequest.close();
+    _getPurposeResponse.close();
     super.dispose();
   }
 }

@@ -13,7 +13,6 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/edit_transaction_purpose_dialog/edit_transaction_purpose_dialog.dart';
 import 'package:neo_bank/ui/molecules/numeric_keyboard.dart';
-import 'package:neo_bank/ui/molecules/payment/payment_beneficiary_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -35,11 +34,10 @@ class RequestAmountFromContactPageView
             if (data.status == Status.ERROR) {
               model.showToastWithError(data.appError!);
             } else if (data.status == Status.SUCCESS) {
-              Navigator.pushNamed(context,
-                  RoutePaths.RequestAmountFromContactSuccess,
+              Navigator.pushNamed(
+                  context, RoutePaths.RequestAmountFromContactSuccess,
                   arguments: [
-                    ProviderScope
-                        .containerOf(context)
+                    ProviderScope.containerOf(context)
                         .read(requestMoneyViewModelProvider)
                         .currentPinValue,
                     data.data!.requestToPayContent!.dbtrName!,
@@ -50,12 +48,13 @@ class RequestAmountFromContactPageView
           dataBuilder: (context, value) {
             return GestureDetector(
               onVerticalDragEnd: (details) {
-                if (details.primaryVelocity!.isNegative) {} else {
+                if (details.primaryVelocity!.isNegative) {
+                } else {
                   Navigator.pop(context);
                 }
               },
               child: AppStreamBuilder<
-                  Resource<GetAccountByAliasContentResponse>>(
+                      Resource<GetAccountByAliasContentResponse>>(
                   stream: model.getAccountByAliasResponseStream,
                   initialData: Resource.none(),
                   onData: (data) {
@@ -79,9 +78,7 @@ class RequestAmountFromContactPageView
                                   height: 50,
                                   width: 281,
                                   decoration: BoxDecoration(
-                                    color: Theme
-                                        .of(context)
-                                        .canvasColor,
+                                    color: Theme.of(context).canvasColor,
                                     borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(16),
                                       bottomRight: Radius.circular(16),
@@ -97,9 +94,7 @@ class RequestAmountFromContactPageView
                                     Padding(
                                       padding: EdgeInsets.only(top: 6.0),
                                       child: Text(
-                                        S
-                                            .of(context)
-                                            .backToPayments,
+                                        S.of(context).backToPayments,
                                         style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w600,
@@ -114,42 +109,34 @@ class RequestAmountFromContactPageView
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 24.0),
-                          child: model.beneficiary!
-                              .imageUrl
-                              .toString()
-                              .isNotEmpty
+                          child: model.beneficiary!.imageUrl
+                                  .toString()
+                                  .isNotEmpty
                               ? CircleAvatar(
-                            radius: 32,
-                            backgroundImage: Image
-                                .memory(
-                              model.beneficiary!.imageUrl,
-                              fit: BoxFit.cover,
-                            )
-                                .image,
-                          )
+                                  radius: 32,
+                                  backgroundImage: Image.memory(
+                                    model.beneficiary!.imageUrl,
+                                    fit: BoxFit.cover,
+                                  ).image,
+                                )
                               : CircleAvatar(
-                            radius: 32,
-                            backgroundColor: Theme
-                                .of(context)
-                                .primaryColor,
-                            child: Text(
-                              StringUtils.getFirstInitials(
-                                  model.beneficiary!.fullName),
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 20,
-                                  color: Theme
-                                      .of(context)
-                                      .accentColor),
-                            ),
-                          ),
+                                  radius: 32,
+                                  backgroundColor:
+                                      Theme.of(context).primaryColor,
+                                  child: Text(
+                                    StringUtils.getFirstInitials(
+                                        model.beneficiary!.fullName),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 20,
+                                        color: Theme.of(context).accentColor),
+                                  ),
+                                ),
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 8),
                           child: Text(
-                            S
-                                .of(context)
-                                .requestMoneyFrom,
+                            S.of(context).requestMoneyFrom,
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 20,
@@ -157,34 +144,30 @@ class RequestAmountFromContactPageView
                           ),
                         ),
                         Text(
-                          model.beneficiary!.fullName!,
+                          (model.beneficiary!.nickName != null &&
+                                  model.beneficiary!.nickName!.isNotEmpty)
+                              ? model.beneficiary!.nickName!
+                              : model.beneficiary!.fullName!,
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 20,
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
-                              top: 16, right: 24, left: 24),
+                          padding:
+                              EdgeInsets.only(top: 16, right: 24, left: 24),
                           child: Container(
                             decoration: BoxDecoration(
-                                color: Theme
-                                    .of(context)
-                                    .accentColor,
+                                color: Theme.of(context).accentColor,
                                 borderRadius: BorderRadius.circular(15),
                                 border: Border.all(color: AppColor.whiteGray)),
-                            padding:
-                            EdgeInsets.only(top: 14,
-                                bottom: 14,
-                                left: 26,
-                                right: 34),
+                            padding: EdgeInsets.only(
+                                top: 14, bottom: 14, left: 26, right: 34),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  S
-                                      .of(context)
-                                      .transactionPurpose,
+                                  S.of(context).transactionPurpose,
                                   style: TextStyle(
                                       color: AppColor.dark_gray_1,
                                       fontSize: 10,
@@ -193,12 +176,18 @@ class RequestAmountFromContactPageView
                                 Padding(
                                   padding: EdgeInsets.only(top: 2),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment
-                                        .spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       AppStreamBuilder<String>(
                                           stream: model.purposeStream,
-                                          initialData: "Personal",
+                                          initialData:
+                                              (model.beneficiary!.purpose !=
+                                                          null &&
+                                                      model.beneficiary!
+                                                          .purpose!.isNotEmpty)
+                                                  ? model.beneficiary!.purpose!
+                                                  : 'Personal',
                                           dataBuilder: (context, value) {
                                             return Text(
                                               value!,
@@ -210,10 +199,9 @@ class RequestAmountFromContactPageView
                                       InkWell(
                                         onTap: () {
                                           EditTransactionPurposeDialog.show(
-                                              context,
-                                              onDismissed: () {
-                                                Navigator.pop(context);
-                                              }, onSelected: (value1, value2) {
+                                              context, onDismissed: () {
+                                            Navigator.pop(context);
+                                          }, onSelected: (value1, value2) {
                                             print("got value: $value1");
                                             model.updatePurpose(value1);
                                             model.updatePurposeDetail(value2);
@@ -221,14 +209,11 @@ class RequestAmountFromContactPageView
                                           });
                                         },
                                         child: Text(
-                                          S
-                                              .of(context)
-                                              .edit,
+                                          S.of(context).edit,
                                           style: TextStyle(
                                               fontSize: 12,
                                               fontWeight: FontWeight.w700,
-                                              color: Theme
-                                                  .of(context)
+                                              color: Theme.of(context)
                                                   .accentTextTheme
                                                   .bodyText1!
                                                   .color),
@@ -241,7 +226,13 @@ class RequestAmountFromContactPageView
                                   padding: EdgeInsets.only(top: 2),
                                   child: AppStreamBuilder<String>(
                                       stream: model.purposeDetailStream,
-                                      initialData: "Transfer to Friend or Family",
+                                      initialData: (model.beneficiary!
+                                                      .purposeDetails !=
+                                                  null &&
+                                              model.beneficiary!.purposeDetails!
+                                                  .isNotEmpty)
+                                          ? model.beneficiary!.purposeDetails!
+                                          : 'Transfer to Friend or Family',
                                       dataBuilder: (context, value) {
                                         return Text(
                                           value!,
@@ -256,8 +247,8 @@ class RequestAmountFromContactPageView
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
-                              top: 27, left: 24, right: 24),
+                          padding:
+                              EdgeInsets.only(top: 27, left: 24, right: 24),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -276,8 +267,8 @@ class RequestAmountFromContactPageView
                                           color: AppColor.black),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(
-                                          top: 15, left: 4),
+                                      padding:
+                                          EdgeInsets.only(top: 15, left: 4),
                                       child: Text(
                                         "JOD",
                                         style: TextStyle(
@@ -304,9 +295,7 @@ class RequestAmountFromContactPageView
                         Padding(
                           padding: EdgeInsets.only(top: 24),
                           child: Text(
-                            S
-                                .of(context)
-                                .accountBalance,
+                            S.of(context).accountBalance,
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 10,
@@ -319,8 +308,7 @@ class RequestAmountFromContactPageView
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                ProviderScope
-                                    .containerOf(context)
+                                ProviderScope.containerOf(context)
                                     .read(appHomeViewModelProvider)
                                     .dashboardDataContent
                                     .account!
@@ -481,11 +469,9 @@ class RequestAmountFromContactPageView
                         )
                       ],
                     );
-                  }
-              ),
+                  }),
             );
-          }
-      ),
+          }),
     );
   }
 }

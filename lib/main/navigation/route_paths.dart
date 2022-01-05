@@ -68,4 +68,9 @@ class RoutePaths {
   static const String manageDebitLimit = "/manageDebitLimits";
   static const String ChangeCardPin = "/changeCardPin";
   static const String ChangeCardPinSuccess = "/changeCardPinSuccess";
+  static const String SupplementaryCreditCard = "/supplementaryCreditCard";
+  static const String SupplementaryCreditCardReady =
+      "/supplementaryCreditCardReady";
+  static const String SupplementaryDebitCard = "/supplementaryDebitCard";
+  static const String SupplementaryCardInReview = "/supplementaryCardInReview";
 }

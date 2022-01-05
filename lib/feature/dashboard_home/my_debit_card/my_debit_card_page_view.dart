@@ -1,7 +1,9 @@
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
@@ -337,7 +339,18 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           ),
                                         ),
                                       ),
-                                      AppSvg.asset(AssetUtils.copy)
+                                      InkWell(
+                                          onTap: () {
+                                            Clipboard.setData(ClipboardData(
+                                                    text: cardData.debitCard!
+                                                            .cardNumber ??
+                                                        ''))
+                                                .then((value) =>
+                                                    Fluttertoast.showToast(
+                                                        msg:
+                                                            'Card number Copied'));
+                                          },
+                                          child: AppSvg.asset(AssetUtils.copy))
                                     ],
                                   ),
                                 ),

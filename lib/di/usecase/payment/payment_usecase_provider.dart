@@ -1,10 +1,10 @@
 import 'package:data/di/repository_module.dart';
+import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
 import 'package:domain/usecase/payment/add_send_money_contact_usecase.dart';
 import 'package:domain/usecase/payment/check_send_money_usecase.dart';
 import 'package:domain/usecase/payment/enter_otp_usecase.dart';
 import 'package:domain/usecase/payment/enter_request_otp_usecase.dart';
 import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
-import 'package:domain/usecase/payment/get_beneficiary_usecase.dart';
 import 'package:domain/usecase/payment/get_purpose_usecase.dart';
 import 'package:domain/usecase/payment/request_amount_from_contact_usecase.dart';
 import 'package:domain/usecase/payment/request_from_new_recipient_usecase.dart';
@@ -26,7 +26,7 @@ final addSendMoneyContactUseCaseProvider =
   (ref) => AddSendMoneyContactUseCase(),
 );
 
-///[<GetBeneficiaryUseCase>] provider
+///[GetBeneficiaryUseCase] provider
 final getBeneficiaryUseCaseProvider =
     Provider.autoDispose<GetBeneficiaryUseCase>(
   (ref) => GetBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
