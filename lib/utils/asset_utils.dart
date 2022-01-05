@@ -4,6 +4,7 @@ class AssetUtils {
 
   static const String svg = "assets/svg/";
   static const String drawable = "assets/drawable/";
+  static const String flags = "assets/flags/";
   static const String _animation = "assets/animation/";
 
   static const String check = svg + "check.svg";

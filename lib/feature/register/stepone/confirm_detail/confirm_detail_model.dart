@@ -37,24 +37,24 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   GlobalKey<AppTextFieldState> dobKey = GlobalKey(debugLabel: "dob");
 
   GlobalKey<AppTextFieldState> nationalityKey =
-  GlobalKey(debugLabel: "nationality");
+      GlobalKey(debugLabel: "nationality");
 
   GlobalKey<AppTextFieldState> expiryDateKey =
-  GlobalKey(debugLabel: "expiryDate");
+      GlobalKey(debugLabel: "expiryDate");
 
   GlobalKey<AppTextFieldState> genderKey = GlobalKey(debugLabel: "gender");
 
   GlobalKey<AppTextFieldState> motherNameKey =
-  GlobalKey(debugLabel: "mother's name");
+      GlobalKey(debugLabel: "mother's name");
 
   GlobalKey<AppTextFieldState> legalDocumentKey =
-  GlobalKey(debugLabel: "legalDocument");
+      GlobalKey(debugLabel: "legalDocument");
 
   GlobalKey<AppTextFieldState> issuingDateKey =
-  GlobalKey(debugLabel: "issuingDate");
+      GlobalKey(debugLabel: "issuingDate");
 
   GlobalKey<AppTextFieldState> issuingPlaceKey =
-  GlobalKey(debugLabel: "issuingPlace");
+      GlobalKey(debugLabel: "issuingPlace");
 
   String selectedDobDate = DateTime.now().toLocal().toString();
 
@@ -64,11 +64,11 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   ///scan document request holder
   final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest =
-  PublishSubject();
+      PublishSubject();
 
   ///scan document response holder
   final PublishSubject<Resource<ScannedDocumentInformation>>
-  _scanUserDocumentResponse = PublishSubject();
+      _scanUserDocumentResponse = PublishSubject();
 
   ///scan document response stream
   Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream =>
@@ -76,7 +76,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   /// declaration selected subject holder
   BehaviorSubject<bool> _declarationSelectedSubject =
-  BehaviorSubject.seeded(false);
+      BehaviorSubject.seeded(false);
 
   /// declaration selected response stream
   Stream<bool> get declarationSelectedStream =>
@@ -88,11 +88,11 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   /// confirm detail request subject holder
   PublishSubject<ConfirmDetailUseCaseParams> _confirmDetailRequest =
-  PublishSubject();
+      PublishSubject();
 
   /// confirm detail response subject holder
   PublishSubject<Resource<SaveIdInfoResponse>> _confirmDetailResponse =
-  PublishSubject();
+      PublishSubject();
 
   Stream<Resource<SaveIdInfoResponse>> get confirmDetailResponseStream =>
       _confirmDetailResponse.stream;
@@ -104,24 +104,24 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
   ///get ahwal details subject holder
   final PublishSubject<GetAhwalDetailsUseCaseParams> _getAhwalDetailsRequest =
-  PublishSubject();
+      PublishSubject();
 
   ///get ahwal details subject response holder
   final PublishSubject<Resource<AhwalDetailResponse>> _getAhwalDetailsResponse =
-  PublishSubject();
+      PublishSubject();
 
   ///get ahwal details response stream
   Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream =>
       _getAhwalDetailsResponse.stream;
 
   ScannedDocumentInformation scannedDocumentResult =
-  ScannedDocumentInformation();
+      ScannedDocumentInformation();
 
   ConfirmDetailViewModel(this._confirmDetailUseCase,
       this._scanUserDocumentUseCase, this._getAhwalDetailsUseCase) {
     _confirmDetailRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _confirmDetailUseCase.execute(params: value))
+              createCall: () => _confirmDetailUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -137,7 +137,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         .distinct()
         .listen((value) {
       RequestManager(value,
-          createCall: () => _scanUserDocumentUseCase.execute(params: value))
+              createCall: () => _scanUserDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _scanUserDocumentResponse.safeAdd(event);
@@ -149,7 +149,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
 
     _getAhwalDetailsRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _getAhwalDetailsUseCase.execute(params: value))
+              createCall: () => _getAhwalDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -157,27 +157,27 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
         } else if (event.status == Status.SUCCESS) {
-          scannedDocumentResult.firstName =
-              event.data!.contentData!.ahwalinfo!.firstNameEn;
-          scannedDocumentResult.middleName =
-              event.data!.contentData!.ahwalinfo!.thirdNameEn;
-
-          scannedDocumentResult.firstNameAr =
-              event.data!.contentData!.ahwalinfo!.firstNameAr;
-          scannedDocumentResult.secNameAr =
-              event.data!.contentData!.ahwalinfo!.secNameAr;
-          scannedDocumentResult.thirdNameAr =
-              event.data!.contentData!.ahwalinfo!.thirdNameAr;
-          scannedDocumentResult.familyNameAr =
-              event.data!.contentData!.ahwalinfo!.familyNameAr;
-
-          scannedDocumentResult.secondNameEn =
-              event.data!.contentData!.ahwalinfo!.secondNameEn;
-          scannedDocumentResult.thirdNameEn =
-              event.data!.contentData!.ahwalinfo!.thirdNameEn;
-          scannedDocumentResult.familyName =
-              event.data!.contentData!.ahwalinfo!.familyNameEn;
-          setData(scannedDocumentResult);
+          // scannedDocumentResult.firstName =
+          //     event.data!.contentData!.ahwalinfo!.firstNameEn;
+          // scannedDocumentResult.middleName =
+          //     event.data!.contentData!.ahwalinfo!.thirdNameEn;
+          //
+          // scannedDocumentResult.firstNameAr =
+          //     event.data!.contentData!.ahwalinfo!.firstNameAr;
+          // scannedDocumentResult.secNameAr =
+          //     event.data!.contentData!.ahwalinfo!.secNameAr;
+          // scannedDocumentResult.thirdNameAr =
+          //     event.data!.contentData!.ahwalinfo!.thirdNameAr;
+          // scannedDocumentResult.familyNameAr =
+          //     event.data!.contentData!.ahwalinfo!.familyNameAr;
+          //
+          // scannedDocumentResult.secondNameEn =
+          //     event.data!.contentData!.ahwalinfo!.secondNameEn;
+          // scannedDocumentResult.thirdNameEn =
+          //     event.data!.contentData!.ahwalinfo!.thirdNameEn;
+          // scannedDocumentResult.familyName =
+          //     event.data!.contentData!.ahwalinfo!.familyNameEn;
+          // setData(scannedDocumentResult);
         }
       });
     });

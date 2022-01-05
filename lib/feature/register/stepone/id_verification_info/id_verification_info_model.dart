@@ -1,6 +1,8 @@
 import 'package:domain/model/id_card/ahwal_details_response.dart';
+import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/usecase/id_card/get_ahwal_details_usecase.dart';
+import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -14,17 +16,18 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   final IdVerificationInfoUseCase _idVerificationInfoUseCase;
   final ScanUserDocumentUseCase _scanUserDocumentUseCase;
   final GetAhwalDetailsUseCase _getAhwalDetailsUseCase;
+  final ConfirmDetailUseCase _confirmDetailUseCase;
 
   /// retrieve condition check subject holder
   BehaviorSubject<bool> _isRetrievedConditionSubject =
-  BehaviorSubject.seeded(false);
+      BehaviorSubject.seeded(false);
 
   Stream<bool> get isRetrievedConditionStream =>
       _isRetrievedConditionSubject.stream;
 
   /// id verification info request subject holder
   PublishSubject<IdVerificationInfoUseCaseParams> _idVerificationInfoRequest =
-  PublishSubject();
+      PublishSubject();
 
   Stream<IdVerificationInfoUseCaseParams> get idVerificationRequestStream =>
       _idVerificationInfoRequest.stream;
@@ -41,11 +44,11 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
 
   ///scan document request holder
   final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest =
-  PublishSubject();
+      PublishSubject();
 
   ///scan document response holder
   final PublishSubject<Resource<ScannedDocumentInformation>>
-  _scanUserDocumentResponse = PublishSubject();
+      _scanUserDocumentResponse = PublishSubject();
 
   ///scan document response stream
   Stream<Resource<ScannedDocumentInformation>> get scanUserDocumentStream =>
@@ -53,25 +56,39 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
 
   ///get ahwal details subject holder
   final PublishSubject<GetAhwalDetailsUseCaseParams> _getAhwalDetailsRequest =
-  PublishSubject();
+      PublishSubject();
 
   ///get ahwal details subject response holder
   final PublishSubject<Resource<AhwalDetailResponse>> _getAhwalDetailsResponse =
-  PublishSubject();
+      PublishSubject();
 
   ///get ahwal details response stream
   Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream =>
       _getAhwalDetailsResponse.stream;
 
-  ScannedDocumentInformation scannedDocumentInformation =
-  ScannedDocumentInformation();
+  /// confirm detail request subject holder
+  PublishSubject<ConfirmDetailUseCaseParams> _confirmDetailRequest =
+      PublishSubject();
 
-  IdVerificationInfoViewModel(this._idVerificationInfoUseCase,
-      this._scanUserDocumentUseCase, this._getAhwalDetailsUseCase) {
+  /// confirm detail response subject holder
+  PublishSubject<Resource<SaveIdInfoResponse>> _confirmDetailResponse =
+      PublishSubject();
+
+  Stream<Resource<SaveIdInfoResponse>> get confirmDetailResponseStream =>
+      _confirmDetailResponse.stream;
+
+  ScannedDocumentInformation scannedDocumentInformation =
+      ScannedDocumentInformation();
+
+  IdVerificationInfoViewModel(
+      this._idVerificationInfoUseCase,
+      this._scanUserDocumentUseCase,
+      this._getAhwalDetailsUseCase,
+      this._confirmDetailUseCase) {
     _idVerificationInfoRequest.listen((value) {
       RequestManager(value,
-          createCall: () =>
-              _idVerificationInfoUseCase.execute(params: value))
+              createCall: () =>
+                  _idVerificationInfoUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _idVerificationInfoResponse.safeAdd(event);
@@ -86,7 +103,7 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
         .distinct()
         .listen((value) {
       RequestManager(value,
-          createCall: () => _scanUserDocumentUseCase.execute(params: value))
+              createCall: () => _scanUserDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         if (event.status == Status.SUCCESS) {
@@ -98,7 +115,7 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
 
     _getAhwalDetailsRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _getAhwalDetailsUseCase.execute(params: value))
+              createCall: () => _getAhwalDetailsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -106,26 +123,39 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
         } else if (event.status == Status.SUCCESS) {
-          scannedDocumentInformation.firstName =
-              event.data!.contentData!.ahwalinfo!.firstNameEn;
-          scannedDocumentInformation.middleName =
-              event.data!.contentData!.ahwalinfo!.thirdNameEn;
+          // scannedDocumentInformation.firstName =
+          //     event.data!.contentData!.ahwalinfo!.firstNameEn;
+          // scannedDocumentInformation.middleName =
+          //     event.data!.contentData!.ahwalinfo!.thirdNameEn;
+          //
+          // scannedDocumentInformation.firstNameAr =
+          //     event.data!.contentData!.ahwalinfo!.firstNameAr;
+          // scannedDocumentInformation.secNameAr =
+          //     event.data!.contentData!.ahwalinfo!.secNameAr;
+          // scannedDocumentInformation.thirdNameAr =
+          //     event.data!.contentData!.ahwalinfo!.thirdNameAr;
+          // scannedDocumentInformation.familyNameAr =
+          //     event.data!.contentData!.ahwalinfo!.familyNameAr;
+          //
+          // scannedDocumentInformation.secondNameEn =
+          //     event.data!.contentData!.ahwalinfo!.secondNameEn;
+          // scannedDocumentInformation.thirdNameEn =
+          //     event.data!.contentData!.ahwalinfo!.thirdNameEn;
+          // scannedDocumentInformation.familyName =
+          //     event.data!.contentData!.ahwalinfo!.familyNameEn;
+        }
+      });
+    });
 
-          scannedDocumentInformation.firstNameAr =
-              event.data!.contentData!.ahwalinfo!.firstNameAr;
-          scannedDocumentInformation.secNameAr =
-              event.data!.contentData!.ahwalinfo!.secNameAr;
-          scannedDocumentInformation.thirdNameAr =
-              event.data!.contentData!.ahwalinfo!.thirdNameAr;
-          scannedDocumentInformation.familyNameAr =
-              event.data!.contentData!.ahwalinfo!.familyNameAr;
-
-          scannedDocumentInformation.secondNameEn =
-              event.data!.contentData!.ahwalinfo!.secondNameEn;
-          scannedDocumentInformation.thirdNameEn =
-              event.data!.contentData!.ahwalinfo!.thirdNameEn;
-          scannedDocumentInformation.familyName =
-              event.data!.contentData!.ahwalinfo!.familyNameEn;
+    _confirmDetailRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _confirmDetailUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _confirmDetailResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
         }
       });
     });
@@ -142,6 +172,28 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
 
   void getAhwalResponse(String id) {
     _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
+  }
+
+  void setScannedData() {
+    _confirmDetailRequest.safeAdd(ConfirmDetailUseCaseParams(
+        name: scannedDocumentInformation.fullName,
+        idNumber: scannedDocumentInformation.idNumber,
+        dateOfBirth: scannedDocumentInformation.dob!.year == 0
+            ? ""
+            : scannedDocumentInformation.dob.toString(),
+        nationality: scannedDocumentInformation.nationalityIsoCode3,
+        expiryDate: scannedDocumentInformation.doe!.year == 0
+            ? ""
+            : scannedDocumentInformation.doe!.toString(),
+        gender: scannedDocumentInformation.gender,
+        motherName: "",
+        legalDocumentNo: scannedDocumentInformation.documentNumber,
+        issuingDate: scannedDocumentInformation.issuingDate!.year == 0
+            ? ""
+            : scannedDocumentInformation.issuingDate.toString(),
+        issuingPlace: scannedDocumentInformation.issuingPlaceISo3,
+        declarationSelected: true,
+        scannedDocumentInformation: scannedDocumentInformation));
   }
 
   @override

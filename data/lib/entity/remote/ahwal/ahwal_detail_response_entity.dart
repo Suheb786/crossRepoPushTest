@@ -1,4 +1,3 @@
-import 'package:data/entity/remote/ahwal/ahwal_info_content_data_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/model/id_card/ahwal_details_response.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
@@ -29,8 +28,7 @@ class AhwalDetailResponseEntity
   @override
   AhwalDetailResponse transform() {
     return AhwalDetailResponse(
-        contentData:
-        AhwalInfoContentDataEntity.fromJson(this.responseEntity!.content)
-            .transform());
+        skipConfirmationScreen:
+            responseEntity!.content['skipConfirmationScreen'] ?? false);
   }
 }
