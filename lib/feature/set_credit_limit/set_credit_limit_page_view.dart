@@ -1,0 +1,176 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/set_credit_limit/set_credit_limit_view_model.dart';
+import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/relationship_with_cardholder_dialog.dart';
+import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
+
+class SetCreditLimitPageView
+    extends BasePageViewWidget<SetCreditLimitViewModel> {
+  SetCreditLimitPageView(ProviderBase model) : super(model);
+
+  @override
+  Widget build(BuildContext context, SetCreditLimitViewModel model) {
+    return AppKeyBoardHide(
+      child: Center(
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
+          elevation: 2,
+          color:
+              Theme.of(context).cardTheme.copyWith(color: AppColor.white).color,
+          margin: EdgeInsets.zero,
+          shadowColor: Theme.of(context).primaryColorDark.withOpacity(0.32),
+          child: SingleChildScrollView(
+            child: Container(
+              decoration: BoxDecoration(color: Theme.of(context).accentColor),
+              padding: EdgeInsets.only(top: 38),
+              child: Column(
+                children: [
+                  Text(
+                    S.of(context).creditLimit,
+                    style: TextStyle(fontWeight: FontWeight.w400, fontSize: 10),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "1000",
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.w700),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 4, top: 5),
+                        child: Text(
+                          "JOD",
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w700,
+                              color: AppColor.verLightGray4),
+                        ),
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24),
+                    child: Container(
+                      height: 48,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: Theme.of(context).backgroundColor,
+                          borderRadius: BorderRadius.circular(100)),
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Theme.of(context)
+                                  .accentTextTheme
+                                  .bodyText1!
+                                  .color!),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "200 JOD",
+                          style: TextStyle(
+                              color: AppColor.gray,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 10),
+                        ),
+                        Text(
+                          "1000 JOD",
+                          style: TextStyle(
+                              color: AppColor.gray,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 10),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24.0),
+                    child: AppTextField(
+                      labelText: S.of(context).minimumSettlement,
+                      hintText: S.of(context).pleaseEnter,
+                      readOnly: true,
+                      controller: model.minimumSettlementController,
+                      onPressed: () {
+                        RelationshipWithCardHolderDialog.show(context,
+                            title: S.of(context).minimumSettlement,
+                            relationSHipWithCardHolder: model.percentageList,
+                            onSelected: (value) {
+                          print("got value: $value");
+                          Navigator.pop(context);
+                        }, onDismissed: () {
+                          Navigator.pop(context);
+                        });
+                      },
+                      suffixIcon: (value, data) {
+                        return Container(
+                            height: 16,
+                            width: 16,
+                            padding: EdgeInsets.only(right: 8),
+                            child: AppSvg.asset(AssetUtils.downArrow,
+                                color: AppColor.dark_gray_1));
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 24.0),
+                    child: AppTextField(
+                      labelText: S.of(context).nickName,
+                      hintText: S.of(context).optional,
+                      controller: model.minimumSettlementController,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 126,
+                  ),
+                  AnimatedButton(
+                    buttonText: S.of(context).swipeToProceed,
+                    borderColor:
+                        Theme.of(context).accentTextTheme.bodyText1!.color,
+                    textColor:
+                        Theme.of(context).accentTextTheme.bodyText1!.color,
+                  ),
+                  SizedBox(height: 28)
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
