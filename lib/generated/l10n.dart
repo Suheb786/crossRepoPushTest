@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7145,6 +7146,26 @@ class S {
     return Intl.message(
       'Your free virtual debit card has been issued, and the physical one is\non its way.',
       name: 'yourFreeVirtualDebitCardHasBeenIssued',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password does not meet requirement. \nPlease try again.`
+  String get passwordNotMeetCriteria {
+    return Intl.message(
+      'Password does not meet requirement. \nPlease try again.',
+      name: 'passwordNotMeetCriteria',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current password is invalid. Password does not meet requirement.`
+  String get currentPasswordInvalid {
+    return Intl.message(
+      'Current password is invalid. Password does not meet requirement.',
+      name: 'currentPasswordInvalid',
       desc: '',
       args: [],
     );

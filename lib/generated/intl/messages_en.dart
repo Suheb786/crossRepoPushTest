@@ -277,6 +277,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Credit Limit Settings"),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("CURRENT PASSWORD"),
+        "currentPasswordInvalid": MessageLookupByLibrary.simpleMessage(
+            "Current password is invalid. Password does not meet requirement."),
         "customerService": MessageLookupByLibrary.simpleMessage(
             "24/7 Customer Service Service"),
         "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
@@ -849,6 +851,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create Password"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Password did not match"),
+        "passwordNotMeetCriteria": MessageLookupByLibrary.simpleMessage(
+            "Password does not meet requirement. \nPlease try again."),
         "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Password is successfully updated"),
         "payBack": MessageLookupByLibrary.simpleMessage("Pay back"),

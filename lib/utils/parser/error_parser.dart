@@ -326,6 +326,10 @@ class ErrorParser {
         return localisedHelper.emptyConfirmPin;
       case ErrorType.EMPTY_INCOME:
         return localisedHelper.emptyIncome;
+      case ErrorType.PASSWORD_NOT_MEET_CRITERIA:
+        return localisedHelper.passwordNotMeetCriteria;
+      case ErrorType.CURRENT_PASSWORD_INVALID:
+        return localisedHelper.currentPasswordInvalid;
 
       default:
         return "";
