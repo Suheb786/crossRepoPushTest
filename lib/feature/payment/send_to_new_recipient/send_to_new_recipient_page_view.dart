@@ -106,8 +106,8 @@ class SendToNewRecipientPageView
                                 dataBuilder: (context, data) {
                                   return GestureDetector(
                                     onVerticalDragEnd: (details) {
-                                      if (details.primaryVelocity!
-                                          .isNegative) {} else {
+                                      if (details.primaryVelocity!.isNegative) {
+                                      } else {
                                         Navigator.pop(context);
                                       }
                                     },
@@ -126,7 +126,7 @@ class SendToNewRecipientPageView
                                     child: Card(
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
-                                          BorderRadius.circular(16)),
+                                              BorderRadius.circular(16)),
                                       clipBehavior: Clip.antiAliasWithSaveLayer,
                                       elevation: 2,
                                       color: Theme.of(context)
@@ -142,20 +142,20 @@ class SendToNewRecipientPageView
                                             top: 32, left: 24, right: 24),
                                         child: Column(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Expanded(
                                               child: SingleChildScrollView(
                                                 child: Column(
                                                   crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                      CrossAxisAlignment.start,
                                                   children: [
                                                     Text(
                                                       S.of(context).sendMoneyTo,
                                                       style: TextStyle(
                                                           fontSize: 14,
                                                           fontWeight:
-                                                          FontWeight.w600),
+                                                              FontWeight.w600),
                                                     ),
                                                     Padding(
                                                       padding: EdgeInsets.only(
@@ -179,10 +179,10 @@ class SendToNewRecipientPageView
                                                           if (!hasFocus) {
                                                             model.checkSendMoney(
                                                                 amount: ProviderScope
-                                                                    .containerOf(
-                                                                    context)
+                                                                        .containerOf(
+                                                                            context)
                                                                     .read(
-                                                                    sendMoneyViewModelProvider)
+                                                                        sendMoneyViewModelProvider)
                                                                     .currentPinValue,
                                                                 iban: model
                                                                     .ibanOrMobileController
@@ -199,52 +199,45 @@ class SendToNewRecipientPageView
                                                             visibility) {
                                                           return Visibility(
                                                             visible:
-                                                            visibility!,
+                                                                visibility!,
                                                             child: Padding(
                                                                 padding: EdgeInsets
                                                                     .only(
-                                                                    top:
-                                                                    16),
+                                                                        top:
+                                                                            16),
                                                                 child: Row(
                                                                   mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
+                                                                      MainAxisAlignment
+                                                                          .spaceBetween,
                                                                   children: [
                                                                     Expanded(
-                                                                      child: Text(
+                                                                      child:
+                                                                          Text(
                                                                         "Name",
                                                                         style:
-                                                                        TextStyle(
+                                                                            TextStyle(
                                                                           fontSize:
-                                                                          12,
+                                                                              12,
                                                                           fontWeight:
-                                                                          FontWeight
-                                                                              .w400,
+                                                                              FontWeight.w400,
                                                                         ),
                                                                       ),
                                                                     ),
                                                                     Expanded(
-                                                                      child: Text(
-                                                                        (model
-                                                                            .transferResponse
-                                                                            .name !=
-                                                                            null &&
-                                                                            model
-                                                                                .transferResponse
-                                                                                .name!
-                                                                                .isNotEmpty)
-                                                                            ? model
-                                                                            .transferResponse
-                                                                            .name!
+                                                                      child:
+                                                                          Text(
+                                                                        (model.transferResponse.name != null &&
+                                                                                model.transferResponse.name!.isNotEmpty)
+                                                                            ? model.transferResponse.name!
                                                                             : '-',
-                                                                        maxLines: 2,
+                                                                        maxLines:
+                                                                            2,
                                                                         style:
-                                                                        TextStyle(
+                                                                            TextStyle(
                                                                           fontSize:
-                                                                          12,
+                                                                              12,
                                                                           fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
+                                                                              FontWeight.w600,
                                                                         ),
                                                                       ),
                                                                     )
@@ -262,8 +255,8 @@ class SendToNewRecipientPageView
                                                         style: TextStyle(
                                                             fontSize: 14,
                                                             fontWeight:
-                                                            FontWeight
-                                                                .w600),
+                                                                FontWeight
+                                                                    .w600),
                                                       ),
                                                     ),
                                                     Padding(
@@ -312,7 +305,7 @@ class SendToNewRecipientPageView
                                                               width: 16,
                                                               padding: EdgeInsets
                                                                   .only(
-                                                                  right: 8),
+                                                                      right: 8),
                                                               child: AppSvg.asset(
                                                                   AssetUtils
                                                                       .downArrow,
@@ -367,7 +360,7 @@ class SendToNewRecipientPageView
                                                               width: 16,
                                                               padding: EdgeInsets
                                                                   .only(
-                                                                  right: 8),
+                                                                      right: 8),
                                                               child: AppSvg.asset(
                                                                   AssetUtils
                                                                       .downArrow,
@@ -378,14 +371,14 @@ class SendToNewRecipientPageView
                                                     ),
                                                     AppStreamBuilder<bool>(
                                                         stream:
-                                                        model.switchValue,
+                                                            model.switchValue,
                                                         initialData: false,
                                                         dataBuilder: (context,
                                                             isActive) {
                                                           return Padding(
                                                             padding:
-                                                            EdgeInsets.only(
-                                                                top: 24),
+                                                                EdgeInsets.only(
+                                                                    top: 24),
                                                             child: Column(
                                                               children: [
                                                                 AppSwitchLabelWidget(
@@ -406,25 +399,25 @@ class SendToNewRecipientPageView
                                                                         value);
                                                                   },
                                                                   isActive:
-                                                                  isActive,
+                                                                      isActive,
                                                                 ),
                                                                 Visibility(
                                                                   visible:
-                                                                  isActive!,
+                                                                      isActive!,
                                                                   child:
-                                                                  Container(
+                                                                      Container(
                                                                     padding: EdgeInsets
                                                                         .only(
-                                                                        top:
-                                                                        16),
+                                                                            top:
+                                                                                16),
                                                                     child: Row(
                                                                       children: [
                                                                         AppStreamBuilder<
                                                                             String>(
                                                                           stream:
-                                                                          model.uploadProfilePhotoStream,
+                                                                              model.uploadProfilePhotoStream,
                                                                           initialData:
-                                                                          '',
+                                                                              '',
                                                                           onData:
                                                                               (data) {
                                                                             if (data != null &&
@@ -465,13 +458,13 @@ class SendToNewRecipientPageView
                                                                                     child: ClipOval(
                                                                                       child: image!.isEmpty
                                                                                           ? AppSvg.asset(
-                                                                                        AssetUtils.personCircle,
-                                                                                        fit: BoxFit.fill,
-                                                                                      )
+                                                                                              AssetUtils.personCircle,
+                                                                                              fit: BoxFit.fill,
+                                                                                            )
                                                                                           : Image.file(
-                                                                                        File(image),
-                                                                                        fit: BoxFit.fill,
-                                                                                      ),
+                                                                                              File(image),
+                                                                                              fit: BoxFit.fill,
+                                                                                            ),
                                                                                     ),
                                                                                   ),
                                                                                 );
@@ -481,11 +474,11 @@ class SendToNewRecipientPageView
                                                                         ),
                                                                         Expanded(
                                                                           child:
-                                                                          Padding(
+                                                                              Padding(
                                                                             padding:
-                                                                            EdgeInsets.only(left: 14),
+                                                                                EdgeInsets.only(left: 14),
                                                                             child:
-                                                                            Text(
+                                                                                Text(
                                                                               (model.transferResponse.name != null && model.transferResponse.name!.isNotEmpty) ? model.transferResponse.name! : '-',
                                                                               maxLines: 2,
                                                                               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
@@ -638,7 +631,7 @@ class SendToNewRecipientPageView
                                                       ),
                                                       child: Align(
                                                         alignment:
-                                                        Alignment.center,
+                                                            Alignment.center,
                                                         child: AppStreamBuilder<
                                                             bool>(
                                                           stream: model
@@ -649,7 +642,7 @@ class SendToNewRecipientPageView
                                                             return Visibility(
                                                               visible: isValid!,
                                                               child:
-                                                              AnimatedButton(
+                                                                  AnimatedButton(
                                                                 buttonText: S
                                                                     .of(context)
                                                                     .swipeToProceed,
@@ -676,10 +669,10 @@ class SendToNewRecipientPageView
                                                       .swipeDownToCancel,
                                                   style: TextStyle(
                                                       color:
-                                                      AppColor.dark_gray_1,
+                                                          AppColor.dark_gray_1,
                                                       fontSize: 10,
                                                       fontWeight:
-                                                      FontWeight.w400),
+                                                          FontWeight.w400),
                                                 ),
                                               ),
                                             )
@@ -711,6 +704,7 @@ class SendToNewRecipientPageView
             rotateButtonsHidden: true,
             aspectRatioPickerButtonHidden: true,
             doneButtonTitle: 'Choose'),
+        androidUiSettings: AndroidUiSettings(hideBottomControls: true),
         aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
     if (cropped != null) {
       model.selectedProfile = cropped.path;

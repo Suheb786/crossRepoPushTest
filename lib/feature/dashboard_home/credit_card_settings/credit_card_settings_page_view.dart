@@ -153,7 +153,10 @@ class CreditCardSettingsPageView
                           tileIcon: AssetUtils.cardShield,
                         ),
                         SettingTile(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(
+                                context, RoutePaths.SupplementaryCreditCard);
+                          },
                           title: S.of(context).requestSupplementarycard,
                           tileIcon: AssetUtils.cardIcon,
                         ),

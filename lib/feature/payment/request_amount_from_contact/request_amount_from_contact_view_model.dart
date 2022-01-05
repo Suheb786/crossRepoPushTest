@@ -1,6 +1,8 @@
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
+import 'package:domain/model/purpose/purpose.dart';
+import 'package:domain/model/purpose/purpose_detail.dart';
 import 'package:domain/usecase/payment/get_account_by_alias_usecase.dart';
 import 'package:domain/usecase/payment/request_amount_from_contact_usecase.dart';
 import 'package:flutter/material.dart';
@@ -27,31 +29,36 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
   Beneficiary? beneficiary;
 
   PublishSubject<RequestAmountFromContactUseCaseParams>
-  _requestFromContactRequest = PublishSubject();
+      _requestFromContactRequest = PublishSubject();
 
   PublishSubject<Resource<RequestToPayContentResponse>>
-  _requestFromContactResponse = PublishSubject();
+      _requestFromContactResponse = PublishSubject();
 
   BehaviorSubject<GetAccountByAliasUseCaseParams> _getAccountByAliasRequest =
-  BehaviorSubject();
+      BehaviorSubject();
 
-  BehaviorSubject<
-      Resource<GetAccountByAliasContentResponse>> _getAccountByAliasResponse =
-  BehaviorSubject();
+  Purpose? purpose;
+
+  PurposeDetail? purposeDetail;
+
+  BehaviorSubject<Resource<GetAccountByAliasContentResponse>>
+      _getAccountByAliasResponse = BehaviorSubject();
 
   Stream<Resource<GetAccountByAliasContentResponse>>
-  get getAccountByAliasResponseStream => _getAccountByAliasResponse.stream;
+      get getAccountByAliasResponseStream => _getAccountByAliasResponse.stream;
 
   Stream<Resource<RequestToPayContentResponse>>
-  get requestFromContactResponseStream =>
-      _requestFromContactResponse.stream;
+      get requestFromContactResponseStream =>
+          _requestFromContactResponse.stream;
 
-  void updatePurposeDetail(String value) {
-    _purposeDetailSubject.safeAdd(value);
+  void updatePurposeDetail(PurposeDetail value) {
+    purposeDetail = value;
+    _purposeDetailSubject.safeAdd(value.labelEn!);
   }
 
-  void updatePurpose(String value) {
-    _purposeSubject.safeAdd(value);
+  void updatePurpose(Purpose value) {
+    purpose = value;
+    _purposeSubject.safeAdd(value.labelEn!);
   }
 
   RequestAmountFromContactViewModel(this._requestAmountFromContactUseCase,
@@ -59,8 +66,8 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
     _getAccountByAliasRequest.listen((value) {
       print("got beneficiary iban: ${beneficiary!.iban}");
       RequestManager(value,
-          createCall: () =>
-              _getAccountByAliasUseCase.execute(params: value))
+              createCall: () =>
+                  _getAccountByAliasUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -77,8 +84,8 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
 
     _requestFromContactRequest.listen((value) {
       RequestManager(value,
-          createCall: () =>
-              _requestAmountFromContactUseCase.execute(params: value))
+              createCall: () =>
+                  _requestAmountFromContactUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _requestFromContactResponse.safeAdd(event);
@@ -125,8 +132,17 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
 
   void requestFromNewRecipient(BuildContext context) {
     _requestFromContactRequest.safeAdd(RequestAmountFromContactUseCaseParams(
-      purpose: _purposeSubject.value,
-      purposeDetail: _purposeDetailSubject.value,
+      purpose: purpose == null
+          ? (beneficiary!.purpose == null || beneficiary!.purpose!.isEmpty
+              ? 'Personal'
+              : beneficiary!.purpose)
+          : purpose!.code!,
+      purposeDetail: purposeDetail == null
+          ? (beneficiary!.purposeDetails == null ||
+                  beneficiary!.purposeDetails!.isEmpty
+              ? 'Transfer to Friend or Family'
+              : beneficiary!.purposeDetails!)
+          : purposeDetail!.strCode!,
       amount: int.parse(currentPinValue),
       dbtrBic: beneficiary!.iban ?? "",
       dbtrAcct: beneficiary!.accountNo ?? "",

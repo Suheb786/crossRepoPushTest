@@ -29,12 +29,12 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_s
 import 'package:neo_bank/feature/dashboard_home/debit_card_verification_success/debit_card_verification_success_page.dart';
 import 'package:neo_bank/feature/dashboard_home/download_transaction/download_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart';
-import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
-import 'package:neo_bank/feature/help_center/call_ended/call_ended_page.dart';
-import 'package:neo_bank/feature/help_center/help_center_page.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
+import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
+import 'package:neo_bank/feature/help_center/call_ended/call_ended_page.dart';
+import 'package:neo_bank/feature/help_center/help_center_page.dart';
 import 'package:neo_bank/feature/login/login_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page.dart';
@@ -64,6 +64,10 @@ import 'package:neo_bank/feature/static_content/exemption_from_fatca_reporting_c
 import 'package:neo_bank/feature/static_content/fatca_certification/fatca_certification_page.dart';
 import 'package:neo_bank/feature/static_content/reference_number/reference_number_page.dart';
 import 'package:neo_bank/feature/static_content/us_tax_payer_identification_number/us_tax_payer_identification_number_page.dart';
+import 'package:neo_bank/feature/supplementary_card_in_review/supplementary_card_in_review_page.dart';
+import 'package:neo_bank/feature/supplementary_credit_card/supplementary_credit_card_page.dart';
+import 'package:neo_bank/feature/supplementary_credit_card_ready/supplementary_credit_card_ready_page.dart';
+import 'package:neo_bank/feature/supplementary_debit_card/supplementary_debit_card_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -386,6 +390,29 @@ class AppRouter {
             builder: (context) => ChangeCardPinSuccessPage(
                 settings.arguments as ChangeCardPinSuccessArguments),
             settings: RouteSettings(name: RoutePaths.ChangeCardPinSuccess));
+
+      case RoutePaths.SupplementaryCreditCard:
+        return CupertinoPageRoute(
+            builder: (context) => SupplementaryCreditCardPage(),
+            settings: RouteSettings(name: RoutePaths.SupplementaryCreditCard));
+
+      case RoutePaths.SupplementaryCreditCardReady:
+        return CupertinoPageRoute(
+            builder: (context) => SupplementaryCreditCardReadyPage(),
+            settings:
+                RouteSettings(name: RoutePaths.SupplementaryCreditCardReady));
+
+      case RoutePaths.SupplementaryDebitCard:
+        return CupertinoPageRoute(
+            builder: (context) => SupplementaryDebitCardPage(),
+            settings: RouteSettings(name: RoutePaths.SupplementaryDebitCard));
+
+      case RoutePaths.SupplementaryCardInReview:
+        return CupertinoPageRoute(
+            builder: (context) => SupplementaryCardInReviewPage(
+                settings.arguments as SupplementaryCardInReviewArguments),
+            settings:
+                RouteSettings(name: RoutePaths.SupplementaryCardInReview));
 
       default:
         return CupertinoPageRoute(
