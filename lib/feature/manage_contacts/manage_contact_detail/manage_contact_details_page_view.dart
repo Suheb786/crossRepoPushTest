@@ -10,6 +10,8 @@ import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_co
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/account_setting/choose_profile_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -195,7 +197,20 @@ class ManageContactDetailsPageView
                         controller: model.purposeController,
                         readOnly: true,
                         onPressed: () {
-                          ///TODO:after selecting value from dialog check for save Show button visibility
+                          if (model.purposeList.length > 0) {
+                            PurposeDialog.show(context,
+                                purposeList: model.purposeList,
+                                onSelected: (value) {
+                              model.updatePurpose(value);
+                              model.updatePurposeDetailList(
+                                  value.purposeDetails!);
+                              model.showSaveButton();
+                              Navigator.pop(context);
+                              model.updateType = UpdateType.details;
+                            }, onDismissed: () {
+                              Navigator.pop(context);
+                            });
+                          }
                         },
                         suffixIcon: (value, data) {
                           return Container(
@@ -213,7 +228,20 @@ class ManageContactDetailsPageView
                         inputType: TextInputType.text,
                         readOnly: true,
                         controller: model.purposeDetailsController,
-                        onPressed: () {},
+                        onPressed: () {
+                          if (model.purposeDetailList.isNotEmpty) {
+                            PurposeDetailDialog.show(context,
+                                purposeDetailList: model.purposeDetailList,
+                                onSelected: (value) {
+                              model.updatePurposeDetail(value);
+                              Navigator.pop(context);
+                              model.showSaveButton();
+                              model.updateType = UpdateType.details;
+                            }, onDismissed: () {
+                              Navigator.pop(context);
+                            });
+                          }
+                        },
                         suffixIcon: (value, data) {
                           return Container(
                               height: 16,
@@ -346,6 +374,7 @@ class ManageContactDetailsPageView
             rotateButtonsHidden: true,
             aspectRatioPickerButtonHidden: true,
             doneButtonTitle: 'Choose'),
+        androidUiSettings: AndroidUiSettings(hideBottomControls: true),
         aspectRatio: CropAspectRatio(ratioX: 1.0, ratioY: 1.0));
     if (cropped != null) {
       model.selectedProfile = cropped.path;

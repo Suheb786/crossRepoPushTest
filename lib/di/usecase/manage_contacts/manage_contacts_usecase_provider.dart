@@ -1,7 +1,6 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/manage_contacts/add_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/delete_beneficiary_usecase.dart';
-import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/get_contacts_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/upload_beneficiary_profile_image_usecase.dart';
@@ -18,12 +17,6 @@ final checkKycStatusUseCaseProvider =
 final deleteBeneficiaryUseCaseProvider =
     Provider.autoDispose<DeleteBeneficiaryUseCase>(
   (ref) => DeleteBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
-);
-
-///[GetBeneficiaryUseCase] provider
-final getBeneficiaryUseCaseProvider =
-    Provider.autoDispose<GetBeneficiaryUseCase>(
-  (ref) => GetBeneficiaryUseCase(ref.read(manageContactRepositoryProvider)),
 );
 
 ///[GetContactsUseCase] provider

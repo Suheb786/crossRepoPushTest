@@ -17,6 +17,9 @@ import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
 import 'package:domain/usecase/card_delivery/otp_for_change_card_pin_usecase.dart';
+import 'package:domain/usecase/card_delivery/personalize_credit_card_usecase.dart';
+import 'package:domain/usecase/card_delivery/personalize_debit_card_usecase.dart';
+import 'package:domain/usecase/card_delivery/relationship_with_card_holder_usecase.dart';
 import 'package:domain/usecase/card_delivery/unblock_debit_card_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/unfreeze_credit_card_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -116,3 +119,18 @@ final otpForChangeCardPinUseCaseProvider =
 final enterNewPinForCardUseCaseProvider =
     Provider.autoDispose<EnterNewPinForCardUseCase>(
         (ref) => EnterNewPinForCardUseCase(ref.read(cardRepositoryProvider)));
+
+///[RelationshipWithCardholderUseCase] provider
+final relationshipWithCardHolderUseCaseProvider =
+    Provider.autoDispose<RelationshipWithCardholderUseCase>(
+        (ref) => RelationshipWithCardholderUseCase());
+
+///[PersonalizeCreditCardUseCase] provider
+final personalizeCreditCardUseCaseProvider =
+    Provider.autoDispose<PersonalizeCreditCardUseCase>(
+        (ref) => PersonalizeCreditCardUseCase());
+
+///[PersonalizeDebitCardUseCase] provider
+final personalizeDebitCardUseCaseProvider =
+    Provider.autoDispose<PersonalizeDebitCardUseCase>(
+        (ref) => PersonalizeDebitCardUseCase());

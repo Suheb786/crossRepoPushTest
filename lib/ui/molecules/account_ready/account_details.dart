@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
@@ -32,7 +34,12 @@ class AccountDetails extends StatelessWidget {
             ),
             Visibility(
               visible: showIcon!,
-              child: AppSvg.asset(AssetUtils.copy),
+              child: InkWell(
+                  onTap: () {
+                    Clipboard.setData(ClipboardData(text: value ?? ''))
+                        .then((value) => Fluttertoast.showToast(msg: 'Copied'));
+                  },
+                  child: AppSvg.asset(AssetUtils.copy)),
             )
           ],
         )

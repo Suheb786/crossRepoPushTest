@@ -144,7 +144,10 @@ class RequestAmountFromContactPageView
                           ),
                         ),
                         Text(
-                          model.beneficiary!.fullName!,
+                          (model.beneficiary!.nickName != null &&
+                                  model.beneficiary!.nickName!.isNotEmpty)
+                              ? model.beneficiary!.nickName!
+                              : model.beneficiary!.fullName!,
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 20,
@@ -196,9 +199,7 @@ class RequestAmountFromContactPageView
                                       InkWell(
                                         onTap: () {
                                           EditTransactionPurposeDialog.show(
-                                              context,
-                                              beneficiary: model.beneficiary!,
-                                              onDismissed: () {
+                                              context, onDismissed: () {
                                             Navigator.pop(context);
                                           }, onSelected: (value1, value2) {
                                             print("got value: $value1");

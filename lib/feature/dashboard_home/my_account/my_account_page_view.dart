@@ -1,6 +1,8 @@
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
@@ -33,9 +35,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                           .next();
                     }
                   },
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom:15.0),
                     child: Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16)),
@@ -167,9 +168,22 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               color: Theme.of(context)
                                                   .accentColor),
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.only(left: 8),
-                                          child: AppSvg.asset(AssetUtils.copy),
+                                        InkWell(
+                                          onTap: () {
+                                            Clipboard.setData(ClipboardData(
+                                                    text: cardData.account!
+                                                            .accountNo ??
+                                                        ''))
+                                                .then((value) =>
+                                                    Fluttertoast.showToast(
+                                                        msg:
+                                                            'Account No. Copied'));
+                                          },
+                                          child: Padding(
+                                            padding: EdgeInsets.only(left: 8),
+                                            child:
+                                                AppSvg.asset(AssetUtils.copy),
+                                          ),
                                         )
                                       ],
                                     ),
@@ -198,9 +212,21 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                               fontWeight: FontWeight.w600,
                                               fontSize: 12),
                                         ),
-                                        Padding(
-                                          padding: EdgeInsets.only(left: 8),
-                                          child: AppSvg.asset(AssetUtils.copy),
+                                        InkWell(
+                                          onTap: () {
+                                            Clipboard.setData(ClipboardData(
+                                                    text: cardData
+                                                            .account!.iban ??
+                                                        ''))
+                                                .then((value) =>
+                                                    Fluttertoast.showToast(
+                                                        msg: 'IBAN Copied'));
+                                          },
+                                          child: Padding(
+                                            padding: EdgeInsets.only(left: 8),
+                                            child:
+                                                AppSvg.asset(AssetUtils.copy),
+                                          ),
                                         )
                                       ],
                                     ),

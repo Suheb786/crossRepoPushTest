@@ -113,6 +113,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than US or Jordan?"),
         "appName": MessageLookupByLibrary.simpleMessage("Neo Bank"),
+        "applyCreditCard":
+            MessageLookupByLibrary.simpleMessage("APPLY CREDIT CARD"),
+        "applyDebitCard":
+            MessageLookupByLibrary.simpleMessage("APPLY DEBIT CARD"),
+        "aramaxWillConnectYouSoon": MessageLookupByLibrary.simpleMessage(
+            "Aramex will contact you soon to deliver your physical card. "),
         "areYouAnyFirstDegreeQ": MessageLookupByLibrary.simpleMessage(
             "Are you or any first degree relatives a Political Exposed Person?"),
         "areYouBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
@@ -265,6 +271,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Credit Card Settings"),
         "creditCardVerified": MessageLookupByLibrary.simpleMessage(
             "Credit card\nhas been verified."),
+        "creditLimitSettings":
+            MessageLookupByLibrary.simpleMessage("Credit Limit Settings"),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("CURRENT PASSWORD"),
         "customerService": MessageLookupByLibrary.simpleMessage(
@@ -381,6 +389,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Upload valid nationality document."),
         "emptyNewPassword":
             MessageLookupByLibrary.simpleMessage("Enter New Password"),
+        "emptyNickname": MessageLookupByLibrary.simpleMessage("Empty Nickname"),
         "emptyPin": MessageLookupByLibrary.simpleMessage("Enter Pin"),
         "emptyPurpose":
             MessageLookupByLibrary.simpleMessage("Purpose should not be empty"),
@@ -749,6 +758,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "merchantPayments":
             MessageLookupByLibrary.simpleMessage("Merchant Payments"),
         "minDueBy": MessageLookupByLibrary.simpleMessage("MIN. DUE BY "),
+        "minimumSettlements":
+            MessageLookupByLibrary.simpleMessage("Minimum Settlement"),
         "mobileNoExist":
             MessageLookupByLibrary.simpleMessage("Mobile Number Exist"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
@@ -813,6 +824,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "openAccount": MessageLookupByLibrary.simpleMessage("OPEN AN ACCOUNT"),
         "openAccountNow":
             MessageLookupByLibrary.simpleMessage("Open Account Now"),
+        "optional": MessageLookupByLibrary.simpleMessage("(Optional)"),
         "or": MessageLookupByLibrary.simpleMessage("or"),
         "orContinueWith":
             MessageLookupByLibrary.simpleMessage("or continue with"),
@@ -918,6 +930,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "For salaried individuals, please provide either one of Job Certificate / Salary Slip"),
         "proofOfIncomeDescSetting": MessageLookupByLibrary.simpleMessage(
             "If you have a salary, upload either your job certificate or salary slip"),
+        "provideSupplementaryCardId": MessageLookupByLibrary.simpleMessage(
+            "Please provide supplementary cardholder’s ID"),
         "provisionClaim": MessageLookupByLibrary.simpleMessage(
             "provisions CLAIM of Article & paragraph"),
         "purpose": MessageLookupByLibrary.simpleMessage("PURPOSE"),
@@ -954,6 +968,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Register via Email"),
         "relationShipWithPepCaps":
             MessageLookupByLibrary.simpleMessage("RELATIONSHIP WITH PEP"),
+        "relationship": MessageLookupByLibrary.simpleMessage("Relationship"),
         "relationshipWithPEP":
             MessageLookupByLibrary.simpleMessage("Relationship with PEP"),
         "removeFromContact":
@@ -1013,8 +1028,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(
             "Hello! Which country\nare you from?"),
+        "selectCreditLimitSettings": MessageLookupByLibrary.simpleMessage(
+            "Select Credit Limit Settings"),
         "selectFromLibrary":
             MessageLookupByLibrary.simpleMessage("Select from Library"),
+        "selectMinimumSettlement":
+            MessageLookupByLibrary.simpleMessage("Select Minimum Settlement"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
@@ -1025,6 +1044,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "sending": MessageLookupByLibrary.simpleMessage("Sending"),
         "sentTo": MessageLookupByLibrary.simpleMessage("Sent to"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "setupAndPersonalizeYourNewCreditCard":
+            MessageLookupByLibrary.simpleMessage(
+                "Set up and personalize your new credit card"),
+        "setupAndPersonalizeYourNewDebitCard":
+            MessageLookupByLibrary.simpleMessage(
+                "Set up and personalize your new debit card"),
         "shareAccountInfo":
             MessageLookupByLibrary.simpleMessage("Share account info"),
         "shareMyReceipt":
@@ -1210,6 +1235,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "We will connect you\nin Blink..."),
         "weWillConnectYouInBlink": MessageLookupByLibrary.simpleMessage(
             "We will connect you\nin blink..."),
+        "weWillNotifyOnceReady": MessageLookupByLibrary.simpleMessage(
+            "We will notify you once it’s ready"),
         "welcome": MessageLookupByLibrary.simpleMessage("WELCOME"),
         "welcomeToNeuBank":
             MessageLookupByLibrary.simpleMessage("Welcome to\nNeuBank"),
@@ -1222,6 +1249,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "What is Claim of Tax Treaty Benefits?"),
         "whatIsYourEmploymentStatus": MessageLookupByLibrary.simpleMessage(
             "What is your employment status?"),
+        "whatRelationshipWithCardHolder": MessageLookupByLibrary.simpleMessage(
+            "What is your relationship\nwith cardholder?"),
         "whatYourEmailAndMobileNumber": MessageLookupByLibrary.simpleMessage(
             "What’s your email and mobile number?"),
         "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage(
@@ -1233,8 +1262,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "yes": MessageLookupByLibrary.simpleMessage("YES"),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
             "You will be notified once your contact\naccepts your request and money is\nadded into your account."),
+        "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(
+            "You will receive your card PIN via SMS. You can contact our Engagement Team in case not received."),
+        "yourApplicationInReview": MessageLookupByLibrary.simpleMessage(
+            "Your application is\nin review"),
         "yourCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage("Your card has\nbeen issued"),
+        "yourCardIsReady":
+            MessageLookupByLibrary.simpleMessage("Your card is ready!"),
         "yourCardReady":
             MessageLookupByLibrary.simpleMessage("Your card is ready!"),
         "yourCardReadyDesc": MessageLookupByLibrary.simpleMessage(

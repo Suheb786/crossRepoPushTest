@@ -20,8 +20,7 @@ class ManageContactDetailsPage
 }
 
 class ManageContactDetailsPageState extends BaseStatefulPage<
-    ManageContactDetailsPageViewModel,
-    ManageContactDetailsPage> {
+    ManageContactDetailsPageViewModel, ManageContactDetailsPage> {
   @override
   ProviderBase provideBase() {
     return manageContactDetailsViewModelProvider.call(widget._beneficiary);
@@ -40,9 +39,7 @@ class ManageContactDetailsPageState extends BaseStatefulPage<
             child: Padding(
               padding: const EdgeInsets.only(left: 24.0),
               child: AppSvg.asset(AssetUtils.leftArrow,
-                  color: Theme
-                      .of(context)
-                      .accentColor),
+                  color: Theme.of(context).accentColor),
             ),
           ),
         ));
@@ -51,6 +48,8 @@ class ManageContactDetailsPageState extends BaseStatefulPage<
   @override
   void onModelReady(ManageContactDetailsPageViewModel model) {
     getViewModel().setData();
+    getViewModel()
+        .getPurpose(getViewModel().beneficiary.accountNo!, "TransferI");
   }
 
   @override
@@ -60,14 +59,12 @@ class ManageContactDetailsPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override
-  Widget buildView(BuildContext context,
-      ManageContactDetailsPageViewModel model) {
+  Widget buildView(
+      BuildContext context, ManageContactDetailsPageViewModel model) {
     return ManageContactDetailsPageView(provideBase());
   }
 }

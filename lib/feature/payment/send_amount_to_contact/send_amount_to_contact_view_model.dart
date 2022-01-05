@@ -67,8 +67,6 @@ class SendAmountToContactViewModel extends BasePageViewModel {
       this._checkSendMoneyUseCase,
       this._transferUseCase,
       this._getPurposeUseCase) {
-    _purposeSubject.safeAdd(beneficiary.purpose!);
-    _purposeDetailSubject.safeAdd(beneficiary.purposeDetails!);
     _checkSendMoneyRequest.listen((value) {
       RequestManager(value,
               createCall: () => _checkSendMoneyUseCase.execute(params: value))

@@ -1,6 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
-import 'package:domain/usecase/payment/get_beneficiary_usecase.dart';
+import 'package:domain/usecase/manage_contacts/get_beneficiary_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
