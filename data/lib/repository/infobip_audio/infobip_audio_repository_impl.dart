@@ -6,18 +6,14 @@ import 'package:domain/error/network_error.dart';
 import 'package:domain/repository/help_center/help_canter.dart';
 
 class InfobipAudioRepositoryImpl extends HelpCenterRepository {
-  final InfobipAudioDS _infobipAudioDS;
+  final InfobipAudioLocalDs _infobipAudioDS;
 
   InfobipAudioRepositoryImpl(this._infobipAudioDS);
 
   @override
   Future<Either<NetworkError, bool>> initInfobip(
-      String applicationId,
-      String appKey,
-      String baseUrl,
       Function(InfobipCallStatusEnum) callback) async {
-    var infobipResult = await _infobipAudioDS.initInfobipAudio(
-        applicationId, appKey, baseUrl, callback);
+    var infobipResult = await _infobipAudioDS.initInfobipAudio(callback);
     if (!infobipResult) {
       return Left(NetworkError(
           httpError: 0,
@@ -30,8 +26,8 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
 
   @override
   Future<Either<NetworkError, String>> obtainToken(
-      String identity, String displayName) async {
-    var tokenDetails = await _infobipAudioDS.obtainToken(identity, displayName);
+      Map<String, String> parameter) async {
+    var tokenDetails = await _infobipAudioDS.obtainToken(parameter);
     if (tokenDetails == null) {
       return Left(NetworkError(
           httpError: 0,

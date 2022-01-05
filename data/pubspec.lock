@@ -404,7 +404,7 @@ packages:
   infobip_plugin:
     dependency: "direct main"
     description:
-      path: "../plugin/infobip_rtc_flutter"
+      path: "../infobip_rtc_flutter"
       relative: true
     source: path
     version: "0.0.1"

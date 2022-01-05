@@ -111,8 +111,8 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
   /// This method used for get your token with
   Future<void> obtainToken() async {
     try {
-      var tokenDetail = await InfobipPlugin().getToken(
-          identity: "Alice_Test", displayName: "Alice_Test");
+      var parameter = {'identity': "Alice_Test", "displayName": "Alice_Test"};
+      var tokenDetail = await InfobipPlugin().getToken(parameter: parameter);
       // ignore: avoid_print
       print(tokenDetail);
     } catch (e) {
@@ -143,7 +143,7 @@ class _MyAppState extends State<MyApp> implements CallEventListener {
     requestPermission().then((value) async {
       try {
         await InfobipPlugin().callConversations();
-        InfobipPlugin.setCallbackForCall(this);
+        InfobipPlugin().setCallbackForCall(this);
       } catch (e) {
         rethrow;
       }

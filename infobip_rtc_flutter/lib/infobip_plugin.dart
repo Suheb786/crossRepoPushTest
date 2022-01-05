@@ -17,7 +17,8 @@ class InfobipPlugin {
   Future<bool?> init(
       {required String applicationId,
       required String appKey,
-      required String baseUrl, required Function callStatus}) async {
+      required String baseUrl,
+      required Function callStatus}) async {
     _stream.receiveBroadcastStream().listen((onData) {
       print("LISTEN::$onData");
       callStatus(onData);
@@ -35,11 +36,11 @@ class InfobipPlugin {
   ///
   /// This method used to obtain token from destination, display name
   ///
-  Future<String?> getToken(
-      {required String identity, required String displayName}) async {
-    var parameter = {'identity': identity, "displayName": displayName};
+  Future<String?> getToken({required Map<String, String> parameter}) async {
+    // var parameter = {'identity': identity, "displayName": displayName};
     final String? tokenDetail =
         await _channel.invokeMethod(MethodKeys.getToken, parameter);
+    print("Token $tokenDetail");
     return tokenDetail;
   }
 
@@ -47,13 +48,14 @@ class InfobipPlugin {
   /// This method is used for establish the call
   ///
   Future<bool> callConversations() async {
-   return await _channel.invokeMethod(MethodKeys.makeCall);
+    return await _channel.invokeMethod(MethodKeys.makeCall);
   }
 
   ///
   /// This method is used for listen the call status
   ///
-  static Stream<String?> get listenCallStatus async* {
+
+  Stream<String?> get listenCallStatus async* {
     var result =
         await _channel.invokeMethod<String?>(MethodKeys.finalCallStatus);
 
@@ -62,7 +64,7 @@ class InfobipPlugin {
 
   void handleLocationChanges() {}
 
-  static setCallbackForCall(CallEventListener callEventListener) {
+  setCallbackForCall(CallEventListener callEventListener) {
     listenCallStatus.listen((event) {
       switch (event) {
         case CallStatus.ON_RINGING:
@@ -144,6 +146,7 @@ class InfobipPlugin {
   ///
   Future<bool?> hangUpCall() async {
     var result = await _channel.invokeMethod<bool?>(MethodKeys.callHangUp);
+
     return result;
   }
 }

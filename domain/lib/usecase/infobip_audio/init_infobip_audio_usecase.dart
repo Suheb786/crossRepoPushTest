@@ -15,22 +15,14 @@ class InfobipAudioPluginUseCase
   @override
   Future<Either<BaseError, bool>> execute(
       {required InfobipAudioPluginUseCaseParams params}) async {
-    return _helpCenterRepository.initInfobip(
-        params.applicationId, params.appKey, params.baseUrl, params.callback);
+    return _helpCenterRepository.initInfobip(params.callback);
   }
 }
 
 class InfobipAudioPluginUseCaseParams extends Params {
-  final String applicationId;
-  final String appKey;
-  final String baseUrl;
   final Function(InfobipCallStatusEnum) callback;
 
-  InfobipAudioPluginUseCaseParams(
-      {required this.applicationId,
-      required this.appKey,
-      required this.baseUrl,
-      required this.callback});
+  InfobipAudioPluginUseCaseParams({required this.callback});
 
   @override
   Either<AppError, bool> verify() {

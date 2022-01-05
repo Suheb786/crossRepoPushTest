@@ -1,8 +1,8 @@
 import 'package:data/db/floor/database_properties.dart';
 import 'package:data/db/floor/floor_db_service.dart';
-import 'package:data/di/infobip_audio_module.dart';
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/local/base/rsa_key_helper.dart';
+import 'package:data/infobip_audio/infobip_audio_service.dart';
 import 'package:data/local_auth/bio_matric/bio_metric_service.dart';
 import 'package:data/source/country/country_datasource.dart';
 import 'package:data/source/country/local/country_local_ds_impl.dart';
@@ -15,6 +15,7 @@ import 'package:data/source/upload_document/upload_document_datasource.dart';
 import 'package:data/source/user/local/user_local_ds_impl.dart';
 import 'package:data/source/user/user_data_sources.dart';
 import 'package:device_info/device_info.dart';
+import 'package:infobip_plugin/infobip_plugin.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:riverpod/riverpod.dart';
 
@@ -63,10 +64,20 @@ var deviceInfoHelperProvider =
 //   ),
 // );
 
+final infobipAudioProvider = Provider<InfobipPlugin>(
+  (ref) => InfobipPlugin(),
+);
+
+final infobipAudioServiceProvider = Provider<InfoBipAudioService>(
+  (ref) => InfoBipAudioService(
+    ref.read(infobipAudioProvider),
+  ),
+);
+
 ///rsa Helper provider
 final rsaHelperProvider = Provider<RsaKeyHelper>(
   (ref) => RsaKeyHelper(),
 );
 
-final infobipDatasourceProvider = Provider<InfobipAudioDS>(
+final infobipDatasourceProvider = Provider<InfobipAudioLocalDs>(
     (ref) => InfobipAudioDSImpl(ref.read(infobipAudioServiceProvider)));

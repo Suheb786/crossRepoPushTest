@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
 
   infobip_plugin:
-    path: ../plugin/infobip_rtc_flutter
+    path: ../infobip_rtc_flutter
 
   retrofit: ^2.0.1
   logger: ^1.1.0

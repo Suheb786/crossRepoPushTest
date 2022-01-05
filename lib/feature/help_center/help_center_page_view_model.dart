@@ -74,18 +74,15 @@ class HelpCenterPageViewModel extends BasePageViewModel {
 
   initInfobipPlugin() {
     _initInfobipRequestSubject.safeAdd(InfobipAudioPluginUseCaseParams(
-        applicationId: "75154e24-1e99-48e4-a25d-9f561df4d101",
-        appKey:
-            "d48f97a07a5828761b1b8abe2976a24a-f66e3aa6-ff53-4387-a45e-0f52bdc89a11",
-        baseUrl: "https://gyw5rw.api.infobip.com",
         callback: (InfobipCallStatusEnum status) {
-          _callStatusSubject.safeAdd(status);
-        }));
+      _callStatusSubject.safeAdd(status);
+    }));
   }
 
   obtainTokenForCall() {
-    _obtainTokenRequestSubject.safeAdd(ObtainTokenUseCaseParams(
-        identity: 'Alice_Test', displayName: 'Alice Test'));
+    var parameter = {"identity": 'Alice_Test', "displayName": 'Alice Test'};
+    _obtainTokenRequestSubject
+        .safeAdd(ObtainTokenUseCaseParams(parameter: parameter));
   }
 
   establishCall() {

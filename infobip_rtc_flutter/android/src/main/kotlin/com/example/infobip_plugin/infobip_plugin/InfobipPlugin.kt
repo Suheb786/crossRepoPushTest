@@ -150,7 +150,7 @@ class InfobipPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
                 client.newCall(request).enqueue(object : Callback {
                     override fun onFailure(call: Call, e: IOException) {
-                        Log.d("MAIN ACT", "onFailure:e -> $e")
+                        Log.d("MAIN ACT", "onFailure: ${e.localizedMessage}")
                     }
 
                     override fun onResponse(call: Call, response: Response) {
@@ -172,7 +172,7 @@ class InfobipPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
                             Log.e(TAG, "onResponse: callToken -> $callToken")
                             Log.e(TAG, "onResponse: callExpirationTime -> $callExpirationTime")
                         } catch (e: Exception) {
-                            Log.e("MAIN ACT", "onResponse:11 ${e}")
+                            Log.e("MAIN ACT", "onResponse:11 ${e.toString()}")
                         }
                     }
                 })

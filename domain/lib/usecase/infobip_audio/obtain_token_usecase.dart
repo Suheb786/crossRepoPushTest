@@ -12,19 +12,16 @@ class ObtainTokenUseCase
   ObtainTokenUseCase(this._helpCenterRepository);
 
   @override
-  Future<Either<BaseError, String>> execute({required ObtainTokenUseCaseParams params}) {
-      return _helpCenterRepository.obtainToken(
-          params.identity,
-          params.displayName
-      );
+  Future<Either<BaseError, String>> execute(
+      {required ObtainTokenUseCaseParams params}) {
+    return _helpCenterRepository.obtainToken(params.parameter);
   }
 }
 
 class ObtainTokenUseCaseParams extends Params {
-  final String identity;
-  final String displayName;
+  final Map<String, String> parameter;
 
-  ObtainTokenUseCaseParams({required this.identity,required this.displayName});
+  ObtainTokenUseCaseParams({required this.parameter});
 
   @override
   Either<AppError, bool> verify() {

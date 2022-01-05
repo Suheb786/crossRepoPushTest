@@ -8,14 +8,12 @@ class InfoBipAudioService {
   InfoBipAudioService(this._infobipPlugin);
 
   Future<bool> initPlugin(
-      {required String applicationId,
-      required String appKey,
-      required String baseUrl,
-      required Function(InfobipCallStatusEnum) callback}) async {
+      {required Function(InfobipCallStatusEnum) callback}) async {
     var result = await _infobipPlugin.init(
-        appKey: appKey,
-        applicationId: applicationId,
-        baseUrl: baseUrl,
+        applicationId: "75154e24-1e99-48e4-a25d-9f561df4d101",
+        appKey:
+            "d48f97a07a5828761b1b8abe2976a24a-f66e3aa6-ff53-4387-a45e-0f52bdc89a11",
+        baseUrl: "https://gyw5rw.api.infobip.com",
         callStatus: (String status) {
           print(status);
           callback(status.fromCallStatusValue());
@@ -26,11 +24,9 @@ class InfoBipAudioService {
   ///
   /// This method used for get your token with
   ///
-  Future<String> obtainToken(
-      {required String identity, required String displayName}) async {
+  Future<String> obtainToken({required Map<String, String> parameter}) async {
     try {
-      var tokenDetail = await _infobipPlugin.getToken(
-          identity: identity, displayName: displayName);
+      var tokenDetail = await _infobipPlugin.getToken(parameter: parameter);
       return tokenDetail!;
     } catch (e) {
       rethrow;

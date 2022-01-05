@@ -1,10 +1,9 @@
 import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 
-abstract class InfobipAudioDS {
-  Future<bool> initInfobipAudio(String applicationId, String appKey,
-      String baseUrl, Function(InfobipCallStatusEnum) callback);
+abstract class InfobipAudioLocalDs {
+  Future<bool> initInfobipAudio(Function(InfobipCallStatusEnum) callback);
 
-  Future<String> obtainToken(String identity, String displayName);
+  Future<String> obtainToken(Map<String, String> parameter);
 
   Future<bool> establishCall();
 }
