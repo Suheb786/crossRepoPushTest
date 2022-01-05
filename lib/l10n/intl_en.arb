@@ -729,5 +729,8 @@
   "applyDebitCard": "APPLY DEBIT CARD",
   "setupAndPersonalizeYourNewDebitCard": "Set up and personalize your new debit card",
   "yourApplicationInReview": "Your application is\nin review",
-  "weWillNotifyOnceReady": "We will notify you once it’s ready"
+  "weWillNotifyOnceReady": "We will notify you once it’s ready",
+  "emptyIncome": "Enter total annual income",
+  "accountReadyMsg": "Account ready!",
+  "yourFreeVirtualDebitCardHasBeenIssued": "Your free virtual debit card has been issued, and the physical one is\non its way."
 }

@@ -61,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ACCOUNT OPENING PURPOSE"),
         "accountReady": MessageLookupByLibrary.simpleMessage(
             "Your account is up and ready. \nLet’s get your Blink Debit Card."),
+        "accountReadyMsg":
+            MessageLookupByLibrary.simpleMessage("Account ready!"),
         "accountRegistration":
             MessageLookupByLibrary.simpleMessage("ACCOUNT REGISTRATION"),
         "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
@@ -377,6 +379,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "IBAN / Mobie / Alias should not be empty"),
         "emptyIdNumber": MessageLookupByLibrary.simpleMessage(
             "Id Number field cannot be empty"),
+        "emptyIncome":
+            MessageLookupByLibrary.simpleMessage("Enter total annual income"),
         "emptyIncomeDocument": MessageLookupByLibrary.simpleMessage(
             "Please upload income document"),
         "emptyMotherName": MessageLookupByLibrary.simpleMessage(
@@ -1276,6 +1280,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately."),
         "yourContactDetailsUpdated": MessageLookupByLibrary.simpleMessage(
             "Your contact details has been saved."),
+        "yourFreeVirtualDebitCardHasBeenIssued":
+            MessageLookupByLibrary.simpleMessage(
+                "Your free virtual debit card has been issued, and the physical one is\non its way."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature")
       };
 }

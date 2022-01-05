@@ -324,6 +324,8 @@ class ErrorParser {
         return localisedHelper.invalidLimitValue;
       case ErrorType.EMPTY_CONFIRM_PIN:
         return localisedHelper.emptyConfirmPin;
+      case ErrorType.EMPTY_INCOME:
+        return localisedHelper.emptyIncome;
 
       default:
         return "";

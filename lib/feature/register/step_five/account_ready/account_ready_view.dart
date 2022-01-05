@@ -29,9 +29,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
       child: Container(
           height: double.infinity,
           width: double.infinity,
-          color: Theme
-              .of(context)
-              .primaryColor,
+          color: Theme.of(context).primaryColor,
           child: AppStreamBuilder<Resource<GetAccountDetailsResponse>>(
             stream: model.getAccountDetailsStream,
             initialData: Resource.none(),
@@ -61,7 +59,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                       ),
                                       child: Center(
                                           child:
-                                          AppSvg.asset(AssetUtils.right)),
+                                              AppSvg.asset(AssetUtils.right)),
                                     ),
                                   ),
                                 ],
@@ -71,31 +69,24 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                               height: 34,
                             ),
                             AccountReadyHeader(
-                                title: S
-                                    .of(context)
-                                    .accountCreated,
+                                title: S.of(context).accountReadyMsg,
                                 subTitle: S
                                     .of(context)
-                                    .accountReady),
+                                    .yourFreeVirtualDebitCardHasBeenIssued),
                             SizedBox(
                               height: 40,
                             ),
                             Container(
-                              height: 104,
-                              width: 327,
                               decoration: BoxDecoration(
-                                  color: Theme
-                                      .of(context)
-                                      .cardColor,
+                                  color: Theme.of(context).cardColor,
                                   borderRadius: BorderRadius.circular(16)),
+                              margin: EdgeInsets.symmetric(horizontal: 24),
                               padding: EdgeInsets.symmetric(
-                                  horizontal: 16, vertical: 24),
+                                  horizontal: 24, vertical: 24),
                               child: Column(
                                 children: [
                                   AccountDetails(
-                                      title: S
-                                          .of(context)
-                                          .refTitle,
+                                      title: S.of(context).refTitle,
                                       value: response
                                           .data!
                                           .getAccountDetailsContent!
@@ -105,9 +96,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                                     height: 16,
                                   ),
                                   AccountDetails(
-                                    title: S
-                                        .of(context)
-                                        .iban,
+                                    title: S.of(context).iban,
                                     value: response.data!
                                         .getAccountDetailsContent!.data!.iban,
                                     showIcon: true,
@@ -121,26 +110,16 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                       Column(
                         children: [
                           AnimatedButton(
-                            buttonText: S
-                                .of(context)
-                                .swipeToProceed,
-                            textColor: Theme
-                                .of(context)
-                                .accentColor,
-                            borderColor: Theme
-                                .of(context)
-                                .accentColor,
+                            buttonText: S.of(context).swipeToProceed,
+                            textColor: Theme.of(context).accentColor,
+                            borderColor: Theme.of(context).accentColor,
                           ),
                           Padding(
                             padding: EdgeInsets.only(top: 14.0),
                             child: Text(
-                              S
-                                  .of(context)
-                                  .cardDelivery,
+                              S.of(context).cardDelivery,
                               style: TextStyle(
-                                color: Theme
-                                    .of(context)
-                                    .accentColor,
+                                color: Theme.of(context).accentColor,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 12,
                               ),
@@ -158,9 +137,7 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                   return Center(
                     child: CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation<Color>(
-                          Theme
-                              .of(context)
-                              .accentColor),
+                          Theme.of(context).accentColor),
                       strokeWidth: 2,
                     ),
                   );

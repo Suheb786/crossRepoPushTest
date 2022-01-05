@@ -7119,6 +7119,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter total annual income`
+  String get emptyIncome {
+    return Intl.message(
+      'Enter total annual income',
+      name: 'emptyIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account ready!`
+  String get accountReadyMsg {
+    return Intl.message(
+      'Account ready!',
+      name: 'accountReadyMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your free virtual debit card has been issued, and the physical one is\non its way.`
+  String get yourFreeVirtualDebitCardHasBeenIssued {
+    return Intl.message(
+      'Your free virtual debit card has been issued, and the physical one is\non its way.',
+      name: 'yourFreeVirtualDebitCardHasBeenIssued',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

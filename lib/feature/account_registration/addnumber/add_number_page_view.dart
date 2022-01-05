@@ -42,8 +42,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                 onData: (data) {
                   print("data.status ${data.status}");
                   if (data.status == Status.SUCCESS) {
-                    ProviderScope
-                        .containerOf(context)
+                    ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .pageController
                         .next();
@@ -125,9 +124,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                 .mobileNumber
                                                 .toUpperCase(),
                                             hintText:
-                                            S
-                                                .of(context)
-                                                .mobileNumberHint,
+                                                S.of(context).mobileNumberHint,
                                             inputType: TextInputType.number,
                                             inputAction: TextInputAction.done,
                                             inputFormatters: [
@@ -135,7 +132,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                   model.countryData.mobileMax),
                                             ],
                                             controller:
-                                            model.mobileNumberController,
+                                                model.mobileNumberController,
                                             key: model.mobileNumberKey,
                                             onChanged: (value) {
                                               model.validateMobile();
@@ -150,13 +147,13 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                           .of(context)
                                                           .mobileNumber,
                                                       onSelected: (data) {
-                                                        Navigator.pop(context);
-                                                        model.countryData =
-                                                            data;
-                                                        print(
-                                                            'selectedData---->${data
-                                                                .phoneCode}');
-                                                      }, onDismissed: () {
+                                                    Navigator.pop(context);
+                                                    model.countryData = data;
+                                                    model.setSelectedCountry(
+                                                        data);
+                                                    print(
+                                                        'selectedData---->${data.phoneCode}');
+                                                  }, onDismissed: () {
                                                     Navigator.pop(context);
                                                   },
                                                       countryDataList: country!
@@ -166,47 +163,43 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                 },
                                                 child: Padding(
                                                   padding:
-                                                  EdgeInsets.only(top: 8.0),
+                                                      EdgeInsets.only(top: 8.0),
                                                   child: Row(
                                                     mainAxisSize:
-                                                    MainAxisSize.min,
+                                                        MainAxisSize.min,
                                                     children: <Widget>[
-
                                                       ///TODO:add country Flag
                                                       Container(
                                                           height: 16,
                                                           width: 16,
                                                           decoration:
-                                                          BoxDecoration(
-                                                            color: Theme
-                                                                .of(
-                                                                context)
+                                                              BoxDecoration(
+                                                            color: Theme.of(
+                                                                    context)
                                                                 .primaryColorDark,
                                                             shape:
-                                                            BoxShape.circle,
+                                                                BoxShape.circle,
                                                           )),
                                                       Padding(
                                                         padding: EdgeInsets
                                                             .symmetric(
-                                                            horizontal:
-                                                            8.0),
+                                                                horizontal:
+                                                                    8.0),
                                                         child: Text(
                                                           selectedCountry!
-                                                              .phoneCode!
-                                                              .isNotEmpty
-                                                              ? '+${selectedCountry
-                                                              .phoneCode!}'
+                                                                  .phoneCode!
+                                                                  .isNotEmpty
+                                                              ? '+${selectedCountry.phoneCode!}'
                                                               : "",
                                                           style: TextStyle(
-                                                            color: Theme
-                                                                .of(
-                                                                context)
+                                                            color: Theme.of(
+                                                                    context)
                                                                 .textTheme
                                                                 .bodyText1!
                                                                 .color,
                                                             fontSize: 14,
                                                             fontWeight:
-                                                            FontWeight.w600,
+                                                                FontWeight.w600,
                                                           ),
                                                         ),
                                                       ),
@@ -214,14 +207,13 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                           height: 16,
                                                           width: 16,
                                                           margin:
-                                                          EdgeInsets.only(
-                                                              right: 8),
+                                                              EdgeInsets.only(
+                                                                  right: 8),
                                                           child: AppSvg.asset(
                                                               AssetUtils
                                                                   .downArrow,
-                                                              color: Theme
-                                                                  .of(
-                                                                  context)
+                                                              color: Theme.of(
+                                                                      context)
                                                                   .primaryTextTheme
                                                                   .bodyText1!
                                                                   .color))

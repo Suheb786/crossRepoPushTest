@@ -22,7 +22,7 @@ class AccountReadyHeader extends StatelessWidget {
                     fontWeight: FontWeight.w600)),
           ),
           SizedBox(
-            height: 4,
+            height: 8,
           ),
           Text(
             subTitle!,
