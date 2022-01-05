@@ -1,4 +1,6 @@
 import 'package:infobip_plugin/infobip_plugin.dart';
+import 'package:domain/constants/enum/infobip_call_status_enum.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class InfoBipAudioService {
   final InfobipPlugin _infobipPlugin;
@@ -9,14 +11,14 @@ class InfoBipAudioService {
       {required String applicationId,
       required String appKey,
       required String baseUrl,
-      required Function(String) callback}) async {
+      required Function(InfobipCallStatusEnum) callback}) async {
     var result = await _infobipPlugin.init(
         appKey: appKey,
         applicationId: applicationId,
         baseUrl: baseUrl,
-        callStatus: (status) {
+        callStatus: (String status) {
           print(status);
-          callback(status);
+          callback(status.fromCallStatusValue());
         });
     return result!;
   }
@@ -29,8 +31,6 @@ class InfoBipAudioService {
     try {
       var tokenDetail = await _infobipPlugin.getToken(
           identity: identity, displayName: displayName);
-      print("TOKEN ::: $tokenDetail");
-
       return tokenDetail!;
     } catch (e) {
       rethrow;
@@ -38,11 +38,23 @@ class InfoBipAudioService {
   }
 
   ///
+  ///Add recod audio permission
+  ///
+  Future<void> requestPermission() async {
+    final status = await Permission.microphone.request();
+    if (status == PermissionStatus.permanentlyDenied) {
+      openAppSettings();
+    }
+  }
+
+  ///
   /// This method is used to call agent
   ///
-  Future<void> call() async {
+  Future<bool> call() async {
     try {
-      await _infobipPlugin.callConversations();
+      return requestPermission().then((value) async {
+        return await _infobipPlugin.callConversations();
+      });
     } catch (e) {
       rethrow;
     }

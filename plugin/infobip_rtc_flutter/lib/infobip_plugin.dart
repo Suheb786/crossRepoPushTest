@@ -40,15 +40,14 @@ class InfobipPlugin {
     var parameter = {'identity': identity, "displayName": displayName};
     final String? tokenDetail =
         await _channel.invokeMethod(MethodKeys.getToken, parameter);
-    print("Token $tokenDetail");
     return tokenDetail;
   }
 
   ///
   /// This method is used for establish the call
   ///
-  Future<void> callConversations() async {
-    await _channel.invokeMethod(MethodKeys.makeCall);
+  Future<bool> callConversations() async {
+   return await _channel.invokeMethod(MethodKeys.makeCall);
   }
 
   ///

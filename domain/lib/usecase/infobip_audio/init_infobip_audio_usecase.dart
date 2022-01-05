@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/base_error.dart';
 import 'package:domain/repository/help_center/help_canter.dart';
@@ -15,7 +16,7 @@ class InfobipAudioPluginUseCase
   Future<Either<BaseError, bool>> execute(
       {required InfobipAudioPluginUseCaseParams params}) async {
     return _helpCenterRepository.initInfobip(
-        params.applicationId, params.appKey, params.baseUrl,params.callback);
+        params.applicationId, params.appKey, params.baseUrl, params.callback);
   }
 }
 
@@ -23,7 +24,7 @@ class InfobipAudioPluginUseCaseParams extends Params {
   final String applicationId;
   final String appKey;
   final String baseUrl;
-  final Function(String) callback;
+  final Function(InfobipCallStatusEnum) callback;
 
   InfobipAudioPluginUseCaseParams(
       {required this.applicationId,

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:data/source/infobip_audio/infobip_audio_datasource.dart';
+import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/error/base_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/repository/help_center/help_canter.dart';
@@ -11,30 +12,46 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
 
   @override
   Future<Either<NetworkError, bool>> initInfobip(
-      String applicationId, String appKey, String baseUrl,Function(String) callback) async {
-    var infobipResult =
-        await _infobipAudioDS.initInfobipAudio(applicationId, appKey, baseUrl,callback);
+      String applicationId,
+      String appKey,
+      String baseUrl,
+      Function(InfobipCallStatusEnum) callback) async {
+    var infobipResult = await _infobipAudioDS.initInfobipAudio(
+        applicationId, appKey, baseUrl, callback);
     if (!infobipResult) {
       return Left(NetworkError(
           httpError: 0,
           cause: Exception(),
           message: 'Error occurred while Initialization'));
-    }else{
+    } else {
       return Right(true);
     }
   }
 
   @override
-  Future<Either<NetworkError, String>> obtainToken(String identity, String displayName) async{
-    var tokenDetails =
-        await _infobipAudioDS.obtainToken(identity , displayName);
+  Future<Either<NetworkError, String>> obtainToken(
+      String identity, String displayName) async {
+    var tokenDetails = await _infobipAudioDS.obtainToken(identity, displayName);
     if (tokenDetails == null) {
       return Left(NetworkError(
           httpError: 0,
           cause: Exception(),
           message: 'Error occurred while obtain token'));
-    }else{
+    } else {
       return Right(tokenDetails);
+    }
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> establishCall() async {
+    var result = await _infobipAudioDS.establishCall();
+    if (!result) {
+      return Left(NetworkError(
+          httpError: 0,
+          cause: Exception(),
+          message: 'Error occurred while calling..'));
+    } else {
+      return Right(true);
     }
   }
 }

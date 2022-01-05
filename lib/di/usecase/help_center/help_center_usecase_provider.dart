@@ -1,6 +1,7 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_audio_usecase.dart';
 import 'package:domain/usecase/infobip_audio/obtain_token_usecase.dart';
+import 'package:domain/usecase/infobip_audio/establish_call_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[InfobipAudioPluginUseCase] provider
@@ -13,4 +14,9 @@ Provider.autoDispose<InfobipAudioPluginUseCase>(
 final obtainTokenUseCaseProvider =
 Provider.autoDispose<ObtainTokenUseCase>(
       (ref) => ObtainTokenUseCase(ref.read(helpCenterRepositoryProvider)),
+);
+///[EstablishCallUseCase] provider
+final establishCallUseCaseProvider =
+Provider.autoDispose<EstablishCallUseCase>(
+      (ref) => EstablishCallUseCase(ref.read(helpCenterRepositoryProvider)),
 );
