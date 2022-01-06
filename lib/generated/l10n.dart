@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7115,6 +7116,16 @@ class S {
     return Intl.message(
       'We will notify you once it’s ready',
       name: 'weWillNotifyOnceReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID card issuer is not allowed at this moment. Please try again with valid ID card issuer.`
+  String get notAllowedCountry {
+    return Intl.message(
+      'ID card issuer is not allowed at this moment. Please try again with valid ID card issuer.',
+      name: 'notAllowedCountry',
       desc: '',
       args: [],
     );

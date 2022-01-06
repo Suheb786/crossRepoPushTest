@@ -1,6 +1,11 @@
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
+import 'package:domain/model/country/allowed_issuers_country.dart';
 import 'package:domain/model/id_card/ahwal_details_response.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:domain/usecase/country/fetch_allowed_issuers_usecase.dart';
 import 'package:domain/usecase/id_card/get_ahwal_details_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
@@ -17,6 +22,7 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   final ScanUserDocumentUseCase _scanUserDocumentUseCase;
   final GetAhwalDetailsUseCase _getAhwalDetailsUseCase;
   final ConfirmDetailUseCase _confirmDetailUseCase;
+  final FetchAllowedIssuersUseCase _fetchAllowedIssuersUseCase;
 
   /// retrieve condition check subject holder
   BehaviorSubject<bool> _isRetrievedConditionSubject =
@@ -77,6 +83,14 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   Stream<Resource<SaveIdInfoResponse>> get confirmDetailResponseStream =>
       _confirmDetailResponse.stream;
 
+  ///get allowed issuers subject
+  final PublishSubject<FetchAllowedIssuersUseCaseParams>
+      _getAllowedIssuersRequest = PublishSubject();
+
+  ///get allowed issuers subject response
+  final BehaviorSubject<Resource<List<AllowedIssuerCountry>>>
+      _getAllowedIssuersResponse = BehaviorSubject();
+
   ScannedDocumentInformation scannedDocumentInformation =
       ScannedDocumentInformation();
 
@@ -84,7 +98,8 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
       this._idVerificationInfoUseCase,
       this._scanUserDocumentUseCase,
       this._getAhwalDetailsUseCase,
-      this._confirmDetailUseCase) {
+      this._confirmDetailUseCase,
+      this._fetchAllowedIssuersUseCase) {
     _idVerificationInfoRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -159,6 +174,20 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getAllowedIssuersRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _fetchAllowedIssuersUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getAllowedIssuersResponse.safeAdd(event);
+        if (event.status == Status.SUCCESS) {
+          scanDocument();
+        }
+      });
+    });
   }
 
   void idVerificationInfo() {
@@ -166,12 +195,26 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
         isRetrieveConditionChecked: _isRetrievedConditionSubject.value));
   }
 
+  void fetchAllowedIssuers() {
+    _getAllowedIssuersRequest.safeAdd(FetchAllowedIssuersUseCaseParams());
+  }
+
   void scanDocument() {
     _scanUserDocumentRequest.safeAdd(ScanUserDocumentUseCaseParams());
   }
 
   void getAhwalResponse(String id) {
-    _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
+    if (_getAllowedIssuersResponse.value.data!.any((element) =>
+        element.countryIsoCode3 ==
+        scannedDocumentInformation.issuingPlaceISo3)) {
+      _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
+    } else {
+      _getAhwalDetailsResponse.safeAdd(Resource.error(
+          error: AppError(
+              error: ErrorInfo(message: ''),
+              cause: Exception(""),
+              type: ErrorType.NOT_ALLOWED_COUNTRY)));
+    }
   }
 
   void setScannedData() {
@@ -193,7 +236,9 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
             : scannedDocumentInformation.issuingDate.toString(),
         issuingPlace: scannedDocumentInformation.issuingPlaceISo3,
         declarationSelected: true,
-        scannedDocumentInformation: scannedDocumentInformation));
+        scannedDocumentInformation: scannedDocumentInformation,
+        isMotherNameRequired: false,
+        isCardIssueDateRequired: false));
   }
 
   @override
@@ -205,6 +250,8 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
     _scanUserDocumentResponse.close();
     _getAhwalDetailsRequest.close();
     _getAhwalDetailsResponse.close();
+    _getAllowedIssuersRequest.close();
+    _getAllowedIssuersResponse.close();
     super.dispose();
   }
 }

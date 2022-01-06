@@ -803,6 +803,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No matching country found"),
         "noMatchingYearFound":
             MessageLookupByLibrary.simpleMessage("No matching year found!"),
+        "notAllowedCountry": MessageLookupByLibrary.simpleMessage(
+            "ID card issuer is not allowed at this moment. Please try again with valid ID card issuer."),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
         "notifyMe": MessageLookupByLibrary.simpleMessage("NOTIFY ME"),
         "notifyMeExC": MessageLookupByLibrary.simpleMessage("Notify me"),

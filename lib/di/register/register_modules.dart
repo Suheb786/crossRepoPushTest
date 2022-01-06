@@ -72,7 +72,8 @@ final idVerificationInfoViewModelProvider =
             ref.read(idVerificationInfoUseCaseProvider),
             ref.read(scanUserDocumentUseCaseProvider),
             ref.read(getAhwalDetailsUseCaseProvider),
-            ref.read(confirmDetailUseCaseProvider)));
+            ref.read(confirmDetailUseCaseProvider),
+            ref.read(fetchAllowedIssuersUseCaseProvider)));
 
 ///[CaptureViewModel] provider
 final captureViewModelProvider =

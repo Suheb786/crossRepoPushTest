@@ -46,7 +46,7 @@ class IdVerificationInfoView
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            model.scanDocument();
+                            model.fetchAllowedIssuers();
                           } else if (data.status == Status.ERROR) {
                             model.showToastWithError(AppError(
                                 error: ErrorInfo(message: ''),
@@ -80,6 +80,7 @@ class IdVerificationInfoView
                                   ));
                                 }
                               } else if (saveData.status == Status.ERROR) {
+                                model.showToastWithError(saveData.appError!);
                                 ProviderScope.containerOf(context)
                                     .read(registerStepOneViewModelProvider)
                                     .pageController
@@ -97,9 +98,10 @@ class IdVerificationInfoView
                                   Resource<AhwalDetailResponse>>(
                                 stream: model.getAhwalDetailsStream,
                                 initialData: Resource.none(),
-                                onData: (data) async {
-                                  if (data.status == Status.SUCCESS) {
-                                    if (data.data?.skipConfirmationScreen ??
+                                onData: (ahwalData) {
+                                  if (ahwalData.status == Status.SUCCESS) {
+                                    if (ahwalData
+                                            .data?.skipConfirmationScreen ??
                                         false) {
                                       model.setScannedData();
                                     } else {
@@ -117,8 +119,9 @@ class IdVerificationInfoView
                                                 .scannedDocumentInformation);
                                       });
                                     }
-                                  } else if (data.status == Status.ERROR) {
-                                    model.showToastWithError(data.appError!);
+                                  } else if (ahwalData.status == Status.ERROR) {
+                                    model.showToastWithError(
+                                        ahwalData.appError!);
                                   }
                                 },
                                 dataBuilder: (context, ahwalResponse) {
@@ -126,11 +129,12 @@ class IdVerificationInfoView
                                       Resource<ScannedDocumentInformation>>(
                                     stream: model.scanUserDocumentStream,
                                     initialData: Resource.none(),
-                                    onData: (data) {
-                                      if (data.status == Status.SUCCESS) {
-                                        if (data.data!.issuer == 'JOR') {
+                                    onData: (scannedData) {
+                                      if (scannedData.status ==
+                                          Status.SUCCESS) {
+                                        if (scannedData.data!.issuer == 'JOR') {
                                           model.getAhwalResponse(
-                                              data.data!.idNumber!);
+                                              scannedData.data!.idNumber!);
                                         } else {
                                           model.showToastWithError(AppError(
                                               cause: Exception(),

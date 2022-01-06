@@ -1,4 +1,5 @@
 import 'package:data/di/repository_module.dart';
+import 'package:domain/usecase/country/fetch_allowed_issuers_usecase.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
 import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
@@ -50,6 +51,12 @@ final sendDocumentsUseCaseUseCaseProvider =
 final idVerificationInfoUseCaseProvider =
     Provider.autoDispose<IdVerificationInfoUseCase>(
   (ref) => IdVerificationInfoUseCase(),
+);
+
+///[FetchAllowedIssuersUseCase] provider
+final fetchAllowedIssuersUseCaseProvider =
+    Provider.autoDispose<FetchAllowedIssuersUseCase>(
+  (ref) => FetchAllowedIssuersUseCase(ref.read(countryRepoProvider)),
 );
 
 ///[ConfirmDetailUseCase] provider
