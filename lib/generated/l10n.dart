@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7195,6 +7196,16 @@ class S {
     return Intl.message(
       'Make sure your face fits into the frame',
       name: 'makeSureYourFaceFitsTheFrame',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Get Combo Values`
+  String get errorWhileGetComboValues {
+    return Intl.message(
+      'Error While Get Combo Values',
+      name: 'errorWhileGetComboValues',
       desc: '',
       args: [],
     );

@@ -6,6 +6,7 @@ import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -293,6 +294,9 @@ class JobAndIncomePageView
                             hintText: S.of(context).pleaseEnter,
                             inputType: TextInputType.number,
                             inputAction: TextInputAction.done,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(12),
+                            ],
                             controller: model.employerContactController,
                             key: model.employerContactKey,
                             onChanged: (value) {

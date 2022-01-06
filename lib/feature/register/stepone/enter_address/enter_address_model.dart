@@ -81,6 +81,8 @@ class EnterAddressViewModel extends BasePageViewModel {
       _permanentAddressVisibilitySubject.stream;
 
   void updatePermanentAddressVisibility() {
+    permanentResidentCountryController.clear();
+    permanentCityController.clear();
     if (residentCountryController.text == 'Jordan') {
       _permanentAddressVisibilitySubject.safeAdd(false);
     } else {

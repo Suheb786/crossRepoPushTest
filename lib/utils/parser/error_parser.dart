@@ -332,6 +332,8 @@ class ErrorParser {
         return localisedHelper.currentPasswordInvalid;
       case ErrorType.SELECT_EXPECTED_TRANSACTION:
         return localisedHelper.selectExpectedTransaction;
+      case ErrorType.ERROR_WHILE_GET_COMBO_VALUES:
+        return localisedHelper.errorWhileGetComboValues;
 
       default:
         return "";

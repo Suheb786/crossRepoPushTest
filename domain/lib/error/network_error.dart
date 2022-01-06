@@ -218,6 +218,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.REQUEST_NOT_COMPLETED);
 
+          case "ex-011":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_GET_COMBO_VALUES);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

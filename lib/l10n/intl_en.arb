@@ -737,5 +737,6 @@
   "currentPasswordInvalid": "Current password is invalid. Password does not meet requirement.",
   "selectExpectedTransaction": "Select expected transaction",
   "selfieCheck": "Selfie Check!",
-  "makeSureYourFaceFitsTheFrame": "Make sure your face fits into the frame"
+  "makeSureYourFaceFitsTheFrame": "Make sure your face fits into the frame",
+  "errorWhileGetComboValues": "Error While Get Combo Values"
 }

@@ -89,6 +89,7 @@ class ProfileDetailsPageView
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     ProfileRowItem(
                                       title: S
@@ -100,6 +101,10 @@ class ProfileDetailsPageView
                                       providerBase:
                                           anyOtherNationalityViewModelProvider,
                                       onToggle: (isActive) {
+                                        if (!isActive) {
+                                          model.otherNationalityController
+                                              .clear();
+                                        }
                                         model.isAnyOtherNationality = isActive;
                                         return Visibility(
                                           visible: isActive,
@@ -154,6 +159,9 @@ class ProfileDetailsPageView
                                       inactiveText: S.of(context).no,
                                       providerBase: profileQ1ViewModelProvider,
                                       onToggle: (isActive) {
+                                        if (!isActive) {
+                                          model.spouseNameController.clear();
+                                        }
                                         model.isMarried = isActive;
                                         return Visibility(
                                           visible: isActive,
@@ -180,6 +188,9 @@ class ProfileDetailsPageView
                                       activeText: S.of(context).yes,
                                       inactiveText: S.of(context).no,
                                       onToggle: (isActive) {
+                                        if (!isActive) {
+                                          model.natureController.clear();
+                                        }
                                         model.isPerson = isActive;
                                         return Visibility(
                                           visible: isActive,
@@ -315,20 +326,22 @@ class ProfileDetailsPageView
                                             ));
                                       },
                                     ),
-                                    Padding(
-                                        padding: EdgeInsets.only(top: 8),
-                                        child: AppStreamBuilder<bool>(
-                                            stream: model.showButtonStream,
-                                            initialData: false,
-                                            dataBuilder: (context, isValid) {
-                                              return Visibility(
-                                                visible: isValid!,
-                                                child: AnimatedButton(
-                                                    buttonText: S
-                                                        .of(context)
-                                                        .swipeToProceed),
-                                              );
-                                            }))
+                                    Center(
+                                      child: Padding(
+                                          padding: EdgeInsets.only(top: 8),
+                                          child: AppStreamBuilder<bool>(
+                                              stream: model.showButtonStream,
+                                              initialData: false,
+                                              dataBuilder: (context, isValid) {
+                                                return Visibility(
+                                                  visible: isValid!,
+                                                  child: AnimatedButton(
+                                                      buttonText: S
+                                                          .of(context)
+                                                          .swipeToProceed),
+                                                );
+                                              })),
+                                    )
                                   ],
                                 ),
                               ),
