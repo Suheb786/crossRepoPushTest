@@ -60,7 +60,7 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
         print(call.method);
         switch call.method {
-        case object.MAIN_PARAMETERS:
+        case object.INITIALISATION:
             print(call.arguments ?? "")
             let dicData = call.arguments as? [String : Any]
             baseUrl = dicData?["app_base_url"] as? String
@@ -73,7 +73,7 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
             
             print("app_base_url", baseUrl!)
             
-        case object.CALL_TOKEN:
+        case object.FETCH_TOKEN:
             print(call.arguments ?? "")
             
             let dicData = call.arguments as? [String : Any]
@@ -110,20 +110,20 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
                 print(Error.localizedDescription)
             }
             
-        case object.CALL_PARAMETERS:
+        case object.DIAL_CALL:
             print(call.arguments ?? "")
             dialCall(token: gettoken)
             
         case object.FINAL_CALL_STATUS:
             print("FINAL_CALL_STATUS")
             
-        case object.MUTE_PHONE:
+        case object.MUTE_CALL:
             let muteUnmuteCall = outgoingCall?.muted()
             outgoingCall?.mute(!muteUnmuteCall!)
             print(!muteUnmuteCall! as Any)
             result(outgoingCall?.muted())
             
-        case object.SPEAKER_PHONE:
+        case object.CALL_SPEAKER_PHONE:
             callSpeakerPhone()
             result(outgoingCall?.speakerphone())
             
@@ -327,15 +327,15 @@ struct object {
     
     static var TAG = "InfobipPlugin"
     static var CHANNEL = "infobip_plugin"
-    static var MAIN_PARAMETERS = "main_parameter"
-    static var CALL_PARAMETERS = "call_parameter"
-    static var CALL_TOKEN = "call_token"
+    static var INITIALISATION = "initialisation"
+    static var DIAL_CALL = "dial_call"
+    static var FETCH_TOKEN = "fetch_token"
     static var FINAL_CALL_STATUS = "final_call_status"
     static var APPLICATION_ID = "application_id"
     static var APP_KEY = "app_key"
     static var BASE_URL = "app_base_url"
-    static var MUTE_PHONE = "mute"
-    static var SPEAKER_PHONE = "speaker"
+    static var MUTE_CALL = "mute_call"
+    static var CALL_SPEAKER_PHONE = "call_speaker_phone"
     static var CALL_DURATION = "call_duration"
     static var CALL_START_TIME = "call_start_time"
     static var CALL_ESTABLISH_TIME = "call_establish_time"

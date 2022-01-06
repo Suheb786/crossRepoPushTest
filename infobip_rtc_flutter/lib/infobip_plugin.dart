@@ -62,8 +62,6 @@ class InfobipPlugin {
     yield result;
   }
 
-  void handleLocationChanges() {}
-
   setCallbackForCall(CallEventListener callEventListener) {
     listenCallStatus.listen((event) {
       switch (event) {
