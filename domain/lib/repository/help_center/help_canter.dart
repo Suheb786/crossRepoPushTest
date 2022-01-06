@@ -10,4 +10,10 @@ abstract class HelpCenterRepository {
       Map<String, String> parameter);
 
   Future<Either<NetworkError, bool>> establishCall();
+
+  Future<Either<NetworkError, bool>> muteUnMute();
+
+  Future<Either<NetworkError, bool>> toggleSpeaker();
+
+  Future<Either<NetworkError, bool>> callHangUp();
 }

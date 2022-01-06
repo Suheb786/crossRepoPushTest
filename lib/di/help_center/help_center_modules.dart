@@ -14,7 +14,10 @@ final helpCenterViewModelProvider =
 
 final activeCallPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ActiveCallPageViewModel>(
-  (ref) => ActiveCallPageViewModel(),
+  (ref) => ActiveCallPageViewModel(
+      ref.read(muteUnMuteUseCaseProvider),
+      ref.read(speakerOnOffUseCaseProvider),
+      ref.read(hangupCallUseCaseProvider)),
 );
 
 final callEndedPageViewModelProvider =

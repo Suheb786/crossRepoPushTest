@@ -50,4 +50,29 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
       return Right(true);
     }
   }
+
+  @override
+  Future<Either<NetworkError, bool>> muteUnMute() async {
+    var result = await _infobipAudioDS.toggleMute();
+    return Right(result);
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> toggleSpeaker() async {
+    var result = await _infobipAudioDS.toggleSpeaker();
+    return Right(result);
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> callHangUp() async {
+    var result = await _infobipAudioDS.callHangUp();
+    if (!result) {
+      return Left(NetworkError(
+          httpError: 0,
+          cause: Exception(),
+          message: 'Error occurred while calling..'));
+    } else {
+      return Right(true);
+    }
+  }
 }

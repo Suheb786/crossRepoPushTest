@@ -21,4 +21,19 @@ class InfobipAudioDSImpl with InfobipAudioLocalDs {
   Future<bool> establishCall() async {
     return await _infobipAudioService.call();
   }
+
+  @override
+  Future<bool> toggleMute() async {
+    return await _infobipAudioService.mute();
+  }
+
+  @override
+  Future<bool> toggleSpeaker() async {
+    return await _infobipAudioService.toggleSpeaker();
+  }
+
+  @override
+  Future<bool> callHangUp() async {
+    return await _infobipAudioService.toggleSpeaker();
+  }
 }

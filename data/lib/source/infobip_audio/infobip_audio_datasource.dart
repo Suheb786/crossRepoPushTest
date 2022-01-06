@@ -6,4 +6,10 @@ abstract class InfobipAudioLocalDs {
   Future<String> obtainToken(Map<String, String> parameter);
 
   Future<bool> establishCall();
+
+  Future<bool> toggleMute();
+
+  Future<bool> toggleSpeaker();
+
+  Future<bool> callHangUp();
 }

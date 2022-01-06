@@ -59,9 +59,11 @@ class InfoBipAudioService {
   ///
   /// This method is used to mute or unmute call
   ///
-  void mute() async {
+  Future<bool> mute() async {
     try {
-      await _infobipPlugin.muteUnMute();
+      var muteStatus = await _infobipPlugin.muteUnMute();
+      print('--------' + muteStatus.toString());
+      return muteStatus!;
     } catch (e) {
       rethrow;
     }
@@ -70,9 +72,10 @@ class InfoBipAudioService {
   ///
   /// This method is used to on off phone speaker
   ///
-  void toggleSpeaker() async {
+  Future<bool> toggleSpeaker() async {
     try {
-      await _infobipPlugin.toggleSpeaker();
+      var speakerStatus = await _infobipPlugin.toggleSpeaker();
+      return speakerStatus!;
     } catch (e) {
       rethrow;
     }
@@ -125,9 +128,10 @@ class InfoBipAudioService {
   ///
   /// This method is used to hangup call
   ///
-  void callHangUp() async {
+  Future<bool> callHangUp() async {
     try {
-      await _infobipPlugin.hangUpCall();
+      var result = await _infobipPlugin.hangUpCall();
+      return result!;
     } catch (e) {
       rethrow;
     }

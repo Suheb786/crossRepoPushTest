@@ -127,7 +127,9 @@ class AssetUtils {
   static const String liveChat = svg + "live_chat.svg";
   static const String helpAgent = svg + "help_agent.svg";
   static const String speaker = svg + "speaker.svg";
+  static const String speakerOff = svg + "speaker_off.svg";
   static const String micBlue = svg + "mic_blue.svg";
+  static const String muteMicBlue = svg + "off_mic_blue.svg";
   static const String hangUp = svg + "hang_up.svg";
   static const String linked = svg + "linked.svg";
   static const String globe = svg + "globe.svg";
