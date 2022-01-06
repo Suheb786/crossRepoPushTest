@@ -1220,6 +1220,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "U.S. tax payer identification number "),
         "usTaxPayerIdentificationNumber": MessageLookupByLibrary.simpleMessage(
             "U.S. Tax Payer\nIdentification Number "),
+        "userAlreadyExists": MessageLookupByLibrary.simpleMessage(
+            "User Already Exist. Try Using Different Email"),
         "userNotRegister":
             MessageLookupByLibrary.simpleMessage("User Not Register"),
         "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":

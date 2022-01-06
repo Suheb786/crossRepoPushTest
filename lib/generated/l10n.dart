@@ -7210,6 +7210,16 @@ class S {
       args: [],
     );
   }
+
+  /// `User Already Exist. Try Using Different Email`
+  String get userAlreadyExists {
+    return Intl.message(
+      'User Already Exist. Try Using Different Email',
+      name: 'userAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

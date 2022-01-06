@@ -224,6 +224,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_WHILE_GET_COMBO_VALUES);
 
+          case "err-005":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.USER_ALREADY_EXISTS);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

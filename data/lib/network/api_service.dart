@@ -49,10 +49,14 @@ import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart'
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
 import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
+import 'package:data/entity/remote/country/city_list/city_list_request_entity.dart';
+import 'package:data/entity/remote/country/city_list/city_list_response_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_response_entity.dart';
+import 'package:data/entity/remote/country/state_list/state_list_request_entity.dart';
+import 'package:data/entity/remote/country/state_list/state_list_response_entity.dart';
 import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
@@ -503,4 +507,16 @@ abstract class ApiService {
   @POST("/transfer/TransferPurpose")
   Future<HttpResponse<PurposeResponseEntity>> getPurpose(
       @Body() PurposeRequestEntity purposeRequestEntity);
+
+  @POST("/Auth/GetStates")
+  Future<HttpResponse<StateListResponseEntity>> getStateList(
+      @Body() StateListRequestEntity stateListRequestEntity);
+
+  @POST("/Auth/GetCities")
+  Future<HttpResponse<CityListResponseEntity>> getCityList(
+      @Body() CityListRequestEntity cityListRequestEntity);
+
+  @POST("/Auth/GetCitiesByCountry")
+  Future<HttpResponse<CityListResponseEntity>> getCitiesByCountry(
+      CityListRequestEntity cityListRequestEntity);
 }

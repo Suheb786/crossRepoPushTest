@@ -334,6 +334,8 @@ class ErrorParser {
         return localisedHelper.selectExpectedTransaction;
       case ErrorType.ERROR_WHILE_GET_COMBO_VALUES:
         return localisedHelper.errorWhileGetComboValues;
+      case ErrorType.USER_ALREADY_EXISTS:
+        return localisedHelper.userAlreadyExists;
 
       default:
         return "";
