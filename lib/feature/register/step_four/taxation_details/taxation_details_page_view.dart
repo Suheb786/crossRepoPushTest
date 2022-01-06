@@ -165,7 +165,7 @@ class TaxationDetailsPageView
                                     }, onSelected: (value) {
                                       Navigator.pop(context);
                                       model.countrySelectorController.text =
-                                          value;
+                                          value.countryName!;
                                       model.isValid();
                                     });
                                   },

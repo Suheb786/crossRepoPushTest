@@ -1,4 +1,5 @@
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:domain/model/country/state_list/state_city_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,12 +18,17 @@ import 'package:neo_bank/utils/color_utils.dart';
 
 class StateCityDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(String)? onSelected;
+  final Function(StateCityData)? onSelected;
   final StateCityTypeEnum? stateCityTypeEnum;
   final String? title;
+  final List<StateCityData>? stateCityData;
 
   const StateCityDialogView(
-      {this.onDismissed, this.onSelected, this.stateCityTypeEnum, this.title});
+      {this.onDismissed,
+      this.onSelected,
+      this.stateCityTypeEnum,
+      this.title,
+      this.stateCityData});
 
   ProviderBase providerBase() {
     return stateCityDialogViewModelProvider;
@@ -100,8 +106,7 @@ class StateCityDialogView extends StatelessWidget {
                             child: ClickableListWheelScrollView(
                               scrollController: model.scrollController,
                               itemHeight: 64,
-                              itemCount:
-                                  model.getList(stateCityTypeEnum!).length,
+                              itemCount: stateCityData!.length,
                               onItemTapCallback: (index) {
                                 model.currentIndexUpdate(index);
                               },
@@ -114,14 +119,15 @@ class StateCityDialogView extends StatelessWidget {
                                   physics: FixedExtentScrollPhysics(),
                                   perspective: 0.0000000001,
                                   childDelegate: ListWheelChildBuilderDelegate(
-                                      childCount: model
-                                          .getList(stateCityTypeEnum!)
-                                          .length,
+                                      childCount: stateCityData!.length,
                                       builder:
                                           (BuildContext context, int index) {
                                         return ListScrollWheelListWidget(
-                                          label: model.getList(
-                                              stateCityTypeEnum!)[index],
+                                          label: stateCityTypeEnum ==
+                                                  StateCityTypeEnum.CITY
+                                              ? stateCityData![index].cityName!
+                                              : stateCityData![index]
+                                                  .stateName!,
                                           textColor: currentIndex == index
                                               ? Theme.of(context)
                                                   .primaryColorDark
@@ -135,8 +141,7 @@ class StateCityDialogView extends StatelessWidget {
                       )),
                       InkWell(
                         onTap: () {
-                          onSelected!.call(
-                              model.getList(stateCityTypeEnum!)[currentIndex!]);
+                          onSelected!.call(stateCityData![currentIndex!]);
                         },
                         child: Container(
                           padding: EdgeInsets.all(16),

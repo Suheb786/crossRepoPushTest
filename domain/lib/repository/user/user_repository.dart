@@ -47,12 +47,13 @@ abstract class UserRepository {
       {String? mobileNumber, String? countryCode});
 
   /// register prospect user
-  Future<Either<NetworkError, User>> registerProspectUser({String? countryName,
-    String? email,
-    String? mobileNumber,
-    String? password,
-    String? confirmPassword,
-    String? userName});
+  Future<Either<NetworkError, User>> registerProspectUser(
+      {String? countryName,
+      String? email,
+      String? mobileNumber,
+      String? password,
+      String? confirmPassword,
+      String? userName});
 
   /// verify mobile otp
   Future<Either<NetworkError, bool>> verifyMobileOtp({String? otpCode});
@@ -100,7 +101,7 @@ abstract class UserRepository {
 
   /// save residence information
   Future<Either<NetworkError, SaveCountryResidenceInfoResponse>>
-  saveResidenceInformation({
+      saveResidenceInformation({
     String? residentCountry,
     String? buildingName,
     String? streetName,
@@ -108,33 +109,36 @@ abstract class UserRepository {
     String? residentCity,
     String? permanentResidentCountry,
     String? permanentResidentCity,
+    String? stateId,
+    String? cityId,
   });
 
   /// save profile information
   Future<Either<NetworkError, SaveProfileStatusResponse>>
-      saveProfileInformation({bool? married,
-    bool? specialPerson,
-    bool? anyOtherNationality,
-    bool? beneficialOwnerAccount,
-    String? otherNationality,
-    String? employmentStatus,
-    String? spouseName,
-    bool? isEmployed,
-    String? natureOfSpecialNeeds});
+      saveProfileInformation(
+          {bool? married,
+          bool? specialPerson,
+          bool? anyOtherNationality,
+          bool? beneficialOwnerAccount,
+          String? otherNationality,
+          String? employmentStatus,
+          String? spouseName,
+          bool? isEmployed,
+          String? natureOfSpecialNeeds});
 
   /// save job information
   Future<Either<NetworkError, SaveJobDetailsResponse>> saveJobInformation(
       {String? employeeName,
-        String? occupation,
-        String? businessType,
-        String? specifyBusinessType,
-        String? annualIncome,
-        String? employerCountry,
-        String? employerCity,
-        String? employerContact,
-        bool? additionalIncome,
-        String? mainSource,
-        List<AdditionalIncomeType>? additionalIncomeType});
+      String? occupation,
+      String? businessType,
+      String? specifyBusinessType,
+      String? annualIncome,
+      String? employerCountry,
+      String? employerCity,
+      String? employerContact,
+      bool? additionalIncome,
+      String? mainSource,
+      List<AdditionalIncomeType>? additionalIncomeType});
 
   /// Scan User Document
   Future<Either<LocalError, ScannedDocumentInformation>> scanUserDocument();
@@ -144,7 +148,7 @@ abstract class UserRepository {
 
   /// confirm application data get
   Future<Either<NetworkError, GetConfirmApplicationDataResponse>>
-  confirmApplicationDataGet();
+      confirmApplicationDataGet();
 
   ///register interest
   Future<Either<NetworkError, RegisterInterestResponse>> registerInterest(
@@ -156,10 +160,10 @@ abstract class UserRepository {
   /// confirm application data set
   Future<Either<NetworkError, bool>> confirmApplicationDataSet(
       {CountryResidenceInfo countryResidenceInfo,
-        ProfileStatusInfo profileStatusInfo,
-        JobDetailInfo jobDetailInfo,
-        FatcaCrsInfo fatcaCrsInfo,
-        AccountPurposeInfo accountPurposeInfo});
+      ProfileStatusInfo profileStatusInfo,
+      JobDetailInfo jobDetailInfo,
+      FatcaCrsInfo fatcaCrsInfo,
+      AccountPurposeInfo accountPurposeInfo});
 
   ///enable finger print
   Future<Either<NetworkError, bool>> enableFingerPrint({String cipher});
@@ -172,8 +176,8 @@ abstract class UserRepository {
 
   Future<Either<BaseError, bool>> checkBioMetricSupport();
 
-  Future<Either<BaseError, bool>> authenticateBioMetric(String title,
-      String localisedReason);
+  Future<Either<BaseError, bool>> authenticateBioMetric(
+      String title, String localisedReason);
 
   ///enable biometric
   Future<Either<NetworkError, bool>> enableBiometric();

@@ -508,15 +508,18 @@ abstract class ApiService {
   Future<HttpResponse<PurposeResponseEntity>> getPurpose(
       @Body() PurposeRequestEntity purposeRequestEntity);
 
+  ///get states
   @POST("/Auth/GetStates")
   Future<HttpResponse<StateListResponseEntity>> getStateList(
       @Body() StateListRequestEntity stateListRequestEntity);
 
+  ///get cities
   @POST("/Auth/GetCities")
   Future<HttpResponse<CityListResponseEntity>> getCityList(
       @Body() CityListRequestEntity cityListRequestEntity);
 
+  ///get cities by country
   @POST("/Auth/GetCitiesByCountry")
   Future<HttpResponse<CityListResponseEntity>> getCitiesByCountry(
-      CityListRequestEntity cityListRequestEntity);
+      @Body() CityListRequestEntity cityListRequestEntity);
 }

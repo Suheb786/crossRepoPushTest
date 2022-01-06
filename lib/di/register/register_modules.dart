@@ -88,8 +88,9 @@ final confirmDetailViewModelProvider =
 
 ///[EnterAddressViewModel] provider
 final enterAddressViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EnterAddressViewModel>(
-        (ref) => EnterAddressViewModel(ref.read(enterAddressUseCaseProvider)));
+    ChangeNotifierProvider.autoDispose<EnterAddressViewModel>((ref) =>
+        EnterAddressViewModel(ref.read(enterAddressUseCaseProvider),
+            ref.read(getCitiesByCountryListUseCaseProvider)));
 
 ///step two page view model provider
 final registerStepTwoViewModelProvider =

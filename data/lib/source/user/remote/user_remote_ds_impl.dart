@@ -268,14 +268,17 @@ class UserRemoteDSImpl extends UserRemoteDS {
 
   @override
   Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
-      saveResidenceInformation(
-          {String? residentCountry,
-          String? buildingName,
-          String? streetName,
-          String? residentArea,
-          String? residentCity,
-          String? permanentResidentCountry,
-          String? permanentResidentCity}) async {
+      saveResidenceInformation({
+    String? residentCountry,
+    String? buildingName,
+    String? streetName,
+    String? residentArea,
+    String? residentCity,
+    String? permanentResidentCountry,
+    String? permanentResidentCity,
+    String? stateId,
+    String? cityId,
+  }) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveResidenceInformation(SaveResidenceInformationRequest(
         baseData: baseData.toJson(),
@@ -283,9 +286,10 @@ class UserRemoteDSImpl extends UserRemoteDS {
         buildingName: buildingName,
         streetName: streetName,
         area: residentArea,
-        city: residentCity,
         perCountry: permanentResidentCountry,
-        perCity: permanentResidentCity));
+        perCity: permanentResidentCity,
+        stateID: stateId,
+        cityId: cityId));
   }
 
   @override

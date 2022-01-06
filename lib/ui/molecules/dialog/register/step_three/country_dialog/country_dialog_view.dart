@@ -1,5 +1,5 @@
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
-import 'package:domain/model/country/country.dart';
+import 'package:domain/model/country/country_list/country_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -20,7 +20,7 @@ import '../../../../app_scollable_list_view_widget.dart';
 
 class CountryDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(String)? onSelected;
+  final Function(CountryData)? onSelected;
   final String? title;
 
   const CountryDialogView({this.onDismissed, this.onSelected, this.title});
@@ -42,8 +42,8 @@ class CountryDialogView extends StatelessWidget {
                 stream: model!.currentIndexStream,
                 initialData: 0,
                 dataBuilder: (context, currentIndex) {
-                  return AppStreamBuilder<Resource<List<Country>>>(
-                    stream: model.getCountryStream,
+                  return AppStreamBuilder<Resource<List<CountryData>>>(
+                    stream: model.getCountryListStream,
                     initialData: Resource.none(),
                     dataBuilder: (context, data) {
                       return AppKeyBoardHide(
@@ -156,8 +156,7 @@ class CountryDialogView extends StatelessWidget {
                                       )),
                             InkWell(
                               onTap: () {
-                                onSelected!
-                                    .call(model.selectedCountry!.countryName!);
+                                onSelected!.call(model.selectedCountry!);
                               },
                               child: Container(
                                 padding: EdgeInsets.all(16),
@@ -200,7 +199,10 @@ class CountryDialogView extends StatelessWidget {
               ));
         },
         onModelReady: (model) {
-          model.getCountryList(context);
+          model.getCountries();
+          // model.loadingStream.listen((value) {
+          //   AppProgress(context);
+          // });
         },
         providerBase: providerBase());
   }

@@ -1,12 +1,12 @@
-import 'package:domain/model/country/state_list/state_data.dart';
+import 'package:domain/model/country/state_list/state_city_data.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'state_data_entity.g.dart';
 
 @JsonSerializable()
-class StateDataEntity
-    implements BaseLayerDataTransformer<StateDataEntity, StateData> {
+class StateCityDataEntity
+    implements BaseLayerDataTransformer<StateCityDataEntity, StateCityData> {
   @JsonKey(name: "createTime")
   final DateTime? createTime;
   @JsonKey(name: "countryID")
@@ -15,29 +15,37 @@ class StateDataEntity
   final String? stateID;
   @JsonKey(name: "stateName")
   final String? stateName;
+  @JsonKey(name: "cityID")
+  final String? cityID;
+  @JsonKey(name: "name")
+  final String? cityName;
 
-  StateDataEntity(
+  StateCityDataEntity(
       {this.createTime,
       this.countryID: "",
       this.stateID: "",
-      this.stateName: ""});
+      this.stateName: "",
+      this.cityName: "",
+      this.cityID: ""});
 
-  factory StateDataEntity.fromJson(Map<String, dynamic> json) =>
-      _$StateDataEntityFromJson(json);
+  factory StateCityDataEntity.fromJson(Map<String, dynamic> json) =>
+      _$StateCityDataEntityFromJson(json);
 
-  Map<String, dynamic> toJson() => _$StateDataEntityToJson(this);
+  Map<String, dynamic> toJson() => _$StateCityDataEntityToJson(this);
 
   @override
-  StateDataEntity restore(StateData response) {
-    return StateDataEntity();
+  StateCityDataEntity restore(StateCityData response) {
+    return StateCityDataEntity();
   }
 
   @override
-  StateData transform() {
-    return StateData(
+  StateCityData transform() {
+    return StateCityData(
         createTime: this.createTime,
         countryId: this.countryID,
         stateId: this.stateID,
-        stateName: this.stateName);
+        stateName: this.stateName,
+        cityId: this.cityID,
+        cityName: this.cityName);
   }
 }

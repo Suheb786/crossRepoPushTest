@@ -9,7 +9,7 @@ part of 'city_content_entity.dart';
 CityContentEntity _$CityContentEntityFromJson(Map<String, dynamic> json) {
   return CityContentEntity(
     getCities: (json['getCities'] as List<dynamic>?)
-        ?.map((e) => CityDataEntity.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => StateCityDataEntity.fromJson(e as Map<String, dynamic>))
         .toList(),
   );
 }

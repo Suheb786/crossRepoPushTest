@@ -45,8 +45,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope
-                            .containerOf(context)
+                        ProviderScope.containerOf(context)
                             .read(registerStepFourViewModelProvider)
                             .registrationStepFourPageController
                             .next();
@@ -62,8 +61,7 @@ class FatcaUSRelevantW9AddressDetailsPageView
                           model.validateFatcaUSRelevantW9AddressDetails();
                         } else {
                           Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope
-                                .containerOf(context)
+                            ProviderScope.containerOf(context)
                                 .read(registerStepFourViewModelProvider)
                                 .registrationStepFourPageController
                                 .previous();
@@ -115,11 +113,13 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                         Navigator.pop(context);
                                       }, onSelected: (value) {
                                         Navigator.pop(context);
-                                        model.stateController.text = value;
+                                        model.stateController.text =
+                                            value.stateName!;
                                         model.isValid();
                                       },
                                           stateCityTypeEnum:
-                                              StateCityTypeEnum.STATE);
+                                              StateCityTypeEnum.STATE,
+                                          stateCityData: []);
                                     },
                                     suffixIcon: (value, data) {
                                       return Container(
@@ -147,11 +147,13 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                         Navigator.pop(context);
                                       }, onSelected: (value) {
                                         Navigator.pop(context);
-                                        model.cityController.text = value;
+                                        model.cityController.text =
+                                            value.cityName!;
                                         model.isValid();
                                       },
                                           stateCityTypeEnum:
-                                              StateCityTypeEnum.CITY);
+                                              StateCityTypeEnum.CITY,
+                                          stateCityData: []);
                                     },
                                     suffixIcon: (value, data) {
                                       return Container(
@@ -181,12 +183,8 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                   ),
                                   AppTextField(
                                     labelText:
-                                    S
-                                        .of(context)
-                                        .accountNumberOptional,
-                                    hintText: S
-                                        .of(context)
-                                        .pleaseEnter,
+                                        S.of(context).accountNumberOptional,
+                                    hintText: S.of(context).pleaseEnter,
                                     controller: model.accountNumberController,
                                     // labelIcon: () {
                                     //   return InkWell(
@@ -230,14 +228,13 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                         },
                                         child: Padding(
                                           padding:
-                                          const EdgeInsets.only(left: 5.0),
+                                              const EdgeInsets.only(left: 5.0),
                                           child: Container(
                                               height: 14,
                                               width: 14,
                                               child: AppSvg.asset(
                                                   AssetUtils.info,
-                                                  color: Theme
-                                                      .of(context)
+                                                  color: Theme.of(context)
                                                       .inputDecorationTheme
                                                       .focusedBorder!
                                                       .borderSide
@@ -338,14 +335,15 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                         Navigator.pop(context);
                                                       }, onSelected: (value) {
                                                         Navigator.pop(context);
-                                                        model
-                                                            .additionalRequesterStateController
-                                                            .text = value;
+                                                        model.additionalRequesterStateController
+                                                                .text =
+                                                            value.stateName!;
                                                         model.isValid();
                                                       },
                                                           stateCityTypeEnum:
                                                               StateCityTypeEnum
-                                                                  .STATE);
+                                                                  .STATE,
+                                                          stateCityData: []);
                                                     },
                                                     suffixIcon: (value, data) {
                                                       return Container(
@@ -385,14 +383,15 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                         Navigator.pop(context);
                                                       }, onSelected: (value) {
                                                         Navigator.pop(context);
-                                                        model
-                                                            .additionalRequesterCityController
-                                                            .text = value;
+                                                        model.additionalRequesterCityController
+                                                                .text =
+                                                            value.cityName!;
                                                         model.isValid();
                                                       },
                                                           stateCityTypeEnum:
                                                               StateCityTypeEnum
-                                                                  .CITY);
+                                                                  .CITY,
+                                                          stateCityData: []);
                                                     },
                                                     suffixIcon: (value, data) {
                                                       return Container(
@@ -448,10 +447,10 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                           dataBuilder: (context, isValid) {
                                             return (isValid!)
                                                 ? AnimatedButton(
-                                              buttonText: S
-                                                  .of(context)
-                                                  .swipeToProceed,
-                                              buttonHeight: 50,
+                                                    buttonText: S
+                                                        .of(context)
+                                                        .swipeToProceed,
+                                                    buttonHeight: 50,
                                                   )
                                                 : Container();
                                           }),

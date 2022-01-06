@@ -9,7 +9,7 @@ part 'state_content_entity.g.dart';
 class StateContentEntity
     implements BaseLayerDataTransformer<StateContentEntity, StateContent> {
   @JsonKey(name: "getStates")
-  final List<StateDataEntity>? getStates;
+  final List<StateCityDataEntity>? getStates;
 
   StateContentEntity({this.getStates});
 

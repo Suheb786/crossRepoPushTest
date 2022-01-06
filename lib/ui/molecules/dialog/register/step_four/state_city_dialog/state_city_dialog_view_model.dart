@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog.dart';
 import 'package:rxdart/rxdart.dart';
 
 class StateCityDialogViewModel extends BasePageViewModel {
@@ -34,16 +33,16 @@ class StateCityDialogViewModel extends BasePageViewModel {
     _currentSelectIndex.add(index);
   }
 
-  List<String> getList(StateCityTypeEnum typeEnum) {
-    switch (typeEnum) {
-      case StateCityTypeEnum.STATE:
-        return stateList;
-      case StateCityTypeEnum.CITY:
-        return cityList;
-      default:
-        return stateList;
-    }
-  }
+  // List<String> getList(StateCityTypeEnum typeEnum) {
+  //   switch (typeEnum) {
+  //     case StateCityTypeEnum.STATE:
+  //       return stateList;
+  //     case StateCityTypeEnum.CITY:
+  //       return cityList;
+  //     default:
+  //       return stateList;
+  //   }
+  // }
 
   @override
   void dispose() {

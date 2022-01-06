@@ -259,7 +259,7 @@ class JobAndIncomePageView
                                 Navigator.pop(context);
                               }, onSelected: (value) {
                                 Navigator.pop(context);
-                                model.updateEmployerCountry(value);
+                                model.updateEmployerCountry(value.countryName!);
                                 model.isValid();
                               });
                             },

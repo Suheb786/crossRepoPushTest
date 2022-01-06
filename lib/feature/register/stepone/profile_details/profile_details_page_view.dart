@@ -132,7 +132,7 @@ class ProfileDetailsPageView
                                                   Navigator.pop(context);
                                                   model
                                                       .otherNationalityController
-                                                      .text = value;
+                                                      .text = value.countryName!;
                                                   model.validate();
                                                 });
                                               },

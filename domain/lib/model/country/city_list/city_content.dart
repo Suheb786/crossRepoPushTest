@@ -1,7 +1,7 @@
-import 'package:domain/model/country/city_list/city_data.dart';
+import 'package:domain/model/country/state_list/state_city_data.dart';
 
 class CityContent {
   CityContent({this.stateData});
 
-  final List<CityData>? stateData;
+  final List<StateCityData>? stateData;
 }
