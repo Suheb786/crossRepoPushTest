@@ -394,6 +394,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Id Number field cannot be empty"),
         "emptyIncomeDocument": MessageLookupByLibrary.simpleMessage(
             "Please upload income document"),
+        "emptyMinimumSettlement": MessageLookupByLibrary.simpleMessage(
+            "Please select minimum settlement value"),
         "emptyMotherName": MessageLookupByLibrary.simpleMessage(
             "Mother\'s name field cannot be empty"),
         "emptyName":

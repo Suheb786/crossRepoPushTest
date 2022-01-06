@@ -742,5 +742,6 @@
   "applyCreditCardTitle": "APPLY CREDIT CARD",
   "personalizeCreditCard": "Set up and personalize your\nnew credit card",
   "creditLimit": "CREDIT LIMIT",
-  "minimumSettlement": "MINIMUM SETTLEMENT"
+  "minimumSettlement": "MINIMUM SETTLEMENT",
+  "emptyMinimumSettlement": "Please select minimum settlement value"
 }

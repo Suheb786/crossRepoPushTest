@@ -7250,6 +7250,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Please select minimum settlement value`
+  String get emptyMinimumSettlement {
+    return Intl.message(
+      'Please select minimum settlement value',
+      name: 'emptyMinimumSettlement',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

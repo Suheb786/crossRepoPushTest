@@ -196,5 +196,8 @@ enum ErrorType {
   EMPTY_NICKNAME,
 
   // blink credit card
-  INVALID_CHECKED_VALUE
+  INVALID_CHECKED_VALUE,
+
+  // set credit limit
+  EMPTY_MINIMUM_SETTLEMENT_VALUE
 }

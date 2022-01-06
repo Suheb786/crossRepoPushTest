@@ -43,4 +43,12 @@ class BlinkCreditCardViewModel extends BasePageViewModel {
     _blinkRequest.safeAdd(
         BlinkCreditCardUseCaseParams(isChecked: _isCheckedSubject.value));
   }
+
+  @override
+  void dispose() {
+    _blinkResponse.close();
+    _blinkRequest.close();
+    _isCheckedSubject.close();
+    super.dispose();
+  }
 }
