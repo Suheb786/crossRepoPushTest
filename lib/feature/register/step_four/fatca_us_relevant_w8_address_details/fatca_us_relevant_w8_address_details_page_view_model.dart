@@ -1,5 +1,10 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/country/city_list/city_list_response.dart';
+import 'package:domain/model/country/state_list/state_city_data.dart';
+import 'package:domain/model/country/state_list/state_list_response.dart';
 import 'package:domain/model/fatca_crs/fatca_set_data.dart';
+import 'package:domain/usecase/country/get_city_list_usecase.dart';
+import 'package:domain/usecase/country/get_state_list_usecase.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w8_address_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +20,10 @@ import 'package:rxdart/rxdart.dart';
 class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
   final FatcaUSRelevantW8AddressDetailsUseCase
       _fatcaUSRelevantW8AddressDetailsUseCase;
+
+  final GetStateListUseCase _getStateListUseCase;
+
+  final GetCityListUseCase _getCityListUseCase;
 
   ///controllers and keys
   final TextEditingController permanentAddressController =
@@ -34,41 +43,41 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
 
   final TextEditingController postCodeController = TextEditingController();
   final GlobalKey<AppTextFieldState> postCodeKey =
-  GlobalKey(debugLabel: "postCode");
+      GlobalKey(debugLabel: "postCode");
 
   ///mailing address different controllers and keys
   final TextEditingController differentMailingAddressController =
-  TextEditingController();
+      TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingAddressKey =
-  GlobalKey(debugLabel: "differentMailingAddress");
+      GlobalKey(debugLabel: "differentMailingAddress");
 
   final TextEditingController differentMailingCountryController =
-  TextEditingController();
+      TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingCountryKey =
-  GlobalKey(debugLabel: "differentMailingCountry");
+      GlobalKey(debugLabel: "differentMailingCountry");
 
   final TextEditingController differentMailingStateController =
-  TextEditingController();
+      TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingStateKey =
-  GlobalKey(debugLabel: "differentMailingState");
+      GlobalKey(debugLabel: "differentMailingState");
 
   final TextEditingController differentMailingCityController =
-  TextEditingController();
+      TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingCityKey =
-  GlobalKey(debugLabel: "differentMailingCity");
+      GlobalKey(debugLabel: "differentMailingCity");
 
   final TextEditingController differentMailingPostCodeController =
-  TextEditingController();
+      TextEditingController();
   final GlobalKey<AppTextFieldState> differentMailingPostCodeKey =
-  GlobalKey(debugLabel: "differentMailingPostCode");
+      GlobalKey(debugLabel: "differentMailingPostCode");
 
   ///fatca us relevant address details request subject holder
   PublishSubject<FatcaUSRelevantW8AddressDetailsUseCaseParams>
-  _fatcaUSRelevantW8AddressDetailsRequest = PublishSubject();
+      _fatcaUSRelevantW8AddressDetailsRequest = PublishSubject();
 
   ///fatca us relevant address details response holder
   PublishSubject<Resource<bool>> _fatcaUSRelevantW8AddressDetailsResponse =
-  PublishSubject();
+      PublishSubject();
 
   ///fatca us relevant address details stream
   Stream<Resource<bool>> get fatcaUSRelevantW8AddressDetailsStream =>
@@ -87,8 +96,89 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
   Stream<bool> get mailingAddressDifferentStream =>
       _mailingAddressDifferentSubject.stream;
 
+  StateCityData permanentSelectedStateCity = StateCityData();
+
+  StateCityData mailingAddressDifferentSelectedStateCity = StateCityData();
+
+  /// get state list request subject holder
+  PublishSubject<GetStateListUseParams> _getStateListRequest = PublishSubject();
+
+  /// get state list response subject holder
+  PublishSubject<Resource<StateListResponse>> _getStateListResponse =
+      PublishSubject();
+
+  /// get state list response stream
+  Stream<Resource<StateListResponse>> get getStateListResponseStream =>
+      _getStateListResponse.stream;
+
+  /// get city list request subject holder
+  PublishSubject<GetCityListUseParams> _getCityListRequest = PublishSubject();
+
+  /// get city list response subject holder
+  PublishSubject<Resource<CityListResponse>> _getCityListResponse =
+      PublishSubject();
+
+  /// get city list response stream
+  Stream<Resource<CityListResponse>> get getCityListResponseStream =>
+      _getCityListResponse.stream;
+
+  FatcaUSRelevantW8AddressDetailsPageViewModel(
+      this._fatcaUSRelevantW8AddressDetailsUseCase,
+      this._getStateListUseCase,
+      this._getCityListUseCase) {
+    _fatcaUSRelevantW8AddressDetailsRequest.listen((value) {
+      RequestManager(value,
+          createCall: () => _fatcaUSRelevantW8AddressDetailsUseCase.execute(
+              params: value)).asFlow().listen((event) {
+        updateLoader();
+        _fatcaUSRelevantW8AddressDetailsResponse.add(event);
+        if (event.status == Status.ERROR) {
+          getError(event);
+          showErrorState();
+        }
+      });
+    });
+
+    _getStateListRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getStateListUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getStateListResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _getCityListRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getCityListUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getCityListResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+  }
+
   void updateSwitchValue(bool value) {
     _mailingAddressDifferentSubject.safeAdd(value);
+  }
+
+  void getStateList(String isoCode) {
+    _getStateListRequest.safeAdd(GetStateListUseParams(isoCode: isoCode));
+  }
+
+  void getCityList(String isoCode, String stateId) {
+    _getCityListRequest
+        .safeAdd(GetCityListUseParams(isoCode: isoCode, stateID: stateId));
   }
 
   bool isValid() {
@@ -115,22 +205,6 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
     }
     _allFieldValidatorSubject.safeAdd(valid);
     return valid;
-  }
-
-  FatcaUSRelevantW8AddressDetailsPageViewModel(
-      this._fatcaUSRelevantW8AddressDetailsUseCase) {
-    _fatcaUSRelevantW8AddressDetailsRequest.listen((value) {
-      RequestManager(value,
-          createCall: () => _fatcaUSRelevantW8AddressDetailsUseCase.execute(
-              params: value)).asFlow().listen((event) {
-        updateLoader();
-        _fatcaUSRelevantW8AddressDetailsResponse.add(event);
-        if (event.status == Status.ERROR) {
-          getError(event);
-          showErrorState();
-        }
-      });
-    });
   }
 
   void getError(Resource<bool> event) {
@@ -188,8 +262,7 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope
-        .containerOf(context)
+    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
         .fatcaData;
     fatcaSetData.permanentResidenceAddress = permanentAddressController.text;

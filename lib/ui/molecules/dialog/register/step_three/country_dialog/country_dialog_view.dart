@@ -151,7 +151,8 @@ class CountryDialogView extends StatelessWidget {
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
-                                              color: AppColor.dark_violet_4),
+                                              color: Theme.of(context)
+                                                  .primaryColorDark),
                                         ),
                                       )),
                             InkWell(

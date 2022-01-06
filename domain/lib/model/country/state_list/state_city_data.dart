@@ -5,7 +5,8 @@ class StateCityData {
       this.stateId: "",
       this.stateName: "",
       this.cityName: "",
-      this.cityId: ""});
+      this.cityId: "",
+      this.isSelected: false});
 
   DateTime? createTime;
   String? countryId;
@@ -13,4 +14,5 @@ class StateCityData {
   String? stateName;
   String? cityId;
   String? cityName;
+  bool isSelected;
 }

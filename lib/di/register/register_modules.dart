@@ -289,7 +289,9 @@ final fatcaUSRelevantW8PageViewModelProvider =
 final fatcaUSRelevantW8AddressPageViewModelProvider = ChangeNotifierProvider
     .autoDispose<FatcaUSRelevantW8AddressDetailsPageViewModel>(
   (ref) => FatcaUSRelevantW8AddressDetailsPageViewModel(
-      ref.read(fatcaUSRelevantW8AddressDetailsUseCaseProvider)),
+      ref.read(fatcaUSRelevantW8AddressDetailsUseCaseProvider),
+      ref.read(getStateListUseCaseProvider),
+      ref.read(getCityListUseCaseProvider)),
 );
 
 ///fatca us relevant w9 page view model provider
