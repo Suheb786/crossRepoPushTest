@@ -19,6 +19,14 @@ class SetCreditLimitViewModel extends BasePageViewModel {
     "12 %",
   ];
 
+  PublishSubject<double> _valueSubject = PublishSubject();
+
+  Stream<double> get valueStream => _valueSubject.stream;
+
+  void updatevalue(double value) {
+    _valueSubject.safeAdd(value);
+  }
+
   final GlobalKey<AppTextFieldState> minimumSettlementKey =
       GlobalKey(debugLabel: "minimumSettlement");
 

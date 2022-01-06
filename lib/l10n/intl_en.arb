@@ -743,5 +743,9 @@
   "personalizeCreditCard": "Set up and personalize your\nnew credit card",
   "creditLimit": "CREDIT LIMIT",
   "minimumSettlement": "MINIMUM SETTLEMENT",
-  "emptyMinimumSettlement": "Please select minimum settlement value"
+  "emptyMinimumSettlement": "Please select minimum settlement value",
+  "purposeDetailSmall": "Purpose Details",
+  "purposeSmall": "Purpose",
+  "nameOfBeneficiary": "Name",
+  "addNickName": "Add nickname"
 }

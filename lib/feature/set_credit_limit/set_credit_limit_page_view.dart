@@ -69,11 +69,17 @@ class SetCreditLimitPageView
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                "1000",
-                                style: TextStyle(
-                                    fontSize: 24, fontWeight: FontWeight.w700),
-                              ),
+                              AppStreamBuilder<double>(
+                                  stream: model.valueStream,
+                                  initialData: 200.0,
+                                  dataBuilder: (context, value) {
+                                    return Text(
+                                      value!.toInt().toString(),
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.w700),
+                                    );
+                                  }),
                               Padding(
                                 padding: EdgeInsets.only(left: 4, top: 5),
                                 child: Text(
@@ -97,19 +103,53 @@ class SetCreditLimitPageView
                               decoration: BoxDecoration(
                                   color: Theme.of(context).backgroundColor,
                                   borderRadius: BorderRadius.circular(100)),
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color!),
-                                ),
-                              ),
+                              // child: Draggable(
+                              //   axis: Axis.horizontal,
+                              //   feedback: Container(
+                              //     height: 40,
+                              //     width: 40,
+                              //     decoration: BoxDecoration(
+                              //         shape: BoxShape.circle,
+                              //         color: Theme.of(context)
+                              //             .accentTextTheme
+                              //             .bodyText1!
+                              //             .color!),
+                              //   ),
+                              //   onDragStarted: () {
+                              //     print("dragged");
+                              //   },
+                              //   childWhenDragging: Container(),
+                              //   child: Container(
+                              //     height: 40,
+                              //     width: 40,
+                              //     decoration: BoxDecoration(
+                              //         shape: BoxShape.circle,
+                              //         color: Theme.of(context)
+                              //             .accentTextTheme
+                              //             .bodyText1!
+                              //             .color!),
+                              //   ),
+                              // ),
+                              child: AppStreamBuilder<double>(
+                                  stream: model.valueStream,
+                                  initialData: 200.0,
+                                  dataBuilder: (context, val) {
+                                    return SliderTheme(
+                                      data: SliderThemeData(
+                                          trackHeight: 0,
+                                          thumbShape: RoundSliderThumbShape(
+                                              enabledThumbRadius: 20)),
+                                      child: Slider(
+                                        min: 0,
+                                        max: 1000,
+                                        value: val!,
+                                        onChanged: (value) {
+                                          print("got value : $value");
+                                          model.updatevalue(value);
+                                        },
+                                      ),
+                                    );
+                                  }),
                             ),
                           ),
                           SizedBox(

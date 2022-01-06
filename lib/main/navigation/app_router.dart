@@ -329,7 +329,8 @@ class AppRouter {
 
       case RoutePaths.PaymentToNewRecipient:
         return CupertinoPageRoute(
-            builder: (context) => PaymentToNewRecipientPage(),
+            builder: (context) => PaymentToNewRecipientPage(
+                sendValue: settings.arguments as String),
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
 
       case RoutePaths.DebitCardSettings:

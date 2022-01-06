@@ -34,6 +34,7 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   TextEditingController ibanOrMobileController = TextEditingController();
   TextEditingController purposeController = TextEditingController();
   TextEditingController purposeDetailController = TextEditingController();
+  TextEditingController addNickNameController = TextEditingController();
 
   bool? dropDownEnabled = true;
   String selectedProfile = '';
@@ -45,6 +46,12 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   Purpose? purpose;
 
   PurposeDetail? purposeDetail;
+
+  String? addNickNameVal = "Add nickname";
+
+  PublishSubject<bool> _addNickNameSubject = PublishSubject();
+
+  Stream<bool> get addNickNameStream => _addNickNameSubject.stream;
 
   PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
 
@@ -211,6 +218,10 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
         }
       });
     });
+  }
+
+  void updateNickName(bool value) {
+    _addNickNameSubject.safeAdd(value);
   }
 
   void getPurpose(String toAccount, String transferType) {

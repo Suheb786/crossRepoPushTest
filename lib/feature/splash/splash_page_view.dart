@@ -18,7 +18,7 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
       initialData: 0,
       onData: (data) {
         if (data == 1) {
-          Navigator.pushReplacementNamed(context, RoutePaths.BlinkCreditCard);
+          Navigator.pushReplacementNamed(context, RoutePaths.OnBoarding);
         }
       },
       dataBuilder: (context, data) {

@@ -74,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addMobileHeader":
             MessageLookupByLibrary.simpleMessage("What’s your\nmobile number?"),
         "addMoney": MessageLookupByLibrary.simpleMessage("Add money"),
+        "addNickName": MessageLookupByLibrary.simpleMessage("Add nickname"),
         "addRecipientToContact": MessageLookupByLibrary.simpleMessage(
             "Add this receipient to your blink contacts"),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
@@ -806,6 +807,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "nameAsPerIncomeTaxReturn": MessageLookupByLibrary.simpleMessage(
             "NAME AS PER INCOME TAX RETURN"),
         "nameHint": MessageLookupByLibrary.simpleMessage("Please Enter Name"),
+        "nameOfBeneficiary": MessageLookupByLibrary.simpleMessage("Name"),
         "nationalId": MessageLookupByLibrary.simpleMessage("NATIONAL ID"),
         "nationality": MessageLookupByLibrary.simpleMessage("NATIONALITY"),
         "nationalityHint":
@@ -962,6 +964,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "purpose": MessageLookupByLibrary.simpleMessage("PURPOSE"),
         "purposeDetail":
             MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
+        "purposeDetailSmall":
+            MessageLookupByLibrary.simpleMessage("Purpose Details"),
         "purposeDetails":
             MessageLookupByLibrary.simpleMessage("PURPOSE DETAILS"),
         "purposeOfAccount":
@@ -970,6 +974,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("PURPOSE OF ACCOUNT OPENING"),
         "purposeOfOpeningAccount":
             MessageLookupByLibrary.simpleMessage("Purpose of Account Opening"),
+        "purposeSmall": MessageLookupByLibrary.simpleMessage("Purpose"),
         "quietSurrounding": MessageLookupByLibrary.simpleMessage(
             "Best if your surrounding is quiet and private"),
         "reasonOfCancellation":
