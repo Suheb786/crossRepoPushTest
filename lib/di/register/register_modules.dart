@@ -86,7 +86,8 @@ final confirmDetailViewModelProvider =
         ConfirmDetailViewModel(
             ref.read(confirmDetailUseCaseProvider),
             ref.read(scanUserDocumentUseCaseProvider),
-            ref.read(getAhwalDetailsUseCaseProvider)));
+            ref.read(getAhwalDetailsUseCaseProvider),
+            ref.read(fetchAllowedIssuersUseCaseProvider)));
 
 ///[EnterAddressViewModel] provider
 final enterAddressViewModelProvider =

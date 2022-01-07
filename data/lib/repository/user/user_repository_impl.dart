@@ -333,9 +333,15 @@ class UserRepositoryImpl extends UserRepository {
         (l) => Left(l),
         (r) => Right(ScannedDocumentInformation(
             fullName: r.fullName,
-            firstName: r.firstName,
+            firstName: r.mrzResult!.secondaryId
+                    ?.trim()
+                    .split(" ")
+                    .elementAt(0)
+                    .toString() ??
+                r.firstName ??
+                "",
             middleName: r.fathersName,
-            familyName: r.lastName,
+            familyName: r.mrzResult!.primaryId ?? r.lastName ?? "",
             idNumber: r.personalIdNumber!.isNotEmpty ? r.personalIdNumber : '',
             dob: r.dateOfBirth != null
                 ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,

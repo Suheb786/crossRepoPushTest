@@ -64,8 +64,11 @@ class UserLocalDSImpl extends UserLocalDS {
         DocumentVerificationOverlaySettings();
     settings.firstSideInstructions =
         'Place the front of your ID. It will scan automatically';
+    settings.firstSideSplashMessage = "Front Side";
     settings.secondSideInstructions =
         'Place the back side of your ID. It will scan automatically';
+    settings.secondSideSplashMessage = "Back Side";
+
     settings.enableBeep = true;
 
     try {

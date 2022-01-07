@@ -1,6 +1,8 @@
+import 'package:domain/model/country/allowed_issuers_country.dart';
 import 'package:domain/model/id_card/ahwal_details_response.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:domain/usecase/country/fetch_allowed_issuers_usecase.dart';
 import 'package:domain/usecase/id_card/get_ahwal_details_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
@@ -18,6 +20,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   final ConfirmDetailUseCase _confirmDetailUseCase;
   final ScanUserDocumentUseCase _scanUserDocumentUseCase;
   final GetAhwalDetailsUseCase _getAhwalDetailsUseCase;
+  final FetchAllowedIssuersUseCase _fetchAllowedIssuersUseCase;
 
   TextEditingController nameController = new TextEditingController();
   TextEditingController idNumberController = new TextEditingController();
@@ -114,11 +117,22 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream =>
       _getAhwalDetailsResponse.stream;
 
+  ///get allowed issuers subject
+  final PublishSubject<FetchAllowedIssuersUseCaseParams>
+      _getAllowedIssuersRequest = PublishSubject();
+
+  ///get allowed issuers subject response
+  final BehaviorSubject<Resource<List<AllowedIssuerCountry>>>
+      _getAllowedIssuersResponse = BehaviorSubject();
+
   ScannedDocumentInformation scannedDocumentResult =
       ScannedDocumentInformation();
 
-  ConfirmDetailViewModel(this._confirmDetailUseCase,
-      this._scanUserDocumentUseCase, this._getAhwalDetailsUseCase) {
+  ConfirmDetailViewModel(
+      this._confirmDetailUseCase,
+      this._scanUserDocumentUseCase,
+      this._getAhwalDetailsUseCase,
+      this._fetchAllowedIssuersUseCase) {
     _confirmDetailRequest.listen((value) {
       RequestManager(value,
               createCall: () => _confirmDetailUseCase.execute(params: value))
@@ -156,31 +170,27 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         _getAhwalDetailsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
-        } else if (event.status == Status.SUCCESS) {
-          // scannedDocumentResult.firstName =
-          //     event.data!.contentData!.ahwalinfo!.firstNameEn;
-          // scannedDocumentResult.middleName =
-          //     event.data!.contentData!.ahwalinfo!.thirdNameEn;
-          //
-          // scannedDocumentResult.firstNameAr =
-          //     event.data!.contentData!.ahwalinfo!.firstNameAr;
-          // scannedDocumentResult.secNameAr =
-          //     event.data!.contentData!.ahwalinfo!.secNameAr;
-          // scannedDocumentResult.thirdNameAr =
-          //     event.data!.contentData!.ahwalinfo!.thirdNameAr;
-          // scannedDocumentResult.familyNameAr =
-          //     event.data!.contentData!.ahwalinfo!.familyNameAr;
-          //
-          // scannedDocumentResult.secondNameEn =
-          //     event.data!.contentData!.ahwalinfo!.secondNameEn;
-          // scannedDocumentResult.thirdNameEn =
-          //     event.data!.contentData!.ahwalinfo!.thirdNameEn;
-          // scannedDocumentResult.familyName =
-          //     event.data!.contentData!.ahwalinfo!.familyNameEn;
-          // setData(scannedDocumentResult);
         }
       });
     });
+
+    _getAllowedIssuersRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _fetchAllowedIssuersUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getAllowedIssuersResponse.safeAdd(event);
+        if (event.status == Status.SUCCESS) {
+          scanDocument();
+        }
+      });
+    });
+  }
+
+  void fetchAllowedIssuers() {
+    _getAllowedIssuersRequest.safeAdd(FetchAllowedIssuersUseCaseParams());
   }
 
   void scanDocument() {
@@ -239,7 +249,12 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   }
 
   void getAhwalResponse(String id) {
-    _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
+    if (_getAllowedIssuersResponse.value.data!.any((element) =>
+        element.countryIsoCode3 == scannedDocumentResult.issuingPlaceISo3)) {
+      _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
+    } else {
+      _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
+    }
   }
 
   @override
@@ -250,6 +265,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     _declarationSelectedSubject.close();
     _scanUserDocumentRequest.close();
     _scanUserDocumentResponse.close();
+    _getAllowedIssuersRequest.close();
+    _getAllowedIssuersResponse.close();
     super.dispose();
   }
 
@@ -271,7 +288,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         : '';
     issuingPlaceController.text = data.issuingPlace!;
 
-    setVisibility();
+    // setVisibility(); ///TODO: UNCOMMENT FOR MAKE FIELDS UNEDITABLE
   }
 
   void setVisibility() {

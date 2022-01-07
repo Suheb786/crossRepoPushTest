@@ -39,7 +39,7 @@ class ConfirmDetailUseCase extends BaseUseCase<NetworkError,
             params.scannedDocumentInformation!.personFaceImage ?? '',
         issuer: params.scannedDocumentInformation!.issuer ?? '',
         placeOfBirth: params.scannedDocumentInformation!.issuer ?? '',
-        doi: params.scannedDocumentInformation!.issuingDate.toString(),
+        doi: params.issuingDate,
         scanPercentage:
             params.scannedDocumentInformation!.scanPercentage?.toDouble() ?? 0);
   }

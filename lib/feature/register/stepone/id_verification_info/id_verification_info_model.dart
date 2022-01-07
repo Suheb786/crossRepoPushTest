@@ -137,27 +137,6 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
         _getAhwalDetailsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
-        } else if (event.status == Status.SUCCESS) {
-          // scannedDocumentInformation.firstName =
-          //     event.data!.contentData!.ahwalinfo!.firstNameEn;
-          // scannedDocumentInformation.middleName =
-          //     event.data!.contentData!.ahwalinfo!.thirdNameEn;
-          //
-          // scannedDocumentInformation.firstNameAr =
-          //     event.data!.contentData!.ahwalinfo!.firstNameAr;
-          // scannedDocumentInformation.secNameAr =
-          //     event.data!.contentData!.ahwalinfo!.secNameAr;
-          // scannedDocumentInformation.thirdNameAr =
-          //     event.data!.contentData!.ahwalinfo!.thirdNameAr;
-          // scannedDocumentInformation.familyNameAr =
-          //     event.data!.contentData!.ahwalinfo!.familyNameAr;
-          //
-          // scannedDocumentInformation.secondNameEn =
-          //     event.data!.contentData!.ahwalinfo!.secondNameEn;
-          // scannedDocumentInformation.thirdNameEn =
-          //     event.data!.contentData!.ahwalinfo!.thirdNameEn;
-          // scannedDocumentInformation.familyName =
-          //     event.data!.contentData!.ahwalinfo!.familyNameEn;
         }
       });
     });

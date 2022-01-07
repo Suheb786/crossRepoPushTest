@@ -8,19 +8,19 @@ class SaveIdInfoRequest {
   final String? id;
   @JsonKey(name: "type")
   final String? type;
-  @JsonKey(name: "fullName")
+  @JsonKey(name: "FullName")
   final String? fullName;
-  @JsonKey(name: "firstName")
+  @JsonKey(name: "FirstName")
   final String? firstName;
-  @JsonKey(name: "middleName")
+  @JsonKey(name: "MiddleName")
   final String? middleName;
-  @JsonKey(name: "familyName")
+  @JsonKey(name: "FamilyName")
   final String? familyName;
   @JsonKey(name: "MotherFirstName")
   final String? motherName;
   @JsonKey(name: "PlaceOfBirth")
   final String? placeOfBirth;
-  @JsonKey(name: "doi")
+  @JsonKey(name: "DOI")
   final String? doi;
   @JsonKey(name: "idNumber")
   final String? idNumber;
