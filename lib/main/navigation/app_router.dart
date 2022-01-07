@@ -11,10 +11,13 @@ import 'package:neo_bank/feature/account_settings/change_mobile_number/change_mo
 import 'package:neo_bank/feature/account_settings/change_password/change_password_page.dart';
 import 'package:neo_bank/feature/account_settings/my_documents/my_documents_page.dart';
 import 'package:neo_bank/feature/activity/activity_home/activity_home_page.dart';
+import 'package:neo_bank/feature/apply_credit_card_home/apply_credit_card_home_page.dart';
+import 'package:neo_bank/feature/blink_credit_card/blink_credit_card_page.dart';
 import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
+import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
@@ -326,7 +329,8 @@ class AppRouter {
 
       case RoutePaths.PaymentToNewRecipient:
         return CupertinoPageRoute(
-            builder: (context) => PaymentToNewRecipientPage(),
+            builder: (context) => PaymentToNewRecipientPage(
+                sendValue: settings.arguments as String),
             settings: RouteSettings(name: RoutePaths.PaymentToNewRecipient));
 
       case RoutePaths.DebitCardSettings:
@@ -413,6 +417,22 @@ class AppRouter {
                 settings.arguments as SupplementaryCardInReviewArguments),
             settings:
                 RouteSettings(name: RoutePaths.SupplementaryCardInReview));
+
+      case RoutePaths.BlinkCreditCard:
+        return CupertinoPageRoute(
+            builder: (context) => BlinkCreditCardPage(),
+            settings: RouteSettings(name: RoutePaths.BlinkCreditCard));
+
+      case RoutePaths.CreditCardApplicationFailure:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardApplicationFailurePage(),
+            settings:
+                RouteSettings(name: RoutePaths.CreditCardApplicationFailure));
+
+      case RoutePaths.ApplyCreditCardHome:
+        return CupertinoPageRoute(
+            builder: (context) => ApplyCreditCardHomePage(),
+            settings: RouteSettings(name: RoutePaths.ApplyCreditCardHome));
 
       default:
         return CupertinoPageRoute(

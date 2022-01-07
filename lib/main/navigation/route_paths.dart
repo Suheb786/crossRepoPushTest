@@ -73,4 +73,8 @@ class RoutePaths {
       "/supplementaryCreditCardReady";
   static const String SupplementaryDebitCard = "/supplementaryDebitCard";
   static const String SupplementaryCardInReview = "/supplementaryCardInReview";
+  static const String BlinkCreditCard = "/blinkCreditCard";
+  static const String CreditCardApplicationFailure =
+      "/creditCardApplicationFailure";
+  static const String ApplyCreditCardHome = "/applyCreditCardHome";
 }

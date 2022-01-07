@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7115,6 +7116,186 @@ class S {
     return Intl.message(
       'We will notify you once it’s ready',
       name: 'weWillNotifyOnceReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `blink Credit Card`
+  String get blinkCreditCardTitle {
+    return Intl.message(
+      'blink Credit Card',
+      name: 'blinkCreditCardTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your card delivered right to your\ndoorstep. Spend and enjoy discounts\nat participating outlets`
+  String get getCardDelivered {
+    return Intl.message(
+      'Get your card delivered right to your\ndoorstep. Spend and enjoy discounts\nat participating outlets',
+      name: 'getCardDelivered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I authorize blink to retrieve my`
+  String get authorize {
+    return Intl.message(
+      'I authorize blink to retrieve my',
+      name: 'authorize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit Bureau `
+  String get creditBureau {
+    return Intl.message(
+      'Credit Bureau ',
+      name: 'creditBureau',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `data and agree to the `
+  String get agreeData {
+    return Intl.message(
+      'data and agree to the ',
+      name: 'agreeData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms & Conditions.`
+  String get creditTc {
+    return Intl.message(
+      'Terms & Conditions.',
+      name: 'creditTc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please agree to terms and conditions.`
+  String get agreeTermsCondition {
+    return Intl.message(
+      'Please agree to terms and conditions.',
+      name: 'agreeTermsCondition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Application is not\nsuccessful.\nTry again later.`
+  String get applicationNotSuccessful {
+    return Intl.message(
+      'Application is not\nsuccessful.\nTry again later.',
+      name: 'applicationNotSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will keep you updated\nwith our other exciting promotions!`
+  String get excitingPromotion {
+    return Intl.message(
+      'We will keep you updated\nwith our other exciting promotions!',
+      name: 'excitingPromotion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `APPLY CREDIT CARD`
+  String get applyCreditCardTitle {
+    return Intl.message(
+      'APPLY CREDIT CARD',
+      name: 'applyCreditCardTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set up and personalize your\nnew credit card`
+  String get personalizeCreditCard {
+    return Intl.message(
+      'Set up and personalize your\nnew credit card',
+      name: 'personalizeCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CREDIT LIMIT`
+  String get creditLimit {
+    return Intl.message(
+      'CREDIT LIMIT',
+      name: 'creditLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MINIMUM SETTLEMENT`
+  String get minimumSettlement {
+    return Intl.message(
+      'MINIMUM SETTLEMENT',
+      name: 'minimumSettlement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select minimum settlement value`
+  String get emptyMinimumSettlement {
+    return Intl.message(
+      'Please select minimum settlement value',
+      name: 'emptyMinimumSettlement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purpose Details`
+  String get purposeDetailSmall {
+    return Intl.message(
+      'Purpose Details',
+      name: 'purposeDetailSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purpose`
+  String get purposeSmall {
+    return Intl.message(
+      'Purpose',
+      name: 'purposeSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get nameOfBeneficiary {
+    return Intl.message(
+      'Name',
+      name: 'nameOfBeneficiary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add nickname`
+  String get addNickName {
+    return Intl.message(
+      'Add nickname',
+      name: 'addNickName',
       desc: '',
       args: [],
     );
