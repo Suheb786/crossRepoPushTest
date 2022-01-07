@@ -28,9 +28,20 @@ class EnterNewPasswordUseCase extends BaseUseCase<NetworkError,
 class EnterNewPasswordUseCaseParams extends Params {
   final String currentPassword;
   final String newPassword;
+  final bool minimumEightCharacters;
+  final bool hasUpperCase;
+  final bool hasSymbol;
+  final bool containsDigit;
+  final bool isCurrentPasswordValid;
 
   EnterNewPasswordUseCaseParams(
-      {required this.currentPassword, required this.newPassword});
+      {required this.currentPassword,
+      required this.newPassword,
+      required this.containsDigit,
+      required this.hasSymbol,
+      required this.hasUpperCase,
+      required this.minimumEightCharacters,
+      required this.isCurrentPasswordValid});
 
   @override
   Either<AppError, bool> verify() {
@@ -39,10 +50,23 @@ class EnterNewPasswordUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_PASSWORD,
           cause: Exception()));
+    } else if (!isCurrentPasswordValid) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.CURRENT_PASSWORD_INVALID,
+          cause: Exception()));
     } else if (Validator.isEmpty(newPassword)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_NEW_PASSWORD,
+          cause: Exception()));
+    } else if (!minimumEightCharacters ||
+        !hasUpperCase ||
+        !hasSymbol ||
+        !containsDigit) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.PASSWORD_NOT_MEET_CRITERIA,
           cause: Exception()));
     }
     return Right(true);

@@ -149,6 +149,8 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                       onSelected: (data) {
                                                     Navigator.pop(context);
                                                     model.countryData = data;
+                                                    model.setSelectedCountry(
+                                                        data);
                                                     print(
                                                         'selectedData---->${data.phoneCode}');
                                                   }, onDismissed: () {

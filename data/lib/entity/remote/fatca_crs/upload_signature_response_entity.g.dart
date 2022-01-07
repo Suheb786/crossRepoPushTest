@@ -9,22 +9,14 @@ part of 'upload_signature_response_entity.dart';
 UploadSignatureResponseEntity _$UploadSignatureResponseEntityFromJson(
     Map<String, dynamic> json) {
   return UploadSignatureResponseEntity(
-    code: json['code'] as int?,
-    content: json['content'] as String?,
-    exceptionMessage: json['exceptionMessage'] as String?,
-    message: json['message'] as String?,
-    token: json['token'] as String?,
-    id: json['id'] as String?,
+    responseEntity: json['response'] == null
+        ? null
+        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$UploadSignatureResponseEntityToJson(
         UploadSignatureResponseEntity instance) =>
     <String, dynamic>{
-      'code': instance.code,
-      'message': instance.message,
-      'token': instance.token,
-      'content': instance.content,
-      'exceptionMessage': instance.exceptionMessage,
-      'id': instance.id,
+      'response': instance.responseEntity,
     };

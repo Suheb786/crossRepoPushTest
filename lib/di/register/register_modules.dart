@@ -91,8 +91,9 @@ final confirmDetailViewModelProvider =
 
 ///[EnterAddressViewModel] provider
 final enterAddressViewModelProvider =
-    ChangeNotifierProvider.autoDispose<EnterAddressViewModel>(
-        (ref) => EnterAddressViewModel(ref.read(enterAddressUseCaseProvider)));
+    ChangeNotifierProvider.autoDispose<EnterAddressViewModel>((ref) =>
+        EnterAddressViewModel(ref.read(enterAddressUseCaseProvider),
+            ref.read(getCitiesByCountryListUseCaseProvider)));
 
 ///step two page view model provider
 final registerStepTwoViewModelProvider =
@@ -291,7 +292,9 @@ final fatcaUSRelevantW8PageViewModelProvider =
 final fatcaUSRelevantW8AddressPageViewModelProvider = ChangeNotifierProvider
     .autoDispose<FatcaUSRelevantW8AddressDetailsPageViewModel>(
   (ref) => FatcaUSRelevantW8AddressDetailsPageViewModel(
-      ref.read(fatcaUSRelevantW8AddressDetailsUseCaseProvider)),
+      ref.read(fatcaUSRelevantW8AddressDetailsUseCaseProvider),
+      ref.read(getStateListUseCaseProvider),
+      ref.read(getCityListUseCaseProvider)),
 );
 
 ///fatca us relevant w9 page view model provider
@@ -305,7 +308,9 @@ final fatcaUSRelevantW9PageViewModelProvider =
 final fatcaUSRelevantW9AddressPageViewModelProvider = ChangeNotifierProvider
     .autoDispose<FatcaUSRelevantW9AddressDetailsPageViewModel>(
   (ref) => FatcaUSRelevantW9AddressDetailsPageViewModel(
-      ref.read(fatcaUSRelevantW9AddressDetailsUseCaseProvider)),
+      ref.read(fatcaUSRelevantW9AddressDetailsUseCaseProvider),
+      ref.read(getStateListUseCaseProvider),
+      ref.read(getCityListUseCaseProvider)),
 );
 
 ///fatca us w9 tax payer details page view model provider
@@ -389,7 +394,8 @@ final fatcaSignaturePageViewModelProvider =
   (ref) => FatcaSignaturePageViewModel(
       ref.read(uploadSignatureUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
-      ref.read(setFatcaQuestionsResponseUseCaseProvider)),
+      ref.read(setFatcaw8UseCaseProvider),
+      ref.read(setFatcaw9UseCaseProvider)),
 );
 
 ///mobile number dialog view model provider

@@ -63,13 +63,13 @@ class UserLocalDSImpl extends UserLocalDS {
     DocumentVerificationOverlaySettings settings =
         DocumentVerificationOverlaySettings();
     settings.firstSideInstructions =
-        'Place the front of your ID. It will scan automatically';
-    settings.firstSideSplashMessage = "Front Side";
+        'Front ID\nID will be scanned automatically when placed within the frame';
     settings.secondSideInstructions =
-        'Place the back side of your ID. It will scan automatically';
-    settings.secondSideSplashMessage = "Back Side";
-
+        'Back ID\nID will be scanned automatically when placed within the frame';
     settings.enableBeep = true;
+    settings.firstSideSplashMessage = 'Scanning...';
+    settings.scanningDoneSplashMessage = 'Scan successful';
+    settings.secondSideSplashMessage = 'Scanning...';
 
     try {
       List<RecognizerResult> results = await MicroblinkScanner.scanWithCamera(

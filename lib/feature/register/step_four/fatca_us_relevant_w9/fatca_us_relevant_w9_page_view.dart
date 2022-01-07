@@ -40,12 +40,14 @@ class FatcaUSRelevantW9PageView
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope
-                            .containerOf(context)
+                        ProviderScope.containerOf(context)
                             .read(registerStepFourViewModelProvider)
                             .registrationStepFourPageController
                             .next();
                       });
+                      ProviderScope.containerOf(context)
+                          .read(fatcaUSRelevantW9AddressPageViewModelProvider)
+                          .getStateList('USA');
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
@@ -57,8 +59,7 @@ class FatcaUSRelevantW9PageView
                           model.validateFatcaUSRelevantW9Details();
                         } else {
                           Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope
-                                .containerOf(context)
+                            ProviderScope.containerOf(context)
                                 .read(registerStepFourViewModelProvider)
                                 .registrationStepFourPageController
                                 .move(0);
@@ -155,10 +156,10 @@ class FatcaUSRelevantW9PageView
                                         dataBuilder: (context, isValid) {
                                           return (isValid!)
                                               ? AnimatedButton(
-                                            buttonText: S
-                                                .of(context)
-                                                .swipeToProceed,
-                                            buttonHeight: 50,
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed,
+                                                  buttonHeight: 50,
                                                 )
                                               : Container();
                                         }),

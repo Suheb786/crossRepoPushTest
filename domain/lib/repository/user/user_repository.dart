@@ -104,6 +104,8 @@ abstract class UserRepository {
     String? residentCity,
     String? permanentResidentCountry,
     String? permanentResidentCity,
+    String? stateId,
+    String? cityId,
   });
 
   /// save profile information

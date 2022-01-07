@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -62,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ACCOUNT OPENING PURPOSE"),
         "accountReady": MessageLookupByLibrary.simpleMessage(
             "Your account is up and ready. \nLet’s get your Blink Debit Card."),
+        "accountReadyMsg":
+            MessageLookupByLibrary.simpleMessage("Account ready!"),
         "accountRegistration":
             MessageLookupByLibrary.simpleMessage("ACCOUNT REGISTRATION"),
         "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
@@ -292,6 +293,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "creditTc": MessageLookupByLibrary.simpleMessage("Terms & Conditions."),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("CURRENT PASSWORD"),
+        "currentPasswordInvalid": MessageLookupByLibrary.simpleMessage(
+            "Current password is invalid. Password does not meet requirement."),
         "customerService": MessageLookupByLibrary.simpleMessage(
             "24/7 Customer Service Service"),
         "cvv": MessageLookupByLibrary.simpleMessage("CVV"),
@@ -359,6 +362,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("EMPLOYER COUNTRY"),
         "employerCountrySmall":
             MessageLookupByLibrary.simpleMessage("Employer Country"),
+        "employerIdNumber": MessageLookupByLibrary.simpleMessage(
+            "EMPLOYER IDENTIFICATION NUMBER"),
         "employerName": MessageLookupByLibrary.simpleMessage("EMPLOYER NAME"),
         "employerNameSmall":
             MessageLookupByLibrary.simpleMessage("Employer Name"),
@@ -394,6 +399,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "IBAN / Mobie / Alias should not be empty"),
         "emptyIdNumber": MessageLookupByLibrary.simpleMessage(
             "Id Number field cannot be empty"),
+        "emptyIncome":
+            MessageLookupByLibrary.simpleMessage("Enter total annual income"),
         "emptyIncomeDocument": MessageLookupByLibrary.simpleMessage(
             "Please upload income document"),
         "emptyMinimumSettlement": MessageLookupByLibrary.simpleMessage(
@@ -486,12 +493,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error While Saving Status"),
         "errorUploadImage":
             MessageLookupByLibrary.simpleMessage("Error While Upload Image"),
+        "errorWhileAccessingIdData": MessageLookupByLibrary.simpleMessage(
+            "error while Accessing Id Card Data."),
         "errorWhileBalanceInquiry": MessageLookupByLibrary.simpleMessage(
             "Error while getting Balance Inquiry"),
         "errorWhileGetAccount":
             MessageLookupByLibrary.simpleMessage("Error While get Account"),
         "errorWhileGetAdditionalDocument": MessageLookupByLibrary.simpleMessage(
             "Error while Get Additional Documentation"),
+        "errorWhileGetComboValues": MessageLookupByLibrary.simpleMessage(
+            "Error While Get Combo Values"),
         "errorWhileLogout":
             MessageLookupByLibrary.simpleMessage("Error While Logout"),
         "errorWhileRegistration": MessageLookupByLibrary.simpleMessage(
@@ -503,6 +514,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Exempt Payee Code"),
         "exemptPayeeOptional": MessageLookupByLibrary.simpleMessage(
             "EXEMPT PAYEE CODE (OPTIONAL)"),
+        "exemptionFromFatcaReporting": MessageLookupByLibrary.simpleMessage(
+            "ExemptION from fatca reporting code"),
         "exemptionFromFatcaReportingCode": MessageLookupByLibrary.simpleMessage(
             "Exemption from FATCA Reporting Code"),
         "expAnnualTransactions": MessageLookupByLibrary.simpleMessage(
@@ -535,6 +548,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "findOutMore": MessageLookupByLibrary.simpleMessage("Find out more"),
         "flipBack": MessageLookupByLibrary.simpleMessage("Flip back"),
         "flipCard": MessageLookupByLibrary.simpleMessage("Flip card"),
+        "foreignTaxIdNumber": MessageLookupByLibrary.simpleMessage(
+            "Foreign Tax Identifying Number"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password"),
         "freezeDebitCardDescription": MessageLookupByLibrary.simpleMessage(
@@ -632,10 +647,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter employer Contact"),
         "invalidEmployerCountry":
             MessageLookupByLibrary.simpleMessage("Select employer country "),
+        "invalidEmployerId": MessageLookupByLibrary.simpleMessage(
+            "Enter Employer Identification Number"),
         "invalidEmployerName":
             MessageLookupByLibrary.simpleMessage("Enter employer Name"),
         "invalidEmploymentStatus":
             MessageLookupByLibrary.simpleMessage("Select Employment Status"),
+        "invalidExemptionFromFatcaReporting":
+            MessageLookupByLibrary.simpleMessage(
+                "Enter Exemption From Fatca Reporting Code"),
         "invalidExpectedAnnualTransaction":
             MessageLookupByLibrary.simpleMessage(
                 "Enter expected annual transaction"),
@@ -647,6 +667,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidExplanationForUnavailability":
             MessageLookupByLibrary.simpleMessage(
                 "Enter reason for unavailability"),
+        "invalidForeignIdNumber": MessageLookupByLibrary.simpleMessage(
+            "Please Enter Foreign Tax Identifying Number"),
         "invalidIDCard": MessageLookupByLibrary.simpleMessage(
             "ID Card is not valid. Please scan JORDANIAN ID Card."),
         "invalidIdentificationNumber":
@@ -765,6 +787,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Main Source of Income"),
         "mainSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
+        "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
+            "Make sure your face fits into the frame"),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
         "manageCardLimits":
             MessageLookupByLibrary.simpleMessage("Manage card limits"),
@@ -873,6 +897,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create Password"),
         "passwordMismatch":
             MessageLookupByLibrary.simpleMessage("Password did not match"),
+        "passwordNotMeetCriteria": MessageLookupByLibrary.simpleMessage(
+            "Password does not meet requirement. \nPlease try again."),
         "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Password is successfully updated"),
         "payBack": MessageLookupByLibrary.simpleMessage("Pay back"),
@@ -925,6 +951,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseSelectYourAction":
             MessageLookupByLibrary.simpleMessage("Please select your action"),
         "pleaseSpecify": MessageLookupByLibrary.simpleMessage("PLEASE SPECIFY"),
+        "pleaseTryAgain":
+            MessageLookupByLibrary.simpleMessage("Please Try Again"),
         "pleaseUploadNecessaryInfo": MessageLookupByLibrary.simpleMessage(
             "You’re done! Just upload\nyour documents"),
         "politicallyExposedPerson":
@@ -1063,11 +1091,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hello! Which country\nare you from?"),
         "selectCreditLimitSettings": MessageLookupByLibrary.simpleMessage(
             "Select Credit Limit Settings"),
+        "selectExpectedTransaction":
+            MessageLookupByLibrary.simpleMessage("Select expected transaction"),
         "selectFromLibrary":
             MessageLookupByLibrary.simpleMessage("Select from Library"),
         "selectMinimumSettlement":
             MessageLookupByLibrary.simpleMessage("Select Minimum Settlement"),
         "selectPurpose": MessageLookupByLibrary.simpleMessage("Select purpose"),
+        "selfieCheck": MessageLookupByLibrary.simpleMessage("Selfie Check!"),
         "sendMoney": MessageLookupByLibrary.simpleMessage("Send Money"),
         "sendMoneyNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Send money was not\nsuccessful."),
@@ -1238,6 +1269,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "U.S. tax payer identification number "),
         "usTaxPayerIdentificationNumber": MessageLookupByLibrary.simpleMessage(
             "U.S. Tax Payer\nIdentification Number "),
+        "userAlreadyExists": MessageLookupByLibrary.simpleMessage(
+            "User Already Exist. Try Using Different Email"),
         "userNotRegister":
             MessageLookupByLibrary.simpleMessage("User Not Register"),
         "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":
@@ -1309,6 +1342,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Aramex will contact you soon to deliver your physical card. In the meantime, you can start using your\nvirtual card immediately."),
         "yourContactDetailsUpdated": MessageLookupByLibrary.simpleMessage(
             "Your contact details has been saved."),
+        "yourFreeVirtualDebitCardHasBeenIssued":
+            MessageLookupByLibrary.simpleMessage(
+                "Your free virtual debit card has been issued, and the physical one is\non its way."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature")
       };
 }

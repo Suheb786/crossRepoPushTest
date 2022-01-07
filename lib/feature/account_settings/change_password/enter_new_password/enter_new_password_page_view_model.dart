@@ -14,18 +14,18 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
   final EnterNewPasswordUseCase _enterPasswordUseCase;
 
   final TextEditingController currentPasswordController =
-  TextEditingController();
+      TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
 
   final GlobalKey<AppTextFieldState> currentPasswordKey =
-  GlobalKey(debugLabel: "currentPassword");
+      GlobalKey(debugLabel: "currentPassword");
 
   final GlobalKey<AppTextFieldState> newPasswordKey =
-  GlobalKey(debugLabel: "newPassword");
+      GlobalKey(debugLabel: "newPassword");
 
   ///create password request subject holder
   PublishSubject<EnterNewPasswordUseCaseParams> _createPasswordRequest =
-  PublishSubject();
+      PublishSubject();
 
   /// create password response subject holder
   PublishSubject<Resource<ProfileChangedSuccessResponse>>
@@ -42,7 +42,7 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
   EnterNewPasswordPageViewModel(this._enterPasswordUseCase) {
     _createPasswordRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _enterPasswordUseCase.execute(params: value))
+              createCall: () => _enterPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -59,6 +59,7 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
   bool hasSymbol = false;
   bool minimumEightCharacters = false;
   bool containsDigit = false;
+  bool isCurrentPasswordValid = false;
 
   void validatePassword() {
     minimumEightCharacters = newPasswordController.text.length > 7;
@@ -68,10 +69,24 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
     notifyListeners();
   }
 
+  void validateCurrentPassword() {
+    if (currentPasswordController.text.length > 7 &&
+        Validator.hasUpperCase(currentPasswordController.text) &&
+        Validator.hasSymbol(currentPasswordController.text) &&
+        Validator.containsDigit(currentPasswordController.text)) {
+      isCurrentPasswordValid = true;
+    }
+  }
+
   void createPassword() {
     _createPasswordRequest.safeAdd(EnterNewPasswordUseCaseParams(
         currentPassword: currentPasswordController.text,
-        newPassword: newPasswordController.text));
+        newPassword: newPasswordController.text,
+        containsDigit: containsDigit,
+        hasSymbol: hasSymbol,
+        hasUpperCase: hasUpperCase,
+        minimumEightCharacters: minimumEightCharacters,
+        isCurrentPasswordValid: isCurrentPasswordValid));
   }
 
   void validateAllFields() {

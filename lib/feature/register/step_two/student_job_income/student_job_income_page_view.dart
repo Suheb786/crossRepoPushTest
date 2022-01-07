@@ -1,5 +1,8 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:flutter/material.dart';
@@ -42,13 +45,12 @@ class StudentJobIncomePageView
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
                         Future.delayed(Duration(milliseconds: 500), () {
-                          ProviderScope
-                              .containerOf(context)
+                          ProviderScope.containerOf(context)
                               .read(registerViewModelProvider)
                               .registrationStepsController
                               .nextPage(
-                              duration: Duration(milliseconds: 500),
-                              curve: Curves.easeInOut);
+                                  duration: Duration(milliseconds: 500),
+                                  curve: Curves.easeInOut);
                         });
                       }
                     },
@@ -63,24 +65,20 @@ class StudentJobIncomePageView
                           child: Padding(
                               padding: EdgeInsets.only(
                                   bottom:
-                                  MediaQuery
-                                      .of(context)
-                                      .viewInsets
-                                      .bottom -
-                                      50 <=
-                                      0
-                                      ? 0
-                                      : MediaQuery
-                                      .of(context)
-                                      .viewInsets
-                                      .bottom -
-                                      48),
+                                      MediaQuery.of(context).viewInsets.bottom -
+                                                  50 <=
+                                              0
+                                          ? 0
+                                          : MediaQuery.of(context)
+                                                  .viewInsets
+                                                  .bottom -
+                                              48),
                               child: SingleChildScrollView(
                                 padding: EdgeInsets.symmetric(
                                     vertical: 32, horizontal: 24),
                                 child: Column(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceBetween,
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     AppStreamBuilder<
@@ -99,29 +97,37 @@ class StudentJobIncomePageView
                                                 if (index == dataList.length) {
                                                   return AddIncomeWidget(
                                                     label:
-                                                    S
-                                                        .of(context)
-                                                        .addIncome,
+                                                        S.of(context).addIncome,
                                                     onTap: () {
                                                       AdditionalIncomeSourceDialog
                                                           .show(context,
-                                                          onDismissed: () {
-                                                            Navigator.pop(
-                                                                context);
-                                                          },
-                                                          onSelected: (value) {
-                                                            Navigator.pop(
-                                                                context);
-                                                            model
-                                                                .addAdditionalIncomeList(
-                                                                value);
-                                                          });
+                                                              onDismissed: () {
+                                                        Navigator.pop(context);
+                                                      }, onSelected: (value) {
+                                                        if (value.totalIncome!
+                                                            .isEmpty) {
+                                                          model.showToastWithError(AppError(
+                                                              type: ErrorType
+                                                                  .EMPTY_INCOME,
+                                                              cause:
+                                                                  Exception(),
+                                                              error: ErrorInfo(
+                                                                  message:
+                                                                      '')));
+                                                        } else {
+                                                          Navigator.pop(
+                                                              context);
+                                                          model
+                                                              .addAdditionalIncomeList(
+                                                                  value);
+                                                        }
+                                                      });
                                                     },
                                                   );
                                                 }
                                                 return AdditionalIncomeSourceWidget(
                                                   additionalIncomeSourceParams:
-                                                  dataList[index],
+                                                      dataList[index],
                                                   onTap: () {
                                                     model.removeAdditionalItem(
                                                         index);
@@ -130,17 +136,27 @@ class StudentJobIncomePageView
                                               });
                                         } else {
                                           return AddIncomeWidget(
-                                            label: S
-                                                .of(context)
-                                                .addIncome,
+                                            label: S.of(context).addIncome,
                                             onTap: () {
                                               AdditionalIncomeSourceDialog.show(
                                                   context, onDismissed: () {
                                                 Navigator.pop(context);
                                               }, onSelected: (value) {
-                                                Navigator.pop(context);
-                                                model.addAdditionalIncomeList(
-                                                    value);
+                                                if (value
+                                                    .totalIncome!.isEmpty) {
+                                                  model.showToastWithError(
+                                                      AppError(
+                                                          type:
+                                                              ErrorType
+                                                                  .EMPTY_INCOME,
+                                                          cause: Exception(),
+                                                          error: ErrorInfo(
+                                                              message: '')));
+                                                } else {
+                                                  Navigator.pop(context);
+                                                  model.addAdditionalIncomeList(
+                                                      value);
+                                                }
                                               });
                                             },
                                           );
@@ -155,7 +171,7 @@ class StudentJobIncomePageView
                                           visible: data!,
                                           child: Padding(
                                             padding:
-                                            const EdgeInsets.only(top: 8.0),
+                                                const EdgeInsets.only(top: 8.0),
                                             child: AnimatedButton(
                                                 buttonText: S
                                                     .of(context)

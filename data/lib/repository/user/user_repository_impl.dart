@@ -292,14 +292,17 @@ class UserRepositoryImpl extends UserRepository {
 
   @override
   Future<Either<NetworkError, SaveCountryResidenceInfoResponse>>
-      saveResidenceInformation(
-          {String? residentCountry,
-          String? buildingName,
-          String? streetName,
-          String? residentArea,
-          String? residentCity,
-          String? permanentResidentCountry,
-          String? permanentResidentCity}) async {
+      saveResidenceInformation({
+    String? residentCountry,
+    String? buildingName,
+    String? streetName,
+    String? residentArea,
+    String? residentCity,
+    String? permanentResidentCountry,
+    String? permanentResidentCity,
+    String? stateId,
+    String? cityId,
+  }) async {
     final result = await safeApiCall(_remoteDS.saveResidenceInformation(
         residentCountry: residentCountry,
         buildingName: buildingName,
@@ -307,7 +310,9 @@ class UserRepositoryImpl extends UserRepository {
         residentArea: residentArea,
         residentCity: residentCity,
         permanentResidentCountry: permanentResidentCountry,
-        permanentResidentCity: permanentResidentCity));
+        permanentResidentCity: permanentResidentCity,
+        cityId: cityId,
+        stateId: stateId));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
@@ -359,20 +364,20 @@ class UserRepositoryImpl extends UserRepository {
                 : '',
             documentNumber:
                 r.documentNumber!.isNotEmpty ? r.documentNumber : '',
-            issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
-            frontCardImage: r.fullDocumentFrontImage,
-            backCardImage: r.fullDocumentBackImage,
-            personFaceImage: r.faceImage,
-            issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
-            issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
-            issuingDate: r.dateOfIssue != null
-                ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
+                issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                    ? r.mrzResult!.sanitizedIssuer
+                    : '',
+                frontCardImage: r.fullDocumentFrontImage,
+                backCardImage: r.fullDocumentBackImage,
+                personFaceImage: r.faceImage,
+                issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                    ? r.mrzResult!.sanitizedIssuer
+                    : '',
+                issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                    ? r.mrzResult!.sanitizedIssuer
+                    : '',
+                issuingDate: r.dateOfIssue != null
+                    ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
                     r.dateOfIssue!.day!)
                 : DateTime(0),
             nationalityIsoCode3: r.mrzResult?.nationality ?? "")));

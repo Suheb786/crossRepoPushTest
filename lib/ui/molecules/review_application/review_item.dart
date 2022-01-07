@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class ReviewApplicationEditableItem extends StatelessWidget {
@@ -51,7 +52,7 @@ class ReviewApplicationEditableItem extends StatelessWidget {
               decoration: InputDecoration(
                   border: InputBorder.none,
                   isCollapsed: true,
-                  hintText: '',
+                  hintText: S.of(context).pleaseEnter,
                   prefixIconConstraints: BoxConstraints.tightForFinite(),
                   prefixIcon: this.prefixWidget),
             ),
