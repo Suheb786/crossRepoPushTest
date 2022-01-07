@@ -17,10 +17,8 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
-    return AppStreamBuilder(
-        stream: ProviderScope.containerOf(context)
-            .read(helpCenterViewModelProvider)
-            .callStatusStream,
+    return AppStreamBuilder<InfobipCallStatusEnum>(
+        stream: model.callStatusStream,
         initialData: InfobipCallStatusEnum.ON_RINGING,
         onData: (value) {
           if (value == InfobipCallStatusEnum.ON_HANGUP) {

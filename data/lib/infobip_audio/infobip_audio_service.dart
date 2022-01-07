@@ -1,6 +1,7 @@
 import 'package:infobip_plugin/infobip_plugin.dart';
 import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:domain/model/infobip_audio/obtain_token.dart';
 
 class InfoBipAudioService {
   final InfobipPlugin _infobipPlugin;
@@ -24,9 +25,11 @@ class InfoBipAudioService {
   ///
   /// This method used for get your token with
   ///
-  Future<String> obtainToken({required Map<String, String> parameter}) async {
+  Future<String> obtainToken({required ObtainToken parameter}) async {
+    // var parameter = {"identity": 'Alice_Test', "displayName": 'Alice Test'};
     try {
-      var tokenDetail = await _infobipPlugin.getToken(parameter: parameter);
+      var tokenDetail =
+          await _infobipPlugin.getToken(parameter: parameter.toJson());
       return tokenDetail!;
     } catch (e) {
       rethrow;

@@ -324,7 +324,14 @@ class ErrorParser {
         return localisedHelper.invalidLimitValue;
       case ErrorType.EMPTY_CONFIRM_PIN:
         return localisedHelper.emptyConfirmPin;
-
+      case ErrorType.CALL_HANGUP_ERROR:
+        return localisedHelper.callHangupError;
+      case ErrorType.GET_CALL_TOKEN_ERROR:
+        return localisedHelper.getCallTokenError;
+      case ErrorType.ESTABLISH_CALL_ERROR:
+        return localisedHelper.establishCallError;
+      case ErrorType.GET_CALL_DURATION_ERROR:
+        return localisedHelper.getCallDurationError;
       default:
         return "";
     }

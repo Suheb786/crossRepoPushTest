@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/base_error.dart';
+import 'package:domain/model/infobip_audio/obtain_token.dart';
 import 'package:domain/repository/help_center/help_canter.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
@@ -19,7 +20,7 @@ class ObtainTokenUseCase
 }
 
 class ObtainTokenUseCaseParams extends Params {
-  final Map<String, String> parameter;
+  final ObtainToken parameter;
 
   ObtainTokenUseCaseParams({required this.parameter});
 

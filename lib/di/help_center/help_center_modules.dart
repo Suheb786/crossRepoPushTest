@@ -5,7 +5,7 @@ import 'package:neo_bank/feature/help_center/call_ended/call_ended_page_view_mod
 import 'package:neo_bank/feature/help_center/help_center_page_view_model.dart';
 
 final helpCenterViewModelProvider =
-    ChangeNotifierProvider<HelpCenterPageViewModel>(
+    ChangeNotifierProvider.autoDispose<HelpCenterPageViewModel>(
   (ref) => HelpCenterPageViewModel(
       ref.read(infobipAudioPluginUseCaseProvider),
       ref.read(obtainTokenUseCaseProvider),
@@ -17,7 +17,8 @@ final activeCallPageViewModelProvider =
   (ref) => ActiveCallPageViewModel(
       ref.read(muteUnMuteUseCaseProvider),
       ref.read(speakerOnOffUseCaseProvider),
-      ref.read(hangupCallUseCaseProvider)),
+      ref.read(hangupCallUseCaseProvider),
+      ref.read(infobipAudioPluginUseCaseProvider)),
 );
 
 final callEndedPageViewModelProvider =

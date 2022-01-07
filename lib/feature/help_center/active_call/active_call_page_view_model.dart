@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:domain/constants/enum/infobip_call_status_enum.dart';
+import 'package:domain/usecase/infobip_audio/init_infobip_audio_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/help_center_extension.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -24,9 +26,15 @@ class ActiveCallPageViewModel extends BasePageViewModel {
   PublishSubject<HangupCallUseCaseParams> _hangupRequestSubject =
       PublishSubject();
 
+  PublishSubject<InfobipAudioPluginUseCaseParams> _initInfobipRequestSubject =
+      PublishSubject();
+
+  PublishSubject<InfobipCallStatusEnum> _callStatusSubject = PublishSubject();
+
   PublishSubject<Resource<bool>> _muteUnMuteResponseSubject = PublishSubject();
   PublishSubject<Resource<bool>> _speakerResponseSubject = PublishSubject();
   PublishSubject<Resource<bool>> _hangupResponseSubject = PublishSubject();
+  PublishSubject<Resource<bool>> _initInfobipResponseSubject = PublishSubject();
 
   Stream<Resource<bool>> get muteUnMuteResponseStream =>
       _muteUnMuteResponseSubject.stream;
@@ -37,14 +45,20 @@ class ActiveCallPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get speakerResponseStream =>
       _speakerResponseSubject.stream;
 
-  Stream newsStream = Stream.periodic(Duration(seconds: 1), (value) => value);
-  late StreamSubscription _sub;
+  Stream<InfobipCallStatusEnum> get callStatusStream =>
+      _callStatusSubject.stream;
+
+  Stream callDurationCounterStream =
+      Stream.periodic(Duration(seconds: 1), (value) => value);
+
+  late StreamSubscription _callDurationCounterSubscription;
   final MuteUnMuteUseCase _muteUnMuteUseCase;
   final SpeakerOnOffUseCase _speakerOnOffUseCase;
   final HangupCallUseCase _hangupCallUseCase;
+  final InfobipAudioPluginUseCase _infobipAudioPluginUseCase;
 
   ActiveCallPageViewModel(this._muteUnMuteUseCase, this._speakerOnOffUseCase,
-      this._hangupCallUseCase) {
+      this._hangupCallUseCase, this._infobipAudioPluginUseCase) {
     _muteUnMuteRequestSubject.listen((value) {
       RequestManager(value, createCall: () {
         return _muteUnMuteUseCase.execute(params: value);
@@ -72,11 +86,21 @@ class ActiveCallPageViewModel extends BasePageViewModel {
       });
     });
 
-    _sub = newsStream.listen((event) {
+    _initInfobipRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _infobipAudioPluginUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        updateLoader();
+        _initInfobipResponseSubject.safeAdd(event);
+      });
+    });
+
+    _callDurationCounterSubscription =
+        callDurationCounterStream.listen((event) {
       _callDurationSubject
           .safeAdd(Duration(seconds: event).toHoursMinutesSeconds());
     });
-
+    getCurrentCallStatus();
     toggleMute();
     toggleSpeaker();
   }
@@ -93,6 +117,13 @@ class ActiveCallPageViewModel extends BasePageViewModel {
     _hangupRequestSubject.safeAdd(HangupCallUseCaseParams());
   }
 
+  getCurrentCallStatus() {
+    _initInfobipRequestSubject.safeAdd(InfobipAudioPluginUseCaseParams(
+        callback: (InfobipCallStatusEnum status) {
+      _callStatusSubject.safeAdd(status);
+    }));
+  }
+
   @override
   void dispose() {
     _callDurationSubject.close();
@@ -102,7 +133,9 @@ class ActiveCallPageViewModel extends BasePageViewModel {
     _hangupRequestSubject.close();
     _speakerRequestSubject.close();
     _hangupResponseSubject.close();
-    _sub.cancel();
+    _callStatusSubject.close();
+
+    _callDurationCounterSubscription.cancel();
     super.dispose();
   }
 }

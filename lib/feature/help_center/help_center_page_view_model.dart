@@ -2,6 +2,7 @@ import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_audio_usecase.dart';
 import 'package:domain/usecase/infobip_audio/obtain_token_usecase.dart';
 import 'package:domain/usecase/infobip_audio/establish_call_usecase.dart';
+import 'package:domain/model/infobip_audio/obtain_token.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -80,9 +81,8 @@ class HelpCenterPageViewModel extends BasePageViewModel {
   }
 
   obtainTokenForCall() {
-    var parameter = {"identity": 'Alice_Test', "displayName": 'Alice Test'};
-    _obtainTokenRequestSubject
-        .safeAdd(ObtainTokenUseCaseParams(parameter: parameter));
+    _obtainTokenRequestSubject.safeAdd(ObtainTokenUseCaseParams(
+        parameter: ObtainToken('Alice_Test', 'Alice_Test')));
   }
 
   establishCall() {
@@ -94,6 +94,7 @@ class HelpCenterPageViewModel extends BasePageViewModel {
     _initInfobipResponseSubject.close();
     _obtainTokenResponseSubject.close();
     _initInfobipRequestSubject.close();
+    _obtainTokenRequestSubject.close();
     _establishCallRequestSubject.close();
     _establishCallResponseSubject.close();
     _callStatusSubject.close();
