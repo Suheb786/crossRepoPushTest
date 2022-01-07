@@ -73,12 +73,14 @@ class EnterAddressUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_STREET_ADDRESS,
           cause: Exception()));
-    } else if (Validator.isEmpty(residentArea!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_DISTRICT,
-          cause: Exception()));
-    } else if (Validator.isEmpty(city!)) {
+    }
+    // else if (Validator.isEmpty(residentArea!)) {
+    //   return Left(AppError(
+    //       error: ErrorInfo(message: ''),
+    //       type: ErrorType.EMPTY_DISTRICT,
+    //       cause: Exception()));
+    // }
+    else if (Validator.isEmpty(city!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_CITY,

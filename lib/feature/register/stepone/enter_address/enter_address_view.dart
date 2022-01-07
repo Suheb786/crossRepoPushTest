@@ -69,11 +69,13 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                       ErrorType.EMPTY_RESIDENT_COUNTRY) {
                                     model.residentCountryKey.currentState!
                                         .isValid = false;
-                                  } else if (data.appError!.type ==
-                                      ErrorType.EMPTY_DISTRICT) {
-                                    model.districtKey.currentState!.isValid =
-                                        false;
-                                  } else if (data.appError!.type ==
+                                  }
+                                  // else if (data.appError!.type ==
+                                  //     ErrorType.EMPTY_DISTRICT) {
+                                  //   model.districtKey.currentState!.isValid =
+                                  //       false;
+                                  // }
+                                  else if (data.appError!.type ==
                                       ErrorType.EMPTY_CITY) {
                                     model.cityKey.currentState!.isValid = false;
                                   } else if (data.appError!.type ==
@@ -240,22 +242,28 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                             SizedBox(
                                               height: 16,
                                             ),
-                                            AppTextField(
-                                              labelText: S
-                                                  .of(context)
-                                                  .area
-                                                  .toUpperCase(),
-                                              hintText:
-                                                  S.of(context).pleaseEnter,
-                                              inputType: TextInputType.text,
-                                              controller:
-                                                  model.districtController,
-                                              key: model.districtKey,
-                                              onChanged: (value) =>
-                                                  model.validateAddress(),
+                                            Visibility(
+                                              visible: false,
+                                              child: AppTextField(
+                                                labelText: S
+                                                    .of(context)
+                                                    .area
+                                                    .toUpperCase(),
+                                                hintText:
+                                                    S.of(context).pleaseEnter,
+                                                inputType: TextInputType.text,
+                                                controller:
+                                                    model.districtController,
+                                                key: model.districtKey,
+                                                onChanged: (value) =>
+                                                    model.validateAddress(),
+                                              ),
                                             ),
-                                            SizedBox(
-                                              height: 16,
+                                            Visibility(
+                                              visible: false,
+                                              child: SizedBox(
+                                                height: 16,
+                                              ),
                                             ),
                                             AppTextField(
                                               labelText: S.of(context).city,

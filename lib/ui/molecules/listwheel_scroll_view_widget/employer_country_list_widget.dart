@@ -1,5 +1,6 @@
 import 'package:domain/model/country/country_list/country_data.dart';
 import 'package:flutter/material.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class EmployerCountryListWidget extends StatelessWidget {
@@ -22,15 +23,11 @@ class EmployerCountryListWidget extends StatelessWidget {
               width: 32,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: Theme.of(context).primaryColorDark
-
-                  ///TODO: uncomment later
-                  // image: DecorationImage(
-                  //     image: AssetImage(
-                  //         "${AssetUtils.flags}${item.isoCode3?.toLowerCase() ?? ""}.png"),
-                  //     fit: BoxFit.cover)
-
-                  )),
+                  color: Theme.of(context).primaryColorDark,
+                  image: DecorationImage(
+                      image: AssetImage(
+                          "${AssetUtils.flags}${item.isoCode3?.toLowerCase() ?? ""}.png"),
+                      fit: BoxFit.cover))),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0),

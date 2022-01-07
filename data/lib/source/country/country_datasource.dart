@@ -20,7 +20,6 @@ abstract class CountryRemoteDs {
 
   Future<HttpResponse<CityListResponseEntity>> getCitiesByCountry(
       {String? stateID, String? isoCode});
-      getAllowedCodeCountryList();
 
   Future<HttpResponse<GetAllowedIssuerResponseEntity>> fetchAllowedIssuers();
 }
