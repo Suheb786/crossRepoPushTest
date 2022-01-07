@@ -91,15 +91,61 @@ class PaymentToNewRecipientPageView
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    ProviderScope.containerOf(context)
-                                        .read(sendMoneyViewModelProvider)
-                                        .currentPinValue,
-                                    style: TextStyle(
-                                        color: Theme.of(context).accentColor,
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.w700),
-                                  ),
+                                  AppStreamBuilder<bool>(
+                                      stream: model.editAmountStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isEdit) {
+                                        return isEdit!
+                                            ? Container(
+                                                height: 28,
+                                                width: 100,
+                                                child: TextField(
+                                                  autofocus: true,
+                                                  style: TextStyle(
+                                                      fontSize: 28,
+                                                      fontWeight:
+                                                          FontWeight.w700,
+                                                      color: Theme.of(context)
+                                                          .accentColor),
+                                                  cursorColor: Theme.of(context)
+                                                      .accentColor,
+                                                  controller: model
+                                                      .editAmountController,
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    contentPadding:
+                                                        EdgeInsets.only(
+                                                            bottom: 10),
+                                                  ),
+                                                  onSubmitted: (value) {
+                                                    ProviderScope.containerOf(
+                                                            context)
+                                                        .read(
+                                                            sendMoneyViewModelProvider)
+                                                        .currentPinValue = value;
+                                                    model.updateEditAmount(
+                                                        false);
+                                                  },
+                                                ),
+                                              )
+                                            : Text(
+                                                double.parse(ProviderScope
+                                                            .containerOf(
+                                                                context)
+                                                        .read(
+                                                            sendMoneyViewModelProvider)
+                                                        .currentPinValue)
+                                                    .toStringAsFixed(2),
+                                                style: TextStyle(
+                                                    color: Theme.of(context)
+                                                        .accentColor,
+                                                    fontSize: 28,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              );
+                                      }),
                                   Padding(
                                     padding: EdgeInsets.only(top: 8),
                                     child: Text(
@@ -115,13 +161,30 @@ class PaymentToNewRecipientPageView
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 3),
-                              child: Text(
-                                S.of(context).tapToEdit,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12,
-                                    color: AppColor.very_light_red),
-                              ),
+                              child: AppStreamBuilder<bool>(
+                                  stream: model.editAmountStream,
+                                  initialData: false,
+                                  dataBuilder: (context, value) {
+                                    return InkWell(
+                                      onTap: () {
+                                        if (!value!) {
+                                          model.editAmountController
+                                              .text = ProviderScope.containerOf(
+                                                  context)
+                                              .read(sendMoneyViewModelProvider)
+                                              .currentPinValue;
+                                          model.updateEditAmount(true);
+                                        }
+                                      },
+                                      child: Text(
+                                        S.of(context).tapToEdit,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12,
+                                            color: AppColor.very_light_red),
+                                      ),
+                                    );
+                                  }),
                             )
                           ],
                         ),

@@ -46,7 +46,7 @@ class PurposeDetailDialogView extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 32.0),
                         child: Center(
                           child: Text(
-                            S.of(context).purposeDetail,
+                            S.of(context).purposeDetailSmall,
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.w600),
                           ),

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_view_model.dart';
+import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
-class SendMoneyFailurePageView
-    extends BasePageViewWidget<SendMoneyFailureViewModel> {
-  SendMoneyFailurePageView(ProviderBase model) : super(model);
+class CreditCardApplicationFailurePageView
+    extends BasePageViewWidget<CreditCardApplicationFailureViewModel> {
+  CreditCardApplicationFailurePageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(BuildContext context, model) {
+  Widget build(
+      BuildContext context, CreditCardApplicationFailureViewModel model) {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.popUntil(context, ModalRoute.withName(RoutePaths.AppHome));
+          print("dragged");
         }
       },
       child: Padding(
@@ -46,27 +46,26 @@ class SendMoneyFailurePageView
                 ],
               ),
               Padding(
-                  padding: EdgeInsets.only(top: 47),
-                  child: Text(
-                    S.of(context).sendMoneyNotSuccessful,
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w500,
-                        color: Theme.of(context).accentColor),
-                  )),
-              Padding(
-                padding: EdgeInsets.only(top: 51),
+                padding: EdgeInsets.only(top: 46),
                 child: Text(
-                  S.of(context).tryAgainLater,
+                  S.of(context).applicationNotSuccessful,
                   textAlign: TextAlign.center,
-                  maxLines: 2,
+                  maxLines: 3,
                   style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 24,
                       color: Theme.of(context).accentColor),
                 ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 16),
+                child: Text(S.of(context).excitingPromotion,
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Theme.of(context).accentColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w400)),
               ),
               Padding(
                 padding: EdgeInsets.only(top: 262),
