@@ -1,5 +1,10 @@
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/country/city_list/city_list_response.dart';
+import 'package:domain/model/country/state_list/state_city_data.dart';
+import 'package:domain/model/country/state_list/state_list_response.dart';
 import 'package:domain/model/fatca_crs/fatca_set_data.dart';
+import 'package:domain/usecase/country/get_city_list_usecase.dart';
+import 'package:domain/usecase/country/get_state_list_usecase.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w9_address_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +20,36 @@ import 'package:rxdart/rxdart.dart';
 class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
   final FatcaUSRelevantW9AddressDetailsUseCase
       _fatcaUSRelevantW9AddressDetailsUseCase;
+
+  final GetStateListUseCase _getStateListUseCase;
+
+  final GetCityListUseCase _getCityListUseCase;
+
+  StateCityData selectedAddressInUS = StateCityData();
+
+  StateCityData selectedAdditionalRequester = StateCityData();
+
+  /// get state list request subject holder
+  PublishSubject<GetStateListUseParams> _getStateListRequest = PublishSubject();
+
+  /// get state list response subject holder
+  PublishSubject<Resource<StateListResponse>> _getStateListResponse =
+      PublishSubject();
+
+  /// get state list response stream
+  Stream<Resource<StateListResponse>> get getStateListResponseStream =>
+      _getStateListResponse.stream;
+
+  /// get city list request subject holder
+  PublishSubject<GetCityListUseParams> _getCityListRequest = PublishSubject();
+
+  /// get city list response subject holder
+  PublishSubject<Resource<CityListResponse>> _getCityListResponse =
+      PublishSubject();
+
+  /// get city list response stream
+  Stream<Resource<CityListResponse>> get getCityListResponseStream =>
+      _getCityListResponse.stream;
 
   ///controllers and keys
   final TextEditingController addressController = TextEditingController();
@@ -120,7 +155,9 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
   }
 
   FatcaUSRelevantW9AddressDetailsPageViewModel(
-      this._fatcaUSRelevantW9AddressDetailsUseCase) {
+      this._fatcaUSRelevantW9AddressDetailsUseCase,
+      this._getStateListUseCase,
+      this._getCityListUseCase) {
     _fatcaUSRelevantW9AddressDetailsRequest.listen((value) {
       RequestManager(value,
           createCall: () => _fatcaUSRelevantW9AddressDetailsUseCase.execute(
@@ -133,6 +170,45 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getStateListRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getStateListUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getStateListResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _getCityListRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getCityListUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getCityListResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    getStateList('USA');
+  }
+
+  void getStateList(String isoCode) {
+    _getStateListRequest.safeAdd(GetStateListUseParams(isoCode: isoCode));
+  }
+
+  void getCityList(String isoCode, String stateId) {
+    _getCityListRequest
+        .safeAdd(GetCityListUseParams(isoCode: isoCode, stateID: stateId));
   }
 
   void getError(Resource<bool> event) {
@@ -181,17 +257,16 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
             isAdditionalRequester: _additionalRequesterSubject.value,
             additionalRequesterName: additionalRequesterNameController.text,
             additionalRequesterAddress:
-            additionalRequesterAddressController.text,
+                additionalRequesterAddressController.text,
             additionalRequesterCity: additionalRequesterCityController.text,
             additionalRequesterPostCode:
-            additionalRequesterPostCodeController.text,
+                additionalRequesterPostCodeController.text,
             additionalRequesterState: additionalRequesterStateController.text));
   }
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope
-        .containerOf(context)
+    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
         .fatcaData;
     fatcaSetData.usAddress = addressController.text;

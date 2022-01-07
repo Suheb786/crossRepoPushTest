@@ -305,7 +305,9 @@ final fatcaUSRelevantW9PageViewModelProvider =
 final fatcaUSRelevantW9AddressPageViewModelProvider = ChangeNotifierProvider
     .autoDispose<FatcaUSRelevantW9AddressDetailsPageViewModel>(
   (ref) => FatcaUSRelevantW9AddressDetailsPageViewModel(
-      ref.read(fatcaUSRelevantW9AddressDetailsUseCaseProvider)),
+      ref.read(fatcaUSRelevantW9AddressDetailsUseCaseProvider),
+      ref.read(getStateListUseCaseProvider),
+      ref.read(getCityListUseCaseProvider)),
 );
 
 ///fatca us w9 tax payer details page view model provider
