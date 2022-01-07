@@ -168,25 +168,27 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                     mainAxisSize:
                                                         MainAxisSize.min,
                                                     children: <Widget>[
-                                                      ///TODO:add country Flag
                                                       Container(
                                                           height: 16,
                                                           width: 16,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .primaryColorDark,
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          )),
+                                                          decoration: BoxDecoration(
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .primaryColorDark,
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              image: DecorationImage(
+                                                                  image: AssetImage(
+                                                                      "${AssetUtils.flags}${selectedCountry!.isoCode3?.toLowerCase() ?? ""}.png"),
+                                                                  fit: BoxFit
+                                                                      .cover))),
                                                       Padding(
                                                         padding: EdgeInsets
                                                             .symmetric(
                                                                 horizontal:
                                                                     8.0),
                                                         child: Text(
-                                                          selectedCountry!
+                                                          selectedCountry
                                                                   .phoneCode!
                                                                   .isNotEmpty
                                                               ? '+${selectedCountry.phoneCode!}'

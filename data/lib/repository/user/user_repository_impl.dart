@@ -188,15 +188,11 @@ class UserRepositoryImpl extends UserRepository {
       String? backCardImage,
       String? personFaceImage,
       bool? getToken,
-      String? secondNameEn,
       String? placeOfBirth,
-      String? familyNameAr,
-      String? secNameAr,
-      String? thirdNameAr,
-      String? firstNameAr,
       bool? isimtfBlacklist,
       String? instanceID,
-      double? scanPercentage}) async {
+      double? scanPercentage,
+      String? doi}) async {
     final result = await safeApiCall(
       _remoteDS.saveIdInfo(
           id: id,
@@ -224,12 +220,8 @@ class UserRepositoryImpl extends UserRepository {
           instanceID: instanceID,
           scanPercentage: scanPercentage,
           firstName: firstName,
-          thirdNameAr: thirdNameAr,
-          firstNameAr: firstNameAr,
-          secNameAr: secNameAr,
-          familyNameAr: familyNameAr,
           placeOfBirth: placeOfBirth,
-          secondNameEn: secondNameEn),
+          doi: doi),
     );
     return result!.fold(
       (l) => Left(l),
@@ -346,9 +338,15 @@ class UserRepositoryImpl extends UserRepository {
         (l) => Left(l),
         (r) => Right(ScannedDocumentInformation(
             fullName: r.fullName,
-            firstName: r.firstName,
+            firstName: r.mrzResult!.secondaryId
+                    ?.trim()
+                    .split(" ")
+                    .elementAt(0)
+                    .toString() ??
+                r.firstName ??
+                "",
             middleName: r.fathersName,
-            familyName: r.lastName,
+            familyName: r.mrzResult!.primaryId ?? r.lastName ?? "",
             idNumber: r.personalIdNumber!.isNotEmpty ? r.personalIdNumber : '',
             dob: r.dateOfBirth != null
                 ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
@@ -366,20 +364,20 @@ class UserRepositoryImpl extends UserRepository {
                 : '',
             documentNumber:
                 r.documentNumber!.isNotEmpty ? r.documentNumber : '',
-            issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
-            frontCardImage: r.fullDocumentFrontImage,
-            backCardImage: r.fullDocumentBackImage,
-            personFaceImage: r.faceImage,
-            issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
-            issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                ? r.mrzResult!.sanitizedIssuer
-                : '',
-            issuingDate: r.dateOfIssue != null
-                ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
+                issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                    ? r.mrzResult!.sanitizedIssuer
+                    : '',
+                frontCardImage: r.fullDocumentFrontImage,
+                backCardImage: r.fullDocumentBackImage,
+                personFaceImage: r.faceImage,
+                issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                    ? r.mrzResult!.sanitizedIssuer
+                    : '',
+                issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                    ? r.mrzResult!.sanitizedIssuer
+                    : '',
+                issuingDate: r.dateOfIssue != null
+                    ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
                     r.dateOfIssue!.day!)
                 : DateTime(0),
             nationalityIsoCode3: r.mrzResult?.nationality ?? "")));

@@ -149,12 +149,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
       String? fullName,
       String? firstName,
       String? middleName,
-      String? secondNameEn,
       String? placeOfBirth,
-      String? familyNameAr,
-      String? secNameAr,
-      String? thirdNameAr,
-      String? firstNameAr,
       String? familyName,
       String? idNumber,
       String? dob,
@@ -174,7 +169,8 @@ class UserRemoteDSImpl extends UserRemoteDS {
       bool? getToken,
       bool? isimtfBlacklist,
       String? instanceID,
-      double? scanPercentage}) async {
+      double? scanPercentage,
+      String? doi}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveIdInfo(SaveIdInfoRequest(
         baseData: baseData.toJson(),
@@ -203,12 +199,8 @@ class UserRemoteDSImpl extends UserRemoteDS {
         optionalData2: optionalData2,
         personFaceImage: personFaceImage,
         scanPercentage: 0,
-        secondNameEn: secondNameEn,
-        placeOfBirth: placeOfBirth,
-        familyNameAr: familyNameAr,
-        secNameAr: secNameAr,
-        firstNameAr: familyNameAr,
-        thirdNameAr: thirdNameAr));
+        doi: doi,
+        placeOfBirth: placeOfBirth));
   }
 
   @override

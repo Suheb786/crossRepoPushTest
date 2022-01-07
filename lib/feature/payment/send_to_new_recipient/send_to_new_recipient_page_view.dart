@@ -209,11 +209,16 @@ class SendToNewRecipientPageView
                                                                   mainAxisAlignment:
                                                                       MainAxisAlignment
                                                                           .spaceBetween,
+                                                                  crossAxisAlignment:
+                                                                      CrossAxisAlignment
+                                                                          .start,
                                                                   children: [
                                                                     Expanded(
                                                                       child:
                                                                           Text(
-                                                                        "Name",
+                                                                        S
+                                                                            .of(context)
+                                                                            .nameOfBeneficiary,
                                                                         style:
                                                                             TextStyle(
                                                                           fontSize:
@@ -475,14 +480,40 @@ class SendToNewRecipientPageView
                                                                         Expanded(
                                                                           child:
                                                                               Padding(
-                                                                            padding:
+                                                                                padding:
                                                                                 EdgeInsets.only(left: 14),
-                                                                            child:
-                                                                                Text(
-                                                                              (model.transferResponse.name != null && model.transferResponse.name!.isNotEmpty) ? model.transferResponse.name! : '-',
-                                                                              maxLines: 2,
-                                                                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                                            ),
+                                                                            child: AppStreamBuilder<bool>(
+                                                                                stream: model.addNickNameStream,
+                                                                                initialData: false,
+                                                                                dataBuilder: (context, val) {
+                                                                                  return val!
+                                                                                      ? Container(
+                                                                                          height: 28,
+                                                                                          child: TextField(
+                                                                                            autofocus: true,
+                                                                                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                                            cursorColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                                                                            controller: model.addNickNameController,
+                                                                                            decoration: InputDecoration(
+                                                                                              border: InputBorder.none,
+                                                                                              contentPadding: EdgeInsets.only(bottom: 18),
+                                                                                            ),
+                                                                                            onSubmitted: (value) {
+                                                                                              model.addNickNameVal = value;
+                                                                                              model.updateNickName(false);
+                                                                                            },
+                                                                                          ),
+                                                                                        )
+                                                                                      : InkWell(
+                                                                                          onTap: () {
+                                                                                            model.updateNickName(true);
+                                                                                          },
+                                                                                          child: Text(
+                                                                                            model.addNickNameVal!,
+                                                                                            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                                          ),
+                                                                                        );
+                                                                                }),
                                                                           ),
                                                                         )
                                                                       ],

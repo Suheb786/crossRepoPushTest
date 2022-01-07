@@ -346,6 +346,12 @@ class ErrorParser {
         return localisedHelper.invalidEmployerId;
       case ErrorType.ERROR_ACCESSING_ID:
         return localisedHelper.errorWhileAccessingIdData;
+      case ErrorType.NOT_ALLOWED_COUNTRY:
+        return localisedHelper.notAllowedCountry;
+      case ErrorType.INVALID_CHECKED_VALUE:
+        return localisedHelper.agreeTermsCondition;
+      case ErrorType.EMPTY_MINIMUM_SETTLEMENT_VALUE:
+        return localisedHelper.emptyMinimumSettlement;
 
       default:
         return "";

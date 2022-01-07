@@ -57,6 +57,7 @@ import 'package:data/entity/remote/country/get_allowed_country/get_allowed_count
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_response_entity.dart';
 import 'package:data/entity/remote/country/state_list/state_list_request_entity.dart';
 import 'package:data/entity/remote/country/state_list/state_list_response_entity.dart';
+import 'package:data/entity/remote/country/get_allowed_issuer/get_allowed_issuer_response_entity.dart';
 import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
@@ -534,4 +535,8 @@ abstract class ApiService {
   @POST("/FatcaCrs/SetW9")
   Future<HttpResponse<ResponseEntity>> saveFatcaW9(
       @Body() SetFatcaW9RequestEntity setFatcaW9RequestEntity);
+
+  @POST("/Auth/CheckIssuer")
+  Future<HttpResponse<GetAllowedIssuerResponseEntity>> fetchAllowedIssuers(
+      @Body() BaseRequest baseRequest);
 }

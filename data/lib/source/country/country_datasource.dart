@@ -3,6 +3,7 @@ import 'package:data/entity/remote/country/city_list/city_list_response_entity.d
 import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_response_entity.dart';
 import 'package:data/entity/remote/country/state_list/state_list_response_entity.dart';
+import 'package:data/entity/remote/country/get_allowed_issuer/get_allowed_issuer_response_entity.dart';
 import 'package:flutter/widgets.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -19,6 +20,9 @@ abstract class CountryRemoteDs {
 
   Future<HttpResponse<CityListResponseEntity>> getCitiesByCountry(
       {String? stateID, String? isoCode});
+      getAllowedCodeCountryList();
+
+  Future<HttpResponse<GetAllowedIssuerResponseEntity>> fetchAllowedIssuers();
 }
 
 mixin CountryLocalDs {

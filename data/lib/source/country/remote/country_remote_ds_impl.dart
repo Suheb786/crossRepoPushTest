@@ -2,12 +2,14 @@ import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/country/city_list/city_list_request_entity.dart';
 import 'package:data/entity/remote/country/city_list/city_list_response_entity.dart';
+import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_response_entity.dart';
 import 'package:data/entity/remote/country/state_list/state_list_request_entity.dart';
 import 'package:data/entity/remote/country/state_list/state_list_response_entity.dart';
+import 'package:data/entity/remote/country/get_allowed_issuer/get_allowed_issuer_response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/country/country_datasource.dart';
 import 'package:retrofit/dio.dart';
@@ -68,5 +70,13 @@ class CountryRemoteDSImpl extends CountryRemoteDs {
         getToken: true,
         isoCode: isoCode,
         stateID: stateID));
+  }
+
+  @override
+  Future<HttpResponse<GetAllowedIssuerResponseEntity>>
+      fetchAllowedIssuers() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .fetchAllowedIssuers(BaseRequest(baseData: baseData.toJson()));
   }
 }

@@ -28,9 +28,7 @@ class AhwalDetailResponseEntity
 
   @override
   AhwalDetailResponse transform() {
-    return AhwalDetailResponse(
-        contentData:
-        AhwalInfoContentDataEntity.fromJson(this.responseEntity!.content)
-            .transform());
+    return AhwalInfoContentDataEntity.fromJson(this.responseEntity!.content)
+        .transform();
   }
 }
