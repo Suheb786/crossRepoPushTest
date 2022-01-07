@@ -84,42 +84,10 @@ class InfoBipAudioService {
   ///
   /// This method is used to get current call duration in seconds
   ///
-  void getCallDuration() async {
+  Future<int> getCallDuration() async {
     try {
-      await _infobipPlugin.getCallDuration();
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  ///
-  /// This method is used to get call establish time
-  ///
-  void getCallEstablishTime() async {
-    try {
-      await _infobipPlugin.getCallEstablishTime();
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  ///
-  /// This method is used to get call start time
-  ///
-  void getCallStartTime() async {
-    try {
-      await _infobipPlugin.getCallStartTime();
-    } catch (e) {
-      rethrow;
-    }
-  }
-
-  ///
-  /// This method is used to get call end time
-  ///
-  void getCallendTime() async {
-    try {
-      await _infobipPlugin.getEndTime();
+      var callDuration = await _infobipPlugin.getCallDuration();
+      return callDuration!;
     } catch (e) {
       rethrow;
     }
@@ -131,6 +99,7 @@ class InfoBipAudioService {
   Future<bool> callHangUp() async {
     try {
       var result = await _infobipPlugin.hangUpCall();
+      print("HANGUP FROM SERVICE " + result.toString());
       return result!;
     } catch (e) {
       rethrow;

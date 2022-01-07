@@ -73,7 +73,6 @@ class ActiveCallPageViewModel extends BasePageViewModel {
     });
 
     _sub = newsStream.listen((event) {
-      print(event);
       _callDurationSubject
           .safeAdd(Duration(seconds: event).toHoursMinutesSeconds());
     });

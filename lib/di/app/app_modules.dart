@@ -4,5 +4,5 @@ import 'package:neo_bank/main/app_viewmodel.dart';
 
 ChangeNotifierProvider<AppViewModel> appViewModel =
     ChangeNotifierProvider<AppViewModel>(
-          (ref) => AppViewModel(ref.read(getTokenUseCaseProvider)),
+  (ref) => AppViewModel(ref.read(getTokenUseCaseProvider)),
 );

@@ -16,4 +16,6 @@ abstract class HelpCenterRepository {
   Future<Either<NetworkError, bool>> toggleSpeaker();
 
   Future<Either<NetworkError, bool>> callHangUp();
+
+  Future<Either<NetworkError, int>> getCallDuration();
 }

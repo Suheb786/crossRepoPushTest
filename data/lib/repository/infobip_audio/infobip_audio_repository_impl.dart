@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:data/source/infobip_audio/infobip_audio_datasource.dart';
 import 'package:domain/constants/enum/infobip_call_status_enum.dart';
-import 'package:domain/error/base_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/repository/help_center/help_canter.dart';
 
@@ -73,6 +72,19 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
           message: 'Error occurred while calling..'));
     } else {
       return Right(true);
+    }
+  }
+
+  @override
+  Future<Either<NetworkError, int>> getCallDuration() async {
+    var result = await _infobipAudioDS.getCallDuration();
+    if (result == null) {
+      return Left(NetworkError(
+          httpError: 0,
+          cause: Exception(),
+          message: 'Error occurred while calling..'));
+    } else {
+      return Right(result);
     }
   }
 }

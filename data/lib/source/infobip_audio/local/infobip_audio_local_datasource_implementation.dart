@@ -34,6 +34,11 @@ class InfobipAudioDSImpl with InfobipAudioLocalDs {
 
   @override
   Future<bool> callHangUp() async {
-    return await _infobipAudioService.toggleSpeaker();
+    return await _infobipAudioService.callHangUp();
+  }
+
+  @override
+  Future<int> getCallDuration() async {
+    return await _infobipAudioService.getCallDuration();
   }
 }

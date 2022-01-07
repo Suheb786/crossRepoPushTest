@@ -12,4 +12,6 @@ abstract class InfobipAudioLocalDs {
   Future<bool> toggleSpeaker();
 
   Future<bool> callHangUp();
+
+  Future<int> getCallDuration();
 }
