@@ -730,6 +730,7 @@
   "setupAndPersonalizeYourNewDebitCard": "Set up and personalize your new debit card",
   "yourApplicationInReview": "Your application is\nin review",
   "weWillNotifyOnceReady": "We will notify you once it’s ready",
+  "notAllowedCountry": "ID card issuer is not allowed at this moment. Please try again with valid ID card issuer.",
   "blinkCreditCardTitle": "blink Credit Card",
   "getCardDelivered": "Get your card delivered right to your\ndoorstep. Spend and enjoy discounts\nat participating outlets",
   "authorize": "I authorize blink to retrieve my",

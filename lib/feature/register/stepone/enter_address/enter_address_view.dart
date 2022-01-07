@@ -44,13 +44,12 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
                             model.residentCountryKey.currentState!.isValid =
-                            true;
+                                true;
                             model.streetAddressKey.currentState!.isValid = true;
                             model.buildingNameOrNumberKey.currentState!
                                 .isValid = true;
                             Future.delayed(Duration(milliseconds: 500), () {
-                              ProviderScope
-                                  .containerOf(context)
+                              ProviderScope.containerOf(context)
                                   .read(registerStepOneViewModelProvider)
                                   .pageController
                                   .next();
@@ -101,57 +100,51 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                             child: Card(
                               child: Padding(
                                 padding: EdgeInsets.only(
-                                    bottom: MediaQuery
-                                        .of(context)
-                                        .viewInsets
-                                        .bottom -
-                                        50 <=
-                                        0
+                                    bottom: MediaQuery.of(context)
+                                                    .viewInsets
+                                                    .bottom -
+                                                50 <=
+                                            0
                                         ? 0
-                                        : MediaQuery
-                                        .of(context)
-                                        .viewInsets
-                                        .bottom -
-                                        48),
+                                        : MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom -
+                                            48),
                                 child: SingleChildScrollView(
                                   padding: EdgeInsets.symmetric(
                                       vertical: 32, horizontal: 24),
                                   child: Column(
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       AppTextField(
-                                        labelText: S
-                                            .of(context)
-                                            .country,
-                                        hintText: S
-                                            .of(context)
-                                            .pleaseSelect,
+                                        labelText: S.of(context).country,
+                                        hintText: S.of(context).pleaseSelect,
                                         readOnly: true,
                                         controller:
-                                        model.residentCountryController,
+                                            model.residentCountryController,
                                         onPressed: () {
                                           CountryDialog.show(context,
                                               title: S
                                                   .of(context)
                                                   .residentCountrySmall,
                                               onDismissed: () {
-                                                Navigator.pop(context);
-                                              }, onSelected: (value) {
-                                                Navigator.pop(context);
-                                                model.residentCountryController
-                                                    .text = value;
-                                                model
-                                                    .updatePermanentAddressVisibility();
-                                                model.validateAddress();
-                                              });
+                                            Navigator.pop(context);
+                                          }, onSelected: (value) {
+                                            Navigator.pop(context);
+                                            model.residentCountryController
+                                                .text = value;
+                                            model
+                                                .updatePermanentAddressVisibility();
+                                            model.validateAddress();
+                                          });
                                         },
                                         suffixIcon: (value, data) {
                                           return Container(
                                               height: 16,
                                               width: 16,
                                               padding:
-                                              EdgeInsets.only(right: 8),
+                                                  EdgeInsets.only(right: 8),
                                               child: AppSvg.asset(
                                                   AssetUtils.downArrow,
                                                   color: AppColor.dark_gray_1));
@@ -163,60 +156,46 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                       ),
                                       AppTextField(
                                         labelText:
-                                        S
-                                            .of(context)
-                                            .buildingNameOrNo,
-                                        hintText: S
-                                            .of(context)
-                                            .pleaseEnter,
+                                            S.of(context).buildingNameOrNo,
+                                        hintText: S.of(context).pleaseEnter,
                                         inputType: TextInputType.text,
                                         controller: model
                                             .buildingNameOrNumberController,
                                         key: model.buildingNameOrNumberKey,
                                         onChanged: (value) =>
                                             model.validateAddress(),
-                                        suffixIcon: (isValid, value) =>
-                                            InkWell(
-                                                onTap: () =>
-                                                    HomeAddressDialog.show(
-                                                        context,
-                                                        onSelected: (value) {
-                                                          Navigator.of(context)
-                                                              .pop();
-                                                          model
-                                                              .buildingNameOrNumberController
-                                                              .text = value;
-                                                          model
-                                                              .validateAddress();
-                                                        }, onDismissed: () {
-                                                      Navigator.pop(context);
-                                                    }),
-                                                child: Container(
-                                                  height: 20,
-                                                  width: 16,
-                                                  padding: EdgeInsets.only(
-                                                      left: 4, top: 2),
-                                                  child: AppSvg.asset(
-                                                      AssetUtils
-                                                          .location_marker,
-                                                      color: Theme
-                                                          .of(context)
-                                                          .primaryColorDark),
-                                                )),
+                                        suffixIcon: (isValid, value) => InkWell(
+                                            onTap: () =>
+                                                HomeAddressDialog.show(context,
+                                                    onSelected: (value) {
+                                                  Navigator.of(context).pop();
+                                                  model
+                                                      .buildingNameOrNumberController
+                                                      .text = value;
+                                                  model.validateAddress();
+                                                }, onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }),
+                                            child: Container(
+                                              height: 20,
+                                              width: 16,
+                                              padding: EdgeInsets.only(
+                                                  left: 4, top: 2),
+                                              child: AppSvg.asset(
+                                                  AssetUtils.location_marker,
+                                                  color: Theme.of(context)
+                                                      .primaryColorDark),
+                                            )),
                                       ),
                                       SizedBox(
                                         height: 16,
                                       ),
                                       AppTextField(
-                                        labelText: S
-                                            .of(context)
-                                            .streetName,
-                                        hintText: S
-                                            .of(context)
-                                            .pleaseEnter,
+                                        labelText: S.of(context).streetName,
+                                        hintText: S.of(context).pleaseEnter,
                                         inputType: TextInputType.text,
                                         controller:
-                                        model.streetAddressController,
+                                            model.streetAddressController,
                                         key: model.streetAddressKey,
                                         onChanged: (value) =>
                                             model.validateAddress(),
@@ -224,31 +203,25 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                       SizedBox(
                                         height: 16,
                                       ),
-                                      AppTextField(
-                                        labelText:
-                                        S
-                                            .of(context)
-                                            .area
-                                            .toUpperCase(),
-                                        hintText: S
-                                            .of(context)
-                                            .pleaseEnter,
-                                        inputType: TextInputType.text,
-                                        controller: model.districtController,
-                                        key: model.districtKey,
-                                        onChanged: (value) =>
-                                            model.validateAddress(),
+                                      Visibility(
+                                        visible: false,
+                                        child: AppTextField(
+                                          labelText:
+                                              S.of(context).area.toUpperCase(),
+                                          hintText: S.of(context).pleaseEnter,
+                                          inputType: TextInputType.text,
+                                          controller: model.districtController,
+                                          key: model.districtKey,
+                                          onChanged: (value) =>
+                                              model.validateAddress(),
+                                        ),
                                       ),
                                       SizedBox(
                                         height: 16,
                                       ),
                                       AppTextField(
-                                        labelText: S
-                                            .of(context)
-                                            .city,
-                                        hintText: S
-                                            .of(context)
-                                            .pleaseEnter,
+                                        labelText: S.of(context).city,
+                                        hintText: S.of(context).pleaseEnter,
                                         inputType: TextInputType.text,
                                         controller: model.cityController,
                                         key: model.cityKey,
@@ -267,7 +240,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                             visible: visibility!,
                                             child: Column(
                                               crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.start,
                                               children: [
                                                 Text(
                                                   S
@@ -276,9 +249,8 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                   style: TextStyle(
                                                       fontSize: 14,
                                                       fontWeight:
-                                                      FontWeight.w600,
-                                                      color: Theme
-                                                          .of(context)
+                                                          FontWeight.w600,
+                                                      color: Theme.of(context)
                                                           .primaryColorDark),
                                                 ),
                                                 SizedBox(
@@ -286,9 +258,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                 ),
                                                 AppTextField(
                                                   labelText:
-                                                  S
-                                                      .of(context)
-                                                      .country,
+                                                      S.of(context).country,
                                                   hintText: S
                                                       .of(context)
                                                       .pleaseSelect,
@@ -301,25 +271,22 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                             .of(context)
                                                             .residentCountrySmall,
                                                         onDismissed: () {
-                                                          Navigator.pop(
-                                                              context);
-                                                        }, onSelected: (value) {
-                                                          Navigator.pop(
-                                                              context);
-                                                          model
-                                                              .permanentResidentCountryController
-                                                              .text = value;
-                                                          model
-                                                              .validateAddress();
-                                                        });
+                                                      Navigator.pop(context);
+                                                    }, onSelected: (value) {
+                                                      Navigator.pop(context);
+                                                      model
+                                                          .permanentResidentCountryController
+                                                          .text = value;
+                                                      model.validateAddress();
+                                                    });
                                                   },
                                                   suffixIcon: (value, data) {
                                                     return Container(
                                                         height: 16,
                                                         width: 16,
                                                         padding:
-                                                        EdgeInsets.only(
-                                                            right: 8),
+                                                            EdgeInsets.only(
+                                                                right: 8),
                                                         child: AppSvg.asset(
                                                             AssetUtils
                                                                 .downArrow,
@@ -333,13 +300,9 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                   height: 16,
                                                 ),
                                                 AppTextField(
-                                                  labelText: S
-                                                      .of(context)
-                                                      .city,
+                                                  labelText: S.of(context).city,
                                                   hintText:
-                                                  S
-                                                      .of(context)
-                                                      .pleaseEnter,
+                                                      S.of(context).pleaseEnter,
                                                   inputType: TextInputType.text,
                                                   controller: model
                                                       .permanentCityController,

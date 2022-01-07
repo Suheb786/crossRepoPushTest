@@ -71,7 +71,9 @@ final idVerificationInfoViewModelProvider =
         IdVerificationInfoViewModel(
             ref.read(idVerificationInfoUseCaseProvider),
             ref.read(scanUserDocumentUseCaseProvider),
-            ref.read(getAhwalDetailsUseCaseProvider)));
+            ref.read(getAhwalDetailsUseCaseProvider),
+            ref.read(confirmDetailUseCaseProvider),
+            ref.read(fetchAllowedIssuersUseCaseProvider)));
 
 ///[CaptureViewModel] provider
 final captureViewModelProvider =
@@ -84,7 +86,8 @@ final confirmDetailViewModelProvider =
         ConfirmDetailViewModel(
             ref.read(confirmDetailUseCaseProvider),
             ref.read(scanUserDocumentUseCaseProvider),
-            ref.read(getAhwalDetailsUseCaseProvider)));
+            ref.read(getAhwalDetailsUseCaseProvider),
+            ref.read(fetchAllowedIssuersUseCaseProvider)));
 
 ///[EnterAddressViewModel] provider
 final enterAddressViewModelProvider =
@@ -377,7 +380,7 @@ final yearMonthDialogViewModelProvider =
 );
 
 final filterTransactionDialogViewModelProvier =
-ChangeNotifierProvider.autoDispose<FilterTransactionDialogViewModel>(
+    ChangeNotifierProvider.autoDispose<FilterTransactionDialogViewModel>(
         (ref) => FilterTransactionDialogViewModel());
 
 ///fatca signaturepage view model provider

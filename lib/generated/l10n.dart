@@ -7121,6 +7121,16 @@ class S {
     );
   }
 
+  /// `ID card issuer is not allowed at this moment. Please try again with valid ID card issuer.`
+  String get notAllowedCountry {
+    return Intl.message(
+      'ID card issuer is not allowed at this moment. Please try again with valid ID card issuer.',
+      name: 'notAllowedCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `blink Credit Card`
   String get blinkCreditCardTitle {
     return Intl.message(

@@ -106,7 +106,8 @@ class EnterAddressViewModel extends BasePageViewModel {
   void enterAddress() {
     _enterAddressRequest.safeAdd(EnterAddressUseCaseParams(
         residentCountry: residentCountryController.text,
-        residentArea: districtController.text,
+        residentArea: "",
+        //districtController.text,
         city: cityController.text,
         streetAddress: streetAddressController.text,
         buildingNameOrNo: buildingNameOrNumberController.text,
@@ -119,7 +120,7 @@ class EnterAddressViewModel extends BasePageViewModel {
     bool isValid = false;
     if (_permanentAddressVisibilitySubject.value) {
       if (residentCountryController.text.isNotEmpty &&
-          districtController.text.isNotEmpty &&
+          // districtController.text.isNotEmpty &&
           cityController.text.isNotEmpty &&
           streetAddressController.text.isNotEmpty &&
           buildingNameOrNumberController.text.isNotEmpty &&
@@ -128,7 +129,7 @@ class EnterAddressViewModel extends BasePageViewModel {
         isValid = true;
       }
     } else if (residentCountryController.text.isNotEmpty &&
-        districtController.text.isNotEmpty &&
+        // districtController.text.isNotEmpty &&
         cityController.text.isNotEmpty &&
         streetAddressController.text.isNotEmpty &&
         buildingNameOrNumberController.text.isNotEmpty) {

@@ -1,5 +1,5 @@
 import 'package:data/entity/remote/ahwal/ahwal_info_entity.dart';
-import 'package:domain/model/id_card/ahwal_info_content_data.dart';
+import 'package:domain/model/id_card/ahwal_details_response.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -9,13 +9,11 @@ part "ahwal_info_content_data_entity.g.dart";
 class AhwalInfoContentDataEntity
     implements
         BaseLayerDataTransformer<AhwalInfoContentDataEntity,
-            AhwalInfoContentData> {
-  @JsonKey(name: "ahwalImageStatus")
-  final String? ahwalImageStatus;
-  @JsonKey(name: "ahwalinfo")
-  final AhwalInfoEntity? ahwalInfo;
+            AhwalDetailResponse> {
+  @JsonKey(name: "skipConfirmationScreen")
+  final bool? skipConfirmationScreen;
 
-  AhwalInfoContentDataEntity({this.ahwalImageStatus, this.ahwalInfo});
+  AhwalInfoContentDataEntity({this.skipConfirmationScreen: false});
 
   factory AhwalInfoContentDataEntity.fromJson(Map<String, dynamic> json) =>
       _$AhwalInfoContentDataEntityFromJson(json);
@@ -23,14 +21,13 @@ class AhwalInfoContentDataEntity
   Map<String, dynamic> toJson() => _$AhwalInfoContentDataEntityToJson(this);
 
   @override
-  AhwalInfoContentDataEntity restore(AhwalInfoContentData response) {
+  AhwalInfoContentDataEntity restore(AhwalDetailResponse response) {
     return AhwalInfoContentDataEntity();
   }
 
   @override
-  AhwalInfoContentData transform() {
-    return AhwalInfoContentData(
-        ahwalImageStatus: this.ahwalImageStatus,
-        ahwalinfo: this.ahwalInfo!.transform());
+  AhwalDetailResponse transform() {
+    return AhwalDetailResponse(
+        skipConfirmationScreen: this.skipConfirmationScreen ?? false);
   }
 }
