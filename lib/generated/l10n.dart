@@ -7220,6 +7220,86 @@ class S {
       args: [],
     );
   }
+
+  /// `Please Try Again`
+  String get pleaseTryAgain {
+    return Intl.message(
+      'Please Try Again',
+      name: 'pleaseTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Foreign Tax Identifying Number`
+  String get foreignTaxIdNumber {
+    return Intl.message(
+      'Foreign Tax Identifying Number',
+      name: 'foreignTaxIdNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Foreign Tax Identifying Number`
+  String get invalidForeignIdNumber {
+    return Intl.message(
+      'Please Enter Foreign Tax Identifying Number',
+      name: 'invalidForeignIdNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ExemptION from fatca reporting code`
+  String get exemptionFromFatcaReporting {
+    return Intl.message(
+      'ExemptION from fatca reporting code',
+      name: 'exemptionFromFatcaReporting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Exemption From Fatca Reporting Code`
+  String get invalidExemptionFromFatcaReporting {
+    return Intl.message(
+      'Enter Exemption From Fatca Reporting Code',
+      name: 'invalidExemptionFromFatcaReporting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EMPLOYER IDENTIFICATION NUMBER`
+  String get employerIdNumber {
+    return Intl.message(
+      'EMPLOYER IDENTIFICATION NUMBER',
+      name: 'employerIdNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Employer Identification Number`
+  String get invalidEmployerId {
+    return Intl.message(
+      'Enter Employer Identification Number',
+      name: 'invalidEmployerId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `error while Accessing Id Card Data.`
+  String get errorWhileAccessingIdData {
+    return Intl.message(
+      'error while Accessing Id Card Data.',
+      name: 'errorWhileAccessingIdData',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

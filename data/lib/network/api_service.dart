@@ -64,6 +64,8 @@ import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/set_fatca_questions_response_entity.dart';
+import 'package:data/entity/remote/fatca_crs/set_fatca_w8_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/set_fatca_w9_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/upload_signature_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/upload_signature_response_entity.dart';
 import 'package:data/entity/remote/kyc/check_kyc_status_response_entity.dart';
@@ -193,7 +195,7 @@ abstract class ApiService {
   Future<HttpResponse<GetFatcaQuestionsResponseEntity>> getFatcaQuestions(
       @Body() GetFatcaQuestionsRequestEntity getFatcaQuestionsRequestEntity);
 
-  @POST("/FatcaCrs/set")
+  @POST("/FatcaCrs/setFatcaV1")
   Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
       @Body()
           SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
@@ -522,4 +524,14 @@ abstract class ApiService {
   @POST("/Auth/GetCitiesByCountry")
   Future<HttpResponse<CityListResponseEntity>> getCitiesByCountry(
       @Body() CityListRequestEntity cityListRequestEntity);
+
+  ///set fatca w8
+  @POST("/FatcaCrs/SetW8V1")
+  Future<HttpResponse<ResponseEntity>> saveFatcaW8(
+      @Body() SetFatcaW8RequestEntity setFatcaW8RequestEntity);
+
+  ///set fatca w9
+  @POST("/FatcaCrs/SetW9")
+  Future<HttpResponse<ResponseEntity>> saveFatcaW9(
+      @Body() SetFatcaW9RequestEntity setFatcaW9RequestEntity);
 }

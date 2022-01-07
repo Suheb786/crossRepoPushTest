@@ -329,6 +329,51 @@ class FatcaUSRelevantW9AddressDetailsPageView
                                                   model.isValid();
                                                 },
                                               ),
+                                              SizedBox(
+                                                height: 16,
+                                              ),
+                                              AppTextField(
+                                                labelText: S
+                                                    .of(context)
+                                                    .exemptionFromFatcaReportingCode
+                                                    .toUpperCase(),
+                                                hintText:
+                                                    S.of(context).pleaseEnter,
+                                                controller: model
+                                                    .exemptFromFatcaReportingController,
+                                                labelIcon: () {
+                                                  return InkWell(
+                                                    onTap: () async {
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          RoutePaths
+                                                              .ExemptionFromFatcaReportingCode);
+                                                    },
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 5.0),
+                                                      child: Container(
+                                                          height: 14,
+                                                          width: 14,
+                                                          child: AppSvg.asset(
+                                                              AssetUtils.info,
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .inputDecorationTheme
+                                                                  .focusedBorder!
+                                                                  .borderSide
+                                                                  .color)),
+                                                    ),
+                                                  );
+                                                },
+                                                key: model
+                                                    .exemptFromFatcaReportingKey,
+                                                inputAction: TextInputAction.go,
+                                                onChanged: (value) {
+                                                  model.isValid();
+                                                },
+                                              ),
                                               AppStreamBuilder<bool>(
                                                 stream: model
                                                     .additionalRequesterStream,

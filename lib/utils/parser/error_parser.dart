@@ -336,6 +336,16 @@ class ErrorParser {
         return localisedHelper.errorWhileGetComboValues;
       case ErrorType.USER_ALREADY_EXISTS:
         return localisedHelper.userAlreadyExists;
+      case ErrorType.PLEASE_TRY_AGAIN:
+        return localisedHelper.pleaseTryAgain;
+      case ErrorType.INVALID_FOREIGN_IDENTIFICATION_NUMBER:
+        return localisedHelper.invalidForeignIdNumber;
+      case ErrorType.INVALID_EXEMPTION_FATCA_CODE:
+        return localisedHelper.invalidExemptionFromFatcaReporting;
+      case ErrorType.INVALID_EMPLOYER_ID:
+        return localisedHelper.invalidEmployerId;
+      case ErrorType.ERROR_ACCESSING_ID:
+        return localisedHelper.errorWhileAccessingIdData;
 
       default:
         return "";

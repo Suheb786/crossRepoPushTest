@@ -230,6 +230,14 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.USER_ALREADY_EXISTS);
 
+          case "err-015":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.PLEASE_TRY_AGAIN);
+
+          case "err-054":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_ACCESSING_ID);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

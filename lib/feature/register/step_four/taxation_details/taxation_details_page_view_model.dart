@@ -1,7 +1,6 @@
 import 'package:domain/constants/error_types.dart';
-import 'package:domain/model/fatca_crs/fatca_set_data.dart';
 import 'package:domain/model/fatca_crs/get_fatca_questions_response.dart';
-import 'package:domain/model/fatca_crs/set_fatca_questions_response.dart';
+import 'package:domain/model/fatca_crs/set_fatca_response.dart';
 import 'package:domain/usecase/fatca_crs/get_fatca_questions_usecase.dart';
 import 'package:domain/usecase/fatca_crs/set_fatca_questions_response_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -22,11 +21,11 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
 
   final TextEditingController relationShipController = TextEditingController();
   final GlobalKey<AppTextFieldState> relationShipWithPepKey =
-  GlobalKey(debugLabel: "relationShipWithPep");
+      GlobalKey(debugLabel: "relationShipWithPep");
 
   final TextEditingController personNameController = TextEditingController();
   final GlobalKey<AppTextFieldState> personNameKey =
-  GlobalKey(debugLabel: "personName");
+      GlobalKey(debugLabel: "personName");
 
   final TextEditingController personRoleController = TextEditingController();
   final GlobalKey<AppTextFieldState> personRoleKey =
@@ -55,14 +54,14 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
 
   ///set fatca questions request subject holder
   PublishSubject<SetFatcaQuestionsResponseUseCaseParams>
-  _setFatcaQuestionsRequest = PublishSubject();
+      _setFatcaQuestionsRequest = PublishSubject();
 
   ///set fatca questions response holder
-  PublishSubject<Resource<SetFatcaQuestionsResponse>>
-  _setFatcaQuestionsResponse = PublishSubject();
+  PublishSubject<Resource<SetFatcResponse>> _setFatcaQuestionsResponse =
+      PublishSubject();
 
   ///set fatca questions stream
-  Stream<Resource<SetFatcaQuestionsResponse>> get setFatcaQuestionsStream =>
+  Stream<Resource<SetFatcResponse>> get setFatcaQuestionsStream =>
       _setFatcaQuestionsResponse.stream;
 
   void updateRelationShipWithPEP(String value) {
@@ -100,11 +99,11 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
 
   ///get fatca question request subject holder
   PublishSubject<GetFatcaQuestionsUseCaseParams> _getFatcaQuestionsRequest =
-  PublishSubject();
+      PublishSubject();
 
   ///get fatca question response holder
   PublishSubject<Resource<GetFatcaQuestionsResponse>>
-  _getFatcaQuestionsResponseSubject = PublishSubject();
+      _getFatcaQuestionsResponseSubject = PublishSubject();
 
   ///get fatca question stream
   Stream<Resource<GetFatcaQuestionsResponse>> get getFatcaQuestionsStream =>
@@ -115,12 +114,12 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         .safeAdd(GetFatcaQuestionsUseCaseParams(getToken: true));
   }
 
-  TaxationDetailsPageViewModel(this._setFatcaQuestionsUseCase,
-      this._getFatcaQuestionsUseCase) {
+  TaxationDetailsPageViewModel(
+      this._setFatcaQuestionsUseCase, this._getFatcaQuestionsUseCase) {
     _setFatcaQuestionsRequest.listen((value) {
       RequestManager(value,
-          createCall: () =>
-              _setFatcaQuestionsUseCase.execute(params: value))
+              createCall: () =>
+                  _setFatcaQuestionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -134,8 +133,8 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
 
     _getFatcaQuestionsRequest.listen((value) {
       RequestManager(value,
-          createCall: () =>
-              _getFatcaQuestionsUseCase.execute(params: value))
+              createCall: () =>
+                  _getFatcaQuestionsUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -148,7 +147,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
     //getFatcaQuestions();
   }
 
-  void getError(Resource<SetFatcaQuestionsResponse> event) {
+  void getError(Resource<SetFatcResponse> event) {
     switch (event.appError!.type) {
       case ErrorType.INVALID_RELATIONSHIP:
         relationShipWithPepKey.currentState!.isValid = false;
@@ -183,25 +182,11 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         wasBornInUS: bornInUS));
   }
 
-  ///TODO: need to complete this
+  ///update value to initials
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope
-        .containerOf(context)
-        .read(registerStepFourViewModelProvider)
-        .fatcaData;
-    fatcaSetData.response1 = isUSCitizen;
-    fatcaSetData.response2 = usTaxResident;
-    fatcaSetData.response3 = bornInUS;
-    fatcaSetData.response4 = anyOtherCountryResident;
-    fatcaSetData.response5 = isPEP;
-    fatcaSetData.taxResidenceCountry = countrySelectorController.text;
-    fatcaSetData.relationshipWithPep = relationShipController.text;
-    fatcaSetData.personRole = personRoleController.text;
-    fatcaSetData.personName = personNameController.text;
-
     ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .setFatcaData(fatcaSetData);
+        .updateFatcaToInitial();
   }
 
   @override

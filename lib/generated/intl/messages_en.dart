@@ -346,6 +346,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("EMPLOYER COUNTRY"),
         "employerCountrySmall":
             MessageLookupByLibrary.simpleMessage("Employer Country"),
+        "employerIdNumber": MessageLookupByLibrary.simpleMessage(
+            "EMPLOYER IDENTIFICATION NUMBER"),
         "employerName": MessageLookupByLibrary.simpleMessage("EMPLOYER NAME"),
         "employerNameSmall":
             MessageLookupByLibrary.simpleMessage("Employer Name"),
@@ -473,6 +475,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error While Saving Status"),
         "errorUploadImage":
             MessageLookupByLibrary.simpleMessage("Error While Upload Image"),
+        "errorWhileAccessingIdData": MessageLookupByLibrary.simpleMessage(
+            "error while Accessing Id Card Data."),
         "errorWhileBalanceInquiry": MessageLookupByLibrary.simpleMessage(
             "Error while getting Balance Inquiry"),
         "errorWhileGetAccount":
@@ -490,6 +494,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Exempt Payee Code"),
         "exemptPayeeOptional": MessageLookupByLibrary.simpleMessage(
             "EXEMPT PAYEE CODE (OPTIONAL)"),
+        "exemptionFromFatcaReporting": MessageLookupByLibrary.simpleMessage(
+            "ExemptION from fatca reporting code"),
         "exemptionFromFatcaReportingCode": MessageLookupByLibrary.simpleMessage(
             "Exemption from FATCA Reporting Code"),
         "expAnnualTransactions": MessageLookupByLibrary.simpleMessage(
@@ -522,6 +528,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "findOutMore": MessageLookupByLibrary.simpleMessage("Find out more"),
         "flipBack": MessageLookupByLibrary.simpleMessage("Flip back"),
         "flipCard": MessageLookupByLibrary.simpleMessage("Flip card"),
+        "foreignTaxIdNumber": MessageLookupByLibrary.simpleMessage(
+            "Foreign Tax Identifying Number"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password"),
         "freezeDebitCardDescription": MessageLookupByLibrary.simpleMessage(
@@ -617,10 +625,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Enter employer Contact"),
         "invalidEmployerCountry":
             MessageLookupByLibrary.simpleMessage("Select employer country "),
+        "invalidEmployerId": MessageLookupByLibrary.simpleMessage(
+            "Enter Employer Identification Number"),
         "invalidEmployerName":
             MessageLookupByLibrary.simpleMessage("Enter employer Name"),
         "invalidEmploymentStatus":
             MessageLookupByLibrary.simpleMessage("Select Employment Status"),
+        "invalidExemptionFromFatcaReporting":
+            MessageLookupByLibrary.simpleMessage(
+                "Enter Exemption From Fatca Reporting Code"),
         "invalidExpectedAnnualTransaction":
             MessageLookupByLibrary.simpleMessage(
                 "Enter expected annual transaction"),
@@ -632,6 +645,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidExplanationForUnavailability":
             MessageLookupByLibrary.simpleMessage(
                 "Enter reason for unavailability"),
+        "invalidForeignIdNumber": MessageLookupByLibrary.simpleMessage(
+            "Please Enter Foreign Tax Identifying Number"),
         "invalidIDCard": MessageLookupByLibrary.simpleMessage(
             "ID Card is not valid. Please scan JORDANIAN ID Card."),
         "invalidIdentificationNumber":
@@ -907,6 +922,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseSelectYourAction":
             MessageLookupByLibrary.simpleMessage("Please select your action"),
         "pleaseSpecify": MessageLookupByLibrary.simpleMessage("PLEASE SPECIFY"),
+        "pleaseTryAgain":
+            MessageLookupByLibrary.simpleMessage("Please Try Again"),
         "pleaseUploadNecessaryInfo": MessageLookupByLibrary.simpleMessage(
             "You’re done! Just upload\nyour documents"),
         "politicallyExposedPerson":

@@ -1,5 +1,7 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/country/city_list/city_list_response.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
 import 'package:flutter/material.dart';
@@ -264,25 +266,44 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                               key: model.cityKey,
                                               readOnly: true,
                                               onPressed: () {
-                                                StateCityDialog.show(context,
-                                                    title: S
-                                                        .of(context)
-                                                        .residentCountrySmall,
-                                                    onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (value) {
-                                                  Navigator.pop(context);
-                                                  model.cityController.text =
-                                                      value.cityName!;
-                                                  model.currentCity = value;
-                                                  model.validateAddress();
-                                                },
-                                                    stateCityTypeEnum:
-                                                        StateCityTypeEnum.CITY,
-                                                    stateCityData: cityList!
-                                                        .data!
-                                                        .cityContent!
-                                                        .stateData!);
+                                                if (model
+                                                    .residentCountryController
+                                                    .text
+                                                    .isEmpty) {
+                                                  model
+                                                      .residentCountryKey
+                                                      .currentState!
+                                                      .isValid = false;
+                                                  model.showToastWithError(
+                                                      AppError(
+                                                          cause: Exception(),
+                                                          error:
+                                                              ErrorInfo(
+                                                                  message: ''),
+                                                          type: ErrorType
+                                                              .INVALID_COUNTRY));
+                                                } else {
+                                                  StateCityDialog.show(context,
+                                                      title: S
+                                                          .of(context)
+                                                          .residentCountrySmall,
+                                                      onDismissed: () {
+                                                    Navigator.pop(context);
+                                                  }, onSelected: (value) {
+                                                    Navigator.pop(context);
+                                                    model.cityController.text =
+                                                        value.cityName!;
+                                                    model.currentCity = value;
+                                                    model.validateAddress();
+                                                  },
+                                                      stateCityTypeEnum:
+                                                          StateCityTypeEnum
+                                                              .CITY,
+                                                      stateCityData: cityList!
+                                                          .data!
+                                                          .cityContent!
+                                                          .stateData!);
+                                                }
                                               },
                                               suffixIcon: (value, data) {
                                                 return Container(
@@ -400,33 +421,54 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                             .permanentCityKey,
                                                         readOnly: true,
                                                         onPressed: () {
-                                                          StateCityDialog.show(
-                                                              context,
-                                                              title: S
-                                                                  .of(context)
-                                                                  .residentCountrySmall,
-                                                              onDismissed: () {
-                                                            Navigator.pop(
-                                                                context);
-                                                          }, onSelected:
-                                                                  (value) {
-                                                            Navigator.pop(
-                                                                context);
-                                                            model.permanentCityController
-                                                                    .text =
-                                                                value.cityName!;
-                                                            model.permanentCity =
-                                                                value;
+                                                          if (model
+                                                              .permanentResidentCountryController
+                                                              .text
+                                                              .isEmpty) {
                                                             model
-                                                                .validateAddress();
-                                                          },
-                                                              stateCityTypeEnum:
-                                                                  StateCityTypeEnum
-                                                                      .CITY,
-                                                              stateCityData: cityList!
-                                                                  .data!
-                                                                  .cityContent!
-                                                                  .stateData!);
+                                                                .permanentResidentCountryKey
+                                                                .currentState!
+                                                                .isValid = false;
+                                                            model.showToastWithError(AppError(
+                                                                cause:
+                                                                    Exception(),
+                                                                error:
+                                                                    ErrorInfo(
+                                                                        message:
+                                                                            ''),
+                                                                type: ErrorType
+                                                                    .INVALID_COUNTRY));
+                                                          } else {
+                                                            StateCityDialog.show(
+                                                                context,
+                                                                title: S
+                                                                    .of(context)
+                                                                    .residentCountrySmall,
+                                                                onDismissed:
+                                                                    () {
+                                                              Navigator.pop(
+                                                                  context);
+                                                            }, onSelected:
+                                                                    (value) {
+                                                              Navigator.pop(
+                                                                  context);
+                                                              model.permanentCityController
+                                                                      .text =
+                                                                  value
+                                                                      .cityName!;
+                                                              model.permanentCity =
+                                                                  value;
+                                                              model
+                                                                  .validateAddress();
+                                                            },
+                                                                stateCityTypeEnum:
+                                                                    StateCityTypeEnum
+                                                                        .CITY,
+                                                                stateCityData: cityList!
+                                                                    .data!
+                                                                    .cityContent!
+                                                                    .stateData!);
+                                                          }
                                                         },
                                                         suffixIcon:
                                                             (value, data) {

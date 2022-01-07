@@ -22,6 +22,7 @@ class FatcaUSRelevantW9AddressDetailsUseCaseParams extends Params {
   final String? postCode;
   final String? accountNumber;
   final String? exemptPayeeCode;
+  final String? exemptFromFatcaReportingCode;
   bool isAdditionalRequester;
   final String? additionalRequesterName;
   final String? additionalRequesterAddress;
@@ -41,7 +42,8 @@ class FatcaUSRelevantW9AddressDetailsUseCaseParams extends Params {
       this.additionalRequesterCity,
       this.additionalRequesterName,
       this.additionalRequesterPostCode,
-      this.additionalRequesterState});
+      this.additionalRequesterState,
+      this.exemptFromFatcaReportingCode});
 
   @override
   Either<AppError, bool> verify() {
@@ -64,6 +66,11 @@ class FatcaUSRelevantW9AddressDetailsUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_POSTCODE,
+          cause: Exception()));
+    } else if (exemptFromFatcaReportingCode!.isEmpty) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.INVALID_EXEMPTION_FATCA_CODE,
           cause: Exception()));
     } else if (isAdditionalRequester) {
       if (additionalRequesterName!.isEmpty) {

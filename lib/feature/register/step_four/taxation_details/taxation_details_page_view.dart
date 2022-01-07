@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
-import 'package:domain/model/fatca_crs/set_fatca_questions_response.dart';
+import 'package:domain/constants/enum/fatca_enum.dart';
+import 'package:domain/model/fatca_crs/set_fatca_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -38,57 +39,41 @@ class TaxationDetailsPageView
           duration: Duration(milliseconds: 100),
           shakeAngle: Rotation.deg(z: 1),
           curve: Curves.easeInOutSine,
-          child: AppStreamBuilder<Resource<SetFatcaQuestionsResponse>>(
+          child: AppStreamBuilder<Resource<SetFatcResponse>>(
             stream: model.setFatcaQuestionsStream,
             initialData: Resource.none(),
             onData: (data) {
               if (data.status == Status.SUCCESS) {
                 ///storing response to main page
                 model.updateData(context);
-                if (model.isPEP &&
-                    !model.bornInUS &&
-                    !model.usTaxResident &&
-                    !model.isUSCitizen &&
-                    !model.anyOtherCountryResident) {
-                  Future.delayed(Duration(milliseconds: 500), () {
-                    ProviderScope.containerOf(context)
-                        .read(registerViewModelProvider)
-                        .registrationStepsController
-                        .nextPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
-                  });
-                } else if (model.usTaxResident &&
-                    !model.bornInUS &&
-                    !model.isPEP &&
-                    !model.anyOtherCountryResident &&
-                    !model.isUSCitizen) {
-                  Future.delayed(Duration(milliseconds: 500), () {
-                    ProviderScope.containerOf(context)
-                        .read(registerStepFourViewModelProvider)
-                        .registrationStepFourPageController
-                        .next();
-                  });
-                } else if (model.usTaxResident &&
-                    model.bornInUS &&
-                    !model.isPEP &&
-                    !model.anyOtherCountryResident &&
-                    model.isUSCitizen) {
-                  Future.delayed(Duration(milliseconds: 500), () {
-                    ProviderScope.containerOf(context)
-                        .read(registerStepFourViewModelProvider)
-                        .registrationStepFourPageController
-                        .move(4);
-                  });
-                } else {
-                  Future.delayed(Duration(milliseconds: 500), () {
-                    ProviderScope.containerOf(context)
-                        .read(registerViewModelProvider)
-                        .registrationStepsController
-                        .nextPage(
-                            duration: Duration(milliseconds: 500),
-                            curve: Curves.easeInOut);
-                  });
+                switch (data.data!.setFatcaResponseContent!.requestResponse) {
+                  case FatcaEnum.w8:
+                    Future.delayed(Duration(milliseconds: 500), () {
+                      ProviderScope.containerOf(context)
+                          .read(registerStepFourViewModelProvider)
+                          .registrationStepFourPageController
+                          .next();
+                    });
+                    break;
+
+                  case FatcaEnum.w9:
+                    Future.delayed(Duration(milliseconds: 500), () {
+                      ProviderScope.containerOf(context)
+                          .read(registerStepFourViewModelProvider)
+                          .registrationStepFourPageController
+                          .move(4);
+                    });
+                    break;
+                  case FatcaEnum.CONFIRMATION_SCREEN:
+                    Future.delayed(Duration(milliseconds: 500), () {
+                      ProviderScope.containerOf(context)
+                          .read(registerViewModelProvider)
+                          .registrationStepsController
+                          .nextPage(
+                              duration: Duration(milliseconds: 500),
+                              curve: Curves.easeInOut);
+                    });
+                    break;
                 }
               } else if (data.status == Status.ERROR) {
                 model.showToastWithError(data.appError!);

@@ -2,7 +2,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/country/city_list/city_list_response.dart';
 import 'package:domain/model/country/state_list/state_city_data.dart';
 import 'package:domain/model/country/state_list/state_list_response.dart';
-import 'package:domain/model/fatca_crs/fatca_set_data.dart';
+import 'package:domain/model/fatca_crs/fatca_w9_data.dart';
 import 'package:domain/usecase/country/get_city_list_usecase.dart';
 import 'package:domain/usecase/country/get_state_list_usecase.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w9_address_details_usecase.dart';
@@ -33,8 +33,8 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
   PublishSubject<GetStateListUseParams> _getStateListRequest = PublishSubject();
 
   /// get state list response subject holder
-  PublishSubject<Resource<StateListResponse>> _getStateListResponse =
-      PublishSubject();
+  BehaviorSubject<Resource<StateListResponse>> _getStateListResponse =
+      BehaviorSubject();
 
   /// get state list response stream
   Stream<Resource<StateListResponse>> get getStateListResponseStream =>
@@ -74,6 +74,11 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
       TextEditingController();
   final GlobalKey<AppTextFieldState> exemptPayeeCodeNumberKey =
       GlobalKey(debugLabel: "exemptPayeeCode");
+
+  final TextEditingController exemptFromFatcaReportingController =
+      TextEditingController();
+  final GlobalKey<AppTextFieldState> exemptFromFatcaReportingKey =
+      GlobalKey(debugLabel: "exemptFromFatcaReporting");
 
   ///additional requester controllers and keys
   final TextEditingController additionalRequesterNameController =
@@ -137,6 +142,7 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
           stateController.text.isNotEmpty &&
           cityController.text.isNotEmpty &&
           postCodeController.text.isNotEmpty &&
+          exemptFromFatcaReportingController.text.isNotEmpty &&
           additionalRequesterNameController.text.isNotEmpty &&
           additionalRequesterAddressController.text.isNotEmpty &&
           additionalRequesterStateController.text.isNotEmpty &&
@@ -147,7 +153,8 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
     } else if (addressController.text.isNotEmpty &&
         stateController.text.isNotEmpty &&
         cityController.text.isNotEmpty &&
-        postCodeController.text.isNotEmpty) {
+        postCodeController.text.isNotEmpty &&
+        exemptFromFatcaReportingController.text.isNotEmpty) {
       valid = true;
     }
     _allFieldValidatorSubject.safeAdd(valid);
@@ -198,8 +205,6 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
         }
       });
     });
-
-    getStateList('USA');
   }
 
   void getStateList(String isoCode) {
@@ -224,6 +229,9 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
         break;
       case ErrorType.INVALID_POSTCODE:
         postCodeKey.currentState!.isValid = false;
+        break;
+      case ErrorType.INVALID_EXEMPTION_FATCA_CODE:
+        exemptFromFatcaReportingKey.currentState!.isValid = false;
         break;
       case ErrorType.INVALID_REQUESTER_NAME:
         additionalRequesterNameKey.currentState!.isValid = false;
@@ -261,31 +269,35 @@ class FatcaUSRelevantW9AddressDetailsPageViewModel extends BasePageViewModel {
             additionalRequesterCity: additionalRequesterCityController.text,
             additionalRequesterPostCode:
                 additionalRequesterPostCodeController.text,
-            additionalRequesterState: additionalRequesterStateController.text));
+            additionalRequesterState: additionalRequesterStateController.text,
+            exemptFromFatcaReportingCode:
+                exemptFromFatcaReportingController.text));
   }
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+    FatcaW9Data fatcaSetData = ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .fatcaData;
+        .getFatcaW9Data;
     fatcaSetData.usAddress = addressController.text;
-    fatcaSetData.state = stateController.text;
-    fatcaSetData.city = cityController.text;
+    fatcaSetData.state = selectedAddressInUS.stateId;
+    fatcaSetData.city = selectedAddressInUS.cityId;
     fatcaSetData.postCode = postCodeController.text;
-    fatcaSetData.accountNo = accountNumberController.text;
+    fatcaSetData.accountNumberList = accountNumberController.text;
     fatcaSetData.exemptPayeeCode = exemptPayeeCodeNumberController.text;
+    fatcaSetData.exemptFromFatcaReportingCode =
+        exemptFromFatcaReportingController.text;
 
-    ///exemption from fatca code missing
+    ///addition requester
     fatcaSetData.additionalRequester = _additionalRequesterSubject.value;
     fatcaSetData.requesterName = additionalRequesterNameController.text;
-    fatcaSetData.requesterAddressUs = additionalRequesterAddressController.text;
-    fatcaSetData.requesterState = additionalRequesterStateController.text;
-    fatcaSetData.requesterCity = additionalRequesterCityController.text;
+    fatcaSetData.requesterUsAddress = additionalRequesterAddressController.text;
+    fatcaSetData.requesterState = selectedAdditionalRequester.stateId;
+    fatcaSetData.requesterCity = selectedAdditionalRequester.cityId;
     fatcaSetData.requesterPostCode = additionalRequesterPostCodeController.text;
     ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .setFatcaData(fatcaSetData);
+        .setFatcaW9(fatcaSetData);
   }
 
   @override

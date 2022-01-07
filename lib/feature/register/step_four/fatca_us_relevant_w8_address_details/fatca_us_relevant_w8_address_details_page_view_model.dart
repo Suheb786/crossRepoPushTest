@@ -2,7 +2,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/country/city_list/city_list_response.dart';
 import 'package:domain/model/country/state_list/state_city_data.dart';
 import 'package:domain/model/country/state_list/state_list_response.dart';
-import 'package:domain/model/fatca_crs/fatca_set_data.dart';
+import 'package:domain/model/fatca_crs/fatca_w8_data.dart';
 import 'package:domain/usecase/country/get_city_list_usecase.dart';
 import 'package:domain/usecase/country/get_state_list_usecase.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w8_address_details_usecase.dart';
@@ -262,27 +262,28 @@ class FatcaUSRelevantW8AddressDetailsPageViewModel extends BasePageViewModel {
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope.containerOf(context)
+    FatcaW8Data fatcaW8Data = ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .fatcaData;
-    fatcaSetData.permanentResidenceAddress = permanentAddressController.text;
-    fatcaSetData.country = countryController.text;
-    fatcaSetData.city = cityController.text;
-    fatcaSetData.state = stateController.text;
-    fatcaSetData.postCode = postCodeController.text;
-    fatcaSetData.differentMailingAddress =
-        _mailingAddressDifferentSubject.value;
-    fatcaSetData.differentMailingAddressValue =
-        differentMailingAddressController.text;
-    fatcaSetData.differentMailingState = differentMailingStateController.text;
-    fatcaSetData.differentMailingCity = differentMailingCityController.text;
-    fatcaSetData.differentMailingCountry =
-        differentMailingCountryController.text;
-    fatcaSetData.differentMailingPostCode =
+        .getFatcaW8Data;
+    fatcaW8Data.permenantResidenceAddress = permanentAddressController.text;
+    fatcaW8Data.country = permanentSelectedStateCity.countryId;
+    fatcaW8Data.city = permanentSelectedStateCity.cityId;
+    fatcaW8Data.state = permanentSelectedStateCity.stateId;
+    fatcaW8Data.postCode = postCodeController.text;
+
+    fatcaW8Data.differentMailingAddress = _mailingAddressDifferentSubject.value;
+    fatcaW8Data.mailingAddressLine = differentMailingAddressController.text;
+    fatcaW8Data.differentMailingState =
+        mailingAddressDifferentSelectedStateCity.stateId;
+    fatcaW8Data.differentMailingCity =
+        mailingAddressDifferentSelectedStateCity.cityId;
+    fatcaW8Data.differentMailingCountry =
+        mailingAddressDifferentSelectedStateCity.countryId;
+    fatcaW8Data.differentMailingPostCode =
         differentMailingPostCodeController.text;
     ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .setFatcaData(fatcaSetData);
+        .setFatcaW8(fatcaW8Data);
   }
 
   @override

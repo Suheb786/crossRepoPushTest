@@ -1,6 +1,7 @@
+import 'package:domain/constants/enum/tax_payer_type.dart';
 import 'package:domain/constants/enum/us_relevant_w8_tax_payer_enum.dart';
 import 'package:domain/constants/error_types.dart';
-import 'package:domain/model/fatca_crs/fatca_set_data.dart';
+import 'package:domain/model/fatca_crs/fatca_w8_data.dart';
 import 'package:domain/usecase/register/fatca_us_w8_tax_payer_details_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,40 +20,45 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
   ///controllers and keys
   final TextEditingController taxPayerTypeController = TextEditingController();
   final GlobalKey<AppTextFieldState> taxPayerTypeKey =
-  GlobalKey(debugLabel: "taxPayerType");
+      GlobalKey(debugLabel: "taxPayerType");
 
   final TextEditingController identificationNumberController =
-  TextEditingController();
+      TextEditingController();
   final GlobalKey<AppTextFieldState> identificationNumberKey =
-  GlobalKey(debugLabel: "identificationNumber");
+      GlobalKey(debugLabel: "identificationNumber");
+
+  final TextEditingController foreignIdentificationNumberController =
+      TextEditingController();
+  final GlobalKey<AppTextFieldState> foreignIdentificationNumberKey =
+      GlobalKey(debugLabel: "foreignIdentificationNumber");
 
   final TextEditingController referenceNumberController =
-  TextEditingController();
+      TextEditingController();
   final GlobalKey<AppTextFieldState> referenceNumberKey =
-  GlobalKey(debugLabel: "referenceNumber");
+      GlobalKey(debugLabel: "referenceNumber");
 
   final TextEditingController beneficialCountryController =
-  TextEditingController();
+      TextEditingController();
   final GlobalKey<AppTextFieldState> beneficialCountryKey =
-  GlobalKey(debugLabel: "beneficialCountry");
+      GlobalKey(debugLabel: "beneficialCountry");
 
   final TextEditingController provisionClaimController =
-  TextEditingController();
+      TextEditingController();
   final GlobalKey<AppTextFieldState> provisionClaimKey =
-  GlobalKey(debugLabel: "provisionClaim");
+      GlobalKey(debugLabel: "provisionClaim");
 
   final TextEditingController treatyClaimRateController =
-  TextEditingController();
+      TextEditingController();
   final GlobalKey<AppTextFieldState> treatyClaimRateKey =
-  GlobalKey(debugLabel: "treatyClaimRate");
+      GlobalKey(debugLabel: "treatyClaimRate");
 
   final TextEditingController incomeTypeController = TextEditingController();
   final GlobalKey<AppTextFieldState> incomeTypeKey =
-  GlobalKey(debugLabel: "incomeType");
+      GlobalKey(debugLabel: "incomeType");
 
   final TextEditingController explanationController = TextEditingController();
   final GlobalKey<AppTextFieldState> explanationKey =
-  GlobalKey(debugLabel: "explanation");
+      GlobalKey(debugLabel: "explanation");
 
   ///fatca us w9 taxPayer details request subject holder
   PublishSubject<FatcaUSW8TaxPayerDetailsUseCaseParams>
@@ -74,13 +80,24 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
 
   ///social security number field visibility subject
   final BehaviorSubject<bool> _identificationVisibilitySubject =
-      BehaviorSubject.seeded(false);
+      BehaviorSubject.seeded(true);
 
   Stream<bool> get identificationVisibilityStream =>
       _identificationVisibilitySubject.stream;
 
   void updateVisibilityValue(bool value) {
     _identificationVisibilitySubject.safeAdd(value);
+  }
+
+  ///tax payer visibility subject
+  final BehaviorSubject<bool> _taxPayerVisibilitySubject =
+      BehaviorSubject.seeded(false);
+
+  Stream<bool> get taxPayerVisibilityStream =>
+      _taxPayerVisibilitySubject.stream;
+
+  void taxPayerVisibility(bool value) {
+    _taxPayerVisibilitySubject.safeAdd(value);
   }
 
   ///tax treaty benefits switch value subject
@@ -110,6 +127,8 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
         }
       } else {
         if (taxPayerTypeController.text.isNotEmpty &&
+            foreignIdentificationNumberController.text.isNotEmpty &&
+            referenceNumberController.text.isNotEmpty &&
             beneficialCountryController.text.isNotEmpty &&
             treatyClaimRateController.text.isNotEmpty &&
             provisionClaimController.text.isNotEmpty &&
@@ -126,7 +145,9 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
           valid = true;
         }
       } else {
-        if (taxPayerTypeController.text.isNotEmpty) {
+        if (taxPayerTypeController.text.isNotEmpty &&
+            foreignIdentificationNumberController.text.isNotEmpty &&
+            referenceNumberController.text.isNotEmpty) {
           valid = true;
         }
       }
@@ -162,6 +183,9 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_IDENTIFICATION_NUMBER:
         identificationNumberKey.currentState!.isValid = false;
         break;
+      case ErrorType.INVALID_FOREIGN_IDENTIFICATION_NUMBER:
+        foreignIdentificationNumberKey.currentState!.isValid = false;
+        break;
       case ErrorType.INVALID_BENEFICIAL_ADDRESS:
         beneficialCountryKey.currentState!.isValid = false;
         break;
@@ -186,19 +210,21 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
   }
 
   void validateFatcaUSW8TaxPayersDetails() {
-    _fatcaUSW8taxPayerDetailsRequest
-        .safeAdd(FatcaUSW8TaxPayerDetailsUseCaseParams(
-      isUSTaxPayer: _identificationVisibilitySubject.value,
-      identificationNumber: identificationNumberController.text,
-      wantToClaimTaxTreatyBenefits: _taxTreatyBenefitsSubject.value,
-      beneficialAddress: beneficialCountryController.text,
-      treatyClaimRate: treatyClaimRateController.text,
-      provisionClaimArticle: provisionClaimController.text,
-      typeOfIncome: incomeTypeController.text,
-      explanation: explanationController.text,
-      taxPayerType: taxPayerTypeController.text,
-      referenceNumber: referenceNumberController.text,
-    ));
+    _fatcaUSW8taxPayerDetailsRequest.safeAdd(
+        FatcaUSW8TaxPayerDetailsUseCaseParams(
+            isUSTaxPayer: _identificationVisibilitySubject.value,
+            identificationNumber: identificationNumberController.text,
+            wantToClaimTaxTreatyBenefits: _taxTreatyBenefitsSubject.value,
+            beneficialAddress: beneficialCountryController.text,
+            treatyClaimRate: treatyClaimRateController.text,
+            provisionClaimArticle: provisionClaimController.text,
+            typeOfIncome: incomeTypeController.text,
+            explanation: explanationController.text,
+            taxPayerType: taxPayerTypeController.text,
+            isForeignTaxPayer: !_identificationVisibilitySubject.value,
+            referenceNumber: referenceNumberController.text,
+            foreignIdentificationNumber:
+                foreignIdentificationNumberController.text));
   }
 
   void updateTaxPayerTypeField(String value) {
@@ -212,24 +238,29 @@ class FatcaUSW8TaxPayersDetailsPageViewModel extends BasePageViewModel {
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope
-        .containerOf(context)
+    FatcaW8Data fatcaW8Data = ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .fatcaData;
-    fatcaSetData.taxPayer = taxPayerTypeController.text;
-    fatcaSetData.usTaxIdNo = identificationNumberController.text;
+        .getFatcaW8Data;
+    fatcaW8Data.taxPayer = taxPayerTypeController.text;
+    fatcaW8Data.usTaxPayerTin = identificationNumberController.text;
+    fatcaW8Data.referenceNumber = referenceNumberController.text;
+    fatcaW8Data.foreignTaxPayerTin = foreignIdentificationNumberController.text;
 
-    ///referenece no is missing
-    fatcaSetData.claimTaxTreatBenefits = _taxTreatyBenefitsSubject.value;
-    fatcaSetData.beneficialOwnerResident = beneficialCountryController.text;
-
-    ///provision claim is missing
-    ///treaty identified to claim rate
-    fatcaSetData.typeOfIncome = incomeTypeController.text;
-    fatcaSetData.explanation = explanationController.text;
+    ///treaty claim
+    fatcaW8Data.claimTaxTreatBenefits = _taxTreatyBenefitsSubject.value;
+    fatcaW8Data.beneficialOwnerResident = beneficialCountryController.text;
+    fatcaW8Data.provisionOrClaim = provisionClaimController.text;
+    fatcaW8Data.treatyClaimRate = treatyClaimRateController.text;
+    fatcaW8Data.typeOfIncome = incomeTypeController.text;
+    fatcaW8Data.explanation = explanationController.text;
     ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .setFatcaData(fatcaSetData);
+        .setFatcaW8(fatcaW8Data);
+
+    ///update tax Payer Type
+    ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .setTaxPayerTypeEnum(TaxPayerTypeEnum.W8);
   }
 
   @override

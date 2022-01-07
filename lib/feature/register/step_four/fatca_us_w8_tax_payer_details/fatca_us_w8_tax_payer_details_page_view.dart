@@ -110,8 +110,17 @@ class FatcaUSW8TaxPayersDetailsPageView
                                               Navigator.pop(context);
                                             }, onSelected: (value) {
                                               Navigator.pop(context);
+                                              model.taxPayerVisibility(true);
                                               model.updateTaxPayerTypeField(
                                                   value);
+                                              model
+                                                  .identificationNumberController
+                                                  .clear();
+                                              model
+                                                  .foreignIdentificationNumberController
+                                                  .clear();
+                                              model.referenceNumberController
+                                                  .clear();
                                               model.isValid();
                                             });
                                           },
@@ -131,99 +140,152 @@ class FatcaUSW8TaxPayersDetailsPageView
                                           height: 16,
                                         ),
                                         AppStreamBuilder<bool>(
-                                          stream: model
-                                              .identificationVisibilityStream,
-                                          initialData: false,
-                                          dataBuilder: (context, isVisible) {
-                                            return Visibility(
-                                              visible: isVisible!,
-                                              child: Column(
-                                                children: [
-                                                  AppTextField(
-                                                    labelText: S
-                                                        .of(context)
-                                                        .usIDNumber
-                                                        .toUpperCase(),
-                                                    hintText: S
-                                                        .of(context)
-                                                        .pleaseEnter,
-                                                    controller: model
-                                                        .identificationNumberController,
-                                                    key: model
-                                                        .identificationNumberKey,
-                                                    inputAction:
-                                                        TextInputAction.go,
-                                                    labelIcon: () {
-                                                      return Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 4.0),
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            Navigator.pushNamed(
-                                                                context,
-                                                                RoutePaths
-                                                                    .UsTaxPayerIdentificationNo);
-                                                          },
-                                                          child: AppSvg.asset(
-                                                              AssetUtils.info,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .primaryColorDark),
-                                                        ),
-                                                      );
-                                                    },
-                                                    onChanged: (value) {
-                                                      model.isValid();
-                                                    },
-                                                  ),
-                                                  SizedBox(
-                                                    height: 16,
-                                                  ),
-                                                  AppTextField(
-                                                    labelText: S
-                                                        .of(context)
-                                                        .referenceNumber,
-                                                    hintText: S
-                                                        .of(context)
-                                                        .pleaseEnter,
-                                                    controller: model
-                                                        .referenceNumberController,
-                                                    key: model
-                                                        .referenceNumberKey,
-                                                    inputAction:
-                                                        TextInputAction.go,
-                                                    labelIcon: () {
-                                                      return Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 4.0),
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            Navigator.pushNamed(
-                                                                context,
-                                                                RoutePaths
-                                                                    .ReferenceNumber);
-                                                          },
-                                                          child: AppSvg.asset(
-                                                              AssetUtils.info,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .primaryColorDark),
-                                                        ),
-                                                      );
-                                                    },
-                                                    onChanged: (value) {
-                                                      model.isValid();
-                                                    },
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        ),
+                                            stream:
+                                                model.taxPayerVisibilityStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isActive) {
+                                              return Visibility(
+                                                visible: isActive!,
+                                                child: Column(
+                                                  children: [
+                                                    AppStreamBuilder<bool>(
+                                                      stream: model
+                                                          .identificationVisibilityStream,
+                                                      initialData: true,
+                                                      dataBuilder:
+                                                          (context, isVisible) {
+                                                        return (isVisible!)
+                                                            ? AppTextField(
+                                                                labelText: S
+                                                                    .of(context)
+                                                                    .usIDNumber
+                                                                    .toUpperCase(),
+                                                                hintText: S
+                                                                    .of(context)
+                                                                    .pleaseEnter,
+                                                                controller: model
+                                                                    .identificationNumberController,
+                                                                key: model
+                                                                    .identificationNumberKey,
+                                                                inputAction:
+                                                                    TextInputAction
+                                                                        .go,
+                                                                labelIcon: () {
+                                                                  return Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            4.0),
+                                                                    child:
+                                                                        InkWell(
+                                                                      onTap:
+                                                                          () {
+                                                                        Navigator.pushNamed(
+                                                                            context,
+                                                                            RoutePaths.UsTaxPayerIdentificationNo);
+                                                                      },
+                                                                      child: AppSvg.asset(
+                                                                          AssetUtils
+                                                                              .info,
+                                                                          color:
+                                                                              Theme.of(context).primaryColorDark),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                                onChanged:
+                                                                    (value) {
+                                                                  model
+                                                                      .isValid();
+                                                                },
+                                                              )
+                                                            : AppTextField(
+                                                                labelText: S
+                                                                    .of(context)
+                                                                    .foreignTaxIdNumber
+                                                                    .toUpperCase(),
+                                                                hintText: S
+                                                                    .of(context)
+                                                                    .pleaseEnter,
+                                                                controller: model
+                                                                    .foreignIdentificationNumberController,
+                                                                key: model
+                                                                    .foreignIdentificationNumberKey,
+                                                                inputAction:
+                                                                    TextInputAction
+                                                                        .go,
+                                                                labelIcon: () {
+                                                                  return Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            4.0),
+                                                                    child:
+                                                                        InkWell(
+                                                                      onTap:
+                                                                          () {
+                                                                        ///TODO: create foreign identification info page
+                                                                      },
+                                                                      child: AppSvg.asset(
+                                                                          AssetUtils
+                                                                              .info,
+                                                                          color:
+                                                                              Theme.of(context).primaryColorDark),
+                                                                    ),
+                                                                  );
+                                                                },
+                                                                onChanged:
+                                                                    (value) {
+                                                                  model
+                                                                      .isValid();
+                                                                },
+                                                              );
+                                                      },
+                                                    ),
+                                                    SizedBox(
+                                                      height: 16,
+                                                    ),
+                                                    AppTextField(
+                                                      labelText: S
+                                                          .of(context)
+                                                          .referenceNumber,
+                                                      hintText: S
+                                                          .of(context)
+                                                          .pleaseEnter,
+                                                      controller: model
+                                                          .referenceNumberController,
+                                                      key: model
+                                                          .referenceNumberKey,
+                                                      inputAction:
+                                                          TextInputAction.go,
+                                                      labelIcon: () {
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 4.0),
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              Navigator.pushNamed(
+                                                                  context,
+                                                                  RoutePaths
+                                                                      .ReferenceNumber);
+                                                            },
+                                                            child: AppSvg.asset(
+                                                                AssetUtils.info,
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .primaryColorDark),
+                                                          ),
+                                                        );
+                                                      },
+                                                      onChanged: (value) {
+                                                        model.isValid();
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            }),
                                         AppStreamBuilder<bool>(
                                           stream: model.taxTreatyBenefitsValue,
                                           initialData: false,

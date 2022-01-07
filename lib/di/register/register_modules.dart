@@ -391,7 +391,8 @@ final fatcaSignaturePageViewModelProvider =
   (ref) => FatcaSignaturePageViewModel(
       ref.read(uploadSignatureUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
-      ref.read(setFatcaQuestionsResponseUseCaseProvider)),
+      ref.read(setFatcaw8UseCaseProvider),
+      ref.read(setFatcaw9UseCaseProvider)),
 );
 
 ///mobile number dialog view model provider
