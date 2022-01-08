@@ -66,16 +66,16 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
             baseUrl = dicData?["app_base_url"] as? String
             appKey = dicData?["app_key"] as? String
             applicationId = dicData?["application_id"] as? String
-            
+
             UserDefaults.standard.set(baseUrl, forKey: "baseUrl")
             UserDefaults.standard.set(appKey, forKey: "appKey")
             UserDefaults.standard.set(applicationId, forKey: "applicationId")
-            
             print("app_base_url", baseUrl!)
-            
+            result(true)
+
         case object.FETCH_TOKEN:
-            print(call.arguments ?? "")
-            
+            print("Arguments ",call.arguments ?? "")
+
             let dicData = call.arguments as? [String : Any]
             displayName = dicData?["displayName"] as? String
             identity = dicData?["identity"] as? String
@@ -85,14 +85,14 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
             serializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
             serializer.setValue("App " + appKey!, forHTTPHeaderField: "Authorization")
             manager.requestSerializer = serializer
-            
+
             let paraamDic = ["identity":identity,
                              "applicationId":applicationId,
                              "displayName":displayName]
-            
+
             manager.post(baseUrl! + "/webrtc/1/token", parameters: paraamDic, headers: [:], progress: nil) { (Operation, Response) in
-                
-                
+
+
                 let data = Response as? [String : String]
                 let token = data?["token"]
                 self.gettoken = token ?? ""
@@ -104,45 +104,45 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
                         result(jsonString)
                     }
                 }
-                
-                
+
+
             } failure: { (Operation, Error) in
                 print(Error.localizedDescription)
             }
-            
+
         case object.DIAL_CALL:
             print(call.arguments ?? "")
             dialCall(token: gettoken)
-            
+
         case object.FINAL_CALL_STATUS:
             print("FINAL_CALL_STATUS")
-            
+
         case object.MUTE_CALL:
             let muteUnmuteCall = outgoingCall?.muted()
             outgoingCall?.mute(!muteUnmuteCall!)
             print(!muteUnmuteCall! as Any)
             result(outgoingCall?.muted())
-            
+
         case object.CALL_SPEAKER_PHONE:
             callSpeakerPhone()
             result(outgoingCall?.speakerphone())
-            
+
         case object.CALL_DURATION:
             getCallDuration()
             result(callDuration)
-            
+
         case object.CALL_START_TIME:
             callStartTime = outgoingCall?.startTime()
             result("\(callStartTime ?? Date())")
-            
+
         case object.CALL_ESTABLISH_TIME:
             callEstablishTime = outgoingCall?.establishTime()
             result("\(callEstablishTime ?? Date())")
-            
+
         case object.CALL_END_TIME:
             callEndTime = outgoingCall?.endTime()
             result("\(callEndTime ?? Date())")
-            
+
         case object.CALL_HANG_UP:
             callHangUp()
             result(true)
@@ -150,7 +150,7 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
             result(FlutterMethodNotImplemented)
         }
     }
-    
+
     /* func obtainToken(identity: String, displayName: String, result: FlutterResult)
      {
      //        print(object.APP_KEY)
@@ -159,14 +159,14 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
      serializer.setValue("application/json", forHTTPHeaderField: "Content-Type")
      serializer.setValue("App " + authorizationToken, forHTTPHeaderField: "Authorization")
      manager.requestSerializer = serializer
-     
+
      let paraamDic = ["identity":identity,
      "applicationId":applicationId,
      "displayName":displayName]
-     
+
      manager.post(baseUrl! + "/webrtc/1/token", parameters: paraamDic, headers: [:], progress: nil) { (Operation, Response) in
-     
-     
+
+
      let data = Response as? [String : String]
      let encoder = JSONEncoder()
      if let jsonData = try? encoder.encode(data) {
@@ -177,13 +177,13 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
      //self.isApicall = true
      }
      }
-     
-     
+
+
      } failure: { (Operation, Error) in
      print(Error.localizedDescription)
      }
      }*/
-    
+
     //MARK:- *** Function for Dial Call ***
     func dialCall(token: String)
     {
@@ -196,7 +196,7 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
             print("Error")
         }
     }
-    
+
     //MARK:- *** Call Event Methods ***
     /*** call end */
     func callHangUp() {
@@ -210,29 +210,29 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
     func getCallEstablishTime() {
         callEstablishTime = outgoingCall?.establishTime()
     }
-    
+
     /*** call start time */
     func getCallStartTime() {
         callStartTime = outgoingCall?.startTime()
-        print(callStartTime)
+        print(callStartTime!)
     }
-    
+
     /*** call duration */
     func getCallDuration() {
         callDuration = (outgoingCall?.duration()) ?? 0
     }
-    
+
     /*** call on speaker event*/
     func callSpeakerPhone() {
         let callOnSpeaker = outgoingCall?.speakerphone()
         outgoingCall?.speakerphone(!callOnSpeaker!)
     }
-    
+
     /*** call mute event*/
     func muteCall() {
         
     }
-    
+
     //MARK:- *** call clear method ***
     func clearCallFinished()
     {
@@ -264,54 +264,54 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
         isOnSpeaker = false
         callDuration = 0
     }
-    
-    
-    
+
+
+
     //MARK:- *** call listeners for call event ***
     public func onRinging(_ callRingingEvent: CallRingingEvent) {
         print("Call is ringing.")
         callStatus = object.ON_RINGING
         eventSink!(callStatus)
-        
+
     }
-    
+
     public func onEarlyMedia(_ callEarlyMediaEvent: CallEarlyMediaEvent) {
         print("Received early media.")
         callStatus = object.ON_EARLY_MEDIA
         eventSink!(callStatus)
-        
+
     }
-    
+
     public func onEstablished(_ callEstablishedEvent: CallEstablishedEvent) {
         print("Call established.")
         callStatus = object.ON_ESTABLISHED
         eventSink!(callStatus)
-        
+
     }
-    
+
     public func onUpdated(_ callUpdatedEvent: CallUpdatedEvent) {
         print("Call updated.")
         callStatus = object.ON_UPDATED
         eventSink!(callStatus)
-        
+
     }
-    
+
     public func onHangup(_ callHangupEvent: CallHangupEvent) {
         print("Call hangupEvent.")
         callStatus = object.ON_HANGUP
-        
+
         eventSink!(callStatus)
-        
+
         //strem.sink!(object.ON_HANGUP)
-        
+
     }
-    
+
     public func onError(_ callErrorEvent: CallErrorEvent) {
         print("Call ended with error.")
         callStatus = object.ON_ERROR
         eventSink!(callStatus)
     }
-    
+
     //MARK:- *** Function for toString() ***
     func toString(date : Date) -> String
     {
@@ -319,12 +319,12 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
         print(dateFormatter.string(from: date))
         return dateFormatter.string(from: date)
     }
-    
-    
+
+
 }
 //MARK:- *** struct for Object Variables ***
 struct object {
-    
+
     static var TAG = "InfobipPlugin"
     static var CHANNEL = "infobip_plugin"
     static var INITIALISATION = "initialisation"

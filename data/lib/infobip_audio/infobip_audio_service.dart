@@ -41,8 +41,9 @@ class InfoBipAudioService {
   ///
   Future<void> requestPermission() async {
     final status = await Permission.microphone.request();
+    print(status);
     if (status == PermissionStatus.permanentlyDenied) {
-      openAppSettings();
+      final status = await Permission.microphone.request();
     }
   }
 
