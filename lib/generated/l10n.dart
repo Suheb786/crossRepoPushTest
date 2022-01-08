@@ -7110,16 +7110,6 @@ class S {
     );
   }
 
-  /// `We will notify you once it’s ready`
-  String get weWillNotifyOnceReady {
-    return Intl.message(
-      'We will notify you once it’s ready',
-      name: 'weWillNotifyOnceReady',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Error occurred during hangup call`
   String get callHangupError {
     return Intl.message(
@@ -7165,6 +7155,386 @@ class S {
     return Intl.message(
       'Error occurred during getting token',
       name: 'getCallTokenError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will notify you once it’s ready`
+  String get weWillNotifyOnceReady {
+    return Intl.message(
+      'We will notify you once it’s ready',
+      name: 'weWillNotifyOnceReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter total annual income`
+  String get emptyIncome {
+    return Intl.message(
+      'Enter total annual income',
+      name: 'emptyIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account ready!`
+  String get accountReadyMsg {
+    return Intl.message(
+      'Account ready!',
+      name: 'accountReadyMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your free virtual debit card has been issued, and the physical one is\non its way.`
+  String get yourFreeVirtualDebitCardHasBeenIssued {
+    return Intl.message(
+      'Your free virtual debit card has been issued, and the physical one is\non its way.',
+      name: 'yourFreeVirtualDebitCardHasBeenIssued',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password does not meet requirement. \nPlease try again.`
+  String get passwordNotMeetCriteria {
+    return Intl.message(
+      'Password does not meet requirement. \nPlease try again.',
+      name: 'passwordNotMeetCriteria',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current password is invalid. Password does not meet requirement.`
+  String get currentPasswordInvalid {
+    return Intl.message(
+      'Current password is invalid. Password does not meet requirement.',
+      name: 'currentPasswordInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select expected transaction`
+  String get selectExpectedTransaction {
+    return Intl.message(
+      'Select expected transaction',
+      name: 'selectExpectedTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selfie Check!`
+  String get selfieCheck {
+    return Intl.message(
+      'Selfie Check!',
+      name: 'selfieCheck',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make sure your face fits into the frame`
+  String get makeSureYourFaceFitsTheFrame {
+    return Intl.message(
+      'Make sure your face fits into the frame',
+      name: 'makeSureYourFaceFitsTheFrame',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Get Combo Values`
+  String get errorWhileGetComboValues {
+    return Intl.message(
+      'Error While Get Combo Values',
+      name: 'errorWhileGetComboValues',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Already Exist. Try Using Different Email`
+  String get userAlreadyExists {
+    return Intl.message(
+      'User Already Exist. Try Using Different Email',
+      name: 'userAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Try Again`
+  String get pleaseTryAgain {
+    return Intl.message(
+      'Please Try Again',
+      name: 'pleaseTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Foreign Tax Identifying Number`
+  String get foreignTaxIdNumber {
+    return Intl.message(
+      'Foreign Tax Identifying Number',
+      name: 'foreignTaxIdNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Foreign Tax Identifying Number`
+  String get invalidForeignIdNumber {
+    return Intl.message(
+      'Please Enter Foreign Tax Identifying Number',
+      name: 'invalidForeignIdNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ExemptION from fatca reporting code`
+  String get exemptionFromFatcaReporting {
+    return Intl.message(
+      'ExemptION from fatca reporting code',
+      name: 'exemptionFromFatcaReporting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Exemption From Fatca Reporting Code`
+  String get invalidExemptionFromFatcaReporting {
+    return Intl.message(
+      'Enter Exemption From Fatca Reporting Code',
+      name: 'invalidExemptionFromFatcaReporting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EMPLOYER IDENTIFICATION NUMBER`
+  String get employerIdNumber {
+    return Intl.message(
+      'EMPLOYER IDENTIFICATION NUMBER',
+      name: 'employerIdNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Employer Identification Number`
+  String get invalidEmployerId {
+    return Intl.message(
+      'Enter Employer Identification Number',
+      name: 'invalidEmployerId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `error while Accessing Id Card Data.`
+  String get errorWhileAccessingIdData {
+    return Intl.message(
+      'error while Accessing Id Card Data.',
+      name: 'errorWhileAccessingIdData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID card issuer is not allowed at this moment. Please try again with valid ID card issuer.`
+  String get notAllowedCountry {
+    return Intl.message(
+      'ID card issuer is not allowed at this moment. Please try again with valid ID card issuer.',
+      name: 'notAllowedCountry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `blink Credit Card`
+  String get blinkCreditCardTitle {
+    return Intl.message(
+      'blink Credit Card',
+      name: 'blinkCreditCardTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Get your card delivered right to your\ndoorstep. Spend and enjoy discounts\nat participating outlets`
+  String get getCardDelivered {
+    return Intl.message(
+      'Get your card delivered right to your\ndoorstep. Spend and enjoy discounts\nat participating outlets',
+      name: 'getCardDelivered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I authorize blink to retrieve my`
+  String get authorize {
+    return Intl.message(
+      'I authorize blink to retrieve my',
+      name: 'authorize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credit Bureau `
+  String get creditBureau {
+    return Intl.message(
+      'Credit Bureau ',
+      name: 'creditBureau',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `data and agree to the `
+  String get agreeData {
+    return Intl.message(
+      'data and agree to the ',
+      name: 'agreeData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms & Conditions.`
+  String get creditTc {
+    return Intl.message(
+      'Terms & Conditions.',
+      name: 'creditTc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please agree to terms and conditions.`
+  String get agreeTermsCondition {
+    return Intl.message(
+      'Please agree to terms and conditions.',
+      name: 'agreeTermsCondition',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Application is not\nsuccessful.\nTry again later.`
+  String get applicationNotSuccessful {
+    return Intl.message(
+      'Application is not\nsuccessful.\nTry again later.',
+      name: 'applicationNotSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will keep you updated\nwith our other exciting promotions!`
+  String get excitingPromotion {
+    return Intl.message(
+      'We will keep you updated\nwith our other exciting promotions!',
+      name: 'excitingPromotion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `APPLY CREDIT CARD`
+  String get applyCreditCardTitle {
+    return Intl.message(
+      'APPLY CREDIT CARD',
+      name: 'applyCreditCardTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Set up and personalize your\nnew credit card`
+  String get personalizeCreditCard {
+    return Intl.message(
+      'Set up and personalize your\nnew credit card',
+      name: 'personalizeCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CREDIT LIMIT`
+  String get creditLimit {
+    return Intl.message(
+      'CREDIT LIMIT',
+      name: 'creditLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MINIMUM SETTLEMENT`
+  String get minimumSettlement {
+    return Intl.message(
+      'MINIMUM SETTLEMENT',
+      name: 'minimumSettlement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select minimum settlement value`
+  String get emptyMinimumSettlement {
+    return Intl.message(
+      'Please select minimum settlement value',
+      name: 'emptyMinimumSettlement',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purpose Details`
+  String get purposeDetailSmall {
+    return Intl.message(
+      'Purpose Details',
+      name: 'purposeDetailSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Purpose`
+  String get purposeSmall {
+    return Intl.message(
+      'Purpose',
+      name: 'purposeSmall',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get nameOfBeneficiary {
+    return Intl.message(
+      'Name',
+      name: 'nameOfBeneficiary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add nickname`
+  String get addNickName {
+    return Intl.message(
+      'Add nickname',
+      name: 'addNickName',
       desc: '',
       args: [],
     );
