@@ -25,7 +25,9 @@ class EnterAddressUseCase extends BaseUseCase<NetworkError,
         streetName: params.streetAddress,
         buildingName: params.buildingNameOrNo,
         permanentResidentCountry: params.permanentResidentCountry,
-        permanentResidentCity: params.permanentCity);
+        permanentResidentCity: params.permanentCity,
+        cityId: params.cityId,
+        stateId: params.stateId);
   }
 }
 
@@ -38,15 +40,21 @@ class EnterAddressUseCaseParams extends Params {
   bool jordanianLivesAbroad;
   final String? permanentResidentCountry;
   final String? permanentCity;
+  final String stateId;
+  final String cityId;
 
-  EnterAddressUseCaseParams({required this.residentCountry,
+  EnterAddressUseCaseParams({
+    required this.residentCountry,
     required this.residentArea,
     this.city,
     required this.streetAddress,
     required this.buildingNameOrNo,
     required this.jordanianLivesAbroad,
     this.permanentCity,
-    this.permanentResidentCountry});
+    this.permanentResidentCountry,
+    required this.stateId,
+    required this.cityId,
+  });
 
   @override
   Either<AppError, bool> verify() {
@@ -65,12 +73,14 @@ class EnterAddressUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_STREET_ADDRESS,
           cause: Exception()));
-    } else if (Validator.isEmpty(residentArea!)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.EMPTY_DISTRICT,
-          cause: Exception()));
-    } else if (Validator.isEmpty(city!)) {
+    }
+    // else if (Validator.isEmpty(residentArea!)) {
+    //   return Left(AppError(
+    //       error: ErrorInfo(message: ''),
+    //       type: ErrorType.EMPTY_DISTRICT,
+    //       cause: Exception()));
+    // }
+    else if (Validator.isEmpty(city!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_CITY,

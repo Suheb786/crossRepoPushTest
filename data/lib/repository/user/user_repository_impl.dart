@@ -142,12 +142,13 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, User>> registerProspectUser({String? countryName,
-    String? email,
-    String? mobileNumber,
-    String? password,
-    String? confirmPassword,
-    String? userName}) async {
+  Future<Either<NetworkError, User>> registerProspectUser(
+      {String? countryName,
+      String? email,
+      String? mobileNumber,
+      String? password,
+      String? confirmPassword,
+      String? userName}) async {
     final result = await safeApiCall(
       _remoteDS.registerProspectUser(
           countryName: countryName,
@@ -158,43 +159,40 @@ class UserRepositoryImpl extends UserRepository {
           userName: userName),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, SaveIdInfoResponse>> saveIdInfo({String? id,
-    String? type,
-    String? fullName,
-    String? firstName,
-    String? middleName,
-    String? familyName,
-    String? idNumber,
-    String? dob,
-    String? nationality,
-    String? doe,
+  Future<Either<NetworkError, SaveIdInfoResponse>> saveIdInfo(
+      {String? id,
+      String? type,
+      String? fullName,
+      String? firstName,
+      String? middleName,
+      String? familyName,
+      String? idNumber,
+      String? dob,
+      String? nationality,
+      String? doe,
       String? gender,
       String? motherName,
-    String? documentCode,
-    String? documentNumber,
-    String? issuer,
-    String? optionalData1,
-    String? optionalData2,
-    String? mrtDraw,
-    String? frontCardImage,
-    String? backCardImage,
-    String? personFaceImage,
-    bool? getToken,
-    String? secondNameEn,
-    String? placeOfBirth,
-    String? familyNameAr,
-    String? secNameAr,
-    String? thirdNameAr,
-    String? firstNameAr,
-    bool? isimtfBlacklist,
-    String? instanceID,
-    double? scanPercentage}) async {
+      String? documentCode,
+      String? documentNumber,
+      String? issuer,
+      String? optionalData1,
+      String? optionalData2,
+      String? mrtDraw,
+      String? frontCardImage,
+      String? backCardImage,
+      String? personFaceImage,
+      bool? getToken,
+      String? placeOfBirth,
+      bool? isimtfBlacklist,
+      String? instanceID,
+      double? scanPercentage,
+      String? doi}) async {
     final result = await safeApiCall(
       _remoteDS.saveIdInfo(
           id: id,
@@ -222,32 +220,28 @@ class UserRepositoryImpl extends UserRepository {
           instanceID: instanceID,
           scanPercentage: scanPercentage,
           firstName: firstName,
-          thirdNameAr: thirdNameAr,
-          firstNameAr: firstNameAr,
-          secNameAr: secNameAr,
-          familyNameAr: familyNameAr,
           placeOfBirth: placeOfBirth,
-          secondNameEn: secondNameEn),
+          doi: doi),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, SaveJobDetailsResponse>> saveJobInformation(
       {String? employeeName,
-        String? occupation,
-        String? annualIncome,
-        String? employerCountry,
-        String? employerCity,
-        String? employerContact,
-        bool? additionalIncome,
-        String? businessType,
-        String? specifyBusinessType,
-        String? mainSource,
-        List<AdditionalIncomeType>? additionalIncomeType}) async {
+      String? occupation,
+      String? annualIncome,
+      String? employerCountry,
+      String? employerCity,
+      String? employerContact,
+      bool? additionalIncome,
+      String? businessType,
+      String? specifyBusinessType,
+      String? mainSource,
+      List<AdditionalIncomeType>? additionalIncomeType}) async {
     final result = await safeApiCall(
       _remoteDS.saveJobInformation(
           employeeName: employeeName,
@@ -263,22 +257,23 @@ class UserRepositoryImpl extends UserRepository {
           additionalIncomeType: additionalIncomeType),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, SaveProfileStatusResponse>>
-      saveProfileInformation({bool? married,
-    bool? specialPerson,
-    bool? anyOtherNationality,
-    bool? beneficialOwnerAccount,
-    String? otherNationality,
-    String? employmentStatus,
-    String? spouseName,
-    bool? isEmployed,
-    String? natureOfSpecialNeeds}) async {
+      saveProfileInformation(
+          {bool? married,
+          bool? specialPerson,
+          bool? anyOtherNationality,
+          bool? beneficialOwnerAccount,
+          String? otherNationality,
+          String? employmentStatus,
+          String? spouseName,
+          bool? isEmployed,
+          String? natureOfSpecialNeeds}) async {
     final result = await safeApiCall(_remoteDS.saveProfileInformation(
         married: married,
         specialPerson: specialPerson,
@@ -297,13 +292,17 @@ class UserRepositoryImpl extends UserRepository {
 
   @override
   Future<Either<NetworkError, SaveCountryResidenceInfoResponse>>
-  saveResidenceInformation({String? residentCountry,
+      saveResidenceInformation({
+    String? residentCountry,
     String? buildingName,
     String? streetName,
     String? residentArea,
     String? residentCity,
     String? permanentResidentCountry,
-    String? permanentResidentCity}) async {
+    String? permanentResidentCity,
+    String? stateId,
+    String? cityId,
+  }) async {
     final result = await safeApiCall(_remoteDS.saveResidenceInformation(
         residentCountry: residentCountry,
         buildingName: buildingName,
@@ -311,10 +310,12 @@ class UserRepositoryImpl extends UserRepository {
         residentArea: residentArea,
         residentCity: residentCity,
         permanentResidentCountry: permanentResidentCountry,
-        permanentResidentCity: permanentResidentCity));
+        permanentResidentCity: permanentResidentCity,
+        cityId: cityId,
+        stateId: stateId));
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -324,41 +325,44 @@ class UserRepositoryImpl extends UserRepository {
       _remoteDS.verifyMobileOtp(otpCode: otpCode),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<LocalError, ScannedDocumentInformation>>
-  scanUserDocument() async {
+      scanUserDocument() async {
     final document = await _localDS.scanUserDocument();
     return document.fold(
-            (l) => Left(l),
-            (r) =>
-            Right(ScannedDocumentInformation(
-                fullName: r.fullName,
-                firstName: r.firstName,
-                middleName: r.fathersName,
-                familyName: r.lastName,
-                idNumber: r.personalIdNumber!.isNotEmpty
-                    ? r.personalIdNumber
-                    : '',
-                dob: r.dateOfBirth != null
-                    ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
+        (l) => Left(l),
+        (r) => Right(ScannedDocumentInformation(
+            fullName: r.fullName,
+            firstName: r.mrzResult!.secondaryId
+                    ?.trim()
+                    .split(" ")
+                    .elementAt(0)
+                    .toString() ??
+                r.firstName ??
+                "",
+            middleName: r.fathersName,
+            familyName: r.mrzResult!.primaryId ?? r.lastName ?? "",
+            idNumber: r.personalIdNumber!.isNotEmpty ? r.personalIdNumber : '',
+            dob: r.dateOfBirth != null
+                ? DateTime(r.dateOfBirth!.year!, r.dateOfBirth!.month!,
                     r.dateOfBirth!.day!)
-                    : DateTime(0),
-                nationality: r.nationality!.isNotEmpty ? r.nationality : '',
-                doe: r.dateOfExpiry != null
-                    ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!,
+                : DateTime(0),
+            nationality: r.nationality!.isNotEmpty ? r.nationality : '',
+            doe: r.dateOfExpiry != null
+                ? DateTime(r.dateOfExpiry!.year!, r.dateOfExpiry!.month!,
                     r.dateOfExpiry!.day!)
-                    : DateTime(0),
-                gender: r.sex!.isNotEmpty ? r.sex : '',
-                motherName: r.mothersName!.isNotEmpty ? r.mothersName : '',
-                documentCode: r.mrzResult!.documentCode!.isNotEmpty
-                    ? r.mrzResult!.documentCode
-                    : '',
-                documentNumber:
+                : DateTime(0),
+            gender: r.sex!.isNotEmpty ? r.sex : '',
+            motherName: r.mothersName!.isNotEmpty ? r.mothersName : '',
+            documentCode: r.mrzResult!.documentCode!.isNotEmpty
+                ? r.mrzResult!.documentCode
+                : '',
+            documentNumber:
                 r.documentNumber!.isNotEmpty ? r.documentNumber : '',
                 issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
                     ? r.mrzResult!.sanitizedIssuer
@@ -375,8 +379,8 @@ class UserRepositoryImpl extends UserRepository {
                 issuingDate: r.dateOfIssue != null
                     ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
                     r.dateOfIssue!.day!)
-                    : DateTime(0),
-                nationalityIsoCode3: r.mrzResult?.nationality ?? "")));
+                : DateTime(0),
+            nationalityIsoCode3: r.mrzResult?.nationality ?? "")));
   }
 
   @override
@@ -385,8 +389,8 @@ class UserRepositoryImpl extends UserRepository {
       _remoteDS.getToken(),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.isSuccessful()),
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -397,20 +401,20 @@ class UserRepositoryImpl extends UserRepository {
       _remoteDS.uploadSelfieImage(imagePath: imagePath),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.isSuccessful()),
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
     );
   }
 
   @override
   Future<Either<NetworkError, GetConfirmApplicationDataResponse>>
-  confirmApplicationDataGet() async {
+      confirmApplicationDataGet() async {
     final result = await safeApiCall(
       _remoteDS.confirmApplicationDataGet(),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -421,8 +425,8 @@ class UserRepositoryImpl extends UserRepository {
       _remoteDS.registerInterest(email: email),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -432,18 +436,18 @@ class UserRepositoryImpl extends UserRepository {
       _remoteDS.logout(),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
   Future<Either<NetworkError, bool>> confirmApplicationDataSet(
       {CountryResidenceInfo? countryResidenceInfo,
-        ProfileStatusInfo? profileStatusInfo,
-        JobDetailInfo? jobDetailInfo,
-        FatcaCrsInfo? fatcaCrsInfo,
-        AccountPurposeInfo? accountPurposeInfo}) async {
+      ProfileStatusInfo? profileStatusInfo,
+      JobDetailInfo? jobDetailInfo,
+      FatcaCrsInfo? fatcaCrsInfo,
+      AccountPurposeInfo? accountPurposeInfo}) async {
     final result = await safeApiCall(
       _remoteDS.confirmApplicationDataSet(
           countryResidenceInfo: countryResidenceInfo,
@@ -453,8 +457,8 @@ class UserRepositoryImpl extends UserRepository {
           accountPurposeInfo: accountPurposeInfo),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.isSuccessful()),
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -464,8 +468,8 @@ class UserRepositoryImpl extends UserRepository {
       _remoteDS.enableFingerPrint(cipher: cipher),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(true),
+      (l) => Left(l),
+      (r) => Right(true),
     );
   }
 
@@ -475,8 +479,8 @@ class UserRepositoryImpl extends UserRepository {
       _remoteDS.disableFingerPrint(),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(true),
+      (l) => Left(l),
+      (r) => Right(true),
     );
   }
 
@@ -491,11 +495,11 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<LocalError, bool>> authenticateBioMetric(String title,
-      String localisedReason) async {
+  Future<Either<LocalError, bool>> authenticateBioMetric(
+      String title, String localisedReason) async {
     try {
       bool isAuthenticated =
-      await _localDS.authenticateBioMetric(title, localisedReason);
+          await _localDS.authenticateBioMetric(title, localisedReason);
       return Right(isAuthenticated);
     } catch (exception) {
       return _handleAppLocalException(exception);
@@ -541,13 +545,13 @@ class UserRepositoryImpl extends UserRepository {
 
   @override
   Future<Either<NetworkError, GenerateKeyPairResponse>>
-  generateKeyPair() async {
+      generateKeyPair() async {
     final result = await safeApiCall(
       _remoteDS.generateKeyPair(),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -557,8 +561,8 @@ class UserRepositoryImpl extends UserRepository {
       _remoteDS.enableBiometric(),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.isSuccessful()),
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
     );
   }
 
@@ -568,8 +572,8 @@ class UserRepositoryImpl extends UserRepository {
       _remoteDS.getComboValues(),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 }

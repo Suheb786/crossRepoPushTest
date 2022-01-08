@@ -332,6 +332,35 @@ class ErrorParser {
         return localisedHelper.establishCallError;
       case ErrorType.GET_CALL_DURATION_ERROR:
         return localisedHelper.getCallDurationError;
+      case ErrorType.EMPTY_INCOME:
+        return localisedHelper.emptyIncome;
+      case ErrorType.PASSWORD_NOT_MEET_CRITERIA:
+        return localisedHelper.passwordNotMeetCriteria;
+      case ErrorType.CURRENT_PASSWORD_INVALID:
+        return localisedHelper.currentPasswordInvalid;
+      case ErrorType.SELECT_EXPECTED_TRANSACTION:
+        return localisedHelper.selectExpectedTransaction;
+      case ErrorType.ERROR_WHILE_GET_COMBO_VALUES:
+        return localisedHelper.errorWhileGetComboValues;
+      case ErrorType.USER_ALREADY_EXISTS:
+        return localisedHelper.userAlreadyExists;
+      case ErrorType.PLEASE_TRY_AGAIN:
+        return localisedHelper.pleaseTryAgain;
+      case ErrorType.INVALID_FOREIGN_IDENTIFICATION_NUMBER:
+        return localisedHelper.invalidForeignIdNumber;
+      case ErrorType.INVALID_EXEMPTION_FATCA_CODE:
+        return localisedHelper.invalidExemptionFromFatcaReporting;
+      case ErrorType.INVALID_EMPLOYER_ID:
+        return localisedHelper.invalidEmployerId;
+      case ErrorType.ERROR_ACCESSING_ID:
+        return localisedHelper.errorWhileAccessingIdData;
+      case ErrorType.NOT_ALLOWED_COUNTRY:
+        return localisedHelper.notAllowedCountry;
+      case ErrorType.INVALID_CHECKED_VALUE:
+        return localisedHelper.agreeTermsCondition;
+      case ErrorType.EMPTY_MINIMUM_SETTLEMENT_VALUE:
+        return localisedHelper.emptyMinimumSettlement;
+
       default:
         return "";
     }

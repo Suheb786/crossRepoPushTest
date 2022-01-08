@@ -1,4 +1,5 @@
 import 'package:clickable_list_wheel_view/clickable_list_wheel_widget.dart';
+import 'package:domain/model/country/state_list/state_city_data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,15 +15,21 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/resource.dart';
 
 class StateCityDialogView extends StatelessWidget {
   final Function? onDismissed;
-  final Function(String)? onSelected;
+  final Function(StateCityData)? onSelected;
   final StateCityTypeEnum? stateCityTypeEnum;
   final String? title;
+  final List<StateCityData>? stateCityData;
 
   const StateCityDialogView(
-      {this.onDismissed, this.onSelected, this.stateCityTypeEnum, this.title});
+      {this.onDismissed,
+      this.onSelected,
+      this.stateCityTypeEnum,
+      this.title,
+      this.stateCityData});
 
   ProviderBase providerBase() {
     return stateCityDialogViewModelProvider;
@@ -41,133 +48,179 @@ class StateCityDialogView extends StatelessWidget {
                 stream: model!.currentIndexStream,
                 initialData: 0,
                 dataBuilder: (context, currentIndex) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 32.0),
-                        child: Center(
-                          child: Text(
-                            title!,
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 32),
-                        child: AppTextField(
-                          labelText: '',
-                          controller: model.controller,
-                          textFieldBorderColor: AppColor.gray_1,
-                          hintTextColor: AppColor.gray_2,
-                          textColor: AppColor.black,
-                          hintText: getHintText(stateCityTypeEnum, context),
-                          onChanged: (value) {
-                            //model.searchCountry(value);
-                          },
-                          suffixIcon: (value, data) {
-                            return InkWell(
-                              onTap: () async {},
-                              child: Container(
-                                  height: 16,
-                                  width: 16,
-                                  padding: EdgeInsets.only(right: 8),
-                                  child: AppSvg.asset(AssetUtils.search)),
-                            );
-                          },
-                        ),
-                      ),
-                      Expanded(
-                          child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Container(
-                              height: 64,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                color: AppColor.vividYellow,
+                  return AppStreamBuilder<Resource<List<StateCityData>>>(
+                      stream: model.stateCityResponseStream,
+                      initialData: Resource.none(),
+                      dataBuilder: (context, stateCityResponse) {
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 32.0),
+                              child: Center(
+                                child: Text(
+                                  title!,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w600),
+                                ),
                               ),
                             ),
-                          ),
-                          AppScrollableListViewWidget(
-                            child: ClickableListWheelScrollView(
-                              scrollController: model.scrollController,
-                              itemHeight: 64,
-                              itemCount:
-                                  model.getList(stateCityTypeEnum!).length,
-                              onItemTapCallback: (index) {
-                                model.currentIndexUpdate(index);
-                              },
-                              child: ListWheelScrollView.useDelegate(
-                                  controller: model.scrollController,
-                                  itemExtent: 64,
-                                  onSelectedItemChanged: (int index) {
-                                    model.currentIndexUpdate(index);
-                                  },
-                                  physics: FixedExtentScrollPhysics(),
-                                  perspective: 0.0000000001,
-                                  childDelegate: ListWheelChildBuilderDelegate(
-                                      childCount: model
-                                          .getList(stateCityTypeEnum!)
-                                          .length,
-                                      builder:
-                                          (BuildContext context, int index) {
-                                        return ListScrollWheelListWidget(
-                                          label: model.getList(
-                                              stateCityTypeEnum!)[index],
-                                          textColor: currentIndex == index
-                                              ? Theme.of(context)
-                                                  .primaryColorDark
-                                              : AppColor.dark_gray_1,
-                                          widgetColor: Colors.transparent,
-                                        );
-                                      })),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 32),
+                              child: AppTextField(
+                                labelText: '',
+                                controller: model.controller,
+                                textFieldBorderColor: AppColor.gray_1,
+                                hintTextColor: AppColor.gray_2,
+                                textColor: AppColor.black,
+                                hintText:
+                                    getHintText(stateCityTypeEnum, context),
+                                onChanged: (value) {
+                                  model.searchStateCity(
+                                      value, stateCityTypeEnum!);
+                                },
+                                suffixIcon: (value, data) {
+                                  return InkWell(
+                                    onTap: () async {},
+                                    child: Container(
+                                        height: 16,
+                                        width: 16,
+                                        padding: EdgeInsets.only(right: 8),
+                                        child: AppSvg.asset(AssetUtils.search)),
+                                  );
+                                },
+                              ),
                             ),
-                          ),
-                        ],
-                      )),
-                      InkWell(
-                        onTap: () {
-                          onSelected!.call(
-                              model.getList(stateCityTypeEnum!)[currentIndex!]);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(16),
-                          height: 57,
-                          width: 57,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context)
-                                  .accentTextTheme
-                                  .bodyText1!
-                                  .color!),
-                          child: AppSvg.asset(AssetUtils.tick,
-                              color: Theme.of(context).accentColor),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0, bottom: 16),
-                        child: Center(
-                          child: Text(
-                            S.of(context).swipeDownToCancel,
-                            style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: AppColor.dark_gray_1),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
+                            Expanded(
+                                child: stateCityResponse!.data!.length > 0
+                                    ? Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 16.0),
+                                            child: Container(
+                                              height: 64,
+                                              width: double.infinity,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(16),
+                                                color: AppColor.vividYellow,
+                                              ),
+                                            ),
+                                          ),
+                                          AppScrollableListViewWidget(
+                                            child: ClickableListWheelScrollView(
+                                              scrollController:
+                                                  model.scrollController,
+                                              itemHeight: 64,
+                                              itemCount: stateCityResponse
+                                                  .data!.length,
+                                              onItemTapCallback: (index) {
+                                                model.currentIndexUpdate(index);
+                                              },
+                                              child: ListWheelScrollView
+                                                  .useDelegate(
+                                                      controller: model
+                                                          .scrollController,
+                                                      itemExtent: 64,
+                                                      onSelectedItemChanged:
+                                                          (int index) {
+                                                        model
+                                                            .currentIndexUpdate(
+                                                                index);
+                                                      },
+                                                      physics:
+                                                          FixedExtentScrollPhysics(),
+                                                      perspective: 0.0000000001,
+                                                      childDelegate:
+                                                          ListWheelChildBuilderDelegate(
+                                                              childCount:
+                                                                  stateCityResponse
+                                                                      .data!
+                                                                      .length,
+                                                              builder: (BuildContext
+                                                                      context,
+                                                                  int index) {
+                                                                return ListScrollWheelListWidget(
+                                                                  label: stateCityTypeEnum ==
+                                                                          StateCityTypeEnum
+                                                                              .CITY
+                                                                      ? stateCityResponse
+                                                                          .data![
+                                                                              index]
+                                                                          .cityName!
+                                                                      : stateCityResponse
+                                                                          .data![
+                                                                              index]
+                                                                          .stateName!,
+                                                                  textColor: currentIndex == index
+                                                                      ? Theme.of(
+                                                                              context)
+                                                                          .primaryColorDark
+                                                                      : AppColor
+                                                                          .dark_gray_1,
+                                                                  widgetColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                );
+                                                              })),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    : Center(
+                                        child: Text(
+                                          'No Data Found',
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w400,
+                                              color: Theme.of(context)
+                                                  .primaryColorDark),
+                                        ),
+                                      )),
+                            InkWell(
+                              onTap: () {
+                                onSelected!.call(model.selectedState);
+                              },
+                              child: Container(
+                                padding: EdgeInsets.all(16),
+                                height: 57,
+                                width: 57,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Theme.of(context)
+                                        .accentTextTheme
+                                        .bodyText1!
+                                        .color!),
+                                child: AppSvg.asset(AssetUtils.tick,
+                                    color: Theme.of(context).accentColor),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 8.0, bottom: 16),
+                              child: Center(
+                                child: Text(
+                                  S.of(context).swipeDownToCancel,
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColor.dark_gray_1),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
+                      });
                 },
               ));
+        },
+        onModelReady: (model) {
+          model.setData(stateCityData!);
         },
         providerBase: providerBase());
   }

@@ -103,10 +103,9 @@ class ReviewApplicationPageView
                                         Status.SUCCESS) {
                                       Future.delayed(
                                           Duration(milliseconds: 500), () {
-                                        ProviderScope
-                                            .containerOf(context)
+                                        ProviderScope.containerOf(context)
                                             .read(
-                                            registerStepFiveViewModelProvider)
+                                                registerStepFiveViewModelProvider)
                                             .registrationStepFivePageController
                                             .next();
                                       });
@@ -123,18 +122,16 @@ class ReviewApplicationPageView
                                       child: Card(
                                         child: Padding(
                                           padding: EdgeInsets.only(
-                                              bottom: MediaQuery
-                                                  .of(context)
-                                                  .viewInsets
-                                                  .bottom -
-                                                  50 <=
-                                                  0
+                                              bottom: MediaQuery.of(context)
+                                                              .viewInsets
+                                                              .bottom -
+                                                          50 <=
+                                                      0
                                                   ? 0
-                                                  : MediaQuery
-                                                  .of(context)
-                                                  .viewInsets
-                                                  .bottom -
-                                                  48),
+                                                  : MediaQuery.of(context)
+                                                          .viewInsets
+                                                          .bottom -
+                                                      48),
                                           child: AppStreamBuilder<
                                               Resource<
                                                   GetConfirmApplicationDataResponse>>(
@@ -144,7 +141,7 @@ class ReviewApplicationPageView
                                             onData:
                                                 (getConfirmApplicationData) {
                                               if (getConfirmApplicationData
-                                                  .status ==
+                                                      .status ==
                                                   Status.SUCCESS) {
                                                 model.updateTextFieldData(
                                                     getConfirmApplicationData
@@ -160,21 +157,21 @@ class ReviewApplicationPageView
                                                       .fromSingleChildScrollView(
                                                     gradientFractionOnEnd: 0.3,
                                                     gradientFractionOnStart:
-                                                    0.1,
+                                                        0.1,
                                                     child:
-                                                    SingleChildScrollView(
+                                                        SingleChildScrollView(
                                                       padding:
-                                                      EdgeInsets.symmetric(
-                                                          vertical: 32,
-                                                          horizontal: 24),
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 32,
+                                                              horizontal: 24),
                                                       controller: model
                                                           .scrollController,
                                                       physics:
-                                                      ClampingScrollPhysics(),
+                                                          ClampingScrollPhysics(),
                                                       child: Column(
                                                         crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .stretch,
+                                                            CrossAxisAlignment
+                                                                .stretch,
                                                         children: [
                                                           StartOverWidget(
                                                             onTap: () {},
@@ -195,8 +192,8 @@ class ReviewApplicationPageView
                                                             controller: model
                                                                 .residentCountryController,
                                                             textInputType:
-                                                            TextInputType
-                                                                .text,
+                                                                TextInputType
+                                                                    .text,
                                                           ),
                                                           ReviewApplicationEditableItem(
                                                             title: S
@@ -205,8 +202,8 @@ class ReviewApplicationPageView
                                                             controller: model
                                                                 .buildingNameOrNoController,
                                                             textInputType:
-                                                            TextInputType
-                                                                .text,
+                                                                TextInputType
+                                                                    .text,
                                                           ),
                                                           ReviewApplicationEditableItem(
                                                             title: S
@@ -215,8 +212,8 @@ class ReviewApplicationPageView
                                                             controller: model
                                                                 .streetAddressController,
                                                             textInputType:
-                                                            TextInputType
-                                                                .text,
+                                                                TextInputType
+                                                                    .text,
                                                           ),
                                                           ReviewApplicationEditableItem(
                                                             title: S
@@ -225,8 +222,8 @@ class ReviewApplicationPageView
                                                             controller: model
                                                                 .districtController,
                                                             textInputType:
-                                                            TextInputType
-                                                                .text,
+                                                                TextInputType
+                                                                    .text,
                                                           ),
                                                           ReviewApplicationEditableItem(
                                                             title: S
@@ -235,16 +232,16 @@ class ReviewApplicationPageView
                                                             controller: model
                                                                 .cityController,
                                                             textInputType:
-                                                            TextInputType
-                                                                .text,
+                                                                TextInputType
+                                                                    .text,
                                                           ),
 
                                                           ///permanent address
                                                           Visibility(
                                                             visible: (model
-                                                                .residentPermanentCountryController
-                                                                .text
-                                                                .isNotEmpty &&
+                                                                    .residentPermanentCountryController
+                                                                    .text
+                                                                    .isNotEmpty &&
                                                                 model
                                                                     .residentPermanentCityController
                                                                     .text
@@ -254,10 +251,10 @@ class ReviewApplicationPageView
                                                                 Padding(
                                                                   padding: EdgeInsets
                                                                       .symmetric(
-                                                                      vertical:
-                                                                      24.0),
+                                                                          vertical:
+                                                                              24.0),
                                                                   child:
-                                                                  Container(
+                                                                      Container(
                                                                     height: 1,
                                                                     color: AppColor
                                                                         .white_gray,
@@ -265,22 +262,20 @@ class ReviewApplicationPageView
                                                                 ),
                                                                 ReviewApplicationEditableItem(
                                                                   title: S
-                                                                      .of(
-                                                                      context)
+                                                                      .of(context)
                                                                       .permanentCountry,
                                                                   controller: model
                                                                       .residentPermanentCountryController,
                                                                 ),
                                                                 ReviewApplicationEditableItem(
                                                                   title: S
-                                                                      .of(
-                                                                      context)
+                                                                      .of(context)
                                                                       .permanentCity,
                                                                   controller: model
                                                                       .residentPermanentCityController,
                                                                   textInputType:
-                                                                  TextInputType
-                                                                      .text,
+                                                                      TextInputType
+                                                                          .text,
                                                                 ),
                                                               ],
                                                             ),
@@ -290,8 +285,8 @@ class ReviewApplicationPageView
                                                           Padding(
                                                             padding: EdgeInsets
                                                                 .symmetric(
-                                                                vertical:
-                                                                24.0),
+                                                                    vertical:
+                                                                        24.0),
                                                             child: Container(
                                                               height: 1,
                                                               color: AppColor
@@ -304,15 +299,15 @@ class ReviewApplicationPageView
                                                                 .text
                                                                 .isNotEmpty,
                                                             child:
-                                                            ReviewApplicationEditableItem(
+                                                                ReviewApplicationEditableItem(
                                                               title: S
                                                                   .of(context)
                                                                   .spouseName,
                                                               controller: model
                                                                   .spouseNameController,
                                                               textInputType:
-                                                              TextInputType
-                                                                  .text,
+                                                                  TextInputType
+                                                                      .text,
                                                             ),
                                                           ),
                                                           Visibility(
@@ -321,15 +316,15 @@ class ReviewApplicationPageView
                                                                 .text
                                                                 .isNotEmpty,
                                                             child:
-                                                            ReviewApplicationEditableItem(
+                                                                ReviewApplicationEditableItem(
                                                               title: S
                                                                   .of(context)
                                                                   .natureSpecialNeeds,
                                                               controller: model
                                                                   .specialNeedsPersonController,
                                                               textInputType:
-                                                              TextInputType
-                                                                  .text,
+                                                                  TextInputType
+                                                                      .text,
                                                             ),
                                                           ),
                                                           ReviewApplicationEditableItem(
@@ -339,16 +334,16 @@ class ReviewApplicationPageView
                                                             controller: model
                                                                 .employmentStatusController,
                                                             textInputType:
-                                                            TextInputType
-                                                                .text,
+                                                                TextInputType
+                                                                    .text,
                                                           ),
 
                                                           ///occupation
                                                           Padding(
                                                             padding: EdgeInsets
                                                                 .symmetric(
-                                                                vertical:
-                                                                24.0),
+                                                                    vertical:
+                                                                        24.0),
                                                             child: Container(
                                                               height: 1,
                                                               color: AppColor
@@ -361,15 +356,15 @@ class ReviewApplicationPageView
                                                                 .text
                                                                 .isNotEmpty,
                                                             child:
-                                                            ReviewApplicationEditableItem(
+                                                                ReviewApplicationEditableItem(
                                                               title: S
                                                                   .of(context)
                                                                   .occupationBusinessType,
                                                               controller: model
                                                                   .occupationController,
                                                               textInputType:
-                                                              TextInputType
-                                                                  .text,
+                                                                  TextInputType
+                                                                      .text,
                                                             ),
                                                           ),
                                                           Visibility(
@@ -378,44 +373,42 @@ class ReviewApplicationPageView
                                                                 .text
                                                                 .isNotEmpty,
                                                             child:
-                                                            ReviewApplicationEditableItem(
+                                                                ReviewApplicationEditableItem(
                                                               title: S
                                                                   .of(context)
                                                                   .annualIncomeSmall,
                                                               controller: model
                                                                   .mainAnnualIncomeController,
                                                               prefixWidget:
-                                                              Padding(
+                                                                  Padding(
                                                                 padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    left:
-                                                                    40.0,
-                                                                    bottom:
-                                                                    12),
+                                                                    const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            40.0,
+                                                                        bottom:
+                                                                            12),
                                                                 child: Text(
                                                                   S
-                                                                      .of(
-                                                                      context)
+                                                                      .of(context)
                                                                       .JOD,
                                                                   textAlign:
-                                                                  TextAlign
-                                                                      .end,
+                                                                      TextAlign
+                                                                          .end,
                                                                   style: TextStyle(
                                                                       fontSize:
-                                                                      12,
+                                                                          12,
                                                                       fontWeight:
-                                                                      FontWeight
-                                                                          .w600,
-                                                                      color: Theme
-                                                                          .of(
-                                                                          context)
+                                                                          FontWeight
+                                                                              .w600,
+                                                                      color: Theme.of(
+                                                                              context)
                                                                           .primaryColorDark),
                                                                 ),
                                                               ),
                                                               textInputType:
-                                                              TextInputType
-                                                                  .number,
+                                                                  TextInputType
+                                                                      .number,
                                                             ),
                                                           ),
                                                           Visibility(
@@ -424,15 +417,15 @@ class ReviewApplicationPageView
                                                                 .text
                                                                 .isNotEmpty,
                                                             child:
-                                                            ReviewApplicationEditableItem(
+                                                                ReviewApplicationEditableItem(
                                                               title: S
                                                                   .of(context)
                                                                   .employerNameSmall,
                                                               controller: model
                                                                   .employerNameController,
                                                               textInputType:
-                                                              TextInputType
-                                                                  .text,
+                                                                  TextInputType
+                                                                      .text,
                                                             ),
                                                           ),
                                                           Visibility(
@@ -441,15 +434,15 @@ class ReviewApplicationPageView
                                                                 .text
                                                                 .isNotEmpty,
                                                             child:
-                                                            ReviewApplicationEditableItem(
+                                                                ReviewApplicationEditableItem(
                                                               title: S
                                                                   .of(context)
                                                                   .employerCountrySmall,
                                                               controller: model
                                                                   .employerCountryController,
                                                               textInputType:
-                                                              TextInputType
-                                                                  .text,
+                                                                  TextInputType
+                                                                      .text,
                                                             ),
                                                           ),
                                                           Visibility(
@@ -458,15 +451,15 @@ class ReviewApplicationPageView
                                                                 .text
                                                                 .isNotEmpty,
                                                             child:
-                                                            ReviewApplicationEditableItem(
+                                                                ReviewApplicationEditableItem(
                                                               title: S
                                                                   .of(context)
                                                                   .employerCitySmall,
                                                               controller: model
                                                                   .employerCityController,
                                                               textInputType:
-                                                              TextInputType
-                                                                  .text,
+                                                                  TextInputType
+                                                                      .text,
                                                             ),
                                                           ),
                                                           Visibility(
@@ -475,42 +468,41 @@ class ReviewApplicationPageView
                                                                 .text
                                                                 .isNotEmpty,
                                                             child:
-                                                            ReviewApplicationEditableItem(
+                                                                ReviewApplicationEditableItem(
                                                               title: S
                                                                   .of(context)
                                                                   .employerPhoneNo,
                                                               controller: model
                                                                   .employerContactController,
                                                               textInputType:
-                                                              TextInputType
-                                                                  .phone,
+                                                                  TextInputType
+                                                                      .phone,
                                                             ),
                                                           ),
 
                                                           ListView.builder(
                                                               itemBuilder:
                                                                   (context,
-                                                                  index) {
+                                                                      index) {
                                                                 return data
-                                                                    .data!
-                                                                    .getApplicationData!
-                                                                    .getConfirmApplicationDataContent!
-                                                                    .jobDetailInfo!
-                                                                    .additionalIncomeInfo!
-                                                                    .length >
-                                                                    0
+                                                                            .data!
+                                                                            .getApplicationData!
+                                                                            .getConfirmApplicationDataContent!
+                                                                            .jobDetailInfo!
+                                                                            .additionalIncomeInfo!
+                                                                            .length >
+                                                                        0
                                                                     ? AdditionalIncomeListWidget(
-                                                                  title: S
-                                                                      .of(
-                                                                      context)
-                                                                      .otherIncome,
-                                                                  additionalIncomeInfo: data
-                                                                      .data!
-                                                                      .getApplicationData!
-                                                                      .getConfirmApplicationDataContent!
-                                                                      .jobDetailInfo!
-                                                                      .additionalIncomeInfo![index],
-                                                                )
+                                                                        title: S
+                                                                            .of(context)
+                                                                            .otherIncome,
+                                                                        additionalIncomeInfo: data
+                                                                            .data!
+                                                                            .getApplicationData!
+                                                                            .getConfirmApplicationDataContent!
+                                                                            .jobDetailInfo!
+                                                                            .additionalIncomeInfo![index],
+                                                                      )
                                                                     : Container();
                                                               },
                                                               itemCount: data
@@ -522,14 +514,14 @@ class ReviewApplicationPageView
                                                                   .length,
                                                               shrinkWrap: true,
                                                               physics:
-                                                              NeverScrollableScrollPhysics()),
+                                                                  NeverScrollableScrollPhysics()),
 
                                                           ///purpose of account opening
                                                           Padding(
                                                             padding: EdgeInsets
                                                                 .symmetric(
-                                                                vertical:
-                                                                24.0),
+                                                                    vertical:
+                                                                        24.0),
                                                             child: Container(
                                                               height: 1,
                                                               color: AppColor
@@ -543,8 +535,8 @@ class ReviewApplicationPageView
                                                             controller: model
                                                                 .purposeOfAccountOpeningController,
                                                             textInputType:
-                                                            TextInputType
-                                                                .text,
+                                                                TextInputType
+                                                                    .text,
                                                           ),
                                                           Visibility(
                                                             visible: data
@@ -554,12 +546,12 @@ class ReviewApplicationPageView
                                                                 .accountPurposeInfo!
                                                                 .isCashDeposit!,
                                                             child:
-                                                            ReviewApplicationEditableItem(
+                                                                ReviewApplicationEditableItem(
                                                               title: S
                                                                   .of(context)
                                                                   .expectedTransactions,
                                                               initialValue:
-                                                              "CashDeposit",
+                                                                  "CashDeposit",
                                                             ),
                                                           ),
                                                           Visibility(
@@ -570,12 +562,12 @@ class ReviewApplicationPageView
                                                                 .accountPurposeInfo!
                                                                 .isTransfer!,
                                                             child:
-                                                            ReviewApplicationEditableItem(
+                                                                ReviewApplicationEditableItem(
                                                               title: S
                                                                   .of(context)
                                                                   .expectedTransactions,
                                                               initialValue:
-                                                              "Transfers",
+                                                                  "Transfers",
                                                             ),
                                                           ),
                                                           Visibility(
@@ -586,12 +578,12 @@ class ReviewApplicationPageView
                                                                 .accountPurposeInfo!
                                                                 .isBillPayment!,
                                                             child:
-                                                            ReviewApplicationEditableItem(
+                                                                ReviewApplicationEditableItem(
                                                               title: S
                                                                   .of(context)
                                                                   .expectedTransactions,
                                                               initialValue:
-                                                              "Bill Payment",
+                                                                  "Bill Payment",
                                                             ),
                                                           ),
                                                           ReviewApplicationEditableItem(
@@ -601,36 +593,35 @@ class ReviewApplicationPageView
                                                             controller: model
                                                                 .expectedMonthlyTransactionsController,
                                                             prefixWidget:
-                                                            Padding(
+                                                                Padding(
                                                               padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  left:
-                                                                  40.0,
-                                                                  bottom:
-                                                                  12),
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left:
+                                                                          40.0,
+                                                                      bottom:
+                                                                          12),
                                                               child: Text(
                                                                 S
                                                                     .of(context)
                                                                     .JOD,
                                                                 textAlign:
-                                                                TextAlign
-                                                                    .end,
+                                                                    TextAlign
+                                                                        .end,
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                    12,
+                                                                        12,
                                                                     fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                    color: Theme
-                                                                        .of(
-                                                                        context)
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    color: Theme.of(
+                                                                            context)
                                                                         .primaryColorDark),
                                                               ),
                                                             ),
                                                             textInputType:
-                                                            TextInputType
-                                                                .number,
+                                                                TextInputType
+                                                                    .number,
                                                           ),
                                                           ReviewApplicationEditableItem(
                                                             title: S
@@ -639,44 +630,43 @@ class ReviewApplicationPageView
                                                             controller: model
                                                                 .expectedAnnualTransactionsController,
                                                             prefixWidget:
-                                                            Padding(
+                                                                Padding(
                                                               padding:
-                                                              const EdgeInsets
-                                                                  .only(
-                                                                  left:
-                                                                  40.0,
-                                                                  bottom:
-                                                                  12),
+                                                                  const EdgeInsets
+                                                                          .only(
+                                                                      left:
+                                                                          40.0,
+                                                                      bottom:
+                                                                          12),
                                                               child: Text(
                                                                 S
                                                                     .of(context)
                                                                     .JOD,
                                                                 textAlign:
-                                                                TextAlign
-                                                                    .end,
+                                                                    TextAlign
+                                                                        .end,
                                                                 style: TextStyle(
                                                                     fontSize:
-                                                                    12,
+                                                                        12,
                                                                     fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                    color: Theme
-                                                                        .of(
-                                                                        context)
+                                                                        FontWeight
+                                                                            .w600,
+                                                                    color: Theme.of(
+                                                                            context)
                                                                         .primaryColorDark),
                                                               ),
                                                             ),
                                                             textInputType:
-                                                            TextInputType
-                                                                .number,
+                                                                TextInputType
+                                                                    .number,
                                                           ),
 
                                                           ///Tax and PEP questions
                                                           Padding(
                                                             padding: EdgeInsets
                                                                 .symmetric(
-                                                                vertical:
-                                                                24.0),
+                                                                    vertical:
+                                                                        24.0),
                                                             child: Container(
                                                               height: 1,
                                                               color: AppColor
@@ -749,65 +739,56 @@ class ReviewApplicationPageView
                                                                 children: [
                                                                   ReviewApplicationNonEditableItem(
                                                                     title: S
-                                                                        .of(
-                                                                        context)
+                                                                        .of(context)
                                                                         .relationshipWithPEP,
-                                                                    value: Validator
-                                                                        .isNotEmptyNull(
-                                                                        data
+                                                                    value: Validator.isNotEmptyNull(data
                                                                             .data!
                                                                             .getApplicationData!
                                                                             .getConfirmApplicationDataContent!
                                                                             .fatcaCrsInfo!
                                                                             .relationshipWithPep)
                                                                         ? data
-                                                                        .data!
-                                                                        .getApplicationData!
-                                                                        .getConfirmApplicationDataContent!
-                                                                        .fatcaCrsInfo!
-                                                                        .relationshipWithPep
+                                                                            .data!
+                                                                            .getApplicationData!
+                                                                            .getConfirmApplicationDataContent!
+                                                                            .fatcaCrsInfo!
+                                                                            .relationshipWithPep
                                                                         : '',
                                                                   ),
                                                                   ReviewApplicationNonEditableItem(
                                                                     title: S
-                                                                        .of(
-                                                                        context)
+                                                                        .of(context)
                                                                         .personsName,
-                                                                    value: Validator
-                                                                        .isNotEmptyNull(
-                                                                        data
+                                                                    value: Validator.isNotEmptyNull(data
                                                                             .data!
                                                                             .getApplicationData!
                                                                             .getConfirmApplicationDataContent!
                                                                             .fatcaCrsInfo!
                                                                             .personName)
                                                                         ? data
-                                                                        .data!
-                                                                        .getApplicationData!
-                                                                        .getConfirmApplicationDataContent!
-                                                                        .fatcaCrsInfo!
-                                                                        .personName
+                                                                            .data!
+                                                                            .getApplicationData!
+                                                                            .getConfirmApplicationDataContent!
+                                                                            .fatcaCrsInfo!
+                                                                            .personName
                                                                         : '',
                                                                   ),
                                                                   ReviewApplicationNonEditableItem(
                                                                     title: S
-                                                                        .of(
-                                                                        context)
+                                                                        .of(context)
                                                                         .personsRole,
-                                                                    value: Validator
-                                                                        .isNotEmptyNull(
-                                                                        data
+                                                                    value: Validator.isNotEmptyNull(data
                                                                             .data!
                                                                             .getApplicationData!
                                                                             .getConfirmApplicationDataContent!
                                                                             .fatcaCrsInfo!
                                                                             .personRole)
                                                                         ? data
-                                                                        .data!
-                                                                        .getApplicationData!
-                                                                        .getConfirmApplicationDataContent!
-                                                                        .fatcaCrsInfo!
-                                                                        .personRole
+                                                                            .data!
+                                                                            .getApplicationData!
+                                                                            .getConfirmApplicationDataContent!
+                                                                            .fatcaCrsInfo!
+                                                                            .personRole
                                                                         : '',
                                                                   ),
                                                                 ],
@@ -816,8 +797,8 @@ class ReviewApplicationPageView
                                                           Padding(
                                                             padding: EdgeInsets
                                                                 .symmetric(
-                                                                vertical:
-                                                                24.0),
+                                                                    vertical:
+                                                                        24.0),
                                                             child: Container(
                                                               height: 1,
                                                               color: AppColor
@@ -831,10 +812,10 @@ class ReviewApplicationPageView
                                                             initialData: false,
                                                             dataBuilder:
                                                                 (context,
-                                                                isSelected) {
+                                                                    isSelected) {
                                                               return ReviewTCWidget(
                                                                 isSelected:
-                                                                isSelected,
+                                                                    isSelected,
                                                                 title: S
                                                                     .of(context)
                                                                     .confirmInfoTC,
@@ -843,15 +824,13 @@ class ReviewApplicationPageView
                                                                     .termsAndCondition,
                                                                 onTermsAndConditionTap:
                                                                     () {
-                                                                  Navigator
-                                                                      .pushNamed(
+                                                                  Navigator.pushNamed(
                                                                       context,
                                                                       RoutePaths
                                                                           .TermsAndCondition);
                                                                 },
                                                                 onTap: () {
-                                                                  model
-                                                                      .updateDeclarationSelection(
+                                                                  model.updateDeclarationSelection(
                                                                       !(isSelected!));
                                                                 },
                                                               );
@@ -861,24 +840,23 @@ class ReviewApplicationPageView
                                                             child: Padding(
                                                               padding: EdgeInsets
                                                                   .only(
-                                                                  top: 24),
+                                                                      top: 24),
                                                               child: AppStreamBuilder<
-                                                                  bool>(
+                                                                      bool>(
                                                                   stream: model
                                                                       .declarationSelectedStream,
                                                                   initialData:
-                                                                  false,
+                                                                      false,
                                                                   dataBuilder:
                                                                       (context,
-                                                                      isChecked) {
+                                                                          isChecked) {
                                                                     return Visibility(
                                                                       visible:
-                                                                      isChecked!,
+                                                                          isChecked!,
                                                                       child:
-                                                                      AnimatedButton(
+                                                                          AnimatedButton(
                                                                         buttonText: S
-                                                                            .of(
-                                                                            context)
+                                                                            .of(context)
                                                                             .swipeToProceed,
                                                                       ),
                                                                     );
@@ -890,30 +868,8 @@ class ReviewApplicationPageView
                                                     ),
                                                   );
 
-                                                case Status.LOADING:
-                                                  return Center(
-                                                    child:
-                                                    CircularProgressIndicator(
-                                                      valueColor:
-                                                      AlwaysStoppedAnimation<
-                                                          Color>(Theme
-                                                          .of(
-                                                          context)
-                                                          .primaryColor),
-                                                      strokeWidth: 2,
-                                                    ),
-                                                  );
                                                 default:
-                                                  return Center(
-                                                    child: Text(
-                                                      'Something went wrong',
-                                                      style: TextStyle(
-                                                          color: Theme
-                                                              .of(
-                                                              context)
-                                                              .primaryColor),
-                                                    ),
-                                                  );
+                                                  return Container();
                                               }
                                             },
                                           ),

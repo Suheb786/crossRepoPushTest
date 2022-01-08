@@ -18,6 +18,7 @@ class FatcaUSW8TaxPayerDetailsUseCase extends BaseUseCase<LocalError,
 class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
   final String? taxPayerType;
   bool isUSTaxPayer;
+  bool isForeignTaxPayer;
   bool wantToClaimTaxTreatyBenefits;
   final String? beneficialAddress;
   final String? identificationNumber;
@@ -26,17 +27,21 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
   final String? explanation;
   final String? provisionClaimArticle;
   final String? treatyClaimRate;
+  final String? foreignIdentificationNumber;
 
-  FatcaUSW8TaxPayerDetailsUseCaseParams({this.taxPayerType,
-    this.beneficialAddress,
-    required this.isUSTaxPayer,
-    this.identificationNumber,
-    this.referenceNumber,
-    this.explanation,
-    this.typeOfIncome,
-    required this.wantToClaimTaxTreatyBenefits,
-    this.treatyClaimRate,
-    this.provisionClaimArticle});
+  FatcaUSW8TaxPayerDetailsUseCaseParams(
+      {this.taxPayerType,
+      this.beneficialAddress,
+      required this.isUSTaxPayer,
+      this.identificationNumber,
+      this.referenceNumber,
+      this.explanation,
+      this.typeOfIncome,
+      required this.wantToClaimTaxTreatyBenefits,
+      this.treatyClaimRate,
+      this.provisionClaimArticle,
+      this.foreignIdentificationNumber,
+      required this.isForeignTaxPayer});
 
   @override
   Either<AppError, bool> verify() {
@@ -50,6 +55,18 @@ class FatcaUSW8TaxPayerDetailsUseCaseParams extends Params {
         return Left(AppError(
             error: ErrorInfo(message: ''),
             type: ErrorType.INVALID_IDENTIFICATION_NUMBER,
+            cause: Exception()));
+      } else if (referenceNumber!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_REFERENCE_NO,
+            cause: Exception()));
+      }
+    } else if (isForeignTaxPayer) {
+      if (foreignIdentificationNumber!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_FOREIGN_IDENTIFICATION_NUMBER,
             cause: Exception()));
       } else if (referenceNumber!.isEmpty) {
         return Left(AppError(

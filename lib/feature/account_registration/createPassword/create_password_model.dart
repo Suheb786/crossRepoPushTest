@@ -15,18 +15,18 @@ class CreatePasswordViewModel extends BasePageViewModel {
   final CreatePasswordUseCase _createPasswordUseCase;
   final RegisterProspectUseCase _registerProspectUseCase;
   final TextEditingController createPasswordController =
-  TextEditingController();
+      TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 
   final GlobalKey<AppTextFieldState> passwordKey =
-  GlobalKey(debugLabel: "createPassword");
+      GlobalKey(debugLabel: "createPassword");
 
   final GlobalKey<AppTextFieldState> confirmPasswordKey =
-  GlobalKey(debugLabel: "confirmPassword");
+      GlobalKey(debugLabel: "confirmPassword");
 
   ///create password request subject holder
   PublishSubject<CreatePasswordUseCaseParams> _createPasswordRequest =
-  PublishSubject();
+      PublishSubject();
 
   /// create password response subject holder
   PublishSubject<Resource<bool>> _createPasswordResponse = PublishSubject();
@@ -36,7 +36,7 @@ class CreatePasswordViewModel extends BasePageViewModel {
 
   ///Register user request subject holder
   PublishSubject<RegisterProspectUseCaseParams> _registerUserRequest =
-  PublishSubject();
+      PublishSubject();
 
   /// Register user response subject holder
   PublishSubject<Resource<User>> _registerUserResponse = PublishSubject();
@@ -48,11 +48,11 @@ class CreatePasswordViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  CreatePasswordViewModel(this._createPasswordUseCase,
-      this._registerProspectUseCase) {
+  CreatePasswordViewModel(
+      this._createPasswordUseCase, this._registerProspectUseCase) {
     _createPasswordRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _createPasswordUseCase.execute(params: value))
+              createCall: () => _createPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _createPasswordResponse.safeAdd(event);
@@ -65,7 +65,7 @@ class CreatePasswordViewModel extends BasePageViewModel {
 
     _registerUserRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _registerProspectUseCase.execute(params: value))
+              createCall: () => _registerProspectUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -91,7 +91,11 @@ class CreatePasswordViewModel extends BasePageViewModel {
   void createPassword() {
     _createPasswordRequest.safeAdd(CreatePasswordUseCaseParams(
         createPassword: createPasswordController.text,
-        confirmPassword: confirmPasswordController.text));
+        confirmPassword: confirmPasswordController.text,
+        minimumEightCharacters: minimumEightCharacters,
+        hasUpperCase: hasUpperCase,
+        hasSymbol: hasSymbol,
+        containsDigit: containsDigit));
   }
 
   void validateAllFields() {

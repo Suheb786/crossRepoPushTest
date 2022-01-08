@@ -23,7 +23,7 @@ class HomeAddressDialogViewModel extends BasePageViewModel {
 
   var pinPointMarker;
 
-  LatLng currentLocation = LatLng(25.2013361, 55.2721801);
+  LatLng currentLocation = LatLng(31.8360368, 35.6674278);
 
   ///current Address request subject
   PublishSubject<HomeAddressDialogUseCaseParams> _currentAddressRequestSubject =

@@ -290,7 +290,8 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                           type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
                     } else {
                       Navigator.pushNamed(
-                          context, RoutePaths.PaymentToNewRecipient);
+                          context, RoutePaths.PaymentToNewRecipient,
+                          arguments: model.currentPinValue);
                     }
                   },
                   leftIcon: Icon(

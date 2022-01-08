@@ -1,5 +1,5 @@
 class CountryData {
-  CountryData({this.isoCode3,
+  CountryData({this.isoCode3:"",
     this.score,
     this.isoCode,
     this.phoneCode: "",
