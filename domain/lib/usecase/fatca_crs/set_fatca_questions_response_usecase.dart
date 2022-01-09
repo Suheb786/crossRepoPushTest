@@ -3,20 +3,19 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/base/error_info.dart';
-import 'package:domain/model/fatca_crs/set_fatca_questions_response.dart';
+import 'package:domain/model/fatca_crs/set_fatca_response.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class SetFatcaQuestionsResponseUseCase extends BaseUseCase<NetworkError,
-    SetFatcaQuestionsResponseUseCaseParams,
-    SetFatcaQuestionsResponse> {
+    SetFatcaQuestionsResponseUseCaseParams, SetFatcResponse> {
   final FatcaCrsRepository _repository;
 
   SetFatcaQuestionsResponseUseCase(this._repository);
 
   @override
-  Future<Either<NetworkError, SetFatcaQuestionsResponse>> execute(
+  Future<Either<NetworkError, SetFatcResponse>> execute(
       {required SetFatcaQuestionsResponseUseCaseParams params}) {
     return _repository.saveFatcaInformation(
         response1: params.isUSCitizen,
@@ -44,16 +43,17 @@ class SetFatcaQuestionsResponseUseCaseParams extends Params {
   final bool isUSTaxResident;
   final bool wasBornInUS;
 
-  SetFatcaQuestionsResponseUseCaseParams({this.relationShipPEP,
-    this.personName,
-    required this.anyOtherCountryResident,
-    this.country,
-    this.personRole,
-    required this.isPEP,
-    required this.declarationSelected,
-    required this.isUSCitizen,
-    required this.isUSTaxResident,
-    required this.wasBornInUS});
+  SetFatcaQuestionsResponseUseCaseParams(
+      {this.relationShipPEP,
+      this.personName,
+      required this.anyOtherCountryResident,
+      this.country,
+      this.personRole,
+      required this.isPEP,
+      required this.declarationSelected,
+      required this.isUSCitizen,
+      required this.isUSTaxResident,
+      required this.wasBornInUS});
 
   @override
   Either<AppError, bool> verify() {

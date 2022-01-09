@@ -7,12 +7,16 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/step_four/fatca_us_relevant_w8/fatca_us_relevant_w8_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/date_picker.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
+import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 
 class FatcaUSRelevantW8PageView
     extends BasePageViewWidget<FatcaUSRelevantW8PageViewModel> {
@@ -40,8 +44,7 @@ class FatcaUSRelevantW8PageView
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope
-                            .containerOf(context)
+                        ProviderScope.containerOf(context)
                             .read(registerStepFourViewModelProvider)
                             .registrationStepFourPageController
                             .next();
@@ -57,8 +60,7 @@ class FatcaUSRelevantW8PageView
                           model.validateFatcaUSRelevantW8Details();
                         } else {
                           Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope
-                                .containerOf(context)
+                            ProviderScope.containerOf(context)
                                 .read(registerStepFourViewModelProvider)
                                 .registrationStepFourPageController
                                 .previous();
@@ -106,19 +108,37 @@ class FatcaUSRelevantW8PageView
                                           height: 16,
                                         ),
                                         AppTextField(
-                                          labelText: S
-                                              .of(context)
-                                              .dateOfBirth,
-                                          hintText: S
-                                              .of(context)
-                                              .pleaseEnter,
+                                          labelText: S.of(context).dateOfBirth,
+                                          hintText: S.of(context).pleaseEnter,
                                           controller:
-                                          model.dateOfBirthController,
+                                              model.dateOfBirthController,
                                           inputType: TextInputType.datetime,
                                           inputAction: TextInputAction.go,
                                           key: model.dateOfBirthKey,
-                                          onChanged: (value) {
-                                            model.isValid();
+                                          readOnly: true,
+                                          onPressed: () {
+                                            DatePicker.show(context,
+                                                onSelected: (date) {
+                                              model.dateOfBirthController.text =
+                                                  TimeUtils.getFormattedDate(
+                                                      date);
+                                              model.isValid();
+                                            }, onCancelled: () {
+                                              Navigator.pop(context);
+                                            },
+                                                title:
+                                                    S.of(context).dateOfBirth);
+                                          },
+                                          suffixIcon: (value, data) {
+                                            return Container(
+                                                height: 16,
+                                                width: 16,
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal: 7),
+                                                child: AppSvg.asset(
+                                                    AssetUtils.calendar,
+                                                    color: Theme.of(context)
+                                                        .primaryColorDark));
                                           },
                                         ),
                                         SizedBox(
@@ -156,10 +176,10 @@ class FatcaUSRelevantW8PageView
                                         dataBuilder: (context, isValid) {
                                           return (isValid!)
                                               ? AnimatedButton(
-                                            buttonText: S
-                                                .of(context)
-                                                .swipeToProceed,
-                                            buttonHeight: 50,
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed,
+                                                  buttonHeight: 50,
                                                 )
                                               : Container();
                                         }),

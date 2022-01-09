@@ -7,6 +7,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
@@ -48,13 +49,16 @@ class CallEndedPageView extends BasePageViewWidget<CallEndedPageViewModel> {
               ),
             ),
             SizedBox(height: 24),
-            Text(
-              '05 : 42',
-              style: TextStyle(
-                  color: Theme.of(context).accentColor,
-                  fontWeight: FontWeight.w700,
-                  fontSize: 32),
-            ),
+            AppStreamBuilder<String>(
+                stream: model.callDurationStream,
+                initialData: '00 : 00',
+                dataBuilder: (context, data) => Text(
+                      data!,
+                      style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                          fontWeight: FontWeight.w700,
+                          fontSize: 32),
+                    )),
             Text(
               S.of(context).callHasEnded,
               style: TextStyle(

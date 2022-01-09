@@ -1,6 +1,7 @@
+import 'package:domain/constants/enum/tax_payer_type.dart';
 import 'package:domain/constants/enum/us_relevant_w9_tax_payer_enum.dart';
 import 'package:domain/constants/error_types.dart';
-import 'package:domain/model/fatca_crs/fatca_set_data.dart';
+import 'package:domain/model/fatca_crs/fatca_w9_data.dart';
 import 'package:domain/usecase/register/fatca_us_w9_tax_payer_details_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,6 +30,11 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> socialSecurityNumberKey =
       GlobalKey(debugLabel: "socialSecurityNumber");
 
+  final TextEditingController employerIdNumberController =
+      TextEditingController();
+  final GlobalKey<AppTextFieldState> employerIdNumberKey =
+      GlobalKey(debugLabel: "employerIdNumber");
+
   ///fatca us w9 taxPayer details request subject holder
   PublishSubject<FatcaUSW9TaxPayerDetailsUseCaseParams>
       _fatcaUSW9taxPayerDetailsRequest = PublishSubject();
@@ -54,8 +60,18 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
   Stream<bool> get socialSecurityVisibilityStream =>
       _socialSecurityVisibilitySubject.stream;
 
+  ///tax visibility subject
+  final BehaviorSubject<bool> _taxVisibilitySubject =
+      BehaviorSubject.seeded(false);
+
+  Stream<bool> get taxVisibilityStream => _taxVisibilitySubject.stream;
+
   void updateVisibilityValue(bool value) {
     _socialSecurityVisibilitySubject.safeAdd(value);
+  }
+
+  void updateTaxVisibilityValue(bool value) {
+    _taxVisibilitySubject.safeAdd(value);
   }
 
   bool isValid() {
@@ -66,7 +82,8 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
         valid = true;
       }
     } else {
-      if (taxPayerTypeController.text.isNotEmpty) {
+      if (taxPayerTypeController.text.isNotEmpty &&
+          employerIdNumberController.text.isNotEmpty) {
         valid = true;
       }
     }
@@ -100,6 +117,9 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_SECURITY_NUMBER:
         socialSecurityNumberKey.currentState!.isValid = false;
         break;
+      case ErrorType.INVALID_EMPLOYER_ID:
+        employerIdNumberKey.currentState!.isValid = false;
+        break;
       default:
         break;
     }
@@ -109,6 +129,8 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
     _fatcaUSW9taxPayerDetailsRequest.safeAdd(
         FatcaUSW9TaxPayerDetailsUseCaseParams(
             isSocialSecurityTaxPayer: _socialSecurityVisibilitySubject.value,
+            isEmployer: !_socialSecurityVisibilitySubject.value,
+            employerIdNumber: employerIdNumberController.text,
             socialSecurityNumber: socialSecurityNumberController.text,
             taxPayerType: taxPayerTypeController.text));
   }
@@ -124,16 +146,21 @@ class FatcaUSW9TaxPayersDetailsPageViewModel extends BasePageViewModel {
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope
-        .containerOf(context)
+    FatcaW9Data fatcaSetData = ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .fatcaData;
-    fatcaSetData.requesterTaxPayer = taxPayerTypeController.text;
-    fatcaSetData.requesterSocialSecurityNo =
-        socialSecurityNumberController.text;
+        .getFatcaW9Data;
+    fatcaSetData.taxPayer = taxPayerTypeController.text;
+    fatcaSetData.socialSecurityNumber = socialSecurityNumberController.text;
+    fatcaSetData.employerTin = employerIdNumberController.text;
+
     ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .setFatcaData(fatcaSetData);
+        .setFatcaW9(fatcaSetData);
+
+    ///update tax Payer Type
+    ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .setTaxPayerTypeEnum(TaxPayerTypeEnum.W9);
   }
 
   @override

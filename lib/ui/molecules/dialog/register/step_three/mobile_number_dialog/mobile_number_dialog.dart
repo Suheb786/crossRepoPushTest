@@ -8,16 +8,14 @@ class MobileNumberDialog {
 
   static show(BuildContext mContext,
       {Function? onDismissed,
-        Function(CountryData)? onSelected,
-        List<CountryData>? countryDataList,
-        String? title}) {
+      Function(CountryData)? onSelected,
+      List<CountryData>? countryDataList,
+      String? title}) {
     AppDialog.show(mContext,
-        isDismissible: false,
-        builder: (context) =>
-            MobileNumberDialogView(
-                onDismissed: onDismissed,
-                countryDataList: countryDataList!,
-                onSelected: onSelected,
-                title: title));
+        builder: (context) => MobileNumberDialogView(
+            onDismissed: onDismissed,
+            countryDataList: countryDataList!,
+            onSelected: onSelected,
+            title: title));
   }
 }

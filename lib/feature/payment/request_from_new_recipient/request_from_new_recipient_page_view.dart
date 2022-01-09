@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
-import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -155,12 +154,15 @@ class RequestFromNewRecipientPageView
                                                           mainAxisAlignment:
                                                               MainAxisAlignment
                                                                   .spaceBetween,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
                                                           children: [
                                                             Expanded(
                                                               child: Text(
                                                                 S
                                                                     .of(context)
-                                                                    .name,
+                                                                    .nameOfBeneficiary,
                                                                 style:
                                                                     TextStyle(
                                                                   fontSize: 12,
@@ -299,137 +301,149 @@ class RequestFromNewRecipientPageView
                                                   model.addContact = isActive;
                                                   return Visibility(
                                                     visible: isActive,
-                                                    child: Padding(
+                                                    child: Container(
                                                       padding: EdgeInsets.only(
-                                                          top: 16.0),
-                                                      child: Container(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                top: 16),
-                                                        child: Row(
-                                                          children: [
-                                                            AppStreamBuilder<
-                                                                String>(
-                                                              stream: model
-                                                                  .uploadProfilePhotoStream,
-                                                              initialData: '',
-                                                              onData: (data) {
-                                                                if (data !=
-                                                                        null &&
-                                                                    data.isNotEmpty) {
-                                                                  model.selectedProfile =
-                                                                      data;
-                                                                  model
-                                                                      .addImage(
-                                                                          data);
-                                                                  _cropImage(
-                                                                      data,
-                                                                      model,
-                                                                      context);
-                                                                  // model.showSuccessToast(
-                                                                  //     S.of(context).profilePhotoUpdated);
-                                                                }
-                                                              },
-                                                              dataBuilder:
-                                                                  (context,
-                                                                      data) {
-                                                                print(
-                                                                    "got data : ${data}");
-                                                                return AppStreamBuilder<
-                                                                    String>(
-                                                                  stream: model
-                                                                      .selectedImageValue,
-                                                                  initialData:
-                                                                      '',
-                                                                  dataBuilder:
-                                                                      (context,
-                                                                          image) {
-                                                                    return InkWell(
-                                                                      onTap:
-                                                                          () {
-                                                                        ChooseProfileWidget.show(context, onCameraTap:
-                                                                            () {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                          model.uploadProfilePhoto(
-                                                                              DocumentTypeEnum.CAMERA);
-                                                                        }, onGalleryTap:
-                                                                            () {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                          model.uploadProfilePhoto(
-                                                                              DocumentTypeEnum.PICK_IMAGE);
-                                                                        }, onRemoveTap:
-                                                                            () {
-                                                                          model
-                                                                              .removeImage();
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                        }, onCancelled:
-                                                                            () {
-                                                                          Navigator.pop(
-                                                                              context);
-                                                                        }, title: S.of(context).pleaseSelectYourAction);
+                                                          top: 16),
+                                                      child: Row(
+                                                        children: [
+                                                          AppStreamBuilder<
+                                                              String>(
+                                                            stream: model
+                                                                .uploadProfilePhotoStream,
+                                                            initialData: '',
+                                                            onData: (data) {
+                                                              if (data !=
+                                                                      null &&
+                                                                  data.isNotEmpty) {
+                                                                model.selectedProfile =
+                                                                    data;
+                                                                // model.addImage(
+                                                                //     data);
+                                                                _cropImage(
+                                                                    data,
+                                                                    model,
+                                                                    context);
+                                                                // model.showSuccessToast(
+                                                                //     S.of(context).profilePhotoUpdated);
+                                                              }
+                                                            },
+                                                            dataBuilder:
+                                                                (context,
+                                                                    data) {
+                                                              return AppStreamBuilder<
+                                                                  String>(
+                                                                stream: model
+                                                                    .selectedImageValue,
+                                                                initialData: '',
+                                                                dataBuilder:
+                                                                    (context,
+                                                                        image) {
+                                                                  return InkWell(
+                                                                    onTap: () {
+                                                                      ChooseProfileWidget.show(
+                                                                          context,
+                                                                          onCameraTap:
+                                                                              () {
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                        model.uploadProfilePhoto(
+                                                                            DocumentTypeEnum.CAMERA);
+                                                                      }, onGalleryTap:
+                                                                              () {
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                        model.uploadProfilePhoto(
+                                                                            DocumentTypeEnum.PICK_IMAGE);
+                                                                      }, onRemoveTap:
+                                                                              () {
+                                                                        model
+                                                                            .removeImage();
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                      }, onCancelled:
+                                                                              () {
+                                                                        Navigator.pop(
+                                                                            context);
                                                                       },
+                                                                          title: S
+                                                                              .of(context)
+                                                                              .pleaseSelectYourAction);
+                                                                    },
+                                                                    child:
+                                                                        Container(
+                                                                      height:
+                                                                          50,
+                                                                      width: 50,
+                                                                      decoration:
+                                                                          BoxDecoration(
+                                                                              shape: BoxShape.circle),
                                                                       child:
-                                                                          Container(
-                                                                        height:
-                                                                            50,
-                                                                        width:
-                                                                            50,
-                                                                        decoration:
-                                                                            BoxDecoration(shape: BoxShape.circle),
-                                                                        child:
-                                                                            ClipOval(
-                                                                          child: image!.isEmpty
-                                                                              ? AppSvg.asset(
-                                                                                  AssetUtils.personCircle,
-                                                                                  fit: BoxFit.fill,
-                                                                                )
-                                                                              : Image.file(
-                                                                                  File(image),
-                                                                                  fit: BoxFit.fill,
-                                                                                ),
-                                                                        ),
+                                                                          ClipOval(
+                                                                        child: image!.isEmpty
+                                                                            ? AppSvg.asset(
+                                                                                AssetUtils.personCircle,
+                                                                                fit: BoxFit.fill,
+                                                                              )
+                                                                            : Image.file(
+                                                                                File(image),
+                                                                                fit: BoxFit.fill,
+                                                                              ),
                                                                       ),
-                                                                    );
-                                                                  },
-                                                                );
-                                                              },
-                                                            ),
-                                                            Padding(
+                                                                    ),
+                                                                  );
+                                                                },
+                                                              );
+                                                            },
+                                                          ),
+                                                          Expanded(
+                                                            child: Padding(
                                                               padding: EdgeInsets
                                                                   .only(
                                                                       left: 14),
                                                               child: AppStreamBuilder<
-                                                                      Resource<
-                                                                          GetAccountByAliasContentResponse>>(
+                                                                      bool>(
                                                                   stream: model
-                                                                      .getAccountByAliasResponseStream,
+                                                                      .addNickNameStream,
                                                                   initialData:
-                                                                      Resource
-                                                                          .none(),
+                                                                      false,
                                                                   dataBuilder:
                                                                       (context,
                                                                           val) {
-                                                                    return Text(
-                                                                      val!.data!.getAccountByAliasContent!
-                                                                              .nickName ??
-                                                                          "",
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              14,
-                                                                          fontWeight: FontWeight
-                                                                              .w600,
-                                                                          color: Theme.of(context)
-                                                                              .accentTextTheme
-                                                                              .bodyText1!
-                                                                              .color),
-                                                                    );
+                                                                    return val!
+                                                                        ? Container(
+                                                                            height:
+                                                                                28,
+                                                                            child:
+                                                                                TextField(
+                                                                              autofocus: true,
+                                                                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                              cursorColor: Theme.of(context).accentTextTheme.bodyText1!.color,
+                                                                              controller: model.addNickNameController,
+                                                                              decoration: InputDecoration(
+                                                                                border: InputBorder.none,
+                                                                                contentPadding: EdgeInsets.only(bottom: 18),
+                                                                              ),
+                                                                              onSubmitted: (value) {
+                                                                                model.addNickNameVal = value;
+                                                                                model.updateNickName(false);
+                                                                              },
+                                                                            ),
+                                                                          )
+                                                                        : InkWell(
+                                                                            onTap:
+                                                                                () {
+                                                                              model.updateNickName(true);
+                                                                            },
+                                                                            child:
+                                                                                Text(
+                                                                              model.addNickNameVal!,
+                                                                              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                            ),
+                                                                          );
                                                                   }),
-                                                            )
-                                                          ],
-                                                        ),
+                                                            ),
+                                                          )
+                                                        ],
                                                       ),
                                                     ),
                                                   );

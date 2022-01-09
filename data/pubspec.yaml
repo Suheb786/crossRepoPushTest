@@ -12,6 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
+  infobip_plugin:
+    path: ../infobip_rtc_flutter
+
   retrofit: ^2.0.1
   logger: ^1.1.0
   json_annotation: ^4.0.0
@@ -37,6 +40,7 @@ dependencies:
   #  rsa_encrypt: ^2.0.0
   encrypt: ^5.0.1
   path_provider: any
+  permission_handler: ^8.3.0
 
 dev_dependencies:
   flutter_test:

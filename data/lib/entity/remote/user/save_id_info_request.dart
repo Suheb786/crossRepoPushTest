@@ -8,24 +8,20 @@ class SaveIdInfoRequest {
   final String? id;
   @JsonKey(name: "type")
   final String? type;
-  @JsonKey(name: "fullName")
+  @JsonKey(name: "FullName")
   final String? fullName;
-  @JsonKey(name: "firstName")
+  @JsonKey(name: "FirstName")
   final String? firstName;
-  @JsonKey(name: "middleName")
+  @JsonKey(name: "MiddleName")
   final String? middleName;
-  @JsonKey(name: "SecondNameEn")
-  final String? secondNameEn;
-  @JsonKey(name: "familyName")
+  @JsonKey(name: "FamilyName")
   final String? familyName;
-  @JsonKey(name: "FirstNameAr")
-  final String? firstNameAr;
-  @JsonKey(name: "SecNameAr")
-  final String? secNameAr;
-  @JsonKey(name: "ThirdNameAr")
-  final String? thirdNameAr;
-  @JsonKey(name: "FamilyNameAr")
-  final String? familyNameAr;
+  @JsonKey(name: "MotherFirstName")
+  final String? motherName;
+  @JsonKey(name: "PlaceOfBirth")
+  final String? placeOfBirth;
+  @JsonKey(name: "DOI")
+  final String? doi;
   @JsonKey(name: "idNumber")
   final String? idNumber;
   @JsonKey(name: "dob")
@@ -36,8 +32,6 @@ class SaveIdInfoRequest {
   final String? doe;
   @JsonKey(name: "gender")
   final String? gender;
-  @JsonKey(name: "MotherFirstName")
-  final String? motherName;
   @JsonKey(name: "documentCode")
   final String? documentCode;
   @JsonKey(name: "documentNumber")
@@ -64,19 +58,20 @@ class SaveIdInfoRequest {
   final String? instanceID;
   @JsonKey(name: "scanPercentage")
   final num? scanPercentage;
-  @JsonKey(name: "PlaceOfBirth")
-  final String? placeOfBirth;
+
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  SaveIdInfoRequest({this.id,
-    this.type,
-    this.fullName,
-    this.firstName,
-    this.middleName,
-    this.familyName,
-    this.idNumber,
-    this.dob,
+  SaveIdInfoRequest(
+      {this.id,
+      this.type,
+      this.fullName,
+      this.firstName,
+      this.middleName,
+      this.familyName,
+      this.idNumber,
+      this.dob,
+      this.doi,
       this.nationality,
       this.doe,
       this.gender,
@@ -84,23 +79,18 @@ class SaveIdInfoRequest {
       this.documentCode,
       this.documentNumber,
       this.issuer,
-    this.optionalData1,
-    this.optionalData2,
-    this.mrtDraw,
-    this.frontCardImage,
-    this.backCardImage,
-    this.personFaceImage,
-    this.getToken,
-    this.isimtfBlacklist,
-    this.instanceID,
-    this.scanPercentage,
-    required this.baseData,
-    this.secondNameEn,
-    this.placeOfBirth,
-    this.familyNameAr,
-    this.secNameAr,
-    this.thirdNameAr,
-    this.firstNameAr});
+      this.optionalData1,
+      this.optionalData2,
+      this.mrtDraw,
+      this.frontCardImage,
+      this.backCardImage,
+      this.personFaceImage,
+      this.getToken,
+      this.isimtfBlacklist,
+      this.instanceID,
+      this.scanPercentage,
+      required this.baseData,
+      this.placeOfBirth});
 
   factory SaveIdInfoRequest.fromJson(Map<String, dynamic> json) =>
       _$SaveIdInfoRequestFromJson(json);

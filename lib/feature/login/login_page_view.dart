@@ -86,6 +86,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                         () {
                                       Navigator.pushReplacementNamed(
                                           context, RoutePaths.AppHome);
+                                      // Navigator.pushReplacementNamed(
+                                      //     context, RoutePaths.Registration);
                                     });
                                   } else if (data.status == Status.ERROR) {
                                     model.emailKey.currentState!.isValid =

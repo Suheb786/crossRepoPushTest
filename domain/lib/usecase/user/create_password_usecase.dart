@@ -19,9 +19,18 @@ class CreatePasswordUseCase
 class CreatePasswordUseCaseParams extends Params {
   final String createPassword;
   final String confirmPassword;
+  final bool minimumEightCharacters;
+  final bool hasUpperCase;
+  final bool hasSymbol;
+  final bool containsDigit;
 
   CreatePasswordUseCaseParams(
-      {required this.createPassword, required this.confirmPassword});
+      {required this.createPassword,
+      required this.confirmPassword,
+      required this.containsDigit,
+      required this.hasSymbol,
+      required this.hasUpperCase,
+      required this.minimumEightCharacters});
 
   @override
   Either<AppError, bool> verify() {
@@ -29,6 +38,14 @@ class CreatePasswordUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_PASSWORD,
+          cause: Exception()));
+    } else if (!minimumEightCharacters ||
+        !hasUpperCase ||
+        !hasSymbol ||
+        !containsDigit) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.PASSWORD_NOT_MEET_CRITERIA,
           cause: Exception()));
     } else if (Validator.isEmpty(confirmPassword)) {
       return Left(AppError(

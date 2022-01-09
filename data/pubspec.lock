@@ -408,6 +408,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.1"
+  infobip_plugin:
+    dependency: "direct main"
+    description:
+      path: "../infobip_rtc_flutter"
+      relative: true
+    source: path
+    version: "0.0.1"
   intl:
     dependency: "direct main"
     description:
@@ -548,6 +555,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.11.1"
+  permission_handler:
+    dependency: "direct main"
+    description:
+      name: permission_handler
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "8.3.0"
+  permission_handler_platform_interface:
+    dependency: transitive
+    description:
+      name: permission_handler_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.7.0"
   platform:
     dependency: transitive
     description:
@@ -835,4 +856,4 @@ packages:
     version: "3.1.0"
 sdks:
   dart: ">=2.14.0 <3.0.0"
-  flutter: ">2.0.0"
+  flutter: ">=2.5.0"

@@ -61,12 +61,15 @@ class UserLocalDSImpl extends UserLocalDS {
     idRecognizer.returnFaceImage = true;
 
     DocumentVerificationOverlaySettings settings =
-    DocumentVerificationOverlaySettings();
+        DocumentVerificationOverlaySettings();
     settings.firstSideInstructions =
-    'Place the front of your ID. It will scan automatically';
+        'Front ID\nID will be scanned automatically when placed within the frame';
     settings.secondSideInstructions =
-    'Place the back side of your ID. It will scan automatically';
+        'Back ID\nID will be scanned automatically when placed within the frame';
     settings.enableBeep = true;
+    settings.firstSideSplashMessage = 'Scanning...';
+    settings.scanningDoneSplashMessage = 'Scan successful';
+    settings.secondSideSplashMessage = 'Scanning...';
 
     try {
       List<RecognizerResult> results = await MicroblinkScanner.scanWithCamera(
@@ -95,49 +98,64 @@ class UserLocalDSImpl extends UserLocalDS {
           print("I AM sex:  ${result.sex}");
           print("I AM fullName:  ${result.fullName}");
           print(
-              "I AM additionalAddressInformation : ${result
-                  .additionalAddressInformation}");
+              "I AM additionalAddressInformation : ${result.additionalAddressInformation}");
           print("I AM address : ${result.address}");
           print("I AM age:  ${result.age}");
           print(
-              "I AM additionalNameInformation : ${result
-                  .additionalNameInformation}");
+              "I AM additionalNameInformation : ${result.additionalNameInformation}");
           print("I AM dateOfIssue : ${result.dateOfIssue}");
           print("I AM fathersName:  ${result.fathersName}");
           print("I AM mothersName : ${result.mothersName}");
+
+          print("I AM mrzResult Gender :${result.mrzResult!.gender}");
+          print(
+              "I AM mrzResult documentNumber :${result.mrzResult!.documentNumber}");
+          print(
+              "I AM mrzResult Date of Expiry :${result.mrzResult!.dateOfExpiry}");
+          print("I AM mrzResult nationality :${result.mrzResult!.nationality}");
+          print("I AM mrzResult mrzVerified:${result.mrzResult!.mrzVerified}");
+          print("I AM mrzResult mrzParsed :${result.mrzResult!.mrzParsed}");
+          print("I AM mrzResult issuer :${result.mrzResult!.issuer}");
+          print("I AM mrzResult dateOfBirth :${result.mrzResult!.dateOfBirth}");
+          print("I AM mrzResult age :${result.mrzResult!.age}");
+          print("I AM mrzResult mrzText :${result.mrzResult!.mrzText}");
+          print("I AM mrzResult alienNumber :${result.mrzResult!.alienNumber}");
+          print(
+              "I AM mrzResult applicationReceiptNumber :${result.mrzResult!.applicationReceiptNumber}");
           print(
               "I AM mrzResult documentCode :${result.mrzResult!.documentCode}");
           print(
-              "I AM mrzResult documentNumber : ${result.mrzResult!
-                  .documentNumber}");
-          print("I AM mrzResult primaryId : ${result.mrzResult!.primaryId}");
+              "I AM mrzResult documentType :${result.mrzResult!.documentType}");
           print(
-              "I AM mrzResult secondaryId : ${result.mrzResult!.secondaryId}");
+              "I AM mrzResult immigrantCaseNumber :${result.mrzResult!.immigrantCaseNumber}");
+          print("I AM mrzResult opt1 :${result.mrzResult!.opt1}");
+          print("I AM mrzResult opt2 :${result.mrzResult!.opt2}");
+          print("I AM mrzResult primaryId :${result.mrzResult!.primaryId}");
           print(
-              "I AM mrzResult alienNumber : ${result.mrzResult!.alienNumber}");
-          print("I AM mrzResult mrzText:  ${result.mrzResult!.mrzText}");
-          print("I AM mrzResult alienNumber : ${result.mrzResult!.issuer}");
+              "I AM mrzResult sanitizedDocumentCode :${result.mrzResult!.sanitizedDocumentCode}");
           print(
-              "I AM mrzResult applicationReceiptNumber : ${result.mrzResult!
-                  .applicationReceiptNumber}");
+              "I AM mrzResult sanitizedDocumentNumber :${result.mrzResult!.sanitizedDocumentNumber}");
           print(
-              "I AM mrzResult documentType : ${result.mrzResult!
-                  .documentType}");
+              "I AM mrzResult sanitizedIssuer :${result.mrzResult!.sanitizedIssuer}");
           print(
-              "I AM mrzResult sanitizedDocumentCode : ${result.mrzResult!
-                  .sanitizedDocumentCode}");
+              "I AM mrzResult sanitizedNationality :${result.mrzResult!.sanitizedNationality}");
           print(
-              "I AM mrzResult sanitizedDocumentNumber:  ${result.mrzResult!
-                  .sanitizedDocumentNumber}");
+              "I AM mrzResult sanitizedOpt1 :${result.mrzResult!.sanitizedOpt1}");
           print(
-              "I AM mrzResult sanitizedIssuer:  ${result.mrzResult!
-                  .sanitizedIssuer}");
-          print(
-              "I AM mrzResult sanitizedOpt1 : ${result.mrzResult!
-                  .sanitizedOpt1}");
-          print(
-              "I AM mrzResult sanitizedOpt2:  ${result.mrzResult!
-                  .sanitizedOpt2}");
+              "I AM mrzResult sanitizedOpt2 :${result.mrzResult!.sanitizedOpt2}");
+          print("I AM mrzResult secondaryId :${result.mrzResult!.secondaryId}");
+
+          DateTime currentTime = DateTime.now();
+
+          DateTime expiryDate = DateTime(
+              result.dateOfExpiry!.year ?? currentTime.year,
+              result.dateOfExpiry!.month ?? currentTime.month,
+              result.dateOfExpiry!.day ?? currentTime.day);
+
+          if (currentTime.toUtc().isAfter(expiryDate.toUtc())) {
+            return Left(LocalError(
+                cause: Exception(""), localError: 1211, message: ""));
+          }
           return Right(result);
         }
       }
@@ -148,7 +166,7 @@ class UserLocalDSImpl extends UserLocalDS {
               "Some error occurred while processing. Please try again later"),
           localError: 1212,
           message:
-          "Some error occurred while processing. Please try again later"));
+              "Some error occurred while processing. Please try again later"));
     }
   }
 

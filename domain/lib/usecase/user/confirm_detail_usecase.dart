@@ -11,8 +11,7 @@ import 'package:domain/usecase/base/params.dart';
 import 'package:domain/utils/validator.dart';
 
 class ConfirmDetailUseCase extends BaseUseCase<NetworkError,
-    ConfirmDetailUseCaseParams,
-    SaveIdInfoResponse> {
+    ConfirmDetailUseCaseParams, SaveIdInfoResponse> {
   final UserRepository _repository;
 
   ConfirmDetailUseCase(this._repository);
@@ -21,30 +20,28 @@ class ConfirmDetailUseCase extends BaseUseCase<NetworkError,
   Future<Either<NetworkError, SaveIdInfoResponse>> execute(
       {required ConfirmDetailUseCaseParams params}) {
     return _repository.saveIdInfo(
-      type: params.scannedDocumentInformation!.type,
-      fullName: params.name,
-      firstName: params.scannedDocumentInformation!.firstName ?? '',
-      middleName: params.scannedDocumentInformation!.middleName ?? '',
-      familyName: params.scannedDocumentInformation!.familyName ?? '',
-      idNumber: params.idNumber,
-      dob: params.dateOfBirth,
-      nationality: params.nationality,
-      doe: params.expiryDate,
-      gender: params.gender,
-      motherName: params.motherName,
-      documentCode: params.scannedDocumentInformation!.documentCode ?? '',
-      documentNumber: params.legalDocumentNo,
-      frontCardImage: params.scannedDocumentInformation!.frontCardImage ?? '',
-      backCardImage: params.scannedDocumentInformation!.backCardImage ?? '',
-      personFaceImage: params.scannedDocumentInformation!.personFaceImage ?? '',
-      issuer: params.scannedDocumentInformation!.issuer ?? '',
-      secondNameEn: params.scannedDocumentInformation!.secondNameEn ?? '',
-      placeOfBirth: params.scannedDocumentInformation!.issuer ?? '',
-      familyNameAr: params.scannedDocumentInformation!.familyNameAr ?? '',
-      secNameAr: params.scannedDocumentInformation!.secNameAr ?? '',
-      firstNameAr: params.scannedDocumentInformation!.familyNameAr ?? '',
-      thirdNameAr: params.scannedDocumentInformation!.thirdNameAr ?? '',
-    );
+        type: params.scannedDocumentInformation!.type,
+        fullName: params.name,
+        firstName: params.scannedDocumentInformation!.firstName ?? '',
+        middleName: params.scannedDocumentInformation!.middleName ?? '',
+        familyName: params.scannedDocumentInformation!.familyName ?? '',
+        idNumber: params.idNumber,
+        dob: params.dateOfBirth,
+        nationality: params.nationality,
+        doe: params.expiryDate,
+        gender: params.gender,
+        motherName: params.motherName,
+        documentCode: params.scannedDocumentInformation!.documentCode ?? '',
+        documentNumber: params.legalDocumentNo,
+        frontCardImage: params.scannedDocumentInformation!.frontCardImage ?? '',
+        backCardImage: params.scannedDocumentInformation!.backCardImage ?? '',
+        personFaceImage:
+            params.scannedDocumentInformation!.personFaceImage ?? '',
+        issuer: params.scannedDocumentInformation!.issuer ?? '',
+        placeOfBirth: params.scannedDocumentInformation!.issuer ?? '',
+        doi: params.issuingDate,
+        scanPercentage:
+            params.scannedDocumentInformation!.scanPercentage?.toDouble() ?? 0);
   }
 }
 
@@ -61,6 +58,9 @@ class ConfirmDetailUseCaseParams extends Params {
   final String? issuingPlace;
   bool declarationSelected;
   final ScannedDocumentInformation? scannedDocumentInformation;
+  final bool isMotherNameRequired;
+  final bool isPlaceOfBirthRequired;
+  final bool isCardIssueDateRequired;
 
   ConfirmDetailUseCaseParams(
       {required this.name,
@@ -74,7 +74,10 @@ class ConfirmDetailUseCaseParams extends Params {
       this.legalDocumentNo,
       required this.declarationSelected,
       this.scannedDocumentInformation,
-      this.motherName});
+      this.motherName,
+      this.isPlaceOfBirthRequired: true,
+      this.isCardIssueDateRequired: true,
+      this.isMotherNameRequired: true});
 
   @override
   Either<AppError, bool> verify() {
@@ -108,7 +111,7 @@ class ConfirmDetailUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_GENDER,
           cause: Exception()));
-    } else if (Validator.isEmpty(motherName!)) {
+    } else if (isMotherNameRequired && Validator.isEmpty(motherName!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_MOTHER_NAME,
@@ -118,7 +121,7 @@ class ConfirmDetailUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_LEGAL_DOCUMENT,
           cause: Exception()));
-    } else if (Validator.isEmpty(issuingDate!)) {
+    } else if (isCardIssueDateRequired && Validator.isEmpty(issuingDate!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_ISSUING_DATE,

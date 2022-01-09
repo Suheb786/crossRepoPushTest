@@ -41,6 +41,29 @@ class NetworkError extends BaseError {
         return AppError(
             cause: cause, error: error, type: ErrorType.NET_SERVER_MESSAGE);
 
+      case 1500:
+        return AppError(
+            cause: cause, error: error, type: ErrorType.CALL_HANGUP_ERROR);
+
+      case 1501:
+        return AppError(
+            cause: cause,
+            error: error,
+            type: ErrorType.INIT_INFOBIP_PLUGIN_ERROR);
+
+      case 1502:
+        return AppError(
+            cause: cause, error: error, type: ErrorType.GET_CALL_TOKEN_ERROR);
+
+      case 1503:
+        return AppError(
+            cause: cause, error: error, type: ErrorType.ESTABLISH_CALL_ERROR);
+      case 1504:
+        return AppError(
+            cause: cause,
+            error: error,
+            type: ErrorType.GET_CALL_DURATION_ERROR);
+
       default:
         print("I AM EXECUTED with error code ${error.message}");
         switch (error.message) {
@@ -217,6 +240,26 @@ class NetworkError extends BaseError {
                 cause: cause,
                 error: error,
                 type: ErrorType.REQUEST_NOT_COMPLETED);
+
+          case "ex-011":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_GET_COMBO_VALUES);
+
+          case "err-005":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.USER_ALREADY_EXISTS);
+
+          case "err-015":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.PLEASE_TRY_AGAIN);
+
+          case "err-054":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_ACCESSING_ID);
 
           default:
             return AppError(

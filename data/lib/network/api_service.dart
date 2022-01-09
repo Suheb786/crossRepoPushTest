@@ -49,10 +49,15 @@ import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart'
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
 import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
+import 'package:data/entity/remote/country/city_list/city_list_request_entity.dart';
+import 'package:data/entity/remote/country/city_list/city_list_response_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_response_entity.dart';
+import 'package:data/entity/remote/country/state_list/state_list_request_entity.dart';
+import 'package:data/entity/remote/country/state_list/state_list_response_entity.dart';
+import 'package:data/entity/remote/country/get_allowed_issuer/get_allowed_issuer_response_entity.dart';
 import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
@@ -60,6 +65,8 @@ import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/set_fatca_questions_response_entity.dart';
+import 'package:data/entity/remote/fatca_crs/set_fatca_w8_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/set_fatca_w9_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/upload_signature_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/upload_signature_response_entity.dart';
 import 'package:data/entity/remote/kyc/check_kyc_status_response_entity.dart';
@@ -189,7 +196,7 @@ abstract class ApiService {
   Future<HttpResponse<GetFatcaQuestionsResponseEntity>> getFatcaQuestions(
       @Body() GetFatcaQuestionsRequestEntity getFatcaQuestionsRequestEntity);
 
-  @POST("/FatcaCrs/set")
+  @POST("/FatcaCrs/setFatcaV1")
   Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
       @Body()
           SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
@@ -503,4 +510,33 @@ abstract class ApiService {
   @POST("/transfer/TransferPurpose")
   Future<HttpResponse<PurposeResponseEntity>> getPurpose(
       @Body() PurposeRequestEntity purposeRequestEntity);
+
+  ///get states
+  @POST("/Auth/GetStates")
+  Future<HttpResponse<StateListResponseEntity>> getStateList(
+      @Body() StateListRequestEntity stateListRequestEntity);
+
+  ///get cities
+  @POST("/Auth/GetCities")
+  Future<HttpResponse<CityListResponseEntity>> getCityList(
+      @Body() CityListRequestEntity cityListRequestEntity);
+
+  ///get cities by country
+  @POST("/Auth/GetCitiesByCountry")
+  Future<HttpResponse<CityListResponseEntity>> getCitiesByCountry(
+      @Body() CityListRequestEntity cityListRequestEntity);
+
+  ///set fatca w8
+  @POST("/FatcaCrs/SetW8V1")
+  Future<HttpResponse<ResponseEntity>> saveFatcaW8(
+      @Body() SetFatcaW8RequestEntity setFatcaW8RequestEntity);
+
+  ///set fatca w9
+  @POST("/FatcaCrs/SetW9")
+  Future<HttpResponse<ResponseEntity>> saveFatcaW9(
+      @Body() SetFatcaW9RequestEntity setFatcaW9RequestEntity);
+
+  @POST("/Auth/CheckIssuer")
+  Future<HttpResponse<GetAllowedIssuerResponseEntity>> fetchAllowedIssuers(
+      @Body() BaseRequest baseRequest);
 }
