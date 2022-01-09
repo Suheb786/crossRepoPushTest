@@ -51,11 +51,17 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                 .read(appHomeViewModelProvider)
                                 .pageController
                                 .next();
+                            if (!model.cardKey.currentState!.isFront) {
+                              model.cardKey.currentState!.toggleCard();
+                            }
                           } else {
                             ProviderScope.containerOf(context)
                                 .read(appHomeViewModelProvider)
                                 .pageController
                                 .previous();
+                            if (!model.cardKey.currentState!.isFront) {
+                              model.cardKey.currentState!.toggleCard();
+                            }
                           }
                         },
                         child: Card(
@@ -259,11 +265,25 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                 child: GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
+                      ProviderScope.containerOf(context)
+                          .read(appHomeViewModelProvider)
+                          .pageController
+                          .next();
+                      Future.delayed(Duration(milliseconds: 600)).then((value) {
+                        if (!model.cardKey.currentState!.isFront) {
+                          model.cardKey.currentState!.toggleCard();
+                        }
+                      });
                     } else {
                       ProviderScope.containerOf(context)
                           .read(appHomeViewModelProvider)
                           .pageController
                           .previous();
+                      Future.delayed(Duration(milliseconds: 600)).then((value) {
+                        if (!model.cardKey.currentState!.isFront) {
+                          model.cardKey.currentState!.toggleCard();
+                        }
+                      });
                     }
                   },
                   child: Card(
