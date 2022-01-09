@@ -15,14 +15,19 @@ class GenerateBlockPinUseCase
   Future<Either<LocalError, String>> execute({
     required GenerateBlockPinUseCaseParams params,
   }) {
-    return _repository.generateBlockPin(cardNo: params.cardNumber);
+    return _repository.generateBlockPin(
+      cardNo: params.cardNumber,
+      pinCode: params.pinCode,
+    );
   }
 }
 
 class GenerateBlockPinUseCaseParams extends Params {
   final String cardNumber;
+  final String pinCode;
 
-  GenerateBlockPinUseCaseParams({required this.cardNumber});
+  GenerateBlockPinUseCaseParams(
+      {required this.cardNumber, required this.pinCode});
 
   @override
   Either<AppError, bool> verify() {

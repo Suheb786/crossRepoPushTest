@@ -18,23 +18,24 @@ class CardProcessingRepositoryImpl with CardProcessingRepository {
     }
 
     return Left(LocalError(
-        message: "No Data Found",
-        cause: Exception("No Data Found"),
-        localError: 1212));
+        message: "Error in 3DES decryption of the card number.",
+        cause: Exception("Error in 3DES decryption of the card number."),
+        localError: 0107));
   }
 
   @override
   Future<Either<LocalError, String>> generateBlockPin(
-      {required String cardNo}) async {
-    final value = _cardProcessingLocalDS.generateBlockPin(cardNo: cardNo);
+      {required String cardNo, required String pinCode}) async {
+    final value = _cardProcessingLocalDS.generateBlockPin(
+        cardNo: cardNo, pinCode: pinCode);
 
     if (value.trim().isNotEmpty) {
       return Right(value);
-    }
+    } 
 
     return Left(LocalError(
-        message: "No Data Found",
-        cause: Exception("No Data Found"),
-        localError: 1212));
+        message: "Error generating Pin under LMK",
+        cause: Exception("Error generating Pin under LMK"),
+        localError: 0106));
   }
 }
