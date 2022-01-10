@@ -149,17 +149,18 @@ class EnterAddressViewModel extends BasePageViewModel {
 
   void enterAddress() {
     _enterAddressRequest.safeAdd(EnterAddressUseCaseParams(
-        residentCountry: currentCity.countryId,
-        residentArea: "",
-        //residentArea: districtController.text,
+        residentCountry: residentCountryController.text,
+        countryId: currentCity.countryId,
         city: cityController.text,
         streetAddress: streetAddressController.text,
         buildingNameOrNo: buildingNameOrNumberController.text,
         jordanianLivesAbroad: _permanentAddressVisibilitySubject.value,
-        permanentCity: permanentCity.cityId,
-        permanentResidentCountry: permanentCity.countryId,
+        permanentCity: permanentCityController.text,
+        permanentResidentCountry: permanentResidentCountryController.text,
         cityId: currentCity.cityId!,
-        stateId: currentCity.stateId!));
+        stateId: currentCity.stateId!,
+        permanentCityId: permanentCity.cityId!,
+        permanentCountryId: permanentCity.countryId!));
   }
 
   void getCitiesByCountry(String isoCode) {
@@ -171,7 +172,6 @@ class EnterAddressViewModel extends BasePageViewModel {
     bool isValid = false;
     if (_permanentAddressVisibilitySubject.value) {
       if (residentCountryController.text.isNotEmpty &&
-          // districtController.text.isNotEmpty &&
           cityController.text.isNotEmpty &&
           streetAddressController.text.isNotEmpty &&
           buildingNameOrNumberController.text.isNotEmpty &&
@@ -180,7 +180,6 @@ class EnterAddressViewModel extends BasePageViewModel {
         isValid = true;
       }
     } else if (residentCountryController.text.isNotEmpty &&
-        // districtController.text.isNotEmpty &&
         cityController.text.isNotEmpty &&
         streetAddressController.text.isNotEmpty &&
         buildingNameOrNumberController.text.isNotEmpty) {

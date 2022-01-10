@@ -26,8 +26,9 @@ class CountryDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(CountryData)? onSelected;
   final String? title;
+  bool _keyboardVisible = false;
 
-  const CountryDialogView({this.onDismissed, this.onSelected, this.title});
+  CountryDialogView({this.onDismissed, this.onSelected, this.title});
 
   ProviderBase providerBase() {
     return employerCountryDialogViwModelProvider;
@@ -35,182 +36,204 @@ class CountryDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     return BaseWidget<CountryDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0)),
-              insetPadding:
-                  EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+              insetPadding: EdgeInsets.only(
+                  left: 24,
+                  right: 24,
+                  bottom: 36,
+                  top: _keyboardVisible ? 36 : 204),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
                 dataBuilder: (context, currentIndex) {
-                  return AppStreamBuilder<Resource<List<CountryData>>>(
-                    stream: model.getCountryListStream,
-                    initialData: Resource.none(),
-                    dataBuilder: (context, data) {
-                      switch (data!.status) {
-                        case Status.SUCCESS:
-                          return AppKeyBoardHide(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 32.0),
-                                  child: Center(
-                                    child: Text(
-                                      title!,
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600),
-                                    ),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 24, vertical: 32),
-                                  child: AppTextField(
-                                    labelText: '',
-                                    controller: model.countrySearchController,
-                                    textFieldBorderColor: AppColor.gray_1,
-                                    hintTextColor: AppColor.gray_2,
-                                    textColor: AppColor.black,
-                                    hintText: S.of(context).searchCountry,
-                                    onChanged: (value) {
-                                      print(value);
-                                      model.searchCountry(value);
-                                    },
-                                    suffixIcon: (value, data) {
-                                      return InkWell(
-                                        onTap: () async {},
-                                        child: Container(
-                                            height: 16,
-                                            width: 16,
-                                            padding: EdgeInsets.only(right: 8),
-                                            child: AppSvg.asset(
-                                                AssetUtils.search)),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                Expanded(
-                                    child: data.data!.length > 0
-                                        ? Stack(
-                                            alignment: Alignment.center,
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 16.0),
-                                                child: Container(
-                                                  height: 64,
-                                                  width: double.infinity,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            16),
-                                                    color: AppColor.vividYellow,
-                                                  ),
-                                                ),
-                                              ),
-                                              AppScrollableListViewWidget(
-                                                child:
-                                                    ClickableListWheelScrollView(
-                                                  scrollController:
-                                                      model.scrollController,
-                                                  itemHeight: 72,
-                                                  itemCount: data.data!.length,
-                                                  onItemTapCallback: (index) {
-                                                    model.selectCountry(index);
-                                                  },
-                                                  child: ListWheelScrollView
-                                                      .useDelegate(
-                                                          controller: model
-                                                              .scrollController,
-                                                          itemExtent: 72,
-                                                          onSelectedItemChanged:
-                                                              (int index) {
-                                                            model.selectCountry(
-                                                                index);
-                                                          },
-                                                          physics:
-                                                              FixedExtentScrollPhysics(),
-                                                          perspective:
-                                                              0.0000000001,
-                                                          childDelegate:
-                                                              ListWheelChildBuilderDelegate(
-                                                                  childCount: data
-                                                                      .data!
-                                                                      .length,
-                                                                  builder: (BuildContext
-                                                                          context,
-                                                                      int index) {
-                                                                    return EmployerCountryListWidget(
-                                                                      item: data
-                                                                              .data![
-                                                                          index],
-                                                                    );
-                                                                  })),
-                                                ),
-                                              ),
-                                            ],
-                                          )
-                                        : Center(
-                                            child: Text(
-                                              S.of(context).noCountriesFound,
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w400,
-                                                  color: Theme.of(context)
-                                                      .primaryColorDark),
-                                            ),
-                                          )),
-                                InkWell(
-                                  onTap: () {
-                                    onSelected!.call(model.selectedCountry!);
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.all(16),
-                                    height: 57,
-                                    width: 57,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Theme.of(context)
-                                            .accentTextTheme
-                                            .bodyText1!
-                                            .color!),
-                                    child: AppSvg.asset(AssetUtils.tick,
-                                        color: Theme.of(context).accentColor),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 8.0, bottom: 16),
-                                  child: Center(
-                                    child: InkWell(
-                                      onTap: () {
-                                        onDismissed?.call();
-                                      },
+                  return SingleChildScrollView(
+                    physics: ClampingScrollPhysics(),
+                    child: AppStreamBuilder<Resource<List<CountryData>>>(
+                      stream: model.getCountryListStream,
+                      initialData: Resource.none(),
+                      dataBuilder: (context, data) {
+                        switch (data!.status) {
+                          case Status.SUCCESS:
+                            return AppKeyBoardHide(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 32.0),
+                                    child: Center(
                                       child: Text(
-                                        S.of(context).swipeDownToCancel,
+                                        title!,
                                         style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColor.dark_gray_1),
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w600),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          );
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 24, vertical: 32),
+                                    child: AppTextField(
+                                      labelText: '',
+                                      controller: model.countrySearchController,
+                                      textFieldBorderColor: AppColor.gray_1,
+                                      hintTextColor: AppColor.gray_2,
+                                      textColor: AppColor.black,
+                                      hintText: S.of(context).searchCountry,
+                                      onChanged: (value) {
+                                        print(value);
+                                        model.searchCountry(value);
+                                      },
+                                      suffixIcon: (value, data) {
+                                        return InkWell(
+                                          onTap: () async {},
+                                          child: Container(
+                                              height: 16,
+                                              width: 16,
+                                              padding:
+                                                  EdgeInsets.only(right: 8),
+                                              child: AppSvg.asset(
+                                                  AssetUtils.search)),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  Container(
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              2.5,
+                                      child: data.data!.length > 0
+                                          ? Stack(
+                                              alignment: Alignment.center,
+                                              children: [
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 16.0),
+                                                  child: Container(
+                                                    height: 64,
+                                                    width: double.infinity,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              16),
+                                                      color:
+                                                          AppColor.vividYellow,
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height /
+                                                      2.5,
+                                                  child:
+                                                      AppScrollableListViewWidget(
+                                                    child:
+                                                        ClickableListWheelScrollView(
+                                                      scrollController: model
+                                                          .scrollController,
+                                                      itemHeight: 72,
+                                                      itemCount:
+                                                          data.data!.length,
+                                                      onItemTapCallback:
+                                                          (index) {
+                                                        model.selectCountry(
+                                                            index);
+                                                      },
+                                                      child: ListWheelScrollView
+                                                          .useDelegate(
+                                                              controller: model
+                                                                  .scrollController,
+                                                              itemExtent: 72,
+                                                              onSelectedItemChanged:
+                                                                  (int index) {
+                                                                model
+                                                                    .selectCountry(
+                                                                        index);
+                                                              },
+                                                              physics:
+                                                                  FixedExtentScrollPhysics(),
+                                                              perspective:
+                                                                  0.0000000001,
+                                                              childDelegate:
+                                                                  ListWheelChildBuilderDelegate(
+                                                                      childCount: data
+                                                                          .data!
+                                                                          .length,
+                                                                      builder: (BuildContext
+                                                                              context,
+                                                                          int index) {
+                                                                        return EmployerCountryListWidget(
+                                                                          item:
+                                                                              data.data![index],
+                                                                        );
+                                                                      })),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            )
+                                          : Center(
+                                              child: Text(
+                                                S.of(context).noCountriesFound,
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.w400,
+                                                    color: Theme.of(context)
+                                                        .primaryColorDark),
+                                              ),
+                                            )),
+                                  InkWell(
+                                    onTap: () {
+                                      onSelected!.call(model.selectedCountry!);
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(16),
+                                      height: 57,
+                                      width: 57,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: Theme.of(context)
+                                              .accentTextTheme
+                                              .bodyText1!
+                                              .color!),
+                                      child: AppSvg.asset(AssetUtils.tick,
+                                          color: Theme.of(context).accentColor),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 8.0, bottom: 16),
+                                    child: Center(
+                                      child: InkWell(
+                                        onTap: () {
+                                          onDismissed?.call();
+                                        },
+                                        child: Text(
+                                          S.of(context).swipeDownToCancel,
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w400,
+                                              color: AppColor.dark_gray_1),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
 
-                        default:
-                          return Container();
-                      }
-                    },
+                          default:
+                            return Container();
+                        }
+                      },
+                    ),
                   );
                 },
               ));

@@ -23,6 +23,9 @@ JobDetailContentEntity _$JobDetailContentEntityFromJson(
         : DateTime.parse(json['createdOn'] as String),
     additionalIncome: json['additionalIncome'] as bool?,
     isActive: json['isActive'] as bool?,
+    occupation: json['occupation'] as String?,
+    businessType: json['businessType'] as String?,
+    businessSpecificType: json['businessSpecificType'] as String?,
   );
 }
 
@@ -32,6 +35,9 @@ Map<String, dynamic> _$JobDetailContentEntityToJson(
       'id': instance.id,
       'userId': instance.userId,
       'profession': instance.profession,
+      'occupation': instance.occupation,
+      'businessType': instance.businessType,
+      'businessSpecificType': instance.businessSpecificType,
       'mainSource': instance.mainSource,
       'annualIncome': instance.annualIncome,
       'employeeName': instance.employeeName,

@@ -72,8 +72,7 @@ class LocateATMPageViewModel extends BasePageViewModel {
   Stream<bool> get panelOpenStream => _panelOpenSubject.stream;
 
   ///set current location request handler
-  final PublishSubject<Position> _currentLocationRequest =
-      PublishSubject();
+  final PublishSubject<Position> _currentLocationRequest = PublishSubject();
 
   ///set current location response stream
   Stream<Position> get currentLocationResponseStream =>
@@ -128,6 +127,9 @@ class LocateATMPageViewModel extends BasePageViewModel {
               message: '',
             ),
             cause: Exception()));
+      } else if (permission == LocationPermission.always ||
+          permission == LocationPermission.whileInUse) {
+        await setCurrentUserLocation();
       }
     } else {
       await setCurrentUserLocation();
