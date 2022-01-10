@@ -37,17 +37,18 @@ class ReviewTCWidget extends StatelessWidget {
               width: 40,
               decoration: BoxDecoration(
                 border: Border.all(
-                    color: !isSelected!
-                        ? Theme.of(context).accentTextTheme.bodyText1!.color!
-                        : Colors.transparent),
+                    color: Theme.of(context)
+                        .inputDecorationTheme
+                        .hintStyle!
+                        .color!),
                 shape: BoxShape.circle,
                 color: isSelected!
-                    ? Theme.of(context).accentTextTheme.bodyText1!.color!
+                    ? Theme.of(context).canvasColor
                     : Colors.transparent,
               ),
               child: (isSelected!)
                   ? AppSvg.asset(AssetUtils.checkIcon,
-                      color: Theme.of(context).accentColor,
+                      color: Theme.of(context).primaryColorDark,
                       height: 7.33,
                       width: 10.67)
                   : null,

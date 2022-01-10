@@ -364,22 +364,25 @@ class UserRepositoryImpl extends UserRepository {
                 : '',
             documentNumber:
                 r.documentNumber!.isNotEmpty ? r.documentNumber : '',
-                issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                    ? r.mrzResult!.sanitizedIssuer
-                    : '',
-                frontCardImage: r.fullDocumentFrontImage,
-                backCardImage: r.fullDocumentBackImage,
-                personFaceImage: r.faceImage,
-                issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                    ? r.mrzResult!.sanitizedIssuer
-                    : '',
-                issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
-                    ? r.mrzResult!.sanitizedIssuer
-                    : '',
-                issuingDate: r.dateOfIssue != null
-                    ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
+            issuer: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                ? r.mrzResult!.sanitizedIssuer
+                : '',
+            frontCardImage: r.fullDocumentFrontImage,
+            backCardImage: r.fullDocumentBackImage,
+            personFaceImage: r.faceImage,
+            issuingPlaceISo3: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                ? r.mrzResult!.sanitizedIssuer
+                : '',
+            issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                ? r.mrzResult!.sanitizedIssuer
+                : '',
+            issuingDate: r.dateOfIssue != null
+                ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
                     r.dateOfIssue!.day!)
-                : DateTime(0),
+                : r.dateOfExpiry != null
+                    ? DateTime(r.dateOfExpiry!.year! - 10,
+                        r.dateOfExpiry!.month!, r.dateOfExpiry!.day!)
+                    : DateTime(0),
             nationalityIsoCode3: r.mrzResult?.nationality ?? "")));
   }
 
