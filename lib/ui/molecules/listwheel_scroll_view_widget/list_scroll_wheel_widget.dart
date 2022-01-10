@@ -8,10 +8,10 @@ class ListScrollWheelListWidget extends StatelessWidget {
   final Function? onTap;
   const ListScrollWheelListWidget(
       {Key? key,
-        required this.label,
-        this.onTap,
-        this.textColor,
-        this.widgetColor})
+      required this.label,
+      this.onTap,
+      this.textColor,
+      this.widgetColor})
       : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class ListScrollWheelListWidget extends StatelessWidget {
         child: Text(
           label,
           style: TextStyle(
-              color: textColor, fontSize: 14, fontWeight: FontWeight.w600),
+              color: textColor, fontSize: 14, fontWeight: FontWeight.w400),
         ),
       ),
     );

@@ -31,7 +31,7 @@ class ManageDebitCardLimitsPageView
             Column(
               children: [
                 SizedBox(
-                  height: 60,
+                  height: 50,
                 ),
                 Text(
                   S.of(context).manageCardLimits,
@@ -44,7 +44,7 @@ class ManageDebitCardLimitsPageView
                   ),
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 35,
                 ),
               ],
             ),
@@ -160,7 +160,7 @@ class ManageDebitCardLimitsPageView
                                                 contactLessPaymentValue),
                                             merchantPayment: 0);
                                       },
-                                    )
+                                    ),
                                   ],
                                 ),
                               );
