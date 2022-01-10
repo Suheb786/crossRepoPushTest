@@ -142,8 +142,8 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                         .read(appHomeViewModelProvider)
                         .dashboardDataContent
                         .account!
-                        .availableBalance
-                        .toString(),
+                        .availableBalance!
+                        .toStringAsFixed(2),
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
@@ -162,115 +162,6 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                 ],
               ),
             ),
-            // Expanded(
-            //   child: Padding(
-            //     padding: EdgeInsets.only(top: 44.0),
-            //     child: SingleChildScrollView(
-            //       child: Column(
-            //         children: [
-            //           Padding(
-            //             padding: const EdgeInsets.symmetric(horizontal: 78),
-            //             child: Row(
-            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //               children: [
-            //                 Text(
-            //                   "1",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "2",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "3",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //           Padding(
-            //             padding: EdgeInsets.only(top: 48, left: 78, right: 78),
-            //             child: Row(
-            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //               children: [
-            //                 Text(
-            //                   "4",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "5",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "6",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //           Padding(
-            //             padding: EdgeInsets.only(top: 48, left: 78, right: 78),
-            //             child: Row(
-            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //               children: [
-            //                 Text(
-            //                   "7",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "8",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "9",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //           Padding(
-            //             padding: EdgeInsets.only(
-            //                 top: 31, left: 78, right: 51, bottom: 40),
-            //             child: Row(
-            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //               children: [
-            //                 Text(
-            //                   ".",
-            //                   textAlign: TextAlign.center,
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "0",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 InkWell(
-            //                     onTap: () {
-            //                       Navigator.push(
-            //                           context,
-            //                           MaterialPageRoute(
-            //                               builder: (context) =>
-            //                                   PaymentToNewRecipientPage()));
-            //                     },
-            //                     child: AppSvg.asset(AssetUtils.next))
-            //               ],
-            //             ),
-            //           )
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // )
             Expanded(
               child: NumericKeyboard(
                   onKeyboardTap: (value) {
@@ -307,7 +198,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                     ),
                   ),
                   leftButtonFn: () {
-                    print('left button clicked');
+                    model.changeValue(".");
                   },
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly),
             )

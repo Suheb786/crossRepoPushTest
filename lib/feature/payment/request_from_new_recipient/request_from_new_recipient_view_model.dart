@@ -208,9 +208,10 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
             ibanOrMobile: ibanOrMobileController.text,
             purpose: purposeController.text,
             purposeDetail: purposeDetailController.text,
-            amount: int.parse(ProviderScope.containerOf(context)
-                .read(requestMoneyViewModelProvider)
-                .currentPinValue),
+            amount: double.parse(ProviderScope.containerOf(context)
+                    .read(requestMoneyViewModelProvider)
+                    .currentPinValue)
+                .toInt(),
             limit: limit,
             dbtrBic: dbtrBic ?? "",
             dbtrAcct: dbtrAcct ?? "",
