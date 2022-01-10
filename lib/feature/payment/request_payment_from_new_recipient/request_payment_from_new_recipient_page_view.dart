@@ -44,15 +44,15 @@ class RequestPaymentFromNewRecipientPageView
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: DotsIndicator(
-                    dotsCount: pages.length,
+                    dotsCount: pages.length - 1,
                     position: currentStep!.toDouble(),
                     decorator: DotsDecorator(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
-                        activeSize:
-                            Size((MediaQuery.of(context).size.width) / 2.5, 4),
-                        size:
-                            Size((MediaQuery.of(context).size.width) / 2.5, 4),
+                        activeSize: Size(
+                            (MediaQuery.of(context).size.width - 50) / 1, 4),
+                        size: Size(
+                            (MediaQuery.of(context).size.width - 50) / 1, 4),
                         spacing: EdgeInsets.symmetric(horizontal: 1),
                         activeShape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
