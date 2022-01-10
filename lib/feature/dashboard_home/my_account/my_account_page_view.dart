@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
@@ -84,8 +85,12 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                     EdgeInsets.only(top: 66),
                                                 child: Text(
                                                   cardData!.account!
-                                                          .accountTitle ??
-                                                      '',
+                                                              .accountTitle !=
+                                                          null
+                                                      ? cardData.account!
+                                                          .accountTitle!
+                                                          .toTitleCase()
+                                                      : '',
                                                   style: TextStyle(
                                                       fontSize: 16,
                                                       fontWeight:
@@ -106,7 +111,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                     Text(
                                                         cardData.account!
                                                             .availableBalance!
-                                                            .toString(),
+                                                            .toStringAsFixed(2),
                                                         style: TextStyle(
                                                             fontSize: 20,
                                                             fontWeight:
