@@ -146,6 +146,7 @@ class UserRepositoryImpl extends UserRepository {
       {String? countryName,
       String? email,
       String? mobileNumber,
+      String? mobileCode,
       String? password,
       String? confirmPassword,
       String? userName}) async {
@@ -154,6 +155,7 @@ class UserRepositoryImpl extends UserRepository {
           countryName: countryName,
           email: email,
           mobileNumber: mobileNumber,
+          mobileCode: mobileCode,
           password: password,
           confirmPassword: confirmPassword,
           userName: userName),
