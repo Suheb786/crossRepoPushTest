@@ -13,6 +13,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 
 class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
   MyDebitCardPageView(ProviderBase model) : super(model);
@@ -51,11 +52,17 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                 .read(appHomeViewModelProvider)
                                 .pageController
                                 .next();
+                            if (!model.cardKey.currentState!.isFront) {
+                              model.cardKey.currentState!.toggleCard();
+                            }
                           } else {
                             ProviderScope.containerOf(context)
                                 .read(appHomeViewModelProvider)
                                 .pageController
                                 .previous();
+                            if (!model.cardKey.currentState!.isFront) {
+                              model.cardKey.currentState!.toggleCard();
+                            }
                           }
                         },
                         child: Card(
@@ -144,18 +151,15 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                               ),
                                             ),
                                           ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 76),
-                                            child: Align(
-                                              alignment: Alignment.centerRight,
-                                              child: AppSvg.asset(
-                                                  AssetUtils.zigzagCircle),
-                                            ),
-                                          ),
                                         ],
                                       ),
+                                      Align(
+                                        alignment: Alignment.centerRight,
+                                        child: AppSvg.asset(
+                                            AssetUtils.zigzagCircle),
+                                      ),
                                       Padding(
-                                        padding: EdgeInsets.only(top: 10),
+                                        padding: EdgeInsets.only(top: 24),
                                         child: Row(
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
@@ -168,7 +172,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                         .AddMoneyOptionSelector);
                                               },
                                               child: Container(
-                                                height: 36,
+                                                height: 40,
+                                                width: 104,
                                                 decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -177,10 +182,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                         .accentTextTheme
                                                         .bodyText1!
                                                         .color),
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 8,
-                                                      horizontal: 17),
+                                                child: Center(
                                                   child: Text(
                                                     S.of(context).addMoney,
                                                     style: TextStyle(
@@ -259,11 +261,25 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                 child: GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
+                      ProviderScope.containerOf(context)
+                          .read(appHomeViewModelProvider)
+                          .pageController
+                          .next();
+                      Future.delayed(Duration(milliseconds: 600)).then((value) {
+                        if (!model.cardKey.currentState!.isFront) {
+                          model.cardKey.currentState!.toggleCard();
+                        }
+                      });
                     } else {
                       ProviderScope.containerOf(context)
                           .read(appHomeViewModelProvider)
                           .pageController
                           .previous();
+                      Future.delayed(Duration(milliseconds: 600)).then((value) {
+                        if (!model.cardKey.currentState!.isFront) {
+                          model.cardKey.currentState!.toggleCard();
+                        }
+                      });
                     }
                   },
                   child: Card(
@@ -288,13 +304,16 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        cardData.debitCard!.accountTitle ?? '',
+                                        cardData.debitCard!.accountTitle != null
+                                            ? cardData.debitCard!.accountTitle!
+                                                .toTitleCase()
+                                            : '',
                                         maxLines: 2,
                                         style: TextStyle(
                                             color: Theme.of(context)
@@ -333,24 +352,29 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                       Expanded(
                                         child: Text(
                                           cardData.debitCard!.cardNumber ?? '',
+                                          maxLines: 2,
                                           style: TextStyle(
                                             fontWeight: FontWeight.w700,
                                             fontSize: 14,
                                           ),
                                         ),
                                       ),
-                                      InkWell(
-                                          onTap: () {
-                                            Clipboard.setData(ClipboardData(
-                                                    text: cardData.debitCard!
-                                                            .cardNumber ??
-                                                        ''))
-                                                .then((value) =>
-                                                    Fluttertoast.showToast(
-                                                        msg:
-                                                            'Card number Copied'));
-                                          },
-                                          child: AppSvg.asset(AssetUtils.copy))
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 10),
+                                        child: InkWell(
+                                            onTap: () {
+                                              Clipboard.setData(ClipboardData(
+                                                      text: cardData.debitCard!
+                                                              .cardNumber ??
+                                                          ''))
+                                                  .then((value) =>
+                                                      Fluttertoast.showToast(
+                                                          msg:
+                                                              'Card number Copied'));
+                                            },
+                                            child:
+                                                AppSvg.asset(AssetUtils.copy)),
+                                      )
                                     ],
                                   ),
                                 ),
@@ -426,7 +450,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                 Padding(
                                   padding: EdgeInsets.symmetric(vertical: 32),
                                   child: Divider(
-                                    height: 1,
+                                    height: 2,
                                     color: Theme.of(context)
                                         .primaryTextTheme
                                         .bodyText1!
