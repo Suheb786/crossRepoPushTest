@@ -187,6 +187,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "businessNameOptional":
             MessageLookupByLibrary.simpleMessage("BUSINESS NAME (OPTIONAL)"),
         "businessType": MessageLookupByLibrary.simpleMessage("Business Type"),
+        "callHangupError": MessageLookupByLibrary.simpleMessage(
+            "Error occurred during hangup call"),
         "callHasEnded": MessageLookupByLibrary.simpleMessage("Call has ended"),
         "camera": MessageLookupByLibrary.simpleMessage("Camera"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
@@ -507,6 +509,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Error While Logout"),
         "errorWhileRegistration": MessageLookupByLibrary.simpleMessage(
             "An error has occurred during Registration Process, please try again"),
+        "establishCallError": MessageLookupByLibrary.simpleMessage(
+            "Error occurred while establish call"),
         "estimatedTime": m1,
         "excitingPromotion": MessageLookupByLibrary.simpleMessage(
             "We will keep you updated\nwith our other exciting promotions!"),
@@ -564,6 +568,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "genderSmall": MessageLookupByLibrary.simpleMessage("Gender"),
         "genericError": MessageLookupByLibrary.simpleMessage(
             "Something went wrong. Please try again."),
+        "getCallDurationError": MessageLookupByLibrary.simpleMessage(
+            "Error occurred while get call duration"),
+        "getCallTokenError": MessageLookupByLibrary.simpleMessage(
+            "Error occurred during getting token"),
         "getCardDelivered": MessageLookupByLibrary.simpleMessage(
             "Get your card delivered right to your\ndoorstep. Spend and enjoy discounts\nat participating outlets"),
         "getCardNow":
@@ -613,6 +621,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "incomeDetails": MessageLookupByLibrary.simpleMessage("INCOME DETAILS"),
         "increaseCreditLimit":
             MessageLookupByLibrary.simpleMessage("Increase credit limit"),
+        "infobipInitError": MessageLookupByLibrary.simpleMessage(
+            "Error occurred while Initialization"),
         "informationSave": MessageLookupByLibrary.simpleMessage(
             "Don\'t worry, if you log out your information will be saved and you can login at any time."),
         "insufficientBalance": MessageLookupByLibrary.simpleMessage(

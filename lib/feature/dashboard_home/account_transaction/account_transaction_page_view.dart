@@ -29,8 +29,8 @@ class AccountTransactionPageView
       child: Padding(
         padding: EdgeInsets.only(top: 52),
         child: GestureDetector(
-          onVerticalDragUpdate: (details) {
-            if (details.primaryDelta!.isNegative) {
+          onVerticalDragEnd: (details) {
+            if (details.primaryVelocity!.isNegative) {
             } else {
               Navigator.pop(context);
             }

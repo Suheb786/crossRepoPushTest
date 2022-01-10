@@ -7110,6 +7110,56 @@ class S {
     );
   }
 
+  /// `Error occurred during hangup call`
+  String get callHangupError {
+    return Intl.message(
+      'Error occurred during hangup call',
+      name: 'callHangupError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while Initialization`
+  String get infobipInitError {
+    return Intl.message(
+      'Error occurred while Initialization',
+      name: 'infobipInitError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while establish call`
+  String get establishCallError {
+    return Intl.message(
+      'Error occurred while establish call',
+      name: 'establishCallError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while get call duration`
+  String get getCallDurationError {
+    return Intl.message(
+      'Error occurred while get call duration',
+      name: 'getCallDurationError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred during getting token`
+  String get getCallTokenError {
+    return Intl.message(
+      'Error occurred during getting token',
+      name: 'getCallTokenError',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `We will notify you once it’s ready`
   String get weWillNotifyOnceReady {
     return Intl.message(

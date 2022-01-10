@@ -43,6 +43,8 @@
 	<string>Can I use the mic please?</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>App allows you to upload photos.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Make Call</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
