@@ -19,10 +19,15 @@ class FatcaUSW9TaxPayerDetailsUseCaseParams extends Params {
   final String? taxPayerType;
   bool isSocialSecurityTaxPayer;
   final String? socialSecurityNumber;
+  bool isEmployer;
+  final String? employerIdNumber;
 
-  FatcaUSW9TaxPayerDetailsUseCaseParams({this.taxPayerType,
-    this.socialSecurityNumber,
-    required this.isSocialSecurityTaxPayer});
+  FatcaUSW9TaxPayerDetailsUseCaseParams(
+      {this.taxPayerType,
+      this.socialSecurityNumber,
+      required this.isSocialSecurityTaxPayer,
+      this.employerIdNumber,
+      required this.isEmployer});
 
   @override
   Either<AppError, bool> verify() {
@@ -36,6 +41,13 @@ class FatcaUSW9TaxPayerDetailsUseCaseParams extends Params {
         return Left(AppError(
             error: ErrorInfo(message: ''),
             type: ErrorType.INVALID_SECURITY_NUMBER,
+            cause: Exception()));
+      }
+    } else if (isEmployer) {
+      if (employerIdNumber!.isEmpty) {
+        return Left(AppError(
+            error: ErrorInfo(message: ''),
+            type: ErrorType.INVALID_EMPLOYER_ID,
             cause: Exception()));
       }
     }

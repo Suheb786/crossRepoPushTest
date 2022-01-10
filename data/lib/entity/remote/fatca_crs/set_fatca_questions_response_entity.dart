@@ -1,5 +1,6 @@
+import 'package:data/entity/remote/fatca_crs/set_fatca_response_content_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
-import 'package:domain/model/fatca_crs/set_fatca_questions_response.dart';
+import 'package:domain/model/fatca_crs/set_fatca_response.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -9,7 +10,7 @@ part 'set_fatca_questions_response_entity.g.dart';
 class SetFatcaQuestionsResponseEntity
     implements
         BaseLayerDataTransformer<SetFatcaQuestionsResponseEntity,
-            SetFatcaQuestionsResponse> {
+            SetFatcResponse> {
   @JsonKey(name: "response")
   final ResponseEntity? response;
 
@@ -22,12 +23,15 @@ class SetFatcaQuestionsResponseEntity
       _$SetFatcaQuestionsResponseEntityToJson(this);
 
   @override
-  SetFatcaQuestionsResponseEntity restore(SetFatcaQuestionsResponse response) {
+  SetFatcaQuestionsResponseEntity restore(SetFatcResponse response) {
     return SetFatcaQuestionsResponseEntity();
   }
 
   @override
-  SetFatcaQuestionsResponse transform() {
-    return SetFatcaQuestionsResponse(isSuccess: response!.code == 1);
+  SetFatcResponse transform() {
+    return SetFatcResponse(
+        setFatcaResponseContent:
+            SetFatcaResponseContentEntity.fromJson(response!.content)
+                .transform());
   }
 }

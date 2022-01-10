@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/animation.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:package_info/package_info.dart';
 import 'package:rxdart/subjects.dart';
 
 class SplashViewModel extends BasePageViewModel {
@@ -14,11 +15,28 @@ class SplashViewModel extends BasePageViewModel {
 
   AnimationController? animationController;
 
+  ///app version response
+  final PublishSubject<String> _appVersionSubject = PublishSubject();
+
+  Stream<String> get appVersionStream => _appVersionSubject.stream;
+
+  SplashViewModel() {
+    getAppVersion();
+  }
+
   /// Timer logic to trigger after 1 sec
   startTimer(Duration duration) {
     Timer(duration, () {
       _splashProgressSubject.safeAdd(1.0);
     });
+  }
+
+  /// get version
+  void getAppVersion() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    String version = packageInfo.version;
+    String buildNumber = packageInfo.buildNumber;
+    _appVersionSubject.safeAdd('Version: $version+$buildNumber');
   }
 
   @override

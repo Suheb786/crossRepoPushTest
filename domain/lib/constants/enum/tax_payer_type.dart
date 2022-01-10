@@ -1,4 +1,1 @@
-enum TaxPayerTypeEnum{
-  W8,
-  W9
-}
+enum TaxPayerTypeEnum { W8, W9, NONE }

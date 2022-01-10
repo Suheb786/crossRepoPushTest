@@ -48,7 +48,15 @@ class EnterNewPasswordPageView
                         } else if (passwordData.appError!.type ==
                             ErrorType.EMPTY_NEW_PASSWORD) {
                           model.newPasswordKey.currentState!.isValid = false;
+                        } else if (passwordData.appError!.type ==
+                            ErrorType.PASSWORD_NOT_MEET_CRITERIA) {
+                          model.newPasswordKey.currentState!.isValid = false;
+                        } else if (passwordData.appError!.type ==
+                            ErrorType.CURRENT_PASSWORD_INVALID) {
+                          model.currentPasswordKey.currentState!.isValid =
+                              false;
                         }
+
                         model.showToastWithError(passwordData.appError!);
                       }
                     },
@@ -84,6 +92,7 @@ class EnterNewPasswordPageView
                                                 model.currentPasswordController,
                                             onChanged: (value) {
                                               model.validateAllFields();
+                                              model.validateCurrentPassword();
                                             },
                                             suffixIcon: (isChecked, value) {
                                               return InkWell(

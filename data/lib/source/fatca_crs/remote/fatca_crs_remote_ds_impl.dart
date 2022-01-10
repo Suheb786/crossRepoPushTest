@@ -5,8 +5,11 @@ import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/set_fatca_questions_response_entity.dart';
+import 'package:data/entity/remote/fatca_crs/set_fatca_w8_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/set_fatca_w9_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/upload_signature_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/upload_signature_response_entity.dart';
+import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
 import 'package:retrofit/dio.dart';
@@ -28,19 +31,15 @@ class FatcaCrsRemoteDSImpl extends FatcaCrsRemoteDS {
   @override
   Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
       {bool? response1,
-        bool? response2,
-        bool? response3,
-        bool? response4,
-        bool? response5,
-        String? relationshipWithPep,
-        String? personName,
-        String? personRole,
-        bool? isTinNoRes4,
-        String? taxResidenceCountry,
-        String? tinNoRes4,
-        String? reasonUnavailableRes4,
-        String? reasonBRes4,
-        bool? getToken}) async {
+      bool? response2,
+      bool? response3,
+      bool? response4,
+      bool? response5,
+      String? relationshipWithPep,
+      String? personName,
+      String? personRole,
+      String? taxResidenceCountry,
+      bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveFatcaInformation(SaveFatcaInformationRequestEntity(
         response1: response1,
@@ -51,11 +50,7 @@ class FatcaCrsRemoteDSImpl extends FatcaCrsRemoteDS {
         relationshipWithPEP: relationshipWithPep ?? '',
         personName: personName ?? '',
         personRole: personRole ?? '',
-        isTinNoRes4: isTinNoRes4,
         taxResidenceCountry: taxResidenceCountry,
-        tinNoRes4: tinNoRes4,
-        reasonUnavailableRes4: reasonUnavailableRes4,
-        reasonBRes4: reasonBRes4,
         baseData: baseData.toJson(),
         getToken: getToken));
   }
@@ -67,5 +62,111 @@ class FatcaCrsRemoteDSImpl extends FatcaCrsRemoteDS {
     return _apiService.uploadSignature(UploadSignatureRequestEntity(
         baseData: baseData.toJson(),
         image: ImageUtils.convertToBase64(image!)));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> saveFatcaW8(
+      {String? nameIncomeTaxReturn,
+      String? dateOfBirth,
+      String? citizenShipCountry,
+      String? permanentResidenceAddress,
+      String? countryIsoCode,
+      String? cityId,
+      String? stateId,
+      String? postCode,
+      bool? isDifferentMailingAddress,
+      String? mailingAddressLine,
+      String? differentMailingCountry,
+      String? differentMailingState,
+      String? differentMailingCity,
+      String? differentMailingPostCode,
+      String? taxPayer,
+      String? usTaxPayerTin,
+      String? foreignTaxPayerTin,
+      String? referenceNumber,
+      bool? isClaimedTaxTreatBenefits,
+      String? beneficialOwnerResident,
+      String? provisionOrClaim,
+      String? treatyClaimRate,
+      String? typeOfIncome,
+      String? explanation,
+      String? signatureId}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.saveFatcaW8(SetFatcaW8RequestEntity(
+      nameIncomeTAXReturn: nameIncomeTaxReturn,
+      dateOfBirth: dateOfBirth,
+      citizenShipCountry: citizenShipCountry,
+      permanentResidenceAddress: permanentResidenceAddress,
+      countryIsoCode: countryIsoCode,
+      cityId: cityId,
+      stateId: stateId,
+      postCode: postCode,
+      isDifferentMailingAddress: isDifferentMailingAddress,
+      mailingAddressLine: mailingAddressLine,
+      differentMailingCountryIsoCode: differentMailingCountry,
+      differentMailingStateID: differentMailingState,
+      differentMailingCityId: differentMailingCity,
+      differentMailingPostCode: differentMailingPostCode,
+      taxPayer: taxPayer,
+      usTaxPayerTin: usTaxPayerTin,
+      foreignTaxPayerTin: foreignTaxPayerTin,
+      referenceNumber: referenceNumber,
+      isClaimedTaxTreatBenefits: isClaimedTaxTreatBenefits,
+      beneficialOwnerResidentIsoCode: beneficialOwnerResident,
+      treatyClaimRate: treatyClaimRate,
+      explanation: explanation,
+      provisionOrClaim: provisionOrClaim,
+      typeOfIncome: typeOfIncome,
+      signatureId: signatureId,
+      getToken: true,
+      baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> saveFatcaW9(
+      {String? namePerIncomeTaxReturn,
+      String? businessName,
+      String? usAddress,
+      String? city,
+      String? state,
+      String? postCode,
+      String? accountNumberList,
+      String? exemptPayeeCode,
+      String? exemptFromFatcaReportingCode,
+      bool? additionalRequester,
+      String? requesterName,
+      String? requesterUsAddress,
+      String? requesterCity,
+      String? requesterState,
+      String? requesterPostCode,
+      String? taxPayer,
+      String? socialSecurityNumber,
+      String? employerTin,
+      String? signatureId}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.saveFatcaW9(SetFatcaW9RequestEntity(
+      namePerIncomeTaxReturn: namePerIncomeTaxReturn,
+      businessName: businessName,
+      uSAddress: usAddress,
+      cityId: city,
+      stateId: state,
+      postCode: postCode,
+      accountNumberList: accountNumberList,
+      exemptPayeeCode: exemptPayeeCode,
+      exemptFromFatcaReportingCode: exemptFromFatcaReportingCode,
+      isAdditionalRequester: additionalRequester,
+      requesterName: requesterName,
+      requesterUSAddress: requesterUsAddress,
+      requesterCity: requesterCity,
+      requesterState: requesterState,
+      requesterPostCode: requesterPostCode,
+      taxPayer: taxPayer,
+      socialSecurityNumber: socialSecurityNumber,
+      employerTIN: employerTin,
+      signatureId: signatureId,
+      getToken: true,
+      baseData: baseData.toJson(),
+    ));
   }
 }

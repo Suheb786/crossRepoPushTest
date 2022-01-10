@@ -1,5 +1,5 @@
 import 'package:domain/constants/error_types.dart';
-import 'package:domain/model/fatca_crs/fatca_set_data.dart';
+import 'package:domain/model/fatca_crs/fatca_w9_data.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w9_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -86,15 +86,14 @@ class FatcaUSRelevantW9PageViewModel extends BasePageViewModel {
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope
-        .containerOf(context)
+    FatcaW9Data fatcaSetData = ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .fatcaData;
+        .getFatcaW9Data;
     fatcaSetData.namePerIncomeTaxReturn = nameAsPerTaxReturnController.text;
     fatcaSetData.businessName = businessNameController.text;
     ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .setFatcaData(fatcaSetData);
+        .setFatcaW9(fatcaSetData);
   }
 
   @override

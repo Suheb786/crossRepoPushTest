@@ -64,11 +64,12 @@ class UserRemoteDSImpl extends UserRemoteDS {
 
   // final CryptoUtil _cryptoUtil;
 
-  UserRemoteDSImpl(this._apiService,
-      this._deviceInfoHelper,
-      this._userLocalDS,
-      // this._cryptoUtil
-      );
+  UserRemoteDSImpl(
+    this._apiService,
+    this._deviceInfoHelper,
+    this._userLocalDS,
+    // this._cryptoUtil
+  );
 
   @override
   Future<HttpResponse<CheckUserNameResponseEntity>> checkUserName(
@@ -77,17 +78,14 @@ class UserRemoteDSImpl extends UserRemoteDS {
     Map<String, dynamic> content = Map();
     content.putIfAbsent("userName", () => email);
     content.putIfAbsent(
-        "UniqueId", () =>
-        DateTime
-            .now()
-            .microsecondsSinceEpoch
-            .toString());
+        "UniqueId", () => DateTime.now().microsecondsSinceEpoch.toString());
     return _apiService.checkUserName(
         CheckUserEmailRequest(baseData: baseData.toJson(), content: content));
   }
 
   @override
-  Future<HttpResponse<LoginResponseEntity>> loginUser({required String email, required String password}) async {
+  Future<HttpResponse<LoginResponseEntity>> loginUser(
+      {required String email, required String password}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.loginUser(LoginUserRequest(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
@@ -99,7 +97,8 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile({String? mobileNumber, String? countryCode}) async {
+  Future<HttpResponse<CheckUserNameResponseEntity>> checkUserNameMobile(
+      {String? mobileNumber, String? countryCode}) async {
     // BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     Map<String, dynamic> content = Map();
     content.putIfAbsent("MobileNumber", () => mobileNumber);
@@ -120,11 +119,11 @@ class UserRemoteDSImpl extends UserRemoteDS {
   @override
   Future<HttpResponse<RegisterResponseEntity>> registerProspectUser(
       {String? countryName,
-        String? email,
-        String? mobileNumber,
-        String? password,
-        String? confirmPassword,
-        String? userName}) async {
+      String? email,
+      String? mobileNumber,
+      String? password,
+      String? confirmPassword,
+      String? userName}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.registerProspectUser(RegisterProspectUserRequest(
         baseData: baseData.toJson(),
@@ -144,47 +143,41 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo({String? id,
-    String? type,
-    String? fullName,
-    String? firstName,
-    String? middleName,
-    String? secondNameEn,
-    String? placeOfBirth,
-    String? familyNameAr,
-    String? secNameAr,
-    String? thirdNameAr,
-    String? firstNameAr,
-    String? familyName,
-    String? idNumber,
-    String? dob,
-    String? nationality,
-    String? doe,
-    String? gender,
-    String? motherName,
-    String? documentCode,
-    String? documentNumber,
-    String? issuer,
-    String? optionalData1,
-    String? optionalData2,
-    String? mrtDraw,
-    String? frontCardImage,
-    String? backCardImage,
-    String? personFaceImage,
-    bool? getToken,
-    bool? isimtfBlacklist,
-    String? instanceID,
-    double? scanPercentage}) async {
+  Future<HttpResponse<SaveIdInfoResponseEntity>> saveIdInfo(
+      {String? id,
+      String? type,
+      String? fullName,
+      String? firstName,
+      String? middleName,
+      String? placeOfBirth,
+      String? familyName,
+      String? idNumber,
+      String? dob,
+      String? nationality,
+      String? doe,
+      String? gender,
+      String? motherName,
+      String? documentCode,
+      String? documentNumber,
+      String? issuer,
+      String? optionalData1,
+      String? optionalData2,
+      String? mrtDraw,
+      String? frontCardImage,
+      String? backCardImage,
+      String? personFaceImage,
+      bool? getToken,
+      bool? isimtfBlacklist,
+      String? instanceID,
+      double? scanPercentage,
+      String? doi}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveIdInfo(SaveIdInfoRequest(
         baseData: baseData.toJson(),
         getToken: true,
         type: "C",
         dob: dob,
-        id: DateTime
-            .now()
-            .microsecondsSinceEpoch
-            .toString(),
+        id: DateTime.now().microsecondsSinceEpoch.toString(),
         backCardImage: backCardImage,
         documentCode: documentCode ?? 'I',
         documentNumber: documentNumber,
@@ -206,27 +199,23 @@ class UserRemoteDSImpl extends UserRemoteDS {
         optionalData2: optionalData2,
         personFaceImage: personFaceImage,
         scanPercentage: 0,
-        secondNameEn: secondNameEn,
-        placeOfBirth: placeOfBirth,
-        familyNameAr: familyNameAr,
-        secNameAr: secNameAr,
-        firstNameAr: familyNameAr,
-        thirdNameAr: thirdNameAr));
+        doi: doi,
+        placeOfBirth: placeOfBirth));
   }
 
   @override
   Future<HttpResponse<SaveJobDetailsResponseEntity>> saveJobInformation(
       {String? employeeName,
-        String? occupation,
-        String? annualIncome,
-        String? employerCountry,
-        String? employerCity,
-        String? employerContact,
-        bool? additionalIncome,
-        String? businessType,
-        String? specifyBusinessType,
-        String? mainSource,
-        List<AdditionalIncomeType>? additionalIncomeType}) async {
+      String? occupation,
+      String? annualIncome,
+      String? employerCountry,
+      String? employerCity,
+      String? employerContact,
+      bool? additionalIncome,
+      String? businessType,
+      String? specifyBusinessType,
+      String? mainSource,
+      List<AdditionalIncomeType>? additionalIncomeType}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveJobInformation(SaveJobInfoRequest(
         baseData: baseData.toJson(),
@@ -247,14 +236,14 @@ class UserRemoteDSImpl extends UserRemoteDS {
   @override
   Future<HttpResponse<SaveProfileStatusResponseEntity>> saveProfileInformation(
       {bool? married,
-        bool? specialPerson,
-        bool? anyOtherNationality,
-        bool? beneficialOwnerAccount,
-        String? otherNationality,
-        String? employmentStatus,
-        String? spouseName,
-        bool? isEmployed,
-        String? natureOfSpecialNeeds}) async {
+      bool? specialPerson,
+      bool? anyOtherNationality,
+      bool? beneficialOwnerAccount,
+      String? otherNationality,
+      String? employmentStatus,
+      String? spouseName,
+      bool? isEmployed,
+      String? natureOfSpecialNeeds}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveProfileInformation(SaveProfileInformationRequest(
       baseData: baseData.toJson(),
@@ -271,13 +260,17 @@ class UserRemoteDSImpl extends UserRemoteDS {
 
   @override
   Future<HttpResponse<SaveCountryResidenceInfoResponseEntity>>
-  saveResidenceInformation({String? residentCountry,
+      saveResidenceInformation({
+    String? residentCountry,
     String? buildingName,
     String? streetName,
     String? residentArea,
     String? residentCity,
     String? permanentResidentCountry,
-    String? permanentResidentCity}) async {
+    String? permanentResidentCity,
+    String? stateId,
+    String? cityId,
+  }) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveResidenceInformation(SaveResidenceInformationRequest(
         baseData: baseData.toJson(),
@@ -285,9 +278,10 @@ class UserRemoteDSImpl extends UserRemoteDS {
         buildingName: buildingName,
         streetName: streetName,
         area: residentArea,
-        city: residentCity,
         perCountry: permanentResidentCountry,
-        perCity: permanentResidentCity));
+        perCity: permanentResidentCity,
+        stateID: stateId,
+        cityId: cityId));
   }
 
   @override
@@ -305,7 +299,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
 
   @override
   Future<HttpResponse<GetConfirmApplicationDataResponseEntity>>
-  confirmApplicationDataGet() async {
+      confirmApplicationDataGet() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.confirmApplicationDataGet(
         ConfirmApplicationDataGetRequestEntity(
@@ -318,10 +312,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.registerInterest(RegisterInterestRequestEntity(
         email: email,
-        uniqueId: DateTime
-            .now()
-            .microsecondsSinceEpoch
-            .toString(),
+        uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
         baseData: baseData.toJson()));
   }
 
@@ -343,28 +334,29 @@ class UserRemoteDSImpl extends UserRemoteDS {
 
   @override
   Future<HttpResponse<ConfirmApplicationDataSetResponseEntity>>
-  confirmApplicationDataSet({CountryResidenceInfo? countryResidenceInfo,
-    ProfileStatusInfo? profileStatusInfo,
-    JobDetailInfo? jobDetailInfo,
-    FatcaCrsInfo? fatcaCrsInfo,
-    AccountPurposeInfo? accountPurposeInfo}) async {
+      confirmApplicationDataSet(
+          {CountryResidenceInfo? countryResidenceInfo,
+          ProfileStatusInfo? profileStatusInfo,
+          JobDetailInfo? jobDetailInfo,
+          FatcaCrsInfo? fatcaCrsInfo,
+          AccountPurposeInfo? accountPurposeInfo}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.confirmApplicationDataSet(
         ConfirmApplicationDataSetRequestEntity(
             getToken: true,
             reviewDocumentResponse: ReviewApplicationDataEntity(
-                profileStatus: ProfileStatusEntity()
-                    .restore(profileStatusInfo!)
-                    .toJson(),
-                jobDetail:
-                JobDetailEntity().restore(jobDetailInfo!).toJson(),
-                fatcaCrs: FatcaCrsEntity().restore(fatcaCrsInfo!).toJson(),
-                countryResidence: CountryResidenceEntity()
-                    .restore(countryResidenceInfo!)
-                    .toJson(),
-                accountPurpose: AccountPurposeEntity()
-                    .restore(accountPurposeInfo!)
-                    .toJson())
+                    profileStatus: ProfileStatusEntity()
+                        .restore(profileStatusInfo!)
+                        .toJson(),
+                    jobDetail:
+                        JobDetailEntity().restore(jobDetailInfo!).toJson(),
+                    fatcaCrs: FatcaCrsEntity().restore(fatcaCrsInfo!).toJson(),
+                    countryResidence: CountryResidenceEntity()
+                        .restore(countryResidenceInfo!)
+                        .toJson(),
+                    accountPurpose: AccountPurposeEntity()
+                        .restore(accountPurposeInfo!)
+                        .toJson())
                 .toJson(),
             baseData: baseData.toJson()));
   }
@@ -381,10 +373,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.disableFingerPrint(DisableFingerPrintRequestEntity(
         getToken: true,
-        uniqueId: DateTime
-            .now()
-            .microsecondsSinceEpoch
-            .toString(),
+        uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
         baseData: baseData.toJson()));
   }
 

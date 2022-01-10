@@ -42,16 +42,16 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
 
   ///purpose of account opening request subject holder
   PublishSubject<PurposeOfAccountOpeningUseCaseParams>
-  _purposeOfAccountOpeningRequest = PublishSubject();
+      _purposeOfAccountOpeningRequest = PublishSubject();
 
   ///purpose of account opening response holder
   PublishSubject<Resource<PurposeOfAccountOpeningResponse>>
-  _purposeOfAccountOpeningResponse = PublishSubject();
+      _purposeOfAccountOpeningResponse = PublishSubject();
 
   ///purpose of account opening stream
   Stream<Resource<PurposeOfAccountOpeningResponse>>
-  get purposeOfAccountOpeningStream =>
-      _purposeOfAccountOpeningResponse.stream;
+      get purposeOfAccountOpeningStream =>
+          _purposeOfAccountOpeningResponse.stream;
 
   ///all field validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();
@@ -69,6 +69,8 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
     _allFieldValidatorSubject.safeAdd(valid);
     return valid;
   }
+
+  bool expectedTransactionSelected = false;
 
   List<ExpectedTransactions> expectedTransactionsList = [
     ExpectedTransactions(type: 'Cash Deposit'),
@@ -93,6 +95,18 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
         !(expectedTransactionsList.elementAt(index).isSelected);
     _getExpectedTransactionsResponse
         .safeAdd(Resource.success(data: expectedTransactionsList));
+  }
+
+  void checkTransactionSelected() {
+    var expectedTransactionList = _getExpectedTransactionsResponse.value.data!;
+
+    var isSelected =
+        expectedTransactionList.where((element) => element.isSelected == true);
+    if (isSelected.isEmpty) {
+      expectedTransactionSelected = false;
+    } else {
+      expectedTransactionSelected = true;
+    }
   }
 
   PurposeOfAccountOpeningPageViewModel(this._purposeOfAccountOpeningUseCase) {
@@ -125,19 +139,23 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_EXPECTED_MONTHLY_TRANSACTION:
         expectedMonthlyTransactionKey.currentState!.isValid = false;
         break;
+      case ErrorType.SELECT_EXPECTED_TRANSACTION:
+        break;
       default:
         break;
     }
   }
 
   void validatePurposeOfAccountOpening() {
+    checkTransactionSelected();
     _purposeOfAccountOpeningRequest.safeAdd(
         PurposeOfAccountOpeningUseCaseParams(
             purposeOfAccountOpening: purposeOfAccountOpeningController.text,
             expectedAnnualTransaction: expectedAnnualTransactionController.text,
             expectedMonthlyTransaction:
                 expectedMonthlyTransactionController.text,
-            getToken: false,
+            getToken: true,
+            expectedTransactionSelected: expectedTransactionSelected,
             isCashDeposit:
                 _getExpectedTransactionsResponse.value.data![0].isSelected,
             isTransfer:

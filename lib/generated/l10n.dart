@@ -7110,11 +7110,251 @@ class S {
     );
   }
 
+  /// `Error occurred during hangup call`
+  String get callHangupError {
+    return Intl.message(
+      'Error occurred during hangup call',
+      name: 'callHangupError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while Initialization`
+  String get infobipInitError {
+    return Intl.message(
+      'Error occurred while Initialization',
+      name: 'infobipInitError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while establish call`
+  String get establishCallError {
+    return Intl.message(
+      'Error occurred while establish call',
+      name: 'establishCallError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred while get call duration`
+  String get getCallDurationError {
+    return Intl.message(
+      'Error occurred while get call duration',
+      name: 'getCallDurationError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error occurred during getting token`
+  String get getCallTokenError {
+    return Intl.message(
+      'Error occurred during getting token',
+      name: 'getCallTokenError',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `We will notify you once it’s ready`
   String get weWillNotifyOnceReady {
     return Intl.message(
       'We will notify you once it’s ready',
       name: 'weWillNotifyOnceReady',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter total annual income`
+  String get emptyIncome {
+    return Intl.message(
+      'Enter total annual income',
+      name: 'emptyIncome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account ready!`
+  String get accountReadyMsg {
+    return Intl.message(
+      'Account ready!',
+      name: 'accountReadyMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your free virtual debit card has been issued, and the physical one is\non its way.`
+  String get yourFreeVirtualDebitCardHasBeenIssued {
+    return Intl.message(
+      'Your free virtual debit card has been issued, and the physical one is\non its way.',
+      name: 'yourFreeVirtualDebitCardHasBeenIssued',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password does not meet requirement. \nPlease try again.`
+  String get passwordNotMeetCriteria {
+    return Intl.message(
+      'Password does not meet requirement. \nPlease try again.',
+      name: 'passwordNotMeetCriteria',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current password is invalid. Password does not meet requirement.`
+  String get currentPasswordInvalid {
+    return Intl.message(
+      'Current password is invalid. Password does not meet requirement.',
+      name: 'currentPasswordInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select expected transaction`
+  String get selectExpectedTransaction {
+    return Intl.message(
+      'Select expected transaction',
+      name: 'selectExpectedTransaction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Selfie Check!`
+  String get selfieCheck {
+    return Intl.message(
+      'Selfie Check!',
+      name: 'selfieCheck',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Make sure your face fits into the frame`
+  String get makeSureYourFaceFitsTheFrame {
+    return Intl.message(
+      'Make sure your face fits into the frame',
+      name: 'makeSureYourFaceFitsTheFrame',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Get Combo Values`
+  String get errorWhileGetComboValues {
+    return Intl.message(
+      'Error While Get Combo Values',
+      name: 'errorWhileGetComboValues',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User Already Exist. Try Using Different Email`
+  String get userAlreadyExists {
+    return Intl.message(
+      'User Already Exist. Try Using Different Email',
+      name: 'userAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Try Again`
+  String get pleaseTryAgain {
+    return Intl.message(
+      'Please Try Again',
+      name: 'pleaseTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Foreign Tax Identifying Number`
+  String get foreignTaxIdNumber {
+    return Intl.message(
+      'Foreign Tax Identifying Number',
+      name: 'foreignTaxIdNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please Enter Foreign Tax Identifying Number`
+  String get invalidForeignIdNumber {
+    return Intl.message(
+      'Please Enter Foreign Tax Identifying Number',
+      name: 'invalidForeignIdNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ExemptION from fatca reporting code`
+  String get exemptionFromFatcaReporting {
+    return Intl.message(
+      'ExemptION from fatca reporting code',
+      name: 'exemptionFromFatcaReporting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Exemption From Fatca Reporting Code`
+  String get invalidExemptionFromFatcaReporting {
+    return Intl.message(
+      'Enter Exemption From Fatca Reporting Code',
+      name: 'invalidExemptionFromFatcaReporting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EMPLOYER IDENTIFICATION NUMBER`
+  String get employerIdNumber {
+    return Intl.message(
+      'EMPLOYER IDENTIFICATION NUMBER',
+      name: 'employerIdNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter Employer Identification Number`
+  String get invalidEmployerId {
+    return Intl.message(
+      'Enter Employer Identification Number',
+      name: 'invalidEmployerId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `error while Accessing Id Card Data.`
+  String get errorWhileAccessingIdData {
+    return Intl.message(
+      'error while Accessing Id Card Data.',
+      name: 'errorWhileAccessingIdData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID card issuer is not allowed at this moment. Please try again with valid ID card issuer.`
+  String get notAllowedCountry {
+    return Intl.message(
+      'ID card issuer is not allowed at this moment. Please try again with valid ID card issuer.',
+      name: 'notAllowedCountry',
       desc: '',
       args: [],
     );

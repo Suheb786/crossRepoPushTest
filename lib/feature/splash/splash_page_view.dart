@@ -25,15 +25,39 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
         return Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          child: Lottie.asset(AssetUtils.splashAnimation,
-              fit: BoxFit.cover,
-              controller: model.animationController,
-              alignment: Alignment.center, onLoaded: (composition) {
-            model.startTimer(composition.duration);
-            model.animationController!
-              ..duration = composition.duration
-              ..forward();
-          }),
+          padding: EdgeInsets.all(0),
+          child: Column(
+            children: [
+              Expanded(
+                child: Lottie.asset(AssetUtils.splashAnimation,
+                    fit: BoxFit.cover,
+                    width: MediaQuery.of(context).size.width,
+                    controller: model.animationController,
+                    alignment: Alignment.center, onLoaded: (composition) {
+                  model.startTimer(composition.duration);
+                  model.animationController!
+                    ..duration = composition.duration
+                    ..forward();
+                }),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 10, bottom: 20),
+                child: AppStreamBuilder<String>(
+                  initialData: '',
+                  stream: model.appVersionStream,
+                  dataBuilder: (context, version) {
+                    return Text(
+                      version!,
+                      style: TextStyle(
+                          fontSize: 12,
+                          color: Theme.of(context).primaryColorDark,
+                          fontWeight: FontWeight.w600),
+                    );
+                  },
+                ),
+              )
+            ],
+          ),
         );
       },
     );
