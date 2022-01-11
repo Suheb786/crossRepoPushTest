@@ -319,9 +319,6 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                             .dark_gray_1));
                                               },
                                             ),
-                                            SizedBox(
-                                              height: 32,
-                                            ),
                                             AppStreamBuilder<bool>(
                                               stream: model
                                                   .permanentAddressVisibilityStream,
@@ -335,6 +332,9 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
+                                                      SizedBox(
+                                                        height: 32,
+                                                      ),
                                                       Text(
                                                         S
                                                             .of(context)

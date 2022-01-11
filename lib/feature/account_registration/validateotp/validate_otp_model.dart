@@ -21,7 +21,7 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   void updateTime() {
     endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-    // notifyListeners();
+    notifyListeners();
   }
 
   ///verify otp request subject holder

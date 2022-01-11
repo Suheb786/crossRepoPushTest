@@ -118,7 +118,7 @@ class CreatePasswordViewModel extends BasePageViewModel {
         email: email,
         countryName: country,
         mobileNumber: phone,
-        mobileCode: mobileCode,
+        mobileCode: '00$mobileCode',
         userName: email,
         password: createPasswordController.text,
         confirmPassword: confirmPasswordController.text));
