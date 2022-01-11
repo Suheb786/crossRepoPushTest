@@ -7610,6 +7610,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Please add nickName`
+  String get emptyNickName {
+    return Intl.message(
+      'Please add nickName',
+      name: 'emptyNickName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -778,7 +778,6 @@
   "errorWhileGettingDashboard": "An error has occurred While Getting Account DashBoard",
   "mobileAlreadyExists": "Mobile Number Already Exist. Try Using Different Mobile Number",
   "weDoNotRecommendToUsePreviousTenPass": "We do not recommend to use your previous 10 passwords, please enter a new password ",
-  "currentPasswordIncorrect": "The current password entered is wrong. Please try again"
-  "generateBlockPin": "Error while generating block pin",
+  "currentPasswordIncorrect": "The current password entered is wrong. Please try again",
   "emptyNickName": "Please add nickName"
 }
