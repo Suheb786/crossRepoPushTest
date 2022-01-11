@@ -14,6 +14,12 @@ class JobDetailContentEntity
   final String? userId;
   @JsonKey(name: "profession")
   final String? profession;
+  @JsonKey(name: "occupation")
+  final String? occupation;
+  @JsonKey(name: "businessType")
+  final String? businessType;
+  @JsonKey(name: "businessSpecificType")
+  final String? businessSpecificType;
   @JsonKey(name: "mainSource")
   final String? mainSource;
   @JsonKey(name: "annualIncome")
@@ -33,18 +39,22 @@ class JobDetailContentEntity
   @JsonKey(name: "isActive")
   final bool? isActive;
 
-  JobDetailContentEntity({this.id,
-    this.userId,
-    this.profession,
-    this.mainSource,
-    this.annualIncome,
-    this.employeeName,
-    this.employerCountry,
-    this.employerCity,
-    this.employerContact,
-    this.createdOn,
-    this.additionalIncome,
-    this.isActive});
+  JobDetailContentEntity(
+      {this.id,
+      this.userId,
+      this.profession,
+      this.mainSource,
+      this.annualIncome,
+      this.employeeName,
+      this.employerCountry,
+      this.employerCity,
+      this.employerContact,
+      this.createdOn,
+      this.additionalIncome,
+      this.isActive,
+      this.occupation,
+      this.businessType,
+      this.businessSpecificType});
 
   factory JobDetailContentEntity.fromJson(Map<String, dynamic> json) =>
       _$JobDetailContentEntityFromJson(json);
@@ -82,6 +92,9 @@ class JobDetailContentEntity
         employerCountry: this.employerCountry,
         employeeName: this.employeeName,
         mainSource: this.mainSource,
-        profession: this.profession);
+        profession: this.profession,
+        occupation: this.occupation,
+        businessType: this.businessType,
+        businessSpecificType: this.businessSpecificType);
   }
 }

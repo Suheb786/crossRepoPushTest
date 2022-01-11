@@ -46,7 +46,7 @@ class EmploymentStatusDialogView extends StatelessWidget {
                           child: Text(
                             S.of(context).employmentStatusSmall,
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w600),
+                                fontSize: 14, fontWeight: FontWeight.w600),
                           ),
                         ),
                       ),

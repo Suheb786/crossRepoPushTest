@@ -40,7 +40,7 @@ dependencies:
   #  rsa_encrypt: ^2.0.0
   encrypt: ^5.0.1
   path_provider: any
-  permission_handler: ^8.3.0
+  permission_handler: any
 
 dev_dependencies:
   flutter_test:

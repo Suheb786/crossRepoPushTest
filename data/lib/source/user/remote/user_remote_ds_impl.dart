@@ -121,6 +121,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
       {String? countryName,
       String? email,
       String? mobileNumber,
+      String? mobileCode,
       String? password,
       String? confirmPassword,
       String? userName}) async {
@@ -129,6 +130,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
         baseData: baseData.toJson(),
         getToken: false,
         mobileNumber: mobileNumber,
+        mobileCode: mobileCode,
         email: email,
         companyId: 2,
         confirmPassword: confirmPassword,

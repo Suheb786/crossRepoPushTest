@@ -19,13 +19,13 @@ class EnterAddressUseCase extends BaseUseCase<NetworkError,
   Future<Either<NetworkError, SaveCountryResidenceInfoResponse>> execute(
       {required EnterAddressUseCaseParams params}) {
     return _repository.saveResidenceInformation(
-        residentCountry: params.residentCountry,
-        residentArea: params.residentArea,
+        residentCountry: params.countryId,
+        //residentArea: params.residentArea,
         residentCity: params.city,
         streetName: params.streetAddress,
         buildingName: params.buildingNameOrNo,
-        permanentResidentCountry: params.permanentResidentCountry,
-        permanentResidentCity: params.permanentCity,
+        permanentResidentCountry: params.permanentCountryId,
+        permanentResidentCity: params.permanentCityId,
         cityId: params.cityId,
         stateId: params.stateId);
   }
@@ -33,7 +33,8 @@ class EnterAddressUseCase extends BaseUseCase<NetworkError,
 
 class EnterAddressUseCaseParams extends Params {
   final String? residentCountry;
-  final String? residentArea;
+
+  final String? countryId;
   final String? city;
   final String? streetAddress;
   final String? buildingNameOrNo;
@@ -42,19 +43,22 @@ class EnterAddressUseCaseParams extends Params {
   final String? permanentCity;
   final String stateId;
   final String cityId;
+  final String permanentCityId;
+  final String permanentCountryId;
 
-  EnterAddressUseCaseParams({
-    required this.residentCountry,
-    required this.residentArea,
-    this.city,
-    required this.streetAddress,
-    required this.buildingNameOrNo,
-    required this.jordanianLivesAbroad,
-    this.permanentCity,
-    this.permanentResidentCountry,
-    required this.stateId,
-    required this.cityId,
-  });
+  EnterAddressUseCaseParams(
+      {required this.residentCountry,
+      required this.countryId,
+      this.city,
+      required this.streetAddress,
+      required this.buildingNameOrNo,
+      required this.jordanianLivesAbroad,
+      this.permanentCity,
+      this.permanentResidentCountry,
+      required this.stateId,
+      required this.cityId,
+      required this.permanentCityId,
+      required this.permanentCountryId});
 
   @override
   Either<AppError, bool> verify() {
@@ -73,14 +77,7 @@ class EnterAddressUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_STREET_ADDRESS,
           cause: Exception()));
-    }
-    // else if (Validator.isEmpty(residentArea!)) {
-    //   return Left(AppError(
-    //       error: ErrorInfo(message: ''),
-    //       type: ErrorType.EMPTY_DISTRICT,
-    //       cause: Exception()));
-    // }
-    else if (Validator.isEmpty(city!)) {
+    } else if (Validator.isEmpty(city!)) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.EMPTY_CITY,
