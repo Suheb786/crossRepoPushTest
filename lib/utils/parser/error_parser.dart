@@ -364,6 +364,8 @@ class ErrorParser {
         return localisedHelper.agreeTermsCondition;
       case ErrorType.EMPTY_MINIMUM_SETTLEMENT_VALUE:
         return localisedHelper.emptyMinimumSettlement;
+      case ErrorType.ERROR_GETTING_FATCA_CRS:
+        return localisedHelper.fatca;
 
       default:
         return "";

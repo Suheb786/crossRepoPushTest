@@ -47,8 +47,7 @@ class ScheduleVideoCallPageView
                   onData: (data) {
                     if (data.status == Status.SUCCESS) {
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope
-                            .containerOf(context)
+                        ProviderScope.containerOf(context)
                             .read(registerStepFiveViewModelProvider)
                             .registrationStepFivePageController
                             .next();
@@ -64,11 +63,10 @@ class ScheduleVideoCallPageView
                           model.validateScheduleVideoCallDetails();
                         } else {
                           Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope
-                                .containerOf(context)
+                            ProviderScope.containerOf(context)
                                 .read(registerStepFiveViewModelProvider)
                                 .registrationStepFivePageController
-                                .move(1);
+                                .move(1, animation: false);
                           });
                         }
                       },

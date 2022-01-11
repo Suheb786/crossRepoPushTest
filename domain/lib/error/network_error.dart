@@ -261,6 +261,12 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.ERROR_ACCESSING_ID);
 
+          case "ex-048":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_GETTING_FATCA_CRS);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

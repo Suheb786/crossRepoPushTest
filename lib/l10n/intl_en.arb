@@ -773,5 +773,6 @@
   "nameOfBeneficiary": "Name",
   "addNickName": "Add nickname",
   "errorDecryptCard": "Error while decrypting card",
-  "generateBlockPin": "Error while generating block pin"
+  "generateBlockPin": "Error while generating block pin",
+  "errorWhileGettingFatcaCrs": "Error While Getting FatcaCrs"
 }

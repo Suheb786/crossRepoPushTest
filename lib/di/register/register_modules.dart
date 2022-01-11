@@ -38,6 +38,7 @@ import 'package:neo_bank/feature/register/stepone/id_verification_info/id_verifi
 import 'package:neo_bank/feature/register/stepone/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_four/fatca_option_dialog/fatca_option_dialog_viewmodel.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_payer_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/calendar_dialog/calendar_dialog_view_model.dart';
@@ -53,6 +54,7 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/purpose_of_acco
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/reason_of_unavailability/reason_of_unavailability_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/relationship_with_pep/relationship_with_pep_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/profile/profile_item_view_model.dart';
+import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget_model.dart';
 
 final registerViewModelProvider =
@@ -141,6 +143,28 @@ final additionalIncomeSourceDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<AdditionIncomeSourceDialogViewModel>(
         (ref) => AdditionIncomeSourceDialogViewModel(
             ref.read(additionalIncomeSourceUseCaseProvider)));
+
+/// Provide new instance dependency every time to the TaxationSwitchWidgetViewModel.
+class TaxationSwitchWidgetViewModelProvider {
+  provide() {
+    final taxationSwitchWidgetViewModelProvider =
+        ChangeNotifierProvider.autoDispose<TaxationSwitchWidgetViewModel>(
+      (ref) => TaxationSwitchWidgetViewModel(),
+    );
+    return taxationSwitchWidgetViewModelProvider;
+  }
+}
+
+/// Provide new instance dependency every time to the FatcaDropDownFieldViewModel.
+class FatcaDropDownFieldViewModelProvider {
+  provide() {
+    final fatcaDropDownOptionWidgetViewModelProvider =
+        ChangeNotifierProvider.autoDispose<FatcaDropDownFieldViewModel>(
+      (ref) => FatcaDropDownFieldViewModel(),
+    );
+    return fatcaDropDownOptionWidgetViewModelProvider;
+  }
+}
 
 ///taxation details page view model provider
 final taxationDetailsPageViewModelProvider =
@@ -402,3 +426,8 @@ final fatcaSignaturePageViewModelProvider =
 final mobileNumberDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<MobileNumberDialogViewModel>(
         (ref) => MobileNumberDialogViewModel());
+
+///mobile number dialog view model provider
+final fatcaOptionsDialogViwModelProvider =
+    ChangeNotifierProvider.autoDispose<FatcaOptionDialogViewModel>(
+        (ref) => FatcaOptionDialogViewModel());

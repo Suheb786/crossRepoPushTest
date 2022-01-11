@@ -62,7 +62,7 @@ class FatcaUSRelevantW9PageView
                             ProviderScope.containerOf(context)
                                 .read(registerStepFourViewModelProvider)
                                 .registrationStepFourPageController
-                                .move(0);
+                                .move(0,animation:false);
                           });
                         }
                       },

@@ -1,4 +1,6 @@
+import 'package:domain/constants/enum/additional_data_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/fatca_crs/fatca_question_content_data.dart';
 import 'package:domain/model/fatca_crs/get_fatca_questions_response.dart';
 import 'package:domain/model/fatca_crs/set_fatca_response.dart';
 import 'package:domain/usecase/fatca_crs/get_fatca_questions_usecase.dart';
@@ -46,6 +48,9 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
   bool bornInUS = false;
   bool isUSCitizen = false;
   bool isPEP = false;
+
+  final SetFatcaQuestionsResponseUseCaseParams setFatcaParams =
+      SetFatcaQuestionsResponseUseCaseParams();
 
   ///update declaration selection function
   void updateDeclarationSelection(bool value) {
@@ -110,8 +115,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
       _getFatcaQuestionsResponseSubject.stream;
 
   void getFatcaQuestions() {
-    _getFatcaQuestionsRequest
-        .safeAdd(GetFatcaQuestionsUseCaseParams(getToken: true));
+    _getFatcaQuestionsRequest.safeAdd(GetFatcaQuestionsUseCaseParams());
   }
 
   TaxationDetailsPageViewModel(
@@ -126,7 +130,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         _setFatcaQuestionsResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
-          getError(event);
+          // getError(event);
         }
       });
     });
@@ -144,7 +148,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         }
       });
     });
-    //getFatcaQuestions();
+    getFatcaQuestions();
   }
 
   void getError(Resource<SetFatcResponse> event) {
@@ -169,17 +173,51 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
   }
 
   void setFatcaQuestionResponse() {
-    _setFatcaQuestionsRequest.safeAdd(SetFatcaQuestionsResponseUseCaseParams(
-        declarationSelected: _declarationSelected.value,
-        isPEP: isPEP,
-        relationShipPEP: relationShipController.text,
-        personName: personNameController.text,
-        personRole: personRoleController.text,
-        anyOtherCountryResident: anyOtherCountryResident,
-        country: countrySelectorController.text,
-        isUSCitizen: isUSCitizen,
-        isUSTaxResident: usTaxResident,
-        wasBornInUS: bornInUS));
+    _setFatcaQuestionsRequest.safeAdd(setFatcaParams);
+  }
+
+  void toggleSelection(bool value, int index) {
+    switch (index) {
+      case 0:
+        setFatcaParams.response1 = value;
+        break;
+      case 1:
+        setFatcaParams.response2 = value;
+        break;
+      case 2:
+        setFatcaParams.response3 = value;
+        break;
+      case 3:
+        setFatcaParams.response4 = value;
+        break;
+      case 4:
+        setFatcaParams.response5 = value;
+        break;
+    }
+  }
+
+  void setDropDownSelection(AdditionalDataDropDownData selectedDropDown,
+      AdditionalData additionalData) {
+    if (additionalData.label!.toLowerCase().contains("country") &&
+        additionalData.type == AdditionalDataTypeEnum.DROPDOWN) {
+      setFatcaParams.country = selectedDropDown.value ?? "";
+    }
+
+    if (additionalData.label!.toLowerCase().contains("pep") &&
+        additionalData.type == AdditionalDataTypeEnum.DROPDOWN) {
+      setFatcaParams.relationShipPEP = selectedDropDown.value ?? "";
+    }
+  }
+
+  void setOtherData(AdditionalData additionalData, String updatedValue) {
+    if (additionalData.label!.toLowerCase().contains("name") &&
+        additionalData.type == AdditionalDataTypeEnum.TEXT_FIELD) {
+      setFatcaParams.personName = updatedValue;
+    }
+    if (additionalData.label!.toLowerCase().contains("role") &&
+        additionalData.type == AdditionalDataTypeEnum.TEXT_FIELD) {
+      setFatcaParams.personRole = updatedValue;
+    }
   }
 
   ///update value to initials

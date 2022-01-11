@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7555,6 +7556,16 @@ class S {
     return Intl.message(
       'Error while generating block pin',
       name: 'generateBlockPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Getting FatcaCrs`
+  String get errorWhileGettingFatcaCrs {
+    return Intl.message(
+      'Error While Getting FatcaCrs',
+      name: 'errorWhileGettingFatcaCrs',
       desc: '',
       args: [],
     );

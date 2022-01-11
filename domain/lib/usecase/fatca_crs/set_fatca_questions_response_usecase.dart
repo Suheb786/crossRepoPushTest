@@ -18,74 +18,66 @@ class SetFatcaQuestionsResponseUseCase extends BaseUseCase<NetworkError,
   Future<Either<NetworkError, SetFatcResponse>> execute(
       {required SetFatcaQuestionsResponseUseCaseParams params}) {
     return _repository.saveFatcaInformation(
-        response1: params.isUSCitizen,
-        response2: params.isUSTaxResident,
-        response3: params.wasBornInUS,
-        response4: params.anyOtherCountryResident,
-        response5: params.isPEP,
-        relationshipWithPep: params.relationShipPEP!,
-        personName: params.personName!,
-        personRole: params.personRole!,
-        taxResidenceCountry: params.country!,
-        getToken: true);
+        response1: params.response1,
+        response2: params.response2,
+        response3: params.response3,
+        response4: params.response4,
+        response5: params.response5,
+        relationshipWithPep: params.relationShipPEP,
+        personName: params.personName,
+        personRole: params.personRole,
+        taxResidenceCountry: params.country);
   }
 }
 
 class SetFatcaQuestionsResponseUseCaseParams extends Params {
-  final String? relationShipPEP;
-  final String? personName;
-  final String? personRole;
-  final bool isPEP;
-  final bool anyOtherCountryResident;
-  final String? country;
-  final bool declarationSelected;
-  final bool isUSCitizen;
-  final bool isUSTaxResident;
-  final bool wasBornInUS;
+  bool response1;
+  bool response2;
+  bool response3;
+  bool response4;
+  bool response5;
+  String relationShipPEP;
+  String personName;
+  String personRole;
+  String country;
 
   SetFatcaQuestionsResponseUseCaseParams(
-      {this.relationShipPEP,
-      this.personName,
-      required this.anyOtherCountryResident,
-      this.country,
-      this.personRole,
-      required this.isPEP,
-      required this.declarationSelected,
-      required this.isUSCitizen,
-      required this.isUSTaxResident,
-      required this.wasBornInUS});
+      {this.relationShipPEP: "",
+      this.personName: "",
+      this.country: "",
+      this.personRole: "",
+      this.response1: false,
+      this.response2: false,
+      this.response3: false,
+      this.response4: false,
+      this.response5: false});
 
   @override
   Either<AppError, bool> verify() {
-    if (isPEP) {
-      if (relationShipPEP!.isEmpty) {
+    if (response5) {
+      if (relationShipPEP.isEmpty) {
         return Left(AppError(
             error: ErrorInfo(message: ''),
             type: ErrorType.INVALID_RELATIONSHIP,
             cause: Exception()));
-      } else if (personName!.isEmpty) {
+      } else if (personName.isEmpty) {
         return Left(AppError(
             error: ErrorInfo(message: ''),
             type: ErrorType.INVALID_PERSON_NAME,
             cause: Exception()));
-      } else if (personRole!.isEmpty) {
+      } else if (personRole.isEmpty) {
         return Left(AppError(
             error: ErrorInfo(message: ''),
             type: ErrorType.INVALID_PERSON_ROLE,
             cause: Exception()));
       }
-    } else if (anyOtherCountryResident && country!.isEmpty) {
+    } else if (response4 && country.isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_TAX_COUNTRY,
           cause: Exception()));
     }
-    if (!declarationSelected) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_DECLARATION_SELECTION,
-          cause: Exception()));
-    }
+
     return Right(true);
   }
 }

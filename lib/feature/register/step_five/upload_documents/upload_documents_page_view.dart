@@ -87,7 +87,7 @@ class UploadDocumentsPageView
                                     ProviderScope.containerOf(context)
                                         .read(registerStepFiveViewModelProvider)
                                         .registrationStepFivePageController
-                                        .move(0);
+                                        .move(0, animation: false);
                                   });
                                 }
                               },
