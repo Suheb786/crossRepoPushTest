@@ -59,14 +59,10 @@ class RegisterSelectionPageView
                   child: Column(
                     children: [
                       Text(
-                        S
-                            .of(context)
-                            .letsCreateYourProfile,
+                        S.of(context).letsCreateYourProfile,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                            color: Theme
-                                .of(context)
-                                .accentColor,
+                            color: Theme.of(context).accentColor,
                             fontSize: 32,
                             fontWeight: FontWeight.w600),
                       ),
@@ -104,9 +100,7 @@ class RegisterSelectionPageView
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
                                       letterSpacing: 1,
-                                      color: Theme
-                                          .of(context)
-                                          .accentColor)),
+                                      color: Theme.of(context).accentColor)),
                             ),
                           ),
                         ),
@@ -115,10 +109,12 @@ class RegisterSelectionPageView
                         padding: EdgeInsets.symmetric(vertical: 24),
                         child: Row(
                           children: <Widget>[
-                            AppDivider(
-                              color: Theme.of(context).accentColor,
-                              indent: 0,
-                              endIndent: 12,
+                            Expanded(
+                              child: AppDivider(
+                                color: Theme.of(context).accentColor,
+                                indent: 0,
+                                endIndent: 12,
+                              ),
                             ),
                             Text(
                               S.of(context).orContinueWith,
@@ -126,10 +122,12 @@ class RegisterSelectionPageView
                                   color: Theme.of(context).accentColor,
                                   fontSize: 12),
                             ),
-                            AppDivider(
-                              color: Theme.of(context).accentColor,
-                              endIndent: 0,
-                              indent: 12,
+                            Expanded(
+                              child: AppDivider(
+                                color: Theme.of(context).accentColor,
+                                endIndent: 0,
+                                indent: 12,
+                              ),
                             ),
                           ],
                         ),
@@ -160,14 +158,10 @@ class RegisterSelectionPageView
             Container(
               margin: EdgeInsets.symmetric(vertical: 25),
               child: Text(
-                S
-                    .of(context)
-                    .swipeDownToLogin,
+                S.of(context).swipeDownToLogin,
                 style: TextStyle(
                     fontSize: 14,
-                    color: Theme
-                        .of(context)
-                        .accentColor,
+                    color: Theme.of(context).accentColor,
                     letterSpacing: 1,
                     fontWeight: FontWeight.w500),
               ),

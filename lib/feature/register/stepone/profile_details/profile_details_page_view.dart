@@ -101,10 +101,6 @@ class ProfileDetailsPageView
                                       providerBase:
                                           anyOtherNationalityViewModelProvider,
                                       onToggle: (isActive) {
-                                        if (!isActive) {
-                                          model.otherNationalityController
-                                              .clear();
-                                        }
                                         model.isAnyOtherNationality = isActive;
                                         return Visibility(
                                           visible: isActive,
@@ -159,9 +155,6 @@ class ProfileDetailsPageView
                                       inactiveText: S.of(context).no,
                                       providerBase: profileQ1ViewModelProvider,
                                       onToggle: (isActive) {
-                                        if (!isActive) {
-                                          model.spouseNameController.clear();
-                                        }
                                         model.isMarried = isActive;
                                         return Visibility(
                                           visible: isActive,
@@ -188,9 +181,6 @@ class ProfileDetailsPageView
                                       activeText: S.of(context).yes,
                                       inactiveText: S.of(context).no,
                                       onToggle: (isActive) {
-                                        if (!isActive) {
-                                          model.natureController.clear();
-                                        }
                                         model.isPerson = isActive;
                                         return Visibility(
                                           visible: isActive,
@@ -259,7 +249,7 @@ class ProfileDetailsPageView
                                       },
                                     ),
                                     SizedBox(
-                                      height: 32,
+                                      height: 20,
                                     ),
                                     Text(
                                       S.of(context).whatIsYourEmploymentStatus,

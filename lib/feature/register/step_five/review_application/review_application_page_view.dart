@@ -215,15 +215,19 @@ class ReviewApplicationPageView
                                                                 TextInputType
                                                                     .text,
                                                           ),
-                                                          ReviewApplicationEditableItem(
-                                                            title: S
-                                                                .of(context)
-                                                                .areaSmall,
-                                                            controller: model
-                                                                .districtController,
-                                                            textInputType:
-                                                                TextInputType
-                                                                    .text,
+                                                          Visibility(
+                                                            visible: false,
+                                                            child:
+                                                                ReviewApplicationEditableItem(
+                                                              title: S
+                                                                  .of(context)
+                                                                  .areaSmall,
+                                                              controller: model
+                                                                  .districtController,
+                                                              textInputType:
+                                                                  TextInputType
+                                                                      .text,
+                                                            ),
                                                           ),
                                                           ReviewApplicationEditableItem(
                                                             title: S

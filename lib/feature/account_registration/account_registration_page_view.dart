@@ -113,7 +113,7 @@ class AccountRegistrationPageView
                           direction: Direction.vertical,
                           offset: 0.5,
                           child: Text(
-                            "${ProviderScope?.containerOf(context).read(addNumberViewModelProvider).selectedCountry.countryCallingCode ?? ""} "
+                            "+${ProviderScope?.containerOf(context).read(addNumberViewModelProvider).countryData.phoneCode ?? "-"} "
                             "${ProviderScope.containerOf(context).read(addNumberViewModelProvider).mobileNumberController.text}",
                             textAlign: TextAlign.center,
                             style: TextStyle(

@@ -42,6 +42,7 @@ abstract class UserRemoteDS {
       {String? countryName,
       String? email,
       String? mobileNumber,
+      String? mobileCode,
       String? password,
       String? confirmPassword,
       String? userName});

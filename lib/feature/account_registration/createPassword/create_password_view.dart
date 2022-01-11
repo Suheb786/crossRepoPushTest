@@ -58,15 +58,21 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                           model.passwordKey.currentState!.isValid = true;
                           model.confirmPasswordKey.currentState!.isValid = true;
                           model.registerUser(
-                              email: ProviderScope.containerOf(context)
-                                  .read(addNumberViewModelProvider)
-                                  .emailController
-                                  .text,
-                              country: "Jordan",
-                              phone: ProviderScope.containerOf(context)
-                                  .read(addNumberViewModelProvider)
-                                  .mobileNumberController
-                                  .text);
+                            email: ProviderScope.containerOf(context)
+                                .read(addNumberViewModelProvider)
+                                .emailController
+                                .text,
+                            country: "Jordan",
+                            phone: ProviderScope.containerOf(context)
+                                .read(addNumberViewModelProvider)
+                                .mobileNumberController
+                                .text,
+                            mobileCode: ProviderScope?.containerOf(context)
+                                    .read(addNumberViewModelProvider)
+                                    .countryData
+                                    .phoneCode ??
+                                '',
+                          );
                         } else if (passwordData.status == Status.ERROR) {
                           if (passwordData.appError!.type ==
                               ErrorType.PASSWORD_MISMATCH) {

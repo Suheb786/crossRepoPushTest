@@ -143,6 +143,7 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
   }
 
   void validateTextFields() {
+    clearField();
     _profileDetailsRequest.safeAdd(ProfileDetailsUseCaseParams(
         isMarried: isMarried,
         isPerson: isPerson,
@@ -156,6 +157,18 @@ class ProfileDetailsPageViewModel extends BasePageViewModel {
         jobName: jobNameController.text,
         isAnyOtherNationality: isAnyOtherNationality,
         otherNationality: otherNationalityController.text));
+  }
+
+  void clearField() {
+    if (!isAnyOtherNationality) {
+      otherNationalityController.clear();
+    }
+    if (!isMarried) {
+      spouseNameController.clear();
+    }
+    if (!isPerson) {
+      natureController.clear();
+    }
   }
 
   @override

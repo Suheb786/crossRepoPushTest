@@ -17,12 +17,13 @@ class RegisterProspectUseCase
       {required RegisterProspectUseCaseParams params}) async {
     return Future.value(
       (await _repository.registerProspectUser(
-          mobileNumber: params.mobileNumber,
-          countryName: params.countryName,
-          userName: params.userName,
-          password: params.password,
-          confirmPassword: params.confirmPassword,
-          email: params.email))
+              mobileNumber: params.mobileNumber,
+              mobileCode: params.mobileCode,
+              countryName: params.countryName,
+              userName: params.userName,
+              password: params.password,
+              confirmPassword: params.confirmPassword,
+              email: params.email))
           .fold((l) => Left(l), (user) async {
         return _repository.saveUser(user);
       }),
@@ -42,6 +43,7 @@ class RegisterProspectUseCaseParams extends Params {
   final String? countryName;
   final String? email;
   final String? mobileNumber;
+  final String? mobileCode;
   final String? password;
   final String? confirmPassword;
   final String? userName;
@@ -50,6 +52,7 @@ class RegisterProspectUseCaseParams extends Params {
       {this.countryName,
       this.email,
       this.mobileNumber,
+      this.mobileCode,
       this.password,
       this.confirmPassword,
       this.userName});
