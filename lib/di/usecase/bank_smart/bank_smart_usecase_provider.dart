@@ -13,18 +13,18 @@ final purposeOfAccountsOpeningUseCaseProvider =
 
 ///[GetAccountUseCase] provider
 final getAccountUseCaseProvider = Provider.autoDispose<GetAccountUseCase>(
-        (ref) => GetAccountUseCase(ref.read(bankSmartRepositoryProvider)));
+    (ref) => GetAccountUseCase(ref.read(bankSmartRepositoryProvider)));
 
 ///[GetAccountDetailsUseCase] provider
 final getAccountDetailsUseCaseProvider =
-Provider.autoDispose<GetAccountDetailsUseCase>((ref) =>
-    GetAccountDetailsUseCase(ref.read(bankSmartRepositoryProvider)));
+    Provider.autoDispose<GetAccountDetailsUseCase>((ref) =>
+        GetAccountDetailsUseCase(ref.read(bankSmartRepositoryProvider)));
 
 ///[CreateAccountUseCase] provider
 final createAccountUseCaseProvider = Provider.autoDispose<CreateAccountUseCase>(
-        (ref) => CreateAccountUseCase(ref.read(bankSmartRepositoryProvider)));
+    (ref) => CreateAccountUseCase(ref.read(bankSmartRepositoryProvider)));
 
 ///[RemoveDebitLockUseCase] provider
 final removeDebitLockUseCaseProvider =
-Provider.autoDispose<RemoveDebitLockUseCase>(
+    Provider.autoDispose<RemoveDebitLockUseCase>(
         (ref) => RemoveDebitLockUseCase(ref.read(bankSmartRepositoryProvider)));

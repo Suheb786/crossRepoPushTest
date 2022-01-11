@@ -5,8 +5,6 @@ import 'package:neo_bank/feature/login/login_page_model.dart';
 
 final loginViewModelProvider =
     ChangeNotifierProvider.autoDispose<LoginViewModel>(
-          (ref) =>
-          LoginViewModel(
-              ref.read(loginUseCaseProvider),
-              ref.read(checkKycStatusUseCaseProvider)),
+  (ref) => LoginViewModel(
+      ref.read(loginUseCaseProvider), ref.read(checkKycStatusUseCaseProvider)),
 );

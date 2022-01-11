@@ -98,7 +98,7 @@ final requestMoneyViewModelProvider =
 
 final sendToNewRecipientViewModelProvider =
     ChangeNotifierProvider.autoDispose<SendToNewRecipientViewModel>(
-            (ref) => SendToNewRecipientViewModel(
+  (ref) => SendToNewRecipientViewModel(
       ref.read(sendToNewRecipientUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
       ref.read(checkSendMoneyUseCaseProvider),
