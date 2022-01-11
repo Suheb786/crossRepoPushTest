@@ -68,12 +68,13 @@ class PurposeOfAccountOpeningUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_EXPECTED_MONTHLY_TRANSACTION,
           cause: Exception()));
-    } else if (expectedAnnualTransaction!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_EXPECTED_ANNUAL_TRANSACTION,
-          cause: Exception()));
     }
+    // else if (expectedAnnualTransaction!.isEmpty) {
+    //   return Left(AppError(
+    //       error: ErrorInfo(message: ''),
+    //       type: ErrorType.INVALID_EXPECTED_ANNUAL_TRANSACTION,
+    //       cause: Exception()));
+    // }
     return Right(true);
   }
 }

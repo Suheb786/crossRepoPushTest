@@ -252,7 +252,7 @@ class AddNumberViewModel extends BasePageViewModel {
   void checkPhoneAvailability() {
     _checkUserMobileRequest.safeAdd(CheckUserNameMobileUseCaseParams(
         mobileNumber: mobileNumberController.text,
-        countryCode: countryData.isoCode ?? ''));
+        countryCode: countryData.isoCode3 ?? ''));
   }
 
   /// Validate mobile is registered with system or not
