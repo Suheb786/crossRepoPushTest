@@ -771,5 +771,7 @@
   "purposeDetailSmall": "Purpose Details",
   "purposeSmall": "Purpose",
   "nameOfBeneficiary": "Name",
-  "addNickName": "Add nickname"
+  "addNickName": "Add nickname",
+  "errorDecryptCard": "Error while decrypting card",
+  "generateBlockPin": "Error while generating block pin"
 }
