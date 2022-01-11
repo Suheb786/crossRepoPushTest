@@ -249,7 +249,7 @@ class ProfileDetailsPageView
                                       },
                                     ),
                                     SizedBox(
-                                      height: 32,
+                                      height: 20,
                                     ),
                                     Text(
                                       S.of(context).whatIsYourEmploymentStatus,

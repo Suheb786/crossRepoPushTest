@@ -36,17 +36,18 @@ class CountryDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
+    // _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     return BaseWidget<CountryDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0)),
               insetPadding: EdgeInsets.only(
-                  left: 24,
-                  right: 24,
-                  bottom: 36,
-                  top: _keyboardVisible ? 36 : 204),
+                left: 24,
+                right: 24,
+                bottom: 36,
+                //top: _keyboardVisible ? 36 : 204
+              ),
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
@@ -57,53 +58,51 @@ class CountryDialogView extends StatelessWidget {
                       stream: model.getCountryListStream,
                       initialData: Resource.none(),
                       dataBuilder: (context, data) {
-                        switch (data!.status) {
-                          case Status.SUCCESS:
-                            return AppKeyBoardHide(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 32.0),
-                                    child: Center(
-                                      child: Text(
-                                        title!,
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                    ),
+                        return AppKeyBoardHide(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 32.0),
+                                child: Center(
+                                  child: Text(
+                                    title!,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 24, vertical: 32),
-                                    child: AppTextField(
-                                      labelText: '',
-                                      controller: model.countrySearchController,
-                                      textFieldBorderColor: AppColor.gray_1,
-                                      hintTextColor: AppColor.gray_2,
-                                      textColor: AppColor.black,
-                                      hintText: S.of(context).searchCountry,
-                                      onChanged: (value) {
-                                        print(value);
-                                        model.searchCountry(value);
-                                      },
-                                      suffixIcon: (value, data) {
-                                        return InkWell(
-                                          onTap: () async {},
-                                          child: Container(
-                                              height: 16,
-                                              width: 16,
-                                              padding:
-                                                  EdgeInsets.only(right: 8),
-                                              child: AppSvg.asset(
-                                                  AssetUtils.search)),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                  Container(
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 24, vertical: 32),
+                                child: AppTextField(
+                                  labelText: '',
+                                  controller: model.countrySearchController,
+                                  textFieldBorderColor: AppColor.gray_1,
+                                  hintTextColor: AppColor.gray_2,
+                                  textColor: AppColor.black,
+                                  hintText: S.of(context).searchCountry,
+                                  onChanged: (value) {
+                                    print(value);
+                                    model.searchCountry(value);
+                                  },
+                                  suffixIcon: (value, data) {
+                                    return InkWell(
+                                      onTap: () async {},
+                                      child: Container(
+                                          height: 16,
+                                          width: 16,
+                                          padding: EdgeInsets.only(right: 8),
+                                          child:
+                                              AppSvg.asset(AssetUtils.search)),
+                                    );
+                                  },
+                                ),
+                              ),
+                              data!.status == Status.SUCCESS
+                                  ? Container(
                                       height:
                                           MediaQuery.of(context).size.height /
                                               2.5,
@@ -188,50 +187,51 @@ class CountryDialogView extends StatelessWidget {
                                                     color: Theme.of(context)
                                                         .primaryColorDark),
                                               ),
-                                            )),
-                                  InkWell(
-                                    onTap: () {
-                                      onSelected!.call(model.selectedCountry!);
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.all(16),
-                                      height: 57,
-                                      width: 57,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Theme.of(context)
-                                              .accentTextTheme
-                                              .bodyText1!
-                                              .color!),
-                                      child: AppSvg.asset(AssetUtils.tick,
-                                          color: Theme.of(context).accentColor),
+                                            ))
+                                  : Container(
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              2.5,
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 8.0, bottom: 16),
-                                    child: Center(
-                                      child: InkWell(
-                                        onTap: () {
-                                          onDismissed?.call();
-                                        },
-                                        child: Text(
-                                          S.of(context).swipeDownToCancel,
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w400,
-                                              color: AppColor.dark_gray_1),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                              InkWell(
+                                onTap: () {
+                                  onSelected!.call(model.selectedCountry!);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(16),
+                                  height: 57,
+                                  width: 57,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Theme.of(context)
+                                          .accentTextTheme
+                                          .bodyText1!
+                                          .color!),
+                                  child: AppSvg.asset(AssetUtils.tick,
+                                      color: Theme.of(context).accentColor),
+                                ),
                               ),
-                            );
-
-                          default:
-                            return Container();
-                        }
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 8.0, bottom: 16),
+                                child: Center(
+                                  child: InkWell(
+                                    onTap: () {
+                                      onDismissed?.call();
+                                    },
+                                    child: Text(
+                                      S.of(context).swipeDownToCancel,
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w400,
+                                          color: AppColor.dark_gray_1),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
                       },
                     ),
                   );
