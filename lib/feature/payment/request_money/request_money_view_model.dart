@@ -1,8 +1,8 @@
 import 'package:domain/usecase/payment/request_money_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
-import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -42,8 +42,15 @@ class RequestMoneyViewModel extends BasePageViewModel {
   String currentPinValue = '0';
 
   void changeValue(String value) {
-    myList.add(value);
-    currentPinValue = myList.join("");
+    if (value == ".") {
+      if (!currentPinValue.contains(value)) {
+        myList.add(value);
+        currentPinValue = myList.join("");
+      }
+    } else {
+      myList.add(value);
+      currentPinValue = myList.join("");
+    }
     notifyListeners();
   }
 
@@ -58,9 +65,16 @@ class RequestMoneyViewModel extends BasePageViewModel {
 
   void clearValue() {
     if (myList.isNotEmpty) {
-      myList.clear();
+      myList.removeAt(myList.length - 1);
+      if (myList.isEmpty) {
+        currentPinValue = "0";
+      } else {
+        currentPinValue = myList.join();
+      }
+    } else if (myList.isEmpty) {
       currentPinValue = "0";
     }
+    print("got myList : $myList");
     notifyListeners();
   }
 }

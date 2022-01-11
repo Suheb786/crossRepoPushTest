@@ -287,32 +287,38 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                 Padding(
                                   padding: EdgeInsets.only(top: 24),
                                   child: Center(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Theme
-                                              .of(context)
-                                              .accentTextTheme
-                                              .bodyText1!
-                                              .color,
-                                          borderRadius:
-                                          BorderRadius.circular(20)),
-                                      child: Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 8, horizontal: 17),
-                                        child: Text(
-                                          S
-                                              .of(context)
-                                              .addMoney,
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 14,
-                                              color: Theme
-                                                  .of(context)
-                                                  .accentColor),
+                                          child: InkWell(
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                  context,
+                                                  RoutePaths
+                                                      .AddMoneyOptionSelector);
+                                            },
+                                            child: Container(
+                                              height: 40,
+                                              width: 104,
+                                              decoration: BoxDecoration(
+                                                  color: Theme.of(context)
+                                                      .accentTextTheme
+                                                      .bodyText1!
+                                                      .color,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          20)),
+                                              child: Center(
+                                                child: Text(
+                                                  S.of(context).addMoney,
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 14,
+                                                      color: Theme.of(context)
+                                                          .accentColor),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ),
-                                  ),
                                 ),
                                 SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,

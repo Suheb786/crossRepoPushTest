@@ -108,8 +108,15 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
   String currentPinValue = '0';
 
   void changeValue(String value) {
-    myList.add(value);
-    currentPinValue = myList.join("");
+    if (value == ".") {
+      if (!currentPinValue.contains(value)) {
+        myList.add(value);
+        currentPinValue = myList.join("");
+      }
+    } else {
+      myList.add(value);
+      currentPinValue = myList.join("");
+    }
     notifyListeners();
   }
 
@@ -124,9 +131,16 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
 
   void clearValue() {
     if (myList.isNotEmpty) {
-      myList.clear();
+      myList.removeAt(myList.length - 1);
+      if (myList.isEmpty) {
+        currentPinValue = "0";
+      } else {
+        currentPinValue = myList.join();
+      }
+    } else if (myList.isEmpty) {
       currentPinValue = "0";
     }
+    print("got myList : $myList");
     notifyListeners();
   }
 

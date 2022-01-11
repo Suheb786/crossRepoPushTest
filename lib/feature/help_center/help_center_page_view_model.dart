@@ -81,7 +81,6 @@ class HelpCenterPageViewModel extends BasePageViewModel {
   }
 
   obtainTokenForCall() {
-    print("object");
     _obtainTokenRequestSubject.safeAdd(ObtainTokenUseCaseParams(
         parameter: ObtainToken('Alice_Test', 'Alice_Test')));
   }

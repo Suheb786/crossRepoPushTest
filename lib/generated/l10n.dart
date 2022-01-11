@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -125,6 +126,26 @@ class S {
     return Intl.message(
       'Please enter valid mobile number',
       name: 'enterValidMobileNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error in decrypting the card number`
+  String get errorDecryptCard {
+    return Intl.message(
+      'Error in 3DES decryption of the card number.',
+      name: 'errorDecryptCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error in generating block pin`
+  String get generateBlockPin {
+    return Intl.message(
+      'Error generating Pin under LMK',
+      name: 'generateBlockPin',
       desc: '',
       args: [],
     );

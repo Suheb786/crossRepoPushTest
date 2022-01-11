@@ -5,6 +5,8 @@ import 'package:data/entity/local/base/rsa_key_helper.dart';
 import 'package:data/infobip_audio/infobip_audio_service.dart';
 import 'package:data/infobip_audio/infobip_message_service.dart';
 import 'package:data/local_auth/bio_matric/bio_metric_service.dart';
+import 'package:data/source/card_processing/card_processing_data_source.dart';
+import 'package:data/source/card_processing/local/card_processing_local_ds_impl.dart';
 import 'package:data/source/country/country_datasource.dart';
 import 'package:data/source/country/local/country_local_ds_impl.dart';
 import 'package:data/source/enter_address/home_address_dialog_ds.dart';
@@ -53,6 +55,10 @@ var countryLocalDataProvider = Provider<CountryLocalDs>(
 
 var uploadDocumentDataSourceProvider =
     Provider<UploadDocumentLocalDS>((ref) => UploadDocumentLocalDSImpl());
+
+///Card Processing data source
+var cardProcessingDataSourceProvider =
+    Provider<CardProcessingLocalDs>((ref) => CardProcessingLocalDsImpl());
 
 var homeAddressDialogDataSourceProvider =
     Provider<HomeAddressDialogDS>((ref) => HomeAddressDialogDSImpl());
