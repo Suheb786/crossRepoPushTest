@@ -114,7 +114,7 @@ final enterOtpViewModelProvider =
 
 final requestFromNewRecipientViewModelProvider =
     ChangeNotifierProvider.autoDispose<RequestFromNewRecipientViewModel>(
-            (ref) => RequestFromNewRecipientViewModel(
+  (ref) => RequestFromNewRecipientViewModel(
       ref.read(requestFromNewRecipientUseCaseProvider),
       ref.read(uploadDocumentUseCaseProvider),
       ref.read(getAccountByAliasUseCaseProvider),

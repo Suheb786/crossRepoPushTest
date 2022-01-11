@@ -21,7 +21,7 @@ final exemptPayeeCodeViewModelProvider =
 ///exempt from fatca reporting code page view model provider
 final exemptionFromFatcaReportingCodeViewModelProvider = ChangeNotifierProvider
     .autoDispose<ExemptionFromFatcaReportingCodePageViewModel>(
-        (ref) => ExemptionFromFatcaReportingCodePageViewModel(),
+  (ref) => ExemptionFromFatcaReportingCodePageViewModel(),
 );
 
 ///us taxpayer identification number page view model provider
