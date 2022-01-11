@@ -34,6 +34,10 @@ class ErrorParser {
         return localisedHelper.genericError;
       case ErrorType.INVALID_MOBILE:
         return localisedHelper.enterValidMobileNumber;
+      case ErrorType.ERROR_DECRYPT_CARD:
+        return localisedHelper.errorDecryptCard;
+      case ErrorType.ERROR_GENERATE_BLOCK_PIN:
+        return localisedHelper.generateBlockPin;
       case ErrorType.INVALID_OTP:
         return localisedHelper.enterValidOtp;
       case ErrorType.INVALID_REQUESTED_AMOUNT:

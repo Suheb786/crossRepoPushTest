@@ -4,6 +4,7 @@ import 'package:data/repository/account/account_repository_impl.dart';
 import 'package:data/repository/account_settings/account_settings_impl.dart';
 import 'package:data/repository/bank_smart/bank_smart_repository_impl.dart';
 import 'package:data/repository/card/card_repository_impl.dart';
+import 'package:data/repository/card_processing/card_processing_repository_impl.dart';
 import 'package:data/repository/country/country_repository_impl.dart';
 import 'package:data/repository/dashboard/dashboard_repository_impl.dart';
 import 'package:data/repository/enter_address/home_address_dialog_repository_impl.dart';
@@ -22,6 +23,7 @@ import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/repository/account_settings/account_settings_repository.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/repository/card/card_repository.dart';
+import 'package:domain/repository/card_processing/card_processing_repository.dart';
 import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
@@ -77,6 +79,10 @@ var homeAddressDialogRepositoryProvider = Provider<HomeAddressDialogRepository>(
 /// inject [KYCRepository] provider
 var kycRepositoryProvider =
     Provider<KYCRepository>((ref) => KYCRepositoryImpl(ref.read(kycRemoteDS)));
+
+/// inject [CardProcessingRepository] provider
+var cardProcessingRepository = Provider<CardProcessingRepository>((ref) =>
+    CardProcessingRepositoryImpl(ref.read(cardProcessingDataSourceProvider)));
 
 /// inject [IdCardRepository] provider
 var idCardRepositoryProvider = Provider<IdCardRepository>(
