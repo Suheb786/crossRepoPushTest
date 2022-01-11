@@ -62,7 +62,7 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
   bool isValid() {
     bool valid = false;
     if (purposeOfAccountOpeningController.text.isNotEmpty &&
-        expectedAnnualTransactionController.text.isNotEmpty &&
+        // expectedAnnualTransactionController.text.isNotEmpty &&
         expectedMonthlyTransactionController.text.isNotEmpty) {
       valid = true;
     }
@@ -133,9 +133,9 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_PURPOSE_OF_ACCOUNT_OPENING:
         purposeOfAccountOpeningKey.currentState!.isValid = false;
         break;
-      case ErrorType.INVALID_EXPECTED_ANNUAL_TRANSACTION:
-        expectedAnnualTransactionKey.currentState!.isValid = false;
-        break;
+      // case ErrorType.INVALID_EXPECTED_ANNUAL_TRANSACTION:
+      //   expectedAnnualTransactionKey.currentState!.isValid = false;
+      //   break;
       case ErrorType.INVALID_EXPECTED_MONTHLY_TRANSACTION:
         expectedMonthlyTransactionKey.currentState!.isValid = false;
         break;
@@ -151,7 +151,7 @@ class PurposeOfAccountOpeningPageViewModel extends BasePageViewModel {
     _purposeOfAccountOpeningRequest.safeAdd(
         PurposeOfAccountOpeningUseCaseParams(
             purposeOfAccountOpening: purposeOfAccountOpeningController.text,
-            expectedAnnualTransaction: expectedAnnualTransactionController.text,
+            expectedAnnualTransaction: '0.0',
             expectedMonthlyTransaction:
                 expectedMonthlyTransactionController.text,
             getToken: true,
