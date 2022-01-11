@@ -67,7 +67,7 @@ class SettingTile extends StatelessWidget {
                                     .hintStyle!
                                     .color ??
                                 AppColor.gray1,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w400,
                         fontSize: 14,
                       ),
                     ),
