@@ -1,3 +1,4 @@
+import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/manage_contacts/get_beneficiary_list_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -14,8 +15,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 
-class AddSendMoneyContactPageView
-    extends BasePageViewWidget<AddSendMoneyContactViewModel> {
+class AddSendMoneyContactPageView extends BasePageViewWidget<AddSendMoneyContactViewModel> {
   AddSendMoneyContactPageView(ProviderBase model) : super(model);
 
   @override
@@ -59,6 +59,13 @@ class AddSendMoneyContactPageView
                             .beneficiaryResponse,
                         initialData: Resource.none(),
                         dataBuilder: (context, beneficiaryResponse) {
+                          List<Beneficiary> beneficiaries = [];
+                          beneficiaryResponse!.data!.beneficiaryList!
+                              .forEach((element) {
+                            if (element.beneType == "SM") {
+                              beneficiaries.add(element);
+                            }
+                          });
                           return Container(
                             child: SingleChildScrollView(
                               child: Column(
@@ -73,9 +80,7 @@ class AddSendMoneyContactPageView
                                               fontSize: 12,
                                               color: Theme.of(context)
                                                   .accentColor))),
-                                  beneficiaryResponse!
-                                              .data!.beneficiaryList!.length >
-                                          0
+                                  beneficiaries.length > 0
                                       ? Column(
                                           children: [
                                             GridView.builder(
@@ -90,10 +95,7 @@ class AddSendMoneyContactPageView
                                                   top: 22, right: 28, left: 27),
                                               itemBuilder: (context, index) {
                                                 if (index >=
-                                                    beneficiaryResponse
-                                                        .data!
-                                                        .beneficiaryList!
-                                                        .length) {
+                                                    beneficiaries.length) {
                                                   return PaymentBeneficiaryEmptyWidget();
                                                 }
                                                 return PaymentBeneficiaryWidget(
@@ -103,17 +105,13 @@ class AddSendMoneyContactPageView
                                                         RoutePaths
                                                             .SendAmountToContact,
                                                         arguments:
-                                                            beneficiaryResponse
-                                                                    .data!
-                                                                    .beneficiaryList![
+                                                            beneficiaries[
                                                                 index]);
                                                   },
                                                   transferEnum:
                                                       TransferEnum.send,
                                                   beneficiary:
-                                                      beneficiaryResponse.data!
-                                                              .beneficiaryList![
-                                                          index],
+                                                      beneficiaries[index],
                                                 );
                                               },
                                             ),

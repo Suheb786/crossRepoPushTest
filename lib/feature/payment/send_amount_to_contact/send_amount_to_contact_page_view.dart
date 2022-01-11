@@ -271,8 +271,7 @@ class SendAmountToContactPageView
                         .read(appHomeViewModelProvider)
                         .dashboardDataContent
                         .account!
-                        .availableBalance!
-                        .toStringAsFixed(2),
+                        .availableBalance!,
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
@@ -309,6 +308,7 @@ class SendAmountToContactPageView
                       initialData: Resource.none(),
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
+                          print("check send money success");
                           model.transfer(data
                               .data!.checkSendMoneyContent!.transferResponse!);
                         }

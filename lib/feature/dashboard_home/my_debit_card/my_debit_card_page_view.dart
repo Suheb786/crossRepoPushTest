@@ -349,14 +349,13 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Expanded(
-                                        child: Text(
-                                          cardData.debitCard!.cardNumber ?? '',
-                                          maxLines: 2,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 14,
-                                          ),
+                                      Text(
+                                        cardData.debitCard!.cardNumber ?? '',
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 14,
                                         ),
                                       ),
                                       Padding(

@@ -162,8 +162,7 @@ class RequestMoneyPageView extends BasePageViewWidget<RequestMoneyViewModel> {
                               .read(appHomeViewModelProvider)
                               .dashboardDataContent
                               .account!
-                              .availableBalance!
-                              .toStringAsFixed(2),
+                              .availableBalance!,
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 14,

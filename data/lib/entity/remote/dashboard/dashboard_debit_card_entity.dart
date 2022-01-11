@@ -1,3 +1,4 @@
+import 'package:data/helper/encypt_decrypt_helper.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -25,12 +26,11 @@ class DashboardDebitCardEntity
   @JsonKey(name: "cvv")
   final String? cvv;
 
-  DashboardDebitCardEntity(
-      {this.accountTitle: "",
-      this.cvv: "",
-      this.expiryDate: "",
-      this.cardNumber: "",
-      this.linkedAccountNumber: ""});
+  DashboardDebitCardEntity({this.accountTitle: "",
+    this.cvv: "",
+    this.expiryDate: "",
+    this.cardNumber: "",
+    this.linkedAccountNumber: ""});
 
   factory DashboardDebitCardEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardDebitCardEntityFromJson(json);
@@ -45,8 +45,14 @@ class DashboardDebitCardEntity
   @override
   DebitCard transform() {
     return DebitCard(
-        cardNumber: this.cardNumber,
-        cvv: this.cvv,
+        cardNumber: this.cardNumber != null
+            ? EncryptDecryptHelper.decryptCard(cardNo: this.cardNumber!)
+            : "",
+        cvv: this.cvv != null
+            ? (this.cvv!.isNotEmpty
+                ? EncryptDecryptHelper.decryptCard(cardNo: this.cvv!)
+                : "")
+            : "",
         expiryDate: this.expiryDate,
         linkedAccountNumber: this.linkedAccountNumber,
         accountTitle: this.accountTitle);

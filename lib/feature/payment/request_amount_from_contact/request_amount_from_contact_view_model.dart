@@ -88,6 +88,7 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
                   _requestAmountFromContactUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _requestFromContactResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -117,6 +118,7 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
       myList.add(value);
       currentPinValue = myList.join("");
     }
+    print("got value: $currentPinValue");
     notifyListeners();
   }
 
@@ -157,7 +159,7 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
               ? 'Transfer to Friend or Family'
               : beneficiary!.purposeDetails!)
           : purposeDetail!.strCode!,
-      amount: int.parse(currentPinValue),
+      amount: double.parse(currentPinValue),
       dbtrBic: beneficiary!.iban ?? "",
       dbtrAcct: beneficiary!.accountNo ?? "",
       dbtrName: beneficiary!.fullName ?? "",
