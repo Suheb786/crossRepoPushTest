@@ -22,6 +22,8 @@ class RequestToPayRequestEntity {
   final String? beneImage;
   @JsonKey(name: "IsFriend")
   final bool? isFriend;
+  @JsonKey(name: "NickName")
+  final String? nickName;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic>? baseData;
 
@@ -30,6 +32,7 @@ class RequestToPayRequestEntity {
       this.amount,
       this.dbtrBic,
       this.dbtrAcct,
+      this.nickName: "",
       this.beneImage: "",
       this.isFriend: false,
       this.dbtrName,

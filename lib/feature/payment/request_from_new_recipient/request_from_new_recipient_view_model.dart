@@ -219,7 +219,10 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
             isFriend: addContact,
             image: _uploadProfilePhotoResponse.value,
             purposeCode: purpose!.code ?? "",
-            purposeDetailCode: purposeDetail!.strCode ?? ""));
+            purposeDetailCode: purposeDetail!.strCode ?? "",
+            nickName: addNickNameController.text.isEmpty
+                ? ""
+                : addNickNameController.text));
   }
 
   void updatePurpose(Purpose value) {

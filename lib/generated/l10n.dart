@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7555,6 +7556,16 @@ class S {
     return Intl.message(
       'Error while generating block pin',
       name: 'generateBlockPin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add nickName`
+  String get emptyNickName {
+    return Intl.message(
+      'Please add nickName',
+      name: 'emptyNickName',
       desc: '',
       args: [],
     );

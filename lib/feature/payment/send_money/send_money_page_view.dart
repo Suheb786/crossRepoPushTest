@@ -169,7 +169,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                   textColor: Colors.black,
                   rightButtonFn: () {
                     if (int.parse(model.currentPinValue) >
-                        int.parse(ProviderScope.containerOf(context)
+                        double.parse(ProviderScope.containerOf(context)
                             .read(appHomeViewModelProvider)
                             .dashboardDataContent
                             .account!
