@@ -48,6 +48,13 @@ class HomeAddressDialogView extends StatelessWidget {
                       child: AppStreamBuilder<LatLng>(
                         stream: model!.currentUserLocationValidatorStream,
                         initialData: LatLng(31.8360368, 35.6674278),
+                        onData: (data) {
+                          if (data != null) {
+                            model.mapController!.animateCamera(
+                                CameraUpdate.newLatLngZoom(
+                                    LatLng(data.latitude, data.longitude), 12));
+                          }
+                        },
                         dataBuilder: (context, currentLocation) {
                           return GoogleMap(
                             mapType: MapType.normal,
@@ -67,7 +74,7 @@ class HomeAddressDialogView extends StatelessWidget {
                               model.setPinPointMarker();
                             },
                             onTap: (latLng) {
-                              model.setUseCurrentLocation(latLng);
+                              model.setUseCurrentSelectedLocation(latLng);
                             },
                             markers: {
                               Marker(

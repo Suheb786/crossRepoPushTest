@@ -16,6 +16,8 @@ class RegisterProspectUserRequest {
   final String? email;
   @JsonKey(name: "mobileNumber")
   final String? mobileNumber;
+  @JsonKey(name: "MobileCode")
+  final String? mobileCode;
   @JsonKey(name: "password")
   final String? password;
   @JsonKey(name: "confirmPassword")
@@ -40,6 +42,7 @@ class RegisterProspectUserRequest {
       this.companyId,
       this.email,
       this.mobileNumber,
+      this.mobileCode,
       this.password,
       this.confirmPassword,
       this.userName,

@@ -1,9 +1,13 @@
 import 'dart:typed_data';
 
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/enter_address/home_address.dart';
 import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
@@ -51,7 +55,52 @@ class HomeAddressDialogViewModel extends BasePageViewModel {
   Stream<LatLng> get currentUserLocationValidatorStream =>
       _currentUserLocationValidatorSubject.stream;
 
-  void setUseCurrentLocation(LatLng latLng) {
+  /// get current location
+  determineCurrentPosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+    permission = await Geolocator.checkPermission();
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      showToastWithError(AppError(
+          type: ErrorType.LOCATION_SERVICE_NOT_ENABLED,
+          error: ErrorInfo(
+            message: '',
+          ),
+          cause: Exception()));
+    }
+    print(permission);
+    if (permission == LocationPermission.denied ||
+        permission == LocationPermission.deniedForever) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied ||
+          permission == LocationPermission.deniedForever) {
+        showToastWithError(AppError(
+            type: ErrorType.LOCATION_SERVICE_NOT_ENABLED,
+            error: ErrorInfo(
+              message: '',
+            ),
+            cause: Exception()));
+      } else if (permission == LocationPermission.always ||
+          permission == LocationPermission.whileInUse) {
+        await setCurrentUserLocation();
+      }
+    } else {
+      await setCurrentUserLocation();
+    }
+  }
+
+  Future setCurrentUserLocation() async {
+    var userCurrentPosition = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.best);
+    print('location---->${userCurrentPosition.longitude}');
+    _currentUserLocationValidatorSubject.add(
+        LatLng(userCurrentPosition.latitude, userCurrentPosition.longitude));
+    getAddress(
+        LatLng(userCurrentPosition.latitude, userCurrentPosition.longitude));
+  }
+
+  void setUseCurrentSelectedLocation(LatLng latLng) {
     _currentUserLocationValidatorSubject.safeAdd(latLng);
     getAddress(latLng);
   }
@@ -76,6 +125,7 @@ class HomeAddressDialogViewModel extends BasePageViewModel {
         }
       });
     });
+    determineCurrentPosition();
     getAddress(LatLng(currentLocation.latitude, currentLocation.longitude));
   }
 

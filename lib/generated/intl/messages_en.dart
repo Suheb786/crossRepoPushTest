@@ -487,6 +487,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "error": MessageLookupByLibrary.simpleMessage("Error"),
         "errorCreatingAccount": MessageLookupByLibrary.simpleMessage(
             "Error While Creating Account"),
+        "errorDecryptCard":
+            MessageLookupByLibrary.simpleMessage("Error while decrypting card"),
         "errorGetAccountDetails": MessageLookupByLibrary.simpleMessage(
             "Error While Get Account Details"),
         "errorSavingIdCard":
@@ -566,6 +568,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "genderHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
         "genderSmall": MessageLookupByLibrary.simpleMessage("Gender"),
+        "generateBlockPin": MessageLookupByLibrary.simpleMessage(
+            "Error while generating block pin"),
         "genericError": MessageLookupByLibrary.simpleMessage(
             "Something went wrong. Please try again."),
         "getCallDurationError": MessageLookupByLibrary.simpleMessage(
