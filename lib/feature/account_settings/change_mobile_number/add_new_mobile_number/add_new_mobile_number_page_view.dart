@@ -93,7 +93,7 @@ class AddNewMobileNumberPageView
                                             inputAction: TextInputAction.done,
                                             inputFormatters: [
                                               LengthLimitingTextInputFormatter(
-                                                  9),
+                                                  12),
                                             ],
                                             controller: model.mobileController,
                                             key: model.mobileKey,
@@ -111,6 +111,8 @@ class AddNewMobileNumberPageView
                                                       onSelected: (data) {
                                                     Navigator.pop(context);
                                                     model.countryData = data;
+                                                    model.setSelectedCountry(
+                                                        data);
                                                   }, onDismissed: () {
                                                     Navigator.pop(context);
                                                   },
@@ -129,22 +131,24 @@ class AddNewMobileNumberPageView
                                                       Container(
                                                           height: 16,
                                                           width: 16,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .primaryColorDark,
-                                                            shape:
-                                                                BoxShape.circle,
-                                                          )),
+                                                          decoration: BoxDecoration(
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .primaryColorDark,
+                                                              shape: BoxShape
+                                                                  .circle,
+                                                              image: DecorationImage(
+                                                                  image: AssetImage(
+                                                                      "${AssetUtils.flags}${countryData!.isoCode3?.toLowerCase() ?? ""}.png"),
+                                                                  fit: BoxFit
+                                                                      .cover))),
                                                       Padding(
                                                         padding: EdgeInsets
                                                             .symmetric(
                                                                 horizontal:
                                                                     8.0),
                                                         child: Text(
-                                                          countryData!
-                                                                  .phoneCode!
+                                                          countryData.phoneCode!
                                                                   .isNotEmpty
                                                               ? '+${countryData.phoneCode!}'
                                                               : "",

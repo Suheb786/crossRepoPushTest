@@ -6,6 +6,7 @@ class ListScrollWheelListWidget extends StatelessWidget {
   final Color? widgetColor;
   final String label;
   final Function? onTap;
+
   const ListScrollWheelListWidget(
       {Key? key,
       required this.label,
@@ -21,7 +22,7 @@ class ListScrollWheelListWidget extends StatelessWidget {
         onTap?.call();
       },
       child: Container(
-        padding: EdgeInsets.only(top: 20, left: 32),
+        padding: EdgeInsets.only(top: 23, left: 32, bottom: 21),
         margin: EdgeInsets.symmetric(horizontal: 16),
         height: 64,
         width: double.infinity,

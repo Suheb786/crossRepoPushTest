@@ -69,13 +69,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                       ErrorType.EMPTY_RESIDENT_COUNTRY) {
                                     model.residentCountryKey.currentState!
                                         .isValid = false;
-                                  }
-                                  // else if (data.appError!.type ==
-                                  //     ErrorType.EMPTY_DISTRICT) {
-                                  //   model.districtKey.currentState!.isValid =
-                                  //       false;
-                                  // }
-                                  else if (data.appError!.type ==
+                                  } else if (data.appError!.type ==
                                       ErrorType.EMPTY_CITY) {
                                     model.cityKey.currentState!.isValid = false;
                                   } else if (data.appError!.type ==

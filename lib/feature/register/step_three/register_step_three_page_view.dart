@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/feature/register/step_three/purpose_of_account_opening/purpose_of_account_opening_page.dart';
 import 'package:neo_bank/feature/register/step_three/register_step_three_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -16,7 +17,8 @@ class RegisterStepThreePageView
 
   final List<Widget> pages = [
     PurposeOfAccountOpeningPage(),
-    Expanded(child: Container())
+    //Expanded(child: Container())
+    BaseCardPage()
   ];
 
   @override
@@ -30,13 +32,9 @@ class RegisterStepThreePageView
           return Column(
             children: [
               Text(
-                S
-                    .of(context)
-                    .accountDetails,
+                S.of(context).accountDetails,
                 style: TextStyle(
-                    color: Theme
-                        .of(context)
-                        .accentColor,
+                    color: Theme.of(context).accentColor,
                     fontSize: 10,
                     fontWeight: FontWeight.w600),
               ),

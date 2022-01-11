@@ -322,9 +322,6 @@ class JobAndIncomePageView
                                       },
                                       isActive: isActive,
                                     ),
-                                    SizedBox(
-                                      height: 8,
-                                    ),
                                     Visibility(
                                       visible: isActive!,
                                       child: AppStreamBuilder<
@@ -386,31 +383,37 @@ class JobAndIncomePageView
                                                   );
                                                 });
                                           } else {
-                                            return AddIncomeWidget(
-                                              label: S.of(context).addIncome,
-                                              onTap: () {
-                                                AdditionalIncomeSourceDialog
-                                                    .show(context,
-                                                        onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (value) {
-                                                  if (value
-                                                      .totalIncome!.isEmpty) {
-                                                    model.showToastWithError(
-                                                        AppError(
-                                                            type: ErrorType
-                                                                .EMPTY_INCOME,
-                                                            cause: Exception(),
-                                                            error: ErrorInfo(
-                                                                message: '')));
-                                                  } else {
+                                            return Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 16.0),
+                                              child: AddIncomeWidget(
+                                                label: S.of(context).addIncome,
+                                                onTap: () {
+                                                  AdditionalIncomeSourceDialog
+                                                      .show(context,
+                                                          onDismissed: () {
                                                     Navigator.pop(context);
-                                                    model
-                                                        .addAdditionalIncomeList(
-                                                            value);
-                                                  }
-                                                });
-                                              },
+                                                  }, onSelected: (value) {
+                                                    if (value
+                                                        .totalIncome!.isEmpty) {
+                                                      model.showToastWithError(
+                                                          AppError(
+                                                              type: ErrorType
+                                                                  .EMPTY_INCOME,
+                                                              cause:
+                                                                  Exception(),
+                                                              error: ErrorInfo(
+                                                                  message:
+                                                                      '')));
+                                                    } else {
+                                                      Navigator.pop(context);
+                                                      model
+                                                          .addAdditionalIncomeList(
+                                                              value);
+                                                    }
+                                                  });
+                                                },
+                                              ),
                                             );
                                           }
                                         },
