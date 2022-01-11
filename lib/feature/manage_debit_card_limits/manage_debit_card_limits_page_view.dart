@@ -150,6 +150,7 @@ class ManageDebitCardLimitsPageView
                                       title: S.of(context).contactLessPayments,
                                       amountSet: '40',
                                       maxAmount: '150',
+                                      isLast: true,
                                       providerBase:
                                           contactLessPaymentViewModelProvider,
                                       onDone: (contactLessPaymentValue) {
