@@ -110,8 +110,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                   children: [
                                                     Text(
                                                         cardData.account!
-                                                            .availableBalance!
-                                                            .toStringAsFixed(2),
+                                                            .availableBalance!,
                                                         style: TextStyle(
                                                             fontSize: 20,
                                                             fontWeight:

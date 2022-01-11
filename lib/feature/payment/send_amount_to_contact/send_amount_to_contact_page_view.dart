@@ -271,8 +271,7 @@ class SendAmountToContactPageView
                         .read(appHomeViewModelProvider)
                         .dashboardDataContent
                         .account!
-                        .availableBalance!
-                        .toStringAsFixed(2),
+                        .availableBalance!,
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14,

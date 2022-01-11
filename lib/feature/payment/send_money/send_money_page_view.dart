@@ -142,8 +142,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                         .read(appHomeViewModelProvider)
                         .dashboardDataContent
                         .account!
-                        .availableBalance!
-                        .toStringAsFixed(2),
+                        .availableBalance!,
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
@@ -170,11 +169,11 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                   textColor: Colors.black,
                   rightButtonFn: () {
                     if (int.parse(model.currentPinValue) >
-                        ProviderScope.containerOf(context)
+                        int.parse(ProviderScope.containerOf(context)
                             .read(appHomeViewModelProvider)
                             .dashboardDataContent
                             .account!
-                            .availableBalance!) {
+                            .availableBalance!)) {
                       model.showToastWithError(AppError(
                           cause: Exception(),
                           error: ErrorInfo(message: ''),
