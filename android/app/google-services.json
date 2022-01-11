@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "660487917685",
+    "project_id": "neo-bank-a8d6c",
+    "storage_bucket": "neo-bank-a8d6c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660487917685:android:6897bc24773d9d96a8a83c",
+        "android_client_info": {
+          "package_name": "com.codebaseneo.neo_bank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660487917685-f6gml2so47fvociev8j3b2guvmkal7hg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBMVDG_ZmeHwpo6A35BHB37r1fHqzvx3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660487917685-f6gml2so47fvociev8j3b2guvmkal7hg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "660487917685-npikcp3ghttobcnh221achd4uravct2u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "blink.dev"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

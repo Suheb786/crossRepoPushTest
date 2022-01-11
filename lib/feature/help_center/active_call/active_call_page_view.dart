@@ -110,7 +110,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                       ),
                                       child: Center(
                                           child: AppSvg.asset(
-                                              data!.data!
+                                              !data!.data!
                                                   ? AssetUtils.micBlue
                                                   : AssetUtils.muteMicBlue,
                                               height: 30.32,

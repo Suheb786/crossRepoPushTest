@@ -10,4 +10,9 @@ class InfobipMessageDSImpl with InfobipMessageLocalDs {
   Future<bool> initInfobipMessage() async {
     return await _infobipAudioService.initPlatformState();
   }
+
+  @override
+  Future<bool> showChat() async {
+    return await _infobipAudioService.showChat();
+  }
 }

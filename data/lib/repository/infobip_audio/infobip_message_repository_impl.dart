@@ -18,4 +18,15 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
       return Right(true);
     }
   }
+
+  @override
+  Future<Either<NetworkError, bool>> showChat() async {
+    var infobipMessageResult = await _infobipMessageDs.showChat();
+    if (!infobipMessageResult) {
+      return Left(
+          NetworkError(httpError: 1501, cause: Exception(), message: ''));
+    } else {
+      return Right(true);
+    }
+  }
 }

@@ -1,11 +1,13 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_audio_usecase.dart';
+import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/obtain_token_usecase.dart';
 import 'package:domain/usecase/infobip_audio/establish_call_usecase.dart';
 import 'package:domain/usecase/infobip_audio/mute_unmute_usecase.dart';
 import 'package:domain/usecase/infobip_audio/speaker_on_off_usecase.dart';
 import 'package:domain/usecase/infobip_audio/hangup_call_usecase.dart';
 import 'package:domain/usecase/infobip_audio/call_duration_usecase.dart';
+import 'package:domain/usecase/infobip_audio/show_chat_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[InfobipAudioPluginUseCase] provider
@@ -42,4 +44,16 @@ final speakerOnOffUseCaseProvider = Provider.autoDispose<SpeakerOnOffUseCase>(
 ///[CallDurationUseCase] provider
 final callDurationUseCaseProvider = Provider.autoDispose<CallDurationUseCase>(
   (ref) => CallDurationUseCase(ref.read(helpCenterRepositoryProvider)),
+);
+
+///[InfobipMessagePluginUseCase] provider
+final infobipMessagePluginUseCaseProvider =
+    Provider.autoDispose<InfobipMessagePluginUseCase>(
+  (ref) =>
+      InfobipMessagePluginUseCase(ref.read(infobipMessagingRepositoryProvider)),
+);
+
+///[ShowChatUseCase] provider
+final showChatUseCaseProvider = Provider.autoDispose<ShowChatUseCase>(
+  (ref) => ShowChatUseCase(ref.read(infobipMessagingRepositoryProvider)),
 );
