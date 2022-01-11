@@ -364,6 +364,16 @@ class ErrorParser {
         return localisedHelper.agreeTermsCondition;
       case ErrorType.EMPTY_MINIMUM_SETTLEMENT_VALUE:
         return localisedHelper.emptyMinimumSettlement;
+      case ErrorType.ERROR_GETTING_FATCA_CRS:
+        return localisedHelper.fatca;
+      case ErrorType.ERROR_WHILE_GETTING_DASHBOARD:
+        return localisedHelper.errorWhileGettingDashboard;
+      case ErrorType.MOBILE_ALREADY_EXIST:
+        return localisedHelper.mobileAlreadyExists;
+      case ErrorType.DO_NOT_RECOMMEND_TO_USE_PREVIOUS_TENPASS:
+        return localisedHelper.weDoNotRecommendToUsePreviousTenPass;
+      case ErrorType.CURRENT_PASSWORD_INCORRECT:
+        return localisedHelper.currentPasswordIncorrect;
       case ErrorType.EMPTY_NICKNAME_VALUE:
         return localisedHelper.emptyNickName;
 

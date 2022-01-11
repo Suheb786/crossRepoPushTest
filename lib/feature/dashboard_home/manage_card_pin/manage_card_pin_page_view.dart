@@ -17,130 +17,127 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
-    return Padding(
-      padding: EdgeInsets.only(top: 52),
-      child: GestureDetector(
-        onVerticalDragEnd: (details) {
-          if (!details.primaryVelocity!.isNegative) {
-            Navigator.pop(context);
-          }
-        },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Center(
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 24),
-                child: Text(
-                  S.of(context).manageCardPin,
-                  style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 14),
-                ),
-              ),
+    return GestureDetector(
+      onVerticalDragEnd: (details) {
+        if (!details.primaryVelocity!.isNegative) {
+          Navigator.pop(context);
+        }
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SizedBox(
+            height: 50,
+          ),
+          Center(
+            child: Text(
+              S.of(context).manageCardPin,
+              style: TextStyle(
+                  color: Theme.of(context).primaryColorDark,
+                  fontWeight: FontWeight.w600,
+                  fontSize: 14),
             ),
-            Expanded(
-                child: Container(
-              decoration: BoxDecoration(
+          ),
+          SizedBox(
+            height: 35,
+          ),
+          Expanded(
+              child: Container(
+            decoration: BoxDecoration(
+                color: Theme.of(context).accentColor,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
+            child: Column(
+              children: [
+                Container(
+                  height: 4,
+                  width: 64,
+                  margin: EdgeInsets.only(top: 8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(4),
+                      color: AppColor.whiteGray),
+                ),
+                Card(
                   color: Theme.of(context).accentColor,
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(16))),
-              child: Column(
-                children: [
-                  Container(
-                    height: 4,
-                    width: 64,
-                    margin: EdgeInsets.only(top: 8),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4),
-                        color: AppColor.whiteGray),
-                  ),
-                  Card(
-                    color: Theme.of(context).accentColor,
-                    margin: EdgeInsets.all(24),
-                    child: Column(children: [
-                      AppStreamBuilder<Resource<bool>>(
-                        initialData: Resource.none(),
-                        stream: model.unblockCardPinStream,
-                        onData: (data) {
-                          if (data.data!) {
-                            Navigator.pushReplacementNamed(
-                                context, RoutePaths.CardPinUnBlockSuccess,
-                                arguments: model.manageCardPinArguments);
-                          }
-                        },
-                        dataBuilder: (context, data) {
-                          return InkWell(
-                            onTap: () {
-                              InformationDialog.show(context,
-                                  image: AssetUtils.cardIcon,
-                                  title: S.of(context).unBlockPin,
-                                  description: S
-                                      .of(context)
-                                      .unBlockPinDescription, onSelected: () {
-                                Navigator.pop(context);
-                                model.unBlockPin();
-                              }, onDismissed: () {
-                                Navigator.pop(context);
-                              });
-                            },
-                            child: Padding(
-                              padding: EdgeInsets.all(24),
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                      child: Text(
-                                    S.of(context).unblockCardPin,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.w600),
-                                  )),
-                                  AppSvg.asset(AssetUtils.rightChevron,
-                                      width: 20,
-                                      height: 20,
-                                      color: Theme.of(context)
-                                          .primaryTextTheme
-                                          .bodyText1!
-                                          .color)
-                                ],
-                              ),
+                  margin: EdgeInsets.all(24),
+                  child: Column(children: [
+                    AppStreamBuilder<Resource<bool>>(
+                      initialData: Resource.none(),
+                      stream: model.unblockCardPinStream,
+                      onData: (data) {
+                        if (data.data!) {
+                          Navigator.pushReplacementNamed(
+                              context, RoutePaths.CardPinUnBlockSuccess,
+                              arguments: model.manageCardPinArguments);
+                        }
+                      },
+                      dataBuilder: (context, data) {
+                        return InkWell(
+                          onTap: () {
+                            InformationDialog.show(context,
+                                image: AssetUtils.cardIcon,
+                                title: S.of(context).unBlockPin,
+                                description: S
+                                    .of(context)
+                                    .unBlockPinDescription, onSelected: () {
+                              Navigator.pop(context);
+                              model.unBlockPin();
+                            }, onDismissed: () {
+                              Navigator.pop(context);
+                            });
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.all(24),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: Text(
+                                  S.of(context).unblockCardPin,
+                                  style: TextStyle(fontWeight: FontWeight.w600),
+                                )),
+                                AppSvg.asset(AssetUtils.rightChevron,
+                                    width: 20,
+                                    height: 20,
+                                    color: Theme.of(context)
+                                        .primaryTextTheme
+                                        .bodyText1!
+                                        .color)
+                              ],
                             ),
-                          );
-                        },
-                      ),
-                      AppDivider(),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushNamed(
-                              context, RoutePaths.ChangeCardPin);
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.all(24),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                  child: Text(
-                                S.of(context).changeCardPin,
-                                style: TextStyle(fontWeight: FontWeight.w600),
-                              )),
-                              AppSvg.asset(AssetUtils.rightChevron,
-                                  width: 20,
-                                  height: 20,
-                                  color: Theme.of(context)
-                                      .primaryTextTheme
-                                      .bodyText1!
-                                      .color)
-                            ],
                           ),
+                        );
+                      },
+                    ),
+                    AppDivider(),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pushNamed(context, RoutePaths.ChangeCardPin);
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.all(24),
+                        child: Row(
+                          children: [
+                            Expanded(
+                                child: Text(
+                              S.of(context).changeCardPin,
+                              style: TextStyle(fontWeight: FontWeight.w600),
+                            )),
+                            AppSvg.asset(AssetUtils.rightChevron,
+                                width: 20,
+                                height: 20,
+                                color: Theme.of(context)
+                                    .primaryTextTheme
+                                    .bodyText1!
+                                    .color)
+                          ],
                         ),
                       ),
-                    ]),
-                  ),
-                ],
-              ),
-            ))
-          ],
-        ),
+                    ),
+                  ]),
+                ),
+              ],
+            ),
+          ))
+        ],
       ),
     );
   }

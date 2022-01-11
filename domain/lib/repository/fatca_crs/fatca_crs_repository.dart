@@ -6,8 +6,7 @@ import 'package:domain/model/fatca_crs/upload_signature_response.dart';
 
 abstract class FatcaCrsRepository {
   /// retrieve fatca questions
-  Future<Either<NetworkError, GetFatcaQuestionsResponse>> getFatcaQuestions(
-      {required bool getToken});
+  Future<Either<NetworkError, GetFatcaQuestionsResponse>> getFatcaQuestions();
 
   /// save fatca information
   Future<Either<NetworkError, SetFatcResponse>> saveFatcaInformation(
@@ -19,8 +18,7 @@ abstract class FatcaCrsRepository {
       String relationshipWithPep,
       String personName,
       String personRole,
-      String taxResidenceCountry,
-      required bool getToken});
+      String taxResidenceCountry});
 
   /// upload signature
   Future<Either<NetworkError, UploadSignatureResponse>> uploadSignature(

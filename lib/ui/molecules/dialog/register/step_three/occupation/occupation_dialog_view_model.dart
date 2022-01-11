@@ -26,11 +26,11 @@ class OccupationDialogViewModel extends BasePageViewModel {
 
   ///get occupation list request holder
   PublishSubject<GetOccupationUseCaseParams> _getOccupationRequest =
-  PublishSubject();
+      PublishSubject();
 
   ///get occupation list response holder
   PublishSubject<Resource<List<String>>> _getOccupationResponse =
-  PublishSubject();
+      PublishSubject();
 
   ///get occupation list stream
   Stream<Resource<List<String>>> get getOccupationStream =>
@@ -41,7 +41,7 @@ class OccupationDialogViewModel extends BasePageViewModel {
   OccupationDialogViewModel(this._getOccupationUseCase) {
     _getOccupationRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _getOccupationUseCase.execute(params: value))
+              createCall: () => _getOccupationUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getOccupationResponse.safeAdd(event);

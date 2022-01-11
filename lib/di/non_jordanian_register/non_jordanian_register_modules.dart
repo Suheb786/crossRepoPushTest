@@ -20,5 +20,5 @@ final notifyViewModelProvider =
 ///notify success view model provider
 final notifySuccessViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<NotifySuccessPageViewModel, NotifySuccessArguments>(
-      (ref, args) => NotifySuccessPageViewModel(args),
+  (ref, args) => NotifySuccessPageViewModel(args),
 );

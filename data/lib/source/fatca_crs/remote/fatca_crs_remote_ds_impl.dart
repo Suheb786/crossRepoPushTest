@@ -21,8 +21,8 @@ class FatcaCrsRemoteDSImpl extends FatcaCrsRemoteDS {
   FatcaCrsRemoteDSImpl(this._apiService, this._deviceInfoHelper);
 
   @override
-  Future<HttpResponse<GetFatcaQuestionsResponseEntity>> getFatcaQuestions(
-      {bool? getToken}) async {
+  Future<HttpResponse<GetFatcaQuestionsResponseEntity>>
+      getFatcaQuestions() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getFatcaQuestions(GetFatcaQuestionsRequestEntity(
         baseData: baseData.toJson(), getToken: true));
@@ -38,21 +38,20 @@ class FatcaCrsRemoteDSImpl extends FatcaCrsRemoteDS {
       String? relationshipWithPep,
       String? personName,
       String? personRole,
-      String? taxResidenceCountry,
-      bool? getToken}) async {
+      String? taxResidenceCountry}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveFatcaInformation(SaveFatcaInformationRequestEntity(
-        response1: response1,
-        response2: response2,
-        response3: response3,
-        response4: response4,
-        response5: response5,
+        response1: response1 ?? false,
+        response2: response2 ?? false,
+        response3: response3 ?? false,
+        response4: response4 ?? false,
+        response5: response5 ?? false,
         relationshipWithPEP: relationshipWithPep ?? '',
         personName: personName ?? '',
         personRole: personRole ?? '',
-        taxResidenceCountry: taxResidenceCountry,
+        taxResidenceCountry: taxResidenceCountry ?? "",
         baseData: baseData.toJson(),
-        getToken: getToken));
+        getToken: true));
   }
 
   @override

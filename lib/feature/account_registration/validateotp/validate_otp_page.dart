@@ -38,11 +38,11 @@ class ValidateOtpPageState
     return Colors.transparent;
   }
 
-  @override
-  void onFocusLost() {
-    getViewModel().countDownController.disposeTimer();
-    super.onFocusLost();
-  }
+  // @override
+  // void onFocusLost() {
+  //   getViewModel().countDownController.disposeTimer();
+  //   super.onFocusLost();
+  // }
 
   @override
   Widget buildView(BuildContext context, ValidateOtpViewModel model) {

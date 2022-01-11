@@ -1,3 +1,4 @@
+import 'package:data/entity/remote/fatca_crs/additional_fatca_data_entity.dart';
 import 'package:domain/model/fatca_crs/fatca_question_content_data.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -19,21 +20,28 @@ class FatcaQuestionsResponseContentDataEntity
   final int? orderNo;
   @JsonKey(name: "type")
   final String? type;
-  @JsonKey(name: "answer")
-  final String? answer;
-  @JsonKey(name: "docId")
-  final dynamic? docId;
+  @JsonKey(name: "infoText")
+  final String? infoText;
+  @JsonKey(name: "showOption")
+  final bool? showOption;
+  @JsonKey(name: "isInfo")
+  final bool? isInfo;
+  @JsonKey(name: "datas")
+  final List<AdditionalFatcaDataEntity>? additionData;
 
-  FatcaQuestionsResponseContentDataEntity({this.labelEn,
-    this.labelAr,
-    this.isMandatory,
-    this.orderNo,
-    this.type,
-    this.answer,
-    this.docId});
+  FatcaQuestionsResponseContentDataEntity(
+      {this.labelEn,
+      this.labelAr,
+      this.isMandatory,
+      this.orderNo,
+      this.type,
+      this.infoText: "",
+      this.showOption: false,
+      this.isInfo: false,
+      this.additionData});
 
   factory FatcaQuestionsResponseContentDataEntity.fromJson(
-      Map<String, dynamic> json) =>
+          Map<String, dynamic> json) =>
       _$FatcaQuestionsResponseContentDataEntityFromJson(json);
 
   Map<String, dynamic> toJson() =>
@@ -48,12 +56,15 @@ class FatcaQuestionsResponseContentDataEntity
   @override
   FatcaQuestionContentData transform() {
     return FatcaQuestionContentData(
-        labelAr: this.labelAr,
-        labelEn: this.labelEn,
-        isMandatory: this.isMandatory,
+        labelAr: this.labelAr ?? "",
+        labelEn: this.labelEn ?? "",
+        isMandatory: this.isMandatory ?? true,
         orderNo: this.orderNo,
         type: this.type,
-        answer: this.answer,
-        docId: this.docId);
+        showOption: this.showOption ?? false,
+        infoText: this.infoText ?? "",
+        additionalData: this.additionData != null
+            ? this.additionData!.map((e) => e.transform()).toList()
+            : []);
   }
 }

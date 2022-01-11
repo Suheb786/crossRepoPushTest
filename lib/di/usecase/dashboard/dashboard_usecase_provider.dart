@@ -93,4 +93,3 @@ final getDashboardDataUseCaseProvider =
     Provider.autoDispose<GetDashboardDataUseCase>(
   (ref) => GetDashboardDataUseCase(ref.read(dashboardRepositoryProvider)),
 );
-

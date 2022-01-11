@@ -70,7 +70,7 @@ class IdVerificationInfoView
                                     ProviderScope.containerOf(context)
                                         .read(registerStepOneViewModelProvider)
                                         .pageController
-                                        .move(2);
+                                        .move(2, animation: false);
                                   });
                                 } else {
                                   model.showToastWithError(AppError(

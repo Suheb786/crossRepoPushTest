@@ -5,8 +5,7 @@ import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
 
 abstract class FatcaCrsRemoteDS {
-  Future<HttpResponse<GetFatcaQuestionsResponseEntity>> getFatcaQuestions(
-      {bool getToken});
+  Future<HttpResponse<GetFatcaQuestionsResponseEntity>> getFatcaQuestions();
 
   Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
       {bool response1,
@@ -17,8 +16,7 @@ abstract class FatcaCrsRemoteDS {
       String? relationshipWithPep,
       String? personName,
       String? personRole,
-      String? taxResidenceCountry,
-      bool getToken});
+      String? taxResidenceCountry});
 
   Future<HttpResponse<UploadSignatureResponseEntity>> uploadSignature(
       {String image});
