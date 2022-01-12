@@ -95,7 +95,7 @@ class FatcaSignaturePageView
                                                 .read(
                                                     registerStepFourViewModelProvider)
                                                 .registrationStepFourPageController
-                                                .move(3);
+                                                .move(3, animation: false);
                                           })
                                         : Future.delayed(
                                             Duration(milliseconds: 500), () {
@@ -103,7 +103,7 @@ class FatcaSignaturePageView
                                                 .read(
                                                     registerStepFourViewModelProvider)
                                                 .registrationStepFourPageController
-                                                .move(6);
+                                                .move(6, animation: false);
                                           });
                                   }
                                 },

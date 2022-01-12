@@ -296,6 +296,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "creditTc": MessageLookupByLibrary.simpleMessage("Terms & Conditions."),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("CURRENT PASSWORD"),
+        "currentPasswordIncorrect": MessageLookupByLibrary.simpleMessage(
+            "The current password entered is wrong. Please try again"),
         "currentPasswordInvalid": MessageLookupByLibrary.simpleMessage(
             "Current password is invalid. Password does not meet requirement."),
         "customerService": MessageLookupByLibrary.simpleMessage(
@@ -418,6 +420,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Upload valid nationality document."),
         "emptyNewPassword":
             MessageLookupByLibrary.simpleMessage("Enter New Password"),
+        "emptyNickName":
+            MessageLookupByLibrary.simpleMessage("Please add nickName"),
         "emptyNickname": MessageLookupByLibrary.simpleMessage("Empty Nickname"),
         "emptyPin": MessageLookupByLibrary.simpleMessage("Enter Pin"),
         "emptyPurpose":
@@ -508,6 +512,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while Get Additional Documentation"),
         "errorWhileGetComboValues": MessageLookupByLibrary.simpleMessage(
             "Error While Get Combo Values"),
+        "errorWhileGettingDashboard": MessageLookupByLibrary.simpleMessage(
+            "An error has occurred While Getting Account DashBoard"),
+        "errorWhileGettingFatcaCrs": MessageLookupByLibrary.simpleMessage(
+            "Error While Getting FatcaCrs"),
         "errorWhileLogout":
             MessageLookupByLibrary.simpleMessage("Error While Logout"),
         "errorWhileRegistration": MessageLookupByLibrary.simpleMessage(
@@ -824,6 +832,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("MINIMUM SETTLEMENT"),
         "minimumSettlements":
             MessageLookupByLibrary.simpleMessage("Minimum Settlement"),
+        "mobileAlreadyExists": MessageLookupByLibrary.simpleMessage(
+            "Mobile Number Already Exist. Try Using Different Mobile Number"),
         "mobileNoExist":
             MessageLookupByLibrary.simpleMessage("Mobile Number Exist"),
         "mobileNumber": MessageLookupByLibrary.simpleMessage("Mobile Number"),
@@ -1310,6 +1320,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you want to Claim of Tax Treaty Benefits?"),
         "waysYocCanAddMoneyToAccount": MessageLookupByLibrary.simpleMessage(
             "Ways you can add\nmoney into your account"),
+        "weDoNotRecommendToUsePreviousTenPass":
+            MessageLookupByLibrary.simpleMessage(
+                "We do not recommend to use your previous 10 passwords, please enter a new password "),
         "weNeedToMatchNamesONTaxReturn": MessageLookupByLibrary.simpleMessage(
             "We need to match the names on your tax return"),
         "weWillConnectYou": MessageLookupByLibrary.simpleMessage(

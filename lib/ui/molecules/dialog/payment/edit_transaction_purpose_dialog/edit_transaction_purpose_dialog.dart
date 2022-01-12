@@ -15,6 +15,8 @@ class EditTransactionPurposeDialog {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => EditTransactionPurposeDialogView(
-            onDismissed: onDismissed, onSelected: onSelected, beneficiary: beneficiary));
+            onDismissed: onDismissed,
+            onSelected: onSelected,
+            beneficiary: beneficiary));
   }
 }

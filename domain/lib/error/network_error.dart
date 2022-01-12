@@ -261,6 +261,36 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.ERROR_ACCESSING_ID);
 
+          case "ex-048":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_GETTING_FATCA_CRS);
+
+          case "ex-163":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_GETTING_DASHBOARD);
+
+          case "Err-SN1":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.MOBILE_ALREADY_EXIST);
+
+          case "err-125":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.DO_NOT_RECOMMEND_TO_USE_PREVIOUS_TENPASS);
+
+          case "err-351":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CURRENT_PASSWORD_INCORRECT);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

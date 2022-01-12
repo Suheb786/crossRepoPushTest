@@ -110,8 +110,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                   children: [
                                                     Text(
                                                         cardData.account!
-                                                            .availableBalance!
-                                                            .toStringAsFixed(2),
+                                                            .availableBalance!,
                                                         style: TextStyle(
                                                             fontSize: 20,
                                                             fontWeight:
@@ -206,16 +205,20 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(top: 20),
+                                    padding:
+                                        EdgeInsets.only(top: 20, right: 25),
                                     child: Row(
                                       children: [
-                                        Text(
-                                          cardData.account!.iban!,
-                                          style: TextStyle(
-                                              color:
-                                                  Theme.of(context).accentColor,
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 12),
+                                        Expanded(
+                                          child: Text(
+                                            cardData.account!.iban!,
+                                            style: TextStyle(
+                                                overflow: TextOverflow.ellipsis,
+                                                color: Theme.of(context)
+                                                    .accentColor,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 12),
+                                          ),
                                         ),
                                         InkWell(
                                           onTap: () {

@@ -13,10 +13,10 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
   FatcaCrsRepositoryImpl(this._crsRemoteDS);
 
   @override
-  Future<Either<NetworkError, GetFatcaQuestionsResponse>> getFatcaQuestions(
-      {required bool getToken}) async {
+  Future<Either<NetworkError, GetFatcaQuestionsResponse>>
+      getFatcaQuestions() async {
     final result = await safeApiCall(
-      _crsRemoteDS.getFatcaQuestions(getToken: getToken),
+      _crsRemoteDS.getFatcaQuestions(),
     );
     return result!.fold(
         (l) => Left(l),
@@ -35,8 +35,7 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
       String? relationshipWithPep,
       String? personName,
       String? personRole,
-      String? taxResidenceCountry,
-      required bool getToken}) async {
+      String? taxResidenceCountry}) async {
     final result = await safeApiCall(
       _crsRemoteDS.saveFatcaInformation(
           response1: response1,
@@ -47,8 +46,7 @@ class FatcaCrsRepositoryImpl extends FatcaCrsRepository {
           relationshipWithPep: relationshipWithPep,
           personRole: personRole,
           personName: personName,
-          taxResidenceCountry: taxResidenceCountry,
-          getToken: getToken),
+          taxResidenceCountry: taxResidenceCountry),
     );
     return result!.fold(
       (l) => Left(l),

@@ -4,5 +4,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[GetAhwalDetailsUseCase] provider
 final getAhwalDetailsUseCaseProvider =
-Provider.autoDispose<GetAhwalDetailsUseCase>(
+    Provider.autoDispose<GetAhwalDetailsUseCase>(
         (ref) => GetAhwalDetailsUseCase(ref.read(idCardRepositoryProvider)));

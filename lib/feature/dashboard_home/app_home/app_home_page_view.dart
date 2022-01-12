@@ -127,13 +127,11 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               children: [
                                 Text(
                                     cardData!.data!.dashboardDataContent!
-                                        .account!.availableBalance
-                                        .toString(),
+                                        .account!.availableBalance!,
                                     style: TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.w700,
-                                        color: Theme
-                                            .of(context)
+                                        color: Theme.of(context)
                                             .primaryColorDark)),
                                 Padding(
                                   padding: EdgeInsets.only(top: 5, left: 5.0),

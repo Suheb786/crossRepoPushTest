@@ -47,7 +47,7 @@ class FatcaUSW9TaxPayersDetailsPageView
                         ProviderScope.containerOf(context)
                             .read(registerStepFourViewModelProvider)
                             .registrationStepFourPageController
-                            .move(7);
+                            .move(7, animation: false);
                       });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);

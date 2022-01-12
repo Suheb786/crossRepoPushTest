@@ -62,7 +62,7 @@ class StateCityDialogView extends StatelessWidget {
                                 child: Text(
                                   title!,
                                   style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       fontWeight: FontWeight.w600),
                                 ),
                               ),
@@ -76,6 +76,8 @@ class StateCityDialogView extends StatelessWidget {
                                 textFieldBorderColor: AppColor.gray_1,
                                 hintTextColor: AppColor.gray_2,
                                 textColor: AppColor.black,
+                                containerPadding: EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 10),
                                 hintText:
                                     getHintText(stateCityTypeEnum, context),
                                 onChanged: (value) {
@@ -88,7 +90,7 @@ class StateCityDialogView extends StatelessWidget {
                                     child: Container(
                                         height: 16,
                                         width: 16,
-                                        padding: EdgeInsets.only(right: 8),
+                                        padding: EdgeInsets.all(6),
                                         child: AppSvg.asset(AssetUtils.search)),
                                   );
                                 },

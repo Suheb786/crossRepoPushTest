@@ -31,30 +31,29 @@ class PurposeOfAccountOpeningPageView
         Expanded(
           child: AppKeyBoardHide(
               child: AppStreamBuilder<bool>(
-                stream: model.errorDetectorStream,
-                initialData: false,
-                dataBuilder: (context, error) {
-                  return ShakeAnimatedWidget(
-                    enabled: error ?? false,
-                    duration: Duration(milliseconds: 100),
-                    shakeAngle: Rotation.deg(z: 1),
-                    curve: Curves.easeInOutSine,
-                    child:
+            stream: model.errorDetectorStream,
+            initialData: false,
+            dataBuilder: (context, error) {
+              return ShakeAnimatedWidget(
+                enabled: error ?? false,
+                duration: Duration(milliseconds: 100),
+                shakeAngle: Rotation.deg(z: 1),
+                curve: Curves.easeInOutSine,
+                child:
                     AppStreamBuilder<Resource<PurposeOfAccountOpeningResponse>>(
-                      stream: model.purposeOfAccountOpeningStream,
-                      initialData: Resource.none(),
-                      onData: (data) {
-                        if (data.status == Status.SUCCESS) {
-                          Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope
-                                .containerOf(context)
-                                .read(registerViewModelProvider)
-                                .registrationStepsController
-                                .nextPage(
+                  stream: model.purposeOfAccountOpeningStream,
+                  initialData: Resource.none(),
+                  onData: (data) {
+                    if (data.status == Status.SUCCESS) {
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        ProviderScope.containerOf(context)
+                            .read(registerViewModelProvider)
+                            .registrationStepsController
+                            .nextPage(
                                 duration: Duration(milliseconds: 500),
                                 curve: Curves.easeInOut);
-                          });
-                        } else if (data.status == Status.ERROR) {
+                      });
+                    } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
                     }
                   },
@@ -68,18 +67,12 @@ class PurposeOfAccountOpeningPageView
                       child: Card(
                         child: Padding(
                           padding: EdgeInsets.only(
-                              bottom: MediaQuery
-                                  .of(context)
-                                  .viewInsets
-                                  .bottom -
-                                  50 <=
-                                  0
+                              bottom: MediaQuery.of(context).viewInsets.bottom -
+                                          50 <=
+                                      0
                                   ? 0
-                                  : MediaQuery
-                                  .of(context)
-                                  .viewInsets
-                                  .bottom -
-                                  48),
+                                  : MediaQuery.of(context).viewInsets.bottom -
+                                      48),
                           child: SingleChildScrollView(
                             padding: EdgeInsets.symmetric(
                                 vertical: 32, horizontal: 24),
@@ -88,27 +81,22 @@ class PurposeOfAccountOpeningPageView
                               children: [
                                 AppTextField(
                                   labelText:
-                                  S
-                                      .of(context)
-                                      .purposeOfAccountOpening,
-                                  hintText: S
-                                      .of(context)
-                                      .pleaseSelect,
+                                      S.of(context).purposeOfAccountOpening,
+                                  hintText: S.of(context).pleaseSelect,
                                   controller:
-                                  model.purposeOfAccountOpeningController,
+                                      model.purposeOfAccountOpeningController,
                                   key: model.purposeOfAccountOpeningKey,
                                   readOnly: true,
                                   onPressed: () {
                                     PurposeOfAccountOpeningDialog.show(context,
                                         onDismissed: () {
-                                          Navigator.pop(context);
-                                        }, onSelected: (value) {
-                                          Navigator.pop(context);
-                                          model
-                                              .updatePurposeOfAccountOpening(
-                                              value);
-                                          model.isValid();
-                                        });
+                                      Navigator.pop(context);
+                                    }, onSelected: (value) {
+                                      Navigator.pop(context);
+                                      model
+                                          .updatePurposeOfAccountOpening(value);
+                                      model.isValid();
+                                    });
                                   },
                                   suffixIcon: (value, data) {
                                     return Container(
@@ -130,7 +118,7 @@ class PurposeOfAccountOpeningPageView
                                   dataBuilder: (context, expectedTransactions) {
                                     return Column(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Text(
                                           S
@@ -138,8 +126,7 @@ class PurposeOfAccountOpeningPageView
                                               .typeOfExpectedTransactions,
                                           style: TextStyle(
                                               fontFamily: "Montserrat",
-                                              color: Theme
-                                                  .of(context)
+                                              color: Theme.of(context)
                                                   .primaryColorDark,
                                               fontWeight: FontWeight.w600,
                                               fontSize: 14),
@@ -148,12 +135,12 @@ class PurposeOfAccountOpeningPageView
                                           itemBuilder: (context, index) {
                                             return ExpectedTransactionsSelectorWidget(
                                               expectedTransactions:
-                                              expectedTransactions!
-                                                  .data![index],
+                                                  expectedTransactions!
+                                                      .data![index],
                                               onTap: () {
                                                 model
                                                     .selectExpectedTransactions(
-                                                    index);
+                                                        index);
                                               },
                                             );
                                           },
@@ -170,9 +157,7 @@ class PurposeOfAccountOpeningPageView
                                 ),
                                 AppTextField(
                                   labelText:
-                                  S
-                                      .of(context)
-                                      .expectedMonthlyTransactions,
+                                      S.of(context).expectedMonthlyAmount.toUpperCase(),
                                   hintText: '',
                                   controller: model
                                       .expectedMonthlyTransactionController,
@@ -184,14 +169,11 @@ class PurposeOfAccountOpeningPageView
                                       padding: const EdgeInsets.only(
                                           top: 8.0, right: 8),
                                       child: Text(
-                                        S
-                                            .of(context)
-                                            .JOD,
+                                        S.of(context).JOD,
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w600,
-                                            color: Theme
-                                                .of(context)
+                                            color: Theme.of(context)
                                                 .primaryTextTheme
                                                 .bodyText1!
                                                 .color!),
@@ -202,42 +184,44 @@ class PurposeOfAccountOpeningPageView
                                     model.isValid();
                                   },
                                 ),
-                                SizedBox(
-                                  height: 16,
+                                Visibility(
+                                  visible: false,
+                                  child: SizedBox(
+                                    height: 16,
+                                  ),
                                 ),
-                                AppTextField(
-                                  labelText:
-                                  S
-                                      .of(context)
-                                      .expectedAnnualTransactions,
-                                  hintText: '',
-                                  controller:
-                                  model.expectedAnnualTransactionController,
-                                  key: model.expectedAnnualTransactionKey,
-                                  inputType: TextInputType.number,
-                                  inputAction: TextInputAction.done,
-                                  prefixIcon: () {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 8.0, right: 8),
-                                      child: Text(
-                                        S
-                                            .of(context)
-                                            .JOD,
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                            color: Theme
-                                                .of(context)
-                                                .primaryTextTheme
-                                                .bodyText1!
-                                                .color!),
-                                      ),
-                                    );
-                                  },
-                                  onChanged: (value) {
-                                    model.isValid();
-                                  },
+                                Visibility(
+                                  visible: false,
+                                  child: AppTextField(
+                                    labelText: S
+                                        .of(context)
+                                        .expectedAnnualTransactions,
+                                    hintText: '',
+                                    controller: model
+                                        .expectedAnnualTransactionController,
+                                    key: model.expectedAnnualTransactionKey,
+                                    inputType: TextInputType.number,
+                                    inputAction: TextInputAction.done,
+                                    prefixIcon: () {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, right: 8),
+                                        child: Text(
+                                          S.of(context).JOD,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: Theme.of(context)
+                                                  .primaryTextTheme
+                                                  .bodyText1!
+                                                  .color!),
+                                        ),
+                                      );
+                                    },
+                                    onChanged: (value) {
+                                      model.isValid();
+                                    },
+                                  ),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 24),
@@ -247,11 +231,11 @@ class PurposeOfAccountOpeningPageView
                                       dataBuilder: (context, isValid) {
                                         return (isValid!)
                                             ? AnimatedButton(
-                                          buttonText: S
-                                              .of(context)
-                                              .swipeToProceed,
-                                          buttonHeight: 50,
-                                        )
+                                                buttonText: S
+                                                    .of(context)
+                                                    .swipeToProceed,
+                                                buttonHeight: 50,
+                                              )
                                             : Container();
                                       }),
                                 )
@@ -262,10 +246,10 @@ class PurposeOfAccountOpeningPageView
                       ),
                     );
                   },
-                    ),
-                  );
-                },
-              )),
+                ),
+              );
+            },
+          )),
         ),
       ],
     );

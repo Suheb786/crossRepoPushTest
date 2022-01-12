@@ -1,5 +1,6 @@
 import 'package:data/entity/remote/user/confirm_application_data_get/additional_income_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_get/job_details_content_entity.dart';
+import 'package:domain/model/user/confirm_application_data_get/job_detail_content_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -28,14 +29,15 @@ class JobDetailEntity
             .map((e) => AdditionalIncomeEntity().restore(e))
             .toList(),
         jobDetailContent:
-        JobDetailContentEntity().restore(response.jobDetailContentInfo!));
+            JobDetailContentEntity().restore(response.jobDetailContentInfo!));
   }
 
   @override
   JobDetailInfo transform() {
     return JobDetailInfo(
         additionalIncomeInfo:
-        this.additionalIncomeList!.map((e) => e.transform()).toList(),
-        jobDetailContentInfo: this.jobDetailContent!.transform());
+            this.additionalIncomeList!.map((e) => e.transform()).toList(),
+        jobDetailContentInfo:
+            this.jobDetailContent?.transform() ?? JobDetailContentInfo());
   }
 }

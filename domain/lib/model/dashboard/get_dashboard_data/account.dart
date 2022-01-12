@@ -8,7 +8,7 @@ class Account {
   });
 
   String? accountTitle;
-  num? availableBalance;
+  String? availableBalance;
   String? accountNo;
   String? iban;
   String? cardNo;

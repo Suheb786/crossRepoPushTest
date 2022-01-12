@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
-import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/request_amount_from_contact/request_amount_from_contact_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -37,9 +36,7 @@ class RequestAmountFromContactPageView
               Navigator.pushNamed(
                   context, RoutePaths.RequestAmountFromContactSuccess,
                   arguments: [
-                    ProviderScope.containerOf(context)
-                        .read(requestMoneyViewModelProvider)
-                        .currentPinValue,
+                    model.currentPinValue,
                     data.data!.requestToPayContent!.dbtrName!,
                     data.data!.requestToPayContent!.dbtrMcc!,
                   ]);

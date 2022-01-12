@@ -16,19 +16,19 @@ class JobDetailContentInfo {
   final bool? isActive;
 
   JobDetailContentInfo(
-      {this.id,
-      this.userId,
-      this.profession,
-      this.mainSource,
-      this.annualIncome,
-      this.employeeName,
-      this.employerCountry,
-      this.employerCity,
-      this.employerContact,
-      this.additionalIncome,
+      {this.id: 0,
+      this.userId: "",
+      this.profession: "",
+      this.mainSource: "",
+      this.annualIncome: "",
+      this.employeeName: "",
+      this.employerCountry: "",
+      this.employerCity: "",
+      this.employerContact: "",
+      this.additionalIncome: false,
       this.createdOn,
-      this.isActive,
-      this.businessType,
-      this.occupation,
-      this.businessSpecificType});
+      this.isActive: false,
+      this.businessType: "",
+      this.occupation: "",
+      this.businessSpecificType: ""});
 }

@@ -47,54 +47,56 @@ class AppTextField extends StatefulWidget {
   final Color? labelColor;
   final double suffixIconSize;
   final Color? color;
+  final EdgeInsets containerPadding;
 
-  AppTextField(
-      {this.height,
-      this.width,
-      this.child,
-      this.onPressed,
-      this.color = AppColor.white,
-      this.controller,
-      this.inputAction: TextInputAction.done,
-      this.inputType,
-      required this.labelText,
-      required this.hintText,
-      this.initialValue,
-      this.autoFocus: false,
-      this.validator,
-      this.onSaved,
-      this.readOnly: false,
-      this.maxLength,
-      this.key,
-      this.obscureText: false,
-      this.obscuringCharacter: '•',
-      this.suffixIcon,
-      this.prefixIcon,
-      this.prefix,
-      this.enabled: true,
-      this.inputFormatters,
-      this.busy: false,
-      this.maxLines: 1,
-      this.minLines: 1,
-      this.onChanged,
-      this.filled: false,
-      this.fontSize: 14,
-      this.labelFontSize: 14,
-      this.filledColor: AppColor.white,
-      this.onFieldSubmitted,
-      this.labelIcon,
-      this.dividerPadding:
-          const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
-      this.floatingLabelBehavior: FloatingLabelBehavior.never,
-      this.textAlign: TextAlign.start,
-      this.textFieldBorderColor,
-      this.textFieldFocusBorderColor,
-      this.hintTextColor,
-      this.textColor,
-      this.labelColor,
-      this.textHintWidget,
-      this.suffixIconSize: 30})
-      : super(key: key);
+  AppTextField({
+    this.height,
+    this.width,
+    this.child,
+    this.onPressed,
+    this.color = AppColor.white,
+    this.controller,
+    this.inputAction: TextInputAction.done,
+    this.inputType,
+    required this.labelText,
+    required this.hintText,
+    this.initialValue,
+    this.autoFocus: false,
+    this.validator,
+    this.onSaved,
+    this.readOnly: false,
+    this.maxLength,
+    this.key,
+    this.obscureText: false,
+    this.obscuringCharacter: '•',
+    this.suffixIcon,
+    this.prefixIcon,
+    this.prefix,
+    this.enabled: true,
+    this.inputFormatters,
+    this.busy: false,
+    this.maxLines: 1,
+    this.minLines: 1,
+    this.onChanged,
+    this.filled: false,
+    this.fontSize: 14,
+    this.labelFontSize: 14,
+    this.filledColor: AppColor.white,
+    this.onFieldSubmitted,
+    this.labelIcon,
+    this.dividerPadding:
+        const EdgeInsets.only(left: 0, right: 0, top: 0, bottom: 0),
+    this.floatingLabelBehavior: FloatingLabelBehavior.never,
+    this.textAlign: TextAlign.start,
+    this.textFieldBorderColor,
+    this.textFieldFocusBorderColor,
+    this.hintTextColor,
+    this.textColor,
+    this.labelColor,
+    this.textHintWidget,
+    this.suffixIconSize: 30,
+    this.containerPadding: const EdgeInsets.all(16.0),
+  }) : super(key: key);
 
   @override
   AppTextFieldState createState() => AppTextFieldState();
@@ -140,7 +142,7 @@ class AppTextFieldState extends State<AppTextField> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.all(16.0),
+                padding: widget.containerPadding,
                 decoration: BoxDecoration(
                     color: widget.color,
                     borderRadius: BorderRadius.circular(8),
@@ -174,8 +176,7 @@ class AppTextFieldState extends State<AppTextField> {
                             text: widget.labelText,
                             style: TextStyle(
                               color: widget.labelColor ??
-                                  Theme
-                                      .of(context)
+                                  Theme.of(context)
                                       .inputDecorationTheme
                                       .labelStyle!
                                       .color,
@@ -192,9 +193,7 @@ class AppTextFieldState extends State<AppTextField> {
                       textAlign: widget.textAlign,
                       style: TextStyle(
                         color: widget.textColor ??
-                            Theme
-                                .of(context)
-                                .primaryColorDark,
+                            Theme.of(context).primaryColorDark,
                         fontSize: widget.fontSize,
                         fontWeight: FontWeight.w600,
                       ),

@@ -7559,6 +7559,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Error While Getting FatcaCrs`
+  String get errorWhileGettingFatcaCrs {
+    return Intl.message(
+      'Error While Getting FatcaCrs',
+      name: 'errorWhileGettingFatcaCrs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error has occurred While Getting Account DashBoard`
+  String get errorWhileGettingDashboard {
+    return Intl.message(
+      'An error has occurred While Getting Account DashBoard',
+      name: 'errorWhileGettingDashboard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile Number Already Exist. Try Using Different Mobile Number`
+  String get mobileAlreadyExists {
+    return Intl.message(
+      'Mobile Number Already Exist. Try Using Different Mobile Number',
+      name: 'mobileAlreadyExists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We do not recommend to use your previous 10 passwords, please enter a new password `
+  String get weDoNotRecommendToUsePreviousTenPass {
+    return Intl.message(
+      'We do not recommend to use your previous 10 passwords, please enter a new password ',
+      name: 'weDoNotRecommendToUsePreviousTenPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The current password entered is wrong. Please try again`
+  String get currentPasswordIncorrect {
+    return Intl.message(
+      'The current password entered is wrong. Please try again',
+      name: 'currentPasswordIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please add nickName`
+  String get emptyNickName {
+    return Intl.message(
+      'Please add nickName',
+      name: 'emptyNickName',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

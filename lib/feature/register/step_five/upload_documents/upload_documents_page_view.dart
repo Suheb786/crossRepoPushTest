@@ -87,7 +87,7 @@ class UploadDocumentsPageView
                                     ProviderScope.containerOf(context)
                                         .read(registerStepFiveViewModelProvider)
                                         .registrationStepFivePageController
-                                        .move(0);
+                                        .move(0, animation: false);
                                   });
                                 }
                               },
@@ -183,6 +183,14 @@ class UploadDocumentsPageView
                                                               .uploadDocumentsSmall,
                                                           controller: model
                                                               .incomeController,
+                                                          fontSize: 12,
+                                                          containerPadding:
+                                                              EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          16,
+                                                                      vertical:
+                                                                          12),
                                                           // key: model
                                                           //     .incomeDocumentKey,
                                                           readOnly: true,
@@ -235,7 +243,7 @@ class UploadDocumentsPageView
                                                                   padding:
                                                                       EdgeInsets
                                                                           .all(
-                                                                              5),
+                                                                              7),
                                                                   child: isUploaded
                                                                       ? AppSvg.asset(
                                                                           AssetUtils
@@ -263,7 +271,7 @@ class UploadDocumentsPageView
                                                   top: 24.0, bottom: 24),
                                               child: Container(
                                                 height: 1,
-                                                color: AppColor.dark_gray_1,
+                                                color: AppColor.whiteGrey,
                                               ),
                                             ),
                                             Text(
@@ -343,6 +351,14 @@ class UploadDocumentsPageView
                                                               .addressController,
                                                           // key: model
                                                           //     .addressDocumentKey,
+                                                          fontSize: 12,
+                                                          containerPadding:
+                                                              EdgeInsets
+                                                                  .symmetric(
+                                                                      horizontal:
+                                                                          16,
+                                                                      vertical:
+                                                                          12),
                                                           readOnly: true,
                                                           textFieldBorderColor:
                                                               Theme.of(context)
@@ -393,7 +409,7 @@ class UploadDocumentsPageView
                                                                   padding:
                                                                       EdgeInsets
                                                                           .all(
-                                                                              5),
+                                                                              7),
                                                                   child: isUploaded
                                                                       ? AppSvg.asset(
                                                                           AssetUtils

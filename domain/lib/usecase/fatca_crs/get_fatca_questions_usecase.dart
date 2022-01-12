@@ -7,8 +7,7 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class GetFatcaQuestionsUseCase extends BaseUseCase<NetworkError,
-    GetFatcaQuestionsUseCaseParams,
-    GetFatcaQuestionsResponse> {
+    GetFatcaQuestionsUseCaseParams, GetFatcaQuestionsResponse> {
   final FatcaCrsRepository _repository;
 
   GetFatcaQuestionsUseCase(this._repository);
@@ -16,15 +15,11 @@ class GetFatcaQuestionsUseCase extends BaseUseCase<NetworkError,
   @override
   Future<Either<NetworkError, GetFatcaQuestionsResponse>> execute(
       {required GetFatcaQuestionsUseCaseParams params}) {
-    return _repository.getFatcaQuestions(getToken: params.getToken);
+    return _repository.getFatcaQuestions();
   }
 }
 
 class GetFatcaQuestionsUseCaseParams extends Params {
-  final bool getToken;
-
-  GetFatcaQuestionsUseCaseParams({required this.getToken});
-
   @override
   Either<AppError, bool> verify() {
     return Right(true);

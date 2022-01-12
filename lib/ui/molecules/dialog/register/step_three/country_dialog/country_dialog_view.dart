@@ -69,7 +69,7 @@ class CountryDialogView extends StatelessWidget {
                                   child: Text(
                                     title!,
                                     style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
@@ -84,6 +84,8 @@ class CountryDialogView extends StatelessWidget {
                                   hintTextColor: AppColor.gray_2,
                                   textColor: AppColor.black,
                                   hintText: S.of(context).searchCountry,
+                                  containerPadding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 10),
                                   onChanged: (value) {
                                     print(value);
                                     model.searchCountry(value);
@@ -94,9 +96,10 @@ class CountryDialogView extends StatelessWidget {
                                       child: Container(
                                           height: 16,
                                           width: 16,
-                                          padding: EdgeInsets.only(right: 8),
-                                          child:
-                                              AppSvg.asset(AssetUtils.search)),
+                                          padding: EdgeInsets.all(6),
+                                          child: AppSvg.asset(AssetUtils.search,
+                                              color: Theme.of(context)
+                                                  .primaryColorDark)),
                                     );
                                   },
                                 ),
