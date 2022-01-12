@@ -22,7 +22,8 @@ abstract class PaymentRemoteDs {
       num toAmount,
       num localEq,
       String memo,
-      String toAccount});
+      String toAccount,
+      String nickName});
 
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
       String ctgyPurp,

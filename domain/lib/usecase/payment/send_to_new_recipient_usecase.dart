@@ -21,12 +21,16 @@ class SendToNewRecipientUseCaseParams extends Params {
   String? purposeDetail;
   num? amount;
   num? limit;
+  String? nickName;
+  bool? isFriend;
 
   SendToNewRecipientUseCaseParams(
       {this.ibanOrMobile,
       this.purpose,
       this.purposeDetail,
       this.amount,
+      this.nickName: "",
+      this.isFriend: false,
       this.limit});
 
   @override
@@ -50,6 +54,11 @@ class SendToNewRecipientUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.LIMIT_EXCEEDED,
+          cause: Exception()));
+    } else if (this.nickName!.isEmpty && this.isFriend!) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.EMPTY_NICKNAME_VALUE,
           cause: Exception()));
     }
     return Right(true);
