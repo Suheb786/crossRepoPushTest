@@ -1,13 +1,13 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
-class AppSwiper extends StatefulWidget {
+class AppSwiper extends StatelessWidget {
   final List pages;
   final int? currentStep;
   final SwiperController pageController;
   final Function(int)? onIndexChanged;
 
-  const AppSwiper({
+  AppSwiper({
     Key? key,
     required this.pages,
     this.currentStep,
@@ -16,59 +16,30 @@ class AppSwiper extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<AppSwiper> createState() => _AppSwiperState();
-}
-
-class _AppSwiperState extends State<AppSwiper> {
-  int currentIndex = 0;
-  @override
   Widget build(BuildContext context) {
-    final startDx = MediaQuery.of(context).size.width - 20;
-    final midDx = MediaQuery.of(context).size.width - 40;
-    final endDx = MediaQuery.of(context).size.width - 45;
-
-    final dy = -5.0;
-
-    final isStartItem = currentIndex == 0;
-    final isEndItem = currentIndex == widget.pages.length - 1;
-
     return Swiper(
-      key: widget.key,
+      key: key,
       customLayoutOption: CustomLayoutOption(startIndex: -1, stateCount: 3)
-          .addRotate([0.0 / 180, 0.0, 0.0 / 180]).addTranslate([
-        if (isStartItem)
-          Offset(-startDx, dy)
-        else if (isEndItem)
-          Offset(-endDx, dy)
-        else
-          Offset(-midDx, dy),
+          .addRotate([-7.0 / 180, 0.0, 7.0 / 180]).addTranslate([
+        Offset(-(MediaQuery.of(context).size.width - 35), -5.0),
         Offset(0.0, 0.0),
-        if (isEndItem)
-          Offset(startDx, dy)
-        else if (isStartItem)
-          Offset(endDx, dy)
-        else
-          Offset(midDx, dy),
+        Offset(MediaQuery.of(context).size.width - 38, -5.0)
       ]),
       loop: false,
-      controller: widget.pageController,
+      controller: pageController,
       itemWidth: MediaQuery.of(context).size.width - 48,
-      index: widget.currentStep,
+      index: currentStep,
       duration: 750,
       viewportFraction: 0.88,
       scrollDirection: Axis.horizontal,
       physics: NeverScrollableScrollPhysics(),
       onIndexChanged: (index) {
-        widget.onIndexChanged?.call(index);
-        setState(() {
-          currentIndex = index;
-        });
+        onIndexChanged?.call(index);
       },
-      itemCount: widget.pages.length,
+      itemCount: pages.length,
       layout: SwiperLayout.CUSTOM,
       itemBuilder: (context, index) => Container(
-          margin: EdgeInsets.all(5),
-          child: widget.pages[index]! ?? Container()),
+          margin: EdgeInsets.all(5), child: pages[index]! ?? Container()),
     );
   }
 }
