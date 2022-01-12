@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/set_credit_limit/set_credit_limit_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -28,6 +30,11 @@ class SetCreditLimitPageView
             onData: (data) {
               if (data.status == Status.SUCCESS) {
                 print("successful");
+                Navigator.popUntil(
+                    context, ModalRoute.withName(RoutePaths.AppHome));
+                ProviderScope.containerOf(context)
+                    .read(appHomeViewModelProvider)
+                    .getDashboardData();
               } else if (data.status == Status.ERROR) {
                 model.showToastWithError(data.appError!);
               }

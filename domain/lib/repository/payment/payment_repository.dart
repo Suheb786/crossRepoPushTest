@@ -22,7 +22,8 @@ abstract class PaymentRepository {
       num toAmount,
       num localEq,
       String memo,
-      String toAccount});
+      String toAccount,
+      String nickName});
 
   Future<Either<NetworkError, bool>> transferVerify();
 

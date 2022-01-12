@@ -4,7 +4,9 @@ import 'package:domain/usecase/payment/enter_otp_usecase.dart';
 import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -81,13 +83,23 @@ class EnterOtpViewModel extends BasePageViewModel {
   }
 
   void transfer(TransferResponse transferResponse, String memo, bool isFriend,
-      String beneficiaryImage) {
+      String beneficiaryImage, BuildContext context) {
     print('isFriend:--->$isFriend');
     _transferRequest.safeAdd(TransferUseCaseParams(
         otpCode: _otpSubject.value,
         toAmount: transferResponse.toAmount,
         toAccount: transferResponse.toAccount,
         memo: memo,
+        nickName: ProviderScope.containerOf(context)
+                .read(sendToNewRecipientViewModelProvider)
+                .addNickNameController
+                .text
+                .isEmpty
+            ? ""
+            : ProviderScope.containerOf(context)
+                .read(sendToNewRecipientViewModelProvider)
+                .addNickNameController
+                .text,
         isFriend: isFriend,
         transferType: transferResponse.transferType,
         localEq: transferResponse.localEq,
