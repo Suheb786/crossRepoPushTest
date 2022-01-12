@@ -139,7 +139,7 @@ final locatePinViewModelProvider =
 ///settings dialog view model
 final settingsDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<SettingsDialogViewModel>(
-  (ref) => SettingsDialogViewModel(),
+  (ref) => SettingsDialogViewModel(ref.read(logoutUseCaseProvider)),
 );
 
 final downloadTransactionDialogViewModelProvider =

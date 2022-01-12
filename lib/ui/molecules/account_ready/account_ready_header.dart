@@ -24,13 +24,16 @@ class AccountReadyHeader extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          Text(
-            subTitle!,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontWeight: FontWeight.w400,
-                fontSize: 14,
-                color: Theme.of(context).accentColor),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Text(
+              subTitle!,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  fontSize: 14,
+                  color: Theme.of(context).accentColor),
+            ),
           ),
         ],
       ),

@@ -1,13 +1,13 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/feature/non_jordanian_register/non_jordanian_register_page_view_model.dart';
 import 'package:neo_bank/feature/non_jordanian_register/notify/notify_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
+import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:show_up_animation/show_up_animation.dart';
 
@@ -15,7 +15,7 @@ class NonJordanianRegisterPageView
     extends BasePageViewWidget<NonJordanianRegisterPageViewModel> {
   NonJordanianRegisterPageView(ProviderBase model) : super(model);
 
-  final List pages = [NotifyPage()];
+  final List pages = [NotifyPage(), BaseCardPage()];
 
   @override
   Widget build(BuildContext context, model) {
@@ -30,7 +30,7 @@ class NonJordanianRegisterPageView
               stream: model.currentPageStream,
               dataBuilder: (context, currentPage) {
                 return DotsIndicator(
-                  dotsCount: pages.length,
+                  dotsCount: pages.length - 1,
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
@@ -93,29 +93,15 @@ class NonJordanianRegisterPageView
                             ),
                           ),
                           Expanded(
-                            child: CarouselSlider.builder(
-                              itemCount: pages.length,
-                              carouselController: model.pageController,
-                              itemBuilder: (BuildContext context, int itemIndex,
-                                      int pageViewIndex) =>
-                                  AppTiltCard(
-                                      pageViewIndex: pageViewIndex,
-                                      currentPage: currentStep,
-                                      child: pages[itemIndex]),
-                              options: CarouselOptions(
-                                  height: double.maxFinite,
-                                  pageSnapping: true,
-                                  enableInfiniteScroll: false,
-                                  enlargeCenterPage: true,
-                                  viewportFraction: 0.88,
-                                  scrollPhysics: NeverScrollableScrollPhysics(),
-                                  onPageChanged: (index, reason) {
-                                    model.changeCurrentPage(index);
-                                  },
-                                  enlargeStrategy:
-                                      CenterPageEnlargeStrategy.height),
+                            child: AppSwiper(
+                              pages: pages,
+                              pageController: model.pageController,
+                              onIndexChanged: (index) {
+                                model.changeCurrentPage(index);
+                              },
+                              currentStep: currentStep,
                             ),
-                          ),
+                          )
                         ],
                       );
                     },

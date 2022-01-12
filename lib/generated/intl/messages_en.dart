@@ -167,6 +167,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Biometric Login"),
         "biometricLoginActivated": MessageLookupByLibrary.simpleMessage(
             "Biometric login is successfully activated"),
+        "biometricLoginDeactivated": MessageLookupByLibrary.simpleMessage(
+            "Biometric login is successfully deactivated"),
         "biometricLoginDesc": MessageLookupByLibrary.simpleMessage(
             "To blink in more seamlessly, please enable biometric login"),
         "blinkBorn": MessageLookupByLibrary.simpleMessage("Blink was\nborn"),
@@ -1371,7 +1373,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your contact details has been saved."),
         "yourFreeVirtualDebitCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage(
-                "Your free virtual debit card has been issued, and the physical one is\non its way."),
+                "Your free virtual debit card has been issued, and the physical one is on its way."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature")
       };
 }

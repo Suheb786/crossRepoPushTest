@@ -48,9 +48,13 @@ class MobileNumberDialogView extends StatelessWidget {
                   right: 24,
                   bottom: 36,
                   top: _keyboardVisible ? 36 : 204),
-              child: AppKeyBoardHide(
-                child: SingleChildScrollView(
-                  physics: ClampingScrollPhysics(),
+              child: GestureDetector(
+                onPanUpdate: (details) {
+                  if (details.delta.dy > 0 || details.delta.dy.isNegative) {
+                    onDismissed?.call();
+                  }
+                },
+                child: AppKeyBoardHide(
                   child: AppStreamBuilder<int>(
                     stream: model!.currentIndexStream,
                     initialData: 0,
@@ -69,7 +73,7 @@ class MobileNumberDialogView extends StatelessWidget {
                                   child: Text(
                                     title!,
                                     style: TextStyle(
-                                        fontSize: 16,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w600),
                                   ),
                                 ),
@@ -85,6 +89,8 @@ class MobileNumberDialogView extends StatelessWidget {
                                   hintTextColor: AppColor.gray_2,
                                   textColor: Theme.of(context).primaryColorDark,
                                   hintText: S.of(context).searchCountry,
+                                  containerPadding: EdgeInsets.symmetric(
+                                      horizontal: 16, vertical: 10),
                                   onChanged: (value) {
                                     print(value);
                                     model.searchMobileNumber(value);
@@ -95,16 +101,15 @@ class MobileNumberDialogView extends StatelessWidget {
                                       child: Container(
                                           height: 16,
                                           width: 16,
-                                          padding: EdgeInsets.only(right: 8),
-                                          child:
-                                              AppSvg.asset(AssetUtils.search)),
+                                          padding: EdgeInsets.all(6),
+                                          child: AppSvg.asset(AssetUtils.search,
+                                              color: Theme.of(context)
+                                                  .primaryColorDark)),
                                     );
                                   },
                                 ),
                               ),
-                              Container(
-                                  height:
-                                      MediaQuery.of(context).size.height / 2.5,
+                              Expanded(
                                   child: data!.data!.length > 0
                                       ? Stack(
                                           alignment: Alignment.center,
@@ -123,53 +128,46 @@ class MobileNumberDialogView extends StatelessWidget {
                                                 ),
                                               ),
                                             ),
-                                            Container(
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .height /
-                                                  2.5,
+                                            AppScrollableListViewWidget(
                                               child:
-                                                  AppScrollableListViewWidget(
-                                                child:
-                                                    ClickableListWheelScrollView(
-                                                  scrollController:
-                                                      model.scrollController,
-                                                  itemHeight: 72,
-                                                  itemCount: data.data!.length,
-                                                  onItemTapCallback: (index) {
-                                                    model.selectMobileNumber(
-                                                        index);
-                                                  },
-                                                  child: ListWheelScrollView
-                                                      .useDelegate(
-                                                          controller: model
-                                                              .scrollController,
-                                                          itemExtent: 72,
-                                                          onSelectedItemChanged:
-                                                              (int index) {
-                                                            model
-                                                                .selectMobileNumber(
-                                                                    index);
-                                                          },
-                                                          physics:
-                                                              FixedExtentScrollPhysics(),
-                                                          perspective:
-                                                              0.0000000001,
-                                                          childDelegate:
-                                                              ListWheelChildBuilderDelegate(
-                                                                  childCount: data
-                                                                      .data!
-                                                                      .length,
-                                                                  builder: (BuildContext
-                                                                          context,
-                                                                      int index) {
-                                                                    return AllowedMobileNumberListWidget(
-                                                                      item: data
-                                                                              .data![
-                                                                          index],
-                                                                    );
-                                                                  })),
-                                                ),
+                                                  ClickableListWheelScrollView(
+                                                scrollController:
+                                                    model.scrollController,
+                                                itemHeight: 72,
+                                                itemCount: data.data!.length,
+                                                onItemTapCallback: (index) {
+                                                  model.selectMobileNumber(
+                                                      index);
+                                                },
+                                                child: ListWheelScrollView
+                                                    .useDelegate(
+                                                        controller: model
+                                                            .scrollController,
+                                                        itemExtent: 72,
+                                                        onSelectedItemChanged:
+                                                            (int index) {
+                                                          model
+                                                              .selectMobileNumber(
+                                                                  index);
+                                                        },
+                                                        physics:
+                                                            FixedExtentScrollPhysics(),
+                                                        perspective:
+                                                            0.0000000001,
+                                                        childDelegate:
+                                                            ListWheelChildBuilderDelegate(
+                                                                childCount: data
+                                                                    .data!
+                                                                    .length,
+                                                                builder: (BuildContext
+                                                                        context,
+                                                                    int index) {
+                                                                  return AllowedMobileNumberListWidget(
+                                                                    item: data
+                                                                            .data![
+                                                                        index],
+                                                                  );
+                                                                })),
                                               ),
                                             ),
                                           ],
@@ -213,16 +211,21 @@ class MobileNumberDialogView extends StatelessWidget {
                                                   .accentColor),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 8.0, bottom: 16),
-                                        child: Center(
-                                          child: Text(
-                                            S.of(context).swipeDownToCancel,
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w400,
-                                                color: AppColor.dark_gray_1),
+                                      InkWell(
+                                        onTap: () {
+                                          onDismissed?.call();
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 8.0, bottom: 16),
+                                          child: Center(
+                                            child: Text(
+                                              S.of(context).swipeDownToCancel,
+                                              style: TextStyle(
+                                                  fontSize: 10,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: AppColor.dark_gray_1),
+                                            ),
                                           ),
                                         ),
                                       ),

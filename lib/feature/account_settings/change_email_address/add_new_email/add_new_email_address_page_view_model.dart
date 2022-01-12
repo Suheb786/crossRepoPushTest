@@ -1,5 +1,6 @@
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/usecase/account_setting/change_email_address/add_new_email_address_usecase.dart';
+import 'package:domain/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
@@ -16,11 +17,11 @@ class AddNewEmailAddressPageViewModel extends BasePageViewModel {
   final TextEditingController emailController = TextEditingController();
 
   final GlobalKey<AppTextFieldState> changeEmailKey =
-  GlobalKey(debugLabel: "changeEmail");
+      GlobalKey(debugLabel: "changeEmail");
 
   ///add new email address request subject holder
   PublishSubject<AddNewEmailAddressUseCaseParams> _addNewEmailAddressRequest =
-  PublishSubject();
+      PublishSubject();
 
   ///add new email address response holder
   PublishSubject<Resource<bool>> _addNewEmailAddressResponse = PublishSubject();
@@ -37,7 +38,7 @@ class AddNewEmailAddressPageViewModel extends BasePageViewModel {
   AddNewEmailAddressPageViewModel(this._addNewEmailUseCase) {
     _addNewEmailAddressRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _addNewEmailUseCase.execute(params: value))
+              createCall: () => _addNewEmailUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -56,7 +57,7 @@ class AddNewEmailAddressPageViewModel extends BasePageViewModel {
   }
 
   void validate() {
-    if (emailController.text.isNotEmpty) {
+    if (Validator.validateEmail(emailController.text)) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);

@@ -8,6 +8,7 @@ import 'package:neo_bank/feature/account_registration/account_registration_page_
 import 'package:neo_bank/feature/account_registration/addnumber/add_number_page.dart';
 import 'package:neo_bank/feature/account_registration/createPassword/create_password_page.dart';
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_page.dart';
+import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -21,6 +22,7 @@ class AccountRegistrationPageView
     AddNumberPage(),
     CreatePasswordPage(),
     ValidateOtpPage(),
+    BaseCardPage()
   ];
 
   AccountRegistrationPageView(ProviderBase model) : super(model);
@@ -39,7 +41,7 @@ class AccountRegistrationPageView
               stream: model.currentPageStream,
               dataBuilder: (context, currentPage) {
                 return DotsIndicator(
-                  dotsCount: pages.length,
+                  dotsCount: pages.length - 1,
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
