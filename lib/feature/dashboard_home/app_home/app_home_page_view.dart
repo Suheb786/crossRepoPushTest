@@ -125,8 +125,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                               children: [
                                 Text(
                                     cardData!.data!.dashboardDataContent!
-                                        .account!.availableBalance
-                                        .toString(),
+                                        .account!.availableBalance!,
                                     style: TextStyle(
                                         fontSize: 24,
                                         fontWeight: FontWeight.w700,

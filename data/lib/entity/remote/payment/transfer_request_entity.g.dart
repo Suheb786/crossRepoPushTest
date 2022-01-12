@@ -11,6 +11,7 @@ TransferRequestEntity _$TransferRequestEntityFromJson(
   return TransferRequestEntity(
     baseData: json['baseClass'] as Map<String, dynamic>,
     toAmount: json['ToAmount'] as num,
+    nickName: json['NickName'] as String?,
     transferType: json['TransferType'] as String?,
     localEq: json['LocalEq'] as num,
     beneficiaryImage: json['BeneficiaryImage'] as String?,
@@ -36,5 +37,6 @@ Map<String, dynamic> _$TransferRequestEntityToJson(
       'Memo': instance.memo,
       'ToAccount': instance.toAccount,
       'getToken': instance.getToken,
+      'NickName': instance.nickName,
       'baseClass': instance.baseData,
     };

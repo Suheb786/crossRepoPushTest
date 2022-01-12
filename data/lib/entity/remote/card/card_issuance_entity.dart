@@ -1,3 +1,4 @@
+import 'package:data/helper/encypt_decrypt_helper.dart';
 import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -30,6 +31,9 @@ class CardIssuanceEntity
   @override
   CardIssuanceDetails transform() {
     return CardIssuanceDetails(
-        cardHolderName: nameOnCard ?? "-", cardNumber: cardNumber ?? "");
+        cardHolderName: nameOnCard ?? "-",
+        cardNumber: this.cardNumber != null
+            ? EncryptDecryptHelper.decryptCard(cardNo: this.cardNumber!)
+            : "");
   }
 }

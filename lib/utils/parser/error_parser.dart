@@ -374,6 +374,8 @@ class ErrorParser {
         return localisedHelper.weDoNotRecommendToUsePreviousTenPass;
       case ErrorType.CURRENT_PASSWORD_INCORRECT:
         return localisedHelper.currentPasswordIncorrect;
+      case ErrorType.EMPTY_NICKNAME_VALUE:
+        return localisedHelper.emptyNickName;
 
       default:
         return "";

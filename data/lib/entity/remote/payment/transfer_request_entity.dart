@@ -24,12 +24,15 @@ class TransferRequestEntity {
   final String toAccount;
   @JsonKey(name: "getToken")
   final bool getToken;
+  @JsonKey(name: "NickName")
+  final String? nickName;
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
   TransferRequestEntity(
       {required this.baseData,
       this.toAmount: 0,
+      this.nickName: "",
       this.transferType: "",
       this.localEq: 0,
       this.beneficiaryImage: "",
@@ -38,8 +41,9 @@ class TransferRequestEntity {
       this.toAccount: "",
       this.isFriend: false,
       this.getToken: true,
-      this.otpCode:""
-      });
+      this.otpCode: ""}) {
+    print("this constructor called");
+  }
 
   factory TransferRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$TransferRequestEntityFromJson(json);

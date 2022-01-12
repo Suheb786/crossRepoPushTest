@@ -8,6 +8,7 @@ import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dashboard/add_money_selector_option_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
 class AddMoneyOptionSelectorPageView
@@ -23,7 +24,7 @@ class AddMoneyOptionSelectorPageView
         }
       },
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 53, horizontal: 29),
+        margin: EdgeInsets.only(top: 53, left: 29, right: 29),
         child: SingleChildScrollView(
           physics: ClampingScrollPhysics(),
           child: Column(
@@ -39,7 +40,7 @@ class AddMoneyOptionSelectorPageView
                         color: Theme.of(context).accentColor),
                   )),
               Padding(
-                padding: EdgeInsets.only(left: 11),
+                padding: EdgeInsets.only(left: 11, bottom: 53),
                 child: Column(
                   children: [
                     Padding(
@@ -57,7 +58,7 @@ class AddMoneyOptionSelectorPageView
                       height: 46,
                     ),
                     AddMoneySelectorOptionsWidget(
-                      image: AssetUtils.requestMoney,
+                      image: AssetUtils.moneyIn,
                       title: S.of(context).requestMoneyFromOtherBank,
                       desc: S.of(context).requestMoneyFromOtherBankDesc,
                       buttonText: S.of(context).requestMoney,
@@ -93,11 +94,12 @@ class AddMoneyOptionSelectorPageView
                       padding: EdgeInsets.symmetric(vertical: 24),
                       child: Row(
                         children: <Widget>[
-                          AppDivider(
-                            color:
-                                Theme.of(context).accentColor.withOpacity(0.3),
-                            indent: 0,
-                            endIndent: 8,
+                          Expanded(
+                            child: AppDivider(
+                              color: AppColor.white.withOpacity(0.3),
+                              indent: 12,
+                              endIndent: 8,
+                            ),
                           ),
                           Text(
                             S.of(context).or,
@@ -106,11 +108,12 @@ class AddMoneyOptionSelectorPageView
                                 fontWeight: FontWeight.w600,
                                 fontSize: 12),
                           ),
-                          AppDivider(
-                            color:
-                                Theme.of(context).accentColor.withOpacity(0.3),
-                            endIndent: 0,
-                            indent: 8,
+                          Expanded(
+                            child: AppDivider(
+                              color: AppColor.white.withOpacity(0.3),
+                              endIndent: 0,
+                              indent: 8,
+                            ),
                           ),
                         ],
                       ),

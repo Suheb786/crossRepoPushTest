@@ -25,7 +25,8 @@ class RequestFromNewRecipientUseCase extends BaseUseCase<NetworkError,
         params.dbtrName!,
         params.purposeDetailCode!,
         params.isFriend!,
-        params.image!);
+        params.image!,
+        params.nickName);
   }
 }
 
@@ -42,6 +43,7 @@ class RequestFromNewRecipientUseCaseParams extends Params {
   num? limit;
   String? purposeCode;
   String? purposeDetailCode;
+  String? nickName;
 
   RequestFromNewRecipientUseCaseParams(
       {this.ibanOrMobile,
@@ -50,6 +52,7 @@ class RequestFromNewRecipientUseCaseParams extends Params {
       this.amount,
       this.dbtrBic,
       this.dbtrAcct,
+      this.nickName: "",
       this.dbtrName,
       this.image: "",
       this.limit,
@@ -78,6 +81,11 @@ class RequestFromNewRecipientUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: 'Limit should not be more that $limit'),
           type: ErrorType.LIMIT_EXCEEDED,
+          cause: Exception()));
+    } else if (nickName!.isEmpty && isFriend!) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.EMPTY_NICKNAME_VALUE,
           cause: Exception()));
     }
     return Right(true);
