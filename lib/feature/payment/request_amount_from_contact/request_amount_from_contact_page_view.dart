@@ -203,7 +203,7 @@ class RequestAmountFromContactPageView
                                             model.updatePurpose(value1);
                                             model.updatePurposeDetail(value2);
                                             Navigator.pop(context);
-                                          });
+                                          }, beneficiary: model.beneficiary);
                                         },
                                         child: Text(
                                           S.of(context).edit,
@@ -461,6 +461,7 @@ class RequestAmountFromContactPageView
                               ),
                               leftButtonFn: () {
                                 print('left button clicked');
+                                model.changeValue(".");
                               },
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly),
                         )
