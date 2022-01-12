@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -168,6 +167,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Biometric Login"),
         "biometricLoginActivated": MessageLookupByLibrary.simpleMessage(
             "Biometric login is successfully activated"),
+        "biometricLoginDeactivated": MessageLookupByLibrary.simpleMessage(
+            "Biometric login is successfully deactivated"),
         "biometricLoginDesc": MessageLookupByLibrary.simpleMessage(
             "To blink in more seamlessly, please enable biometric login"),
         "blinkBorn": MessageLookupByLibrary.simpleMessage("Blink was\nborn"),
@@ -1370,7 +1371,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your contact details has been saved."),
         "yourFreeVirtualDebitCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage(
-                "Your free virtual debit card has been issued, and the physical one is\non its way."),
+                "Your free virtual debit card has been issued, and the physical one is on its way."),
         "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature")
       };
 }

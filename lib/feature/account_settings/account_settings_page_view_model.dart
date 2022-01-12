@@ -6,6 +6,7 @@ import 'package:domain/usecase/account_setting/upload_profile_image/upload_profi
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
+import 'package:domain/usecase/user/disable_finger_print_usecase.dart';
 import 'package:domain/usecase/user/enable_biometric_usecase.dart';
 import 'package:domain/usecase/user/generate_key_pair_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -28,6 +29,8 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   final EnableBiometricUseCase _enableBiometricUseCase;
 
   final UploadProfileImageUseCase _uploadProfileImageUseCase;
+
+  final DisableFingerPrintUseCase _disableFingerPrintUseCase;
 
   ///cupertino switch value subject
   final BehaviorSubject<bool> _switchSubject = BehaviorSubject();
@@ -120,6 +123,15 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get uploadProfileImageStream =>
       _uploadProfileImageResponse.stream;
 
+  ///disable finger print
+  PublishSubject<DisableFingerPrintUseCaseParams> _disableFingerPrintRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _disableFingerPrintResponse = PublishSubject();
+
+  Stream<Resource<bool>> get disableFingerPrintStream =>
+      _disableFingerPrintResponse.stream;
+
   AccountSettingPageViewModel(
       this._uploadDocumentUseCase,
       this._checkBioMetricSupportUseCase,
@@ -127,7 +139,8 @@ class AccountSettingPageViewModel extends BasePageViewModel {
       this._getProfileInfoUseCase,
       this._generateKeyPairUseCase,
       this._enableBiometricUseCase,
-      this._uploadProfileImageUseCase) {
+      this._uploadProfileImageUseCase,
+      this._disableFingerPrintUseCase) {
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value,
               createCall: () => _uploadDocumentUseCase.execute(params: value))
@@ -207,6 +220,21 @@ class AccountSettingPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _disableFingerPrintRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _disableFingerPrintUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _disableFingerPrintResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
     getCurrentUserStream();
     getProfileDetails();
   }
@@ -255,6 +283,10 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   void uploadProfileImage() {
     _uploadProfileImageRequest
         .safeAdd(UploadProfileImageUseCaseParams(imagePath: selectedProfile));
+  }
+
+  void disableFingerPrint() {
+    _disableFingerPrintRequest.safeAdd(DisableFingerPrintUseCaseParams());
   }
 
   @override

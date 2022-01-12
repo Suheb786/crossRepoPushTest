@@ -737,7 +737,7 @@
   "weWillNotifyOnceReady": "We will notify you once it’s ready",
   "emptyIncome": "Enter total annual income",
   "accountReadyMsg": "Account ready!",
-  "yourFreeVirtualDebitCardHasBeenIssued": "Your free virtual debit card has been issued, and the physical one is\non its way.",
+  "yourFreeVirtualDebitCardHasBeenIssued": "Your free virtual debit card has been issued, and the physical one is on its way.",
   "passwordNotMeetCriteria": "Password does not meet requirement. \nPlease try again.",
   "currentPasswordInvalid": "Current password is invalid. Password does not meet requirement.",
   "selectExpectedTransaction": "Select expected transaction",
@@ -778,5 +778,6 @@
   "errorWhileGettingDashboard": "An error has occurred While Getting Account DashBoard",
   "mobileAlreadyExists": "Mobile Number Already Exist. Try Using Different Mobile Number",
   "weDoNotRecommendToUsePreviousTenPass": "We do not recommend to use your previous 10 passwords, please enter a new password ",
-  "currentPasswordIncorrect": "The current password entered is wrong. Please try again"
+  "currentPasswordIncorrect": "The current password entered is wrong. Please try again",
+  "biometricLoginDeactivated": "Biometric login is successfully deactivated"
 }

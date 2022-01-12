@@ -10,8 +10,10 @@ class FatcaOptionItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(top: 23, left: 32, bottom: 21),
       margin: EdgeInsets.symmetric(horizontal: 16),
-      padding: EdgeInsets.only(left: 24, right: 20, top: 16, bottom: 16),
+      height: 64,
+      width: double.infinity,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16), color: Colors.transparent),
       child: Text(

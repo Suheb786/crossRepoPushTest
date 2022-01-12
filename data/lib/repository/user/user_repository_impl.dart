@@ -485,7 +485,7 @@ class UserRepositoryImpl extends UserRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(true),
+      (r) => Right(r.isSuccessful()),
     );
   }
 

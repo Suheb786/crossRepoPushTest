@@ -7191,10 +7191,10 @@ class S {
     );
   }
 
-  /// `Your free virtual debit card has been issued, and the physical one is\non its way.`
+  /// `Your free virtual debit card has been issued, and the physical one is on its way.`
   String get yourFreeVirtualDebitCardHasBeenIssued {
     return Intl.message(
-      'Your free virtual debit card has been issued, and the physical one is\non its way.',
+      'Your free virtual debit card has been issued, and the physical one is on its way.',
       name: 'yourFreeVirtualDebitCardHasBeenIssued',
       desc: '',
       args: [],
@@ -7606,6 +7606,16 @@ class S {
     return Intl.message(
       'The current password entered is wrong. Please try again',
       name: 'currentPasswordIncorrect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biometric login is successfully deactivated`
+  String get biometricLoginDeactivated {
+    return Intl.message(
+      'Biometric login is successfully deactivated',
+      name: 'biometricLoginDeactivated',
       desc: '',
       args: [],
     );

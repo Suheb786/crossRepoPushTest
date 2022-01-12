@@ -146,7 +146,7 @@ class PurposeOfAccountOpeningPageView
                                           },
                                           physics: ClampingScrollPhysics(),
                                           padding: EdgeInsets.only(
-                                              top: 16, bottom: 24),
+                                              top: 16, bottom: 8),
                                           itemCount: expectedTransactions!
                                               .data!.length,
                                           shrinkWrap: true,
@@ -156,8 +156,10 @@ class PurposeOfAccountOpeningPageView
                                   },
                                 ),
                                 AppTextField(
-                                  labelText:
-                                      S.of(context).expectedMonthlyAmount.toUpperCase(),
+                                  labelText: S
+                                      .of(context)
+                                      .expectedMonthlyAmount
+                                      .toUpperCase(),
                                   hintText: '',
                                   controller: model
                                       .expectedMonthlyTransactionController,
