@@ -10,7 +10,7 @@ class InformationDialog {
       Function? onSelected,
       required String image,
       required String title,
-      required String description}) {
+      required Widget descriptionWidget}) {
     AppDialog.show(mContext,
         isDismissible: false,
         builder: (context) => InformationDialogView(
@@ -18,6 +18,6 @@ class InformationDialog {
             onSelected: onSelected,
             image: image,
             title: title,
-            description: description));
+            descriptionWidget: descriptionWidget));
   }
 }

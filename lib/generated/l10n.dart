@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6121,6 +6120,46 @@ class S {
     );
   }
 
+  /// `Here is some information for you to acknowledge before freezing your card.`
+  String get acknowledgeBeforeFreezingCard {
+    return Intl.message(
+      'Here is some information for you to acknowledge before freezing your card.',
+      name: 'acknowledgeBeforeFreezingCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In freezed state, your card can’t be used for any transactions.`
+  String get cardcantBeUsedForTransactions {
+    return Intl.message(
+      'In freezed state, your card can’t be used for any transactions.',
+      name: 'cardcantBeUsedForTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.`
+  String get directDebitsWontBeMade {
+    return Intl.message(
+      'In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.',
+      name: 'directDebitsWontBeMade',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can unfreeze and activate your card at any time.`
+  String get freezeAndActiveAtAnyTime {
+    return Intl.message(
+      'You can unfreeze and activate your card at any time.',
+      name: 'freezeAndActiveAtAnyTime',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Payment activity`
   String get paymentActivity {
     return Intl.message(
@@ -6386,16 +6425,6 @@ class S {
     return Intl.message(
       'Please agree to the term and condition',
       name: 'pleaseAgreeToTheTermAndCondition',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. `
-  String get freezeDebitCardDescription {
-    return Intl.message(
-      'Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. ',
-      name: 'freezeDebitCardDescription',
       desc: '',
       args: [],
     );

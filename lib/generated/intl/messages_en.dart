@@ -68,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ACCOUNT REGISTRATION"),
         "accountRelatedQuestions": MessageLookupByLibrary.simpleMessage(
             "Now, tell us what\nthe account is for"),
+        "acknowledgeBeforeFreezingCard": MessageLookupByLibrary.simpleMessage(
+            "Here is some information for you to acknowledge before freezing your card."),
         "actionComeToYouSoon": MessageLookupByLibrary.simpleMessage(
             "The actions with 🔴 will come to you soon"),
         "activity": MessageLookupByLibrary.simpleMessage("Activity"),
@@ -219,6 +221,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "cardPinSucccesFullyUnblockedDesc":
             MessageLookupByLibrary.simpleMessage(
                 "Your may use your card PIN for payments immediately."),
+        "cardcantBeUsedForTransactions": MessageLookupByLibrary.simpleMessage(
+            "In freezed state, your card can’t be used for any transactions."),
         "changeCardPin":
             MessageLookupByLibrary.simpleMessage("Change card PIN"),
         "changeCountryRestriction":
@@ -329,6 +333,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Don’t worry, you can deposit cash into the account with or without your card. Just locate nearest Capital Bank ATM."),
         "deviceNotFound":
             MessageLookupByLibrary.simpleMessage("Device Not Found"),
+        "directDebitsWontBeMade": MessageLookupByLibrary.simpleMessage(
+            "In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier."),
         "district": MessageLookupByLibrary.simpleMessage("District"),
         "doYouHaveAdditionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage(
@@ -565,8 +571,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Foreign Tax Identifying Number"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forgot password"),
-        "freezeDebitCardDescription": MessageLookupByLibrary.simpleMessage(
-            "Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. "),
+        "freezeAndActiveAtAnyTime": MessageLookupByLibrary.simpleMessage(
+            "You can unfreeze and activate your card at any time."),
         "freezeTheCard":
             MessageLookupByLibrary.simpleMessage("Freeze this card?"),
         "freezeThisCard":

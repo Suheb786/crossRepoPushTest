@@ -11,14 +11,14 @@ class InformationDialogView extends StatelessWidget {
   final Function? onSelected;
   final String image;
   final String title;
-  final String description;
+  final Widget descriptionWidget;
 
   const InformationDialogView({
     this.onDismissed,
     this.onSelected,
     required this.image,
     required this.title,
-    required this.description,
+    required this.descriptionWidget,
   });
 
   @override
@@ -49,10 +49,7 @@ class InformationDialogView extends StatelessWidget {
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                     ),
                     SizedBox(height: 31),
-                    Text(
-                      description,
-                      style: TextStyle(fontSize: 14, height: 1.7),
-                    ),
+                    descriptionWidget,
                     SizedBox(height: 30),
                     InkWell(
                       onTap: () {
