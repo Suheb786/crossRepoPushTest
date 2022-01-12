@@ -421,6 +421,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Upload valid nationality document."),
         "emptyNewPassword":
             MessageLookupByLibrary.simpleMessage("Enter New Password"),
+        "emptyNickName":
+            MessageLookupByLibrary.simpleMessage("Please add nickName"),
         "emptyNickname": MessageLookupByLibrary.simpleMessage("Empty Nickname"),
         "emptyPin": MessageLookupByLibrary.simpleMessage("Enter Pin"),
         "emptyPurpose":

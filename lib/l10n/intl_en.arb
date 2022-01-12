@@ -780,4 +780,6 @@
   "weDoNotRecommendToUsePreviousTenPass": "We do not recommend to use your previous 10 passwords, please enter a new password ",
   "currentPasswordIncorrect": "The current password entered is wrong. Please try again",
   "biometricLoginDeactivated": "Biometric login is successfully deactivated"
+  "currentPasswordIncorrect": "The current password entered is wrong. Please try again",
+  "emptyNickName": "Please add nickName"
 }

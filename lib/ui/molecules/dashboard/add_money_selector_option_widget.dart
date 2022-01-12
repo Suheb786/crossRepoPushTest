@@ -22,7 +22,7 @@ class AddMoneySelectorOptionsWidget extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppSvg.asset(image!),
+        AppSvg.asset(image!, color: Theme.of(context).accentColor),
         SizedBox(
           width: 12,
         ),

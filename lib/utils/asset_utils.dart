@@ -141,6 +141,7 @@ class AssetUtils {
   static const String blinkWhite = svg + "blink_white.svg";
   static const String wifi = svg + "wifi.svg";
   static const String blinkLogo = svg + "blink_logo.svg";
+  static const String moneyIn = svg + "money_in.svg";
 
   /// DRAWABLES
   static const String splashLogo = drawable + "splash.png";

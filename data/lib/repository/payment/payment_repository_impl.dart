@@ -76,17 +76,11 @@ class PaymentRepositoryImpl extends PaymentRepository {
       String dbtrName,
       String memo,
       bool? isFriend,
-      String? image) async {
+      String? image,
+      String? nickName) async {
     final result = await safeApiCall(
-      paymentRemoteDs.requestToPay(
-          ctgyPurp,
-          amount,
-          dbtrBic,
-          dbtrAcct,
-          dbtrName,
-          memo,
-          isFriend,
-          image),
+      paymentRemoteDs.requestToPay(ctgyPurp, amount, dbtrBic, dbtrAcct,
+          dbtrName, memo, isFriend, image, nickName),
     );
     return result!.fold(
           (l) => Left(l),

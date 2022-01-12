@@ -34,7 +34,8 @@ abstract class PaymentRepository {
       String dbtrName,
       String memo,
       bool? isFriend,
-      String? image);
+      String? image,
+      String? nickName);
 
   Future<Either<NetworkError, PurposeResponse>> getPurpose(
       String toAccount, String transferTypel);
