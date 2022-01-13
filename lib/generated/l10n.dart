@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -261,10 +260,10 @@ class S {
     );
   }
 
-  /// `I agree for blink to retrieve my data from the Civil Department`
+  /// `I hereby authorize Blink to retrieve my data from the Civil Status and Passports Department.`
   String get termsAndConditions {
     return Intl.message(
-      'I agree for blink to retrieve my data from the Civil Department',
+      'I hereby authorize Blink to retrieve my data from the Civil Status and Passports Department.',
       name: 'termsAndConditions',
       desc: '',
       args: [],
@@ -1321,10 +1320,10 @@ class S {
     );
   }
 
-  /// `I confirm that information above is correct and agree to the bank’s `
+  /// `I confirm that information provided is accurate and I hereby acknowledge that I have read, understood, and accepted Blink’s General `
   String get confirmInfoTC {
     return Intl.message(
-      'I confirm that information above is correct and agree to the bank’s ',
+      'I confirm that information provided is accurate and I hereby acknowledge that I have read, understood, and accepted Blink’s General ',
       name: 'confirmInfoTC',
       desc: '',
       args: [],
@@ -1521,10 +1520,10 @@ class S {
     );
   }
 
-  /// `Password did not match`
+  /// `The passwords you entered do not match. Please try again.`
   String get passwordMismatch {
     return Intl.message(
-      'Password did not match',
+      'The passwords you entered do not match. Please try again.',
       name: 'passwordMismatch',
       desc: '',
       args: [],
@@ -3601,10 +3600,10 @@ class S {
     );
   }
 
-  /// `You must be the beneficial owner of the account to proceed`
+  /// `We're sorry, you must be the beneficial owner of the account to proceed.`
   String get invalidBeneficialOwnerAccount {
     return Intl.message(
-      'You must be the beneficial owner of the account to proceed',
+      'We\'re sorry, you must be the beneficial owner of the account to proceed.',
       name: 'invalidBeneficialOwnerAccount',
       desc: '',
       args: [],
@@ -3701,20 +3700,20 @@ class S {
     );
   }
 
-  /// ` is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list.`
+  /// ` is an individual who currently has or previously had a high profile political role, such as: head of government/state, minister, judicial or military official, high-ranking government or public official, a prominent politician, a prominent figure in a political party, a senior executive of a state-owned company; including the individual’s first-degree relatives, their business partners, or any persons working on their behalf or having authorization/power of attorney issued by them.`
   String get pepDesc {
     return Intl.message(
-      ' is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list.',
+      ' is an individual who currently has or previously had a high profile political role, such as: head of government/state, minister, judicial or military official, high-ranking government or public official, a prominent politician, a prominent figure in a political party, a senior executive of a state-owned company; including the individual’s first-degree relatives, their business partners, or any persons working on their behalf or having authorization/power of attorney issued by them.',
       name: 'pepDesc',
       desc: '',
       args: [],
     );
   }
 
-  /// `I declare that the bank is entitled to verify the information given directly or through any third part agent.`
+  /// `I authorize Blink to disclose any information related to my accounts to the US Tax Department or any related party.`
   String get verifyInformationDirectlyOrUsingThirdPartyAgentDesc {
     return Intl.message(
-      'I declare that the bank is entitled to verify the information given directly or through any third part agent.',
+      'I authorize Blink to disclose any information related to my accounts to the US Tax Department or any related party.',
       name: 'verifyInformationDirectlyOrUsingThirdPartyAgentDesc',
       desc: '',
       args: [],
@@ -3731,10 +3730,10 @@ class S {
     );
   }
 
-  /// `To blink in more seamlessly, please enable biometric login`
+  /// `To Blink in more seamlessly, please enable biometric login`
   String get biometricLoginDesc {
     return Intl.message(
-      'To blink in more seamlessly, please enable biometric login',
+      'To Blink in more seamlessly, please enable biometric login',
       name: 'biometricLoginDesc',
       desc: '',
       args: [],
@@ -7191,20 +7190,20 @@ class S {
     );
   }
 
-  /// `Your free virtual debit card has been issued, and the physical one is\non its way.`
+  /// `Your free virtual debit card has been issued, and the physical one is on its way.`
   String get yourFreeVirtualDebitCardHasBeenIssued {
     return Intl.message(
-      'Your free virtual debit card has been issued, and the physical one is\non its way.',
+      'Your free virtual debit card has been issued, and the physical one is on its way.',
       name: 'yourFreeVirtualDebitCardHasBeenIssued',
       desc: '',
       args: [],
     );
   }
 
-  /// `Password does not meet requirement. \nPlease try again.`
+  /// `Your password does not meet the minimum requirements. Please try again.`
   String get passwordNotMeetCriteria {
     return Intl.message(
-      'Password does not meet requirement. \nPlease try again.',
+      'Your password does not meet the minimum requirements. Please try again.',
       name: 'passwordNotMeetCriteria',
       desc: '',
       args: [],
@@ -7646,6 +7645,26 @@ class S {
     return Intl.message(
       'Ref No.',
       name: 'refNo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biometric login is successfully deactivated`
+  String get biometricLoginDeactivated {
+    return Intl.message(
+      'Biometric login is successfully deactivated',
+      name: 'biometricLoginDeactivated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Yellow Sun debit card has been issued!`
+  String get yourYellowSunDebitCardIssued {
+    return Intl.message(
+      'Your Yellow Sun debit card has been issued!',
+      name: 'yourYellowSunDebitCardIssued',
       desc: '',
       args: [],
     );
