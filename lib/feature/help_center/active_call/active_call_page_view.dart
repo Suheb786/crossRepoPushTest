@@ -72,7 +72,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                       children: [
                         AppStreamBuilder<Resource<bool>>(
                             stream: model.speakerResponseStream,
-                            initialData: Resource.none(),
+                            initialData: Resource.success(data: false),
                             dataBuilder: (context, data) => InkWell(
                                   onTap: () => model.toggleSpeaker(),
                                   child: Align(
@@ -96,7 +96,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                 )),
                         AppStreamBuilder<Resource<bool>>(
                             stream: model.muteUnMuteResponseStream,
-                            initialData: Resource.none(),
+                            initialData: Resource.success(data: false),
                             dataBuilder: (context, data) => InkWell(
                                   onTap: () => model.toggleMute(),
                                   child: Align(

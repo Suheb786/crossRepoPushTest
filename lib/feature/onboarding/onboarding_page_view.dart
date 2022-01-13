@@ -22,8 +22,8 @@ class OnBoardingPageView extends BasePageViewWidget<OnBoardingViewModel> {
       controller: model.onBoardingPageController,
       physics: NeverScrollableScrollPhysics(),
       children: [
-        // LoginPage(),
-        HelpCenterPage(),
+        LoginPage(),
+        // HelpCenterPage(),
         RegisterSelectionPage(),
       ],
     );

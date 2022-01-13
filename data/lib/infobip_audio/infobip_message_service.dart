@@ -1,4 +1,4 @@
-import 'package:domain/constants/enum/infobip_call_status_enum.dart';
+import 'package:domain/constants/enum/infobip_utils_enum.dart';
 import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:infobip_mobilemessaging/models/Configuration.dart';
 import 'package:infobip_mobilemessaging/models/IOSChatSettings.dart';
@@ -9,20 +9,20 @@ class InfobipMessageService {
   Future<bool> initPlatformState() async {
     await InfobipMobilemessaging.init(
       Configuration(
-        applicationCode:
-            "ba5a5387c4c6d249017b320e2e9d5f7d-f5686c8d-d45a-4253-9b93-496e52f2a9dd",
+        applicationCode: InfobipUtilsConstants.APPLICATION_CODE,
         inAppChatEnabled: true,
-        androidSettings: AndroidSettings(firebaseSenderId: "660487917685"),
+        androidSettings: AndroidSettings(
+            firebaseSenderId: InfobipUtilsConstants.FIREBASE_SENDER_ID),
         defaultMessageStorage: true,
         iosSettings: IOSSettings(
             notificationTypes: ["alert", "badge", "sound"],
-            forceCleanup: false,
+            forceCleanup: true,
             logging: true),
       ),
     );
-    InfobipMobilemessaging.saveUser(UserData(firstName: "Amit"));
+    // await InfobipMobilemessaging.saveUser(UserData(firstName: "Amit"));
     InfobipMobilemessaging.setupiOSChatSettings(IOSChatSettings(
-      title: 'Flutter Example Chat',
+      title: 'Blink',
       sendButtonColor: '#E53E51',
       navigationBarItemsColor: '#E53E51',
       navigationBarColor: '#E53E51',

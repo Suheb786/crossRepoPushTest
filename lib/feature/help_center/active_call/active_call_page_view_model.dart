@@ -101,8 +101,8 @@ class ActiveCallPageViewModel extends BasePageViewModel {
           .safeAdd(Duration(seconds: event).toHoursMinutesSeconds());
     });
     getCurrentCallStatus();
-    toggleMute();
-    toggleSpeaker();
+    // toggleMute();
+    // toggleSpeaker();
   }
 
   toggleMute() {
