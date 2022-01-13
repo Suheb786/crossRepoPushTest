@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/help_center/help_center_modules.dart';
 import 'package:neo_bank/feature/help_center/active_call/active_call_page_view_model.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -86,7 +85,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                       ),
                                       child: Center(
                                           child: AppSvg.asset(
-                                              data!.data!
+                                              !data!.data!
                                                   ? AssetUtils.speaker
                                                   : AssetUtils.speakerOff,
                                               height: 30.32,

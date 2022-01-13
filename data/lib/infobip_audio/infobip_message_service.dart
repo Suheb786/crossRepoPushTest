@@ -20,14 +20,6 @@ class InfobipMessageService {
             logging: true),
       ),
     );
-    // await InfobipMobilemessaging.saveUser(UserData(firstName: "Amit"));
-    InfobipMobilemessaging.setupiOSChatSettings(IOSChatSettings(
-      title: 'Blink',
-      sendButtonColor: '#E53E51',
-      navigationBarItemsColor: '#E53E51',
-      navigationBarColor: '#E53E51',
-      navigationBarTitleColor: '#000000',
-    ));
     return true;
   }
 

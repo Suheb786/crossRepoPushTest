@@ -14,9 +14,9 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - blinkid_flutter (5.14.0):
+  - blinkid_flutter (5.13.0):
     - Flutter
-    - PPBlinkID (~> 5.14.0)
+    - PPBlinkID (~> 5.13.0)
   - camera (0.0.1):
     - Flutter
   - device_info (0.0.1):
@@ -110,7 +110,7 @@ PODS:
     - Flutter
   - "permission_handler (5.1.0+2)":
     - Flutter
-  - PPBlinkID (5.14.0)
+  - PPBlinkID (5.13.0)
   - r_get_ip (0.0.1):
     - Flutter
   - SDWebImage (5.12.1):
@@ -221,7 +221,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  blinkid_flutter: b62068dbc3f20f822468f3ad69b49fd6641bd7a2
+  blinkid_flutter: 49fe21e288a8db96b667ae0dcd4f73f0397b7a84
   camera: fe33292aff715a981eb34d7ce7b35b54337ff34c
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d
@@ -248,7 +248,7 @@ SPEC CHECKSUMS:
   package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
-  PPBlinkID: c432c90e04d59698e9675d945e401720471a3ebb
+  PPBlinkID: 831c69d11757b9aea430d6e17fceb116d5de64b3
   r_get_ip: 5b7a232114eacec8935eef83b7400d8d63baba48
   SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
