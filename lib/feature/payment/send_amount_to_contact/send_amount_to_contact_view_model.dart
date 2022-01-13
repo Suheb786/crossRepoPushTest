@@ -106,7 +106,13 @@ class SendAmountToContactViewModel extends BasePageViewModel {
         currentPinValue = myList.join("");
       }
     } else {
-      myList.add(value);
+      if (myList.contains(".")) {
+        if (myList.indexOf(".") > myList.length - 4) {
+          myList.add(value);
+        }
+      } else {
+        myList.add(value);
+      }
       currentPinValue = myList.join("");
     }
     notifyListeners();

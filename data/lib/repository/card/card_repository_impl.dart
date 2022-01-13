@@ -26,9 +26,10 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> setCardPin(String pin) async {
+  Future<Either<NetworkError, bool>> setCardPin(
+      String pin, String cardNumber) async {
     final result = await safeApiCall(
-      _remoteDs.setCardPin(pin),
+      _remoteDs.setCardPin(pin, cardNumber),
     );
     return result!.fold(
       (l) => Left(l),

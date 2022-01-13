@@ -8,7 +8,8 @@ import 'package:domain/model/dashboard/transactions/get_transactions_response.da
 abstract class CardRepository {
   Future<Either<NetworkError, CardIssuanceDetails>> getCardIssuanceDetails();
 
-  Future<Either<NetworkError, bool>> setCardPin(String currentPin);
+  Future<Either<NetworkError, bool>> setCardPin(
+      String currentPin, String cardNUmber);
 
   Future<Either<NetworkError, bool>> confirmCardDelivery();
 

@@ -17,6 +17,7 @@ import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart'
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
+import 'package:data/helper/encypt_decrypt_helper.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/card/card_datasource.dart';
 import 'package:retrofit/dio.dart';
@@ -36,10 +37,14 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> setCardPin(String pin) async {
+  Future<HttpResponse<ResponseEntity>> setCardPin(
+      String pin, String cardNumber) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.setCardPin(SetCardPinRequest(
-        baseData: baseData.toJson(), getToken: true, pinCode: pin));
+        baseData: baseData.toJson(),
+        getToken: true,
+        pinCode: EncryptDecryptHelper.generateBlockPin(
+            cardNo: cardNumber, pinCode: pin)));
   }
 
   @override
