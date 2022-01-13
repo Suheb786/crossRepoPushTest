@@ -8,36 +8,36 @@ import 'package:neo_bank/feature/static_content/us_tax_payer_identification_numb
 
 ///fatca view model provider
 final fatcaCertificationViewModelProvider =
-ChangeNotifierProvider.autoDispose<FatcaCertificationPageViewModel>(
+    ChangeNotifierProvider.autoDispose<FatcaCertificationPageViewModel>(
   (ref) => FatcaCertificationPageViewModel(),
 );
 
 ///exempt payee code page view model provider
 final exemptPayeeCodeViewModelProvider =
-ChangeNotifierProvider.autoDispose<ExemptPayeeCodePageViewModel>(
+    ChangeNotifierProvider.autoDispose<ExemptPayeeCodePageViewModel>(
   (ref) => ExemptPayeeCodePageViewModel(),
 );
 
 ///exempt from fatca reporting code page view model provider
 final exemptionFromFatcaReportingCodeViewModelProvider = ChangeNotifierProvider
     .autoDispose<ExemptionFromFatcaReportingCodePageViewModel>(
-        (ref) => ExemptionFromFatcaReportingCodePageViewModel(),
+  (ref) => ExemptionFromFatcaReportingCodePageViewModel(),
 );
 
 ///us taxpayer identification number page view model provider
 final usTaxPayerIdentificationNumberViewModelProvider = ChangeNotifierProvider
     .autoDispose<UsTaxPayerIdentificationNumberPageViewModel>(
-        (ref) => UsTaxPayerIdentificationNumberPageViewModel(),
+  (ref) => UsTaxPayerIdentificationNumberPageViewModel(),
 );
 
 ///reference Number page view model provider
 final referenceNumberViewModelProvider =
-ChangeNotifierProvider.autoDispose<ReferenceNumberPageViewModel>(
+    ChangeNotifierProvider.autoDispose<ReferenceNumberPageViewModel>(
   (ref) => ReferenceNumberPageViewModel(),
 );
 
 ///tax treaty benefits page view model provider
 final claimOfTaxTreatyBenefitsViewModelProvider =
-ChangeNotifierProvider.autoDispose<ClaimOfTaxTreatyBenefitsPageViewModel>(
+    ChangeNotifierProvider.autoDispose<ClaimOfTaxTreatyBenefitsPageViewModel>(
   (ref) => ClaimOfTaxTreatyBenefitsPageViewModel(),
 );

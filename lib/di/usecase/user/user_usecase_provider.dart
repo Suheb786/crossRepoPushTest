@@ -190,7 +190,7 @@ final getComboValuesUseCaseProvider =
   (ref) => GetComboValuesUseCase(
     ref.read(userRepoProvider),
   ),
-    );
+);
 
 /// listen current user use case provider
 final listenCurrentUserUseCaseProvider =
