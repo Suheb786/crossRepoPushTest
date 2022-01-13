@@ -16,6 +16,7 @@ import 'package:data/entity/remote/user/save_country_residence_info_response_ent
 import 'package:data/entity/remote/user/save_id_info_response_entity.dart';
 import 'package:data/entity/remote/user/save_job_details_response_entity.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
+import 'package:data/entity/remote/user/status/customer_status_response_entity.dart';
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
@@ -145,6 +146,8 @@ abstract class UserRemoteDS {
   Future<HttpResponse<ResponseEntity>> enableBiometric();
 
   Future<HttpResponse<GetComboValuesResponseEntity>> getComboValues();
+
+  Future<HttpResponse<CustomerStatusResponseEntity>> checkCustomerStatus();
 }
 
 abstract class UserLocalDS {

@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7615,6 +7616,36 @@ class S {
     return Intl.message(
       'Please add nickName',
       name: 'emptyNickName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `One final stop...`
+  String get oneFinalStop {
+    return Intl.message(
+      'One final stop...',
+      name: 'oneFinalStop',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your application is under review,\nwe will notify you soon.`
+  String get yourApplicationInReviewNote {
+    return Intl.message(
+      'Your application is under review,\nwe will notify you soon.',
+      name: 'yourApplicationInReviewNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ref No.`
+  String get refNo {
+    return Intl.message(
+      'Ref No.',
+      name: 'refNo',
       desc: '',
       args: [],
     );

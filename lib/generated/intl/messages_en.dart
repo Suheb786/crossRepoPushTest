@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -891,6 +892,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ofTheBank": MessageLookupByLibrary.simpleMessage("of the bank."),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "Once fit, your ID will be scanned automatically"),
+        "oneFinalStop":
+            MessageLookupByLibrary.simpleMessage("One final stop..."),
         "oneNumber": MessageLookupByLibrary.simpleMessage("1 number"),
         "oneSymbol": MessageLookupByLibrary.simpleMessage("1 symbol"),
         "oneUpperCaseLetter":
@@ -1042,6 +1045,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Receive money from others"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
             "Share your account details to your friends and family, let them know you are on blink!"),
+        "refNo": MessageLookupByLibrary.simpleMessage("Ref No."),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
         "referenceNumber":
@@ -1359,6 +1363,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "You will receive your card PIN via SMS. You can contact our Engagement Team in case not received."),
         "yourApplicationInReview": MessageLookupByLibrary.simpleMessage(
             "Your application is\nin review"),
+        "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
+            "Your application is under review,\nwe will notify you soon."),
         "yourCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage("Your card has\nbeen issued"),
         "yourCardIsReady":

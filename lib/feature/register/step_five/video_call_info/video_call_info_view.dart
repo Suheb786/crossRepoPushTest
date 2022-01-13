@@ -34,13 +34,6 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                           .registrationStepFivePageController
                           .next();
                     });
-                  } else {
-                    Future.delayed(Duration(milliseconds: 500), () {
-                      ProviderScope.containerOf(context)
-                          .read(registerStepFiveViewModelProvider)
-                          .registrationStepFivePageController
-                          .previous();
-                    });
                   }
                 },
                 child: Card(
@@ -92,28 +85,6 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                   SizedBox(
                                     height: 43,
                                   ),
-                                  // InformationText(
-                                  //     image: AssetUtils.sun,
-                                  //     title: S.of(context).brightPlace),
-                                  // SizedBox(
-                                  //   height: 32,
-                                  // ),
-                                  // InformationText(
-                                  //     image: AssetUtils.mic,
-                                  //     title: S.of(context).quietSurrounding,
-                                  //     iconColor:
-                                  //         Theme.of(context).primaryColorDark),
-                                  // SizedBox(
-                                  //   height: 32,
-                                  // ),
-                                  // InformationText(
-                                  //     image: AssetUtils.headPhone,
-                                  //     title: S.of(context).preferredAgent,
-                                  //     iconColor:
-                                  //         Theme.of(context).primaryColorDark),
-                                  // SizedBox(
-                                  //   height: 56,
-                                  // ),
                                   InkWell(
                                     onTap: () {
                                       Future.delayed(

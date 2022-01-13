@@ -779,5 +779,8 @@
   "mobileAlreadyExists": "Mobile Number Already Exist. Try Using Different Mobile Number",
   "weDoNotRecommendToUsePreviousTenPass": "We do not recommend to use your previous 10 passwords, please enter a new password ",
   "currentPasswordIncorrect": "The current password entered is wrong. Please try again",
-  "emptyNickName": "Please add nickName"
+  "emptyNickName": "Please add nickName",
+  "oneFinalStop": "One final stop...",
+  "yourApplicationInReviewNote": "Your application is under review,\nwe will notify you soon.",
+  "refNo": "Ref No."
 }

@@ -55,9 +55,9 @@ import 'package:data/entity/remote/country/country_list/country_list_request_ent
 import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_response_entity.dart';
+import 'package:data/entity/remote/country/get_allowed_issuer/get_allowed_issuer_response_entity.dart';
 import 'package:data/entity/remote/country/state_list/state_list_request_entity.dart';
 import 'package:data/entity/remote/country/state_list/state_list_response_entity.dart';
-import 'package:data/entity/remote/country/get_allowed_issuer/get_allowed_issuer_response_entity.dart';
 import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
@@ -119,6 +119,7 @@ import 'package:data/entity/remote/user/save_profile_information_request.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:data/entity/remote/user/save_residence_information_request.dart';
 import 'package:data/entity/remote/user/save_selfie_image_request.dart';
+import 'package:data/entity/remote/user/status/customer_status_response_entity.dart';
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/network_properties.dart';
@@ -538,5 +539,9 @@ abstract class ApiService {
 
   @POST("/Auth/CheckIssuer")
   Future<HttpResponse<GetAllowedIssuerResponseEntity>> fetchAllowedIssuers(
+      @Body() BaseRequest baseRequest);
+
+  @POST("Account/CheckCustomerStatus")
+  Future<HttpResponse<CustomerStatusResponseEntity>> checkCustomerStatus(
       @Body() BaseRequest baseRequest);
 }
