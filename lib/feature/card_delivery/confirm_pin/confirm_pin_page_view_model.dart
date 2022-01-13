@@ -1,6 +1,8 @@
 import 'package:domain/usecase/card_delivery/confirm_pin_usecase.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -45,9 +47,13 @@ class ConfirmPinPageViewModel extends BasePageViewModel {
     });
   }
 
-  void validatePin(String previousPin) {
+  void validatePin(String previousPin, BuildContext context) {
     _confirmPinRequest.safeAdd(ConfirmPinUseCaseParams(
-        currentPin: _pinSubject.value, previousPin: previousPin));
+        currentPin: _pinSubject.value,
+        previousPin: previousPin,
+        cardNumber: ProviderScope.containerOf(context)
+            .read(visaCardViewModelProvider)
+            .cardNumber));
   }
 
   void validate(String value) {

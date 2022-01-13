@@ -111,16 +111,19 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
   void changeValue(String value) {
     if (value == ".") {
       if (!currentPinValue.contains(value)) {
-        print("in if");
         myList.add(value);
         currentPinValue = myList.join("");
       }
     } else {
-      print("in else");
-      myList.add(value);
+      if (myList.contains(".")) {
+        if (myList.indexOf(".") > myList.length - 4) {
+          myList.add(value);
+        }
+      } else {
+        myList.add(value);
+      }
       currentPinValue = myList.join("");
     }
-    print("got value: $currentPinValue");
     notifyListeners();
   }
 

@@ -8,7 +8,8 @@ import 'package:retrofit/retrofit.dart';
 abstract class CardRemoteDs {
   Future<HttpResponse<CardIssuanceResponseEntity>> getCardIssuanceDetails();
 
-  Future<HttpResponse<ResponseEntity>> setCardPin(String pin);
+  Future<HttpResponse<ResponseEntity>> setCardPin(
+      String pin, String cardNumber);
 
   Future<HttpResponse<ResponseEntity>> confirmCardDelivery();
 
