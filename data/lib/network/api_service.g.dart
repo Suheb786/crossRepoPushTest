@@ -24,7 +24,7 @@ class _ApiService implements ApiService {
         _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options,
-                    'https://Rout-uat.theblink.com:2821/api/auth/CheckUserName',
+                    'http://192.168.181.2:2821/api/auth/CheckUserName',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
@@ -39,13 +39,13 @@ class _ApiService implements ApiService {
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(checkUserNameMobileRequest.toJson());
-    final _result = await _dio.fetch<Map<String, dynamic>>(_setStreamType<
-        HttpResponse<CheckUserNameResponseEntity>>(Options(
-            method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-        .compose(_dio.options,
-            'https://Rout-uat.theblink.com:2821/api/auth/CheckUserNameMobile',
-            queryParameters: queryParameters, data: _data)
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<CheckUserNameResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options,
+                    'http://192.168.181.2:2821/api/auth/CheckUserNameMobile',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = CheckUserNameResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
@@ -553,18 +553,21 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<bool> disableFingerPrint(disableFingerPrintRequestEntity) async {
+  Future<HttpResponse<ResponseEntity>> disableFingerPrint(
+      disableFingerPrintRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(disableFingerPrintRequestEntity.toJson());
-    final _result = await _dio.fetch<bool>(_setStreamType<bool>(
-        Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-            .compose(_dio.options, '/auth/DisableFingerPrint',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = _result.data!;
-    return value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/auth/DisableFingerPrint',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
   }
 
   @override
@@ -611,12 +614,12 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(getAllowedCountryRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<GetAllowedCountryResponseEntity>>(Options(
-                method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-            .compose(_dio.options,
-                'https://Rout-uat.theblink.com:2821/api/Country/GetAllowedCode',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<HttpResponse<GetAllowedCountryResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options,
+                    'http://192.168.181.2:2821/api/Country/GetAllowedCode',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetAllowedCountryResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;

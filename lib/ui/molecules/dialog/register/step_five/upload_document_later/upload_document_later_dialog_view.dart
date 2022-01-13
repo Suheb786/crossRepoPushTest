@@ -19,8 +19,8 @@ class UploadDocumentLaterDialogView extends StatelessWidget {
         insetPadding:
             EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
         child: GestureDetector(
-          onVerticalDragUpdate: (details) {
-            if (details.primaryDelta!.isNegative) {
+          onPanUpdate: (details) {
+            if (details.delta.dy > 0 || details.delta.dy.isNegative) {
               Navigator.pop(context);
             }
           },

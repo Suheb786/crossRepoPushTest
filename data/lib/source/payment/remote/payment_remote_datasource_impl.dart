@@ -55,7 +55,8 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
       num? toAmount,
       num? localEq,
       String? memo,
-      String? toAccount}) async {
+      String? toAccount,
+      String? nickName}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.transfer(TransferRequestEntity(
         baseData: baseData.toJson(),
@@ -70,6 +71,7 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         isFriend: isFriend!,
         localEq: localEq!,
         memo: memo!,
+        nickName: nickName,
         transferType: transferType!,
         getToken: true));
   }

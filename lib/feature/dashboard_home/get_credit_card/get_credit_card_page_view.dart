@@ -106,6 +106,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                       onTap: () {
                                         // model.updateIsGetCardNowClicked(
                                         //     !isValid!);
+                                        Navigator.pushNamed(context,
+                                            RoutePaths.BlinkCreditCard);
                                       },
                                       child: Container(
                                         padding: EdgeInsets.symmetric(

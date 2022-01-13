@@ -1,5 +1,5 @@
 class NetworkProperties {
-  // /// UAT(RELEASE) CONFIGURATION FOR CHANNEL & ROUTER API
+  /// UAT(RELEASE) CONFIGURATION FOR CHANNEL & ROUTER API
   // static const String BASE_CHANNEL_URL =
   //     "https://MobWeb-uat.theblink.com:2821/api";
   // static const String BASE_ROUTER_URL =
