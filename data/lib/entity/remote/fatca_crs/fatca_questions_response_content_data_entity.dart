@@ -62,6 +62,7 @@ class FatcaQuestionsResponseContentDataEntity
         orderNo: this.orderNo,
         type: this.type,
         showOption: this.showOption ?? false,
+        showInfo: this.isInfo,
         infoText: this.infoText ?? "",
         additionalData: this.additionData != null
             ? this.additionData!.map((e) => e.transform()).toList()

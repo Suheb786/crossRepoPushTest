@@ -420,9 +420,7 @@ class AppRouter {
                 RouteSettings(name: RoutePaths.SupplementaryCardInReview));
 
       case RoutePaths.BlinkCreditCard:
-        return CupertinoPageRoute(
-            builder: (context) => BlinkCreditCardPage(),
-            settings: RouteSettings(name: RoutePaths.BlinkCreditCard));
+        return CustomRoute.createRoute(BlinkCreditCardPage());
 
       case RoutePaths.CreditCardApplicationFailure:
         return CupertinoPageRoute(

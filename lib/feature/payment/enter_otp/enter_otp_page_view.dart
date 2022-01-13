@@ -65,7 +65,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                           ProviderScope.containerOf(context)
                               .read(sendToNewRecipientViewModelProvider)
                               .selectedProfile,
-                        );
+                          context);
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
                       }

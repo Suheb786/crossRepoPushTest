@@ -280,7 +280,7 @@ abstract class ApiService {
 
   ///disable fingerprint
   @POST("/auth/DisableFingerPrint")
-  Future<bool> disableFingerPrint(
+  Future<HttpResponse<ResponseEntity>> disableFingerPrint(
       @Body() DisableFingerPrintRequestEntity disableFingerPrintRequestEntity);
 
   ///check agent status

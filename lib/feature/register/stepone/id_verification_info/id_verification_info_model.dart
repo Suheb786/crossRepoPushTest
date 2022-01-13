@@ -123,6 +123,8 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
           .listen((event) {
         if (event.status == Status.SUCCESS) {
           scannedDocumentInformation = event.data!;
+        } else if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
         }
         _scanUserDocumentResponse.safeAdd(event);
       });
@@ -164,6 +166,9 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
         _getAllowedIssuersResponse.safeAdd(event);
         if (event.status == Status.SUCCESS) {
           scanDocument();
+        } else if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });
@@ -188,11 +193,15 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
         scannedDocumentInformation.issuingPlaceISo3)) {
       _getAhwalDetailsRequest.safeAdd(GetAhwalDetailsUseCaseParams(idNo: id));
     } else {
-      _getAhwalDetailsResponse.safeAdd(Resource.error(
-          error: AppError(
-              error: ErrorInfo(message: ''),
-              cause: Exception(""),
-              type: ErrorType.NOT_ALLOWED_COUNTRY)));
+      showToastWithError(AppError(
+          error: ErrorInfo(message: ''),
+          cause: Exception(""),
+          type: ErrorType.NOT_ALLOWED_COUNTRY));
+      // _getAhwalDetailsResponse.safeAdd(Resource.error(
+      //     error: AppError(
+      //         error: ErrorInfo(message: ''),
+      //         cause: Exception(""),
+      //         type: ErrorType.NOT_ALLOWED_COUNTRY)));
     }
   }
 

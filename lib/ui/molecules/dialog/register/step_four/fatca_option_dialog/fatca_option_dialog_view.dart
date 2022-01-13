@@ -44,8 +44,12 @@ class FatcaOptionDialogView extends StatelessWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16.0)),
             insetPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 36),
-            child: SingleChildScrollView(
-              physics: ClampingScrollPhysics(),
+            child: GestureDetector(
+              onPanUpdate: (details) {
+                if (details.delta.dy > 0 || details.delta.dy.isNegative) {
+                  onDismissed?.call();
+                }
+              },
               child: AppStreamBuilder<int>(
                 stream: model!.currentIndexStream,
                 initialData: 0,
@@ -65,7 +69,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                               child: Text(
                                 title!,
                                 style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.w600),
+                                    fontSize: 14, fontWeight: FontWeight.w600),
                               ),
                             ),
                           ),
@@ -97,7 +101,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                                             child: ClickableListWheelScrollView(
                                               scrollController:
                                                   model.scrollController,
-                                              itemHeight: 72,
+                                              itemHeight: 64,
                                               itemCount: data.data!.length,
                                               onItemTapCallback: (index) {
                                                 model.selectMobileNumber(index);
@@ -106,7 +110,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                                                   .useDelegate(
                                                       controller: model
                                                           .scrollController,
-                                                      itemExtent: 72,
+                                                      itemExtent: 64,
                                                       onSelectedItemChanged:
                                                           (int index) {
                                                         model

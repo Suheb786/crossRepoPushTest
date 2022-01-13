@@ -47,8 +47,8 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(top: 112.0),
-                        child: Image.asset(
-                          AssetUtils.blink,
+                        child: AppSvg.asset(
+                          AssetUtils.blinkLogo,
                           width: 195,
                           height: 91.14,
                         ),

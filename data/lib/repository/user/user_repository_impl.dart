@@ -348,7 +348,7 @@ class UserRepositoryImpl extends UserRepository {
                     .toString() ??
                 r.firstName ??
                 "",
-            middleName: r.fathersName,
+            middleName: '',
             familyName: r.mrzResult!.primaryId ?? r.lastName ?? "",
             idNumber: r.personalIdNumber!.isNotEmpty ? r.personalIdNumber : '',
             dob: r.dateOfBirth != null
@@ -361,7 +361,7 @@ class UserRepositoryImpl extends UserRepository {
                     r.dateOfExpiry!.day!)
                 : DateTime(0),
             gender: r.sex!.isNotEmpty ? r.sex : '',
-            motherName: r.mothersName!.isNotEmpty ? r.mothersName : '',
+            motherName: '',
             documentCode: r.mrzResult!.documentCode!.isNotEmpty
                 ? r.mrzResult!.documentCode
                 : '',
@@ -486,7 +486,7 @@ class UserRepositoryImpl extends UserRepository {
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(true),
+      (r) => Right(r.isSuccessful()),
     );
   }
 

@@ -48,7 +48,12 @@ class BlinkCreditCardPageView
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AppSvg.asset(AssetUtils.leftArrow, height: 24, width: 24),
+                      InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: AppSvg.asset(AssetUtils.leftArrow,
+                              height: 24, width: 24)),
                       SizedBox(
                         height: 16,
                       ),

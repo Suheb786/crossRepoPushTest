@@ -373,7 +373,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<bool> disableFingerPrint() async {
+  Future<HttpResponse<ResponseEntity>> disableFingerPrint() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.disableFingerPrint(DisableFingerPrintRequestEntity(
         getToken: true,

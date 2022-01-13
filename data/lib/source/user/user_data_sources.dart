@@ -139,7 +139,7 @@ abstract class UserRemoteDS {
 
   Future<bool> enableFingerPrint({String? cipher});
 
-  Future<bool> disableFingerPrint();
+  Future<HttpResponse<ResponseEntity>> disableFingerPrint();
 
   Future<HttpResponse<GenerateKeyPairResponseEntity>> generateKeyPair();
 

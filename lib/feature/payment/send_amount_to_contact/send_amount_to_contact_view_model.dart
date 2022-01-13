@@ -149,12 +149,12 @@ class SendAmountToContactViewModel extends BasePageViewModel {
   void checkSendMoney() {
     _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(
         toAccount: beneficiary.accountNo!,
-        toAmount: int.parse(currentPinValue)));
+        toAmount: double.parse(currentPinValue)));
   }
 
   void transfer(TransferResponse transferResponse) {
     _transferRequest.safeAdd(TransferUseCaseParams(
-      otpCode: '',
+      otpCode: '576824',
       toAmount: transferResponse.toAmount,
       toAccount: transferResponse.toAccount,
       memo: purposeDetail == null
@@ -163,10 +163,11 @@ class SendAmountToContactViewModel extends BasePageViewModel {
               : beneficiary.purposeDetails!)
           : purposeDetail!.strCode!,
       isFriend: false,
+      nickName: "",
       transferType: transferResponse.transferType,
       localEq: transferResponse.localEq,
       beneficiaryId: transferResponse.beneficiaryId,
-      beneficiaryImage: transferResponse.beneficiaryImage,
+      beneficiaryImage: "",
     ));
   }
 

@@ -39,147 +39,150 @@ class AdditionIncomeSourceDialogView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16.0)),
               insetPadding:
                   EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
-              child: AppStreamBuilder<Resource<List<AdditionalIncome>>>(
-                stream: model!.getAdditionIncomeSourceStream,
-                initialData: Resource.none(),
-                dataBuilder: (context, data) {
-                  return Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 32.0),
-                        child: Center(
-                          child: Text(
-                            S.of(context).additionalIncome,
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w600),
+              child: GestureDetector(
+                onPanUpdate: (details) {
+                  if (details.delta.dy > 0 || details.delta.dy.isNegative) {
+                    onDismissed?.call();
+                  }
+                },
+                child: AppStreamBuilder<Resource<List<AdditionalIncome>>>(
+                  stream: model!.getAdditionIncomeSourceStream,
+                  initialData: Resource.none(),
+                  dataBuilder: (context, data) {
+                    return Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 32.0),
+                          child: Center(
+                            child: Text(
+                              S.of(context).additionalIncome,
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.w600),
+                            ),
                           ),
                         ),
-                      ),
-                      Expanded(
-                          child: FadingEdgeScrollView.fromScrollView(
-                        gradientFractionOnStart: 0.3,
-                        gradientFractionOnEnd: 0.3,
-                        child: ListView.builder(
-                          controller: model.scrollController,
-                          itemBuilder: (context, index) {
-                            // if (index == data!.data!.length) {
-                            //   return Visibility(
-                            //     visible:
-                            //         model.selectedAdditionalIncome!.isSelected,
-                            //     child: Padding(
-                            //       padding: const EdgeInsets.only(
-                            //           left: 24, right: 24, bottom: 24),
-                            //       child: AppTextField(
-                            //         labelText: S.of(context).totalAnnualIncome,
-                            //         hintText: '',
-                            //         controller:
-                            //             model.totalAnnualIncomeController,
-                            //         key: model.totalAnnualIncomeKey,
-                            //         inputType: TextInputType.number,
-                            //         inputAction: TextInputAction.done,
-                            //         textFieldBorderColor: AppColor.gray_1,
-                            //         textColor: AppColor.very_dark_gray_black,
-                            //         labelColor: AppColor.very_dark_gray_black,
-                            //         prefixIcon: () {
-                            //           return Padding(
-                            //             padding: const EdgeInsets.only(
-                            //                 top: 8.0, right: 8),
-                            //             child: Text(
-                            //               S.of(context).JOD,
-                            //               style: TextStyle(
-                            //                   fontSize: 14,
-                            //                   fontWeight: FontWeight.w600,
-                            //                   color: AppColor
-                            //                       .very_dark_gray_black),
-                            //             ),
-                            //           );
-                            //         },
-                            //         onChanged: (value) {},
-                            //       ),
-                            //     ),
-                            //   );
-                            // }
-                            return AdditionalIncomeSelectorWidget(
-                              additionalIncome: data!.data![index],
-                              onTap: () {
-                                model.selectAdditionalIncome(index);
-                              },
-                            );
-                          },
-                          itemCount: data!.data!.length,
-                        ),
-                      )),
-                      Visibility(
-                        visible: model.selectedAdditionalIncome!.isSelected,
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              left: 24, right: 24, bottom: 24),
-                          child: AppTextField(
-                            labelText: S.of(context).totalAnnualIncome,
-                            hintText: '',
-                            controller: model.totalAnnualIncomeController,
-                            key: model.totalAnnualIncomeKey,
-                            inputType: TextInputType.number,
-                            inputAction: TextInputAction.done,
-                            textFieldBorderColor: AppColor.gray_1,
-                            textColor: AppColor.very_dark_gray_black,
-                            labelColor: AppColor.very_dark_gray_black,
-                            prefixIcon: () {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 8.0, right: 8),
-                                child: Text(
-                                  S.of(context).JOD,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
-                                      color: AppColor.very_dark_gray_black),
-                                ),
+                        Expanded(
+                            child: FadingEdgeScrollView.fromScrollView(
+                          gradientFractionOnStart: 0.3,
+                          gradientFractionOnEnd: 0.3,
+                          child: ListView.builder(
+                            controller: model.scrollController,
+                            itemBuilder: (context, index) {
+                              if (index == data!.data!.length) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 24, right: 24, bottom: 24),
+                                  child: AppTextField(
+                                    labelText: S.of(context).totalAnnualIncome,
+                                    hintText: '',
+                                    controller:
+                                        model.totalAnnualIncomeController,
+                                    key: model.totalAnnualIncomeKey,
+                                    inputType: TextInputType.number,
+                                    inputAction: TextInputAction.done,
+                                    textFieldBorderColor: AppColor.gray_1,
+                                    textColor: AppColor.very_dark_gray_black,
+                                    labelColor: AppColor.very_dark_gray_black,
+                                    prefixIcon: () {
+                                      return Padding(
+                                        padding: const EdgeInsets.only(
+                                            top: 8.0, right: 8),
+                                        child: Text(
+                                          S.of(context).JOD,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: AppColor
+                                                  .very_dark_gray_black),
+                                        ),
+                                      );
+                                    },
+                                    onChanged: (value) {},
+                                  ),
+                                );
+                              }
+                              return AdditionalIncomeSelectorWidget(
+                                additionalIncome: data.data![index],
+                                onTap: () {
+                                  model.selectAdditionalIncome(index);
+                                },
                               );
                             },
-                            onChanged: (value) {},
+                            itemCount: data!.data!.length + 1,
+                          ),
+                        )),
+                        // Visibility(
+                        //   visible: model.selectedAdditionalIncome!.isSelected,
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.only(
+                        //         left: 24, right: 24, bottom: 24),
+                        //     child: AppTextField(
+                        //       labelText: S.of(context).totalAnnualIncome,
+                        //       hintText: '',
+                        //       controller: model.totalAnnualIncomeController,
+                        //       key: model.totalAnnualIncomeKey,
+                        //       inputType: TextInputType.number,
+                        //       inputAction: TextInputAction.done,
+                        //       textFieldBorderColor: AppColor.gray_1,
+                        //       textColor: AppColor.very_dark_gray_black,
+                        //       labelColor: AppColor.very_dark_gray_black,
+                        //       prefixIcon: () {
+                        //         return Padding(
+                        //           padding:
+                        //               const EdgeInsets.only(top: 8.0, right: 8),
+                        //           child: Text(
+                        //             S.of(context).JOD,
+                        //             style: TextStyle(
+                        //                 fontSize: 14,
+                        //                 fontWeight: FontWeight.w600,
+                        //                 color: AppColor.very_dark_gray_black),
+                        //           ),
+                        //         );
+                        //       },
+                        //       onChanged: (value) {},
+                        //     ),
+                        //   ),
+                        // ),
+                        InkWell(
+                          onTap: () {
+                            onSelected!.call(AdditionalIncomeType(
+                                additionalIncomeSource:
+                                    model.selectedAdditionalIncome!.type!,
+                                totalIncome:
+                                    model.totalAnnualIncomeController.text));
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(16),
+                            height: 57,
+                            width: 57,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context)
+                                    .accentTextTheme
+                                    .bodyText1!
+                                    .color),
+                            child: AppSvg.asset(AssetUtils.tick,
+                                color: Theme.of(context).accentColor),
                           ),
                         ),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          onSelected!.call(AdditionalIncomeType(
-                              additionalIncomeSource:
-                                  model.selectedAdditionalIncome!.type!,
-                              totalIncome:
-                                  model.totalAnnualIncomeController.text));
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(16),
-                          height: 57,
-                          width: 57,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context)
-                                  .accentTextTheme
-                                  .bodyText1!
-                                  .color),
-                          child: AppSvg.asset(AssetUtils.tick,
-                              color: Theme.of(context).accentColor),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0, bottom: 16),
-                        child: Center(
-                          child: Text(
-                            S.of(context).swipeDownToCancel,
-                            style: TextStyle(
-                                fontSize: 10,
-                                fontWeight: FontWeight.w400,
-                                color: AppColor.dark_gray_1),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                          child: Center(
+                            child: Text(
+                              S.of(context).swipeDownToCancel,
+                              style: TextStyle(
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColor.dark_gray_1),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
-                  );
-                },
+                      ],
+                    );
+                  },
+                ),
               ));
         },
         providerBase: providerBase());

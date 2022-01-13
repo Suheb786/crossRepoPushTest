@@ -284,122 +284,146 @@ class AccountSettingPageView
                                                 .backgroundColor,
                                           ),
                                         ),
-                                        AppStreamBuilder<bool>(
-                                          stream: model.switchValue,
-                                          initialData: profileData
-                                              .data!.content!.biometric!,
-                                          dataBuilder: (context, isActive) {
-                                            return AppStreamBuilder<
-                                                Resource<bool>>(
-                                              stream:
-                                                  model.enableBiometricStream,
-                                              initialData: Resource.none(),
-                                              onData: (data) {
-                                                if (data.status ==
-                                                    Status.SUCCESS) {
-                                                  model.updateSwitchValue(true);
-                                                } else if (data.status ==
-                                                    Status.ERROR) {
-                                                  model
-                                                      .updateSwitchValue(false);
-                                                }
-                                              },
-                                              dataBuilder: (context,
-                                                  isBiometricEnabled) {
-                                                return AppStreamBuilder<
-                                                    Resource<
-                                                        GenerateKeyPairResponse>>(
-                                                  initialData: Resource.none(),
-                                                  stream: model
-                                                      .generateKeyPairStream,
-                                                  onData: (data) {
-                                                    if (data.status ==
-                                                        Status.SUCCESS) {
-                                                      model.enableBiometric();
-                                                    }
-                                                  },
-                                                  dataBuilder: (context,
-                                                      keyPairResponse) {
-                                                    return AppStreamBuilder<
-                                                        Resource<bool>>(
-                                                      stream: model
-                                                          .authenticateBioMetricStream,
-                                                      initialData:
-                                                          Resource.none(),
-                                                      onData: (data) {
-                                                        if (data.status ==
-                                                            Status.SUCCESS) {
-                                                          print(
-                                                              'authenticated success');
-                                                          model
-                                                              .generateKeyPair();
-                                                          // model.showSuccessToast(
-                                                          //     S.of(context).biometricLoginActivated);
-                                                        }
-                                                      },
-                                                      dataBuilder: (context,
-                                                          biometricAuthenticated) {
-                                                        return AppStreamBuilder<
-                                                            Resource<bool>>(
-                                                          stream: model
-                                                              .checkBioMetricStream,
-                                                          initialData:
-                                                              Resource.none(),
-                                                          onData: (data) {
-                                                            if (data.status ==
-                                                                Status
-                                                                    .SUCCESS) {
-                                                              print('success');
-                                                              model.authenticateBioMetric(
-                                                                  title: S
-                                                                      .of(
-                                                                          context)
-                                                                      .enableBiometricLoginTitle,
-                                                                  localisedReason: Platform
-                                                                          .isAndroid
-                                                                      ? S
-                                                                          .of(
-                                                                              context)
-                                                                          .enableBiometricLoginDescriptionAndroid
-                                                                      : S
-                                                                          .of(context)
-                                                                          .enableBiometricLoginDescriptionIos);
-                                                            }
-                                                          },
-                                                          dataBuilder: (context,
-                                                              isAvailable) {
-                                                            return BiometricSwitchWidget(
-                                                              onToggle:
-                                                                  (value) {
-                                                                if (value) {
-                                                                  model
-                                                                      .checkBiometric();
-                                                                }
-                                                              },
-                                                              isActive:
-                                                                  isActive,
-                                                              title: S
-                                                                  .of(context)
-                                                                  .biometricLogin,
-                                                              image: AssetUtils
-                                                                  .biometric,
-                                                              inActiveText: S
-                                                                  .of(context)
-                                                                  .no,
-                                                              activeText: S
-                                                                  .of(context)
-                                                                  .yes,
-                                                            );
-                                                          },
-                                                        );
-                                                      },
-                                                    );
-                                                  },
-                                                );
-                                              },
-                                            );
-                                          },
-                                        ),
+                                        AppStreamBuilder<Resource<bool>>(
+                                            initialData: Resource.none(),
+                                            stream:
+                                                model.disableFingerPrintStream,
+                                            onData: (data) {
+                                              if (data.status ==
+                                                  Status.SUCCESS) {
+                                                model.updateSwitchValue(false);
+                                                model.showSuccessToast(S
+                                                    .of(context)
+                                                    .biometricLoginDeactivated);
+                                              }
+                                            },
+                                            dataBuilder:
+                                                (context, keyPairResponse) {
+                                              return AppStreamBuilder<bool>(
+                                                stream: model.switchValue,
+                                                initialData: profileData
+                                                    .data!.content!.biometric!,
+                                                dataBuilder:
+                                                    (context, isActive) {
+                                                  return AppStreamBuilder<
+                                                      Resource<bool>>(
+                                                    stream: model
+                                                        .enableBiometricStream,
+                                                    initialData:
+                                                        Resource.none(),
+                                                    onData: (data) {
+                                                      if (data.status ==
+                                                          Status.SUCCESS) {
+                                                        model.updateSwitchValue(
+                                                            true);
+                                                        model.showSuccessToast(S
+                                                            .of(context)
+                                                            .biometricLoginActivated);
+                                                      } else if (data.status ==
+                                                          Status.ERROR) {
+                                                        model.updateSwitchValue(
+                                                            false);
+                                                      }
+                                                    },
+                                                    dataBuilder: (context,
+                                                        isBiometricEnabled) {
+                                                      return AppStreamBuilder<
+                                                          Resource<
+                                                              GenerateKeyPairResponse>>(
+                                                        initialData:
+                                                            Resource.none(),
+                                                        stream: model
+                                                            .generateKeyPairStream,
+                                                        onData: (data) {
+                                                          if (data.status ==
+                                                              Status.SUCCESS) {
+                                                            model
+                                                                .enableBiometric();
+                                                          }
+                                                        },
+                                                        dataBuilder: (context,
+                                                            keyPairResponse) {
+                                                          return AppStreamBuilder<
+                                                              Resource<bool>>(
+                                                            stream: model
+                                                                .authenticateBioMetricStream,
+                                                            initialData:
+                                                                Resource.none(),
+                                                            onData: (data) {
+                                                              if (data.status ==
+                                                                  Status
+                                                                      .SUCCESS) {
+                                                                print(
+                                                                    'authenticated success');
+                                                                model
+                                                                    .generateKeyPair();
+                                                              }
+                                                            },
+                                                            dataBuilder: (context,
+                                                                biometricAuthenticated) {
+                                                              return AppStreamBuilder<
+                                                                  Resource<
+                                                                      bool>>(
+                                                                stream: model
+                                                                    .checkBioMetricStream,
+                                                                initialData:
+                                                                    Resource
+                                                                        .none(),
+                                                                onData: (data) {
+                                                                  if (data.status ==
+                                                                      Status
+                                                                          .SUCCESS) {
+                                                                    print(
+                                                                        'success');
+                                                                    model.authenticateBioMetric(
+                                                                        title: S
+                                                                            .of(
+                                                                                context)
+                                                                            .enableBiometricLoginTitle,
+                                                                        localisedReason: Platform.isAndroid
+                                                                            ? S.of(context).enableBiometricLoginDescriptionAndroid
+                                                                            : S.of(context).enableBiometricLoginDescriptionIos);
+                                                                  }
+                                                                },
+                                                                dataBuilder:
+                                                                    (context,
+                                                                        isAvailable) {
+                                                                  return BiometricSwitchWidget(
+                                                                    onToggle:
+                                                                        (value) {
+                                                                      if (value) {
+                                                                        model
+                                                                            .checkBiometric();
+                                                                      } else if (!value) {
+                                                                        model
+                                                                            .disableFingerPrint();
+                                                                      }
+                                                                    },
+                                                                    isActive:
+                                                                        isActive,
+                                                                    title: S
+                                                                        .of(context)
+                                                                        .biometricLogin,
+                                                                    image: AssetUtils
+                                                                        .biometric,
+                                                                    inActiveText: S
+                                                                        .of(context)
+                                                                        .no,
+                                                                    activeText: S
+                                                                        .of(context)
+                                                                        .yes,
+                                                                  );
+                                                                },
+                                                              );
+                                                            },
+                                                          );
+                                                        },
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              );
+                                            }),
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               top: 16.0, bottom: 16),

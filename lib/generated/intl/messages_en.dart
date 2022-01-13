@@ -168,8 +168,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Biometric Login"),
         "biometricLoginActivated": MessageLookupByLibrary.simpleMessage(
             "Biometric login is successfully activated"),
+        "biometricLoginDeactivated": MessageLookupByLibrary.simpleMessage(
+            "Biometric login is successfully deactivated"),
         "biometricLoginDesc": MessageLookupByLibrary.simpleMessage(
-            "To blink in more seamlessly, please enable biometric login"),
+            "To Blink in more seamlessly, please enable biometric login"),
         "blinkBorn": MessageLookupByLibrary.simpleMessage("Blink was\nborn"),
         "blinkCreditCard": MessageLookupByLibrary.simpleMessage(
             "Here’s why you should get\nyour blink credit card."),
@@ -253,7 +255,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmDetailsHeader": MessageLookupByLibrary.simpleMessage(
             "Please confirm your\ndetails below"),
         "confirmInfoTC": MessageLookupByLibrary.simpleMessage(
-            "I confirm that information above is correct and agree to the bank’s "),
+            "I confirm that information provided is accurate and I hereby acknowledge that I have read, understood, and accepted Blink’s General "),
         "confirmNewPin":
             MessageLookupByLibrary.simpleMessage("CONFIRM new pin "),
         "confirmPassword":
@@ -648,7 +650,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidAnnualIncome":
             MessageLookupByLibrary.simpleMessage("Enter Annual income"),
         "invalidBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
-            "You must be the beneficial owner of the account to proceed"),
+            "We\'re sorry, you must be the beneficial owner of the account to proceed."),
         "invalidBeneficiary":
             MessageLookupByLibrary.simpleMessage("Invalid Beneficiary"),
         "invalidBusinessType":
@@ -922,10 +924,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
         "passwordDialogHeader":
             MessageLookupByLibrary.simpleMessage("Create Password"),
-        "passwordMismatch":
-            MessageLookupByLibrary.simpleMessage("Password did not match"),
+        "passwordMismatch": MessageLookupByLibrary.simpleMessage(
+            "The passwords you entered do not match. Please try again."),
         "passwordNotMeetCriteria": MessageLookupByLibrary.simpleMessage(
-            "Password does not meet requirement. \nPlease try again."),
+            "Your password does not meet the minimum requirements. Please try again."),
         "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Password is successfully updated"),
         "payBack": MessageLookupByLibrary.simpleMessage("Pay back"),
@@ -933,7 +935,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Payment activity"),
         "payments": MessageLookupByLibrary.simpleMessage("Payments"),
         "pepDesc": MessageLookupByLibrary.simpleMessage(
-            " is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list."),
+            " is an individual who currently has or previously had a high profile political role, such as: head of government/state, minister, judicial or military official, high-ranking government or public official, a prominent politician, a prominent figure in a political party, a senior executive of a state-owned company; including the individual’s first-degree relatives, their business partners, or any persons working on their behalf or having authorization/power of attorney issued by them."),
         "permanentAddress":
             MessageLookupByLibrary.simpleMessage("Permanent address"),
         "permanentCity": MessageLookupByLibrary.simpleMessage("Permanent City"),
@@ -1225,7 +1227,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "termsAndCondition":
             MessageLookupByLibrary.simpleMessage("Terms and Conditions."),
         "termsAndConditions": MessageLookupByLibrary.simpleMessage(
-            "I agree for blink to retrieve my data from the Civil Department"),
+            "I hereby authorize Blink to retrieve my data from the Civil Status and Passports Department."),
         "termsAndConditionsSetting":
             MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "termsConditions":
@@ -1303,7 +1305,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("User Not Register"),
         "verifyInformationDirectlyOrUsingThirdPartyAgentDesc":
             MessageLookupByLibrary.simpleMessage(
-                "I declare that the bank is entitled to verify the information given directly or through any third part agent."),
+                "I authorize Blink to disclose any information related to my accounts to the US Tax Department or any related party."),
         "videoCall": MessageLookupByLibrary.simpleMessage("VIDEO CALL"),
         "videoCallInfoDescription": MessageLookupByLibrary.simpleMessage(
             "Please get ready to meet our Engagement Team, we will now connect you."),
@@ -1377,7 +1379,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your contact details has been saved."),
         "yourFreeVirtualDebitCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage(
-                "Your free virtual debit card has been issued, and the physical one is\non its way."),
-        "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature")
+                "Your free virtual debit card has been issued, and the physical one is on its way."),
+        "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature"),
+        "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
+            "Your Yellow Sun debit card has been issued!")
       };
 }
