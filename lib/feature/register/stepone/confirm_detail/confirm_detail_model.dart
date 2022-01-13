@@ -1,8 +1,11 @@
 import 'package:domain/model/country/allowed_issuers_country.dart';
+import 'package:domain/model/country/country_list/country_data.dart';
+import 'package:domain/model/country/country_list/country_list_content_data.dart';
 import 'package:domain/model/id_card/ahwal_details_response.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/usecase/country/fetch_allowed_issuers_usecase.dart';
+import 'package:domain/usecase/country/get_countries_list_usecase.dart';
 import 'package:domain/usecase/id_card/get_ahwal_details_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
@@ -21,6 +24,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   final ScanUserDocumentUseCase _scanUserDocumentUseCase;
   final GetAhwalDetailsUseCase _getAhwalDetailsUseCase;
   final FetchAllowedIssuersUseCase _fetchAllowedIssuersUseCase;
+  final GetCountriesListUseCase _getCountriesListUseCase;
 
   TextEditingController nameController = new TextEditingController();
   TextEditingController idNumberController = new TextEditingController();
@@ -64,6 +68,10 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   String selectedIssuingDate = DateTime.now().toLocal().toString();
 
   String selectedExpiryDate = DateTime.now().toLocal().toString();
+
+  CountryData selectedPlaceOfBirth = CountryData();
+
+  CountryData selectedIssuingPlace = CountryData();
 
   ///scan document request holder
   final PublishSubject<ScanUserDocumentUseCaseParams> _scanUserDocumentRequest =
@@ -125,6 +133,18 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   final BehaviorSubject<Resource<List<AllowedIssuerCountry>>>
       _getAllowedIssuersResponse = BehaviorSubject();
 
+  ///get country list request holder
+  PublishSubject<GetCountriesListUseCaseParams> _getCountryListRequest =
+      PublishSubject();
+
+  ///get country list response holder
+  BehaviorSubject<Resource<CountryListContentData>> _getCountryListResponse =
+      BehaviorSubject();
+
+  ///get country list response stream
+  Stream<Resource<CountryListContentData>> get getCountryListStream =>
+      _getCountryListResponse.stream;
+
   ScannedDocumentInformation scannedDocumentResult =
       ScannedDocumentInformation();
 
@@ -132,7 +152,8 @@ class ConfirmDetailViewModel extends BasePageViewModel {
       this._confirmDetailUseCase,
       this._scanUserDocumentUseCase,
       this._getAhwalDetailsUseCase,
-      this._fetchAllowedIssuersUseCase) {
+      this._fetchAllowedIssuersUseCase,
+      this._getCountriesListUseCase) {
     _confirmDetailRequest.listen((value) {
       RequestManager(value,
               createCall: () => _confirmDetailUseCase.execute(params: value))
@@ -187,6 +208,25 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getCountryListRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getCountriesListUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getCountryListResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          CountryData? countryData = event.data!.content!.countryData
+              ?.firstWhere((element) =>
+                  element.isoCode3 == scannedDocumentResult.issuingPlaceISo3);
+
+          issuingPlaceController.text = countryData!.countryName!;
+        }
+      });
+    });
   }
 
   void fetchAllowedIssuers() {
@@ -215,7 +255,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         dateOfBirth: scannedDocumentResult.dob!.year == 0
             ? selectedDobDate
             : scannedDocumentResult.dob.toString(),
-        nationality: scannedDocumentResult.nationalityIsoCode3,
+        nationality: selectedPlaceOfBirth.isoCode3,
         expiryDate: scannedDocumentResult.doe!.year == 0
             ? selectedExpiryDate
             : scannedDocumentResult.doe!.toString(),
@@ -286,9 +326,12 @@ class ConfirmDetailViewModel extends BasePageViewModel {
     expiryDateController.text = data.doe!.year != 0
         ? TimeUtils.getFormattedDOB(data.doe!.toString())
         : '';
-    issuingPlaceController.text = data.issuingPlace!;
+    issuingPlaceController.text = data.currentIssuingPlace!;
+    setVisibility();
+  }
 
-    // setVisibility(); ///TODO: UNCOMMENT FOR MAKE FIELDS UNEDITABLE
+  void getCountries() {
+    _getCountryListRequest.safeAdd(GetCountriesListUseCaseParams());
   }
 
   void setVisibility() {

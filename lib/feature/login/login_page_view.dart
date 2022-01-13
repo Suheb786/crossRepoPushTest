@@ -85,7 +85,9 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     Future.delayed(Duration(milliseconds: 500),
                                         () {
                                       Navigator.pushReplacementNamed(
-                                          context, RoutePaths.Registration);
+                                          context, RoutePaths.AppHome);
+                                      // Navigator.pushReplacementNamed(
+                                      //     context, RoutePaths.Registration);
                                     });
                                   } else if (data.status == Status.ERROR) {
                                     model.emailKey.currentState!.isValid =
