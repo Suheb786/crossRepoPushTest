@@ -98,6 +98,25 @@ class TaxationSwitchWidget extends StatelessWidget {
                     ],
                   ),
                   Visibility(
+                    visible: data.showInfo ?? false,
+                    child: InkWell(
+                      onTap: () {
+                        onInfoClick?.call();
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8.0),
+                        child: Text(data.infoText ?? "",
+                            style: TextStyle(
+                                color: Theme.of(context)
+                                    .accentTextTheme
+                                    .bodyText1!
+                                    .color,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600)),
+                      ),
+                    ),
+                  ),
+                  Visibility(
                     visible: isActive,
                     child: ListView.builder(
                       itemCount: data.additionalData!.length,
@@ -132,25 +151,6 @@ class TaxationSwitchWidget extends StatelessWidget {
                             );
                         }
                       },
-                    ),
-                  ),
-                  Visibility(
-                    visible: data.showInfo ?? false,
-                    child: InkWell(
-                      onTap: () {
-                        onInfoClick?.call();
-                      },
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: Text(data.infoText ?? "",
-                            style: TextStyle(
-                                color: Theme.of(context)
-                                    .accentTextTheme
-                                    .bodyText1!
-                                    .color,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600)),
-                      ),
                     ),
                   ),
                 ],

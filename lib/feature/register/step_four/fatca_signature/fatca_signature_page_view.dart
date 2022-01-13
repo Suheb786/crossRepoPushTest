@@ -206,6 +206,14 @@ class FatcaSignaturePageView
                                                             textColor: Theme.of(
                                                                     context)
                                                                 .primaryColorDark,
+                                                            fontSize: 12,
+                                                            containerPadding:
+                                                                EdgeInsets
+                                                                    .symmetric(
+                                                                        horizontal:
+                                                                            16,
+                                                                        vertical:
+                                                                            12),
                                                             suffixIcon:
                                                                 (value, data) {
                                                               return InkWell(
@@ -247,7 +255,7 @@ class FatcaSignaturePageView
                                                                 child: Container(
                                                                     height: 16,
                                                                     width: 16,
-                                                                    padding: EdgeInsets.all(5),
+                                                                    padding: EdgeInsets.all(7),
                                                                     child: isUploaded
                                                                         ? AppSvg.asset(
                                                                             AssetUtils.delete,
@@ -272,7 +280,8 @@ class FatcaSignaturePageView
                                                             vertical: 24),
                                                     child: Container(
                                                       height: 1,
-                                                      color: AppColor.whiteGray,
+                                                      color:
+                                                          AppColor.white_gray,
                                                     ),
                                                   ),
                                                   Column(
