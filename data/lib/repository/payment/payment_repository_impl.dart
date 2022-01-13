@@ -48,7 +48,8 @@ class PaymentRepositoryImpl extends PaymentRepository {
       num? toAmount,
       num? localEq,
       String? memo,
-      String? toAccount}) async {
+      String? toAccount,
+      String? nickName}) async {
     final result = await safeApiCall(
       paymentRemoteDs.transfer(
           beneficiaryId: beneficiaryId!,
@@ -59,7 +60,8 @@ class PaymentRepositoryImpl extends PaymentRepository {
           toAmount: toAmount!,
           localEq: localEq!,
           memo: memo!,
-          toAccount: toAccount!),
+          toAccount: toAccount!,
+          nickName: nickName!),
     );
     return result!.fold(
       (l) => Left(l),

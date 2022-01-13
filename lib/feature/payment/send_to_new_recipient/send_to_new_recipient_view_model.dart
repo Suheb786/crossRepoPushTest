@@ -208,13 +208,14 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getPurposeResponse.safeAdd(event);
-        purposeList.clear();
-        purposeList
-            .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
-        print("got purposeList: $purposeList");
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          purposeList.clear();
+          purposeList
+              .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+          print("got purposeList: $purposeList");
         }
       });
     });
@@ -239,15 +240,19 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
 
   void checkSendMoney({required String iban, required String amount}) {
     _checkSendMoneyRequest.safeAdd(CheckSendMoneyUseCaseParams(
-        toAccount: iban, toAmount: int.parse(amount)));
+        toAccount: iban, toAmount: double.parse(amount)));
   }
 
   void sendToNewRecipient(BuildContext context) {
     _sendToNewRecipientRequest.safeAdd(SendToNewRecipientUseCaseParams(
         ibanOrMobile: ibanOrMobileController.text,
         purpose: purposeController.text,
+        nickName: addNickNameController.text.isEmpty
+            ? ""
+            : addNickNameController.text,
+        isFriend: isFriend,
         purposeDetail: purposeDetailController.text,
-        amount: int.parse(ProviderScope.containerOf(context)
+        amount: double.parse(ProviderScope.containerOf(context)
             .read(sendMoneyViewModelProvider)
             .currentPinValue),
         limit: limit));

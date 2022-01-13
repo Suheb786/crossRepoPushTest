@@ -48,13 +48,22 @@ class CountryDialogView extends StatelessWidget {
                 bottom: 36,
                 //top: _keyboardVisible ? 36 : 204
               ),
-              child: AppStreamBuilder<int>(
-                stream: model!.currentIndexStream,
-                initialData: 0,
-                dataBuilder: (context, currentIndex) {
-                  return SingleChildScrollView(
-                    physics: ClampingScrollPhysics(),
-                    child: AppStreamBuilder<Resource<List<CountryData>>>(
+              child: GestureDetector(
+                onPanUpdate: (details) {
+                  if (details.delta.dy > 0 || details.delta.dy.isNegative) {
+                    onDismissed?.call();
+                  }
+                },
+                // onVerticalDragEnd: (details) {
+                //   if (details.primaryVelocity!.isNegative) {
+                //     onDismissed?.call();
+                //   }
+                // },
+                child: AppStreamBuilder<int>(
+                  stream: model!.currentIndexStream,
+                  initialData: 0,
+                  dataBuilder: (context, currentIndex) {
+                    return AppStreamBuilder<Resource<List<CountryData>>>(
                       stream: model.getCountryListStream,
                       initialData: Resource.none(),
                       dataBuilder: (context, data) {
@@ -105,10 +114,7 @@ class CountryDialogView extends StatelessWidget {
                                 ),
                               ),
                               data!.status == Status.SUCCESS
-                                  ? Container(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              2.5,
+                                  ? Expanded(
                                       child: data.data!.length > 0
                                           ? Stack(
                                               alignment: Alignment.center,
@@ -129,54 +135,46 @@ class CountryDialogView extends StatelessWidget {
                                                     ),
                                                   ),
                                                 ),
-                                                Container(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height /
-                                                      2.5,
+                                                AppScrollableListViewWidget(
                                                   child:
-                                                      AppScrollableListViewWidget(
-                                                    child:
-                                                        ClickableListWheelScrollView(
-                                                      scrollController: model
-                                                          .scrollController,
-                                                      itemHeight: 72,
-                                                      itemCount:
-                                                          data.data!.length,
-                                                      onItemTapCallback:
-                                                          (index) {
-                                                        model.selectCountry(
-                                                            index);
-                                                      },
-                                                      child: ListWheelScrollView
-                                                          .useDelegate(
-                                                              controller: model
-                                                                  .scrollController,
-                                                              itemExtent: 72,
-                                                              onSelectedItemChanged:
-                                                                  (int index) {
-                                                                model
-                                                                    .selectCountry(
-                                                                        index);
-                                                              },
-                                                              physics:
-                                                                  FixedExtentScrollPhysics(),
-                                                              perspective:
-                                                                  0.0000000001,
-                                                              childDelegate:
-                                                                  ListWheelChildBuilderDelegate(
-                                                                      childCount: data
-                                                                          .data!
-                                                                          .length,
-                                                                      builder: (BuildContext
-                                                                              context,
-                                                                          int index) {
-                                                                        return EmployerCountryListWidget(
-                                                                          item:
-                                                                              data.data![index],
-                                                                        );
-                                                                      })),
-                                                    ),
+                                                      ClickableListWheelScrollView(
+                                                    scrollController:
+                                                        model.scrollController,
+                                                    itemHeight: 72,
+                                                    itemCount:
+                                                        data.data!.length,
+                                                    onItemTapCallback: (index) {
+                                                      model
+                                                          .selectCountry(index);
+                                                    },
+                                                    child: ListWheelScrollView
+                                                        .useDelegate(
+                                                            controller: model
+                                                                .scrollController,
+                                                            itemExtent: 72,
+                                                            onSelectedItemChanged:
+                                                                (int index) {
+                                                              model
+                                                                  .selectCountry(
+                                                                      index);
+                                                            },
+                                                            physics:
+                                                                FixedExtentScrollPhysics(),
+                                                            perspective:
+                                                                0.0000000001,
+                                                            childDelegate:
+                                                                ListWheelChildBuilderDelegate(
+                                                                    childCount: data
+                                                                        .data!
+                                                                        .length,
+                                                                    builder: (BuildContext
+                                                                            context,
+                                                                        int index) {
+                                                                      return EmployerCountryListWidget(
+                                                                        item: data
+                                                                            .data![index],
+                                                                      );
+                                                                    })),
                                                   ),
                                                 ),
                                               ],
@@ -220,7 +218,7 @@ class CountryDialogView extends StatelessWidget {
                                 child: Center(
                                   child: InkWell(
                                     onTap: () {
-                                      onDismissed?.call();
+                                      //onDismissed?.call();
                                     },
                                     child: Text(
                                       S.of(context).swipeDownToCancel,
@@ -236,9 +234,9 @@ class CountryDialogView extends StatelessWidget {
                           ),
                         );
                       },
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ));
         },
         onModelReady: (model) {
