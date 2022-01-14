@@ -784,5 +784,8 @@
   "yourApplicationInReviewNote": "Your application is under review,\nwe will notify you soon.",
   "refNo": "Ref No.",
   "biometricLoginDeactivated": "Biometric login is successfully deactivated",
-  "yourYellowSunDebitCardIssued": "Your Yellow Sun debit card has been issued!"
+  "yourYellowSunDebitCardIssued": "Your Yellow Sun debit card has been issued!",
+  "enterIdNumberToResetPassword": "Enter your ID number\nto reset your password",
+  "idExpiryDate": "ID EXPIRY DATE",
+  "letsCreateNewPass": "Next, let’s create\nyour new password"
 }

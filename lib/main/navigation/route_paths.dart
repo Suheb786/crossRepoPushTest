@@ -78,4 +78,5 @@ class RoutePaths {
       "/creditCardApplicationFailure";
   static const String ApplyCreditCardHome = "/applyCreditCardHome";
   static const String AccountHold = "/accountHold";
+  static const String ForgotPassword = "/forgotPassword";
 }

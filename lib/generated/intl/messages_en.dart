@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -457,6 +456,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter the 6-digit code sent to  \n+962 79 322 8080"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Confirm password field cannot be empty"),
+        "enterIdNumberToResetPassword": MessageLookupByLibrary.simpleMessage(
+            "Enter your ID number\nto reset your password"),
         "enterLoginDetails":
             MessageLookupByLibrary.simpleMessage("Enter your login details"),
         "enterMailingAddress":
@@ -624,6 +625,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Id card is expired, cannot proceed."),
         "idCardNotAllowed": MessageLookupByLibrary.simpleMessage(
             "ID card is not allowed for NeoBank."),
+        "idExpiryDate": MessageLookupByLibrary.simpleMessage("ID EXPIRY DATE"),
         "idHint":
             MessageLookupByLibrary.simpleMessage("Please Enter ID Number"),
         "idNumber": MessageLookupByLibrary.simpleMessage("ID NUMBER"),
@@ -777,6 +779,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("You joined \nblink"),
         "legalDocumentNo":
             MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
+        "letsCreateNewPass": MessageLookupByLibrary.simpleMessage(
+            "Next, let’s create\nyour new password"),
         "letsCreateYourAccount":
             MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
         "letsCreateYourProfile":

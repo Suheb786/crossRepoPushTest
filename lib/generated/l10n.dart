@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7665,6 +7666,36 @@ class S {
     return Intl.message(
       'Your Yellow Sun debit card has been issued!',
       name: 'yourYellowSunDebitCardIssued',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your ID number\nto reset your password`
+  String get enterIdNumberToResetPassword {
+    return Intl.message(
+      'Enter your ID number\nto reset your password',
+      name: 'enterIdNumberToResetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID EXPIRY DATE`
+  String get idExpiryDate {
+    return Intl.message(
+      'ID EXPIRY DATE',
+      name: 'idExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next, let’s create\nyour new password`
+  String get letsCreateNewPass {
+    return Intl.message(
+      'Next, let’s create\nyour new password',
+      name: 'letsCreateNewPass',
       desc: '',
       args: [],
     );

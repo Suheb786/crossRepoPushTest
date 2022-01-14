@@ -35,6 +35,7 @@ import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart'
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
+import 'package:neo_bank/feature/forgot_password/forgot_password_page.dart';
 import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
 import 'package:neo_bank/feature/help_center/call_ended/call_ended_page.dart';
 import 'package:neo_bank/feature/help_center/help_center_page.dart';
@@ -437,6 +438,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => AccountHoldPage(),
             settings: RouteSettings(name: RoutePaths.AccountHold));
+
+      case RoutePaths.ForgotPassword:
+        return CupertinoPageRoute(
+            builder: (context) => ForgotPasswordPage(),
+            settings: RouteSettings(name: RoutePaths.ForgotPassword));
 
       default:
         return CupertinoPageRoute(
