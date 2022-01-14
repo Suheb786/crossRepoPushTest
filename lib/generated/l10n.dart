@@ -120,10 +120,10 @@ class S {
     );
   }
 
-  /// `Please enter valid mobile number`
+  /// `You entered an invalid mobile number. Please try again.`
   String get enterValidMobileNumber {
     return Intl.message(
-      'Please enter valid mobile number',
+      'You entered an invalid mobile number. Please try again.',
       name: 'enterValidMobileNumber',
       desc: '',
       args: [],
@@ -260,10 +260,10 @@ class S {
     );
   }
 
-  /// `I agree for blink to retrieve my data from the Civil Department`
+  /// `I hereby authorize Blink to retrieve my data from the Civil Status and Passports Department.`
   String get termsAndConditions {
     return Intl.message(
-      'I agree for blink to retrieve my data from the Civil Department',
+      'I hereby authorize Blink to retrieve my data from the Civil Status and Passports Department.',
       name: 'termsAndConditions',
       desc: '',
       args: [],
@@ -1320,10 +1320,10 @@ class S {
     );
   }
 
-  /// `I confirm that information above is correct and agree to the bank’s `
+  /// `I confirm that information provided is accurate and I hereby acknowledge that I have read, understood, and accepted Blink’s General `
   String get confirmInfoTC {
     return Intl.message(
-      'I confirm that information above is correct and agree to the bank’s ',
+      'I confirm that information provided is accurate and I hereby acknowledge that I have read, understood, and accepted Blink’s General ',
       name: 'confirmInfoTC',
       desc: '',
       args: [],
@@ -3600,10 +3600,10 @@ class S {
     );
   }
 
-  /// `You must be the beneficial owner of the account to proceed`
+  /// `We're sorry, you must be the beneficial owner of the account to proceed.`
   String get invalidBeneficialOwnerAccount {
     return Intl.message(
-      'You must be the beneficial owner of the account to proceed',
+      'We\'re sorry, you must be the beneficial owner of the account to proceed.',
       name: 'invalidBeneficialOwnerAccount',
       desc: '',
       args: [],
@@ -3700,20 +3700,20 @@ class S {
     );
   }
 
-  /// ` is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list.`
+  /// ` is an individual who currently has or previously had a high profile political role, such as: head of government/state, minister, judicial or military official, high-ranking government or public official, a prominent politician, a prominent figure in a political party, a senior executive of a state-owned company; including the individual’s first-degree relatives, their business partners, or any persons working on their behalf or having authorization/power of attorney issued by them.`
   String get pepDesc {
     return Intl.message(
-      ' is someone who, through their prominent position or influence, is more susceptible to being involved in bribery or corruption.\n\nIn addition, any close business associate or family member of such a person will also be deemed as being a risk, and therefore could also be added to the PEP list.',
+      ' is an individual who currently has or previously had a high profile political role, such as: head of government/state, minister, judicial or military official, high-ranking government or public official, a prominent politician, a prominent figure in a political party, a senior executive of a state-owned company; including the individual’s first-degree relatives, their business partners, or any persons working on their behalf or having authorization/power of attorney issued by them.',
       name: 'pepDesc',
       desc: '',
       args: [],
     );
   }
 
-  /// `I declare that the bank is entitled to verify the information given directly or through any third part agent.`
+  /// `I authorize Blink to disclose any information related to my accounts to the US Tax Department or any related party.`
   String get verifyInformationDirectlyOrUsingThirdPartyAgentDesc {
     return Intl.message(
-      'I declare that the bank is entitled to verify the information given directly or through any third part agent.',
+      'I authorize Blink to disclose any information related to my accounts to the US Tax Department or any related party.',
       name: 'verifyInformationDirectlyOrUsingThirdPartyAgentDesc',
       desc: '',
       args: [],
@@ -3730,10 +3730,10 @@ class S {
     );
   }
 
-  /// `To blink in more seamlessly, please enable biometric login`
+  /// `To Blink in more seamlessly, please enable biometric login`
   String get biometricLoginDesc {
     return Intl.message(
-      'To blink in more seamlessly, please enable biometric login',
+      'To Blink in more seamlessly, please enable biometric login',
       name: 'biometricLoginDesc',
       desc: '',
       args: [],
@@ -3760,10 +3760,10 @@ class S {
     );
   }
 
-  /// `NATIONAL ID`
+  /// `NATIONAL ID NUMBER`
   String get nationalId {
     return Intl.message(
-      'NATIONAL ID',
+      'NATIONAL ID NUMBER',
       name: 'nationalId',
       desc: '',
       args: [],
@@ -3950,10 +3950,10 @@ class S {
     );
   }
 
-  /// `Forgot password`
+  /// `Forgot password?`
   String get forgotPassword {
     return Intl.message(
-      'Forgot password',
+      'Forgot password?',
       name: 'forgotPassword',
       desc: '',
       args: [],
@@ -4180,20 +4180,20 @@ class S {
     );
   }
 
-  /// `NUMBER ON CARD`
+  /// `NUMBERS ON CARD`
   String get numberOnCard {
     return Intl.message(
-      'NUMBER ON CARD',
+      'NUMBERS ON CARD',
       name: 'numberOnCard',
       desc: '',
       args: [],
     );
   }
 
-  /// `Yay! Your card has been delivered. Check the number on the back of plastic card and swipe to confirm if its matched with above.`
+  /// `Check that the numbers on the back of your card match the numbers above.`
   String get cardHasBeenDelivered {
     return Intl.message(
-      'Yay! Your card has been delivered. Check the number on the back of plastic card and swipe to confirm if its matched with above.',
+      'Check that the numbers on the back of your card match the numbers above.',
       name: 'cardHasBeenDelivered',
       desc: '',
       args: [],
@@ -4250,10 +4250,10 @@ class S {
     );
   }
 
-  /// `You are eligible for the below maximum limit, complete the details to issue your card`
+  /// `Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card. Click below and spend away!`
   String get blinkCreditCard {
     return Intl.message(
-      'You are eligible for the below maximum limit, complete the details to issue your card',
+      'Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card. Click below and spend away!',
       name: 'blinkCreditCard',
       desc: '',
       args: [],
@@ -4350,10 +4350,10 @@ class S {
     );
   }
 
-  /// `You don’t have any contacts yet.\nAdd your blink contacts while\nsending money`
+  /// `You don't have any contacts yet. Your Blink contacts can be saved while sending money.`
   String get addSendContact {
     return Intl.message(
-      'You don’t have any contacts yet.\nAdd your blink contacts while\nsending money',
+      'You don\'t have any contacts yet. Your Blink contacts can be saved while sending money.',
       name: 'addSendContact',
       desc: '',
       args: [],
@@ -4500,10 +4500,10 @@ class S {
     );
   }
 
-  /// `You will be notified once your contact\naccepts your request and money is\nadded into your account.`
+  /// `You will be notified once your request \n is accepted and money is \n added into your account.`
   String get youWillBeNotified {
     return Intl.message(
-      'You will be notified once your contact\naccepts your request and money is\nadded into your account.',
+      'You will be notified once your request \n is accepted and money is \n added into your account.',
       name: 'youWillBeNotified',
       desc: '',
       args: [],
@@ -4580,10 +4580,10 @@ class S {
     );
   }
 
-  /// `Add this receipient to your blink contacts`
+  /// `Add this recipient to your Blink contacts`
   String get addRecipientToContact {
     return Intl.message(
-      'Add this receipient to your blink contacts',
+      'Add this recipient to your Blink contacts',
       name: 'addRecipientToContact',
       desc: '',
       args: [],
@@ -4610,30 +4610,30 @@ class S {
     );
   }
 
-  /// `Ways you can add\nmoney into your account`
+  /// `Ways to add\nmoney into your account`
   String get waysYocCanAddMoneyToAccount {
     return Intl.message(
-      'Ways you can add\nmoney into your account',
+      'Ways to add\nmoney into your account',
       name: 'waysYocCanAddMoneyToAccount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Request money from other banks`
+  /// `Request money from another bank account`
   String get requestMoneyFromOtherBank {
     return Intl.message(
-      'Request money from other banks',
+      'Request money from another bank account',
       name: 'requestMoneyFromOtherBank',
       desc: '',
       args: [],
     );
   }
 
-  /// `If you have money from other banks, you can easily send money request to move it into your blink account.`
+  /// `If you currently have money in another bank account, you can easily send a money request to transfer money into your Blink account`
   String get requestMoneyFromOtherBankDesc {
     return Intl.message(
-      'If you have money from other banks, you can easily send money request to move it into your blink account.',
+      'If you currently have money in another bank account, you can easily send a money request to transfer money into your Blink account',
       name: 'requestMoneyFromOtherBankDesc',
       desc: '',
       args: [],
@@ -4650,10 +4650,10 @@ class S {
     );
   }
 
-  /// `Share your account details to your friends and family, let them know you are on blink!`
+  /// `Share your account info to be able to receive money.`
   String get receiveMoneyFromOthersDesc {
     return Intl.message(
-      'Share your account details to your friends and family, let them know you are on blink!',
+      'Share your account info to be able to receive money.',
       name: 'receiveMoneyFromOthersDesc',
       desc: '',
       args: [],
@@ -4670,10 +4670,10 @@ class S {
     );
   }
 
-  /// `Don’t worry, you can deposit cash into the account with or without your card. Just locate nearest Capital Bank ATM.`
+  /// `Deposit cash directly into your Blink account through any Capital Bank ATM, with or without your card.`
   String get depositViaATMDesc {
     return Intl.message(
-      'Don’t worry, you can deposit cash into the account with or without your card. Just locate nearest Capital Bank ATM.',
+      'Deposit cash directly into your Blink account through any Capital Bank ATM, with or without your card.',
       name: 'depositViaATMDesc',
       desc: '',
       args: [],
@@ -4790,10 +4790,10 @@ class S {
     );
   }
 
-  /// `You have entered an invalid username or password, please try again`
+  /// `Oh no! The email or password entered is incorrect. Please try again.`
   String get invalidUserNamePassword {
     return Intl.message(
-      'You have entered an invalid username or password, please try again',
+      'Oh no! The email or password entered is incorrect. Please try again.',
       name: 'invalidUserNamePassword',
       desc: '',
       args: [],
@@ -4830,10 +4830,10 @@ class S {
     );
   }
 
-  /// `You have entered an invalid OTP code, please enter a valid one`
+  /// `The code you entered is incorrect, please try again.`
   String get invalidOtp {
     return Intl.message(
-      'You have entered an invalid OTP code, please enter a valid one',
+      'The code you entered is incorrect, please try again.',
       name: 'invalidOtp',
       desc: '',
       args: [],
@@ -5500,10 +5500,10 @@ class S {
     );
   }
 
-  /// `Your card has\nbeen issued`
+  /// `Your Yellow Sun debit card \n has been issued!`
   String get yourCardHasBeenIssued {
     return Intl.message(
-      'Your card has\nbeen issued',
+      'Your Yellow Sun debit card \n has been issued!',
       name: 'yourCardHasBeenIssued',
       desc: '',
       args: [],
@@ -6190,40 +6190,40 @@ class S {
     );
   }
 
-  /// `Send money was not\nsuccessful.`
+  /// `Your attempt to send money was unsuccessful.`
   String get sendMoneyNotSuccessful {
     return Intl.message(
-      'Send money was not\nsuccessful.',
+      'Your attempt to send money was unsuccessful.',
       name: 'sendMoneyNotSuccessful',
       desc: '',
       args: [],
     );
   }
 
-  /// `There was some issues to send your\npayment, please try again later.`
+  /// `There was an issue with your payment, please try again. If you need help, contact Blink Engagement Team.`
   String get tryAgainLater {
     return Intl.message(
-      'There was some issues to send your\npayment, please try again later.',
+      'There was an issue with your payment, please try again. If you need help, contact Blink Engagement Team.',
       name: 'tryAgainLater',
       desc: '',
       args: [],
     );
   }
 
-  /// `IBAN is\nnot in blink`
+  /// `IBAN is\nnot in Blink`
   String get ibanNotBlink {
     return Intl.message(
-      'IBAN is\nnot in blink',
+      'IBAN is\nnot in Blink',
       name: 'ibanNotBlink',
       desc: '',
       args: [],
     );
   }
 
-  /// `We’ve found that the recipient’s IBAN  you entered is outside blink. You will be able to send money outside blink, soon! You can send money from blink, today.`
+  /// `We've found that the IBAN you entered is not within Blink. You will be able to send money outside Blink, soon! For now, invite the recipient to join our community.`
   String get ibanOutsideBlink {
     return Intl.message(
-      'We’ve found that the recipient’s IBAN  you entered is outside blink. You will be able to send money outside blink, soon! You can send money from blink, today.',
+      'We\'ve found that the IBAN you entered is not within Blink. You will be able to send money outside Blink, soon! For now, invite the recipient to join our community.',
       name: 'ibanOutsideBlink',
       desc: '',
       args: [],
@@ -7230,10 +7230,10 @@ class S {
     );
   }
 
-  /// `Password does not meet requirement. \nPlease try again.`
+  /// `Your password does not meet the minimum requirements. \nPlease try again.`
   String get passwordNotMeetCriteria {
     return Intl.message(
-      'Password does not meet requirement. \nPlease try again.',
+      'Your password does not meet the minimum requirements. \nPlease try again.',
       name: 'passwordNotMeetCriteria',
       desc: '',
       args: [],
@@ -7490,10 +7490,10 @@ class S {
     );
   }
 
-  /// `Set up and personalize your\nnew credit card`
+  /// `You are eligible for the below maximum limit, complete the details to issue your card`
   String get personalizeCreditCard {
     return Intl.message(
-      'Set up and personalize your\nnew credit card',
+      'You are eligible for the below maximum limit, complete the details to issue your card',
       name: 'personalizeCreditCard',
       desc: '',
       args: [],
