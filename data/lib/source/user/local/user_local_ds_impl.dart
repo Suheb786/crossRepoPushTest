@@ -104,8 +104,8 @@ class UserLocalDSImpl extends UserLocalDS {
           print(
               "I AM additionalNameInformation : ${result.additionalNameInformation}");
           print("I AM dateOfIssue : ${result.dateOfIssue}");
-          // print("I AM fathersName:  ${result.fathersName}");
-          // print("I AM mothersName : ${result.mothersName}");
+          print("I AM fathersName:  ${result.fathersName}");
+          print("I AM mothersName : ${result.mothersName}");
 
           print("I AM mrzResult Gender :${result.mrzResult!.gender}");
           print(
