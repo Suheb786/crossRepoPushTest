@@ -129,6 +129,7 @@ class MobileNumberDialogView extends StatelessWidget {
                                               ),
                                             ),
                                             AppScrollableListViewWidget(
+                                              key: ValueKey(data.data!.length),
                                               child:
                                                   ClickableListWheelScrollView(
                                                 scrollController:
@@ -243,7 +244,9 @@ class MobileNumberDialogView extends StatelessWidget {
               ));
         },
         onModelReady: (model) {
-          model.setResponse(countryDataList);
+          if (model.allCountryList == null || model.allCountryList!.isEmpty) {
+            model.setResponse(countryDataList);
+          }
         },
         providerBase: providerBase());
   }
