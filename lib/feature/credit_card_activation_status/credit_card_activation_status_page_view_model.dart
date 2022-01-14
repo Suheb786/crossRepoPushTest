@@ -1,5 +1,5 @@
 import 'package:domain/model/card/get_card_applications/get_card_application_response.dart';
-import 'package:domain/usecase/blink_credit_card/blink_credit_card_usecase.dart';
+import 'package:domain/usecase/card_delivery/credit_card_request_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_application_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -8,19 +8,10 @@ import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
-class BlinkCreditCardViewModel extends BasePageViewModel {
-  BlinkCreditCardUseCase _blinkCreditCardUseCase;
-  final GetCardApplicationUseCase _applicationUseCase;
+class CreditCardActivationStatusPageViewModel extends BasePageViewModel {
+  final GetCardApplicationUseCase _getCardApplicationUseCase;
 
-  BehaviorSubject<bool> _isCheckedSubject = BehaviorSubject.seeded(false);
-
-  PublishSubject<BlinkCreditCardUseCaseParams> _blinkRequest = PublishSubject();
-
-  Stream<bool> get isCheckedStream => _isCheckedSubject.stream;
-
-  PublishSubject<Resource<bool>> _blinkResponse = PublishSubject();
-
-  Stream<Resource<bool>> get blinkResponseStream => _blinkResponse.stream;
+  final CreditCardRequestUseCase _creditCardRequestUseCase;
 
   ///get application request
   PublishSubject<GetCardApplicationUseCaseParams> _getApplicationRequest =
@@ -34,25 +25,23 @@ class BlinkCreditCardViewModel extends BasePageViewModel {
   Stream<Resource<GetCardApplicationResponse>>
       get getApplicationResponseStream => _getApplicationResponse.stream;
 
-  BlinkCreditCardViewModel(
-      this._blinkCreditCardUseCase, this._applicationUseCase) {
-    _blinkRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _blinkCreditCardUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        updateLoader();
-        _blinkResponse.safeAdd(event);
-        if (event.status == Status.ERROR) {
-          showErrorState();
-          showToastWithError(event.appError!);
-        }
-      });
-    });
+  ///credit card request
+  PublishSubject<CreditCardRequestUseCaseParams> _creditCardReqRequest =
+      PublishSubject();
 
+  ///credit card response
+  PublishSubject<Resource<bool>> _creditCardReqResponse = PublishSubject();
+
+  ///credit card response stream
+  Stream<Resource<bool>> get creditCardReqResponseStream =>
+      _creditCardReqResponse.stream;
+
+  CreditCardActivationStatusPageViewModel(
+      this._getCardApplicationUseCase, this._creditCardRequestUseCase) {
     _getApplicationRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _applicationUseCase.execute(params: value))
+              createCall: () =>
+                  _getCardApplicationUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -63,26 +52,38 @@ class BlinkCreditCardViewModel extends BasePageViewModel {
         }
       });
     });
-  }
 
-  updateCheckBox(bool value) {
-    _isCheckedSubject.safeAdd(value);
-  }
+    _creditCardReqRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _creditCardRequestUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _creditCardReqResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
 
-  void submit() {
-    _blinkRequest.safeAdd(
-        BlinkCreditCardUseCaseParams(isChecked: _isCheckedSubject.value));
+    getApplication();
   }
 
   void getApplication() {
     _getApplicationRequest.safeAdd(GetCardApplicationUseCaseParams());
   }
 
+  void creditCardRequest(String cardId) {
+    _creditCardReqRequest
+        .safeAdd(CreditCardRequestUseCaseParams(cardId: cardId));
+  }
+
   @override
   void dispose() {
-    _blinkResponse.close();
-    _blinkRequest.close();
-    _isCheckedSubject.close();
+    _getApplicationRequest.close();
+    _getApplicationResponse.close();
     super.dispose();
   }
 }

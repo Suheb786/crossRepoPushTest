@@ -787,5 +787,9 @@
   "yourYellowSunDebitCardIssued": "Your Yellow Sun debit card has been issued!",
   "enterIdNumberToResetPassword": "Enter your ID number\nto reset your password",
   "idExpiryDate": "ID EXPIRY DATE",
-  "letsCreateNewPass": "Next, let’s create\nyour new password"
+  "letsCreateNewPass": "Next, let’s create\nyour new password",
+  "preparingYourCard": "Preparing your card...",
+  "creatingCreditCardLimit": "Creating your credit card limit",
+  "issuingYourCreditCard": "Issuing your credit card",
+  "activatingCreditCard": "Activating your credit card"
 }

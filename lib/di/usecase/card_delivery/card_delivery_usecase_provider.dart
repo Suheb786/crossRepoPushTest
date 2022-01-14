@@ -7,15 +7,18 @@ import 'package:domain/usecase/card_delivery/create_issuance_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/credit_card_limits_update_usecase.dart';
 import 'package:domain/usecase/card_delivery/credit_card_pin_unblock_usecase.dart';
+import 'package:domain/usecase/card_delivery/credit_card_request_usecase.dart';
 import 'package:domain/usecase/card_delivery/debit_card_limits_update_usecase.dart';
 import 'package:domain/usecase/card_delivery/enter_new_pin_for_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
+import 'package:domain/usecase/card_delivery/get_card_application_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_statement_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_statement_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
+import 'package:domain/usecase/card_delivery/get_loan_values_usecase.dart';
 import 'package:domain/usecase/card_delivery/otp_for_change_card_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/personalize_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/personalize_debit_card_usecase.dart';
@@ -134,3 +137,17 @@ final personalizeCreditCardUseCaseProvider =
 final personalizeDebitCardUseCaseProvider =
     Provider.autoDispose<PersonalizeDebitCardUseCase>(
         (ref) => PersonalizeDebitCardUseCase());
+
+///[GetCardApplicationUseCase] provider
+final getCardApplicationUseCaseProvider =
+    Provider.autoDispose<GetCardApplicationUseCase>(
+        (ref) => GetCardApplicationUseCase(ref.read(cardRepositoryProvider)));
+
+///[GetLoanValueUseCase] provider
+final getLoanValueUseCaseProvider = Provider.autoDispose<GetLoanValueUseCase>(
+    (ref) => GetLoanValueUseCase(ref.read(cardRepositoryProvider)));
+
+///[CreditCardRequestUseCase] provider
+final creditCardRequestUseCaseProvider =
+    Provider.autoDispose<CreditCardRequestUseCase>(
+        (ref) => CreditCardRequestUseCase(ref.read(cardRepositoryProvider)));

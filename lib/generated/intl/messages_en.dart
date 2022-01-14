@@ -69,6 +69,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Now, tell us what\nthe account is for"),
         "actionComeToYouSoon": MessageLookupByLibrary.simpleMessage(
             "The actions with 🔴 will come to you soon"),
+        "activatingCreditCard":
+            MessageLookupByLibrary.simpleMessage("Activating your credit card"),
         "activity": MessageLookupByLibrary.simpleMessage("Activity"),
         "addIncome": MessageLookupByLibrary.simpleMessage("Add Income"),
         "addIncome1": MessageLookupByLibrary.simpleMessage("Add. Income 1"),
@@ -282,6 +284,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Next, let’s create\nyour password"),
         "createYourLoginPassword": MessageLookupByLibrary.simpleMessage(
             "Next, let’s create your \nlogin password"),
+        "creatingCreditCardLimit": MessageLookupByLibrary.simpleMessage(
+            "Creating your credit card limit"),
         "creditBureau": MessageLookupByLibrary.simpleMessage("Credit Bureau "),
         "creditCardActivated":
             MessageLookupByLibrary.simpleMessage("Credit Card\nactivated."),
@@ -770,6 +774,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter if only the business name is different from the name above"),
         "issuingDate": MessageLookupByLibrary.simpleMessage("Issuing date"),
         "issuingPlace": MessageLookupByLibrary.simpleMessage("Issuing place"),
+        "issuingYourCreditCard":
+            MessageLookupByLibrary.simpleMessage("Issuing your credit card"),
         "jobAndIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
         "jobIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
         "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
@@ -997,6 +1003,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "preferredTime": MessageLookupByLibrary.simpleMessage("PREFERRED TIME"),
         "preferredTimeSmall":
             MessageLookupByLibrary.simpleMessage("Preferred Time"),
+        "preparingYourCard":
+            MessageLookupByLibrary.simpleMessage("Preparing your card..."),
         "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
             "Great! Now, here’s what Neu has to offer for you"),
         "profileDetailsQ1":

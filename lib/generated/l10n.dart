@@ -7700,6 +7700,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Preparing your card...`
+  String get preparingYourCard {
+    return Intl.message(
+      'Preparing your card...',
+      name: 'preparingYourCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Creating your credit card limit`
+  String get creatingCreditCardLimit {
+    return Intl.message(
+      'Creating your credit card limit',
+      name: 'creatingCreditCardLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Issuing your credit card`
+  String get issuingYourCreditCard {
+    return Intl.message(
+      'Issuing your credit card',
+      name: 'issuingYourCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activating your credit card`
+  String get activatingCreditCard {
+    return Intl.message(
+      'Activating your credit card',
+      name: 'activatingCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

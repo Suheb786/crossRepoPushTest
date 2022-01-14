@@ -17,6 +17,7 @@ import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
+import 'package:neo_bank/feature/credit_card_activation_status/credit_card_activation_status_page.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
@@ -443,6 +444,12 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => ForgotPasswordPage(),
             settings: RouteSettings(name: RoutePaths.ForgotPassword));
+
+      case RoutePaths.CreditCardActivationStatus:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardActivationStatusPage(),
+            settings:
+                RouteSettings(name: RoutePaths.CreditCardActivationStatus));
 
       default:
         return CupertinoPageRoute(

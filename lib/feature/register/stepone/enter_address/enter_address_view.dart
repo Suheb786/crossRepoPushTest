@@ -301,10 +301,14 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                       stateCityTypeEnum:
                                                           StateCityTypeEnum
                                                               .CITY,
-                                                      stateCityData: cityList!
-                                                          .data!
-                                                          .cityContent!
-                                                          .stateData!);
+                                                      stateCityData:
+                                                          cityList!.status ==
+                                                                  Status.SUCCESS
+                                                              ? cityList
+                                                                  .data!
+                                                                  .cityContent!
+                                                                  .stateData!
+                                                              : []);
                                                 }
                                               },
                                               suffixIcon: (value, data) {

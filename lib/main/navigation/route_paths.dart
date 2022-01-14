@@ -79,4 +79,6 @@ class RoutePaths {
   static const String ApplyCreditCardHome = "/applyCreditCardHome";
   static const String AccountHold = "/accountHold";
   static const String ForgotPassword = "/forgotPassword";
+  static const String CreditCardActivationStatus =
+      "/creditCardActivationStatus";
 }
