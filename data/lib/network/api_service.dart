@@ -40,7 +40,12 @@ import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
+import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
+import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_entity.dart';
+import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
+import 'package:data/entity/remote/card/process_loan_request/process_loan_request_entity.dart';
+import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
@@ -541,7 +546,19 @@ abstract class ApiService {
   Future<HttpResponse<GetAllowedIssuerResponseEntity>> fetchAllowedIssuers(
       @Body() BaseRequest baseRequest);
 
-  @POST("Account/CheckCustomerStatus")
+  @POST("/Account/CheckCustomerStatus")
   Future<HttpResponse<CustomerStatusResponseEntity>> checkCustomerStatus(
       @Body() BaseRequest baseRequest);
+
+  @POST("/CardTracking/GetCardApplications")
+  Future<HttpResponse<GetCardApplicationResponseEntity>> getCardApplication(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/CardTracking/GetLoanValues")
+  Future<HttpResponse<GetLoanValuesResponseEntity>> getLoanValues(
+      @Body() GetLoanValuesRequestEntity getLoanValuesRequestEntity);
+
+  @POST("/CardTracking/ProccessLoanRequest")
+  Future<HttpResponse<ProcessLoanResponseEntity>> processLoanRequest(
+      @Body() ProcessLoanRequestEntity processLoanRequestEntity);
 }

@@ -523,7 +523,7 @@ class ReviewApplicationPageView
                                                                   itemBuilder:
                                                                       (context,
                                                                           index) {
-                                                                    return getConfirmApplicationData!.data!.getApplicationData!.getConfirmApplicationDataContent!.jobDetailInfo!.additionalIncomeInfo!.length >
+                                                                    return getConfirmApplicationData.data!.getApplicationData!.getConfirmApplicationDataContent!.jobDetailInfo!.additionalIncomeInfo!.length >
                                                                             0
                                                                         ? AdditionalIncomeListWidget(
                                                                             title:
@@ -533,7 +533,7 @@ class ReviewApplicationPageView
                                                                           )
                                                                         : Container();
                                                                   },
-                                                                  itemCount: getConfirmApplicationData!
+                                                                  itemCount: getConfirmApplicationData
                                                                       .data!
                                                                       .getApplicationData!
                                                                       .getConfirmApplicationDataContent!
@@ -569,7 +569,7 @@ class ReviewApplicationPageView
                                                                         .text,
                                                               ),
                                                               Visibility(
-                                                                visible: getConfirmApplicationData!
+                                                                visible: getConfirmApplicationData
                                                                     .data!
                                                                     .getApplicationData!
                                                                     .getConfirmApplicationDataContent!
@@ -585,7 +585,7 @@ class ReviewApplicationPageView
                                                                 ),
                                                               ),
                                                               Visibility(
-                                                                visible: getConfirmApplicationData!
+                                                                visible: getConfirmApplicationData
                                                                     .data!
                                                                     .getApplicationData!
                                                                     .getConfirmApplicationDataContent!

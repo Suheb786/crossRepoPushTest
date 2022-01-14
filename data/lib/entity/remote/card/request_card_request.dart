@@ -4,20 +4,18 @@ part 'request_card_request.g.dart';
 
 @JsonSerializable()
 class RequestCardRequest {
-  @JsonKey(name: "CardLimit")
-  final double? cardLimit;
-  @JsonKey(name: "AccountId")
-  final String? accountId;
-  @JsonKey(name: "getToken")
+  @JsonKey(name: "CardId")
+  final String? cardId;
+  @JsonKey(name: "GetToken")
   final bool? getToken;
-  @JsonKey(name: "baseClass")
+  @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  RequestCardRequest(
-      {required this.baseData,
-      this.getToken: true,
-      this.cardLimit: 0.0,
-      this.accountId: "1"});
+  RequestCardRequest({
+    required this.baseData,
+    this.getToken: true,
+    this.cardId: "",
+  });
 
   factory RequestCardRequest.fromJson(Map<String, dynamic> json) =>
       _$RequestCardRequestFromJson(json);

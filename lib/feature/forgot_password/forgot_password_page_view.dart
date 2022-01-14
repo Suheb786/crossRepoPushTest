@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
-import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/feature/forgot_password/add_id_number_for_reset_password/add_id_number_for_reset_password_page.dart';
+import 'package:neo_bank/feature/forgot_password/create_new_password/create_new_password_page.dart';
+import 'package:neo_bank/feature/forgot_password/enter_otp_for_reset_password/enter_otp_for_reset_password_page.dart';
 import 'package:neo_bank/feature/forgot_password/forgot_password_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
@@ -15,7 +15,11 @@ import 'package:show_up_animation/show_up_animation.dart';
 
 class ForgotPasswordPageView
     extends BasePageViewWidget<ForgotPasswordPageViewModel> {
-  final pages = [AddIDNumberForResetPasswordPage(), BaseCardPage()];
+  final pages = [
+    AddIDNumberForResetPasswordPage(),
+    EnterOTPForResetPasswordPage(),
+    CreateNewPasswordPage(),
+  ];
 
   ForgotPasswordPageView(ProviderBase model) : super(model);
 
@@ -33,7 +37,7 @@ class ForgotPasswordPageView
               stream: model.currentPageStream,
               dataBuilder: (context, currentPage) {
                 return DotsIndicator(
-                  dotsCount: pages.length - 1,
+                  dotsCount: pages.length,
                   position: currentPage!.toDouble(),
                   mainAxisSize: MainAxisSize.max,
                   decorator: DotsDecorator(
@@ -97,7 +101,7 @@ class ForgotPasswordPageView
                       ),
                     ),
                     Visibility(
-                      visible: currentStep == 2,
+                      visible: currentStep == 1,
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 32),
                         child: ShowUpAnimation(
@@ -107,8 +111,7 @@ class ForgotPasswordPageView
                           direction: Direction.vertical,
                           offset: 0.5,
                           child: Text(
-                            "+${ProviderScope?.containerOf(context).read(addNumberViewModelProvider).countryData.phoneCode ?? "-"} "
-                            "${ProviderScope.containerOf(context).read(addNumberViewModelProvider).mobileNumberController.text}",
+                            "+962 79 322 8080",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Theme.of(context).accentColor,
