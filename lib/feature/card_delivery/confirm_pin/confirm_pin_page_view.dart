@@ -45,14 +45,12 @@ class ConfirmPinPageView extends BasePageViewWidget<ConfirmPinPageViewModel> {
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
                       print(
-                          'currentPin--->${ProviderScope
-                              .containerOf(context)
+                          'currentPin--->${ProviderScope.containerOf(context).read(createPinViewModelProvider).currentPin}');
+                      model.validatePin(
+                          ProviderScope.containerOf(context)
                               .read(createPinViewModelProvider)
-                              .currentPin}');
-                      model.validatePin(ProviderScope
-                          .containerOf(context)
-                          .read(createPinViewModelProvider)
-                          .currentPin);
+                              .currentPin,
+                          context);
                     } else {
                       ProviderScope
                           .containerOf(context)

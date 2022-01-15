@@ -22,9 +22,9 @@ class LoginViewModel extends BasePageViewModel {
   final TextEditingController passwordController = TextEditingController();
   final ScrollController scrollController = ScrollController();
   final GlobalKey<AppTextFieldState> emailKey =
-  GlobalKey(debugLabel: "login_email");
+      GlobalKey(debugLabel: "login_email");
   final GlobalKey<AppTextFieldState> passwordKey =
-  GlobalKey(debugLabel: "login_password");
+      GlobalKey(debugLabel: "login_password");
 
   PublishSubject<LoginUseCaseParams> _loginRequest = PublishSubject();
 
@@ -38,11 +38,11 @@ class LoginViewModel extends BasePageViewModel {
 
   ///kyc status request
   PublishSubject<CheckKYCStatusUseCaseParams> _kycStatusRequest =
-  PublishSubject();
+      PublishSubject();
 
   ///kyc status response
   PublishSubject<Resource<CheckKycResponse>> _kycStatusResponse =
-  PublishSubject();
+      PublishSubject();
 
   ///kyc status response stream
   Stream<Resource<CheckKycResponse>> get kycStatusStream =>
@@ -51,7 +51,7 @@ class LoginViewModel extends BasePageViewModel {
   LoginViewModel(this._loginUseCase, this._kycStatusUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _loginUseCase.execute(params: value))
+              createCall: () => _loginUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _loginResponse.safeAdd(event);
@@ -71,7 +71,7 @@ class LoginViewModel extends BasePageViewModel {
 
     _kycStatusRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _kycStatusUseCase.execute(params: value))
+              createCall: () => _kycStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _kycStatusResponse.safeAdd(event);
@@ -89,7 +89,7 @@ class LoginViewModel extends BasePageViewModel {
   }
 
   void checkKycStatus() {
-    _kycStatusRequest.safeAdd(CheckKYCStatusUseCaseParams(getToken: true));
+    _kycStatusRequest.safeAdd(CheckKYCStatusUseCaseParams());
   }
 
   void validate() {

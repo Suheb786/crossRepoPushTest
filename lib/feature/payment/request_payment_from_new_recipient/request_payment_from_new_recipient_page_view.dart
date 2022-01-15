@@ -127,7 +127,7 @@ class RequestPaymentFromNewRecipientPageView
                                               )
                                             : Text(
                                                 double.parse(model.sendValue!)
-                                                    .toStringAsFixed(2),
+                                                    .toStringAsFixed(3),
                                                 style: TextStyle(
                                                     fontSize: 28,
                                                     fontWeight:

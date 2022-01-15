@@ -5,6 +5,7 @@ import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
+import 'package:domain/usecase/user/check_customer_status_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
 import 'package:domain/usecase/user/confirm_application_data_get_usecase.dart';
@@ -189,7 +190,7 @@ final getComboValuesUseCaseProvider =
   (ref) => GetComboValuesUseCase(
     ref.read(userRepoProvider),
   ),
-);
+    );
 
 /// listen current user use case provider
 final listenCurrentUserUseCaseProvider =
@@ -198,3 +199,7 @@ final listenCurrentUserUseCaseProvider =
     ref.read(userRepoProvider),
   ),
 );
+
+final customerStatusUseCaseProvider =
+    Provider.autoDispose<CheckCustomerStatusUseCase>(
+        (ref) => CheckCustomerStatusUseCase(ref.read(userRepoProvider)));

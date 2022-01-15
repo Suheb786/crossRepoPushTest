@@ -100,7 +100,7 @@ class CardDeliveryPageView
                                 currentStep ?? 0,
                                 S
                                     .of(context)
-                                    .yourCardHasBeenIssued,
+                                    .yourYellowSunDebitCardIssued,
                                 S
                                     .of(context)
                                     .letsSet4DigitPin,

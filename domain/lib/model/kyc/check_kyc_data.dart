@@ -4,5 +4,9 @@ class CheckKYCData {
   final String? error;
   final bool? isOptional;
 
-  CheckKYCData({this.type, this.status, this.error, this.isOptional});
+  CheckKYCData(
+      {this.type: "",
+      this.status: false,
+      this.error: "",
+      this.isOptional: false});
 }

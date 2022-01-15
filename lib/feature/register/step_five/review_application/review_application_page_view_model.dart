@@ -12,10 +12,13 @@ import 'package:domain/model/user/confirm_application_data_get/get_confirm_appli
 import 'package:domain/model/user/confirm_application_data_get/job_detail_content_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/job_detail_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/profile_status_info.dart';
+import 'package:domain/model/user/status/customer_status.dart';
 import 'package:domain/usecase/account/check_videocall_status_usecase.dart';
 import 'package:domain/usecase/bank_smart/create_account_usecase.dart';
 import 'package:domain/usecase/bank_smart/get_account_usecase.dart';
+import 'package:domain/usecase/bank_smart/remove_debit_lock_usecase.dart';
 import 'package:domain/usecase/register/review_app_usecase.dart';
+import 'package:domain/usecase/user/check_customer_status_usecase.dart';
 import 'package:domain/usecase/user/confirm_application_data_get_usecase.dart';
 import 'package:domain/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,8 +34,9 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   final CheckVideoCallStatusUseCase _checkVideoCallStatusUseCase;
   final GetAccountUseCase _getAccountUseCase;
   final CreateAccountUseCase _createAccountUseCase;
-
+  final CheckCustomerStatusUseCase _checkCustomerStatusUseCase;
   final ConfirmApplicationDataGetUseCase _applicationDataGetUseCase;
+  final RemoveDebitLockUseCase _removeDebitLockUseCase;
 
   ScrollController scrollController = ScrollController();
 
@@ -105,6 +109,27 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
       get getConfirmApplicationDataStream =>
           _getConfirmApplicationDataResponse.stream;
 
+  ///User Status subject holder
+  PublishSubject<CheckCustomerStatusUseCaseParams> _checkCustomerStatusRequest =
+      PublishSubject();
+
+  ///User Status response holder
+  PublishSubject<Resource<CustomerStatus>> _checkCustomerStatusResponse =
+      PublishSubject();
+
+  ///User Status stream
+  Stream<Resource<CustomerStatus>> get customerStatusStream =>
+      _checkCustomerStatusResponse.stream;
+
+  ///remove debit lock
+  PublishSubject<RemoveDebitLockUseCaseParams> _removeDebitLockRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _removeDebitLockResponse = PublishSubject();
+
+  Stream<Resource<bool>> get removeDebitLockStream =>
+      _removeDebitLockResponse.stream;
+
   ProfileStatusInfo profileStatusInfo = ProfileStatusInfo();
   CountryResidenceInfo countryResidenceInfo = CountryResidenceInfo();
   JobDetailInfo jobDetailInfo = JobDetailInfo();
@@ -116,7 +141,9 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
       this._checkVideoCallStatusUseCase,
       this._getAccountUseCase,
       this._createAccountUseCase,
-      this._applicationDataGetUseCase) {
+      this._applicationDataGetUseCase,
+      this._checkCustomerStatusUseCase,
+      this._removeDebitLockUseCase) {
     _reviewAppRequest.listen((value) {
       RequestManager(value,
               createCall: () => _reviewAppUseCase.execute(params: value))
@@ -184,6 +211,33 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
         _getConfirmApplicationDataResponse.add(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _checkCustomerStatusRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _checkCustomerStatusUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _checkCustomerStatusResponse.add(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _removeDebitLockRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _removeDebitLockUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _removeDebitLockResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
       });
@@ -259,6 +313,10 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
                     jobDetailInfo.jobDetailContentInfo!.additionalIncome,
                 annualIncome: mainAnnualIncomeController.text)),
         fatcaCrsInfo: fatcaCrsInfo));
+  }
+
+  void getCustomerStatus() {
+    _checkCustomerStatusRequest.safeAdd(CheckCustomerStatusUseCaseParams());
   }
 
   void checkVideoCallStatus() {
@@ -340,19 +398,6 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
   //   expectedMonthlyTransactionsController.text = '12,000';
   //   expectedAnnualTransactionsController.text = '102,000';
   // }
-
-  @override
-  void dispose() {
-    _checkVideoCallRequest.close();
-    _checkVideoCallResponse.close();
-    _getAccountRequest.close();
-    _getAccountResponse.close();
-    _createAccountRequest.close();
-    _createAccountResponse.close();
-    _getConfirmApplicationDataRequest.close();
-    _getConfirmApplicationDataResponse.close();
-    super.dispose();
-  }
 
   void updateTextFieldData(
       GetConfirmApplicationDataContent getConfirmApplicationDataContent) {
@@ -462,5 +507,27 @@ class ReviewApplicationPageViewModel extends BasePageViewModel {
     expectedAnnualTransactionsController.text = getConfirmApplicationDataContent
         .accountPurposeInfo!.anualTransaction!
         .toString();
+  }
+
+  ///remove debit lock
+  void removeDebitLock() {
+    _removeDebitLockRequest.safeAdd(RemoveDebitLockUseCaseParams());
+  }
+
+  @override
+  void dispose() {
+    _checkVideoCallRequest.close();
+    _checkVideoCallResponse.close();
+    _getAccountRequest.close();
+    _getAccountResponse.close();
+    _createAccountRequest.close();
+    _createAccountResponse.close();
+    _getConfirmApplicationDataRequest.close();
+    _getConfirmApplicationDataResponse.close();
+    _checkCustomerStatusRequest.close();
+    _checkCustomerStatusResponse.close();
+    _removeDebitLockRequest.close();
+    _removeDebitLockResponse.close();
+    super.dispose();
   }
 }

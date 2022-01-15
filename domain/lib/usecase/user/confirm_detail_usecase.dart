@@ -27,7 +27,7 @@ class ConfirmDetailUseCase extends BaseUseCase<NetworkError,
         familyName: params.scannedDocumentInformation!.familyName ?? '',
         idNumber: params.idNumber,
         dob: params.dateOfBirth,
-        nationality: params.nationality,
+        nationality: params.scannedDocumentInformation!.issuer ?? '',
         doe: params.expiryDate,
         gender: params.gender,
         motherName: params.motherName,
@@ -38,7 +38,7 @@ class ConfirmDetailUseCase extends BaseUseCase<NetworkError,
         personFaceImage:
             params.scannedDocumentInformation!.personFaceImage ?? '',
         issuer: params.scannedDocumentInformation!.issuer ?? '',
-        placeOfBirth: params.scannedDocumentInformation!.issuer ?? '',
+        placeOfBirth: params.nationality ?? '',
         doi: params.issuingDate,
         scanPercentage:
             params.scannedDocumentInformation!.scanPercentage?.toDouble() ?? 0);

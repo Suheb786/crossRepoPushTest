@@ -37,5 +37,5 @@ class MyDebitCardPageState
   }
 
   @override
-  bool get wantKeepAlive => true;
+  bool get wantKeepAlive => false;
 }

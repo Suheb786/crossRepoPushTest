@@ -58,6 +58,7 @@ import 'package:neo_bank/feature/payment/send_money/send_money_page.dart';
 import 'package:neo_bank/feature/payment/send_money_failure/send_money_failure_page.dart';
 import 'package:neo_bank/feature/product_selector/product_selector_page.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
+import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/stepone/capture/capture_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
@@ -431,6 +432,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => ApplyCreditCardHomePage(),
             settings: RouteSettings(name: RoutePaths.ApplyCreditCardHome));
+
+      case RoutePaths.AccountHold:
+        return CupertinoPageRoute(
+            builder: (context) => AccountHoldPage(),
+            settings: RouteSettings(name: RoutePaths.AccountHold));
 
       default:
         return CupertinoPageRoute(

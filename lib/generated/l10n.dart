@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -1520,10 +1521,10 @@ class S {
     );
   }
 
-  /// `Password did not match`
+  /// `The passwords you entered do not match. Please try again.`
   String get passwordMismatch {
     return Intl.message(
-      'Password did not match',
+      'The passwords you entered do not match. Please try again.',
       name: 'passwordMismatch',
       desc: '',
       args: [],
@@ -4570,6 +4571,16 @@ class S {
     );
   }
 
+  /// `Mobile No. / ALIAS`
+  String get ibanOrMobileRequest {
+    return Intl.message(
+      'Mobile No. / ALIAS',
+      name: 'ibanOrMobileRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Select purpose`
   String get selectPurpose {
     return Intl.message(
@@ -6430,6 +6441,16 @@ class S {
     );
   }
 
+  /// `Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. `
+  String get freezeDebitCardDescription {
+    return Intl.message(
+      'Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. ',
+      name: 'freezeDebitCardDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cancel this card?`
   String get cancelTheCard {
     return Intl.message(
@@ -7640,6 +7661,46 @@ class S {
     );
   }
 
+  /// `Please add nickName`
+  String get emptyNickName {
+    return Intl.message(
+      'Please add nickName',
+      name: 'emptyNickName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `One final stop...`
+  String get oneFinalStop {
+    return Intl.message(
+      'One final stop...',
+      name: 'oneFinalStop',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your application is under review,\nwe will notify you soon.`
+  String get yourApplicationInReviewNote {
+    return Intl.message(
+      'Your application is under review,\nwe will notify you soon.',
+      name: 'yourApplicationInReviewNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ref No.`
+  String get refNo {
+    return Intl.message(
+      'Ref No.',
+      name: 'refNo',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Biometric login is successfully deactivated`
   String get biometricLoginDeactivated {
     return Intl.message(
@@ -7650,11 +7711,11 @@ class S {
     );
   }
 
-  /// `Please add nickName`
-  String get emptyNickName {
+  /// `Your Yellow Sun debit card has been issued!`
+  String get yourYellowSunDebitCardIssued {
     return Intl.message(
-      'Please add nickName',
-      name: 'emptyNickName',
+      'Your Yellow Sun debit card has been issued!',
+      name: 'yourYellowSunDebitCardIssued',
       desc: '',
       args: [],
     );

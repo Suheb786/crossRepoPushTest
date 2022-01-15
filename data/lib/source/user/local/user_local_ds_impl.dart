@@ -148,9 +148,15 @@ class UserLocalDSImpl extends UserLocalDS {
           DateTime currentTime = DateTime.now();
 
           DateTime expiryDate = DateTime(
-              result.dateOfExpiry!.year ?? currentTime.year,
-              result.dateOfExpiry!.month ?? currentTime.month,
-              result.dateOfExpiry!.day ?? currentTime.day);
+              result.dateOfExpiry != null
+                  ? result.dateOfExpiry!.year!
+                  : currentTime.year,
+              result.dateOfExpiry != null
+                  ? result.dateOfExpiry!.month!
+                  : currentTime.month,
+              result.dateOfExpiry != null
+                  ? result.dateOfExpiry!.day!
+                  : currentTime.day);
 
           if (currentTime.toUtc().isAfter(expiryDate.toUtc())) {
             return Left(LocalError(

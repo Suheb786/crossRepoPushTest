@@ -20,6 +20,7 @@ import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:domain/model/user/status/customer_status.dart';
 import 'package:domain/model/user/user.dart';
 
 abstract class UserRepository {
@@ -180,4 +181,6 @@ abstract class UserRepository {
 
   ///get combo values
   Future<Either<NetworkError, GetComboValuesResponse>> getComboValues();
+
+  Future<Either<NetworkError, CustomerStatus>> checkCustomerStatus();
 }

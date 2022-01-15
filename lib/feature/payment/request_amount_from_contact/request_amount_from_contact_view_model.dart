@@ -111,16 +111,19 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
   void changeValue(String value) {
     if (value == ".") {
       if (!currentPinValue.contains(value)) {
-        print("in if");
         myList.add(value);
         currentPinValue = myList.join("");
       }
     } else {
-      print("in else");
-      myList.add(value);
+      if (myList.contains(".")) {
+        if (myList.indexOf(".") > myList.length - 4) {
+          myList.add(value);
+        }
+      } else {
+        myList.add(value);
+      }
       currentPinValue = myList.join("");
     }
-    print("got value: $currentPinValue");
     notifyListeners();
   }
 
@@ -161,7 +164,7 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
               ? 'Transfer to Friend or Family'
               : beneficiary!.purposeDetails!)
           : purposeDetail!.strCode!,
-      amount: double.parse(currentPinValue).toInt(),
+      amount: double.parse(currentPinValue),
       dbtrBic: beneficiary!.iban ?? "",
       dbtrAcct: beneficiary!.accountNo ?? "",
       dbtrName: beneficiary!.fullName ?? "",
