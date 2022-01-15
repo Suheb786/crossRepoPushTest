@@ -46,6 +46,7 @@ class UploadDocumentsPageView
                       stream: model.removeDebitLockStream,
                       initialData: Resource.none(),
                       onData: (data) {
+                        ///TODO:
                         if (data.status == Status.SUCCESS) {
                           Navigator.pushReplacementNamed(
                               context, RoutePaths.AccountReady);
