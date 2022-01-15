@@ -70,6 +70,7 @@ class DownloadTransactionDialogView extends StatelessWidget {
                           ),
                           years!.length > 0
                               ? AppScrollableListViewWidget(
+                                  key: ValueKey(years!.length),
                                   child: ClickableListWheelScrollView(
                                     scrollController: model.scrollController,
                                     itemHeight: 64,

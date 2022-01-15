@@ -89,6 +89,7 @@ class OccupationDialogView extends StatelessWidget {
                                 ),
                               ),
                               AppScrollableListViewWidget(
+                                key: ValueKey(model.businessTypeList.length),
                                 child: ClickableListWheelScrollView(
                                   scrollController: model.scrollController,
                                   itemHeight: 64,
