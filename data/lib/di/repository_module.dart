@@ -11,6 +11,7 @@ import 'package:data/repository/enter_address/home_address_dialog_repository_imp
 import 'package:data/repository/fatca_crs/fatca_crs_repository_impl.dart';
 import 'package:data/repository/id_card/id_card_repository_impl.dart';
 import 'package:data/repository/infobip_audio/infobip_audio_repository_impl.dart';
+import 'package:data/repository/infobip_audio/infobip_message_repository_impl.dart';
 import 'package:data/repository/kyc/kyc_repository_impl.dart';
 import 'package:data/repository/manage_contacts/manage_contacts_repository_impl.dart';
 import 'package:data/repository/payment/payment_repository_impl.dart';
@@ -39,6 +40,7 @@ import 'package:domain/repository/register/register_step_three_repository.dart';
 import 'package:domain/repository/upload_document/upload_document_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:domain/repository/help_center/infobip_message_repository.dart';
 
 /// inject [UserRepository] provider
 var userRepoProvider = Provider<UserRepository>(
@@ -124,3 +126,8 @@ var paymentRepositoryProvider = Provider<PaymentRepository>(
 /// inject [HelpCenterRepository] provider
 var helpCenterRepositoryProvider = Provider<HelpCenterRepository>(
     (ref) => InfobipAudioRepositoryImpl(ref.read(infobipDatasourceProvider)));
+
+/// inject [InfobipMessageRepository] provider
+var infobipMessagingRepositoryProvider = Provider<InfobipMessageRepository>(
+    (ref) => InfobipMessageRepositoryImpl(
+        ref.read(infobipMessagingDatasourceProvider)));
