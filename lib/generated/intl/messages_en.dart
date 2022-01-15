@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -577,6 +576,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "freezeAndActiveAtAnyTime": MessageLookupByLibrary.simpleMessage(
             "You can unfreeze and activate your card at anytime."),
+        "freezeDebitCardDescription": MessageLookupByLibrary.simpleMessage(
+            "Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. "),
         "freezeTheCard":
             MessageLookupByLibrary.simpleMessage("Freeze this card?"),
         "freezeThisCard":
@@ -624,6 +625,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("84118220000022123444"),
         "ibanOrMobile":
             MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
+        "ibanOrMobileRequest":
+            MessageLookupByLibrary.simpleMessage("Mobile No. / ALIAS"),
         "ibanOutsideBlink": MessageLookupByLibrary.simpleMessage(
             "We\'ve found that the IBAN you entered is not within Blink. You will be able to send money outside Blink, soon! For now, invite the recipient to join our community."),
         "idCardExpired": MessageLookupByLibrary.simpleMessage(
@@ -901,6 +904,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ofTheBank": MessageLookupByLibrary.simpleMessage("of the bank."),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "Once fit, your ID will be scanned automatically"),
+        "oneFinalStop":
+            MessageLookupByLibrary.simpleMessage("One final stop..."),
         "oneNumber": MessageLookupByLibrary.simpleMessage("1 number"),
         "oneSymbol": MessageLookupByLibrary.simpleMessage("1 symbol"),
         "oneUpperCaseLetter":
@@ -929,8 +934,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
         "passwordDialogHeader":
             MessageLookupByLibrary.simpleMessage("Create Password"),
-        "passwordMismatch":
-            MessageLookupByLibrary.simpleMessage("Password did not match"),
+        "passwordMismatch": MessageLookupByLibrary.simpleMessage(
+            "The passwords you entered do not match. Please try again."),
         "passwordNotMeetCriteria": MessageLookupByLibrary.simpleMessage(
             "Your password does not meet the minimum requirements. \nPlease try again."),
         "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
@@ -1052,6 +1057,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Receive money from others"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
             "Share your account info to be able to receive money."),
+        "refNo": MessageLookupByLibrary.simpleMessage("Ref No."),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
         "referenceNumber":
@@ -1369,6 +1375,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Didn\'t receive an SMS? Contact our Engagement Team."),
         "yourApplicationInReview": MessageLookupByLibrary.simpleMessage(
             "Your application is under review"),
+        "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
+            "Your application is under review,\nwe will notify you soon."),
         "yourCardHasBeenIssued": MessageLookupByLibrary.simpleMessage(
             "Your Yellow Sun debit card \n has been issued!"),
         "yourCardIsReady":
@@ -1382,6 +1390,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourFreeVirtualDebitCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage(
                 "Your free virtual debit card has been issued, and the physical one is on its way."),
-        "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature")
+        "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature"),
+        "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
+            "Your Yellow Sun debit card has been issued!")
       };
 }
