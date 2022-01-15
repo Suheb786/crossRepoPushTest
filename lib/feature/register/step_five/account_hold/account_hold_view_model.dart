@@ -1,3 +1,4 @@
+import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -10,9 +11,9 @@ class AccountHoldViewModel extends BasePageViewModel {
   final LogoutUseCase _logoutUseCase;
 
   PublishSubject<LogoutUseCaseParams> _logoutRequest = PublishSubject();
-  PublishSubject<Resource<bool>> _logoutResponse = PublishSubject();
+  PublishSubject<Resource<LogoutResponse>> _logoutResponse = PublishSubject();
 
-  Stream<Resource<bool>> get logoutStream => _logoutResponse.stream;
+  Stream<Resource<LogoutResponse>> get logoutStream => _logoutResponse.stream;
 
   AccountHoldViewModel(this._logoutUseCase) {
     _logoutRequest.listen((value) {

@@ -44,9 +44,9 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
-          _freezeCardSubject.safeAdd(false);
+          updateFreezeStatus(false);
         } else if (event.status == Status.SUCCESS) {
-          _freezeCardSubject.safeAdd(true);
+          updateFreezeStatus(true);
         }
       });
     });
@@ -98,6 +98,10 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
   void cancelCard(String reasonValue) {
     _cancelCardRequestSubject
         .safeAdd(CancelDebitCardUseCaseParams(status: reasonValue));
+  }
+
+  void updateFreezeStatus(bool value) {
+    _freezeCardSubject.safeAdd(value);
   }
 
   @override

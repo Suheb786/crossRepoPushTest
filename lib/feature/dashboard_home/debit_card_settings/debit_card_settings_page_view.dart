@@ -129,6 +129,7 @@ class DebitCardSettingsPageView
                                 model.freezeCard();
                               }, onDismissed: () {
                                 Navigator.pop(context);
+                                model.updateFreezeStatus(false);
                               });
                             }
                           },
