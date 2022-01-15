@@ -209,9 +209,8 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
             purpose: purposeController.text,
             purposeDetail: purposeDetailController.text,
             amount: double.parse(ProviderScope.containerOf(context)
-                    .read(requestMoneyViewModelProvider)
-                    .currentPinValue)
-                .toInt(),
+                .read(requestMoneyViewModelProvider)
+                .currentPinValue),
             limit: limit,
             dbtrBic: dbtrBic ?? "",
             dbtrAcct: dbtrAcct ?? "",

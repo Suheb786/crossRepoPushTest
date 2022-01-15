@@ -33,9 +33,8 @@ class RequestMoneyViewModel extends BasePageViewModel {
   }
 
   void requestMoney() {
-    _moneyRequest.safeAdd(RequestMoneyUseCaseParams(
-        amount: currentPinValue
-    ));
+    print("current pin value: $currentPinValue");
+    _moneyRequest.safeAdd(RequestMoneyUseCaseParams(amount: currentPinValue));
   }
 
   List<String> myList = [];

@@ -7,6 +7,7 @@ import 'package:domain/usecase/card_delivery/create_issuance_usecase.dart';
 import 'package:domain/usecase/card_delivery/create_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/credit_card_limits_update_usecase.dart';
 import 'package:domain/usecase/card_delivery/credit_card_pin_unblock_usecase.dart';
+import 'package:domain/usecase/card_delivery/debit_card_limit_usecase.dart';
 import 'package:domain/usecase/card_delivery/debit_card_limits_update_usecase.dart';
 import 'package:domain/usecase/card_delivery/enter_new_pin_for_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/freeze_credit_card_usecase.dart';
@@ -104,6 +105,11 @@ final unBlockCreditCardUseCaseProvider =
 final debitCardLimitsUpdateUseCaseProvider =
     Provider.autoDispose<DebitCardLimitsUpdateUseCase>((ref) =>
         DebitCardLimitsUpdateUseCase(ref.read(cardRepositoryProvider)));
+
+///[DebitCardLimitUseCase] provider
+final debitCardLimitUseCaseProvider =
+    Provider.autoDispose<DebitCardLimitUseCase>(
+        (ref) => DebitCardLimitUseCase(ref.read(cardRepositoryProvider)));
 
 ///[CreditCardLimitsUpdateUseCase] provider
 final creditCardLimitsUpdateUseCaseProvider =

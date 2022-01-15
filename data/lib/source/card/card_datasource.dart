@@ -2,6 +2,7 @@ import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
+import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -27,6 +28,8 @@ abstract class CardRemoteDs {
   Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears();
 
   Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears();
+
+  Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit();
 
   Future<HttpResponse<CardStatementResponseEntity>> getCreditCardStatement(
       {String? monthYear});

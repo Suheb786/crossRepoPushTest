@@ -61,6 +61,8 @@ import 'package:data/entity/remote/country/state_list/state_list_response_entity
 import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
+import 'package:data/entity/remote/debit_card/debit_card_limit_request_entity.dart';
+import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
@@ -437,6 +439,10 @@ abstract class ApiService {
   @POST("/CardTracking/GetDebitYears")
   Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears(
       @Body() BaseRequest baseRequest);
+
+  @POST("/DebitCard/DebitCardLimit")
+  Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit(
+      @Body() DebitCardLimitRequestEntity baseRequest);
 
   @POST("/RuleEngine/CancelCreditCard")
   Future<HttpResponse<ResponseEntity>> cancelCreditCard(
