@@ -11,6 +11,7 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
+import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog.dart';
@@ -119,36 +120,41 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                       .viewInsets
                                                       .bottom -
                                                   48),
-                                      child: SingleChildScrollView(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: 32, horizontal: 24),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            AppTextField(
-                                              labelText: S.of(context).country,
-                                              hintText:
-                                                  S.of(context).pleaseSelect,
-                                              readOnly: true,
-                                              controller: model
-                                                  .residentCountryController,
-                                              onPressed: () {
-                                                CountryDialog.show(context,
-                                                    title: S
-                                                        .of(context)
-                                                        .residentCountrySmall,
-                                                    onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (value) {
-                                                  Navigator.pop(context);
-                                                  model
-                                                      .residentCountryController
-                                                      .text = value.countryName!;
-                                                  model.cityController.clear();
-                                                  model.currentCountry = value;
-                                                  model.getCitiesByCountry(
-                                                      value.isoCode3 ?? '');
+                                      child: AppScrollableListViewWidget(
+                                        child: SingleChildScrollView(
+                                          padding: EdgeInsets.symmetric(
+                                              vertical: 32, horizontal: 24),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              const SizedBox(height: 25),
+                                              AppTextField(
+                                                labelText:
+                                                    S.of(context).country,
+                                                hintText:
+                                                    S.of(context).pleaseSelect,
+                                                readOnly: true,
+                                                controller: model
+                                                    .residentCountryController,
+                                                onPressed: () {
+                                                  CountryDialog.show(context,
+                                                      title: S
+                                                          .of(context)
+                                                          .residentCountrySmall,
+                                                      onDismissed: () {
+                                                    Navigator.pop(context);
+                                                  }, onSelected: (value) {
+                                                    Navigator.pop(context);
+                                                    model.residentCountryController
+                                                            .text =
+                                                        value.countryName!;
+                                                    model.cityController
+                                                        .clear();
+                                                    model.currentCountry =
+                                                        value;
+                                                    model.getCitiesByCountry(
+                                                        value.isoCode3 ?? '');
 
                                                   model
                                                       .updatePermanentAddressVisibility();

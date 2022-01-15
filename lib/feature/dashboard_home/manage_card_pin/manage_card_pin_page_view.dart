@@ -76,9 +76,10 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                             InformationDialog.show(context,
                                 image: AssetUtils.cardIcon,
                                 title: S.of(context).unBlockPin,
-                                description: S
-                                    .of(context)
-                                    .unBlockPinDescription, onSelected: () {
+                                descriptionWidget: Text(
+                                  S.of(context).unBlockPinDescription,
+                                  style: TextStyle(fontSize: 14, height: 1.7),
+                                ), onSelected: () {
                               Navigator.pop(context);
                               model.unBlockPin();
                             }, onDismissed: () {

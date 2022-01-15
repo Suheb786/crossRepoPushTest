@@ -59,6 +59,8 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                           .beneficiaryResponse,
                       initialData: Resource.none(),
                       dataBuilder: (context, beneficiaryResponse) {
+                        print(
+                            "got beneficary : ${beneficiaryResponse!.data!.beneficiaryList![0].beneType}");
                         List<Beneficiary> beneficiaries = [];
                         beneficiaryResponse!.data!.beneficiaryList!
                             .forEach((element) {
@@ -94,33 +96,33 @@ class AddRequestMoneyContactPageView extends BasePageViewWidget<AddRequestMoneyC
                                           top: 22, right: 28, left: 27),
                                       itemBuilder: (context, index) {
                                         if (index >=
-                                                  beneficiaries.length) {
-                                                return PaymentBeneficiaryEmptyWidget();
-                                              }
-                                              if (beneficiaryResponse
-                                                      .data!
-                                                      .beneficiaryList![index]
-                                                      .beneType ==
-                                                  "RTP") {
-                                                return PaymentBeneficiaryWidget(
-                                                  onTap: () {
-                                                    Navigator.pushNamed(
-                                                        context,
-                                                        RoutePaths
-                                                            .RequestAmountFromContact,
-                                                        arguments:
-                                                            beneficiaries[
-                                                                index]);
-                                                  },
-                                                  transferEnum:
-                                                      TransferEnum.request,
-                                                  beneficiary:
-                                                      beneficiaries[index],
-                                                );
-                                              } else {
-                                                return PaymentBeneficiaryEmptyWidget();
-                                              }
+                                            beneficiaries.length) {
+                                          return PaymentBeneficiaryEmptyWidget();
+                                        }
+                                        if (beneficiaryResponse
+                                            .data!
+                                            .beneficiaryList![index]
+                                            .beneType ==
+                                            "RTP") {
+                                          return PaymentBeneficiaryWidget(
+                                            onTap: () {
+                                              Navigator.pushNamed(
+                                                  context,
+                                                  RoutePaths
+                                                      .RequestAmountFromContact,
+                                                  arguments:
+                                                  beneficiaries[
+                                                  index]);
                                             },
+                                            transferEnum:
+                                            TransferEnum.request,
+                                            beneficiary:
+                                            beneficiaries[index],
+                                          );
+                                        } else {
+                                          return PaymentBeneficiaryEmptyWidget();
+                                        }
+                                      },
                                     ),
                                     Padding(
                                       padding:

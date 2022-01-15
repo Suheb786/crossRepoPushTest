@@ -21,6 +21,8 @@ import 'package:data/entity/remote/card/process_loan_request/process_loan_reques
 import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
+import 'package:data/entity/remote/debit_card/debit_card_limit_request_entity.dart';
+import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/helper/encypt_decrypt_helper.dart';
 import 'package:data/network/api_service.dart';
@@ -112,6 +114,13 @@ class CardRemoteDsImpl extends CardRemoteDs {
   Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.getDebitYears(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getDebitCardLimit(DebitCardLimitRequestEntity(
+        getToken: false, baseData: baseData.toJson()));
   }
 
   @override

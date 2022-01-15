@@ -70,6 +70,8 @@ class TaxPayerDialogView extends StatelessWidget {
                             ),
                           ),
                           AppScrollableListViewWidget(
+                            key: ValueKey(
+                                model.getList(taxPayerTypeEnum!).length),
                             child: ClickableListWheelScrollView(
                               scrollController: model.scrollController,
                               itemHeight: 64,

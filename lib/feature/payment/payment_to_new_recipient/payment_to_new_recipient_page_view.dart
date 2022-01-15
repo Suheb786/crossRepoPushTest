@@ -137,7 +137,7 @@ class PaymentToNewRecipientPageView
                                                         .read(
                                                             sendMoneyViewModelProvider)
                                                         .currentPinValue)
-                                                    .toStringAsFixed(2),
+                                                    .toStringAsFixed(3),
                                                 style: TextStyle(
                                                     color: Theme.of(context)
                                                         .accentColor,

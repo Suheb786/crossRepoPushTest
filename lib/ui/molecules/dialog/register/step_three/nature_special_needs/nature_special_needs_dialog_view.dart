@@ -83,6 +83,7 @@ class NatureSpecialNeedsDialogView extends StatelessWidget {
                                   ),
                                 ),
                                 AppScrollableListViewWidget(
+                                  key: ValueKey(data?.data!.length),
                                   child: ClickableListWheelScrollView(
                                     scrollController: model.scrollController,
                                     itemHeight: 64,

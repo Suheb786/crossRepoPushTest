@@ -98,6 +98,7 @@ class FatcaOptionDialogView extends StatelessWidget {
                                                   .height /
                                               2.5,
                                           child: AppScrollableListViewWidget(
+                                            key: ValueKey(data.data!.length),
                                             child: ClickableListWheelScrollView(
                                               scrollController:
                                                   model.scrollController,

@@ -6,12 +6,11 @@ import 'package:neo_bank/ui/molecules/debit_card_settings/manage_limits/manage_l
 
 final manageCardLimitsViewModelProvider = ChangeNotifierProvider.autoDispose
     .family<ManageDebitCardLimitsPageViewModel, ManageCardLimitsArguments>(
-  (ref, args) => ManageDebitCardLimitsPageViewModel(
-    args,
-    ref.read(debitCardLimitsUpdateUseCaseProvider),
-    ref.read(creditCardLimitsUpdateUseCaseProvider),
-  ),
-);
+        (ref, args) => ManageDebitCardLimitsPageViewModel(
+            args,
+            ref.read(debitCardLimitsUpdateUseCaseProvider),
+            ref.read(creditCardLimitsUpdateUseCaseProvider),
+            ref.read(debitCardLimitUseCaseProvider)));
 
 ///atm withdrawal
 final atmWithdrawalViewModelProvider =

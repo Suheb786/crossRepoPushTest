@@ -69,6 +69,7 @@ class PurposeDetailDialogView extends StatelessWidget {
                             ),
                           ),
                           AppScrollableListViewWidget(
+                            key: ValueKey(model.purposeDetailList!.length),
                             child: ClickableListWheelScrollView(
                               scrollController: model.scrollController,
                               itemHeight: 64,

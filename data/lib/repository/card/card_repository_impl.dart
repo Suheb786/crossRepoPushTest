@@ -9,6 +9,7 @@ import 'package:domain/model/card/get_debit_years_response.dart';
 import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
 import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
+import 'package:domain/model/debit_card/debit_card_limit_response.dart';
 import 'package:domain/repository/card/card_repository.dart';
 
 class CardRepositoryImpl extends CardRepository {
@@ -296,6 +297,18 @@ class CardRepositoryImpl extends CardRepository {
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, DebitCardLimitResponse>>
+      getDebitCardLimit() async {
+    final result = await safeApiCall(
+      _remoteDs.getDebitCardLimit(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 

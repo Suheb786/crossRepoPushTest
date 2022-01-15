@@ -164,7 +164,7 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
               ? 'Transfer to Friend or Family'
               : beneficiary!.purposeDetails!)
           : purposeDetail!.strCode!,
-      amount: double.parse(currentPinValue).toInt(),
+      amount: double.parse(currentPinValue),
       dbtrBic: beneficiary!.iban ?? "",
       dbtrAcct: beneficiary!.accountNo ?? "",
       dbtrName: beneficiary!.fullName ?? "",
