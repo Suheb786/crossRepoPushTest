@@ -82,6 +82,11 @@ class ReviewApplicationPageView
                                   initialData: Resource.none(),
                                   onData: (userStatus) {
                                     if (userStatus.status == Status.SUCCESS) {
+                                      ProviderScope.containerOf(context)
+                                              .read(
+                                                  registerStepFiveViewModelProvider)
+                                              .secondNextScreen =
+                                          userStatus.data!.secondNextPage!;
                                       switch (userStatus.data!.nextPage) {
                                         case CustomerStatusEnum.HOLD:
                                           Navigator.pushReplacementNamed(
