@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -4565,6 +4566,16 @@ class S {
     return Intl.message(
       'IBAN / Mobile No. / ALIAS',
       name: 'ibanOrMobile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mobile No. / ALIAS`
+  String get ibanOrMobileRequest {
+    return Intl.message(
+      'Mobile No. / ALIAS',
+      name: 'ibanOrMobileRequest',
       desc: '',
       args: [],
     );

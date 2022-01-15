@@ -467,6 +467,7 @@
   "tapToEdit": "Tap to edit amount",
   "sending": "Sending",
   "ibanOrMobile": "IBAN / Mobile No. / ALIAS",
+  "ibanOrMobileRequest": "Mobile No. / ALIAS",
   "selectPurpose": "Select purpose",
   "addRecipientToContact": "Add this receipient to your blink contacts",
   "enterCode": "Enter the 6-digit code sent to  \n+962 79 322 8080",
