@@ -38,8 +38,13 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   ///remove debit credit lock
   final RemoveDebitLockUseCase _removeDebitLockUseCase;
 
+  ///check customer status
   final CheckCustomerStatusUseCase _checkCustomerStatusUseCase;
+
+  ///get account
   final GetAccountUseCase _getAccountUseCase;
+
+  ///create account
   final CreateAccountUseCase _createAccountUseCase;
 
   final TextEditingController addressController = TextEditingController();
