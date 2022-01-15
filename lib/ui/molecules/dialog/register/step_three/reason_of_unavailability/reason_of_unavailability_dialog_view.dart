@@ -70,6 +70,8 @@ class ReasonOfUnavailabilityDialogView extends StatelessWidget {
                             ),
                           ),
                           AppScrollableListViewWidget(
+                            key: ValueKey(
+                                model.reasonOfUnavailabilityList.length),
                             child: ClickableListWheelScrollView(
                               scrollController: model.scrollController,
                               itemHeight: 110,

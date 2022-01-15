@@ -85,7 +85,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                   ),
                                 ),
                                 Padding(
-                                    padding: EdgeInsets.only(top: 12),
+                                    padding: EdgeInsets.only(
+                                        top: 12, left: 10, right: 10),
                                     child: Align(
                                       alignment: Alignment.center,
                                       child: Text(

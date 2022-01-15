@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -121,10 +120,10 @@ class S {
     );
   }
 
-  /// `Please enter valid mobile number`
+  /// `You entered an invalid mobile number. Please try again.`
   String get enterValidMobileNumber {
     return Intl.message(
-      'Please enter valid mobile number',
+      'You entered an invalid mobile number. Please try again.',
       name: 'enterValidMobileNumber',
       desc: '',
       args: [],
@@ -1521,10 +1520,10 @@ class S {
     );
   }
 
-  /// `The passwords you entered do not match. Please try again.`
+  /// `Password did not match`
   String get passwordMismatch {
     return Intl.message(
-      'The passwords you entered do not match. Please try again.',
+      'Password did not match',
       name: 'passwordMismatch',
       desc: '',
       args: [],
@@ -3761,10 +3760,10 @@ class S {
     );
   }
 
-  /// `NATIONAL ID`
+  /// `NATIONAL ID NUMBER`
   String get nationalId {
     return Intl.message(
-      'NATIONAL ID',
+      'NATIONAL ID NUMBER',
       name: 'nationalId',
       desc: '',
       args: [],
@@ -3951,10 +3950,10 @@ class S {
     );
   }
 
-  /// `Forgot password`
+  /// `Forgot password?`
   String get forgotPassword {
     return Intl.message(
-      'Forgot password',
+      'Forgot password?',
       name: 'forgotPassword',
       desc: '',
       args: [],
@@ -4181,20 +4180,20 @@ class S {
     );
   }
 
-  /// `NUMBER ON CARD`
+  /// `NUMBERS ON CARD`
   String get numberOnCard {
     return Intl.message(
-      'NUMBER ON CARD',
+      'NUMBERS ON CARD',
       name: 'numberOnCard',
       desc: '',
       args: [],
     );
   }
 
-  /// `Yay! Your card has been delivered. Check the number on the back of plastic card and swipe to confirm if its matched with above.`
+  /// `Check that the numbers on the back of your card match the numbers above.`
   String get cardHasBeenDelivered {
     return Intl.message(
-      'Yay! Your card has been delivered. Check the number on the back of plastic card and swipe to confirm if its matched with above.',
+      'Check that the numbers on the back of your card match the numbers above.',
       name: 'cardHasBeenDelivered',
       desc: '',
       args: [],
@@ -4251,10 +4250,10 @@ class S {
     );
   }
 
-  /// `Here’s why you should get\nyour blink credit card.`
+  /// `Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card. Click below and spend away!`
   String get blinkCreditCard {
     return Intl.message(
-      'Here’s why you should get\nyour blink credit card.',
+      'Never postpone a purchase again! Instantly issue your free virtual Rebellious Red credit card. Click below and spend away!',
       name: 'blinkCreditCard',
       desc: '',
       args: [],
@@ -4351,10 +4350,10 @@ class S {
     );
   }
 
-  /// `You don’t have any contacts yet.\nAdd your blink contacts while\nsending money`
+  /// `You don't have any contacts yet. Your Blink contacts can be saved while sending money.`
   String get addSendContact {
     return Intl.message(
-      'You don’t have any contacts yet.\nAdd your blink contacts while\nsending money',
+      'You don\'t have any contacts yet. Your Blink contacts can be saved while sending money.',
       name: 'addSendContact',
       desc: '',
       args: [],
@@ -4501,10 +4500,10 @@ class S {
     );
   }
 
-  /// `You will be notified once your contact\naccepts your request and money is\nadded into your account.`
+  /// `You will be notified once your request \n is accepted and money is \n added into your account.`
   String get youWillBeNotified {
     return Intl.message(
-      'You will be notified once your contact\naccepts your request and money is\nadded into your account.',
+      'You will be notified once your request \n is accepted and money is \n added into your account.',
       name: 'youWillBeNotified',
       desc: '',
       args: [],
@@ -4571,16 +4570,6 @@ class S {
     );
   }
 
-  /// `Mobile No. / ALIAS`
-  String get ibanOrMobileRequest {
-    return Intl.message(
-      'Mobile No. / ALIAS',
-      name: 'ibanOrMobileRequest',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Select purpose`
   String get selectPurpose {
     return Intl.message(
@@ -4591,10 +4580,10 @@ class S {
     );
   }
 
-  /// `Add this receipient to your blink contacts`
+  /// `Add this recipient to your Blink contacts`
   String get addRecipientToContact {
     return Intl.message(
-      'Add this receipient to your blink contacts',
+      'Add this recipient to your Blink contacts',
       name: 'addRecipientToContact',
       desc: '',
       args: [],
@@ -4621,30 +4610,30 @@ class S {
     );
   }
 
-  /// `Ways you can add\nmoney into your account`
+  /// `Ways to add\nmoney into your account`
   String get waysYocCanAddMoneyToAccount {
     return Intl.message(
-      'Ways you can add\nmoney into your account',
+      'Ways to add\nmoney into your account',
       name: 'waysYocCanAddMoneyToAccount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Request money from other banks`
+  /// `Request money from another bank account`
   String get requestMoneyFromOtherBank {
     return Intl.message(
-      'Request money from other banks',
+      'Request money from another bank account',
       name: 'requestMoneyFromOtherBank',
       desc: '',
       args: [],
     );
   }
 
-  /// `If you have money from other banks, you can easily send money request to move it into your blink account.`
+  /// `If you currently have money in another bank account, you can easily send a money request to transfer money into your Blink account`
   String get requestMoneyFromOtherBankDesc {
     return Intl.message(
-      'If you have money from other banks, you can easily send money request to move it into your blink account.',
+      'If you currently have money in another bank account, you can easily send a money request to transfer money into your Blink account',
       name: 'requestMoneyFromOtherBankDesc',
       desc: '',
       args: [],
@@ -4661,10 +4650,10 @@ class S {
     );
   }
 
-  /// `Share your account details to your friends and family, let them know you are on blink!`
+  /// `Share your account info to be able to receive money.`
   String get receiveMoneyFromOthersDesc {
     return Intl.message(
-      'Share your account details to your friends and family, let them know you are on blink!',
+      'Share your account info to be able to receive money.',
       name: 'receiveMoneyFromOthersDesc',
       desc: '',
       args: [],
@@ -4681,10 +4670,10 @@ class S {
     );
   }
 
-  /// `Don’t worry, you can deposit cash into the account with or without your card. Just locate nearest Capital Bank ATM.`
+  /// `Deposit cash directly into your Blink account through any Capital Bank ATM, with or without your card.`
   String get depositViaATMDesc {
     return Intl.message(
-      'Don’t worry, you can deposit cash into the account with or without your card. Just locate nearest Capital Bank ATM.',
+      'Deposit cash directly into your Blink account through any Capital Bank ATM, with or without your card.',
       name: 'depositViaATMDesc',
       desc: '',
       args: [],
@@ -4801,10 +4790,10 @@ class S {
     );
   }
 
-  /// `You have entered an invalid username or password, please try again`
+  /// `Oh no! The email or password entered is incorrect. Please try again.`
   String get invalidUserNamePassword {
     return Intl.message(
-      'You have entered an invalid username or password, please try again',
+      'Oh no! The email or password entered is incorrect. Please try again.',
       name: 'invalidUserNamePassword',
       desc: '',
       args: [],
@@ -4841,10 +4830,10 @@ class S {
     );
   }
 
-  /// `You have entered an invalid OTP code, please enter a valid one`
+  /// `The code you entered is incorrect, please try again.`
   String get invalidOtp {
     return Intl.message(
-      'You have entered an invalid OTP code, please enter a valid one',
+      'The code you entered is incorrect, please try again.',
       name: 'invalidOtp',
       desc: '',
       args: [],
@@ -5511,10 +5500,10 @@ class S {
     );
   }
 
-  /// `Your card has\nbeen issued`
+  /// `Your Yellow Sun debit card \n has been issued!`
   String get yourCardHasBeenIssued {
     return Intl.message(
-      'Your card has\nbeen issued',
+      'Your Yellow Sun debit card \n has been issued!',
       name: 'yourCardHasBeenIssued',
       desc: '',
       args: [],
@@ -5751,30 +5740,30 @@ class S {
     );
   }
 
-  /// `Mobile number is successfully updated`
+  /// `Your mobile number has been updated successfully`
   String get mobileNumberUpdated {
     return Intl.message(
-      'Mobile number is successfully updated',
+      'Your mobile number has been updated successfully',
       name: 'mobileNumberUpdated',
       desc: '',
       args: [],
     );
   }
 
-  /// `Email address is successfully updated`
+  /// `Your email address has been updated successfully`
   String get emailAddressUpdated {
     return Intl.message(
-      'Email address is successfully updated',
+      'Your email address has been updated successfully',
       name: 'emailAddressUpdated',
       desc: '',
       args: [],
     );
   }
 
-  /// `Profile photo is successfully updated`
+  /// `Your profile picture has been updated successfully`
   String get profilePhotoUpdated {
     return Intl.message(
-      'Profile photo is successfully updated',
+      'Your profile picture has been updated successfully',
       name: 'profilePhotoUpdated',
       desc: '',
       args: [],
@@ -5791,10 +5780,10 @@ class S {
     );
   }
 
-  /// `Next, let’s create your \nlogin password`
+  /// `Please enter your new password`
   String get createYourLoginPassword {
     return Intl.message(
-      'Next, let’s create your \nlogin password',
+      'Please enter your new password',
       name: 'createYourLoginPassword',
       desc: '',
       args: [],
@@ -5821,30 +5810,30 @@ class S {
     );
   }
 
-  /// `Password is successfully updated`
+  /// `Your password has been updated successfully`
   String get passwordUpdatedSuccessfully {
     return Intl.message(
-      'Password is successfully updated',
+      'Your password has been updated successfully',
       name: 'passwordUpdatedSuccessfully',
       desc: '',
       args: [],
     );
   }
 
-  /// `Biometric login is successfully activated`
+  /// `Your biometric login has been activated successfully`
   String get biometricLoginActivated {
     return Intl.message(
-      'Biometric login is successfully activated',
+      'Your biometric login has been activated successfully',
       name: 'biometricLoginActivated',
       desc: '',
       args: [],
     );
   }
 
-  /// `If you have a salary, upload either your job certificate or salary slip`
+  /// `If you receive a salary, upload your job certificate or your salary slip`
   String get proofOfIncomeDescSetting {
     return Intl.message(
-      'If you have a salary, upload either your job certificate or salary slip',
+      'If you receive a salary, upload your job certificate or your salary slip',
       name: 'proofOfIncomeDescSetting',
       desc: '',
       args: [],
@@ -5891,10 +5880,10 @@ class S {
     );
   }
 
-  /// `Adding contacts is coming soon. You can simply send or request money and add a contact along the way.`
+  /// `You will be able to add contacts to your list soon.`
   String get addingContactsDesc {
     return Intl.message(
-      'Adding contacts is coming soon. You can simply send or request money and add a contact along the way.',
+      'You will be able to add contacts to your list soon.',
       name: 'addingContactsDesc',
       desc: '',
       args: [],
@@ -5951,10 +5940,10 @@ class S {
     );
   }
 
-  /// `Remove from contact`
+  /// `Remove contact`
   String get removeFromContact {
     return Intl.message(
-      'Remove from contact',
+      'Remove contact',
       name: 'removeFromContact',
       desc: '',
       args: [],
@@ -5971,10 +5960,10 @@ class S {
     );
   }
 
-  /// `Your contact details has been saved.`
+  /// `Your contact details have been saved.`
   String get yourContactDetailsUpdated {
     return Intl.message(
-      'Your contact details has been saved.',
+      'Your contact details have been saved.',
       name: 'yourContactDetailsUpdated',
       desc: '',
       args: [],
@@ -6131,6 +6120,46 @@ class S {
     );
   }
 
+  /// `About freezing your card:`
+  String get acknowledgeBeforeFreezingCard {
+    return Intl.message(
+      'About freezing your card:',
+      name: 'acknowledgeBeforeFreezingCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `While frozen, your card can't be used for any transactions.`
+  String get cardcantBeUsedForTransactions {
+    return Intl.message(
+      'While frozen, your card can\'t be used for any transactions.',
+      name: 'cardcantBeUsedForTransactions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `While frozen, direct debits linked to this card won't be permitted. e.g. a direct debit from your Blink account to your gym or mobile carrier.`
+  String get directDebitsWontBeMade {
+    return Intl.message(
+      'While frozen, direct debits linked to this card won\'t be permitted. e.g. a direct debit from your Blink account to your gym or mobile carrier.',
+      name: 'directDebitsWontBeMade',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can unfreeze and activate your card at anytime.`
+  String get freezeAndActiveAtAnyTime {
+    return Intl.message(
+      'You can unfreeze and activate your card at anytime.',
+      name: 'freezeAndActiveAtAnyTime',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Payment activity`
   String get paymentActivity {
     return Intl.message(
@@ -6161,40 +6190,40 @@ class S {
     );
   }
 
-  /// `Send money was not\nsuccessful.`
+  /// `Your attempt to send money was unsuccessful.`
   String get sendMoneyNotSuccessful {
     return Intl.message(
-      'Send money was not\nsuccessful.',
+      'Your attempt to send money was unsuccessful.',
       name: 'sendMoneyNotSuccessful',
       desc: '',
       args: [],
     );
   }
 
-  /// `There was some issues to send your\npayment, please try again later.`
+  /// `There was an issue with your payment, please try again. If you need help, contact Blink Engagement Team.`
   String get tryAgainLater {
     return Intl.message(
-      'There was some issues to send your\npayment, please try again later.',
+      'There was an issue with your payment, please try again. If you need help, contact Blink Engagement Team.',
       name: 'tryAgainLater',
       desc: '',
       args: [],
     );
   }
 
-  /// `IBAN is\nnot in blink`
+  /// `IBAN is\nnot in Blink`
   String get ibanNotBlink {
     return Intl.message(
-      'IBAN is\nnot in blink',
+      'IBAN is\nnot in Blink',
       name: 'ibanNotBlink',
       desc: '',
       args: [],
     );
   }
 
-  /// `We’ve found that the recipient’s IBAN  you entered is outside blink. You will be able to send money outside blink, soon! You can send money from blink, today.`
+  /// `We've found that the IBAN you entered is not within Blink. You will be able to send money outside Blink, soon! For now, invite the recipient to join our community.`
   String get ibanOutsideBlink {
     return Intl.message(
-      'We’ve found that the recipient’s IBAN  you entered is outside blink. You will be able to send money outside blink, soon! You can send money from blink, today.',
+      'We\'ve found that the IBAN you entered is not within Blink. You will be able to send money outside Blink, soon! For now, invite the recipient to join our community.',
       name: 'ibanOutsideBlink',
       desc: '',
       args: [],
@@ -6401,16 +6430,6 @@ class S {
     );
   }
 
-  /// `Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. `
-  String get freezeDebitCardDescription {
-    return Intl.message(
-      'Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. ',
-      name: 'freezeDebitCardDescription',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Cancel this card?`
   String get cancelTheCard {
     return Intl.message(
@@ -6481,10 +6500,10 @@ class S {
     );
   }
 
-  /// `The actions with 🔴 will come to you soon`
+  /// `The actions with 🔴 will be made available to you soon`
   String get actionComeToYouSoon {
     return Intl.message(
-      'The actions with 🔴 will come to you soon',
+      'The actions with 🔴 will be made available to you soon',
       name: 'actionComeToYouSoon',
       desc: '',
       args: [],
@@ -6561,10 +6580,10 @@ class S {
     );
   }
 
-  /// `Convert balance to instalments`
+  /// `Convert purchases to instalments`
   String get convertBalanceToInstalments {
     return Intl.message(
-      'Convert balance to instalments',
+      'Convert purchases to instalments',
       name: 'convertBalanceToInstalments',
       desc: '',
       args: [],
@@ -6771,10 +6790,10 @@ class S {
     );
   }
 
-  /// `Card PIN successfully\nunblocked`
+  /// `You have successfully unblocked your card's PIN`
   String get cardPinSucccesFullyUnblocked {
     return Intl.message(
-      'Card PIN successfully\nunblocked',
+      'You have successfully unblocked your card\'s PIN',
       name: 'cardPinSucccesFullyUnblocked',
       desc: '',
       args: [],
@@ -6921,10 +6940,10 @@ class S {
     );
   }
 
-  /// `Card PIN changed successfully`
+  /// `You have successfully changed your card's PIN`
   String get cardPinChangedSuccessfully {
     return Intl.message(
-      'Card PIN changed successfully',
+      'You have successfully changed your card\'s PIN',
       name: 'cardPinChangedSuccessfully',
       desc: '',
       args: [],
@@ -6971,20 +6990,20 @@ class S {
     );
   }
 
-  /// `Please provide supplementary cardholder’s ID`
+  /// `Please scan supplementary cardholder's ID`
   String get provideSupplementaryCardId {
     return Intl.message(
-      'Please provide supplementary cardholder’s ID',
+      'Please scan supplementary cardholder\'s ID',
       name: 'provideSupplementaryCardId',
       desc: '',
       args: [],
     );
   }
 
-  /// `Set up and personalize your new credit card`
+  /// `Complete the details to issue the supplementary card`
   String get setupAndPersonalizeYourNewCreditCard {
     return Intl.message(
-      'Set up and personalize your new credit card',
+      'Complete the details to issue the supplementary card',
       name: 'setupAndPersonalizeYourNewCreditCard',
       desc: '',
       args: [],
@@ -7001,10 +7020,10 @@ class S {
     );
   }
 
-  /// `Minimum Settlement`
+  /// `MINIMUM PAY BACK`
   String get minimumSettlements {
     return Intl.message(
-      'Minimum Settlement',
+      'MINIMUM PAY BACK',
       name: 'minimumSettlements',
       desc: '',
       args: [],
@@ -7071,20 +7090,20 @@ class S {
     );
   }
 
-  /// `You will receive your card PIN via SMS. You can contact our Engagement Team in case not received.`
+  /// `Didn't receive an SMS? Contact our Engagement Team.`
   String get youWillReceiveCardPinViaSms {
     return Intl.message(
-      'You will receive your card PIN via SMS. You can contact our Engagement Team in case not received.',
+      'Didn\'t receive an SMS? Contact our Engagement Team.',
       name: 'youWillReceiveCardPinViaSms',
       desc: '',
       args: [],
     );
   }
 
-  /// `APPLY CREDIT CARD`
+  /// `APPLY FOR CREDIT CARD`
   String get applyCreditCard {
     return Intl.message(
-      'APPLY CREDIT CARD',
+      'APPLY FOR CREDIT CARD',
       name: 'applyCreditCard',
       desc: '',
       args: [],
@@ -7111,10 +7130,10 @@ class S {
     );
   }
 
-  /// `Your application is\nin review`
+  /// `Your application is under review`
   String get yourApplicationInReview {
     return Intl.message(
-      'Your application is\nin review',
+      'Your application is under review',
       name: 'yourApplicationInReview',
       desc: '',
       args: [],
@@ -7171,10 +7190,10 @@ class S {
     );
   }
 
-  /// `We will notify you once it’s ready`
+  /// `We will notify you once it's ready!`
   String get weWillNotifyOnceReady {
     return Intl.message(
-      'We will notify you once it’s ready',
+      'We will notify you once it\'s ready!',
       name: 'weWillNotifyOnceReady',
       desc: '',
       args: [],
@@ -7211,10 +7230,10 @@ class S {
     );
   }
 
-  /// `Your password does not meet the minimum requirements. Please try again.`
+  /// `Your password does not meet the minimum requirements. \nPlease try again.`
   String get passwordNotMeetCriteria {
     return Intl.message(
-      'Your password does not meet the minimum requirements. Please try again.',
+      'Your password does not meet the minimum requirements. \nPlease try again.',
       name: 'passwordNotMeetCriteria',
       desc: '',
       args: [],
@@ -7371,20 +7390,20 @@ class S {
     );
   }
 
-  /// `blink Credit Card`
+  /// `Rebellious Red Credit Card`
   String get blinkCreditCardTitle {
     return Intl.message(
-      'blink Credit Card',
+      'Rebellious Red Credit Card',
       name: 'blinkCreditCardTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Get your card delivered right to your\ndoorstep. Spend and enjoy discounts\nat participating outlets`
+  /// `Blink has made borrowing more accessible to everyone. With only a few steps, get your instant virtual credit card and we will deliver the physical one to your door step for free.`
   String get getCardDelivered {
     return Intl.message(
-      'Get your card delivered right to your\ndoorstep. Spend and enjoy discounts\nat participating outlets',
+      'Blink has made borrowing more accessible to everyone. With only a few steps, get your instant virtual credit card and we will deliver the physical one to your door step for free.',
       name: 'getCardDelivered',
       desc: '',
       args: [],
@@ -7441,40 +7460,40 @@ class S {
     );
   }
 
-  /// `Application is not\nsuccessful.\nTry again later.`
+  /// `Unfortunately, your application was rejected.`
   String get applicationNotSuccessful {
     return Intl.message(
-      'Application is not\nsuccessful.\nTry again later.',
+      'Unfortunately, your application was rejected.',
       name: 'applicationNotSuccessful',
       desc: '',
       args: [],
     );
   }
 
-  /// `We will keep you updated\nwith our other exciting promotions!`
+  /// `We have an automated scoring model that generates a credit score based on your personal and credit information. We will review your score regularly and inform you when you can try again. Please stay tuned for exciting services coming your way from Blink!`
   String get excitingPromotion {
     return Intl.message(
-      'We will keep you updated\nwith our other exciting promotions!',
+      'We have an automated scoring model that generates a credit score based on your personal and credit information. We will review your score regularly and inform you when you can try again. Please stay tuned for exciting services coming your way from Blink!',
       name: 'excitingPromotion',
       desc: '',
       args: [],
     );
   }
 
-  /// `APPLY CREDIT CARD`
+  /// `SUPPLEMENTARY CREDIT CARD`
   String get applyCreditCardTitle {
     return Intl.message(
-      'APPLY CREDIT CARD',
+      'SUPPLEMENTARY CREDIT CARD',
       name: 'applyCreditCardTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Set up and personalize your\nnew credit card`
+  /// `You are eligible for the below maximum limit, complete the details to issue your card`
   String get personalizeCreditCard {
     return Intl.message(
-      'Set up and personalize your\nnew credit card',
+      'You are eligible for the below maximum limit, complete the details to issue your card',
       name: 'personalizeCreditCard',
       desc: '',
       args: [],
@@ -7621,46 +7640,6 @@ class S {
     );
   }
 
-  /// `Please add nickName`
-  String get emptyNickName {
-    return Intl.message(
-      'Please add nickName',
-      name: 'emptyNickName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `One final stop...`
-  String get oneFinalStop {
-    return Intl.message(
-      'One final stop...',
-      name: 'oneFinalStop',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Your application is under review,\nwe will notify you soon.`
-  String get yourApplicationInReviewNote {
-    return Intl.message(
-      'Your application is under review,\nwe will notify you soon.',
-      name: 'yourApplicationInReviewNote',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Ref No.`
-  String get refNo {
-    return Intl.message(
-      'Ref No.',
-      name: 'refNo',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Biometric login is successfully deactivated`
   String get biometricLoginDeactivated {
     return Intl.message(
@@ -7671,11 +7650,11 @@ class S {
     );
   }
 
-  /// `Your Yellow Sun debit card has been issued!`
-  String get yourYellowSunDebitCardIssued {
+  /// `Please add nickName`
+  String get emptyNickName {
     return Intl.message(
-      'Your Yellow Sun debit card has been issued!',
-      name: 'yourYellowSunDebitCardIssued',
+      'Please add nickName',
+      name: 'emptyNickName',
       desc: '',
       args: [],
     );

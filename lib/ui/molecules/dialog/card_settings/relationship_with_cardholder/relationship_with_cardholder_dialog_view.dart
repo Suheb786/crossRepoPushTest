@@ -79,6 +79,7 @@ class RelationshipWithCardHolderDialogView extends StatelessWidget {
                               ),
                             ),
                             AppScrollableListViewWidget(
+                              key: ValueKey(relationSHipWithCardHolder.length),
                               child: ClickableListWheelScrollView(
                                 scrollController: model.scrollController,
                                 itemHeight: 64,

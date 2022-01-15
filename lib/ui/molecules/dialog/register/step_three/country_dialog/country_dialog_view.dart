@@ -136,6 +136,8 @@ class CountryDialogView extends StatelessWidget {
                                                   ),
                                                 ),
                                                 AppScrollableListViewWidget(
+                                                  key: ValueKey(
+                                                      data.data!.length),
                                                   child:
                                                       ClickableListWheelScrollView(
                                                     scrollController:
