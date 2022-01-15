@@ -128,6 +128,8 @@ class StateCityDialogView extends StatelessWidget {
                                               ),
                                             ),
                                             AppScrollableListViewWidget(
+                                              key: ValueKey(stateCityResponse
+                                                  .data!.length),
                                               child:
                                                   ClickableListWheelScrollView(
                                                 scrollController:

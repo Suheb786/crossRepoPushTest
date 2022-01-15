@@ -73,6 +73,7 @@ class EmploymentStatusDialogView extends StatelessWidget {
                               ),
                             ),
                             AppScrollableListViewWidget(
+                              key: ValueKey(model.employmentStatusList.length),
                               child: ClickableListWheelScrollView(
                                 scrollController: model.scrollController,
                                 itemHeight: 64,
