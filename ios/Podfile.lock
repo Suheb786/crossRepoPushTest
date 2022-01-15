@@ -84,6 +84,11 @@ PODS:
     - TOCropViewController (~> 2.6.0)
   - image_picker (0.0.1):
     - Flutter
+  - infobip_mobilemessaging (0.0.1):
+    - Flutter
+    - MobileMessaging/Core (= 9.2.10)
+    - MobileMessaging/Geofencing (= 9.2.10)
+    - MobileMessaging/InAppChat (= 9.2.10)
   - infobip_plugin (0.0.1):
     - AFNetworking
     - Flutter
@@ -92,7 +97,14 @@ PODS:
     - IBGoogleWebRTC (~> 1.0.32463)
   - local_auth (0.0.1):
     - Flutter
+  - MobileMessaging/Core (9.2.10)
+  - MobileMessaging/Geofencing (9.2.10):
+    - MobileMessaging/Core
+  - MobileMessaging/InAppChat (9.2.10):
+    - MobileMessaging/Core
   - package_info (0.0.1):
+    - Flutter
+  - package_info_plus (0.4.5):
     - Flutter
   - path_provider (0.0.1):
     - Flutter
@@ -129,9 +141,11 @@ DEPENDENCIES:
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - infobip_mobilemessaging (from `.symlinks/plugins/infobip_mobilemessaging/ios`)
   - infobip_plugin (from `.symlinks/plugins/infobip_plugin/ios`)
   - local_auth (from `.symlinks/plugins/local_auth/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
+  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
   - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - r_get_ip (from `.symlinks/plugins/r_get_ip/ios`)
@@ -148,6 +162,7 @@ SPEC REPOS:
     - GoogleMaps
     - IBGoogleWebRTC
     - InfobipRTC
+    - MobileMessaging
     - PPBlinkID
     - SDWebImage
     - SwiftyGif
@@ -181,12 +196,16 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/image_cropper/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
+  infobip_mobilemessaging:
+    :path: ".symlinks/plugins/infobip_mobilemessaging/ios"
   infobip_plugin:
     :path: ".symlinks/plugins/infobip_plugin/ios"
   local_auth:
     :path: ".symlinks/plugins/local_auth/ios"
   package_info:
     :path: ".symlinks/plugins/package_info/ios"
+  package_info_plus:
+    :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
   permission_handler:
@@ -220,10 +239,13 @@ SPEC CHECKSUMS:
   IBGoogleWebRTC: 5814fcf577b2c7eca22385af7a74c79f648f2aac
   image_cropper: f1668dd8d2cad2d357955caad15a40547856edcb
   image_picker: e06f7a68f000bd36f552c1847e33cda96ed31f1f
+  infobip_mobilemessaging: 06b68ef87a13f44c8e28eb98a1681108e56500a0
   infobip_plugin: 04f0e6f190421989e1c15a061e682170cfc7c3dd
   InfobipRTC: f2ecaac941868c44269b2441a06ab6db6ad17b56
   local_auth: 25938960984c3a7f6e3253e3f8d962fdd16852bd
+  MobileMessaging: f130ec2523facbb49c9c1b04c62b0a2e3b2b655d
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
+  package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   PPBlinkID: c432c90e04d59698e9675d945e401720471a3ebb
@@ -236,6 +258,6 @@ SPEC CHECKSUMS:
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
-PODFILE CHECKSUM: 5221221ddbbf63e0f8ddf341c92053cef5345f90
+PODFILE CHECKSUM: fe0e1ee7f3d1f7d00b11b474b62dd62134535aea
 
 COCOAPODS: 1.10.1
