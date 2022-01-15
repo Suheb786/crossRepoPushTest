@@ -19,6 +19,7 @@ class StateCityDialogViewModel extends BasePageViewModel {
   Stream<int> get currentIndexStream => _currentSelectIndex.stream;
 
   void currentIndexUpdate(int index) {
+    print(index);
     _currentSelectIndex.add(index);
   }
 

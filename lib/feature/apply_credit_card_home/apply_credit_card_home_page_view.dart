@@ -46,13 +46,14 @@ class ApplyCreditCardHomePageView
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(top: 8),
+                  padding: EdgeInsets.only(top: 8, left: 10, right: 10),
                   child: Text(
                     S.of(context).personalizeCreditCard,
                     style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
                         color: Theme.of(context).accentColor),
+                    textAlign: TextAlign.center,
                   ),
                 ),
                 Expanded(
