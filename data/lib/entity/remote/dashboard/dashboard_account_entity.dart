@@ -41,7 +41,7 @@ class DashboardAccountEntity
         accountNo: this.accountNo,
         iban: this.iban,
         accountTitle: this.accountTitle,
-        availableBalance: this.availableBalance!.toStringAsFixed(2),
+        availableBalance: this.availableBalance!.toStringAsFixed(3),
         cardNo: this.cardNo);
   }
 }
