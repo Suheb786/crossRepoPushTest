@@ -11,6 +11,7 @@ import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_w
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/time_utils.dart';
 
 class DownloadTransactionDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -90,7 +91,9 @@ class DownloadTransactionDialogView extends StatelessWidget {
                                                 builder: (BuildContext context,
                                                     int index) {
                                                   return ListScrollWheelListWidget(
-                                                    label: years![index],
+                                                    label: TimeUtils
+                                                        .getFormattedMMMYYYY(
+                                                            years![index]),
                                                     textColor: currentIndex ==
                                                             index
                                                         ? Theme.of(context)

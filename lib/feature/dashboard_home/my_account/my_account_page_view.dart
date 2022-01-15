@@ -37,7 +37,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                     }
                   },
                   child: Padding(
-                    padding: const EdgeInsets.only(bottom:15.0),
+                    padding: const EdgeInsets.only(bottom: 15.0),
                     child: Card(
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16)),
@@ -426,7 +426,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
       GetDashboardDataContent cardData) async {
     final box = context.findRenderObject() as RenderBox?;
     await Share.share(
-        'Hello! Here’s my blink account details:\n\n${cardData.account!.accountTitle ?? ''} \n${cardData.account!.iban ?? '-'}\n\nGet your blink account today. Blink now!',
+        'Hello! Here are my Blink account details: \n\n${cardData.account!.accountTitle ?? ''} \n${cardData.account!.iban ?? '-'}\n\nOpen your Blink account today.',
         subject: 'Share account info',
         sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }
