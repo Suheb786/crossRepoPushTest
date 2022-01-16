@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:domain/constants/enum/transaction_type.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:flutter/material.dart';
@@ -170,7 +171,9 @@ class SendAmountToContactPageView
                                 model.updatePurpose(value1);
                                 model.updatePurposeDetail(value2);
                                 Navigator.pop(context);
-                              }, beneficiary: model.beneficiary);
+                              },
+                                  beneficiary: model.beneficiary,
+                                  type: TransactionType.SM);
                             },
                             child: Text(
                               S.of(context).edit,

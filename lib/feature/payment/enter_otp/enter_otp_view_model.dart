@@ -104,7 +104,9 @@ class EnterOtpViewModel extends BasePageViewModel {
         transferType: transferResponse.transferType,
         localEq: transferResponse.localEq,
         beneficiaryId: transferResponse.beneficiaryId,
-        beneficiaryImage: beneficiaryImage));
+        beneficiaryImage: beneficiaryImage,
+        type: "",
+        detCustomerType: ""));
   }
 
   void validate(String value) {

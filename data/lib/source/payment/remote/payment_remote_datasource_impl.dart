@@ -56,7 +56,9 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
       num? localEq,
       String? memo,
       String? toAccount,
-      String? nickName}) async {
+      String? nickName,
+      String? detCustomerType,
+      String? type}) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.transfer(TransferRequestEntity(
         baseData: baseData.toJson(),
@@ -73,7 +75,9 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         memo: memo!,
         nickName: nickName,
         transferType: transferType!,
-        getToken: true));
+        getToken: true,
+        detCustomerType: detCustomerType,
+        type: type));
   }
 
   @override
@@ -86,7 +90,9 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
       String memo,
       bool? isFriend,
       String? image,
-      String? nickName) async {
+      String? nickName,
+      String? detCustomerType,
+      String? type) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.requestToPay(RequestToPayRequestEntity(
         ctgyPurp: ctgyPurp,
@@ -98,7 +104,9 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         dbtrAcct: dbtrAcct,
         dbtrName: dbtrName,
         isFriend: isFriend,
-        beneImage: image));
+        beneImage: image,
+        detCustomerType: detCustomerType,
+        type: type));
   }
 
   @override
@@ -109,13 +117,16 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
   }
 
   @override
-  Future<HttpResponse<PurposeResponseEntity>> getPurpose(
-      String toAccount, String transferType) async {
+  Future<HttpResponse<PurposeResponseEntity>> getPurpose(String toAccount,
+      String transferType, String detCustomerType, String type) async {
+    print("transfer purpose : ${detCustomerType} + ${type}");
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.getPurpose(PurposeRequestEntity(
         baseData: baseData.toJson(),
         toAccount: toAccount,
         transferType: transferType,
-        getToken: true));
+        getToken: true,
+        detCustomerType: detCustomerType,
+        type: type));
   }
 }

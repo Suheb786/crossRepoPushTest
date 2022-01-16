@@ -23,7 +23,9 @@ abstract class PaymentRepository {
       num localEq,
       String memo,
       String toAccount,
-      String nickName});
+      String nickName,
+      String? detCustomerType,
+      String? type});
 
   Future<Either<NetworkError, bool>> transferVerify();
 
@@ -36,8 +38,10 @@ abstract class PaymentRepository {
       String memo,
       bool? isFriend,
       String? image,
-      String? nickName);
+      String? nickName,
+      String? detCustomerType,
+      String? type);
 
-  Future<Either<NetworkError, PurposeResponse>> getPurpose(
-      String toAccount, String transferTypel);
+  Future<Either<NetworkError, PurposeResponse>> getPurpose(String toAccount,
+      String transferType, String detCustomerType, String type);
 }

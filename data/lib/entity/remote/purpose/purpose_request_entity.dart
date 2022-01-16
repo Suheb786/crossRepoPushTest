@@ -8,6 +8,10 @@ class PurposeRequestEntity {
   final String? toAccount;
   @JsonKey(name: "TransferType")
   final String? transferType;
+  @JsonKey(name: "Type")
+  final String? type;
+  @JsonKey(name: "DetCustomerType")
+  final String? detCustomerType;
   @JsonKey(name: "getToken")
   final bool getToken;
   @JsonKey(name: "baseClass")
@@ -17,7 +21,9 @@ class PurposeRequestEntity {
       {required this.baseData,
       this.toAccount,
       this.transferType,
-      this.getToken: true});
+      this.getToken: true,
+      this.type,
+      this.detCustomerType});
 
   factory PurposeRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$PurposeRequestEntityFromJson(json);

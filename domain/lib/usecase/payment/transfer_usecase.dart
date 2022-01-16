@@ -25,7 +25,9 @@ class TransferUseCase extends BaseUseCase<NetworkError, TransferUseCaseParams,
         otpCode: params.otpCode!,
         isFriend: params.isFriend!,
         memo: params.memo!,
-        nickName: params.nickName!);
+        nickName: params.nickName!,
+        detCustomerType: params.detCustomerType!,
+        type: params.type!);
   }
 }
 
@@ -40,6 +42,8 @@ class TransferUseCaseParams extends Params {
   final String? memo;
   final String? toAccount;
   final String? nickName;
+  final String? detCustomerType;
+  final String? type;
 
   TransferUseCaseParams(
       {this.beneficiaryId,
@@ -50,6 +54,8 @@ class TransferUseCaseParams extends Params {
       this.toAmount,
       this.localEq,
       this.memo,
+      this.type,
+      this.detCustomerType,
       this.nickName,
       this.toAccount});
 
