@@ -95,11 +95,12 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
       ScannedDocumentInformation();
 
   IdVerificationInfoViewModel(
-      this._idVerificationInfoUseCase,
-      this._scanUserDocumentUseCase,
-      this._getAhwalDetailsUseCase,
-      this._confirmDetailUseCase,
-      this._fetchAllowedIssuersUseCase) {
+    this._idVerificationInfoUseCase,
+    this._scanUserDocumentUseCase,
+    this._getAhwalDetailsUseCase,
+    this._confirmDetailUseCase,
+    this._fetchAllowedIssuersUseCase,
+  ) {
     _idVerificationInfoRequest.listen((value) {
       RequestManager(value,
               createCall: () =>

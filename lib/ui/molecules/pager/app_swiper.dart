@@ -30,7 +30,6 @@ class AppSwiper extends StatelessWidget {
       index: currentStep,
       duration: 750,
       viewportFraction: 0.88,
-      scrollDirection: Axis.horizontal,
       physics: NeverScrollableScrollPhysics(),
       onIndexChanged: (index) {
         onIndexChanged?.call(index);
