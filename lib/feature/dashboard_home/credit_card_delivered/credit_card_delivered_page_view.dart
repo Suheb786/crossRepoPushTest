@@ -5,8 +5,6 @@ import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_verification_success/credit_card_verification_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -88,7 +86,10 @@ class CreditCardDeliveredPageView
                                     Padding(
                                       padding: EdgeInsets.only(top: 9),
                                       child: Text(
-                                        model.creditCard.cardNumber ?? '-',
+                                        model.creditCard.isNotEmpty
+                                            ? model.creditCard[0].cardNumber ??
+                                                '-'
+                                            : '-',
                                         style: TextStyle(
                                             fontSize: 30,
                                             fontWeight: FontWeight.w400),
@@ -146,7 +147,9 @@ class CreditCardDeliveredPageView
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  model.creditCard.name ?? '-',
+                                  model.creditCard.isNotEmpty
+                                      ? model.creditCard[0].name ?? '-'
+                                      : '-',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 12,
@@ -155,7 +158,10 @@ class CreditCardDeliveredPageView
                                 Padding(
                                     padding: EdgeInsets.only(top: 10),
                                     child: Text(
-                                        model.creditCard.cardNumber ?? '-',
+                                        model.creditCard.isNotEmpty
+                                            ? model.creditCard[0].cardNumber ??
+                                                '-'
+                                            : '-',
                                         style: TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w700)))

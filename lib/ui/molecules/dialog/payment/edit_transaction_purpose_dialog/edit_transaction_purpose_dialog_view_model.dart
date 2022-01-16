@@ -69,7 +69,10 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
 
   void getPurpose() {
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
-        toAccount: beneficiary!.iban!, transferType: "TransferI"));
+        toAccount: beneficiary!.iban!,
+        transferType: "TransferI",
+        type: "",
+        detCustomerType: ""));
   }
 
   void updatePurposeDetail(PurposeDetail value) {

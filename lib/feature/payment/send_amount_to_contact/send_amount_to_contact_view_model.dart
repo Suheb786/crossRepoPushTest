@@ -164,17 +164,18 @@ class SendAmountToContactViewModel extends BasePageViewModel {
       toAmount: transferResponse.toAmount,
       toAccount: transferResponse.toAccount,
       memo: purposeDetail == null
-          ? (beneficiary.purposeDetails == null
-              ? 'Transfer to Friend or Family'
-              : beneficiary.purposeDetails!)
-          : purposeDetail!.strCode!,
-      isFriend: false,
-      nickName: "",
-      transferType: transferResponse.transferType,
-      localEq: transferResponse.localEq,
-      beneficiaryId: transferResponse.beneficiaryId,
-      beneficiaryImage: "",
-    ));
+            ? (beneficiary.purposeDetails == null
+                ? 'Transfer to Friend or Family'
+                : beneficiary.purposeDetails!)
+            : purposeDetail!.strCode!,
+        isFriend: false,
+        nickName: "",
+        transferType: transferResponse.transferType,
+        localEq: transferResponse.localEq,
+        beneficiaryId: transferResponse.beneficiaryId,
+        beneficiaryImage: "",
+        type: "",
+        detCustomerType: ""));
   }
 
   @override

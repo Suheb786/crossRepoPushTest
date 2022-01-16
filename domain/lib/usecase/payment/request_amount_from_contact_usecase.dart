@@ -26,7 +26,9 @@ class RequestAmountFromContactUseCase extends BaseUseCase<NetworkError,
         params.purposeDetail!,
         params.isFriend!,
         params.image!,
-        params.nickName!);
+        params.nickName!,
+        params.detCustomerType!,
+        params.type!);
   }
 }
 
@@ -40,6 +42,8 @@ class RequestAmountFromContactUseCaseParams extends Params {
   String? image;
   bool? isFriend;
   String? nickName;
+  String? detCustomerType;
+  String? type;
 
   RequestAmountFromContactUseCaseParams(
       {this.purpose,
@@ -50,7 +54,9 @@ class RequestAmountFromContactUseCaseParams extends Params {
       this.dbtrAcct,
       this.isFriend: false,
       this.image: "",
-      this.nickName: ""});
+      this.nickName: "",
+      this.type: "",
+      this.detCustomerType: ""});
 
   @override
   Either<AppError, bool> verify() {

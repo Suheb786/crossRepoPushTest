@@ -1,4 +1,5 @@
 import 'package:data/entity/remote/debit_card/debit_card_limit_content_entity.dart';
+import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:domain/model/debit_card/debit_card_limit_response.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -10,10 +11,10 @@ class DebitCardLimitResponseEntity
     implements
         BaseLayerDataTransformer<DebitCardLimitResponseEntity,
             DebitCardLimitResponse> {
-  @JsonKey(name: "content")
-  final DebitCardLimitContentEntity? debitCardLimitContentEntity;
+  @JsonKey(name: "response")
+  final ResponseEntity? response;
 
-  DebitCardLimitResponseEntity({this.debitCardLimitContentEntity});
+  DebitCardLimitResponseEntity({this.response});
 
   factory DebitCardLimitResponseEntity.fromJson(Map<String, dynamic> json) =>
       _$DebitCardLimitResponseEntityFromJson(json);
@@ -28,7 +29,8 @@ class DebitCardLimitResponseEntity
   @override
   DebitCardLimitResponse transform() {
     return DebitCardLimitResponse(
-      debitCardLimitContent: this.debitCardLimitContentEntity!.transform(),
-    );
+        debitCardLimitContent:
+            DebitCardLimitContentEntity.fromJson(response!.content)
+                .transform());
   }
 }

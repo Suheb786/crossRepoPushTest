@@ -19,6 +19,8 @@ TransferRequestEntity _$TransferRequestEntityFromJson(
     memo: json['Memo'] as String,
     toAccount: json['ToAccount'] as String,
     isFriend: json['IsFriend'] as bool,
+    type: json['Type'] as String?,
+    detCustomerType: json['DetCustomerType'] as String?,
     getToken: json['getToken'] as bool,
     otpCode: json['OtpCode'] as String?,
   );
@@ -36,6 +38,8 @@ Map<String, dynamic> _$TransferRequestEntityToJson(
       'LocalEq': instance.localEq,
       'Memo': instance.memo,
       'ToAccount': instance.toAccount,
+      'Type': instance.type,
+      'DetCustomerType': instance.detCustomerType,
       'getToken': instance.getToken,
       'NickName': instance.nickName,
       'baseClass': instance.baseData,
