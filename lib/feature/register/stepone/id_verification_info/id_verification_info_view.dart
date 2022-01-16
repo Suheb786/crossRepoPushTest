@@ -195,29 +195,26 @@ class IdVerificationInfoView
                                                   //     title: S.of(context).onIdFit),
                                                   Column(
                                                     children: [
-                                                      Visibility(
-                                                        visible: false,
-                                                        child: InkWell(
-                                                          onTap: () {},
-                                                          child: Text(
-                                                            S
-                                                                .of(context)
-                                                                .uploadIdInstead,
-                                                            style: TextStyle(
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                                letterSpacing:
-                                                                    1,
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .accentTextTheme
-                                                                    .bodyText1!
-                                                                    .color),
-                                                          ),
-                                                        ),
-                                                      ),
+                                                      // InkWell(
+                                                      //   onTap: () {
+                                                      //   },
+                                                      //   child: Text(
+                                                      //     S
+                                                      //         .of(context)
+                                                      //         .uploadIdInstead,
+                                                      //     style: TextStyle(
+                                                      //         fontSize: 14,
+                                                      //         fontWeight:
+                                                      //             FontWeight
+                                                      //                 .w600,
+                                                      //         letterSpacing: 1,
+                                                      //         color: Theme.of(
+                                                      //                 context)
+                                                      //             .accentTextTheme
+                                                      //             .bodyText1!
+                                                      //             .color),
+                                                      //   ),
+                                                      // ),
                                                       SizedBox(
                                                         height: 56,
                                                       ),

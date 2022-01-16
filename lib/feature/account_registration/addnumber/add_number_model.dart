@@ -229,12 +229,10 @@ class AddNumberViewModel extends BasePageViewModel {
   }
 
   void validateNumber() {
-    if (isEmailAvailable && isNumberAvailable) {
-      _registerNumberRequest.safeAdd(RegisterNumberUseCaseParams(
-          emailAddress: emailController.text,
-          countryCode: countryData.isoCode,
-          mobileNumber: mobileNumberController.text));
-    }
+    _registerNumberRequest.safeAdd(RegisterNumberUseCaseParams(
+        emailAddress: emailController.text,
+        countryCode: countryData.isoCode,
+        mobileNumber: mobileNumberController.text));
   }
 
   /// Check Request for email is registered already or not
