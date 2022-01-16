@@ -153,10 +153,13 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           ),
                                         ],
                                       ),
-                                      Align(
-                                        alignment: Alignment.centerRight,
-                                        child: AppSvg.asset(
-                                            AssetUtils.zigzagCircle),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 70),
+                                        child: Align(
+                                          alignment: Alignment.centerRight,
+                                          child: AppSvg.asset(
+                                              AssetUtils.zigzagCircle),
+                                        ),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(top: 24),
@@ -265,7 +268,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                           .read(appHomeViewModelProvider)
                           .pageController
                           .next();
-                      Future.delayed(Duration(milliseconds: 600)).then((value) {
+                      Future.delayed(Duration(milliseconds: 300)).then((value) {
                         if (!model.cardKey.currentState!.isFront) {
                           model.cardKey.currentState!.toggleCard();
                         }

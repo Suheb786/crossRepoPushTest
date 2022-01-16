@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -72,6 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("About freezing your card:"),
         "actionComeToYouSoon": MessageLookupByLibrary.simpleMessage(
             "The actions with 🔴 will be made available to you soon"),
+        "activatingCreditCard":
+            MessageLookupByLibrary.simpleMessage("Activating your credit card"),
         "activity": MessageLookupByLibrary.simpleMessage("Activity"),
         "addIncome": MessageLookupByLibrary.simpleMessage("Add Income"),
         "addIncome1": MessageLookupByLibrary.simpleMessage("Add. Income 1"),
@@ -287,6 +288,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Next, let’s create\nyour password"),
         "createYourLoginPassword": MessageLookupByLibrary.simpleMessage(
             "Please enter your new password"),
+        "creatingCreditCardLimit": MessageLookupByLibrary.simpleMessage(
+            "Creating your credit card limit"),
         "creditBureau": MessageLookupByLibrary.simpleMessage("Credit Bureau "),
         "creditCardActivated":
             MessageLookupByLibrary.simpleMessage("Credit Card\nactivated."),
@@ -463,6 +466,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter the 6-digit code sent to  \n+962 79 322 8080"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Confirm password field cannot be empty"),
+        "enterIdNumberToResetPassword": MessageLookupByLibrary.simpleMessage(
+            "Enter your ID number\nto reset your password"),
         "enterLoginDetails":
             MessageLookupByLibrary.simpleMessage("Enter your login details"),
         "enterMailingAddress":
@@ -577,6 +582,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "freezeAndActiveAtAnyTime": MessageLookupByLibrary.simpleMessage(
             "You can unfreeze and activate your card at anytime."),
+        "freezeDebitCardDescription": MessageLookupByLibrary.simpleMessage(
+            "Here is some information for you to acknowledge before freezing your card.\n\n • In freezed state, your card can’t be used for any transactions.\n•In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n• You can unfreeze and activate your card at any time. "),
         "freezeTheCard":
             MessageLookupByLibrary.simpleMessage("Freeze this card?"),
         "freezeThisCard":
@@ -624,12 +631,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("84118220000022123444"),
         "ibanOrMobile":
             MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
+        "ibanOrMobileRequest":
+            MessageLookupByLibrary.simpleMessage("Mobile No. / ALIAS"),
         "ibanOutsideBlink": MessageLookupByLibrary.simpleMessage(
             "We\'ve found that the IBAN you entered is not within Blink. You will be able to send money outside Blink, soon! For now, invite the recipient to join our community."),
         "idCardExpired": MessageLookupByLibrary.simpleMessage(
             "Id card is expired, cannot proceed."),
         "idCardNotAllowed": MessageLookupByLibrary.simpleMessage(
             "ID card is not allowed for NeoBank."),
+        "idExpiryDate": MessageLookupByLibrary.simpleMessage("ID EXPIRY DATE"),
         "idHint":
             MessageLookupByLibrary.simpleMessage("Please Enter ID Number"),
         "idNumber": MessageLookupByLibrary.simpleMessage("ID NUMBER"),
@@ -774,6 +784,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter if only the business name is different from the name above"),
         "issuingDate": MessageLookupByLibrary.simpleMessage("Issuing date"),
         "issuingPlace": MessageLookupByLibrary.simpleMessage("Issuing place"),
+        "issuingYourCreditCard":
+            MessageLookupByLibrary.simpleMessage("Issuing your credit card"),
         "jobAndIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
         "jobIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
         "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
@@ -783,6 +795,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("You joined \nblink"),
         "legalDocumentNo":
             MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
+        "letsCreateNewPass": MessageLookupByLibrary.simpleMessage(
+            "Next, let’s create\nyour new password"),
         "letsCreateYourAccount":
             MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
         "letsCreateYourProfile":
@@ -901,6 +915,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "ofTheBank": MessageLookupByLibrary.simpleMessage("of the bank."),
         "onIdFit": MessageLookupByLibrary.simpleMessage(
             "Once fit, your ID will be scanned automatically"),
+        "oneFinalStop":
+            MessageLookupByLibrary.simpleMessage("One final stop..."),
         "oneNumber": MessageLookupByLibrary.simpleMessage("1 number"),
         "oneSymbol": MessageLookupByLibrary.simpleMessage("1 symbol"),
         "oneUpperCaseLetter":
@@ -929,8 +945,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Passwords must contain 8 minimum characters, 1 uppercase letter and \n1 symbol."),
         "passwordDialogHeader":
             MessageLookupByLibrary.simpleMessage("Create Password"),
-        "passwordMismatch":
-            MessageLookupByLibrary.simpleMessage("Password did not match"),
+        "passwordMismatch": MessageLookupByLibrary.simpleMessage(
+            "The passwords you entered do not match. Please try again."),
         "passwordNotMeetCriteria": MessageLookupByLibrary.simpleMessage(
             "Your password does not meet the minimum requirements. \nPlease try again."),
         "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
@@ -998,6 +1014,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "preferredTime": MessageLookupByLibrary.simpleMessage("PREFERRED TIME"),
         "preferredTimeSmall":
             MessageLookupByLibrary.simpleMessage("Preferred Time"),
+        "preparingYourCard":
+            MessageLookupByLibrary.simpleMessage("Preparing your card..."),
         "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
             "Great! Now, here’s what Neu has to offer for you"),
         "profileDetailsQ1":
@@ -1052,6 +1070,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Receive money from others"),
         "receiveMoneyFromOthersDesc": MessageLookupByLibrary.simpleMessage(
             "Share your account info to be able to receive money."),
+        "refNo": MessageLookupByLibrary.simpleMessage("Ref No."),
         "refNumber": MessageLookupByLibrary.simpleMessage("984893922"),
         "refTitle": MessageLookupByLibrary.simpleMessage("Ref No."),
         "referenceNumber":
@@ -1369,6 +1388,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Didn\'t receive an SMS? Contact our Engagement Team."),
         "yourApplicationInReview": MessageLookupByLibrary.simpleMessage(
             "Your application is under review"),
+        "yourApplicationInReviewNote": MessageLookupByLibrary.simpleMessage(
+            "Your application is under review,\nwe will notify you soon."),
         "yourCardHasBeenIssued": MessageLookupByLibrary.simpleMessage(
             "Your Yellow Sun debit card \n has been issued!"),
         "yourCardIsReady":
@@ -1382,6 +1403,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "yourFreeVirtualDebitCardHasBeenIssued":
             MessageLookupByLibrary.simpleMessage(
                 "Your free virtual debit card has been issued, and the physical one is on its way."),
-        "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature")
+        "yourSignature": MessageLookupByLibrary.simpleMessage("Your Signature"),
+        "yourYellowSunDebitCardIssued": MessageLookupByLibrary.simpleMessage(
+            "Your Yellow Sun debit card has been issued!")
       };
 }

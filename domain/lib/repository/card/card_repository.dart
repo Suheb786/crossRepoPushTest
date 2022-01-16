@@ -2,13 +2,18 @@ import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/card/card_issuance_details.dart';
 import 'package:domain/model/card/card_statement_response.dart';
+import 'package:domain/model/card/get_card_applications/get_card_application_response.dart';
 import 'package:domain/model/card/get_debit_years_response.dart';
+import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart';
+import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
+import 'package:domain/model/debit_card/debit_card_limit_response.dart';
 
 abstract class CardRepository {
   Future<Either<NetworkError, CardIssuanceDetails>> getCardIssuanceDetails();
 
-  Future<Either<NetworkError, bool>> setCardPin(String currentPin);
+  Future<Either<NetworkError, bool>> setCardPin(
+      String currentPin, String cardNUmber);
 
   Future<Either<NetworkError, bool>> confirmCardDelivery();
 
@@ -27,7 +32,7 @@ abstract class CardRepository {
       String monthYear);
 
   Future<Either<NetworkError, bool>> requestCreditCard(
-      {required double cardLimit});
+      {required String cardId});
 
   Future<Either<NetworkError, GetDebitYearsResponse>> getCreditYears();
 
@@ -71,4 +76,17 @@ abstract class CardRepository {
       bool isOnlinePurchase,
       num merchantsPayments,
       num onlinePurchase});
+
+  Future<Either<NetworkError, DebitCardLimitResponse>> getDebitCardLimit();
+
+  Future<Either<NetworkError, GetCardApplicationResponse>> getCardApplication();
+
+  Future<Either<NetworkError, GetLoanValuesResponse>> getLoanValues(
+      {String accountId});
+
+  Future<Either<NetworkError, ProcessLoanRequestResponse>> processLoanRequest(
+      {String minimumSettlement,
+      String nickName,
+      num loanValueId,
+      num creditLimit});
 }

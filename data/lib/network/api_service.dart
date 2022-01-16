@@ -40,7 +40,12 @@ import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
+import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
+import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_entity.dart';
+import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
+import 'package:data/entity/remote/card/process_loan_request/process_loan_request_entity.dart';
+import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
@@ -61,6 +66,8 @@ import 'package:data/entity/remote/country/state_list/state_list_response_entity
 import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
+import 'package:data/entity/remote/debit_card/debit_card_limit_request_entity.dart';
+import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
@@ -119,6 +126,7 @@ import 'package:data/entity/remote/user/save_profile_information_request.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:data/entity/remote/user/save_residence_information_request.dart';
 import 'package:data/entity/remote/user/save_selfie_image_request.dart';
+import 'package:data/entity/remote/user/status/customer_status_response_entity.dart';
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/network_properties.dart';
@@ -437,6 +445,10 @@ abstract class ApiService {
   Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears(
       @Body() BaseRequest baseRequest);
 
+  @POST("/DebitCard/DebitCardLimit")
+  Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit(
+      @Body() DebitCardLimitRequestEntity baseRequest);
+
   @POST("/RuleEngine/CancelCreditCard")
   Future<HttpResponse<ResponseEntity>> cancelCreditCard(
       @Body() CancelCreditCardRequest cancelCreditCardRequest);
@@ -539,4 +551,20 @@ abstract class ApiService {
   @POST("/Auth/CheckIssuer")
   Future<HttpResponse<GetAllowedIssuerResponseEntity>> fetchAllowedIssuers(
       @Body() BaseRequest baseRequest);
+
+  @POST("/Account/CheckCustomerStatus")
+  Future<HttpResponse<CustomerStatusResponseEntity>> checkCustomerStatus(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/CardTracking/GetCardApplications")
+  Future<HttpResponse<GetCardApplicationResponseEntity>> getCardApplication(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/CardTracking/GetLoanValues")
+  Future<HttpResponse<GetLoanValuesResponseEntity>> getLoanValues(
+      @Body() GetLoanValuesRequestEntity getLoanValuesRequestEntity);
+
+  @POST("/CardTracking/ProccessLoanRequest")
+  Future<HttpResponse<ProcessLoanResponseEntity>> processLoanRequest(
+      @Body() ProcessLoanRequestEntity processLoanRequestEntity);
 }

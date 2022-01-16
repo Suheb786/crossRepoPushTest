@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/kyc/check_kyc_data.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:flutter/material.dart';
@@ -102,9 +103,27 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     initialData: Resource.none(),
                                     onData: (data) {
                                       if (data.status == Status.SUCCESS) {
-                                        ///TODO:Navigate according to kyc response
-                                        Navigator.pushReplacementNamed(
-                                            context, RoutePaths.AppHome);
+                                        CheckKYCData kycData = data
+                                                .data?.content?.kycData
+                                                ?.firstWhere((element) =>
+                                                    element.status ?? false) ??
+                                            CheckKYCData();
+
+                                        switch (kycData.type) {
+                                          case "IDCardC":
+                                          case "SelfiCheck":
+                                          case "CountryResidence":
+                                          case "ProfileStatus":
+                                          case "JobDetails":
+                                          case "AccountOpeningPurpose":
+                                          case "FatcaCrs":
+                                          case "AccountInfo":
+
+                                          default:
+                                            Navigator.pushReplacementNamed(
+                                                context, RoutePaths.AppHome);
+                                            break;
+                                        }
                                       }
                                     },
                                     dataBuilder: (context, kycResponse) {

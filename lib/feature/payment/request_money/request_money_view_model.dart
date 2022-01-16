@@ -33,9 +33,8 @@ class RequestMoneyViewModel extends BasePageViewModel {
   }
 
   void requestMoney() {
-    _moneyRequest.safeAdd(RequestMoneyUseCaseParams(
-        amount: currentPinValue
-    ));
+    print("current pin value: $currentPinValue");
+    _moneyRequest.safeAdd(RequestMoneyUseCaseParams(amount: currentPinValue));
   }
 
   List<String> myList = [];
@@ -48,7 +47,13 @@ class RequestMoneyViewModel extends BasePageViewModel {
         currentPinValue = myList.join("");
       }
     } else {
-      myList.add(value);
+      if (myList.contains(".")) {
+        if (myList.indexOf(".") > myList.length - 4) {
+          myList.add(value);
+        }
+      } else {
+        myList.add(value);
+      }
       currentPinValue = myList.join("");
     }
     notifyListeners();

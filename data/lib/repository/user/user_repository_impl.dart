@@ -27,6 +27,7 @@ import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:domain/model/user/save_profile_status_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:domain/model/user/status/customer_status.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/repository/user/user_repository.dart';
 
@@ -575,6 +576,17 @@ class UserRepositoryImpl extends UserRepository {
   Future<Either<NetworkError, GetComboValuesResponse>> getComboValues() async {
     final result = await safeApiCall(
       _remoteDS.getComboValues(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, CustomerStatus>> checkCustomerStatus() async {
+    final result = await safeApiCall(
+      _remoteDS.checkCustomerStatus(),
     );
     return result!.fold(
       (l) => Left(l),

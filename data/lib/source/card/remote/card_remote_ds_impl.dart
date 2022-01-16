@@ -13,10 +13,18 @@ import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
+import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
+import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_entity.dart';
+import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
+import 'package:data/entity/remote/card/process_loan_request/process_loan_request_entity.dart';
+import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
+import 'package:data/entity/remote/debit_card/debit_card_limit_request_entity.dart';
+import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
+import 'package:data/helper/encypt_decrypt_helper.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/card/card_datasource.dart';
 import 'package:retrofit/dio.dart';
@@ -36,10 +44,14 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> setCardPin(String pin) async {
+  Future<HttpResponse<ResponseEntity>> setCardPin(
+      String pin, String cardNumber) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.setCardPin(SetCardPinRequest(
-        baseData: baseData.toJson(), getToken: true, pinCode: pin));
+        baseData: baseData.toJson(),
+        getToken: true,
+        pinCode: EncryptDecryptHelper.generateBlockPin(
+            cardNo: cardNumber, pinCode: pin)));
   }
 
   @override
@@ -105,11 +117,18 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
+  Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getDebitCardLimit(DebitCardLimitRequestEntity(
+        getToken: false, baseData: baseData.toJson()));
+  }
+
+  @override
   Future<HttpResponse<ResponseEntity>> requestCreditCard(
-      {required double? cardLimit}) async {
+      {required String? cardId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.requestCreditCard(
-        RequestCardRequest(baseData: baseData.toJson(), cardLimit: cardLimit));
+        RequestCardRequest(baseData: baseData.toJson(), cardId: cardId));
   }
 
   @override
@@ -226,5 +245,37 @@ class CardRemoteDsImpl extends CardRemoteDs {
             isMerchantsPayments: isMerchantsPayments,
             isOnlinePurchase: isOnlinePurchase,
             baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<GetCardApplicationResponseEntity>>
+      getCardApplication() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .getCardApplication(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<GetLoanValuesResponseEntity>> getLoanValues(
+      {String? accountId}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getLoanValues(GetLoanValuesRequestEntity(
+        getToken: true, accountId: '1', baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ProcessLoanResponseEntity>> processLoanRequest(
+      {String? minimumSettlement,
+      String? nickName,
+      num? loanValueId,
+      num? creditLimit}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.processLoanRequest(ProcessLoanRequestEntity(
+        getToken: true,
+        baseData: baseData.toJson(),
+        loanValueId: loanValueId,
+        minimumSettlement: minimumSettlement,
+        nickName: nickName,
+        creditLimit: creditLimit));
   }
 }

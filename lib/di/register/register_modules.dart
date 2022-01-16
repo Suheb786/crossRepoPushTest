@@ -9,6 +9,7 @@ import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
+import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_model.dart';
 import 'package:neo_bank/feature/register/step_five/agent_selection/agent_selection_model.dart';
 import 'package:neo_bank/feature/register/step_five/register_step_five_page_view_model.dart';
@@ -91,7 +92,8 @@ final confirmDetailViewModelProvider =
             ref.read(confirmDetailUseCaseProvider),
             ref.read(scanUserDocumentUseCaseProvider),
             ref.read(getAhwalDetailsUseCaseProvider),
-            ref.read(fetchAllowedIssuersUseCaseProvider)));
+            ref.read(fetchAllowedIssuersUseCaseProvider),
+            ref.read(getCountriesListUseCaseProvider)));
 
 ///[EnterAddressViewModel] provider
 final enterAddressViewModelProvider =
@@ -281,7 +283,9 @@ final reviewApplicationPageViewModelProvider =
       ref.read(checkVideoCallStatusUseCaseProvider),
       ref.read(getAccountUseCaseProvider),
       ref.read(createAccountUseCaseProvider),
-      ref.read(getConfirmApplicationDataUseCaseProvider)),
+      ref.read(getConfirmApplicationDataUseCaseProvider),
+      ref.read(customerStatusUseCaseProvider),
+      ref.read(removeDebitLockUseCaseProvider)),
 );
 
 ///upload documents page
@@ -292,7 +296,10 @@ final uploadDocumentsPageViewModelProvider =
       ref.read(uploadDocumentUseCaseProvider),
       ref.read(checkOtherNationalityStatusUseCaseProvider),
       ref.read(fileUploadUseCaseProvider),
-      ref.read(removeDebitLockUseCaseProvider)),
+      ref.read(removeDebitLockUseCaseProvider),
+      ref.read(customerStatusUseCaseProvider),
+      ref.read(getAccountUseCaseProvider),
+      ref.read(createAccountUseCaseProvider)),
 );
 
 ///account ready page
@@ -433,3 +440,8 @@ final mobileNumberDialogViwModelProvider =
 final fatcaOptionsDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<FatcaOptionDialogViewModel>(
         (ref) => FatcaOptionDialogViewModel());
+
+///account hold model provider
+final accountHoldViewModelProvider =
+    ChangeNotifierProvider.autoDispose<AccountHoldViewModel>(
+        (ref) => AccountHoldViewModel(ref.read(logoutUseCaseProvider)));

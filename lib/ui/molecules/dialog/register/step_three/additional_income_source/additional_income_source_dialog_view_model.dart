@@ -61,6 +61,13 @@ class AdditionIncomeSourceDialogViewModel extends BasePageViewModel {
         additionalIncomeList?.firstWhere((element) => element.isSelected);
     _getAdditionIncomeSourceResponse
         .safeAdd(Resource.success(data: additionalIncomeList));
+    if (scrollController.hasClients) {
+      scrollController.animateTo(
+        scrollController.position.maxScrollExtent,
+        duration: Duration(seconds: 2),
+        curve: Curves.fastOutSlowIn,
+      );
+    }
   }
 
   @override

@@ -118,6 +118,10 @@ class IdVerificationInfoView
                                             .setData(model
                                                 .scannedDocumentInformation);
                                       });
+
+                                      ProviderScope.containerOf(context)
+                                          .read(confirmDetailViewModelProvider)
+                                          .getCountries();
                                     }
                                   } else if (ahwalData.status == Status.ERROR) {
                                     model.showToastWithError(
@@ -254,10 +258,10 @@ class IdVerificationInfoView
                                                                         border: Border.all(
                                                                             width: !isChecked
                                                                                 ? 1
-                                                                                : 0.5,
+                                                                                : 1,
                                                                             color: !isChecked
                                                                                 ? Theme.of(context).accentTextTheme.bodyText1!.color!
-                                                                                : Theme.of(context).primaryColorDark)),
+                                                                                : Theme.of(context).inputDecorationTheme.hintStyle!.color!)),
                                                                     child: isChecked
                                                                         ? Container(
                                                                             height:
