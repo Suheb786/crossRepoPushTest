@@ -95,7 +95,7 @@ final cardTransactionViewModelProvider =
 );
 
 final creditCardDeliveredViewModelProvider = ChangeNotifierProvider.autoDispose
-    .family<CreditCardDeliveredViewModel, CreditCard>(
+    .family<CreditCardDeliveredViewModel, List<CreditCard>>(
   (ref, args) => CreditCardDeliveredViewModel(
       ref.read(confirmCreditCardDeliveryUseCaseProvider), args),
 );

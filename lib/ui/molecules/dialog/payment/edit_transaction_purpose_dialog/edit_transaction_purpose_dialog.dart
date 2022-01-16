@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/transaction_type.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/purpose/purpose.dart';
 import 'package:domain/model/purpose/purpose_detail.dart';
@@ -11,12 +12,14 @@ class EditTransactionPurposeDialog {
   static show(BuildContext mContext,
       {Function? onDismissed,
       Function(Purpose, PurposeDetail)? onSelected,
-      Beneficiary? beneficiary}) {
+      Beneficiary? beneficiary,
+      TransactionType? type}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => EditTransactionPurposeDialogView(
             onDismissed: onDismissed,
             onSelected: onSelected,
-            beneficiary: beneficiary));
+            beneficiary: beneficiary,
+            type: type));
   }
 }

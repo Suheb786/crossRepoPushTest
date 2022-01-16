@@ -25,7 +25,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
           .getDashboardCardDataStream,
       initialData: GetDashboardDataContent(),
       dataBuilder: (context, cardData) {
-        return !(cardData!.isApplied!)
+        return !(cardData!.creditCard! == [])
             ? Center(
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 15),
@@ -238,8 +238,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      cardData
-                                                          .creditCard!.minDue
+                                                      cardData.creditCard!.first
+                                                          .minDue
                                                           .toString(),
                                                       style: TextStyle(
                                                           color:
@@ -282,7 +282,9 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                             fontSize: 10),
                                                       ),
                                                       Text(
-                                                        cardData.creditCard!
+                                                        cardData
+                                                                .creditCard!
+                                                                .first
                                                                 .expiryDate ??
                                                             '-',
                                                         style: TextStyle(
@@ -342,7 +344,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                 Row(
                                                   children: [
                                                     Text(
-                                                      cardData.creditCard!
+                                                      cardData.creditCard!.first
                                                           .availableBalance
                                                           .toString(),
                                                       style: TextStyle(
@@ -498,7 +500,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          cardData.creditCard!.name ?? '',
+                                          cardData.creditCard!.first.name ?? '',
                                           style: TextStyle(
                                               color:
                                                   Theme.of(context).accentColor,
@@ -526,7 +528,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                     Padding(
                                       padding: EdgeInsets.only(top: 63),
                                       child: Text(
-                                        cardData.creditCard!.cardNumber ?? '-',
+                                        cardData.creditCard!.first.cardNumber ??
+                                            '-',
                                         style: TextStyle(
                                           fontWeight: FontWeight.w600,
                                           color: Theme.of(context).accentColor,
@@ -591,7 +594,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                cardData.creditCard!
+                                                cardData.creditCard!.first
                                                         .expiryDate ??
                                                     '-',
                                                 style: TextStyle(
@@ -625,7 +628,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                                   CrossAxisAlignment.start,
                                               children: [
                                                 Text(
-                                                  cardData.creditCard!.cvv ??
+                                                  cardData.creditCard!.first
+                                                          .cvv ??
                                                       '-',
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w600,

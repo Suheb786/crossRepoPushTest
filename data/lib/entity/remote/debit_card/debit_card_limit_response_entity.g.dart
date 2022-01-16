@@ -9,15 +9,14 @@ part of 'debit_card_limit_response_entity.dart';
 DebitCardLimitResponseEntity _$DebitCardLimitResponseEntityFromJson(
     Map<String, dynamic> json) {
   return DebitCardLimitResponseEntity(
-    debitCardLimitContentEntity: json['content'] == null
+    response: json['response'] == null
         ? null
-        : DebitCardLimitContentEntity.fromJson(
-            json['content'] as Map<String, dynamic>),
+        : ResponseEntity.fromJson(json['response'] as Map<String, dynamic>),
   );
 }
 
 Map<String, dynamic> _$DebitCardLimitResponseEntityToJson(
         DebitCardLimitResponseEntity instance) =>
     <String, dynamic>{
-      'content': instance.debitCardLimitContentEntity,
+      'response': instance.response,
     };

@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:domain/constants/enum/transaction_type.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
 import 'package:domain/model/payment/request_to_pay_content_response.dart';
 import 'package:flutter/material.dart';
@@ -203,7 +204,9 @@ class RequestAmountFromContactPageView
                                             model.updatePurpose(value1);
                                             model.updatePurposeDetail(value2);
                                             Navigator.pop(context);
-                                          }, beneficiary: model.beneficiary);
+                                          },
+                                              beneficiary: model.beneficiary,
+                                              type: TransactionType.RTP);
                                         },
                                         child: Text(
                                           S.of(context).edit,

@@ -254,7 +254,7 @@ class AppRouter {
       case RoutePaths.CreditCardDelivered:
         return CupertinoPageRoute(
             builder: (context) => CreditCardDeliveredPage(
-                creditCard: settings.arguments as CreditCard),
+                creditCard: settings.arguments as List<CreditCard>),
             settings: RouteSettings(name: RoutePaths.CreditCardDelivered));
 
       case RoutePaths.DebitCardDelivered:

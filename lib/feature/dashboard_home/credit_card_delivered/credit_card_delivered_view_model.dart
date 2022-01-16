@@ -8,7 +8,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CreditCardDeliveredViewModel extends BasePageViewModel {
-  final CreditCard creditCard;
+  final List<CreditCard> creditCard;
   final ConfirmCreditCardDeliveryUseCase _confirmCreditDeliveryUsecase;
 
   ///confirm credit card delivery request

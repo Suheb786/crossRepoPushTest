@@ -20,6 +20,8 @@ RequestToPayRequestEntity _$RequestToPayRequestEntityFromJson(
     memo: json['Memo'] as String?,
     getToken: json['getToken'] as bool?,
     baseData: json['baseClass'] as Map<String, dynamic>?,
+    type: json['Type'] as String?,
+    detCustomerType: json['DetCustomerType'] as String?,
   );
 }
 
@@ -35,6 +37,8 @@ Map<String, dynamic> _$RequestToPayRequestEntityToJson(
       'getToken': instance.getToken,
       'BeneImage': instance.beneImage,
       'IsFriend': instance.isFriend,
+      'Type': instance.type,
+      'DetCustomerType': instance.detCustomerType,
       'NickName': instance.nickName,
       'baseClass': instance.baseData,
     };
