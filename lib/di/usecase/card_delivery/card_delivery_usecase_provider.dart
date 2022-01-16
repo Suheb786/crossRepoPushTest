@@ -160,5 +160,5 @@ final creditCardRequestUseCaseProvider =
         (ref) => CreditCardRequestUseCase(ref.read(cardRepositoryProvider)));
 
 ///[LinkCardStepUseCase] provider
-final clinkCardStepUseCaseProvider = Provider.autoDispose<LinkCardStepUseCase>(
+final linkCardStepUseCaseProvider = Provider.autoDispose<LinkCardStepUseCase>(
     (ref) => LinkCardStepUseCase(ref.read(cardRepositoryProvider)));

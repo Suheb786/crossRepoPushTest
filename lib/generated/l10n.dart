@@ -7789,6 +7789,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.`
+  String get cardApplyMsg {
+    return Intl.message(
+      'Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.',
+      name: 'cardApplyMsg',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

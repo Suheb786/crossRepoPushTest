@@ -11,6 +11,7 @@ import 'package:neo_bank/feature/change_card_pin/enter_new_pin_for_card/enter_ne
 import 'package:neo_bank/feature/change_card_pin/otp_for_change_card_pin/otp_for_change_card_pin_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin_success/card_ready_success_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
+import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/card_unblock_pin_success/card_unblock_pin_success_page_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_view_model.dart';
@@ -173,4 +174,10 @@ final supplementaryCardInReviewViewModelProvider =
         SupplementaryCardInReviewPageViewModel,
         SupplementaryCardInReviewArguments>(
   (ref, args) => SupplementaryCardInReviewPageViewModel(args),
+);
+
+///credit card apply success view model provider
+final creditCardApplySuccessViewModelProvider =
+    ChangeNotifierProvider.autoDispose<CreditCardApplySuccessPageViewModel>(
+  (ref) => CreditCardApplySuccessPageViewModel(),
 );

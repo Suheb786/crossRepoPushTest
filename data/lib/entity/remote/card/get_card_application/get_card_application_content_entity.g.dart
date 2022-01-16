@@ -15,6 +15,12 @@ GetCardApplicationContentEntity _$GetCardApplicationContentEntityFromJson(
     processLoanDate: json['processLoanDate'] as String?,
     issueCardOnNI: json['issueCardOnNI'] as bool?,
     issueCardDate: json['issueCardDate'] as String?,
+    finalStep: json['finalStep'] as bool?,
+    contactLessError: json['contactLessError'] as int?,
+    linkCardError: json['linkCardError'] as int?,
+    crifError: json['crifError'] as int?,
+    manageSOError: json['manageSOError'] as int?,
+    aramexError: json['aramexError'] as int?,
   );
 }
 
@@ -27,4 +33,10 @@ Map<String, dynamic> _$GetCardApplicationContentEntityToJson(
       'processLoanDate': instance.processLoanDate,
       'issueCardOnNI': instance.issueCardOnNI,
       'issueCardDate': instance.issueCardDate,
+      'finalStep': instance.finalStep,
+      'contactLessError': instance.contactLessError,
+      'linkCardError': instance.linkCardError,
+      'crifError': instance.crifError,
+      'manageSOError': instance.manageSOError,
+      'aramexError': instance.aramexError,
     };

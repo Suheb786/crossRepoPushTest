@@ -19,6 +19,7 @@ final setCreditLimitViewModelProvider =
 final creditCardActivationViewModelProvider =
     ChangeNotifierProvider.autoDispose<CreditCardActivationStatusPageViewModel>(
   (ref) => CreditCardActivationStatusPageViewModel(
-      ref.read(getCardApplicationUseCaseProvider),ref.read(
-      creditCardRequestUseCaseProvider)),
+      ref.read(getCardApplicationUseCaseProvider),
+      ref.read(creditCardRequestUseCaseProvider),
+      ref.read(linkCardStepUseCaseProvider)),
 );
