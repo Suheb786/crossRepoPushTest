@@ -105,49 +105,55 @@ class RegisterSelectionPageView
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 24),
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: AppDivider(
-                                color: Theme.of(context).accentColor,
-                                indent: 0,
-                                endIndent: 12,
-                              ),
-                            ),
-                            Text(
-                              S.of(context).orContinueWith,
-                              style: TextStyle(
+                      Visibility(
+                        visible: false,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 24),
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                child: AppDivider(
                                   color: Theme.of(context).accentColor,
-                                  fontSize: 12),
-                            ),
-                            Expanded(
-                              child: AppDivider(
-                                color: Theme.of(context).accentColor,
-                                endIndent: 0,
-                                indent: 12,
+                                  indent: 0,
+                                  endIndent: 12,
+                                ),
                               ),
-                            ),
-                          ],
+                              Text(
+                                S.of(context).orContinueWith,
+                                style: TextStyle(
+                                    color: Theme.of(context).accentColor,
+                                    fontSize: 12),
+                              ),
+                              Expanded(
+                                child: AppDivider(
+                                  color: Theme.of(context).accentColor,
+                                  endIndent: 0,
+                                  indent: 12,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                      Container(
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(
+                      Visibility(
+                        visible: false,
+                        child: Container(
+                          child: Row(
+                            children: <Widget>[
+                              Expanded(
+                                  child: AppIconButton(
+                                icon: AssetUtils.apple,
+                                iconSize: 28,
+                              )),
+                              Container(width: 16),
+                              Expanded(
                                 child: AppIconButton(
-                              icon: AssetUtils.apple,
-                              iconSize: 28,
-                            )),
-                            Container(width: 16),
-                            Expanded(
-                              child: AppIconButton(
-                                icon: AssetUtils.google,
-                                iconSize: 20,
+                                  icon: AssetUtils.google,
+                                  iconSize: 20,
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ],
