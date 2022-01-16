@@ -22,6 +22,10 @@ class TransferRequestEntity {
   final String memo;
   @JsonKey(name: "ToAccount")
   final String toAccount;
+  @JsonKey(name: "Type")
+  final String? type;
+  @JsonKey(name: "DetCustomerType")
+  final String? detCustomerType;
   @JsonKey(name: "getToken")
   final bool getToken;
   @JsonKey(name: "NickName")
@@ -40,6 +44,8 @@ class TransferRequestEntity {
       this.memo: "",
       this.toAccount: "",
       this.isFriend: false,
+      this.type: "",
+      this.detCustomerType: "",
       this.getToken: true,
       this.otpCode: ""}) {
     print("this constructor called");

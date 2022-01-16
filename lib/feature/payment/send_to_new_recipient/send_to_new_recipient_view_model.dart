@@ -228,8 +228,9 @@ class SendToNewRecipientViewModel extends BasePageViewModel {
   void getPurpose(String toAccount, String transferType) {
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
       toAccount: toAccount,
-      transferType: transferType,
-    ));
+        transferType: transferType,
+        detCustomerType: "",
+        type: ""));
   }
 
   void updatePurposeDetaiList(List<PurposeDetail> list) {

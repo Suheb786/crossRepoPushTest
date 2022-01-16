@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/transaction_type.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/purpose/purpose.dart';
 import 'package:domain/model/purpose/purpose_detail.dart';
@@ -18,9 +19,10 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(Purpose, PurposeDetail)? onSelected;
   final Beneficiary? beneficiary;
+  final TransactionType? type;
 
   const EditTransactionPurposeDialogView(
-      {this.onDismissed, this.onSelected, this.beneficiary});
+      {this.onDismissed, this.onSelected, this.beneficiary, this.type});
 
   ProviderBase providerBase() {
     return editTransactionPurposeDialogViewModelProvider.call(beneficiary!);
@@ -34,7 +36,7 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16.0)),
             insetPadding:
-                EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+            EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
             child: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.only(top: 32, left: 24, right: 24),
@@ -89,13 +91,13 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                             PurposeDialog.show(context,
                                 purposeList: model.purposeList!,
                                 onDismissed: () {
-                              Navigator.pop(context);
-                            }, onSelected: (value) {
-                              Navigator.pop(context);
-                              model.updatePurpose(value);
-                              model.updatePurposeDetailList(
-                                  value.purposeDetails!);
-                            });
+                                  Navigator.pop(context);
+                                }, onSelected: (value) {
+                                  Navigator.pop(context);
+                                  model.updatePurpose(value);
+                                  model.updatePurposeDetailList(
+                                      value.purposeDetails!);
+                                });
                           }
                         },
                         suffixIcon: (enabled, value) {
@@ -121,11 +123,11 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
                             PurposeDetailDialog.show(context,
                                 purposeDetailList: model.purposeDetailList,
                                 onDismissed: () {
-                              Navigator.pop(context);
-                            }, onSelected: (value) {
-                              Navigator.pop(context);
-                              model.updatePurposeDetail(value);
-                            });
+                                  Navigator.pop(context);
+                                }, onSelected: (value) {
+                                  Navigator.pop(context);
+                                  model.updatePurposeDetail(value);
+                                });
                           }
                         },
                         suffixIcon: (enabled, value) {
