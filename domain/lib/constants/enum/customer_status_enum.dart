@@ -21,6 +21,7 @@ class CustomerStatusEnum {
       CustomerStatusEnum._("removeDebitLock");
   static const CustomerStatusEnum CARD_ISSUANCE =
       CustomerStatusEnum._("cardIssuance");
+  static const CustomerStatusEnum NONE = CustomerStatusEnum._("none");
 }
 
 extension CustomerStatusEnumExt on String {
@@ -40,6 +41,8 @@ extension CustomerStatusEnumExt on String {
         return CustomerStatusEnum.REMOVE_DEBIT_LOCK;
       case "cardIssuance":
         return CustomerStatusEnum.CARD_ISSUANCE;
+      case "none":
+        return CustomerStatusEnum.NONE;
       default:
         return CustomerStatusEnum.HOLD;
     }

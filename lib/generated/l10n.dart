@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7716,6 +7715,76 @@ class S {
     return Intl.message(
       'Your Yellow Sun debit card has been issued!',
       name: 'yourYellowSunDebitCardIssued',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your ID number\nto reset your password`
+  String get enterIdNumberToResetPassword {
+    return Intl.message(
+      'Enter your ID number\nto reset your password',
+      name: 'enterIdNumberToResetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID EXPIRY DATE`
+  String get idExpiryDate {
+    return Intl.message(
+      'ID EXPIRY DATE',
+      name: 'idExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Next, let’s create\nyour new password`
+  String get letsCreateNewPass {
+    return Intl.message(
+      'Next, let’s create\nyour new password',
+      name: 'letsCreateNewPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preparing your card...`
+  String get preparingYourCard {
+    return Intl.message(
+      'Preparing your card...',
+      name: 'preparingYourCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Creating your credit card limit`
+  String get creatingCreditCardLimit {
+    return Intl.message(
+      'Creating your credit card limit',
+      name: 'creatingCreditCardLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Issuing your credit card`
+  String get issuingYourCreditCard {
+    return Intl.message(
+      'Issuing your credit card',
+      name: 'issuingYourCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activating your credit card`
+  String get activatingCreditCard {
+    return Intl.message(
+      'Activating your credit card',
+      name: 'activatingCreditCard',
       desc: '',
       args: [],
     );

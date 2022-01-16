@@ -71,6 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("About freezing your card:"),
         "actionComeToYouSoon": MessageLookupByLibrary.simpleMessage(
             "The actions with 🔴 will be made available to you soon"),
+        "activatingCreditCard":
+            MessageLookupByLibrary.simpleMessage("Activating your credit card"),
         "activity": MessageLookupByLibrary.simpleMessage("Activity"),
         "addIncome": MessageLookupByLibrary.simpleMessage("Add Income"),
         "addIncome1": MessageLookupByLibrary.simpleMessage("Add. Income 1"),
@@ -286,6 +288,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Next, let’s create\nyour password"),
         "createYourLoginPassword": MessageLookupByLibrary.simpleMessage(
             "Please enter your new password"),
+        "creatingCreditCardLimit": MessageLookupByLibrary.simpleMessage(
+            "Creating your credit card limit"),
         "creditBureau": MessageLookupByLibrary.simpleMessage("Credit Bureau "),
         "creditCardActivated":
             MessageLookupByLibrary.simpleMessage("Credit Card\nactivated."),
@@ -462,6 +466,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Enter the 6-digit code sent to  \n+962 79 322 8080"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Confirm password field cannot be empty"),
+        "enterIdNumberToResetPassword": MessageLookupByLibrary.simpleMessage(
+            "Enter your ID number\nto reset your password"),
         "enterLoginDetails":
             MessageLookupByLibrary.simpleMessage("Enter your login details"),
         "enterMailingAddress":
@@ -633,6 +639,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Id card is expired, cannot proceed."),
         "idCardNotAllowed": MessageLookupByLibrary.simpleMessage(
             "ID card is not allowed for NeoBank."),
+        "idExpiryDate": MessageLookupByLibrary.simpleMessage("ID EXPIRY DATE"),
         "idHint":
             MessageLookupByLibrary.simpleMessage("Please Enter ID Number"),
         "idNumber": MessageLookupByLibrary.simpleMessage("ID NUMBER"),
@@ -777,6 +784,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter if only the business name is different from the name above"),
         "issuingDate": MessageLookupByLibrary.simpleMessage("Issuing date"),
         "issuingPlace": MessageLookupByLibrary.simpleMessage("Issuing place"),
+        "issuingYourCreditCard":
+            MessageLookupByLibrary.simpleMessage("Issuing your credit card"),
         "jobAndIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
         "jobIncome": MessageLookupByLibrary.simpleMessage("JOB & INCOME"),
         "jobIncomeMsg": MessageLookupByLibrary.simpleMessage(
@@ -786,6 +795,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("You joined \nblink"),
         "legalDocumentNo":
             MessageLookupByLibrary.simpleMessage("LEGAL DOCUMENT NO."),
+        "letsCreateNewPass": MessageLookupByLibrary.simpleMessage(
+            "Next, let’s create\nyour new password"),
         "letsCreateYourAccount":
             MessageLookupByLibrary.simpleMessage("Let’s create\nyour account"),
         "letsCreateYourProfile":
@@ -1003,6 +1014,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "preferredTime": MessageLookupByLibrary.simpleMessage("PREFERRED TIME"),
         "preferredTimeSmall":
             MessageLookupByLibrary.simpleMessage("Preferred Time"),
+        "preparingYourCard":
+            MessageLookupByLibrary.simpleMessage("Preparing your card..."),
         "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
             "Great! Now, here’s what Neu has to offer for you"),
         "profileDetailsQ1":

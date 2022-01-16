@@ -2,6 +2,9 @@ import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
+import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
+import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
+import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:retrofit/retrofit.dart';
@@ -23,7 +26,7 @@ abstract class CardRemoteDs {
       getCreditCardTransactions();
 
   Future<HttpResponse<ResponseEntity>> requestCreditCard(
-      {required double cardLimit});
+      {required String cardId});
 
   Future<HttpResponse<DebitYearsResponseEntity>> getCreditYears();
 
@@ -76,4 +79,15 @@ abstract class CardRemoteDs {
       bool? isMerchantsPayments,
       bool? isOnlinePurchase,
       bool? isContactLessPayments});
+
+  Future<HttpResponse<GetCardApplicationResponseEntity>> getCardApplication();
+
+  Future<HttpResponse<GetLoanValuesResponseEntity>> getLoanValues(
+      {String? accountId});
+
+  Future<HttpResponse<ProcessLoanResponseEntity>> processLoanRequest(
+      {String? minimumSettlement,
+      String? nickName,
+      num? loanValueId,
+      num? creditLimit});
 }

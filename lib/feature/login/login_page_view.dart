@@ -81,7 +81,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     ProviderScope.containerOf(context)
                                         .read(appViewModel)
                                         .getToken();
-                                    model.checkKycStatus();
+                                    //model.checkKycStatus();
                                     model.emailKey.currentState!.isValid = true;
                                     Future.delayed(Duration(milliseconds: 500),
                                         () {
