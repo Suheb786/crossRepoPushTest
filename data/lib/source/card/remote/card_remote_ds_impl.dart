@@ -17,6 +17,7 @@ import 'package:data/entity/remote/card/get_card_application/get_card_applicatio
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_entity.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
+import 'package:data/entity/remote/card/link_card_step/link_card_step_request_entity.dart';
 import 'package:data/entity/remote/card/process_loan_request/process_loan_request_entity.dart';
 import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
@@ -277,5 +278,16 @@ class CardRemoteDsImpl extends CardRemoteDs {
         minimumSettlement: minimumSettlement,
         nickName: nickName,
         creditLimit: creditLimit));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> linkCardStep(
+      {String? cardId, String? accountNumber}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.linkCardStep(LinkCardStepRequestEntity(
+        cardId: cardId,
+        accountNumber: accountNumber,
+        getToken: true,
+        baseData: baseData.toJson()));
   }
 }

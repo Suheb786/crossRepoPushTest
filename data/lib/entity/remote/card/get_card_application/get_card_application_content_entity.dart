@@ -21,6 +21,18 @@ class GetCardApplicationContentEntity
   final bool? issueCardOnNI;
   @JsonKey(name: "issueCardDate")
   final String? issueCardDate;
+  @JsonKey(name: "finalStep")
+  final bool? finalStep;
+  @JsonKey(name: "contactLessError")
+  final int? contactLessError;
+  @JsonKey(name: "linkCardError")
+  final int? linkCardError;
+  @JsonKey(name: "crifError")
+  final int? crifError;
+  @JsonKey(name: "manageSOError")
+  final int? manageSOError;
+  @JsonKey(name: "aramexError")
+  final int? aramexError;
 
   GetCardApplicationContentEntity(
       {this.cardId: "",
@@ -28,7 +40,13 @@ class GetCardApplicationContentEntity
       this.processLoanStep: false,
       this.processLoanDate: "",
       this.issueCardOnNI: false,
-      this.issueCardDate: ""});
+      this.issueCardDate: "",
+      this.finalStep: false,
+      this.contactLessError: 0,
+      this.linkCardError: 0,
+      this.crifError: 0,
+      this.manageSOError: 0,
+      this.aramexError: 0});
 
   factory GetCardApplicationContentEntity.fromJson(Map<String, dynamic> json) =>
       _$GetCardApplicationContentEntityFromJson(json);
@@ -49,6 +67,12 @@ class GetCardApplicationContentEntity
         issueCardOnNI: this.issueCardOnNI,
         loanValueId: this.loanValueId,
         processLoanDate: this.processLoanDate,
-        processLoanStep: this.processLoanStep);
+        processLoanStep: this.processLoanStep,
+        finalStep: this.finalStep,
+        contactLessError: this.contactLessError,
+        aramexError: this.aramexError,
+        crifError: this.crifError,
+        linkCardError: this.linkCardError,
+        manageSOError: this.manageSOError);
   }
 }

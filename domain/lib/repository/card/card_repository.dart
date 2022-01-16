@@ -89,4 +89,7 @@ abstract class CardRepository {
       String nickName,
       num loanValueId,
       num creditLimit});
+
+  Future<Either<NetworkError, bool>> linkCardStep(
+      {required String cardId, required String accountNumber});
 }
