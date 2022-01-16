@@ -276,7 +276,7 @@ final registerStepFourViewModelProvider =
 ///review application page
 final reviewApplicationPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ReviewApplicationPageViewModel>(
-            (ref) => ReviewApplicationPageViewModel(
+  (ref) => ReviewApplicationPageViewModel(
       ref.read(reviewApplicationUseCaseProvider),
       ref.read(checkVideoCallStatusUseCaseProvider),
       ref.read(getAccountUseCaseProvider),
@@ -294,7 +294,10 @@ final uploadDocumentsPageViewModelProvider =
       ref.read(uploadDocumentUseCaseProvider),
       ref.read(checkOtherNationalityStatusUseCaseProvider),
       ref.read(fileUploadUseCaseProvider),
-      ref.read(removeDebitLockUseCaseProvider)),
+      ref.read(removeDebitLockUseCaseProvider),
+      ref.read(customerStatusUseCaseProvider),
+      ref.read(getAccountUseCaseProvider),
+      ref.read(createAccountUseCaseProvider)),
 );
 
 ///account ready page
