@@ -1,4 +1,3 @@
-import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
@@ -8,7 +7,6 @@ import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/usecase/country/fetch_allowed_issuers_usecase.dart';
 import 'package:domain/usecase/id_card/get_ahwal_details_usecase.dart';
-import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:domain/usecase/user/confirm_detail_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
@@ -35,10 +33,6 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
 
   /// id verification info request subject holder
   PublishSubject<IdVerificationInfoUseCaseParams> _idVerificationInfoRequest =
-      PublishSubject();
-
-  ///upload profile
-  PublishSubject<UploadDocumentUseCaseParams> _uploadProfilePhotoRequest =
       PublishSubject();
 
   Stream<IdVerificationInfoUseCaseParams> get idVerificationRequestStream =>
@@ -73,7 +67,6 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   ///get ahwal details subject response holder
   final PublishSubject<Resource<AhwalDetailResponse>> _getAhwalDetailsResponse =
       PublishSubject();
-  final UploadDocumentUseCase _uploadDocumentUseCase;
 
   ///get ahwal details response stream
   Stream<Resource<AhwalDetailResponse>> get getAhwalDetailsStream =>
@@ -97,26 +90,17 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   ///get allowed issuers subject response
   final BehaviorSubject<Resource<List<AllowedIssuerCountry>>>
       _getAllowedIssuersResponse = BehaviorSubject();
-  PublishSubject<String> _uploadProfilePhotoResponse = PublishSubject();
 
   ScannedDocumentInformation scannedDocumentInformation =
       ScannedDocumentInformation();
 
   IdVerificationInfoViewModel(
-      this._idVerificationInfoUseCase,
-      this._scanUserDocumentUseCase,
-      this._getAhwalDetailsUseCase,
-      this._confirmDetailUseCase,
-      this._fetchAllowedIssuersUseCase,
-      this._uploadDocumentUseCase) {
-    _uploadProfilePhotoRequest.listen((value) {
-      RequestManager(value,
-              createCall: () => _uploadDocumentUseCase.execute(params: value))
-          .asFlow()
-          .listen((event) {
-        _uploadProfilePhotoResponse.safeAdd(event.data!);
-      });
-    });
+    this._idVerificationInfoUseCase,
+    this._scanUserDocumentUseCase,
+    this._getAhwalDetailsUseCase,
+    this._confirmDetailUseCase,
+    this._fetchAllowedIssuersUseCase,
+  ) {
     _idVerificationInfoRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -194,11 +178,6 @@ class IdVerificationInfoViewModel extends BasePageViewModel {
   void idVerificationInfo() {
     _idVerificationInfoRequest.safeAdd(IdVerificationInfoUseCaseParams(
         isRetrieveConditionChecked: _isRetrievedConditionSubject.value));
-  }
-
-  void uploadProfilePhoto(DocumentTypeEnum type) {
-    _uploadProfilePhotoRequest
-        .safeAdd(UploadDocumentUseCaseParams(documentType: type));
   }
 
   void fetchAllowedIssuers() {
