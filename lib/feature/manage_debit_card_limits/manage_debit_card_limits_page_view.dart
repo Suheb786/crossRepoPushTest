@@ -1,4 +1,5 @@
 import 'package:domain/constants/enum/card_type.dart';
+import 'package:domain/model/debit_card/debit_card_limit_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,7 +12,6 @@ import 'package:neo_bank/ui/molecules/debit_card_settings/manage_limits/manage_l
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
-import 'package:domain/model/debit_card/debit_card_limit_response.dart';
 import 'package:neo_bank/utils/status.dart';
 
 class ManageDebitCardLimitsPageView
@@ -86,8 +86,7 @@ class ManageDebitCardLimitsPageView
                                   onData: (data) {
                                     if (data.status == Status.SUCCESS) {
                                       ///TODO: updated value from response
-                                      model.showSuccessToast(
-                                          'Limits updated Successfully');
+                                      model.getDebitCardLimit();
                                     }
                                   },
                                   dataBuilder: (context, response) {
@@ -100,17 +99,44 @@ class ManageDebitCardLimitsPageView
                                               model.isAtmWithdrawal = value;
                                             },
                                             title: S.of(context).atmWithDrawal,
-                                            amountSet: '3000',
-                                            maxAmount: '5000',
+                                            amountSet: debitCardLimitResponse!
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![0]
+                                                .currentLimit!
+                                                .toString(),
+                                            maxAmount: debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![0]
+                                                .maxLimit!
+                                                .toString(),
                                             providerBase:
                                                 atmWithdrawalViewModelProvider,
                                             onDone: (atmWithdrawalValue) {
+                                              print(
+                                                  "atm withdraw : ${atmWithdrawalValue}");
                                               model.updateCardLimits(
-                                                  onlinePurchase: 0,
+                                                  onlinePurchase: int.parse(
+                                                      debitCardLimitResponse
+                                                          .data!
+                                                          .debitCardLimitContent!
+                                                          .limits![4]
+                                                          .currentLimit!),
                                                   atmWithdrawalValue: int.parse(
                                                       atmWithdrawalValue),
-                                                  contactlessPayments: 0,
-                                                  merchantPayment: 0);
+                                                  contactlessPayments: int.parse(
+                                                      debitCardLimitResponse
+                                                          .data!
+                                                          .debitCardLimitContent!
+                                                          .limits![5]
+                                                          .currentLimit!),
+                                                  merchantPayment: int.parse(
+                                                      debitCardLimitResponse
+                                                          .data!
+                                                          .debitCardLimitContent!
+                                                          .limits![1]
+                                                          .currentLimit!));
                                             },
                                           ),
                                           ManageLimitsWidget(
@@ -119,8 +145,18 @@ class ManageDebitCardLimitsPageView
                                             },
                                             title:
                                                 S.of(context).merchantPayments,
-                                            amountSet: '2000',
-                                            maxAmount: '5000',
+                                            amountSet: debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![1]
+                                                .currentLimit!
+                                                .toString(),
+                                            maxAmount: debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![2]
+                                                .maxLimit!
+                                                .toString(),
                                             providerBase:
                                                 merchantPaymentViewModelProvider,
                                             onDone: (merchantPaymentValue) {
@@ -137,8 +173,18 @@ class ManageDebitCardLimitsPageView
                                               model.isOnlinePurchase = value;
                                             },
                                             title: S.of(context).onlinePurchase,
-                                            amountSet: '1000',
-                                            maxAmount: '5000',
+                                            amountSet: debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![4]
+                                                .currentLimit!
+                                                .toString(),
+                                            maxAmount: debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![4]
+                                                .maxLimit!
+                                                .toString(),
                                             providerBase:
                                                 onlinePurchaseViewModelProvider,
                                             onDone: (onlinePurchaseLimitValue) {
@@ -158,8 +204,18 @@ class ManageDebitCardLimitsPageView
                                             title: S
                                                 .of(context)
                                                 .contactLessPayments,
-                                            amountSet: '40',
-                                            maxAmount: '150',
+                                            amountSet: debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![5]
+                                                .currentLimit!
+                                                .toString(),
+                                            maxAmount: debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![5]
+                                                .maxLimit!
+                                                .toString(),
                                             isLast: true,
                                             providerBase:
                                                 contactLessPaymentViewModelProvider,

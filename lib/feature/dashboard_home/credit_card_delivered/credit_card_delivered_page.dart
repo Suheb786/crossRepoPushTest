@@ -7,9 +7,10 @@ import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_car
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_view_model.dart';
 
 class CreditCardDeliveredPage extends BasePage<CreditCardDeliveredViewModel> {
-  final CreditCard creditCard;
+  final List<CreditCard> creditCard;
 
   CreditCardDeliveredPage({required this.creditCard});
+
   @override
   DebitCardDeliveredPageState createState() => DebitCardDeliveredPageState();
 }
