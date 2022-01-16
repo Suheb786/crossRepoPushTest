@@ -192,7 +192,11 @@ class IdVerificationInfoView
                                                   Column(
                                                     children: [
                                                       InkWell(
-                                                        onTap: () {},
+                                                        onTap: () {
+                                                          // model.uploadProfilePhoto(
+                                                          //     DocumentTypeEnum
+                                                          //         .GALLERY);
+                                                        },
                                                         child: Text(
                                                           S
                                                               .of(context)
