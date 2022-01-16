@@ -342,16 +342,26 @@ class CardRepositoryImpl extends CardRepository {
       String? nickName,
       num? loanValueId,
       num? creditLimit}) async {
-    final result = await safeApiCall(
-      _remoteDs.processLoanRequest(
-          minimumSettlement: minimumSettlement,
-          nickName: nickName,
-          loanValueId: loanValueId,
-          creditLimit: creditLimit)
-    );
+    final result = await safeApiCall(_remoteDs.processLoanRequest(
+        minimumSettlement: minimumSettlement,
+        nickName: nickName,
+        loanValueId: loanValueId,
+        creditLimit: creditLimit));
     return result!.fold(
       (l) => Left(l),
       (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> linkCardStep(
+      {required String cardId, required String accountNumber}) async {
+    final result = await safeApiCall(
+      _remoteDs.linkCardStep(cardId: cardId, accountNumber: accountNumber),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
     );
   }
 }

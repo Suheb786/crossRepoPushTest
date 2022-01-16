@@ -2,6 +2,8 @@ import 'package:dartz/dartz.dart';
 import 'package:data/network/utils/safe_api_call.dart';
 import 'package:data/source/account_settings/account_settings_datasource.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/profile_settings/get_customer_doc/get_customer_document_response.dart';
+import 'package:domain/model/profile_settings/get_customer_doc_id/get_customer_doc_id_response.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 import 'package:domain/repository/account_settings/account_settings_repository.dart';
@@ -92,6 +94,41 @@ class AccountSettingsRepositoryImpl extends AccountSettingsRepository {
       verifyChangeMobile({required String otp}) async {
     final result = await safeApiCall(
       _accountSettingsRemoteDs.verifyChangeMobile(otp: otp),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> deleteProfileImage() async {
+    final result = await safeApiCall(
+      _accountSettingsRemoteDs.deleteProfileImage(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, GetCustomerDocIdResponse>>
+      getCustomerDocId() async {
+    final result = await safeApiCall(
+      _accountSettingsRemoteDs.getCustomerDocId(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, GetCustomerDocumentResponse>> getCustomerDocument(
+      {required String docId}) async {
+    final result = await safeApiCall(
+      _accountSettingsRemoteDs.getCustomerDocument(docId: docId),
     );
     return result!.fold(
       (l) => Left(l),

@@ -90,4 +90,7 @@ abstract class CardRemoteDs {
       String? nickName,
       num? loanValueId,
       num? creditLimit});
+
+  Future<HttpResponse<ResponseEntity>> linkCardStep(
+      {String cardId, String accountNumber});
 }

@@ -3,6 +3,9 @@ import 'package:data/entity/local/base/image_utils.dart';
 import 'package:data/entity/remote/accountsettings/change_email_request.dart';
 import 'package:data/entity/remote/accountsettings/change_mobile_request.dart';
 import 'package:data/entity/remote/accountsettings/change_password_request.dart';
+import 'package:data/entity/remote/accountsettings/get_customer_doc_id_response_entity.dart';
+import 'package:data/entity/remote/accountsettings/get_customer_document_request_entity.dart';
+import 'package:data/entity/remote/accountsettings/get_customer_document_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/profile_changed_success_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/profile_details_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/update_profile_image_request.dart';
@@ -84,5 +87,28 @@ class AccountSettingsRemoteDsImpl extends AccountSettingsRemoteDs {
         baseData: baseData.toJson(),
         otp: otp,
         uniqueId: DateTime.now().microsecondsSinceEpoch.toString()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> deleteProfileImage() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .deleteProfileImage(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<GetCustomerDocIdResponseEntity>>
+      getCustomerDocId() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .getCustomerDocId(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument(
+      {String? docId}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getCustomerDocument(GetCustomerDocumentRequestEntity(
+        baseData: baseData.toJson(), docId: docId!, getToken: true));
   }
 }

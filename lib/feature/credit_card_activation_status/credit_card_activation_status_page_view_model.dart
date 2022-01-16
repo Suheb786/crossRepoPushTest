@@ -1,6 +1,7 @@
 import 'package:domain/model/card/get_card_applications/get_card_application_response.dart';
 import 'package:domain/usecase/card_delivery/credit_card_request_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_card_application_usecase.dart';
+import 'package:domain/usecase/card_delivery/link_card_step_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -12,6 +13,8 @@ class CreditCardActivationStatusPageViewModel extends BasePageViewModel {
   final GetCardApplicationUseCase _getCardApplicationUseCase;
 
   final CreditCardRequestUseCase _creditCardRequestUseCase;
+
+  final LinkCardStepUseCase _linkCardStepUseCase;
 
   ///get application request
   PublishSubject<GetCardApplicationUseCaseParams> _getApplicationRequest =
@@ -36,8 +39,18 @@ class CreditCardActivationStatusPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get creditCardReqResponseStream =>
       _creditCardReqResponse.stream;
 
-  CreditCardActivationStatusPageViewModel(
-      this._getCardApplicationUseCase, this._creditCardRequestUseCase) {
+  ///link card step request
+  PublishSubject<LinkCardStepUseCaseParams> _linkCardStepRequest =
+      PublishSubject();
+
+  ///link card step response
+  PublishSubject<Resource<bool>> _linkCardStepResponse = PublishSubject();
+
+  ///link card step response stream
+  Stream<Resource<bool>> get linkCardStepStream => _linkCardStepResponse.stream;
+
+  CreditCardActivationStatusPageViewModel(this._getCardApplicationUseCase,
+      this._creditCardRequestUseCase, this._linkCardStepUseCase) {
     _getApplicationRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -68,6 +81,19 @@ class CreditCardActivationStatusPageViewModel extends BasePageViewModel {
       });
     });
 
+    _linkCardStepRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _linkCardStepUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _linkCardStepResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
     getApplication();
   }
 
@@ -78,6 +104,11 @@ class CreditCardActivationStatusPageViewModel extends BasePageViewModel {
   void creditCardRequest(String cardId) {
     _creditCardReqRequest
         .safeAdd(CreditCardRequestUseCaseParams(cardId: cardId));
+  }
+
+  void linkCardStep(String cardId, String accountNumber) {
+    _linkCardStepRequest.safeAdd(LinkCardStepUseCaseParams(
+        cardId: cardId, accountNumber: accountNumber));
   }
 
   @override

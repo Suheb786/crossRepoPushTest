@@ -20,6 +20,7 @@ import 'package:domain/usecase/card_delivery/get_credit_years_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_card_transactions_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_debit_years_usecase.dart';
 import 'package:domain/usecase/card_delivery/get_loan_values_usecase.dart';
+import 'package:domain/usecase/card_delivery/link_card_step_usecase.dart';
 import 'package:domain/usecase/card_delivery/otp_for_change_card_pin_usecase.dart';
 import 'package:domain/usecase/card_delivery/personalize_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/personalize_debit_card_usecase.dart';
@@ -157,3 +158,7 @@ final getLoanValueUseCaseProvider = Provider.autoDispose<GetLoanValueUseCase>(
 final creditCardRequestUseCaseProvider =
     Provider.autoDispose<CreditCardRequestUseCase>(
         (ref) => CreditCardRequestUseCase(ref.read(cardRepositoryProvider)));
+
+///[LinkCardStepUseCase] provider
+final linkCardStepUseCaseProvider = Provider.autoDispose<LinkCardStepUseCase>(
+    (ref) => LinkCardStepUseCase(ref.read(cardRepositoryProvider)));

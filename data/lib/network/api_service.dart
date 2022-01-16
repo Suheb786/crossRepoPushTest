@@ -11,6 +11,9 @@ import 'package:data/entity/remote/account/save_customer_schedule_time_response_
 import 'package:data/entity/remote/accountsettings/change_email_request.dart';
 import 'package:data/entity/remote/accountsettings/change_mobile_request.dart';
 import 'package:data/entity/remote/accountsettings/change_password_request.dart';
+import 'package:data/entity/remote/accountsettings/get_customer_doc_id_response_entity.dart';
+import 'package:data/entity/remote/accountsettings/get_customer_document_request_entity.dart';
+import 'package:data/entity/remote/accountsettings/get_customer_document_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/profile_changed_success_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/profile_details_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/update_profile_image_request.dart';
@@ -44,6 +47,7 @@ import 'package:data/entity/remote/card/get_card_application/get_card_applicatio
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_entity.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
+import 'package:data/entity/remote/card/link_card_step/link_card_step_request_entity.dart';
 import 'package:data/entity/remote/card/process_loan_request/process_loan_request_entity.dart';
 import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
@@ -567,4 +571,21 @@ abstract class ApiService {
   @POST("/CardTracking/ProccessLoanRequest")
   Future<HttpResponse<ProcessLoanResponseEntity>> processLoanRequest(
       @Body() ProcessLoanRequestEntity processLoanRequestEntity);
+
+  @POST("/CardTracking/LinkCardStep")
+  Future<HttpResponse<ResponseEntity>> linkCardStep(
+      @Body() LinkCardStepRequestEntity linkCardStepRequestEntity);
+
+  @POST("/CustomerDetails/DeleteProfileImage")
+  Future<HttpResponse<ResponseEntity>> deleteProfileImage(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/CustomerDetails/GetCustomerDocId")
+  Future<HttpResponse<GetCustomerDocIdResponseEntity>> getCustomerDocId(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/CustomerDetails/GetCusDocs")
+  Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument(
+      @Body()
+          GetCustomerDocumentRequestEntity getCustomerDocumentRequestEntity);
 }
