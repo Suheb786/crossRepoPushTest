@@ -6991,10 +6991,10 @@ class S {
     );
   }
 
-  /// `What is your relationship\nwith cardholder?`
+  /// `What is your relationship\nwith the cardholder?`
   String get whatRelationshipWithCardHolder {
     return Intl.message(
-      'What is your relationship\nwith cardholder?',
+      'What is your relationship\nwith the cardholder?',
       name: 'whatRelationshipWithCardHolder',
       desc: '',
       args: [],
@@ -7431,10 +7431,10 @@ class S {
     );
   }
 
-  /// `I authorize blink to retrieve my`
+  /// `I hereby acknowledge that I have read, understood, and accepted Blink’s Credit Card `
   String get authorize {
     return Intl.message(
-      'I authorize blink to retrieve my',
+      'I hereby acknowledge that I have read, understood, and accepted Blink’s Credit Card ',
       name: 'authorize',
       desc: '',
       args: [],
@@ -7451,21 +7451,31 @@ class S {
     );
   }
 
-  /// `data and agree to the `
+  /// `and `
   String get agreeData {
     return Intl.message(
-      'data and agree to the ',
+      'and ',
       name: 'agreeData',
       desc: '',
       args: [],
     );
   }
 
-  /// `Terms & Conditions.`
+  /// `Terms & Conditions `
   String get creditTc {
     return Intl.message(
-      'Terms & Conditions.',
+      'Terms & Conditions ',
       name: 'creditTc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `authorization.`
+  String get authorization {
+    return Intl.message(
+      'authorization.',
+      name: 'authorization',
       desc: '',
       args: [],
     );
@@ -7501,10 +7511,10 @@ class S {
     );
   }
 
-  /// `SUPPLEMENTARY CREDIT CARD`
+  /// `APPLY FOR CREDIT CARD`
   String get applyCreditCardTitle {
     return Intl.message(
-      'SUPPLEMENTARY CREDIT CARD',
+      'APPLY FOR CREDIT CARD',
       name: 'applyCreditCardTitle',
       desc: '',
       args: [],
@@ -7721,10 +7731,10 @@ class S {
     );
   }
 
-  /// `Enter your ID number\nto reset your password`
+  /// `Enter below details to reset your password`
   String get enterIdNumberToResetPassword {
     return Intl.message(
-      'Enter your ID number\nto reset your password',
+      'Enter below details to reset your password',
       name: 'enterIdNumberToResetPassword',
       desc: '',
       args: [],
@@ -7786,6 +7796,26 @@ class S {
     return Intl.message(
       'Activating your credit card',
       name: 'activatingCreditCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `TOTAL USED AMOUNT`
+  String get totalUsedAmount {
+    return Intl.message(
+      'TOTAL USED AMOUNT',
+      name: 'totalUsedAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `YOUR CARD LIMIT`
+  String get yourCardLimit {
+    return Intl.message(
+      'YOUR CARD LIMIT',
+      name: 'yourCardLimit',
       desc: '',
       args: [],
     );
