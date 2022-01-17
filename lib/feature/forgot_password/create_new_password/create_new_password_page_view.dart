@@ -6,6 +6,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
 import 'package:neo_bank/feature/forgot_password/create_new_password/create_new_password_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -39,6 +40,8 @@ class CreateNewPasswordPageView
                       if (passwordData.status == Status.SUCCESS) {
                         model.passwordKey.currentState!.isValid = true;
                         model.confirmPasswordKey.currentState!.isValid = true;
+                        Navigator.pushNamed(
+                            context, RoutePaths.ResetPasswordSuccess);
                       } else if (passwordData.status == Status.ERROR) {
                         if (passwordData.appError!.type ==
                             ErrorType.PASSWORD_MISMATCH) {

@@ -235,8 +235,8 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
             nickName: addNickNameController.text.isEmpty
                 ? ""
                 : addNickNameController.text,
-            type: "",
-            detCustomerType: ""));
+            type: type,
+            detCustomerType: detCustomerType));
   }
 
   void updatePurpose(Purpose value) {

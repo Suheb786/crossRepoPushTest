@@ -45,7 +45,7 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         _createPasswordResponse.safeAdd(event);
-        updateLoader();
+        // updateLoader();
         if (event.status == Status.ERROR) {
           showErrorState();
         }
