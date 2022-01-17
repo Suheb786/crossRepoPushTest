@@ -80,6 +80,8 @@ import 'package:data/entity/remote/fatca_crs/set_fatca_w8_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/set_fatca_w9_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/upload_signature_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/upload_signature_response_entity.dart';
+import 'package:data/entity/remote/forget_password/check_forget_password_request_entity.dart';
+import 'package:data/entity/remote/forget_password/check_forget_password_response_entity.dart';
 import 'package:data/entity/remote/kyc/check_kyc_status_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
 import 'package:data/entity/remote/payment/check_send_money_request_entity.dart';
@@ -588,4 +590,8 @@ abstract class ApiService {
   Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument(
       @Body()
           GetCustomerDocumentRequestEntity getCustomerDocumentRequestEntity);
+
+  @POST("/Auth/CheckForgetPasswordCred")
+  Future<HttpResponse<CheckForgetPasswordResponseEntity>> checkForgetPassword(
+      @Body() CheckForgetPasswordRequestEntity baseRequest);
 }

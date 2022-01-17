@@ -376,6 +376,12 @@ class ErrorParser {
         return localisedHelper.currentPasswordIncorrect;
       case ErrorType.EMPTY_NICKNAME_VALUE:
         return localisedHelper.emptyNickName;
+      case ErrorType.EMPTY_VERIFY_EMAIL:
+        return localisedHelper.emptyVerifyEmail;
+      case ErrorType.EMPTY_VERIFY_EXPIRY_DATE:
+        return localisedHelper.emptyVerifyExpiryDate;
+      case ErrorType.CHECK_PASSWORD_CRED_ERROR:
+        return localisedHelper.checkForgetPasswordError;
 
       default:
         return "";
