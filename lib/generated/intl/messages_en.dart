@@ -331,6 +331,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Don’t worry, you can deposit cash into the account with or without your card. Just locate nearest Capital Bank ATM."),
         "deviceNotFound":
             MessageLookupByLibrary.simpleMessage("Device Not Found"),
+        "deviceNotSupported":
+            MessageLookupByLibrary.simpleMessage("Jailbroken device detected"),
+        "deviceNotSupportedNote": MessageLookupByLibrary.simpleMessage(
+            "For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings."),
         "district": MessageLookupByLibrary.simpleMessage("District"),
         "doYouHaveAdditionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage(

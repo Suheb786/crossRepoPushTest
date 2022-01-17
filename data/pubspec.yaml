@@ -41,6 +41,9 @@ dependencies:
   encrypt: ^5.0.1
   path_provider: any
   permission_handler: any
+  tuple: ^2.0.0
+  flutter_jailbreak_detection: ^1.8.0
+  http_certificate_pinning: ^2.0.3
 
 dev_dependencies:
   flutter_test:

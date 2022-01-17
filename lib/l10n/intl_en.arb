@@ -784,5 +784,7 @@
   "yourApplicationInReviewNote": "Your application is under review,\nwe will notify you soon.",
   "refNo": "Ref No.",
   "biometricLoginDeactivated": "Biometric login is successfully deactivated",
-  "yourYellowSunDebitCardIssued": "Your Yellow Sun debit card has been issued!"
+  "yourYellowSunDebitCardIssued": "Your Yellow Sun debit card has been issued!",
+  "deviceNotSupported": "Jailbroken device detected",
+  "deviceNotSupportedNote": "For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings."
 }

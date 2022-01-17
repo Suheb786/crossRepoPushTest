@@ -19,6 +19,7 @@ import 'package:data/repository/register/register_step_four_repository_impl.dart
 import 'package:data/repository/register/register_step_three_repository_impl.dart';
 import 'package:data/repository/upload_document/upload_document_repository_impl.dart';
 import 'package:data/repository/user/user_repository_impl.dart';
+import 'package:data/repository/utility/utility_repository_impl.dart';
 import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/repository/account_settings/account_settings_repository.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
@@ -38,6 +39,7 @@ import 'package:domain/repository/register/register_step_four_repository.dart';
 import 'package:domain/repository/register/register_step_three_repository.dart';
 import 'package:domain/repository/upload_document/upload_document_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
+import 'package:domain/repository/utility/utility_repository.dart';
 import 'package:riverpod/riverpod.dart';
 
 /// inject [UserRepository] provider
@@ -124,3 +126,7 @@ var paymentRepositoryProvider = Provider<PaymentRepository>(
 /// inject [HelpCenterRepository] provider
 var helpCenterRepositoryProvider = Provider<HelpCenterRepository>(
     (ref) => InfobipAudioRepositoryImpl(ref.read(infobipDatasourceProvider)));
+
+/// inject [UtilityRepository] provider
+var utilityRepositoryProvider = Provider<UtilityRepository>(
+    (ref) => UtilityRepositoryImpl(ref.read(utilityDataSourceProvider)));

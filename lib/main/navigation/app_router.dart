@@ -96,7 +96,8 @@ class AppRouter {
 
       case RoutePaths.Registration:
         return CupertinoPageRoute(
-            builder: (context) => RegisterPage(),
+            builder: (context) =>
+                RegisterPage(settings.arguments as RegisterPageParams),
             settings: RouteSettings(name: RoutePaths.Registration));
 
       case RoutePaths.AccountReady:

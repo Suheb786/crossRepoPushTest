@@ -276,7 +276,7 @@ final registerStepFourViewModelProvider =
 ///review application page
 final reviewApplicationPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<ReviewApplicationPageViewModel>(
-            (ref) => ReviewApplicationPageViewModel(
+  (ref) => ReviewApplicationPageViewModel(
       ref.read(reviewApplicationUseCaseProvider),
       ref.read(checkVideoCallStatusUseCaseProvider),
       ref.read(getAccountUseCaseProvider),

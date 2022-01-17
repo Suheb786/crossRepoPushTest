@@ -109,20 +109,13 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                     element.status ?? false) ??
                                             CheckKYCData();
 
-                                        switch (kycData.type) {
-                                          case "IDCardC":
-                                          case "SelfiCheck":
-                                          case "CountryResidence":
-                                          case "ProfileStatus":
-                                          case "JobDetails":
-                                          case "AccountOpeningPurpose":
-                                          case "FatcaCrs":
-                                          case "AccountInfo":
-
-                                          default:
-                                            Navigator.pushReplacementNamed(
-                                                context, RoutePaths.AppHome);
-                                            break;
+                                        if (kycData.type?.isNotEmpty ?? false) {
+                                          Navigator.pushReplacementNamed(
+                                              context, RoutePaths.Registration,
+                                              arguments: kycData);
+                                        } else {
+                                          Navigator.pushReplacementNamed(
+                                              context, RoutePaths.AppHome);
                                         }
                                       }
                                     },
