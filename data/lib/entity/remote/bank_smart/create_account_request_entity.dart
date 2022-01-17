@@ -15,11 +15,12 @@ class CreateAccountRequestEntity {
   @JsonKey(name: "baseClass")
   final Map<String, dynamic> baseData;
 
-  CreateAccountRequestEntity({this.getToken,
-    this.cif,
-    this.customerDetailsEntity,
-    this.account,
-    required this.baseData});
+  CreateAccountRequestEntity(
+      {this.getToken,
+      this.cif,
+      this.customerDetailsEntity,
+      this.account,
+      required this.baseData});
 
   factory CreateAccountRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$CreateAccountRequestEntityFromJson(json);

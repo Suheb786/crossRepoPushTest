@@ -15,15 +15,19 @@ class GetPurposeUseCase extends BaseUseCase<NetworkError,
   @override
   Future<Either<NetworkError, PurposeResponse>> execute(
       {required GetPurposeUseCaseParams params}) {
-    return _repository.getPurpose(params.toAccount!, params.transferType!);
+    return _repository.getPurpose(params.toAccount!, params.transferType!,
+        params.detCustomerType!, params.type!);
   }
 }
 
 class GetPurposeUseCaseParams extends Params {
   String? toAccount;
   String? transferType;
+  String? detCustomerType;
+  String? type;
 
-  GetPurposeUseCaseParams({this.toAccount, this.transferType});
+  GetPurposeUseCaseParams(
+      {this.toAccount, this.transferType, this.detCustomerType, this.type});
 
   @override
   Either<AppError, bool> verify() {

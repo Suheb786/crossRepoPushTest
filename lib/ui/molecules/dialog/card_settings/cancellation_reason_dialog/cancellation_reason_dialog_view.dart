@@ -69,6 +69,7 @@ class CancellationReasonDialogView extends StatelessWidget {
                             ),
                           ),
                           AppScrollableListViewWidget(
+                            key: ValueKey(model.cardCancellationReason.length),
                             child: ClickableListWheelScrollView(
                               scrollController: model.scrollController,
                               itemHeight: 64,

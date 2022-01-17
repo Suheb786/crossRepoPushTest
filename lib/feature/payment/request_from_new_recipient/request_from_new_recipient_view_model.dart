@@ -121,6 +121,8 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   String? dbtrBic;
   String? dbtrAcct;
   String? dbtrName;
+  String? type;
+  String? detCustomerType;
 
   RequestFromNewRecipientViewModel(this._useCase, this._uploadDocumentUseCase,
       this._getAccountByAliasUseCase, this._getPurposeUseCase) {
@@ -161,10 +163,17 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
           dbtrBic = event.data!.getAccountByAliasContent!.bic;
           dbtrName = event.data!.getAccountByAliasContent!.name;
           dbtrAcct = event.data!.getAccountByAliasContent!.acciban;
+          type = event.data!.getAccountByAliasContent!.type;
+          detCustomerType =
+              event.data!.getAccountByAliasContent!.detCustomerType;
           print("got value: ${event.data!.getAccountByAliasContent!.bic}");
           _showAccountDetailSubject
               .safeAdd(event.data!.getAccountByAliasContent!.name);
-          getPurpose(dbtrAcct!, "RTP");
+          getPurpose(
+              dbtrAcct!,
+              "RTP",
+              event.data!.getAccountByAliasContent!.detCustomerType!,
+              event.data!.getAccountByAliasContent!.type!);
         }
       });
     });
@@ -191,9 +200,13 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
     _addNickNameSubject.safeAdd(value);
   }
 
-  void getPurpose(String toAccount, String transferType) {
+  void getPurpose(String toAccount, String transferType, String detCustomerType,
+      String type) {
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
-        toAccount: toAccount, transferType: transferType));
+        toAccount: toAccount,
+        transferType: transferType,
+        type: type,
+        detCustomerType: detCustomerType));
   }
 
   void getAccountByAlias(String value, String currency) {
@@ -209,9 +222,8 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
             purpose: purposeController.text,
             purposeDetail: purposeDetailController.text,
             amount: double.parse(ProviderScope.containerOf(context)
-                    .read(requestMoneyViewModelProvider)
-                    .currentPinValue)
-                .toInt(),
+                .read(requestMoneyViewModelProvider)
+                .currentPinValue),
             limit: limit,
             dbtrBic: dbtrBic ?? "",
             dbtrAcct: dbtrAcct ?? "",
@@ -222,7 +234,9 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
             purposeDetailCode: purposeDetail!.strCode ?? "",
             nickName: addNickNameController.text.isEmpty
                 ? ""
-                : addNickNameController.text));
+                : addNickNameController.text,
+            type: type,
+            detCustomerType: detCustomerType));
   }
 
   void updatePurpose(Purpose value) {

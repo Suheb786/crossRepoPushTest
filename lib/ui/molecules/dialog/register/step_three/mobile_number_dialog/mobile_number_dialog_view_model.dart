@@ -57,8 +57,9 @@ class MobileNumberDialogViewModel extends BasePageViewModel {
       for (int i = 0; i < countryList!.length; i++) {
         CountryData country = countryList[i];
         if (country.countryName!
-            .toLowerCase()
-            .contains(searchText.toLowerCase())) {
+                .toLowerCase()
+                .contains(searchText.toLowerCase()) ||
+            country.phoneCode!.contains(searchText)) {
           searchResult!.add(country);
         }
       }

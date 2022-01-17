@@ -12,10 +12,9 @@ DashboardDataEntity _$DashboardDataEntityFromJson(Map<String, dynamic> json) {
         ? null
         : DashboardAccountEntity.fromJson(
             json['account'] as Map<String, dynamic>),
-    creditCard: json['creditCard'] == null
-        ? null
-        : DashboardCardEntity.fromJson(
-            json['creditCard'] as Map<String, dynamic>),
+    creditCard: (json['creditCard'] as List<dynamic>?)
+        ?.map((e) => DashboardCardEntity.fromJson(e as Map<String, dynamic>))
+        .toList(),
     blinkBornDate: json['blinkWasBorn'] == null
         ? null
         : DateTime.parse(json['blinkWasBorn'] as String),

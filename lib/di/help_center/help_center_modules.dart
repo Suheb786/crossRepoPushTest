@@ -3,6 +3,7 @@ import 'package:neo_bank/di/usecase/help_center/help_center_usecase_provider.dar
 import 'package:neo_bank/feature/help_center/active_call/active_call_page_view_model.dart';
 import 'package:neo_bank/feature/help_center/call_ended/call_ended_page_view_model.dart';
 import 'package:neo_bank/feature/help_center/help_center_page_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagement_team_dialog_view_model.dart';
 
 final helpCenterViewModelProvider =
     ChangeNotifierProvider.autoDispose<HelpCenterPageViewModel>(
@@ -25,3 +26,10 @@ final callEndedPageViewModelProvider =
     ChangeNotifierProvider.autoDispose<CallEndedPageViewModel>(
   (ref) => CallEndedPageViewModel(ref.read(callDurationUseCaseProvider)),
 );
+
+///get purpose of account opening dialog view model provider
+final engagementTeamDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<EngagementTeamDialogViewModel>((ref) =>
+        EngagementTeamDialogViewModel(
+            ref.read(infobipMessagePluginUseCaseProvider),
+            ref.read(showChatUseCaseProvider)));

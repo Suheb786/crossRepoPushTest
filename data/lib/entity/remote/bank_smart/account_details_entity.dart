@@ -12,7 +12,7 @@ class AccountDetailsEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "ourBranchID")
   final String? ourBranchID;
   @JsonKey(name: "clientID")
-  final dynamic? clientID;
+  final String? clientID;
   @JsonKey(name: "productID")
   final String? productID;
   @JsonKey(name: "name")

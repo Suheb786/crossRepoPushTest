@@ -1,3 +1,5 @@
+import 'package:data/entity/remote/accountsettings/get_customer_doc_id_response_entity.dart';
+import 'package:data/entity/remote/accountsettings/get_customer_document_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/profile_changed_success_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/profile_details_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
@@ -23,4 +25,11 @@ abstract class AccountSettingsRemoteDs {
       {required String oldPassword,
       required String newPassword,
       required String confirmNewPassword});
+
+  Future<HttpResponse<ResponseEntity>> deleteProfileImage();
+
+  Future<HttpResponse<GetCustomerDocIdResponseEntity>> getCustomerDocId();
+
+  Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument(
+      {String docId});
 }

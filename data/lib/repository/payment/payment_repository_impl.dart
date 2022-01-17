@@ -49,7 +49,9 @@ class PaymentRepositoryImpl extends PaymentRepository {
       num? localEq,
       String? memo,
       String? toAccount,
-      String? nickName}) async {
+      String? nickName,
+      String? detCustomerType,
+      String? type}) async {
     final result = await safeApiCall(
       paymentRemoteDs.transfer(
           beneficiaryId: beneficiaryId!,
@@ -61,7 +63,9 @@ class PaymentRepositoryImpl extends PaymentRepository {
           localEq: localEq!,
           memo: memo!,
           toAccount: toAccount!,
-          nickName: nickName!),
+          nickName: nickName!,
+          detCustomerType: detCustomerType!,
+          type: type!),
     );
     return result!.fold(
       (l) => Left(l),
@@ -79,14 +83,16 @@ class PaymentRepositoryImpl extends PaymentRepository {
       String memo,
       bool? isFriend,
       String? image,
-      String? nickName) async {
+      String? nickName,
+      String? detCustomerType,
+      String? type) async {
     final result = await safeApiCall(
       paymentRemoteDs.requestToPay(ctgyPurp, amount, dbtrBic, dbtrAcct,
-          dbtrName, memo, isFriend, image, nickName),
+          dbtrName, memo, isFriend, image, nickName, detCustomerType, type),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 
@@ -102,10 +108,11 @@ class PaymentRepositoryImpl extends PaymentRepository {
   }
 
   @override
-  Future<Either<NetworkError, PurposeResponse>> getPurpose(
-      String toAccount, String transferType) async {
+  Future<Either<NetworkError, PurposeResponse>> getPurpose(String toAccount,
+      String transferType, String detCustomerType, String type) async {
     final result = await safeApiCall(
-      paymentRemoteDs.getPurpose(toAccount, transferType),
+      paymentRemoteDs.getPurpose(
+          toAccount, transferType, detCustomerType, type),
     );
     return result!.fold(
       (l) => Left(l),

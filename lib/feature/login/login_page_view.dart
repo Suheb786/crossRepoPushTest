@@ -81,7 +81,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     ProviderScope.containerOf(context)
                                         .read(appViewModel)
                                         .getToken();
-                                    model.checkKycStatus();
+                                    //model.checkKycStatus();
                                     model.emailKey.currentState!.isValid = true;
                                     Future.delayed(Duration(milliseconds: 500),
                                         () {
@@ -184,14 +184,22 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                             ),
                                             Padding(
                                               padding: EdgeInsets.only(top: 24),
-                                              child: Text(
-                                                S.of(context).forgotPassword,
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w500,
-                                                    color: Theme.of(context)
-                                                        .accentColor),
+                                              child: InkWell(
+                                                onTap: () =>
+                                                    Navigator.pushNamed(
+                                                        context,
+                                                        RoutePaths
+                                                            .ForgotPassword),
+                                                child: Text(
+                                                  S.of(context).forgotPassword,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Theme.of(context)
+                                                          .accentColor),
+                                                ),
                                               ),
                                             ),
                                             Center(

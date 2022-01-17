@@ -70,13 +70,14 @@ final registerStepOneViewModelProvider =
 
 ///[IdVerificationInfoViewModel] provider
 final idVerificationInfoViewModelProvider =
-    ChangeNotifierProvider.autoDispose<IdVerificationInfoViewModel>((ref) =>
-        IdVerificationInfoViewModel(
-            ref.read(idVerificationInfoUseCaseProvider),
-            ref.read(scanUserDocumentUseCaseProvider),
-            ref.read(getAhwalDetailsUseCaseProvider),
-            ref.read(confirmDetailUseCaseProvider),
-            ref.read(fetchAllowedIssuersUseCaseProvider)));
+    ChangeNotifierProvider.autoDispose<IdVerificationInfoViewModel>(
+        (ref) => IdVerificationInfoViewModel(
+              ref.read(idVerificationInfoUseCaseProvider),
+              ref.read(scanUserDocumentUseCaseProvider),
+              ref.read(getAhwalDetailsUseCaseProvider),
+              ref.read(confirmDetailUseCaseProvider),
+              ref.read(fetchAllowedIssuersUseCaseProvider),
+            ));
 
 ///[CaptureViewModel] provider
 final captureViewModelProvider =
@@ -294,7 +295,10 @@ final uploadDocumentsPageViewModelProvider =
       ref.read(uploadDocumentUseCaseProvider),
       ref.read(checkOtherNationalityStatusUseCaseProvider),
       ref.read(fileUploadUseCaseProvider),
-      ref.read(removeDebitLockUseCaseProvider)),
+      ref.read(removeDebitLockUseCaseProvider),
+      ref.read(customerStatusUseCaseProvider),
+      ref.read(getAccountUseCaseProvider),
+      ref.read(createAccountUseCaseProvider)),
 );
 
 ///account ready page

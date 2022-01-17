@@ -112,6 +112,7 @@ class _YearMonthDialogViewState extends State<YearMonthDialogView> {
                                           ),
                                         ),
                                         AppScrollableListViewWidget(
+                                          key: ValueKey(listData.data!.length),
                                           child: ClickableListWheelScrollView(
                                             scrollController:
                                                 model.scrollController,

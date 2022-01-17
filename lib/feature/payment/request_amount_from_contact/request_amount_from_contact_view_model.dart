@@ -158,17 +158,18 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
               ? 'Personal'
               : beneficiary!.purpose)
           : purpose!.code!,
-      purposeDetail: purposeDetail == null
-          ? (beneficiary!.purposeDetails == null ||
-                  beneficiary!.purposeDetails!.isEmpty
-              ? 'Transfer to Friend or Family'
-              : beneficiary!.purposeDetails!)
-          : purposeDetail!.strCode!,
-      amount: double.parse(currentPinValue).toInt(),
-      dbtrBic: beneficiary!.iban ?? "",
-      dbtrAcct: beneficiary!.accountNo ?? "",
-      dbtrName: beneficiary!.fullName ?? "",
-    ));
+        purposeDetail: purposeDetail == null
+            ? (beneficiary!.purposeDetails == null ||
+                    beneficiary!.purposeDetails!.isEmpty
+                ? 'Transfer to Friend or Family'
+                : beneficiary!.purposeDetails!)
+            : purposeDetail!.strCode!,
+        amount: double.parse(currentPinValue),
+        dbtrBic: beneficiary!.iban ?? "",
+        dbtrAcct: beneficiary!.accountNo ?? "",
+        dbtrName: beneficiary!.fullName ?? "",
+        type: "",
+        detCustomerType: ""));
   }
 
   @override

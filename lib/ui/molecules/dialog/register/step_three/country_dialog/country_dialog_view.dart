@@ -36,18 +36,17 @@ class CountryDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
+    _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     return BaseWidget<CountryDialogViewModel>(
         builder: (context, model, child) {
           return Dialog(
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16.0)),
               insetPadding: EdgeInsets.only(
-                left: 24,
-                right: 24,
-                bottom: 36,
-                //top: _keyboardVisible ? 36 : 204
-              ),
+                  left: 24,
+                  right: 24,
+                  bottom: 36,
+                  top: _keyboardVisible ? 36 : 204),
               child: GestureDetector(
                 onPanUpdate: (details) {
                   if (details.delta.dy > 0 || details.delta.dy.isNegative) {
@@ -136,6 +135,8 @@ class CountryDialogView extends StatelessWidget {
                                                   ),
                                                 ),
                                                 AppScrollableListViewWidget(
+                                                  key: ValueKey(
+                                                      data.data!.length),
                                                   child:
                                                       ClickableListWheelScrollView(
                                                     scrollController:
@@ -189,10 +190,8 @@ class CountryDialogView extends StatelessWidget {
                                                         .primaryColorDark),
                                               ),
                                             ))
-                                  : Container(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              2.5,
+                                  : Expanded(
+                                      child: Container(),
                                     ),
                               InkWell(
                                 onTap: () {

@@ -50,6 +50,8 @@ class CountryDialogViewModel extends BasePageViewModel {
   BehaviorSubject<Resource<List<CountryData>>> _searchCountryResponse =
       BehaviorSubject();
 
+  bool isDataAvailable = false;
+
   CountryDialogViewModel(
       this._fetchCountriesUseCase, this._getCountriesListUseCase) {
     _getCountryListRequest.listen((value) {
@@ -65,23 +67,28 @@ class CountryDialogViewModel extends BasePageViewModel {
           _searchCountryResponse.safeAdd(
               Resource.success(data: event.data!.content!.countryData));
           selectCountry(0);
+          isDataAvailable = true;
         }
       });
     });
   }
 
   void getCountries() {
-    _getCountryListRequest.safeAdd(GetCountriesListUseCaseParams());
+    if (!isDataAvailable) {
+      _getCountryListRequest.safeAdd(GetCountriesListUseCaseParams());
+    }
   }
 
   void selectCountry(int index) {
     List<CountryData>? countryList = _searchCountryResponse.value.data;
-    countryList?.forEach((element) {
-      element.isSelected = false;
-    });
-    countryList?.elementAt(index).isSelected = true;
-    selectedCountry = countryList?.firstWhere((element) => element.isSelected);
-    _searchCountryResponse.safeAdd(Resource.success(data: countryList));
+    if (countryList!.isNotEmpty) {
+      countryList.forEach((element) {
+        element.isSelected = false;
+      });
+      countryList.elementAt(index).isSelected = true;
+      selectedCountry = countryList.firstWhere((element) => element.isSelected);
+      _searchCountryResponse.safeAdd(Resource.success(data: countryList));
+    }
   }
 
   void searchCountry(String? searchText) {

@@ -14,7 +14,7 @@ class DashboardDataEntity
   @JsonKey(name: "account")
   final DashboardAccountEntity? account;
   @JsonKey(name: "creditCard")
-  final DashboardCardEntity? creditCard;
+  final List<DashboardCardEntity>? creditCard;
   @JsonKey(name: "debitCard")
   final DashboardDebitCardEntity? debitCard;
   @JsonKey(name: "isApplied")
@@ -64,7 +64,7 @@ class DashboardDataEntity
   GetDashboardDataContent transform() {
     return GetDashboardDataContent(
         account: this.account!.transform(),
-        creditCard: this.creditCard!.transform(),
+        creditCard: this.creditCard!.map((e) => e.transform()).toList(),
         debitCard: this.debitCard!.transform(),
         isApplied: this.isApplied,
         isCreditDelivered: this.isCreditDelivered,

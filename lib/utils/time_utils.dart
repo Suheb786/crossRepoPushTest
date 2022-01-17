@@ -87,9 +87,20 @@ class TimeUtils {
     return formatter.format(dateTime);
   }
 
+  static String getFormattedMMMYYYY(String date) {
+    final DateTime dateTime = DateFormat('MM/yyyy').parse(date).toLocal();
+    return DateFormat('MMM yyyy').format(dateTime);
+  }
+
   static String getFormattedDateForTransaction(String date) {
     DateTime dateTime = DateTime.parse(date).toLocal();
     final DateFormat formatter = DateFormat('d MMM');
+    return formatter.format(dateTime);
+  }
+
+  static String getFormattedDateForCheckPassword(String date) {
+    DateTime dateTime = DateTime.parse(date).toLocal();
+    final DateFormat formatter = DateFormat('yyyy-MM-dd');
     return formatter.format(dateTime);
   }
 

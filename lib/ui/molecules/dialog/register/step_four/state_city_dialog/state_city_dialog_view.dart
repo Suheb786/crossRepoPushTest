@@ -128,6 +128,8 @@ class StateCityDialogView extends StatelessWidget {
                                               ),
                                             ),
                                             AppScrollableListViewWidget(
+                                              key: ValueKey(stateCityResponse
+                                                  .data!.length),
                                               child:
                                                   ClickableListWheelScrollView(
                                                 scrollController:
@@ -136,8 +138,7 @@ class StateCityDialogView extends StatelessWidget {
                                                 itemCount: stateCityResponse
                                                     .data!.length,
                                                 onItemTapCallback: (index) {
-                                                  model.currentIndexUpdate(
-                                                      index);
+                                                  model.selectCountry(index);
                                                 },
                                                 child: ListWheelScrollView
                                                     .useDelegate(
@@ -146,9 +147,8 @@ class StateCityDialogView extends StatelessWidget {
                                                         itemExtent: 64,
                                                         onSelectedItemChanged:
                                                             (int index) {
-                                                          model
-                                                              .currentIndexUpdate(
-                                                                  index);
+                                                          model.selectCountry(
+                                                              index);
                                                         },
                                                         physics:
                                                             FixedExtentScrollPhysics(),
@@ -238,7 +238,9 @@ class StateCityDialogView extends StatelessWidget {
               ));
         },
         onModelReady: (model) {
-          model.setData(stateCityData!);
+          if (model.stateCityDataList.isEmpty) {
+            model.setData(stateCityData!);
+          }
         },
         providerBase: providerBase());
   }

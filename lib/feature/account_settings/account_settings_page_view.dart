@@ -65,135 +65,161 @@ class AccountSettingPageView
                                           CrossAxisAlignment.stretch,
                                       children: [
                                         AppStreamBuilder<Resource<bool>>(
-                                          stream:
-                                              model.uploadProfileImageStream,
-                                          initialData: Resource.none(),
-                                          onData: (data) {
-                                            if (data.status == Status.SUCCESS) {
-                                              model.addImage(
-                                                  model.selectedProfile);
-                                              model.showSuccessToast(S
-                                                  .of(context)
-                                                  .profilePhotoUpdated);
-                                            }
-                                          },
-                                          dataBuilder: (context, dataUpload) {
-                                            return AppStreamBuilder<String>(
-                                              stream: model
-                                                  .uploadProfilePhotoStream,
-                                              initialData: '',
-                                              onData: (data) {
-                                                if (data != null &&
-                                                    data.isNotEmpty) {
-                                                  model.selectedProfile = data;
-                                                  //model.addImage(data);
-                                                  _cropImage(
-                                                      data, model, context);
-                                                  // model.showSuccessToast(
-                                                  //     S.of(context).profilePhotoUpdated);
-                                                }
-                                              },
-                                              dataBuilder: (context, data) {
-                                                return AppStreamBuilder<String>(
-                                                  stream:
-                                                      model.selectedImageValue,
-                                                  initialData: '',
-                                                  dataBuilder:
-                                                      (context, image) {
-                                                    return InkWell(
-                                                        onTap: () {
-                                                          ChooseProfileWidget.show(
-                                                              context,
-                                                              onCameraTap: () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.uploadProfilePhoto(
-                                                                    DocumentTypeEnum
-                                                                        .CAMERA);
+                                            stream:
+                                                model.deleteProfileImageStream,
+                                            onData: (data) {
+                                              if (data.status ==
+                                                  Status.SUCCESS) {
+                                                Navigator.pop(context);
+                                                model.getProfileDetails();
+                                                model.showSuccessToast(
+                                                    'Profile Image deleted.');
+                                                model.selectedProfile = '';
+                                                model.addImage(
+                                                    model.selectedProfile);
+                                              }
+                                            },
+                                            initialData: Resource.none(),
+                                            dataBuilder: (context, snapshot) {
+                                              return AppStreamBuilder<
+                                                  Resource<bool>>(
+                                                stream: model
+                                                    .uploadProfileImageStream,
+                                                initialData: Resource.none(),
+                                                onData: (data) {
+                                                  if (data.status ==
+                                                      Status.SUCCESS) {
+                                                    model.addImage(
+                                                        model.selectedProfile);
+                                                    model.showSuccessToast(S
+                                                        .of(context)
+                                                        .profilePhotoUpdated);
+                                                    model.getProfileDetails();
+                                                  }
+                                                },
+                                                dataBuilder:
+                                                    (context, dataUpload) {
+                                                  return AppStreamBuilder<
+                                                      String>(
+                                                    stream: model
+                                                        .uploadProfilePhotoStream,
+                                                    initialData: '',
+                                                    onData: (data) {
+                                                      if (data != null &&
+                                                          data.isNotEmpty) {
+                                                        model.selectedProfile =
+                                                            data;
+                                                        //model.addImage(data);
+                                                        _cropImage(data, model,
+                                                            context);
+                                                        // model.showSuccessToast(
+                                                        //     S.of(context).profilePhotoUpdated);
+                                                      }
+                                                    },
+                                                    dataBuilder:
+                                                        (context, data) {
+                                                      return AppStreamBuilder<
+                                                          String>(
+                                                        stream: model
+                                                            .selectedImageValue,
+                                                        initialData: '',
+                                                        dataBuilder:
+                                                            (context, image) {
+                                                          return InkWell(
+                                                              onTap: () {
+                                                                ChooseProfileWidget.show(
+                                                                    context,
+                                                                    onCameraTap:
+                                                                        () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                  model.uploadProfilePhoto(
+                                                                      DocumentTypeEnum
+                                                                          .CAMERA);
+                                                                }, onGalleryTap:
+                                                                        () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                  model.uploadProfilePhoto(
+                                                                      DocumentTypeEnum
+                                                                          .PICK_IMAGE);
+                                                                }, onRemoveTap:
+                                                                        () {
+                                                                  model.deleteProfileImage(
+                                                                      profileData
+                                                                          .data!
+                                                                          .content!
+                                                                          .profileImage);
+                                                                }, onCancelled:
+                                                                        () {
+                                                                  Navigator.pop(
+                                                                      context);
+                                                                },
+                                                                    title: S
+                                                                        .of(context)
+                                                                        .pleaseSelectYourAction);
                                                               },
-                                                              onGalleryTap: () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                                model.uploadProfilePhoto(
-                                                                    DocumentTypeEnum
-                                                                        .PICK_IMAGE);
-                                                              },
-                                                              onRemoveTap:
-                                                                  () {},
-                                                              onCancelled: () {
-                                                                Navigator.pop(
-                                                                    context);
-                                                              },
-                                                              title: S
-                                                                  .of(context)
-                                                                  .pleaseSelectYourAction);
-                                                        },
-                                                        child: CircleAvatar(
-                                                          backgroundColor:
-                                                              Theme.of(context)
-                                                                  .primaryColor,
-                                                          radius: 48,
-                                                          child: CircleAvatar(
-                                                            radius: 48,
-                                                            child: image!
-                                                                    .isEmpty
-                                                                ? ((profileData
-                                                                        .data!
-                                                                        .content!
-                                                                        .profileImage
-                                                                        .toString()
-                                                                        .isNotEmpty)
-                                                                    ? CircleAvatar(
-                                                                        radius:
-                                                                            48,
-                                                                        backgroundImage:
-                                                                            Image.memory(
-                                                                          profileData
+                                                              child:
+                                                                  CircleAvatar(
+                                                                backgroundColor:
+                                                                    Theme.of(
+                                                                            context)
+                                                                        .primaryColor,
+                                                                radius: 48,
+                                                                child:
+                                                                    CircleAvatar(
+                                                                  radius: 48,
+                                                                  child: image!
+                                                                          .isEmpty
+                                                                      ? ((profileData
                                                                               .data!
                                                                               .content!
-                                                                              .profileImage!,
-                                                                          fit: BoxFit
-                                                                              .cover,
-                                                                        ).image,
-                                                                      )
-                                                                    : CircleAvatar(
-                                                                        radius:
-                                                                            48,
-                                                                        backgroundColor:
-                                                                            Theme.of(context).primaryColor,
-                                                                        // child: Text(
-                                                                        //   StringUtils
-                                                                        //       .getFirstInitials(
-                                                                        //           'Santoshi Bisht'),
-                                                                        //   style: TextStyle(
-                                                                        //       fontWeight:
-                                                                        //           FontWeight
-                                                                        //               .w700,
-                                                                        //       fontSize: 14,
-                                                                        //       color: Theme.of(
-                                                                        //               context)
-                                                                        //           .accentColor),
-                                                                        // ),
-                                                                      ))
-                                                                : CircleAvatar(
-                                                                    radius: 48,
-                                                                    backgroundImage:
-                                                                        Image
-                                                                            .file(
-                                                                      File(
-                                                                          image),
-                                                                      fit: BoxFit
-                                                                          .cover,
-                                                                    ).image,
-                                                                  ),
-                                                          ),
-                                                        ));
-                                                  },
-                                                );
-                                              },
-                                            );
-                                          },
-                                        ),
+                                                                              .profileImage
+                                                                              .toString()
+                                                                              .isNotEmpty)
+                                                                          ? CircleAvatar(
+                                                                              radius: 48,
+                                                                              backgroundImage: Image.memory(
+                                                                                profileData.data!.content!.profileImage!,
+                                                                                fit: BoxFit.cover,
+                                                                              ).image,
+                                                                            )
+                                                                          : CircleAvatar(
+                                                                              radius: 48,
+                                                                              backgroundColor: Theme.of(context).primaryColor,
+                                                                              // child: Text(
+                                                                              //   StringUtils
+                                                                              //       .getFirstInitials(
+                                                                              //           'Santoshi Bisht'),
+                                                                              //   style: TextStyle(
+                                                                              //       fontWeight:
+                                                                              //           FontWeight
+                                                                              //               .w700,
+                                                                              //       fontSize: 14,
+                                                                              //       color: Theme.of(
+                                                                              //               context)
+                                                                              //           .accentColor),
+                                                                              // ),
+                                                                            ))
+                                                                      : CircleAvatar(
+                                                                          radius:
+                                                                              48,
+                                                                          backgroundImage:
+                                                                              Image.file(
+                                                                            File(image),
+                                                                            fit:
+                                                                                BoxFit.cover,
+                                                                          ).image,
+                                                                        ),
+                                                                ),
+                                                              ));
+                                                        },
+                                                      );
+                                                    },
+                                                  );
+                                                },
+                                              );
+                                            }),
                                         SizedBox(
                                           height: 8,
                                         ),

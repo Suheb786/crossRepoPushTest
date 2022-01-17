@@ -230,8 +230,6 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                     SizedBox(
                                       height: 16,
                                     ),
-
-                                    /// TODO:: Country Dropdown to Select place of birth country
                                     AppTextField(
                                       labelText: S
                                           .of(context)

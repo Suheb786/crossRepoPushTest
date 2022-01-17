@@ -16,6 +16,15 @@ DashboardCardEntity _$DashboardCardEntityFromJson(Map<String, dynamic> json) {
     expiryDate: json['expiryDate'] as String?,
     maxLimit: json['maxLimit'] as num?,
     cvv: json['cvv'] as String?,
+    usedBalance: json['usedbalance'] as String?,
+    isSupCard: json['isSupCard'] as bool?,
+    creditCardActivatedDate: json['creditCardActivated'] as String?,
+    isApplied: json['isApplied'] as bool?,
+    isCreditDelivered: json['isCreditDelivered'] as bool?,
+    creditDeliveredDatetime: json['creditDeliveredDatetime'] as String?,
+    creditLimit: json['creditlimit'] as String?,
+    cardId: json['cardId'] as String?,
+    primarySecondaryCard: json['primarysecondarycard'] as String?,
   );
 }
 
@@ -30,4 +39,13 @@ Map<String, dynamic> _$DashboardCardEntityToJson(
       'expiryDate': instance.expiryDate,
       'cvv': instance.cvv,
       'maxLimit': instance.maxLimit,
+      'creditlimit': instance.creditLimit,
+      'usedbalance': instance.usedBalance,
+      'isCreditDelivered': instance.isCreditDelivered,
+      'creditCardActivated': instance.creditCardActivatedDate,
+      'creditDeliveredDatetime': instance.creditDeliveredDatetime,
+      'isApplied': instance.isApplied,
+      'cardId': instance.cardId,
+      'isSupCard': instance.isSupCard,
+      'primarysecondarycard': instance.primarySecondaryCard,
     };

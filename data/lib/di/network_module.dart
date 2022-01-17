@@ -17,6 +17,8 @@ import 'package:data/source/dashboard/dashboard_datasource.dart';
 import 'package:data/source/dashboard/remote/dashboard_remote_ds_impl.dart';
 import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
 import 'package:data/source/fatca_crs/remote/fatca_crs_remote_ds_impl.dart';
+import 'package:data/source/forget_password/forget_password_datasource.dart';
+import 'package:data/source/forget_password/remote/forget_password_remote_ds_impl.dart';
 import 'package:data/source/id_card/id_card_datasource.dart';
 import 'package:data/source/id_card/remote/id_card_remote_ds_impl.dart';
 import 'package:data/source/kyc/kyc_datasource.dart';
@@ -150,6 +152,10 @@ var contactsDataSourceProvider = Provider<ContactRemoteDS>((ref) =>
 ///Dashboard remote DS
 var dashboardDataSourceProvider = Provider<DashboardRemoteDs>((ref) =>
     DashboardRemoteDsImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+var forgetPasswordDataSourceProvider = Provider<ForgetPasswordRemoteDs>((ref) =>
+    ForgetPasswordRemoteDsImpl(
         ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
 
 var paymentDataSourceProvider = Provider<PaymentRemoteDs>((ref) =>

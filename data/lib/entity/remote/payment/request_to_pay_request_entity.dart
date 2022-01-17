@@ -22,6 +22,10 @@ class RequestToPayRequestEntity {
   final String? beneImage;
   @JsonKey(name: "IsFriend")
   final bool? isFriend;
+  @JsonKey(name: "Type")
+  final String? type;
+  @JsonKey(name: "DetCustomerType")
+  final String? detCustomerType;
   @JsonKey(name: "NickName")
   final String? nickName;
   @JsonKey(name: "baseClass")
@@ -38,7 +42,9 @@ class RequestToPayRequestEntity {
       this.dbtrName,
       this.memo,
       this.getToken: true,
-      this.baseData});
+      this.baseData,
+      this.type: "",
+      this.detCustomerType: ""});
 
   factory RequestToPayRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$RequestToPayRequestEntityFromJson(json);

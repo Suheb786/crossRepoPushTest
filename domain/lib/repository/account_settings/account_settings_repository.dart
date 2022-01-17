@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/profile_settings/get_customer_doc/get_customer_document_response.dart';
+import 'package:domain/model/profile_settings/get_customer_doc_id/get_customer_doc_id_response.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/profile_settings/profile_changed_success_response.dart';
 
@@ -30,4 +32,13 @@ abstract class AccountSettingsRepository {
       {required String oldPassword,
       required String newPassword,
       required String confirmNewPassword});
+
+  ///delete profile image
+  Future<Either<NetworkError, bool>> deleteProfileImage();
+
+  ///get customer doc ids
+  Future<Either<NetworkError, GetCustomerDocIdResponse>> getCustomerDocId();
+
+  Future<Either<NetworkError, GetCustomerDocumentResponse>> getCustomerDocument(
+      {required String docId});
 }

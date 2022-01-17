@@ -11,6 +11,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
+import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/card_cancel_dialog/card_cancel_dialog.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/information_dialog/information_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -81,9 +82,49 @@ class DebitCardSettingsPageView
                               InformationDialog.show(context,
                                   image: AssetUtils.cardFreeze,
                                   title: S.of(context).freezeTheCard,
-                                  description:
-                                      S.of(context).freezeDebitCardDescription,
-                                  onSelected: () {
+                                  descriptionWidget: Column(
+                                    children: [
+                                      Text(
+                                          S
+                                              .of(context)
+                                              .acknowledgeBeforeFreezingCard,
+                                          style: TextStyle(
+                                              fontSize: 14, height: 1.7)),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 24),
+                                        child: CustomBulletWithTitle(
+                                          title: S
+                                              .of(context)
+                                              .cardcantBeUsedForTransactions,
+                                          fontSize: 14,
+                                          lineHeight: 1.7,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 24),
+                                        child: CustomBulletWithTitle(
+                                          title: S
+                                              .of(context)
+                                              .directDebitsWontBeMade,
+                                          fontSize: 14,
+                                          lineHeight: 1.7,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 24),
+                                        child: CustomBulletWithTitle(
+                                          title: S
+                                              .of(context)
+                                              .freezeAndActiveAtAnyTime,
+                                          fontSize: 14,
+                                          lineHeight: 1.7,
+                                        ),
+                                      ),
+                                    ],
+                                  ), onSelected: () {
                                 Navigator.pop(context);
                                 model.freezeCard();
                               }, onDismissed: () {

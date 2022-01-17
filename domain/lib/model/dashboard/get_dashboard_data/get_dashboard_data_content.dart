@@ -18,7 +18,7 @@ class GetDashboardDataContent {
       this.creditDeliveredDatetime});
 
   final Account? account;
-  final CreditCard? creditCard;
+  final List<CreditCard>? creditCard;
   final DebitCard? debitCard;
   final bool? isApplied;
   final dynamic? isCreditDelivered;

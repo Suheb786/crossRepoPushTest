@@ -17,7 +17,9 @@ import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
+import 'package:neo_bank/feature/credit_card_activation_status/credit_card_activation_status_page.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
+import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
 import 'package:neo_bank/feature/dashboard/dashboard_page.dart';
 import 'package:neo_bank/feature/dashboard_home/account_transaction/account_transaction_page.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page.dart';
@@ -35,6 +37,8 @@ import 'package:neo_bank/feature/dashboard_home/locate_atm/locate_atm_page.dart'
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement/debit_card_replacement_page.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page.dart';
+import 'package:neo_bank/feature/forgot_password/forgot_password_page.dart';
+import 'package:neo_bank/feature/forgot_password/reset_password_success/reset_password_success_page.dart';
 import 'package:neo_bank/feature/help_center/active_call/active_call_page.dart';
 import 'package:neo_bank/feature/help_center/call_ended/call_ended_page.dart';
 import 'package:neo_bank/feature/help_center/help_center_page.dart';
@@ -253,7 +257,7 @@ class AppRouter {
       case RoutePaths.CreditCardDelivered:
         return CupertinoPageRoute(
             builder: (context) => CreditCardDeliveredPage(
-                creditCard: settings.arguments as CreditCard),
+                creditCard: settings.arguments as List<CreditCard>),
             settings: RouteSettings(name: RoutePaths.CreditCardDelivered));
 
       case RoutePaths.DebitCardDelivered:
@@ -438,6 +442,27 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => AccountHoldPage(),
             settings: RouteSettings(name: RoutePaths.AccountHold));
+
+      case RoutePaths.ForgotPassword:
+        return CupertinoPageRoute(
+            builder: (context) => ForgotPasswordPage(),
+            settings: RouteSettings(name: RoutePaths.ForgotPassword));
+
+      case RoutePaths.CreditCardActivationStatus:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardActivationStatusPage(),
+            settings:
+                RouteSettings(name: RoutePaths.CreditCardActivationStatus));
+
+      case RoutePaths.CreditCardApplySuccess:
+        return CupertinoPageRoute(
+            builder: (context) => CreditCardApplySuccessPage(),
+            settings: RouteSettings(name: RoutePaths.CreditCardApplySuccess));
+
+      case RoutePaths.ResetPasswordSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => ResetPasswordSuccessPage(),
+            settings: RouteSettings(name: RoutePaths.ResetPasswordSuccess));
 
       default:
         return CupertinoPageRoute(

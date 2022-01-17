@@ -23,7 +23,9 @@ abstract class PaymentRemoteDs {
       num localEq,
       String memo,
       String toAccount,
-      String nickName});
+      String nickName,
+      String detCustomerType,
+      String type});
 
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
       String ctgyPurp,
@@ -34,10 +36,12 @@ abstract class PaymentRemoteDs {
       String memo,
       bool? isFriend,
       String? image,
-      String? nickName);
+      String? nickName,
+      String? detCustomerType,
+      String? type);
 
   Future<HttpResponse<ResponseEntity>> transferVerify();
 
-  Future<HttpResponse<PurposeResponseEntity>> getPurpose(
-      String toAccount, String transferType);
+  Future<HttpResponse<PurposeResponseEntity>> getPurpose(String toAccount,
+      String transferType, String detCustomerType, String type);
 }
