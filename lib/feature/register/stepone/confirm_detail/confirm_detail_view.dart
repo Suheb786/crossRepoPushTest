@@ -13,7 +13,6 @@ import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/date_picker.dart';
@@ -136,441 +135,413 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   .viewInsets
                                                   .bottom -
                                               48),
-                              child: AppScrollableListViewWidget(
-                                child: SingleChildScrollView(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 32, horizontal: 24),
-                                  child: Column(
-                                    children: [
-                                      const SizedBox(height: 25),
-                                      AppTextField(
-                                        labelText: S.of(context).name,
-                                        hintText: S.of(context).nameHint,
-                                        inputType: TextInputType.text,
-                                        controller: model.nameController,
-                                        key: model.nameKey,
-                                        textColor: model.isNameReadOnly
-                                            ? Theme.of(context)
-                                                .inputDecorationTheme
-                                                .hintStyle!
-                                                .color
-                                            : Theme.of(context)
-                                                .primaryColorDark,
-                                        readOnly: model.isNameReadOnly,
-                                        maxLength: 25,
-                                        onChanged: (value) =>
-                                            model.validateDetails(),
-                                      ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
-                                      AppTextField(
-                                        labelText: S.of(context).nationalId,
-                                        hintText: S.of(context).pleaseEnter,
-                                        inputType: TextInputType.text,
-                                        controller: model.idNumberController,
-                                        key: model.idNumberKey,
-                                        readOnly: model.isIdNoReadOnly,
-                                        textColor: model.isIdNoReadOnly
-                                            ? Theme.of(context)
-                                                .inputDecorationTheme
-                                                .hintStyle!
-                                                .color
-                                            : Theme.of(context)
-                                                .primaryColorDark,
-                                        onChanged: (value) =>
-                                            model.validateDetails(),
-                                      ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
-                                      AppTextField(
-                                        labelText: S.of(context).dob,
-                                        hintText: S.of(context).dobHint,
-                                        inputType: TextInputType.datetime,
-                                        controller: model.dobController,
-                                        readOnly: model.isDobReadOnly,
-                                        textColor: model.isDobReadOnly
-                                            ? Theme.of(context)
-                                                .inputDecorationTheme
-                                                .hintStyle!
-                                                .color
-                                            : Theme.of(context)
-                                                .primaryColorDark,
-                                        key: model.dobKey,
-                                        onChanged: (value) =>
-                                            model.validateDetails(),
-                                        suffixIcon: (isvalid, value) {
-                                          return IgnorePointer(
-                                            ignoring: model.isDobReadOnly,
-                                            child: InkWell(
-                                                onTap: () {
-                                                  DatePicker.show(context,
-                                                      onSelected: (date) {
-                                                    model.selectedDobDate =
-                                                        date;
-                                                    model.dobController.text =
-                                                        TimeUtils
-                                                            .getFormattedDOB(
-                                                                date);
-                                                    model.validateDetails();
-                                                  }, onCancelled: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                      title: S
-                                                          .of(context)
-                                                          .dateOfBirthSmall);
+                              child: SingleChildScrollView(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 32, horizontal: 24),
+                                child: Column(
+                                  children: [
+                                    AppTextField(
+                                      labelText: S.of(context).name,
+                                      hintText: S.of(context).nameHint,
+                                      inputType: TextInputType.text,
+                                      controller: model.nameController,
+                                      key: model.nameKey,
+                                      textColor: model.isNameReadOnly
+                                          ? Theme.of(context)
+                                              .inputDecorationTheme
+                                              .hintStyle!
+                                              .color
+                                          : Theme.of(context).primaryColorDark,
+                                      readOnly: model.isNameReadOnly,
+                                      maxLength: 25,
+                                      onChanged: (value) =>
+                                          model.validateDetails(),
+                                    ),
+                                    SizedBox(
+                                      height: 16,
+                                    ),
+                                    AppTextField(
+                                      labelText: S.of(context).nationalId,
+                                      hintText: S.of(context).pleaseEnter,
+                                      inputType: TextInputType.text,
+                                      controller: model.idNumberController,
+                                      key: model.idNumberKey,
+                                      readOnly: model.isIdNoReadOnly,
+                                      textColor: model.isIdNoReadOnly
+                                          ? Theme.of(context)
+                                              .inputDecorationTheme
+                                              .hintStyle!
+                                              .color
+                                          : Theme.of(context).primaryColorDark,
+                                      onChanged: (value) =>
+                                          model.validateDetails(),
+                                    ),
+                                    SizedBox(
+                                      height: 16,
+                                    ),
+                                    AppTextField(
+                                      labelText: S.of(context).dob,
+                                      hintText: S.of(context).dobHint,
+                                      inputType: TextInputType.datetime,
+                                      controller: model.dobController,
+                                      readOnly: model.isDobReadOnly,
+                                      textColor: model.isDobReadOnly
+                                          ? Theme.of(context)
+                                              .inputDecorationTheme
+                                              .hintStyle!
+                                              .color
+                                          : Theme.of(context).primaryColorDark,
+                                      key: model.dobKey,
+                                      onChanged: (value) =>
+                                          model.validateDetails(),
+                                      suffixIcon: (isvalid, value) {
+                                        return IgnorePointer(
+                                          ignoring: model.isDobReadOnly,
+                                          child: InkWell(
+                                              onTap: () {
+                                                DatePicker.show(context,
+                                                    onSelected: (date) {
+                                                  model.selectedDobDate = date;
+                                                  model.dobController.text =
+                                                      TimeUtils.getFormattedDOB(
+                                                          date);
+                                                  model.validateDetails();
+                                                }, onCancelled: () {
+                                                  Navigator.pop(context);
                                                 },
-                                                child: Container(
-                                                    height: 16,
-                                                    width: 16,
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 7),
-                                                    child: AppSvg.asset(
-                                                        AssetUtils.calendar,
-                                                        color: Theme.of(context)
-                                                            .primaryColorDark))),
-                                          );
-                                        },
-                                      ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
-
-                                      /// TODO:: Country Dropdown to Select place of birth country
-                                      AppTextField(
-                                        labelText: S
-                                            .of(context)
-                                            .placeOfBirth
-                                            .toUpperCase(),
-                                        hintText: S.of(context).pleaseEnter,
-                                        inputType: TextInputType.text,
-                                        readOnly: model.isNationalityReadOnly,
-                                        textColor: model.isNationalityReadOnly
-                                            ? Theme.of(context)
-                                                .inputDecorationTheme
-                                                .hintStyle!
-                                                .color
-                                            : Theme.of(context)
-                                                .primaryColorDark,
-                                        controller: model.nationalityController,
-                                        key: model.nationalityKey,
-                                        onChanged: (value) =>
-                                            model.validateDetails(),
-                                      ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
-                                      AppTextField(
-                                        labelText: S.of(context).gender,
-                                        hintText: S.of(context).genderHint,
-                                        inputType: TextInputType.text,
-                                        controller: model.genderController,
-                                        readOnly: model.isGenderReadOnly,
-                                        textColor: model.isGenderReadOnly
-                                            ? Theme.of(context)
-                                                .inputDecorationTheme
-                                                .hintStyle!
-                                                .color
-                                            : Theme.of(context)
-                                                .primaryColorDark,
-                                        key: model.genderKey,
-                                        onChanged: (value) =>
-                                            model.validateDetails(),
-                                      ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
-                                      AppTextField(
-                                        labelText: S.of(context).motherName,
-                                        hintText: S.of(context).motherNameHint,
-                                        inputType: TextInputType.text,
-                                        readOnly: model.isMotherNameReadOnly,
-                                        textColor: model.isMotherNameReadOnly
-                                            ? Theme.of(context)
-                                                .inputDecorationTheme
-                                                .hintStyle!
-                                                .color
-                                            : Theme.of(context)
-                                                .primaryColorDark,
-                                        controller: model.motherNameController,
-                                        key: model.motherNameKey,
-                                        onChanged: (value) =>
-                                            model.validateDetails(),
-                                      ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
-                                      AppTextField(
-                                        labelText:
-                                            S.of(context).legalDocumentNo,
-                                        hintText: S.of(context).pleaseEnter,
-                                        inputType: TextInputType.text,
-                                        readOnly: model.isLegalDocumentReadOnly,
-                                        textColor: model.isLegalDocumentReadOnly
-                                            ? Theme.of(context)
-                                                .inputDecorationTheme
-                                                .hintStyle!
-                                                .color
-                                            : Theme.of(context)
-                                                .primaryColorDark,
-                                        controller:
-                                            model.legalDocumentController,
-                                        key: model.legalDocumentKey,
-                                        onChanged: (value) =>
-                                            model.validateDetails(),
-                                      ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
-                                      AppTextField(
-                                        labelText: S
-                                            .of(context)
-                                            .issuingDate
-                                            .toUpperCase(),
-                                        hintText: S.of(context).dobHint,
-                                        inputType: TextInputType.datetime,
-                                        controller: model.issuingDateController,
-                                        textColor: model.isIssuingDateReadOnly
-                                            ? Theme.of(context)
-                                                .inputDecorationTheme
-                                                .hintStyle!
-                                                .color
-                                            : Theme.of(context)
-                                                .primaryColorDark,
-                                        readOnly: model.isIssuingDateReadOnly,
-                                        key: model.issuingDateKey,
-                                        onChanged: (value) =>
-                                            model.validateDetails(),
-                                        suffixIcon: (isvalid, value) {
-                                          return IgnorePointer(
-                                            ignoring:
-                                                model.isIssuingDateReadOnly,
-                                            child: InkWell(
-                                                onTap: () {
-                                                  DatePicker.show(context,
-                                                      onSelected: (date) {
-                                                    model.selectedIssuingDate =
-                                                        date;
-                                                    model.issuingDateController
-                                                            .text =
-                                                        TimeUtils
-                                                            .getFormattedDOB(
-                                                                date);
-                                                    model.validateDetails();
-                                                  }, onCancelled: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                      title: S
-                                                          .of(context)
-                                                          .issuingDate);
-                                                },
-                                                child: Container(
-                                                    height: 16,
-                                                    width: 16,
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 7),
-                                                    child: AppSvg.asset(
-                                                        AssetUtils.calendar,
-                                                        color: Theme.of(context)
-                                                            .primaryColorDark))),
-                                          );
-                                        },
-                                      ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
-                                      AppTextField(
-                                        labelText: S.of(context).expiryDate,
-                                        hintText: S.of(context).dobHint,
-                                        inputType: TextInputType.text,
-                                        controller: model.expiryDateController,
-                                        readOnly: model.isExpiryDateReadOnly,
-                                        textColor: model.isExpiryDateReadOnly
-                                            ? Theme.of(context)
-                                                .inputDecorationTheme
-                                                .hintStyle!
-                                                .color
-                                            : Theme.of(context)
-                                                .primaryColorDark,
-                                        key: model.expiryDateKey,
-                                        onChanged: (value) =>
-                                            model.validateDetails(),
-                                        suffixIcon: (isvalid, value) {
-                                          return IgnorePointer(
-                                            ignoring:
-                                                model.isExpiryDateReadOnly,
-                                            child: InkWell(
-                                                onTap: () {
-                                                  DatePicker.show(context,
-                                                      lastDate: DateTime.now(),
-                                                      onSelected: (date) {
-                                                    model.selectedExpiryDate =
-                                                        date;
-                                                    model.expiryDateController
-                                                            .text =
-                                                        TimeUtils
-                                                            .getFormattedDOB(
-                                                                date);
-                                                    model.validateDetails();
-                                                  }, onCancelled: () {
-                                                    Navigator.pop(context);
-                                                  },
-                                                      title: S
-                                                          .of(context)
-                                                          .expiryDate);
-                                                },
-                                                child: Container(
-                                                    height: 16,
-                                                    width: 16,
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            horizontal: 7),
-                                                    child: AppSvg.asset(
-                                                        AssetUtils.calendar,
-                                                        color: Theme.of(context)
-                                                            .primaryColorDark))),
-                                          );
-                                        },
-                                      ),
-                                      SizedBox(
-                                        height: 16,
-                                      ),
-                                      AppTextField(
-                                        labelText: S
-                                            .of(context)
-                                            .issuingPlace
-                                            .toUpperCase(),
-                                        hintText: S.of(context).pleaseEnter,
-                                        maxLines: 5,
-                                        inputType: TextInputType.text,
-                                        readOnly: model.isIssuingPlaceReadOnly,
-                                        textColor: model.isIssuingPlaceReadOnly
-                                            ? Theme.of(context)
-                                                .inputDecorationTheme
-                                                .hintStyle!
-                                                .color
-                                            : Theme.of(context)
-                                                .primaryColorDark,
-                                        controller:
-                                            model.issuingPlaceController,
-                                        key: model.issuingPlaceKey,
-                                        onChanged: (value) =>
-                                            model.validateDetails(),
-                                      ),
-                                      SizedBox(
-                                        height: 24,
-                                      ),
-                                      TextButton(
-                                          onPressed: () {
-                                            model.fetchAllowedIssuers();
-                                          },
-                                          style: TextButton.styleFrom(
-                                              padding: EdgeInsets.zero),
-                                          child: Text(
-                                            S.of(context).scanIDAgain,
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color!),
-                                          )),
-                                      SizedBox(
-                                        height: 32,
-                                      ),
-                                      Row(
-                                        children: [
-                                          AppStreamBuilder<bool>(
-                                              stream: model
-                                                  .declarationSelectedStream,
-                                              initialData: false,
-                                              dataBuilder:
-                                                  (context, isChecked) {
-                                                return InkWell(
-                                                  onTap: () {
-                                                    model
-                                                        .updateDeclarationValue(
-                                                            !(isChecked!));
-                                                    model.validateDetails();
-                                                  },
-                                                  child: Container(
-                                                    height: 40,
-                                                    width: 40,
-                                                    decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        color: isChecked!
-                                                            ? Theme.of(context)
-                                                                .accentTextTheme
-                                                                .bodyText1!
-                                                                .color!
-                                                            : Colors
-                                                                .transparent,
-                                                        border: Border.all(
-                                                            color: !isChecked
-                                                                ? Theme.of(
-                                                                        context)
-                                                                    .accentTextTheme
-                                                                    .bodyText1!
-                                                                    .color!
-                                                                : Colors
-                                                                    .transparent)),
-                                                    child: isChecked
-                                                        ? Container(
-                                                            height: 16,
-                                                            width: 16,
-                                                            padding:
-                                                                EdgeInsets.all(
-                                                                    10),
-                                                            child: AppSvg.asset(
-                                                              AssetUtils
-                                                                  .checkIcon,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .accentColor,
-                                                            ),
-                                                          )
-                                                        : Container(),
-                                                  ),
-                                                );
-                                              }),
-                                          SizedBox(
-                                            width: 16,
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              S
-                                                  .of(context)
-                                                  .confirmDetailsConfirmation,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w600,
-                                                  fontSize: 12),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      AppStreamBuilder<bool>(
-                                          stream: model.showButtonStream,
-                                          initialData: false,
-                                          dataBuilder: (context, isValid) {
-                                            return Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 26.0, bottom: 26.0),
-                                              child: Visibility(
-                                                visible: isValid!,
-                                                child: AnimatedButton(
-                                                    buttonText: S
+                                                    title: S
                                                         .of(context)
-                                                        .swipeToProceed),
-                                              ),
-                                            );
-                                          })
-                                    ],
-                                  ),
+                                                        .dateOfBirthSmall);
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.calendar,
+                                                      color: Theme.of(context)
+                                                          .primaryColorDark))),
+                                        );
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 16,
+                                    ),
+
+                                    /// TODO:: Country Dropdown to Select place of birth country
+                                    AppTextField(
+                                      labelText: S
+                                          .of(context)
+                                          .placeOfBirth
+                                          .toUpperCase(),
+                                      hintText: S.of(context).pleaseEnter,
+                                      inputType: TextInputType.text,
+                                      readOnly: model.isNationalityReadOnly,
+                                      textColor: model.isNationalityReadOnly
+                                          ? Theme.of(context)
+                                              .inputDecorationTheme
+                                              .hintStyle!
+                                              .color
+                                          : Theme.of(context).primaryColorDark,
+                                      controller: model.nationalityController,
+                                      key: model.nationalityKey,
+                                      onChanged: (value) =>
+                                          model.validateDetails(),
+                                    ),
+                                    SizedBox(
+                                      height: 16,
+                                    ),
+                                    AppTextField(
+                                      labelText: S.of(context).gender,
+                                      hintText: S.of(context).genderHint,
+                                      inputType: TextInputType.text,
+                                      controller: model.genderController,
+                                      readOnly: model.isGenderReadOnly,
+                                      textColor: model.isGenderReadOnly
+                                          ? Theme.of(context)
+                                              .inputDecorationTheme
+                                              .hintStyle!
+                                              .color
+                                          : Theme.of(context).primaryColorDark,
+                                      key: model.genderKey,
+                                      onChanged: (value) =>
+                                          model.validateDetails(),
+                                    ),
+                                    SizedBox(
+                                      height: 16,
+                                    ),
+                                    AppTextField(
+                                      labelText: S.of(context).motherName,
+                                      hintText: S.of(context).motherNameHint,
+                                      inputType: TextInputType.text,
+                                      readOnly: model.isMotherNameReadOnly,
+                                      textColor: model.isMotherNameReadOnly
+                                          ? Theme.of(context)
+                                              .inputDecorationTheme
+                                              .hintStyle!
+                                              .color
+                                          : Theme.of(context).primaryColorDark,
+                                      controller: model.motherNameController,
+                                      key: model.motherNameKey,
+                                      onChanged: (value) =>
+                                          model.validateDetails(),
+                                    ),
+                                    SizedBox(
+                                      height: 16,
+                                    ),
+                                    AppTextField(
+                                      labelText: S.of(context).legalDocumentNo,
+                                      hintText: S.of(context).pleaseEnter,
+                                      inputType: TextInputType.text,
+                                      readOnly: model.isLegalDocumentReadOnly,
+                                      textColor: model.isLegalDocumentReadOnly
+                                          ? Theme.of(context)
+                                              .inputDecorationTheme
+                                              .hintStyle!
+                                              .color
+                                          : Theme.of(context).primaryColorDark,
+                                      controller: model.legalDocumentController,
+                                      key: model.legalDocumentKey,
+                                      onChanged: (value) =>
+                                          model.validateDetails(),
+                                    ),
+                                    SizedBox(
+                                      height: 16,
+                                    ),
+                                    AppTextField(
+                                      labelText: S
+                                          .of(context)
+                                          .issuingDate
+                                          .toUpperCase(),
+                                      hintText: S.of(context).dobHint,
+                                      inputType: TextInputType.datetime,
+                                      controller: model.issuingDateController,
+                                      textColor: model.isIssuingDateReadOnly
+                                          ? Theme.of(context)
+                                              .inputDecorationTheme
+                                              .hintStyle!
+                                              .color
+                                          : Theme.of(context).primaryColorDark,
+                                      readOnly: model.isIssuingDateReadOnly,
+                                      key: model.issuingDateKey,
+                                      onChanged: (value) =>
+                                          model.validateDetails(),
+                                      suffixIcon: (isvalid, value) {
+                                        return IgnorePointer(
+                                          ignoring: model.isIssuingDateReadOnly,
+                                          child: InkWell(
+                                              onTap: () {
+                                                DatePicker.show(context,
+                                                    onSelected: (date) {
+                                                  model.selectedIssuingDate =
+                                                      date;
+                                                  model.issuingDateController
+                                                          .text =
+                                                      TimeUtils.getFormattedDOB(
+                                                          date);
+                                                  model.validateDetails();
+                                                }, onCancelled: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                    title: S
+                                                        .of(context)
+                                                        .issuingDate);
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.calendar,
+                                                      color: Theme.of(context)
+                                                          .primaryColorDark))),
+                                        );
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 16,
+                                    ),
+                                    AppTextField(
+                                      labelText: S.of(context).expiryDate,
+                                      hintText: S.of(context).dobHint,
+                                      inputType: TextInputType.text,
+                                      controller: model.expiryDateController,
+                                      readOnly: model.isExpiryDateReadOnly,
+                                      textColor: model.isExpiryDateReadOnly
+                                          ? Theme.of(context)
+                                              .inputDecorationTheme
+                                              .hintStyle!
+                                              .color
+                                          : Theme.of(context).primaryColorDark,
+                                      key: model.expiryDateKey,
+                                      onChanged: (value) =>
+                                          model.validateDetails(),
+                                      suffixIcon: (isvalid, value) {
+                                        return IgnorePointer(
+                                          ignoring: model.isExpiryDateReadOnly,
+                                          child: InkWell(
+                                              onTap: () {
+                                                DatePicker.show(context,
+                                                    lastDate: DateTime.now(),
+                                                    onSelected: (date) {
+                                                  model.selectedExpiryDate =
+                                                      date;
+                                                  model.expiryDateController
+                                                          .text =
+                                                      TimeUtils.getFormattedDOB(
+                                                          date);
+                                                  model.validateDetails();
+                                                }, onCancelled: () {
+                                                  Navigator.pop(context);
+                                                },
+                                                    title: S
+                                                        .of(context)
+                                                        .expiryDate);
+                                              },
+                                              child: Container(
+                                                  height: 16,
+                                                  width: 16,
+                                                  padding: EdgeInsets.symmetric(
+                                                      horizontal: 7),
+                                                  child: AppSvg.asset(
+                                                      AssetUtils.calendar,
+                                                      color: Theme.of(context)
+                                                          .primaryColorDark))),
+                                        );
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: 16,
+                                    ),
+                                    AppTextField(
+                                      labelText: S
+                                          .of(context)
+                                          .issuingPlace
+                                          .toUpperCase(),
+                                      hintText: S.of(context).pleaseEnter,
+                                      maxLines: 5,
+                                      inputType: TextInputType.text,
+                                      readOnly: model.isIssuingPlaceReadOnly,
+                                      textColor: model.isIssuingPlaceReadOnly
+                                          ? Theme.of(context)
+                                              .inputDecorationTheme
+                                              .hintStyle!
+                                              .color
+                                          : Theme.of(context).primaryColorDark,
+                                      controller: model.issuingPlaceController,
+                                      key: model.issuingPlaceKey,
+                                      onChanged: (value) =>
+                                          model.validateDetails(),
+                                    ),
+                                    SizedBox(
+                                      height: 24,
+                                    ),
+                                    TextButton(
+                                        onPressed: () {
+                                          model.fetchAllowedIssuers();
+                                        },
+                                        style: TextButton.styleFrom(
+                                            padding: EdgeInsets.zero),
+                                        child: Text(
+                                          S.of(context).scanIDAgain,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600,
+                                              color: Theme.of(context)
+                                                  .accentTextTheme
+                                                  .bodyText1!
+                                                  .color!),
+                                        )),
+                                    SizedBox(
+                                      height: 32,
+                                    ),
+                                    Row(
+                                      children: [
+                                        AppStreamBuilder<bool>(
+                                            stream:
+                                                model.declarationSelectedStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isChecked) {
+                                              return InkWell(
+                                                onTap: () {
+                                                  model.updateDeclarationValue(
+                                                      !(isChecked!));
+                                                  model.validateDetails();
+                                                },
+                                                child: Container(
+                                                  height: 40,
+                                                  width: 40,
+                                                  decoration: BoxDecoration(
+                                                      shape: BoxShape.circle,
+                                                      color: isChecked!
+                                                          ? Theme.of(context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color!
+                                                          : Colors.transparent,
+                                                      border: Border.all(
+                                                          color: !isChecked
+                                                              ? Theme.of(
+                                                                      context)
+                                                                  .accentTextTheme
+                                                                  .bodyText1!
+                                                                  .color!
+                                                              : Colors
+                                                                  .transparent)),
+                                                  child: isChecked
+                                                      ? Container(
+                                                          height: 16,
+                                                          width: 16,
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  10),
+                                                          child: AppSvg.asset(
+                                                            AssetUtils
+                                                                .checkIcon,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .accentColor,
+                                                          ),
+                                                        )
+                                                      : Container(),
+                                                ),
+                                              );
+                                            }),
+                                        SizedBox(
+                                          width: 16,
+                                        ),
+                                        Expanded(
+                                          child: Text(
+                                            S
+                                                .of(context)
+                                                .confirmDetailsConfirmation,
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 12),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    AppStreamBuilder<bool>(
+                                        stream: model.showButtonStream,
+                                        initialData: false,
+                                        dataBuilder: (context, isValid) {
+                                          return Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 26.0, bottom: 26.0),
+                                            child: Visibility(
+                                              visible: isValid!,
+                                              child: AnimatedButton(
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed),
+                                            ),
+                                          );
+                                        })
+                                  ],
                                 ),
                               ),
                             ),
