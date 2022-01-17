@@ -2,8 +2,9 @@ import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/account/check_other_nationality_status_response.dart';
 import 'package:domain/model/upload_document/file_upload_response.dart';
 import 'package:domain/usecase/account/check_other_nationality_status_usecase.dart';
+import 'package:domain/usecase/account_setting/my_documents/get_customer_doc_id_usecase.dart';
+import 'package:domain/usecase/account_setting/my_documents/get_customer_document_usecase.dart';
 import 'package:domain/usecase/account_setting/my_documents/my_documents_usecase.dart';
-import 'package:domain/usecase/bank_smart/remove_debit_lock_usecase.dart';
 import 'package:domain/usecase/upload_doc/file_upload_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -24,11 +25,12 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
   ///check other nationality usecase
   final CheckOtherNationalityStatusUseCase _checkOtherNationalityStatusUseCase;
 
+  final GetCustomerDocIdUseCase _getCustomerDocIdUseCase;
+
+  final GetCustomerDocumentUseCase _getCustomerDocumentUseCase;
+
   ///upload individual document usecase
   final FileUploadUseCase _fileUploadUseCase;
-
-  ///remove debit credit lock
-  final RemoveDebitLockUseCase _removeDebitLockUseCase;
 
   final TextEditingController addressController =
       TextEditingController(text: 'Home-Address.jpg');
@@ -156,21 +158,31 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
   Stream<bool> get showAnimatedButtonStream =>
       _showAnimatedButtonSubject.stream;
 
-  ///remove debit lock
-  PublishSubject<RemoveDebitLockUseCaseParams> _removeDebitLockRequest =
+  ///get customer document id
+  PublishSubject<GetCustomerDocIdUseCaseParams> _getCustomerDocumentIdRequest =
       PublishSubject();
 
-  PublishSubject<Resource<bool>> _removeDebitLockResponse = PublishSubject();
+  ///get customer address document
+  PublishSubject<GetCustomerDocumentUseCaseParams>
+      _getCustomerAddressDocumentRequest = PublishSubject();
 
-  Stream<Resource<bool>> get removeDebitLockStream =>
-      _removeDebitLockResponse.stream;
+  // PublishSubject<Resource<GetCustomerDocumentResponse>>
+  //     _getCustomerAddressDocumentResponse = PublishSubject();
+
+  ///get customer income document
+  PublishSubject<GetCustomerDocumentUseCaseParams>
+      _getCustomerIncomeDocumentRequest = PublishSubject();
+
+  // PublishSubject<Resource<GetCustomerDocumentResponse>>
+  //     _getCustomerIncomeDocumentResponse = PublishSubject();
 
   MyDocumentsPageViewModel(
       this._myDocumentsUseCase,
       this._uploadDocumentUseCase,
       this._checkOtherNationalityStatusUseCase,
       this._fileUploadUseCase,
-      this._removeDebitLockUseCase) {
+      this._getCustomerDocIdUseCase,
+      this._getCustomerDocumentUseCase) {
     _documentsRequest.listen((value) {
       RequestManager(value,
               createCall: () => _myDocumentsUseCase.execute(params: value))
@@ -263,18 +275,62 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
       });
     });
 
-    _removeDebitLockRequest.listen((value) {
+    _getCustomerDocumentIdRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _removeDebitLockUseCase.execute(params: value))
+              createCall: () => _getCustomerDocIdUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _removeDebitLockResponse.safeAdd(event);
+        updateLoader();
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          _getCustomerAddressDocumentRequest.safeAdd(
+              GetCustomerDocumentUseCaseParams(
+                  docId: event.data!.getCustomerDocIdContentData!
+                      .getCustomerDocIdContent!.proofOfAddress!));
+
+          _getCustomerIncomeDocumentRequest.safeAdd(
+              GetCustomerDocumentUseCaseParams(
+                  docId: event.data!.getCustomerDocIdContentData!
+                      .getCustomerDocIdContent!.proofOfIncome!));
         }
       });
     });
+
+    _getCustomerAddressDocumentRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _getCustomerDocumentUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          addressController.text = event.data!.getCustomerDocumentContent!.doc!;
+        }
+      });
+    });
+
+    _getCustomerIncomeDocumentRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _getCustomerDocumentUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          incomeController.text = event.data!.getCustomerDocumentContent!.doc!;
+        }
+      });
+    });
+
+    //getCustomerDocId();
 
     ///commented as not required now
     //checkOtherNationality();
@@ -326,6 +382,10 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     _documentAddressRequest.safeAdd(value);
   }
 
+  void getCustomerDocId() {
+    _getCustomerDocumentIdRequest.safeAdd(GetCustomerDocIdUseCaseParams());
+  }
+
   ///uncomment once api integration
   // void validateDocuments() {
   //   _documentsRequest.safeAdd(SendDocumentsUseCaseParams(
@@ -373,11 +433,6 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     _showAnimatedButtonSubject.safeAdd(isValid);
   }
 
-  ///remove debit lock
-  void removeDebitLock() {
-    _removeDebitLockRequest.safeAdd(RemoveDebitLockUseCaseParams());
-  }
-
   @override
   void dispose() {
     _documentsRequest.close();
@@ -397,8 +452,6 @@ class MyDocumentsPageViewModel extends BasePageViewModel {
     _uploadOtherNationalityProofDocumentRequest.close();
     _uploadOtherNationalityProofDocumentResponse.close();
     _showAnimatedButtonSubject.close();
-    _removeDebitLockRequest.close();
-    _removeDebitLockResponse.close();
     super.dispose();
   }
 }

@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/di/usecase/account/account_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/account_setting/account_setting_usecase_provider.dart';
-import 'package:neo_bank/di/usecase/bank_smart/bank_smart_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/country/country_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
@@ -28,7 +27,8 @@ final accountSettingViewModelProvider =
       ref.read(generateKeyPairUseCaseProvider),
       ref.read(enableBiometricUseCaseProvider),
       ref.read(uploadProfileImageUseCaseProvider),
-      ref.read(disableFingerPrintUseCaseProvider)),
+      ref.read(disableFingerPrintUseCaseProvider),
+      ref.read(deleteProfileImageUseCaseProvider)),
 );
 
 ///change email address view model provider
@@ -93,7 +93,8 @@ final myDocumentsPageViewModelProvider =
       ref.read(uploadDocumentUseCaseProvider),
       ref.read(checkOtherNationalityStatusUseCaseProvider),
       ref.read(fileUploadUseCaseProvider),
-      ref.read(removeDebitLockUseCaseProvider)),
+      ref.read(getCustomerDocIdUseCaseProvider),
+      ref.read(getCustomerDocUseCaseProvider)),
 );
 
 ///base card view model provider

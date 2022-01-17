@@ -16,9 +16,11 @@ import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/date_picker.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/time_utils.dart';
@@ -228,24 +230,40 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                     SizedBox(
                                       height: 16,
                                     ),
-
-                                    /// TODO:: Country Dropdown to Select place of birth country
                                     AppTextField(
                                       labelText: S
                                           .of(context)
                                           .placeOfBirth
                                           .toUpperCase(),
-                                      hintText: S.of(context).pleaseEnter,
+                                      hintText: S.of(context).pleaseSelect,
                                       inputType: TextInputType.text,
-                                      readOnly: model.isNationalityReadOnly,
-                                      textColor: model.isNationalityReadOnly
-                                          ? Theme.of(context)
-                                              .inputDecorationTheme
-                                              .hintStyle!
-                                              .color
-                                          : Theme.of(context).primaryColorDark,
+                                      readOnly: true,
                                       controller: model.nationalityController,
                                       key: model.nationalityKey,
+                                      onPressed: () {
+                                        CountryDialog.show(context,
+                                            title: S
+                                                .of(context)
+                                                .residentCountrySmall,
+                                            onDismissed: () {
+                                          Navigator.pop(context);
+                                        }, onSelected: (value) {
+                                          Navigator.pop(context);
+                                          model.nationalityController.text =
+                                              value.countryName!;
+                                          model.selectedPlaceOfBirth = value;
+                                          model.validateDetails();
+                                        });
+                                      },
+                                      suffixIcon: (value, data) {
+                                        return Container(
+                                            height: 16,
+                                            width: 16,
+                                            padding: EdgeInsets.only(right: 8),
+                                            child: AppSvg.asset(
+                                                AssetUtils.downArrow,
+                                                color: AppColor.dark_gray_1));
+                                      },
                                       onChanged: (value) =>
                                           model.validateDetails(),
                                     ),
@@ -430,6 +448,30 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                               .hintStyle!
                                               .color
                                           : Theme.of(context).primaryColorDark,
+                                      onPressed: () {
+                                        CountryDialog.show(context,
+                                            title: S
+                                                .of(context)
+                                                .residentCountrySmall,
+                                            onDismissed: () {
+                                          Navigator.pop(context);
+                                        }, onSelected: (value) {
+                                          Navigator.pop(context);
+                                          model.issuingPlaceController.text =
+                                              value.countryName!;
+                                          model.selectedIssuingPlace = value;
+                                          model.validateDetails();
+                                        });
+                                      },
+                                      suffixIcon: (value, data) {
+                                        return Container(
+                                            height: 16,
+                                            width: 16,
+                                            padding: EdgeInsets.only(right: 8),
+                                            child: AppSvg.asset(
+                                                AssetUtils.downArrow,
+                                                color: AppColor.dark_gray_1));
+                                      },
                                       controller: model.issuingPlaceController,
                                       key: model.issuingPlaceKey,
                                       onChanged: (value) =>
@@ -478,19 +520,14 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                       shape: BoxShape.circle,
                                                       color: isChecked!
                                                           ? Theme.of(context)
-                                                              .accentTextTheme
-                                                              .bodyText1!
-                                                              .color!
+                                                              .canvasColor
                                                           : Colors.transparent,
                                                       border: Border.all(
-                                                          color: !isChecked
-                                                              ? Theme.of(
-                                                                      context)
-                                                                  .accentTextTheme
-                                                                  .bodyText1!
-                                                                  .color!
-                                                              : Colors
-                                                                  .transparent)),
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .inputDecorationTheme
+                                                              .hintStyle!
+                                                              .color!)),
                                                   child: isChecked
                                                       ? Container(
                                                           height: 16,
@@ -503,7 +540,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                                 .checkIcon,
                                                             color: Theme.of(
                                                                     context)
-                                                                .accentColor,
+                                                                .primaryColorDark,
                                                           ),
                                                         )
                                                       : Container(),
@@ -531,7 +568,7 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                         dataBuilder: (context, isValid) {
                                           return Padding(
                                             padding: const EdgeInsets.only(
-                                                top: 26.0, bottom: 26.0),
+                                                top: 26.0),
                                             child: Visibility(
                                               visible: isValid!,
                                               child: AnimatedButton(
