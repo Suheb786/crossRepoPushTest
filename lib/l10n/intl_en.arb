@@ -798,9 +798,8 @@
   "creatingCreditCardLimit": "Creating your credit card limit",
   "issuingYourCreditCard": "Issuing your credit card",
   "activatingCreditCard": "Activating your credit card",
-  "cardApplyMsg": "Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.",
   "totalUsedAmount": "TOTAL USED AMOUNT",
-  "yourCardLimit": "YOUR CARD LIMIT"
+  "yourCardLimit": "YOUR CARD LIMIT",
   "cardApplyMsg": "Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.",
   "emptyVerifyEmail": "Email cannot be empty",
   "emptyVerifyExpiryDate": "Expiry Date cannot be empty",

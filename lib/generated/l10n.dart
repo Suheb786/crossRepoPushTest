@@ -7801,16 +7801,6 @@ class S {
     );
   }
 
-  /// `Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.`
-  String get cardApplyMsg {
-    return Intl.message(
-      'Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.',
-      name: 'cardApplyMsg',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `TOTAL USED AMOUNT`
   String get totalUsedAmount {
     return Intl.message(
@@ -7826,6 +7816,86 @@ class S {
     return Intl.message(
       'YOUR CARD LIMIT',
       name: 'yourCardLimit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.`
+  String get cardApplyMsg {
+    return Intl.message(
+      'Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.',
+      name: 'cardApplyMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email cannot be empty`
+  String get emptyVerifyEmail {
+    return Intl.message(
+      'Email cannot be empty',
+      name: 'emptyVerifyEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expiry Date cannot be empty`
+  String get emptyVerifyExpiryDate {
+    return Intl.message(
+      'Expiry Date cannot be empty',
+      name: 'emptyVerifyExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `National Id cannot be empty`
+  String get emptyVerifyNationalId {
+    return Intl.message(
+      'National Id cannot be empty',
+      name: 'emptyVerifyNationalId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Forget Password`
+  String get checkForgetPasswordError {
+    return Intl.message(
+      'Error While Forget Password',
+      name: 'checkForgetPasswordError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your new password has\nbeen set.`
+  String get createPasswordSuccess {
+    return Intl.message(
+      'Your new password has\nbeen set.',
+      name: 'createPasswordSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proceed to the login page and use your\nnew password to login.`
+  String get proceedToLogin {
+    return Intl.message(
+      'Proceed to the login page and use your\nnew password to login.',
+      name: 'proceedToLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Login Page`
+  String get toLoginPage {
+    return Intl.message(
+      'to Login Page',
+      name: 'toLoginPage',
       desc: '',
       args: [],
     );
