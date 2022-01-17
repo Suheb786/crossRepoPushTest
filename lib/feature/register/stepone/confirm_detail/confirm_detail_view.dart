@@ -4,6 +4,7 @@ import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/user/save_id_info_response.dart';
 import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,7 +14,6 @@ import 'package:neo_bank/feature/register/stepone/confirm_detail/confirm_detail_
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/date_picker.dart';
@@ -136,13 +136,16 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                                   .viewInsets
                                                   .bottom -
                                               48),
-                              child: AppScrollableListViewWidget(
+                              child: FadingEdgeScrollView
+                                  .fromSingleChildScrollView(
+                                gradientFractionOnEnd: 0.3,
+                                gradientFractionOnStart: 0.1,
                                 child: SingleChildScrollView(
+                                  controller: ScrollController(),
                                   padding: EdgeInsets.symmetric(
                                       vertical: 32, horizontal: 24),
                                   child: Column(
                                     children: [
-                                      const SizedBox(height: 25),
                                       AppTextField(
                                         labelText: S.of(context).name,
                                         hintText: S.of(context).nameHint,
