@@ -149,11 +149,16 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(top: 18),
-                                        child: LottieBuilder.asset(
-                                          'assets/animation/Swipe_Down.json',
-                                          width: 28.0,
-                                          height: 28.0,
-                                        ),
+                                        child: currentStep != 3
+                                            ? LottieBuilder.asset(
+                                                'assets/animation/Swipe_Down.json',
+                                                width: 28.0,
+                                                height: 28.0,
+                                              )
+                                            : Container(
+                                                height: 28,
+                                                width: 28,
+                                              ),
                                         // child:
                                         //     AppSvg.asset(AssetUtils.swipeDown),
                                       ),

@@ -82,4 +82,5 @@ class RoutePaths {
   static const String CreditCardActivationStatus =
       "/creditCardActivationStatus";
   static const String CreditCardApplySuccess = "/creditCardApplySuccess";
+  static const String ResetPasswordSuccess = "/resetPasswordSuccess";
 }

@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
+import 'package:domain/model/forget_password/check_forget_password_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -35,15 +36,16 @@ class AddIDNumberForResetPasswordPageView
               duration: Duration(milliseconds: 100),
               shakeAngle: Rotation.deg(z: 1),
               curve: Curves.easeInOutSine,
-              child: AppStreamBuilder<Resource<bool>>(
-                stream: model.idNumberForResetPasswordStream,
+              child: AppStreamBuilder<Resource<CheckForgetPasswordResponse>>(
+                stream: model.checkForgetPasswordResponseStream,
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    ProviderScope.containerOf(context)
-                        .read(forgotPasswordViewModelProvider)
-                        .pageController
-                        .next();
+                    // ProviderScope.containerOf(context)
+                    //     .read(forgotPasswordViewModelProvider)
+                    //     .pageController
+                    //     .next();
+                    print("successful");
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
@@ -52,7 +54,11 @@ class AddIDNumberForResetPasswordPageView
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
                       if (details.primaryVelocity!.isNegative) {
-                        model.addIdNumberForResetPassword();
+                        // model.addIdNumberForResetPassword();
+                        ProviderScope.containerOf(context)
+                            .read(forgotPasswordViewModelProvider)
+                            .pageController
+                            .next();
                       }
                     },
                     child: Card(
@@ -112,8 +118,9 @@ class AddIDNumberForResetPasswordPageView
                                                 model.selectedExpiryDate = date;
                                                 model.idExpiryDateController
                                                         .text =
-                                                    TimeUtils.getFormattedDOB(
-                                                        date);
+                                                    TimeUtils
+                                                        .getFormattedDateForCheckPassword(
+                                                            date);
                                                 model.validate();
                                               }, onCancelled: () {
                                                 Navigator.pop(context);

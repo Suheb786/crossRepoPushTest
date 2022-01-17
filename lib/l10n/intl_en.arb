@@ -627,10 +627,10 @@
   "requestedMoneyVia": "Request money via",
   "activity": "Activity",
   "notifications": "Notifications",
-  "acknowledgeBeforeFreezingCard": "About freezing your card:",
-  "cardcantBeUsedForTransactions": "While frozen, your card can't be used for any transactions.",
-  "directDebitsWontBeMade": "While frozen, direct debits linked to this card won't be permitted. e.g. a direct debit from your Blink account to your gym or mobile carrier.",
-  "freezeAndActiveAtAnyTime": "You can unfreeze and activate your card at anytime.",
+  "acknowledgeBeforeFreezingCard" : "About freezing your card:",
+  "cardcantBeUsedForTransactions" : "While frozen, your card can't be used for any transactions.",
+  "directDebitsWontBeMade" : "While frozen, direct debits linked to this card won't be permitted. e.g. a direct debit from your Blink account to your gym or mobile carrier.",
+  "freezeAndActiveAtAnyTime" : "You can unfreeze and activate your card at anytime.",
   "paymentActivity": "Payment activity",
   "allTransaction": "All Transactions",
   "allTime": "All Time",
@@ -801,4 +801,12 @@
   "cardApplyMsg": "Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.",
   "totalUsedAmount": "TOTAL USED AMOUNT",
   "yourCardLimit": "YOUR CARD LIMIT"
+  "cardApplyMsg": "Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.",
+  "emptyVerifyEmail": "Email cannot be empty",
+  "emptyVerifyExpiryDate": "Expiry Date cannot be empty",
+  "emptyVerifyNationalId": "National Id cannot be empty",
+  "checkForgetPasswordError": "Error While Forget Password",
+  "createPasswordSuccess": "Your new password has\nbeen set.",
+  "proceedToLogin": "Proceed to the login page and use your\nnew password to login.",
+  "toLoginPage": "to Login Page"
 }

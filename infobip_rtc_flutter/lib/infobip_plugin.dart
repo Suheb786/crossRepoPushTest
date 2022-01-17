@@ -37,7 +37,6 @@ class InfobipPlugin {
   /// This method used to obtain token from destination, display name
   ///
   Future<String?> getToken({required Map<String, String> parameter}) async {
-    // var parameter = {'identity': identity, "displayName": displayName};
     final String? tokenDetail =
         await _channel.invokeMethod(MethodKeys.getToken, parameter);
     print("Token $tokenDetail");

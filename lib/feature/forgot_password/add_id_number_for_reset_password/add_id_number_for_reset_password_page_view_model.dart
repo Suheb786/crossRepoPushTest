@@ -1,5 +1,6 @@
 import 'package:domain/constants/error_types.dart';
-import 'package:domain/usecase/forgot_password/add_id_number_for_reset_password_usecase.dart';
+import 'package:domain/model/forget_password/check_forget_password_response.dart';
+import 'package:domain/usecase/forget_password/check_forget_password_usecase.dart';
 import 'package:domain/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -11,7 +12,7 @@ import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AddIDNumberForResetPasswordPageViewModel extends BasePageViewModel {
-  final AddIdNumberForResetPasswordUseCase _addIdNumberForResetPasswordUseCase;
+  final CheckForgetPasswordUseCase _checkForgetPasswordUseCase;
 
   ///controllers and keys
   final TextEditingController nationalIdController = TextEditingController();
@@ -25,14 +26,15 @@ class AddIDNumberForResetPasswordPageViewModel extends BasePageViewModel {
   final GlobalKey<AppTextFieldState> idExpiryDateKey =
       GlobalKey(debugLabel: "idExpiryDate");
 
-  PublishSubject<AddIdNumberForResetPasswordUseCaseParams>
-      _idNumberForResetPasswordRequest = PublishSubject();
-
-  PublishSubject<Resource<bool>> _idNumberForResetPasswordResponse =
+  PublishSubject<CheckForgetPasswordUseCaseParams> _checkForgetPasswordRequest =
       PublishSubject();
 
-  Stream<Resource<bool>> get idNumberForResetPasswordStream =>
-      _idNumberForResetPasswordResponse.stream;
+  PublishSubject<Resource<CheckForgetPasswordResponse>>
+      _checkForgetPasswordResponse = PublishSubject();
+
+  Stream<Resource<CheckForgetPasswordResponse>>
+      get checkForgetPasswordResponseStream =>
+          _checkForgetPasswordResponse.stream;
 
   String selectedExpiryDate = DateTime.now().toLocal().toString();
 
@@ -41,29 +43,28 @@ class AddIDNumberForResetPasswordPageViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  AddIDNumberForResetPasswordPageViewModel(
-      this._addIdNumberForResetPasswordUseCase) {
-    _idNumberForResetPasswordRequest.listen((value) {
+  AddIDNumberForResetPasswordPageViewModel(this._checkForgetPasswordUseCase) {
+    _checkForgetPasswordRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
-                  _addIdNumberForResetPasswordUseCase.execute(params: value))
+                  _checkForgetPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
-        _idNumberForResetPasswordResponse.safeAdd(event);
+        _checkForgetPasswordResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          getError(event);
+          showErrorState();
+          showToastWithError(event.appError!);
         }
       });
     });
   }
 
   void addIdNumberForResetPassword() {
-    _idNumberForResetPasswordRequest.safeAdd(
-        AddIdNumberForResetPasswordUseCaseParams(
-            emailAddress: emailController.text,
-            idExpiryDate: idExpiryDateController.text,
-            nationalId: nationalIdController.text));
+    _checkForgetPasswordRequest.safeAdd(CheckForgetPasswordUseCaseParams(
+        email: emailController.text,
+        expiryDate: "2027-06-11",
+        nationalId: nationalIdController.text));
   }
 
   void getError(Resource<bool> event) {
@@ -97,8 +98,8 @@ class AddIDNumberForResetPasswordPageViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
-    _idNumberForResetPasswordRequest.close();
-    _idNumberForResetPasswordResponse.close();
+    _checkForgetPasswordRequest.close();
+    _checkForgetPasswordResponse.close();
     _showButtonSubject.close();
     super.dispose();
   }

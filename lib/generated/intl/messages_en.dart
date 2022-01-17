@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -248,6 +249,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change My Number"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Change Password"),
+        "checkForgetPasswordError":
+            MessageLookupByLibrary.simpleMessage("Error While Forget Password"),
         "city": MessageLookupByLibrary.simpleMessage("CITY"),
         "citySmall": MessageLookupByLibrary.simpleMessage("City"),
         "claimOfTaxTreatyBenefits": MessageLookupByLibrary.simpleMessage(
@@ -288,6 +291,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CREATE PASSWORD"),
         "createPasswordHeader": MessageLookupByLibrary.simpleMessage(
             "Next, let’s create\nyour password"),
+        "createPasswordSuccess": MessageLookupByLibrary.simpleMessage(
+            "Your new password has\nbeen set."),
         "createYourLoginPassword": MessageLookupByLibrary.simpleMessage(
             "Please enter your new password"),
         "creatingCreditCardLimit": MessageLookupByLibrary.simpleMessage(
@@ -447,6 +452,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please upload signature"),
         "emptyStreetAddress": MessageLookupByLibrary.simpleMessage(
             "Street address field cannot be empty"),
+        "emptyVerifyEmail":
+            MessageLookupByLibrary.simpleMessage("Email cannot be empty"),
+        "emptyVerifyExpiryDate":
+            MessageLookupByLibrary.simpleMessage("Expiry Date cannot be empty"),
+        "emptyVerifyNationalId":
+            MessageLookupByLibrary.simpleMessage("National Id cannot be empty"),
         "enable": MessageLookupByLibrary.simpleMessage("Enable"),
         "enableBiometricLogin":
             MessageLookupByLibrary.simpleMessage("Enable Biometric\nLogin"),
@@ -1018,6 +1029,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Preferred Time"),
         "preparingYourCard":
             MessageLookupByLibrary.simpleMessage("Preparing your card..."),
+        "proceedToLogin": MessageLookupByLibrary.simpleMessage(
+            "Proceed to the login page and use your\nnew password to login."),
         "productSelectorHeader": MessageLookupByLibrary.simpleMessage(
             "Great! Now, here’s what Neu has to offer for you"),
         "profileDetailsQ1":
@@ -1268,6 +1281,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Thank you for waiting, the video call will start automatically"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "toDashboard": MessageLookupByLibrary.simpleMessage("to Dashboard"),
+        "toLoginPage": MessageLookupByLibrary.simpleMessage("to Login Page"),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("to Welcome Page"),
         "totalAdditionalIncome":
