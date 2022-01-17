@@ -14,7 +14,7 @@ class InfobipMessagePluginUseCase
   @override
   Future<Either<BaseError, bool>> execute(
       {required InfobipMessagePluginUseCaseParams params}) async {
-    return _infobipMessageRepository.initInfobipMessage();
+    return await _infobipMessageRepository.initInfobipMessage();
   }
 }
 

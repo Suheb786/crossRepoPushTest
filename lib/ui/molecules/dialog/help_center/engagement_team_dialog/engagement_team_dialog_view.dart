@@ -101,15 +101,11 @@ class EngagementTeamDialogView extends StatelessWidget {
                   ),
                   AppStreamBuilder<Resource<bool>>(
                       stream: model!.initInfobipMessageResponseStream,
-                      onData: (value) {
-                        if (value.data!) {
-                          // model.showChat();
-                        }
-                      },
-                      initialData: Resource.none(),
+                      onData: (value) {},
+                      initialData: Resource.success(data: false),
                       dataBuilder: (context, value) => InkWell(
                             onTap: () {
-                              if (value!.data!) {
+                              if (value?.data != null && value!.data!) {
                                 model.showChat();
                               }
                             },
