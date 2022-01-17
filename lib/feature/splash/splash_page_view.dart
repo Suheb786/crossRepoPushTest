@@ -29,8 +29,10 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
           InformationDialog.show(context,
               image: AssetUtils.mobile,
               title: S.of(context).deviceNotSupported,
-              description: S.of(context).deviceNotSupportedNote,
-              onDismissed: () {
+              descriptionWidget: Text(
+                S.of(context).deviceNotSupportedNote,
+                style: TextStyle(fontSize: 14, height: 1.7),
+              ), onDismissed: () {
             exit(0);
           }, onSelected: () {
             exit(0);

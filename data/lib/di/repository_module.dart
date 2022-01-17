@@ -31,7 +31,9 @@ import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
+import 'package:domain/repository/forget_password/forget_password_repository.dart';
 import 'package:domain/repository/help_center/help_canter.dart';
+import 'package:domain/repository/help_center/infobip_message_repository.dart';
 import 'package:domain/repository/id_card/id_card_repository.dart';
 import 'package:domain/repository/kyc/kyc_repository.dart';
 import 'package:domain/repository/manage_contact/manage_contact_repository.dart';
@@ -43,8 +45,6 @@ import 'package:domain/repository/upload_document/upload_document_repository.dar
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:domain/repository/utility/utility_repository.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:domain/repository/forget_password/forget_password_repository.dart';
-import 'package:domain/repository/help_center/infobip_message_repository.dart';
 
 /// inject [UserRepository] provider
 var userRepoProvider = Provider<UserRepository>(
