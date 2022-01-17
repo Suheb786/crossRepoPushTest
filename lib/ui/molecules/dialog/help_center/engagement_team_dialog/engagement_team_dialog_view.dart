@@ -100,45 +100,42 @@ class EngagementTeamDialogView extends StatelessWidget {
                     ),
                   ),
                   AppStreamBuilder<Resource<bool>>(
-                      stream: model!.initInfobipMessageResponseStream,
-                      onData: (value) {},
-                      initialData: Resource.success(data: false),
-                      dataBuilder: (context, value) => InkWell(
-                            onTap: () {
-                              if (value?.data != null && value!.data!) {
-                                model.showChat();
-                              }
-                            },
-                            child: Container(
-                              height: 72,
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 8.0),
-                              decoration: BoxDecoration(
-                                  border:
-                                      Border.all(color: AppColor.brightBlue),
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: Row(
-                                children: [
-                                  Container(
-                                      margin: EdgeInsets.symmetric(
-                                          horizontal: 18.11),
-                                      height: 25,
-                                      width: 25,
-                                      child: AppSvg.asset(
-                                        AssetUtils.liveChat,
-                                        color:
-                                            Theme.of(context).primaryColorDark,
-                                      )),
-                                  Text(
-                                    S.of(context).liveChat,
-                                    style: TextStyle(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w600),
-                                  )
-                                ],
-                              ),
-                            ),
-                          )),
+                    stream: model!.initInfobipMessageResponseStream,
+                    onData: (value) {},
+                    initialData: Resource.success(data: false),
+                    dataBuilder: (context, value) => InkWell(
+                      onTap: () {
+                        if (value?.data != null && value!.data!) {
+                          model.showChat();
+                        }
+                      },
+                      child: Container(
+                        height: 72,
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 24, vertical: 8.0),
+                        decoration: BoxDecoration(
+                            border: Border.all(color: AppColor.brightBlue),
+                            borderRadius: BorderRadius.circular(8)),
+                        child: Row(
+                          children: [
+                            Container(
+                                margin: EdgeInsets.symmetric(horizontal: 18.11),
+                                height: 25,
+                                width: 25,
+                                child: AppSvg.asset(
+                                  AssetUtils.liveChat,
+                                  color: Theme.of(context).primaryColorDark,
+                                )),
+                            Text(
+                              S.of(context).liveChat,
+                              style: TextStyle(
+                                  fontSize: 14.0, fontWeight: FontWeight.w600),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                   SizedBox(height: 56),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0, bottom: 16),
