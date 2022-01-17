@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -344,6 +345,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Deposit cash directly into your Blink account through any Capital Bank ATM, with or without your card."),
         "deviceNotFound":
             MessageLookupByLibrary.simpleMessage("Device Not Found"),
+        "deviceNotSupported":
+            MessageLookupByLibrary.simpleMessage("Jailbroken device detected"),
+        "deviceNotSupportedNote": MessageLookupByLibrary.simpleMessage(
+            "For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings."),
         "directDebitsWontBeMade": MessageLookupByLibrary.simpleMessage(
             "While frozen, direct debits linked to this card won\'t be permitted. e.g. a direct debit from your Blink account to your gym or mobile carrier."),
         "district": MessageLookupByLibrary.simpleMessage("District"),

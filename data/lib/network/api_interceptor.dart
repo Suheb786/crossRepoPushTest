@@ -1,3 +1,4 @@
+import 'package:data/helper/encypt_decrypt_helper.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/network/network_properties.dart';
 import 'package:dio/dio.dart';
@@ -9,6 +10,9 @@ class ApiInterceptor extends InterceptorsWrapper {
   late ApiService apiService;
   String authToken = "";
 
+  late Set<String> verifiedURLs = {};
+  Future<String>? secure = Future.value('');
+
   ApiInterceptor(this._userRepository, this._previousDio) {
     Dio newDio = Dio(_previousDio.options);
     newDio.interceptors.add(_previousDio.interceptors.first);
@@ -19,16 +23,72 @@ class ApiInterceptor extends InterceptorsWrapper {
   @override
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    //var userEither = await _userRepository.getCurrentUser();
-    // User? user = userEither.fold((l) => null, (r) {
-    //   return r;
-    // });
-
-    // options.headers.putIfAbsent("Authorization",
-    //     () => "${user?.tokenType ?? "Bearer"} ${user?.token ?? ""}");
-
     options.headers.putIfAbsent("Authorization", () => "Bearer $authToken");
     print('authToken--->$authToken');
+
+    /// TODO::: UNCOMMENT BELOW LINE FOR ENCRYPTION OF REQUEST DATA
+    // options.data = _encryptRequest(options.data);
+
+    ///TODO:: UNCOMMENT BELOW BLOCK FOR SSL PINNING
+/*
+    try {
+      // skip verification if already verified, performance
+      if (verifiedURLs.contains(options.baseUrl)) {
+        return handler.next(options);
+      }
+      // iOS bug: Alamofire is failing to return parallel requests for certificate validation
+      if (Platform.isIOS && secure != null) {
+        await secure;
+      }
+
+      List<String> _allowedSHAFingerprints = [];
+
+      if (options.baseUrl == NetworkProperties.BASE_CHANNEL_URL) {
+        _allowedSHAFingerprints.add(
+            "AC:A5:99:D8:DD:74:7A:96:C5:41:AA:1F:2F:4C:53:98:52:39:8B:81:4B:DF:1C:95:F9:5F:D7:D4:D9:C9:66:7D");
+      } else if (options.baseUrl == NetworkProperties.BASE_ROUTER_URL) {
+        _allowedSHAFingerprints.add(
+            "22:DE:99:9C:72:77:FE:8D:2D:B2:53:30:6D:7A:42:7A:19:B9:14:A1:AC:FE:81:D7:BB:20:D0:F0:34:A7:63:E5");
+      }
+
+      secure = HttpCertificatePinning.check(
+        serverURL: options.baseUrl,
+        headerHttp: options.headers.map((a, b) => MapEntry(a, b.toString())),
+        sha: SHA.SHA256,
+        allowedSHAFingerprints: _allowedSHAFingerprints,
+        timeout: 0,
+      );
+
+      secure?.whenComplete(() => secure = null);
+      final secureString = await secure ?? '';
+
+      if (secureString.contains('CONNECTION_SECURE')) {
+        verifiedURLs.add(options.baseUrl);
+        return handler.next(options);
+      } else {
+        handler.reject(
+          DioError(
+            requestOptions: options,
+            error: CertificateNotVerifiedException(),
+          ),
+        );
+      }
+    } on Exception catch (e) {
+      dynamic error;
+
+      if (e is PlatformException && e.code == 'CONNECTION_NOT_SECURE') {
+        error = const CertificateNotVerifiedException();
+      } else {
+        error = CertificateCouldNotBeVerifiedException(e);
+      }
+
+      handler.reject(
+        DioError(
+          requestOptions: options,
+          error: error,
+        ),
+      );
+    }*/
 
     return handler.next(options);
   }
@@ -38,11 +98,11 @@ class ApiInterceptor extends InterceptorsWrapper {
     if (response.statusCode == 200) {
       if (response.data != null) {
         if (((response.data as Map<String, dynamic>)['response']['token']
-        as String?)
-            ?.isNotEmpty ??
+                    as String?)
+                ?.isNotEmpty ??
             false) {
           authToken = (response.data as Map<String, dynamic>)['response']
-          ['token'] ??
+                  ['token'] ??
               '';
         }
       }
@@ -51,61 +111,7 @@ class ApiInterceptor extends InterceptorsWrapper {
     }
   }
 
-//
-// @override
-// void onError(DioError dioError, ErrorInterceptorHandler handler) async {
-//   if (dioError.response?.statusCode == 401) {
-//     RequestOptions? options = dioError.response!.requestOptions;
-//
-//     final currentUserEither = await _userRepository.getCurrentUser();
-//     User? user = currentUserEither.fold((l) => null, (r) => r);
-//
-//     if (user == null) {
-//       throw Exception();
-//     }
-//
-//     /// Refresh Token
-//     //   _previousDio.interceptors.requestLock.lock();
-//     //   _previousDio.interceptors.responseLock.lock();
-//     //
-//     //   var refreshResponse = await safeApiCall(apiService.refreshToken(
-//     //       "refresh_token",
-//     //       NetworkProperties.SCOPE,
-//     //       NetworkProperties.CLIENT_ID,
-//     //       "token",
-//     //       "${user.refreshToken}"));
-//     //   Either<NetworkError, User> transformedResponse =
-//     //       refreshResponse!.fold((l) => Left(l), (r) {
-//     //     return Right(
-//     //       r.data.transform(),
-//     //     );
-//     //   });
-//     //   User newUser = transformedResponse.fold((l) => null, (r) => r);
-//     //
-//     //   if (newUser.token.isNotEmpty) {
-//     //     user.token = newUser.token;
-//     //     user.refreshToken = newUser.refreshToken;
-//     //     user.expiredIn = newUser.expiredIn;
-//     //     user.tokenType = newUser.tokenType;
-//     //     await _userRepository.saveUser(user);
-//     //     options.headers["Authorization"] =
-//     //         "${user.tokenType ?? "Bearer"} ${user.token ?? ""}";
-//     //     _previousDio.interceptors.requestLock.unlock();
-//     //     _previousDio.interceptors.responseLock.unlock();
-//     //
-//     //     return _previousDio
-//     //         .fetch(options)
-//     //         .then((value) => handler.resolve(value), onError: (e) {
-//     //       handler.reject(e);
-//     //     });
-//     //   } else {
-//     //     _previousDio.interceptors.requestLock.unlock();
-//     //     _previousDio.interceptors.responseLock.unlock();
-//     //     return super.onError(dioError, handler);
-//     //   }
-//     // }
-//     return handler.next(dioError);
-//     //return super.onError(dioError, handler);
-//   }
-// }
+  Map<String, dynamic> _encryptRequest(Map<String, dynamic> data) {
+    return EncryptDecryptHelper.encryptRequest(data);
+  }
 }

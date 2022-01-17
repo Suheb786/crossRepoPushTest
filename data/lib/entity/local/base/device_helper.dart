@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:device_info/device_info.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_jailbreak_detection/flutter_jailbreak_detection.dart';
 import 'package:package_info/package_info.dart';
 import 'package:r_get_ip/r_get_ip.dart';
 
@@ -102,5 +103,18 @@ class DeviceInfoHelper {
       'utsname.version:': data.utsname.version,
       'utsname.machine:': data.utsname.machine,
     };
+  }
+
+  Future<bool> checkDeviceSecurity() async {
+    try {
+      if (Platform.isAndroid) {
+        return await FlutterJailbreakDetection.developerMode;
+      } else if (Platform.isIOS) {
+        return await FlutterJailbreakDetection.jailbroken;
+      }
+    } on PlatformException {
+      return true;
+    }
+    return true;
   }
 }
