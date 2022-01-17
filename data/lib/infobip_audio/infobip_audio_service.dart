@@ -26,7 +26,6 @@ class InfoBipAudioService {
   /// This method used for get your token with
   ///
   Future<String> obtainToken({required ObtainToken parameter}) async {
-    // var parameter = {"identity": 'Alice_Test', "displayName": 'Alice Test'};
     try {
       var tokenDetail =
           await _infobipPlugin.getToken(parameter: parameter.toJson());

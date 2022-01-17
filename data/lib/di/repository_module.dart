@@ -126,8 +126,9 @@ var paymentRepositoryProvider = Provider<PaymentRepository>(
     (ref) => PaymentRepositoryImpl(ref.read(paymentDataSourceProvider)));
 
 /// inject [HelpCenterRepository] provider
-var helpCenterRepositoryProvider = Provider<HelpCenterRepository>(
-    (ref) => InfobipAudioRepositoryImpl(ref.read(infobipDatasourceProvider)));
+var helpCenterRepositoryProvider = Provider<HelpCenterRepository>((ref) =>
+    InfobipAudioRepositoryImpl(
+        ref.read(infobipDatasourceProvider), ref.read(userRepoProvider)));
 
 /// inject [InfobipMessageRepository] provider
 var infobipMessagingRepositoryProvider = Provider<InfobipMessageRepository>(
