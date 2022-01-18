@@ -108,8 +108,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("ADDRESS IN UNITED STATES"),
         "agentSelectionHeader": MessageLookupByLibrary.simpleMessage(
             "Please select your preferred agent for a video call"),
-        "agreeData":
-            MessageLookupByLibrary.simpleMessage("data and agree to the "),
+        "agreeData": MessageLookupByLibrary.simpleMessage("and "),
         "agreeTermsCondition": MessageLookupByLibrary.simpleMessage(
             "Please agree to terms and conditions."),
         "allTime": MessageLookupByLibrary.simpleMessage("All Time"),
@@ -124,12 +123,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than US or Jordan?"),
         "appName": MessageLookupByLibrary.simpleMessage("Neo Bank"),
+        "applicationFailureMsg": MessageLookupByLibrary.simpleMessage(
+            "We generated a score based on your personal and credit information which did not meet our criteria. We will review your score regularly and inform you when you become eligible. \n\nPlease stay with us and enjoy Blink\'s services, more is coming your way!"),
         "applicationNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Unfortunately, your application was rejected."),
         "applyCreditCard":
             MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
         "applyCreditCardTitle":
-            MessageLookupByLibrary.simpleMessage("SUPPLEMENTARY CREDIT CARD"),
+            MessageLookupByLibrary.simpleMessage("APPLY FOR CREDIT CARD"),
         "applyDebitCard":
             MessageLookupByLibrary.simpleMessage("APPLY DEBIT CARD"),
         "aramaxWillConnectYouSoon": MessageLookupByLibrary.simpleMessage(
@@ -151,8 +152,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "area": MessageLookupByLibrary.simpleMessage("AREA"),
         "areaSmall": MessageLookupByLibrary.simpleMessage("Area"),
         "atmWithDrawal": MessageLookupByLibrary.simpleMessage("ATM Withdrawal"),
+        "authorization": MessageLookupByLibrary.simpleMessage("authorization."),
         "authorize": MessageLookupByLibrary.simpleMessage(
-            "I authorize blink to retrieve my"),
+            "I hereby acknowledge that I have read, understood, and accepted Blink’s Credit Card "),
         "availableAmount":
             MessageLookupByLibrary.simpleMessage("AVAILABLE AMOUNT"),
         "availableBalance":
@@ -308,7 +310,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "creditLimit": MessageLookupByLibrary.simpleMessage("CREDIT LIMIT"),
         "creditLimitSettings":
             MessageLookupByLibrary.simpleMessage("Credit Limit Settings"),
-        "creditTc": MessageLookupByLibrary.simpleMessage("Terms & Conditions."),
+        "creditTc": MessageLookupByLibrary.simpleMessage("Terms & Conditions "),
         "currentPassword":
             MessageLookupByLibrary.simpleMessage("CURRENT PASSWORD"),
         "currentPasswordIncorrect": MessageLookupByLibrary.simpleMessage(
@@ -479,7 +481,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Confirm password field cannot be empty"),
         "enterIdNumberToResetPassword": MessageLookupByLibrary.simpleMessage(
-            "Enter your ID number\nto reset your password"),
+            "Enter below details to reset your password"),
         "enterLoginDetails":
             MessageLookupByLibrary.simpleMessage("Enter your login details"),
         "enterMailingAddress":
@@ -1290,6 +1292,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalAnnualIncome":
             MessageLookupByLibrary.simpleMessage("TOTAL ANNUAL INCOME"),
         "totalBalance": MessageLookupByLibrary.simpleMessage("Total Balance"),
+        "totalUsedAmount":
+            MessageLookupByLibrary.simpleMessage("TOTAL USED AMOUNT"),
         "totalUsedLimit":
             MessageLookupByLibrary.simpleMessage("TOTAL USED LIMIT"),
         "transactionPurpose":
@@ -1387,7 +1391,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "whatIsYourEmploymentStatus": MessageLookupByLibrary.simpleMessage(
             "What is your employment status?"),
         "whatRelationshipWithCardHolder": MessageLookupByLibrary.simpleMessage(
-            "What is your relationship\nwith cardholder?"),
+            "What is your relationship\nwith the cardholder?"),
         "whatYourEmailAndMobileNumber": MessageLookupByLibrary.simpleMessage(
             "What’s your email and mobile number?"),
         "whereDoYouCurrentlyLive": MessageLookupByLibrary.simpleMessage(
@@ -1409,6 +1413,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your Yellow Sun debit card \n has been issued!"),
         "yourCardIsReady":
             MessageLookupByLibrary.simpleMessage("Your card is ready!"),
+        "yourCardLimit":
+            MessageLookupByLibrary.simpleMessage("YOUR CARD LIMIT"),
         "yourCardReady":
             MessageLookupByLibrary.simpleMessage("Your card is ready!"),
         "yourCardReadyDesc": MessageLookupByLibrary.simpleMessage(

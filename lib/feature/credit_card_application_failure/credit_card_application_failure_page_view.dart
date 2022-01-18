@@ -20,77 +20,78 @@ class CreditCardApplicationFailurePageView
           print("dragged");
         }
       },
-      child: Padding(
-        padding: EdgeInsets.only(top: 92),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Image.asset(AssetUtils.line,
-                      color: Theme.of(context).accentColor.withOpacity(0.4)),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      height: 111.37,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).canvasColor,
-                      ),
-                      child: Center(
-                          child: AppSvg.asset(AssetUtils.cancel,
-                              color: Theme.of(context).primaryColorDark)),
+      child: SingleChildScrollView(
+        padding: EdgeInsets.only(top: 92, bottom: 56),
+        child: Column(
+          children: [
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                Image.asset(AssetUtils.line,
+                    color: Theme.of(context).accentColor.withOpacity(0.4)),
+                Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    height: 111.37,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).canvasColor,
                     ),
+                    child: Center(
+                        child: AppSvg.asset(AssetUtils.cancel,
+                            color: Theme.of(context).primaryColorDark)),
                   ),
-                ],
+                ),
+              ],
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 46),
+              child: Text(
+                S.of(context).applicationNotSuccessful,
+                textAlign: TextAlign.center,
+                maxLines: 3,
+                style: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    fontSize: 24,
+                    color: Theme.of(context).accentColor),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 46),
-                child: Text(
-                  S.of(context).applicationNotSuccessful,
+            ),
+            Padding(
+              padding: EdgeInsets.only(
+                top: 16,
+                left: 40,
+                right: 40,
+              ),
+              child: Text(S.of(context).applicationFailureMsg,
                   textAlign: TextAlign.center,
-                  maxLines: 3,
                   style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 24,
-                      color: Theme.of(context).accentColor),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 16),
-                child: Text(S.of(context).excitingPromotion,
-                    maxLines: 2,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: Theme.of(context).accentColor,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400)),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 262),
-                child: AnimatedButton(
-                  buttonText: S.of(context).swipeToProceed,
-                  borderColor: Theme.of(context).accentColor,
-                  textColor: Theme.of(context).accentColor,
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: Padding(
-                  padding: EdgeInsets.only(top: 9),
-                  child: Text(
-                    S.of(context).toDashboard,
-                    style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
                       color: Theme.of(context).accentColor,
-                    ),
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600)),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 262),
+              child: AnimatedButton(
+                buttonText: S.of(context).swipeToProceed,
+                borderColor: Theme.of(context).accentColor,
+                textColor: Theme.of(context).accentColor,
+              ),
+            ),
+            InkWell(
+              onTap: () {},
+              child: Padding(
+                padding: EdgeInsets.only(top: 9),
+                child: Text(
+                  S.of(context).toDashboard,
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: Theme.of(context).accentColor,
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

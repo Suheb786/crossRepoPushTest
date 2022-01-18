@@ -34,7 +34,8 @@ final addNumberViewModelProvider =
 ///[ValidateOtpViewModel] provider
 final validateOtpViewModelProvider =
     ChangeNotifierProvider.autoDispose<ValidateOtpViewModel>(
-  (ref) => ValidateOtpViewModel(ref.read(verifyOtpUseCaseProvider)),
+  (ref) => ValidateOtpViewModel(
+      ref.read(verifyOtpUseCaseProvider), ref.read(getTokenUseCaseProvider)),
 );
 
 ///[CreatePasswordViewModel] provider

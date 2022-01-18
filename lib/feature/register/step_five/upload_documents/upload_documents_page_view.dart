@@ -632,7 +632,7 @@ class UploadDocumentsPageView
                                                                             onPressed: () {
                                                                               UploadDocumentLaterDialog.show(context, onSelected: () {
                                                                                 Navigator.pop(context);
-                                                                                Navigator.pushReplacementNamed(context, RoutePaths.AccountReady);
+                                                                                //Navigator.pushReplacementNamed(context, RoutePaths.AccountReady);
                                                                               });
                                                                             },
                                                                             child: Text(

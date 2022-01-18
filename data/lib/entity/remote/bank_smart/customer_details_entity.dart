@@ -188,7 +188,7 @@ class CustomerDetailsEntity extends BaseLayerDataTransformer<
   @JsonKey(name: "mainSourceofIncome")
   final String? mainSourceofIncome;
   @JsonKey(name: "otherEmploymentStatus")
-  final dynamic? otherEmploymentStatus;
+  final String? otherEmploymentStatus;
   @JsonKey(name: "annualIncome")
   final int? annualIncome;
   @JsonKey(name: "monthlyIncome")

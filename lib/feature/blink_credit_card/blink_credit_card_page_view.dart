@@ -129,13 +129,13 @@ class BlinkCreditCardPageView
                               height: 24,
                             ),
                             Padding(
-                              padding: EdgeInsets.only(right: 24),
+                              padding: EdgeInsets.only(right: 55.0, left: 31),
                               child: Align(
                                 alignment: Alignment.center,
                                 child: Text(
                                   S.of(context).getCardDelivered,
                                   textAlign: TextAlign.center,
-                                  maxLines: 3,
+                                  // maxLines: 3,
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 14),
@@ -143,7 +143,7 @@ class BlinkCreditCardPageView
                               ),
                             ),
                             SizedBox(
-                              height: 89,
+                              height: 48,
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 25.0, right: 49),
@@ -178,9 +178,9 @@ class BlinkCreditCardPageView
                                               child: Visibility(
                                                 visible: value,
                                                 child: AppSvg.asset(
-                                                    AssetUtils.right,
-                                                    height: 8,
-                                                    width: 11),
+                                                    AssetUtils.tick,
+                                                    color: Theme.of(context)
+                                                        .primaryColorDark),
                                               ),
                                             ),
                                           ),
@@ -191,7 +191,7 @@ class BlinkCreditCardPageView
                                   ),
                                   Expanded(
                                     child: RichText(
-                                        maxLines: 3,
+                                        //maxLines: 3,
                                         text: TextSpan(
                                             text: S.of(context).authorize,
                                             style: TextStyle(
@@ -199,47 +199,53 @@ class BlinkCreditCardPageView
                                                     .primaryColorDark,
                                                 fontWeight: FontWeight.w600),
                                             children: [
-                                              TextSpan(
-                                                  text: S
-                                                      .of(context)
-                                                      .creditBureau,
-                                                  style: TextStyle(
-                                                      color: Theme.of(context)
-                                                          .accentTextTheme
-                                                          .bodyText1!
-                                                          .color!,
-                                                      fontWeight:
-                                                          FontWeight.w600),
-                                                  children: [
-                                                    TextSpan(
-                                                        text: S
-                                                            .of(context)
-                                                            .agreeData,
-                                                        style: TextStyle(
-                                                            color: Theme.of(
-                                                                    context)
-                                                                .primaryColorDark,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .w600),
-                                                        children: [
-                                                          TextSpan(
-                                                            text: S
-                                                                .of(context)
-                                                                .creditTc,
-                                                            style: TextStyle(
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .accentTextTheme
-                                                                    .bodyText1!
-                                                                    .color!,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          )
-                                                        ])
-                                                  ])
-                                            ])),
+                                          TextSpan(
+                                              text: S.of(context).creditTc,
+                                              style: TextStyle(
+                                                  color: Theme.of(context)
+                                                      .accentTextTheme
+                                                      .bodyText1!
+                                                      .color!,
+                                                  fontWeight: FontWeight.w600),
+                                              children: [
+                                                TextSpan(
+                                                    text:
+                                                        S.of(context).agreeData,
+                                                    style: TextStyle(
+                                                        color: Theme.of(context)
+                                                            .primaryColorDark,
+                                                        fontWeight:
+                                                            FontWeight.w600),
+                                                    children: [
+                                                      TextSpan(
+                                                          text: S
+                                                              .of(context)
+                                                              .creditBureau,
+                                                          style: TextStyle(
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .accentTextTheme
+                                                                  .bodyText1!
+                                                                  .color!,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
+                                                          children: [
+                                                            TextSpan(
+                                                                text: S
+                                                                    .of(context)
+                                                                    .authorization,
+                                                                style: TextStyle(
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .primaryColorDark,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w600)),
+                                                          ])
+                                                    ])
+                                              ])
+                                        ])),
                                   )
                                 ],
                               ),

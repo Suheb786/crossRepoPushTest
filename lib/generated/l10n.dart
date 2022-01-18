@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -6990,10 +6991,10 @@ class S {
     );
   }
 
-  /// `What is your relationship\nwith cardholder?`
+  /// `What is your relationship\nwith the cardholder?`
   String get whatRelationshipWithCardHolder {
     return Intl.message(
-      'What is your relationship\nwith cardholder?',
+      'What is your relationship\nwith the cardholder?',
       name: 'whatRelationshipWithCardHolder',
       desc: '',
       args: [],
@@ -7430,10 +7431,10 @@ class S {
     );
   }
 
-  /// `I authorize blink to retrieve my`
+  /// `I hereby acknowledge that I have read, understood, and accepted Blink’s Credit Card `
   String get authorize {
     return Intl.message(
-      'I authorize blink to retrieve my',
+      'I hereby acknowledge that I have read, understood, and accepted Blink’s Credit Card ',
       name: 'authorize',
       desc: '',
       args: [],
@@ -7450,21 +7451,31 @@ class S {
     );
   }
 
-  /// `data and agree to the `
+  /// `and `
   String get agreeData {
     return Intl.message(
-      'data and agree to the ',
+      'and ',
       name: 'agreeData',
       desc: '',
       args: [],
     );
   }
 
-  /// `Terms & Conditions.`
+  /// `Terms & Conditions `
   String get creditTc {
     return Intl.message(
-      'Terms & Conditions.',
+      'Terms & Conditions ',
       name: 'creditTc',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `authorization.`
+  String get authorization {
+    return Intl.message(
+      'authorization.',
+      name: 'authorization',
       desc: '',
       args: [],
     );
@@ -7500,10 +7511,10 @@ class S {
     );
   }
 
-  /// `SUPPLEMENTARY CREDIT CARD`
+  /// `APPLY FOR CREDIT CARD`
   String get applyCreditCardTitle {
     return Intl.message(
-      'SUPPLEMENTARY CREDIT CARD',
+      'APPLY FOR CREDIT CARD',
       name: 'applyCreditCardTitle',
       desc: '',
       args: [],
@@ -7720,10 +7731,10 @@ class S {
     );
   }
 
-  /// `Enter your ID number\nto reset your password`
+  /// `Enter below details to reset your password`
   String get enterIdNumberToResetPassword {
     return Intl.message(
-      'Enter your ID number\nto reset your password',
+      'Enter below details to reset your password',
       name: 'enterIdNumberToResetPassword',
       desc: '',
       args: [],
@@ -7800,71 +7811,31 @@ class S {
     );
   }
 
-  /// `Email cannot be empty`
-  String get emptyVerifyEmail {
+  /// `TOTAL USED AMOUNT`
+  String get totalUsedAmount {
     return Intl.message(
-      'Email cannot be empty',
-      name: 'emptyVerifyEmail',
+      'TOTAL USED AMOUNT',
+      name: 'totalUsedAmount',
       desc: '',
       args: [],
     );
   }
 
-  /// `Expiry Date cannot be empty`
-  String get emptyVerifyExpiryDate {
+  /// `YOUR CARD LIMIT`
+  String get yourCardLimit {
     return Intl.message(
-      'Expiry Date cannot be empty',
-      name: 'emptyVerifyExpiryDate',
+      'YOUR CARD LIMIT',
+      name: 'yourCardLimit',
       desc: '',
       args: [],
     );
   }
 
-  /// `National Id cannot be empty`
-  String get emptyVerifyNationalId {
+  /// `We generated a score based on your personal and credit information which did not meet our criteria. We will review your score regularly and inform you when you become eligible. \n\nPlease stay with us and enjoy Blink's services, more is coming your way!`
+  String get applicationFailureMsg {
     return Intl.message(
-      'National Id cannot be empty',
-      name: 'emptyVerifyNationalId',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Error While Forget Password`
-  String get checkForgetPasswordError {
-    return Intl.message(
-      'Error While Forget Password',
-      name: 'checkForgetPasswordError',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Your new password has\nbeen set.`
-  String get createPasswordSuccess {
-    return Intl.message(
-      'Your new password has\nbeen set.',
-      name: 'createPasswordSuccess',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Proceed to the login page and use your\nnew password to login.`
-  String get proceedToLogin {
-    return Intl.message(
-      'Proceed to the login page and use your\nnew password to login.',
-      name: 'proceedToLogin',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `to Login Page`
-  String get toLoginPage {
-    return Intl.message(
-      'to Login Page',
-      name: 'toLoginPage',
+      'We generated a score based on your personal and credit information which did not meet our criteria. We will review your score regularly and inform you when you become eligible. \n\nPlease stay with us and enjoy Blink\'s services, more is coming your way!',
+      name: 'applicationFailureMsg',
       desc: '',
       args: [],
     );

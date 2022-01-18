@@ -105,7 +105,7 @@ CustomerDetailsEntity _$CustomerDetailsEntityFromJson(
     employmentStatus: json['employmentStatus'] as String?,
     occupation: json['occupation'] as String?,
     mainSourceofIncome: json['mainSourceofIncome'] as String?,
-    otherEmploymentStatus: json['otherEmploymentStatus'],
+    otherEmploymentStatus: json['otherEmploymentStatus'] as String?,
     annualIncome: json['annualIncome'] as int?,
     monthlyIncome: json['monthlyIncome'],
     additionalIncomeSource: json['additionalIncomeSource'] as String?,

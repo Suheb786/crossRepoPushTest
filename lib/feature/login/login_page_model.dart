@@ -4,6 +4,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/kyc/check_kyc_status_usecase.dart';
+import 'package:domain/usecase/user/get_cipher_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -17,6 +18,7 @@ import 'package:rxdart/rxdart.dart';
 class LoginViewModel extends BasePageViewModel {
   final LoginUseCase _loginUseCase;
   final CheckKYCStatusUseCase _kycStatusUseCase;
+  final GetCipherUseCase _getCipherUseCase;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -48,7 +50,15 @@ class LoginViewModel extends BasePageViewModel {
   Stream<Resource<CheckKycResponse>> get kycStatusStream =>
       _kycStatusResponse.stream;
 
-  LoginViewModel(this._loginUseCase, this._kycStatusUseCase) {
+  ///get cipher usecase
+  PublishSubject<GetCipherUseCaseParams> _getCipherRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _getCipherResponse = PublishSubject();
+
+  Stream<Resource<bool>> get getCipherStream => _getCipherResponse.stream;
+
+  LoginViewModel(
+      this._loginUseCase, this._kycStatusUseCase, this._getCipherUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value,
               createCall: () => _loginUseCase.execute(params: value))
@@ -81,6 +91,8 @@ class LoginViewModel extends BasePageViewModel {
         }
       });
     });
+
+    //getCipher();
   }
 
   void validateEmail() {
@@ -98,6 +110,10 @@ class LoginViewModel extends BasePageViewModel {
     } else {
       _showButtonSubject.safeAdd(false);
     }
+  }
+
+  void getCipher() {
+    _getCipherRequest.safeAdd(GetCipherUseCaseParams());
   }
 
   @override

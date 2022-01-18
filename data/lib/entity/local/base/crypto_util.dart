@@ -46,23 +46,21 @@ Future<String> encryptData(
       publicKey: _keyHelper.parsePublicKeyFromPem(publicKey),
       privateKey: _keyHelper.parsePrivateKeyFromPem(privateKey),
       encoding: encrypt.RSAEncoding.PKCS1));
-  return Future.value(encrypter
-      .encrypt(content!)
-      .base64);
+  return Future.value(encrypter.encrypt(content!).base64);
   // RSAEncoding.PKCS1
 }
-//
-// String signedData({String content}) {
-//   return _rsaHelper.sign(content, _privateKey);
-// }
-//
-// String decryptData({String content}) {
-//   var encrypter = encrypt.Encrypter(encrypt.RSA(
-//       publicKey: _publicKey,
-//       privateKey: _privateKey,
-//       encoding: encrypt.RSAEncoding.PKCS1));
-//   return encrypter.decrypt64(content);
-// }
+
+String signedData({required String userId, required String privateKey}) {
+  return _keyHelper.sign(userId, _keyHelper.parsePrivateKeyFromPem(privateKey));
+}
+
+String decryptData({String? content, String? publicKey, String? privateKey}) {
+  var encrypter = encrypt.Encrypter(encrypt.RSA(
+      publicKey: _keyHelper.parsePublicKeyFromPem(publicKey),
+      privateKey: _keyHelper.parsePrivateKeyFromPem(privateKey),
+      encoding: encrypt.RSAEncoding.PKCS1));
+  return encrypter.decrypt64(content!);
+}
 //
 //
 // //
