@@ -4,16 +4,19 @@ import 'package:domain/constants/enum/infobip_call_status_enum.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/repository/help_center/help_canter.dart';
 import 'package:domain/model/infobip_audio/obtain_token.dart';
+import 'package:domain/repository/user/user_repository.dart';
 
 class InfobipAudioRepositoryImpl extends HelpCenterRepository {
   final InfobipAudioLocalDs _infobipAudioDS;
+  final UserRepository _repository;
 
-  InfobipAudioRepositoryImpl(this._infobipAudioDS);
+  InfobipAudioRepositoryImpl(this._infobipAudioDS, this._repository);
 
   @override
   Future<Either<NetworkError, bool>> initInfobip(
       Function(InfobipCallStatusEnum) callback) async {
     var infobipResult = await _infobipAudioDS.initInfobipAudio(callback);
+
     if (!infobipResult) {
       return Left(
           NetworkError(httpError: 1501, cause: Exception(), message: ''));
@@ -25,13 +28,22 @@ class InfobipAudioRepositoryImpl extends HelpCenterRepository {
   @override
   Future<Either<NetworkError, String>> obtainToken(
       ObtainToken parameter) async {
-    var tokenDetails = await _infobipAudioDS.obtainToken(parameter);
-    if (tokenDetails == null) {
-      return Left(
-          NetworkError(httpError: 1502, cause: Exception(), message: ''));
-    } else {
-      return Right(tokenDetails);
-    }
+    var tokenDetails;
+    return (await _repository.getCurrentUser()).fold(
+        (l) => Left(
+            NetworkError(httpError: 1502, cause: Exception(), message: '')),
+        (user) async {
+      parameter.displayName = user.firstName! + ' ' + user.lastName!;
+      parameter.identity = user.firstName!;
+      print("DISPLAY NAME ::: " + parameter.displayName!);
+      tokenDetails = await _infobipAudioDS.obtainToken(parameter);
+      if (tokenDetails == null) {
+        return Left(
+            NetworkError(httpError: 1502, cause: Exception(), message: ''));
+      } else {
+        return Right(tokenDetails);
+      }
+    });
   }
 
   @override

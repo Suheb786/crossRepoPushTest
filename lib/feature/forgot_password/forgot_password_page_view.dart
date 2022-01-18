@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/forgot_password/forgot_password_modules.dart';
 import 'package:neo_bank/feature/forgot_password/add_id_number_for_reset_password/add_id_number_for_reset_password_page.dart';
 import 'package:neo_bank/feature/forgot_password/create_new_password/create_new_password_page.dart';
 import 'package:neo_bank/feature/forgot_password/enter_otp_for_reset_password/enter_otp_for_reset_password_page.dart';
@@ -17,8 +18,8 @@ class ForgotPasswordPageView
     extends BasePageViewWidget<ForgotPasswordPageViewModel> {
   final pages = [
     AddIDNumberForResetPasswordPage(),
-    EnterOTPForResetPasswordPage(),
     CreateNewPasswordPage(),
+    EnterOTPForResetPasswordPage(),
   ];
 
   ForgotPasswordPageView(ProviderBase model) : super(model);
@@ -89,8 +90,8 @@ class ForgotPasswordPageView
                           StepTextHelper.accountRegistrationTextHelper(
                             currentStep ?? 0,
                             S.of(context).enterIdNumberToResetPassword,
-                            S.of(context).enterOtpHeader,
                             S.of(context).letsCreateNewPass,
+                            S.of(context).enterOtpHeader,
                           ),
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -101,7 +102,7 @@ class ForgotPasswordPageView
                       ),
                     ),
                     Visibility(
-                      visible: currentStep == 1,
+                      visible: currentStep == 2,
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 32),
                         child: ShowUpAnimation(
@@ -111,7 +112,13 @@ class ForgotPasswordPageView
                           direction: Direction.vertical,
                           offset: 0.5,
                           child: Text(
-                            "+962 79 322 8080",
+                            ProviderScope.containerOf(context)
+                                        .read(
+                                            createNewPasswordViewModelProvider)
+                                        .mobileNumber !=
+                                    null
+                                ? "+ ${ProviderScope.containerOf(context).read(createNewPasswordViewModelProvider).mobileNumber}"
+                                : "",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Theme.of(context).accentColor,

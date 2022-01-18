@@ -1,7 +1,10 @@
+import 'package:domain/model/forget_password/forget_password_response.dart';
 import 'package:domain/usecase/forgot_password/create_new_password_usecase.dart';
 import 'package:domain/utils/validator.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/forgot_password/forgot_password_modules.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -13,7 +16,7 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
   final CreateNewPasswordUseCase _createPasswordUseCase;
 
   final TextEditingController createPasswordController =
-      TextEditingController();
+  TextEditingController();
 
   TextEditingController confirmPasswordController = TextEditingController();
 
@@ -28,9 +31,10 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
       PublishSubject();
 
   /// create password response subject holder
-  PublishSubject<Resource<bool>> _createPasswordResponse = PublishSubject();
+  PublishSubject<Resource<ForgetPasswordResponse>> _createPasswordResponse =
+      PublishSubject();
 
-  Stream<Resource<bool>> get createPasswordStream =>
+  Stream<Resource<ForgetPasswordResponse>> get createPasswordStream =>
       _createPasswordResponse.stream;
 
   /// show button Subject holder
@@ -41,11 +45,11 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
   CreateNewPasswordPageViewModel(this._createPasswordUseCase) {
     _createPasswordRequest.listen((value) {
       RequestManager(value,
-              createCall: () => _createPasswordUseCase.execute(params: value))
+          createCall: () => _createPasswordUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _createPasswordResponse.safeAdd(event);
         updateLoader();
+        _createPasswordResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
         }
@@ -58,6 +62,7 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
   bool hasSymbol = false;
   bool minimumEightCharacters = false;
   bool containsDigit = false;
+  String? mobileNumber;
 
   void validatePassword() {
     minimumEightCharacters = createPasswordController.text.length > 7;
@@ -67,14 +72,26 @@ class CreateNewPasswordPageViewModel extends BasePageViewModel {
     notifyListeners();
   }
 
-  void createPassword() {
+  void createPassword(BuildContext context) {
     _createPasswordRequest.safeAdd(CreateNewPasswordUseCaseParams(
         createPassword: createPasswordController.text,
         confirmPassword: confirmPasswordController.text,
         minimumEightCharacters: minimumEightCharacters,
         hasUpperCase: hasUpperCase,
         hasSymbol: hasSymbol,
-        containsDigit: containsDigit));
+        containsDigit: containsDigit,
+        email: ProviderScope.containerOf(context)
+            .read(addIdNumberForResetPasswordViewModelProvider)
+            .emailController
+            .text,
+        idNo: ProviderScope.containerOf(context)
+            .read(addIdNumberForResetPasswordViewModelProvider)
+            .nationalIdController
+            .text,
+        idExpiry: ProviderScope.containerOf(context)
+            .read(addIdNumberForResetPasswordViewModelProvider)
+            .idExpiryDateController
+            .text));
   }
 
   void validateAllFields() {

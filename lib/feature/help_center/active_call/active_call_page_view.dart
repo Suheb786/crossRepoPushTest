@@ -85,7 +85,7 @@ class ActiveCallPageView extends BasePageViewWidget<ActiveCallPageViewModel> {
                                       ),
                                       child: Center(
                                           child: AppSvg.asset(
-                                              !data!.data!
+                                              data!.data!
                                                   ? AssetUtils.speaker
                                                   : AssetUtils.speakerOff,
                                               height: 30.32,
