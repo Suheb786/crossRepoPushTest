@@ -123,6 +123,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "anyOtherCountryTaxResident": MessageLookupByLibrary.simpleMessage(
             "Are you Tax Resident in any other country than US or Jordan?"),
         "appName": MessageLookupByLibrary.simpleMessage("Neo Bank"),
+        "applicationFailureMsg": MessageLookupByLibrary.simpleMessage(
+            "We generated a score based on your personal and credit information which did not meet our criteria. We will review your score regularly and inform you when you become eligible. \n\nPlease stay with us and enjoy Blink\'s services, more is coming your way!"),
         "applicationNotSuccessful": MessageLookupByLibrary.simpleMessage(
             "Unfortunately, your application was rejected."),
         "applyCreditCard":

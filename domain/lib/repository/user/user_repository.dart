@@ -183,4 +183,8 @@ abstract class UserRepository {
   Future<Either<NetworkError, GetComboValuesResponse>> getComboValues();
 
   Future<Either<NetworkError, CustomerStatus>> checkCustomerStatus();
+
+  Future<Either<NetworkError, bool>> getCipher();
+
+  Future<Either<NetworkError, bool>> androidLogin();
 }

@@ -148,6 +148,10 @@ abstract class UserRemoteDS {
   Future<HttpResponse<GetComboValuesResponseEntity>> getComboValues();
 
   Future<HttpResponse<CustomerStatusResponseEntity>> checkCustomerStatus();
+
+  Future<HttpResponse<ResponseEntity>> getCipher();
+
+  Future<HttpResponse<ResponseEntity>> androidLogin();
 }
 
 abstract class UserLocalDS {

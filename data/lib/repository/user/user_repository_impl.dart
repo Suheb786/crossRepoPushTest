@@ -593,4 +593,26 @@ class UserRepositoryImpl extends UserRepository {
       (r) => Right(r.data.transform()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> getCipher() async {
+    final result = await safeApiCall(
+      _remoteDS.getCipher(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> androidLogin() async{
+    final result = await safeApiCall(
+      _remoteDS.androidLogin(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }

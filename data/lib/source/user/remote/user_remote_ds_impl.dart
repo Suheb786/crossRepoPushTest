@@ -19,7 +19,9 @@ import 'package:data/entity/remote/user/confirm_application_data_set/confirm_app
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/review_application_data_entity.dart';
 import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/android_login_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/get_cipher_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
@@ -427,5 +429,30 @@ class UserRemoteDSImpl extends UserRemoteDS {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkCustomerStatus(
         BaseRequest(baseData: baseData.toJson(), getToken: true));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> getCipher() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
+    User user = userDBEntity!.transform();
+    return _apiService.getCipher(GetCipherRequestEntity(
+      deviceId: baseData.deviceID,
+      userId: user.id,
+      baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> androidLogin() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
+    User user = userDBEntity!.transform();
+    return _apiService.androidLogin(AndroidLoginRequestEntity(
+      uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
+      fireBaseToken: "",
+      signature: "",
+      baseData: baseData.toJson(),
+    ));
   }
 }

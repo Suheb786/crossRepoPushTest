@@ -104,7 +104,9 @@ import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_request_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
 import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/android_login_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/get_cipher_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
@@ -588,4 +590,12 @@ abstract class ApiService {
   Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument(
       @Body()
           GetCustomerDocumentRequestEntity getCustomerDocumentRequestEntity);
+
+  @POST("/auth/GetCipherV1")
+  Future<HttpResponse<ResponseEntity>> getCipher(
+      @Body() GetCipherRequestEntity getCipherRequestEntity);
+
+  @POST("/auth/AndroidLogin")
+  Future<HttpResponse<ResponseEntity>> androidLogin(
+      @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 }
