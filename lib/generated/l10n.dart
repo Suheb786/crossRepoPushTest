@@ -7840,6 +7840,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Email cannot be empty`
+  String get emptyVerifyEmail {
+    return Intl.message(
+      'Email cannot be empty',
+      name: 'emptyVerifyEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Expiry Date cannot be empty`
+  String get emptyVerifyExpiryDate {
+    return Intl.message(
+      'Expiry Date cannot be empty',
+      name: 'emptyVerifyExpiryDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `National Id cannot be empty`
+  String get emptyVerifyNationalId {
+    return Intl.message(
+      'National Id cannot be empty',
+      name: 'emptyVerifyNationalId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Forget Password`
+  String get checkForgetPasswordError {
+    return Intl.message(
+      'Error While Forget Password',
+      name: 'checkForgetPasswordError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your new password has\nbeen set.`
+  String get createPasswordSuccess {
+    return Intl.message(
+      'Your new password has\nbeen set.',
+      name: 'createPasswordSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proceed to the login page and use your\nnew password to login.`
+  String get proceedToLogin {
+    return Intl.message(
+      'Proceed to the login page and use your\nnew password to login.',
+      name: 'proceedToLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `to Login Page`
+  String get toLoginPage {
+    return Intl.message(
+      'to Login Page',
+      name: 'toLoginPage',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
