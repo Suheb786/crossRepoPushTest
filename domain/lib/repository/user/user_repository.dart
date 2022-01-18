@@ -4,6 +4,7 @@ import 'package:domain/error/database_error.dart';
 import 'package:domain/error/local_error.dart';
 import 'package:domain/error/network_error.dart';
 import 'package:domain/model/user/additional_income_type.dart';
+import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/check_username.dart';
 import 'package:domain/model/user/confirm_application_data_get/account_purpose_info.dart';
 import 'package:domain/model/user/confirm_application_data_get/country_residence_info.dart';
@@ -184,7 +185,7 @@ abstract class UserRepository {
 
   Future<Either<NetworkError, CustomerStatus>> checkCustomerStatus();
 
-  Future<Either<NetworkError, bool>> getCipher();
+  Future<Either<NetworkError, GetCipherResponse>> getCipher();
 
   Future<Either<NetworkError, bool>> androidLogin();
 }

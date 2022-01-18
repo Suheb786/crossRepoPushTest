@@ -5,6 +5,7 @@ import 'package:data/entity/local/user_db_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
+import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
@@ -432,13 +433,12 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> getCipher() async {
+  Future<HttpResponse<GetCipherResponseEntity>> getCipher() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
     User user = userDBEntity!.transform();
     return _apiService.getCipher(GetCipherRequestEntity(
-      deviceId: baseData.deviceID,
-      userId: user.id,
+      uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       baseData: baseData.toJson(),
     ));
   }

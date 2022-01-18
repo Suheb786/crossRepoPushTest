@@ -9,16 +9,14 @@ part of 'get_cipher_request_entity.dart';
 GetCipherRequestEntity _$GetCipherRequestEntityFromJson(
     Map<String, dynamic> json) {
   return GetCipherRequestEntity(
-    deviceId: json['deviceid'] as String?,
+    uniqueId: json['UniqueId'] as String?,
     baseData: json['BaseClass'] as Map<String, dynamic>,
-    userId: json['userid'] as String?,
   );
 }
 
 Map<String, dynamic> _$GetCipherRequestEntityToJson(
         GetCipherRequestEntity instance) =>
     <String, dynamic>{
-      'deviceid': instance.deviceId,
-      'userid': instance.userId,
+      'UniqueId': instance.uniqueId,
       'BaseClass': instance.baseData,
     };

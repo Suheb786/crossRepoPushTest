@@ -96,6 +96,7 @@ import 'package:data/entity/remote/upload_document/save_upload_document_request_
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
+import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
@@ -592,7 +593,7 @@ abstract class ApiService {
           GetCustomerDocumentRequestEntity getCustomerDocumentRequestEntity);
 
   @POST("/auth/GetCipherV1")
-  Future<HttpResponse<ResponseEntity>> getCipher(
+  Future<HttpResponse<GetCipherResponseEntity>> getCipher(
       @Body() GetCipherRequestEntity getCipherRequestEntity);
 
   @POST("/auth/AndroidLogin")
