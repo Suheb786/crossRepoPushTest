@@ -1,9 +1,9 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part "check_forget_password_request_entity.g.dart";
+part "forget_password_request_entity.g.dart";
 
 @JsonSerializable()
-class CheckForgetPasswordRequestEntity {
+class ForgetPasswordRequestEntity {
   @JsonKey(name: "UniqueId")
   final String? uniqueId;
   @JsonKey(name: "getToken")
@@ -14,22 +14,26 @@ class CheckForgetPasswordRequestEntity {
   final String? idNo;
   @JsonKey(name: "IdExpiry")
   final String? idExpiry;
+  @JsonKey(name: "Password")
+  final String? password;
+  @JsonKey(name: "ReEnterPassword")
+  final String? reEnterPassword;
   @JsonKey(name: "BaseClass")
   final Map<String, dynamic> baseData;
 
-  CheckForgetPasswordRequestEntity({
+  ForgetPasswordRequestEntity({
     required this.baseData,
     this.getToken: true,
     this.email,
     this.idExpiry,
     this.idNo,
+    this.password,
+    this.reEnterPassword,
     this.uniqueId: "",
   });
 
-  factory CheckForgetPasswordRequestEntity.fromJson(
-          Map<String, dynamic> json) =>
-      _$CheckForgetPasswordRequestEntityFromJson(json);
+  factory ForgetPasswordRequestEntity.fromJson(Map<String, dynamic> json) =>
+      _$ForgetPasswordRequestEntityFromJson(json);
 
-  Map<String, dynamic> toJson() =>
-      _$CheckForgetPasswordRequestEntityToJson(this);
+  Map<String, dynamic> toJson() => _$ForgetPasswordRequestEntityToJson(this);
 }

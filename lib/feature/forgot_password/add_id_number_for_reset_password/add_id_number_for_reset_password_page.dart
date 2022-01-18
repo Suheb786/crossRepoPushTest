@@ -13,11 +13,7 @@ class AddIDNumberForResetPasswordPage
 }
 
 class AddIDNumberForResetPasswordPageState extends BaseStatefulPage<
-    AddIDNumberForResetPasswordPageViewModel,
-    AddIDNumberForResetPasswordPage> with AutomaticKeepAliveClientMixin {
-  AddIDNumberForResetPasswordPageState()
-      : super(subscribeVisibilityEvents: true);
-
+    AddIDNumberForResetPasswordPageViewModel, AddIDNumberForResetPasswordPage> {
   @override
   ProviderBase provideBase() {
     return addIdNumberForResetPasswordViewModelProvider;
@@ -29,17 +25,8 @@ class AddIDNumberForResetPasswordPageState extends BaseStatefulPage<
   }
 
   @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return stateBuild(context);
-  }
-
-  @override
   Widget buildView(
       BuildContext context, AddIDNumberForResetPasswordPageViewModel model) {
     return AddIDNumberForResetPasswordPageView(provideBase());
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

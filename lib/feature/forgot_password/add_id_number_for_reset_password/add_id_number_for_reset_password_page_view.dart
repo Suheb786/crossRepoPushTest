@@ -41,10 +41,10 @@ class AddIDNumberForResetPasswordPageView
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
-                    // ProviderScope.containerOf(context)
-                    //     .read(forgotPasswordViewModelProvider)
-                    //     .pageController
-                    //     .next();
+                    ProviderScope.containerOf(context)
+                        .read(forgotPasswordViewModelProvider)
+                        .pageController
+                        .next();
                     print("successful");
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
@@ -54,11 +54,7 @@ class AddIDNumberForResetPasswordPageView
                   return GestureDetector(
                     onHorizontalDragEnd: (details) {
                       if (details.primaryVelocity!.isNegative) {
-                        // model.addIdNumberForResetPassword();
-                        ProviderScope.containerOf(context)
-                            .read(forgotPasswordViewModelProvider)
-                            .pageController
-                            .next();
+                        model.addIdNumberForResetPassword();
                       }
                     },
                     child: Card(
@@ -102,9 +98,10 @@ class AddIDNumberForResetPasswordPageView
                                     ),
                                     AppTextField(
                                       labelText: S.of(context).idExpiryDate,
-                                      hintText: S.of(context).dobHint,
+                                      hintText: S.of(context).pleaseEnter,
                                       inputType: TextInputType.text,
                                       inputAction: TextInputAction.done,
+                                      readOnly: true,
                                       controller: model.idExpiryDateController,
                                       key: model.idExpiryDateKey,
                                       onChanged: (value) {

@@ -11,10 +11,7 @@ class CreateNewPasswordPage extends BasePage<CreateNewPasswordPageViewModel> {
 }
 
 class CreateNewPasswordPageState extends BaseStatefulPage<
-    CreateNewPasswordPageViewModel,
-    CreateNewPasswordPage> with AutomaticKeepAliveClientMixin {
-  CreateNewPasswordPageState() : super(subscribeVisibilityEvents: true);
-
+    CreateNewPasswordPageViewModel, CreateNewPasswordPage> {
   @override
   ProviderBase provideBase() {
     return createNewPasswordViewModelProvider;

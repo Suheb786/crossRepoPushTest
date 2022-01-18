@@ -82,6 +82,10 @@ import 'package:data/entity/remote/fatca_crs/upload_signature_request_entity.dar
 import 'package:data/entity/remote/fatca_crs/upload_signature_response_entity.dart';
 import 'package:data/entity/remote/forget_password/check_forget_password_request_entity.dart';
 import 'package:data/entity/remote/forget_password/check_forget_password_response_entity.dart';
+import 'package:data/entity/remote/forget_password/forget_password_request_entity.dart';
+import 'package:data/entity/remote/forget_password/forget_password_response_entity.dart';
+import 'package:data/entity/remote/forget_password/verify_forget_password_otp_request_entity.dart';
+import 'package:data/entity/remote/forget_password/verify_forget_password_otp_response_entity.dart';
 import 'package:data/entity/remote/kyc/check_kyc_status_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
 import 'package:data/entity/remote/payment/check_send_money_request_entity.dart';
@@ -593,5 +597,17 @@ abstract class ApiService {
 
   @POST("/Auth/CheckForgetPasswordCred")
   Future<HttpResponse<CheckForgetPasswordResponseEntity>> checkForgetPassword(
-      @Body() CheckForgetPasswordRequestEntity baseRequest);
+      @Body()
+          CheckForgetPasswordRequestEntity checkForgetPasswordRequestEntity);
+
+  @POST("/Auth/ForgetPassword")
+  Future<HttpResponse<ForgetPasswordResponseEntity>> resetPassword(
+      @Body() ForgetPasswordRequestEntity forgetPasswordRequestEntity);
+
+  @POST("/Auth/VerifyForgetPasswordOtp")
+  Future<HttpResponse<VerifyForgetPasswordOtpResponseEntity>>
+      verifyForgetPasswordOtp(
+          @Body()
+              VerifyForgetPasswordOtpRequestEntity
+                  verifyForgetPasswordOtpRequestEntity);
 }

@@ -1,7 +1,10 @@
+import 'package:domain/model/forget_password/verify_forget_password_otp_response.dart';
 import 'package:domain/usecase/forgot_password/enter_otp_for_reset_password_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/forgot_password/forgot_password_modules.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -29,10 +32,12 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
       PublishSubject();
 
   ///verify otp response holder
-  PublishSubject<Resource<bool>> _verifyOtpResponse = PublishSubject();
+  PublishSubject<Resource<VerifyForgetPasswordOtpResponse>> _verifyOtpResponse =
+      PublishSubject();
 
   ///verify otp stream
-  Stream<Resource<bool>> get verifyOtpStream => _verifyOtpResponse.stream;
+  Stream<Resource<VerifyForgetPasswordOtpResponse>> get verifyOtpStream =>
+      _verifyOtpResponse.stream;
 
   ///error detector subject
   BehaviorSubject<bool> _errorDetectorSubject = BehaviorSubject.seeded(false);
@@ -49,8 +54,8 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
   EnterOTPForResetPasswordPageViewModel(this._enterOtpForResetPasswordUsecase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value,
-              createCall: () =>
-                  _enterOtpForResetPasswordUsecase.execute(params: value))
+          createCall: () =>
+              _enterOtpForResetPasswordUsecase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
@@ -62,9 +67,29 @@ class EnterOTPForResetPasswordPageViewModel extends BasePageViewModel {
     });
   }
 
-  void validateOtp() {
-    _verifyOtpRequest
-        .safeAdd(EnterOtpForResetPasswordUseCaseParams(otp: _otpSubject.value));
+  void validateOtp(BuildContext context) {
+    _verifyOtpRequest.safeAdd(EnterOtpForResetPasswordUseCaseParams(
+        otp: _otpSubject.value,
+        email: ProviderScope.containerOf(context)
+            .read(addIdNumberForResetPasswordViewModelProvider)
+            .emailController
+            .text,
+        idExpiry: ProviderScope.containerOf(context)
+            .read(addIdNumberForResetPasswordViewModelProvider)
+            .idExpiryDateController
+            .text,
+        idNo: ProviderScope.containerOf(context)
+            .read(addIdNumberForResetPasswordViewModelProvider)
+            .nationalIdController
+            .text,
+        password: ProviderScope.containerOf(context)
+            .read(createNewPasswordViewModelProvider)
+            .createPasswordController
+            .text,
+        confirmPassword: ProviderScope.containerOf(context)
+            .read(createNewPasswordViewModelProvider)
+            .confirmPasswordController
+            .text));
   }
 
   void validate(String value) {

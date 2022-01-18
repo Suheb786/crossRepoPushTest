@@ -19,7 +19,8 @@ class ResetPasswordSuccessPageView
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.pushNamed(context, RoutePaths.Login);
+          Navigator.popUntil(
+              context, ModalRoute.withName(RoutePaths.OnBoarding));
         }
       },
       child: SingleChildScrollView(
