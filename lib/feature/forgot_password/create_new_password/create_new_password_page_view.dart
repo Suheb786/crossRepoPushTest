@@ -66,7 +66,9 @@ class CreateNewPasswordPageView
                             ProviderScope.containerOf(context)
                                 .read(accountRegistrationViewModelProvider)
                                 .pageController
-                                .previous(animation: true);
+                                .previousPage(
+                                    duration: Duration(milliseconds: 300),
+                                    curve: Curves.easeIn);
                           }
                         },
                         child: Card(

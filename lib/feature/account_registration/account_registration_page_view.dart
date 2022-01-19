@@ -10,7 +10,7 @@ import 'package:neo_bank/feature/account_registration/createPassword/create_pass
 import 'package:neo_bank/feature/account_registration/validateotp/validate_otp_page.dart';
 import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
+import 'package:neo_bank/ui/molecules/app_tilt_card.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/parser/step_text_helper.dart';
 import 'package:show_up_animation/show_up_animation.dart';
@@ -127,15 +127,29 @@ class AccountRegistrationPageView
                       ),
                     ),
                     Expanded(
-                      child: AppSwiper(
-                        pages: pages,
-                        pageController: model.pageController,
-                        onIndexChanged: (index) {
-                          model.changeCurrentPage(index);
-                        },
-                        currentStep: currentStep,
-                      ),
-                    )
+                      child: AppStreamBuilder<int?>(
+                          stream: model.currentPageStream,
+                          initialData: 0,
+                          dataBuilder: (context, value) {
+                            return PageView.builder(
+                              itemCount: pages.length,
+                              physics: NeverScrollableScrollPhysics(),
+                              controller: model.pageController,
+                              onPageChanged: (currentPage) {
+                                model.changeCurrentPage(currentPage);
+                              },
+                              itemBuilder: (context, index) {
+                                return AppTiltCard(
+                                    pageViewIndex: index,
+                                    degree: 3,
+                                    isEndPage:
+                                        value == 0 || value == pages.length - 1,
+                                    currentPage: value,
+                                    child: pages[index]);
+                              },
+                            );
+                          }),
+                    ),
                   ],
                 );
               },

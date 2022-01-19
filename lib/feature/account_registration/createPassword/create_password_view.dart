@@ -44,7 +44,9 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .pageController
-                        .next();
+                        .nextPage(
+                            duration: Duration(milliseconds: 300),
+                            curve: Curves.easeIn);
                   } else if (registerData.status == Status.ERROR) {
                     model.showToastWithError(registerData.appError!);
                   }
@@ -100,7 +102,9 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                               ProviderScope.containerOf(context)
                                   .read(accountRegistrationViewModelProvider)
                                   .pageController
-                                  .previous(animation: true);
+                                  .previousPage(
+                                      duration: Duration(milliseconds: 300),
+                                      curve: Curves.easeIn);
                             }
                           },
                           child: Card(
