@@ -380,7 +380,10 @@ class UserRepositoryImpl extends UserRepository {
             issuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
                 ? r.mrzResult!.sanitizedIssuer
                 : '',
-            issuingDate: r.dateOfIssue != null
+            issuingDate: r.dateOfIssue != null &&
+                    r.dateOfIssue!.year != 0 &&
+                    r.dateOfIssue!.month != 0 &&
+                    r.dateOfIssue!.day != 0
                 ? DateTime(r.dateOfIssue!.year!, r.dateOfIssue!.month!,
                     r.dateOfIssue!.day!)
                 : r.dateOfExpiry != null
