@@ -26,43 +26,61 @@ class RegisterPageState
   @override
   void onModelReady(RegisterViewModel model) {
     super.onModelReady(model);
-    switch (widget.arguments.kycData?.type ?? "") {
-      case "IDCardC":
-      case "SelfiCheck":
-        model.navigateToPage(0);
-        break;
-      case "CountryResidence":
-        model.navigateToPage(0);
-        Future.delayed(Duration(milliseconds: 500), () {
-          ProviderScope.containerOf(context)
-              .read(registerStepOneViewModelProvider)
-              .pageController
-              .move(2, animation: false);
-        });
-        break;
-      case "ProfileStatus":
-      case "JobDetails":
-        model.navigateToPage(0);
-        Future.delayed(Duration(milliseconds: 500), () {
-          ProviderScope.containerOf(context)
-              .read(registerStepOneViewModelProvider)
-              .pageController
-              .move(3, animation: false);
-        });
-        break;
-      case "AccountOpeningPurpose":
-        model.navigateToPage(2);
-        break;
-      case "FatcaCrs":
-        model.navigateToPage(3);
-        break;
-      case "AccountInfo":
-        model.navigateToPage(4);
-        break;
+    if (widget.arguments != null) {
+      switch (widget.arguments.kycData?.type ?? "") {
+        case "IDCardC":
+        case "SelfiCheck":
+          Future.delayed(Duration(microseconds: 100), () {
+            model.navigateToPage(0);
+          });
 
-      default:
-        Navigator.pushReplacementNamed(context, RoutePaths.AppHome);
-        break;
+          break;
+        case "CountryResidence":
+          Future.delayed(Duration(microseconds: 100), () {
+            model.navigateToPage(0);
+          });
+          Future.delayed(Duration(microseconds: 100), () {
+            ProviderScope.containerOf(context)
+                .read(registerStepOneViewModelProvider)
+                .pageController
+                .move(2, animation: false);
+          });
+          break;
+        case "ProfileStatus":
+        case "JobDetails":
+          Future.delayed(Duration(microseconds: 100), () {
+            model.navigateToPage(0);
+          });
+          Future.delayed(Duration(microseconds: 100), () {
+            ProviderScope.containerOf(context)
+                .read(registerStepOneViewModelProvider)
+                .pageController
+                .move(3, animation: false);
+          });
+          break;
+        case "AccountOpeningPurpose":
+          Future.delayed(Duration(microseconds: 100), () {
+            model.navigateToPage(2);
+          });
+
+          break;
+        case "FatcaCrs":
+          Future.delayed(Duration(microseconds: 100), () {
+            model.navigateToPage(3);
+          });
+
+          break;
+        case "AccountInfo":
+          Future.delayed(Duration(microseconds: 100), () {
+            model.navigateToPage(4);
+          });
+
+          break;
+
+        default:
+          Navigator.pushReplacementNamed(context, RoutePaths.AppHome);
+          break;
+      }
     }
   }
 

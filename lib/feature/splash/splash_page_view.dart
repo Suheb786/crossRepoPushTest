@@ -45,7 +45,8 @@ class SplashPageView extends BasePageViewWidget<SplashViewModel> {
           initialData: 0,
           onData: (data) {
             if (data == 1) {
-              model.checkDeviceCompatibility();
+              //model.checkDeviceCompatibility();
+              Navigator.pushReplacementNamed(context, RoutePaths.OnBoarding);
             }
           },
           dataBuilder: (context, data) {
