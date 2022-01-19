@@ -179,13 +179,16 @@ class RequestAmountFromContactPageView
                                     children: [
                                       AppStreamBuilder<String>(
                                           stream: model.purposeStream,
-                                          initialData:
-                                              (model.beneficiary!.purpose !=
-                                                          null &&
-                                                      model.beneficiary!
-                                                          .purpose!.isNotEmpty)
-                                                  ? model.beneficiary!.purpose!
-                                                  : 'Personal',
+                                          initialData: (model.beneficiary!
+                                                          .purposeParentDetails !=
+                                                      null &&
+                                                  model
+                                                      .beneficiary!
+                                                      .purposeParentDetails!
+                                                      .isNotEmpty)
+                                              ? model.beneficiary!
+                                                  .purposeParentDetails!
+                                              : '',
                                           dataBuilder: (context, value) {
                                             return Text(
                                               value!,
@@ -232,7 +235,7 @@ class RequestAmountFromContactPageView
                                               model.beneficiary!.purposeDetails!
                                                   .isNotEmpty)
                                           ? model.beneficiary!.purposeDetails!
-                                          : 'Transfer to Friend or Family',
+                                          : '',
                                       dataBuilder: (context, value) {
                                         return Text(
                                           value!,
