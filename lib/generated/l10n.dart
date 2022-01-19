@@ -7801,6 +7801,16 @@ class S {
     );
   }
 
+  /// `Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.`
+  String get cardApplyMsg {
+    return Intl.message(
+      'Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.',
+      name: 'cardApplyMsg',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `TOTAL USED AMOUNT`
   String get totalUsedAmount {
     return Intl.message(
@@ -7821,11 +7831,11 @@ class S {
     );
   }
 
-  /// `Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.`
-  String get cardApplyMsg {
+  /// `We generated a score based on your personal and credit information which did not meet our criteria. We will review your score regularly and inform you when you become eligible. \n\nPlease stay with us and enjoy Blink's services, more is coming your way!`
+  String get applicationFailureMsg {
     return Intl.message(
-      'Aramex will contact you soon to deliver your physical card.\n\nYou will receive your card PIN via SMS. You can contact our Engagement Team in case not received.',
-      name: 'cardApplyMsg',
+      'We generated a score based on your personal and credit information which did not meet our criteria. We will review your score regularly and inform you when you become eligible. \n\nPlease stay with us and enjoy Blink\'s services, more is coming your way!',
+      name: 'applicationFailureMsg',
       desc: '',
       args: [],
     );
