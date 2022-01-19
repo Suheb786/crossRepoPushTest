@@ -161,12 +161,11 @@ class SendAmountToContactViewModel extends BasePageViewModel {
   void transfer(TransferResponse transferResponse) {
     _transferRequest.safeAdd(TransferUseCaseParams(
       otpCode: '576824',
-      toAmount: transferResponse.toAmount,
-      toAccount: transferResponse.toAccount,
-      memo: purposeDetail == null
-            ? (beneficiary.purposeDetails == null
-                ? 'Transfer to Friend or Family'
-                : beneficiary.purposeDetails!)
+        toAmount: transferResponse.toAmount,
+        toAccount: transferResponse.toAccount,
+        limit: beneficiary.limit,
+        memo: purposeDetail == null
+            ? (beneficiary.purpose == null ? '' : beneficiary.purpose!)
             : purposeDetail!.strCode!,
         isFriend: false,
         nickName: "",

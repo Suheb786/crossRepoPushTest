@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/transaction_type.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:domain/model/purpose/purpose.dart';
 import 'package:domain/model/purpose/purpose_detail.dart';
@@ -17,14 +18,14 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
   TextEditingController purposeController = TextEditingController();
   TextEditingController purposeDetailController = TextEditingController();
   final GlobalKey<AppTextFieldState> purposeKey =
-      GlobalKey(debugLabel: "purpose");
+  GlobalKey(debugLabel: "purpose");
   final GlobalKey<AppTextFieldState> purposeDetailKey =
-      GlobalKey(debugLabel: "purposeDetail");
+  GlobalKey(debugLabel: "purposeDetail");
 
   PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
 
   PublishSubject<Resource<PurposeResponse>> _getPurposeResponse =
-      PublishSubject();
+  PublishSubject();
 
   Stream<Resource<PurposeResponse>> get getPurposeResponseStream =>
       _getPurposeResponse.stream;
@@ -39,8 +40,13 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
 
   Beneficiary? beneficiary;
 
-  EditTransactionPurposeDialogViewModel(
-      this._getPurposeUseCase, this.beneficiary) {
+  TransactionType? type;
+
+  List<dynamic>? values;
+
+  EditTransactionPurposeDialogViewModel(this._getPurposeUseCase, this.values) {
+    beneficiary = values![0];
+    type = values![1];
     purposeController.text =
         beneficiary!.purpose != null ? beneficiary!.purpose! : "Personal";
     purposeDetailController.text = beneficiary!.purposeDetails != null
@@ -70,7 +76,7 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
   void getPurpose() {
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
         toAccount: beneficiary!.iban!,
-        transferType: "TransferI",
+        transferType: type == TransactionType.RTP ? "RTP" : "TransferI",
         type: "",
         detCustomerType: ""));
   }

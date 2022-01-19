@@ -62,6 +62,8 @@ class AddRequestMoneyContactPageView
                             beneficiaries.add(element);
                           }
                         });
+                        print(
+                            "got beneficiaries length : ${beneficiaries.length}");
                         return Container(
                           child: SingleChildScrollView(
                             child: Column(
@@ -93,9 +95,7 @@ class AddRequestMoneyContactPageView
                                                   beneficiaries.length) {
                                                 return PaymentBeneficiaryEmptyWidget();
                                               }
-                                              if (beneficiaryResponse
-                                                      .data!
-                                                      .beneficiaryList![index]
+                                              if (beneficiaries[index]
                                                       .beneType ==
                                                   "RTP") {
                                                 return PaymentBeneficiaryWidget(
