@@ -104,6 +104,9 @@ class UserLocalDSImpl extends UserLocalDS {
           print(
               "I AM additionalNameInformation : ${result.additionalNameInformation}");
           print("I AM dateOfIssue : ${result.dateOfIssue}");
+          // print("I AM dateOfIssue day : ${result.dateOfIssue!.day}");
+          // print("I AM dateOfIssue month : ${result.dateOfIssue!.month}");
+          // print("I AM dateOfIssue year : ${result.dateOfIssue!.year}");
           print("I AM fathersName:  ${result.fathersName}");
           print("I AM mothersName : ${result.mothersName}");
 

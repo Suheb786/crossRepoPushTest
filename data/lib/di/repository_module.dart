@@ -21,6 +21,7 @@ import 'package:data/repository/register/register_step_four_repository_impl.dart
 import 'package:data/repository/register/register_step_three_repository_impl.dart';
 import 'package:data/repository/upload_document/upload_document_repository_impl.dart';
 import 'package:data/repository/user/user_repository_impl.dart';
+import 'package:data/repository/utility/utility_repository_impl.dart';
 import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/repository/account_settings/account_settings_repository.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
@@ -30,7 +31,9 @@ import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
+import 'package:domain/repository/forget_password/forget_password_repository.dart';
 import 'package:domain/repository/help_center/help_canter.dart';
+import 'package:domain/repository/help_center/infobip_message_repository.dart';
 import 'package:domain/repository/id_card/id_card_repository.dart';
 import 'package:domain/repository/kyc/kyc_repository.dart';
 import 'package:domain/repository/manage_contact/manage_contact_repository.dart';
@@ -40,9 +43,8 @@ import 'package:domain/repository/register/register_step_four_repository.dart';
 import 'package:domain/repository/register/register_step_three_repository.dart';
 import 'package:domain/repository/upload_document/upload_document_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
+import 'package:domain/repository/utility/utility_repository.dart';
 import 'package:riverpod/riverpod.dart';
-import 'package:domain/repository/forget_password/forget_password_repository.dart';
-import 'package:domain/repository/help_center/infobip_message_repository.dart';
 
 /// inject [UserRepository] provider
 var userRepoProvider = Provider<UserRepository>(
@@ -139,3 +141,7 @@ var infobipMessagingRepositoryProvider = Provider<InfobipMessageRepository>(
 var forgetPasswordRepositoryProvider = Provider<ForgetPasswordRepository>(
     (ref) => ForgetPasswordRepositoryImpl(
         ref.read(forgetPasswordDataSourceProvider)));
+
+/// inject [UtilityRepository] provider
+var utilityRepositoryProvider = Provider<UtilityRepository>(
+    (ref) => UtilityRepositoryImpl(ref.read(utilityDataSourceProvider)));

@@ -348,6 +348,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Deposit cash directly into your Blink account through any Capital Bank ATM, with or without your card."),
         "deviceNotFound":
             MessageLookupByLibrary.simpleMessage("Device Not Found"),
+        "deviceNotSupported":
+            MessageLookupByLibrary.simpleMessage("Jailbroken device detected"),
+        "deviceNotSupportedNote": MessageLookupByLibrary.simpleMessage(
+            "For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings."),
         "directDebitsWontBeMade": MessageLookupByLibrary.simpleMessage(
             "While frozen, direct debits linked to this card won\'t be permitted. e.g. a direct debit from your Blink account to your gym or mobile carrier."),
         "district": MessageLookupByLibrary.simpleMessage("District"),

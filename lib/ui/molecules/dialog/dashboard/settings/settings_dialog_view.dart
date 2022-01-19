@@ -37,7 +37,8 @@ class SettingsDialogView extends StatelessWidget {
             pages = [
               InkWell(
                 onTap: () {
-                  Navigator.pushNamed(context, RoutePaths.PaymentHome);
+                  Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                      arguments: false);
                 },
                 child: Container(
                   height: 174,
