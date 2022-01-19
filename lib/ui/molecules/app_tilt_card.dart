@@ -43,19 +43,21 @@ class AppTiltCard extends StatelessWidget {
           margin: EdgeInsets.only(
               bottom: pageViewIndex! == currentPage! ? 10 : 20,
               top: pageViewIndex! == currentPage! ? 0 : 5),
-          child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 15,
-                      color: Colors.black.withOpacity(0.32),
-                      offset: Offset(0, 2),
-                    )
-                  ]),
-              child: child!),
+          child: child!,
         ),
       ),
     );
   }
 }
+
+// Container(
+//               decoration: BoxDecoration(
+//                   borderRadius: BorderRadius.circular(16),
+//                   boxShadow: [
+//                     BoxShadow(
+//                       blurRadius: 15,
+//                       color: Colors.black.withOpacity(0.32),
+//                       offset: Offset(0, 2),
+//                     )
+//                   ]),
+//               child: child!),

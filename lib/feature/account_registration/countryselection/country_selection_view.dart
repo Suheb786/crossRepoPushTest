@@ -35,7 +35,7 @@ class CountrySelectionPageView
             ProviderScope.containerOf(context)
                 .read(accountRegistrationViewModelProvider)
                 .pageController
-                .next(animation: false);
+                .next();
             // .nextPage(
             //     duration: Duration(milliseconds: 500),
             //     curve: Curves.easeInOut);
