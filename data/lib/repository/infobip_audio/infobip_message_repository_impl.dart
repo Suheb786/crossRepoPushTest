@@ -9,8 +9,10 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
   InfobipMessageRepositoryImpl(this._infobipMessageDs);
 
   @override
-  Future<Either<NetworkError, bool>> initInfobipMessage() async {
-    var infobipMessageResult = await _infobipMessageDs.initInfobipMessage();
+  Future<Either<NetworkError, bool>> initInfobipMessage(
+      Function callback) async {
+    var infobipMessageResult =
+        await _infobipMessageDs.initInfobipMessage(callback);
     if (!infobipMessageResult) {
       return Left(
           NetworkError(httpError: 1501, cause: Exception(), message: ''));

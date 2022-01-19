@@ -1,4 +1,3 @@
-import 'package:domain/constants/enum/infobip_utils_enum.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/show_chat_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -6,12 +5,11 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
-import 'package:infobip_mobilemessaging/models/Configuration.dart';
 
 class EngagementTeamDialogViewModel extends BasePageViewModel {
   PublishSubject<InfobipMessagePluginUseCaseParams>
       _initInfobipMessageRequestSubject = PublishSubject();
+
   PublishSubject<ShowChatUseCaseParams> _showChatRequestSubject =
       PublishSubject();
 
@@ -19,6 +17,8 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
       PublishSubject();
 
   PublishSubject<Resource<bool>> _showChatResponseSubject = PublishSubject();
+
+  bool _isInitMessagingPlugin = false;
 
   Stream<Resource<bool>> get initInfobipMessageResponseStream =>
       _initInfobipMessageResponseSubject.stream;
@@ -39,6 +39,7 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
         print("EVENT::: $event}");
         updateLoader();
         _initInfobipMessageResponseSubject.safeAdd(event);
+        _isInitMessagingPlugin = true;
       });
     });
 
@@ -51,12 +52,12 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
       });
     });
 
-    initInfobipMessagePlugin();
+    if (!_isInitMessagingPlugin) initInfobipMessagePlugin();
   }
 
   initInfobipMessagePlugin() async {
     _initInfobipMessageRequestSubject
-        .safeAdd(InfobipMessagePluginUseCaseParams());
+        .safeAdd(InfobipMessagePluginUseCaseParams(callback: () {}));
   }
 
   showChat() {
