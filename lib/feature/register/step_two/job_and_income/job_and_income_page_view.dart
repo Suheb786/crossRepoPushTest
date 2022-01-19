@@ -88,7 +88,9 @@ class JobAndIncomePageView
                             visible: model.employmentStatusEnum ==
                                     EmploymentStatusEnum.FULL_TIME_EMPLOYEE ||
                                 model.employmentStatusEnum ==
-                                    EmploymentStatusEnum.PART_TIME_EMPLOYEE,
+                                    EmploymentStatusEnum.PART_TIME_EMPLOYEE ||
+                                model.employmentStatusEnum ==
+                                    EmploymentStatusEnum.OTHER,
                             child: Column(
                               children: [
                                 AppTextField(
@@ -253,6 +255,7 @@ class JobAndIncomePageView
                             readOnly: true,
                             key: model.employerCountryKey,
                             onPressed: () {
+                              FocusScope.of(context).unfocus();
                               CountryDialog.show(context,
                                   title: S.of(context).employerCountrySmall,
                                   onDismissed: () {
