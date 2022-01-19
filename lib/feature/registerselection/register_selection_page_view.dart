@@ -70,7 +70,7 @@ class RegisterSelectionPageView
                         margin: EdgeInsets.only(top: 41),
                         child: NotifyMeWidget(
                           onTap: () {
-                            Navigator.pushReplacementNamed(
+                            Navigator.pushNamed(
                                 context, RoutePaths.NonJordanianRegister);
                           },
                           title: S.of(context).accountOpeningDescription,

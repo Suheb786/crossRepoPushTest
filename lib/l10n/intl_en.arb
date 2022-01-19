@@ -660,6 +660,7 @@
   "pleaseAgreeToTheTermAndCondition": "Please agree to the term and condition",
   "freezeDebitCardDescription": "Here is some information for you to acknowledge before freezing your card.\n\n \u2022 In freezed state, your card can’t be used for any transactions.\n\u2022In freezed state, Direct Debits which were set up from this card number won’t be made, e.g. a Direct Debit to your gym or mobile carrier.\n\u2022 You can unfreeze and activate your card at any time. ",
   "cancelTheCard": "Cancel this card?",
+  "backToRegistration" : "Back to Registration",
   "cancelCardDesc": "Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address.",
   "reasonOfCancellation": "Reason of Cancellation",
   "requestNewCardImmediately": "I would like to request new card immediately",
