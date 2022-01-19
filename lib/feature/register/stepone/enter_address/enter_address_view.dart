@@ -4,6 +4,7 @@ import 'package:domain/error/app_error.dart';
 import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/country/city_list/city_list_response.dart';
 import 'package:domain/model/user/save_country_residence_info_response.dart';
+import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -11,7 +12,6 @@ import 'package:neo_bank/di/register/register_modules.dart';
 import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
-import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog.dart';
@@ -120,8 +120,12 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                         .viewInsets
                                                         .bottom -
                                                     48),
-                                        child: AppScrollableListViewWidget(
+                                        child: FadingEdgeScrollView
+                                            .fromSingleChildScrollView(
+                                          gradientFractionOnEnd: 0.3,
+                                          gradientFractionOnStart: 0.1,
                                           child: SingleChildScrollView(
+                                            controller: ScrollController(),
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 32, horizontal: 24),
                                             child: Column(

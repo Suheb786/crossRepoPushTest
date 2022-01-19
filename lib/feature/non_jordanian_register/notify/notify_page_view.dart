@@ -61,8 +61,7 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                                 borderRadius: BorderRadius.circular(16)),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             elevation: 2,
-                            color: Theme
-                                .of(context)
+                            color: Theme.of(context)
                                 .cardTheme
                                 .copyWith(color: AppColor.white)
                                 .color,
@@ -102,7 +101,20 @@ class NotifyPageView extends BasePageViewWidget<NotifyPageViewModel> {
                                                   S.of(context).swipeToProceed,
                                             ),
                                           );
-                                        })
+                                        }),
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        S.of(context).backToRegistration,
+                                        style: TextStyle(
+                                          color: AppColor.brightBlue,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ),
                                   ],
                                 )),
                           ),

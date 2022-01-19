@@ -6460,6 +6460,16 @@ class S {
     );
   }
 
+  /// `Back to Registration`
+  String get backToRegistration {
+    return Intl.message(
+      'Back to Registration',
+      name: 'backToRegistration',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address.`
   String get cancelCardDesc {
     return Intl.message(

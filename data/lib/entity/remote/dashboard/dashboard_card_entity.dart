@@ -25,14 +25,15 @@ class DashboardCardEntity
   @JsonKey(name: "maxLimit")
   final num? maxLimit;
 
-  DashboardCardEntity({this.name: "",
-    this.availableBalance: 0.0,
-    this.minDue: 0.0,
-    this.totalAmount: 0.0,
-    this.cardNumber: "",
-    this.expiryDate: "",
-    this.maxLimit: 0.0,
-    this.cvv: ""});
+  DashboardCardEntity(
+      {this.name: "",
+      this.availableBalance: 0.0,
+      this.minDue: 0.0,
+      this.totalAmount: 0.0,
+      this.cardNumber: "",
+      this.expiryDate: "",
+      this.maxLimit: 0.0,
+      this.cvv: ""});
 
   factory DashboardCardEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardCardEntityFromJson(json);
