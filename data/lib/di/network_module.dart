@@ -59,9 +59,12 @@ final prettyDioLoggerProvider = Provider<PrettyDioLogger>(
 final dioProvider = Provider<Dio>(
   (ref) {
     Dio dio = Dio(ref.read(baseOptions));
-    dio.interceptors.add(
+    dio.interceptors.addAll([
       ref.read(prettyDioLoggerProvider),
-    );
+      // CertificatePinningInterceptor(allowedSHAFingerprints: [
+      //   "AC:A5:99:D8:DD:74:7A:96:C5:41:AA:1F:2F:4C:53:98:52:39:8B:81:4B:DF:1C:95:F9:5F:D7:D4:D9:C9:66:7D"
+      // ])
+    ]);
     return dio;
   },
 );

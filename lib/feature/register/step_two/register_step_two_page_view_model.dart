@@ -6,7 +6,7 @@ import 'package:rxdart/rxdart.dart';
 
 class RegisterStepTwoViewModel extends BasePageViewModel {
   final SwiperController registrationStepTwoPageController =
-  new SwiperController();
+      new SwiperController();
 
   PublishSubject<int> _currentStep = PublishSubject();
 
@@ -22,7 +22,6 @@ class RegisterStepTwoViewModel extends BasePageViewModel {
   }
 
   void updatePages(List<Widget> pages) {
-    print("I AM updatePages $pages");
     _registrationStepTwoPage.safeAdd(pages);
   }
 
