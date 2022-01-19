@@ -2,7 +2,9 @@ import 'package:backdrop/backdrop.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_view_model.dart';
@@ -12,6 +14,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
   GetCreditCardPageView(ProviderBase model) : super(model);
@@ -25,7 +28,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
           .getDashboardCardDataStream,
       initialData: GetDashboardDataContent(),
       dataBuilder: (context, cardData) {
-        return !(cardData!.creditCard! == [])
+        return !(cardData!.creditCard!.length > 0)
             ? Center(
                 child: Padding(
                   padding: const EdgeInsets.only(bottom: 15),
@@ -175,8 +178,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                               }
                             },
                             child: Container(
-                              key: ValueKey(true),
-                              child: Card(
+                                key: ValueKey(true),
+                                child: Card(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16)),
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -405,8 +408,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                         ),
                                       )
                                     ],
-                                  )),
-                            ),
+                                  ),
+                                )),
                           ),
                         ),
                       ),
@@ -504,7 +507,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           style: TextStyle(
                                               color:
                                                   Theme.of(context).accentColor,
-                                              fontSize: 16,
+                                              fontSize: 12,
                                               fontWeight: FontWeight.w600),
                                         ),
                                         InkWell(
@@ -527,14 +530,43 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(top: 63),
-                                      child: Text(
-                                        cardData.creditCard!.first.cardNumber ??
-                                            '-',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          color: Theme.of(context).accentColor,
-                                          fontSize: 16,
-                                        ),
+                                      child: Row(
+                                        children: [
+                                          Text(
+                                            cardData.creditCard!.first
+                                                    .cardNumber!.isNotEmpty
+                                                ? StringUtils
+                                                    .getFormattedCreditCardNumber(
+                                                        cardData.creditCard!
+                                                            .first.cardNumber)
+                                                : '-',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              color:
+                                                  Theme.of(context).accentColor,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            width: 8,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              Clipboard.setData(ClipboardData(
+                                                      text: cardData
+                                                              .creditCard!
+                                                              .first
+                                                              .cardNumber ??
+                                                          ''))
+                                                  .then((value) =>
+                                                      Fluttertoast.showToast(
+                                                          msg:
+                                                              'Card Number Copied'));
+                                            },
+                                            child:
+                                                AppSvg.asset(AssetUtils.copy),
+                                          )
+                                        ],
                                       ),
                                     ),
                                     Padding(
@@ -549,44 +581,48 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                             fontSize: 10),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 19),
-                                      child: Divider(
-                                        height: 1,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 21),
-                                      child: Text(
-                                        "140591314151414",
-                                        style: TextStyle(
-                                          color: Theme.of(context).accentColor,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16,
+                                    Visibility(
+                                      visible: false,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 19),
+                                        child: Divider(
+                                          height: 1,
                                         ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 8),
-                                      child: Text(
-                                          S.of(context).linkedAccountNumber,
+                                    Visibility(
+                                      visible: false,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 21),
+                                        child: Text(
+                                          "140591314151414",
                                           style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
                                             fontWeight: FontWeight.w600,
-                                            fontSize: 10,
-                                            color: Theme.of(context)
-                                                .accentColor
-                                                .withOpacity(0.6),
-                                          )),
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 19),
-                                      child: Divider(
-                                        height: 1,
+                                    Visibility(
+                                      visible: false,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 8),
+                                        child: Text(
+                                            S.of(context).linkedAccountNumber,
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 10,
+                                              color: Theme.of(context)
+                                                  .accentColor
+                                                  .withOpacity(0.6),
+                                            )),
                                       ),
                                     ),
                                     Padding(
                                       padding:
-                                          EdgeInsets.only(top: 21, bottom: 128),
+                                          EdgeInsets.only(top: 24, bottom: 24),
                                       child: Row(
                                         children: [
                                           Column(
@@ -629,8 +665,11 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                               children: [
                                                 Text(
                                                   cardData.creditCard!.first
-                                                          .cvv ??
-                                                      '-',
+                                                          .cvv!.isNotEmpty
+                                                      ? StringUtils.getCvv(
+                                                          cardData.creditCard!
+                                                              .first.cvv)
+                                                      : '-',
                                                   style: TextStyle(
                                                     fontWeight: FontWeight.w600,
                                                     color: Theme.of(context)
@@ -657,6 +696,112 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                           ),
                                         ],
                                       ),
+                                    ),
+                                    Divider(
+                                      height: 1,
+                                    ),
+                                    SizedBox(
+                                      height: 24,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              cardData.creditCard!.first
+                                                      .usedBalance ??
+                                                  '-',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 14,
+                                                color: Theme.of(context)
+                                                    .accentColor,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 4,
+                                            ),
+                                            Text(
+                                              'JOD',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 10,
+                                                color: Theme.of(context)
+                                                    .accentColor
+                                                    .withOpacity(0.6),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(top: 4),
+                                          child: Text(
+                                            S.of(context).totalUsedAmount,
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                color: Theme.of(context)
+                                                    .accentColor
+                                                    .withOpacity(0.6),
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 24,
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            Text(
+                                              cardData.creditCard!.first
+                                                      .creditLimit ??
+                                                  '-',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 14,
+                                                color: Theme.of(context)
+                                                    .accentColor,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 4,
+                                            ),
+                                            Text(
+                                              'JOD',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 10,
+                                                color: Theme.of(context)
+                                                    .accentColor
+                                                    .withOpacity(0.6),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 4, bottom: 112),
+                                          child: Text(
+                                            S.of(context).yourCardLimit,
+                                            style: TextStyle(
+                                                fontSize: 10,
+                                                color: Theme.of(context)
+                                                    .accentColor
+                                                    .withOpacity(0.6),
+                                                fontWeight: FontWeight.w600),
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ],
                                 ),

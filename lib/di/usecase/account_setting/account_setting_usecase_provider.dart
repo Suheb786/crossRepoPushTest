@@ -6,6 +6,7 @@ import 'package:domain/usecase/account_setting/change_mobile_number/validate_otp
 import 'package:domain/usecase/account_setting/change_password/enter_new_password_usecase.dart';
 import 'package:domain/usecase/account_setting/get_profile_info/get_profile_info_usecase.dart';
 import 'package:domain/usecase/account_setting/my_documents/get_customer_doc_id_usecase.dart';
+import 'package:domain/usecase/account_setting/my_documents/get_customer_document_usecase.dart';
 import 'package:domain/usecase/account_setting/my_documents/my_documents_usecase.dart';
 import 'package:domain/usecase/account_setting/upload_profile_image/delete_profile_image_usecase.dart';
 import 'package:domain/usecase/account_setting/upload_profile_image/upload_profile_image_usecase.dart';
@@ -74,4 +75,11 @@ final deleteProfileImageUseCaseProvider =
 final getCustomerDocIdUseCaseProvider =
     Provider.autoDispose<GetCustomerDocIdUseCase>(
   (ref) => GetCustomerDocIdUseCase(ref.read(accountSettingRepositoryProvider)),
+);
+
+///[GetCustomerDocumentUseCase] provider
+final getCustomerDocUseCaseProvider =
+    Provider.autoDispose<GetCustomerDocumentUseCase>(
+  (ref) =>
+      GetCustomerDocumentUseCase(ref.read(accountSettingRepositoryProvider)),
 );

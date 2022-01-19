@@ -80,6 +80,12 @@ import 'package:data/entity/remote/fatca_crs/set_fatca_w8_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/set_fatca_w9_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/upload_signature_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/upload_signature_response_entity.dart';
+import 'package:data/entity/remote/forget_password/check_forget_password_request_entity.dart';
+import 'package:data/entity/remote/forget_password/check_forget_password_response_entity.dart';
+import 'package:data/entity/remote/forget_password/forget_password_request_entity.dart';
+import 'package:data/entity/remote/forget_password/forget_password_response_entity.dart';
+import 'package:data/entity/remote/forget_password/verify_forget_password_otp_request_entity.dart';
+import 'package:data/entity/remote/forget_password/verify_forget_password_otp_response_entity.dart';
 import 'package:data/entity/remote/kyc/check_kyc_status_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
 import 'package:data/entity/remote/payment/check_send_money_request_entity.dart';
@@ -96,6 +102,7 @@ import 'package:data/entity/remote/upload_document/save_upload_document_request_
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
+import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
@@ -104,7 +111,9 @@ import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_request_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
 import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/android_login_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/get_cipher_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
@@ -588,4 +597,28 @@ abstract class ApiService {
   Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument(
       @Body()
           GetCustomerDocumentRequestEntity getCustomerDocumentRequestEntity);
+
+  @POST("/auth/GetCipherV1")
+  Future<HttpResponse<GetCipherResponseEntity>> getCipher(
+      @Body() GetCipherRequestEntity getCipherRequestEntity);
+
+  @POST("/auth/AndroidLogin")
+  Future<HttpResponse<ResponseEntity>> androidLogin(
+      @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
+
+  @POST("/Auth/CheckForgetPasswordCred")
+  Future<HttpResponse<CheckForgetPasswordResponseEntity>> checkForgetPassword(
+      @Body()
+          CheckForgetPasswordRequestEntity checkForgetPasswordRequestEntity);
+
+  @POST("/Auth/ForgetPassword")
+  Future<HttpResponse<ForgetPasswordResponseEntity>> resetPassword(
+      @Body() ForgetPasswordRequestEntity forgetPasswordRequestEntity);
+
+  @POST("/Auth/VerifyForgetPasswordOtp")
+  Future<HttpResponse<VerifyForgetPasswordOtpResponseEntity>>
+      verifyForgetPasswordOtp(
+          @Body()
+              VerifyForgetPasswordOtpRequestEntity
+                  verifyForgetPasswordOtpRequestEntity);
 }

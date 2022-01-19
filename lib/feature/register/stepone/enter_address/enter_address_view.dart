@@ -125,14 +125,12 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                           gradientFractionOnEnd: 0.3,
                                           gradientFractionOnStart: 0.1,
                                           child: SingleChildScrollView(
-                                            controller: ScrollController(),
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 32, horizontal: 24),
                                             child: Column(
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                const SizedBox(height: 25),
                                                 AppTextField(
                                                   labelText:
                                                       S.of(context).country,

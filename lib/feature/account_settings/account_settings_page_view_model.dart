@@ -2,6 +2,7 @@ import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/generate_key_pair/generate_key_pair_response.dart';
 import 'package:domain/usecase/account_setting/get_profile_info/get_profile_info_usecase.dart';
+import 'package:domain/usecase/account_setting/upload_profile_image/delete_profile_image_usecase.dart';
 import 'package:domain/usecase/account_setting/upload_profile_image/upload_profile_image_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
@@ -31,6 +32,8 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   final UploadProfileImageUseCase _uploadProfileImageUseCase;
 
   final DisableFingerPrintUseCase _disableFingerPrintUseCase;
+
+  final DeleteProfileImageUseCase _deleteProfileImageUseCase;
 
   ///cupertino switch value subject
   final BehaviorSubject<bool> _switchSubject = BehaviorSubject();
@@ -132,6 +135,15 @@ class AccountSettingPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get disableFingerPrintStream =>
       _disableFingerPrintResponse.stream;
 
+  ///delete profile image usecase
+  PublishSubject<DeleteProfileImageUseCaseParams> _deleteProfileImageRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _deleteProfileImageResponse = PublishSubject();
+
+  Stream<Resource<bool>> get deleteProfileImageStream =>
+      _deleteProfileImageResponse.stream;
+
   AccountSettingPageViewModel(
       this._uploadDocumentUseCase,
       this._checkBioMetricSupportUseCase,
@@ -140,7 +152,8 @@ class AccountSettingPageViewModel extends BasePageViewModel {
       this._generateKeyPairUseCase,
       this._enableBiometricUseCase,
       this._uploadProfileImageUseCase,
-      this._disableFingerPrintUseCase) {
+      this._disableFingerPrintUseCase,
+      this._deleteProfileImageUseCase) {
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value,
               createCall: () => _uploadDocumentUseCase.execute(params: value))
@@ -235,8 +248,29 @@ class AccountSettingPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _deleteProfileImageRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _deleteProfileImageUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _deleteProfileImageResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
     getCurrentUserStream();
     getProfileDetails();
+  }
+
+  void deleteProfileImage(dynamic image) {
+    if (image != null && image != '') {
+      _deleteProfileImageRequest.safeAdd(DeleteProfileImageUseCaseParams());
+    }
   }
 
   void uploadProfilePhoto(DocumentTypeEnum type) {

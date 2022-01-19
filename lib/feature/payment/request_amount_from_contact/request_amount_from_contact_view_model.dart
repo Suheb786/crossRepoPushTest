@@ -168,8 +168,8 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
         dbtrBic: beneficiary!.iban ?? "",
         dbtrAcct: beneficiary!.accountNo ?? "",
         dbtrName: beneficiary!.fullName ?? "",
-        type: "",
-        detCustomerType: ""));
+        type: beneficiary!.purposeType ?? "",
+        detCustomerType: beneficiary!.detCustomerType ?? ""));
   }
 
   @override

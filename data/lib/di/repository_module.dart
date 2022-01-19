@@ -9,6 +9,7 @@ import 'package:data/repository/country/country_repository_impl.dart';
 import 'package:data/repository/dashboard/dashboard_repository_impl.dart';
 import 'package:data/repository/enter_address/home_address_dialog_repository_impl.dart';
 import 'package:data/repository/fatca_crs/fatca_crs_repository_impl.dart';
+import 'package:data/repository/forget_password/forget_password_repository_impl.dart';
 import 'package:data/repository/id_card/id_card_repository_impl.dart';
 import 'package:data/repository/infobip_audio/infobip_audio_repository_impl.dart';
 import 'package:data/repository/infobip_audio/infobip_message_repository_impl.dart';
@@ -40,6 +41,7 @@ import 'package:domain/repository/register/register_step_three_repository.dart';
 import 'package:domain/repository/upload_document/upload_document_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:domain/repository/forget_password/forget_password_repository.dart';
 import 'package:domain/repository/help_center/infobip_message_repository.dart';
 
 /// inject [UserRepository] provider
@@ -132,3 +134,8 @@ var helpCenterRepositoryProvider = Provider<HelpCenterRepository>((ref) =>
 var infobipMessagingRepositoryProvider = Provider<InfobipMessageRepository>(
     (ref) => InfobipMessageRepositoryImpl(
         ref.read(infobipMessagingDatasourceProvider)));
+
+/// inject [ForgetPasswordRepository] provider
+var forgetPasswordRepositoryProvider = Provider<ForgetPasswordRepository>(
+    (ref) => ForgetPasswordRepositoryImpl(
+        ref.read(forgetPasswordDataSourceProvider)));

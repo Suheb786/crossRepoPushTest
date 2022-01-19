@@ -14,6 +14,8 @@ class Beneficiary {
   final String? purpose;
   final String? purposeDetails;
   final String? beneType;
+  final String? purposeType;
+  final String? detCustomerType;
 
   Beneficiary(
       {this.id: "",
@@ -28,5 +30,7 @@ class Beneficiary {
       this.mobileNumber: "",
       this.accountNo: "",
       this.beneficiaryAddress: "",
+      this.detCustomerType: "",
+      this.purposeType: "",
       this.beneType});
 }

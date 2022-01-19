@@ -77,6 +77,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_SAVING_ID_CARD);
 
+          case "ex-131":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHECK_PASSWORD_CRED_ERROR);
+
           case "err-154":
             return AppError(
                 cause: cause, error: error, type: ErrorType.ID_CARD_EXPIRED);

@@ -1,5 +1,6 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
+import 'package:domain/model/forget_password/check_forget_password_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -35,8 +36,8 @@ class AddIDNumberForResetPasswordPageView
               duration: Duration(milliseconds: 100),
               shakeAngle: Rotation.deg(z: 1),
               curve: Curves.easeInOutSine,
-              child: AppStreamBuilder<Resource<bool>>(
-                stream: model.idNumberForResetPasswordStream,
+              child: AppStreamBuilder<Resource<CheckForgetPasswordResponse>>(
+                stream: model.checkForgetPasswordResponseStream,
                 initialData: Resource.none(),
                 onData: (data) {
                   if (data.status == Status.SUCCESS) {
@@ -44,6 +45,7 @@ class AddIDNumberForResetPasswordPageView
                         .read(forgotPasswordViewModelProvider)
                         .pageController
                         .next();
+                    print("successful");
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
@@ -96,9 +98,10 @@ class AddIDNumberForResetPasswordPageView
                                     ),
                                     AppTextField(
                                       labelText: S.of(context).idExpiryDate,
-                                      hintText: S.of(context).dobHint,
+                                      hintText: S.of(context).pleaseEnter,
                                       inputType: TextInputType.text,
                                       inputAction: TextInputAction.done,
+                                      readOnly: true,
                                       controller: model.idExpiryDateController,
                                       key: model.idExpiryDateKey,
                                       onChanged: (value) {
@@ -112,8 +115,9 @@ class AddIDNumberForResetPasswordPageView
                                                 model.selectedExpiryDate = date;
                                                 model.idExpiryDateController
                                                         .text =
-                                                    TimeUtils.getFormattedDOB(
-                                                        date);
+                                                    TimeUtils
+                                                        .getFormattedDateForCheckPassword(
+                                                            date);
                                                 model.validate();
                                               }, onCancelled: () {
                                                 Navigator.pop(context);

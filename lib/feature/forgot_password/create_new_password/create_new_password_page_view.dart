@@ -1,9 +1,11 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
+import 'package:domain/model/forget_password/forget_password_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
+import 'package:neo_bank/di/forgot_password/forgot_password_modules.dart';
 import 'package:neo_bank/feature/forgot_password/create_new_password/create_new_password_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -32,13 +34,19 @@ class CreateNewPasswordPageView
                 duration: Duration(milliseconds: 100),
                 shakeAngle: Rotation.deg(z: 1),
                 curve: Curves.easeInOutSine,
-                child: AppStreamBuilder<Resource<bool>>(
+                child: AppStreamBuilder<Resource<ForgetPasswordResponse>>(
                     stream: model.createPasswordStream,
                     initialData: Resource.none(),
                     onData: (passwordData) {
                       if (passwordData.status == Status.SUCCESS) {
                         model.passwordKey.currentState!.isValid = true;
                         model.confirmPasswordKey.currentState!.isValid = true;
+                        model.mobileNumber = passwordData
+                            .data!.forgetPasswordContent!.mobileNumber;
+                        ProviderScope.containerOf(context)
+                            .read(forgotPasswordViewModelProvider)
+                            .pageController
+                            .next();
                       } else if (passwordData.status == Status.ERROR) {
                         if (passwordData.appError!.type ==
                             ErrorType.PASSWORD_MISMATCH) {
@@ -61,7 +69,7 @@ class CreateNewPasswordPageView
                       return GestureDetector(
                         onHorizontalDragEnd: (details) {
                           if (details.primaryVelocity!.isNegative) {
-                            model.createPassword();
+                            model.createPassword(context);
                           } else {
                             ProviderScope.containerOf(context)
                                 .read(accountRegistrationViewModelProvider)
