@@ -49,9 +49,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                       ProviderScope.containerOf(context)
                           .read(accountRegistrationViewModelProvider)
                           .pageController
-                          .previousPage(
-                              duration: Duration(milliseconds: 300),
-                              curve: Curves.easeIn);
+                          .previous(animation: false);
                     }
                   },
                   child: Card(
@@ -81,7 +79,7 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                             .read(
                                                 accountRegistrationViewModelProvider)
                                             .pageController
-                                            .jumpToPage(0);
+                                            .move(0);
                                       },
                                       child: Text(
                                         S.of(context).changeMyNumber,

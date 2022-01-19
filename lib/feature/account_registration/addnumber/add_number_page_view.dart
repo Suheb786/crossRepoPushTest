@@ -46,9 +46,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                     ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .pageController
-                        .nextPage(
-                            duration: Duration(milliseconds: 300),
-                            curve: Curves.easeIn);
+                        .next(animation: false);
                   } else if (data.status == Status.ERROR) {
                     model.showToastWithError(data.appError!);
                   }
@@ -62,9 +60,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                         ProviderScope.containerOf(context)
                             .read(accountRegistrationViewModelProvider)
                             .pageController
-                            .previousPage(
-                                duration: Duration(milliseconds: 300),
-                                curve: Curves.easeIn);
+                            .previous(animation: false);
                       }
                     },
                     child: Card(
