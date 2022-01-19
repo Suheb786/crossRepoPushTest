@@ -808,5 +808,7 @@
   "checkForgetPasswordError": "Error While Forget Password",
   "createPasswordSuccess": "Your new password has\nbeen set.",
   "proceedToLogin": "Proceed to the login page and use your\nnew password to login.",
-  "toLoginPage": "to Login Page"
+  "toLoginPage": "to Login Page",
+  "deviceNotSupported": "Jailbroken device detected",
+  "deviceNotSupportedNote": "For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings."
 }

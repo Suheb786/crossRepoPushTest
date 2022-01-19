@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
+import 'package:domain/constants/error_types.dart';
 import 'package:domain/error/app_error.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:domain/repository/payment/payment_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
@@ -44,6 +46,7 @@ class TransferUseCaseParams extends Params {
   final String? nickName;
   final String? detCustomerType;
   final String? type;
+  final num? limit;
 
   TransferUseCaseParams(
       {this.beneficiaryId,
@@ -54,6 +57,7 @@ class TransferUseCaseParams extends Params {
       this.toAmount,
       this.localEq,
       this.memo,
+      this.limit,
       this.type,
       this.detCustomerType,
       this.nickName,
@@ -61,6 +65,17 @@ class TransferUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
+    if (limit == null) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.NETWORK,
+          cause: Exception()));
+    } else if (limit! < toAmount!) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.LIMIT_EXCEEDED,
+          cause: Exception()));
+    }
     return Right(true);
   }
 }

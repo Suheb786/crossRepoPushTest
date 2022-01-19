@@ -19,6 +19,8 @@ import 'package:data/source/upload_document/local/upload_document_local_ds.dart'
 import 'package:data/source/upload_document/upload_document_datasource.dart';
 import 'package:data/source/user/local/user_local_ds_impl.dart';
 import 'package:data/source/user/user_data_sources.dart';
+import 'package:data/source/utility/local/utility_datasource_impl.dart';
+import 'package:data/source/utility/utility_datasource.dart';
 import 'package:device_info/device_info.dart';
 import 'package:infobip_plugin/infobip_plugin.dart';
 import 'package:local_auth/local_auth.dart';
@@ -65,6 +67,9 @@ var homeAddressDialogDataSourceProvider =
 
 var deviceInfoHelperProvider =
     Provider<DeviceInfoHelper>((ref) => DeviceInfoHelper());
+
+var utilityDataSourceProvider = Provider<UtilityDataSource>(
+    (ref) => UtilityDataSourceImpl(ref.read(deviceInfoHelperProvider)));
 
 // ///cryptoUtil provider
 // final crytoUtilProvider = Provider<CryptoUtil>(

@@ -337,6 +337,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.1.0"
+  flutter_jailbreak_detection:
+    dependency: transitive
+    description:
+      name: flutter_jailbreak_detection
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.8.0"
   flutter_localizations:
     dependency: "direct main"
     description: flutter
@@ -492,6 +499,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.13.3"
+  http_certificate_pinning:
+    dependency: transitive
+    description:
+      name: http_certificate_pinning
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.3"
   http_parser:
     dependency: transitive
     description:
@@ -1022,6 +1036,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.1"
+  tuple:
+    dependency: transitive
+    description:
+      name: tuple
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   typed_data:
     dependency: transitive
     description:

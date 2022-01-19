@@ -11,6 +11,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/di/onboarding/onboarding_module.dart';
 import 'package:neo_bank/feature/login/login_page_model.dart';
+import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -81,15 +82,15 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                     ProviderScope.containerOf(context)
                                         .read(appViewModel)
                                         .getToken();
-                                    //model.checkKycStatus();
+                                    model.checkKycStatus();
                                     model.emailKey.currentState!.isValid = true;
-                                    Future.delayed(Duration(milliseconds: 500),
-                                        () {
-                                      Navigator.pushReplacementNamed(
-                                          context, RoutePaths.AppHome);
-                                      // Navigator.pushReplacementNamed(
-                                      //     context, RoutePaths.Registration);
-                                    });
+                                    // Future.delayed(Duration(milliseconds: 500),
+                                    //     () {
+                                    //   Navigator.pushReplacementNamed(
+                                    //       context, RoutePaths.AppHome);
+                                    //   // Navigator.pushReplacementNamed(
+                                    //   //     context, RoutePaths.Registration);
+                                    // });
                                   } else if (data.status == Status.ERROR) {
                                     model.emailKey.currentState!.isValid =
                                         false;
@@ -105,24 +106,21 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                       if (data.status == Status.SUCCESS) {
                                         CheckKYCData kycData = data
                                                 .data?.content?.kycData
-                                                ?.firstWhere((element) =>
-                                                    element.status ?? false) ??
+                                                ?.firstWhere(
+                                                    (element) =>
+                                                        element.status ?? false,
+                                                    orElse: () =>
+                                                        CheckKYCData()) ??
                                             CheckKYCData();
 
-                                        switch (kycData.type) {
-                                          case "IDCardC":
-                                          case "SelfiCheck":
-                                          case "CountryResidence":
-                                          case "ProfileStatus":
-                                          case "JobDetails":
-                                          case "AccountOpeningPurpose":
-                                          case "FatcaCrs":
-                                          case "AccountInfo":
-
-                                          default:
-                                            Navigator.pushReplacementNamed(
-                                                context, RoutePaths.AppHome);
-                                            break;
+                                        if (kycData.type?.isNotEmpty ?? false) {
+                                          Navigator.pushReplacementNamed(
+                                              context, RoutePaths.Registration,
+                                              arguments: RegisterPageParams(
+                                                  kycData: kycData));
+                                        } else {
+                                          Navigator.pushReplacementNamed(
+                                              context, RoutePaths.AppHome);
                                         }
                                       }
                                     },
