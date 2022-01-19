@@ -106,8 +106,11 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                       if (data.status == Status.SUCCESS) {
                                         CheckKYCData kycData = data
                                                 .data?.content?.kycData
-                                                ?.firstWhere((element) =>
-                                                    element.status ?? false) ??
+                                                ?.firstWhere(
+                                                    (element) =>
+                                                        element.status ?? false,
+                                                    orElse: () =>
+                                                        CheckKYCData()) ??
                                             CheckKYCData();
 
                                         if (kycData.type?.isNotEmpty ?? false) {
