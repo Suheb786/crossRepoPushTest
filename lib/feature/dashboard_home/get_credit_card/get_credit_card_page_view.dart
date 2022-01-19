@@ -178,8 +178,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                               }
                             },
                             child: Container(
-                              key: ValueKey(true),
-                              child: Card(
+                                key: ValueKey(true),
+                                child: Card(
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(16)),
                                   clipBehavior: Clip.antiAliasWithSaveLayer,
@@ -408,8 +408,8 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                                         ),
                                       )
                                     ],
-                                  )),
-                            ),
+                                  ),
+                                )),
                           ),
                         ),
                       ),

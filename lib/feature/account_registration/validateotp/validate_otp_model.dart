@@ -1,3 +1,4 @@
+import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
@@ -11,17 +12,25 @@ import 'package:rxdart/rxdart.dart';
 class ValidateOtpViewModel extends BasePageViewModel {
   final VerifyOtpUseCase _verifyOtpUseCase;
 
+  final GetTokenUseCase _getTokenUseCase;
+
   ///otp controller
   TextEditingController otpController = TextEditingController();
 
   ///countdown controller
   late CountdownTimerController countDownController;
 
+  // ///timer subject holder
+  // BehaviorSubject<int> _timerRequest = BehaviorSubject.seeded(
+  //     DateTime.now().millisecondsSinceEpoch + 1000 * 120);
+  //
+  // ///timer response holder
+  // Stream<int> get timerStream => _timerRequest.stream;
+
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
 
   void updateTime() {
-    endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
-    notifyListeners();
+    resendOtp();
   }
 
   ///verify otp request subject holder
@@ -45,7 +54,14 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
-  ValidateOtpViewModel(this._verifyOtpUseCase) {
+  ///resend otp
+  PublishSubject<GetTokenUseCaseParams> _getTokenRequest = PublishSubject();
+
+  PublishSubject<Resource<bool>> _getTokenResponse = PublishSubject();
+
+  Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
+
+  ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value,
               createCall: () => _verifyOtpUseCase.execute(params: value))
@@ -58,10 +74,30 @@ class ValidateOtpViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getTokenRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getTokenUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getTokenResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 120;
+          notifyListeners();
+        }
+      });
+    });
   }
 
   void validateOtp() {
     _verifyOtpRequest.safeAdd(VerifyOtpUseCaseParams(otp: _otpSubject.value));
+  }
+
+  void resendOtp() {
+    _getTokenRequest.safeAdd(GetTokenUseCaseParams());
   }
 
   void validate(String value) {

@@ -31,8 +31,6 @@ class CheckForgetPasswordResponseEntity
   @override
   CheckForgetPasswordResponse transform() {
     return CheckForgetPasswordResponse(
-        checkForgetPasswordContentResponse:
-            CheckForgetPasswordResponseEntity.fromJson(this.response!.content)
-                .transform());
+        checkForgetPasswordContentResponse: this.response!.content);
   }
 }

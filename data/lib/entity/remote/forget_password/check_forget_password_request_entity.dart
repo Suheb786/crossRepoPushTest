@@ -4,7 +4,7 @@ part "check_forget_password_request_entity.g.dart";
 
 @JsonSerializable()
 class CheckForgetPasswordRequestEntity {
-  @JsonKey(name: "uniqueId")
+  @JsonKey(name: "UniqueId")
   final String? uniqueId;
   @JsonKey(name: "getToken")
   final bool? getToken;

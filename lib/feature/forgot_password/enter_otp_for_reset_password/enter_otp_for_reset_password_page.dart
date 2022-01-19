@@ -14,19 +14,11 @@ class EnterOTPForResetPasswordPage
 }
 
 class EnterOTPForResetPasswordPageState extends BaseStatefulPage<
-        EnterOTPForResetPasswordPageViewModel, EnterOTPForResetPasswordPage>
-    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
-  EnterOTPForResetPasswordPageState() : super(subscribeVisibilityEvents: true);
-
+    EnterOTPForResetPasswordPageViewModel,
+    EnterOTPForResetPasswordPage> with TickerProviderStateMixin {
   @override
   ProviderBase provideBase() {
     return enterOtpForResetPasswordViewModelProvider;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    super.build(context);
-    return stateBuild(context);
   }
 
   @override
@@ -45,7 +37,4 @@ class EnterOTPForResetPasswordPageState extends BaseStatefulPage<
       BuildContext context, EnterOTPForResetPasswordPageViewModel model) {
     return EnterOTPForResetPasswordPageView(provideBase());
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

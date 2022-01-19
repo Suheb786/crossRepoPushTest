@@ -135,7 +135,7 @@ final requestPaymentFromNewRecipientViewModelProvider = ChangeNotifierProvider
 ///edit transaction purpose dialog view model provider
 final editTransactionPurposeDialogViewModelProvider = ChangeNotifierProvider
     .autoDispose
-    .family<EditTransactionPurposeDialogViewModel, Beneficiary>((ref, args) =>
+    .family<EditTransactionPurposeDialogViewModel, List<dynamic>>((ref, args) =>
         EditTransactionPurposeDialogViewModel(
             ref.read(getPurposeUseCaseProvider), args));
 

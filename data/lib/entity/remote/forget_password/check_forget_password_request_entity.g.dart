@@ -14,14 +14,14 @@ CheckForgetPasswordRequestEntity _$CheckForgetPasswordRequestEntityFromJson(
     email: json['Email'] as String?,
     idExpiry: json['IdExpiry'] as String?,
     idNo: json['Idno'] as String?,
-    uniqueId: json['uniqueId'] as String?,
+    uniqueId: json['UniqueId'] as String?,
   );
 }
 
 Map<String, dynamic> _$CheckForgetPasswordRequestEntityToJson(
         CheckForgetPasswordRequestEntity instance) =>
     <String, dynamic>{
-      'uniqueId': instance.uniqueId,
+      'UniqueId': instance.uniqueId,
       'getToken': instance.getToken,
       'Email': instance.email,
       'Idno': instance.idNo,

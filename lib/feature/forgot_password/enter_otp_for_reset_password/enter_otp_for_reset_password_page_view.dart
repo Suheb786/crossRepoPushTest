@@ -1,4 +1,5 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/model/forget_password/verify_forget_password_otp_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
@@ -7,6 +8,7 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/forgot_password/forgot_password_modules.dart';
 import 'package:neo_bank/feature/forgot_password/enter_otp_for_reset_password/enter_otp_for_reset_password_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -30,15 +32,12 @@ class EnterOTPForResetPasswordPageView
             duration: Duration(milliseconds: 100),
             shakeAngle: Rotation.deg(z: 1),
             curve: Curves.easeInOutSine,
-            child: AppStreamBuilder<Resource<bool>>(
+            child: AppStreamBuilder<Resource<VerifyForgetPasswordOtpResponse>>(
               stream: model.verifyOtpStream,
               initialData: Resource.none(),
               onData: (data) {
                 if (data.status == Status.SUCCESS) {
-                  ProviderScope.containerOf(context)
-                      .read(forgotPasswordViewModelProvider)
-                      .pageController
-                      .next(animation: true);
+                  Navigator.pushNamed(context, RoutePaths.ResetPasswordSuccess);
                 } else if (data.status == Status.ERROR) {
                   model.showToastWithError(data.appError!);
                 }
@@ -47,7 +46,7 @@ class EnterOTPForResetPasswordPageView
                 return GestureDetector(
                   onHorizontalDragEnd: (details) {
                     if (details.primaryVelocity!.isNegative) {
-                      model.validateOtp();
+                      model.validateOtp(context);
                     } else {
                       ProviderScope.containerOf(context)
                           .read(forgotPasswordViewModelProvider)
