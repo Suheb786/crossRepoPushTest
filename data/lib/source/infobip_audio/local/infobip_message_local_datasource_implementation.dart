@@ -7,7 +7,7 @@ class InfobipMessageDSImpl with InfobipMessageLocalDs {
   InfobipMessageDSImpl(this._infobipAudioService);
 
   @override
-  Future<bool> initInfobipMessage(Function callback) async {
+  Future<bool> initInfobipMessage(Function(bool) callback) async {
     return await _infobipAudioService.initPlatformState(callback: callback);
   }
 

@@ -17,11 +17,13 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
       PublishSubject();
 
   PublishSubject<Resource<bool>> _showChatResponseSubject = PublishSubject();
-
-  bool _isInitMessagingPlugin = false;
+  PublishSubject<bool> _onNotificationTapResponseSubject = PublishSubject();
 
   Stream<Resource<bool>> get initInfobipMessageResponseStream =>
       _initInfobipMessageResponseSubject.stream;
+
+  Stream<bool> get onNotificationTapResponseStream =>
+      _onNotificationTapResponseSubject.stream;
 
   Stream<Resource<bool>> get showChatRequestStream =>
       _showChatResponseSubject.stream;
@@ -39,7 +41,6 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
         print("EVENT::: $event}");
         updateLoader();
         _initInfobipMessageResponseSubject.safeAdd(event);
-        _isInitMessagingPlugin = true;
       });
     });
 
@@ -51,13 +52,15 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
         _showChatResponseSubject.safeAdd(event);
       });
     });
-
-    if (!_isInitMessagingPlugin) initInfobipMessagePlugin();
+    initInfobipMessagePlugin();
   }
 
   initInfobipMessagePlugin() async {
     _initInfobipMessageRequestSubject
-        .safeAdd(InfobipMessagePluginUseCaseParams(callback: () {}));
+        .safeAdd(InfobipMessagePluginUseCaseParams(callback: (value) {
+      print("NOTIFICATION TAPPED");
+      _onNotificationTapResponseSubject.safeAdd(value);
+    }));
   }
 
   showChat() {

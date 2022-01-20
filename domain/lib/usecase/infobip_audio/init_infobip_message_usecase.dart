@@ -19,7 +19,7 @@ class InfobipMessagePluginUseCase
 }
 
 class InfobipMessagePluginUseCaseParams extends Params {
-  final Function callback;
+  final Function(bool) callback;
 
   InfobipMessagePluginUseCaseParams({required this.callback});
 

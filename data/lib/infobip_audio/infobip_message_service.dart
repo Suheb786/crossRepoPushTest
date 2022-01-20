@@ -10,7 +10,7 @@ class InfobipMessageService {
   static List<String> libraryEvents = [''];
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<bool> initPlatformState({required Function callback}) async {
+  Future<bool> initPlatformState({required Function(bool) callback}) async {
     await InfobipMobilemessaging.init(
       Configuration(
         applicationCode: InfobipUtilsConstants.APPLICATION_CODE,
@@ -83,6 +83,7 @@ class InfobipMessageService {
         (Message message) => {
               print(
                   "Callback. NOTIFICATION_TAPPED event:" + message.toString()),
+              callback(true),
               addLibraryEvent("Notification Tapped"),
               if (message.chat!) {print('Chat Message Tapped')}
             });
