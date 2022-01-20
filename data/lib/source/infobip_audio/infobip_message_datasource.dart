@@ -1,4 +1,4 @@
 abstract class InfobipMessageLocalDs {
-  Future<bool> initInfobipMessage();
+  Future<bool> initInfobipMessage(Function(bool) callback);
   Future<bool> showChat();
 }

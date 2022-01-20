@@ -124,8 +124,9 @@ public class SwiftInfobipPlugin: NSObject, FlutterPlugin, CallDelegate, FlutterS
             result(outgoingCall?.muted())
 
         case object.CALL_SPEAKER_PHONE:
-            callSpeakerPhone()
-            result(outgoingCall?.speakerphone())
+            let callOnSpeaker = outgoingCall?.speakerphone()
+            outgoingCall?.speakerphone(!callOnSpeaker!)
+            result(!(outgoingCall?.speakerphone())!)
 
         case object.CALL_DURATION:
             getCallDuration()
