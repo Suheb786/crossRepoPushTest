@@ -93,6 +93,8 @@ import 'package:data/entity/remote/payment/check_send_money_request_entity.dart'
 import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
+import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
+import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
@@ -622,4 +624,8 @@ abstract class ApiService {
           @Body()
               VerifyForgetPasswordOtpRequestEntity
                   verifyForgetPasswordOtpRequestEntity);
+
+  @POST("/transfer/PaymentActivityAPI")
+  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
+      @Body() PaymentActivityRequestEntity paymentActivityRequestActivity);
 }

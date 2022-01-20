@@ -1,4 +1,3 @@
-import 'package:domain/constants/enum/infobip_utils_enum.dart';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/show_chat_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -6,12 +5,11 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
-import 'package:infobip_mobilemessaging/models/Configuration.dart';
 
 class EngagementTeamDialogViewModel extends BasePageViewModel {
   PublishSubject<InfobipMessagePluginUseCaseParams>
       _initInfobipMessageRequestSubject = PublishSubject();
+
   PublishSubject<ShowChatUseCaseParams> _showChatRequestSubject =
       PublishSubject();
 
@@ -19,9 +17,13 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
       PublishSubject();
 
   PublishSubject<Resource<bool>> _showChatResponseSubject = PublishSubject();
+  PublishSubject<bool> _onNotificationTapResponseSubject = PublishSubject();
 
   Stream<Resource<bool>> get initInfobipMessageResponseStream =>
       _initInfobipMessageResponseSubject.stream;
+
+  Stream<bool> get onNotificationTapResponseStream =>
+      _onNotificationTapResponseSubject.stream;
 
   Stream<Resource<bool>> get showChatRequestStream =>
       _showChatResponseSubject.stream;
@@ -50,13 +52,15 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
         _showChatResponseSubject.safeAdd(event);
       });
     });
-
     initInfobipMessagePlugin();
   }
 
   initInfobipMessagePlugin() async {
     _initInfobipMessageRequestSubject
-        .safeAdd(InfobipMessagePluginUseCaseParams());
+        .safeAdd(InfobipMessagePluginUseCaseParams(callback: (value) {
+      print("NOTIFICATION TAPPED");
+      _onNotificationTapResponseSubject.safeAdd(value);
+    }));
   }
 
   showChat() {

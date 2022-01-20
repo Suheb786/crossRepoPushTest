@@ -14,12 +14,14 @@ class InfobipMessagePluginUseCase
   @override
   Future<Either<BaseError, bool>> execute(
       {required InfobipMessagePluginUseCaseParams params}) async {
-    return await _infobipMessageRepository.initInfobipMessage();
+    return await _infobipMessageRepository.initInfobipMessage(params.callback);
   }
 }
 
 class InfobipMessagePluginUseCaseParams extends Params {
-  InfobipMessagePluginUseCaseParams();
+  final Function(bool) callback;
+
+  InfobipMessagePluginUseCaseParams({required this.callback});
 
   @override
   Either<AppError, bool> verify() {

@@ -11,7 +11,8 @@ class PaymentActivityPage extends BasePage<PaymentActivityViewModel> {
 }
 
 class PaymentActivityPageState
-    extends BaseStatefulPage<PaymentActivityViewModel, PaymentActivityPage> {
+    extends BaseStatefulPage<PaymentActivityViewModel, PaymentActivityPage>
+    with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
     return paymentActivityViewModelProvider;
@@ -26,4 +27,13 @@ class PaymentActivityPageState
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).accentColor;
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }

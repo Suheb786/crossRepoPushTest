@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -83,6 +84,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addNickName": MessageLookupByLibrary.simpleMessage("Add nickname"),
         "addRecipientToContact": MessageLookupByLibrary.simpleMessage(
             "Add this recipient to your Blink contacts"),
+        "addRequestMoney": MessageLookupByLibrary.simpleMessage(
+            "You don\'t have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money."),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
             "You don\'t have any contacts yet. Your Blink contacts can be saved while sending money."),
         "addingContactsDesc": MessageLookupByLibrary.simpleMessage(
@@ -608,6 +611,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Freeze this card?"),
         "freezeThisCard":
             MessageLookupByLibrary.simpleMessage("Freeze this card"),
+        "from": MessageLookupByLibrary.simpleMessage("\nfrom"),
         "gender": MessageLookupByLibrary.simpleMessage("GENDER"),
         "genderHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Gender"),
@@ -1408,6 +1412,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "whichTaxPayerAreYouSmall":
             MessageLookupByLibrary.simpleMessage("Which Tax Payer Are You?"),
         "yes": MessageLookupByLibrary.simpleMessage("YES"),
+        "youRequested": MessageLookupByLibrary.simpleMessage("You requested"),
         "youWillBeNotified": MessageLookupByLibrary.simpleMessage(
             "You will be notified once your request \n is accepted and money is \n added into your account."),
         "youWillReceiveCardPinViaSms": MessageLookupByLibrary.simpleMessage(

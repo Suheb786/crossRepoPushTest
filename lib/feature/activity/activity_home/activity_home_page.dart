@@ -14,7 +14,8 @@ class ActivityHomePage extends BasePage<ActivityHomeViewModel> {
 }
 
 class ActivityHomePageState
-    extends BaseStatefulPage<ActivityHomeViewModel, ActivityHomePage> {
+    extends BaseStatefulPage<ActivityHomeViewModel, ActivityHomePage>
+    with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
     return activityHomeViewModelProvider;
@@ -61,4 +62,13 @@ class ActivityHomePageState
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).accentColor;
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }
