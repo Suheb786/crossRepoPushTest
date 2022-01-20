@@ -149,7 +149,8 @@ class AddNumberViewModel extends BasePageViewModel {
         _getAllowedCountryResponse.safeAdd(event);
         updateLoader();
         if (event.status == Status.SUCCESS) {
-          countryData = event.data!.contentData!.countryData!.first;
+          countryData = event.data!.contentData!.countryData!.firstWhere(
+              ((element) => element.isoCode3!.toLowerCase() == "jor"));
           setSelectedCountry(countryData);
         } else if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
