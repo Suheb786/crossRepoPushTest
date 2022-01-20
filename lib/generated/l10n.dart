@@ -6460,6 +6460,16 @@ class S {
     );
   }
 
+  /// `Back to Registration`
+  String get backToRegistration {
+    return Intl.message(
+      'Back to Registration',
+      name: 'backToRegistration',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cancelling this card will permanently deactivated the card and will remove it from your cards list. If you proceed, a new card will be sent to the card’s billing address.`
   String get cancelCardDesc {
     return Intl.message(
@@ -7905,6 +7915,26 @@ class S {
     return Intl.message(
       'to Login Page',
       name: 'toLoginPage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Jailbroken device detected`
+  String get deviceNotSupported {
+    return Intl.message(
+      'Jailbroken device detected',
+      name: 'deviceNotSupported',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings.`
+  String get deviceNotSupportedNote {
+    return Intl.message(
+      'For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings.',
+      name: 'deviceNotSupportedNote',
       desc: '',
       args: [],
     );

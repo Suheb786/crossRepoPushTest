@@ -32,6 +32,12 @@ class RegisterViewModel extends BasePageViewModel {
         curve: Curves.easeIn);
   }
 
+  void navigateToPage(int index) {
+    if (index != registrationStepsController.page!.toInt())
+      registrationStepsController.animateToPage(index,
+          duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+  }
+
   @override
   void dispose() {
     _currentPageSubject.close();

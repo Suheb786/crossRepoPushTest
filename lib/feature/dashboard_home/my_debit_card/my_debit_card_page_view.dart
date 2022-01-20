@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/extension/string_casing_extension.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
   MyDebitCardPageView(ProviderBase model) : super(model);
@@ -353,7 +354,13 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        cardData.debitCard!.cardNumber ?? '',
+                                        cardData.debitCard!.cardNumber!
+                                                .isNotEmpty
+                                            ? StringUtils
+                                                .getFormattedCreditCardNumber(
+                                                    cardData
+                                                        .debitCard!.cardNumber)
+                                            : '-',
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
@@ -381,7 +388,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top: 8),
+                                  padding: EdgeInsets.only(top: 4),
                                   child: Text(
                                     S.of(context).cardNumber,
                                     style: TextStyle(
@@ -409,7 +416,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(top: 8),
+                                            padding: EdgeInsets.only(top: 4),
                                             child: Text(
                                               S.of(context).expiryDate,
                                               style: TextStyle(
@@ -435,7 +442,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                             ),
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.only(top: 8),
+                                            padding: EdgeInsets.only(top: 4),
                                             child: Text(
                                               S.of(context).cvv,
                                               style: TextStyle(
@@ -461,7 +468,12 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                   ),
                                 ),
                                 Text(
-                                  cardData.debitCard!.linkedAccountNumber ?? '',
+                                  cardData.debitCard!.linkedAccountNumber!
+                                          .isNotEmpty
+                                      ? StringUtils
+                                          .getFormattedCreditCardNumber(cardData
+                                              .debitCard!.linkedAccountNumber)
+                                      : '',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 14,

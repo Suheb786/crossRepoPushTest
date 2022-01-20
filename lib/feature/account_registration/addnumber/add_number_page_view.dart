@@ -18,6 +18,7 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/mobile_number_d
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -59,7 +60,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                         ProviderScope.containerOf(context)
                             .read(accountRegistrationViewModelProvider)
                             .pageController
-                            .previous(animation: true);
+                            .previous();
                       }
                     },
                     child: Card(
@@ -232,8 +233,21 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                 },
                               ),
                               Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  S.of(context).backToRegistration,
+                                  style: TextStyle(
+                                    color: AppColor.brightBlue,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
                               Padding(
-                                padding: EdgeInsets.symmetric(vertical: 16.0),
+                                padding: EdgeInsets.symmetric(vertical: 12.0),
                                 child: AppStreamBuilder<bool>(
                                     stream: model.showButtonStream,
                                     initialData: false,

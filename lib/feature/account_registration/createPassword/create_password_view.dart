@@ -100,7 +100,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                               ProviderScope.containerOf(context)
                                   .read(accountRegistrationViewModelProvider)
                                   .pageController
-                                  .previous(animation: true);
+                                  .previous();
                             }
                           },
                           child: Card(

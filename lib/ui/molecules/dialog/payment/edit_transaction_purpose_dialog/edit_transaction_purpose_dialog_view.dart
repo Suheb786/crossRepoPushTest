@@ -25,7 +25,8 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
       {this.onDismissed, this.onSelected, this.beneficiary, this.type});
 
   ProviderBase providerBase() {
-    return editTransactionPurposeDialogViewModelProvider.call(beneficiary!);
+    return editTransactionPurposeDialogViewModelProvider
+        .call([beneficiary!, type!]);
   }
 
   @override

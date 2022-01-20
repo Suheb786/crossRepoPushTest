@@ -44,19 +44,22 @@ class RequestAmountFromContactUseCaseParams extends Params {
   String? nickName;
   String? detCustomerType;
   String? type;
+  num? limit;
 
-  RequestAmountFromContactUseCaseParams(
-      {this.purpose,
-      this.purposeDetail,
-      this.amount,
-      this.dbtrBic,
-      this.dbtrName,
-      this.dbtrAcct,
-      this.isFriend: false,
-      this.image: "",
-      this.nickName: "",
-      this.type: "",
-      this.detCustomerType: ""});
+  RequestAmountFromContactUseCaseParams({
+    this.purpose,
+    this.purposeDetail,
+    this.amount,
+    this.dbtrBic,
+    this.dbtrName,
+    this.dbtrAcct,
+    this.isFriend: false,
+    this.image: "",
+    this.nickName: "",
+    this.type: "",
+    this.limit,
+    this.detCustomerType: "",
+  });
 
   @override
   Either<AppError, bool> verify() {
@@ -64,6 +67,16 @@ class RequestAmountFromContactUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_REQUESTED_AMOUNT,
+          cause: Exception()));
+    } else if (limit == null) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.NETWORK,
+          cause: Exception()));
+    } else if (limit! < amount!) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.LIMIT_EXCEEDED,
           cause: Exception()));
     }
     return Right(true);
