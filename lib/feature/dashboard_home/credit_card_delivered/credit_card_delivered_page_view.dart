@@ -57,7 +57,10 @@ class CreditCardDeliveredPageView
                         padding: EdgeInsets.only(top: 106.0, left: 24),
                         child: GestureDetector(
                           onHorizontalDragEnd: (details) {
-                            model.confirmCreditCardDelivery();
+                            model.confirmCreditCardDelivery(
+                              cardId: model.creditCard.first.cardId!,
+                              cardDigit: model.creditCard.first.creditLimit!
+                            );
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(

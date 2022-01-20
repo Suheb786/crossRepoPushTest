@@ -95,6 +95,18 @@ class LoginViewModel extends BasePageViewModel {
       });
     });
 
+    _getCipherRequest.listen((value) {
+      RequestManager(value,
+          createCall: () => _getCipherUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _kycStatusResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
     //getCipher();
   }
 
