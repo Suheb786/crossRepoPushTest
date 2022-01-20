@@ -1,3 +1,4 @@
+import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/activity/notification_usecase.dart';
 import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
 import 'package:domain/usecase/activity/payment_activity_usecase.dart';
@@ -14,5 +15,5 @@ final paymentActivityUseCaseProvider =
 
 ///[PaymentActivityTransactionUseCase] provider
 final paymentActivityTransactionUseCaseProvider =
-    Provider.autoDispose<PaymentActivityTransactionUseCase>(
-        (ref) => PaymentActivityTransactionUseCase());
+    Provider.autoDispose<PaymentActivityTransactionUseCase>((ref) =>
+        PaymentActivityTransactionUseCase(ref.read(paymentRepositoryProvider)));

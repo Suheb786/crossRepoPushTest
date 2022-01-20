@@ -11,7 +11,8 @@ class NotificationPage extends BasePage<NotificationViewModel> {
 }
 
 class NotificationPageState
-    extends BaseStatefulPage<NotificationViewModel, NotificationPage> {
+    extends BaseStatefulPage<NotificationViewModel, NotificationPage>
+    with AutomaticKeepAliveClientMixin {
   @override
   ProviderBase provideBase() {
     return notificationViewModelProvider;
@@ -26,4 +27,13 @@ class NotificationPageState
   Color? scaffoldBackgroundColor() {
     return Theme.of(context).accentColor;
   }
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
+    return stateBuild(context);
+  }
+
+  @override
+  bool get wantKeepAlive => true;
 }
