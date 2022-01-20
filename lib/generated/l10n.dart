@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7935,6 +7936,16 @@ class S {
     return Intl.message(
       'For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings.',
       name: 'deviceNotSupportedNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resident City`
+  String get residentCity {
+    return Intl.message(
+      'Resident City',
+      name: 'residentCity',
       desc: '',
       args: [],
     );

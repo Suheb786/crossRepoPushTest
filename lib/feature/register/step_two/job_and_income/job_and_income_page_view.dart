@@ -256,14 +256,17 @@ class JobAndIncomePageView
                             key: model.employerCountryKey,
                             onPressed: () {
                               FocusScope.of(context).unfocus();
-                              CountryDialog.show(context,
-                                  title: S.of(context).employerCountrySmall,
-                                  onDismissed: () {
-                                Navigator.pop(context);
-                              }, onSelected: (value) {
-                                Navigator.pop(context);
-                                model.updateEmployerCountry(value.countryName!);
-                                model.isValid();
+                              Future.delayed(Duration(milliseconds: 200), () {
+                                CountryDialog.show(context,
+                                    title: S.of(context).employerCountrySmall,
+                                    onDismissed: () {
+                                  Navigator.pop(context);
+                                }, onSelected: (value) {
+                                  Navigator.pop(context);
+                                  model.updateEmployerCountry(
+                                      value.countryName!);
+                                  model.isValid();
+                                });
                               });
                             },
                             suffixIcon: (value, data) {
