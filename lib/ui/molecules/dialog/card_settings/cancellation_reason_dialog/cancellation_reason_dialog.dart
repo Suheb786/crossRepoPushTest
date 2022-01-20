@@ -5,11 +5,20 @@ import 'package:neo_bank/ui/molecules/dialog/card_settings/cancellation_reason_d
 class CancellationReasonDialog {
   CancellationReasonDialog._();
 
-  static show(BuildContext mContext,
-      {Function? onDismissed, Function(String)? onSelected, String? title}) {
+  static show(
+    BuildContext mContext, {
+    required List<String> reasons,
+    Function? onDismissed,
+    Function(String)? onSelected,
+    String? title,
+  }) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => CancellationReasonDialogView(
-            onDismissed: onDismissed, onSelected: onSelected, title: title));
+              onDismissed: onDismissed,
+              onSelected: onSelected,
+              title: title,
+              reasons: reasons,
+            ));
   }
 }
