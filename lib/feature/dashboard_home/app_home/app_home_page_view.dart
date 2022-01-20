@@ -45,6 +45,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
               stream: model.getDashboardDataStream,
               initialData: Resource.none(),
               dataBuilder: (context, cardData) {
+                print(
+                    'debitDeliveredDateTime-->${cardData!.data!.dashboardDataContent!.debitCard!.first.debitDeliveredDatetime}');
                 return AppStreamBuilder<bool>(
                   stream: model.showTimeLineStream,
                   initialData: false,
@@ -334,21 +336,41 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                             ? (cardData
                                                                         .data!
                                                                         .dashboardDataContent!
-                                                                        .isCreditDelivered !=
-                                                                    null &&
-                                                                cardData
-                                                                    .data!
-                                                                    .dashboardDataContent!
-                                                                    .isCreditDelivered)
-                                                            : (cardData
+                                                                        .creditCard!
+                                                                        .length >
+                                                                    0
+                                                                ? (cardData
+                                                                            .data!
+                                                                            .dashboardDataContent!
+                                                                            .creditCard!
+                                                                            .first
+                                                                            .isCreditDelivered !=
+                                                                        null &&
+                                                                    cardData
                                                                         .data!
                                                                         .dashboardDataContent!
+                                                                        .creditCard!
+                                                                        .first
+                                                                        .isCreditDelivered!)
+                                                                : false)
+                                                            : (cardData
+                                                                    .data!
+                                                                    .dashboardDataContent!
+                                                                    .debitCard!
+                                                                    .isNotEmpty &&
+                                                                cardData
+                                                                        .data!
+                                                                        .dashboardDataContent!
+                                                                        .debitCard!
+                                                                        .first
                                                                         .isDebitDelivered !=
                                                                     null &&
                                                                 cardData
                                                                     .data!
                                                                     .dashboardDataContent!
-                                                                    .isDebitDelivered))
+                                                                    .debitCard!
+                                                                    .first
+                                                                    .isDebitDelivered!))
                                                         ? Column(
                                                             children: [
                                                               Text(
@@ -377,19 +399,28 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                 child: Text(
                                                                   currentStep ==
                                                                           1
-                                                                      ? cardData.data!.dashboardDataContent!.creditDeliveredDatetime !=
-                                                                              null
+                                                                      ? (cardData.data!.dashboardDataContent!.creditCard!.length > 0
+                                                                              ? cardData.data!.dashboardDataContent!.creditCard!.first.creditDeliveredDatetime !=
+                                                                                  null
+                                                                              : false)
                                                                           ? TimeUtils.getFormattedDateForTransaction(cardData
                                                                               .data!
                                                                               .dashboardDataContent!
+                                                                              .creditCard!
+                                                                              .first
                                                                               .creditDeliveredDatetime!
                                                                               .toString())
                                                                           : '-'
-                                                                      : cardData.data!.dashboardDataContent!.debitDeliveredDatetime !=
-                                                                              null
+                                                                      : (cardData.data!.dashboardDataContent!.debitCard!.length > 0 &&
+                                                                              cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime !=
+                                                                                  null &&
+                                                                              cardData.data!.dashboardDataContent!.debitCard![0].debitDeliveredDatetime
+                                                                                  .toString()
+                                                                                  .isNotEmpty)
                                                                           ? TimeUtils.getFormattedDateForTransaction(cardData
                                                                               .data!
                                                                               .dashboardDataContent!
+                                                                              .debitCard![0]
                                                                               .debitDeliveredDatetime!
                                                                               .toString())
                                                                           : '-',
@@ -448,7 +479,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                           context,
                                                                           MaterialPageRoute(
                                                                               builder: (context) => DebitCardDeliveredPage(
-                                                                                    debitCard: cardData.data!.dashboardDataContent!.debitCard!,
+                                                                                    debitCard: cardData.data!.dashboardDataContent!.debitCard!.first,
                                                                                   )));
                                                                       if (result !=
                                                                           null) {
@@ -703,23 +734,29 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                                 ? cardData
                                                                             .data!
                                                                             .dashboardDataContent!
+                                                                            .debitCard!
+                                                                            .first
                                                                             .debitCardActivated !=
                                                                         null
                                                                     ? TimeUtils.getFormattedDateForTransaction(cardData
                                                                         .data!
                                                                         .dashboardDataContent!
+                                                                        .debitCard!
+                                                                        .first
                                                                         .debitCardActivated!
                                                                         .toString())
                                                                     : '-'
-                                                                : cardData
-                                                                            .data!
-                                                                            .dashboardDataContent!
-                                                                            .creditCardActivated !=
-                                                                        null
+                                                                : (cardData.data!.dashboardDataContent!.creditCard!.length >
+                                                                            0
+                                                                        ? cardData.data!.dashboardDataContent!.creditCard!.first.creditCardActivatedDate !=
+                                                                            null
+                                                                        : false)
                                                                     ? TimeUtils.getFormattedDateForTransaction(cardData
                                                                         .data!
                                                                         .dashboardDataContent!
-                                                                        .creditCardActivated!
+                                                                        .creditCard!
+                                                                        .first
+                                                                        .creditCardActivatedDate!
                                                                         .toString())
                                                                     : '-',
                                                             style: TextStyle(
