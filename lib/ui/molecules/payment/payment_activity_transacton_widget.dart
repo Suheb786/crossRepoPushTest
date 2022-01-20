@@ -18,7 +18,9 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
       children: [
         Text(
           // TimeUtils.getFormattedDateForTransaction(transactions!.label!),
-          transactions!.rtpDate.toString(),
+          transactions!.rtpDate!.day.toString() +
+              " " +
+              DateFormat.MMMM().format(transactions!.rtpDate!),
           style: TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
@@ -28,6 +30,7 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
           margin: EdgeInsets.only(top: 16, bottom: 32),
           color: Theme.of(context).accentColor,
           child: ListView.separated(
+            physics: NeverScrollableScrollPhysics(),
             padding: EdgeInsets.symmetric(horizontal: 24, vertical: 17),
             itemBuilder: (context, index) {
               return Row(
@@ -40,105 +43,117 @@ class PaymentActivityTransactionWidget extends StatelessWidget {
                           color: Theme.of(context).primaryColor),
                       child: Center(
                         child: Text(
-                          StringUtils.getFirstInitials(
-                              transactions!.data![index].name!),
+                          transactions!.data![index].name!.split(" ").length > 1
+                              ? StringUtils.getFirstInitials(
+                                  transactions!.data![index].name!)
+                              : "",
                           style: TextStyle(
                               color: Theme.of(context).accentColor,
                               fontWeight: FontWeight.w700,
                               fontSize: 14),
                         ),
                       )),
-                  Padding(
-                    padding: EdgeInsets.only(left: 14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Text(
-                        //   "You requested ${transactions!.data![index].amount}",
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.w800, fontSize: 12),
-                        // ),
-                        // Text(
-                        //   "from ${transactions!.data![index].name}",
-                        //   style: TextStyle(
-                        //       fontWeight: FontWeight.w800, fontSize: 12),
-                        // ),
-                        RichText(
-                            text: TextSpan(
-                                text: S.of(context).requestedFrom,
-                                style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    color: Theme.of(context).primaryColorDark),
-                                children: [
-                              TextSpan(
-                                  text:
-                                      " ${transactions!.data![index].amount} JOD",
+                  Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 14),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Text(
+                          //   "You requested ${transactions!.data![index].amount}",
+                          //   style: TextStyle(
+                          //       fontWeight: FontWeight.w800, fontSize: 12),
+                          // ),
+                          // Text(
+                          //   "from ${transactions!.data![index].name}",
+                          //   style: TextStyle(
+                          //       fontWeight: FontWeight.w800, fontSize: 12),
+                          // ),
+                          RichText(
+                              maxLines: 3,
+                              text: TextSpan(
+                                  text: S.of(context).requestedFrom,
                                   style: TextStyle(
                                       fontSize: 12,
-                                      fontWeight: FontWeight.w600,
+                                      overflow: TextOverflow.ellipsis,
+                                      fontWeight: FontWeight.w400,
                                       color:
                                           Theme.of(context).primaryColorDark),
                                   children: [
                                     TextSpan(
-                                        text: S.of(context).from,
+                                        text:
+                                            " ${transactions!.data![index].amount} JOD",
                                         style: TextStyle(
                                             fontSize: 12,
-                                            fontWeight: FontWeight.w400,
+                                            fontWeight: FontWeight.w600,
                                             color: Theme.of(context)
                                                 .primaryColorDark),
                                         children: [
                                           TextSpan(
-                                            text:
-                                                " ${transactions!.data![index].name}",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w600,
-                                                color: Theme.of(context)
-                                                    .primaryColorDark),
-                                          )
+                                              text: S.of(context).from,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Theme.of(context)
+                                                      .primaryColorDark),
+                                              children: [
+                                                TextSpan(
+                                                  text:
+                                                      " ${transactions!.data![index].name}",
+                                                  style: TextStyle(
+                                                      fontSize: 12,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Theme.of(context)
+                                                          .primaryColorDark),
+                                                )
+                                              ])
                                         ])
-                                  ])
-                            ])),
-                        Padding(
-                          padding: EdgeInsets.only(top: 5),
-                          child: Row(
-                            children: [
-                              Text(
-                                DateFormat.Hms().format(
-                                    transactions!.data![index].rtpDate!),
-                                style: TextStyle(
-                                    color: AppColor.gray1,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 9),
-                                child: Container(
-                                  height: 20,
-                                  width: 60,
-                                  decoration: BoxDecoration(
-                                      color:
-                                          transactions!.data![index].status! ==
-                                                  "Pending"
-                                              ? AppColor.dark_orange
-                                              : AppColor.darkModerateLimeGreen,
-                                      borderRadius: BorderRadius.circular(100)),
-                                  child: Center(
-                                    child: Text(
-                                      transactions!.data![index].status!,
-                                      style: TextStyle(
-                                          color: Theme.of(context).accentColor,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 12),
+                                  ])),
+                          Padding(
+                            padding: EdgeInsets.only(top: 5),
+                            child: Row(
+                              children: [
+                                Text(
+                                  DateFormat.Hms().format(
+                                      transactions!.data![index].rtpDate!),
+                                  style: TextStyle(
+                                      color: AppColor.gray1,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 9),
+                                  child: Container(
+                                    height: 20,
+                                    width: 60,
+                                    decoration: BoxDecoration(
+                                        color: transactions!
+                                                    .data![index].status! ==
+                                                "Pending"
+                                            ? AppColor.dark_orange
+                                            : AppColor.darkModerateLimeGreen,
+                                        borderRadius:
+                                            BorderRadius.circular(100)),
+                                    child: Center(
+                                      child: Text(
+                                        transactions!.data![index].status!,
+                                        style: TextStyle(
+                                            color:
+                                                Theme.of(context).accentColor,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   Padding(

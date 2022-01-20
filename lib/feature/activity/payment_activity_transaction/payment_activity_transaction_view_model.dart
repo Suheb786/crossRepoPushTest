@@ -2,7 +2,6 @@ import 'package:domain/model/payment/payment_activity_response.dart';
 import 'package:domain/usecase/activity/payment_activity_transaction_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/model/payment_activity_item.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -29,41 +28,6 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
       get paymentActivityTransactionResponse =>
           _paymentActivityTransactionResponse.stream;
 
-  List<PaymentActivityItem> transactionList = [
-    PaymentActivityItem(
-        createdAt: "12 September",
-        image: AssetUtils.image,
-        amount: "10,000 JOD",
-        name: "Shakila",
-        time: "6:35PM",
-        status: "Pending",
-        type: "Sent"),
-    PaymentActivityItem(
-        createdAt: "11 September",
-        image: AssetUtils.image,
-        amount: "10,000 JOD",
-        name: "Shakila",
-        time: "6:35PM",
-        status: "Pending",
-        type: "Request"),
-    PaymentActivityItem(
-        createdAt: "12 September",
-        image: AssetUtils.image,
-        amount: "10,000 JOD",
-        name: "Shakila",
-        time: "6:35PM",
-        status: "Pending",
-        type: "Sent"),
-    PaymentActivityItem(
-        createdAt: "11 September",
-        image: AssetUtils.image,
-        amount: "10,000 JOD",
-        name: "Shakila",
-        time: "6:35PM",
-        status: "Pending",
-        type: "Request"),
-  ];
-
   PaymentActivityTransactionViewModel(this._useCase) {
     _paymentActivityTransactionRequest.listen((value) {
       RequestManager(value, createCall: () => _useCase.execute(params: value))
@@ -73,9 +37,6 @@ class PaymentActivityTransactionViewModel extends BasePageViewModel {
         _paymentActivityTransactionResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
-        } else if (event.status == Status.SUCCESS) {
-          print(
-              "got the value: ${event.data!.paymentActivityContent![0].rtpDate}");
         }
       });
     });

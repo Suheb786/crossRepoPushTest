@@ -13,13 +13,15 @@ class PaymentActivityDataEntity
   String? name;
   @JsonKey(name: "amount")
   double? amount;
+  @JsonKey(name: "profileImage")
+  String? profileImage;
   @JsonKey(name: "status")
   String? status;
   @JsonKey(name: "rtpDate")
   DateTime? rtpDate;
 
   PaymentActivityDataEntity(
-      {this.name, this.amount, this.status, this.rtpDate});
+      {this.name, this.amount, this.status, this.rtpDate, this.profileImage});
 
   factory PaymentActivityDataEntity.fromJson(Map<String, dynamic> json) =>
       _$PaymentActivityDataEntityFromJson(json);
@@ -37,6 +39,7 @@ class PaymentActivityDataEntity
         status: this.status,
         name: this.name,
         amount: this.amount,
+        profileImage: this.profileImage,
         rtpDate: this.rtpDate);
   }
 }

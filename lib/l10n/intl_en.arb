@@ -813,5 +813,6 @@
   "deviceNotSupported": "Jailbroken device detected",
   "deviceNotSupportedNote": "For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings.",
   "youRequested": "You requested",
-  "from": "\nfrom"
+  "from": "\nfrom",
+  "addRequestMoney": "You don't have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money."
 }

@@ -83,6 +83,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "addNickName": MessageLookupByLibrary.simpleMessage("Add nickname"),
         "addRecipientToContact": MessageLookupByLibrary.simpleMessage(
             "Add this recipient to your Blink contacts"),
+        "addRequestMoney": MessageLookupByLibrary.simpleMessage(
+            "You don\'t have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money."),
         "addSendContact": MessageLookupByLibrary.simpleMessage(
             "You don\'t have any contacts yet. Your Blink contacts can be saved while sending money."),
         "addingContactsDesc": MessageLookupByLibrary.simpleMessage(

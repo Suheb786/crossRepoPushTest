@@ -15,6 +15,7 @@ PaymentActivityDataEntity _$PaymentActivityDataEntityFromJson(
     rtpDate: json['rtpDate'] == null
         ? null
         : DateTime.parse(json['rtpDate'] as String),
+    profileImage: json['profileImage'] as String?,
   );
 }
 
@@ -23,6 +24,7 @@ Map<String, dynamic> _$PaymentActivityDataEntityToJson(
     <String, dynamic>{
       'name': instance.name,
       'amount': instance.amount,
+      'profileImage': instance.profileImage,
       'status': instance.status,
       'rtpDate': instance.rtpDate?.toIso8601String(),
     };

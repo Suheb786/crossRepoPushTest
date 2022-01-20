@@ -17,7 +17,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
   ActivityHomePageView(ProviderBase model) : super(model);
 
-  List pages = [NotificationPage(), PaymentActivityPage()];
 
   @override
   Widget build(BuildContext context, model) {
@@ -71,7 +70,10 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                                     Padding(
                                       padding: EdgeInsets.only(bottom: 20.0),
                                       child: PaymentSwiper(
-                                        pages: pages,
+                                        pages: [
+                                          NotificationPage(),
+                                          PaymentActivityPage()
+                                        ],
                                         pageController: model.pageController,
                                         onIndexChanged: (index) {
                                           model.updatePage(index);
@@ -107,7 +109,7 @@ class ActivityHomePageView extends BasePageViewWidget<ActivityHomeViewModel> {
                               padding: EdgeInsets.only(top: 5),
                               child: SmoothPageIndicator(
                                 controller: model.controller,
-                                count: pages.length,
+                                count: 2,
                                 effect: ScrollingDotsEffect(
                                   activeStrokeWidth: 2.6,
                                   activeDotScale: 1.3,
