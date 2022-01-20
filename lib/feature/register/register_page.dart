@@ -26,7 +26,7 @@ class RegisterPageState
   @override
   void onModelReady(RegisterViewModel model) {
     super.onModelReady(model);
-    if (widget.arguments != null) {
+    if (widget.arguments.kycData != null) {
       switch (widget.arguments.kycData?.type ?? "") {
         case "IDCardC":
         case "SelfiCheck":

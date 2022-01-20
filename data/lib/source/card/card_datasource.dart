@@ -17,7 +17,8 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> confirmCardDelivery();
 
-  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery();
+  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery(
+      {String? cardId, String? cardDigit});
 
   Future<HttpResponse<CardTransactionResponseEntity>>
       getDebitCardTransactions();
@@ -40,9 +41,9 @@ abstract class CardRemoteDs {
   Future<HttpResponse<CardStatementResponseEntity>> getDebitCardStatement(
       {String monthYear});
 
-  Future<HttpResponse<ResponseEntity>> freezeCreditCard();
+  Future<HttpResponse<ResponseEntity>> freezeCreditCard({String cardId});
 
-  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard();
+  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard({String cardId});
 
   Future<HttpResponse<ResponseEntity>> cancelCreditCard({String? reason});
 

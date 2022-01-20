@@ -77,9 +77,10 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> confirmCreditCardDelivery() async {
+  Future<Either<NetworkError, bool>> confirmCreditCardDelivery(
+      {String? cardId, String? cardDigit}) async {
     final result = await safeApiCall(
-      _remoteDs.confirmCreditCardDelivery(),
+      _remoteDs.confirmCreditCardDelivery(cardId: cardId, cardDigit: cardDigit),
     );
     return result!.fold(
       (l) => Left(l),
@@ -168,9 +169,9 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> freezeCreditCard() async {
+  Future<Either<NetworkError, bool>> freezeCreditCard({String? cardId}) async {
     final result = await safeApiCall(
-      _remoteDs.freezeCreditCard(),
+      _remoteDs.freezeCreditCard(cardId: cardId!),
     );
     return result!.fold(
       (l) => Left(l),
@@ -179,9 +180,10 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> unFreezeCreditCard() async {
+  Future<Either<NetworkError, bool>> unFreezeCreditCard(
+      {String? cardId}) async {
     final result = await safeApiCall(
-      _remoteDs.unFreezeCreditCard(),
+      _remoteDs.unFreezeCreditCard(cardId: cardId!),
     );
     return result!.fold(
       (l) => Left(l),

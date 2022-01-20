@@ -16,39 +16,42 @@ class DashboardDataEntity
   @JsonKey(name: "creditCard")
   final List<DashboardCardEntity>? creditCard;
   @JsonKey(name: "debitCard")
-  final DashboardDebitCardEntity? debitCard;
-  @JsonKey(name: "isApplied")
-  final bool? isApplied;
-  @JsonKey(name: "isCreditDelivered")
-  final dynamic? isCreditDelivered;
-  @JsonKey(name: "isDebitDelivered")
-  final dynamic? isDebitDelivered;
-  @JsonKey(name: "debitCardActivated")
-  final dynamic? debitCardActivated;
-  @JsonKey(name: "creditCardActivated")
-  final String? creditCardActivated;
+  final List<DashboardDebitCardEntity>? debitCard;
+
+  // @JsonKey(name: "isApplied")
+  // final bool? isApplied;
+  // @JsonKey(name: "isCreditDelivered")
+  // final dynamic? isCreditDelivered;
+  // @JsonKey(name: "isDebitDelivered")
+  // final dynamic? isDebitDelivered;
+  // @JsonKey(name: "debitCardActivated")
+  // final dynamic? debitCardActivated;
+  // @JsonKey(name: "creditCardActivated")
+  // final String? creditCardActivated;
   @JsonKey(name: "youJoinedBlink")
   final DateTime? blinkJoinedDate;
   @JsonKey(name: "blinkWasBorn")
   final DateTime? blinkBornDate;
-  @JsonKey(name: "debitDeliveredDatetime")
-  final dynamic? debitDeliveredDatetime;
-  @JsonKey(name: "creditDeliveredDatetime")
-  final dynamic? creditDeliveredDatetime;
 
-  DashboardDataEntity(
-      {this.account,
-      this.creditCard,
-      this.blinkBornDate,
-      this.blinkJoinedDate,
-      this.debitCardActivated,
-      this.isApplied,
-      this.isDebitDelivered,
-      this.creditCardActivated,
-      this.isCreditDelivered,
-      this.debitCard,
-      this.debitDeliveredDatetime,
-      this.creditDeliveredDatetime});
+  // @JsonKey(name: "debitDeliveredDatetime")
+  // final dynamic? debitDeliveredDatetime;
+  // @JsonKey(name: "creditDeliveredDatetime")
+  // final dynamic? creditDeliveredDatetime;
+
+  DashboardDataEntity({
+    this.account,
+    this.creditCard,
+    this.blinkBornDate,
+    this.blinkJoinedDate,
+    // this.debitCardActivated,
+    // this.isApplied,
+    // this.isDebitDelivered,
+    // this.creditCardActivated,
+    // this.isCreditDelivered,
+    this.debitCard,
+    // this.debitDeliveredDatetime,
+    // this.creditDeliveredDatetime
+  });
 
   factory DashboardDataEntity.fromJson(Map<String, dynamic> json) =>
       _$DashboardDataEntityFromJson(json);
@@ -65,15 +68,8 @@ class DashboardDataEntity
     return GetDashboardDataContent(
         account: this.account!.transform(),
         creditCard: this.creditCard!.map((e) => e.transform()).toList(),
-        debitCard: this.debitCard!.transform(),
-        isApplied: this.isApplied,
-        isCreditDelivered: this.isCreditDelivered,
-        isDebitDelivered: this.isDebitDelivered,
-        creditCardActivated: this.creditCardActivated,
-        debitCardActivated: this.debitCardActivated,
+        debitCard: this.debitCard!.map((e) => e.transform()).toList(),
         blinkWasBorn: this.blinkBornDate,
-        youJoinedBlink: this.blinkJoinedDate,
-        debitDeliveredDatetime: this.debitDeliveredDatetime,
-        creditDeliveredDatetime: this.creditDeliveredDatetime);
+        youJoinedBlink: this.blinkJoinedDate);
   }
 }

@@ -99,11 +99,11 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                       if (details.primaryVelocity!.isNegative) {
                                         model.enterAddress();
                                       } else {
-                                        ProviderScope.containerOf(context)
-                                            .read(
-                                                registerStepOneViewModelProvider)
-                                            .pageController
-                                            .previous();
+                                        // ProviderScope.containerOf(context)
+                                        //     .read(
+                                        //         registerStepOneViewModelProvider)
+                                        //     .pageController
+                                        //     .previous();
                                       }
                                     },
                                     child: Card(
@@ -129,9 +129,8 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                               AppTextField(
                                                 labelText:
                                                     S.of(context).country,
-                                                hintText: S
-                                                    .of(context)
-                                                    .pleaseSelect,
+                                                hintText:
+                                                    S.of(context).pleaseSelect,
                                                 readOnly: true,
                                                 controller: model
                                                     .residentCountryController,
@@ -163,12 +162,10 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                   return Container(
                                                       height: 16,
                                                       width: 16,
-                                                      padding:
-                                                          EdgeInsets.only(
-                                                              right: 8),
+                                                      padding: EdgeInsets.only(
+                                                          right: 8),
                                                       child: AppSvg.asset(
-                                                          AssetUtils
-                                                              .downArrow,
+                                                          AssetUtils.downArrow,
                                                           color: AppColor
                                                               .dark_gray_1));
                                                 },
@@ -190,8 +187,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                     .buildingNameOrNumberKey,
                                                 onChanged: (value) =>
                                                     model.validateAddress(),
-                                                suffixIcon: (isValid,
-                                                        value) =>
+                                                suffixIcon: (isValid, value) =>
                                                     InkWell(
                                                         onTap: () =>
                                                             HomeAddressDialog
@@ -201,13 +197,12 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                               Navigator.of(
                                                                       context)
                                                                   .pop();
-                                                              model.buildingNameOrNumberController
-                                                                      .text =
-                                                                  value;
+                                                              model
+                                                                  .buildingNameOrNumberController
+                                                                  .text = value;
                                                               model
                                                                   .validateAddress();
-                                                            }, onDismissed:
-                                                                        () {
+                                                            }, onDismissed: () {
                                                               Navigator.pop(
                                                                   context);
                                                             }),
@@ -251,13 +246,11 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                       .of(context)
                                                       .area
                                                       .toUpperCase(),
-                                                  hintText: S
-                                                      .of(context)
-                                                      .pleaseEnter,
-                                                  inputType:
-                                                      TextInputType.text,
-                                                  controller: model
-                                                      .districtController,
+                                                  hintText:
+                                                      S.of(context).pleaseEnter,
+                                                  inputType: TextInputType.text,
+                                                  controller:
+                                                      model.districtController,
                                                   key: model.districtKey,
                                                   onChanged: (value) =>
                                                       model.validateAddress(),
@@ -289,8 +282,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                         .isValid = false;
                                                     model.showToastWithError(
                                                         AppError(
-                                                            cause:
-                                                                Exception(),
+                                                            cause: Exception(),
                                                             error: ErrorInfo(
                                                                 message: ''),
                                                             type: ErrorType
@@ -300,7 +292,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                         context,
                                                         title: S
                                                             .of(context)
-                                                            .residentCountrySmall,
+                                                            .residentCity,
                                                         onDismissed: () {
                                                       Navigator.pop(context);
                                                     }, onSelected: (value) {
@@ -308,8 +300,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                       model.cityController
                                                               .text =
                                                           value.cityName!;
-                                                      model.currentCity =
-                                                          value;
+                                                      model.currentCity = value;
                                                       model.validateAddress();
                                                     },
                                                         stateCityTypeEnum:
@@ -329,12 +320,10 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                   return Container(
                                                       height: 16,
                                                       width: 16,
-                                                      padding:
-                                                          EdgeInsets.only(
-                                                              right: 8),
+                                                      padding: EdgeInsets.only(
+                                                          right: 8),
                                                       child: AppSvg.asset(
-                                                          AssetUtils
-                                                              .downArrow,
+                                                          AssetUtils.downArrow,
                                                           color: AppColor
                                                               .dark_gray_1));
                                                 },
@@ -385,8 +374,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                             CountryDialog.show(
                                                                 context,
                                                                 title: S
-                                                                    .of(
-                                                                        context)
+                                                                    .of(context)
                                                                     .residentCountrySmall,
                                                                 onDismissed:
                                                                     () {
@@ -471,7 +459,7 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                                   title: S
                                                                       .of(
                                                                           context)
-                                                                      .residentCountrySmall,
+                                                                      .residentCity,
                                                                   onDismissed:
                                                                       () {
                                                                 Navigator.pop(
@@ -492,10 +480,11 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                                   stateCityTypeEnum:
                                                                       StateCityTypeEnum
                                                                           .CITY,
-                                                                  stateCityData: cityList!
-                                                                      .data!
-                                                                      .cityContent!
-                                                                      .stateData!);
+                                                                  stateCityData:
+                                                                      cityList!
+                                                                          .data!
+                                                                          .cityContent!
+                                                                          .stateData!);
                                                             }
                                                           },
                                                           suffixIcon:
@@ -524,8 +513,8 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                               ),
                                               Center(
                                                 child: AppStreamBuilder<bool>(
-                                                    stream: model
-                                                        .showButtonStream,
+                                                    stream:
+                                                        model.showButtonStream,
                                                     initialData: false,
                                                     dataBuilder:
                                                         (context, isValid) {

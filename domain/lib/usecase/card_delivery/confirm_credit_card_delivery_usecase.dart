@@ -14,11 +14,18 @@ class ConfirmCreditCardDeliveryUseCase extends BaseUseCase<NetworkError,
   @override
   Future<Either<NetworkError, bool>> execute(
       {required ConfirmCreditCardDeliveryUseCaseParams params}) {
-    return _repository.confirmCreditCardDelivery();
+    return _repository.confirmCreditCardDelivery(
+        cardId: params.cardId, cardDigit: params.cardDigit);
   }
 }
 
 class ConfirmCreditCardDeliveryUseCaseParams extends Params {
+  final String cardId;
+  final String cardDigit;
+
+  ConfirmCreditCardDeliveryUseCaseParams(
+      {required this.cardId, required this.cardDigit});
+
   @override
   Either<AppError, bool> verify() {
     return Right(true);

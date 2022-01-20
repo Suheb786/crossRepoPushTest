@@ -7940,6 +7940,16 @@ class S {
     );
   }
 
+  /// `Resident City`
+  String get residentCity {
+    return Intl.message(
+      'Resident City',
+      name: 'residentCity',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `You requested`
   String get youRequested {
     return Intl.message(
