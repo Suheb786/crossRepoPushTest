@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
+import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/di/help_center/help_center_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -99,43 +100,47 @@ class EngagementTeamDialogView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  AppStreamBuilder<Resource<bool>>(
-                    stream: model!.initInfobipMessageResponseStream,
-                    onData: (value) {},
-                    initialData: Resource.success(data: false),
-                    dataBuilder: (context, value) => InkWell(
-                      onTap: () {
-                        if (value?.data != null && value!.data!) {
-                          model.showChat();
-                        }
-                      },
-                      child: Container(
-                        height: 72,
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 24, vertical: 8.0),
-                        decoration: BoxDecoration(
-                            border: Border.all(color: AppColor.brightBlue),
-                            borderRadius: BorderRadius.circular(8)),
-                        child: Row(
-                          children: [
-                            Container(
-                                margin: EdgeInsets.symmetric(horizontal: 18.11),
-                                height: 25,
-                                width: 25,
-                                child: AppSvg.asset(
-                                  AssetUtils.liveChat,
-                                  color: Theme.of(context).primaryColorDark,
-                                )),
-                            Text(
-                              S.of(context).liveChat,
-                              style: TextStyle(
-                                  fontSize: 14.0, fontWeight: FontWeight.w600),
-                            )
-                          ],
-                        ),
+                  // AppStreamBuilder<Resource<bool>>(
+                  //   stream: model!.initInfobipMessageResponseStream,
+                  //   onData: (value) {},
+                  //   initialData: Resource.success(data: false),
+                  //   dataBuilder: (context, value) =>
+                  InkWell(
+                    onTap: () {
+                      // if (value?.data != null && value!.data!) {
+                      ProviderScope.containerOf(context)
+                          .read(appViewModel)
+                          .saveUserData();
+                      model!.showChat();
+                      // }
+                    },
+                    child: Container(
+                      height: 72,
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 24, vertical: 8.0),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: AppColor.brightBlue),
+                          borderRadius: BorderRadius.circular(8)),
+                      child: Row(
+                        children: [
+                          Container(
+                              margin: EdgeInsets.symmetric(horizontal: 18.11),
+                              height: 25,
+                              width: 25,
+                              child: AppSvg.asset(
+                                AssetUtils.liveChat,
+                                color: Theme.of(context).primaryColorDark,
+                              )),
+                          Text(
+                            S.of(context).liveChat,
+                            style: TextStyle(
+                                fontSize: 14.0, fontWeight: FontWeight.w600),
+                          )
+                        ],
                       ),
                     ),
                   ),
+                  // ),
                   SizedBox(height: 56),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0, bottom: 16),

@@ -13,14 +13,14 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
   PublishSubject<ShowChatUseCaseParams> _showChatRequestSubject =
       PublishSubject();
 
-  PublishSubject<Resource<bool>> _initInfobipMessageResponseSubject =
-      PublishSubject();
+  // PublishSubject<Resource<bool>> _initInfobipMessageResponseSubject =
+  //     PublishSubject();
 
   PublishSubject<Resource<bool>> _showChatResponseSubject = PublishSubject();
   PublishSubject<bool> _onNotificationTapResponseSubject = PublishSubject();
 
-  Stream<Resource<bool>> get initInfobipMessageResponseStream =>
-      _initInfobipMessageResponseSubject.stream;
+  // Stream<Resource<bool>> get initInfobipMessageResponseStream =>
+  //     _initInfobipMessageResponseSubject.stream;
 
   Stream<bool> get onNotificationTapResponseStream =>
       _onNotificationTapResponseSubject.stream;
@@ -33,16 +33,16 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
 
   EngagementTeamDialogViewModel(
       this._infobipMessagePluginUseCase, this._showChatUseCase) {
-    _initInfobipMessageRequestSubject.listen((value) {
-      RequestManager(value, createCall: () {
-        print("VALUE::: $value}");
-        return _infobipMessagePluginUseCase.execute(params: value);
-      }).asFlow().listen((event) {
-        print("EVENT::: $event}");
-        updateLoader();
-        _initInfobipMessageResponseSubject.safeAdd(event);
-      });
-    });
+    // _initInfobipMessageRequestSubject.listen((value) {
+    //   RequestManager(value, createCall: () {
+    //     print("VALUE::: $value}");
+    //     return _infobipMessagePluginUseCase.execute(params: value);
+    //   }).asFlow().listen((event) {
+    //     print("EVENT::: $event}");
+    //     updateLoader();
+    //     _initInfobipMessageResponseSubject.safeAdd(event);
+    //   });
+    // });
 
     _showChatRequestSubject.listen((value) {
       RequestManager(value, createCall: () {
@@ -52,16 +52,16 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
         _showChatResponseSubject.safeAdd(event);
       });
     });
-    initInfobipMessagePlugin();
+    // initInfobipMessagePlugin();
   }
 
-  initInfobipMessagePlugin() async {
-    _initInfobipMessageRequestSubject
-        .safeAdd(InfobipMessagePluginUseCaseParams(callback: (value) {
-      print("NOTIFICATION TAPPED");
-      _onNotificationTapResponseSubject.safeAdd(value);
-    }));
-  }
+  // initInfobipMessagePlugin() async {
+  //   _initInfobipMessageRequestSubject
+  //       .safeAdd(InfobipMessagePluginUseCaseParams(callback: (value) {
+  //     print("NOTIFICATION TAPPED");
+  //     _onNotificationTapResponseSubject.safeAdd(value);
+  //   }));
+  // }
 
   showChat() {
     _showChatRequestSubject.safeAdd(ShowChatUseCaseParams());
@@ -69,7 +69,7 @@ class EngagementTeamDialogViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
-    _initInfobipMessageResponseSubject.close();
+    // _initInfobipMessageResponseSubject.close();
     _initInfobipMessageRequestSubject.close();
     _showChatRequestSubject.close();
     _showChatResponseSubject.close();

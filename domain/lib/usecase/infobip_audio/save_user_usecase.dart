@@ -5,23 +5,21 @@ import 'package:domain/repository/help_center/infobip_message_repository.dart';
 import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
-class InfobipMessagePluginUseCase
-    extends BaseUseCase<BaseError, InfobipMessagePluginUseCaseParams, bool> {
+class SaveUserUseCase
+    extends BaseUseCase<BaseError, SaveUserUseCaseParams, bool> {
   final InfobipMessageRepository _infobipMessageRepository;
 
-  InfobipMessagePluginUseCase(this._infobipMessageRepository);
+  SaveUserUseCase(this._infobipMessageRepository);
 
   @override
   Future<Either<BaseError, bool>> execute(
-      {required InfobipMessagePluginUseCaseParams params}) async {
-    return await _infobipMessageRepository.initInfobipMessage();
+      {required SaveUserUseCaseParams params}) async {
+    return _infobipMessageRepository.saveUser();
   }
 }
 
-class InfobipMessagePluginUseCaseParams extends Params {
-  // final Function(bool) callback;
-
-  InfobipMessagePluginUseCaseParams();
+class SaveUserUseCaseParams extends Params {
+  SaveUserUseCaseParams();
 
   @override
   Either<AppError, bool> verify() {
