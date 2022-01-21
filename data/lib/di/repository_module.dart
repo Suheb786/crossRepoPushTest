@@ -135,7 +135,8 @@ var helpCenterRepositoryProvider = Provider<HelpCenterRepository>((ref) =>
 /// inject [InfobipMessageRepository] provider
 var infobipMessagingRepositoryProvider = Provider<InfobipMessageRepository>(
     (ref) => InfobipMessageRepositoryImpl(
-        ref.read(infobipMessagingDatasourceProvider)));
+        ref.read(infobipMessagingDatasourceProvider),
+        ref.read(userRepoProvider)));
 
 /// inject [ForgetPasswordRepository] provider
 var forgetPasswordRepositoryProvider = Provider<ForgetPasswordRepository>(

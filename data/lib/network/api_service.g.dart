@@ -1256,11 +1256,12 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> freezeCreditCard(baseRequest) async {
+  Future<HttpResponse<ResponseEntity>> freezeCreditCard(
+      freezeCreditCardRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(baseRequest.toJson());
+    _data.addAll(freezeCreditCardRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<ResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
@@ -1273,11 +1274,12 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard(baseRequest) async {
+  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard(
+      unFreezeCreditCardRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(baseRequest.toJson());
+    _data.addAll(unFreezeCreditCardRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<ResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
@@ -1858,6 +1860,24 @@ class _ApiService implements ApiService {
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = VerifyForgetPasswordOtpResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
+      paymentActivityRequestActivity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(paymentActivityRequestActivity.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<PaymentActivityResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/transfer/PaymentActivityAPI',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = PaymentActivityResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

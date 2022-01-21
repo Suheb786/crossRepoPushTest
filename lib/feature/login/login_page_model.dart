@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
+import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/kyc/check_kyc_status_usecase.dart';
 import 'package:domain/usecase/user/get_cipher_usecase.dart';
@@ -53,9 +54,11 @@ class LoginViewModel extends BasePageViewModel {
   ///get cipher usecase
   PublishSubject<GetCipherUseCaseParams> _getCipherRequest = PublishSubject();
 
-  PublishSubject<Resource<bool>> _getCipherResponse = PublishSubject();
+  PublishSubject<Resource<GetCipherResponse>> _getCipherResponse =
+      PublishSubject();
 
-  Stream<Resource<bool>> get getCipherStream => _getCipherResponse.stream;
+  Stream<Resource<GetCipherResponse>> get getCipherStream =>
+      _getCipherResponse.stream;
 
   LoginViewModel(
       this._loginUseCase, this._kycStatusUseCase, this._getCipherUseCase) {
@@ -87,6 +90,18 @@ class LoginViewModel extends BasePageViewModel {
         _kycStatusResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _getCipherRequest.listen((value) {
+      RequestManager(value,
+          createCall: () => _getCipherUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        _kycStatusResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
       });

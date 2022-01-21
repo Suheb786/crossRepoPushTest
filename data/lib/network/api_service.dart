@@ -43,6 +43,7 @@ import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
+import 'package:data/entity/remote/card/freeze_credit_card_request_entity.dart';
 import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_entity.dart';
@@ -92,6 +93,8 @@ import 'package:data/entity/remote/payment/check_send_money_request_entity.dart'
 import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
+import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
+import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
@@ -472,11 +475,11 @@ abstract class ApiService {
 
   @POST("/RuleEngine/FreezeCreditCard")
   Future<HttpResponse<ResponseEntity>> freezeCreditCard(
-      @Body() BaseRequest baseRequest);
+      @Body() FreezeCreditCardRequestEntity freezeCreditCardRequestEntity);
 
   @POST("/RuleEngine/UnfreezeCreditCard")
   Future<HttpResponse<ResponseEntity>> unFreezeCreditCard(
-      @Body() BaseRequest baseRequest);
+      @Body() FreezeCreditCardRequestEntity unFreezeCreditCardRequestEntity);
 
   @POST("/DebitCard/CancelCard")
   Future<HttpResponse<ResponseEntity>> cancelDebitCard(
@@ -621,4 +624,8 @@ abstract class ApiService {
           @Body()
               VerifyForgetPasswordOtpRequestEntity
                   verifyForgetPasswordOtpRequestEntity);
+
+  @POST("/transfer/PaymentActivityAPI")
+  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
+      @Body() PaymentActivityRequestEntity paymentActivityRequestActivity);
 }

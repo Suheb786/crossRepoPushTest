@@ -8029,6 +8029,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Resident City`
+  String get residentCity {
+    return Intl.message(
+      'Resident City',
+      name: 'residentCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You requested`
+  String get youRequested {
+    return Intl.message(
+      'You requested',
+      name: 'youRequested',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `\nfrom`
+  String get from {
+    return Intl.message(
+      '\nfrom',
+      name: 'from',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money.`
+  String get addRequestMoney {
+    return Intl.message(
+      'You don\'t have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money.',
+      name: 'addRequestMoney',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

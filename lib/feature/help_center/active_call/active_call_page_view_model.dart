@@ -73,7 +73,10 @@ class ActiveCallPageViewModel extends BasePageViewModel {
         return _speakerOnOffUseCase.execute(params: value);
       }).asFlow().listen((event) {
         updateLoader();
-        _speakerResponseSubject.safeAdd(event);
+        if (event.data != null) {
+          print("SPEAKER EVENT ::::: ${event.data}");
+          _speakerResponseSubject.safeAdd(event);
+        }
       });
     });
 
@@ -101,8 +104,6 @@ class ActiveCallPageViewModel extends BasePageViewModel {
           .safeAdd(Duration(seconds: event).toHoursMinutesSeconds());
     });
     getCurrentCallStatus();
-    // toggleMute();
-    // toggleSpeaker();
   }
 
   toggleMute() {

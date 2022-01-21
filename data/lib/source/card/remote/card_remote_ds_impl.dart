@@ -13,6 +13,7 @@ import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
+import 'package:data/entity/remote/card/freeze_credit_card_request_entity.dart';
 import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_entity.dart';
@@ -63,11 +64,16 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery() async {
+  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery(
+      {String? cardId, String? cardDigit}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.confirmCreditCardDelivery(
         ConfirmCreditCardDeliveryRequest(
-            baseData: baseData.toJson(), getToken: true));
+            cardId: cardId,
+            accountId: '1',
+            cardDigit: cardDigit,
+            baseData: baseData.toJson(),
+            getToken: true));
   }
 
   @override
@@ -148,17 +154,19 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> freezeCreditCard() async {
+  Future<HttpResponse<ResponseEntity>> freezeCreditCard(
+      {String? cardId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .freezeCreditCard(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.freezeCreditCard(FreezeCreditCardRequestEntity(
+        cardId: cardId, getToken: true, baseData: baseData.toJson()));
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard() async {
+  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard(
+      {String? cardId}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService
-        .unFreezeCreditCard(BaseRequest(baseData: baseData.toJson()));
+    return _apiService.unFreezeCreditCard(FreezeCreditCardRequestEntity(
+        cardId: cardId, getToken: true, baseData: baseData.toJson()));
   }
 
   @override

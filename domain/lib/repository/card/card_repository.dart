@@ -23,7 +23,8 @@ abstract class CardRepository {
   Future<Either<NetworkError, GetTransactionsResponse>>
       getCreditCardTransactions();
 
-  Future<Either<NetworkError, bool>> confirmCreditCardDelivery();
+  Future<Either<NetworkError, bool>> confirmCreditCardDelivery(
+      {String? cardId, String? cardDigit});
 
   Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(
       String monthYear);
@@ -38,9 +39,9 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, GetDebitYearsResponse>> getDebitYears();
 
-  Future<Either<NetworkError, bool>> freezeCreditCard();
+  Future<Either<NetworkError, bool>> freezeCreditCard({String cardId});
 
-  Future<Either<NetworkError, bool>> unFreezeCreditCard();
+  Future<Either<NetworkError, bool>> unFreezeCreditCard({String cardId});
 
   Future<Either<NetworkError, bool>> cancelCreditCard({String reason});
 

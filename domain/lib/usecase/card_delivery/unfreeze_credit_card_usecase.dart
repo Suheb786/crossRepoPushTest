@@ -14,12 +14,14 @@ class UnFreezeCreditCardUseCase
   @override
   Future<Either<NetworkError, bool>> execute(
       {required UnFreezeCreditCardUseCaseParams params}) {
-    return _repository.unFreezeCreditCard();
+    return _repository.unFreezeCreditCard(cardId: params.cardId);
   }
 }
 
 class UnFreezeCreditCardUseCaseParams extends Params {
-  UnFreezeCreditCardUseCaseParams();
+  final String cardId;
+
+  UnFreezeCreditCardUseCaseParams({required this.cardId});
 
   @override
   Either<AppError, bool> verify() {
