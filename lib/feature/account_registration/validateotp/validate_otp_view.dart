@@ -11,6 +11,7 @@ import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_one/change_my_number_dialog/change_my_number_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -75,11 +76,19 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                     padding: const EdgeInsets.only(top: 32.0),
                                     child: InkWell(
                                       onTap: () {
-                                        ProviderScope.containerOf(context)
-                                            .read(
-                                                accountRegistrationViewModelProvider)
-                                            .pageController
-                                            .move(0, animation: false);
+                                        print(
+                                            'list-->${ProviderScope.containerOf(context).read(accountRegistrationViewModelProvider).countryDataList}');
+                                        ChangeMyNumberDialog.show(context,
+                                            countryList: ProviderScope
+                                                    .containerOf(context)
+                                                .read(
+                                                    accountRegistrationViewModelProvider)
+                                                .countryDataList,
+                                            onDismissed: () {
+                                          Navigator.pop(context);
+                                        }, onSelected: (data) {
+                                          Navigator.pop(context);
+                                        });
                                       },
                                       child: Text(
                                         S.of(context).changeMyNumber,

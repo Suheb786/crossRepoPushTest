@@ -43,6 +43,7 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_four/fatca_option_dia
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_payer_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/calendar_dialog/calendar_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_one/change_my_number_dialog/change_my_number_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/year_month_dialog/year_month_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
@@ -444,3 +445,8 @@ final fatcaOptionsDialogViwModelProvider =
 final accountHoldViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountHoldViewModel>(
         (ref) => AccountHoldViewModel(ref.read(logoutUseCaseProvider)));
+
+///changeMy number dialog view model provider
+final changeMyNumberDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ChangeMyNumberDialogViewModel>(
+        (ref) => ChangeMyNumberDialogViewModel());

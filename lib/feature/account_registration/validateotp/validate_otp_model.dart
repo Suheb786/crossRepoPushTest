@@ -1,3 +1,4 @@
+import 'package:domain/usecase/user/change_my_number_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,6 +14,8 @@ class ValidateOtpViewModel extends BasePageViewModel {
   final VerifyOtpUseCase _verifyOtpUseCase;
 
   final GetTokenUseCase _getTokenUseCase;
+
+  final ChangeMyNumberUseCase _changeMyNumberUseCase;
 
   ///otp controller
   TextEditingController otpController = TextEditingController();
@@ -61,7 +64,19 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
 
-  ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase) {
+  ///change my number request subject holder
+  PublishSubject<ChangeMyNumberUseCaseParams> _changeMyNumberRequest =
+      PublishSubject();
+
+  ///change my number response holder
+  PublishSubject<Resource<bool>> _changeMyNumberResponse = PublishSubject();
+
+  ///change my number stream
+  Stream<Resource<bool>> get changeMyNumberStream =>
+      _changeMyNumberResponse.stream;
+
+  ValidateOtpViewModel(this._verifyOtpUseCase, this._getTokenUseCase,
+      this._changeMyNumberUseCase) {
     _verifyOtpRequest.listen((value) {
       RequestManager(value,
               createCall: () => _verifyOtpUseCase.execute(params: value))
@@ -90,6 +105,19 @@ class ValidateOtpViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _changeMyNumberRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _changeMyNumberUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _changeMyNumberResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
   void validateOtp() {
@@ -98,6 +126,11 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   void resendOtp() {
     _getTokenRequest.safeAdd(GetTokenUseCaseParams());
+  }
+
+  void changeMyNumber(String mobileNo) {
+    _changeMyNumberRequest.safeAdd(
+        ChangeMyNumberUseCaseParams(mobileNumber: mobileNo, countryCode: ''));
   }
 
   void validate(String value) {

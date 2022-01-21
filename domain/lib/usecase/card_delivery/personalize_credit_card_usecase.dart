@@ -33,12 +33,13 @@ class PersonalizeCreditCardUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.SELECT_CREDIT_LIMIT_SETTINGS,
           cause: Exception()));
-    } else if (Validator.isEmpty(minimumSettlement)) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.SELECT_MINIMUM_SETTLEMENT,
-          cause: Exception()));
     }
+    // else if (Validator.isEmpty(minimumSettlement)) {
+    //   return Left(AppError(
+    //       error: ErrorInfo(message: ''),
+    //       type: ErrorType.SELECT_MINIMUM_SETTLEMENT,
+    //       cause: Exception()));
+    // }
     return Right(true);
   }
 }

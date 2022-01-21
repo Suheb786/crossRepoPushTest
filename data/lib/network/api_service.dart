@@ -106,6 +106,7 @@ import 'package:data/entity/remote/upload_document/save_upload_document_response
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
+import 'package:data/entity/remote/user/change_my_number/change_my_number_request_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
@@ -632,4 +633,8 @@ abstract class ApiService {
   @POST("/auth/iphonelogin")
   Future<HttpResponse<ResponseEntity>> iphoneLogin(
       @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
+
+  @POST("/Auth/ChangeMobileNumber")
+  Future<HttpResponse<ResponseEntity>> changeMyNumber(
+      @Body() ChangeMyNumberRequestEntity changeMyNumberRequestEntity);
 }

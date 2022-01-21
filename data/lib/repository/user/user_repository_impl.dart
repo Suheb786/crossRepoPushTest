@@ -630,4 +630,15 @@ class UserRepositoryImpl extends UserRepository {
       (r) => Right(r.isSuccessful()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> changeMyNumber(String mobileNo) async {
+    final result = await safeApiCall(
+      _remoteDS.changeMyNumber(mobileNo: mobileNo),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }

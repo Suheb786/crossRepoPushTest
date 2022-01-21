@@ -155,6 +155,8 @@ abstract class UserRemoteDS {
   Future<HttpResponse<ResponseEntity>> androidLogin();
 
   Future<HttpResponse<ResponseEntity>> iphoneLogin();
+
+  Future<HttpResponse<ResponseEntity>> changeMyNumber({String mobileNo});
 }
 
 abstract class UserLocalDS {

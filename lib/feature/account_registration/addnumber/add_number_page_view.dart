@@ -101,6 +101,15 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                   Resource<AllowedCountryListResponse>>(
                                 initialData: Resource.success(
                                     data: AllowedCountryListResponse()),
+                                onData: (data) {
+                                  if (data.status == Status.SUCCESS) {
+                                    ProviderScope.containerOf(context)
+                                            .read(
+                                                accountRegistrationViewModelProvider)
+                                            .countryDataList =
+                                        data.data!.contentData!.countryData!;
+                                  }
+                                },
                                 stream: model.getAllowedCountryStream,
                                 dataBuilder: (context, country) {
                                   return AppStreamBuilder<CountryData>(

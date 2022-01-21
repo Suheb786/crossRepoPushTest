@@ -164,8 +164,7 @@ class SetCreditLimitPageView
                                                     sliderLimitValues.minValue!,
                                                 max:
                                                     sliderLimitValues.maxValue!,
-                                                divisions: sliderLimitValues
-                                                    .divisions!,
+                                                divisions: 10,
                                                 value: val!,
                                                 onChanged: (value) {
                                                   print("got value : $value");

@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:domain/model/country/country_list/country_data.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
@@ -17,6 +18,8 @@ class AccountRegistrationPageViewModel extends BasePageViewModel {
   void changeCurrentPage(int index) {
     _currentPageSubject.safeAdd(index);
   }
+
+  List<CountryData> countryDataList = [];
 
   @override
   void dispose() {

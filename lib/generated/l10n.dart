@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7975,6 +7976,26 @@ class S {
     return Intl.message(
       'You don\'t have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money.',
       name: 'addRequestMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Process Loan Request.`
+  String get errorWhileProcessLoanRequest {
+    return Intl.message(
+      'Error While Process Loan Request.',
+      name: 'errorWhileProcessLoanRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Getting Account Close Otp.`
+  String get errorWhileGettingAccountCloseOtp {
+    return Intl.message(
+      'Error While Getting Account Close Otp.',
+      name: 'errorWhileGettingAccountCloseOtp',
       desc: '',
       args: [],
     );

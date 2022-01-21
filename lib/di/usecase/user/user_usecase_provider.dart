@@ -5,6 +5,7 @@ import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
 import 'package:domain/usecase/user/android_login_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
+import 'package:domain/usecase/user/change_my_number_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
 import 'package:domain/usecase/user/check_customer_status_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
@@ -218,3 +219,8 @@ final androidLoginUseCaseProvider = Provider.autoDispose<AndroidLoginUseCase>(
 ///iphone login usecase
 final iphoneLoginUseCaseProvider = Provider.autoDispose<IphoneLoginUseCase>(
     (ref) => IphoneLoginUseCase(ref.read(userRepoProvider)));
+
+///change my number usecase
+final changeMyNumberUseCaseProvider =
+    Provider.autoDispose<ChangeMyNumberUseCase>(
+        (ref) => ChangeMyNumberUseCase(ref.read(userRepoProvider)));
