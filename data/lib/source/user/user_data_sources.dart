@@ -153,6 +153,8 @@ abstract class UserRemoteDS {
   Future<HttpResponse<GetCipherResponseEntity>> getCipher();
 
   Future<HttpResponse<ResponseEntity>> androidLogin();
+
+  Future<HttpResponse<ResponseEntity>> iphoneLogin();
 }
 
 abstract class UserLocalDS {

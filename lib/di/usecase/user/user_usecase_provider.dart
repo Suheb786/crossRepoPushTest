@@ -3,6 +3,7 @@ import 'package:domain/usecase/country/fetch_allowed_issuers_usecase.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
 import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
+import 'package:domain/usecase/user/android_login_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
 import 'package:domain/usecase/user/check_customer_status_usecase.dart';
@@ -20,6 +21,7 @@ import 'package:domain/usecase/user/get_combo_values_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
+import 'package:domain/usecase/user/iphone_login_usecase.dart';
 import 'package:domain/usecase/user/listen_current_user_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
@@ -208,3 +210,11 @@ final customerStatusUseCaseProvider =
 ///get cipher usecase
 final getCipherUseCaseProvider = Provider.autoDispose<GetCipherUseCase>(
     (ref) => GetCipherUseCase(ref.read(userRepoProvider)));
+
+///android login usecase
+final androidLoginUseCaseProvider = Provider.autoDispose<AndroidLoginUseCase>(
+    (ref) => AndroidLoginUseCase(ref.read(userRepoProvider)));
+
+///iphone login usecase
+final iphoneLoginUseCaseProvider = Provider.autoDispose<IphoneLoginUseCase>(
+    (ref) => IphoneLoginUseCase(ref.read(userRepoProvider)));

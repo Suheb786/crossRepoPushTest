@@ -90,7 +90,7 @@ class AddRequestMoneyContactPageView
                                                   top: 22, right: 28, left: 27),
                                               itemBuilder: (context, index) {
                                                 if (index >=
-                                                    beneficiaries.length - 1) {
+                                                    beneficiaries.length) {
                                                   return PaymentBeneficiaryEmptyWidget();
                                                 }
                                                 return PaymentBeneficiaryWidget(

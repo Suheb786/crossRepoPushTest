@@ -435,8 +435,6 @@ class UserRemoteDSImpl extends UserRemoteDS {
   @override
   Future<HttpResponse<GetCipherResponseEntity>> getCipher() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
-    User user = userDBEntity!.transform();
     return _apiService.getCipher(GetCipherRequestEntity(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       baseData: baseData.toJson(),
@@ -447,11 +445,42 @@ class UserRemoteDSImpl extends UserRemoteDS {
   Future<HttpResponse<ResponseEntity>> androidLogin() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
-    User user = userDBEntity!.transform();
+    User user = User();
+    String userId = '';
+    if (userDBEntity != null) {
+      user = userDBEntity.transform();
+      userId = await decryptData(
+          content: user.id,
+          publicKey: user.publicPEM,
+          privateKey: user.privatePEM);
+    }
+
     return _apiService.androidLogin(AndroidLoginRequestEntity(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       fireBaseToken: "",
-      signature: "",
+      signature: await signedData(userId: userId, privateKey: user.privatePEM!),
+      baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> iphoneLogin() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
+    User user = User();
+    String userId = '';
+    if (userDBEntity != null) {
+      user = userDBEntity.transform();
+      userId = await decryptData(
+          content: user.id,
+          publicKey: user.publicPEM,
+          privateKey: user.privatePEM);
+    }
+
+    return _apiService.iphoneLogin(AndroidLoginRequestEntity(
+      uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
+      fireBaseToken: "",
+      signature: await signedData(userId: userId, privateKey: user.privatePEM!),
       baseData: baseData.toJson(),
     ));
   }

@@ -628,4 +628,8 @@ abstract class ApiService {
   @POST("/transfer/PaymentActivityAPI")
   Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
       @Body() PaymentActivityRequestEntity paymentActivityRequestActivity);
+
+  @POST("/auth/iphonelogin")
+  Future<HttpResponse<ResponseEntity>> iphoneLogin(
+      @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 }
