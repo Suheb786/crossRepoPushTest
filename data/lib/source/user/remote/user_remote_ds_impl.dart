@@ -488,11 +488,12 @@ class UserRemoteDSImpl extends UserRemoteDS {
 
   @override
   Future<HttpResponse<ResponseEntity>> changeMyNumber(
-      {String? mobileNo}) async {
+      {String? mobileNo, String? mobileCode}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.changeMyNumber(ChangeMyNumberRequestEntity(
       getToken: true,
       mobileNo: mobileNo,
+      mobileCode: mobileCode,
       baseData: baseData.toJson(),
     ));
   }

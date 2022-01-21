@@ -49,14 +49,17 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock();
 
-  Future<HttpResponse<ResponseEntity>> cancelDebitCard({String? reason});
+  Future<HttpResponse<ResponseEntity>> cancelDebitCard(
+      {String? reason, String? status, String? tokenizedPan});
 
-  Future<HttpResponse<ResponseEntity>> unFreezeDebitCard();
+  Future<HttpResponse<ResponseEntity>> unFreezeDebitCard(
+      {String? status, String? tokenizedPan});
 
-  Future<HttpResponse<ResponseEntity>> freezeDebitCard();
+  Future<HttpResponse<ResponseEntity>> freezeDebitCard(
+      {String? status, String? tokenizedPan});
 
   Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
-      {required String pin});
+      {required String pin, required String otp, required String tokenizedPan});
 
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
       {required String pin});

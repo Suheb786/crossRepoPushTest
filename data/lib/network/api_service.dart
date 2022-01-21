@@ -32,7 +32,6 @@ import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.d
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/cancel_credit_card_request.dart';
-import 'package:data/entity/remote/card/cancel_debit_card_request.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
@@ -44,6 +43,7 @@ import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/freeze_credit_card_request_entity.dart';
+import 'package:data/entity/remote/card/freeze_debit_card_request_entity.dart';
 import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_entity.dart';
@@ -484,15 +484,15 @@ abstract class ApiService {
 
   @POST("/DebitCard/CancelCard")
   Future<HttpResponse<ResponseEntity>> cancelDebitCard(
-      @Body() CancelDebitCardRequest cancelDebitCardRequest);
+      @Body() FreezeDebitCardRequestEntity cancelDebitCardRequest);
 
   @POST("/DebitCard/FreezeCard")
   Future<HttpResponse<ResponseEntity>> freezeDebitCard(
-      @Body() BaseRequest baseRequest);
+      @Body() FreezeDebitCardRequestEntity freezeDebitCardRequestEntity);
 
   @POST("/DebitCard/unFreezeCard")
   Future<HttpResponse<ResponseEntity>> unFreezeDebitCard(
-      @Body() BaseRequest baseRequest);
+      @Body() FreezeDebitCardRequestEntity unfreezeDebitCardRequestEntity);
 
   @POST("/DebitCard/ChangePin")
   Future<HttpResponse<ResponseEntity>> changeDebitCardPin(

@@ -1,4 +1,5 @@
 import 'package:data/helper/encypt_decrypt_helper.dart';
+import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:domain/utils/mapper/base_layer_data_transformer.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -67,7 +68,7 @@ class DashboardDebitCardEntity
         accountTitle: this.accountTitle,
         debitDeliveredDatetime: this.debitDeliveredDatetime,
         debitCardActivated: this.debitCardActivated,
-        cardStatus: this.cardStatus,
+        cardStatus: this.cardStatus!.fromFreezeCardStatusValue(),
         code: this.code,
         isDebitDelivered: this.isDebitDelivered);
   }

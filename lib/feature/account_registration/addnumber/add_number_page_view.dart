@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
+import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/addnumber/add_number_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -125,6 +126,19 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                             model.showToastWithError(
                                                 data.appError!);
                                             model.showErrorState();
+                                          } else if (data.status ==
+                                              Status.SUCCESS) {
+                                            ProviderScope.containerOf(context)
+                                                .read(
+                                                    accountRegistrationViewModelProvider)
+                                                .updateMobileNumber(
+                                                    MobileNumberParams(
+                                                        mobileCode: model
+                                                            .countryData
+                                                            .phoneCode!,
+                                                        mobileNumber: model
+                                                            .mobileNumberController
+                                                            .text));
                                           }
                                         },
                                         dataBuilder: (context, data) {

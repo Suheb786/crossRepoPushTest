@@ -14,12 +14,17 @@ class UnFreezeDebitCardUseCase
   @override
   Future<Either<NetworkError, bool>> execute(
       {required UnFreezeDebitCardUseCaseParams params}) {
-    return _repository.unFreezeDebitCard();
+    return _repository.unFreezeDebitCard(
+        status: params.status, tokenizedPan: params.tokenizedPan);
   }
 }
 
 class UnFreezeDebitCardUseCaseParams extends Params {
-  UnFreezeDebitCardUseCaseParams();
+  final String status;
+  final String tokenizedPan;
+
+  UnFreezeDebitCardUseCaseParams(
+      {required this.status, required this.tokenizedPan});
 
   @override
   Either<AppError, bool> verify() {

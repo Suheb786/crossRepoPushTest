@@ -19,6 +19,17 @@ class AccountRegistrationPageViewModel extends BasePageViewModel {
     _currentPageSubject.safeAdd(index);
   }
 
+  ///mobile number request holder
+  BehaviorSubject<MobileNumberParams> _mobileNumberSubject = BehaviorSubject();
+
+  ///mobile number stream
+  Stream<MobileNumberParams> get mobileNumberStream =>
+      _mobileNumberSubject.stream;
+
+  void updateMobileNumber(MobileNumberParams mobileNumberParams) {
+    _mobileNumberSubject.safeAdd(mobileNumberParams);
+  }
+
   List<CountryData> countryDataList = [];
 
   @override
@@ -26,4 +37,11 @@ class AccountRegistrationPageViewModel extends BasePageViewModel {
     _currentPageSubject.close();
     super.dispose();
   }
+}
+
+class MobileNumberParams {
+  final String mobileNumber;
+  final String mobileCode;
+
+  MobileNumberParams({this.mobileNumber: "", this.mobileCode: ""});
 }

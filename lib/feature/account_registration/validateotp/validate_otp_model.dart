@@ -128,9 +128,9 @@ class ValidateOtpViewModel extends BasePageViewModel {
     _getTokenRequest.safeAdd(GetTokenUseCaseParams());
   }
 
-  void changeMyNumber(String mobileNo) {
-    _changeMyNumberRequest.safeAdd(
-        ChangeMyNumberUseCaseParams(mobileNumber: mobileNo, countryCode: ''));
+  void changeMyNumber(String mobileNo, String countryCode) {
+    _changeMyNumberRequest.safeAdd(ChangeMyNumberUseCaseParams(
+        mobileNumber: mobileNo, countryCode: countryCode));
   }
 
   void validate(String value) {

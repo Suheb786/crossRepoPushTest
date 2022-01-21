@@ -1,10 +1,12 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/change_card_pin/enter_new_pin_for_card/enter_new_pin_for_card_page_view_model.dart';
 import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -40,112 +42,146 @@ class EnterNewPinForCardPageView
               shakeAngle: Rotation.deg(z: 1),
               curve: Curves.easeInOutSine,
               child: AppStreamBuilder<Resource<bool>>(
-                stream: model.enterNewPinForCardStream,
-                initialData: Resource.none(),
-                onData: (data) {
-                  if (data.status == Status.SUCCESS) {
-                    Navigator.pushNamed(
-                        context, RoutePaths.ChangeCardPinSuccess,
-                        arguments: ChangeCardPinSuccessArguments(
-                            cardType: ProviderScope.containerOf(context)
-                                .read(changeCardPinViewModelProvider)
-                                .cardType));
-                  } else if (data.status == Status.ERROR) {
-                    if (data.appError!.type == ErrorType.EMPTY_PIN) {
-                      model.newPinKey.currentState!.isValid = false;
-                    } else if (data.appError!.type ==
-                        ErrorType.EMPTY_CONFIRM_PIN) {
-                      model.confirmPinKey.currentState!.isValid = false;
-                    } else if (data.appError!.type ==
-                        ErrorType.PIN_NOT_MATCH) {}
+                  stream: model.changDebitCardPinStream,
+                  initialData: Resource.none(),
+                  onData: (data) {
+                    if (data.status == Status.SUCCESS) {
+                      Navigator.pushNamed(
+                          context, RoutePaths.ChangeCardPinSuccess,
+                          arguments: ChangeCardPinSuccessArguments(
+                              cardType: ProviderScope.containerOf(context)
+                                  .read(changeCardPinViewModelProvider)
+                                  .cardType));
+                    }
+                  },
+                  dataBuilder: (context, snapshot) {
+                    return AppStreamBuilder<Resource<bool>>(
+                      stream: model.enterNewPinForCardStream,
+                      initialData: Resource.none(),
+                      onData: (data) {
+                        if (data.status == Status.SUCCESS) {
+                          ProviderScope.containerOf(context)
+                                      .read(changeCardPinViewModelProvider)
+                                      .cardType ==
+                                  CardType.DEBIT
+                              ? model.changeDebitCardPin(
+                                  pin: model.confirmPinController.text,
+                                  otp: ProviderScope.containerOf(context)
+                                      .read(
+                                          otpForChangeCardPinViewModelProvider)
+                                      .otp,
+                                  tokenizedPan:
+                                      ProviderScope.containerOf(context)
+                                          .read(appHomeViewModelProvider)
+                                          .dashboardDataContent
+                                          .debitCard!
+                                          .first
+                                          .code!)
+                              : () {};
+                        } else if (data.status == Status.ERROR) {
+                          if (data.appError!.type == ErrorType.EMPTY_PIN) {
+                            model.newPinKey.currentState!.isValid = false;
+                          } else if (data.appError!.type ==
+                              ErrorType.EMPTY_CONFIRM_PIN) {
+                            model.confirmPinKey.currentState!.isValid = false;
+                          } else if (data.appError!.type ==
+                              ErrorType.PIN_NOT_MATCH) {}
 
-                    model.showToastWithError(data.appError!);
-                  }
-                },
-                dataBuilder: (context, isOtpVerified) {
-                  return GestureDetector(
-                    onHorizontalDragEnd: (details) {
-                      if (details.primaryVelocity!.isNegative) {
-                        model.enterNewPinForCard(
-                            ProviderScope.containerOf(context)
-                                .read(changeCardPinViewModelProvider)
-                                .cardType);
-                      }
-                    },
-                    child: Card(
-                      margin: EdgeInsets.zero,
-                      child: Container(
-                          padding: EdgeInsets.symmetric(
-                              vertical: 32, horizontal: 24),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SingleChildScrollView(
-                                physics: NeverScrollableScrollPhysics(),
+                          model.showToastWithError(data.appError!);
+                        }
+                      },
+                      dataBuilder: (context, isOtpVerified) {
+                        return GestureDetector(
+                          onHorizontalDragEnd: (details) {
+                            if (details.primaryVelocity!.isNegative) {
+                              model.enterNewPinForCard(
+                                  ProviderScope.containerOf(context)
+                                      .read(changeCardPinViewModelProvider)
+                                      .cardType);
+                            }
+                          },
+                          child: Card(
+                            margin: EdgeInsets.zero,
+                            child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 32, horizontal: 24),
                                 child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    AppTextField(
-                                      labelText:
-                                          S.of(context).newPin.toUpperCase(),
-                                      hintText: S.of(context).pleaseEnter,
-                                      inputType: TextInputType.text,
-                                      obscureText: true,
-                                      controller: model.newPinController,
-                                      key: model.newPinKey,
-                                      onChanged: (value) => model.validate(),
+                                    SingleChildScrollView(
+                                      physics: NeverScrollableScrollPhysics(),
+                                      child: Column(
+                                        children: [
+                                          AppTextField(
+                                            labelText: S
+                                                .of(context)
+                                                .newPin
+                                                .toUpperCase(),
+                                            hintText: S.of(context).pleaseEnter,
+                                            inputType: TextInputType.text,
+                                            obscureText: true,
+                                            controller: model.newPinController,
+                                            key: model.newPinKey,
+                                            onChanged: (value) =>
+                                                model.validate(),
+                                          ),
+                                          SizedBox(
+                                            height: 16,
+                                          ),
+                                          AppTextField(
+                                            labelText: S
+                                                .of(context)
+                                                .confirmNewPin
+                                                .toUpperCase(),
+                                            hintText: S.of(context).pleaseEnter,
+                                            obscureText: true,
+                                            inputType: TextInputType.text,
+                                            controller:
+                                                model.confirmPinController,
+                                            key: model.confirmPinKey,
+                                            onChanged: (value) =>
+                                                model.validate(),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    SizedBox(
-                                      height: 16,
-                                    ),
-                                    AppTextField(
-                                      labelText: S
-                                          .of(context)
-                                          .confirmNewPin
-                                          .toUpperCase(),
-                                      hintText: S.of(context).pleaseEnter,
-                                      obscureText: true,
-                                      inputType: TextInputType.text,
-                                      controller: model.confirmPinController,
-                                      key: model.confirmPinKey,
-                                      onChanged: (value) => model.validate(),
+                                    Column(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 16.0, bottom: 24),
+                                          child: AppStreamBuilder<bool>(
+                                              stream: model.showButtonStream,
+                                              initialData: false,
+                                              dataBuilder: (context, isValid) {
+                                                return Visibility(
+                                                  visible: isValid!,
+                                                  child: AnimatedButton(
+                                                    buttonHeight: 50,
+                                                    buttonText: S
+                                                        .of(context)
+                                                        .swipeToProceed,
+                                                  ),
+                                                );
+                                              }),
+                                        ),
+                                        Text(
+                                          S.of(context).swipeDownToCancel,
+                                          style: TextStyle(
+                                              fontSize: 10,
+                                              fontWeight: FontWeight.w400,
+                                              color: AppColor.gray),
+                                        )
+                                      ],
                                     ),
                                   ],
-                                ),
-                              ),
-                              Column(
-                                children: [
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.only(top: 16.0, bottom: 24),
-                                    child: AppStreamBuilder<bool>(
-                                        stream: model.showButtonStream,
-                                        initialData: false,
-                                        dataBuilder: (context, isValid) {
-                                          return Visibility(
-                                            visible: isValid!,
-                                            child: AnimatedButton(
-                                              buttonHeight: 50,
-                                              buttonText:
-                                                  S.of(context).swipeToProceed,
-                                            ),
-                                          );
-                                        }),
-                                  ),
-                                  Text(
-                                    S.of(context).swipeDownToCancel,
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColor.gray),
-                                  )
-                                ],
-                              ),
-                            ],
-                          )),
-                    ),
-                  );
-                },
-              ),
+                                )),
+                          ),
+                        );
+                      },
+                    );
+                  }),
             );
           },
         ),

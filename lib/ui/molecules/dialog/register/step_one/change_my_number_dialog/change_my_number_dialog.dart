@@ -9,13 +9,15 @@ class ChangeMyNumberDialog {
   static show(
     BuildContext mContext, {
     Function? onDismissed,
-    Function(CountryData)? onSelected,
+    Function()? showError,
+    Function(CountryData, String)? onSelected,
     required List<CountryData> countryList,
   }) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => ChangeMyNumberDialogView(
             onDismissed: onDismissed,
+            showError: showError,
             onSelected: onSelected,
             countryDataList: countryList));
   }

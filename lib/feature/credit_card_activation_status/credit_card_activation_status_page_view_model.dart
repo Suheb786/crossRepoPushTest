@@ -57,7 +57,7 @@ class CreditCardActivationStatusPageViewModel extends BasePageViewModel {
                   _getCardApplicationUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        //updateLoader();
         _getApplicationResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -72,7 +72,7 @@ class CreditCardActivationStatusPageViewModel extends BasePageViewModel {
                   _creditCardRequestUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        // updateLoader();
         _creditCardReqResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showErrorState();
@@ -86,7 +86,7 @@ class CreditCardActivationStatusPageViewModel extends BasePageViewModel {
               createCall: () => _linkCardStepUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        //updateLoader();
         _linkCardStepResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);

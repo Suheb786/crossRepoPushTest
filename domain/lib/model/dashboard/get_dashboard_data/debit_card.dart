@@ -1,3 +1,5 @@
+import 'package:domain/constants/enum/freeze_card_status_enum.dart';
+
 class DebitCard {
   DebitCard(
       {this.accountTitle,
@@ -16,7 +18,7 @@ class DebitCard {
   String? linkedAccountNumber;
   String? expiryDate;
   String? cvv;
-  String? cardStatus;
+  FreezeCardStatusEnum? cardStatus;
   String? code;
   bool? isDebitDelivered;
   dynamic? debitDeliveredDatetime;

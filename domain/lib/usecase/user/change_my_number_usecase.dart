@@ -14,7 +14,7 @@ class ChangeMyNumberUseCase
   @override
   Future<Either<NetworkError, bool>> execute(
       {required ChangeMyNumberUseCaseParams params}) {
-    return _repository.changeMyNumber(params.mobileNumber);
+    return _repository.changeMyNumber(params.mobileNumber, params.countryCode);
   }
 }
 

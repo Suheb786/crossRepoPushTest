@@ -18,9 +18,7 @@ class EnterNewPinForCardUseCase
   @override
   Future<Either<BaseError, bool>> execute(
       {required EnterNewPinForCardUseCaseParams params}) {
-    return params.cardType == CardType.DEBIT
-        ? _repository.changeDebitCardPin(pin: params.pin)
-        : Future.value(Right(true));
+    return Future.value(Right(true));
   }
 }
 

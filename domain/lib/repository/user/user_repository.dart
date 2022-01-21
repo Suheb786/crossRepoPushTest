@@ -191,5 +191,6 @@ abstract class UserRepository {
 
   Future<Either<NetworkError, bool>> iphoneLogin();
 
-  Future<Either<NetworkError, bool>> changeMyNumber(String mobileNo);
+  Future<Either<NetworkError, bool>> changeMyNumber(
+      String mobileNo, String mobileCode);
 }
