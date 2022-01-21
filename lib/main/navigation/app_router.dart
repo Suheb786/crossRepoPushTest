@@ -106,7 +106,8 @@ class AppRouter {
 
       case RoutePaths.AccountReady:
         return CupertinoPageRoute(
-            builder: (context) => AccountReadyPage(),
+            builder: (context) =>
+                AccountReadyPage(settings.arguments as AccountReadyArguments),
             settings: RouteSettings(name: RoutePaths.AccountReady));
 
       case RoutePaths.NotifySuccess:

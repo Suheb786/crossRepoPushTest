@@ -44,6 +44,8 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
   ///get account
   final GetAccountUseCase _getAccountUseCase;
 
+  bool isDocumentSkipped = false;
+
   ///create account
   final CreateAccountUseCase _createAccountUseCase;
 

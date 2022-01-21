@@ -4,6 +4,7 @@ import 'package:domain/usecase/user/verify_otp_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -22,6 +23,8 @@ class ValidateOtpViewModel extends BasePageViewModel {
 
   ///countdown controller
   late CountdownTimerController countDownController;
+
+  MobileNumberParams mobileNumberParams = MobileNumberParams();
 
   // ///timer subject holder
   // BehaviorSubject<int> _timerRequest = BehaviorSubject.seeded(

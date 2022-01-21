@@ -12,6 +12,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
+import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/step_five/upload_documents/upload_documents_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -74,12 +75,13 @@ class UploadDocumentsPageView
                                     initialData: Resource.none(),
                                     onData: (userStatus) {
                                       if (userStatus.status == Status.SUCCESS) {
-                                        ProviderScope.containerOf(context)
-                                                .read(
-                                                    registerStepFiveViewModelProvider)
-                                                .secondNextScreen =
-                                            userStatus.data!.secondNextPage!;
-                                        getNextPage(context, model);
+                                        // ProviderScope.containerOf(context)
+                                        //         .read(
+                                        //             registerStepFiveViewModelProvider)
+                                        //         .secondNextScreen =
+                                        //     userStatus.data!.secondNextPage!;
+                                        getNextPage(
+                                            userStatus.data!, model, context);
                                       }
                                     },
                                     dataBuilder: (context, userStatus) {
@@ -103,6 +105,7 @@ class UploadDocumentsPageView
                                             onData: (data) {
                                               if (data.status ==
                                                   Status.SUCCESS) {
+                                                model.isDocumentSkipped = false;
                                                 model.getCustomerStatus();
                                               } else if (data.status ==
                                                   Status.ERROR) {
@@ -632,6 +635,8 @@ class UploadDocumentsPageView
                                                                             onPressed: () {
                                                                               UploadDocumentLaterDialog.show(context, onSelected: () {
                                                                                 Navigator.pop(context);
+                                                                                model.isDocumentSkipped = true;
+                                                                                model.getAccount();
                                                                                 //Navigator.pushReplacementNamed(context, RoutePaths.AccountReady);
                                                                               });
                                                                             },
@@ -679,10 +684,9 @@ class UploadDocumentsPageView
     );
   }
 
-  void getNextPage(BuildContext context, UploadDocumentsPageViewModel model) {
-    switch (ProviderScope.containerOf(context)
-        .read(registerStepFiveViewModelProvider)
-        .secondNextScreen) {
+  void getNextPage(CustomerStatus customerStatus,
+      UploadDocumentsPageViewModel model, BuildContext context) {
+    switch (customerStatus.nextPage) {
       case CustomerStatusEnum.HOLD:
         Navigator.pushReplacementNamed(context, RoutePaths.AccountHold);
         break;
@@ -690,7 +694,9 @@ class UploadDocumentsPageView
         model.getAccount();
         break;
       case CustomerStatusEnum.SUCCESS:
-        Navigator.pushReplacementNamed(context, RoutePaths.AccountReady);
+        Navigator.pushReplacementNamed(context, RoutePaths.AccountReady,
+            arguments: AccountReadyArguments(
+                isDocumentUploaded: model.isDocumentSkipped));
         break;
       case CustomerStatusEnum.DOC_UPLOAD:
         break;

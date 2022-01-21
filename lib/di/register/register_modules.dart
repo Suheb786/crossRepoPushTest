@@ -11,6 +11,7 @@ import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_model.dart';
+import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/step_five/agent_selection/agent_selection_model.dart';
 import 'package:neo_bank/feature/register/step_five/register_step_five_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/review_application/review_application_page_view_model.dart';
@@ -303,9 +304,10 @@ final uploadDocumentsPageViewModelProvider =
 );
 
 ///account ready page
-final accountReadyPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AccountReadyViewModel>(
-  (ref) => AccountReadyViewModel(ref.read(getAccountDetailsUseCaseProvider)),
+final accountReadyPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<AccountReadyViewModel, AccountReadyArguments>(
+  (ref, args) =>
+      AccountReadyViewModel(ref.read(getAccountDetailsUseCaseProvider), args),
 );
 
 /// purpose of account opening  view model provider

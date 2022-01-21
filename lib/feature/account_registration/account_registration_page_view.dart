@@ -118,7 +118,7 @@ class AccountRegistrationPageView
                                 direction: Direction.vertical,
                                 offset: 0.5,
                                 child: Text(
-                                  "+${mobileNumber!.mobileCode}"
+                                  "+${mobileNumber!.mobileCode} "
                                   "${mobileNumber.mobileNumber}",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(

@@ -36,7 +36,11 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                 stream: model.changeMyNumberStream,
                 initialData: Resource.none(),
                 onData: (data) {
-                  if (data.status == Status.SUCCESS) {}
+                  if (data.status == Status.SUCCESS) {
+                    ProviderScope.containerOf(context)
+                        .read(accountRegistrationViewModelProvider)
+                        .updateMobileNumber(model.mobileNumberParams);
+                  }
                 },
                 dataBuilder: (context, snapshot) {
                   return AppStreamBuilder<Resource<bool>>(
@@ -99,16 +103,11 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                                               }, onSelected:
                                                       (country, mobileNo) {
                                                 Navigator.pop(context);
-                                                ProviderScope.containerOf(
-                                                        context)
-                                                    .read(
-                                                        accountRegistrationViewModelProvider)
-                                                    .updateMobileNumber(
-                                                        MobileNumberParams(
-                                                            mobileCode: country
-                                                                .phoneCode!,
-                                                            mobileNumber:
-                                                                mobileNo));
+                                                model.mobileNumberParams =
+                                                    MobileNumberParams(
+                                                        mobileNumber: mobileNo,
+                                                        mobileCode:
+                                                            country.phoneCode!);
                                                 model.changeMyNumber(mobileNo,
                                                     country.phoneCode!);
                                               });
