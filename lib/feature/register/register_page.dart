@@ -70,25 +70,32 @@ class RegisterPageState
           });
 
           break;
-        case "AccountInfo":
+
+        case "UploadDocument":
+          // print('iamhere');
+          // Future.delayed(Duration(microseconds: 100), () {
+          //   model.navigateToPage(4);
+          // });
+          // print('i am here 1');
+          // Future.delayed(Duration(microseconds: 100), () {
+          //   print('i am here 2');
+          //   ProviderScope.containerOf(context)
+          //       .read(registerStepFiveViewModelProvider)
+          //       .registrationStepFivePageController
+          //       .move(4, animation: false);
+          // });
+          // Navigator.pushReplacementNamed(
+          //     context, RoutePaths.UploadDocumentLater);
           Future.delayed(Duration(microseconds: 100), () {
-            model.navigateToPage(4);
+            Navigator.pushReplacementNamed(
+                context, RoutePaths.UploadDocumentLater);
           });
 
           break;
 
-        case "UploadDocument":
-          print('iamhere');
+        case "AccountInfo":
           Future.delayed(Duration(microseconds: 100), () {
             model.navigateToPage(4);
-          });
-          print('i am here 1');
-          Future.delayed(Duration(microseconds: 100), () {
-            print('i am here 2');
-            ProviderScope.containerOf(context)
-                .read(registerStepFiveViewModelProvider)
-                .registrationStepFivePageController
-                .move(4, animation: false);
           });
 
           break;

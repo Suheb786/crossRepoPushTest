@@ -39,6 +39,8 @@ import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_mo
 import 'package:neo_bank/feature/register/stepone/id_verification_info/id_verification_info_model.dart';
 import 'package:neo_bank/feature/register/stepone/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
+import 'package:neo_bank/feature/register/upload_document_later/document_upload_later_page/document_upload_later_page_view_model.dart';
+import 'package:neo_bank/feature/register/upload_document_later/upload_document_later_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/fatca_option_dialog/fatca_option_dialog_viewmodel.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog_view_model.dart';
@@ -452,3 +454,23 @@ final accountHoldViewModelProvider =
 final changeMyNumberDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<ChangeMyNumberDialogViewModel>(
         (ref) => ChangeMyNumberDialogViewModel());
+
+///upload documents later page
+final uploadDocumentsLaterPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<UploadDocumentsLaterViewModel>(
+  (ref) => UploadDocumentsLaterViewModel(),
+);
+
+///upload documents page
+final laterDocumentUploadViewModelProvider =
+    ChangeNotifierProvider.autoDispose<DocumentUploadLaterPageViewModel>(
+  (ref) => DocumentUploadLaterPageViewModel(
+      ref.read(sendDocumentsUseCaseUseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(checkOtherNationalityStatusUseCaseProvider),
+      ref.read(fileUploadUseCaseProvider),
+      ref.read(removeDebitLockUseCaseProvider),
+      ref.read(customerStatusUseCaseProvider),
+      ref.read(getAccountUseCaseProvider),
+      ref.read(createAccountUseCaseProvider)),
+);
