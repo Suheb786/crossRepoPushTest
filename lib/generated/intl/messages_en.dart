@@ -548,12 +548,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while Get Additional Documentation"),
         "errorWhileGetComboValues": MessageLookupByLibrary.simpleMessage(
             "Error While Get Combo Values"),
+        "errorWhileGettingAccountCloseOtp":
+            MessageLookupByLibrary.simpleMessage(
+                "Error While Getting Account Close Otp."),
         "errorWhileGettingDashboard": MessageLookupByLibrary.simpleMessage(
             "An error has occurred While Getting Account DashBoard"),
         "errorWhileGettingFatcaCrs": MessageLookupByLibrary.simpleMessage(
             "Error While Getting FatcaCrs"),
         "errorWhileLogout":
             MessageLookupByLibrary.simpleMessage("Error While Logout"),
+        "errorWhileProcessLoanRequest": MessageLookupByLibrary.simpleMessage(
+            "Error While Process Loan Request."),
         "errorWhileRegistration": MessageLookupByLibrary.simpleMessage(
             "An error has occurred during Registration Process, please try again"),
         "establishCallError": MessageLookupByLibrary.simpleMessage(

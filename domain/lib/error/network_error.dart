@@ -297,6 +297,22 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.CURRENT_PASSWORD_INCORRECT);
 
+          case "ex-191":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_PROCESS_WHILE_LOAN_REQUEST);
+
+          case "ex-002":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_GETTING_ACCOUNT_CLOSE_OTP);
+
+          case "err-022":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.INVALID_DOCUMENT);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

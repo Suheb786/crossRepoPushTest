@@ -7979,6 +7979,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Error While Process Loan Request.`
+  String get errorWhileProcessLoanRequest {
+    return Intl.message(
+      'Error While Process Loan Request.',
+      name: 'errorWhileProcessLoanRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Getting Account Close Otp.`
+  String get errorWhileGettingAccountCloseOtp {
+    return Intl.message(
+      'Error While Getting Account Close Otp.',
+      name: 'errorWhileGettingAccountCloseOtp',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

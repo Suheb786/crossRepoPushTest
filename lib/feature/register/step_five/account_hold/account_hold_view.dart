@@ -1,8 +1,10 @@
+import 'package:domain/model/user/logout/logout_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_details.dart';
 import 'package:neo_bank/ui/molecules/account_ready/account_ready_header.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -10,6 +12,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 
 class AccountHoldView extends BasePageViewWidget<AccountHoldViewModel> {
   AccountHoldView(ProviderBase model) : super(model);
@@ -25,9 +28,17 @@ class AccountHoldView extends BasePageViewWidget<AccountHoldViewModel> {
           children: [
             Align(
               alignment: Alignment.centerRight,
-              child: AppStreamBuilder<Resource<bool>>(
+              child: AppStreamBuilder<Resource<LogoutResponse>>(
                 stream: model.logoutStream,
                 initialData: Resource.none(),
+                onData: (response) {
+                  if (response.status == Status.SUCCESS) {
+                    Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        RoutePaths.OnBoarding,
+                        ModalRoute.withName(RoutePaths.Splash));
+                  }
+                },
                 dataBuilder: (context, data) {
                   return Padding(
                     padding: EdgeInsets.only(top: 43, right: 30),

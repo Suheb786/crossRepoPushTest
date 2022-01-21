@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:animated_widgets/animated_widgets.dart';
@@ -71,224 +72,306 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                           stream: model.errorDetectorStream,
                           dataBuilder: (context, isError) {
                             return ShakeAnimatedWidget(
-                              enabled: isError ?? false,
-                              duration: Duration(milliseconds: 100),
-                              shakeAngle: Rotation.deg(z: 1),
-                              curve: Curves.easeInOutSine,
-                              child: AppStreamBuilder<
-                                      Resource<GetCipherResponse>>(
-                                  stream: model.getCipherStream,
-                                  initialData: Resource.none(),
-                                  onData: (cipherResponse) {
-                                    if (cipherResponse.status ==
-                                        Status.SUCCESS) {
-                                      if (cipherResponse.data!.getCipherContent!
-                                                  .cipher !=
-                                              null &&
-                                          cipherResponse.data!.getCipherContent!
-                                              .cipher!.isNotEmpty) {
-                                        ///TODO: call call private key decrypt cipher
+                                enabled: isError ?? false,
+                                duration: Duration(milliseconds: 100),
+                                shakeAngle: Rotation.deg(z: 1),
+                                curve: Curves.easeInOutSine,
+                                child: AppStreamBuilder<Resource<bool>>(
+                                    stream: model.iphoneLoginStream,
+                                    initialData: Resource.none(),
+                                    onData: (data) {
+                                      if (data.status == Status.SUCCESS) {
+                                        model.checkKycStatus();
                                       }
-                                    }
-                                  },
-                                  dataBuilder: (context, snapshot) {
-                                    return AppStreamBuilder<Resource<User>>(
-                                      stream: model.loginStream,
-                                      initialData: Resource.none(),
-                                      onData: (data) {
-                                        if (data.status == Status.SUCCESS) {
-                                          ProviderScope.containerOf(context)
-                                              .read(appViewModel)
-                                              .getToken();
-
-                                          model.checkKycStatus();
-                                          model.emailKey.currentState!.isValid =
-                                              true;
-
-                                          // Future.delayed(Duration(milliseconds: 500),
-                                          //     () {
-                                          //   // Navigator.pushReplacementNamed(
-                                          //   //     context, RoutePaths.AppHome);
-                                          //   Navigator.pushReplacementNamed(
-                                          //       context, RoutePaths.Registration);
-                                          // });
-                                        } else if (data.status ==
-                                            Status.ERROR) {
-                                          model.emailKey.currentState!.isValid =
-                                              false;
-                                          model.showToastWithError(
-                                              data.appError!);
-                                        }
-                                      },
-                                      dataBuilder: (context, data) {
-                                        return AppStreamBuilder<
-                                            Resource<CheckKycResponse>>(
-                                          stream: model.kycStatusStream,
+                                    },
+                                    dataBuilder: (context, snapshot) {
+                                      return AppStreamBuilder<Resource<bool>>(
+                                          stream: model.androidLoginStream,
                                           initialData: Resource.none(),
                                           onData: (data) {
                                             if (data.status == Status.SUCCESS) {
-                                              CheckKYCData kycData = data
-                                                      .data?.content?.kycData
-                                                      ?.firstWhere(
-                                                          (element) =>
-                                                              element.status ??
-                                                              false,
-                                                          orElse: () =>
-                                                              CheckKYCData()) ??
-                                                  CheckKYCData();
-
-                                              if (kycData.type?.isNotEmpty ??
-                                                  false) {
-                                                Navigator.pushReplacementNamed(
-                                                    context,
-                                                    RoutePaths.Registration,
-                                                    arguments:
-                                                        RegisterPageParams(
-                                                            kycData: kycData));
-                                              } else {
-                                                // ProviderScope.containerOf(
-                                                //         context)
-                                                //     .read(appViewModel)
-                                                //     .saveUserData();
-                                                Navigator.pushReplacementNamed(
-                                                    context,
-                                                    RoutePaths.AppHome);
-                                              }
+                                              model.checkKycStatus();
                                             }
                                           },
-                                          dataBuilder: (context, kycResponse) {
-                                            return Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: 40, right: 40, top: 25),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.stretch,
-                                                children: [
-                                                  AppTextField(
-                                                      textFieldBorderColor:
-                                                          AppColor.whiteGray,
-                                                      textFieldFocusBorderColor:
-                                                          Theme.of(context)
-                                                              .primaryColorDark,
-                                                      labelText: S
-                                                          .of(context)
-                                                          .emailAddress,
-                                                      hintText: S
-                                                          .of(context)
-                                                          .pleaseEnter,
-                                                      key: model.emailKey,
-                                                      controller:
-                                                          model.emailController,
-                                                      inputType: TextInputType
-                                                          .emailAddress,
-                                                      inputAction:
-                                                          TextInputAction.next,
-                                                      onSaved: (value) {
-                                                        model.validateEmail();
-                                                      },
-                                                      suffixIcon: (_, __) {
-                                                        return Visibility(
-                                                          visible: false,
-                                                          child: AppSvg.asset(
-                                                              AssetUtils
-                                                                  .fingerPrint),
-                                                        );
-                                                      },
-                                                      suffixIconSize: 24,
-                                                      onChanged: (value) =>
-                                                          model.validate()),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        top: 16),
-                                                    child: AppTextField(
-                                                      textFieldBorderColor:
-                                                          AppColor.whiteGray,
-                                                      textFieldFocusBorderColor:
-                                                          Theme.of(context)
-                                                              .primaryColorDark,
-                                                      labelText: S
-                                                          .of(context)
-                                                          .password,
-                                                      hintText: S
-                                                          .of(context)
-                                                          .pleaseEnter,
-                                                      key: model.passwordKey,
-                                                      controller: model
-                                                          .passwordController,
-                                                      inputAction:
-                                                          TextInputAction.done,
-                                                      onSaved: (value) {
-                                                        model.validateEmail();
-                                                      },
-                                                      onChanged: (value) =>
-                                                          model.validate(),
-                                                      obscureText: true,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: EdgeInsets.only(
-                                                        top: 24),
-                                                    child: InkWell(
-                                                      onTap: () =>
-                                                          Navigator.pushNamed(
-                                                              context,
-                                                              RoutePaths
-                                                                  .ForgotPassword),
-                                                      child: Text(
-                                                        S
-                                                            .of(context)
-                                                            .forgotPassword,
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: TextStyle(
-                                                            fontSize: 14,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: Theme.of(
+                                          dataBuilder: (context, snapshot) {
+                                            return AppStreamBuilder<
+                                                    Resource<
+                                                        GetCipherResponse>>(
+                                                stream: model.getCipherStream,
+                                                initialData: Resource.none(),
+                                                onData: (cipherResponse) {
+                                                  if (cipherResponse.status ==
+                                                      Status.SUCCESS) {
+                                                    if (cipherResponse
+                                                                .data!
+                                                                .getCipherContent!
+                                                                .cipher !=
+                                                            null &&
+                                                        cipherResponse
+                                                            .data!
+                                                            .getCipherContent!
+                                                            .cipher!
+                                                            .isNotEmpty) {
+                                                      model.fingerPrintShow(
+                                                          true);
+                                                    }
+                                                  }
+                                                },
+                                                dataBuilder:
+                                                    (context, snapshot) {
+                                                  return AppStreamBuilder<
+                                                      Resource<User>>(
+                                                    stream: model.loginStream,
+                                                    initialData:
+                                                        Resource.none(),
+                                                    onData: (data) {
+                                                      if (data.status ==
+                                                          Status.SUCCESS) {
+                                                        ProviderScope
+                                                                .containerOf(
                                                                     context)
-                                                                .accentColor),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  Center(
-                                                    child: AppStreamBuilder<
-                                                            bool>(
+                                                            .read(appViewModel)
+                                                            .getToken();
+                                                        model.checkKycStatus();
+                                                        model
+                                                            .emailKey
+                                                            .currentState!
+                                                            .isValid = true;
+                                                        // Future.delayed(Duration(milliseconds: 500),
+                                                        //     () {
+                                                        //   // Navigator.pushReplacementNamed(
+                                                        //   //     context, RoutePaths.AppHome);
+                                                        //   Navigator.pushReplacementNamed(
+                                                        //       context, RoutePaths.Registration);
+                                                        // });
+                                                      } else if (data.status ==
+                                                          Status.ERROR) {
+                                                        model
+                                                            .emailKey
+                                                            .currentState!
+                                                            .isValid = false;
+                                                        model
+                                                            .showToastWithError(
+                                                                data.appError!);
+                                                      }
+                                                    },
+                                                    dataBuilder:
+                                                        (context, data) {
+                                                      return AppStreamBuilder<
+                                                          Resource<
+                                                              CheckKycResponse>>(
                                                         stream: model
-                                                            .showButtonStream,
-                                                        initialData: false,
-                                                        dataBuilder:
-                                                            (context, isValid) {
-                                                          return Visibility(
-                                                            visible: isValid!,
-                                                            child: Padding(
-                                                              padding: EdgeInsets
-                                                                  .only(
-                                                                      top: 24),
-                                                              child:
-                                                                  AnimatedButton(
-                                                                buttonText: S
-                                                                    .of(context)
-                                                                    .swipeToProceed,
-                                                                borderColor: Theme.of(
-                                                                        context)
-                                                                    .accentColor,
-                                                                textColor: Theme.of(
-                                                                        context)
-                                                                    .accentColor,
-                                                              ),
+                                                            .kycStatusStream,
+                                                        initialData:
+                                                            Resource.none(),
+                                                        onData: (data) {
+                                                          if (data.status ==
+                                                              Status.SUCCESS) {
+                                                            CheckKYCData kycData = data
+                                                                    .data
+                                                                    ?.content
+                                                                    ?.kycData
+                                                                    ?.firstWhere(
+                                                                        (element) =>
+                                                                            element.status ??
+                                                                            false,
+                                                                        orElse: () =>
+                                                                            CheckKYCData()) ??
+                                                                CheckKYCData();
+
+                                                            if (kycData.type
+                                                                    ?.isNotEmpty ??
+                                                                false) {
+                                                              Navigator.pushReplacementNamed(
+                                                                  context,
+                                                                  RoutePaths
+                                                                      .Registration,
+                                                                  arguments:
+                                                                      RegisterPageParams(
+                                                                          kycData:
+                                                                              kycData));
+                                                            } else {
+                                                              Navigator
+                                                                  .pushReplacementNamed(
+                                                                      context,
+                                                                      RoutePaths
+                                                                          .AppHome);
+                                                            }
+                                                          }
+                                                        },
+                                                        dataBuilder: (context,
+                                                            kycResponse) {
+                                                          return Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 40,
+                                                                    right: 40,
+                                                                    top: 25),
+                                                            child: Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .stretch,
+                                                              children: [
+                                                                AppTextField(
+                                                                    textFieldBorderColor:
+                                                                        AppColor
+                                                                            .whiteGray,
+                                                                    textFieldFocusBorderColor:
+                                                                        Theme.of(context)
+                                                                            .primaryColorDark,
+                                                                    labelText: S
+                                                                        .of(
+                                                                            context)
+                                                                        .emailAddress,
+                                                                    hintText: S
+                                                                        .of(
+                                                                            context)
+                                                                        .pleaseEnter,
+                                                                    key: model
+                                                                        .emailKey,
+                                                                    controller: model
+                                                                        .emailController,
+                                                                    inputType:
+                                                                        TextInputType
+                                                                            .emailAddress,
+                                                                    inputAction:
+                                                                        TextInputAction
+                                                                            .next,
+                                                                    onSaved:
+                                                                        (value) {
+                                                                      model
+                                                                          .validateEmail();
+                                                                    },
+                                                                    suffixIcon:
+                                                                        (_, __) {
+                                                                      return AppStreamBuilder<
+                                                                              bool>(
+                                                                          stream: model
+                                                                              .fingerPrintShowStream,
+                                                                          initialData:
+                                                                              false,
+                                                                          dataBuilder:
+                                                                              (context, fingerPrintValue) {
+                                                                            return Visibility(
+                                                                              visible: fingerPrintValue!,
+                                                                              child: InkWell(
+                                                                                onTap: () {
+                                                                                  Platform.isAndroid ? model.androidLogin() : model.iphoneLogin();
+                                                                                },
+                                                                                child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                              ),
+                                                                            );
+                                                                          });
+                                                                    },
+                                                                    suffixIconSize:
+                                                                        24,
+                                                                    onChanged:
+                                                                        (value) =>
+                                                                            model.validate()),
+                                                                Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 16),
+                                                                  child:
+                                                                      AppTextField(
+                                                                    textFieldBorderColor:
+                                                                        AppColor
+                                                                            .whiteGray,
+                                                                    textFieldFocusBorderColor:
+                                                                        Theme.of(context)
+                                                                            .primaryColorDark,
+                                                                    labelText: S
+                                                                        .of(context)
+                                                                        .password,
+                                                                    hintText: S
+                                                                        .of(context)
+                                                                        .pleaseEnter,
+                                                                    key: model
+                                                                        .passwordKey,
+                                                                    controller:
+                                                                        model
+                                                                            .passwordController,
+                                                                    inputAction:
+                                                                        TextInputAction
+                                                                            .done,
+                                                                    onSaved:
+                                                                        (value) {
+                                                                      model
+                                                                          .validateEmail();
+                                                                    },
+                                                                    onChanged:
+                                                                        (value) =>
+                                                                            model.validate(),
+                                                                    obscureText:
+                                                                        true,
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .only(
+                                                                              top: 24),
+                                                                  child:
+                                                                      InkWell(
+                                                                    onTap: () => Navigator.pushNamed(
+                                                                        context,
+                                                                        RoutePaths
+                                                                            .ForgotPassword),
+                                                                    child: Text(
+                                                                      S
+                                                                          .of(context)
+                                                                          .forgotPassword,
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .center,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              14,
+                                                                          fontWeight: FontWeight
+                                                                              .w500,
+                                                                          color:
+                                                                              Theme.of(context).accentColor),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                                Center(
+                                                                  child: AppStreamBuilder<
+                                                                          bool>(
+                                                                      stream: model
+                                                                          .showButtonStream,
+                                                                      initialData:
+                                                                          false,
+                                                                      dataBuilder:
+                                                                          (context,
+                                                                              isValid) {
+                                                                        return Visibility(
+                                                                          visible:
+                                                                              isValid!,
+                                                                          child:
+                                                                              Padding(
+                                                                            padding:
+                                                                                EdgeInsets.only(top: 24),
+                                                                            child:
+                                                                                AnimatedButton(
+                                                                              buttonText: S.of(context).swipeToProceed,
+                                                                              borderColor: Theme.of(context).accentColor,
+                                                                              textColor: Theme.of(context).accentColor,
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      }),
+                                                                )
+                                                              ],
                                                             ),
                                                           );
-                                                        }),
-                                                  )
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      },
-                                    );
-                                  }),
-                            );
+                                                        },
+                                                      );
+                                                    },
+                                                  );
+                                                });
+                                          });
+                                    }));
                           }),
                     ],
                   ),

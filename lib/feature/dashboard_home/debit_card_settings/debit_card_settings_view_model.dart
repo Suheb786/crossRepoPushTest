@@ -82,22 +82,22 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
 
   void toggleFreezeCardStatus(bool value) {
     _freezeCardSubject.safeAdd(value);
-    if (!value) {
-      unFreezeCard();
-    }
   }
 
-  void freezeCard() {
-    _freezeCardRequestSubject.safeAdd(FreezeDebitCardUseCaseParams());
+  void freezeCard({required String status, required String tokenizedPan}) {
+    _freezeCardRequestSubject.safeAdd(FreezeDebitCardUseCaseParams(
+        status: status, tokenizedPan: tokenizedPan));
   }
 
-  void unFreezeCard() {
-    _unFreezeCardRequestSubject.safeAdd(UnFreezeDebitCardUseCaseParams());
+  void unFreezeCard({String? status, String? tokenizedPan}) {
+    _unFreezeCardRequestSubject.safeAdd(UnFreezeDebitCardUseCaseParams(
+        status: status!, tokenizedPan: tokenizedPan!));
   }
 
-  void cancelCard(String reasonValue) {
-    _cancelCardRequestSubject
-        .safeAdd(CancelDebitCardUseCaseParams(status: reasonValue));
+  void cancelCard(
+      {String? reasonValue, String? status, String? tokenizedPlan}) {
+    _cancelCardRequestSubject.safeAdd(CancelDebitCardUseCaseParams(
+        status: status!, reason: reasonValue!, tokenizedPan: tokenizedPlan!));
   }
 
   @override

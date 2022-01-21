@@ -20,6 +20,8 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
     notifyListeners();
   }
 
+  String otp = '';
+
   ///verify otp request subject holder
   PublishSubject<OtpForChangeCardPinUseCaseParams> _verifyOtpRequest =
       PublishSubject();
@@ -54,6 +56,7 @@ class OtpForChangeCardPinPageViewModel extends BasePageViewModel {
   }
 
   void validateOtp() {
+    otp = _otpSubject.value;
     _verifyOtpRequest
         .safeAdd(OtpForChangeCardPinUseCaseParams(otp: _otpSubject.value));
   }

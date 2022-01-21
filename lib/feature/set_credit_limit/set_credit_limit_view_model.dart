@@ -99,8 +99,8 @@ class SetCreditLimitViewModel extends BasePageViewModel {
               minValue: double.parse(
                   event.data!.getLoanValuesContent!.minimumLimit!)));
 
-          updatevalue(
-              double.parse(event.data!.getLoanValuesContent!.minimumLimit!));
+          updatevalue(double.parse(
+              event.data!.getLoanValuesContent!.maxLimit!.toString()));
         }
       });
     });
