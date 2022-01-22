@@ -6,6 +6,10 @@ import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_view.dart';
 
 class AccountReadyPage extends BasePage<AccountReadyViewModel> {
+  final AccountReadyArguments _accountReadyArguments;
+
+  AccountReadyPage(this._accountReadyArguments);
+
   @override
   AccountReadyPageState createState() => AccountReadyPageState();
 }
@@ -14,11 +18,18 @@ class AccountReadyPageState
     extends BaseStatefulPage<AccountReadyViewModel, AccountReadyPage> {
   @override
   ProviderBase provideBase() {
-    return accountReadyPageViewModelProvider;
+    return accountReadyPageViewModelProvider
+        .call(widget._accountReadyArguments);
   }
 
   @override
   Widget buildView(BuildContext context, AccountReadyViewModel model) {
     return AccountReadyView(provideBase());
   }
+}
+
+class AccountReadyArguments {
+  final bool isDocumentUploaded;
+
+  AccountReadyArguments({this.isDocumentUploaded: false});
 }

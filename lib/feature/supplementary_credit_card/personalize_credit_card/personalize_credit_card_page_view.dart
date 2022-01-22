@@ -142,50 +142,50 @@ class PersonalizeCreditCardPageView
                                               SizedBox(
                                                 height: 16,
                                               ),
-                                              AppTextField(
-                                                labelText: S
-                                                    .of(context)
-                                                    .minimumSettlements
-                                                    .toUpperCase(),
-                                                hintText:
-                                                    S.of(context).pleaseSelect,
-                                                readOnly: true,
-                                                controller: model
-                                                    .minimumSettlementController,
-                                                onPressed: () {
-                                                  RelationshipWithCardHolderDialog.show(
-                                                      context, onDismissed: () {
-                                                    Navigator.pop(context);
-                                                  }, onSelected: (value) {
-                                                    Navigator.pop(context);
-                                                    model
-                                                        .minimumSettlementController
-                                                        .text = value;
-                                                    model.validate();
-                                                  },
-                                                      title: S
-                                                          .of(context)
-                                                          .minimumSettlements,
-                                                      relationSHipWithCardHolder:
-                                                          model
-                                                              .minimumSettlements);
-                                                },
-                                                suffixIcon: (value, data) {
-                                                  return Container(
-                                                      height: 16,
-                                                      width: 16,
-                                                      padding: EdgeInsets.only(
-                                                          right: 8),
-                                                      child: AppSvg.asset(
-                                                          AssetUtils.downArrow,
-                                                          color: AppColor
-                                                              .dark_gray_1));
-                                                },
-                                                key: model.minimumSettlementKey,
-                                              ),
-                                              SizedBox(
-                                                height: 16,
-                                              ),
+                                              // AppTextField(
+                                              //   labelText: S
+                                              //       .of(context)
+                                              //       .minimumSettlements
+                                              //       .toUpperCase(),
+                                              //   hintText:
+                                              //       S.of(context).pleaseSelect,
+                                              //   readOnly: true,
+                                              //   controller: model
+                                              //       .minimumSettlementController,
+                                              //   onPressed: () {
+                                              //     RelationshipWithCardHolderDialog.show(
+                                              //         context, onDismissed: () {
+                                              //       Navigator.pop(context);
+                                              //     }, onSelected: (value) {
+                                              //       Navigator.pop(context);
+                                              //       model
+                                              //           .minimumSettlementController
+                                              //           .text = value;
+                                              //       model.validate();
+                                              //     },
+                                              //         title: S
+                                              //             .of(context)
+                                              //             .minimumSettlements,
+                                              //         relationSHipWithCardHolder:
+                                              //             model
+                                              //                 .minimumSettlements);
+                                              //   },
+                                              //   suffixIcon: (value, data) {
+                                              //     return Container(
+                                              //         height: 16,
+                                              //         width: 16,
+                                              //         padding: EdgeInsets.only(
+                                              //             right: 8),
+                                              //         child: AppSvg.asset(
+                                              //             AssetUtils.downArrow,
+                                              //             color: AppColor
+                                              //                 .dark_gray_1));
+                                              //   },
+                                              //   key: model.minimumSettlementKey,
+                                              // ),
+                                              // SizedBox(
+                                              //   height: 16,
+                                              // ),
                                               AppTextField(
                                                 labelText: S
                                                     .of(context)

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_settings/debit_card_settings_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_page.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
@@ -126,7 +127,15 @@ class DebitCardSettingsPageView
                                     ],
                                   ), onSelected: () {
                                 Navigator.pop(context);
-                                model.freezeCard();
+                                model.freezeCard(
+                                    status: 'WM',
+                                    tokenizedPan:
+                                        ProviderScope.containerOf(context)
+                                            .read(appHomeViewModelProvider)
+                                            .dashboardDataContent
+                                            .debitCard!
+                                            .first
+                                            .code!);
                               }, onDismissed: () {
                                 Navigator.pop(context);
                               });
@@ -143,6 +152,17 @@ class DebitCardSettingsPageView
                                 value: data!,
                                 onToggle: (value) {
                                   model.toggleFreezeCardStatus(value);
+                                  if (!value) {
+                                    model.unFreezeCard(
+                                        status: 'SR',
+                                        tokenizedPan:
+                                            ProviderScope.containerOf(context)
+                                                .read(appHomeViewModelProvider)
+                                                .dashboardDataContent
+                                                .debitCard!
+                                                .first
+                                                .code!);
+                                  }
                                 },
                                 width: 60,
                                 height: 35,
@@ -180,7 +200,16 @@ class DebitCardSettingsPageView
                                   context,
                                   onSelected: (reasonValue) {
                                     Navigator.pop(context);
-                                    model.cancelCard(reasonValue);
+                                    model.cancelCard(
+                                        status: '',
+                                        reasonValue: reasonValue,
+                                        tokenizedPlan:
+                                            ProviderScope.containerOf(context)
+                                                .read(appHomeViewModelProvider)
+                                                .dashboardDataContent
+                                                .debitCard!
+                                                .first
+                                                .code!);
                                   },
                                   onDismissed: () {
                                     Navigator.pop(context);

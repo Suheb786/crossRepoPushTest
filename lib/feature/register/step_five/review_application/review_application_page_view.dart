@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
+import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/step_five/review_application/review_application_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -82,11 +83,11 @@ class ReviewApplicationPageView
                                   initialData: Resource.none(),
                                   onData: (userStatus) {
                                     if (userStatus.status == Status.SUCCESS) {
-                                      ProviderScope.containerOf(context)
-                                              .read(
-                                                  registerStepFiveViewModelProvider)
-                                              .secondNextScreen =
-                                          userStatus.data!.secondNextPage!;
+                                      // ProviderScope.containerOf(context)
+                                      //         .read(
+                                      //             registerStepFiveViewModelProvider)
+                                      //         .secondNextScreen =
+                                      //     userStatus.data!.secondNextPage!;
                                       switch (userStatus.data!.nextPage) {
                                         case CustomerStatusEnum.HOLD:
                                           Navigator.pushReplacementNamed(
@@ -97,7 +98,9 @@ class ReviewApplicationPageView
                                           break;
                                         case CustomerStatusEnum.SUCCESS:
                                           Navigator.pushReplacementNamed(
-                                              context, RoutePaths.AccountReady);
+                                              context, RoutePaths.AccountReady,
+                                              arguments: AccountReadyArguments(
+                                                  isDocumentUploaded: false));
                                           break;
                                         case CustomerStatusEnum.DOC_UPLOAD:
                                           Future.delayed(

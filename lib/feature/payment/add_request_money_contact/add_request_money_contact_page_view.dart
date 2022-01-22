@@ -39,65 +39,60 @@ class AddRequestMoneyContactPageView
                   }
                 },
                 child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  elevation: 2,
-                  color: Theme.of(context).canvasColor,
-                  margin: EdgeInsets.zero,
-                  shadowColor:
-                      Theme.of(context).primaryColorDark.withOpacity(0.32),
-                  child: AppStreamBuilder<Resource<GetBeneficiaryListResponse>>(
-                      stream: ProviderScope.containerOf(context)
-                          .read(paymentHomeViewModelProvider)
-                          .beneficiaryResponse,
-                      initialData: Resource.none(),
-                      dataBuilder: (context, beneficiaryResponse) {
-                        print(
-                            "got beneficary : ${beneficiaryResponse!.data!.beneficiaryList![0].beneType}");
-                        List<Beneficiary> beneficiaries = [];
-                        beneficiaryResponse.data!.beneficiaryList!
-                            .forEach((element) {
-                          if (element.beneType == "RTP") {
-                            beneficiaries.add(element);
-                          }
-                        });
-                        print(
-                            "got beneficiaries length : ${beneficiaries.length}");
-                        return Container(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                    padding: EdgeInsets.only(top: 30, left: 27),
-                                    child: Text(S.of(context).requestMoney,
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 12))),
-                                beneficiaries.length > 0
-                                    ? Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          GridView.builder(
-                                            itemCount: 9,
-                                            gridDelegate:
-                                                SliverGridDelegateWithFixedCrossAxisCount(
-                                                    crossAxisCount: 3,
-                                                    childAspectRatio: 0.8,
-                                                    mainAxisSpacing: 6),
-                                            shrinkWrap: true,
-                                            padding: EdgeInsets.only(
-                                                top: 22, right: 28, left: 27),
-                                            itemBuilder: (context, index) {
-                                              if (index >=
-                                                  beneficiaries.length) {
-                                                return PaymentBeneficiaryEmptyWidget();
-                                              }
-                                              if (beneficiaries[index]
-                                                      .beneType ==
-                                                  "RTP") {
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    elevation: 2,
+                    color: Theme.of(context).canvasColor,
+                    margin: EdgeInsets.zero,
+                    shadowColor:
+                        Theme.of(context).primaryColorDark.withOpacity(0.32),
+                    child: AppStreamBuilder<
+                            Resource<GetBeneficiaryListResponse>>(
+                        stream: ProviderScope.containerOf(context)
+                            .read(paymentHomeViewModelProvider)
+                            .beneficiaryResponse,
+                        initialData: Resource.none(),
+                        dataBuilder: (context, beneficiaryResponse) {
+                          List<Beneficiary> beneficiaries = [];
+                          beneficiaryResponse!.data!.beneficiaryList!
+                              .forEach((element) {
+                            if (element.beneType == "RTP") {
+                              beneficiaries.add(element);
+                            }
+                          });
+                          return Container(
+                            child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                      padding:
+                                          EdgeInsets.only(top: 30, left: 27),
+                                      child: Text(S.of(context).requestMoney,
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 12,
+                                              color: Theme.of(context)
+                                                  .primaryColorDark))),
+                                  beneficiaries.length > 0
+                                      ? Column(
+                                          children: [
+                                            GridView.builder(
+                                              itemCount: 9,
+                                              gridDelegate:
+                                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                                      crossAxisCount: 3,
+                                                      childAspectRatio: 0.8,
+                                                      mainAxisSpacing: 6),
+                                              shrinkWrap: true,
+                                              padding: EdgeInsets.only(
+                                                  top: 22, right: 28, left: 27),
+                                              itemBuilder: (context, index) {
+                                                if (index >=
+                                                    beneficiaries.length) {
+                                                  return PaymentBeneficiaryEmptyWidget();
+                                                }
                                                 return PaymentBeneficiaryWidget(
                                                   onTap: () {
                                                     Navigator.pushNamed(
@@ -113,93 +108,85 @@ class AddRequestMoneyContactPageView
                                                   beneficiary:
                                                       beneficiaries[index],
                                                 );
-                                              } else {
-                                                return PaymentBeneficiaryEmptyWidget();
-                                              }
-                                            },
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.only(bottom: 29.0),
-                                            child: Visibility(
-                                              visible: beneficiaryResponse
-                                                      .data!
-                                                      .beneficiaryList!
-                                                      .length >=
-                                                  9,
+                                              },
+                                            ),
+                                            Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 29.0),
+                                              child: Visibility(
+                                                visible: beneficiaryResponse
+                                                        .data!
+                                                        .beneficiaryList!
+                                                        .length >=
+                                                    9,
+                                                child: Align(
+                                                  alignment: Alignment.center,
+                                                  child: Container(
+                                                    height: 36,
+                                                    padding:
+                                                        EdgeInsets.symmetric(
+                                                            vertical: 8,
+                                                            horizontal: 14),
+                                                    decoration: BoxDecoration(
+                                                        color: Theme.of(context)
+                                                            .accentColor,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20)),
+                                                    child: Text(
+                                                      S
+                                                          .of(context)
+                                                          .seeAllContacts,
+                                                      style: TextStyle(
+                                                          fontSize: 14,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .accentTextTheme
+                                                              .bodyText1!
+                                                              .color),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        )
+                                      : Column(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(top: 90),
                                               child: Align(
                                                 alignment: Alignment.center,
-                                                child: Container(
-                                                  height: 36,
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 8,
-                                                      horizontal: 14),
-                                                  decoration: BoxDecoration(
-                                                      color: Theme.of(context)
-                                                          .accentColor,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20)),
-                                                  child: Text(
-                                                    S
-                                                        .of(context)
-                                                        .seeAllContacts,
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                        color: Theme.of(context)
-                                                            .accentTextTheme
-                                                            .bodyText1!
-                                                            .color),
+                                                child: AppSvg.asset(
+                                                    AssetUtils.profileCircle),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(top: 12),
+                                              child: Align(
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  S.of(context).addRequestMoney,
+                                                  maxLines: 3,
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    fontSize: 12,
+                                                    color: Theme.of(context)
+                                                        .primaryColorDark,
+                                                    fontWeight: FontWeight.w600,
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                          )
-                                        ],
-                                      )
-                                    : Column(
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 90),
-                                            child: Align(
-                                              alignment: Alignment.center,
-                                              child: InkWell(
-                                                  onTap: () {
-                                                    model
-                                                        .updateAddContactClickedValue(
-                                                            true);
-                                                  },
-                                                  child: AppSvg.asset(AssetUtils
-                                                      .profileCircle)),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 12),
-                                            child: Align(
-                                              alignment: Alignment.center,
-                                              child: Text(
-                                                S.of(context).addSendContact,
-                                                maxLines: 3,
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
-                                                  fontSize: 12,
-                                                  color: Theme.of(context)
-                                                      .accentColor,
-                                                  fontWeight: FontWeight.w600,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      )
-                              ],
+                                          ],
+                                        )
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      }),
-                ),
+                          );
+                        })),
               ),
             ),
           ),

@@ -41,8 +41,10 @@ class CreditCardDeliveredViewModel extends BasePageViewModel {
     });
   }
 
-  void confirmCreditCardDelivery() {
-    _confirmCreditCardDeliveryRequest
-        .safeAdd(ConfirmCreditCardDeliveryUseCaseParams());
+  void confirmCreditCardDelivery(
+      {required String cardId, required String cardDigit}) {
+    _confirmCreditCardDeliveryRequest.safeAdd(
+        ConfirmCreditCardDeliveryUseCaseParams(
+            cardId: cardId, cardDigit: cardDigit));
   }
 }

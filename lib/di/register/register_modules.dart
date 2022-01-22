@@ -11,6 +11,7 @@ import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_model.dart';
+import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/step_five/agent_selection/agent_selection_model.dart';
 import 'package:neo_bank/feature/register/step_five/register_step_five_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/review_application/review_application_page_view_model.dart';
@@ -38,11 +39,14 @@ import 'package:neo_bank/feature/register/stepone/enter_address/enter_address_mo
 import 'package:neo_bank/feature/register/stepone/id_verification_info/id_verification_info_model.dart';
 import 'package:neo_bank/feature/register/stepone/profile_details/profile_details_page_view_model.dart';
 import 'package:neo_bank/feature/register/stepone/register_step_one_page_model.dart';
+import 'package:neo_bank/feature/register/upload_document_later/document_upload_later_page/document_upload_later_page_view_model.dart';
+import 'package:neo_bank/feature/register/upload_document_later/upload_document_later_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/dashboard/filter_transaction_dialog/filter_transaction_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/fatca_option_dialog/fatca_option_dialog_viewmodel.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/state_city_dialog/state_city_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/tax_payer/tax_payer_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/calendar_dialog/calendar_dialog_view_model.dart';
+import 'package:neo_bank/ui/molecules/dialog/register/step_one/change_my_number_dialog/change_my_number_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_one/year_month_dialog/year_month_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/additional_income_source/additional_income_source_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_three/country_dialog/country_dialog_view_model.dart';
@@ -302,9 +306,10 @@ final uploadDocumentsPageViewModelProvider =
 );
 
 ///account ready page
-final accountReadyPageViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AccountReadyViewModel>(
-  (ref) => AccountReadyViewModel(ref.read(getAccountDetailsUseCaseProvider)),
+final accountReadyPageViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<AccountReadyViewModel, AccountReadyArguments>(
+  (ref, args) =>
+      AccountReadyViewModel(ref.read(getAccountDetailsUseCaseProvider), args),
 );
 
 /// purpose of account opening  view model provider
@@ -444,3 +449,28 @@ final fatcaOptionsDialogViwModelProvider =
 final accountHoldViewModelProvider =
     ChangeNotifierProvider.autoDispose<AccountHoldViewModel>(
         (ref) => AccountHoldViewModel(ref.read(logoutUseCaseProvider)));
+
+///changeMy number dialog view model provider
+final changeMyNumberDialogViewModelProvider =
+    ChangeNotifierProvider.autoDispose<ChangeMyNumberDialogViewModel>(
+        (ref) => ChangeMyNumberDialogViewModel());
+
+///upload documents later page
+final uploadDocumentsLaterPageViewModelProvider =
+    ChangeNotifierProvider.autoDispose<UploadDocumentsLaterViewModel>(
+  (ref) => UploadDocumentsLaterViewModel(),
+);
+
+///upload documents page
+final laterDocumentUploadViewModelProvider =
+    ChangeNotifierProvider.autoDispose<DocumentUploadLaterPageViewModel>(
+  (ref) => DocumentUploadLaterPageViewModel(
+      ref.read(sendDocumentsUseCaseUseCaseProvider),
+      ref.read(uploadDocumentUseCaseProvider),
+      ref.read(checkOtherNationalityStatusUseCaseProvider),
+      ref.read(fileUploadUseCaseProvider),
+      ref.read(removeDebitLockUseCaseProvider),
+      ref.read(customerStatusUseCaseProvider),
+      ref.read(getAccountUseCaseProvider),
+      ref.read(createAccountUseCaseProvider)),
+);

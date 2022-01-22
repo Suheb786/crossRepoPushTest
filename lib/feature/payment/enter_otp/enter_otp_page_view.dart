@@ -35,6 +35,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                 stream: model.transferStream,
                 initialData: Resource.none(),
                 onData: (data) {
+                  print('status---->${data.status}');
                   if (data.status == Status.SUCCESS) {
                     print('success');
                     Navigator.pushNamed(
@@ -42,6 +43,7 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                         arguments: data.data!.transferSuccessContent);
                   } else if (data.status == Status.ERROR) {
                     print('error');
+                    print('error code-->${data.appError!.type}');
                     Navigator.pushNamed(context, RoutePaths.SendMoneyFailure);
                   }
                 },
@@ -51,21 +53,35 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                     initialData: Resource.none(),
                     onData: (data) {
                       if (data.status == Status.SUCCESS) {
+                        print('i am here');
                         model.transfer(
-                          ProviderScope.containerOf(context)
+                          nickName: ProviderScope.containerOf(context)
+                                  .read(sendToNewRecipientViewModelProvider)
+                                  .addNickNameController
+                                  .text
+                                  .isEmpty
+                              ? ""
+                              : ProviderScope.containerOf(context)
+                                  .read(sendToNewRecipientViewModelProvider)
+                                  .addNickNameController
+                                  .text,
+                          transferResponse: ProviderScope.containerOf(context)
                               .read(sendToNewRecipientViewModelProvider)
                               .transferResponse,
-                          ProviderScope.containerOf(context)
+                          memo: ProviderScope.containerOf(context)
                               .read(sendToNewRecipientViewModelProvider)
                               .purposeDetail!
                               .strCode!,
-                          ProviderScope.containerOf(context)
+                          isFriend: ProviderScope.containerOf(context)
                               .read(sendToNewRecipientViewModelProvider)
                               .isFriend,
-                          ProviderScope.containerOf(context)
+                          beneficiaryImage: ProviderScope.containerOf(context)
                               .read(sendToNewRecipientViewModelProvider)
                               .selectedProfile,
-                          context);
+                          limit: ProviderScope.containerOf(context)
+                              .read(sendToNewRecipientViewModelProvider)
+                              .limit!,
+                        );
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
                       }

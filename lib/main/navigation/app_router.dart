@@ -65,6 +65,7 @@ import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/stepone/capture/capture_page.dart';
+import 'package:neo_bank/feature/register/upload_document_later/upload_document_later_page.dart';
 import 'package:neo_bank/feature/splash/splash_page.dart';
 import 'package:neo_bank/feature/static_content/claim_of_tax_treaty_benefits/claim_of_tax_treaty_benefits_page.dart';
 import 'package:neo_bank/feature/static_content/exempt_payee_code/exempt_payee_code_page.dart';
@@ -106,7 +107,8 @@ class AppRouter {
 
       case RoutePaths.AccountReady:
         return CupertinoPageRoute(
-            builder: (context) => AccountReadyPage(),
+            builder: (context) =>
+                AccountReadyPage(settings.arguments as AccountReadyArguments),
             settings: RouteSettings(name: RoutePaths.AccountReady));
 
       case RoutePaths.NotifySuccess:
@@ -341,10 +343,9 @@ class AppRouter {
 
       case RoutePaths.DebitCardSettings:
         return CustomRoute.createRoute(DebitCardSettingsPage());
+
       case RoutePaths.CreditCardSettings:
-        return CupertinoPageRoute(
-            builder: (context) => CreditCardSettingsPage(),
-            settings: RouteSettings(name: RoutePaths.CreditCardSettings));
+        return CustomRoute.createRoute(CreditCardSettingsPage());
 
       case RoutePaths.HelpCenter:
         return CupertinoPageRoute(
@@ -463,6 +464,11 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => ResetPasswordSuccessPage(),
             settings: RouteSettings(name: RoutePaths.ResetPasswordSuccess));
+
+      case RoutePaths.UploadDocumentLater:
+        return CupertinoPageRoute(
+            builder: (context) => UploadDocumentsLaterPage(),
+            settings: RouteSettings(name: RoutePaths.UploadDocumentLater));
 
       default:
         return CupertinoPageRoute(

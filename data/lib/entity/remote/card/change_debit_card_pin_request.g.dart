@@ -12,6 +12,8 @@ ChangeDebitCardPinRequest _$ChangeDebitCardPinRequestFromJson(
     baseData: json['baseClass'] as Map<String, dynamic>,
     getToken: json['getToken'] as bool?,
     pinCode: json['PinCode'] as String?,
+    tokenizedPan: json['TokenizedPan'] as String?,
+    otp: json['otp'] as String?,
   );
 }
 
@@ -19,6 +21,8 @@ Map<String, dynamic> _$ChangeDebitCardPinRequestToJson(
         ChangeDebitCardPinRequest instance) =>
     <String, dynamic>{
       'PinCode': instance.pinCode,
+      'otp': instance.otp,
+      'TokenizedPan': instance.tokenizedPan,
       'getToken': instance.getToken,
       'baseClass': instance.baseData,
     };

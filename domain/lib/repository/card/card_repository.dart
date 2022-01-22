@@ -23,7 +23,8 @@ abstract class CardRepository {
   Future<Either<NetworkError, GetTransactionsResponse>>
       getCreditCardTransactions();
 
-  Future<Either<NetworkError, bool>> confirmCreditCardDelivery();
+  Future<Either<NetworkError, bool>> confirmCreditCardDelivery(
+      {String? cardId, String? cardDigit});
 
   Future<Either<NetworkError, CardStatementResponse>> getDebitCardStatement(
       String monthYear);
@@ -38,21 +39,25 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, GetDebitYearsResponse>> getDebitYears();
 
-  Future<Either<NetworkError, bool>> freezeCreditCard();
+  Future<Either<NetworkError, bool>> freezeCreditCard({String cardId});
 
-  Future<Either<NetworkError, bool>> unFreezeCreditCard();
+  Future<Either<NetworkError, bool>> unFreezeCreditCard({String cardId});
 
   Future<Either<NetworkError, bool>> cancelCreditCard({String reason});
 
   Future<Either<NetworkError, bool>> creditCardPinUnblock();
 
-  Future<Either<NetworkError, bool>> freezeDebitCard();
+  Future<Either<NetworkError, bool>> freezeDebitCard(
+      {String? status, String? tokenizedPan});
 
-  Future<Either<NetworkError, bool>> unFreezeDebitCard();
+  Future<Either<NetworkError, bool>> unFreezeDebitCard(
+      {String? status, String? tokenizedPan});
 
-  Future<Either<NetworkError, bool>> cancelDebitCard({String reason});
+  Future<Either<NetworkError, bool>> cancelDebitCard(
+      {String reason, String status, String? tokenizedPan});
 
-  Future<Either<NetworkError, bool>> changeDebitCardPin({required String pin});
+  Future<Either<NetworkError, bool>> changeDebitCardPin(
+      {required String pin, required String otp, required String tokenizedPan});
 
   Future<Either<NetworkError, bool>> unblockDebitCardPin(
       {String status, required String pin});

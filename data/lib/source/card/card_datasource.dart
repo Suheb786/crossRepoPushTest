@@ -17,7 +17,8 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> confirmCardDelivery();
 
-  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery();
+  Future<HttpResponse<ResponseEntity>> confirmCreditCardDelivery(
+      {String? cardId, String? cardDigit});
 
   Future<HttpResponse<CardTransactionResponseEntity>>
       getDebitCardTransactions();
@@ -40,22 +41,25 @@ abstract class CardRemoteDs {
   Future<HttpResponse<CardStatementResponseEntity>> getDebitCardStatement(
       {String monthYear});
 
-  Future<HttpResponse<ResponseEntity>> freezeCreditCard();
+  Future<HttpResponse<ResponseEntity>> freezeCreditCard({String cardId});
 
-  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard();
+  Future<HttpResponse<ResponseEntity>> unFreezeCreditCard({String cardId});
 
   Future<HttpResponse<ResponseEntity>> cancelCreditCard({String? reason});
 
   Future<HttpResponse<ResponseEntity>> creditCardPinUnBlock();
 
-  Future<HttpResponse<ResponseEntity>> cancelDebitCard({String? reason});
+  Future<HttpResponse<ResponseEntity>> cancelDebitCard(
+      {String? reason, String? status, String? tokenizedPan});
 
-  Future<HttpResponse<ResponseEntity>> unFreezeDebitCard();
+  Future<HttpResponse<ResponseEntity>> unFreezeDebitCard(
+      {String? status, String? tokenizedPan});
 
-  Future<HttpResponse<ResponseEntity>> freezeDebitCard();
+  Future<HttpResponse<ResponseEntity>> freezeDebitCard(
+      {String? status, String? tokenizedPan});
 
   Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
-      {required String pin});
+      {required String pin, required String otp, required String tokenizedPan});
 
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
       {required String pin});

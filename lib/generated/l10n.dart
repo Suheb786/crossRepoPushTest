@@ -8029,6 +8029,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Resident City`
+  String get residentCity {
+    return Intl.message(
+      'Resident City',
+      name: 'residentCity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You requested`
+  String get youRequested {
+    return Intl.message(
+      'You requested',
+      name: 'youRequested',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `\nfrom`
+  String get from {
+    return Intl.message(
+      '\nfrom',
+      name: 'from',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money.`
+  String get addRequestMoney {
+    return Intl.message(
+      'You don\'t have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money.',
+      name: 'addRequestMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Process Loan Request.`
+  String get errorWhileProcessLoanRequest {
+    return Intl.message(
+      'Error While Process Loan Request.',
+      name: 'errorWhileProcessLoanRequest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error While Getting Account Close Otp.`
+  String get errorWhileGettingAccountCloseOtp {
+    return Intl.message(
+      'Error While Getting Account Close Otp.',
+      name: 'errorWhileGettingAccountCloseOtp',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -7,26 +7,12 @@ class GetDashboardDataContent {
       {this.account,
       this.creditCard,
       this.debitCard,
-      this.isApplied,
-      this.isCreditDelivered,
-      this.isDebitDelivered,
-      this.debitCardActivated,
-      this.creditCardActivated,
       this.youJoinedBlink,
-      this.blinkWasBorn,
-      this.debitDeliveredDatetime,
-      this.creditDeliveredDatetime});
+      this.blinkWasBorn});
 
   final Account? account;
   final List<CreditCard>? creditCard;
-  final DebitCard? debitCard;
-  final bool? isApplied;
-  final dynamic? isCreditDelivered;
-  final dynamic? isDebitDelivered;
-  final dynamic? debitDeliveredDatetime;
-  final dynamic? creditDeliveredDatetime;
-  final String? debitCardActivated;
-  final String? creditCardActivated;
+  final List<DebitCard>? debitCard;
   final DateTime? youJoinedBlink;
   final DateTime? blinkWasBorn;
 }

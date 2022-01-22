@@ -19,7 +19,7 @@ class CreditCardSettingsPageState extends BaseStatefulPage<
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme.of(context).primaryColor;
+    return Theme.of(context).accentColor;
   }
 
   @override

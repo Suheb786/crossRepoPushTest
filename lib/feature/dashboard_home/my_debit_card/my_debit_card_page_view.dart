@@ -39,8 +39,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                        top: !(cardData!.isDebitDelivered != null &&
-                                cardData.isDebitDelivered)
+                        top: !(cardData!.debitCard!.first.isDebitDelivered !=
+                                    null &&
+                                cardData.debitCard!.first.isDebitDelivered!)
                             ? 8.0
                             : 0.0,
                         bottom: 15),
@@ -142,7 +143,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                             child: Padding(
                                               padding: EdgeInsets.only(top: 21),
                                               child: Text(
-                                                cardData.debitCard!
+                                                cardData.debitCard!.first
                                                         .accountTitle ??
                                                     '',
                                                 style: TextStyle(
@@ -233,8 +234,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
 
                   ///delivered button
                   Visibility(
-                    visible: !(cardData.isDebitDelivered != null &&
-                        cardData.isDebitDelivered),
+                    visible:
+                        !(cardData.debitCard!.first.isDebitDelivered != null &&
+                            cardData.debitCard!.first.isDebitDelivered!),
                     child: Positioned(
                       top: 0,
                       child: Container(
@@ -314,8 +316,11 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                   children: [
                                     Expanded(
                                       child: Text(
-                                        cardData.debitCard!.accountTitle != null
-                                            ? cardData.debitCard!.accountTitle!
+                                        cardData.debitCard!.first
+                                                    .accountTitle !=
+                                                null
+                                            ? cardData
+                                                .debitCard!.first.accountTitle!
                                                 .toTitleCase()
                                             : '',
                                         maxLines: 2,
@@ -354,12 +359,12 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        cardData.debitCard!.cardNumber!
+                                        cardData.debitCard!.first.cardNumber!
                                                 .isNotEmpty
                                             ? StringUtils
                                                 .getFormattedCreditCardNumber(
-                                                    cardData
-                                                        .debitCard!.cardNumber)
+                                                    cardData.debitCard!.first
+                                                        .cardNumber)
                                             : '-',
                                         maxLines: 1,
                                         overflow: TextOverflow.ellipsis,
@@ -373,7 +378,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                         child: InkWell(
                                             onTap: () {
                                               Clipboard.setData(ClipboardData(
-                                                      text: cardData.debitCard!
+                                                      text: cardData
+                                                              .debitCard!
+                                                              .first
                                                               .cardNumber ??
                                                           ''))
                                                   .then((value) =>
@@ -408,7 +415,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            cardData.debitCard!.expiryDate ??
+                                            cardData.debitCard!.first
+                                                    .expiryDate ??
                                                 '',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w700,
@@ -435,7 +443,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            cardData.debitCard!.cvv ?? '',
+                                            cardData.debitCard!.first.cvv ?? '',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w700,
                                               fontSize: 12,
@@ -468,11 +476,13 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                   ),
                                 ),
                                 Text(
-                                  cardData.debitCard!.linkedAccountNumber!
+                                  cardData.debitCard!.first.linkedAccountNumber!
                                           .isNotEmpty
                                       ? StringUtils
                                           .getFormattedCreditCardNumber(cardData
-                                              .debitCard!.linkedAccountNumber)
+                                              .debitCard!
+                                              .first
+                                              .linkedAccountNumber)
                                       : '',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w700,

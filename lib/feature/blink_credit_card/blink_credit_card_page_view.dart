@@ -197,6 +197,8 @@ class BlinkCreditCardPageView
                                             style: TextStyle(
                                                 color: Theme.of(context)
                                                     .primaryColorDark,
+                                                fontSize: 12,
+                                                fontFamily: 'Montserrat',
                                                 fontWeight: FontWeight.w600),
                                             children: [
                                           TextSpan(
@@ -206,6 +208,8 @@ class BlinkCreditCardPageView
                                                       .accentTextTheme
                                                       .bodyText1!
                                                       .color!,
+                                                  fontSize: 12,
+                                                  fontFamily: 'Montserrat',
                                                   fontWeight: FontWeight.w600),
                                               children: [
                                                 TextSpan(
@@ -214,6 +218,9 @@ class BlinkCreditCardPageView
                                                     style: TextStyle(
                                                         color: Theme.of(context)
                                                             .primaryColorDark,
+                                                        fontSize: 12,
+                                                        fontFamily:
+                                                            'Montserrat',
                                                         fontWeight:
                                                             FontWeight.w600),
                                                     children: [
@@ -227,6 +234,9 @@ class BlinkCreditCardPageView
                                                                   .accentTextTheme
                                                                   .bodyText1!
                                                                   .color!,
+                                                              fontSize: 12,
+                                                              fontFamily:
+                                                                  'Montserrat',
                                                               fontWeight:
                                                                   FontWeight
                                                                       .w600),
@@ -239,6 +249,10 @@ class BlinkCreditCardPageView
                                                                     color: Theme.of(
                                                                             context)
                                                                         .primaryColorDark,
+                                                                    fontFamily:
+                                                                        'Montserrat',
+                                                                    fontSize:
+                                                                        12,
                                                                     fontWeight:
                                                                         FontWeight
                                                                             .w600)),

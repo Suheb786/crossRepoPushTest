@@ -32,7 +32,6 @@ import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.d
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/cancel_credit_card_request.dart';
-import 'package:data/entity/remote/card/cancel_debit_card_request.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
@@ -43,6 +42,8 @@ import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
+import 'package:data/entity/remote/card/freeze_credit_card_request_entity.dart';
+import 'package:data/entity/remote/card/freeze_debit_card_request_entity.dart';
 import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
 import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_entity.dart';
@@ -92,6 +93,8 @@ import 'package:data/entity/remote/payment/check_send_money_request_entity.dart'
 import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
 import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
+import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
+import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
 import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
 import 'package:data/entity/remote/payment/transfer_request_entity.dart';
@@ -103,6 +106,7 @@ import 'package:data/entity/remote/upload_document/save_upload_document_response
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
+import 'package:data/entity/remote/user/change_my_number/change_my_number_request_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
@@ -472,23 +476,23 @@ abstract class ApiService {
 
   @POST("/RuleEngine/FreezeCreditCard")
   Future<HttpResponse<ResponseEntity>> freezeCreditCard(
-      @Body() BaseRequest baseRequest);
+      @Body() FreezeCreditCardRequestEntity freezeCreditCardRequestEntity);
 
   @POST("/RuleEngine/UnfreezeCreditCard")
   Future<HttpResponse<ResponseEntity>> unFreezeCreditCard(
-      @Body() BaseRequest baseRequest);
+      @Body() FreezeCreditCardRequestEntity unFreezeCreditCardRequestEntity);
 
   @POST("/DebitCard/CancelCard")
   Future<HttpResponse<ResponseEntity>> cancelDebitCard(
-      @Body() CancelDebitCardRequest cancelDebitCardRequest);
+      @Body() FreezeDebitCardRequestEntity cancelDebitCardRequest);
 
   @POST("/DebitCard/FreezeCard")
   Future<HttpResponse<ResponseEntity>> freezeDebitCard(
-      @Body() BaseRequest baseRequest);
+      @Body() FreezeDebitCardRequestEntity freezeDebitCardRequestEntity);
 
   @POST("/DebitCard/unFreezeCard")
   Future<HttpResponse<ResponseEntity>> unFreezeDebitCard(
-      @Body() BaseRequest baseRequest);
+      @Body() FreezeDebitCardRequestEntity unfreezeDebitCardRequestEntity);
 
   @POST("/DebitCard/ChangePin")
   Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
@@ -621,4 +625,16 @@ abstract class ApiService {
           @Body()
               VerifyForgetPasswordOtpRequestEntity
                   verifyForgetPasswordOtpRequestEntity);
+
+  @POST("/transfer/PaymentActivityAPI")
+  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
+      @Body() PaymentActivityRequestEntity paymentActivityRequestActivity);
+
+  @POST("/auth/iphonelogin")
+  Future<HttpResponse<ResponseEntity>> iphoneLogin(
+      @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
+
+  @POST("/Auth/ChangeMobileNumber")
+  Future<HttpResponse<ResponseEntity>> changeMyNumber(
+      @Body() ChangeMyNumberRequestEntity changeMyNumberRequestEntity);
 }

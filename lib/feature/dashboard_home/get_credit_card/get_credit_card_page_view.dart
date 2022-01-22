@@ -156,8 +156,11 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(
-                            top: !(cardData.isCreditDelivered != null &&
-                                    cardData.isCreditDelivered)
+                            top: !(cardData.creditCard!.first
+                                            .isCreditDelivered !=
+                                        null &&
+                                    cardData
+                                        .creditCard!.first.isCreditDelivered!)
                                 ? 8.0
                                 : 0.0,
                             bottom: 15),
@@ -414,8 +417,10 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
                         ),
                       ),
                       Visibility(
-                        visible: !(cardData.isCreditDelivered != null &&
-                            cardData.isCreditDelivered),
+                        visible:
+                            !(cardData.creditCard!.first.isCreditDelivered !=
+                                    null &&
+                                cardData.creditCard!.first.isCreditDelivered!),
                         child: Positioned(
                           top: 0,
                           child: Container(

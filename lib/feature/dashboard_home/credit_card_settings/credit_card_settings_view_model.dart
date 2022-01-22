@@ -88,17 +88,20 @@ class CreditCardSettingsViewModel extends BasePageViewModel {
 
   void toggleFreezeCardStatus(bool value) {
     _toggleFreezeCardSubject.safeAdd(value);
-    if (!value) {
-      unFreezeCard();
-    }
   }
 
-  void freezeCard() {
-    _freezeCardRequestSubject.safeAdd(FreezeCreditCardUseCaseParams());
+  void freezeCardStatus(bool value) {
+    _toggleFreezeCardSubject.safeAdd(value);
   }
 
-  void unFreezeCard() {
-    _unFreezeCardRequestSubject.safeAdd(UnFreezeCreditCardUseCaseParams());
+  void freezeCard(String cardID) {
+    _freezeCardRequestSubject
+        .safeAdd(FreezeCreditCardUseCaseParams(cardId: cardID));
+  }
+
+  void unFreezeCard(String cardID) {
+    _unFreezeCardRequestSubject
+        .safeAdd(UnFreezeCreditCardUseCaseParams(cardId: cardID));
   }
 
   void cancelCard(String reason) {
