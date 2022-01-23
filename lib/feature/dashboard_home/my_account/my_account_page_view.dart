@@ -343,7 +343,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 78.0),
+                                      padding: EdgeInsets.only(top: 20.0),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
