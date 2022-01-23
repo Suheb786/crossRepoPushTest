@@ -37,143 +37,150 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16.0)),
             insetPadding:
-            EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
+                EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
             child: SingleChildScrollView(
               child: Padding(
                 padding: EdgeInsets.only(top: 32, left: 24, right: 24),
-                child: Column(
-                  children: [
-                    Text(
-                      S.of(context).editTransactionPurpose,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
+                child: GestureDetector(
+                  onVerticalDragEnd: (details) {
+                    if (details.primaryVelocity! > 0) {
+                      onDismissed?.call();
+                    }
+                  },
+                  child: Column(
+                    children: [
+                      Text(
+                        S.of(context).editTransactionPurpose,
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 30),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          beneficiary!.fullName ?? '',
-                          style: TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
+                      Padding(
+                        padding: EdgeInsets.only(top: 30),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            beneficiary!.fullName ?? '',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 2),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          beneficiary!.iban ?? '',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: AppColor.gray_1,
-                            fontWeight: FontWeight.w600,
+                      Padding(
+                        padding: EdgeInsets.only(top: 2),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            beneficiary!.iban ?? '',
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: AppColor.gray_1,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 28),
-                      child: AppTextField(
-                        labelText: S.of(context).purpose,
-                        hintText: S.of(context).pleaseSelect,
-                        inputType: TextInputType.text,
-                        controller: model!.purposeController,
-                        key: model.purposeKey,
-                        readOnly: true,
-                        onPressed: () {
-                          if (model.purposeList != null &&
-                              model.purposeList!.isNotEmpty) {
-                            PurposeDialog.show(context,
-                                purposeList: model.purposeList!,
-                                onDismissed: () {
-                                  Navigator.pop(context);
-                                }, onSelected: (value) {
-                                  Navigator.pop(context);
-                                  model.updatePurpose(value);
-                                  model.updatePurposeDetailList(
-                                      value.purposeDetails!);
-                                });
-                          }
-                        },
-                        suffixIcon: (enabled, value) {
-                          return AppSvg.asset(AssetUtils.dropDown,
-                              color: AppColor.dark_gray_1,
-                              width: 16,
-                              height: 16);
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 18),
-                      child: AppTextField(
-                        labelText: S.of(context).purposeDetails,
-                        hintText: S.of(context).pleaseSelect,
-                        inputType: TextInputType.text,
-                        controller: model.purposeDetailController,
-                        key: model.purposeDetailKey,
-                        readOnly: true,
-                        onPressed: () {
-                          if (model.purposeDetailList != null &&
-                              model.purposeDetailList!.isNotEmpty) {
-                            PurposeDetailDialog.show(context,
-                                purposeDetailList: model.purposeDetailList,
-                                onDismissed: () {
-                                  Navigator.pop(context);
-                                }, onSelected: (value) {
-                                  Navigator.pop(context);
-                                  model.updatePurposeDetail(value);
-                                });
-                          }
-                        },
-                        suffixIcon: (enabled, value) {
-                          return AppSvg.asset(AssetUtils.dropDown,
-                              color: AppColor.dark_gray_1,
-                              width: 16,
-                              height: 16);
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 147),
-                      child: InkWell(
-                        onTap: () {
-                          onSelected!
-                              .call(model.purpose!, model.purposeDetail!);
-                        },
-                        child: Container(
-                          padding: EdgeInsets.all(16),
-                          height: 57,
-                          width: 57,
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context)
-                                  .accentTextTheme
-                                  .bodyText1!
-                                  .color!),
-                          child: AppSvg.asset(AssetUtils.tick,
-                              color: Theme.of(context).accentColor),
+                      Padding(
+                        padding: EdgeInsets.only(top: 28),
+                        child: AppTextField(
+                          labelText: S.of(context).purpose,
+                          hintText: S.of(context).pleaseSelect,
+                          inputType: TextInputType.text,
+                          controller: model!.purposeController,
+                          key: model.purposeKey,
+                          readOnly: true,
+                          onPressed: () {
+                            if (model.purposeList != null &&
+                                model.purposeList!.isNotEmpty) {
+                              PurposeDialog.show(context,
+                                  purposeList: model.purposeList!,
+                                  onDismissed: () {
+                                Navigator.pop(context);
+                              }, onSelected: (value) {
+                                Navigator.pop(context);
+                                model.updatePurpose(value);
+                                model.updatePurposeDetailList(
+                                    value.purposeDetails!);
+                              });
+                            }
+                          },
+                          suffixIcon: (enabled, value) {
+                            return AppSvg.asset(AssetUtils.dropDown,
+                                color: AppColor.dark_gray_1,
+                                width: 16,
+                                height: 16);
+                          },
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8.0, bottom: 16),
-                      child: Center(
-                        child: Text(
-                          S.of(context).swipeDownToCancel,
-                          style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.w400,
-                              color: AppColor.dark_gray_1),
+                      Padding(
+                        padding: EdgeInsets.only(top: 18),
+                        child: AppTextField(
+                          labelText: S.of(context).purposeDetails,
+                          hintText: S.of(context).pleaseSelect,
+                          inputType: TextInputType.text,
+                          controller: model.purposeDetailController,
+                          key: model.purposeDetailKey,
+                          readOnly: true,
+                          onPressed: () {
+                            if (model.purposeDetailList != null &&
+                                model.purposeDetailList!.isNotEmpty) {
+                              PurposeDetailDialog.show(context,
+                                  purposeDetailList: model.purposeDetailList,
+                                  onDismissed: () {
+                                Navigator.pop(context);
+                              }, onSelected: (value) {
+                                Navigator.pop(context);
+                                model.updatePurposeDetail(value);
+                              });
+                            }
+                          },
+                          suffixIcon: (enabled, value) {
+                            return AppSvg.asset(AssetUtils.dropDown,
+                                color: AppColor.dark_gray_1,
+                                width: 16,
+                                height: 16);
+                          },
                         ),
                       ),
-                    ),
-                  ],
+                      Padding(
+                        padding: EdgeInsets.only(top: 147),
+                        child: InkWell(
+                          onTap: () {
+                            onSelected!
+                                .call(model.purpose!, model.purposeDetail!);
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(16),
+                            height: 57,
+                            width: 57,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context)
+                                    .accentTextTheme
+                                    .bodyText1!
+                                    .color!),
+                            child: AppSvg.asset(AssetUtils.tick,
+                                color: Theme.of(context).accentColor),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0, bottom: 16),
+                        child: Center(
+                          child: Text(
+                            S.of(context).swipeDownToCancel,
+                            style: TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w400,
+                                color: AppColor.dark_gray_1),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

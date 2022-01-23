@@ -10,7 +10,6 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_page.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_page.dart';
-import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -30,7 +29,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
     MyAccountPage(),
     GetCreditCardPage(),
     MyDebitCardPage(),
-    PlaceholderPage()
+    // PlaceholderPage()
   ];
 
   @override

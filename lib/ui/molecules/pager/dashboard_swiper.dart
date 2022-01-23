@@ -19,7 +19,7 @@ class DashboardSwiper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Swiper(
       customLayoutOption: CustomLayoutOption(
-              startIndex: -1, stateCount: currentStep == 3 ? 2 : 3)
+              startIndex: -1, stateCount: currentStep == 2 ? 2 : 3)
           .addRotate([-7.0 / 180, 0.0, 7.0 / 180]).addTranslate([
         Offset(-(MediaQuery.of(context).size.width - 60), -5.0),
         Offset(0.0, 0.0),
@@ -40,7 +40,7 @@ class DashboardSwiper extends StatelessWidget {
       layout: SwiperLayout.CUSTOM,
       itemBuilder: (context, index) => Container(
           margin: EdgeInsets.all(5),
-          child: currentStep == 0 && index == pages.length - 1
+          child: (currentStep == 0 && index == pages.length - 1)
               ? Container()
               : pages[index]),
     );

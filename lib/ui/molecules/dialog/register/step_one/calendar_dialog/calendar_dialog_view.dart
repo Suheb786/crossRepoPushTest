@@ -49,171 +49,179 @@ class CalendarDialogView extends StatelessWidget {
                 initialData: DateParameters(
                     selectedDay: initialDateTime, focusedDay: initialDateTime),
                 dataBuilder: (context, dateParams) {
-                  return SingleChildScrollView(
-                    child: AppKeyBoardHide(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 32.0, bottom: 24),
-                              child: Center(
-                                child: Text(
-                                  title!,
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w600),
+                  return GestureDetector(
+                    onVerticalDragEnd: (details) {
+                      if (details.primaryVelocity! > 0) {
+                        onDismissed?.call();
+                      }
+                    },
+                    child: SingleChildScrollView(
+                      child: AppKeyBoardHide(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                    top: 32.0, bottom: 24),
+                                child: Center(
+                                  child: Text(
+                                    title!,
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w600),
+                                  ),
                                 ),
                               ),
-                            ),
-                            Flexible(
-                                child: TableCalendar(
-                              firstDay: kFirstDay,
-                              lastDay: kLastDay,
-                              focusedDay: dateParams!.focusedDay!,
-                              calendarFormat: CalendarFormat.month,
-                              pageJumpingEnabled: false,
-                              onHeaderTapped: (time) {
-                                YearMonthDialog.show(context,
-                                    calendarEnum: CalendarEnum.MONTH,
-                                    onDismissed: () {
-                                  Navigator.pop(context);
-                                }, onSelected: (month) {
-                                  Navigator.pop(context);
-                                  model.month = TimeUtils.getMonth(month);
+                              Flexible(
+                                  child: TableCalendar(
+                                firstDay: kFirstDay,
+                                lastDay: kLastDay,
+                                focusedDay: dateParams!.focusedDay!,
+                                calendarFormat: CalendarFormat.month,
+                                pageJumpingEnabled: false,
+                                onHeaderTapped: (time) {
                                   YearMonthDialog.show(context,
-                                      title: S.of(context).dateOfBirthSmall,
-                                      calendarEnum: CalendarEnum.YEAR,
+                                      calendarEnum: CalendarEnum.MONTH,
                                       onDismissed: () {
                                     Navigator.pop(context);
-                                  }, onSelected: (year) {
+                                  }, onSelected: (month) {
                                     Navigator.pop(context);
-                                    model.year = int.parse(year);
+                                    model.month = TimeUtils.getMonth(month);
+                                    YearMonthDialog.show(context,
+                                        title: S.of(context).dateOfBirthSmall,
+                                        calendarEnum: CalendarEnum.YEAR,
+                                        onDismissed: () {
+                                      Navigator.pop(context);
+                                    }, onSelected: (year) {
+                                      Navigator.pop(context);
+                                      model.year = int.parse(year);
+                                      model.updateSelectedDate(
+                                          dateParams.selectedDay!,
+                                          DateTime(model.year, model.month,
+                                              model.date));
+                                    });
+                                  }, title: S.of(context).dateOfBirthSmall);
+                                },
+                                selectedDayPredicate: (day) {
+                                  return isSameDay(dateParams.selectedDay, day);
+                                },
+                                enabledDayPredicate: (date) {
+                                  return date.isBefore(DateTime.now());
+                                },
+                                onDaySelected: (selectedDay, focusedDay) {
+                                  if (!isSameDay(
+                                      dateParams.selectedDay, selectedDay)) {
                                     model.updateSelectedDate(
-                                        dateParams.selectedDay!,
-                                        DateTime(model.year, model.month,
-                                            model.date));
-                                  });
-                                }, title: S.of(context).dateOfBirthSmall);
-                              },
-                              selectedDayPredicate: (day) {
-                                return isSameDay(dateParams.selectedDay, day);
-                              },
-                              enabledDayPredicate: (date) {
-                                return date.isBefore(DateTime.now());
-                              },
-                              onDaySelected: (selectedDay, focusedDay) {
-                                if (!isSameDay(
-                                    dateParams.selectedDay, selectedDay)) {
+                                        selectedDay, focusedDay);
+                                  }
+                                },
+                                onFormatChanged: (format) {},
+                                onPageChanged: (focusedDay) {
                                   model.updateSelectedDate(
-                                      selectedDay, focusedDay);
-                                }
-                              },
-                              onFormatChanged: (format) {},
-                              onPageChanged: (focusedDay) {
-                                model.updateSelectedDate(
-                                    dateParams.selectedDay!, focusedDay);
-                              },
-                              calendarStyle: CalendarStyle(
-                                outsideTextStyle: TextStyle(
-                                    color: AppColor.grayish_violet,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                                todayDecoration: BoxDecoration(
-                                    color: AppColor.vivid_orange,
-                                    shape: BoxShape.circle),
-                                todayTextStyle: TextStyle(
-                                    color: AppColor.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                                disabledTextStyle: TextStyle(
-                                    color: AppColor.grayish_violet,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                                defaultTextStyle: TextStyle(
-                                    color: AppColor.dark_violet2,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                                weekendTextStyle: TextStyle(
-                                    color: AppColor.dark_violet2,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                                selectedDecoration: BoxDecoration(
-                                    color: AppColor.vivid_orange,
-                                    shape: BoxShape.circle),
-                                selectedTextStyle: TextStyle(
-                                    color: AppColor.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              startingDayOfWeek: StartingDayOfWeek.monday,
-                              headerStyle: HeaderStyle(
-                                  titleTextStyle: TextStyle(
-                                      fontWeight: FontWeight.w600,
+                                      dateParams.selectedDay!, focusedDay);
+                                },
+                                calendarStyle: CalendarStyle(
+                                  outsideTextStyle: TextStyle(
+                                      color: AppColor.grayish_violet,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                  todayDecoration: BoxDecoration(
                                       color: AppColor.vivid_orange,
-                                      fontSize: 12),
-                                  headerMargin: EdgeInsets.only(bottom: 24),
-                                  rightChevronIcon: AppSvg.asset(
-                                    AssetUtils.rightChevron,
-                                    color: AppColor.dark_gray_1,
-                                  ),
-                                  titleCentered: true,
-                                  formatButtonVisible: false,
+                                      shape: BoxShape.circle),
+                                  todayTextStyle: TextStyle(
+                                      color: AppColor.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                  disabledTextStyle: TextStyle(
+                                      color: AppColor.grayish_violet,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                  defaultTextStyle: TextStyle(
+                                      color: AppColor.dark_violet2,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                  weekendTextStyle: TextStyle(
+                                      color: AppColor.dark_violet2,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                  selectedDecoration: BoxDecoration(
+                                      color: AppColor.vivid_orange,
+                                      shape: BoxShape.circle),
+                                  selectedTextStyle: TextStyle(
+                                      color: AppColor.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                startingDayOfWeek: StartingDayOfWeek.monday,
+                                headerStyle: HeaderStyle(
+                                    titleTextStyle: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: AppColor.vivid_orange,
+                                        fontSize: 12),
+                                    headerMargin: EdgeInsets.only(bottom: 24),
+                                    rightChevronIcon: AppSvg.asset(
+                                      AssetUtils.rightChevron,
+                                      color: AppColor.dark_gray_1,
+                                    ),
+                                    titleCentered: true,
+                                    formatButtonVisible: false,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(
+                                          color: AppColor.whiteGray,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8))),
+                                daysOfWeekHeight: 32,
+                                daysOfWeekStyle: DaysOfWeekStyle(
+                                    weekdayStyle: TextStyle(
+                                        color: AppColor.gray_black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600),
+                                    weekendStyle: TextStyle(
+                                        color: AppColor.gray_black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w600),
+                                    dowTextFormatter: (date, locale) =>
+                                        DateFormat.E(locale).format(date)[0]),
+                              )),
+                              InkWell(
+                                onTap: () {
+                                  onSelected?.call(dateParams.selectedDay!);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(16),
+                                  margin: EdgeInsets.only(top: 30),
+                                  height: 57,
+                                  width: 57,
                                   decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: AppColor.whiteGray,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8))),
-                              daysOfWeekHeight: 32,
-                              daysOfWeekStyle: DaysOfWeekStyle(
-                                  weekdayStyle: TextStyle(
-                                      color: AppColor.gray_black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600),
-                                  weekendStyle: TextStyle(
-                                      color: AppColor.gray_black,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600),
-                                  dowTextFormatter: (date, locale) =>
-                                      DateFormat.E(locale).format(date)[0]),
-                            )),
-                            InkWell(
-                              onTap: () {
-                                onSelected?.call(dateParams.selectedDay!);
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(16),
-                                margin: EdgeInsets.only(top: 30),
-                                height: 57,
-                                width: 57,
-                                decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: AppColor.dark_violet_4),
-                                child: AppSvg.asset(AssetUtils.tick),
+                                      shape: BoxShape.circle,
+                                      color: AppColor.dark_violet_4),
+                                  child: AppSvg.asset(AssetUtils.tick),
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 8.0, bottom: 16),
-                              child: Center(
-                                child: InkWell(
-                                  onTap: () {
-                                    onDismissed?.call();
-                                  },
-                                  child: Text(
-                                    S.of(context).swipeDownToCancel,
-                                    style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColor.dark_gray_1),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 8.0, bottom: 16),
+                                child: Center(
+                                  child: InkWell(
+                                    onTap: () {
+                                      onDismissed?.call();
+                                    },
+                                    child: Text(
+                                      S.of(context).swipeDownToCancel,
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w400,
+                                          color: AppColor.dark_gray_1),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),

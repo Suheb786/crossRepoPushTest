@@ -52,7 +52,7 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                   top: _keyboardVisible ? 36 : 204),
               child: GestureDetector(
                   onVerticalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {
+                    if (details.primaryVelocity! > 0) {
                       onDismissed?.call();
                     }
                   },

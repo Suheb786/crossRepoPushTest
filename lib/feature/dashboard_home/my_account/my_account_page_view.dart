@@ -398,7 +398,8 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                           )
                                         ],
                                       ),
-                                    )
+                                    ),
+                                    const SizedBox(height: 40),
                                   ],
                                 );
                               },
