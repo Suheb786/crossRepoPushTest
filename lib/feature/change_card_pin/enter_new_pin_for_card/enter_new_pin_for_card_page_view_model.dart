@@ -1,5 +1,5 @@
 import 'package:domain/constants/enum/card_type.dart';
-import 'package:domain/usecase/card_delivery/change_debit_card_pin_usecase.dart';
+import 'package:domain/usecase/card_delivery/change_debit_pin_verify_usecase.dart';
 import 'package:domain/usecase/card_delivery/enter_new_pin_for_card_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -13,7 +13,7 @@ import 'package:rxdart/rxdart.dart';
 class EnterNewPinForCardPageViewModel extends BasePageViewModel {
   final EnterNewPinForCardUseCase _enterNewPinForCardUsecase;
 
-  final ChangeDebitCardPinUseCase _changeDebitCardPinUseCase;
+  final ChangeDebitPinVerifyUseCase _changeDebitPinVerifyUseCase;
 
   TextEditingController newPinController = TextEditingController();
   TextEditingController confirmPinController = TextEditingController();
@@ -33,24 +33,25 @@ class EnterNewPinForCardPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get enterNewPinForCardStream =>
       _enterNewPinForCardResponse.stream;
 
-  ///change debit card pin request subject holder
-  PublishSubject<ChangeDebitCardPinUseCaseParams> _changDebitCardPinRequest =
-      PublishSubject();
-
-  ///change debit card pin response holder
-  PublishSubject<Resource<bool>> _changDebitCardPinResponse = PublishSubject();
-
-  ///change debit card pin stream
-  Stream<Resource<bool>> get changDebitCardPinStream =>
-      _changDebitCardPinResponse.stream;
-
   /// button subject
   BehaviorSubject<bool> _showButtonSubject = BehaviorSubject.seeded(false);
 
   Stream<bool> get showButtonStream => _showButtonSubject.stream;
 
+  ///change debit card pin verify request subject holder
+  PublishSubject<ChangeDebitPinVerifyUseCaseParams>
+      _changeDebitPinVerifyRequest = PublishSubject();
+
+  ///change debit card pin verify response holder
+  PublishSubject<Resource<bool>> _changeDebitPinVerifyResponse =
+      PublishSubject();
+
+  ///change debit card pin verify stream
+  Stream<Resource<bool>> get changeDebitPinVerifyStream =>
+      _changeDebitPinVerifyResponse.stream;
+
   EnterNewPinForCardPageViewModel(
-      this._enterNewPinForCardUsecase, this._changeDebitCardPinUseCase) {
+      this._enterNewPinForCardUsecase, this._changeDebitPinVerifyUseCase) {
     _enterNewPinForCardRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -65,14 +66,14 @@ class EnterNewPinForCardPageViewModel extends BasePageViewModel {
       });
     });
 
-    _changDebitCardPinRequest.listen((value) {
+    _changeDebitPinVerifyRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
-                  _changeDebitCardPinUseCase.execute(params: value))
+                  _changeDebitPinVerifyUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
-        _changDebitCardPinResponse.safeAdd(event);
+        _changeDebitPinVerifyResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
         }
@@ -87,12 +88,8 @@ class EnterNewPinForCardPageViewModel extends BasePageViewModel {
         cardType: cardType));
   }
 
-  void changeDebitCardPin(
-      {required String pin,
-      required String otp,
-      required String tokenizedPan}) {
-    _changDebitCardPinRequest.safeAdd(ChangeDebitCardPinUseCaseParams(
-        pin: pin, otp: otp, tokenizedPan: tokenizedPan));
+  void changeDebitPinVerify() {
+    _changeDebitPinVerifyRequest.safeAdd(ChangeDebitPinVerifyUseCaseParams());
   }
 
   void validate() {

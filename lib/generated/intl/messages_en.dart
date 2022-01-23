@@ -216,6 +216,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Card delivered?"),
         "cardDelivery":
             MessageLookupByLibrary.simpleMessage("to Card Delivery"),
+        "cardFrozen": MessageLookupByLibrary.simpleMessage("Card frozen"),
         "cardHasBeenDelivered": MessageLookupByLibrary.simpleMessage(
             "Check that the numbers on the back of your card match the numbers above."),
         "cardLater":
@@ -1146,6 +1147,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "If you currently have money in another bank account, you can easily send a money request to transfer money into your Blink account"),
         "requestNewCardImmediately": MessageLookupByLibrary.simpleMessage(
             "I would like to request new card immediately"),
+        "requestNewDebitcard":
+            MessageLookupByLibrary.simpleMessage("Request new debit card"),
         "requestNotCompleted": MessageLookupByLibrary.simpleMessage(
             "Your Request Is Not Completed"),
         "requestSupplementaryCard":
@@ -1314,6 +1317,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Thank you for waiting, the video call will start automatically"),
         "tinNo": MessageLookupByLibrary.simpleMessage("TIN NO."),
         "toDashboard": MessageLookupByLibrary.simpleMessage("to Dashboard"),
+        "toEnjoyCardLessPaymentDebit": MessageLookupByLibrary.simpleMessage(
+            "To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step"),
         "toLoginPage": MessageLookupByLibrary.simpleMessage("to Login Page"),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("to Welcome Page"),

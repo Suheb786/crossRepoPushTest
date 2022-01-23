@@ -3,6 +3,7 @@ import 'package:domain/error/app_error.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_switch/flutter_switch.dart';
+import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_settings/credit_card_settings_view_model.dart';
@@ -10,7 +11,6 @@ import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
-import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/card/settings_tile.dart';
 import 'package:neo_bank/ui/molecules/custom_bullet_with_title_widget.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/card_cancel_dialog/card_cancel_dialog.dart';
@@ -50,7 +50,12 @@ class CreditCardSettingsPageView
                           bottomRight: Radius.circular(16))),
                 ),
                 Positioned(
-                    bottom: -8, child: AppSvg.asset(AssetUtils.swipeDown)),
+                    bottom: -8,
+                    child: LottieBuilder.asset(
+                      AssetUtils.swipeDownAnimation,
+                      width: 28.0,
+                      height: 28.0,
+                    )),
               ],
             ),
             Padding(
@@ -217,7 +222,7 @@ class CreditCardSettingsPageView
                               onTap: () {
                                 CardCancelDialog.show(
                                   context,
-                                  onSelected: (reasonValue) {
+                                  onSelected: (reasonValue, needsReplacement) {
                                     Navigator.pop(context);
                                     model.cancelCard(reasonValue);
                                   },

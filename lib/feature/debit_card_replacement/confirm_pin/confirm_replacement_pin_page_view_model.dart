@@ -46,9 +46,11 @@ class ConfirmReplacementPinPageViewModel extends BasePageViewModel {
     });
   }
 
-  void validatePin(String previousPin) {
+  void validatePin(String previousPin, String cardNumber) {
     _confirmPinRequest.safeAdd(ConfirmReplacementPinUseCaseParams(
-        currentPin: _pinSubject.value, previousPin: previousPin));
+        currentPin: _pinSubject.value,
+        previousPin: previousPin,
+        cardNumber: cardNumber));
   }
 
   void validate(String value) {

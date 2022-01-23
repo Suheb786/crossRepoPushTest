@@ -2,6 +2,7 @@ import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/cancel_credit_card_request.dart';
+import 'package:data/entity/remote/card/cancel_debit_card_request_entity.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
@@ -173,7 +174,7 @@ class CardRemoteDsImpl extends CardRemoteDs {
   Future<HttpResponse<ResponseEntity>> cancelDebitCard(
       {String? reason, String? status, String? tokenizedPan}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    return _apiService.cancelDebitCard(FreezeDebitCardRequestEntity(
+    return _apiService.cancelDebitCard(CancelDebitCardRequestEntity(
         baseData: baseData.toJson(),
         getToken: true,
         status: status,
@@ -206,11 +207,14 @@ class CardRemoteDsImpl extends CardRemoteDs {
   Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
       {required String pin,
       required String otp,
+      required String cardNumber,
       required String tokenizedPan}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    print('card No--->$cardNumber');
     return _apiService.changeDebitCardPin(ChangeDebitCardPinRequest(
         baseData: baseData.toJson(),
-        pinCode: pin,
+        pinCode: EncryptDecryptHelper.generateBlockPin(
+            cardNo: cardNumber, pinCode: pin),
         otp: otp,
         tokenizedPan: tokenizedPan,
         getToken: true));
@@ -315,5 +319,12 @@ class CardRemoteDsImpl extends CardRemoteDs {
         accountNumber: accountNumber,
         getToken: true,
         baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> changePinVerify() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService
+        .changePinVerify(BaseRequest(baseData: baseData.toJson()));
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -18,7 +19,10 @@ class DebitCardReplacementSuccessPageView
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
-          Navigator.pushNamed(context, RoutePaths.AppHome);
+          Navigator.pushReplacementNamed(context, RoutePaths.AppHome);
+          ProviderScope.containerOf(context)
+              .read(appHomeViewModelProvider)
+              .getDashboardData();
         }
       },
       child: Container(

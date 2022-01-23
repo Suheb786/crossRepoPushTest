@@ -16,7 +16,7 @@ final debitCardReplacementViewModelProvider =
 ///replacement visa card view model provider
 final replacementVisaCardViewModelProvider =
     ChangeNotifierProvider.autoDispose<ReplacementVisaCardPageViewModel>(
-  (ref) => ReplacementVisaCardPageViewModel(),
+  (ref) => ReplacementVisaCardPageViewModel(ref.read(cardIssuanceCaseProvider)),
 );
 
 ///create replacement pin view model provider

@@ -8,7 +8,7 @@ class CardCancelDialog {
 
   static show(BuildContext context,
       {Function? onDismissed,
-      Function(String)? onSelected,
+      Function(String,bool)? onSelected,
       required List<String> reasons,
       Function(AppError)? onError}) {
     AppDialog.show(context,

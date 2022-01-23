@@ -16,7 +16,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 
 class CardCancelDialogView extends StatelessWidget {
-  final Function(String)? onSelected;
+  final Function(String, bool)? onSelected;
   final Function(AppError)? onError;
   final Function? onDismissed;
   final List<String> reasons;
@@ -129,11 +129,12 @@ class CardCancelDialogView extends StatelessWidget {
                       stream: model.declarationSelectedStream,
                       initialData: false,
                       dataBuilder: (context, isSelected) {
+                        model.isSelected = isSelected!;
                         return TermsAndConditionWidget(
                           isSelected: isSelected,
                           title1: S.of(context).requestNewCardImmediately,
                           onTap: () {
-                            model.updateDeclarationSelection(!(isSelected!));
+                            model.updateDeclarationSelection(!(isSelected));
                           },
                         );
                       },
@@ -151,16 +152,18 @@ class CardCancelDialogView extends StatelessWidget {
                           type: ErrorType.SELECT_CANCELATION_REASON,
                           cause: Exception(),
                         ));
-                      } else if (!model.declarationSelected.value) {
-                        onError?.call(AppError(
-                          error: ErrorInfo(message: ''),
-                          type: ErrorType.INVALID_DECLARATION_SELECTION,
-                          cause: Exception(),
-                        ));
                       } else {
-                        onSelected
-                            ?.call(model.reasonCancellationController.text);
+                        onSelected?.call(
+                            model.reasonCancellationController.text,
+                            model.isSelected);
                       }
+                      // else if (!model.declarationSelected.value) {
+                      //   onError?.call(AppError(
+                      //     error: ErrorInfo(message: ''),
+                      //     type: ErrorType.INVALID_DECLARATION_SELECTION,
+                      //     cause: Exception(),
+                      //   ));
+                      // }
                     },
                     child: Container(
                       padding: EdgeInsets.all(16),
@@ -179,12 +182,17 @@ class CardCancelDialogView extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0, bottom: 16),
                     child: Center(
-                      child: Text(
-                        S.of(context).swipeDownToCancel,
-                        style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: AppColor.dark_gray_1),
+                      child: InkWell(
+                        onTap: () {
+                          onDismissed?.call();
+                        },
+                        child: Text(
+                          S.of(context).swipeDownToCancel,
+                          style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: FontWeight.w400,
+                              color: AppColor.dark_gray_1),
+                        ),
                       ),
                     ),
                   ),

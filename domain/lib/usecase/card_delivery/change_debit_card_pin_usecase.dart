@@ -15,7 +15,10 @@ class ChangeDebitCardPinUseCase
   Future<Either<NetworkError, bool>> execute(
       {required ChangeDebitCardPinUseCaseParams params}) {
     return _repository.changeDebitCardPin(
-        pin: params.pin, tokenizedPan: params.tokenizedPan, otp: params.otp);
+        pin: params.pin,
+        tokenizedPan: params.tokenizedPan,
+        otp: params.otp,
+        cardNumber: params.cardNumber);
   }
 }
 
@@ -23,9 +26,13 @@ class ChangeDebitCardPinUseCaseParams extends Params {
   final String pin;
   final String otp;
   final String tokenizedPan;
+  final String cardNumber;
 
   ChangeDebitCardPinUseCaseParams(
-      {this.pin: "", this.tokenizedPan: "", this.otp: ""});
+      {this.pin: "",
+      this.tokenizedPan: "",
+      this.otp: "",
+      required this.cardNumber});
 
   @override
   Either<AppError, bool> verify() {

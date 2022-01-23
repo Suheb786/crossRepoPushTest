@@ -16,8 +16,8 @@ import 'package:show_up_animation/show_up_animation.dart';
 class ChangeCardPinPageView
     extends BasePageViewWidget<ChangeCardPinPageViewModel> {
   final pages = [
-    OtpForChangeCardPinPage(),
     EnterNewPinForCardPage(),
+    OtpForChangeCardPinPage(),
     BaseCardPage()
   ];
 
@@ -53,7 +53,7 @@ class ChangeCardPinPageView
                           Padding(
                             padding: EdgeInsets.only(
                                 top: 8.0,
-                                bottom: currentStep == 0 ? 0 : 32,
+                                bottom: currentStep == 1 ? 0 : 32,
                                 left: 24,
                                 right: 24),
                             child: ShowUpAnimation(
@@ -66,8 +66,8 @@ class ChangeCardPinPageView
                               child: Text(
                                 StepTextHelper.changeEmailAddressTextHelper(
                                   currentStep ?? 0,
-                                  S.of(context).enterOtpHeader,
                                   S.of(context).enterNewCardPinAndConfirmPin,
+                                  S.of(context).enterOtpHeader,
                                 ),
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
@@ -80,7 +80,7 @@ class ChangeCardPinPageView
                             ),
                           ),
                           Visibility(
-                            visible: currentStep == 0,
+                            visible: currentStep == 1,
                             child: Padding(
                               padding: EdgeInsets.only(bottom: 32),
                               child: ShowUpAnimation(

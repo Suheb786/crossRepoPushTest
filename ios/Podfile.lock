@@ -103,7 +103,7 @@ PODS:
     - AFNetworking
     - Flutter
     - InfobipRTC
-  - InfobipRTC (1.4.27):
+  - InfobipRTC (1.4.29):
     - IBGoogleWebRTC (~> 1.0.32463)
   - local_auth (0.0.1):
     - Flutter
@@ -265,7 +265,7 @@ SPEC CHECKSUMS:
   image_picker: e06f7a68f000bd36f552c1847e33cda96ed31f1f
   infobip_mobilemessaging: 06b68ef87a13f44c8e28eb98a1681108e56500a0
   infobip_plugin: 04f0e6f190421989e1c15a061e682170cfc7c3dd
-  InfobipRTC: db1de3be81d0f33f659278499470e87184076e17
+  InfobipRTC: f2ecaac941868c44269b2441a06ab6db6ad17b56
   local_auth: 25938960984c3a7f6e3253e3f8d962fdd16852bd
   MobileMessaging: f130ec2523facbb49c9c1b04c62b0a2e3b2b655d
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
@@ -284,4 +284,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.10.1
