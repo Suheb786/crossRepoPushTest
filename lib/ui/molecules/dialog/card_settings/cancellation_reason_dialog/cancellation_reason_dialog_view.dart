@@ -17,9 +17,10 @@ class CancellationReasonDialogView extends StatelessWidget {
   final Function? onDismissed;
   final Function(String)? onSelected;
   final String? title;
+  final List<String> reasons;
 
   const CancellationReasonDialogView(
-      {this.onDismissed, this.onSelected, this.title});
+      {required this.reasons, this.onDismissed, this.onSelected, this.title});
 
   ProviderBase providerBase() {
     return cancelReasonCardDialogViewModelProvider;
@@ -69,11 +70,11 @@ class CancellationReasonDialogView extends StatelessWidget {
                             ),
                           ),
                           AppScrollableListViewWidget(
-                            key: ValueKey(model.cardCancellationReason.length),
+                            key: ValueKey(reasons.length),
                             child: ClickableListWheelScrollView(
                               scrollController: model.scrollController,
                               itemHeight: 64,
-                              itemCount: model.cardCancellationReason.length,
+                              itemCount: reasons.length,
                               onItemTapCallback: (index) {
                                 model.currentIndexUpdate(index);
                               },
@@ -86,13 +87,11 @@ class CancellationReasonDialogView extends StatelessWidget {
                                   physics: FixedExtentScrollPhysics(),
                                   perspective: 0.0000000001,
                                   childDelegate: ListWheelChildBuilderDelegate(
-                                      childCount:
-                                          model.cardCancellationReason.length,
+                                      childCount: reasons.length,
                                       builder:
                                           (BuildContext context, int index) {
                                         return ListScrollWheelListWidget(
-                                          label: model
-                                              .cardCancellationReason[index],
+                                          label: reasons[index],
                                           textColor: currentIndex == index
                                               ? Theme.of(context)
                                                   .primaryColorDark
@@ -106,8 +105,7 @@ class CancellationReasonDialogView extends StatelessWidget {
                       )),
                       InkWell(
                         onTap: () {
-                          onSelected!.call(
-                              model.cardCancellationReason[currentIndex!]);
+                          onSelected!.call(reasons[currentIndex!]);
                         },
                         child: Container(
                           padding: EdgeInsets.all(16),

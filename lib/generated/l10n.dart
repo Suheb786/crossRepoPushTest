@@ -6570,11 +6570,101 @@ class S {
     );
   }
 
+  /// `I don't need my card anymore`
+  String get dontNeedMyCardAnymore {
+    return Intl.message(
+      'I don\'t need my card anymore',
+      name: 'dontNeedMyCardAnymore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please help us to improve our services: Free text (if this can be applied)`
+  String get pleaseHelpUsImproveServices {
+    return Intl.message(
+      'Please help us to improve our services: Free text (if this can be applied)',
+      name: 'pleaseHelpUsImproveServices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I'm dissatisfied with the overall banking experience`
+  String get dissatisfiedWithOverallBankingExp {
+    return Intl.message(
+      'I\'m dissatisfied with the overall banking experience',
+      name: 'dissatisfiedWithOverallBankingExp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I'm dissatisfied with the digital platform`
+  String get dissatisfiedWithDigitalPlatform {
+    return Intl.message(
+      'I\'m dissatisfied with the digital platform',
+      name: 'dissatisfiedWithDigitalPlatform',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I'm trying to control my expenses in other ways`
+  String get controlMyExpensesInOtherWays {
+    return Intl.message(
+      'I\'m trying to control my expenses in other ways',
+      name: 'controlMyExpensesInOtherWays',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `High interest,fees,and charges`
+  String get highInterestFeesAndCharges {
+    return Intl.message(
+      'High interest,fees,and charges',
+      name: 'highInterestFeesAndCharges',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `I feel the credit limit is low`
+  String get feelThatCreditLimitLow {
+    return Intl.message(
+      'I feel the credit limit is low',
+      name: 'feelThatCreditLimitLow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There are too many recurrent declined transactions`
+  String get tooManyRecurrentDeclined {
+    return Intl.message(
+      'There are too many recurrent declined transactions',
+      name: 'tooManyRecurrentDeclined',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Manage card limits`
   String get manageCardLimits {
     return Intl.message(
       'Manage card limits',
       name: 'manageCardLimits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The exchange rate for other currencies is high`
+  String get exchangeRateForCurrencies {
+    return Intl.message(
+      'The exchange rate for other currencies is high',
+      name: 'exchangeRateForCurrencies',
       desc: '',
       args: [],
     );

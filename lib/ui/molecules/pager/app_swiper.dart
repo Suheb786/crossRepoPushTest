@@ -37,7 +37,11 @@ class AppSwiper extends StatelessWidget {
       itemCount: pages.length,
       layout: SwiperLayout.CUSTOM,
       itemBuilder: (context, index) => Container(
-          margin: EdgeInsets.all(5), child: pages[index]! ?? Container()),
+        margin: EdgeInsets.all(5),
+        child: (currentStep == 0 && index == pages.length - 1)
+            ? Container()
+            : pages[index]! ?? Container(),
+      ),
     );
   }
 

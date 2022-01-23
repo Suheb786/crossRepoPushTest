@@ -7,6 +7,7 @@ import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/mute_unmute_usecase.dart';
 import 'package:domain/usecase/infobip_audio/obtain_token_usecase.dart';
 import 'package:domain/usecase/infobip_audio/show_chat_usecase.dart';
+import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/infobip_audio/speaker_on_off_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -51,6 +52,11 @@ final infobipMessagePluginUseCaseProvider =
     Provider.autoDispose<InfobipMessagePluginUseCase>(
   (ref) =>
       InfobipMessagePluginUseCase(ref.read(infobipMessagingRepositoryProvider)),
+);
+
+///[SaveUserUseCase] provider
+final saveUserUseCaseProvider = Provider.autoDispose<SaveUserUseCase>(
+  (ref) => SaveUserUseCase(ref.read(infobipMessagingRepositoryProvider)),
 );
 
 ///[ShowChatUseCase] provider

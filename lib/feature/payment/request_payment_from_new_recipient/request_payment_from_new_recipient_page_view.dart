@@ -114,12 +114,17 @@ class RequestPaymentFromNewRecipientPageView
                                                     model.sendValue = value;
                                                     print(
                                                         "got model send value:  ${model.sendValue!}");
+                                                    // ProviderScope.containerOf(
+                                                    //             context)
+                                                    //         .read(
+                                                    //             requestMoneyViewModelProvider)
+                                                    //         .currentPinValue =
+                                                    //     model.sendValue!;
                                                     ProviderScope.containerOf(
-                                                                context)
-                                                            .read(
-                                                                requestMoneyViewModelProvider)
-                                                            .currentPinValue =
-                                                        model.sendValue!;
+                                                            context)
+                                                        .read(
+                                                            requestMoneyViewModelProvider)
+                                                        .currentPinValue = value;
                                                     model.updateEditAmount(
                                                         false);
                                                   },

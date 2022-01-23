@@ -6,10 +6,7 @@ class CancellationReasonDialogModel extends BasePageViewModel {
   final FixedExtentScrollController scrollController =
       FixedExtentScrollController();
 
-  List<String> cardCancellationReason = [
-    "Card is damaged",
-    "Card is lorem ipsum",
-  ];
+ 
 
   ///current selected index subject
 

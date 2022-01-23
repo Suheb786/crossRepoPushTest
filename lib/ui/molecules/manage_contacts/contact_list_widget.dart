@@ -35,7 +35,10 @@ class ContactListWidget extends StatelessWidget {
                       backgroundColor: Theme.of(context).primaryColor,
                       child: Text(
                         ///TODO:check whether full name
-                        StringUtils.getFirstInitials(beneficiary!.fullName),
+                        beneficiary!.fullName!.split(" ").length > 1
+                            ? StringUtils.getFirstInitials(
+                                beneficiary!.fullName)
+                            : beneficiary!.fullName![0],
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 14,

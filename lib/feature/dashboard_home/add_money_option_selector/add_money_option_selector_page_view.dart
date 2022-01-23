@@ -1,14 +1,19 @@
+import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/add_money_option_selector/add_money_option_selector_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_divider.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dashboard/add_money_selector_option_widget.dart';
+import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/extension/string_casing_extension.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
 class AddMoneyOptionSelectorPageView
@@ -69,13 +74,21 @@ class AddMoneyOptionSelectorPageView
                     SizedBox(
                       height: 26,
                     ),
-                    AddMoneySelectorOptionsWidget(
-                      image: AssetUtils.receiveMoneyOther,
-                      title: S.of(context).receiveMoneyFromOthers,
-                      desc: S.of(context).receiveMoneyFromOthersDesc,
-                      buttonText: S.of(context).shareAccountInfo,
-                      onTap: () {
-                        _shareFiles(model, context);
+                    AppStreamBuilder<GetDashboardDataContent>(
+                      stream: ProviderScope.containerOf(context)
+                          .read(appHomeViewModelProvider)
+                          .getDashboardCardDataStream,
+                      initialData: GetDashboardDataContent(),
+                      dataBuilder: (context, cardData) {
+                        return AddMoneySelectorOptionsWidget(
+                          image: AssetUtils.receiveMoneyOther,
+                          title: S.of(context).receiveMoneyFromOthers,
+                          desc: S.of(context).receiveMoneyFromOthersDesc,
+                          buttonText: S.of(context).shareAccountInfo,
+                          onTap: () {
+                            _shareFiles(model, context, cardData);
+                          },
+                        );
                       },
                     ),
                     SizedBox(
@@ -174,10 +187,20 @@ class AddMoneyOptionSelectorPageView
   }
 
   void _shareFiles(
-      AddMoneyOptionSelectorViewModel model, BuildContext context) async {
+    AddMoneyOptionSelectorViewModel model,
+    BuildContext context,
+    GetDashboardDataContent? cardData,
+  ) async {
     final box = context.findRenderObject() as RenderBox?;
+    final String cardNumber = cardData!.debitCard!.first.cardNumber!.isNotEmpty
+        ? StringUtils.getFormattedCreditCardNumber(
+            cardData.debitCard!.first.cardNumber)
+        : '-';
+    final String cardName = cardData.debitCard!.first.accountTitle != null
+        ? cardData.debitCard!.first.accountTitle!.toTitleCase()
+        : '';
     await Share.share(
-        'Hello! Here’s my blink account details:\n\nZein Malhas \nJOD120315314513451341234567312\n\nGet your blink account today. Blink now!',
+        'Hello! Here’s my blink account details:\n\n${cardName} \nJOD${cardNumber}\n\nGet your blink account today. Blink now!',
         subject: 'Share account info',
         sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }
