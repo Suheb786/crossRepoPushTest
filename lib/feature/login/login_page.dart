@@ -22,6 +22,12 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> {
   }
 
   @override
+  void onModelReady(LoginViewModel model) {
+    //model.getCipher();
+    super.onModelReady(model);
+  }
+
+  @override
   Widget buildView(BuildContext context, LoginViewModel model) {
     return LoginPageView(provideBase());
   }

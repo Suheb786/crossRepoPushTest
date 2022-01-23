@@ -8,6 +8,7 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
+// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -547,12 +548,17 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while Get Additional Documentation"),
         "errorWhileGetComboValues": MessageLookupByLibrary.simpleMessage(
             "Error While Get Combo Values"),
+        "errorWhileGettingAccountCloseOtp":
+            MessageLookupByLibrary.simpleMessage(
+                "Error While Getting Account Close Otp."),
         "errorWhileGettingDashboard": MessageLookupByLibrary.simpleMessage(
             "An error has occurred While Getting Account DashBoard"),
         "errorWhileGettingFatcaCrs": MessageLookupByLibrary.simpleMessage(
             "Error While Getting FatcaCrs"),
         "errorWhileLogout":
             MessageLookupByLibrary.simpleMessage("Error While Logout"),
+        "errorWhileProcessLoanRequest": MessageLookupByLibrary.simpleMessage(
+            "Error While Process Loan Request."),
         "errorWhileRegistration": MessageLookupByLibrary.simpleMessage(
             "An error has occurred during Registration Process, please try again"),
         "establishCallError": MessageLookupByLibrary.simpleMessage(

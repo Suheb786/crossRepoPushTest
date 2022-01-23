@@ -1,7 +1,6 @@
 import 'package:domain/constants/enum/infobip_utils_enum.dart';
 import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:infobip_mobilemessaging/models/Configuration.dart';
-import 'package:infobip_mobilemessaging/models/IOSChatSettings.dart';
 import 'package:infobip_mobilemessaging/models/LibraryEvent.dart';
 import 'package:infobip_mobilemessaging/models/Message.dart';
 import 'package:infobip_mobilemessaging/models/UserData.dart';
@@ -10,7 +9,7 @@ class InfobipMessageService {
   static List<String> libraryEvents = [''];
 
   // Platform messages are asynchronous, so we initialize in an async method.
-  Future<bool> initPlatformState({required Function(bool) callback}) async {
+  Future<bool> initPlatformState() async {
     await InfobipMobilemessaging.init(
       Configuration(
         applicationCode: InfobipUtilsConstants.APPLICATION_CODE,
@@ -25,11 +24,7 @@ class InfobipMessageService {
       ),
     );
 
-    var installation = await InfobipMobilemessaging.fetchInstallation();
-    print('Push Registration Id: ' +
-        installation.getPushRegistrationId().toString());
-
-    InfobipMobilemessaging.saveUser(UserData(firstName: "TEST USER"));
+    saveUser(userData: UserData(firstName: 'GUEST', lastName: 'USER'));
 
     InfobipMobilemessaging.on(LibraryEvent.TOKEN_RECEIVED, (String token) {
       print("Callback. TOKEN_RECEIVED event:" + token);
@@ -83,7 +78,7 @@ class InfobipMessageService {
         (Message message) => {
               print(
                   "Callback. NOTIFICATION_TAPPED event:" + message.toString()),
-              callback(true),
+              // callback(true),
               addLibraryEvent("Notification Tapped"),
               if (message.chat!) {print('Chat Message Tapped')}
             });
@@ -102,7 +97,18 @@ class InfobipMessageService {
 
   Future<bool> showChat() async {
     InfobipMobilemessaging.resetMessageCounter();
-    await InfobipMobilemessaging.showChat();
+
+    await InfobipMobilemessaging.showChat(shouldBePresentedModallyIOS: true);
+    return true;
+  }
+
+  Future<bool> saveUser({required UserData userData}) async {
+    // var installation = await InfobipMobilemessaging.fetchInstallation();
+    // userData.externalUserId = installation.pushRegistrationId.toString();
+    UserData user =
+        UserData(firstName: userData.firstName, lastName: userData.lastName);
+
+    InfobipMobilemessaging.saveUser(user);
     return true;
   }
 }

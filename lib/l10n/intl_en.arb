@@ -815,5 +815,7 @@
   "residentCity": "Resident City",
   "youRequested": "You requested",
   "from": "\nfrom",
-  "addRequestMoney": "You don't have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money."
+  "addRequestMoney": "You don't have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money.",
+  "errorWhileProcessLoanRequest": "Error While Process Loan Request.",
+  "errorWhileGettingAccountCloseOtp": "Error While Getting Account Close Otp."
 }

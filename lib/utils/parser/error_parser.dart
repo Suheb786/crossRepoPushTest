@@ -382,6 +382,14 @@ class ErrorParser {
         return localisedHelper.emptyVerifyExpiryDate;
       case ErrorType.CHECK_PASSWORD_CRED_ERROR:
         return localisedHelper.checkForgetPasswordError;
+      case ErrorType.ERROR_PROCESS_WHILE_LOAN_REQUEST:
+        return localisedHelper.errorWhileProcessLoanRequest;
+      case ErrorType.ERROR_WHILE_GETTING_ACCOUNT_CLOSE_OTP:
+        return localisedHelper.errorWhileGettingAccountCloseOtp;
+      case ErrorType.INVALID_DOCUMENT:
+        return localisedHelper.errorWhileGettingAccountCloseOtp;
+      case ErrorType.SELECT_CREDIT_LIMIT_SETTINGS:
+        return localisedHelper.selectCreditLimitSettings;
 
       default:
         return "";

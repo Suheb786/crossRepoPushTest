@@ -47,13 +47,17 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> creditCardPinUnblock();
 
-  Future<Either<NetworkError, bool>> freezeDebitCard();
+  Future<Either<NetworkError, bool>> freezeDebitCard(
+      {String? status, String? tokenizedPan});
 
-  Future<Either<NetworkError, bool>> unFreezeDebitCard();
+  Future<Either<NetworkError, bool>> unFreezeDebitCard(
+      {String? status, String? tokenizedPan});
 
-  Future<Either<NetworkError, bool>> cancelDebitCard({String reason});
+  Future<Either<NetworkError, bool>> cancelDebitCard(
+      {String reason, String status, String? tokenizedPan});
 
-  Future<Either<NetworkError, bool>> changeDebitCardPin({required String pin});
+  Future<Either<NetworkError, bool>> changeDebitCardPin(
+      {required String pin, required String otp, required String tokenizedPan});
 
   Future<Either<NetworkError, bool>> unblockDebitCardPin(
       {String status, required String pin});

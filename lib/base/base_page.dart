@@ -92,7 +92,7 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
         onModelReady: _onBaseModelReady,
         builder: (BuildContext context, VM? model, Widget? child) {
           return WillPopScope(
-            onWillPop: onBackPressed,
+            onWillPop: () async => false,
             child: Scaffold(
               key: _scaffoldKey,
               backgroundColor: scaffoldBackgroundColor(),

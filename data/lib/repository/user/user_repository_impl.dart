@@ -619,4 +619,27 @@ class UserRepositoryImpl extends UserRepository {
       (r) => Right(r.isSuccessful()),
     );
   }
+
+  @override
+  Future<Either<NetworkError, bool>> iphoneLogin() async {
+    final result = await safeApiCall(
+      _remoteDS.iphoneLogin(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> changeMyNumber(
+      String mobileNo, String mobileCode) async {
+    final result = await safeApiCall(
+      _remoteDS.changeMyNumber(mobileNo: mobileNo, mobileCode: mobileCode),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
 }

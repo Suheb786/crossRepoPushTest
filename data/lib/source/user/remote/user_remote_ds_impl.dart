@@ -6,6 +6,7 @@ import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/user/additional_income.dart';
 import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
+import 'package:data/entity/remote/user/change_my_number/change_my_number_request_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
@@ -435,8 +436,6 @@ class UserRemoteDSImpl extends UserRemoteDS {
   @override
   Future<HttpResponse<GetCipherResponseEntity>> getCipher() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
-    UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
-    User user = userDBEntity!.transform();
     return _apiService.getCipher(GetCipherRequestEntity(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       baseData: baseData.toJson(),
@@ -447,11 +446,54 @@ class UserRemoteDSImpl extends UserRemoteDS {
   Future<HttpResponse<ResponseEntity>> androidLogin() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
-    User user = userDBEntity!.transform();
+    User user = User();
+    String userId = '';
+    if (userDBEntity != null) {
+      user = userDBEntity.transform();
+      userId = await decryptData(
+          content: user.id,
+          publicKey: user.publicPEM,
+          privateKey: user.privatePEM);
+    }
+
     return _apiService.androidLogin(AndroidLoginRequestEntity(
       uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
       fireBaseToken: "",
-      signature: "",
+      signature: await signedData(userId: userId, privateKey: user.privatePEM!),
+      baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> iphoneLogin() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
+    User user = User();
+    String userId = '';
+    if (userDBEntity != null) {
+      user = userDBEntity.transform();
+      userId = await decryptData(
+          content: user.id,
+          publicKey: user.publicPEM,
+          privateKey: user.privatePEM);
+    }
+
+    return _apiService.iphoneLogin(AndroidLoginRequestEntity(
+      uniqueId: DateTime.now().microsecondsSinceEpoch.toString(),
+      fireBaseToken: "",
+      signature: await signedData(userId: userId, privateKey: user.privatePEM!),
+      baseData: baseData.toJson(),
+    ));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> changeMyNumber(
+      {String? mobileNo, String? mobileCode}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.changeMyNumber(ChangeMyNumberRequestEntity(
+      getToken: true,
+      mobileNo: mobileNo,
+      mobileCode: mobileCode,
       baseData: baseData.toJson(),
     ));
   }

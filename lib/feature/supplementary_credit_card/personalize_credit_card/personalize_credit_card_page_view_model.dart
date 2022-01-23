@@ -74,14 +74,16 @@ class PersonalizeCreditCardPageViewModel extends BasePageViewModel {
   void personalizeCreditCard() {
     _personalizeCreditCardRequest.safeAdd(PersonalizeCreditCardUseCaseParams(
         creditLimitSettings: creditLimitSettingsController.text,
-        minimumSettlement: minimumSettlementController.text,
+        //minimumSettlement: minimumSettlementController.text,
         nickname: nickNameController.text));
   }
 
   void validate() {
     bool isValid = false;
-    if (creditLimitSettingsController.text.isNotEmpty &&
-        minimumSettlementController.text.isNotEmpty) {
+    if (creditLimitSettingsController.text.isNotEmpty
+        // &&
+        // minimumSettlementController.text.isNotEmpty
+        ) {
       isValid = true;
     }
     _showButtonSubject.safeAdd(isValid);

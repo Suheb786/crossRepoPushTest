@@ -4,9 +4,7 @@ import 'package:domain/usecase/payment/enter_otp_usecase.dart';
 import 'package:domain/usecase/payment/transfer_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -82,24 +80,21 @@ class EnterOtpViewModel extends BasePageViewModel {
     _enterOtpRequest.safeAdd(EnterOtpUseCaseParams(otpCode: _otpSubject.value));
   }
 
-  void transfer(TransferResponse transferResponse, String memo, bool isFriend,
-      String beneficiaryImage, BuildContext context) {
+  void transfer(
+      {required TransferResponse transferResponse,
+      required String memo,
+      required bool isFriend,
+      required String beneficiaryImage,
+      required String nickName,
+      required num limit}) {
     print('isFriend:--->$isFriend');
     _transferRequest.safeAdd(TransferUseCaseParams(
+        limit: limit,
         otpCode: _otpSubject.value,
         toAmount: transferResponse.toAmount,
         toAccount: transferResponse.toAccount,
         memo: memo,
-        nickName: ProviderScope.containerOf(context)
-                .read(sendToNewRecipientViewModelProvider)
-                .addNickNameController
-                .text
-                .isEmpty
-            ? ""
-            : ProviderScope.containerOf(context)
-                .read(sendToNewRecipientViewModelProvider)
-                .addNickNameController
-                .text,
+        nickName: nickName,
         isFriend: isFriend,
         transferType: transferResponse.transferType,
         localEq: transferResponse.localEq,

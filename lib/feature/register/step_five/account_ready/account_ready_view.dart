@@ -23,7 +23,9 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.primaryVelocity!.isNegative) {
-          Navigator.pushReplacementNamed(context, RoutePaths.CardDelivery);
+          if (!model.arguments.isDocumentUploaded) {
+            Navigator.pushReplacementNamed(context, RoutePaths.CardDelivery);
+          }
         }
       },
       child: Container(
@@ -107,28 +109,31 @@ class AccountReadyView extends BasePageViewWidget<AccountReadyViewModel> {
                           ],
                         ),
                       ),
-                      Column(
-                        children: [
-                          AnimatedButton(
-                            buttonText: S.of(context).swipeToProceed,
-                            textColor: Theme.of(context).accentColor,
-                            borderColor: Theme.of(context).accentColor,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 14.0),
-                            child: Text(
-                              S.of(context).cardDelivery,
-                              style: TextStyle(
-                                color: Theme.of(context).accentColor,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 12,
+                      Visibility(
+                        visible: !model.arguments.isDocumentUploaded,
+                        child: Column(
+                          children: [
+                            AnimatedButton(
+                              buttonText: S.of(context).swipeToProceed,
+                              textColor: Theme.of(context).accentColor,
+                              borderColor: Theme.of(context).accentColor,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 14.0),
+                              child: Text(
+                                S.of(context).cardDelivery,
+                                style: TextStyle(
+                                  color: Theme.of(context).accentColor,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 12,
+                                ),
                               ),
                             ),
-                          ),
-                          SizedBox(
-                            height: 32,
-                          )
-                        ],
+                            SizedBox(
+                              height: 32,
+                            )
+                          ],
+                        ),
                       )
                     ],
                   );
