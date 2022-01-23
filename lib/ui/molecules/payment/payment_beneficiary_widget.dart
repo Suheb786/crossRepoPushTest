@@ -33,7 +33,9 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
                         ? Theme.of(context).canvasColor
                         : Theme.of(context).primaryColor,
                     child: Text(
-                      StringUtils.getFirstInitials(beneficiary!.fullName),
+                      beneficiary!.fullName!.split(" ").length > 1
+                          ? StringUtils.getFirstInitials(beneficiary!.fullName)
+                          : beneficiary!.fullName![0],
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 20,

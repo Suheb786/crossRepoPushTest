@@ -169,7 +169,8 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
         dbtrAcct: beneficiary!.accountNo ?? "",
         dbtrName: beneficiary!.fullName ?? "",
         type: beneficiary!.purposeType ?? "",
-        limit: beneficiary!.limit,
+        limit:
+            purposeDetail == null ? beneficiary!.limit : purposeDetail!.limit,
         detCustomerType: beneficiary!.detCustomerType ?? ""));
   }
 

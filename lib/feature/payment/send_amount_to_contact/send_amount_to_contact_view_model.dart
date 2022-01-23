@@ -163,7 +163,7 @@ class SendAmountToContactViewModel extends BasePageViewModel {
       otpCode: '576824',
         toAmount: transferResponse.toAmount,
         toAccount: transferResponse.toAccount,
-        limit: beneficiary.limit,
+        limit: purposeDetail == null ? beneficiary.limit : purposeDetail!.limit,
         memo: purposeDetail == null
             ? (beneficiary.purpose == null ? '' : beneficiary.purpose!)
             : purposeDetail!.strCode!,

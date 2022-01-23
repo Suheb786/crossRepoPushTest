@@ -65,6 +65,13 @@ class TransferUseCaseParams extends Params {
 
   @override
   Either<AppError, bool> verify() {
+    print("Limit : ${limit}");
+    if (memo == null || memo == "") {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.EMPTY_PURPOSE_DETAIL,
+          cause: Exception()));
+    }
     if (limit == null) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
