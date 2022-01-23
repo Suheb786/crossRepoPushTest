@@ -343,7 +343,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.only(top: 20.0),
+                                      padding: EdgeInsets.only(top: 10.0),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -356,7 +356,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                       .AddMoneyOptionSelector);
                                             },
                                             child: Container(
-                                              height: 40,
+                                              height: 35,
                                               width: 105,
                                               decoration: BoxDecoration(
                                                   borderRadius:
