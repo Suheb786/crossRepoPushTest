@@ -1,7 +1,6 @@
 import 'package:animated_widgets/widgets/rotation_animated.dart';
 import 'package:animated_widgets/widgets/shake_animated_widget.dart';
 import 'package:domain/constants/enum/document_type_enum.dart';
-import 'package:domain/constants/enum/tax_payer_type.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/fatca_crs/upload_signature_response.dart';
 import 'package:flutter/material.dart';
@@ -84,27 +83,28 @@ class FatcaSignaturePageView
                                   if (details.primaryVelocity!.isNegative) {
                                     model.setFatcaResponse(context);
                                   } else {
-                                    ProviderScope.containerOf(context)
-                                                .read(
-                                                    registerStepFourViewModelProvider)
-                                                .taxPayerType ==
-                                            TaxPayerTypeEnum.W8
-                                        ? Future.delayed(
-                                            Duration(milliseconds: 500), () {
-                                            ProviderScope.containerOf(context)
-                                                .read(
-                                                    registerStepFourViewModelProvider)
-                                                .registrationStepFourPageController
-                                                .move(3, animation: false);
-                                          })
-                                        : Future.delayed(
-                                            Duration(milliseconds: 500), () {
-                                            ProviderScope.containerOf(context)
-                                                .read(
-                                                    registerStepFourViewModelProvider)
-                                                .registrationStepFourPageController
-                                                .move(6, animation: false);
-                                          });
+                                    ///back navigation from signature screen
+                                    // ProviderScope.containerOf(context)
+                                    //             .read(
+                                    //                 registerStepFourViewModelProvider)
+                                    //             .taxPayerType ==
+                                    //         TaxPayerTypeEnum.W8
+                                    //     ? Future.delayed(
+                                    //         Duration(milliseconds: 500), () {
+                                    //         ProviderScope.containerOf(context)
+                                    //             .read(
+                                    //                 registerStepFourViewModelProvider)
+                                    //             .registrationStepFourPageController
+                                    //             .move(3, animation: false);
+                                    //       })
+                                    //     : Future.delayed(
+                                    //         Duration(milliseconds: 500), () {
+                                    //         ProviderScope.containerOf(context)
+                                    //             .read(
+                                    //                 registerStepFourViewModelProvider)
+                                    //             .registrationStepFourPageController
+                                    //             .move(6, animation: false);
+                                    //       });
                                   }
                                 },
                                 child: Card(

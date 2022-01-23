@@ -22,14 +22,22 @@ class TaxationDetailsPageState
 
   @override
   Color? scaffoldBackgroundColor() {
-    return Theme
-        .of(context)
-        .primaryColor;
+    return Theme.of(context).primaryColor;
   }
 
   @override
   Widget buildView(BuildContext context, TaxationDetailsPageViewModel model) {
     return TaxationDetailsPageView(provideBase());
+  }
+
+  @override
+  void onModelReady(TaxationDetailsPageViewModel model) {
+    if (!ProviderScope.containerOf(context)
+        .read(registerStepFourViewModelProvider)
+        .isGetFatca) {
+      model.getFatcaQuestions();
+    }
+    super.onModelReady(model);
   }
 
   @override

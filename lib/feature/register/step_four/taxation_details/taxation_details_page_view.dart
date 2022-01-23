@@ -89,7 +89,14 @@ class TaxationDetailsPageView
                             Resource<GetFatcaQuestionsResponse>>(
                           stream: model.getFatcaQuestionsStream,
                           initialData: Resource.none(),
-                          onData: (data) {},
+                          onData: (data) {
+                            if (data.status == Status.SUCCESS) {
+                              ProviderScope.containerOf(context)
+                                  .read(registerStepFourViewModelProvider)
+                                  .isGetFatca = true;
+                              // model.isFatcaGet = true;
+                            }
+                          },
                           dataBuilder: (context, questions) {
                             switch (questions!.status) {
                               case Status.SUCCESS:

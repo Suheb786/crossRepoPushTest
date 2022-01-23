@@ -48,6 +48,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
   bool bornInUS = false;
   bool isUSCitizen = false;
   bool isPEP = false;
+  bool isFatcaGet = false;
 
   final SetFatcaQuestionsResponseUseCaseParams setFatcaParams =
       SetFatcaQuestionsResponseUseCaseParams();
@@ -148,7 +149,7 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
         }
       });
     });
-    getFatcaQuestions();
+    //getFatcaQuestions();
   }
 
   void getError(Resource<SetFatcResponse> event) {

@@ -359,24 +359,31 @@ class FatcaUSW8TaxPayersDetailsPageView
                                                               .beneficialCountryKey,
                                                           readOnly: true,
                                                           onPressed: () {
-                                                            CountryDialog.show(
-                                                                context,
-                                                                title: S
-                                                                    .of(context)
-                                                                    .beneficialOwnerIsAResidenceOf,
-                                                                onDismissed:
-                                                                    () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                            }, onSelected:
-                                                                    (value) {
-                                                              Navigator.pop(
-                                                                  context);
-                                                              model.beneficialCountryController
-                                                                      .text =
-                                                                  value
-                                                                      .countryName!;
-                                                              model.isValid();
+                                                            Future.delayed(
+                                                                Duration(
+                                                                    milliseconds:
+                                                                        200),
+                                                                () {
+                                                              CountryDialog.show(
+                                                                  context,
+                                                                  title: S
+                                                                      .of(
+                                                                          context)
+                                                                      .beneficialOwnerIsAResidenceOf,
+                                                                  onDismissed:
+                                                                      () {
+                                                                Navigator.pop(
+                                                                    context);
+                                                              }, onSelected:
+                                                                      (value) {
+                                                                Navigator.pop(
+                                                                    context);
+                                                                model.beneficialCountryController
+                                                                        .text =
+                                                                    value
+                                                                        .countryName!;
+                                                                model.isValid();
+                                                              });
                                                             });
                                                           },
                                                           suffixIcon:

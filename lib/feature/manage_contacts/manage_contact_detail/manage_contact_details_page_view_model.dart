@@ -191,7 +191,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
 
   void getPurpose(String toAccount, String transferType) {
     _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
-      toAccount: toAccount,
+        toAccount: toAccount,
         transferType: transferType,
         detCustomerType: "",
         type: ""));
