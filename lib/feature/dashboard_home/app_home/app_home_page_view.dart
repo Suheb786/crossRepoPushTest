@@ -10,7 +10,6 @@ import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_
 import 'package:neo_bank/feature/dashboard_home/get_credit_card/get_credit_card_page.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_page.dart';
-import 'package:neo_bank/feature/dashboard_home/placeholder/placeholder_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
@@ -30,7 +29,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
     MyAccountPage(),
     GetCreditCardPage(),
     MyDebitCardPage(),
-    PlaceholderPage()
+    // PlaceholderPage()
   ];
 
   @override
@@ -67,9 +66,13 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                 context, RoutePaths.AccountTransaction);
                           } else if (currentStep == 2) {
                             model.updateShowTimeLineStream(!showTimeLine!);
+                          } else if (currentStep == 3) {
+                            model.updateShowTimeLineStream(!showTimeLine!);
                           }
                         } else {
-                          if (currentStep == 1 || currentStep == 2) {
+                          if (currentStep == 1 ||
+                              currentStep == 2 ||
+                              currentStep == 3) {
                             if (!showTimeLine!) {
                               model.updateShowTimeLineStream(!showTimeLine);
                             }
@@ -117,20 +120,16 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Padding(
-                                        padding: EdgeInsets.only(top: 18),
-                                        child: currentStep != 3
-                                            ? LottieBuilder.asset(
-                                                'assets/animation/Swipe_Down.json',
-                                                width: 28.0,
-                                                height: 28.0,
-                                              )
-                                            : Container(
-                                                height: 28,
-                                                width: 28,
-                                              ),
-                                        // child:
-                                        //     AppSvg.asset(AssetUtils.swipeDown),
-                                      ),
+                                          padding: EdgeInsets.only(top: 18),
+                                          child: LottieBuilder.asset(
+                                            'assets/animation/Swipe_Down.json',
+                                            width: 28.0,
+                                            height: 28.0,
+                                          )
+
+                                          // child:
+                                          //     AppSvg.asset(AssetUtils.swipeDown),
+                                          ),
                                       Expanded(
                                         child: Padding(
                                           padding: EdgeInsets.only(top: 4),
@@ -806,14 +805,12 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                 bottom: 31,
                                                 left: 19),
                                             child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
                                               children: [
                                                 Image.asset(
                                                   AssetUtils.blink,
-                                                  width: 60,
+                                                  width: 50,
                                                 ),
+                                                Expanded(child: Container()),
                                                 Container(
                                                   decoration: BoxDecoration(
                                                       color: Theme.of(context)
@@ -853,7 +850,7 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                               width: 281,
                                               height: 100,
                                               decoration: BoxDecoration(
-                                                  color: currentStep == 1
+                                                  color: currentStep == 1 || currentStep == 3
                                                       ? Theme.of(context)
                                                           .primaryColor
                                                       : Theme.of(context)

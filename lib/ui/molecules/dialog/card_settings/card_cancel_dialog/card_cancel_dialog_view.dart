@@ -37,15 +37,15 @@ class CardCancelDialogView extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         insetPadding:
             EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
-        child: GestureDetector(
-          onVerticalDragEnd: (details) {
-            if (details.primaryVelocity!.isNegative) {
-              onDismissed?.call();
-            }
-          },
-          child: Container(
-            child: SingleChildScrollView(
-              physics: NeverScrollableScrollPhysics(),
+        child: Container(
+          child: SingleChildScrollView(
+            physics: NeverScrollableScrollPhysics(),
+            child: GestureDetector(
+              onVerticalDragEnd: (details) {
+                if (details.primaryVelocity! > 0) {
+                  onDismissed?.call();
+                }
+              },
               child: Column(
                 children: [
                   SizedBox(height: 34),

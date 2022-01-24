@@ -78,7 +78,7 @@ class AppHomeViewModel extends BasePageViewModel {
 
   List<Widget> buildPageIndicator(int currentPage) {
     List<Widget> list = [];
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 3; i++) {
       list.add(i == currentPage
           ? indicator(true, i, currentPage)
           : indicator(false, i, currentPage));

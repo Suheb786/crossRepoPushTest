@@ -150,7 +150,10 @@ class AddMoneyOptionSelectorPageView
                             width: 60,
                           ),
                           InkWell(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.BlinkCreditCard);
+                            },
                             child: Container(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 14, vertical: 8),

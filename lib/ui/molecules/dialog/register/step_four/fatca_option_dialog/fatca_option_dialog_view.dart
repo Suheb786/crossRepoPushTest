@@ -45,8 +45,8 @@ class FatcaOptionDialogView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(16.0)),
             insetPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 36),
             child: GestureDetector(
-              onPanUpdate: (details) {
-                if (details.delta.dy > 0 || details.delta.dy.isNegative) {
+              onVerticalDragEnd: (details) {
+                if (details.primaryVelocity! > 0) {
                   onDismissed?.call();
                 }
               },
