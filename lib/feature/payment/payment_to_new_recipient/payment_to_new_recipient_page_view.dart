@@ -99,8 +99,26 @@ class PaymentToNewRecipientPageView
                                             ? Container(
                                                 height: 28,
                                                 width: 100,
-                                                child: TextField(
+                                                child: TextFormField(
                                                   autofocus: true,
+                                                  onChanged: (value) {
+                                                    if (value != ".") {
+                                                      ProviderScope.containerOf(
+                                                                  context)
+                                                              .read(
+                                                                  sendMoneyViewModelProvider)
+                                                              .currentPinValue =
+                                                          model
+                                                              .editAmountController
+                                                              .text;
+                                                      print(
+                                                          "got value : ${ProviderScope.containerOf(context).read(sendMoneyViewModelProvider).currentPinValue}");
+                                                    }
+                                                  },
+                                                  onFieldSubmitted: (value) {
+                                                    model.updateEditAmount(
+                                                        false);
+                                                  },
                                                   style: TextStyle(
                                                       fontSize: 28,
                                                       fontWeight:
@@ -119,15 +137,6 @@ class PaymentToNewRecipientPageView
                                                         EdgeInsets.only(
                                                             bottom: 10),
                                                   ),
-                                                  onSubmitted: (value) {
-                                                    ProviderScope.containerOf(
-                                                            context)
-                                                        .read(
-                                                            sendMoneyViewModelProvider)
-                                                        .currentPinValue = value;
-                                                    model.updateEditAmount(
-                                                        false);
-                                                  },
                                                 ),
                                               )
                                             : Text(

@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -7995,6 +7996,16 @@ class S {
     return Intl.message(
       'Error While Getting Account Close Otp.',
       name: 'errorWhileGettingAccountCloseOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN / Mobile No. / Account`
+  String get ibanOrMobileOrAccount {
+    return Intl.message(
+      'IBAN / Mobile No. / Account',
+      name: 'ibanOrMobileOrAccount',
       desc: '',
       args: [],
     );

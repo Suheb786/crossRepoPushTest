@@ -659,6 +659,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("84118220000022123444"),
         "ibanOrMobile":
             MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / ALIAS"),
+        "ibanOrMobileOrAccount":
+            MessageLookupByLibrary.simpleMessage("IBAN / Mobile No. / Account"),
         "ibanOrMobileRequest":
             MessageLookupByLibrary.simpleMessage("Mobile No. / ALIAS"),
         "ibanOutsideBlink": MessageLookupByLibrary.simpleMessage(

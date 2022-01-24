@@ -175,28 +175,33 @@ class SendAmountToContactSuccessPageView
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 23),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AppSvg.asset(AssetUtils.share,
-                        color:
-                            Theme.of(context).accentTextTheme.bodyText1!.color),
-                    Padding(
-                      padding: EdgeInsets.only(left: 11),
-                      child: Text(
-                        S.of(context).shareMyReceipt,
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 14,
-                            color: Theme.of(context)
-                                .accentTextTheme
-                                .bodyText1!
-                                .color),
-                      ),
-                    )
-                  ],
+              Visibility(
+                visible: false,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 23),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AppSvg.asset(AssetUtils.share,
+                          color: Theme.of(context)
+                              .accentTextTheme
+                              .bodyText1!
+                              .color),
+                      Padding(
+                        padding: EdgeInsets.only(left: 11),
+                        child: Text(
+                          S.of(context).shareMyReceipt,
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 14,
+                              color: Theme.of(context)
+                                  .accentTextTheme
+                                  .bodyText1!
+                                  .color),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
               Padding(
@@ -220,25 +225,34 @@ class SendAmountToContactSuccessPageView
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 33),
-                child: Text(
-                  S.of(context).undoTransaction,
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color:
-                          Theme.of(context).accentTextTheme.bodyText1!.color),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 4),
-                child: Text(
-                  "0:07",
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Theme.of(context).accentColor),
+              Visibility(
+                visible: false,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 33),
+                      child: Text(
+                        S.of(context).undoTransaction,
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context)
+                                .accentTextTheme
+                                .bodyText1!
+                                .color),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 4),
+                      child: Text(
+                        "0:07",
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).accentColor),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
