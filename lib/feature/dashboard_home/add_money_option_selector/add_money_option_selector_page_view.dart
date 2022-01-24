@@ -12,8 +12,6 @@ import 'package:neo_bank/ui/molecules/dashboard/add_money_selector_option_widget
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/extension/string_casing_extension.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
 class AddMoneyOptionSelectorPageView
@@ -192,15 +190,8 @@ class AddMoneyOptionSelectorPageView
     GetDashboardDataContent? cardData,
   ) async {
     final box = context.findRenderObject() as RenderBox?;
-    final String cardNumber = cardData!.debitCard!.first.cardNumber!.isNotEmpty
-        ? StringUtils.getFormattedCreditCardNumber(
-            cardData.debitCard!.first.cardNumber)
-        : '-';
-    final String cardName = cardData.debitCard!.first.accountTitle != null
-        ? cardData.debitCard!.first.accountTitle!.toTitleCase()
-        : '';
     await Share.share(
-        'Hello! Here’s my blink account details:\n\n${cardName} \nJOD${cardNumber}\n\nGet your blink account today. Blink now!',
+        'Hello! Here are my Blink account details: \n\n${cardData!.account!.accountTitle ?? ''} \n${cardData.account!.iban ?? '-'}\n\nOpen your Blink account today.',
         subject: 'Share account info',
         sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }

@@ -72,9 +72,9 @@ class LoginViewModel extends BasePageViewModel {
   PublishSubject<AndroidLoginUseCaseParams> _androidLoginRequest =
       PublishSubject();
 
-  PublishSubject<Resource<User>> _androidLoginResponse = PublishSubject();
+  PublishSubject<Resource<bool>> _androidLoginResponse = PublishSubject();
 
-  Stream<Resource<User>> get androidLoginStream => _androidLoginResponse.stream;
+  Stream<Resource<bool>> get androidLoginStream => _androidLoginResponse.stream;
 
   ///iphone login
   PublishSubject<IphoneLoginUseCaseParams> _iphoneLoginRequest =

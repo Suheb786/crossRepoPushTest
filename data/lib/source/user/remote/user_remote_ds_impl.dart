@@ -443,7 +443,7 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<LoginResponseEntity>> androidLogin(
+  Future<HttpResponse<ResponseEntity>> androidLogin(
       {required String cipher}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();

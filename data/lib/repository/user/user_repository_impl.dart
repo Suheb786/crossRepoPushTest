@@ -610,14 +610,14 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, User>> androidLogin(
+  Future<Either<NetworkError, bool>> androidLogin(
       {required String cipher}) async {
     final result = await safeApiCall(
       _remoteDS.androidLogin(cipher: cipher),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.data.transform()),
+      (r) => Right(r.isSuccessful()),
     );
   }
 

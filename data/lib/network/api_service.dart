@@ -608,7 +608,7 @@ abstract class ApiService {
       @Body() GetCipherRequestEntity getCipherRequestEntity);
 
   @POST("/auth/AndroidLogin")
-  Future<HttpResponse<LoginResponseEntity>> androidLogin(
+  Future<HttpResponse<ResponseEntity>> androidLogin(
       @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 
   @POST("/Auth/CheckForgetPasswordCred")

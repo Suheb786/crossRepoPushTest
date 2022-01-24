@@ -187,7 +187,7 @@ abstract class UserRepository {
 
   Future<Either<NetworkError, GetCipherResponse>> getCipher();
 
-  Future<Either<NetworkError, User>> androidLogin({required String cipher});
+  Future<Either<NetworkError, bool>> androidLogin({required String cipher});
 
   Future<Either<NetworkError, User>> iphoneLogin({required String cipher});
 

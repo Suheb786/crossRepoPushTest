@@ -57,7 +57,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                                       alignment: Alignment.center,
                                       child: Container(
                                         height: 373,
-                                        width: 263,
+                                        width: 282,
                                         decoration: BoxDecoration(
                                           color: Colors.black,
                                           borderRadius:
@@ -82,7 +82,7 @@ class CaptureView extends BasePageViewWidget<CaptureViewModel> {
                               alignment: Alignment.center,
                               child: Container(
                                 height: 381,
-                                width: 271,
+                                width: 282,
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                       color: AppColor.white, width: 2),

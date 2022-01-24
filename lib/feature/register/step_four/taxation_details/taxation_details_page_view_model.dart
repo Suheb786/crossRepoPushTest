@@ -166,8 +166,8 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
       case ErrorType.INVALID_TAX_COUNTRY:
         countrySelectorKey.currentState!.isValid = false;
         break;
-      case ErrorType.INVALID_DECLARATION_SELECTION:
-        break;
+      // case ErrorType.INVALID_DECLARATION_SELECTION:
+      //   break;
       default:
         break;
     }

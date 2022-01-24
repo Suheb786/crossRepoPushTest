@@ -1795,19 +1795,19 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<LoginResponseEntity>> androidLogin(
+  Future<HttpResponse<ResponseEntity>> androidLogin(
       androidLoginRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(androidLoginRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<LoginResponseEntity>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/auth/AndroidLogin',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = LoginResponseEntity.fromJson(_result.data!);
+    final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

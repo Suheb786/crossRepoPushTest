@@ -85,11 +85,14 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                       }
                                     },
                                     dataBuilder: (context, snapshot) {
-                                      return AppStreamBuilder<Resource<User>>(
+                                      return AppStreamBuilder<Resource<bool>>(
                                           stream: model.androidLoginStream,
                                           initialData: Resource.none(),
                                           onData: (data) {
                                             if (data.status == Status.SUCCESS) {
+                                              ProviderScope.containerOf(context)
+                                                  .read(appViewModel)
+                                                  .getToken();
                                               model.checkKycStatus();
                                             }
                                           },

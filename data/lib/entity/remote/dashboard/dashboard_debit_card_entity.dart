@@ -55,7 +55,7 @@ class DashboardDebitCardEntity
   @override
   DebitCard transform() {
     return DebitCard(
-        cardNumber: this.cardNumber != null
+        cardNumber: this.cardNumber != null && this.cardNumber!.isNotEmpty
             ? EncryptDecryptHelper.decryptCard(cardNo: this.cardNumber!)
             : "",
         cvv: this.cvv != null
