@@ -1,9 +1,26 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
+  - Alamofire (4.9.1)
   - blinkid_flutter (5.14.0):
     - Flutter
     - PPBlinkID (~> 5.14.0)
   - camera (0.0.1):
     - Flutter
+  - CryptoSwift (1.4.2)
   - device_info (0.0.1):
     - Flutter
   - DKImagePickerController/Core (4.3.2):
@@ -37,11 +54,15 @@ PODS:
   - DKPhotoGallery/Resource (0.0.17):
     - SDWebImage
     - SwiftyGif
+  - DTTJailbreakDetection (0.4.0)
   - file_picker (0.0.1):
     - DKImagePickerController/PhotoGallery
     - Flutter
   - Flutter (1.0.0)
   - flutter_3des (0.0.1):
+    - Flutter
+  - flutter_jailbreak_detection (1.0.0):
+    - DTTJailbreakDetection
     - Flutter
   - flutter_sim_country_code (0.0.1):
     - Flutter
@@ -58,28 +79,53 @@ PODS:
   - google_maps_flutter (0.0.1):
     - Flutter
     - GoogleMaps
-  - GoogleMaps (4.1.0):
-    - GoogleMaps/Maps (= 4.1.0)
-  - GoogleMaps/Base (4.1.0)
-  - GoogleMaps/Maps (4.1.0):
+  - GoogleMaps (4.2.0):
+    - GoogleMaps/Maps (= 4.2.0)
+  - GoogleMaps/Base (4.2.0)
+  - GoogleMaps/Maps (4.2.0):
     - GoogleMaps/Base
+  - http_certificate_pinning (1.0.3):
+    - Alamofire (~> 4.7)
+    - CryptoSwift
+    - Flutter
+  - IBGoogleWebRTC (1.0.32463)
   - image_cropper (0.0.4):
     - Flutter
     - TOCropViewController (~> 2.6.0)
   - image_picker (0.0.1):
     - Flutter
+  - infobip_mobilemessaging (0.0.1):
+    - Flutter
+    - MobileMessaging/Core (= 9.2.10)
+    - MobileMessaging/Geofencing (= 9.2.10)
+    - MobileMessaging/InAppChat (= 9.2.10)
+  - infobip_plugin (0.0.1):
+    - AFNetworking
+    - Flutter
+    - InfobipRTC
+  - InfobipRTC (1.4.27):
+    - IBGoogleWebRTC (~> 1.0.32463)
   - local_auth (0.0.1):
     - Flutter
+  - MobileMessaging/Core (9.2.10)
+  - MobileMessaging/Geofencing (9.2.10):
+    - MobileMessaging/Core
+  - MobileMessaging/InAppChat (9.2.10):
+    - MobileMessaging/Core
   - package_info (0.0.1):
     - Flutter
+  - package_info_plus (0.4.5):
+    - Flutter
   - path_provider (0.0.1):
+    - Flutter
+  - "permission_handler (5.1.0+2)":
     - Flutter
   - PPBlinkID (5.14.0)
   - r_get_ip (0.0.1):
     - Flutter
-  - SDWebImage (5.11.1):
-    - SDWebImage/Core (= 5.11.1)
-  - SDWebImage/Core (5.11.1)
+  - SDWebImage (5.12.0):
+    - SDWebImage/Core (= 5.12.0)
+  - SDWebImage/Core (5.12.0)
   - share_plus (0.0.1):
     - Flutter
   - sqflite (0.0.2):
@@ -98,16 +144,22 @@ DEPENDENCIES:
   - file_picker (from `.symlinks/plugins/file_picker/ios`)
   - Flutter (from `Flutter`)
   - flutter_3des (from `.symlinks/plugins/flutter_3des/ios`)
+  - flutter_jailbreak_detection (from `.symlinks/plugins/flutter_jailbreak_detection/ios`)
   - flutter_sim_country_code (from `.symlinks/plugins/flutter_sim_country_code/ios`)
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - geocoding (from `.symlinks/plugins/geocoding/ios`)
   - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
   - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
+  - http_certificate_pinning (from `.symlinks/plugins/http_certificate_pinning/ios`)
   - image_cropper (from `.symlinks/plugins/image_cropper/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
+  - infobip_mobilemessaging (from `.symlinks/plugins/infobip_mobilemessaging/ios`)
+  - infobip_plugin (from `.symlinks/plugins/infobip_plugin/ios`)
   - local_auth (from `.symlinks/plugins/local_auth/ios`)
   - package_info (from `.symlinks/plugins/package_info/ios`)
+  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - r_get_ip (from `.symlinks/plugins/r_get_ip/ios`)
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
@@ -115,10 +167,17 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AFNetworking
+    - Alamofire
+    - CryptoSwift
     - DKImagePickerController
     - DKPhotoGallery
+    - DTTJailbreakDetection
     - FMDB
     - GoogleMaps
+    - IBGoogleWebRTC
+    - InfobipRTC
+    - MobileMessaging
     - PPBlinkID
     - SDWebImage
     - SwiftyGif
@@ -138,6 +197,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_3des:
     :path: ".symlinks/plugins/flutter_3des/ios"
+  flutter_jailbreak_detection:
+    :path: ".symlinks/plugins/flutter_jailbreak_detection/ios"
   flutter_sim_country_code:
     :path: ".symlinks/plugins/flutter_sim_country_code/ios"
   fluttertoast:
@@ -148,16 +209,26 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/geolocator_apple/ios"
   google_maps_flutter:
     :path: ".symlinks/plugins/google_maps_flutter/ios"
+  http_certificate_pinning:
+    :path: ".symlinks/plugins/http_certificate_pinning/ios"
   image_cropper:
     :path: ".symlinks/plugins/image_cropper/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
+  infobip_mobilemessaging:
+    :path: ".symlinks/plugins/infobip_mobilemessaging/ios"
+  infobip_plugin:
+    :path: ".symlinks/plugins/infobip_plugin/ios"
   local_auth:
     :path: ".symlinks/plugins/local_auth/ios"
   package_info:
     :path: ".symlinks/plugins/package_info/ios"
+  package_info_plus:
+    :path: ".symlinks/plugins/package_info_plus/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
   r_get_ip:
     :path: ".symlinks/plugins/r_get_ip/ios"
   share_plus:
@@ -168,29 +239,42 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/url_launcher/ios"
 
 SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   blinkid_flutter: b62068dbc3f20f822468f3ad69b49fd6641bd7a2
-  camera: 3164201dc344383e62282964016528c4f5a9ad50
+  camera: fe33292aff715a981eb34d7ce7b35b54337ff34c
+  CryptoSwift: a532e74ed010f8c95f611d00b8bbae42e9fe7c17
   device_info: d7d233b645a32c40dfdc212de5cf646ca482f175
   DKImagePickerController: b5eb7f7a388e4643264105d648d01f727110fc3d
   DKPhotoGallery: fdfad5125a9fdda9cc57df834d49df790dbb4179
+  DTTJailbreakDetection: 5e356c5badc17995f65a83ed9483f787a0057b71
   file_picker: 3e6c3790de664ccf9b882732d9db5eaf6b8d4eb1
-  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  Flutter: 50d75fe2f02b26cc09d224853bb45737f8b3214a
   flutter_3des: b3e82de7e7b4a0b0328b00101418ae0b1c74df63
+  flutter_jailbreak_detection: f6c01e4bc73641c6b69c5112e50301240601abb4
   flutter_sim_country_code: 364e91e71f067cdec1dd1228eb4d1f13ab1a54e5
   fluttertoast: 6122fa75143e992b1d3470f61000f591a798cc58
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   geocoding: 32cfcdb16d38d907caaba65e2e42ad10d38bee58
   geolocator_apple: b741765c55dc21950e3e106e8b3584e55cf81ce5
   google_maps_flutter: 279865bd07e2d8751f43a3bc64bac7f6075d0c93
-  GoogleMaps: 008e2c80e38605b56b560e8deb73d4194ff30bef
+  GoogleMaps: eb03e327edfd70b06de1e6e321653f73712df7ad
+  http_certificate_pinning: 23157eae20c5887e49372b3cbe7a1d5863eb9bad
+  IBGoogleWebRTC: 5814fcf577b2c7eca22385af7a74c79f648f2aac
   image_cropper: f1668dd8d2cad2d357955caad15a40547856edcb
   image_picker: e06f7a68f000bd36f552c1847e33cda96ed31f1f
+  infobip_mobilemessaging: 06b68ef87a13f44c8e28eb98a1681108e56500a0
+  infobip_plugin: 04f0e6f190421989e1c15a061e682170cfc7c3dd
+  InfobipRTC: db1de3be81d0f33f659278499470e87184076e17
   local_auth: 25938960984c3a7f6e3253e3f8d962fdd16852bd
+  MobileMessaging: f130ec2523facbb49c9c1b04c62b0a2e3b2b655d
   package_info: 873975fc26034f0b863a300ad47e7f1ac6c7ec62
+  package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
   PPBlinkID: c432c90e04d59698e9675d945e401720471a3ebb
   r_get_ip: 5b7a232114eacec8935eef83b7400d8d63baba48
-  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SDWebImage: 4ea20cca2986adc5aacde07aa686742fd4c67a37
   share_plus: 056a1e8ac890df3e33cb503afffaf1e9b4fbae68
   sqflite: 6d358c025f5b867b29ed92fc697fd34924e11904
   SwiftyGif: 5d4af95df24caf1c570dbbcb32a3b8a0763bc6d7
@@ -198,6 +282,6 @@ SPEC CHECKSUMS:
   TOCropViewController: 3105367e808b7d3d886a74ff59bf4804e7d3ab38
   url_launcher: 6fef411d543ceb26efce54b05a0a40bfd74cbbef
 
-PODFILE CHECKSUM: a75497545d4391e2d394c3668e20cfb1c2bbd4aa
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2

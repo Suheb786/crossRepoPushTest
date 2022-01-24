@@ -16,16 +16,17 @@ class ConfirmPinUseCase
   @override
   Future<Either<NetworkError, bool>> execute(
       {required ConfirmPinUseCaseParams params}) {
-    return _repository.setCardPin(params.currentPin);
+    return _repository.setCardPin(params.currentPin, params.cardNumber!);
   }
 }
 
 class ConfirmPinUseCaseParams extends Params {
   final String currentPin;
   final String previousPin;
+  final String? cardNumber;
 
   ConfirmPinUseCaseParams(
-      {required this.currentPin, required this.previousPin});
+      {required this.currentPin, required this.previousPin, this.cardNumber});
 
   @override
   Either<AppError, bool> verify() {
@@ -43,6 +44,11 @@ class ConfirmPinUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.PIN_NOT_MATCH,
+          cause: Exception()));
+    } else if (this.cardNumber!.isEmpty) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.NETWORK,
           cause: Exception()));
     }
     return Right(true);

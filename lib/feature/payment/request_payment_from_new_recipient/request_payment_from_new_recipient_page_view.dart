@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/feature/payment/request_from_new_recipient/request_from_new_recipient_page.dart';
 import 'package:neo_bank/feature/payment/request_payment_from_new_recipient/request_payment_from_new_recipient_view_model.dart';
@@ -16,7 +17,10 @@ class RequestPaymentFromNewRecipientPageView
     extends BasePageViewWidget<RequestPaymentFromNewRecipientViewModel> {
   RequestPaymentFromNewRecipientPageView(ProviderBase model) : super(model);
 
-  final pages = [RequestFromNewRecipientPage(), BaseCardPage()];
+  final pages = [
+    RequestFromNewRecipientPage(),
+    Visibility(visible: false, child: BaseCardPage())
+  ];
 
   @override
   Widget build(BuildContext context, model) {
@@ -34,20 +38,21 @@ class RequestPaymentFromNewRecipientPageView
                 Navigator.pop(context);
               }
             },
+            onTap: () {},
             child: Column(
               children: [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 24),
                   child: DotsIndicator(
-                    dotsCount: pages.length,
+                    dotsCount: pages.length - 1,
                     position: currentStep!.toDouble(),
                     decorator: DotsDecorator(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
-                        activeSize:
-                            Size((MediaQuery.of(context).size.width) / 2.5, 4),
-                        size:
-                            Size((MediaQuery.of(context).size.width) / 2.5, 4),
+                        activeSize: Size(
+                            (MediaQuery.of(context).size.width - 50) / 1, 4),
+                        size: Size(
+                            (MediaQuery.of(context).size.width - 50) / 1, 4),
                         spacing: EdgeInsets.symmetric(horizontal: 1),
                         activeShape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5)),
@@ -79,12 +84,61 @@ class RequestPaymentFromNewRecipientPageView
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    "350.0",
-                                    style: TextStyle(
-                                        fontSize: 28,
-                                        fontWeight: FontWeight.w700),
-                                  ),
+                                  AppStreamBuilder<bool>(
+                                      stream: model.editAmountStream,
+                                      initialData: false,
+                                      dataBuilder: (context, isEdit) {
+                                        return isEdit!
+                                            ? Container(
+                                                height: 28,
+                                                width: 100,
+                                                child: TextField(
+                                                  autofocus: true,
+                                                  style: TextStyle(
+                                                    fontSize: 28,
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                                  cursorColor: Theme.of(context)
+                                                      .accentColor,
+                                                  controller: model
+                                                      .editAmountController,
+                                                  keyboardType:
+                                                      TextInputType.number,
+                                                  decoration: InputDecoration(
+                                                    border: InputBorder.none,
+                                                    contentPadding:
+                                                        EdgeInsets.only(
+                                                            bottom: 10),
+                                                  ),
+                                                  onSubmitted: (value) {
+                                                    model.sendValue = value;
+                                                    print(
+                                                        "got model send value:  ${model.sendValue!}");
+                                                    // ProviderScope.containerOf(
+                                                    //             context)
+                                                    //         .read(
+                                                    //             requestMoneyViewModelProvider)
+                                                    //         .currentPinValue =
+                                                    //     model.sendValue!;
+                                                    ProviderScope.containerOf(
+                                                            context)
+                                                        .read(
+                                                            requestMoneyViewModelProvider)
+                                                        .currentPinValue = value;
+                                                    model.updateEditAmount(
+                                                        false);
+                                                  },
+                                                ),
+                                              )
+                                            : Text(
+                                                double.parse(model.sendValue!)
+                                                    .toStringAsFixed(3),
+                                                style: TextStyle(
+                                                    fontSize: 28,
+                                                    fontWeight:
+                                                        FontWeight.w700),
+                                              );
+                                      }),
                                   Padding(
                                     padding: EdgeInsets.only(top: 8),
                                     child: Text(
@@ -100,13 +154,25 @@ class RequestPaymentFromNewRecipientPageView
                             ),
                             Padding(
                               padding: EdgeInsets.only(top: 3),
-                              child: Text(
-                                S.of(context).tapToEdit,
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12,
-                                    color: AppColor.very_dark_gray1),
-                              ),
+                              child: AppStreamBuilder<bool>(
+                                  stream: model.editAmountStream,
+                                  initialData: false,
+                                  dataBuilder: (context, value) {
+                                    return InkWell(
+                                      onTap: () {
+                                        if (!value!) {
+                                          model.updateEditAmount(true);
+                                        }
+                                      },
+                                      child: Text(
+                                        S.of(context).tapToEdit,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 12,
+                                            color: AppColor.very_dark_gray1),
+                                      ),
+                                    );
+                                  }),
                             )
                           ],
                         ),

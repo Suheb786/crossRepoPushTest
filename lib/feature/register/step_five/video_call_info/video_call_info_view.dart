@@ -29,19 +29,10 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                 onHorizontalDragUpdate: (details) {
                   if (details.primaryDelta!.isNegative) {
                     Future.delayed(Duration(milliseconds: 500), () {
-                      ProviderScope
-                          .containerOf(context)
+                      ProviderScope.containerOf(context)
                           .read(registerStepFiveViewModelProvider)
                           .registrationStepFivePageController
                           .next();
-                    });
-                  } else {
-                    Future.delayed(Duration(milliseconds: 500), () {
-                      ProviderScope
-                          .containerOf(context)
-                          .read(registerStepFiveViewModelProvider)
-                          .registrationStepFivePageController
-                          .previous();
                     });
                   }
                 },
@@ -79,66 +70,35 @@ class VideoCallInfoView extends BasePageViewWidget<VideoCallInfoViewModel> {
                                         shape: BoxShape.circle,
                                       ),
                                       child: AppSvg.asset(AssetUtils.maleAgent,
-                                          color: Theme
-                                              .of(context)
+                                          color: Theme.of(context)
                                               .primaryColorDark),
                                     ),
                                   ),
                                   Text(
-                                    S
-                                        .of(context)
-                                        .videoCallInfoDescription,
+                                    S.of(context).videoCallInfoDescription,
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600,
                                         color:
-                                        Theme
-                                            .of(context)
-                                            .primaryColorDark),
+                                            Theme.of(context).primaryColorDark),
                                   ),
                                   SizedBox(
                                     height: 43,
                                   ),
-                                  // InformationText(
-                                  //     image: AssetUtils.sun,
-                                  //     title: S.of(context).brightPlace),
-                                  // SizedBox(
-                                  //   height: 32,
-                                  // ),
-                                  // InformationText(
-                                  //     image: AssetUtils.mic,
-                                  //     title: S.of(context).quietSurrounding,
-                                  //     iconColor:
-                                  //         Theme.of(context).primaryColorDark),
-                                  // SizedBox(
-                                  //   height: 32,
-                                  // ),
-                                  // InformationText(
-                                  //     image: AssetUtils.headPhone,
-                                  //     title: S.of(context).preferredAgent,
-                                  //     iconColor:
-                                  //         Theme.of(context).primaryColorDark),
-                                  // SizedBox(
-                                  //   height: 56,
-                                  // ),
                                   InkWell(
                                     onTap: () {
                                       Future.delayed(
                                           Duration(milliseconds: 500), () {
-                                        ProviderScope
-                                            .containerOf(context)
+                                        ProviderScope.containerOf(context)
                                             .read(
-                                            registerStepFiveViewModelProvider)
+                                                registerStepFiveViewModelProvider)
                                             .registrationStepFivePageController
-                                            .move(3);
+                                            .move(3, animation: false);
                                       });
                                     },
-                                    child: Text(S
-                                        .of(context)
-                                        .scheduleLater,
+                                    child: Text(S.of(context).scheduleLater,
                                         style: TextStyle(
-                                            color: Theme
-                                                .of(context)
+                                            color: Theme.of(context)
                                                 .accentTextTheme
                                                 .bodyText1!
                                                 .color,

@@ -41,6 +41,29 @@ class NetworkError extends BaseError {
         return AppError(
             cause: cause, error: error, type: ErrorType.NET_SERVER_MESSAGE);
 
+      case 1500:
+        return AppError(
+            cause: cause, error: error, type: ErrorType.CALL_HANGUP_ERROR);
+
+      case 1501:
+        return AppError(
+            cause: cause,
+            error: error,
+            type: ErrorType.INIT_INFOBIP_PLUGIN_ERROR);
+
+      case 1502:
+        return AppError(
+            cause: cause, error: error, type: ErrorType.GET_CALL_TOKEN_ERROR);
+
+      case 1503:
+        return AppError(
+            cause: cause, error: error, type: ErrorType.ESTABLISH_CALL_ERROR);
+      case 1504:
+        return AppError(
+            cause: cause,
+            error: error,
+            type: ErrorType.GET_CALL_DURATION_ERROR);
+
       default:
         print("I AM EXECUTED with error code ${error.message}");
         switch (error.message) {
@@ -53,6 +76,12 @@ class NetworkError extends BaseError {
                 cause: cause,
                 error: error,
                 type: ErrorType.ERROR_SAVING_ID_CARD);
+
+          case "ex-131":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHECK_PASSWORD_CRED_ERROR);
 
           case "err-154":
             return AppError(
@@ -75,6 +104,12 @@ class NetworkError extends BaseError {
                 cause: cause,
                 error: error,
                 type: ErrorType.ERROR_SAVING_STATUS);
+
+          case "err-349":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_BENEFICIARY);
 
           case "ex-055":
             return AppError(
@@ -187,6 +222,96 @@ class NetworkError extends BaseError {
                 cause: cause,
                 error: error,
                 type: ErrorType.INVALID_OTP_ENTERED);
+
+          case "err-147":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.BENEFICIARY_NOT_FOUND);
+
+          case "err-166":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_BALANCE_INQUIRY);
+
+          case "err-148":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INSUFFICIENT_BALANCE);
+
+          case "err-304":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.REQUEST_NOT_COMPLETED);
+
+          case "ex-011":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_GET_COMBO_VALUES);
+
+          case "err-005":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.USER_ALREADY_EXISTS);
+
+          case "err-015":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.PLEASE_TRY_AGAIN);
+
+          case "err-054":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ERROR_ACCESSING_ID);
+
+          case "ex-048":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_GETTING_FATCA_CRS);
+
+          case "ex-163":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_GETTING_DASHBOARD);
+
+          case "Err-SN1":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.MOBILE_ALREADY_EXIST);
+
+          case "err-125":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.DO_NOT_RECOMMEND_TO_USE_PREVIOUS_TENPASS);
+
+          case "err-351":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CURRENT_PASSWORD_INCORRECT);
+
+          case "ex-191":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_PROCESS_WHILE_LOAN_REQUEST);
+
+          case "ex-002":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_GETTING_ACCOUNT_CLOSE_OTP);
+
+          case "err-022":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.INVALID_DOCUMENT);
 
           default:
             return AppError(

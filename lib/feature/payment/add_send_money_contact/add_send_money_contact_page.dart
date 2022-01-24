@@ -13,6 +13,8 @@ class AddSendMoneyContactPage extends BasePage<AddSendMoneyContactViewModel> {
 class AddSendMoneyContactPageState extends BaseStatefulPage<
     AddSendMoneyContactViewModel,
     AddSendMoneyContactPage> with AutomaticKeepAliveClientMixin {
+  AddSendMoneyContactPageState() : super(subscribeVisibilityEvents: true);
+
   @override
   ProviderBase provideBase() {
     return addSendMoneyContactViewModelProvider;

@@ -44,11 +44,10 @@ class FatcaUSW9TaxPayersDetailsPageView
                     if (data.status == Status.SUCCESS) {
                       model.updateData(context);
                       Future.delayed(Duration(milliseconds: 500), () {
-                        ProviderScope
-                            .containerOf(context)
+                        ProviderScope.containerOf(context)
                             .read(registerStepFourViewModelProvider)
                             .registrationStepFourPageController
-                            .move(7);
+                            .move(7, animation: false);
                       });
                     } else if (data.status == Status.ERROR) {
                       model.showToastWithError(data.appError!);
@@ -61,8 +60,7 @@ class FatcaUSW9TaxPayersDetailsPageView
                           model.validateFatcaUSW9TaxPayersDetails();
                         } else {
                           Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope
-                                .containerOf(context)
+                            ProviderScope.containerOf(context)
                                 .read(registerStepFourViewModelProvider)
                                 .registrationStepFourPageController
                                 .previous();
@@ -109,8 +107,15 @@ class FatcaUSW9TaxPayersDetailsPageView
                                               Navigator.pop(context);
                                             }, onSelected: (value) {
                                               Navigator.pop(context);
+                                              model.updateTaxVisibilityValue(
+                                                  true);
                                               model.updateTaxPayerTypeField(
                                                   value);
+                                              model
+                                                  .socialSecurityNumberController
+                                                  .clear();
+                                              model.employerIdNumberController
+                                                  .clear();
                                               model.isValid();
                                             });
                                           },
@@ -130,33 +135,60 @@ class FatcaUSW9TaxPayersDetailsPageView
                                           height: 16,
                                         ),
                                         AppStreamBuilder<bool>(
-                                          stream: model
-                                              .socialSecurityVisibilityStream,
-                                          initialData: false,
-                                          dataBuilder: (context, isVisible) {
-                                            return Visibility(
-                                              visible: isVisible!,
-                                              child: AppTextField(
-                                                labelText: S
-                                                    .of(context)
-                                                    .socialSecurityNUmber,
-                                                hintText:
-                                                    S.of(context).pleaseEnter,
-                                                controller: model
-                                                    .socialSecurityNumberController,
-                                                key: model
-                                                    .socialSecurityNumberKey,
-                                                inputAction: TextInputAction.go,
-                                                onChanged: (value) {
-                                                  model.isValid();
-                                                },
-                                              ),
-                                            );
-                                          },
-                                        ),
+                                            stream: model.taxVisibilityStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isVisible) {
+                                              return Visibility(
+                                                visible: isVisible!,
+                                                child: AppStreamBuilder<bool>(
+                                                  stream: model
+                                                      .socialSecurityVisibilityStream,
+                                                  initialData: false,
+                                                  dataBuilder:
+                                                      (context, isVisible) {
+                                                    return isVisible!
+                                                        ? AppTextField(
+                                                            labelText: S
+                                                                .of(context)
+                                                                .socialSecurityNUmber,
+                                                            hintText: S
+                                                                .of(context)
+                                                                .pleaseEnter,
+                                                            controller: model
+                                                                .socialSecurityNumberController,
+                                                            key: model
+                                                                .socialSecurityNumberKey,
+                                                            inputAction:
+                                                                TextInputAction
+                                                                    .go,
+                                                            onChanged: (value) {
+                                                              model.isValid();
+                                                            },
+                                                          )
+                                                        : AppTextField(
+                                                            labelText: S
+                                                                .of(context)
+                                                                .employerIdNumber,
+                                                            hintText: S
+                                                                .of(context)
+                                                                .pleaseEnter,
+                                                            controller: model
+                                                                .employerIdNumberController,
+                                                            key: model
+                                                                .employerIdNumberKey,
+                                                            inputAction:
+                                                                TextInputAction
+                                                                    .go,
+                                                            onChanged: (value) {
+                                                              model.isValid();
+                                                            },
+                                                          );
+                                                  },
+                                                ),
+                                              );
+                                            }),
                                         SizedBox(
-                                          height: MediaQuery
-                                              .of(context)
+                                          height: MediaQuery.of(context)
                                               .viewInsets
                                               .bottom,
                                         ),
@@ -173,11 +205,11 @@ class FatcaUSW9TaxPayersDetailsPageView
                                         dataBuilder: (context, isValid) {
                                           return (isValid!)
                                               ? AnimatedButton(
-                                            buttonText: S
-                                                .of(context)
-                                                .swipeToProceed,
-                                            buttonHeight: 50,
-                                          )
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed,
+                                                  buttonHeight: 50,
+                                                )
                                               : Container();
                                         }),
                                   ),

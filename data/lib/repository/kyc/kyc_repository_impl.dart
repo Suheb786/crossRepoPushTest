@@ -11,14 +11,13 @@ class KYCRepositoryImpl extends KYCRepository {
   KYCRepositoryImpl(this._kycRemoteDS);
 
   @override
-  Future<Either<NetworkError, CheckKycResponse>> checkKYCStatus(
-      {required bool getToken}) async {
+  Future<Either<NetworkError, CheckKycResponse>> checkKYCStatus() async {
     final result = await safeApiCall(
-      _kycRemoteDS.checkKYCStatus(getToken: getToken),
+      _kycRemoteDS.checkKYCStatus(),
     );
     return result!.fold(
-          (l) => Left(l),
-          (r) => Right(r.data.transform()),
+      (l) => Left(l),
+      (r) => Right(r.data.transform()),
     );
   }
 }

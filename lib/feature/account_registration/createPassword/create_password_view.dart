@@ -41,8 +41,7 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                     ProviderScope.containerOf(context)
                         .read(appViewModel)
                         .getToken();
-                    ProviderScope
-                        .containerOf(context)
+                    ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .pageController
                         .next();
@@ -59,31 +58,36 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                           model.passwordKey.currentState!.isValid = true;
                           model.confirmPasswordKey.currentState!.isValid = true;
                           model.registerUser(
-                              email: ProviderScope
-                                  .containerOf(context)
-                                  .read(addNumberViewModelProvider)
-                                  .emailController
-                                  .text,
-                              country: "Jordan",
-                              phone: ProviderScope
-                                  .containerOf(context)
-                                  .read(addNumberViewModelProvider)
-                                  .mobileNumberController
-                                  .text);
+                            email: ProviderScope.containerOf(context)
+                                .read(addNumberViewModelProvider)
+                                .emailController
+                                .text,
+                            country: "Jordan",
+                            phone: ProviderScope.containerOf(context)
+                                .read(addNumberViewModelProvider)
+                                .mobileNumberController
+                                .text,
+                            mobileCode: ProviderScope?.containerOf(context)
+                                    .read(addNumberViewModelProvider)
+                                    .countryData
+                                    .phoneCode ??
+                                '',
+                          );
                         } else if (passwordData.status == Status.ERROR) {
                           if (passwordData.appError!.type ==
                               ErrorType.PASSWORD_MISMATCH) {
                             model.passwordKey.currentState!.isValid = false;
                             model.confirmPasswordKey.currentState!.isValid =
-                            false;
+                                false;
                           } else if (passwordData.appError!.type ==
                               ErrorType.EMPTY_PASSWORD) {
                             model.passwordKey.currentState!.isValid = false;
                           } else if (passwordData.appError!.type ==
                               ErrorType.EMPTY_CONFIRM_PASSWORD) {
                             model.confirmPasswordKey.currentState!.isValid =
-                            false;
-                          }
+                                false;
+                          } else if (passwordData.appError!.type ==
+                              ErrorType.PASSWORD_NOT_MEET_CRITERIA) {}
                           model.showToastWithError(passwordData.appError!);
                         }
                       },
@@ -93,11 +97,10 @@ class CreatePasswordView extends BasePageViewWidget<CreatePasswordViewModel> {
                             if (details.primaryVelocity!.isNegative) {
                               model.createPassword();
                             } else {
-                              ProviderScope
-                                  .containerOf(context)
+                              ProviderScope.containerOf(context)
                                   .read(accountRegistrationViewModelProvider)
                                   .pageController
-                                  .previous(animation: true);
+                                  .previous();
                             }
                           },
                           child: Card(

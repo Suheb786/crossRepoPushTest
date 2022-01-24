@@ -7,6 +7,10 @@ import 'package:neo_bank/feature/payment/request_money_from_contact_success/requ
 
 class RequestAmountFromContactSuccessPage
     extends BasePage<RequestAmountFromContactSuccessViewModel> {
+  List<String>? successValues;
+
+  RequestAmountFromContactSuccessPage({this.successValues});
+
   @override
   RequestAmountFromContactSuccessPageState createState() =>
       RequestAmountFromContactSuccessPageState();
@@ -17,7 +21,8 @@ class RequestAmountFromContactSuccessPageState extends BaseStatefulPage<
     RequestAmountFromContactSuccessPage> {
   @override
   ProviderBase provideBase() {
-    return requestAmountFromContactSuccessViewModelProvider;
+    return requestAmountFromContactSuccessViewModelProvider
+        .call(widget.successValues!);
   }
 
   @override

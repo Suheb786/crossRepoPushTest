@@ -13,6 +13,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class DebitCardDeliveredPageView
     extends BasePageViewWidget<DebitCardDeliveredViewModel> {
@@ -86,7 +87,12 @@ class DebitCardDeliveredPageView
                                       Padding(
                                         padding: EdgeInsets.only(top: 9),
                                         child: Text(
-                                          model.debitCard.cardNumber ?? '',
+                                          model.debitCard.cardNumber!.isNotEmpty
+                                              ? StringUtils
+                                                  .getFormattedCreditCardNumber(
+                                                      model
+                                                          .debitCard.cardNumber)
+                                              : '-',
                                           style: TextStyle(
                                               fontSize: 30,
                                               fontWeight: FontWeight.w400),
@@ -152,7 +158,13 @@ class DebitCardDeliveredPageView
                                   ),
                                   Padding(
                                       padding: EdgeInsets.only(top: 10),
-                                      child: Text(model.debitCard.cardNumber ?? '',
+                                      child: Text(
+                                          model.debitCard.cardNumber!.isNotEmpty
+                                              ? StringUtils
+                                                  .getFormattedCreditCardNumber(
+                                                      model
+                                                          .debitCard.cardNumber)
+                                              : '-',
                                           style: TextStyle(
                                               fontSize: 12,
                                               fontWeight: FontWeight.w700)))

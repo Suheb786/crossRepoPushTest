@@ -5,9 +5,11 @@ import 'package:rxdart/rxdart.dart';
 
 class RegisterStepFiveViewModel extends BasePageViewModel {
   final SwiperController registrationStepFivePageController =
-  SwiperController();
+      SwiperController();
 
   PublishSubject<int> _currentStep = PublishSubject();
+
+  //CustomerStatusEnum secondNextScreen = CustomerStatusEnum.NONE;
 
   Stream<int> get currentStep => _currentStep.stream;
 

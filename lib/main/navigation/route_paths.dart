@@ -55,5 +55,34 @@ class RoutePaths {
       "/creditCardVerificationSuccess";
   static const String DebitCardVerificationSuccess =
       "/debitCardVerificationSuccess";
+  static const String DebitCardSettings = "/debitCardSettings";
+  static const String CreditCardSettings = "/creditCardSettings";
+  static const String HelpCenter = "/helpCenter";
+  static const String ActiveCallPage = "/activeCallPage";
+  static const String CallEndedPage = "/callEndedPage";
+  static const String ManageCardPin = "/manageCardPin";
+  static const String CardPinUnBlockSuccess = "/cardPinUnBlockSuccessPage";
+  static const String DebitCardReplacement = "/debitCardReplacement";
+  static const String DebitCardReplacementSuccess =
+      "/debitCardReplacementSuccess";
+  static const String manageDebitLimit = "/manageDebitLimits";
+  static const String ChangeCardPin = "/changeCardPin";
+  static const String ChangeCardPinSuccess = "/changeCardPinSuccess";
+  static const String SupplementaryCreditCard = "/supplementaryCreditCard";
+  static const String SupplementaryCreditCardReady =
+      "/supplementaryCreditCardReady";
+  static const String SupplementaryDebitCard = "/supplementaryDebitCard";
+  static const String SupplementaryCardInReview = "/supplementaryCardInReview";
+  static const String BlinkCreditCard = "/blinkCreditCard";
+  static const String CreditCardApplicationFailure =
+      "/creditCardApplicationFailure";
+  static const String ApplyCreditCardHome = "/applyCreditCardHome";
+  static const String AccountHold = "/accountHold";
+  static const String ForgotPassword = "/forgotPassword";
+  static const String CreditCardActivationStatus =
+      "/creditCardActivationStatus";
+  static const String CreditCardApplySuccess = "/creditCardApplySuccess";
+  static const String ResetPasswordSuccess = "/resetPasswordSuccess";
+  static const String UploadDocumentLater = "/uploadDocumentLater";
   static const String VideoKyc = "/videoKyc";
 }

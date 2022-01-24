@@ -9,8 +9,7 @@ import 'package:domain/usecase/base/base_usecase.dart';
 import 'package:domain/usecase/base/params.dart';
 
 class PurposeOfAccountOpeningUseCase extends BaseUseCase<NetworkError,
-    PurposeOfAccountOpeningUseCaseParams,
-    PurposeOfAccountOpeningResponse> {
+    PurposeOfAccountOpeningUseCaseParams, PurposeOfAccountOpeningResponse> {
   final BankSmartRepository _bankSmartRepository;
 
   PurposeOfAccountOpeningUseCase(this._bankSmartRepository);
@@ -39,6 +38,7 @@ class PurposeOfAccountOpeningUseCaseParams extends Params {
   final bool? isTransfer;
   final bool? isBillPayment;
   final bool? isOther;
+  final bool expectedTransactionSelected;
 
   PurposeOfAccountOpeningUseCaseParams(
       {this.getToken,
@@ -48,7 +48,8 @@ class PurposeOfAccountOpeningUseCaseParams extends Params {
       this.isBillPayment,
       this.isOther,
       this.isTransfer,
-      this.isCashDeposit});
+      this.isCashDeposit,
+      required this.expectedTransactionSelected});
 
   @override
   Either<AppError, bool> verify() {
@@ -57,17 +58,23 @@ class PurposeOfAccountOpeningUseCaseParams extends Params {
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_PURPOSE_OF_ACCOUNT_OPENING,
           cause: Exception()));
+    } else if (!expectedTransactionSelected) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.SELECT_EXPECTED_TRANSACTION,
+          cause: Exception()));
     } else if (expectedMonthlyTransaction!.isEmpty) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.INVALID_EXPECTED_MONTHLY_TRANSACTION,
           cause: Exception()));
-    } else if (expectedAnnualTransaction!.isEmpty) {
-      return Left(AppError(
-          error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_EXPECTED_ANNUAL_TRANSACTION,
-          cause: Exception()));
     }
+    // else if (expectedAnnualTransaction!.isEmpty) {
+    //   return Left(AppError(
+    //       error: ErrorInfo(message: ''),
+    //       type: ErrorType.INVALID_EXPECTED_ANNUAL_TRANSACTION,
+    //       cause: Exception()));
+    // }
     return Right(true);
   }
 }

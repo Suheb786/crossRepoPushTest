@@ -2,8 +2,12 @@ import 'dart:async';
 
 import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
+import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/kyc/check_kyc_status_usecase.dart';
+import 'package:domain/usecase/user/android_login_usecase.dart';
+import 'package:domain/usecase/user/get_cipher_usecase.dart';
+import 'package:domain/usecase/user/iphone_login_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:flutter/widgets.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -17,14 +21,17 @@ import 'package:rxdart/rxdart.dart';
 class LoginViewModel extends BasePageViewModel {
   final LoginUseCase _loginUseCase;
   final CheckKYCStatusUseCase _kycStatusUseCase;
+  final GetCipherUseCase _getCipherUseCase;
+  final AndroidLoginUseCase _androidLoginUseCase;
+  final IphoneLoginUseCase _iphoneLoginUseCase;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final ScrollController scrollController = ScrollController();
   final GlobalKey<AppTextFieldState> emailKey =
-  GlobalKey(debugLabel: "login_email");
+      GlobalKey(debugLabel: "login_email");
   final GlobalKey<AppTextFieldState> passwordKey =
-  GlobalKey(debugLabel: "login_password");
+      GlobalKey(debugLabel: "login_password");
 
   PublishSubject<LoginUseCaseParams> _loginRequest = PublishSubject();
 
@@ -38,20 +45,54 @@ class LoginViewModel extends BasePageViewModel {
 
   ///kyc status request
   PublishSubject<CheckKYCStatusUseCaseParams> _kycStatusRequest =
-  PublishSubject();
+      PublishSubject();
 
   ///kyc status response
   PublishSubject<Resource<CheckKycResponse>> _kycStatusResponse =
-  PublishSubject();
+      PublishSubject();
 
   ///kyc status response stream
   Stream<Resource<CheckKycResponse>> get kycStatusStream =>
       _kycStatusResponse.stream;
 
-  LoginViewModel(this._loginUseCase, this._kycStatusUseCase) {
+  ///get cipher usecase
+  PublishSubject<GetCipherUseCaseParams> _getCipherRequest = PublishSubject();
+
+  PublishSubject<Resource<GetCipherResponse>> _getCipherResponse =
+      PublishSubject();
+
+  Stream<Resource<GetCipherResponse>> get getCipherStream =>
+      _getCipherResponse.stream;
+
+  BehaviorSubject<bool> _fingerPrintShowRequest = BehaviorSubject.seeded(false);
+
+  Stream<bool> get fingerPrintShowStream => _fingerPrintShowRequest.stream;
+
+  ///android login
+  PublishSubject<AndroidLoginUseCaseParams> _androidLoginRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _androidLoginResponse = PublishSubject();
+
+  Stream<Resource<bool>> get androidLoginStream => _androidLoginResponse.stream;
+
+  ///iphone login
+  PublishSubject<IphoneLoginUseCaseParams> _iphoneLoginRequest =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _iphoneLoginResponse = PublishSubject();
+
+  Stream<Resource<bool>> get iphoneLoginStream => _iphoneLoginResponse.stream;
+
+  LoginViewModel(
+      this._loginUseCase,
+      this._kycStatusUseCase,
+      this._getCipherUseCase,
+      this._androidLoginUseCase,
+      this._iphoneLoginUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _loginUseCase.execute(params: value))
+              createCall: () => _loginUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _loginResponse.safeAdd(event);
@@ -71,7 +112,7 @@ class LoginViewModel extends BasePageViewModel {
 
     _kycStatusRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _kycStatusUseCase.execute(params: value))
+              createCall: () => _kycStatusUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _kycStatusResponse.safeAdd(event);
@@ -81,6 +122,52 @@ class LoginViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getCipherRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getCipherUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getCipherResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _androidLoginRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _androidLoginUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _androidLoginResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    _iphoneLoginRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _iphoneLoginUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _iphoneLoginResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
+    //getCipher();
+    //getCurrentUserStream();
+  }
+
+  void fingerPrintShow(bool value) {
+    _fingerPrintShowRequest.safeAdd(value);
   }
 
   void validateEmail() {
@@ -89,7 +176,15 @@ class LoginViewModel extends BasePageViewModel {
   }
 
   void checkKycStatus() {
-    _kycStatusRequest.safeAdd(CheckKYCStatusUseCaseParams(getToken: true));
+    _kycStatusRequest.safeAdd(CheckKYCStatusUseCaseParams());
+  }
+
+  void androidLogin() {
+    _androidLoginRequest.safeAdd(AndroidLoginUseCaseParams());
+  }
+
+  void iphoneLogin() {
+    _iphoneLoginRequest.safeAdd(IphoneLoginUseCaseParams());
   }
 
   void validate() {
@@ -98,6 +193,10 @@ class LoginViewModel extends BasePageViewModel {
     } else {
       _showButtonSubject.safeAdd(false);
     }
+  }
+
+  void getCipher() {
+    _getCipherRequest.safeAdd(GetCipherUseCaseParams());
   }
 
   @override

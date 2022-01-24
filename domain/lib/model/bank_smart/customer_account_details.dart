@@ -1,7 +1,7 @@
 class CustomerAccountDetails {
   final String? createBy;
   final String? ourBranchID;
-  final dynamic? clientID;
+  final String? clientID;
   final String? productID;
   final String? name;
   final String? address;

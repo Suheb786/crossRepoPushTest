@@ -8,7 +8,7 @@ class AppProgress {
     showDialog<Null>(
         context: context,
         barrierDismissible: false,
-        barrierColor: Theme.of(context).accentColor.withOpacity(0.1),
+        barrierColor: Theme.of(context).accentColor.withOpacity(0.9),
         useSafeArea: true,
         builder: (BuildContext context) {
           return WillPopScope(

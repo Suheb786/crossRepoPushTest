@@ -8,6 +8,7 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:steel_crypt/steel_crypt.dart';
 
@@ -16,10 +17,12 @@ class VisaCardPageViewModel extends BasePageViewModel {
   final CardIssuanceUseCase _cardIssuanceUseCase;
 
   PublishSubject<CardIssuanceUseCaseParams> _cardIssuanceRequest =
-  PublishSubject();
+      PublishSubject();
 
   PublishSubject<Resource<CardIssuanceDetails>> _cardIssuanceResponse =
-  PublishSubject();
+      PublishSubject();
+
+  String? cardNumber;
 
   Stream<Resource<CardIssuanceDetails>> get cardIssuanceStream =>
       _cardIssuanceResponse.stream;
@@ -27,11 +30,14 @@ class VisaCardPageViewModel extends BasePageViewModel {
   VisaCardPageViewModel(this._cardIssuanceUseCase) {
     _cardIssuanceRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _cardIssuanceUseCase.execute(params: value))
+              createCall: () => _cardIssuanceUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         updateLoader();
         _cardIssuanceResponse.safeAdd(event);
+        if (event.status == Status.SUCCESS) {
+          cardNumber = event.data!.cardNumber;
+        }
       });
     });
     fetchCardIssuanceDetails();

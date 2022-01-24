@@ -12,10 +12,16 @@ dependencies:
   flutter:
     sdk: flutter
 
+  infobip_plugin:
+    path: ../infobip_rtc_flutter
+
   retrofit: ^2.0.1
   logger: ^1.1.0
   json_annotation: ^4.0.0
   dartz: ^0.10.0
+  dart_des: ^1.0.0
+  convert: ^3.0.1
+  string_validator: ^0.3.0
   riverpod: ^0.14.0+3
   domain:
     path: ../domain
@@ -29,11 +35,16 @@ dependencies:
   image_picker: ^0.8.4
   geocoding: ^2.0.1
   r_get_ip: ^0.1.1
-  blinkid_flutter: ^5.13.0
+  blinkid_flutter: ^5.14.0
   local_auth: ^1.1.7
   #  rsa_encrypt: ^2.0.0
   encrypt: ^5.0.1
   path_provider: any
+  infobip_mobilemessaging: ^0.5.0
+  permission_handler: any
+  tuple: ^2.0.0
+  flutter_jailbreak_detection: ^1.8.0
+  http_certificate_pinning: ^2.0.3
 
 dev_dependencies:
   flutter_test:

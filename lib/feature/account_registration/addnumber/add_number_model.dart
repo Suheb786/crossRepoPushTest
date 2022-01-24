@@ -28,7 +28,7 @@ class AddNumberViewModel extends BasePageViewModel {
   ///controllers and keys
   final TextEditingController mobileNumberController = TextEditingController();
   final GlobalKey<AppTextFieldState> mobileNumberKey =
-  GlobalKey(debugLabel: "mobileNumber");
+      GlobalKey(debugLabel: "mobileNumber");
 
   final TextEditingController emailController = TextEditingController();
   final GlobalKey<AppTextFieldState> emailKey = GlobalKey(debugLabel: "email");
@@ -72,10 +72,10 @@ class AddNumberViewModel extends BasePageViewModel {
 
   /// Email availability
   PublishSubject<CheckUserNameMobileUseCaseParams> _checkUserMobileRequest =
-  PublishSubject();
+      PublishSubject();
 
   PublishSubject<Resource<CheckUsername>> _checkUserMobileResponse =
-  PublishSubject();
+      PublishSubject();
 
   Stream<Resource<CheckUsername>> get checkUserMobileStream =>
       _checkUserMobileResponse.stream;
@@ -88,11 +88,11 @@ class AddNumberViewModel extends BasePageViewModel {
 
   ///get allowed code country request holder
   PublishSubject<GetAllowedCodeCountryListUseCaseParams>
-  _getAllowedCountryRequest = PublishSubject();
+      _getAllowedCountryRequest = PublishSubject();
 
   ///get allowed code country response holder
   PublishSubject<Resource<AllowedCountryListResponse>>
-  _getAllowedCountryResponse = PublishSubject();
+      _getAllowedCountryResponse = PublishSubject();
 
   ///get allowed code country response stream
   Stream<Resource<AllowedCountryListResponse>> get getAllowedCountryStream =>
@@ -100,20 +100,21 @@ class AddNumberViewModel extends BasePageViewModel {
 
   ///selected country response holder
   BehaviorSubject<CountryData> _selectedCountryResponse =
-  BehaviorSubject.seeded(CountryData());
+      BehaviorSubject.seeded(CountryData());
 
   ///get allowed code country response stream
   Stream<CountryData> get getSelectedCountryStream =>
       _selectedCountryResponse.stream;
 
-  AddNumberViewModel(this._registerNumberUseCase,
+  AddNumberViewModel(
+      this._registerNumberUseCase,
       this._fetchCountryByCodeUseCase,
       this._checkUserNameUseCase,
       this._checkUserNameMobileUseCase,
       this._allowedCodeCountryListUseCase) {
     _registerNumberRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _registerNumberUseCase.execute(params: value))
+              createCall: () => _registerNumberUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _registerNumberResponse.safeAdd(event);
@@ -141,14 +142,16 @@ class AddNumberViewModel extends BasePageViewModel {
 
     _getAllowedCountryRequest.listen((value) {
       RequestManager(value,
-          createCall: () =>
-              _allowedCodeCountryListUseCase.execute(params: value))
+              createCall: () =>
+                  _allowedCodeCountryListUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         _getAllowedCountryResponse.safeAdd(event);
         updateLoader();
         if (event.status == Status.SUCCESS) {
-          countryData = event.data!.contentData!.countryData!.first;
+          countryData = event.data!.contentData!.countryData!.firstWhere(
+              (element) => element.isoCode3 == 'JOR',
+              orElse: () => event.data!.contentData!.countryData!.first);
           setSelectedCountry(countryData);
         } else if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
@@ -228,12 +231,10 @@ class AddNumberViewModel extends BasePageViewModel {
   }
 
   void validateNumber() {
-    if (isEmailAvailable && isNumberAvailable) {
-      _registerNumberRequest.safeAdd(RegisterNumberUseCaseParams(
-          emailAddress: emailController.text,
-          countryCode: selectedCountry.countryCallingCode,
-          mobileNumber: mobileNumberController.text));
-    }
+    _registerNumberRequest.safeAdd(RegisterNumberUseCaseParams(
+        emailAddress: emailController.text,
+        countryCode: countryData.isoCode,
+        mobileNumber: mobileNumberController.text));
   }
 
   /// Check Request for email is registered already or not
@@ -250,7 +251,8 @@ class AddNumberViewModel extends BasePageViewModel {
   /// Check Request for email is registered already or not
   void checkPhoneAvailability() {
     _checkUserMobileRequest.safeAdd(CheckUserNameMobileUseCaseParams(
-        mobileNumber: mobileNumberController.text, countryCode: 'JOR'));
+        mobileNumber: mobileNumberController.text,
+        countryCode: countryData.isoCode3 ?? ''));
   }
 
   /// Validate mobile is registered with system or not

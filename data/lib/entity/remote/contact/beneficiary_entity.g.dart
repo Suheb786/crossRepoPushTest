@@ -19,6 +19,12 @@ BeneficiaryEntity _$BeneficiaryEntityFromJson(Map<String, dynamic> json) {
     iban: json['iban'] as String?,
     purpose: json['purpose'] as String?,
     id: json['id'] as String?,
+    beneType: json['beneType'] as String?,
+    purposeType: json['purposeType'] as String?,
+    detCustomerType: json['detCustomerType'] as String?,
+    limit: json['limit'] as num?,
+    purposeParent: json['purposeParent'] as String?,
+    purposeParentDetails: json['purposeParentDetails'] as String?,
   );
 }
 
@@ -35,4 +41,10 @@ Map<String, dynamic> _$BeneficiaryEntityToJson(BeneficiaryEntity instance) =>
       'mobileNumber': instance.mobileNumber,
       'beneficiaryAddress': instance.beneficiaryAddress,
       'bankName': instance.bankName,
+      'beneType': instance.beneType,
+      'purposeType': instance.purposeType,
+      'purposeParent': instance.purposeParent,
+      'purposeParentDetails': instance.purposeParentDetails,
+      'limit': instance.limit,
+      'detCustomerType': instance.detCustomerType,
     };

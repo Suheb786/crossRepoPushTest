@@ -21,6 +21,15 @@ class LocalError extends BaseError {
     switch (error.code) {
       case 1:
         return AppError(error: error, cause: cause, type: ErrorType.UI);
+
+      case 1211:
+        return AppError(
+            error: error, cause: cause, type: ErrorType.ID_CARD_EXPIRED);
+
+      case 1212:
+        return AppError(
+            error: error, cause: cause, type: ErrorType.DEVICE_NOT_COMPATIBLE);
+
       default:
         return AppError(
             error: error, cause: cause, type: ErrorType.IOEXCEPTION);

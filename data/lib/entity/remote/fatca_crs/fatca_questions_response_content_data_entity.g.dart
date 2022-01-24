@@ -15,8 +15,13 @@ FatcaQuestionsResponseContentDataEntity
     isMandatory: json['isMandatory'] as bool?,
     orderNo: json['orderNo'] as int?,
     type: json['type'] as String?,
-    answer: json['answer'] as String?,
-    docId: json['docId'],
+    infoText: json['infoText'] as String?,
+    showOption: json['showOption'] as bool?,
+    isInfo: json['isInfo'] as bool?,
+    additionData: (json['datas'] as List<dynamic>?)
+        ?.map((e) =>
+            AdditionalFatcaDataEntity.fromJson(e as Map<String, dynamic>))
+        .toList(),
   );
 }
 
@@ -28,6 +33,8 @@ Map<String, dynamic> _$FatcaQuestionsResponseContentDataEntityToJson(
       'isMandatory': instance.isMandatory,
       'orderNo': instance.orderNo,
       'type': instance.type,
-      'answer': instance.answer,
-      'docId': instance.docId,
+      'infoText': instance.infoText,
+      'showOption': instance.showOption,
+      'isInfo': instance.isInfo,
+      'datas': instance.additionData,
     };

@@ -14,6 +14,8 @@ class ErrorParser {
         return localisedHelper.genericError;
       case ErrorType.NETWORK:
         return localisedHelper.genericError;
+      case ErrorType.INVALID_BENEFICIARY:
+        return localisedHelper.invalidBeneficiary;
       case ErrorType.NET_SERVER_MESSAGE:
         return localisedHelper.genericError;
       case ErrorType.NET_NO_INTERNET_CONNECTION:
@@ -32,6 +34,14 @@ class ErrorParser {
         return localisedHelper.genericError;
       case ErrorType.INVALID_MOBILE:
         return localisedHelper.enterValidMobileNumber;
+      case ErrorType.ERROR_DECRYPT_CARD:
+        return localisedHelper.establishCallError;
+      case ErrorType.ERROR_GENERATE_BLOCK_PIN:
+        return localisedHelper.weWillConnectYou;
+      case ErrorType.INVALID_OTP:
+        return localisedHelper.enterValidOtp;
+      case ErrorType.INVALID_REQUESTED_AMOUNT:
+        return localisedHelper.invalidRequestedAmount;
       case ErrorType.INVALID_OTP:
         return localisedHelper.enterValidOtp;
       case ErrorType.INVALID_EMPLOYMENT_STATUS:
@@ -292,12 +302,94 @@ class ErrorParser {
         return localisedHelper.invalidOtpEntered;
       case ErrorType.LOCATION_SERVICE_NOT_ENABLED:
         return localisedHelper.locationServiceDisabled;
+      case ErrorType.LIMIT_EXCEEDED:
+        return localisedHelper.limitExceeded;
       case ErrorType.EMPTY_IBAN_MOBILE:
         return localisedHelper.emptyIbanOrMobile;
       case ErrorType.EMPTY_PURPOSE:
         return localisedHelper.emptyPurpose;
       case ErrorType.EMPTY_PURPOSE_DETAIL:
         return localisedHelper.emptyPurposeDetail;
+      case ErrorType.BENEFICIARY_NOT_FOUND:
+        return localisedHelper.beneficiaryNotFound;
+      case ErrorType.ERROR_WHILE_BALANCE_INQUIRY:
+        return localisedHelper.errorWhileBalanceInquiry;
+      case ErrorType.INSUFFICIENT_BALANCE:
+        return localisedHelper.insufficientBalance;
+      case ErrorType.INSUFFICIENT_BALANCE_TRANSFER:
+        return localisedHelper.insufficientBalanceTransfer;
+      case ErrorType.REQUEST_NOT_COMPLETED:
+        return localisedHelper.requestNotCompleted;
+      case ErrorType.SELECT_CANCELATION_REASON:
+        return localisedHelper.pleaseSelectTheReason;
+      case ErrorType.AGREE_TO_THE_TERM_AND_CONDITION:
+        return localisedHelper.pleaseAgreeToTheTermAndCondition;
+      case ErrorType.INVALID_LIMIT_VALUE:
+        return localisedHelper.invalidLimitValue;
+      case ErrorType.EMPTY_CONFIRM_PIN:
+        return localisedHelper.emptyConfirmPin;
+      case ErrorType.CALL_HANGUP_ERROR:
+        return localisedHelper.callHangupError;
+      case ErrorType.GET_CALL_TOKEN_ERROR:
+        return localisedHelper.getCallTokenError;
+      case ErrorType.ESTABLISH_CALL_ERROR:
+        return localisedHelper.establishCallError;
+      case ErrorType.GET_CALL_DURATION_ERROR:
+        return localisedHelper.getCallDurationError;
+      case ErrorType.EMPTY_INCOME:
+        return localisedHelper.emptyIncome;
+      case ErrorType.PASSWORD_NOT_MEET_CRITERIA:
+        return localisedHelper.passwordNotMeetCriteria;
+      case ErrorType.CURRENT_PASSWORD_INVALID:
+        return localisedHelper.currentPasswordInvalid;
+      case ErrorType.SELECT_EXPECTED_TRANSACTION:
+        return localisedHelper.selectExpectedTransaction;
+      case ErrorType.ERROR_WHILE_GET_COMBO_VALUES:
+        return localisedHelper.errorWhileGetComboValues;
+      case ErrorType.USER_ALREADY_EXISTS:
+        return localisedHelper.userAlreadyExists;
+      case ErrorType.PLEASE_TRY_AGAIN:
+        return localisedHelper.pleaseTryAgain;
+      case ErrorType.INVALID_FOREIGN_IDENTIFICATION_NUMBER:
+        return localisedHelper.invalidForeignIdNumber;
+      case ErrorType.INVALID_EXEMPTION_FATCA_CODE:
+        return localisedHelper.invalidExemptionFromFatcaReporting;
+      case ErrorType.INVALID_EMPLOYER_ID:
+        return localisedHelper.invalidEmployerId;
+      case ErrorType.ERROR_ACCESSING_ID:
+        return localisedHelper.errorWhileAccessingIdData;
+      case ErrorType.NOT_ALLOWED_COUNTRY:
+        return localisedHelper.notAllowedCountry;
+      case ErrorType.INVALID_CHECKED_VALUE:
+        return localisedHelper.agreeTermsCondition;
+      case ErrorType.EMPTY_MINIMUM_SETTLEMENT_VALUE:
+        return localisedHelper.emptyMinimumSettlement;
+      case ErrorType.ERROR_GETTING_FATCA_CRS:
+        return localisedHelper.fatca;
+      case ErrorType.ERROR_WHILE_GETTING_DASHBOARD:
+        return localisedHelper.errorWhileGettingDashboard;
+      case ErrorType.MOBILE_ALREADY_EXIST:
+        return localisedHelper.mobileAlreadyExists;
+      case ErrorType.DO_NOT_RECOMMEND_TO_USE_PREVIOUS_TENPASS:
+        return localisedHelper.weDoNotRecommendToUsePreviousTenPass;
+      case ErrorType.CURRENT_PASSWORD_INCORRECT:
+        return localisedHelper.currentPasswordIncorrect;
+      case ErrorType.EMPTY_NICKNAME_VALUE:
+        return localisedHelper.emptyNickName;
+      case ErrorType.EMPTY_VERIFY_EMAIL:
+        return localisedHelper.emptyVerifyEmail;
+      case ErrorType.EMPTY_VERIFY_EXPIRY_DATE:
+        return localisedHelper.emptyVerifyExpiryDate;
+      case ErrorType.CHECK_PASSWORD_CRED_ERROR:
+        return localisedHelper.checkForgetPasswordError;
+      case ErrorType.ERROR_PROCESS_WHILE_LOAN_REQUEST:
+        return localisedHelper.errorWhileProcessLoanRequest;
+      case ErrorType.ERROR_WHILE_GETTING_ACCOUNT_CLOSE_OTP:
+        return localisedHelper.errorWhileGettingAccountCloseOtp;
+      case ErrorType.INVALID_DOCUMENT:
+        return localisedHelper.errorWhileGettingAccountCloseOtp;
+      case ErrorType.SELECT_CREDIT_LIMIT_SETTINGS:
+        return localisedHelper.selectCreditLimitSettings;
 
       default:
         return "";

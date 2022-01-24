@@ -11,13 +11,17 @@ ConfirmCreditCardDeliveryRequest _$ConfirmCreditCardDeliveryRequestFromJson(
   return ConfirmCreditCardDeliveryRequest(
     baseData: json['baseClass'] as Map<String, dynamic>,
     getToken: json['GetToken'] as bool?,
-    accountId: json['AccountId'] as int?,
+    accountId: json['AccountId'] as String?,
+    cardId: json['CardId'] as String?,
+    cardDigit: json['CardDigit'] as String?,
   );
 }
 
 Map<String, dynamic> _$ConfirmCreditCardDeliveryRequestToJson(
         ConfirmCreditCardDeliveryRequest instance) =>
     <String, dynamic>{
+      'CardId': instance.cardId,
+      'CardDigit': instance.cardDigit,
       'GetToken': instance.getToken,
       'AccountId': instance.accountId,
       'baseClass': instance.baseData,

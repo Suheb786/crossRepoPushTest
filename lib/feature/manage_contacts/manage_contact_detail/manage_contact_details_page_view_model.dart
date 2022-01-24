@@ -1,9 +1,14 @@
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/manage_contacts/beneficiary.dart';
+import 'package:domain/model/purpose/purpose.dart';
+import 'package:domain/model/purpose/purpose_detail.dart';
+import 'package:domain/model/purpose/purpose_response.dart';
 import 'package:domain/usecase/manage_contacts/delete_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/update_beneficiary_usecase.dart';
 import 'package:domain/usecase/manage_contacts/upload_beneficiary_profile_image_usecase.dart';
+import 'package:domain/usecase/payment/get_purpose_usecase.dart';
 import 'package:domain/usecase/upload_doc/upload_document_usecase.dart';
+import 'package:domain/utils/validator.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -14,6 +19,7 @@ import 'package:rxdart/rxdart.dart';
 
 class ManageContactDetailsPageViewModel extends BasePageViewModel {
   final UploadDocumentUseCase _uploadDocumentUseCase;
+  final GetPurposeUseCase _getPurposeUseCase;
 
   final Beneficiary beneficiary;
 
@@ -85,12 +91,30 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
 
   UpdateType updateType = UpdateType.none;
 
+  ///get purpose
+  PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
+
+  PublishSubject<Resource<PurposeResponse>> _getPurposeResponse =
+      PublishSubject();
+
+  Stream<Resource<PurposeResponse>> get getPurposeResponseStream =>
+      _getPurposeResponse.stream;
+
+  List<Purpose> purposeList = [];
+
+  List<PurposeDetail> purposeDetailList = [];
+
+  Purpose? purpose;
+
+  PurposeDetail? purposeDetail;
+
   ManageContactDetailsPageViewModel(
       this._uploadDocumentUseCase,
       this.beneficiary,
       this._updateBeneficiaryUseCase,
       this._deleteBeneficiaryUseCase,
-      this._uploadBeneficiaryProfileImageUseCase) {
+      this._uploadBeneficiaryProfileImageUseCase,
+      this._getPurposeUseCase) {
     _uploadProfilePhotoRequest.listen((value) {
       RequestManager(value,
               createCall: () => _uploadDocumentUseCase.execute(params: value))
@@ -145,6 +169,48 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getPurposeRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getPurposeUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getPurposeResponse.safeAdd(event);
+        purposeList.clear();
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          purposeList
+              .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+        }
+      });
+    });
+  }
+
+  void getPurpose(String toAccount, String transferType) {
+    _getPurposeRequest.safeAdd(GetPurposeUseCaseParams(
+      toAccount: toAccount,
+        transferType: transferType,
+        detCustomerType: "",
+        type: ""));
+  }
+
+  void updatePurpose(Purpose value) {
+    purposeController.text = value.labelEn!;
+    purpose = value;
+  }
+
+  void updatePurposeDetailList(List<PurposeDetail> list) {
+    purposeDetailsController.clear();
+    purposeDetailList.clear();
+    purposeDetailList.addAll(list);
+  }
+
+  void updatePurposeDetail(PurposeDetail value) {
+    purposeDetailsController.text = value.labelEn!;
+    purposeDetail = value;
   }
 
   void uploadProfilePhoto(DocumentTypeEnum type) {
@@ -183,12 +249,19 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
   }
 
   void setData() {
-    nickNameController.text = beneficiary.nickName!;
+    nickNameController.text = Validator.isNotEmptyNull(beneficiary.nickName)
+        ? beneficiary.nickName!
+        : '';
     ibanController.text = beneficiary.iban!;
     accountHolderNameController.text = beneficiary.fullName!;
     bankNameController.text = beneficiary.bankName!;
-    purposeController.text = beneficiary.purpose!;
-    purposeDetailsController.text = beneficiary.purposeDetails!;
+    purposeController.text = Validator.isNotEmptyNull(beneficiary.purpose)
+        ? beneficiary.purpose!
+        : '';
+    purposeDetailsController.text =
+        Validator.isNotEmptyNull(beneficiary.purposeDetails)
+            ? beneficiary.purposeDetails!
+            : '';
   }
 
   void showSaveButton() {

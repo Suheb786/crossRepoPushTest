@@ -28,10 +28,12 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
   @override
   Future<List<String>> getPurposeOfAccountOpeningList() {
     return Future.value([
-      'Savings',
-      'Salary',
-      'Investment',
-      'Loan Repayment',
+      'Salary Transfer',
+      'Normal Daily Banking',
+      'Saving',
+      'Credit Card',
+      'Facilities',
+      'Others'
     ]);
   }
 

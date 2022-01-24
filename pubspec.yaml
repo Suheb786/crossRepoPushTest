@@ -15,7 +15,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 1.0.0+2112241
+version: 1.0.0+2201221
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -62,10 +62,10 @@ dependencies:
   fading_edge_scrollview: ^2.0.1
   table_calendar: ^3.0.3
   clickable_list_wheel_view: ^0.0.4
-#  card_swiper: ^1.0.4
+  #  card_swiper: ^1.0.4
   lottie: ^1.2.1
   focus_detector: ^2.0.0
-  camera: ^0.9.0
+  camera: ^0.9.4+5
   flip_card: ^0.6.0
   image_cropper: ^1.4.1
   steel_crypt: ^3.0.0+1
@@ -77,12 +77,16 @@ dependencies:
   sliding_up_panel: ^2.0.0+1
   share_plus: any
   auto_size_text: ^3.0.0
-  geolocator: 7.6.2
   agora_rtc_engine: ^4.0.7
   permission_handler: ^8.1.6
+  geolocator: 7.7.0
+  package_info: ^2.0.2
+  infobip_mobilemessaging: ^0.5.0
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  draggable_widget: ^2.0.0
+  syncfusion_flutter_sliders: ^19.4.43
 
 
 dev_dependencies:
@@ -94,7 +98,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
@@ -105,6 +108,7 @@ flutter:
     - assets/svg/
     - assets/drawable/
     - assets/animation/
+    - assets/flags/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

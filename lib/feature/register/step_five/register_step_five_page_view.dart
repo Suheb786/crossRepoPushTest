@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/feature/register/step_five/agent_selection/agent_selection_page.dart';
 import 'package:neo_bank/feature/register/step_five/register_step_five_page_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/review_application/review_application_page.dart';
+import 'package:neo_bank/feature/register/step_five/schedule_video_call/schedule_video_call_page.dart';
 import 'package:neo_bank/feature/register/step_five/upload_documents/upload_documents_page.dart';
+import 'package:neo_bank/feature/register/step_five/video_call_info/video_call_info_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/pager/app_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
@@ -17,9 +20,9 @@ class RegisterStepFivePageView
 
   final List<Widget> pages = [
     ReviewApplicationPage(),
-    // VideoCallInfoPage(),
-    // AgentSelectionPage(),
-    // ScheduleVideoCallPage(),
+    VideoCallInfoPage(),
+    AgentSelectionPage(),
+    ScheduleVideoCallPage(),
     UploadDocumentsPage(),
   ];
 
@@ -51,17 +54,13 @@ class RegisterStepFivePageView
                   direction: Direction.vertical,
                   offset: 0.5,
                   child: Text(
-                    StepTextHelper.registrationTwoStepTextHelper(
+                    StepTextHelper.registrationFiveStepTextHelper(
                       currentStep ?? 0,
-                      S
-                          .of(context)
-                          .confirmYourInformation,
-                      // S.of(context).videoCallInfoHeader,
-                      // S.of(context).videoCallInfoHeader,
-                      // S.of(context).pleaseSelectPreferredAgentForVideoCall,
-                      S
-                          .of(context)
-                          .pleaseUploadNecessaryInfo,
+                      S.of(context).confirmYourInformation,
+                      S.of(context).videoCallInfoHeader,
+                      S.of(context).videoCallInfoHeader,
+                      S.of(context).pleaseSelectPreferredAgentForVideoCall,
+                      S.of(context).pleaseUploadNecessaryInfo,
                     ),
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -92,21 +91,16 @@ class RegisterStepFivePageView
   String getHeader(int? currentStep, BuildContext context) {
     switch (currentStep) {
       case 0:
-        return S
-            .of(context)
-            .reviewApplication;
-    // case 1:
-    // case 2:
-    // case 3:
-    //   return S.of(context).videoCall;
+        return S.of(context).reviewApplication;
       case 1:
-        return S
-            .of(context)
-            .uploadDocuments;
+      case 2:
+      case 3:
+        return S.of(context).videoCall;
+      case 4:
+        return S.of(context).uploadDocuments;
+
       default:
-        return S
-            .of(context)
-            .reviewApplication;
+        return S.of(context).reviewApplication;
     }
   }
 }

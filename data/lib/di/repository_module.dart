@@ -4,34 +4,46 @@ import 'package:data/repository/account/account_repository_impl.dart';
 import 'package:data/repository/account_settings/account_settings_impl.dart';
 import 'package:data/repository/bank_smart/bank_smart_repository_impl.dart';
 import 'package:data/repository/card/card_repository_impl.dart';
+import 'package:data/repository/card_processing/card_processing_repository_impl.dart';
 import 'package:data/repository/country/country_repository_impl.dart';
 import 'package:data/repository/dashboard/dashboard_repository_impl.dart';
 import 'package:data/repository/enter_address/home_address_dialog_repository_impl.dart';
 import 'package:data/repository/fatca_crs/fatca_crs_repository_impl.dart';
+import 'package:data/repository/forget_password/forget_password_repository_impl.dart';
 import 'package:data/repository/id_card/id_card_repository_impl.dart';
+import 'package:data/repository/infobip_audio/infobip_audio_repository_impl.dart';
+import 'package:data/repository/infobip_audio/infobip_message_repository_impl.dart';
 import 'package:data/repository/kyc/kyc_repository_impl.dart';
 import 'package:data/repository/manage_contacts/manage_contacts_repository_impl.dart';
+import 'package:data/repository/payment/payment_repository_impl.dart';
 import 'package:data/repository/register/register_repository_impl.dart';
 import 'package:data/repository/register/register_step_four_repository_impl.dart';
 import 'package:data/repository/register/register_step_three_repository_impl.dart';
 import 'package:data/repository/upload_document/upload_document_repository_impl.dart';
 import 'package:data/repository/user/user_repository_impl.dart';
+import 'package:data/repository/utility/utility_repository_impl.dart';
 import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/repository/account_settings/account_settings_repository.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/repository/card/card_repository.dart';
+import 'package:domain/repository/card_processing/card_processing_repository.dart';
 import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
 import 'package:domain/repository/fatca_crs/fatca_crs_repository.dart';
+import 'package:domain/repository/forget_password/forget_password_repository.dart';
+import 'package:domain/repository/help_center/help_canter.dart';
+import 'package:domain/repository/help_center/infobip_message_repository.dart';
 import 'package:domain/repository/id_card/id_card_repository.dart';
 import 'package:domain/repository/kyc/kyc_repository.dart';
 import 'package:domain/repository/manage_contact/manage_contact_repository.dart';
+import 'package:domain/repository/payment/payment_repository.dart';
 import 'package:domain/repository/register/register_repository.dart';
 import 'package:domain/repository/register/register_step_four_repository.dart';
 import 'package:domain/repository/register/register_step_three_repository.dart';
 import 'package:domain/repository/upload_document/upload_document_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
+import 'package:domain/repository/utility/utility_repository.dart';
 import 'package:riverpod/riverpod.dart';
 
 /// inject [UserRepository] provider
@@ -74,6 +86,10 @@ var homeAddressDialogRepositoryProvider = Provider<HomeAddressDialogRepository>(
 var kycRepositoryProvider =
     Provider<KYCRepository>((ref) => KYCRepositoryImpl(ref.read(kycRemoteDS)));
 
+/// inject [CardProcessingRepository] provider
+var cardProcessingRepository = Provider<CardProcessingRepository>((ref) =>
+    CardProcessingRepositoryImpl(ref.read(cardProcessingDataSourceProvider)));
+
 /// inject [IdCardRepository] provider
 var idCardRepositoryProvider = Provider<IdCardRepository>(
     (ref) => IdCardRepositoryImpl(ref.read(idCardRemoteDS)));
@@ -106,3 +122,27 @@ var manageContactRepositoryProvider = Provider<ManageContactRepository>((ref) =>
 /// inject [ManageContactRepository] provider
 var dashboardRepositoryProvider = Provider<DashboardRepository>(
     (ref) => DashboardRepositoryImpl(ref.read(dashboardDataSourceProvider)));
+
+/// inject [PaymentRepository] provider
+var paymentRepositoryProvider = Provider<PaymentRepository>(
+    (ref) => PaymentRepositoryImpl(ref.read(paymentDataSourceProvider)));
+
+/// inject [HelpCenterRepository] provider
+var helpCenterRepositoryProvider = Provider<HelpCenterRepository>((ref) =>
+    InfobipAudioRepositoryImpl(
+        ref.read(infobipDatasourceProvider), ref.read(userRepoProvider)));
+
+/// inject [InfobipMessageRepository] provider
+var infobipMessagingRepositoryProvider = Provider<InfobipMessageRepository>(
+    (ref) => InfobipMessageRepositoryImpl(
+        ref.read(infobipMessagingDatasourceProvider),
+        ref.read(userRepoProvider)));
+
+/// inject [ForgetPasswordRepository] provider
+var forgetPasswordRepositoryProvider = Provider<ForgetPasswordRepository>(
+    (ref) => ForgetPasswordRepositoryImpl(
+        ref.read(forgetPasswordDataSourceProvider)));
+
+/// inject [UtilityRepository] provider
+var utilityRepositoryProvider = Provider<UtilityRepository>(
+    (ref) => UtilityRepositoryImpl(ref.read(utilityDataSourceProvider)));

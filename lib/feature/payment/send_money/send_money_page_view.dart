@@ -1,7 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/payment/send_money/send_money_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -19,7 +23,8 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
     return AppKeyBoardHide(
       child: GestureDetector(
         onVerticalDragEnd: (details) {
-          if (details.primaryVelocity!.isNegative) {} else {
+          if (details.primaryVelocity!.isNegative) {
+          } else {
             Navigator.pop(context);
           }
         },
@@ -133,7 +138,11 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "12,451.92",
+                    ProviderScope.containerOf(context)
+                        .read(appHomeViewModelProvider)
+                        .dashboardDataContent
+                        .account!
+                        .availableBalance!,
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 14,
@@ -152,115 +161,6 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                 ],
               ),
             ),
-            // Expanded(
-            //   child: Padding(
-            //     padding: EdgeInsets.only(top: 44.0),
-            //     child: SingleChildScrollView(
-            //       child: Column(
-            //         children: [
-            //           Padding(
-            //             padding: const EdgeInsets.symmetric(horizontal: 78),
-            //             child: Row(
-            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //               children: [
-            //                 Text(
-            //                   "1",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "2",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "3",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //           Padding(
-            //             padding: EdgeInsets.only(top: 48, left: 78, right: 78),
-            //             child: Row(
-            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //               children: [
-            //                 Text(
-            //                   "4",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "5",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "6",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //           Padding(
-            //             padding: EdgeInsets.only(top: 48, left: 78, right: 78),
-            //             child: Row(
-            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //               children: [
-            //                 Text(
-            //                   "7",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "8",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "9",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //               ],
-            //             ),
-            //           ),
-            //           Padding(
-            //             padding: EdgeInsets.only(
-            //                 top: 31, left: 78, right: 51, bottom: 40),
-            //             child: Row(
-            //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //               children: [
-            //                 Text(
-            //                   ".",
-            //                   textAlign: TextAlign.center,
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 Text(
-            //                   "0",
-            //                   style: TextStyle(
-            //                       fontWeight: FontWeight.w400, fontSize: 28),
-            //                 ),
-            //                 InkWell(
-            //                     onTap: () {
-            //                       Navigator.push(
-            //                           context,
-            //                           MaterialPageRoute(
-            //                               builder: (context) =>
-            //                                   PaymentToNewRecipientPage()));
-            //                     },
-            //                     child: AppSvg.asset(AssetUtils.next))
-            //               ],
-            //             ),
-            //           )
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // )
             Expanded(
               child: NumericKeyboard(
                   onKeyboardTap: (value) {
@@ -268,8 +168,22 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                   },
                   textColor: Colors.black,
                   rightButtonFn: () {
-                    Navigator.pushNamed(
-                        context, RoutePaths.PaymentToNewRecipient);
+                    print("clicked");
+                    if (double.parse(model.currentPinValue) >
+                        double.parse(ProviderScope.containerOf(context)
+                            .read(appHomeViewModelProvider)
+                            .dashboardDataContent
+                            .account!
+                            .availableBalance!)) {
+                      model.showToastWithError(AppError(
+                          cause: Exception(),
+                          error: ErrorInfo(message: ''),
+                          type: ErrorType.INSUFFICIENT_BALANCE_TRANSFER));
+                    } else {
+                      Navigator.pushNamed(
+                          context, RoutePaths.PaymentToNewRecipient,
+                          arguments: model.currentPinValue);
+                    }
                   },
                   leftIcon: Icon(
                     Icons.circle,
@@ -284,7 +198,7 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                     ),
                   ),
                   leftButtonFn: () {
-                    print('left button clicked');
+                    model.changeValue(".");
                   },
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly),
             )

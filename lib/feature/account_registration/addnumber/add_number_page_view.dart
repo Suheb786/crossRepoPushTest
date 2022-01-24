@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/account_registration/account_registration_modules.dart';
+import 'package:neo_bank/feature/account_registration/account_registration_page_view_model.dart';
 import 'package:neo_bank/feature/account_registration/addnumber/add_number_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
@@ -18,6 +19,7 @@ import 'package:neo_bank/ui/molecules/dialog/register/step_three/mobile_number_d
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 
@@ -42,8 +44,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                 onData: (data) {
                   print("data.status ${data.status}");
                   if (data.status == Status.SUCCESS) {
-                    ProviderScope
-                        .containerOf(context)
+                    ProviderScope.containerOf(context)
                         .read(accountRegistrationViewModelProvider)
                         .pageController
                         .next();
@@ -60,7 +61,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                         ProviderScope.containerOf(context)
                             .read(accountRegistrationViewModelProvider)
                             .pageController
-                            .previous(animation: true);
+                            .previous();
                       }
                     },
                     child: Card(
@@ -101,6 +102,15 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                   Resource<AllowedCountryListResponse>>(
                                 initialData: Resource.success(
                                     data: AllowedCountryListResponse()),
+                                onData: (data) {
+                                  if (data.status == Status.SUCCESS) {
+                                    ProviderScope.containerOf(context)
+                                            .read(
+                                                accountRegistrationViewModelProvider)
+                                            .countryDataList =
+                                        data.data!.contentData!.countryData!;
+                                  }
+                                },
                                 stream: model.getAllowedCountryStream,
                                 dataBuilder: (context, country) {
                                   return AppStreamBuilder<CountryData>(
@@ -116,6 +126,19 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                             model.showToastWithError(
                                                 data.appError!);
                                             model.showErrorState();
+                                          } else if (data.status ==
+                                              Status.SUCCESS) {
+                                            ProviderScope.containerOf(context)
+                                                .read(
+                                                    accountRegistrationViewModelProvider)
+                                                .updateMobileNumber(
+                                                    MobileNumberParams(
+                                                        mobileCode: model
+                                                            .countryData
+                                                            .phoneCode!,
+                                                        mobileNumber: model
+                                                            .mobileNumberController
+                                                            .text));
                                           }
                                         },
                                         dataBuilder: (context, data) {
@@ -125,9 +148,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                 .mobileNumber
                                                 .toUpperCase(),
                                             hintText:
-                                            S
-                                                .of(context)
-                                                .mobileNumberHint,
+                                                S.of(context).mobileNumberHint,
                                             inputType: TextInputType.number,
                                             inputAction: TextInputAction.done,
                                             inputFormatters: [
@@ -135,7 +156,7 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                   model.countryData.mobileMax),
                                             ],
                                             controller:
-                                            model.mobileNumberController,
+                                                model.mobileNumberController,
                                             key: model.mobileNumberKey,
                                             onChanged: (value) {
                                               model.validateMobile();
@@ -150,13 +171,13 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                           .of(context)
                                                           .mobileNumber,
                                                       onSelected: (data) {
-                                                        Navigator.pop(context);
-                                                        model.countryData =
-                                                            data;
-                                                        print(
-                                                            'selectedData---->${data
-                                                                .phoneCode}');
-                                                      }, onDismissed: () {
+                                                    Navigator.pop(context);
+                                                    model.countryData = data;
+                                                    model.setSelectedCountry(
+                                                        data);
+                                                    print(
+                                                        'selectedData---->${data.phoneCode}');
+                                                  }, onDismissed: () {
                                                     Navigator.pop(context);
                                                   },
                                                       countryDataList: country!
@@ -166,47 +187,48 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                 },
                                                 child: Padding(
                                                   padding:
-                                                  EdgeInsets.only(top: 8.0),
+                                                      EdgeInsets.only(top: 8.0),
                                                   child: Row(
                                                     mainAxisSize:
-                                                    MainAxisSize.min,
+                                                        MainAxisSize.min,
                                                     children: <Widget>[
-
-                                                      ///TODO:add country Flag
                                                       Container(
-                                                          height: 16,
-                                                          width: 16,
-                                                          decoration:
-                                                          BoxDecoration(
-                                                            color: Theme
-                                                                .of(
-                                                                context)
-                                                                .primaryColorDark,
-                                                            shape:
-                                                            BoxShape.circle,
-                                                          )),
+                                                        height: 16,
+                                                        width: 16,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .primaryColorDark,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child: AppSvg.asset(selectedCountry!
+                                                                    .isoCode3 !=
+                                                                null
+                                                            ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
+                                                            : "assets/flags/jor.svg"),
+                                                      ),
                                                       Padding(
                                                         padding: EdgeInsets
                                                             .symmetric(
-                                                            horizontal:
-                                                            8.0),
+                                                                horizontal:
+                                                                    8.0),
                                                         child: Text(
-                                                          selectedCountry!
-                                                              .phoneCode!
-                                                              .isNotEmpty
-                                                              ? '+${selectedCountry
-                                                              .phoneCode!}'
+                                                          selectedCountry
+                                                                  .phoneCode!
+                                                                  .isNotEmpty
+                                                              ? '+${selectedCountry.phoneCode!}'
                                                               : "",
                                                           style: TextStyle(
-                                                            color: Theme
-                                                                .of(
-                                                                context)
+                                                            color: Theme.of(
+                                                                    context)
                                                                 .textTheme
                                                                 .bodyText1!
                                                                 .color,
                                                             fontSize: 14,
                                                             fontWeight:
-                                                            FontWeight.w600,
+                                                                FontWeight.w600,
                                                           ),
                                                         ),
                                                       ),
@@ -214,14 +236,13 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                                           height: 16,
                                                           width: 16,
                                                           margin:
-                                                          EdgeInsets.only(
-                                                              right: 8),
+                                                              EdgeInsets.only(
+                                                                  right: 8),
                                                           child: AppSvg.asset(
                                                               AssetUtils
                                                                   .downArrow,
-                                                              color: Theme
-                                                                  .of(
-                                                                  context)
+                                                              color: Theme.of(
+                                                                      context)
                                                                   .primaryTextTheme
                                                                   .bodyText1!
                                                                   .color))
@@ -238,8 +259,21 @@ class AddNumberPageView extends BasePageViewWidget<AddNumberViewModel> {
                                 },
                               ),
                               Spacer(),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
+                                child: Text(
+                                  S.of(context).backToRegistration,
+                                  style: TextStyle(
+                                    color: AppColor.brightBlue,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
                               Padding(
-                                padding: EdgeInsets.symmetric(vertical: 16.0),
+                                padding: EdgeInsets.symmetric(vertical: 12.0),
                                 child: AppStreamBuilder<bool>(
                                     stream: model.showButtonStream,
                                     initialData: false,

@@ -1,6 +1,5 @@
 import 'package:domain/model/manage_contacts/beneficiary.dart';
 import 'package:flutter/material.dart';
-import 'package:neo_bank/feature/manage_contacts/manage_contacts_list/manage_contacts_list_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -35,7 +34,11 @@ class ContactListWidget extends StatelessWidget {
                       radius: 25,
                       backgroundColor: Theme.of(context).primaryColor,
                       child: Text(
-                        StringUtils.getFirstInitials(beneficiary!.nickName),
+                        ///TODO:check whether full name
+                        beneficiary!.fullName!.split(" ").length > 1
+                            ? StringUtils.getFirstInitials(
+                                beneficiary!.fullName)
+                            : beneficiary!.fullName![0],
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 14,
@@ -47,7 +50,10 @@ class ContactListWidget extends StatelessWidget {
               ),
               Expanded(
                 child: Text(
-                  beneficiary!.nickName!,
+                  (beneficiary!.nickName != null &&
+                          beneficiary!.nickName!.isNotEmpty)
+                      ? beneficiary!.nickName!
+                      : beneficiary!.fullName!,
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
                 ),
               ),

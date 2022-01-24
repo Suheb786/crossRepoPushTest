@@ -5,7 +5,10 @@ import 'package:domain/usecase/account_setting/change_mobile_number/add_new_mobi
 import 'package:domain/usecase/account_setting/change_mobile_number/validate_otp_for_new_mobile_number_usecase.dart';
 import 'package:domain/usecase/account_setting/change_password/enter_new_password_usecase.dart';
 import 'package:domain/usecase/account_setting/get_profile_info/get_profile_info_usecase.dart';
+import 'package:domain/usecase/account_setting/my_documents/get_customer_doc_id_usecase.dart';
+import 'package:domain/usecase/account_setting/my_documents/get_customer_document_usecase.dart';
 import 'package:domain/usecase/account_setting/my_documents/my_documents_usecase.dart';
+import 'package:domain/usecase/account_setting/upload_profile_image/delete_profile_image_usecase.dart';
 import 'package:domain/usecase/account_setting/upload_profile_image/upload_profile_image_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -59,4 +62,24 @@ final uploadProfileImageUseCaseProvider =
     Provider.autoDispose<UploadProfileImageUseCase>(
   (ref) =>
       UploadProfileImageUseCase(ref.read(accountSettingRepositoryProvider)),
+);
+
+///[DeleteProfileImageUseCase] provider
+final deleteProfileImageUseCaseProvider =
+    Provider.autoDispose<DeleteProfileImageUseCase>(
+  (ref) =>
+      DeleteProfileImageUseCase(ref.read(accountSettingRepositoryProvider)),
+);
+
+///[GetCustomerDocIdUseCase] provider
+final getCustomerDocIdUseCaseProvider =
+    Provider.autoDispose<GetCustomerDocIdUseCase>(
+  (ref) => GetCustomerDocIdUseCase(ref.read(accountSettingRepositoryProvider)),
+);
+
+///[GetCustomerDocumentUseCase] provider
+final getCustomerDocUseCaseProvider =
+    Provider.autoDispose<GetCustomerDocumentUseCase>(
+  (ref) =>
+      GetCustomerDocumentUseCase(ref.read(accountSettingRepositoryProvider)),
 );

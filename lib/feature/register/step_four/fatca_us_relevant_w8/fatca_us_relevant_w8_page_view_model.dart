@@ -1,5 +1,5 @@
 import 'package:domain/constants/error_types.dart';
-import 'package:domain/model/fatca_crs/fatca_set_data.dart';
+import 'package:domain/model/fatca_crs/fatca_w8_data.dart';
 import 'package:domain/usecase/register/fatca_us_relevant_w8_useCase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -100,16 +100,15 @@ class FatcaUSRelevantW8PageViewModel extends BasePageViewModel {
 
   ///update data to main page
   void updateData(BuildContext context) {
-    FatcaSetData fatcaSetData = ProviderScope
-        .containerOf(context)
+    FatcaW8Data fatcaW8Data = ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .fatcaData;
-    fatcaSetData.namePerIncomeTaxReturn = nameAsPerTaxReturnController.text;
-    fatcaSetData.dob = dateOfBirthController.text;
-    fatcaSetData.citizenShipCountry = countryOfCitizenshipController.text;
+        .getFatcaW8Data;
+    fatcaW8Data.nameIncomeTaxReturn = nameAsPerTaxReturnController.text;
+    fatcaW8Data.dateOfBirth = dateOfBirthController.text;
+    fatcaW8Data.citizenShipCountry = countryOfCitizenshipController.text;
     ProviderScope.containerOf(context)
         .read(registerStepFourViewModelProvider)
-        .setFatcaData(fatcaSetData);
+        .setFatcaW8(fatcaW8Data);
   }
 
   @override

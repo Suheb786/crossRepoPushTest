@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:isolate';
 
+import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
+import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -83,7 +85,7 @@ class AppViewModel extends BaseViewModel {
           indicatorColor: AppColor.white,
           buttonTheme: ButtonThemeData(
             shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             textTheme: ButtonTextTheme.normal,
           ),
         );
@@ -177,10 +179,11 @@ class AppViewModel extends BaseViewModel {
             errorColor: AppColor.vivid_red,
             indicatorColor: AppColor.veryDarkGray2,
             buttonTheme: ButtonThemeData(
-              shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50)),
               textTheme: ButtonTextTheme.normal,
             ),
+            dividerColor: AppColor.lightGrayishBlue,
             canvasColor: AppColor.vividYellow);
         break;
     }
@@ -192,18 +195,38 @@ class AppViewModel extends BaseViewModel {
   Isolate? _isolate;
 
   final GetTokenUseCase _getTokenUseCase;
+  final SaveUserUseCase _saveUserUseCase;
+  final InfobipMessagePluginUseCase _infobipMessagePluginUseCase;
+
+  PublishSubject<InfobipMessagePluginUseCaseParams>
+      _initInfobipMessageRequestSubject = PublishSubject();
+
+  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject =
+      PublishSubject();
 
   static PublishSubject<GetTokenUseCaseParams> _getTokenRequest =
-  PublishSubject();
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _initInfobipMessageResponseSubject =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
 
   static PublishSubject<Resource<bool>> _getTokenResponse = PublishSubject();
 
   Stream<Resource<bool>> get getTokenStream => _getTokenResponse.stream;
 
-  AppViewModel(this._getTokenUseCase) {
+  Stream<Resource<bool>> get initInfobipMessageResponseStream =>
+      _initInfobipMessageResponseSubject.stream;
+
+  Stream<Resource<bool>> get saveUserResponseStream =>
+      _saveuserResponseSubject.stream;
+
+  AppViewModel(this._getTokenUseCase, this._infobipMessagePluginUseCase,
+      this._saveUserUseCase) {
     _getTokenRequest.listen((value) {
       RequestManager(value,
-          createCall: () => _getTokenUseCase.execute(params: value))
+              createCall: () => _getTokenUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
         if (event.status == Status.ERROR) {
@@ -212,6 +235,33 @@ class AppViewModel extends BaseViewModel {
         _getTokenResponse.safeAdd(event);
       });
     });
+
+    _initInfobipMessageRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _infobipMessagePluginUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        _initInfobipMessageResponseSubject.safeAdd(event);
+      });
+    });
+
+    _saveUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _saveUserUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        _saveuserResponseSubject.safeAdd(event);
+      });
+    });
+
+    initInfobipMessagePlugin();
+  }
+
+  initInfobipMessagePlugin() async {
+    _initInfobipMessageRequestSubject
+        .safeAdd(InfobipMessagePluginUseCaseParams());
+  }
+
+  void saveUserData() {
+    _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
   }
 
   void getToken() async {

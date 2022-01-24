@@ -29,16 +29,14 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                 onHorizontalDragUpdate: (details) {
                   if (details.primaryDelta!.isNegative) {
                     Future.delayed(Duration(milliseconds: 500), () {
-                      ProviderScope
-                          .containerOf(context)
+                      ProviderScope.containerOf(context)
                           .read(registerStepFiveViewModelProvider)
                           .registrationStepFivePageController
-                          .move(4);
+                          .move(4, animation: false);
                     });
                   } else {
                     Future.delayed(Duration(milliseconds: 500), () {
-                      ProviderScope
-                          .containerOf(context)
+                      ProviderScope.containerOf(context)
                           .read(registerStepFiveViewModelProvider)
                           .registrationStepFivePageController
                           .previous();
@@ -73,16 +71,12 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
                                 ),
                               ),
                               Text(
-                                S
-                                    .of(context)
-                                    .weWillConnectYouInBlink,
+                                S.of(context).weWillConnectYouInBlink,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 20,
-                                    color: Theme
-                                        .of(context)
-                                        .primaryColorDark),
+                                    color: Theme.of(context).primaryColorDark),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 32.0),

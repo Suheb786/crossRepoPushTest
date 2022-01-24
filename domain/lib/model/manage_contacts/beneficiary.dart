@@ -13,6 +13,12 @@ class Beneficiary {
   final String? bankName;
   final String? purpose;
   final String? purposeDetails;
+  final String? beneType;
+  final String? purposeType;
+  final String? detCustomerType;
+  final String? purposeParent;
+  final String? purposeParentDetails;
+  final num? limit;
 
   Beneficiary(
       {this.id: "",
@@ -21,10 +27,16 @@ class Beneficiary {
       this.fullName: "",
       this.bankName,
       this.iban: "",
+      this.purposeParent,
+      this.purposeParentDetails,
+      this.limit,
       this.accountHolderName: "",
       this.purpose: "",
       this.purposeDetails: "",
       this.mobileNumber: "",
       this.accountNo: "",
-      this.beneficiaryAddress: ""});
+      this.beneficiaryAddress: "",
+      this.detCustomerType: "",
+      this.purposeType: "",
+      this.beneType});
 }

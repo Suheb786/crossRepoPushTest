@@ -32,8 +32,7 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
-                    color: Theme.of(context)
-                        .primaryColorDark),
+                    color: Theme.of(context).primaryColorDark),
               ),
             ),
             new ListTile(
@@ -42,15 +41,11 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
                   color: AppColor.gray,
                 ),
                 title: Text(
-                  S
-                      .of(context)
-                      .selectFromLibrary,
+                  S.of(context).selectFromLibrary,
                   style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
-                      color: Theme
-                          .of(context)
-                          .primaryColorDark),
+                      color: Theme.of(context).primaryColorDark),
                 ),
                 onTap: () {
                   onPhotoLibraryTap?.call();
@@ -58,15 +53,11 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
             new ListTile(
               leading: new Icon(Icons.photo_camera, color: AppColor.gray),
               title: Text(
-                S
-                    .of(context)
-                    .takePhoto,
+                S.of(context).takePhoto,
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: Theme
-                        .of(context)
-                        .primaryColorDark),
+                    color: Theme.of(context).primaryColorDark),
               ),
               onTap: () {
                 onCameraTap?.call();
@@ -76,15 +67,11 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
               leading: new Icon(Icons.highlight_remove_outlined,
                   color: AppColor.gray),
               title: Text(
-                S
-                    .of(context)
-                    .removePhoto,
+                S.of(context).removePhoto,
                 style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w400,
-                    color: Theme
-                        .of(context)
-                        .primaryColorDark),
+                    color: Theme.of(context).primaryColorDark),
               ),
               onTap: () {
                 onRemoveTap?.call();
@@ -94,9 +81,7 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(vertical: 16),
               child: Container(
                 height: 1,
-                color: Theme
-                    .of(context)
-                    .primaryColorDark,
+                color: Theme.of(context).primaryColorDark,
               ),
             ),
             InkWell(
@@ -105,22 +90,16 @@ class UploadProfileBottomSheetWidget extends StatelessWidget {
               },
               child: Center(
                   child: Padding(
-                    padding: EdgeInsets.only(bottom: 24.0),
-                    child: Text(
-                      S
-                          .of(context)
-                          .cancel,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Theme
-                            .of(context)
-                            .accentTextTheme
-                            .bodyText1!
-                            .color,
-                      ),
-                    ),
-                  )),
+                padding: EdgeInsets.only(bottom: 24.0),
+                child: Text(
+                  S.of(context).cancel,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: Theme.of(context).accentTextTheme.bodyText1!.color,
+                  ),
+                ),
+              )),
             ),
           ],
         ),

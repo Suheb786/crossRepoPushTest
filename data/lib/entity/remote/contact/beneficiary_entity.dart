@@ -30,6 +30,18 @@ class BeneficiaryEntity
   final String? beneficiaryAddress;
   @JsonKey(name: "bankName")
   final String? bankName;
+  @JsonKey(name: "beneType")
+  final String? beneType;
+  @JsonKey(name: "purposeType")
+  final String? purposeType;
+  @JsonKey(name: "purposeParent")
+  final String? purposeParent;
+  @JsonKey(name: "purposeParentDetails")
+  final String? purposeParentDetails;
+  @JsonKey(name: "limit")
+  final num? limit;
+  @JsonKey(name: "detCustomerType")
+  final String? detCustomerType;
 
   BeneficiaryEntity(
       {this.nickName: "",
@@ -42,7 +54,13 @@ class BeneficiaryEntity
       this.bankName: "",
       this.iban: "",
       this.purpose: "",
-      this.id: ""});
+      this.id: "",
+      this.beneType: "",
+      this.purposeType: "",
+      this.detCustomerType: "",
+      this.limit,
+      this.purposeParent: "",
+      this.purposeParentDetails: ""});
 
   factory BeneficiaryEntity.fromJson(Map<String, dynamic> json) =>
       _$BeneficiaryEntityFromJson(json);
@@ -70,6 +88,12 @@ class BeneficiaryEntity
         iban: this.iban,
         accountHolderName: this.fullName,
         accountNo: this.accountNo,
-        beneficiaryAddress: this.beneficiaryAddress);
+        beneficiaryAddress: this.beneficiaryAddress,
+        purposeType: this.purposeType ?? "",
+        detCustomerType: this.detCustomerType ?? "",
+        beneType: this.beneType,
+        limit: this.limit,
+        purposeParent: this.purposeParent,
+        purposeParentDetails: this.purposeParentDetails);
   }
 }

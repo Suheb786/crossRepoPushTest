@@ -11,6 +11,9 @@ import 'package:data/entity/remote/account/save_customer_schedule_time_response_
 import 'package:data/entity/remote/accountsettings/change_email_request.dart';
 import 'package:data/entity/remote/accountsettings/change_mobile_request.dart';
 import 'package:data/entity/remote/accountsettings/change_password_request.dart';
+import 'package:data/entity/remote/accountsettings/get_customer_doc_id_response_entity.dart';
+import 'package:data/entity/remote/accountsettings/get_customer_document_request_entity.dart';
+import 'package:data/entity/remote/accountsettings/get_customer_document_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/profile_changed_success_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/profile_details_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/update_profile_image_request.dart';
@@ -29,16 +32,25 @@ import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.d
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/cancel_credit_card_request.dart';
-import 'package:data/entity/remote/card/cancel_debit_card_request.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
 import 'package:data/entity/remote/card/change_debit_card_pin_request.dart';
 import 'package:data/entity/remote/card/confirm_creditcard_delivery_request.dart';
+import 'package:data/entity/remote/card/credit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
+import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
+import 'package:data/entity/remote/card/freeze_credit_card_request_entity.dart';
+import 'package:data/entity/remote/card/freeze_debit_card_request_entity.dart';
+import 'package:data/entity/remote/card/get_card_application/get_card_application_response_entity.dart';
 import 'package:data/entity/remote/card/get_debit_card_transaction_request.dart';
+import 'package:data/entity/remote/card/get_loan_values/get_loan_values_request_entity.dart';
+import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response_entity.dart';
+import 'package:data/entity/remote/card/link_card_step/link_card_step_request_entity.dart';
+import 'package:data/entity/remote/card/process_loan_request/process_loan_request_entity.dart';
+import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/card/request_card_request.dart';
 import 'package:data/entity/remote/card/set_card_pin_request.dart';
 import 'package:data/entity/remote/contact/add_beneficiary_request.dart';
@@ -47,25 +59,54 @@ import 'package:data/entity/remote/contact/get_beneficiary_response_entity.dart'
 import 'package:data/entity/remote/contact/update_beneficiary_request.dart';
 import 'package:data/entity/remote/contact/upload_beneficiary_image_request.dart';
 import 'package:data/entity/remote/contact/verify_beneficiary_otp_request.dart';
+import 'package:data/entity/remote/country/city_list/city_list_request_entity.dart';
+import 'package:data/entity/remote/country/city_list/city_list_response_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_request_entity.dart';
 import 'package:data/entity/remote/country/country_list/country_list_response_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_request_entity.dart';
 import 'package:data/entity/remote/country/get_allowed_country/get_allowed_country_response_entity.dart';
+import 'package:data/entity/remote/country/get_allowed_issuer/get_allowed_issuer_response_entity.dart';
+import 'package:data/entity/remote/country/state_list/state_list_request_entity.dart';
+import 'package:data/entity/remote/country/state_list/state_list_response_entity.dart';
 import 'package:data/entity/remote/dashboard/atms_response_entity.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
+import 'package:data/entity/remote/debit_card/debit_card_limit_request_entity.dart';
+import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/set_fatca_questions_response_entity.dart';
+import 'package:data/entity/remote/fatca_crs/set_fatca_w8_request_entity.dart';
+import 'package:data/entity/remote/fatca_crs/set_fatca_w9_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/upload_signature_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/upload_signature_response_entity.dart';
+import 'package:data/entity/remote/forget_password/check_forget_password_request_entity.dart';
+import 'package:data/entity/remote/forget_password/check_forget_password_response_entity.dart';
+import 'package:data/entity/remote/forget_password/forget_password_request_entity.dart';
+import 'package:data/entity/remote/forget_password/forget_password_response_entity.dart';
+import 'package:data/entity/remote/forget_password/verify_forget_password_otp_request_entity.dart';
+import 'package:data/entity/remote/forget_password/verify_forget_password_otp_response_entity.dart';
 import 'package:data/entity/remote/kyc/check_kyc_status_response_entity.dart';
 import 'package:data/entity/remote/kyc/kyc_status_request.dart';
+import 'package:data/entity/remote/payment/check_send_money_request_entity.dart';
+import 'package:data/entity/remote/payment/check_send_money_response_entity.dart';
+import 'package:data/entity/remote/payment/get_account_by_alias_content_response_entity.dart';
+import 'package:data/entity/remote/payment/get_account_by_alias_request_entity.dart';
+import 'package:data/entity/remote/payment/payment_activity_request_entity.dart';
+import 'package:data/entity/remote/payment/payment_activity_response_entity.dart';
+import 'package:data/entity/remote/payment/request_to_pay_content_response_entity.dart';
+import 'package:data/entity/remote/payment/request_to_pay_request_entity.dart';
+import 'package:data/entity/remote/payment/transfer_request_entity.dart';
+import 'package:data/entity/remote/payment/transfer_success_response_entity.dart';
+import 'package:data/entity/remote/purpose/purpose_request_entity.dart';
+import 'package:data/entity/remote/purpose/purpose_response_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/save_upload_document_response_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_request_entity.dart';
 import 'package:data/entity/remote/upload_document/upload_document_response_entity.dart';
+import 'package:data/entity/remote/user/biometric_login/get_cipher_response_entity.dart';
+import 'package:data/entity/remote/user/change_my_number/change_my_number_request_entity.dart';
 import 'package:data/entity/remote/user/check_user_email_request.dart';
 import 'package:data/entity/remote/user/check_user_name_mobile_request.dart';
 import 'package:data/entity/remote/user/check_user_name_response_entity.dart';
@@ -74,7 +115,9 @@ import 'package:data/entity/remote/user/confirm_application_data_get/get_confirm
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_request_entity.dart';
 import 'package:data/entity/remote/user/confirm_application_data_set/confirm_application_data_set_response_entity.dart';
 import 'package:data/entity/remote/user/disable_finger_print/disable_finger_print_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/android_login_request_entity.dart';
 import 'package:data/entity/remote/user/enable_biometric/enable_biometric_request_entity.dart';
+import 'package:data/entity/remote/user/enable_biometric/get_cipher_request_entity.dart';
 import 'package:data/entity/remote/user/enable_finger_print/enable_finger_print_request_entity.dart';
 import 'package:data/entity/remote/user/fetch_countrylist_request.dart';
 import 'package:data/entity/remote/user/generate_key_pair/generate_key_pair_request_entity.dart';
@@ -100,6 +143,7 @@ import 'package:data/entity/remote/user/save_profile_information_request.dart';
 import 'package:data/entity/remote/user/save_profile_status_response_entity.dart';
 import 'package:data/entity/remote/user/save_residence_information_request.dart';
 import 'package:data/entity/remote/user/save_selfie_image_request.dart';
+import 'package:data/entity/remote/user/status/customer_status_response_entity.dart';
 import 'package:data/entity/remote/user/verify_mobile_otp_request.dart';
 import 'package:data/entity/remote/user/verify_otp_response_entity.dart';
 import 'package:data/network/network_properties.dart';
@@ -177,7 +221,7 @@ abstract class ApiService {
   Future<HttpResponse<GetFatcaQuestionsResponseEntity>> getFatcaQuestions(
       @Body() GetFatcaQuestionsRequestEntity getFatcaQuestionsRequestEntity);
 
-  @POST("/FatcaCrs/set")
+  @POST("/FatcaCrs/setFatcaV1")
   Future<HttpResponse<SetFatcaQuestionsResponseEntity>> saveFatcaInformation(
       @Body()
           SaveFatcaInformationRequestEntity saveFatcaInformationRequestEntity);
@@ -260,7 +304,7 @@ abstract class ApiService {
 
   ///disable fingerprint
   @POST("/auth/DisableFingerPrint")
-  Future<bool> disableFingerPrint(
+  Future<HttpResponse<ResponseEntity>> disableFingerPrint(
       @Body() DisableFingerPrintRequestEntity disableFingerPrintRequestEntity);
 
   ///check agent status
@@ -418,6 +462,10 @@ abstract class ApiService {
   Future<HttpResponse<DebitYearsResponseEntity>> getDebitYears(
       @Body() BaseRequest baseRequest);
 
+  @POST("/DebitCard/DebitCardLimit")
+  Future<HttpResponse<DebitCardLimitResponseEntity>> getDebitCardLimit(
+      @Body() DebitCardLimitRequestEntity baseRequest);
+
   @POST("/RuleEngine/CancelCreditCard")
   Future<HttpResponse<ResponseEntity>> cancelCreditCard(
       @Body() CancelCreditCardRequest cancelCreditCardRequest);
@@ -428,23 +476,23 @@ abstract class ApiService {
 
   @POST("/RuleEngine/FreezeCreditCard")
   Future<HttpResponse<ResponseEntity>> freezeCreditCard(
-      @Body() BaseRequest baseRequest);
+      @Body() FreezeCreditCardRequestEntity freezeCreditCardRequestEntity);
 
   @POST("/RuleEngine/UnfreezeCreditCard")
   Future<HttpResponse<ResponseEntity>> unFreezeCreditCard(
-      @Body() BaseRequest baseRequest);
+      @Body() FreezeCreditCardRequestEntity unFreezeCreditCardRequestEntity);
 
   @POST("/DebitCard/CancelCard")
   Future<HttpResponse<ResponseEntity>> cancelDebitCard(
-      @Body() CancelDebitCardRequest cancelDebitCardRequest);
+      @Body() FreezeDebitCardRequestEntity cancelDebitCardRequest);
 
   @POST("/DebitCard/FreezeCard")
   Future<HttpResponse<ResponseEntity>> freezeDebitCard(
-      @Body() BaseRequest baseRequest);
+      @Body() FreezeDebitCardRequestEntity freezeDebitCardRequestEntity);
 
   @POST("/DebitCard/unFreezeCard")
   Future<HttpResponse<ResponseEntity>> unFreezeDebitCard(
-      @Body() BaseRequest baseRequest);
+      @Body() FreezeDebitCardRequestEntity unfreezeDebitCardRequestEntity);
 
   @POST("/DebitCard/ChangePin")
   Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
@@ -453,4 +501,140 @@ abstract class ApiService {
   @POST("/DebitCard/UnblockPin")
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
       @Body() ChangeDebitCardPinRequest changeDebitCardPinRequest);
+
+  @POST("/transfer/GetAccountByAlisas")
+  Future<HttpResponse<GetAccountByAliasContentResponseEntity>>
+      getAccountByAlias(
+          @Body()
+              GetAccountByAliasRequestEntity getAccountByAliasRequestEntity);
+
+  @POST("/transfer/CheckSendMoney")
+  Future<HttpResponse<CheckSendMoneyResponseEntity>> checkSendMoney(
+      @Body() CheckSendMoneyRequestEntity checkSendMoneyRequestEntity);
+
+  @POST("/transfer/TransferAPIV2")
+  Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
+      @Body() TransferRequestEntity transferRequestEntity);
+
+  @POST("/transfer/RequestToPay")
+  Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
+      @Body() RequestToPayRequestEntity requestToPayRequestEntity);
+
+  @POST("/transfer/TransferAPIVerify")
+  Future<HttpResponse<ResponseEntity>> transferVerify(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/DebitCard/UpdateLimit")
+  Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(
+      @Body()
+          DebitCardSLimitsUpdateRequestEntity
+              debitCardSLimitsUpdateRequestEntity);
+
+  @POST("/CreditCard/UpdateLimit")
+  Future<HttpResponse<ResponseEntity>> updateCreditCardLimits(
+      @Body()
+          CreditCardSLimitsUpdateRequestEntity
+              creditCardSLimitsUpdateRequestEntity);
+
+  @POST("/transfer/TransferPurpose")
+  Future<HttpResponse<PurposeResponseEntity>> getPurpose(
+      @Body() PurposeRequestEntity purposeRequestEntity);
+
+  ///get states
+  @POST("/Auth/GetStates")
+  Future<HttpResponse<StateListResponseEntity>> getStateList(
+      @Body() StateListRequestEntity stateListRequestEntity);
+
+  ///get cities
+  @POST("/Auth/GetCities")
+  Future<HttpResponse<CityListResponseEntity>> getCityList(
+      @Body() CityListRequestEntity cityListRequestEntity);
+
+  ///get cities by country
+  @POST("/Auth/GetCitiesByCountry")
+  Future<HttpResponse<CityListResponseEntity>> getCitiesByCountry(
+      @Body() CityListRequestEntity cityListRequestEntity);
+
+  ///set fatca w8
+  @POST("/FatcaCrs/SetW8V1")
+  Future<HttpResponse<ResponseEntity>> saveFatcaW8(
+      @Body() SetFatcaW8RequestEntity setFatcaW8RequestEntity);
+
+  ///set fatca w9
+  @POST("/FatcaCrs/SetW9")
+  Future<HttpResponse<ResponseEntity>> saveFatcaW9(
+      @Body() SetFatcaW9RequestEntity setFatcaW9RequestEntity);
+
+  @POST("/Auth/CheckIssuer")
+  Future<HttpResponse<GetAllowedIssuerResponseEntity>> fetchAllowedIssuers(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/Account/CheckCustomerStatus")
+  Future<HttpResponse<CustomerStatusResponseEntity>> checkCustomerStatus(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/CardTracking/GetCardApplications")
+  Future<HttpResponse<GetCardApplicationResponseEntity>> getCardApplication(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/CardTracking/GetLoanValues")
+  Future<HttpResponse<GetLoanValuesResponseEntity>> getLoanValues(
+      @Body() GetLoanValuesRequestEntity getLoanValuesRequestEntity);
+
+  @POST("/CardTracking/ProccessLoanRequest")
+  Future<HttpResponse<ProcessLoanResponseEntity>> processLoanRequest(
+      @Body() ProcessLoanRequestEntity processLoanRequestEntity);
+
+  @POST("/CardTracking/LinkCardStep")
+  Future<HttpResponse<ResponseEntity>> linkCardStep(
+      @Body() LinkCardStepRequestEntity linkCardStepRequestEntity);
+
+  @POST("/CustomerDetails/DeleteProfileImage")
+  Future<HttpResponse<ResponseEntity>> deleteProfileImage(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/CustomerDetails/GetCustomerDocId")
+  Future<HttpResponse<GetCustomerDocIdResponseEntity>> getCustomerDocId(
+      @Body() BaseRequest baseRequest);
+
+  @POST("/CustomerDetails/GetCusDocs")
+  Future<HttpResponse<GetCustomerDocumentResponseEntity>> getCustomerDocument(
+      @Body()
+          GetCustomerDocumentRequestEntity getCustomerDocumentRequestEntity);
+
+  @POST("/auth/GetCipherV1")
+  Future<HttpResponse<GetCipherResponseEntity>> getCipher(
+      @Body() GetCipherRequestEntity getCipherRequestEntity);
+
+  @POST("/auth/AndroidLogin")
+  Future<HttpResponse<ResponseEntity>> androidLogin(
+      @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
+
+  @POST("/Auth/CheckForgetPasswordCred")
+  Future<HttpResponse<CheckForgetPasswordResponseEntity>> checkForgetPassword(
+      @Body()
+          CheckForgetPasswordRequestEntity checkForgetPasswordRequestEntity);
+
+  @POST("/Auth/ForgetPassword")
+  Future<HttpResponse<ForgetPasswordResponseEntity>> resetPassword(
+      @Body() ForgetPasswordRequestEntity forgetPasswordRequestEntity);
+
+  @POST("/Auth/VerifyForgetPasswordOtp")
+  Future<HttpResponse<VerifyForgetPasswordOtpResponseEntity>>
+      verifyForgetPasswordOtp(
+          @Body()
+              VerifyForgetPasswordOtpRequestEntity
+                  verifyForgetPasswordOtpRequestEntity);
+
+  @POST("/transfer/PaymentActivityAPI")
+  Future<HttpResponse<PaymentActivityResponseEntity>> getPaymentActivity(
+      @Body() PaymentActivityRequestEntity paymentActivityRequestActivity);
+
+  @POST("/auth/iphonelogin")
+  Future<HttpResponse<ResponseEntity>> iphoneLogin(
+      @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
+
+  @POST("/Auth/ChangeMobileNumber")
+  Future<HttpResponse<ResponseEntity>> changeMyNumber(
+      @Body() ChangeMyNumberRequestEntity changeMyNumberRequestEntity);
 }

@@ -23,19 +23,21 @@ final countrySelectionViewModelProvider =
 
 final addNumberViewModelProvider =
     ChangeNotifierProvider.autoDispose<AddNumberViewModel>(
-          (ref) =>
-          AddNumberViewModel(
-              ref.read(registerNumberUseCaseProvider),
-              ref.read(fetchCountryByCodeUseCaseProvider),
-              ref.read(checkUserNameUseCaseProvider),
-              ref.read(checkUserNameMobileUseCaseProvider),
-              ref.read(getAllowedCodeCountriesListUseCaseProvider)),
+  (ref) => AddNumberViewModel(
+      ref.read(registerNumberUseCaseProvider),
+      ref.read(fetchCountryByCodeUseCaseProvider),
+      ref.read(checkUserNameUseCaseProvider),
+      ref.read(checkUserNameMobileUseCaseProvider),
+      ref.read(getAllowedCodeCountriesListUseCaseProvider)),
 );
 
 ///[ValidateOtpViewModel] provider
 final validateOtpViewModelProvider =
     ChangeNotifierProvider.autoDispose<ValidateOtpViewModel>(
-  (ref) => ValidateOtpViewModel(ref.read(verifyOtpUseCaseProvider)),
+  (ref) => ValidateOtpViewModel(
+      ref.read(verifyOtpUseCaseProvider),
+      ref.read(getTokenUseCaseProvider),
+      ref.read(changeMyNumberUseCaseProvider)),
 );
 
 ///[CreatePasswordViewModel] provider

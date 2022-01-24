@@ -9,10 +9,10 @@ class OccupationDialog {
 
   static show(BuildContext mContext,
       {Function? onDismissed,
-        Function(String)? onSelected,
-        String? title,
-        List<GetComboValuesData>? businessTypeList,
-        required EmploymentStatusEnum employmentStatusEnum}) {
+      Function(String)? onSelected,
+      String? title,
+      List<GetComboValuesData>? businessTypeList,
+      required EmploymentStatusEnum employmentStatusEnum}) {
     AppDialog.show(mContext,
         isDismissible: true,
         builder: (context) => OccupationDialogView(

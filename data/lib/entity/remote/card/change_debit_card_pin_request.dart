@@ -4,10 +4,12 @@ part 'change_debit_card_pin_request.g.dart';
 
 @JsonSerializable()
 class ChangeDebitCardPinRequest {
-  @JsonKey(name: "Status")
-  final String? status;
   @JsonKey(name: "PinCode")
   final String? pinCode;
+  @JsonKey(name: "otp")
+  final String? otp;
+  @JsonKey(name: "TokenizedPan")
+  final String? tokenizedPan;
   @JsonKey(name: "getToken")
   final bool? getToken;
   @JsonKey(name: "baseClass")
@@ -16,8 +18,9 @@ class ChangeDebitCardPinRequest {
   ChangeDebitCardPinRequest(
       {required this.baseData,
       this.getToken: true,
-      this.status: "",
-      required this.pinCode});
+      required this.pinCode,
+      this.tokenizedPan,
+      this.otp});
 
   factory ChangeDebitCardPinRequest.fromJson(Map<String, dynamic> json) =>
       _$ChangeDebitCardPinRequestFromJson(json);

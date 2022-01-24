@@ -7,7 +7,7 @@ class AppSwiper extends StatelessWidget {
   final SwiperController pageController;
   final Function(int)? onIndexChanged;
 
-  const AppSwiper({
+  AppSwiper({
     Key? key,
     required this.pages,
     this.currentStep,
@@ -20,36 +20,43 @@ class AppSwiper extends StatelessWidget {
     return Swiper(
       key: key,
       customLayoutOption: CustomLayoutOption(startIndex: -1, stateCount: 3)
-          .addRotate([-7.0 / 180, 0.0, 7.0 / 180]).addTranslate([
-        Offset(-(MediaQuery
-            .of(context)
-            .size
-            .width - 35), -5.0),
-        Offset(0.0, 0.0),
-        Offset(MediaQuery
-            .of(context)
-            .size
-            .width - 35, -5.0)
-      ]),
+          .addRotate([-7.0 / 180, 0.0, 7.0 / 180]).addTranslate(getOffSet(
+              context: context,
+              currentStep: currentStep!,
+              totalStep: pages.length)),
       loop: false,
       controller: pageController,
-      itemWidth: MediaQuery
-          .of(context)
-          .size
-          .width - 48,
+      itemWidth: MediaQuery.of(context).size.width - 48,
       index: currentStep,
       duration: 750,
       viewportFraction: 0.88,
-      scrollDirection: Axis.horizontal,
       physics: NeverScrollableScrollPhysics(),
       onIndexChanged: (index) {
         onIndexChanged?.call(index);
       },
       itemCount: pages.length,
       layout: SwiperLayout.CUSTOM,
-      itemBuilder: (context, index) =>
-          Container(
-              margin: EdgeInsets.all(5), child: pages[index]! ?? Container()),
+      itemBuilder: (context, index) => Container(
+        margin: EdgeInsets.all(5),
+        child: (currentStep == 0 && index == pages.length - 1)
+            ? Container()
+            : pages[index]! ?? Container(),
+      ),
     );
+  }
+
+  List<Offset> getOffSet(
+      {required int currentStep,
+      required int totalStep,
+      required BuildContext context}) {
+    final width = MediaQuery.of(context).size.width;
+
+    final end = (totalStep - currentStep);
+
+    return [
+      Offset(-(width - 35 - currentStep - 1), -5.0),
+      Offset(0.0, 0.0),
+      Offset(width - 35 - end, -5.0)
+    ];
   }
 }

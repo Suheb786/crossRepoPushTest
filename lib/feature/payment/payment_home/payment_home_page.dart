@@ -6,6 +6,8 @@ import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_page_view.dart';
 import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
 class PaymentHomePage extends BasePage<PaymentHomeViewModel> {
@@ -32,14 +34,19 @@ class PaymentHomePageState
         items: [
           TabItem(icon: AppSvg.asset(AssetUtils.house), title: " "),
           TabItem(
-            icon: Container(
-              height: 80,
-              width: 80,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColorDark,
-                  shape: BoxShape.circle),
-              child: Center(
-                child: AppSvg.asset(AssetUtils.logoWhite),
+            icon: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                height: 80,
+                width: 80,
+                decoration: BoxDecoration(
+                    color: Theme.of(context).primaryColorDark,
+                    shape: BoxShape.circle),
+                child: Center(
+                  child: AppSvg.asset(AssetUtils.logoWhite),
+                ),
               ),
             ),
           ),
@@ -48,7 +55,25 @@ class PaymentHomePageState
               title: " "),
         ],
         initialActiveIndex: 0,
-        onTap: (i) => print("got index $i"),
+        onTap: (i) {
+          switch (i) {
+            case 0:
+              Navigator.pop(context);
+              break;
+            case 1:
+              SettingsDialog.show(
+                context,
+              );
+              break;
+            case 2:
+              EngagementTeamDialog.show(context, onDismissed: () {
+                Navigator.pop(context);
+              }, onSelected: (value) {
+                Navigator.pop(context);
+              });
+              break;
+          }
+        },
       ),
     );
   }

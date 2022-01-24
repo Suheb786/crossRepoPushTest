@@ -20,6 +20,7 @@ class UploadDocumentBottomSheetWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
+        color: Theme.of(context).accentColor,
         child: Wrap(
           children: <Widget>[
             Padding(

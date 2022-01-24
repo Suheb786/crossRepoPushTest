@@ -1,9 +1,13 @@
 import 'package:data/di/repository_module.dart';
+import 'package:domain/usecase/country/fetch_allowed_issuers_usecase.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
 import 'package:domain/usecase/upload_doc/send_documents_usecase.dart';
 import 'package:domain/usecase/user/agent_selection_usecase.dart';
+import 'package:domain/usecase/user/android_login_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
+import 'package:domain/usecase/user/change_my_number_usecase.dart';
 import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
+import 'package:domain/usecase/user/check_customer_status_usecase.dart';
 import 'package:domain/usecase/user/check_user_name_mobile_usecase.dart';
 import 'package:domain/usecase/user/check_username_usecase.dart';
 import 'package:domain/usecase/user/confirm_application_data_get_usecase.dart';
@@ -13,10 +17,12 @@ import 'package:domain/usecase/user/enable_biometric_usecase.dart';
 import 'package:domain/usecase/user/enable_finger_print_usecase.dart';
 import 'package:domain/usecase/user/enter_address_usecase.dart';
 import 'package:domain/usecase/user/generate_key_pair_usecase.dart';
+import 'package:domain/usecase/user/get_cipher_usecase.dart';
 import 'package:domain/usecase/user/get_combo_values_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
 import 'package:domain/usecase/user/home_address_dialog_usecase.dart';
 import 'package:domain/usecase/user/id_verification_info_usecase.dart';
+import 'package:domain/usecase/user/iphone_login_usecase.dart';
 import 'package:domain/usecase/user/listen_current_user_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
@@ -50,6 +56,12 @@ final sendDocumentsUseCaseUseCaseProvider =
 final idVerificationInfoUseCaseProvider =
     Provider.autoDispose<IdVerificationInfoUseCase>(
   (ref) => IdVerificationInfoUseCase(),
+);
+
+///[FetchAllowedIssuersUseCase] provider
+final fetchAllowedIssuersUseCaseProvider =
+    Provider.autoDispose<FetchAllowedIssuersUseCase>(
+  (ref) => FetchAllowedIssuersUseCase(ref.read(countryRepoProvider)),
 );
 
 ///[ConfirmDetailUseCase] provider
@@ -191,3 +203,24 @@ final listenCurrentUserUseCaseProvider =
     ref.read(userRepoProvider),
   ),
 );
+
+final customerStatusUseCaseProvider =
+    Provider.autoDispose<CheckCustomerStatusUseCase>(
+        (ref) => CheckCustomerStatusUseCase(ref.read(userRepoProvider)));
+
+///get cipher usecase
+final getCipherUseCaseProvider = Provider.autoDispose<GetCipherUseCase>(
+    (ref) => GetCipherUseCase(ref.read(userRepoProvider)));
+
+///android login usecase
+final androidLoginUseCaseProvider = Provider.autoDispose<AndroidLoginUseCase>(
+    (ref) => AndroidLoginUseCase(ref.read(userRepoProvider)));
+
+///iphone login usecase
+final iphoneLoginUseCaseProvider = Provider.autoDispose<IphoneLoginUseCase>(
+    (ref) => IphoneLoginUseCase(ref.read(userRepoProvider)));
+
+///change my number usecase
+final changeMyNumberUseCaseProvider =
+    Provider.autoDispose<ChangeMyNumberUseCase>(
+        (ref) => ChangeMyNumberUseCase(ref.read(userRepoProvider)));
