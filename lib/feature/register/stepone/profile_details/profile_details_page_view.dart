@@ -174,50 +174,53 @@ class ProfileDetailsPageView
                                         );
                                       },
                                     ),
-                                    ProfileRowItem(
-                                      title: S.of(context).profileDetailsQ2,
-                                      initialValue: false,
-                                      providerBase: profileQ2ViewModelProvider,
-                                      activeText: S.of(context).yes,
-                                      inactiveText: S.of(context).no,
-                                      onToggle: (isActive) {
-                                        model.isPerson = isActive;
-                                        return Visibility(
-                                          visible: isActive,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 16.0),
-                                            child: AppTextField(
-                                              labelText: S
-                                                  .of(context)
-                                                  .natureOfSpecialNeed,
-                                              hintText:
-                                                  S.of(context).pleaseSelect,
-                                              inputType: TextInputType.text,
-                                              controller:
-                                                  model.natureController,
-                                              key: model.natureOfSpecialNeedKey,
-                                              readOnly: true,
-                                              onPressed: () {
-                                                NatureSpecialNeedsDialog.show(
-                                                    context, onDismissed: () {
-                                                  Navigator.pop(context);
-                                                }, onSelected: (value) {
-                                                  Navigator.pop(context);
-                                                  model.updateNatureOfNeeds(
-                                                      value);
-                                                });
-                                              },
-                                              suffixIcon: (enabled, value) {
-                                                return AppSvg.asset(
-                                                    AssetUtils.dropDown,
-                                                    color: AppColor.dark_gray_1,
-                                                    width: 16,
-                                                    height: 16);
-                                              },
+                                    Visibility(
+                                      visible: false,
+                                      child: ProfileRowItem(
+                                        title: S.of(context).profileDetailsQ2,
+                                        initialValue: false,
+                                        providerBase: profileQ2ViewModelProvider,
+                                        activeText: S.of(context).yes,
+                                        inactiveText: S.of(context).no,
+                                        onToggle: (isActive) {
+                                          model.isPerson = isActive;
+                                          return Visibility(
+                                            visible: isActive,
+                                            child: Padding(
+                                              padding: EdgeInsets.only(top: 16.0),
+                                              child: AppTextField(
+                                                labelText: S
+                                                    .of(context)
+                                                    .natureOfSpecialNeed,
+                                                hintText:
+                                                    S.of(context).pleaseSelect,
+                                                inputType: TextInputType.text,
+                                                controller:
+                                                    model.natureController,
+                                                key: model.natureOfSpecialNeedKey,
+                                                readOnly: true,
+                                                onPressed: () {
+                                                  NatureSpecialNeedsDialog.show(
+                                                      context, onDismissed: () {
+                                                    Navigator.pop(context);
+                                                  }, onSelected: (value) {
+                                                    Navigator.pop(context);
+                                                    model.updateNatureOfNeeds(
+                                                        value);
+                                                  });
+                                                },
+                                                suffixIcon: (enabled, value) {
+                                                  return AppSvg.asset(
+                                                      AssetUtils.dropDown,
+                                                      color: AppColor.dark_gray_1,
+                                                      width: 16,
+                                                      height: 16);
+                                                },
+                                              ),
                                             ),
-                                          ),
-                                        );
-                                      },
+                                          );
+                                        },
+                                      ),
                                     ),
                                     AppStreamBuilder<bool>(
                                       stream: model

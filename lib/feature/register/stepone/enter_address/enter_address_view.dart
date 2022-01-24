@@ -188,38 +188,41 @@ class EnterAddressView extends BasePageViewWidget<EnterAddressViewModel> {
                                                 onChanged: (value) =>
                                                     model.validateAddress(),
                                                 suffixIcon: (isValid, value) =>
-                                                    InkWell(
-                                                        onTap: () =>
-                                                            HomeAddressDialog
-                                                                .show(context,
-                                                                    onSelected:
-                                                                        (value) {
-                                                              Navigator.of(
-                                                                      context)
-                                                                  .pop();
-                                                              model
-                                                                  .buildingNameOrNumberController
-                                                                  .text = value;
-                                                              model
-                                                                  .validateAddress();
-                                                            }, onDismissed: () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                            }),
-                                                        child: Container(
-                                                          height: 20,
-                                                          width: 16,
-                                                          padding:
-                                                              EdgeInsets.only(
-                                                                  left: 4,
-                                                                  top: 2),
-                                                          child: AppSvg.asset(
-                                                              AssetUtils
-                                                                  .location_marker,
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .primaryColorDark),
-                                                        )),
+                                                    Visibility(
+                                                  visible: false,
+                                                  child: InkWell(
+                                                      onTap: () =>
+                                                          HomeAddressDialog
+                                                              .show(context,
+                                                                  onSelected:
+                                                                      (value) {
+                                                            Navigator.of(
+                                                                    context)
+                                                                .pop();
+                                                            model
+                                                                .buildingNameOrNumberController
+                                                                .text = value;
+                                                            model
+                                                                .validateAddress();
+                                                          }, onDismissed: () {
+                                                            Navigator.pop(
+                                                                context);
+                                                          }),
+                                                      child: Container(
+                                                        height: 20,
+                                                        width: 16,
+                                                        padding:
+                                                            EdgeInsets.only(
+                                                                left: 4,
+                                                                top: 2),
+                                                        child: AppSvg.asset(
+                                                            AssetUtils
+                                                                .location_marker,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .primaryColorDark),
+                                                      )),
+                                                ),
                                               ),
                                               SizedBox(
                                                 height: 16,
