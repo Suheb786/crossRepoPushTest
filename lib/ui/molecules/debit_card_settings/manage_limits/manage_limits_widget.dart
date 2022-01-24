@@ -14,6 +14,9 @@ class ManageLimitsWidget extends StatelessWidget {
   final String maxAmount;
   final String amountSet;
   final bool isLast;
+  final bool readOnly;
+  final bool noToggle;
+  final bool initialValue;
   final Function(bool)? onToggle;
   final ProviderBase providerBase;
   final Function(String value) onDone;
@@ -25,6 +28,9 @@ class ManageLimitsWidget extends StatelessWidget {
     this.isLast = false,
     this.maxAmount: "",
     this.amountSet: "",
+    this.initialValue: true,
+    this.noToggle: false,
+    this.readOnly: false,
     required this.onToggle,
     required this.onDone,
   }) : super(key: key);
@@ -38,7 +44,7 @@ class ManageLimitsWidget extends StatelessWidget {
       },
       builder: (context, model, widget) {
         return AppStreamBuilder<bool>(
-          initialData: false,
+          initialData: initialValue,
           stream: model!.switchValue,
           dataBuilder: (context, isActive) {
             return Container(
@@ -58,7 +64,12 @@ class ManageLimitsWidget extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
                                 fontFamily: "Montserrat",
-                                color: Theme.of(context).primaryColorDark,
+                                color: noToggle
+                                    ? Theme.of(context)
+                                        .inputDecorationTheme
+                                        .hintStyle!
+                                        .color
+                                    : Theme.of(context).primaryColorDark,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 14),
                           ),
@@ -66,32 +77,35 @@ class ManageLimitsWidget extends StatelessWidget {
                         SizedBox(
                           width: 16,
                         ),
-                        FlutterSwitch(
-                          value: isActive!,
-                          onToggle: (value) {
-                            onToggle?.call(value);
-                            model.updateSwitchValue(value);
-                          },
-                          width: 70,
-                          height: 40,
-                          padding: 8,
-                          activeText: S.of(context).yes,
-                          activeTextColor: AppColor.white,
-                          inactiveTextColor: AppColor.darkGray,
-                          activeTextFontWeight: FontWeight.w500,
-                          showOnOff: true,
-                          valueFontSize: 10,
-                          activeToggleColor: AppColor.white,
-                          inactiveText: S.of(context).no,
-                          inactiveToggleColor: AppColor.lightGrayishMagenta,
-                          inactiveTextFontWeight: FontWeight.w500,
-                          inactiveSwitchBorder:
-                              Border.all(color: AppColor.gray_2),
-                          activeColor: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color!,
-                          inactiveColor: Theme.of(context).accentColor,
+                        IgnorePointer(
+                          ignoring: noToggle,
+                          child: FlutterSwitch(
+                            value: isActive!,
+                            onToggle: (value) {
+                              onToggle?.call(value);
+                              model.updateSwitchValue(value);
+                            },
+                            width: 70,
+                            height: 40,
+                            padding: 8,
+                            activeText: S.of(context).yes,
+                            activeTextColor: AppColor.white,
+                            inactiveTextColor: AppColor.darkGray,
+                            activeTextFontWeight: FontWeight.w500,
+                            showOnOff: true,
+                            valueFontSize: 10,
+                            activeToggleColor: AppColor.white,
+                            inactiveText: S.of(context).no,
+                            inactiveToggleColor: AppColor.lightGrayishMagenta,
+                            inactiveTextFontWeight: FontWeight.w500,
+                            inactiveSwitchBorder:
+                                Border.all(color: AppColor.gray_2),
+                            activeColor: Theme.of(context)
+                                .accentTextTheme
+                                .bodyText1!
+                                .color!,
+                            inactiveColor: Theme.of(context).accentColor,
+                          ),
                         ),
                       ],
                     ),
@@ -139,6 +153,7 @@ class ManageLimitsWidget extends StatelessWidget {
                                   textAlign: TextAlign.end,
                                   keyboardType: TextInputType.number,
                                   textInputAction: TextInputAction.done,
+                                  readOnly: readOnly,
                                   cursorColor: Theme.of(context)
                                       .accentTextTheme
                                       .bodyText1!

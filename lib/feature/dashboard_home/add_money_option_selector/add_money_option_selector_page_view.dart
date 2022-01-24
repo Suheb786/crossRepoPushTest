@@ -197,15 +197,8 @@ class AddMoneyOptionSelectorPageView
     GetDashboardDataContent? cardData,
   ) async {
     final box = context.findRenderObject() as RenderBox?;
-    final String cardNumber = cardData!.debitCard!.first.cardNumber!.isNotEmpty
-        ? StringUtils.getFormattedCreditCardNumber(
-            cardData.debitCard!.first.cardNumber)
-        : '-';
-    final String cardName = cardData.debitCard!.first.accountTitle != null
-        ? cardData.debitCard!.first.accountTitle!.toTitleCase()
-        : '';
     await Share.share(
-        'Hello! Here’s my blink account details:\n\n${cardName} \nJOD${cardNumber}\n\nGet your blink account today. Blink now!',
+        'Hello! Here are my Blink account details: \n\n${cardData!.account!.accountTitle ?? ''} \n${cardData.account!.iban ?? '-'}\n\nOpen your Blink account today.',
         subject: 'Share account info',
         sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size);
   }

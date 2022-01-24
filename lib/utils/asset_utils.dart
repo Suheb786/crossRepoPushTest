@@ -182,8 +182,10 @@ class AssetUtils {
   static const String image = drawable + "image.png";
   static const String statementPicture = drawable + "statement_picture.png";
   static const String zigzagWhite = drawable + "zigzag_white.png";
+  static const String zigzagDebit = drawable + "zig_zag_debit.png";
 
   /// Animations
   static const String splashAnimation = _animation + "blink-splash.json";
   static const String loaderAnimation = _animation + "Blink_Loader.json";
+  static const String swipeDownAnimation = _animation + "Swipe_Down.json";
 }

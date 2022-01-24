@@ -18,6 +18,8 @@ class RegisterStepFourViewModel extends BasePageViewModel {
     _currentStep.safeAdd(index);
   }
 
+  bool isGetFatca = false;
+
   TaxPayerTypeEnum _taxPayerTypeEnum = TaxPayerTypeEnum.NONE;
 
   TaxPayerTypeEnum get taxPayerType => _taxPayerTypeEnum;

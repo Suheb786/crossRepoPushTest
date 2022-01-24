@@ -232,10 +232,14 @@ class CardRepositoryImpl extends CardRepository {
   Future<Either<NetworkError, bool>> changeDebitCardPin(
       {required String pin,
       required String otp,
+      required String cardNumber,
       required String tokenizedPan}) async {
     final result = await safeApiCall(
       _remoteDs.changeDebitCardPin(
-          pin: pin, tokenizedPan: tokenizedPan, otp: otp),
+          pin: pin,
+          tokenizedPan: tokenizedPan,
+          otp: otp,
+          cardNumber: cardNumber),
     );
     return result!.fold(
       (l) => Left(l),
@@ -256,15 +260,17 @@ class CardRepositoryImpl extends CardRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> updateDebitCardLimits(
-      {num? atmWithdrawal,
-      num? merchantsPayments,
-      num? onlinePurchase,
-      num? contactLessPayments,
-      bool? isAtmWithdrawal,
-      bool? isMerchantsPayments,
-      bool? isOnlinePurchase,
-      bool? isContactLessPayments}) async {
+  Future<Either<NetworkError, bool>> updateDebitCardLimits({
+    num? atmWithdrawal,
+    num? merchantsPayments,
+    num? onlinePurchase,
+    num? contactLessPayments,
+    bool? isAtmWithdrawal,
+    bool? isMerchantsPayments,
+    bool? isOnlinePurchase,
+    bool? isContactLessPayments,
+    String? tokenizedPan,
+  }) async {
     final result = await safeApiCall(
       _remoteDs.updateDebitCardLimits(
           atmWithdrawal: atmWithdrawal,
@@ -274,7 +280,8 @@ class CardRepositoryImpl extends CardRepository {
           isAtmWithdrawal: isAtmWithdrawal,
           isMerchantsPayments: isMerchantsPayments,
           isOnlinePurchase: isOnlinePurchase,
-          isContactLessPayments: isContactLessPayments),
+          isContactLessPayments: isContactLessPayments,
+          tokenizedPan: tokenizedPan),
     );
     return result!.fold(
       (l) => Left(l),
@@ -367,6 +374,17 @@ class CardRepositoryImpl extends CardRepository {
       {required String cardId, required String accountNumber}) async {
     final result = await safeApiCall(
       _remoteDs.linkCardStep(cardId: cardId, accountNumber: accountNumber),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> changePinVerify() async {
+    final result = await safeApiCall(
+      _remoteDs.changePinVerify(),
     );
     return result!.fold(
       (l) => Left(l),

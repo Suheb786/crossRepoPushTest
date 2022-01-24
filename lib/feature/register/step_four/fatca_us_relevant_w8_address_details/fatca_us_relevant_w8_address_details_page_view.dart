@@ -134,24 +134,31 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                 key: model.countryKey,
                                                 readOnly: true,
                                                 onPressed: () {
-                                                  CountryDialog.show(context,
-                                                      title: S
-                                                          .of(context)
-                                                          .taxCountrySmall,
-                                                      onDismissed: () {
-                                                    Navigator.pop(context);
-                                                  }, onSelected: (value) {
-                                                    Navigator.pop(context);
-                                                    model.countryController
-                                                            .text =
-                                                        value.countryName!;
-                                                    model.stateController
-                                                        .clear();
-                                                    model.cityController
-                                                        .clear();
-                                                    model.getStateList(
-                                                        value.isoCode3!);
-                                                    model.isValid();
+                                                  FocusScope.of(context)
+                                                      .unfocus();
+                                                  Future.delayed(
+                                                      Duration(
+                                                          milliseconds: 200),
+                                                      () {
+                                                    CountryDialog.show(context,
+                                                        title: S
+                                                            .of(context)
+                                                            .taxCountrySmall,
+                                                        onDismissed: () {
+                                                      Navigator.pop(context);
+                                                    }, onSelected: (value) {
+                                                      Navigator.pop(context);
+                                                      model.countryController
+                                                              .text =
+                                                          value.countryName!;
+                                                      model.stateController
+                                                          .clear();
+                                                      model.cityController
+                                                          .clear();
+                                                      model.getStateList(
+                                                          value.isoCode3!);
+                                                      model.isValid();
+                                                    });
                                                   });
                                                 },
                                                 suffixIcon: (value, data) {
@@ -405,35 +412,39 @@ class FatcaUSRelevantW8AddressDetailsPageView
                                                                       true,
                                                                   onPressed:
                                                                       () {
-                                                                    CountryDialog.show(
-                                                                        context,
-                                                                        title: S
-                                                                            .of(
-                                                                                context)
-                                                                            .taxCountrySmall,
-                                                                        onDismissed:
-                                                                            () {
-                                                                      Navigator.pop(
-                                                                          context);
-                                                                    }, onSelected:
-                                                                            (value) {
-                                                                      Navigator.pop(
-                                                                          context);
-                                                                      model.differentMailingCountryController
-                                                                              .text =
-                                                                          value
-                                                                              .countryName!;
-                                                                      model
-                                                                          .differentMailingCityController
-                                                                          .clear();
-                                                                      model
-                                                                          .differentMailingStateController
-                                                                          .clear();
-                                                                      model.getStateList(
-                                                                          value
-                                                                              .isoCode3!);
-                                                                      model
-                                                                          .isValid();
+                                                                    FocusScope.of(
+                                                                            context)
+                                                                        .unfocus();
+                                                                    Future.delayed(
+                                                                        Duration(
+                                                                            milliseconds:
+                                                                                200),
+                                                                        () {
+                                                                      CountryDialog.show(
+                                                                          context,
+                                                                          title:
+                                                                              S.of(context).taxCountrySmall,
+                                                                          onDismissed:
+                                                                              () {
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                      }, onSelected:
+                                                                              (value) {
+                                                                        Navigator.pop(
+                                                                            context);
+                                                                        model.differentMailingCountryController.text =
+                                                                            value.countryName!;
+                                                                        model
+                                                                            .differentMailingCityController
+                                                                            .clear();
+                                                                        model
+                                                                            .differentMailingStateController
+                                                                            .clear();
+                                                                        model.getStateList(
+                                                                            value.isoCode3!);
+                                                                        model
+                                                                            .isValid();
+                                                                      });
                                                                     });
                                                                   },
                                                                   suffixIcon:

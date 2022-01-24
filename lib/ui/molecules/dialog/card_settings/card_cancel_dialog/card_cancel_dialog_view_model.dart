@@ -10,6 +10,8 @@ class CardCancelDialogViewModel extends BasePageViewModel {
 
   Stream<bool> get declarationSelectedStream => declarationSelected.stream;
 
+  bool isSelected = false;
+
   /// reason controller
   final TextEditingController reasonCancellationController =
       TextEditingController();

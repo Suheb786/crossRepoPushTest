@@ -8091,6 +8091,36 @@ class S {
     );
   }
 
+  /// `Card frozen`
+  String get cardFrozen {
+    return Intl.message(
+      'Card frozen',
+      name: 'cardFrozen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step`
+  String get toEnjoyCardLessPaymentDebit {
+    return Intl.message(
+      'To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step',
+      name: 'toEnjoyCardLessPaymentDebit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request new debit card`
+  String get requestNewDebitcard {
+    return Intl.message(
+      'Request new debit card',
+      name: 'requestNewDebitcard',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `IBAN / Mobile No. / Account`
   String get ibanOrMobileOrAccount {
     return Intl.message(

@@ -59,7 +59,10 @@ abstract class CardRemoteDs {
       {String? status, String? tokenizedPan});
 
   Future<HttpResponse<ResponseEntity>> changeDebitCardPin(
-      {required String pin, required String otp, required String tokenizedPan});
+      {required String pin,
+      required String otp,
+      required String tokenizedPan,
+      required String cardNumber});
 
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
       {required String pin});
@@ -72,6 +75,7 @@ abstract class CardRemoteDs {
       bool? isAtmWithdrawal,
       bool? isMerchantsPayments,
       bool? isOnlinePurchase,
+      String? tokenizedPan,
       bool? isContactLessPayments});
 
   Future<HttpResponse<ResponseEntity>> updateCreditCardLimits(
@@ -97,4 +101,6 @@ abstract class CardRemoteDs {
 
   Future<HttpResponse<ResponseEntity>> linkCardStep(
       {String cardId, String accountNumber});
+
+  Future<HttpResponse<ResponseEntity>> changePinVerify();
 }

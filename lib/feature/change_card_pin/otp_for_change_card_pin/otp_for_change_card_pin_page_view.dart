@@ -1,12 +1,16 @@
 import 'package:animated_widgets/animated_widgets.dart';
+import 'package:domain/constants/enum/card_type.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_countdown_timer/flutter_countdown_timer.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/card_delivery/card_delivery_modules.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/change_card_pin/otp_for_change_card_pin/otp_for_change_card_pin_page_view_model.dart';
+import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/app_otp_fields.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
@@ -31,116 +35,161 @@ class OtpForChangeCardPinPageView
             shakeAngle: Rotation.deg(z: 1),
             curve: Curves.easeInOutSine,
             child: AppStreamBuilder<Resource<bool>>(
-              stream: model.verifyOtpStream,
-              initialData: Resource.none(),
-              onData: (data) {
-                if (data.status == Status.SUCCESS) {
-                  ProviderScope.containerOf(context)
-                      .read(changeCardPinViewModelProvider)
-                      .swiperController
-                      .next();
-                } else if (data.status == Status.ERROR) {
-                  model.showToastWithError(data.appError!);
-                }
-              },
-              dataBuilder: (context, isOtpVerified) {
-                return GestureDetector(
-                  onHorizontalDragEnd: (details) {
-                    if (details.primaryVelocity!.isNegative) {
-                      model.validateOtp();
-                    }
-                  },
-                  child: Card(
-                    margin: EdgeInsets.zero,
-                    child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            SingleChildScrollView(
-                              physics: ClampingScrollPhysics(),
+                stream: model.changDebitCardPinStream,
+                initialData: Resource.none(),
+                onData: (data) {
+                  if (data.status == Status.SUCCESS) {
+                    Navigator.pushNamed(
+                        context, RoutePaths.ChangeCardPinSuccess,
+                        arguments: ChangeCardPinSuccessArguments(
+                            cardType: ProviderScope.containerOf(context)
+                                .read(changeCardPinViewModelProvider)
+                                .cardType));
+                  } else if (data.status == Status.ERROR) {
+                    model.showToastWithError(data.appError!);
+                  }
+                },
+                dataBuilder: (context, isOtpVerified) {
+                  return AppStreamBuilder<Resource<bool>>(
+                    stream: model.verifyOtpStream,
+                    initialData: Resource.none(),
+                    onData: (data) {
+                      if (data.status == Status.SUCCESS) {
+                        ProviderScope.containerOf(context)
+                                    .read(changeCardPinViewModelProvider)
+                                    .cardType ==
+                                CardType.DEBIT
+                            ? model.changeDebitCardPin(
+                                cardNumber: ProviderScope.containerOf(context)
+                                    .read(appHomeViewModelProvider)
+                                    .dashboardDataContent
+                                    .debitCard!
+                                    .first
+                                    .cardNumber!,
+                                pin: ProviderScope.containerOf(context)
+                                    .read(enterNewCardPinViewModelProvider)
+                                    .confirmPinController
+                                    .text,
+                                tokenizedPan: ProviderScope.containerOf(context)
+                                    .read(appHomeViewModelProvider)
+                                    .dashboardDataContent
+                                    .debitCard!
+                                    .first
+                                    .code!)
+                            : () {};
+                      } else if (data.status == Status.ERROR) {
+                        model.showToastWithError(data.appError!);
+                      }
+                    },
+                    dataBuilder: (context, isOtpVerified) {
+                      return GestureDetector(
+                        onHorizontalDragEnd: (details) {
+                          if (details.primaryVelocity!.isNegative) {
+                            model.validateOtp();
+                          } else {
+                            ProviderScope.containerOf(context)
+                                .read(changeCardPinViewModelProvider)
+                                .swiperController
+                                .previous();
+                          }
+                        },
+                        child: Card(
+                          margin: EdgeInsets.zero,
+                          child: Container(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: 32, horizontal: 24),
                               child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  AppOtpFields(
-                                    length: 6,
-                                    onChanged: (val) {
-                                      model.validate(val);
-                                    },
+                                  SingleChildScrollView(
+                                    physics: ClampingScrollPhysics(),
+                                    child: Column(
+                                      children: [
+                                        AppOtpFields(
+                                          length: 6,
+                                          onChanged: (val) {
+                                            model.validate(val);
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  Column(
+                                    children: [
+                                      CountdownTimer(
+                                        controller: model.countDownController,
+                                        onEnd: () {},
+                                        endTime: model.endTime,
+                                        textStyle: TextStyle(
+                                            fontSize: 16,
+                                            color: Theme.of(context)
+                                                .accentTextTheme
+                                                .bodyText1!
+                                                .color!),
+                                        widgetBuilder:
+                                            (context, currentTimeRemaining) {
+                                          return currentTimeRemaining == null
+                                              ? TextButton(
+                                                  onPressed: () {
+                                                    model.updateTime();
+                                                  },
+                                                  child: Text(
+                                                    'Resend Code',
+                                                    style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        color: Theme.of(context)
+                                                            .accentTextTheme
+                                                            .bodyText1!
+                                                            .color!),
+                                                  ))
+                                              : Text(
+                                                  S.of(context).resendIn(
+                                                      '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
+                                                  style: TextStyle(
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      color: Theme.of(context)
+                                                          .accentTextTheme
+                                                          .bodyText1!
+                                                          .color!),
+                                                );
+                                        },
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(top: 16.0),
+                                        child: AppStreamBuilder<bool>(
+                                            stream: model.showButtonStream,
+                                            initialData: false,
+                                            dataBuilder: (context, isValid) {
+                                              return Visibility(
+                                                visible: isValid!,
+                                                child: AnimatedButton(
+                                                  buttonHeight: 50,
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed,
+                                                ),
+                                              );
+                                            }),
+                                      ),
+                                      SizedBox(
+                                        height: MediaQuery.of(context)
+                                            .viewInsets
+                                            .bottom,
+                                      )
+                                    ],
                                   ),
                                 ],
-                              ),
-                            ),
-                            Column(
-                              children: [
-                                CountdownTimer(
-                                  controller: model.countDownController,
-                                  onEnd: () {},
-                                  endTime: model.endTime,
-                                  textStyle: TextStyle(
-                                      fontSize: 16,
-                                      color: Theme.of(context)
-                                          .accentTextTheme
-                                          .bodyText1!
-                                          .color!),
-                                  widgetBuilder:
-                                      (context, currentTimeRemaining) {
-                                    return currentTimeRemaining == null
-                                        ? TextButton(
-                                            onPressed: () {
-                                              model.updateTime();
-                                            },
-                                            child: Text(
-                                              'Resend Code',
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color!),
-                                            ))
-                                        : Text(
-                                            S.of(context).resendIn(
-                                                '${currentTimeRemaining.min ?? 00}:${currentTimeRemaining.sec ?? 00}'),
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color!),
-                                          );
-                                  },
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 16.0),
-                                  child: AppStreamBuilder<bool>(
-                                      stream: model.showButtonStream,
-                                      initialData: false,
-                                      dataBuilder: (context, isValid) {
-                                        return Visibility(
-                                          visible: isValid!,
-                                          child: AnimatedButton(
-                                            buttonHeight: 50,
-                                            buttonText:
-                                                S.of(context).swipeToProceed,
-                                          ),
-                                        );
-                                      }),
-                                ),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).viewInsets.bottom,
-                                )
-                              ],
-                            ),
-                          ],
-                        )),
-                  ),
-                );
-              },
-            ),
+                              )),
+                        ),
+                      );
+                    },
+                  );
+                }),
           );
         },
       ),

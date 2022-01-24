@@ -214,17 +214,25 @@ class ReviewApplicationPageView
                                                                 CrossAxisAlignment
                                                                     .stretch,
                                                             children: [
-                                                              StartOverWidget(
-                                                                onTap: () {},
-                                                                title: S
-                                                                    .of(context)
-                                                                    .clickToEditSomeMayBeDisabled,
-                                                                labelText: S
-                                                                    .of(context)
-                                                                    .startOver,
+                                                              ///For now fields should not be editable so commented description
+                                                              Visibility(
+                                                                visible: false,
+                                                                child:
+                                                                    StartOverWidget(
+                                                                  onTap: () {},
+                                                                  title: S
+                                                                      .of(context)
+                                                                      .clickToEditSomeMayBeDisabled,
+                                                                  labelText: S
+                                                                      .of(context)
+                                                                      .startOver,
+                                                                ),
                                                               ),
-                                                              SizedBox(
-                                                                  height: 32),
+                                                              Visibility(
+                                                                visible: false,
+                                                                child: SizedBox(
+                                                                    height: 32),
+                                                              ),
 
                                                               ///address details
                                                               ReviewApplicationEditableItem(
