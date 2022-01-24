@@ -72,17 +72,17 @@ class LoginViewModel extends BasePageViewModel {
   PublishSubject<AndroidLoginUseCaseParams> _androidLoginRequest =
       PublishSubject();
 
-  PublishSubject<Resource<bool>> _androidLoginResponse = PublishSubject();
+  PublishSubject<Resource<User>> _androidLoginResponse = PublishSubject();
 
-  Stream<Resource<bool>> get androidLoginStream => _androidLoginResponse.stream;
+  Stream<Resource<User>> get androidLoginStream => _androidLoginResponse.stream;
 
   ///iphone login
   PublishSubject<IphoneLoginUseCaseParams> _iphoneLoginRequest =
       PublishSubject();
 
-  PublishSubject<Resource<bool>> _iphoneLoginResponse = PublishSubject();
+  PublishSubject<Resource<User>> _iphoneLoginResponse = PublishSubject();
 
-  Stream<Resource<bool>> get iphoneLoginStream => _iphoneLoginResponse.stream;
+  Stream<Resource<User>> get iphoneLoginStream => _iphoneLoginResponse.stream;
 
   LoginViewModel(
       this._loginUseCase,
@@ -128,10 +128,10 @@ class LoginViewModel extends BasePageViewModel {
               createCall: () => _getCipherUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        updateLoader();
+        //updateLoader();
         _getCipherResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
-          showToastWithError(event.appError!);
+          //showToastWithError(event.appError!);
         }
       });
     });
@@ -179,12 +179,12 @@ class LoginViewModel extends BasePageViewModel {
     _kycStatusRequest.safeAdd(CheckKYCStatusUseCaseParams());
   }
 
-  void androidLogin() {
-    _androidLoginRequest.safeAdd(AndroidLoginUseCaseParams());
+  void androidLogin({required String cipher}) {
+    _androidLoginRequest.safeAdd(AndroidLoginUseCaseParams(cipher: cipher));
   }
 
-  void iphoneLogin() {
-    _iphoneLoginRequest.safeAdd(IphoneLoginUseCaseParams());
+  void iphoneLogin({required String cipher}) {
+    _iphoneLoginRequest.safeAdd(IphoneLoginUseCaseParams(cipher: cipher));
   }
 
   void validate() {

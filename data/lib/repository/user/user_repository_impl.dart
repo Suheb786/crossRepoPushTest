@@ -610,24 +610,26 @@ class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<Either<NetworkError, bool>> androidLogin() async {
+  Future<Either<NetworkError, User>> androidLogin(
+      {required String cipher}) async {
     final result = await safeApiCall(
-      _remoteDS.androidLogin(),
+      _remoteDS.androidLogin(cipher: cipher),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 
   @override
-  Future<Either<NetworkError, bool>> iphoneLogin() async {
+  Future<Either<NetworkError, User>> iphoneLogin(
+      {required String cipher}) async {
     final result = await safeApiCall(
-      _remoteDS.iphoneLogin(),
+      _remoteDS.iphoneLogin(cipher: cipher),
     );
     return result!.fold(
       (l) => Left(l),
-      (r) => Right(r.isSuccessful()),
+      (r) => Right(r.data.transform()),
     );
   }
 

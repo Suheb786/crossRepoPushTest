@@ -15,7 +15,6 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class SetCreditLimitPageView
     extends BasePageViewWidget<SetCreditLimitViewModel> {
@@ -160,14 +159,13 @@ class SetCreditLimitPageView
                                                       RoundSliderThumbShape(
                                                           enabledThumbRadius:
                                                               20)),
-                                              child: SfSlider(
+                                              child: Slider(
                                                 min:
                                                     sliderLimitValues.minValue!,
                                                 max:
                                                     sliderLimitValues.maxValue!,
-                                                interval: sliderLimitValues
-                                                    .divisions!
-                                                    .toDouble(),
+                                                divisions: sliderLimitValues
+                                                    .divisions!,
                                                 value: val!,
                                                 onChanged: (value) {
                                                   print("got value : $value");

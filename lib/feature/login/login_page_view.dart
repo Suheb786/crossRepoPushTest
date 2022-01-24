@@ -76,7 +76,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                 duration: Duration(milliseconds: 100),
                                 shakeAngle: Rotation.deg(z: 1),
                                 curve: Curves.easeInOutSine,
-                                child: AppStreamBuilder<Resource<bool>>(
+                                child: AppStreamBuilder<Resource<User>>(
                                     stream: model.iphoneLoginStream,
                                     initialData: Resource.none(),
                                     onData: (data) {
@@ -85,7 +85,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                       }
                                     },
                                     dataBuilder: (context, snapshot) {
-                                      return AppStreamBuilder<Resource<bool>>(
+                                      return AppStreamBuilder<Resource<User>>(
                                           stream: model.androidLoginStream,
                                           initialData: Resource.none(),
                                           onData: (data) {
@@ -117,8 +117,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                     }
                                                   }
                                                 },
-                                                dataBuilder:
-                                                    (context, snapshot) {
+                                                dataBuilder: (context, cipher) {
                                                   return AppStreamBuilder<
                                                       Resource<User>>(
                                                     stream: model.loginStream,
@@ -256,7 +255,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                               visible: fingerPrintValue!,
                                                                               child: InkWell(
                                                                                 onTap: () {
-                                                                                  Platform.isAndroid ? model.androidLogin() : model.iphoneLogin();
+                                                                                  Platform.isAndroid ? model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!) : model.iphoneLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
                                                                                 },
                                                                                 child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).accentTextTheme.bodyText1!.color),
                                                                               ),

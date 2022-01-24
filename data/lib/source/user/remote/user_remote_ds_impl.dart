@@ -443,15 +443,17 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> androidLogin() async {
+  Future<HttpResponse<LoginResponseEntity>> androidLogin(
+      {required String cipher}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
     User user = User();
     String userId = '';
     if (userDBEntity != null) {
       user = userDBEntity.transform();
+      print('user private key--->${user.privatePEM}');
       userId = await decryptData(
-          content: user.id,
+          content: cipher,
           publicKey: user.publicPEM,
           privateKey: user.privatePEM);
     }
@@ -465,7 +467,8 @@ class UserRemoteDSImpl extends UserRemoteDS {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> iphoneLogin() async {
+  Future<HttpResponse<LoginResponseEntity>> iphoneLogin(
+      {required String cipher}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     UserDBEntity? userDBEntity = await _userLocalDS.getCurrentUser();
     User user = User();

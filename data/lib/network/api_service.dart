@@ -608,7 +608,7 @@ abstract class ApiService {
       @Body() GetCipherRequestEntity getCipherRequestEntity);
 
   @POST("/auth/AndroidLogin")
-  Future<HttpResponse<ResponseEntity>> androidLogin(
+  Future<HttpResponse<LoginResponseEntity>> androidLogin(
       @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 
   @POST("/Auth/CheckForgetPasswordCred")
@@ -632,7 +632,7 @@ abstract class ApiService {
       @Body() PaymentActivityRequestEntity paymentActivityRequestActivity);
 
   @POST("/auth/iphonelogin")
-  Future<HttpResponse<ResponseEntity>> iphoneLogin(
+  Future<HttpResponse<LoginResponseEntity>> iphoneLogin(
       @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 
   @POST("/Auth/ChangeMobileNumber")
