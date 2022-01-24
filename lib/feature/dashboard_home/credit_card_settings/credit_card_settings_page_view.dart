@@ -215,15 +215,34 @@ class CreditCardSettingsPageView
                           dataBuilder: (context, data) {
                             return SettingTile(
                               onTap: () {
-                                CardCancelDialog.show(context,
-                                    onSelected: (reasonValue) {
-                                  Navigator.pop(context);
-                                  model.cancelCard(reasonValue);
-                                }, onDismissed: () {
-                                  Navigator.pop(context);
-                                }, onError: (AppError error) {
-                                  model.showToastWithError(error);
-                                });
+                                CardCancelDialog.show(
+                                  context,
+                                  onSelected: (reasonValue) {
+                                    Navigator.pop(context);
+                                    model.cancelCard(reasonValue);
+                                  },
+                                  onDismissed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  onError: (AppError error) {
+                                    model.showToastWithError(error);
+                                  },
+                                  reasons: [
+                                    S.of(context).dontNeedMyCardAnymore,
+                                    S.of(context).controlMyExpensesInOtherWays,
+                                    S.of(context).highInterestFeesAndCharges,
+                                    S.of(context).feelThatCreditLimitLow,
+                                    S.of(context).tooManyRecurrentDeclined,
+                                    S.of(context).exchangeRateForCurrencies,
+                                    S
+                                        .of(context)
+                                        .dissatisfiedWithDigitalPlatform,
+                                    S
+                                        .of(context)
+                                        .dissatisfiedWithOverallBankingExp,
+                                    S.of(context).pleaseHelpUsImproveServices,
+                                  ],
+                                );
                               },
                               title: S.of(context).cancelThisCard,
                               tileIcon: AssetUtils.cancelCard,

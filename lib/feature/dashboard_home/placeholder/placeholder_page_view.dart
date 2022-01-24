@@ -30,9 +30,7 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
                 }
               },
               child: Card(
-                color: Theme
-                    .of(context)
-                    .primaryColor,
+                color: Theme.of(context).primaryColor,
                 margin: EdgeInsets.zero,
                 child: Container(
                   margin: EdgeInsets.zero,
@@ -42,63 +40,55 @@ class PlaceholderPageView extends BasePageViewWidget<PlaceholderViewModel> {
                           fit: BoxFit.cover)),
                   child: SingleChildScrollView(
                       child: Container(
-                        padding: EdgeInsets.only(top: 232),
-                        child: Column(
-                          children: [
-                            Text(S
-                                .of(context)
-                                .bornBlink,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Theme
-                                        .of(context)
-                                        .accentColor,
-                                    fontSize: 32,
-                                    fontWeight: FontWeight.w700)),
-                            Padding(
-                              padding: EdgeInsets.only(top: 8),
-                              child: Text(
-                                S
-                                    .of(context)
-                                    .spendJod,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: Theme
-                                        .of(context)
-                                        .accentColor,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 12),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                              EdgeInsets.only(top: 30, left: 24, right: 24),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: Theme
-                                        .of(context)
-                                        .accentTextTheme
-                                        .bodyText1!
-                                        .color,
-                                    borderRadius: BorderRadius.circular(100)),
-                                padding: EdgeInsets.symmetric(vertical: 16),
-                                child: Center(
-                                    child: Text(
-                                      S
-                                          .of(context)
-                                          .findOutMore,
-                                      style: TextStyle(
-                                          color: Theme
-                                              .of(context)
-                                              .accentColor,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600),
-                                    )),
-                              ),
-                            )
-                          ],
+                    padding: EdgeInsets.only(top: 232),
+                    child: Column(
+                      children: [
+                        Text(S.of(context).bornBlink,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontSize: 32,
+                                fontWeight: FontWeight.w700)),
+                        Padding(
+                          padding: EdgeInsets.only(top: 8),
+                          child: Text(
+                            S.of(context).spendJod,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Theme.of(context).accentColor,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12),
+                          ),
                         ),
-                      )),
+                        // Padding(
+                        //   padding:
+                        //   EdgeInsets.only(top: 30, left: 24, right: 24),
+                        //   child: Container(
+                        //     decoration: BoxDecoration(
+                        //         color: Theme
+                        //             .of(context)
+                        //             .accentTextTheme
+                        //             .bodyText1!
+                        //             .color,
+                        //         borderRadius: BorderRadius.circular(100)),
+                        //     padding: EdgeInsets.symmetric(vertical: 16),
+                        //     child: Center(
+                        //         child: Text(
+                        //           S
+                        //               .of(context)
+                        //               .findOutMore,
+                        //           style: TextStyle(
+                        //               color: Theme
+                        //                   .of(context)
+                        //                   .accentColor,
+                        //               fontSize: 12,
+                        //               fontWeight: FontWeight.w600),
+                        //         )),
+                        //   ),
+                        // )
+                      ],
+                    ),
+                  )),
                 ),
               ),
             ),

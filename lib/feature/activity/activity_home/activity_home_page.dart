@@ -6,6 +6,8 @@ import 'package:neo_bank/di/activity/activity_modules.dart';
 import 'package:neo_bank/feature/activity/activity_home/activity_home_page_view.dart';
 import 'package:neo_bank/feature/activity/activity_home/activity_home_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
+import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog.dart';
+import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagment_team_dialog.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 
 class ActivityHomePage extends BasePage<ActivityHomeViewModel> {
@@ -53,7 +55,25 @@ class ActivityHomePageState
               title: " "),
         ],
         initialActiveIndex: 0,
-        onTap: (i) => print("got index $i"),
+        onTap: (i) {
+          switch (i) {
+            case 0:
+              Navigator.pop(context);
+              break;
+            case 1:
+              SettingsDialog.show(
+                context,
+              );
+              break;
+            case 2:
+              EngagementTeamDialog.show(context, onDismissed: () {
+                Navigator.pop(context);
+              }, onSelected: (value) {
+                Navigator.pop(context);
+              });
+              break;
+          }
+        },
       ),
     );
   }

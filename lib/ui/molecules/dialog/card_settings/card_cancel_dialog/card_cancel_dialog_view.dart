@@ -19,8 +19,10 @@ class CardCancelDialogView extends StatelessWidget {
   final Function(String)? onSelected;
   final Function(AppError)? onError;
   final Function? onDismissed;
+  final List<String> reasons;
 
-  CardCancelDialogView({this.onSelected, this.onDismissed, this.onError});
+  CardCancelDialogView(
+      {required this.reasons, this.onSelected, this.onDismissed, this.onError});
 
   ProviderBase providerBase() {
     return cancelCardDialogViewModelProvider;
@@ -35,15 +37,15 @@ class CardCancelDialogView extends StatelessWidget {
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
         insetPadding:
             EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
-        child: GestureDetector(
-          onVerticalDragEnd: (details) {
-            if (details.primaryVelocity!.isNegative) {
-              onDismissed?.call();
-            }
-          },
-          child: Container(
-            child: SingleChildScrollView(
-              physics: NeverScrollableScrollPhysics(),
+        child: Container(
+          child: SingleChildScrollView(
+            physics: NeverScrollableScrollPhysics(),
+            child: GestureDetector(
+              onVerticalDragEnd: (details) {
+                if (details.primaryVelocity! > 0) {
+                  onDismissed?.call();
+                }
+              },
               child: Column(
                 children: [
                   SizedBox(height: 34),
@@ -75,6 +77,7 @@ class CardCancelDialogView extends StatelessWidget {
                             model!.reasonCancellationController.text = value;
                             Navigator.pop(context);
                           },
+                          reasons: reasons,
                         );
                       },
                       child: AppTextField(
@@ -90,6 +93,7 @@ class CardCancelDialogView extends StatelessWidget {
                                 Navigator.pop(context);
                               },
                               title: S.of(context).reasonOfCancellation,
+                              reasons: reasons,
                               onSelected: (value) {
                                 Navigator.pop(context);
                                 model.reasonCancellationController.text = value;

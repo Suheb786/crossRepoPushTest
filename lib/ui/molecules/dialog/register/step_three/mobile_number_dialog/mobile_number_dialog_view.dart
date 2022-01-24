@@ -49,8 +49,8 @@ class MobileNumberDialogView extends StatelessWidget {
                   bottom: 36,
                   top: _keyboardVisible ? 36 : 204),
               child: GestureDetector(
-                onPanUpdate: (details) {
-                  if (details.delta.dy > 0 || details.delta.dy.isNegative) {
+                onVerticalDragEnd: (details) {
+                  if (details.primaryVelocity! > 0) {
                     onDismissed?.call();
                   }
                 },

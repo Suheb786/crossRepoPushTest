@@ -35,7 +35,7 @@ class EncryptDecryptHelper {
         .toRadixString(16);
     DES3 desECB = DES3(key: pinKey, mode: DESMode.ECB);
     encrypted = desECB.encrypt(hex.decode(finalBlock.padLeft(16, '0')));
-    return hex.encode(encrypted).substring(0, 16);
+    return hex.encode(encrypted).substring(0, 16).toUpperCase();
   }
 
   static Map<String, dynamic> encryptRequest(Map<String, dynamic> request) {

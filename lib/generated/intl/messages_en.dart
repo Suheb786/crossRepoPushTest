@@ -287,6 +287,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "We need your consent by uploading the signature"),
         "contactLessPayments":
             MessageLookupByLibrary.simpleMessage("Contactless Payment"),
+        "controlMyExpensesInOtherWays": MessageLookupByLibrary.simpleMessage(
+            "I\'m trying to control my expenses in other ways"),
         "convertBalanceToInstalments": MessageLookupByLibrary.simpleMessage(
             "Convert purchases to instalments"),
         "country": MessageLookupByLibrary.simpleMessage("COUNTRY"),
@@ -356,6 +358,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "For protection of our customers, we have disabled Blink on high risk, jailbroken or rooted mobile devices. You may use Blink on another device or reset your device to its original settings."),
         "directDebitsWontBeMade": MessageLookupByLibrary.simpleMessage(
             "While frozen, direct debits linked to this card won\'t be permitted. e.g. a direct debit from your Blink account to your gym or mobile carrier."),
+        "dissatisfiedWithDigitalPlatform": MessageLookupByLibrary.simpleMessage(
+            "I\'m dissatisfied with the digital platform"),
+        "dissatisfiedWithOverallBankingExp":
+            MessageLookupByLibrary.simpleMessage(
+                "I\'m dissatisfied with the overall banking experience"),
         "district": MessageLookupByLibrary.simpleMessage("District"),
         "doYouHaveAdditionalSourceOfIncome":
             MessageLookupByLibrary.simpleMessage(
@@ -366,6 +373,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you have TIN No available?"),
         "dob": MessageLookupByLibrary.simpleMessage("DATE OF BIRTH"),
         "dobHint": MessageLookupByLibrary.simpleMessage("DD/MM/YYYY"),
+        "dontNeedMyCardAnymore": MessageLookupByLibrary.simpleMessage(
+            "I don\'t need my card anymore"),
         "downloadStatement":
             MessageLookupByLibrary.simpleMessage("Download Statement"),
         "dragMap": MessageLookupByLibrary.simpleMessage(
@@ -563,6 +572,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "establishCallError": MessageLookupByLibrary.simpleMessage(
             "Error occurred while establish call"),
         "estimatedTime": m1,
+        "exchangeRateForCurrencies": MessageLookupByLibrary.simpleMessage(
+            "The exchange rate for other currencies is high"),
         "excitingPromotion": MessageLookupByLibrary.simpleMessage(
             "We have an automated scoring model that generates a credit score based on your personal and credit information. We will review your score regularly and inform you when you can try again. Please stay tuned for exciting services coming your way from Blink!"),
         "exemptPayeeCode":
@@ -597,6 +608,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "fatcaCertification":
             MessageLookupByLibrary.simpleMessage("FATCA Certification"),
         "fatcaandPep": MessageLookupByLibrary.simpleMessage("FATCA & PEP"),
+        "feelThatCreditLimitLow": MessageLookupByLibrary.simpleMessage(
+            "I feel the credit limit is low"),
         "femaleAgent": MessageLookupByLibrary.simpleMessage("Female Agent"),
         "fewMoreQuestions": MessageLookupByLibrary.simpleMessage(
             "Almost there, just a few\nmore questions"),
@@ -637,6 +650,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "getMyCreditCard":
             MessageLookupByLibrary.simpleMessage("Get My Credit Card"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello,"),
+        "highInterestFeesAndCharges": MessageLookupByLibrary.simpleMessage(
+            "High interest,fees,and charges"),
         "homeAddress": MessageLookupByLibrary.simpleMessage("HOME ADDRESS"),
         "homeAddressHint":
             MessageLookupByLibrary.simpleMessage("Please Enter Home Address"),
@@ -1017,6 +1032,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pleaseEnter": MessageLookupByLibrary.simpleMessage("Please enter"),
         "pleaseEnterLatestEmail": MessageLookupByLibrary.simpleMessage(
             "Please enter your latest email. You’ll hear from us, soon!"),
+        "pleaseHelpUsImproveServices": MessageLookupByLibrary.simpleMessage(
+            "Please help us to improve our services: Free text (if this can be applied)"),
         "pleaseProvideInformationIfAppliesToYou":
             MessageLookupByLibrary.simpleMessage(
                 "Please provide information below, if applies to you"),
@@ -1302,6 +1319,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "toLoginPage": MessageLookupByLibrary.simpleMessage("to Login Page"),
         "toWelcomePage":
             MessageLookupByLibrary.simpleMessage("to Welcome Page"),
+        "tooManyRecurrentDeclined": MessageLookupByLibrary.simpleMessage(
+            "There are too many recurrent declined transactions"),
         "totalAdditionalIncome":
             MessageLookupByLibrary.simpleMessage("TOTAL ADDITIONAL INCOME"),
         "totalAdditionalIncomeSmall":
