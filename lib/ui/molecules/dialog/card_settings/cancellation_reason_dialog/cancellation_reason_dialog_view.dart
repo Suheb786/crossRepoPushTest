@@ -35,17 +35,17 @@ class CancellationReasonDialogView extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16.0)),
               insetPadding:
                   EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
-              child: GestureDetector(
-                onPanUpdate: (details) {
-                  if (details.delta.dy > 0 || details.delta.dy.isNegative) {
-                    onDismissed?.call();
-                  }
-                },
-                child: AppStreamBuilder<int>(
-                  stream: model!.currentIndexStream,
-                  initialData: 0,
-                  dataBuilder: (context, currentIndex) {
-                    return Column(
+              child: AppStreamBuilder<int>(
+                stream: model!.currentIndexStream,
+                initialData: 0,
+                dataBuilder: (context, currentIndex) {
+                  return GestureDetector(
+                    onVerticalDragEnd: (details) {
+                      if (details.primaryVelocity! > 0) {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -141,9 +141,9 @@ class CancellationReasonDialogView extends StatelessWidget {
                           ),
                         ),
                       ],
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ));
         },
         providerBase: providerBase());

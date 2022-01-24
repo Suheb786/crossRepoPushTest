@@ -106,7 +106,9 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
         dbtrAcct: dbtrAcct,
         dbtrName: dbtrName,
         isFriend: isFriend,
-        beneImage: image,
+        beneImage: (image!.isNotEmpty && image != null)
+            ? ImageUtils.convertToBase64(image)
+            : '',
         detCustomerType: detCustomerType,
         type: type));
   }

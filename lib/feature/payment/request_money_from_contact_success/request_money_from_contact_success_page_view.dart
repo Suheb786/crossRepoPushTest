@@ -149,27 +149,36 @@ class RequestAmountFromContactSuccessPageView
                     ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: 33),
-                  child: Text(
-                    S.of(context).undoRequest,
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color:
-                        Theme.of(context).accentTextTheme.bodyText1!.color),
+                Visibility(
+                  visible: false,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(top: 33),
+                        child: Text(
+                          S.of(context).undoRequest,
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w600,
+                              color: Theme.of(context)
+                                  .accentTextTheme
+                                  .bodyText1!
+                                  .color),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 4),
+                        child: Text(
+                          "0:07",
+                          style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 4),
-                  child: Text(
-                    "0:07",
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
+                )
               ],
             ),
           ),

@@ -81,7 +81,9 @@ class EnterOtpPageView extends BasePageViewWidget<EnterOtpViewModel> {
                           limit: ProviderScope.containerOf(context)
                               .read(sendToNewRecipientViewModelProvider)
                               .limit!,
-                        );
+                          amount: ProviderScope.containerOf(context)
+                                .read(sendMoneyViewModelProvider)
+                                .currentPinValue);
                       } else if (data.status == Status.ERROR) {
                         model.showToastWithError(data.appError!);
                       }

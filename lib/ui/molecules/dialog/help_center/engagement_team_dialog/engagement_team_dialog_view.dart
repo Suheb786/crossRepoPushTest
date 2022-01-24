@@ -8,10 +8,8 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/help_center/engagement_team_dialog/engagement_team_dialog_view_model.dart';
-import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/resource.dart';
 
 class EngagementTeamDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -37,8 +35,8 @@ class EngagementTeamDialogView extends StatelessWidget {
                 EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 340),
             child: GestureDetector(
               onVerticalDragEnd: (details) {
-                if (details.primaryVelocity!.isNegative) {
-                  Navigator.pop(context);
+                if (details.primaryVelocity! > 0) {
+                  onDismissed?.call();
                 }
               },
               child: Column(

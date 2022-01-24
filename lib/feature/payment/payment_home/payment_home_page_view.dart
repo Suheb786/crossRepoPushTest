@@ -10,10 +10,13 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/pager/payment_swiper.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
-  PaymentHomePageView(ProviderBase model) : super(model);
+  NavigationType? navigationType;
+
+  PaymentHomePageView(ProviderBase model, this.navigationType) : super(model);
 
   final List pages = [
     AddSendMoneyContactPage(),
@@ -27,7 +30,7 @@ class PaymentHomePageView extends BasePageViewWidget<PaymentHomeViewModel> {
       padding: EdgeInsets.only(bottom: 47),
       child: AppStreamBuilder<int>(
         stream: model.currentStep,
-        initialData: 0,
+        initialData: navigationType == NavigationType.DASHBOARD ? 0 : 1,
         dataBuilder: (context, currentStep) {
           print("current step : $currentStep");
           return GestureDetector(

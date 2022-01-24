@@ -45,8 +45,8 @@ class OccupationDialogView extends StatelessWidget {
             insetPadding:
                 EdgeInsets.only(left: 24, right: 24, bottom: 36, top: 204),
             child: GestureDetector(
-              onPanUpdate: (details) {
-                if (details.delta.dy > 0 || details.delta.dy.isNegative) {
+              onVerticalDragEnd: (details) {
+                if (details.primaryVelocity! > 0) {
                   onDismissed?.call();
                 }
               },
