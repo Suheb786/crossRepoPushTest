@@ -86,18 +86,19 @@ class EnterOtpViewModel extends BasePageViewModel {
       required bool isFriend,
       required String beneficiaryImage,
       required String nickName,
-      required num limit}) {
+      required num limit,
+      required String amount}) {
     print('isFriend:--->$isFriend');
     _transferRequest.safeAdd(TransferUseCaseParams(
         limit: limit,
         otpCode: _otpSubject.value,
-        toAmount: transferResponse.toAmount,
+        toAmount: double.parse(amount),
         toAccount: transferResponse.toAccount,
         memo: memo,
         nickName: nickName,
         isFriend: isFriend,
         transferType: transferResponse.transferType,
-        localEq: transferResponse.localEq,
+        localEq: double.parse(amount),
         beneficiaryId: transferResponse.beneficiaryId,
         beneficiaryImage: beneficiaryImage,
         type: "",

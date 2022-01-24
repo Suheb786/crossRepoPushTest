@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:io';
 
 import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:domain/model/payment/get_account_by_alias_content_response.dart';
@@ -220,55 +218,27 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
 
   void requestFromNewRecipient(BuildContext context) {
     print("got the limit : $limit");
-    if (_uploadProfilePhotoResponse.value != "") {
-      List<int> imageBytes =
-          File(_uploadProfilePhotoResponse.value).readAsBytesSync();
-      String base64Image = base64Encode(imageBytes);
-      print("base64 image : ${base64Image}");
       _requestFromNewRecipientRequest.safeAdd(
           RequestFromNewRecipientUseCaseParams(
               ibanOrMobile: ibanOrMobileController.text,
-              purpose: purposeController.text,
-              purposeDetail: purposeDetailController.text,
-              amount: double.parse(ProviderScope.containerOf(context)
-                  .read(requestMoneyViewModelProvider)
-                  .currentPinValue),
-              limit: limit,
-              dbtrBic: dbtrBic ?? "",
-              dbtrAcct: dbtrAcct ?? "",
-              dbtrName: dbtrName ?? "",
-              isFriend: addContact,
-              image: base64Image,
-              purposeCode: purpose!.code ?? "",
-              purposeDetailCode: purposeDetail!.strCode ?? "",
-              nickName: addNickNameController.text.isEmpty
-                  ? ""
-                  : addNickNameController.text,
-              type: type,
-              detCustomerType: detCustomerType));
-    } else {
-      _requestFromNewRecipientRequest.safeAdd(
-          RequestFromNewRecipientUseCaseParams(
-              ibanOrMobile: ibanOrMobileController.text,
-              purpose: purposeController.text,
-              purposeDetail: purposeDetailController.text,
-              amount: double.parse(ProviderScope.containerOf(context)
-                  .read(requestMoneyViewModelProvider)
-                  .currentPinValue),
-              limit: limit,
-              dbtrBic: dbtrBic ?? "",
-              dbtrAcct: dbtrAcct ?? "",
-              dbtrName: dbtrName ?? "",
-              isFriend: addContact,
-              image: "",
-              purposeCode: purpose!.code ?? "",
-              purposeDetailCode: purposeDetail!.strCode ?? "",
-              nickName: addNickNameController.text.isEmpty
-                  ? ""
-                  : addNickNameController.text,
-              type: type,
-              detCustomerType: detCustomerType));
-    }
+            purpose: purposeController.text,
+            purposeDetail: purposeDetailController.text,
+            amount: double.parse(ProviderScope.containerOf(context)
+                .read(requestMoneyViewModelProvider)
+                .currentPinValue),
+            limit: limit,
+            dbtrBic: dbtrBic ?? "",
+            dbtrAcct: dbtrAcct ?? "",
+            dbtrName: dbtrName ?? "",
+            isFriend: addContact,
+            image: selectedProfile,
+            purposeCode: purpose!.code ?? "",
+            purposeDetailCode: purposeDetail!.strCode ?? "",
+            nickName: addNickNameController.text.isEmpty
+                ? ""
+                : addNickNameController.text,
+            type: type,
+            detCustomerType: detCustomerType));
   }
 
   void updatePurpose(Purpose value) {

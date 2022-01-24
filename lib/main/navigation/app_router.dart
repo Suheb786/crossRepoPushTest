@@ -80,6 +80,7 @@ import 'package:neo_bank/feature/supplementary_debit_card/supplementary_debit_ca
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
+import 'package:neo_bank/utils/navgition_type.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -281,7 +282,8 @@ class AppRouter {
                 RouteSettings(name: RoutePaths.DebitCardVerificationSuccess));
 
       case RoutePaths.PaymentHome:
-        return CustomRoute.createRoute(PaymentHomePage());
+        return CustomRoute.createRoute(PaymentHomePage(
+            navigationType: settings.arguments as NavigationType));
 
       case RoutePaths.ActivityHome:
         return CupertinoPageRoute(
