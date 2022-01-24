@@ -7,8 +7,13 @@ import 'package:neo_bank/feature/payment/payment_home/payment_home_page_view.dar
 import 'package:neo_bank/feature/payment/payment_home/payment_home_view_model.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/navgition_type.dart';
 
 class PaymentHomePage extends BasePage<PaymentHomeViewModel> {
+  NavigationType? navigationType;
+
+  PaymentHomePage({this.navigationType});
+
   @override
   PaymentHomePageState createState() => PaymentHomePageState();
 }
@@ -71,7 +76,7 @@ class PaymentHomePageState
 
   @override
   Widget buildView(BuildContext context, PaymentHomeViewModel model) {
-    return PaymentHomePageView(provideBase());
+    return PaymentHomePageView(provideBase(), widget.navigationType);
   }
 
   @override

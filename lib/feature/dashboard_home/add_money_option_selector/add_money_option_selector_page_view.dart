@@ -9,6 +9,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dashboard/add_money_selector_option_widget.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:share_plus/share_plus.dart';
 
 class AddMoneyOptionSelectorPageView
@@ -63,7 +64,8 @@ class AddMoneyOptionSelectorPageView
                       desc: S.of(context).requestMoneyFromOtherBankDesc,
                       buttonText: S.of(context).requestMoney,
                       onTap: () {
-                        Navigator.pushNamed(context, RoutePaths.PaymentHome);
+                        Navigator.pushNamed(context, RoutePaths.PaymentHome,
+                            arguments: NavigationType.ADD_MONEY);
                       },
                     ),
                     SizedBox(
