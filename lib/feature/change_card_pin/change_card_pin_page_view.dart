@@ -25,72 +25,56 @@ class ChangeCardPinPageView
 
   @override
   Widget build(BuildContext context, model) {
-    return Container(
-      color: model.cardType == CardType.DEBIT
-          ? Theme.of(context).canvasColor
-          : Theme.of(context).primaryColor,
-      padding: EdgeInsets.only(top: 56),
-      child: AppStreamBuilder<int>(
-        stream: model.currentPageStream,
-        initialData: 0,
-        dataBuilder: (context, currentStep) {
-          return Column(
-            children: [
-              Expanded(
-                  child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 36),
-                      child: Column(
-                        children: [
-                          Text(
-                            S.of(context).changeCardPin.toUpperCase(),
-                            style: TextStyle(
-                                color: model.cardType == CardType.DEBIT
-                                    ? Theme.of(context).primaryColorDark
-                                    : Theme.of(context).accentColor,
-                                fontSize: 10,
-                                fontWeight: FontWeight.w600),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                                top: 8.0,
-                                bottom: currentStep == 1 ? 0 : 32,
-                                left: 24,
-                                right: 24),
-                            child: ShowUpAnimation(
-                              key: ValueKey(currentStep),
-                              delayStart: Duration(milliseconds: 50),
-                              animationDuration: Duration(milliseconds: 750),
-                              curve: Curves.easeInOut,
-                              direction: Direction.vertical,
-                              offset: 0.5,
-                              child: Text(
-                                StepTextHelper.changeEmailAddressTextHelper(
-                                  currentStep ?? 0,
-                                  S.of(context).enterNewCardPinAndConfirmPin,
-                                  S.of(context).enterOtpHeader,
-                                ),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: model.cardType == CardType.DEBIT
-                                        ? Theme.of(context).primaryColorDark
-                                        : Theme.of(context).accentColor,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.w600),
-                              ),
+    return GestureDetector(
+      onVerticalDragEnd: (details) {
+        if (details.primaryVelocity!.isNegative) {
+          Navigator.pop(context);
+        }
+      },
+      child: Container(
+        color: model.cardType == CardType.DEBIT
+            ? Theme.of(context).canvasColor
+            : Theme.of(context).primaryColor,
+        padding: EdgeInsets.only(top: 56),
+        child: AppStreamBuilder<int>(
+          stream: model.currentPageStream,
+          initialData: 0,
+          dataBuilder: (context, currentStep) {
+            return Column(
+              children: [
+                Expanded(
+                    child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 36),
+                        child: Column(
+                          children: [
+                            Text(
+                              S.of(context).changeCardPin.toUpperCase(),
+                              style: TextStyle(
+                                  color: model.cardType == CardType.DEBIT
+                                      ? Theme.of(context).primaryColorDark
+                                      : Theme.of(context).accentColor,
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w600),
                             ),
-                          ),
-                          Visibility(
-                            visible: currentStep == 1,
-                            child: Padding(
-                              padding: EdgeInsets.only(bottom: 32),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  top: 8.0,
+                                  bottom: currentStep == 1 ? 0 : 32,
+                                  left: 24,
+                                  right: 24),
                               child: ShowUpAnimation(
-                                delayStart: Duration(milliseconds: 500),
+                                key: ValueKey(currentStep),
+                                delayStart: Duration(milliseconds: 50),
                                 animationDuration: Duration(milliseconds: 750),
-                                curve: Curves.bounceIn,
+                                curve: Curves.easeInOut,
                                 direction: Direction.vertical,
                                 offset: 0.5,
                                 child: Text(
-                                  '+962 79 322 8080',
+                                  StepTextHelper.changeEmailAddressTextHelper(
+                                    currentStep ?? 0,
+                                    S.of(context).enterNewCardPinAndConfirmPin,
+                                    S.of(context).enterOtpHeader,
+                                  ),
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                       color: model.cardType == CardType.DEBIT
@@ -101,22 +85,46 @@ class ChangeCardPinPageView
                                 ),
                               ),
                             ),
-                          ),
-                          Expanded(
-                            child: AppSwiper(
-                              pages: pages,
-                              pageController: model.swiperController,
-                              onIndexChanged: (index) {
-                                model.changeCurrentPage(index);
-                              },
-                              currentStep: currentStep,
+                            Visibility(
+                              visible: currentStep == 1,
+                              child: Padding(
+                                padding: EdgeInsets.only(bottom: 32),
+                                child: ShowUpAnimation(
+                                  delayStart: Duration(milliseconds: 500),
+                                  animationDuration:
+                                      Duration(milliseconds: 750),
+                                  curve: Curves.bounceIn,
+                                  direction: Direction.vertical,
+                                  offset: 0.5,
+                                  child: Text(
+                                    '+962 79 322 8080',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: model.cardType == CardType.DEBIT
+                                            ? Theme.of(context).primaryColorDark
+                                            : Theme.of(context).accentColor,
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                              ),
                             ),
-                          )
-                        ],
-                      ))),
-            ],
-          );
-        },
+                            Expanded(
+                              child: AppSwiper(
+                                pages: pages,
+                                pageController: model.swiperController,
+                                onIndexChanged: (index) {
+                                  model.changeCurrentPage(index);
+                                },
+                                currentStep: currentStep,
+                              ),
+                            )
+                          ],
+                        ))),
+              ],
+            );
+          },
+        ),
       ),
     );
   }

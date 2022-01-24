@@ -22,7 +22,8 @@ class DebitCardLimitsUpdateUseCase extends BaseUseCase<NetworkError,
         isMerchantsPayments: params.isMerchantsPayments!,
         isOnlinePurchase: params.isOnlinePurchase!,
         merchantsPayments: params.merchantsPayments!,
-        onlinePurchase: params.onlinePurchase!);
+        onlinePurchase: params.onlinePurchase!,
+        tokenizedPan: params.tokenizedPan);
   }
 }
 
@@ -35,6 +36,7 @@ class DebitCardLimitsUpdateUseCaseParams extends Params {
   final bool? isMerchantsPayments;
   final bool? isOnlinePurchase;
   final bool? isContactLessPayments;
+  final String tokenizedPan;
 
   DebitCardLimitsUpdateUseCaseParams(
       {this.atmWithdrawal,
@@ -44,7 +46,8 @@ class DebitCardLimitsUpdateUseCaseParams extends Params {
       this.isAtmWithdrawal,
       this.isMerchantsPayments,
       this.isOnlinePurchase,
-      this.isContactLessPayments});
+      this.isContactLessPayments,
+      required this.tokenizedPan});
 
   @override
   Either<AppError, bool> verify() {

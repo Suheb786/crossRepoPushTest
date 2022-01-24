@@ -86,6 +86,11 @@ class OtpForChangeCardPinPageView
                         onHorizontalDragEnd: (details) {
                           if (details.primaryVelocity!.isNegative) {
                             model.validateOtp();
+                          } else {
+                            ProviderScope.containerOf(context)
+                                .read(changeCardPinViewModelProvider)
+                                .swiperController
+                                .previous();
                           }
                         },
                         child: Card(

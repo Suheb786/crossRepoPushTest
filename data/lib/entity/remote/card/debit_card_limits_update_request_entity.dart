@@ -6,6 +6,8 @@ part 'debit_card_limits_update_request_entity.g.dart';
 class DebitCardSLimitsUpdateRequestEntity {
   @JsonKey(name: "getToken")
   final bool? getToken;
+  @JsonKey(name: "TokenizedPan")
+  final String? tokenizedPan;
   @JsonKey(name: "atmWithdrawal")
   final num? atmWithdrawal;
   @JsonKey(name: "merchantsPayments")
@@ -27,6 +29,7 @@ class DebitCardSLimitsUpdateRequestEntity {
 
   DebitCardSLimitsUpdateRequestEntity(
       {this.getToken: true,
+      this.tokenizedPan: "",
       this.atmWithdrawal: 0,
       this.merchantsPayments: 0,
       this.onlinePurchase: 0,

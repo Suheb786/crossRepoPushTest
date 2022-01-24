@@ -96,7 +96,7 @@ class EnterNewPinForCardPageView
                                                 .newPin
                                                 .toUpperCase(),
                                             hintText: S.of(context).pleaseEnter,
-                                            inputType: TextInputType.text,
+                                            inputType: TextInputType.number,
                                             obscureText: true,
                                             controller: model.newPinController,
                                             key: model.newPinKey,
@@ -113,7 +113,7 @@ class EnterNewPinForCardPageView
                                                 .toUpperCase(),
                                             hintText: S.of(context).pleaseEnter,
                                             obscureText: true,
-                                            inputType: TextInputType.text,
+                                            inputType: TextInputType.number,
                                             controller:
                                                 model.confirmPinController,
                                             key: model.confirmPinKey,

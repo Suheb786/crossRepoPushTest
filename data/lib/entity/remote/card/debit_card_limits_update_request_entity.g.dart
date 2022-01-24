@@ -10,6 +10,7 @@ DebitCardSLimitsUpdateRequestEntity
     _$DebitCardSLimitsUpdateRequestEntityFromJson(Map<String, dynamic> json) {
   return DebitCardSLimitsUpdateRequestEntity(
     getToken: json['getToken'] as bool?,
+    tokenizedPan: json['TokenizedPan'] as String?,
     atmWithdrawal: json['atmWithdrawal'] as num?,
     merchantsPayments: json['merchantsPayments'] as num?,
     onlinePurchase: json['onlinePurchase'] as num?,
@@ -26,6 +27,7 @@ Map<String, dynamic> _$DebitCardSLimitsUpdateRequestEntityToJson(
         DebitCardSLimitsUpdateRequestEntity instance) =>
     <String, dynamic>{
       'getToken': instance.getToken,
+      'TokenizedPan': instance.tokenizedPan,
       'atmWithdrawal': instance.atmWithdrawal,
       'merchantsPayments': instance.merchantsPayments,
       'onlinePurchase': instance.onlinePurchase,

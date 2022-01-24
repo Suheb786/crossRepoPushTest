@@ -75,6 +75,7 @@ abstract class CardRemoteDs {
       bool? isAtmWithdrawal,
       bool? isMerchantsPayments,
       bool? isOnlinePurchase,
+      String? tokenizedPan,
       bool? isContactLessPayments});
 
   Future<HttpResponse<ResponseEntity>> updateCreditCardLimits(

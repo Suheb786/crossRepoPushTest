@@ -229,15 +229,17 @@ class CardRemoteDsImpl extends CardRemoteDs {
   }
 
   @override
-  Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(
-      {num? atmWithdrawal,
-      num? merchantsPayments,
-      num? onlinePurchase,
-      num? contactLessPayments,
-      bool? isAtmWithdrawal,
-      bool? isMerchantsPayments,
-      bool? isOnlinePurchase,
-      bool? isContactLessPayments}) async {
+  Future<HttpResponse<ResponseEntity>> updateDebitCardLimits({
+    num? atmWithdrawal,
+    num? merchantsPayments,
+    num? onlinePurchase,
+    num? contactLessPayments,
+    bool? isAtmWithdrawal,
+    bool? isMerchantsPayments,
+    bool? isOnlinePurchase,
+    bool? isContactLessPayments,
+    String? tokenizedPan,
+  }) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.updateDebitCardLimits(
         DebitCardSLimitsUpdateRequestEntity(
@@ -250,6 +252,7 @@ class CardRemoteDsImpl extends CardRemoteDs {
             isContactLessPayments: isContactLessPayments,
             isMerchantsPayments: isMerchantsPayments,
             isOnlinePurchase: isOnlinePurchase,
+            tokenizedPan: tokenizedPan,
             baseData: baseData.toJson()));
   }
 
