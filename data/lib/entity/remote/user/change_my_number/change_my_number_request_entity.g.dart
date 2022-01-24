@@ -11,7 +11,7 @@ ChangeMyNumberRequestEntity _$ChangeMyNumberRequestEntityFromJson(
   return ChangeMyNumberRequestEntity(
     baseData: json['BaseClass'] as Map<String, dynamic>,
     getToken: json['GetToken'] as bool?,
-    mobileNo: json['MobileNo'] as String?,
+    mobileNo: json['MobileNumber'] as String?,
     mobileCode: json['MobileCode'] as String?,
   );
 }
@@ -19,7 +19,7 @@ ChangeMyNumberRequestEntity _$ChangeMyNumberRequestEntityFromJson(
 Map<String, dynamic> _$ChangeMyNumberRequestEntityToJson(
         ChangeMyNumberRequestEntity instance) =>
     <String, dynamic>{
-      'MobileNo': instance.mobileNo,
+      'MobileNumber': instance.mobileNo,
       'MobileCode': instance.mobileCode,
       'GetToken': instance.getToken,
       'BaseClass': instance.baseData,

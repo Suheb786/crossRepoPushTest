@@ -8120,6 +8120,16 @@ class S {
       args: [],
     );
   }
+
+  /// `IBAN / Mobile No. / Account`
+  String get ibanOrMobileOrAccount {
+    return Intl.message(
+      'IBAN / Mobile No. / Account',
+      name: 'ibanOrMobileOrAccount',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
