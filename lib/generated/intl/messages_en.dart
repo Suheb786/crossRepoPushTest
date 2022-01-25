@@ -118,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("All Transactions"),
         "allowBiometric":
             MessageLookupByLibrary.simpleMessage("Allow biometric"),
+        "amountZero": MessageLookupByLibrary.simpleMessage("Invalid amount"),
         "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
         "annualIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Annual Income"),

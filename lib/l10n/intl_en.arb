@@ -830,5 +830,6 @@
   "cardFrozen": "Card frozen",
   "toEnjoyCardLessPaymentDebit": "To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step",
   "requestNewDebitcard": "Request new debit card",
-  "ibanOrMobileOrAccount": "IBAN / Mobile No. / Account"
+  "ibanOrMobileOrAccount": "IBAN / Mobile No. / Account",
+  "amountZero": "Invalid amount"
 }

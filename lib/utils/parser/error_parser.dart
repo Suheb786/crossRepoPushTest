@@ -288,6 +288,8 @@ class ErrorParser {
         return localisedHelper.pinDoesNotMatch;
       case ErrorType.ACCOUNT_INQUIRY_WENT_WRONG:
         return localisedHelper.accountInquiryWentWrong;
+      case ErrorType.ZERO_AMOUNT:
+        return localisedHelper.amountZero;
       case ErrorType.EMPTY_NEW_PASSWORD:
         return localisedHelper.emptyNewPassword;
       case ErrorType.INVALID_ID_CARD:
