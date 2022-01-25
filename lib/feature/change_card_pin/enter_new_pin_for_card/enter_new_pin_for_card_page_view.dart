@@ -1,6 +1,7 @@
 import 'package:animated_widgets/animated_widgets.dart';
 import 'package:domain/constants/error_types.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -98,6 +99,10 @@ class EnterNewPinForCardPageView
                                             hintText: S.of(context).pleaseEnter,
                                             inputType: TextInputType.number,
                                             obscureText: true,
+                                            inputFormatters: [
+                                              LengthLimitingTextInputFormatter(
+                                                  4)
+                                            ],
                                             controller: model.newPinController,
                                             key: model.newPinKey,
                                             onChanged: (value) =>
@@ -113,6 +118,10 @@ class EnterNewPinForCardPageView
                                                 .toUpperCase(),
                                             hintText: S.of(context).pleaseEnter,
                                             obscureText: true,
+                                            inputFormatters: [
+                                              LengthLimitingTextInputFormatter(
+                                                  4)
+                                            ],
                                             inputType: TextInputType.number,
                                             controller:
                                                 model.confirmPinController,

@@ -452,7 +452,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyName":
             MessageLookupByLibrary.simpleMessage("Name field cannot be empty"),
         "emptyNationality": MessageLookupByLibrary.simpleMessage(
-            "Nationality field cannot be empty"),
+            "Place Of Birth field cannot be empty"),
         "emptyNationalityDocument": MessageLookupByLibrary.simpleMessage(
             "Upload valid nationality document."),
         "emptyNewPassword":

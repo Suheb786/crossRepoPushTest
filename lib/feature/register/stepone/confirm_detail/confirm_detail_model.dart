@@ -265,7 +265,9 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         issuingDate: scannedDocumentResult.issuingDate!.year == 0
             ? selectedIssuingDate
             : scannedDocumentResult.issuingDate.toString(),
-        issuingPlace: scannedDocumentResult.issuingPlaceISo3,
+        issuingPlace: selectedIssuingPlace.isoCode3 != null
+            ? selectedIssuingPlace.isoCode3
+            : scannedDocumentResult.issuingPlaceISo3,
         declarationSelected: _declarationSelectedSubject.value,
         scannedDocumentInformation: scannedDocumentResult));
   }

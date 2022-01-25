@@ -155,7 +155,7 @@
   "emptyName": "Name field cannot be empty",
   "emptyIdNumber": "Id Number field cannot be empty",
   "emptyDob": "Date of birth field cannot be empty",
-  "emptyNationality": "Nationality field cannot be empty",
+  "emptyNationality": "Place Of Birth field cannot be empty",
   "emptyExpiryDate": "Expiry date field cannot be empty",
   "emptyGender": "Gender field cannot be empty",
   "emptyMotherName": "Mother's name field cannot be empty",

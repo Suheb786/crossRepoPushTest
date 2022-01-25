@@ -43,13 +43,19 @@ class ManageDebitCardLimitsPageView
                         height: 50,
                       ),
                       Text(
-                        S.of(context).manageCardLimits,
+                        S
+                            .of(context)
+                            .manageCardLimits,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: model.cardLimitsArguments.cardType ==
-                                  CardType.DEBIT
-                              ? Theme.of(context).primaryColorDark
-                              : Theme.of(context).accentColor,
+                              CardType.DEBIT
+                              ? Theme
+                              .of(context)
+                              .primaryColorDark
+                              : Theme
+                              .of(context)
+                              .accentColor,
                           fontSize: 13,
                         ),
                       ),
@@ -79,427 +85,458 @@ class ManageDebitCardLimitsPageView
                             ),
                             debitCardLimitResponse!.status == Status.SUCCESS
                                 ? Card(
-                                    color: AppColor.veryLightGray,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16.0),
-                                    ),
-                                    margin: EdgeInsets.only(bottom: 45),
-                                    elevation: 20,
-                                    child: AppStreamBuilder<Resource<bool>>(
-                                        stream: model.updateCardLimitsStream,
-                                        initialData: Resource.none(),
-                                        onData: (data) {
-                                          if (data.status == Status.SUCCESS) {
-                                            ///TODO: updated value from response
-                                            model.getDebitCardLimit();
-                                          }
-                                        },
-                                        dataBuilder: (context, response) {
-                                          return SingleChildScrollView(
-                                            physics: ClampingScrollPhysics(),
-                                            child: Column(
-                                              children: [
-                                                ManageLimitsWidget(
-                                                  onToggle: (value) {
-                                                    model.isAtmWithdrawal =
-                                                        value;
-                                                    if (!value) {
-                                                      model.updateCardLimits(
-                                                          context: context,
-                                                          onlinePurchase: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![4]
-                                                                  .currentLimit!),
-                                                          atmWithdrawalValue: 0,
-                                                          contactlessPayments: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![5]
-                                                                  .currentLimit!),
-                                                          merchantPayment: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![1]
-                                                                  .currentLimit!));
-                                                    }
-                                                  },
-                                                  initialValue: debitCardLimitResponse
-                                                              .data!
-                                                              .debitCardLimitContent!
-                                                              .limits![0]
-                                                              .currentLimit ==
-                                                          0
-                                                      ? false
-                                                      : true,
-                                                  title: S
-                                                      .of(context)
-                                                      .atmWithDrawal,
-                                                  amountSet:
+                              color: AppColor.veryLightGray,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16.0),
+                              ),
+                              margin: EdgeInsets.only(bottom: 45),
+                              elevation: 20,
+                              child: AppStreamBuilder<Resource<bool>>(
+                                  stream: model.updateCardLimitsStream,
+                                  initialData: Resource.none(),
+                                  onData: (data) {
+                                    if (data.status == Status.SUCCESS) {
+                                      ///TODO: updated value from response
+                                      model.getDebitCardLimit();
+                                    }
+                                  },
+                                  dataBuilder: (context, response) {
+                                    return SingleChildScrollView(
+                                      physics: ClampingScrollPhysics(),
+                                      child: Column(
+                                        children: [
+                                          ManageLimitsWidget(
+                                            onToggle: (value) {
+                                              model.isAtmWithdrawal =
+                                                  value;
+                                              if (!value) {
+                                                model.updateCardLimits(
+                                                    context: context,
+                                                    onlinePurchase: num.parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![4]
+                                                            .currentLimit!),
+                                                    atmWithdrawalValue: 0,
+                                                    contactlessPayments: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![5]
+                                                            .currentLimit!),
+                                                    merchantPayment: num.parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![1]
+                                                            .currentLimit!));
+                                              }
+                                            },
+                                            initialValue: debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![0]
+                                                .currentLimit ==
+                                                0
+                                                ? false
+                                                : true,
+                                            title: S
+                                                .of(context)
+                                                .atmWithDrawal,
+                                            amountSet:
+                                            debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![0]
+                                                .currentLimit!
+                                                .toString(),
+                                            maxAmount:
+                                            debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![0]
+                                                .maxLimit!
+                                                .toString(),
+                                            providerBase:
+                                            atmWithdrawalViewModelProvider,
+                                            onDone: (atmWithdrawalValue) {
+                                              if (num.parse(
+                                                  atmWithdrawalValue) >
+                                                  num.parse(
                                                       debitCardLimitResponse
                                                           .data!
                                                           .debitCardLimitContent!
                                                           .limits![0]
-                                                          .currentLimit!
-                                                          .toString(),
-                                                  maxAmount:
-                                                      debitCardLimitResponse
-                                                          .data!
-                                                          .debitCardLimitContent!
-                                                          .limits![0]
-                                                          .maxLimit!
-                                                          .toString(),
-                                                  providerBase:
-                                                      atmWithdrawalViewModelProvider,
-                                                  onDone: (atmWithdrawalValue) {
-                                                    if (num.parse(
-                                                            atmWithdrawalValue) >
-                                                        num.parse(
-                                                            debitCardLimitResponse
-                                                                .data!
-                                                                .debitCardLimitContent!
-                                                                .limits![0]
-                                                                .maxLimit!)) {
-                                                      model.showToastWithError(
-                                                          AppError(
-                                                              cause:
-                                                                  Exception(),
-                                                              error: ErrorInfo(
-                                                                  message: ''),
-                                                              type: ErrorType
-                                                                  .LIMIT_EXCEEDED));
-                                                    } else {
-                                                      print(
-                                                          "atm withdraw : ${atmWithdrawalValue}");
-                                                      model.updateCardLimits(
-                                                          context: context,
-                                                          onlinePurchase: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![4]
-                                                                  .currentLimit!),
-                                                          atmWithdrawalValue:
-                                                              num.parse(
-                                                                  atmWithdrawalValue),
-                                                          contactlessPayments: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![5]
-                                                                  .currentLimit!),
-                                                          merchantPayment: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![1]
-                                                                  .currentLimit!));
-                                                    }
-                                                  },
-                                                ),
-                                                ManageLimitsWidget(
-                                                  onToggle: (value) {
-                                                    model.isMerchantPayments =
-                                                        value;
-                                                    if (!value) {
-                                                      model.updateCardLimits(
-                                                          context: context,
-                                                          onlinePurchase: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![4]
-                                                                  .currentLimit!),
-                                                          atmWithdrawalValue: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![0]
-                                                                  .currentLimit!),
-                                                          contactlessPayments: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![5]
-                                                                  .currentLimit!),
-                                                          merchantPayment: 0);
-                                                    }
-                                                  },
-                                                  title: S
-                                                      .of(context)
-                                                      .merchantPayments,
-                                                  initialValue: debitCardLimitResponse
-                                                              .data!
-                                                              .debitCardLimitContent!
-                                                              .limits![1]
-                                                              .currentLimit ==
-                                                          0
-                                                      ? false
-                                                      : true,
-                                                  amountSet:
+                                                          .maxLimit!)) {
+                                                model.showToastWithError(
+                                                    AppError(
+                                                        cause:
+                                                        Exception(),
+                                                        error: ErrorInfo(
+                                                            message: ''),
+                                                        type: ErrorType
+                                                            .LIMIT_EXCEEDED));
+                                              } else {
+                                                print(
+                                                    "atm withdraw : ${atmWithdrawalValue}");
+                                                model.updateCardLimits(
+                                                    context: context,
+                                                    onlinePurchase: num.parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![4]
+                                                            .currentLimit!),
+                                                    atmWithdrawalValue:
+                                                    num.parse(
+                                                        atmWithdrawalValue),
+                                                    contactlessPayments: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![5]
+                                                            .currentLimit!),
+                                                    merchantPayment: num.parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![1]
+                                                            .currentLimit!));
+                                              }
+                                            },
+                                          ),
+                                          ManageLimitsWidget(
+                                            onToggle: (value) {
+                                              model.isMerchantPayments =
+                                                  value;
+                                              if (!value) {
+                                                model.updateCardLimits(
+                                                    context: context,
+                                                    onlinePurchase: num.parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![4]
+                                                            .currentLimit!),
+                                                    atmWithdrawalValue: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![0]
+                                                            .currentLimit!),
+                                                    contactlessPayments: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![5]
+                                                            .currentLimit!),
+                                                    merchantPayment: 0);
+                                              }
+                                            },
+                                            title: S
+                                                .of(context)
+                                                .merchantPayments,
+                                            initialValue: debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![1]
+                                                .currentLimit ==
+                                                0
+                                                ? false
+                                                : true,
+                                            amountSet:
+                                            debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![1]
+                                                .currentLimit!
+                                                .toString(),
+                                            maxAmount:
+                                            debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![2]
+                                                .maxLimit!
+                                                .toString(),
+                                            providerBase:
+                                            merchantPaymentViewModelProvider,
+                                            onDone:
+                                                (merchantPaymentValue) {
+                                              if (num.parse(
+                                                  merchantPaymentValue) >
+                                                  num.parse(
                                                       debitCardLimitResponse
                                                           .data!
                                                           .debitCardLimitContent!
                                                           .limits![1]
-                                                          .currentLimit!
-                                                          .toString(),
-                                                  maxAmount:
-                                                      debitCardLimitResponse
-                                                          .data!
-                                                          .debitCardLimitContent!
-                                                          .limits![2]
-                                                          .maxLimit!
-                                                          .toString(),
-                                                  providerBase:
-                                                      merchantPaymentViewModelProvider,
-                                                  onDone:
-                                                      (merchantPaymentValue) {
-                                                    if (num.parse(
-                                                            merchantPaymentValue) >
-                                                        num.parse(
-                                                            debitCardLimitResponse
-                                                                .data!
-                                                                .debitCardLimitContent!
-                                                                .limits![1]
-                                                                .maxLimit!)) {
-                                                      model.showToastWithError(
-                                                          AppError(
-                                                              cause:
-                                                                  Exception(),
-                                                              error: ErrorInfo(
-                                                                  message: ''),
-                                                              type: ErrorType
-                                                                  .LIMIT_EXCEEDED));
-                                                    } else {
-                                                      model.updateCardLimits(
-                                                          context: context,
-                                                          onlinePurchase: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![4]
-                                                                  .currentLimit!),
-                                                          atmWithdrawalValue: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![0]
-                                                                  .currentLimit!),
-                                                          contactlessPayments: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![5]
-                                                                  .currentLimit!),
-                                                          merchantPayment:
-                                                              num.parse(
-                                                                  merchantPaymentValue));
-                                                    }
-                                                  },
-                                                ),
-                                                ManageLimitsWidget(
-                                                  onToggle: (value) {
-                                                    model.isOnlinePurchase =
-                                                        value;
-                                                    if (!value) {
-                                                      model.updateCardLimits(
-                                                          context: context,
-                                                          onlinePurchase: 0,
-                                                          atmWithdrawalValue: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![0]
-                                                                  .currentLimit!),
-                                                          contactlessPayments: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![5]
-                                                                  .currentLimit!),
-                                                          merchantPayment: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![1]
-                                                                  .currentLimit!));
-                                                    }
-                                                  },
-                                                  title: S
-                                                      .of(context)
-                                                      .onlinePurchase,
-                                                  initialValue: debitCardLimitResponse
-                                                              .data!
-                                                              .debitCardLimitContent!
-                                                              .limits![4]
-                                                              .currentLimit ==
-                                                          0
-                                                      ? false
-                                                      : true,
-                                                  amountSet:
+                                                          .maxLimit!)) {
+                                                model.showToastWithError(
+                                                    AppError(
+                                                        cause:
+                                                        Exception(),
+                                                        error: ErrorInfo(
+                                                            message: ''),
+                                                        type: ErrorType
+                                                            .LIMIT_EXCEEDED));
+                                              } else {
+                                                model.updateCardLimits(
+                                                    context: context,
+                                                    onlinePurchase: num.parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![4]
+                                                            .currentLimit!),
+                                                    atmWithdrawalValue: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![0]
+                                                            .currentLimit!),
+                                                    contactlessPayments: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![5]
+                                                            .currentLimit!),
+                                                    merchantPayment:
+                                                    num.parse(
+                                                        merchantPaymentValue));
+                                              }
+                                            },
+                                          ),
+                                          ManageLimitsWidget(
+                                            onToggle: (value) {
+                                              model.isOnlinePurchase =
+                                                  value;
+                                              if (!value) {
+                                                model.updateCardLimits(
+                                                    context: context,
+                                                    onlinePurchase: 0,
+                                                    atmWithdrawalValue: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![0]
+                                                            .currentLimit!),
+                                                    contactlessPayments: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![5]
+                                                            .currentLimit!),
+                                                    merchantPayment: num.parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![1]
+                                                            .currentLimit!));
+                                              }
+                                            },
+                                            title: S
+                                                .of(context)
+                                                .onlinePurchase,
+                                            initialValue: debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![4]
+                                                .currentLimit ==
+                                                0
+                                                ? false
+                                                : true,
+                                            amountSet:
+                                            debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![4]
+                                                .currentLimit!
+                                                .toString(),
+                                            maxAmount:
+                                            debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![4]
+                                                .maxLimit!
+                                                .toString(),
+                                            providerBase:
+                                            onlinePurchaseViewModelProvider,
+                                            onDone:
+                                                (onlinePurchaseLimitValue) {
+                                              if (num.parse(
+                                                  onlinePurchaseLimitValue) >
+                                                  num.parse(
                                                       debitCardLimitResponse
                                                           .data!
                                                           .debitCardLimitContent!
                                                           .limits![4]
-                                                          .currentLimit!
-                                                          .toString(),
-                                                  maxAmount:
-                                                      debitCardLimitResponse
-                                                          .data!
-                                                          .debitCardLimitContent!
-                                                          .limits![4]
-                                                          .maxLimit!
-                                                          .toString(),
-                                                  providerBase:
-                                                      onlinePurchaseViewModelProvider,
-                                                  onDone:
-                                                      (onlinePurchaseLimitValue) {
-                                                    if (num.parse(
-                                                            onlinePurchaseLimitValue) >
-                                                        num.parse(
-                                                            debitCardLimitResponse
-                                                                .data!
-                                                                .debitCardLimitContent!
-                                                                .limits![4]
-                                                                .maxLimit!)) {
-                                                      model.showToastWithError(
-                                                          AppError(
-                                                              cause:
-                                                                  Exception(),
-                                                              error: ErrorInfo(
-                                                                  message: ''),
-                                                              type: ErrorType
-                                                                  .LIMIT_EXCEEDED));
-                                                    } else {
-                                                      model.updateCardLimits(
-                                                          context: context,
-                                                          onlinePurchase: num.parse(
-                                                              onlinePurchaseLimitValue),
-                                                          atmWithdrawalValue: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![0]
-                                                                  .currentLimit!),
-                                                          contactlessPayments: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![5]
-                                                                  .currentLimit!),
-                                                          merchantPayment: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![1]
-                                                                  .currentLimit!));
-                                                    }
-                                                  },
-                                                ),
-                                                ManageLimitsWidget(
-                                                  onToggle: (value) {
-                                                    if (value) {
-                                                      model.updateCardLimits(
-                                                          context: context,
-                                                          onlinePurchase: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![4]
-                                                                  .currentLimit!),
-                                                          atmWithdrawalValue: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![0]
-                                                                  .currentLimit!),
-                                                          contactlessPayments: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![5]
-                                                                  .currentLimit!),
-                                                          merchantPayment: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![1]
-                                                                  .currentLimit!));
-                                                    } else {
-                                                      model.updateCardLimits(
-                                                          context: context,
-                                                          onlinePurchase: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![4]
-                                                                  .currentLimit!),
-                                                          atmWithdrawalValue: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![0]
-                                                                  .currentLimit!),
-                                                          contactlessPayments:
-                                                              0,
-                                                          merchantPayment: num.parse(
-                                                              debitCardLimitResponse
-                                                                  .data!
-                                                                  .debitCardLimitContent!
-                                                                  .limits![1]
-                                                                  .currentLimit!));
-                                                    }
-                                                  },
-                                                  initialValue: false,
-                                                  noToggle: !(ProviderScope
-                                                              .containerOf(
-                                                                  context)
-                                                          .read(
-                                                              appHomeViewModelProvider)
-                                                          .dashboardDataContent
-                                                          .debitCard!
-                                                          .first
-                                                          .debitDeliveredDatetime !=
-                                                      null),
-                                                  title: S
-                                                      .of(context)
-                                                      .contactLessPayments,
-                                                  amountSet:
-                                                      debitCardLimitResponse
-                                                          .data!
-                                                          .debitCardLimitContent!
-                                                          .limits![5]
-                                                          .currentLimit!
-                                                          .toString(),
-                                                  maxAmount:
-                                                      debitCardLimitResponse
-                                                          .data!
-                                                          .debitCardLimitContent!
-                                                          .limits![5]
-                                                          .maxLimit!
-                                                          .toString(),
-                                                  isLast: true,
-                                                  readOnly: true,
-                                                  providerBase:
-                                                      contactLessPaymentViewModelProvider,
-                                                  onDone:
-                                                      (contactLessPaymentValue) {
-                                                    // model.updateCardLimits(
-                                                    //     onlinePurchase: 0,
-                                                    //     atmWithdrawalValue: 0,
-                                                    //     contactlessPayments: num.parse(
-                                                    //         contactLessPaymentValue),
-                                                    //     merchantPayment: 0);
-                                                  },
-                                                ),
-                                              ],
-                                            ),
-                                          );
-                                        }),
-                                  )
+                                                          .maxLimit!)) {
+                                                model.showToastWithError(
+                                                    AppError(
+                                                        cause:
+                                                        Exception(),
+                                                        error: ErrorInfo(
+                                                            message: ''),
+                                                        type: ErrorType
+                                                            .LIMIT_EXCEEDED));
+                                              } else {
+                                                model.updateCardLimits(
+                                                    context: context,
+                                                    onlinePurchase: num.parse(
+                                                        onlinePurchaseLimitValue),
+                                                    atmWithdrawalValue: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![0]
+                                                            .currentLimit!),
+                                                    contactlessPayments: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![5]
+                                                            .currentLimit!),
+                                                    merchantPayment: num.parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![1]
+                                                            .currentLimit!));
+                                              }
+                                            },
+                                          ),
+                                          ManageLimitsWidget(
+                                            onToggle: (value) {
+                                              if (value) {
+                                                model.updateCardLimits(
+                                                    context: context,
+                                                    onlinePurchase: num.parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![4]
+                                                            .currentLimit!),
+                                                    atmWithdrawalValue: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![0]
+                                                            .currentLimit!),
+                                                    contactlessPayments: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![5]
+                                                            .currentLimit!),
+                                                    merchantPayment: num.parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![1]
+                                                            .currentLimit!));
+                                              } else {
+                                                model.updateCardLimits(
+                                                    context: context,
+                                                    onlinePurchase: num.parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![4]
+                                                            .currentLimit!),
+                                                    atmWithdrawalValue: num
+                                                        .parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![0]
+                                                            .currentLimit!),
+                                                    contactlessPayments:
+                                                    0,
+                                                    merchantPayment: num.parse(
+                                                        debitCardLimitResponse
+                                                            .data!
+                                                            .debitCardLimitContent!
+                                                            .limits![1]
+                                                            .currentLimit!));
+                                              }
+                                            },
+                                            initialValue:
+                                            // debitCardLimitResponse
+                                            //                 .data!
+                                            //                 .debitCardLimitContent!
+                                            //                 .limits![5]
+                                            //                 .currentLimit ==
+                                            //             150 &&
+                                            (ProviderScope
+                                                .containerOf(
+                                                context)
+                                                .read(
+                                                appHomeViewModelProvider)
+                                                .dashboardDataContent
+                                                .debitCard!
+                                                .first
+                                                .debitDeliveredDatetime !=
+                                                null)
+                                                ? true
+                                                : false,
+                                            noToggle: !(ProviderScope
+                                                .containerOf(
+                                                context)
+                                                .read(
+                                                appHomeViewModelProvider)
+                                                .dashboardDataContent
+                                                .debitCard!
+                                                .first
+                                                .debitDeliveredDatetime !=
+                                                null),
+                                            title: S
+                                                .of(context)
+                                                .contactLessPayments,
+                                            amountSet:
+                                            debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![5]
+                                                .currentLimit!
+                                                .toString(),
+                                            maxAmount:
+                                            debitCardLimitResponse
+                                                .data!
+                                                .debitCardLimitContent!
+                                                .limits![5]
+                                                .maxLimit!
+                                                .toString(),
+                                            isLast: true,
+                                            readOnly: true,
+                                            providerBase:
+                                            contactLessPaymentViewModelProvider,
+                                            onDone:
+                                                (contactLessPaymentValue) {
+                                              // model.updateCardLimits(
+                                              //     onlinePurchase: 0,
+                                              //     atmWithdrawalValue: 0,
+                                              //     contactlessPayments: num.parse(
+                                              //         contactLessPaymentValue),
+                                              //     merchantPayment: 0);
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }),
+                            )
                                 : Container()
                           ],
                         )),

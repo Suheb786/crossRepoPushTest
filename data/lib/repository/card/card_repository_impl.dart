@@ -251,7 +251,7 @@ class CardRepositoryImpl extends CardRepository {
   Future<Either<NetworkError, bool>> unblockDebitCardPin(
       {String? status, required String pin}) async {
     final result = await safeApiCall(
-      _remoteDs.unblockDebitCardPin(pin: pin),
+      _remoteDs.unblockDebitCardPin(pin: pin, status: status!),
     );
     return result!.fold(
       (l) => Left(l),

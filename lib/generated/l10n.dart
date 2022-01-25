@@ -1571,10 +1571,10 @@ class S {
     );
   }
 
-  /// `Nationality field cannot be empty`
+  /// `Place Of Birth field cannot be empty`
   String get emptyNationality {
     return Intl.message(
-      'Nationality field cannot be empty',
+      'Place Of Birth field cannot be empty',
       name: 'emptyNationality',
       desc: '',
       args: [],

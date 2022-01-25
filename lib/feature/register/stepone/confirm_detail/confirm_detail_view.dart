@@ -241,18 +241,21 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       controller: model.nationalityController,
                                       key: model.nationalityKey,
                                       onPressed: () {
-                                        CountryDialog.show(context,
-                                            title: S
-                                                .of(context)
-                                                .residentCountrySmall,
-                                            onDismissed: () {
-                                          Navigator.pop(context);
-                                        }, onSelected: (value) {
-                                          Navigator.pop(context);
-                                          model.nationalityController.text =
-                                              value.countryName!;
-                                          model.selectedPlaceOfBirth = value;
-                                          model.validateDetails();
+                                        Future.delayed(
+                                            Duration(milliseconds: 200), () {
+                                          CountryDialog.show(context,
+                                              title: S
+                                                  .of(context)
+                                                  .residentCountrySmall,
+                                              onDismissed: () {
+                                            Navigator.pop(context);
+                                          }, onSelected: (value) {
+                                            Navigator.pop(context);
+                                            model.nationalityController.text =
+                                                value.countryName!;
+                                            model.selectedPlaceOfBirth = value;
+                                            model.validateDetails();
+                                          });
                                         });
                                       },
                                       suffixIcon: (value, data) {
@@ -441,28 +444,36 @@ class ConfirmDetailView extends BasePageViewWidget<ConfirmDetailViewModel> {
                                       hintText: S.of(context).pleaseEnter,
                                       maxLines: 5,
                                       inputType: TextInputType.text,
-                                      readOnly: model.isIssuingPlaceReadOnly,
+                                      readOnly: true,
                                       textColor: model.isIssuingPlaceReadOnly
                                           ? Theme.of(context)
                                               .inputDecorationTheme
                                               .hintStyle!
                                               .color
                                           : Theme.of(context).primaryColorDark,
-                                      onPressed: () {
-                                        CountryDialog.show(context,
-                                            title: S
-                                                .of(context)
-                                                .residentCountrySmall,
-                                            onDismissed: () {
-                                          Navigator.pop(context);
-                                        }, onSelected: (value) {
-                                          Navigator.pop(context);
-                                          model.issuingPlaceController.text =
-                                              value.countryName!;
-                                          model.selectedIssuingPlace = value;
-                                          model.validateDetails();
-                                        });
-                                      },
+                                      onPressed: !model.isIssuingPlaceReadOnly
+                                          ? () {
+                                              Future.delayed(
+                                                  Duration(milliseconds: 200),
+                                                  () {
+                                                CountryDialog.show(context,
+                                                    title: S
+                                                        .of(context)
+                                                        .residentCountrySmall,
+                                                    onDismissed: () {
+                                                  Navigator.pop(context);
+                                                }, onSelected: (value) {
+                                                  Navigator.pop(context);
+                                                  model.issuingPlaceController
+                                                          .text =
+                                                      value.countryName!;
+                                                  model.selectedIssuingPlace =
+                                                      value;
+                                                  model.validateDetails();
+                                                });
+                                              });
+                                            }
+                                          : () {},
                                       suffixIcon: (value, data) {
                                         return Container(
                                             height: 16,
