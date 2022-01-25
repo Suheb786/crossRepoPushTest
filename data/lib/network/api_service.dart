@@ -18,6 +18,8 @@ import 'package:data/entity/remote/accountsettings/profile_changed_success_respo
 import 'package:data/entity/remote/accountsettings/profile_details_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/update_profile_image_request.dart';
 import 'package:data/entity/remote/accountsettings/verify_change_email_request.dart';
+import 'package:data/entity/remote/activity/activity_request_entity.dart';
+import 'package:data/entity/remote/activity/activity_response_entity.dart';
 import 'package:data/entity/remote/ahwal/ahwal_detail_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
@@ -642,4 +644,8 @@ abstract class ApiService {
   @POST("/DebitCard/ChangePinVerify")
   Future<HttpResponse<ResponseEntity>> changePinVerify(
       @Body() BaseRequest baseRequest);
+
+  @POST("/Account/AccountActivity")
+  Future<HttpResponse<ActivityResponseEntity>> getActivity(
+      @Body() ActivityRequestEntity activityRequestEntity);
 }

@@ -5,6 +5,8 @@ import 'package:data/source/account/account_datasource.dart';
 import 'package:data/source/account/remote/account_remote_ds_impl.dart';
 import 'package:data/source/account_settings/account_settings_datasource.dart';
 import 'package:data/source/account_settings/remote/account_settings_remote_ds_impl.dart';
+import 'package:data/source/activity/activity_datasource.dart';
+import 'package:data/source/activity/remote/activity_remote_datasource_impl.dart';
 import 'package:data/source/bank_smart/bank_smart_datasource.dart';
 import 'package:data/source/bank_smart/remote/bank_smart_remote_ds_impl.dart';
 import 'package:data/source/card/card_datasource.dart';
@@ -156,4 +158,8 @@ var forgetPasswordDataSourceProvider = Provider<ForgetPasswordRemoteDs>((ref) =>
 
 var paymentDataSourceProvider = Provider<PaymentRemoteDs>((ref) =>
     PaymentRemoteDataSourceImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+var activityDataSourceProvider = Provider<ActivityRemoteDs>((ref) =>
+    ActivityRemoteDsImpl(
         ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
