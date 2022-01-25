@@ -12,6 +12,7 @@ import 'package:data/entity/remote/card/credit_card_limits_update_request_entity
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
+import 'package:data/entity/remote/card/debit_supplementary/apply_debit_supplementary_card_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/freeze_credit_card_request_entity.dart';
 import 'package:data/entity/remote/card/freeze_debit_card_request_entity.dart';
@@ -30,6 +31,7 @@ import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/helper/encypt_decrypt_helper.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/card/card_datasource.dart';
+import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:retrofit/dio.dart';
 
 class CardRemoteDsImpl extends CardRemoteDs {
@@ -329,5 +331,38 @@ class CardRemoteDsImpl extends CardRemoteDs {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService
         .changePinVerify(BaseRequest(baseData: baseData.toJson()));
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> applyDebitSupplementaryCard(
+      {required ScannedDocumentInformation scannedDocumentInformation}) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.applyDebitSupplementaryCard(
+        ApplyDebitSupplementaryCardRequest(
+            baseData: baseData.toJson(),
+            getToken: true,
+            type: "C",
+            dob: scannedDocumentInformation.dob.toString(),
+            id: DateTime.now().microsecondsSinceEpoch.toString(),
+            backCardImage: scannedDocumentInformation.backCardImage,
+            documentCode: scannedDocumentInformation.documentCode ?? 'I',
+            documentNumber: scannedDocumentInformation.documentNumber,
+            doe: scannedDocumentInformation.doe.toString(),
+            familyName: scannedDocumentInformation.familyName,
+            firstName: scannedDocumentInformation.firstName ??
+                scannedDocumentInformation.fullName!.split(' ').first,
+            frontCardImage: scannedDocumentInformation.frontCardImage,
+            fullName: scannedDocumentInformation.fullName,
+            gender: scannedDocumentInformation.gender![0].toUpperCase(),
+            idNumber: scannedDocumentInformation.idNumber,
+            instanceID: scannedDocumentInformation.instanceId,
+            issuer: scannedDocumentInformation.issuingPlaceISo3,
+            middleName: scannedDocumentInformation.middleName,
+            mrtDraw: scannedDocumentInformation.mrtDraw,
+            nationality: scannedDocumentInformation.nationality,
+            optionalData1: scannedDocumentInformation.optionalData1,
+            optionalData2: scannedDocumentInformation.optionalData2,
+            personFaceImage: scannedDocumentInformation.personFaceImage,
+            scanPercentage: 0));
   }
 }

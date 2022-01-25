@@ -42,6 +42,7 @@ import 'package:data/entity/remote/card/credit_card_limits_update_request_entity
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
+import 'package:data/entity/remote/card/debit_supplementary/apply_debit_supplementary_card_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/freeze_credit_card_request_entity.dart';
 import 'package:data/entity/remote/card/freeze_debit_card_request_entity.dart';
@@ -642,4 +643,10 @@ abstract class ApiService {
   @POST("/DebitCard/ChangePinVerify")
   Future<HttpResponse<ResponseEntity>> changePinVerify(
       @Body() BaseRequest baseRequest);
+
+  @POST("/DebitCard/RequestSuplementaryDebitCard")
+  Future<HttpResponse<ResponseEntity>> applyDebitSupplementaryCard(
+      @Body()
+          ApplyDebitSupplementaryCardRequest
+              applyDebitSupplementaryCardRequest);
 }
