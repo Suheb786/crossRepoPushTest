@@ -21,16 +21,19 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/time_utils.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
+
 
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
   AppHomePageView(ProviderBase model) : super(model);
 
-  final List pages = [
-    MyAccountPage(),
-    GetCreditCardPage(),
-    MyDebitCardPage(),
-    // PlaceholderPage()
-  ];
+  // final List pages = [
+  //   MyAccountPage(),
+  //   GetCreditCardPage(),
+  //   MyDebitCardPage(),
+  //   // PlaceholderPage()
+  // ];
 
   @override
   Widget build(BuildContext context, model) {
@@ -133,27 +136,60 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                       Expanded(
                                         child: Padding(
                                           padding: EdgeInsets.only(top: 4),
-                                          child: DashboardSwiper(
-                                            pages: pages,
-                                            pageController:
-                                                model.pageController,
-                                            onIndexChanged: (index) {
-                                              // _currentPage = index;
-                                              model.updatePage(index);
-                                              model.updatePageControllerStream(
-                                                  index);
-                                            },
-                                            currentStep: currentStep,
+                                          // child: DashboardSwiper(
+                                          //   pages: pages,
+                                          //   pageController:
+                                          //       model.pageController,
+                                          //   onIndexChanged: (index) {
+                                          //     // _currentPage = index;
+                                          //     model.updatePage(index);
+                                          //     model.updatePageControllerStream(
+                                          //         index);
+                                          //   },
+                                          //   currentStep: currentStep,
+                                          // ),
+                                          child: AppStreamBuilder<GetDashboardDataContent>(
+                                            stream: ProviderScope.containerOf(context)
+                                              .read(appHomeViewModelProvider)
+                                              .getDashboardCardDataStream,
+                                            initialData: GetDashboardDataContent(),
+                                              dataBuilder: (context, cardData) {
+                                              if(cardData!.account!.accountNo == null) {
+                                                return SizedBox();
+                                              } return DashboardSwiper(
+                                                  pages: [
+                                                    MyAccountPage(
+                                                      cardData: cardData,),
+                                                    GetCreditCardPage(
+                                                      cardData: cardData,),
+                                                    MyDebitCardPage(
+                                                        cardData: cardData),
+                                                  ],
+                                                  pageController:
+                                                  model.pageController,
+                                                  onIndexChanged: (index) {
+                                                    // _currentPage = index;
+                                                    model.updatePage(index);
+                                                    model
+                                                        .updatePageControllerStream(
+                                                        index);
+                                                  },
+                                                  currentStep: currentStep,
+                                                );
+                                              }
                                           ),
                                         ),
                                       ),
                                       const SizedBox(height: 0.0),
-                                      Row(
+                                  SizedBox(
+                                    height: MediaQuery.of(context).size.height * 0.03,
+                                     child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: model
                                             .buildPageIndicator(currentStep!),
                                       ),
+                                  ),
                                       // SmoothPageIndicator(
                                       //     controller: model.controller,
                                       //     count: pages.length,
