@@ -66,7 +66,7 @@ class RequestAmountFromContactUseCaseParams extends Params {
     if (amount! == 0) {
       return Left(AppError(
           error: ErrorInfo(message: ''),
-          type: ErrorType.INVALID_REQUESTED_AMOUNT,
+          type: ErrorType.ZERO_AMOUNT,
           cause: Exception()));
     } else if (limit == null) {
       return Left(AppError(

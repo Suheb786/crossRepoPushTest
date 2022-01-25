@@ -8130,6 +8130,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Invalid amount`
+  String get amountZero {
+    return Intl.message(
+      'Invalid amount',
+      name: 'amountZero',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

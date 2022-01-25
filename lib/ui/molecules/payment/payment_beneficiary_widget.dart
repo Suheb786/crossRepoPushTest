@@ -55,6 +55,7 @@ class PaymentBeneficiaryWidget extends StatelessWidget {
                 : beneficiary!.fullName!,
             textAlign: TextAlign.center,
             style: TextStyle(
+                overflow: TextOverflow.ellipsis,
                 color: transferEnum == TransferEnum.send
                     ? Theme.of(context).accentColor
                     : Theme.of(context).primaryColorDark,
