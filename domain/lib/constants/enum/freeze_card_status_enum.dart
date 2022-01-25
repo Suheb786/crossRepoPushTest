@@ -14,6 +14,7 @@ class FreezeCardStatusEnum {
   static const FreezeCardStatusEnum WM = FreezeCardStatusEnum._("WM");
   static const FreezeCardStatusEnum SR = FreezeCardStatusEnum._("SR");
   static const FreezeCardStatusEnum NONE = FreezeCardStatusEnum._("none");
+  static const FreezeCardStatusEnum PRE = FreezeCardStatusEnum._("PRE");
 }
 
 extension FreezeCardStatusEnumExt on String {
@@ -31,6 +32,8 @@ extension FreezeCardStatusEnumExt on String {
         return FreezeCardStatusEnum.C;
       case "none":
         return FreezeCardStatusEnum.NONE;
+      case "PRE":
+        return FreezeCardStatusEnum.PRE;
       default:
         return FreezeCardStatusEnum.A;
     }

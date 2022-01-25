@@ -238,6 +238,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "While frozen, your card can\'t be used for any transactions."),
         "changeCardPin":
             MessageLookupByLibrary.simpleMessage("Change card PIN"),
+        "changeCardPinError":
+            MessageLookupByLibrary.simpleMessage("Change Chard Pin Error"),
         "changeCountryRestriction":
             MessageLookupByLibrary.simpleMessage("Change country restriction"),
         "changeEmailAddress":
@@ -565,6 +567,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error has occurred While Getting Account DashBoard"),
         "errorWhileGettingFatcaCrs": MessageLookupByLibrary.simpleMessage(
             "Error While Getting FatcaCrs"),
+        "errorWhileLinkingDebitCard": MessageLookupByLibrary.simpleMessage(
+            "Error while linking Debit Card"),
         "errorWhileLogout":
             MessageLookupByLibrary.simpleMessage("Error While Logout"),
         "errorWhileProcessLoanRequest": MessageLookupByLibrary.simpleMessage(
@@ -686,6 +690,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Id card is expired, cannot proceed."),
         "idCardNotAllowed": MessageLookupByLibrary.simpleMessage(
             "ID card is not allowed for NeoBank."),
+        "idCardNotFound":
+            MessageLookupByLibrary.simpleMessage("Id Card Not Found"),
         "idExpiryDate": MessageLookupByLibrary.simpleMessage("ID EXPIRY DATE"),
         "idHint":
             MessageLookupByLibrary.simpleMessage("Please Enter ID Number"),

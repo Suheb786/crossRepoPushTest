@@ -215,9 +215,6 @@ class CardRemoteDsImpl extends CardRemoteDs {
     print('card No--->$cardNumber');
     return _apiService.changeDebitCardPin(ChangeDebitCardPinRequest(
         baseData: baseData.toJson(),
-        pinCode: EncryptDecryptHelper.generateBlockPin(
-            cardNo: cardNumber, pinCode: pin),
-        otp: otp,
         tokenizedPan: tokenizedPan,
         getToken: true));
   }
@@ -227,7 +224,7 @@ class CardRemoteDsImpl extends CardRemoteDs {
       {required String pin, required String status}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.unblockDebitCardPin(ChangeDebitCardPinRequest(
-        baseData: baseData.toJson(), pinCode: pin, tokenizedPan: status));
+        baseData: baseData.toJson(), tokenizedPan: status));
   }
 
   @override
@@ -335,7 +332,9 @@ class CardRemoteDsImpl extends CardRemoteDs {
 
   @override
   Future<HttpResponse<ResponseEntity>> applyDebitSupplementaryCard(
-      {required ScannedDocumentInformation scannedDocumentInformation}) async {
+      {required ScannedDocumentInformation scannedDocumentInformation,
+      required String relation,
+      required String nickName}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.applyDebitSupplementaryCard(
         ApplyDebitSupplementaryCardRequest(
@@ -363,6 +362,8 @@ class CardRemoteDsImpl extends CardRemoteDs {
             optionalData1: scannedDocumentInformation.optionalData1,
             optionalData2: scannedDocumentInformation.optionalData2,
             personFaceImage: scannedDocumentInformation.personFaceImage,
-            scanPercentage: 0));
+            scanPercentage: 0,
+            nickName: nickName,
+            relation: relation));
   }
 }

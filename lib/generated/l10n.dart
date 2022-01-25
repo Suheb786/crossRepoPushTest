@@ -8140,6 +8140,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Id Card Not Found`
+  String get idCardNotFound {
+    return Intl.message(
+      'Id Card Not Found',
+      name: 'idCardNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Chard Pin Error`
+  String get changeCardPinError {
+    return Intl.message(
+      'Change Chard Pin Error',
+      name: 'changeCardPinError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while linking Debit Card`
+  String get errorWhileLinkingDebitCard {
+    return Intl.message(
+      'Error while linking Debit Card',
+      name: 'errorWhileLinkingDebitCard',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

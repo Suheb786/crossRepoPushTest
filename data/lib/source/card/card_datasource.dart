@@ -106,5 +106,7 @@ abstract class CardRemoteDs {
   Future<HttpResponse<ResponseEntity>> changePinVerify();
 
   Future<HttpResponse<ResponseEntity>> applyDebitSupplementaryCard(
-      {required ScannedDocumentInformation scannedDocumentInformation});
+      {required ScannedDocumentInformation scannedDocumentInformation,
+      required String relation,
+      required String nickName});
 }

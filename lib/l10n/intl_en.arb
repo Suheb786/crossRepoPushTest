@@ -831,5 +831,8 @@
   "toEnjoyCardLessPaymentDebit": "To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step",
   "requestNewDebitcard": "Request new debit card",
   "ibanOrMobileOrAccount": "IBAN / Mobile No. / Account",
-  "amountZero": "Invalid amount"
+  "amountZero": "Invalid amount",
+  "idCardNotFound": "Id Card Not Found",
+  "changeCardPinError": "Change Chard Pin Error",
+  "errorWhileLinkingDebitCard": "Error while linking Debit Card"
 }

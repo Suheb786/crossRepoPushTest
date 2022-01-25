@@ -4,6 +4,10 @@ part "apply_debit_supplementary_card_request.g.dart";
 
 @JsonSerializable()
 class ApplyDebitSupplementaryCardRequest {
+  @JsonKey(name: "NickName")
+  final String? nickName;
+  @JsonKey(name: "Relation")
+  final String? relation;
   @JsonKey(name: "id")
   final String? id;
   @JsonKey(name: "type")
@@ -56,33 +60,36 @@ class ApplyDebitSupplementaryCardRequest {
 
   ApplyDebitSupplementaryCardRequest(
       {this.id,
-        this.type,
-        this.fullName,
-        this.firstName,
-        this.middleName,
-        this.familyName,
-        this.idNumber,
-        this.dob,
-        this.nationality,
-        this.doe,
-        this.gender,
-        this.documentCode,
-        this.documentNumber,
-        this.issuer,
-        this.optionalData1,
-        this.optionalData2,
-        this.mrtDraw,
-        this.frontCardImage,
-        this.backCardImage,
-        this.personFaceImage,
-        this.getToken,
-        this.instanceID,
-        this.scanPercentage,
-        required this.baseData,
-        });
+      this.type,
+      this.fullName,
+      this.firstName,
+      this.middleName,
+      this.familyName,
+      this.idNumber,
+      this.dob,
+      this.nationality,
+      this.doe,
+      this.gender,
+      this.documentCode,
+      this.documentNumber,
+      this.issuer,
+      this.optionalData1,
+      this.optionalData2,
+      this.mrtDraw,
+      this.frontCardImage,
+      this.backCardImage,
+      this.personFaceImage,
+      this.getToken,
+      this.instanceID,
+      this.scanPercentage,
+      required this.baseData,
+      this.nickName,
+      this.relation});
 
-  factory ApplyDebitSupplementaryCardRequest.fromJson(Map<String, dynamic> json) =>
+  factory ApplyDebitSupplementaryCardRequest.fromJson(
+          Map<String, dynamic> json) =>
       _$ApplyDebitSupplementaryCardRequestFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ApplyDebitSupplementaryCardRequestToJson(this);
+  Map<String, dynamic> toJson() =>
+      _$ApplyDebitSupplementaryCardRequestToJson(this);
 }

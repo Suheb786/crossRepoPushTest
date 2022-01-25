@@ -33,12 +33,16 @@ ApplyDebitSupplementaryCardRequest _$ApplyDebitSupplementaryCardRequestFromJson(
     instanceID: json['instanceID'] as String?,
     scanPercentage: json['scanPercentage'] as num?,
     baseData: json['BaseClass'] as Map<String, dynamic>,
+    nickName: json['NickName'] as String?,
+    relation: json['Relation'] as String?,
   );
 }
 
 Map<String, dynamic> _$ApplyDebitSupplementaryCardRequestToJson(
         ApplyDebitSupplementaryCardRequest instance) =>
     <String, dynamic>{
+      'NickName': instance.nickName,
+      'Relation': instance.relation,
       'id': instance.id,
       'type': instance.type,
       'FullName': instance.fullName,

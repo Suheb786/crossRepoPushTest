@@ -395,10 +395,14 @@ class CardRepositoryImpl extends CardRepository {
 
   @override
   Future<Either<NetworkError, bool>> applyDebitSupplementaryCard(
-      {required ScannedDocumentInformation scannedDocumentInformation}) async {
+      {required ScannedDocumentInformation scannedDocumentInformation,
+      required String relation,
+      required String nickName}) async {
     final result = await safeApiCall(
       _remoteDs.applyDebitSupplementaryCard(
-          scannedDocumentInformation: scannedDocumentInformation),
+          scannedDocumentInformation: scannedDocumentInformation,
+          relation: relation,
+          nickName: nickName),
     );
     return result!.fold(
       (l) => Left(l),

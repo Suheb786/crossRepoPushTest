@@ -107,5 +107,7 @@ abstract class CardRepository {
   Future<Either<NetworkError, bool>> changePinVerify();
 
   Future<Either<NetworkError, bool>> applyDebitSupplementaryCard(
-      {required ScannedDocumentInformation scannedDocumentInformation});
+      {required ScannedDocumentInformation scannedDocumentInformation,
+      required String relation,
+      required String nickName});
 }

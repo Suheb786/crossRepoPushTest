@@ -1,3 +1,5 @@
+import 'package:domain/model/user/scanned_document_information.dart';
+import 'package:domain/usecase/card_delivery/apply_supplementary_debit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/personalize_debit_card_usecase.dart';
 import 'package:flutter/material.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -10,6 +12,7 @@ import 'package:rxdart/rxdart.dart';
 
 class PersonalizeDebitCardPageViewModel extends BasePageViewModel {
   final PersonalizeDebitCardUseCase _personalizeDebitCardUseCase;
+  final ApplySupplementaryDebitCardUseCase _applySupplementaryDebitCardUseCase;
 
   TextEditingController nicknameController = TextEditingController();
 
@@ -27,7 +30,20 @@ class PersonalizeDebitCardPageViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get personalizeDebitCardResponseStream =>
       _personalizeDebitCardResponse.stream;
 
-  PersonalizeDebitCardPageViewModel(this._personalizeDebitCardUseCase) {
+  /// apply supplementary debit card request subject holder
+  PublishSubject<ApplySupplementaryDebitCardUseCaseParams>
+      _applySupplementaryDebitCardRequest = PublishSubject();
+
+  /// apply supplementary debit card response subject holder
+  PublishSubject<Resource<bool>> _applySupplementaryDebitCardResponse =
+      PublishSubject();
+
+  ///apply supplementary debit card response stream
+  Stream<Resource<bool>> get applySupplementaryDebitCardResponseStream =>
+      _applySupplementaryDebitCardResponse.stream;
+
+  PersonalizeDebitCardPageViewModel(this._personalizeDebitCardUseCase,
+      this._applySupplementaryDebitCardUseCase) {
     _personalizeDebitCardRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -42,11 +58,35 @@ class PersonalizeDebitCardPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _applySupplementaryDebitCardRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _applySupplementaryDebitCardUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _applySupplementaryDebitCardResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showErrorState();
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
   void personalizeDebitCard() {
     _personalizeDebitCardRequest.safeAdd(
         PersonalizeDebitCardUseCaseParams(nickname: nicknameController.text));
+  }
+
+  void applySupplementaryDebitCard(String relationship,
+      ScannedDocumentInformation scannedDocumentInformation) {
+    _applySupplementaryDebitCardRequest.safeAdd(
+        ApplySupplementaryDebitCardUseCaseParams(
+            nickName: nicknameController.text,
+            relationship: relationship,
+            scannedDocumentInformation: scannedDocumentInformation));
   }
 
   @override

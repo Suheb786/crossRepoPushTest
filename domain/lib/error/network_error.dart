@@ -313,6 +313,28 @@ class NetworkError extends BaseError {
             return AppError(
                 cause: cause, error: error, type: ErrorType.INVALID_DOCUMENT);
 
+          case "err-053":
+            return AppError(
+                cause: cause, error: error, type: ErrorType.ID_CARD_NOT_FOUND);
+
+          case "err-071":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.INVALID_BENEFICIARY);
+
+          case "ex-187":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.CHANGE_CARD_PIN_ERROR);
+
+          case "err-210":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_LINKING_DEBIT_CARD);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

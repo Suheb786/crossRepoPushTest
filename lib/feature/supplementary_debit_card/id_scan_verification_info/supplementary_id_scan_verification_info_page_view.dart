@@ -46,6 +46,7 @@ class SupplementaryIdScanVerificationInfoDebitPageView
                       onData: (data) {
                         if (data.status == Status.SUCCESS) {
                           if (data.data!.issuer == 'JOR') {
+                            model.scannedDocumentInformation = data.data!;
                             Future.delayed(Duration(milliseconds: 500), () {
                               ProviderScope.containerOf(context)
                                   .read(supplementaryDebitCardViewModelProvider)
