@@ -1,15 +1,25 @@
 import 'package:data/entity/local/base/device_helper.dart';
 import 'package:data/entity/remote/account/check_agent_status_request_entity.dart';
 import 'package:data/entity/remote/account/check_agent_status_response_entity.dart';
+import 'package:data/entity/remote/account/check_existing_call_response_entity.dart';
+import 'package:data/entity/remote/account/check_existing_video_call_request.dart';
+import 'package:data/entity/remote/account/check_gender_status_response_entity.dart';
 import 'package:data/entity/remote/account/check_other_nationality_status_request_entity.dart';
 import 'package:data/entity/remote/account/check_other_nationality_status_response_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_request_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_response_entity.dart';
 import 'package:data/entity/remote/account/doc_status_request_entity.dart';
 import 'package:data/entity/remote/account/doc_status_response_entity.dart';
+import 'package:data/entity/remote/account/get_call_status_request.dart';
+import 'package:data/entity/remote/account/get_time_slots_request.dart';
+import 'package:data/entity/remote/account/get_time_slots_response_entity.dart';
+import 'package:data/entity/remote/account/request_call_response_entity.dart';
+import 'package:data/entity/remote/account/request_video_call_request.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_request_entity.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_response_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
+import 'package:data/entity/remote/base/base_request.dart';
+import 'package:data/entity/remote/user/response_entity.dart';
 import 'package:data/network/api_service.dart';
 import 'package:data/source/account/account_datasource.dart';
 import 'package:retrofit/dio.dart';
@@ -30,7 +40,7 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
 
   @override
   Future<HttpResponse<CheckOtherNationalityStatusResponseEntity>>
-  checkOtherNationalityStatus({bool? getToken}) async {
+      checkOtherNationalityStatus({bool? getToken}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkOtherNationalityStatus(
         CheckOtherNationalityStatusRequestEntity(
@@ -46,7 +56,7 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
 
   @override
   Future<HttpResponse<CheckAgentStatusResponseEntity>>
-  checkAgentStatus() async {
+      checkAgentStatus() async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.checkAgentStatus(CheckAgentStatusRequestEntity(
         baseData: baseData.toJson(), getToken: true));
@@ -54,13 +64,62 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
 
   @override
   Future<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>
-  saveCustomerVideoCallScheduleTime(
-      {String? scheduleDate, String? scheduleTime}) async {
+      saveCustomerVideoCallScheduleTime(
+          {String? scheduleDate, String? scheduleTime}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveCustomerVideoCallScheduleTime(
         SaveCustomerScheduleTimeRequestEntity(
             baseData: baseData.toJson(),
-            scheduleTime: scheduleTime,
-            scheduleDate: scheduleDate));
+            callDate: scheduleDate,
+            startTime: scheduleTime,
+            gender: "",
+            dateToSend: DateTime.now().timeZoneOffset.inMinutes));
+  }
+
+  @override
+  Future<HttpResponse<CheckExistingCallResponseEntity>>
+      checkExistingCall() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.checkExistingCall(
+      CheckExistingVideoCallRequest(
+          baseData: baseData.toJson(),
+          dateToSend: DateTime.now().timeZoneOffset.inMinutes),
+    );
+  }
+
+  @override
+  Future<HttpResponse<CheckGenderResponseEntity>> checkGenderStatus() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.checkGenderStatus(
+      BaseRequest(baseData: baseData.toJson()),
+    );
+  }
+
+  @override
+  Future<HttpResponse<RequestCallResponseEntity>> requestCall() async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.requestCall(
+      RequestVideoCallRequest(baseData: baseData.toJson()),
+    );
+  }
+
+  @override
+  Future<HttpResponse<GetTimeSlotsResponseEntity>> getCallTimeSlots(
+      String callDate) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getTimeSlots(
+      GetTimeSlotsRequest(
+          baseData: baseData.toJson(),
+          callDate: callDate,
+          dateToSend: DateTime.now().timeZoneOffset.inMinutes),
+    );
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> getCallStatus(String session) async {
+    BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
+    return _apiService.getCallStatus(
+      GetCallStatusRequest(baseData: baseData.toJson(), session: session),
+    );
   }
 }

@@ -5,10 +5,13 @@ import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class VideoKycViewModel extends BasePageViewModel {
-  final String agoraAppId = "9bafccfa4cb44f27abf78d7df558d436";
-  final String agoraAppCertificate = "99654f32a173466e94ad5dc43f392b82";
+  final String agoraAppId = "95c7a3ae0ee54a2bb6999d730d281e59";
   final String channelId = "blinkTest";
-  final String tempToken = "99654f32a173466e94ad5dc43f392b82";
+
+  /// TODO ::: DYNAMIC FROM API
+  final String tempToken = "";
+
+  /// TODO:: DYNAMIC FROM API
   final int uid = 0;
   final String stringUid = "0";
 
@@ -28,6 +31,8 @@ class VideoKycViewModel extends BasePageViewModel {
     await _engine.startPreview();
     await _engine.setChannelProfile(ChannelProfile.Communication);
     await _engine.setClientRole(ClientRole.Broadcaster);
+
+    joinAgoraChannel();
   }
 
   _addAgoraEventHandlers() {
@@ -59,6 +64,7 @@ class VideoKycViewModel extends BasePageViewModel {
     if (Platform.isAndroid) {
       await [Permission.microphone, Permission.camera].request();
     }
+    print("Joininig");
     await _engine.joinChannel(tempToken, channelId, null, uid);
     notifyListeners();
   }

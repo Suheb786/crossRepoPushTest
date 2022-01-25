@@ -1,11 +1,19 @@
 import 'package:data/entity/remote/account/check_agent_status_request_entity.dart';
 import 'package:data/entity/remote/account/check_agent_status_response_entity.dart';
+import 'package:data/entity/remote/account/check_existing_call_response_entity.dart';
+import 'package:data/entity/remote/account/check_existing_video_call_request.dart';
+import 'package:data/entity/remote/account/check_gender_status_response_entity.dart';
 import 'package:data/entity/remote/account/check_other_nationality_status_request_entity.dart';
 import 'package:data/entity/remote/account/check_other_nationality_status_response_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_request_entity.dart';
 import 'package:data/entity/remote/account/check_videocall_status_response_entity.dart';
 import 'package:data/entity/remote/account/doc_status_request_entity.dart';
 import 'package:data/entity/remote/account/doc_status_response_entity.dart';
+import 'package:data/entity/remote/account/get_call_status_request.dart';
+import 'package:data/entity/remote/account/get_time_slots_request.dart';
+import 'package:data/entity/remote/account/get_time_slots_response_entity.dart';
+import 'package:data/entity/remote/account/request_call_response_entity.dart';
+import 'package:data/entity/remote/account/request_video_call_request.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_request_entity.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/change_email_request.dart';
@@ -340,14 +348,6 @@ abstract class ApiService {
   Future<HttpResponse<UploadSignatureResponseEntity>> uploadSignature(
       @Body() UploadSignatureRequestEntity uploadSignatureRequestEntity);
 
-  ///schedule video call time
-  @POST("/account/SaveCustomerScheduledTime")
-  Future<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>
-      saveCustomerVideoCallScheduleTime(
-          @Body()
-              SaveCustomerScheduleTimeRequestEntity
-                  saveCustomerScheduleTimeRequestEntity);
-
   ///remove debit lock
   @POST("/BankSmart/RemoveDebitLock")
   Future<HttpResponse<RemoveDebitLockResponseEntity>> removeDebitLock(
@@ -642,4 +642,32 @@ abstract class ApiService {
   @POST("/DebitCard/ChangePinVerify")
   Future<HttpResponse<ResponseEntity>> changePinVerify(
       @Body() BaseRequest baseRequest);
+
+  @POST("/video/checkexistingcall")
+  Future<HttpResponse<CheckExistingCallResponseEntity>> checkExistingCall(
+      @Body() CheckExistingVideoCallRequest request);
+
+  @POST("/video/genderStatus")
+  Future<HttpResponse<CheckGenderResponseEntity>> checkGenderStatus(
+      @Body() BaseRequest request);
+
+  @POST("/video/RequestCall")
+  Future<HttpResponse<RequestCallResponseEntity>> requestCall(
+      @Body() RequestVideoCallRequest request);
+
+  @POST("/video/GetTimeSlots")
+  Future<HttpResponse<GetTimeSlotsResponseEntity>> getTimeSlots(
+      @Body() GetTimeSlotsRequest request);
+
+  ///schedule video call time
+  @POST("/video/AddCall")
+  Future<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>
+      saveCustomerVideoCallScheduleTime(
+          @Body()
+              SaveCustomerScheduleTimeRequestEntity
+                  saveCustomerScheduleTimeRequestEntity);
+
+  @POST("/video/GetCallStatus")
+  Future<HttpResponse<ResponseEntity>> getCallStatus(
+      @Body() GetCallStatusRequest request);
 }
