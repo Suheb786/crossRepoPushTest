@@ -299,21 +299,31 @@ class TaxationDetailsPageView
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
                                                 vertical: 32),
-                                            child: AppStreamBuilder<bool>(
-                                                stream: model
-                                                    .allFieldValidatorStream,
-                                                initialData: false,
-                                                dataBuilder:
-                                                    (context, isValid) {
-                                                  return (isValid!)
-                                                      ? AnimatedButton(
-                                                          buttonText: S
-                                                              .of(context)
-                                                              .swipeToProceed)
-                                                      : Container();
-                                                }),
+                                            child: AnimatedButton(
+                                                buttonText: S
+                                                    .of(context)
+                                                    .swipeToProceed),
                                           ),
                                         )
+                                        // Center(
+                                        //   child: Padding(
+                                        //     padding: EdgeInsets.symmetric(
+                                        //         vertical: 32),
+                                        //     child: AppStreamBuilder<bool>(
+                                        //         stream: model
+                                        //             .allFieldValidatorStream,
+                                        //         initialData: false,
+                                        //         dataBuilder:
+                                        //             (context, isValid) {
+                                        //           return (isValid!)
+                                        //               ? AnimatedButton(
+                                        //                   buttonText: S
+                                        //                       .of(context)
+                                        //                       .swipeToProceed)
+                                        //               : Container();
+                                        //         }),
+                                        //   ),
+                                        // )
                                       ],
                                     ),
                                   ),

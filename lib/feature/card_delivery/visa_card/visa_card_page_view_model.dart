@@ -19,8 +19,8 @@ class VisaCardPageViewModel extends BasePageViewModel {
   PublishSubject<CardIssuanceUseCaseParams> _cardIssuanceRequest =
       PublishSubject();
 
-  PublishSubject<Resource<CardIssuanceDetails>> _cardIssuanceResponse =
-      PublishSubject();
+  BehaviorSubject<Resource<CardIssuanceDetails>> _cardIssuanceResponse =
+      BehaviorSubject();
 
   String? cardNumber;
 
@@ -80,8 +80,8 @@ class VisaCardPageViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
-    _cardIssuanceRequest.close();
-    _cardIssuanceResponse.close();
+    // _cardIssuanceRequest.close();
+    // _cardIssuanceResponse.close();
     super.dispose();
   }
 }
