@@ -1,6 +1,7 @@
 import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/card_delivery/cancel_credit_card_usecase.dart';
 import 'package:domain/usecase/card_delivery/change_debit_card_pin_usecase.dart';
+import 'package:domain/usecase/card_delivery/change_debit_pin_verify_usecase.dart';
 import 'package:domain/usecase/card_delivery/confirm_card_delivery_usecase.dart';
 import 'package:domain/usecase/card_delivery/confirm_credit_card_delivery_usecase.dart';
 import 'package:domain/usecase/card_delivery/confirm_pin_usecase.dart';
@@ -168,3 +169,8 @@ final linkCardStepUseCaseProvider = Provider.autoDispose<LinkCardStepUseCase>(
 final changeDebitPinUseCaseProvider =
     Provider.autoDispose<ChangeDebitCardPinUseCase>(
         (ref) => ChangeDebitCardPinUseCase(ref.read(cardRepositoryProvider)));
+
+///[ChangeDebitPinVerifyUseCase] provider
+final changeDebitPinVerifyUseCaseProvider =
+    Provider.autoDispose<ChangeDebitPinVerifyUseCase>(
+        (ref) => ChangeDebitPinVerifyUseCase(ref.read(cardRepositoryProvider)));

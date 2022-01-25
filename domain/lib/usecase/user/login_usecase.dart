@@ -17,6 +17,21 @@ class LoginUseCase extends BaseUseCase<BaseError, LoginUseCaseParams, User> {
   @override
   Future<Either<BaseError, User>> execute(
       {required LoginUseCaseParams params}) async {
+    // return Future.value(
+    //   (await _repository.loginUser(
+    //           email: params.email, password: params.password))
+    //       .fold((l) => Left(l), (response) async {
+    //     return (await _repository.getCurrentUser()).fold((l) => Left(l),
+    //         (currentUser) async {
+    //       currentUser.email = params.email;
+    //       return (await _repository.saveUser(currentUser)).fold((l) => Left(l),
+    //           (user) async {
+    //         return Right(response);
+    //       });
+    //     });
+    //   }),
+    // );
+
     return Future.value(
       (await _repository.loginUser(
               email: params.email, password: params.password))

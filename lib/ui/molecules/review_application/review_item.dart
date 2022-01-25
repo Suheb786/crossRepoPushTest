@@ -42,6 +42,8 @@ class ReviewApplicationEditableItem extends StatelessWidget {
               controller: controller,
               initialValue: initialValue,
               maxLines: 2,
+              ///For now fields should not be editable
+              readOnly: true,
               textAlign: TextAlign.end,
               keyboardType: textInputType,
               cursorColor: Theme.of(context).primaryColorDark,

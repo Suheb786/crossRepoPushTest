@@ -84,7 +84,8 @@ final changeCardPinViewModelProvider =
 final otpForChangeCardPinViewModelProvider =
     ChangeNotifierProvider.autoDispose<OtpForChangeCardPinPageViewModel>(
   (ref) => OtpForChangeCardPinPageViewModel(
-      ref.read(otpForChangeCardPinUseCaseProvider)),
+      ref.read(otpForChangeCardPinUseCaseProvider),
+      ref.read(changeDebitPinUseCaseProvider)),
 );
 
 ///enter new card pin view model provider
@@ -92,7 +93,7 @@ final enterNewCardPinViewModelProvider =
     ChangeNotifierProvider.autoDispose<EnterNewPinForCardPageViewModel>(
   (ref) => EnterNewPinForCardPageViewModel(
       ref.read(enterNewPinForCardUseCaseProvider),
-      ref.read(changeDebitPinUseCaseProvider)),
+      ref.read(changeDebitPinVerifyUseCaseProvider)),
 );
 
 ///change card pin success view model provider

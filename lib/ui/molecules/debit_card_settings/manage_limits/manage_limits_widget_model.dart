@@ -7,7 +7,7 @@ import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:rxdart/rxdart.dart';
 
 class ManageLimitsWidgetViewModel extends BasePageViewModel {
-  final PublishSubject<bool> _switchSubject = PublishSubject();
+  final BehaviorSubject<bool> _switchSubject = BehaviorSubject();
 
   TextEditingController controller = TextEditingController();
 
@@ -26,7 +26,7 @@ class ManageLimitsWidgetViewModel extends BasePageViewModel {
 
   @override
   void dispose() {
-    _switchSubject.close();
+    //_switchSubject.close();
     super.dispose();
   }
 }

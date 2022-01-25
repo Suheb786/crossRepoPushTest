@@ -33,6 +33,16 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get cancelCardResponseStream =>
       _cancelCardResponseSubject.stream;
 
+  bool isFreezed = false;
+  bool isUnFreezed = false;
+  bool isCancelled = false;
+
+  bool needsReplacement = false;
+
+  PublishSubject<bool> _showDialogRequestSubject = PublishSubject();
+
+  Stream<bool> get showDialogStream => _showDialogRequestSubject.stream;
+
   DebitCardSettingsViewModel(this._freezeDebitCardUseCase,
       this._unFreezeDebitCardUseCase, this._cancelDebitCardUseCase) {
     _freezeCardRequestSubject.listen((value) {
@@ -44,9 +54,10 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
-          _freezeCardSubject.safeAdd(false);
+          updateFreezeStatus(false);
         } else if (event.status == Status.SUCCESS) {
-          _freezeCardSubject.safeAdd(true);
+          isFreezed = true;
+          updateFreezeStatus(true);
         }
       });
     });
@@ -62,6 +73,7 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
           _freezeCardSubject.safeAdd(true);
         } else if (event.status == Status.SUCCESS) {
+          isUnFreezed = true;
           _freezeCardSubject.safeAdd(false);
         }
       });
@@ -75,6 +87,8 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
         _cancelCardResponseSubject.safeAdd(event);
         if (event.status == Status.ERROR) {
           showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          isCancelled = true;
         }
       });
     });
@@ -98,6 +112,22 @@ class DebitCardSettingsViewModel extends BasePageViewModel {
       {String? reasonValue, String? status, String? tokenizedPlan}) {
     _cancelCardRequestSubject.safeAdd(CancelDebitCardUseCaseParams(
         status: status!, reason: reasonValue!, tokenizedPan: tokenizedPlan!));
+  }
+
+  void updateFreezeStatus(bool value) {
+    _freezeCardSubject.safeAdd(value);
+  }
+
+  bool willPop() {
+    bool pop = false;
+    if (isFreezed || isUnFreezed || isCancelled) {
+      pop = true;
+    }
+    return pop;
+  }
+
+  void updateShowDialog(bool value) {
+    _showDialogRequestSubject.safeAdd(value);
   }
 
   @override

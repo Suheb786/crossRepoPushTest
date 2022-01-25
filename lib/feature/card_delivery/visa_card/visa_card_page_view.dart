@@ -15,6 +15,7 @@ import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
+import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
@@ -28,10 +29,12 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
       dataBuilder: (context, data) {
         return GestureDetector(
           onHorizontalDragEnd: (details) {
-            ProviderScope.containerOf(context)
-                .read(cardDeliveryViewModelProvider)
-                .swiperController
-                .next(animation: true);
+            if (data!.status == Status.SUCCESS) {
+              ProviderScope.containerOf(context)
+                  .read(cardDeliveryViewModelProvider)
+                  .swiperController
+                  .next(animation: true);
+            }
           },
           child: Card(
             margin: EdgeInsets.zero,

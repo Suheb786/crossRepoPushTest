@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8085,6 +8086,46 @@ class S {
     return Intl.message(
       'Error While Getting Account Close Otp.',
       name: 'errorWhileGettingAccountCloseOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card frozen`
+  String get cardFrozen {
+    return Intl.message(
+      'Card frozen',
+      name: 'cardFrozen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step`
+  String get toEnjoyCardLessPaymentDebit {
+    return Intl.message(
+      'To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step',
+      name: 'toEnjoyCardLessPaymentDebit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Request new debit card`
+  String get requestNewDebitcard {
+    return Intl.message(
+      'Request new debit card',
+      name: 'requestNewDebitcard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `IBAN / Mobile No. / Account`
+  String get ibanOrMobileOrAccount {
+    return Intl.message(
+      'IBAN / Mobile No. / Account',
+      name: 'ibanOrMobileOrAccount',
       desc: '',
       args: [],
     );

@@ -11,7 +11,6 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_keyboard_hide.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/pep_dialog/pep_dialog.dart';
-import 'package:neo_bank/ui/molecules/register/declaration_widget.dart';
 import 'package:neo_bank/ui/molecules/register/taxation_switch_widget/taxation_switch_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -89,7 +88,14 @@ class TaxationDetailsPageView
                             Resource<GetFatcaQuestionsResponse>>(
                           stream: model.getFatcaQuestionsStream,
                           initialData: Resource.none(),
-                          onData: (data) {},
+                          onData: (data) {
+                            if (data.status == Status.SUCCESS) {
+                              ProviderScope.containerOf(context)
+                                  .read(registerStepFourViewModelProvider)
+                                  .isGetFatca = true;
+                              // model.isFatcaGet = true;
+                            }
+                          },
                           dataBuilder: (context, questions) {
                             switch (questions!.status) {
                               case Status.SUCCESS:
@@ -270,25 +276,25 @@ class TaxationDetailsPageView
                                         //     });
                                         //   },
                                         // ),
-                                        AppStreamBuilder<bool>(
-                                          stream:
-                                              model.declarationSelectedStream,
-                                          initialData: false,
-                                          dataBuilder: (context, isSelected) {
-                                            return DeclarationWidget(
-                                              isSelected: isSelected,
-                                              title1: S
-                                                  .of(context)
-                                                  .iConfirmThatAllInfoAccurateFatca,
-                                              onTap: () {
-                                                model
-                                                    .updateDeclarationSelection(
-                                                        !(isSelected!));
-                                                model.isValid();
-                                              },
-                                            );
-                                          },
-                                        ),
+                                        // AppStreamBuilder<bool>(
+                                        //   stream:
+                                        //       model.declarationSelectedStream,
+                                        //   initialData: false,
+                                        //   dataBuilder: (context, isSelected) {
+                                        //     return DeclarationWidget(
+                                        //       isSelected: isSelected,
+                                        //       title1: S
+                                        //           .of(context)
+                                        //           .iConfirmThatAllInfoAccurateFatca,
+                                        //       onTap: () {
+                                        //         model
+                                        //             .updateDeclarationSelection(
+                                        //                 !(isSelected!));
+                                        //         model.isValid();
+                                        //       },
+                                        //     );
+                                        //   },
+                                        // ),
                                         Center(
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(

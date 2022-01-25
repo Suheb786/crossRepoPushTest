@@ -3,7 +3,10 @@ import 'package:domain/model/debit_card/debit_card_limit_response.dart';
 import 'package:domain/usecase/card_delivery/credit_card_limits_update_usecase.dart';
 import 'package:domain/usecase/card_delivery/debit_card_limit_usecase.dart';
 import 'package:domain/usecase/card_delivery/debit_card_limits_update_usecase.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/manage_debit_card_limits/manage_debit_card_limits_page.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
 import 'package:neo_bank/utils/request_manager.dart';
@@ -45,9 +48,9 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
   Stream<Resource<DebitCardLimitResponse>> get debitCardLimitResponseStream =>
       _debitCardLimitResponseSubject.stream;
 
-  bool isAtmWithdrawal = false;
-  bool isMerchantPayments = false;
-  bool isOnlinePurchase = false;
+  bool isAtmWithdrawal = true;
+  bool isMerchantPayments = true;
+  bool isOnlinePurchase = true;
   bool isContactLessPayments = false;
 
   ManageDebitCardLimitsPageViewModel(
@@ -104,10 +107,11 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
   }
 
   void updateCardLimits(
-      {required int atmWithdrawalValue,
-      required int merchantPayment,
-      required int onlinePurchase,
-      required int contactlessPayments}) {
+      {required num atmWithdrawalValue,
+      required num merchantPayment,
+      required num onlinePurchase,
+      required BuildContext context,
+      required num contactlessPayments}) {
     if (cardLimitsArguments.cardType == CardType.CREDIT) {
       updateCreditCardLimits(
           atmWithdrawalValue: atmWithdrawalValue,
@@ -119,15 +123,16 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
           atmWithdrawalValue: atmWithdrawalValue,
           merchantPayment: merchantPayment,
           onlinePurchase: onlinePurchase,
-          contactlessPayments: contactlessPayments);
+          contactlessPayments: contactlessPayments,
+          context: context);
     }
   }
 
   void updateCreditCardLimits(
-      {required int atmWithdrawalValue,
-      required int merchantPayment,
-      required int onlinePurchase,
-      required int contactlessPayments}) {
+      {required num atmWithdrawalValue,
+      required num merchantPayment,
+      required num onlinePurchase,
+      required num contactlessPayments}) {
     _updateCreditCardLimitsRequestSubject.safeAdd(
         CreditCardLimitsUpdateUseCaseParams(
             onlinePurchase: onlinePurchase,
@@ -141,10 +146,11 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
   }
 
   void updateDebitCardLimits(
-      {required int atmWithdrawalValue,
-      required int merchantPayment,
-      required int onlinePurchase,
-      required int contactlessPayments}) {
+      {required num atmWithdrawalValue,
+      required num merchantPayment,
+      required num onlinePurchase,
+      required num contactlessPayments,
+      required BuildContext context}) {
     _updateDebitCardLimitsRequestSubject.safeAdd(
         DebitCardLimitsUpdateUseCaseParams(
             onlinePurchase: onlinePurchase,
@@ -154,7 +160,13 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
             isContactLessPayments: isContactLessPayments,
             isAtmWithdrawal: isAtmWithdrawal,
             contactLessPayments: contactlessPayments,
-            atmWithdrawal: atmWithdrawalValue));
+            atmWithdrawal: atmWithdrawalValue,
+            tokenizedPan: ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .dashboardDataContent
+                .debitCard!
+                .first
+                .code!));
   }
 
   @override

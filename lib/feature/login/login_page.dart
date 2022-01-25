@@ -23,7 +23,7 @@ class LoginPageState extends BaseStatefulPage<LoginViewModel, LoginPage> {
 
   @override
   void onModelReady(LoginViewModel model) {
-    //model.getCipher();
+    model.getCipher();
     super.onModelReady(model);
   }
 

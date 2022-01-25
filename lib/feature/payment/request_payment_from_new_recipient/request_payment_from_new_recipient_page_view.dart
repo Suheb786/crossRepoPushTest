@@ -92,7 +92,7 @@ class RequestPaymentFromNewRecipientPageView
                                             ? Container(
                                                 height: 28,
                                                 width: 100,
-                                                child: TextField(
+                                                child: TextFormField(
                                                   autofocus: true,
                                                   style: TextStyle(
                                                     fontSize: 28,
@@ -110,28 +110,33 @@ class RequestPaymentFromNewRecipientPageView
                                                         EdgeInsets.only(
                                                             bottom: 10),
                                                   ),
-                                                  onSubmitted: (value) {
-                                                    model.sendValue = value;
-                                                    print(
-                                                        "got model send value:  ${model.sendValue!}");
-                                                    // ProviderScope.containerOf(
-                                                    //             context)
-                                                    //         .read(
-                                                    //             requestMoneyViewModelProvider)
-                                                    //         .currentPinValue =
-                                                    //     model.sendValue!;
-                                                    ProviderScope.containerOf(
-                                                            context)
-                                                        .read(
-                                                            requestMoneyViewModelProvider)
-                                                        .currentPinValue = value;
+                                                  onChanged: (value) {
+                                                    if (value != ".") {
+                                                      ProviderScope.containerOf(
+                                                                  context)
+                                                              .read(
+                                                                  requestMoneyViewModelProvider)
+                                                              .currentPinValue =
+                                                          model
+                                                              .editAmountController
+                                                              .text;
+                                                      print(
+                                                          "got request value : ${ProviderScope.containerOf(context).read(requestMoneyViewModelProvider).currentPinValue}");
+                                                    }
+                                                  },
+                                                  onFieldSubmitted: (value) {
                                                     model.updateEditAmount(
                                                         false);
                                                   },
                                                 ),
                                               )
                                             : Text(
-                                                double.parse(model.sendValue!)
+                                                double.parse(ProviderScope
+                                                            .containerOf(
+                                                                context)
+                                                        .read(
+                                                            requestMoneyViewModelProvider)
+                                                        .currentPinValue)
                                                     .toStringAsFixed(3),
                                                 style: TextStyle(
                                                     fontSize: 28,

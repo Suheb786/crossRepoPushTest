@@ -8,7 +8,7 @@ import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/ui/molecules/app_scollable_list_view_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog_view_model.dart';
-import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/list_scroll_wheel_widget.dart';
+import 'package:neo_bank/ui/molecules/listwheel_scroll_view_widget/payment_scroll_wheel_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
@@ -97,7 +97,7 @@ class PurposeDetailDialogView extends StatelessWidget {
                                                 model.purposeDetailList!.length,
                                             builder: (BuildContext context,
                                                 int index) {
-                                              return ListScrollWheelListWidget(
+                                              return PaymentScrollWheelWidget(
                                                 label: model
                                                     .purposeDetailList![index]
                                                     .labelEn!,

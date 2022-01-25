@@ -35,7 +35,9 @@ class VisaCardPageViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _cardIssuanceResponse.safeAdd(event);
-        if (event.status == Status.SUCCESS) {
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
           cardNumber = event.data!.cardNumber;
         }
       });
@@ -65,7 +67,7 @@ class VisaCardPageViewModel extends BasePageViewModel {
     print("DECRYPT $decrypt");
 
     var aesCrypt = AesCrypt(
-      // key: "0123456789ABCDEFFEDCBA98765432100123456789ABCDEF",
+        // key: "0123456789ABCDEFFEDCBA98765432100123456789ABCDEF",
         key: "AB9B545DAEC2ABC74FB90D15CE04B997",
         padding: PaddingAES.iso78164);
     String decrypted = aesCrypt.ecb.decrypt(enc: hex);

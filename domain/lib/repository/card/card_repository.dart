@@ -57,20 +57,25 @@ abstract class CardRepository {
       {String reason, String status, String? tokenizedPan});
 
   Future<Either<NetworkError, bool>> changeDebitCardPin(
-      {required String pin, required String otp, required String tokenizedPan});
+      {required String pin,
+      required String otp,
+      required String tokenizedPan,
+      required String cardNumber});
 
   Future<Either<NetworkError, bool>> unblockDebitCardPin(
       {String status, required String pin});
 
-  Future<Either<NetworkError, bool>> updateDebitCardLimits(
-      {num atmWithdrawal,
-      num merchantsPayments,
-      num onlinePurchase,
-      num contactLessPayments,
-      bool isAtmWithdrawal,
-      bool isMerchantsPayments,
-      bool isOnlinePurchase,
-      bool isContactLessPayments});
+  Future<Either<NetworkError, bool>> updateDebitCardLimits({
+    num atmWithdrawal,
+    num merchantsPayments,
+    num onlinePurchase,
+    num contactLessPayments,
+    bool isAtmWithdrawal,
+    bool isMerchantsPayments,
+    bool isOnlinePurchase,
+    bool isContactLessPayments,
+    String? tokenizedPan,
+  });
 
   Future<Either<NetworkError, bool>> updateCreditCardLimits(
       {num atmWithdrawal,
@@ -97,4 +102,6 @@ abstract class CardRepository {
 
   Future<Either<NetworkError, bool>> linkCardStep(
       {required String cardId, required String accountNumber});
+
+  Future<Either<NetworkError, bool>> changePinVerify();
 }

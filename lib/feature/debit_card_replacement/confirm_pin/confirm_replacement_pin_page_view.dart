@@ -47,9 +47,13 @@ class ConfirmReplacementPinPageView
                     if (details.primaryVelocity!.isNegative) {
                       print(
                           'currentPin--->${ProviderScope.containerOf(context).read(createReplacementPinViewModelProvider).currentPin}');
-                      model.validatePin(ProviderScope.containerOf(context)
-                          .read(createReplacementPinViewModelProvider)
-                          .currentPin);
+                      model.validatePin(
+                          ProviderScope.containerOf(context)
+                              .read(createReplacementPinViewModelProvider)
+                              .currentPin,
+                          ProviderScope.containerOf(context)
+                              .read(replacementVisaCardViewModelProvider)
+                              .cardNumber!);
                     } else {
                       ProviderScope.containerOf(context)
                           .read(debitCardReplacementViewModelProvider)

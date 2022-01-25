@@ -71,6 +71,32 @@ class RegisterPageState
 
           break;
 
+        case "W8":
+          Future.delayed(Duration(microseconds: 100), () {
+            model.navigateToPage(3);
+          });
+          Future.delayed(Duration(microseconds: 100), () {
+            ProviderScope.containerOf(context)
+                .read(registerStepFourViewModelProvider)
+                .registrationStepFourPageController
+                .move(1, animation: false);
+          });
+
+          break;
+
+        case "W9":
+          Future.delayed(Duration(microseconds: 100), () {
+            model.navigateToPage(3);
+          });
+          Future.delayed(Duration(microseconds: 100), () {
+            ProviderScope.containerOf(context)
+                .read(registerStepFourViewModelProvider)
+                .registrationStepFourPageController
+                .move(4, animation: false);
+          });
+
+          break;
+
         case "UploadDocument":
           // print('iamhere');
           // Future.delayed(Duration(microseconds: 100), () {
@@ -100,11 +126,22 @@ class RegisterPageState
 
           break;
 
+        case "debitCardIssuance":
+        case "SetPINdebitCard":
+          Future.delayed(Duration(microseconds: 100), () {
+            Navigator.pushReplacementNamed(context, RoutePaths.CardDelivery);
+          });
+
+          break;
+
         default:
           Navigator.pushReplacementNamed(context, RoutePaths.AppHome);
           break;
       }
     }
+    // Future.delayed(Duration(microseconds: 100), () {
+    //   model.navigateToPage(3);
+    // });
   }
 
   @override

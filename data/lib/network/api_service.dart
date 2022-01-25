@@ -32,6 +32,7 @@ import 'package:data/entity/remote/bank_smart/remove_debit_lock_request_entity.d
 import 'package:data/entity/remote/bank_smart/remove_debit_lock_response_entity.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/card/cancel_credit_card_request.dart';
+import 'package:data/entity/remote/card/cancel_debit_card_request_entity.dart';
 import 'package:data/entity/remote/card/card_issuance_response_entity.dart';
 import 'package:data/entity/remote/card/card_statement_response_entity.dart';
 import 'package:data/entity/remote/card/card_transaction_response_entity.dart';
@@ -484,7 +485,7 @@ abstract class ApiService {
 
   @POST("/DebitCard/CancelCard")
   Future<HttpResponse<ResponseEntity>> cancelDebitCard(
-      @Body() FreezeDebitCardRequestEntity cancelDebitCardRequest);
+      @Body() CancelDebitCardRequestEntity cancelDebitCardRequest);
 
   @POST("/DebitCard/FreezeCard")
   Future<HttpResponse<ResponseEntity>> freezeDebitCard(
@@ -631,10 +632,14 @@ abstract class ApiService {
       @Body() PaymentActivityRequestEntity paymentActivityRequestActivity);
 
   @POST("/auth/iphonelogin")
-  Future<HttpResponse<ResponseEntity>> iphoneLogin(
+  Future<HttpResponse<LoginResponseEntity>> iphoneLogin(
       @Body() AndroidLoginRequestEntity androidLoginRequestEntity);
 
   @POST("/Auth/ChangeMobileNumber")
   Future<HttpResponse<ResponseEntity>> changeMyNumber(
       @Body() ChangeMyNumberRequestEntity changeMyNumberRequestEntity);
+
+  @POST("/DebitCard/ChangePinVerify")
+  Future<HttpResponse<ResponseEntity>> changePinVerify(
+      @Body() BaseRequest baseRequest);
 }

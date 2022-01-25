@@ -164,7 +164,7 @@ class SendToNewRecipientPageView
                                                         child: AppTextField(
                                                           labelText: S
                                                               .of(context)
-                                                              .ibanOrMobileRequest,
+                                                              .ibanOrMobileOrAccount,
                                                           hintText: S
                                                               .of(context)
                                                               .pleaseEnter,

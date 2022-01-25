@@ -4,7 +4,7 @@ part "change_my_number_request_entity.g.dart";
 
 @JsonSerializable()
 class ChangeMyNumberRequestEntity {
-  @JsonKey(name: "MobileNo")
+  @JsonKey(name: "MobileNumber")
   final String? mobileNo;
   @JsonKey(name: "MobileCode")
   final String? mobileCode;

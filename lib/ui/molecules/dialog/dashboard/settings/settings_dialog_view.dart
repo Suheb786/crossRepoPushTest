@@ -14,6 +14,7 @@ import 'package:neo_bank/ui/molecules/dialog/dashboard/settings/settings_dialog_
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/navgition_type.dart';
 import 'package:neo_bank/utils/parser/error_parser.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
@@ -38,7 +39,7 @@ class SettingsDialogView extends StatelessWidget {
               InkWell(
                 onTap: () {
                   Navigator.pushNamed(context, RoutePaths.PaymentHome,
-                      arguments: false);
+                      arguments: NavigationType.DASHBOARD);
                 },
                 child: Container(
                   height: 174,

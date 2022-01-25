@@ -826,5 +826,9 @@
   "from": "\nfrom",
   "addRequestMoney": "You don't have any contacts\nyet. Your Blink contacts can be\nsaved while requesting money.",
   "errorWhileProcessLoanRequest": "Error While Process Loan Request.",
-  "errorWhileGettingAccountCloseOtp": "Error While Getting Account Close Otp."
+  "errorWhileGettingAccountCloseOtp": "Error While Getting Account Close Otp.",
+  "cardFrozen": "Card frozen",
+  "toEnjoyCardLessPaymentDebit": "To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step",
+  "requestNewDebitcard": "Request new debit card",
+  "ibanOrMobileOrAccount": "IBAN / Mobile No. / Account"
 }
