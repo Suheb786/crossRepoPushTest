@@ -253,7 +253,6 @@ class AccountSettingPageView
                                                     ? user.email!
                                                     : '-',
                                             onTap: () async {
-                                              print("afaag");
                                               var isSuccess =
                                                   await Navigator.pushNamed(
                                                       context,
