@@ -11,7 +11,7 @@ import 'package:neo_bank/main/app.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runZoned(() async {
+  runZonedGuarded(() async {
     HttpOverrides.global = AppHttpOverrides();
     await Firebase.initializeApp();
 
@@ -19,6 +19,8 @@ void main() {
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
 
     runApp(ProviderScope(child: MyApp()));
+  }, (error, stackTrace) {
+    FirebaseCrashlytics.instance.recordError(error, stackTrace);
   });
 }
 

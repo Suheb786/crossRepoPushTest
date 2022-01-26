@@ -277,6 +277,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CONFIRM new pin "),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("CONFIRM PASSWORD"),
+        "confirmPasswordNotMatch": MessageLookupByLibrary.simpleMessage(
+            "Confirm password should be same as new password"),
         "confirmTermsCondError": MessageLookupByLibrary.simpleMessage(
             "Confirm to the terms and conditions."),
         "confirmThatTaxResidency": MessageLookupByLibrary.simpleMessage(
@@ -996,6 +998,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The passwords you entered do not match. Please try again."),
         "passwordNotMeetCriteria": MessageLookupByLibrary.simpleMessage(
             "Your password does not meet the minimum requirements. \nPlease try again."),
+        "passwordUpdate": MessageLookupByLibrary.simpleMessage(
+            "Password is successfully updated"),
         "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Your password has been updated successfully"),
         "payBack": MessageLookupByLibrary.simpleMessage("Pay back"),
