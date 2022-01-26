@@ -24,7 +24,9 @@ class InfobipMessageService {
       ),
     );
 
-    saveUser(userData: UserData(firstName: 'GUEST', lastName: 'USER'));
+    saveUser(
+        userData: UserData(
+            firstName: 'GUEST', lastName: 'USER', externalUserId: "amit_1234"));
 
     InfobipMobilemessaging.on(LibraryEvent.TOKEN_RECEIVED, (String token) {
       print("Callback. TOKEN_RECEIVED event:" + token);
@@ -34,13 +36,17 @@ class InfobipMessageService {
     InfobipMobilemessaging.on(
         LibraryEvent.MESSAGE_RECEIVED,
         (Message message) => {
-              print("Callback. MESSAGE_RECEIVED event, message title: " +
-                  message.title! +
-                  " body: " +
-                  message.body!),
-              addLibraryEvent("Message Received"),
-              print("defaultMessageStorage().findAll():"),
-              print(InfobipMobilemessaging.defaultMessageStorage()!.findAll())
+              if (message != null)
+                {
+                  print("Callback. MESSAGE_RECEIVED event, message title: " +
+                      message.title! +
+                      " body: " +
+                      message.body!),
+                  addLibraryEvent("Message Received"),
+                  print("defaultMessageStorage().findAll():"),
+                  print(
+                      InfobipMobilemessaging.defaultMessageStorage()!.findAll())
+                }
             });
     InfobipMobilemessaging.on(
         LibraryEvent.USER_UPDATED,
@@ -105,8 +111,10 @@ class InfobipMessageService {
   Future<bool> saveUser({required UserData userData}) async {
     // var installation = await InfobipMobilemessaging.fetchInstallation();
     // userData.externalUserId = installation.pushRegistrationId.toString();
-    UserData user =
-        UserData(firstName: userData.firstName, lastName: userData.lastName);
+    UserData user = UserData(
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        externalUserId: "amit_1234");
 
     InfobipMobilemessaging.saveUser(user);
     return true;
