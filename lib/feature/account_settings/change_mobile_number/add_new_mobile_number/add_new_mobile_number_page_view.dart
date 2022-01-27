@@ -129,19 +129,22 @@ class AddNewMobileNumberPageView
                                                         MainAxisSize.min,
                                                     children: <Widget>[
                                                       Container(
-                                                          height: 16,
-                                                          width: 16,
-                                                          decoration: BoxDecoration(
-                                                              color: Theme.of(
-                                                                      context)
-                                                                  .primaryColorDark,
-                                                              shape: BoxShape
-                                                                  .circle,
-                                                              image: DecorationImage(
-                                                                  image: AssetImage(
-                                                                      "${AssetUtils.flags}${countryData!.isoCode3?.toLowerCase() ?? ""}.png"),
-                                                                  fit: BoxFit
-                                                                      .cover))),
+                                                        height: 16,
+                                                        width: 16,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Theme.of(
+                                                                  context)
+                                                              .primaryColorDark,
+                                                          shape:
+                                                              BoxShape.circle,
+                                                        ),
+                                                        child: AppSvg.asset(countryData!
+                                                                    .isoCode3 !=
+                                                                null
+                                                            ? "${AssetUtils.flags}${countryData.isoCode3?.toLowerCase()}.svg"
+                                                            : "assets/flags/jor.svg"),
+                                                      ),
                                                       Padding(
                                                         padding: EdgeInsets
                                                             .symmetric(
