@@ -94,7 +94,11 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
       String? image,
       String? nickName,
       String? detCustomerType,
-      String? type) async {
+      String? type,
+      String? alias,
+      String? dbtrSurname,
+      String? addressCity,
+      String? addressCountry) async {
     BaseClassEntity baseData = await deviceInfoHelper.getDeviceInfo();
     return _apiService.requestToPay(RequestToPayRequestEntity(
         ctgyPurp: ctgyPurp,
@@ -110,7 +114,11 @@ class PaymentRemoteDataSourceImpl extends PaymentRemoteDs {
             ? ImageUtils.convertToBase64(image)
             : '',
         detCustomerType: detCustomerType,
-        type: type));
+        type: type,
+        addressCountry: addressCountry,
+        addressCity: addressCity,
+        alias: alias,
+        dbtrSurname: dbtrSurname));
   }
 
   @override

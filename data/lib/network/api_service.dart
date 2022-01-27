@@ -520,7 +520,7 @@ abstract class ApiService {
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       @Body() TransferRequestEntity transferRequestEntity);
 
-  @POST("/transfer/RequestToPay")
+  @POST("/transfer/RequestToPayV1")
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
       @Body() RequestToPayRequestEntity requestToPayRequestEntity);
 

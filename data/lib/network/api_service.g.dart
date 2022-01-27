@@ -1446,7 +1446,7 @@ class _ApiService implements ApiService {
     final _result = await _dio.fetch<Map<String, dynamic>>(
         _setStreamType<HttpResponse<RequestToPayContentResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/transfer/RequestToPay',
+                .compose(_dio.options, '/transfer/RequestToPayV1',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = RequestToPayContentResponseEntity.fromJson(_result.data!);
