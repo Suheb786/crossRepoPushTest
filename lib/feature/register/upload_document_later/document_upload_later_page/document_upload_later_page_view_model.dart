@@ -45,6 +45,7 @@ class DocumentUploadLaterPageViewModel extends BasePageViewModel {
   final GetAccountUseCase _getAccountUseCase;
 
   bool isDocumentSkipped = false;
+  bool isNextSecondPage = false;
 
   ///create account
   final CreateAccountUseCase _createAccountUseCase;

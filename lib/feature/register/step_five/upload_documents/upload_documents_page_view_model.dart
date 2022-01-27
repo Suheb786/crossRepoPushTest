@@ -165,6 +165,8 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
 
   bool isOtherNationality = false;
 
+  bool isSecondNextPage = false;
+
   bool isIncomeDocumentUploaded = false;
   bool isAddressDocumentUploaded = false;
   bool isOtherNationalityDocumentUploaded = false;

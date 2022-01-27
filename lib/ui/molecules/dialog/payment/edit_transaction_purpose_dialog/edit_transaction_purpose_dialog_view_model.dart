@@ -48,10 +48,10 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
     beneficiary = values![0];
     type = values![1];
     purposeController.text =
-        beneficiary!.purpose != null ? beneficiary!.purpose! : "Personal";
+        beneficiary!.purpose != null ? beneficiary!.purpose! : "";
     purposeDetailController.text = beneficiary!.purposeDetails != null
         ? beneficiary!.purposeDetails!
-        : "Transfer to Friend or Family";
+        : "";
     _getPurposeRequest.listen((value) {
       RequestManager(value,
               createCall: () => _getPurposeUseCase.execute(params: value))

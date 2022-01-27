@@ -88,7 +88,8 @@ class AccountHoldView extends BasePageViewWidget<AccountHoldViewModel> {
               margin: EdgeInsets.symmetric(horizontal: 24),
               padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
               child: AccountDetails(
-                  title: S.of(context).refNo, value: "1234567890"),
+                  title: S.of(context).refNo,
+                  value: model.arguments.applicationId ?? "1234567890"),
             ),
           ],
         ));
