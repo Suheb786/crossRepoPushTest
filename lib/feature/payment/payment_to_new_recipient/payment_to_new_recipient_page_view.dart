@@ -2,6 +2,7 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/feature/account_settings/change_password/base_card/base_card_page.dart';
 import 'package:neo_bank/feature/payment/enter_otp/enter_otp_page.dart';
@@ -209,7 +210,8 @@ class PaymentToNewRecipientPageView
                             Padding(
                               padding: EdgeInsets.only(top: 8),
                               child: Text(
-                                S.of(context).enterCode,
+                                S.of(context).enterCode +
+                                    "\n+${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber}",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,

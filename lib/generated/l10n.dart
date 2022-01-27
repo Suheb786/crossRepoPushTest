@@ -4600,10 +4600,10 @@ class S {
     );
   }
 
-  /// `Enter the 6-digit code sent to  \n+962 79 322 8080`
+  /// `Enter the 6-digit code sent to`
   String get enterCode {
     return Intl.message(
-      'Enter the 6-digit code sent to  \n+962 79 322 8080',
+      'Enter the 6-digit code sent to',
       name: 'enterCode',
       desc: '',
       args: [],
