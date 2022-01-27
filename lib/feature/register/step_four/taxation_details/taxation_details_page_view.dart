@@ -22,336 +22,193 @@ class TaxationDetailsPageView
 
   @override
   Widget build(BuildContext context, model) {
-    return AppKeyBoardHide(
-        child: Column(
-      children: [
-        Expanded(
-          child: AppStreamBuilder<bool>(
-            stream: model.errorDetectorStream,
-            initialData: false,
-            dataBuilder: (context, error) {
-              return ShakeAnimatedWidget(
-                enabled: error ?? false,
-                duration: Duration(milliseconds: 100),
-                shakeAngle: Rotation.deg(z: 1),
-                curve: Curves.easeInOutSine,
-                child: AppStreamBuilder<Resource<SetFatcResponse>>(
-                  stream: model.setFatcaQuestionsStream,
-                  initialData: Resource.none(),
-                  onData: (data) {
-                    if (data.status == Status.SUCCESS) {
-                      ///storing response to main page
-                      model.updateData(context);
-                      switch (
-                          data.data!.setFatcaResponseContent!.requestResponse) {
-                        case FatcaEnum.w8:
-                          Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope.containerOf(context)
-                                .read(registerStepFourViewModelProvider)
-                                .registrationStepFourPageController
-                                .next();
-                          });
-                          break;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: Scaffold(
+        primary: true,
+        extendBody: true,
+        body: AppKeyBoardHide(
+            child: Column(
+          children: [
+            Expanded(
+              child: AppStreamBuilder<bool>(
+                stream: model.errorDetectorStream,
+                initialData: false,
+                dataBuilder: (context, error) {
+                  return ShakeAnimatedWidget(
+                    enabled: error ?? false,
+                    duration: Duration(milliseconds: 100),
+                    shakeAngle: Rotation.deg(z: 1),
+                    curve: Curves.easeInOutSine,
+                    child: AppStreamBuilder<Resource<SetFatcResponse>>(
+                      stream: model.setFatcaQuestionsStream,
+                      initialData: Resource.none(),
+                      onData: (data) {
+                        if (data.status == Status.SUCCESS) {
+                          ///storing response to main page
+                          model.updateData(context);
+                          switch (data
+                              .data!.setFatcaResponseContent!.requestResponse) {
+                            case FatcaEnum.w8:
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepFourViewModelProvider)
+                                    .registrationStepFourPageController
+                                    .next();
+                              });
+                              break;
 
-                        case FatcaEnum.w9:
-                          Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope.containerOf(context)
-                                .read(registerStepFourViewModelProvider)
-                                .registrationStepFourPageController
-                                .move(4, animation: false);
-                          });
-                          break;
-                        case FatcaEnum.CONFIRMATION_SCREEN:
-                          Future.delayed(Duration(milliseconds: 500), () {
-                            ProviderScope.containerOf(context)
-                                .read(registerViewModelProvider)
-                                .registrationStepsController
-                                .nextPage(
-                                    duration: Duration(milliseconds: 500),
-                                    curve: Curves.easeInOut);
-                          });
-                          break;
-                      }
-                    } else if (data.status == Status.ERROR) {
-                      model.showToastWithError(data.appError!);
-                    }
-                  },
-                  dataBuilder: (context, response) {
-                    return GestureDetector(
-                      onHorizontalDragEnd: (details) {
-                        if (details.primaryVelocity!.isNegative) {
-                          model.setFatcaQuestionResponse();
+                            case FatcaEnum.w9:
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepFourViewModelProvider)
+                                    .registrationStepFourPageController
+                                    .move(4, animation: false);
+                              });
+                              break;
+                            case FatcaEnum.CONFIRMATION_SCREEN:
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                ProviderScope.containerOf(context)
+                                    .read(registerViewModelProvider)
+                                    .registrationStepsController
+                                    .nextPage(
+                                        duration: Duration(milliseconds: 500),
+                                        curve: Curves.easeInOut);
+                              });
+                              break;
+                          }
+                        } else if (data.status == Status.ERROR) {
+                          model.showToastWithError(data.appError!);
                         }
                       },
-                      child: Card(
-                        child: AppStreamBuilder<
-                            Resource<GetFatcaQuestionsResponse>>(
-                          stream: model.getFatcaQuestionsStream,
-                          initialData: Resource.none(),
-                          onData: (data) {
-                            if (data.status == Status.SUCCESS) {
-                              ProviderScope.containerOf(context)
-                                  .read(registerStepFourViewModelProvider)
-                                  .isGetFatca = true;
-                              // model.isFatcaGet = true;
+                      dataBuilder: (context, response) {
+                        return GestureDetector(
+                          onHorizontalDragEnd: (details) {
+                            if (details.primaryVelocity!.isNegative) {
+                              model.setFatcaQuestionResponse();
                             }
                           },
-                          dataBuilder: (context, questions) {
-                            switch (questions!.status) {
-                              case Status.SUCCESS:
-                                return Padding(
-                                  padding: EdgeInsets.only(
-                                      bottom: MediaQuery.of(context)
-                                                      .viewInsets
-                                                      .bottom -
-                                                  50 <=
-                                              0
-                                          ? 0
-                                          : MediaQuery.of(context)
-                                                  .viewInsets
-                                                  .bottom -
-                                              48),
-                                  child: SingleChildScrollView(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 24),
-                                    physics: ClampingScrollPhysics(),
-                                    primary: true,
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      children: [
-                                        ListView.builder(
-                                            physics: ClampingScrollPhysics(),
-                                            itemCount: questions
-                                                .data!
-                                                .getFatcaQuestionsResponseContent!
-                                                .fatcaQuestionsList!
-                                                .length,
-                                            itemBuilder: (context, index) {
-                                              return TaxationSwitchWidget(
-                                                data: questions
-                                                    .data!
-                                                    .getFatcaQuestionsResponseContent!
-                                                    .fatcaQuestionsList![index],
-                                                onToggle: (value) {
-                                                  model.toggleSelection(
-                                                      value, index);
-                                                },
-                                                onDropDownSelection: (selection,
-                                                    selectedAdditionalData) {
-                                                  model.setDropDownSelection(
-                                                      selectedAdditionalData,
-                                                      selection);
-                                                },
-                                                onTextUpdate:
-                                                    (selection, changedValue) {
-                                                  model.setOtherData(
-                                                      selection, changedValue);
-                                                },
-                                                onInfoClick: () {
-                                                  PEPDialog.show(context,
-                                                      onSelected: () {
-                                                    Navigator.pop(context);
-                                                  });
-                                                },
-                                              );
-                                            },
-                                            shrinkWrap: true,
-                                            primary: false),
-                                        // TaxationSwitchWidget(
-                                        //   providerBase: taxResidentOtherViewModelProvider,
-                                        //   onToggle: (value) {
-                                        //     model.anyOtherCountryResident = value;
-                                        //     if (!value) {
-                                        //       model.countrySelectorController.clear();
-                                        //     }
-                                        //     return Visibility(
-                                        //       visible: value,
-                                        //       child: AppTextField(
-                                        //         labelText: S.of(context).taxCountry,
-                                        //         hintText: S.of(context).pleaseSelect,
-                                        //         controller: model.countrySelectorController,
-                                        //         key: model.countrySelectorKey,
-                                        //         readOnly: true,
-                                        //         onPressed: () {
-                                        //           CountryDialog.show(context,
-                                        //               title: S.of(context).taxCountrySmall,
-                                        //               onDismissed: () {
-                                        //             Navigator.pop(context);
-                                        //           }, onSelected: (value) {
-                                        //             Navigator.pop(context);
-                                        //             model.countrySelectorController.text =
-                                        //                 value.countryName!;
-                                        //             model.isValid();
-                                        //           });
-                                        //         },
-                                        //         suffixIcon: (value, data) {
-                                        //           return Container(
-                                        //               height: 16,
-                                        //               width: 16,
-                                        //               padding: EdgeInsets.only(right: 8),
-                                        //               child: AppSvg.asset(
-                                        //                   AssetUtils.downArrow,
-                                        //                   color: AppColor.dark_gray_1));
-                                        //         },
-                                        //       ),
-                                        //     );
-                                        //   },
-                                        //   title: S.of(context).anyOtherCountryTaxResident,
-                                        // ),
-                                        // TaxationSwitchWidget(
-                                        //   providerBase:
-                                        //       areYouFirstDegreeRelativeViewModelProvider,
-                                        //   onToggle: (value) {
-                                        //     model.isPEP = value;
-                                        //     if (!value) {
-                                        //       model.relationShipController.clear();
-                                        //       model.personNameController.clear();
-                                        //       model.personRoleController.clear();
-                                        //     }
-                                        //     return Visibility(
-                                        //       visible: value,
-                                        //       child: Column(
-                                        //         children: [
-                                        //           AppTextField(
-                                        //             labelText:
-                                        //                 S.of(context).relationShipWithPepCaps,
-                                        //             hintText: S.of(context).pleaseSelect,
-                                        //             inputType: TextInputType.text,
-                                        //             controller: model.relationShipController,
-                                        //             key: model.relationShipWithPepKey,
-                                        //             readOnly: true,
-                                        //             onPressed: () {
-                                        //               RelationshipWithPEPDialog.show(context,
-                                        //                   onDismissed: () {
-                                        //                 Navigator.pop(context);
-                                        //               }, onSelected: (value) {
-                                        //                 Navigator.pop(context);
-                                        //                 model
-                                        //                     .updateRelationShipWithPEP(value);
-                                        //                 model.isValid();
-                                        //               });
-                                        //             },
-                                        //             suffixIcon: (enabled, value) {
-                                        //               return Container(
-                                        //                   height: 16,
-                                        //                   width: 16,
-                                        //                   padding: EdgeInsets.only(right: 8),
-                                        //                   child: AppSvg.asset(
-                                        //                       AssetUtils.downArrow,
-                                        //                       color: AppColor.dark_gray_1));
-                                        //             },
-                                        //           ),
-                                        //           SizedBox(height: 16),
-                                        //           AppTextField(
-                                        //             labelText: S.of(context).personName,
-                                        //             hintText: S.of(context).pleaseEnter,
-                                        //             inputType: TextInputType.text,
-                                        //             controller: model.personNameController,
-                                        //             key: model.personNameKey,
-                                        //             onChanged: (value) {
-                                        //               model.isValid();
-                                        //             },
-                                        //           ),
-                                        //           SizedBox(height: 16),
-                                        //           AppTextField(
-                                        //             labelText: S.of(context).personRole,
-                                        //             hintText: S.of(context).pleaseEnter,
-                                        //             inputType: TextInputType.text,
-                                        //             controller: model.personRoleController,
-                                        //             key: model.personRoleKey,
-                                        //             onChanged: (value) {
-                                        //               model.isValid();
-                                        //             },
-                                        //           ),
-                                        //         ],
-                                        //       ),
-                                        //     );
-                                        //   },
-                                        //   title: S.of(context).areYouFirstDegreeRelativePEP,
-                                        //   secondaryText: S.of(context).whatIsPEP,
-                                        //   onSecondaryTextTap: () {
-                                        //     PEPDialog.show(context, onSelected: () {
-                                        //       Navigator.pop(context);
-                                        //     });
-                                        //   },
-                                        // ),
-                                        // AppStreamBuilder<bool>(
-                                        //   stream:
-                                        //       model.declarationSelectedStream,
-                                        //   initialData: false,
-                                        //   dataBuilder: (context, isSelected) {
-                                        //     return DeclarationWidget(
-                                        //       isSelected: isSelected,
-                                        //       title1: S
-                                        //           .of(context)
-                                        //           .iConfirmThatAllInfoAccurateFatca,
-                                        //       onTap: () {
-                                        //         model
-                                        //             .updateDeclarationSelection(
-                                        //                 !(isSelected!));
-                                        //         model.isValid();
-                                        //       },
-                                        //     );
-                                        //   },
-                                        // ),
-                                        Center(
-                                          child: Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                vertical: 32),
-                                            child: AnimatedButton(
-                                                buttonText: S
-                                                    .of(context)
-                                                    .swipeToProceed),
-                                          ),
-                                        )
-                                        // Center(
-                                        //   child: Padding(
-                                        //     padding: EdgeInsets.symmetric(
-                                        //         vertical: 32),
-                                        //     child: AppStreamBuilder<bool>(
-                                        //         stream: model
-                                        //             .allFieldValidatorStream,
-                                        //         initialData: false,
-                                        //         dataBuilder:
-                                        //             (context, isValid) {
-                                        //           return (isValid!)
-                                        //               ? AnimatedButton(
-                                        //                   buttonText: S
-                                        //                       .of(context)
-                                        //                       .swipeToProceed)
-                                        //               : Container();
-                                        //         }),
-                                        //   ),
-                                        // )
-                                      ],
+                          child: AppStreamBuilder<
+                              Resource<GetFatcaQuestionsResponse>>(
+                            stream: model.getFatcaQuestionsStream,
+                            initialData: Resource.none(),
+                            onData: (data) {
+                              if (data.status == Status.SUCCESS) {
+                                ProviderScope.containerOf(context)
+                                    .read(registerStepFourViewModelProvider)
+                                    .isGetFatca = true;
+                                // model.isFatcaGet = true;
+                              }
+                            },
+                            dataBuilder: (context, questions) {
+                              switch (questions!.status) {
+                                case Status.SUCCESS:
+                                  return Padding(
+                                    padding: EdgeInsets.only(
+                                        bottom: MediaQuery.of(context)
+                                                        .viewInsets
+                                                        .bottom -
+                                                    50 <=
+                                                0
+                                            ? 0
+                                            : MediaQuery.of(context)
+                                                    .viewInsets
+                                                    .bottom -
+                                                48),
+                                    child: SingleChildScrollView(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 24),
+                                      physics: ClampingScrollPhysics(),
+                                      primary: true,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.stretch,
+                                        children: [
+                                          ListView.builder(
+                                              key: ValueKey(1),
+                                              physics: ClampingScrollPhysics(),
+                                              itemCount: questions
+                                                  .data!
+                                                  .getFatcaQuestionsResponseContent!
+                                                  .fatcaQuestionsList!
+                                                  .length,
+                                              itemBuilder: (context, index) {
+                                                return TaxationSwitchWidget(
+                                                  key: ValueKey(questions
+                                                      .data!
+                                                      .getFatcaQuestionsResponseContent!
+                                                      .fatcaQuestionsList![
+                                                          index]
+                                                      .orderNo),
+                                                  data: questions
+                                                      .data!
+                                                      .getFatcaQuestionsResponseContent!
+                                                      .fatcaQuestionsList![index],
+                                                  onToggle: (value) {
+                                                    model.toggleSelection(
+                                                        value, index);
+                                                  },
+                                                  onDropDownSelection: (selection,
+                                                      selectedAdditionalData) {
+                                                    model.setDropDownSelection(
+                                                        selectedAdditionalData,
+                                                        selection);
+                                                  },
+                                                  onTextUpdate: (selection,
+                                                      changedValue) {
+                                                    model.setOtherData(
+                                                        selection,
+                                                        changedValue);
+                                                  },
+                                                  onInfoClick: () {
+                                                    PEPDialog.show(context,
+                                                        onSelected: () {
+                                                      Navigator.pop(context);
+                                                    });
+                                                  },
+                                                );
+                                              },
+                                              shrinkWrap: true,
+                                              primary: false),
+                                          Center(
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: 32),
+                                              child: AnimatedButton(
+                                                  buttonText: S
+                                                      .of(context)
+                                                      .swipeToProceed),
+                                            ),
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                );
-                              case Status.LOADING:
-                                return Center(
-                                  child: CircularProgressIndicator(
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                        Theme.of(context).primaryColor),
-                                    strokeWidth: 2,
-                                  ),
-                                );
-                              default:
-                                return Center(
-                                  child: Text('Something went wrong'),
-                                );
-                            }
-                          },
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              );
-            },
-          ),
-        ),
-      ],
-    ));
+                                  );
+                                case Status.LOADING:
+                                  return Center(
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                          Theme.of(context).primaryColor),
+                                      strokeWidth: 2,
+                                    ),
+                                  );
+                                default:
+                                  return Center(
+                                    child: Text('Something went wrong'),
+                                  );
+                              }
+                            },
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        )),
+      ),
+    );
   }
 }

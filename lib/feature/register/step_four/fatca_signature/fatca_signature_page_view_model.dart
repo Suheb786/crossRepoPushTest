@@ -136,8 +136,9 @@ class FatcaSignaturePageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        _getDocumentResponse.safeAdd(event.data!);
-        if (event.status == Status.ERROR) {
+        if (event.status == Status.SUCCESS) {
+          _getDocumentResponse.safeAdd(event.data!);
+        } else if (event.status == Status.ERROR) {
           showErrorState();
         }
       });

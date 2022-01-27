@@ -34,4 +34,14 @@ class StringUtils {
       return currentCvv;
     }
   }
+
+  ///get last 4 digit of cardNumber
+  static String getLastFourDigitOfCardNo(String? cardNumber) {
+    String currentNo = cardNumber!;
+    if (currentNo.length > 4) {
+      return currentNo.substring(currentNo.length - 4);
+    } else {
+      return currentNo;
+    }
+  }
 }

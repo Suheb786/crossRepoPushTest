@@ -39,6 +39,7 @@ class TaxationSwitchWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseWidget<TaxationSwitchWidgetViewModel>(
+      key: ValueKey(data.orderNo),
       providerBase: provideBase(),
       builder: (context, model, widget) {
         return AppStreamBuilder<bool>(
@@ -191,9 +192,10 @@ class FatcaDropDownField extends StatelessWidget {
                   onDismissed: () {
                 Navigator.pop(context);
               }, onSelected: (value) {
+                print('value-->${value.name}');
                 model?.controller.text = value.name!;
                 onSelect?.call(value);
-                Navigator.pop(context);
+                // Navigator.pop(context);
               }, fatcaOptionData: data.additionalDropDownData ?? []);
             },
             suffixIcon: (value, data) {

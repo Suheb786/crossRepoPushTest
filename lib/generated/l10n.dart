@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8185,6 +8186,26 @@ class S {
     return Intl.message(
       'Password is successfully updated',
       name: 'passwordUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Annual Income should be greater than 0`
+  String get invalidAnnualIncomeValue {
+    return Intl.message(
+      'Annual Income should be greater than 0',
+      name: 'invalidAnnualIncomeValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Additional Income`
+  String get selectAdditionalIncome {
+    return Intl.message(
+      'Select Additional Income',
+      name: 'selectAdditionalIncome',
       desc: '',
       args: [],
     );
