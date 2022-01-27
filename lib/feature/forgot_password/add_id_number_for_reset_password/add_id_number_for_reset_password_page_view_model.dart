@@ -63,7 +63,7 @@ class AddIDNumberForResetPasswordPageViewModel extends BasePageViewModel {
   void addIdNumberForResetPassword() {
     _checkForgetPasswordRequest.safeAdd(CheckForgetPasswordUseCaseParams(
         email: emailController.text,
-        expiryDate: "2027-06-11",
+        expiryDate: idExpiryDateController.text,
         nationalId: nationalIdController.text));
   }
 
