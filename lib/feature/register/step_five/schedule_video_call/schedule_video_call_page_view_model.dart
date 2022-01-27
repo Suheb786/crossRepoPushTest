@@ -1,5 +1,6 @@
 import 'package:domain/constants/error_types.dart';
-import 'package:domain/model/account/save_customer_schedule_time_response.dart';
+import 'package:domain/model/account/available_time_slots.dart';
+import 'package:domain/usecase/account/get_call_time_slots_usecase.dart';
 import 'package:domain/usecase/register/schedule_video_call_usecase.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
@@ -12,6 +13,7 @@ import 'package:rxdart/rxdart.dart';
 
 class ScheduleVideoCallPageViewModel extends BasePageViewModel {
   final ScheduleVideoCallUseCase _scheduleVideoCallUseCase;
+  final GetCallTimeSlotsUseCase _getAvailableTimeSlotsUseCase;
 
   ///controllers and keys
   final TextEditingController preferredDateController = TextEditingController();
@@ -34,21 +36,32 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
 
   ///schedule Video call request subject holder
   PublishSubject<ScheduleVideoCallUseCaseParams> _scheduleVideoCallRequest =
-  PublishSubject();
+      PublishSubject();
 
   ///schedule Video call response holder
-  PublishSubject<Resource<SaveCustomerScheduleTimeResponse>>
-  _scheduleVideoCallResponse = PublishSubject();
+  PublishSubject<Resource<bool>> _scheduleVideoCallResponse = PublishSubject();
 
   ///schedule Video call stream
-  Stream<Resource<SaveCustomerScheduleTimeResponse>>
-  get scheduleVideoCallStream => _scheduleVideoCallResponse.stream;
+  Stream<Resource<bool>> get scheduleVideoCallStream =>
+      _scheduleVideoCallResponse.stream;
 
   ///all filed validate subject
   PublishSubject<bool> _allFieldValidatorSubject = PublishSubject();
 
   ///all filed validate stream
   Stream<bool> get allFieldValidatorStream => _allFieldValidatorSubject.stream;
+
+  /// Get available time slots request
+  PublishSubject<GetCallTimeSlotsUseCaseParams> _getAvailableTimeSlotsRequest =
+      PublishSubject();
+
+  /// Get available time slots request
+  PublishSubject<Resource<List<AvailableTimeSlots>>>
+      _getAvailableTimeSlotsResponse = PublishSubject();
+
+  /// Timeslots holder
+  Stream<Resource<List<AvailableTimeSlots>>> get availableTimeSlots =>
+      _getAvailableTimeSlotsResponse.stream;
 
   bool isValid() {
     bool valid = false;
@@ -60,13 +73,15 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
     return valid;
   }
 
-  ScheduleVideoCallPageViewModel(this._scheduleVideoCallUseCase) {
+  ScheduleVideoCallPageViewModel(
+      this._scheduleVideoCallUseCase, this._getAvailableTimeSlotsUseCase) {
     _scheduleVideoCallRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
                   _scheduleVideoCallUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
+        updateLoader();
         _scheduleVideoCallResponse.add(event);
         if (event.status == Status.ERROR) {
           getError(event);
@@ -74,9 +89,23 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getAvailableTimeSlotsRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _getAvailableTimeSlotsUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getAvailableTimeSlotsResponse.add(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
   }
 
-  void getError(Resource<SaveCustomerScheduleTimeResponse> event) {
+  void getError(Resource<bool> event) {
     switch (event.appError!.type) {
       case ErrorType.INVALID_PREFERRED_DATE:
         preferredDateKey.currentState!.isValid = false;
@@ -92,8 +121,16 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
   void validateScheduleVideoCallDetails() {
     _scheduleVideoCallRequest.safeAdd(ScheduleVideoCallUseCaseParams(
       preferredTime: preferredTimeController.text,
-      preferredDate: preferredDateController.text,
+      preferredDate: selectedDate,
     ));
+  }
+
+  String selectedDate = "";
+
+  void fetchAvailableTimeSlots(String date) {
+    selectedDate = date;
+    _getAvailableTimeSlotsRequest
+        .safeAdd(GetCallTimeSlotsUseCaseParams(callDate: date));
   }
 
   @override
@@ -101,6 +138,8 @@ class ScheduleVideoCallPageViewModel extends BasePageViewModel {
     _scheduleVideoCallRequest.close();
     _scheduleVideoCallResponse.close();
     _allFieldValidatorSubject.close();
+    _getAvailableTimeSlotsRequest.close();
+    _getAvailableTimeSlotsResponse.close();
     super.dispose();
   }
 }

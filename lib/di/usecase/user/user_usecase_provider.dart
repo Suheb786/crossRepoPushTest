@@ -32,7 +32,6 @@ import 'package:domain/usecase/user/register_prospect_usecase.dart';
 import 'package:domain/usecase/user/scan_user_document_usecase.dart';
 import 'package:domain/usecase/user/upload_selfie_image_usecase.dart';
 import 'package:domain/usecase/user/verify_otp_usecase.dart';
-import 'package:domain/usecase/user/video_call_info_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[LoginUseCase] provider
@@ -86,11 +85,6 @@ final homeAddressDialogUseCaseProvider =
 final productSelectorUseCaseProvider =
     Provider.autoDispose<ProductSelectorUseCase>(
   (ref) => ProductSelectorUseCase(),
-);
-
-///[VideoCallInfoUseCase] provider
-final videoCallInfoUseCaseProvider = Provider.autoDispose<VideoCallInfoUseCase>(
-  (ref) => VideoCallInfoUseCase(),
 );
 
 ///[AgentSelectionUseCase] provider

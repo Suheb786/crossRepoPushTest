@@ -1,5 +1,6 @@
 class AvailableTimeSlots {
-  final List<String>? slots;
+  final String? slot;
+  bool isSelected;
 
-  AvailableTimeSlots({this.slots});
+  AvailableTimeSlots({this.slot: "", this.isSelected: false});
 }

@@ -40,9 +40,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
               child: GestureDetector(
                 onHorizontalDragEnd: (details) {
                   if (details.primaryVelocity!.isNegative) {
-                    // model.validateEmail();
-                    Navigator.pushReplacementNamed(
-                        context, RoutePaths.VideoKyc);
+                    model.validateEmail();
                   }
                 },
                 child: SingleChildScrollView(
@@ -136,18 +134,23 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     context)
                                                             .read(appViewModel)
                                                             .getToken();
-                                                        model.checkKycStatus();
+                                                        // model.checkKycStatus();
                                                         model
                                                             .emailKey
                                                             .currentState!
                                                             .isValid = true;
-                                                        // Future.delayed(Duration(milliseconds: 500),
-                                                        //     () {
-                                                        //   // Navigator.pushReplacementNamed(
-                                                        //   //     context, RoutePaths.AppHome);
-                                                        //   Navigator.pushReplacementNamed(
-                                                        //       context, RoutePaths.Registration);
-                                                        // });
+                                                        Future.delayed(
+                                                            Duration(
+                                                                milliseconds:
+                                                                    500), () {
+                                                          // Navigator.pushReplacementNamed(
+                                                          //     context, RoutePaths.AppHome);
+                                                          Navigator
+                                                              .pushReplacementNamed(
+                                                                  context,
+                                                                  RoutePaths
+                                                                      .Registration);
+                                                        });
                                                       } else if (data.status ==
                                                           Status.ERROR) {
                                                         model

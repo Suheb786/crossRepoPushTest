@@ -16,7 +16,6 @@ import 'package:data/entity/remote/account/get_time_slots_response_entity.dart';
 import 'package:data/entity/remote/account/request_call_response_entity.dart';
 import 'package:data/entity/remote/account/request_video_call_request.dart';
 import 'package:data/entity/remote/account/save_customer_schedule_time_request_entity.dart';
-import 'package:data/entity/remote/account/save_customer_schedule_time_response_entity.dart';
 import 'package:data/entity/remote/base/base_class.dart';
 import 'package:data/entity/remote/base/base_request.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
@@ -63,9 +62,8 @@ class AccountRemoteDSImpl extends AccountRemoteDS {
   }
 
   @override
-  Future<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>
-      saveCustomerVideoCallScheduleTime(
-          {String? scheduleDate, String? scheduleTime}) async {
+  Future<HttpResponse<ResponseEntity>> saveCustomerVideoCallScheduleTime(
+      {String? scheduleDate, String? scheduleTime}) async {
     BaseClassEntity baseData = await _deviceInfoHelper.getDeviceInfo();
     return _apiService.saveCustomerVideoCallScheduleTime(
         SaveCustomerScheduleTimeRequestEntity(

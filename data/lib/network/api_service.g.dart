@@ -1988,21 +1988,19 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>
-      saveCustomerVideoCallScheduleTime(
-          saveCustomerScheduleTimeRequestEntity) async {
+  Future<HttpResponse<ResponseEntity>> saveCustomerVideoCallScheduleTime(
+      saveCustomerScheduleTimeRequestEntity) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(saveCustomerScheduleTimeRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<SaveCustomerScheduleTimeResponseEntity>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
                 .compose(_dio.options, '/video/AddCall',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value =
-        SaveCustomerScheduleTimeResponseEntity.fromJson(_result.data!);
+    final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
@@ -2020,6 +2018,43 @@ class _ApiService implements ApiService {
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ResponseEntity>> applyDebitSupplementaryCard(
+      applyDebitSupplementaryCardRequest) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(applyDebitSupplementaryCardRequest.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(
+                    _dio.options, '/DebitCard/RequestSuplementaryDebitCard',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ResponseEntity.fromJson(_result.data!);
+    final httpResponse = HttpResponse(value, _result);
+    return httpResponse;
+  }
+
+  @override
+  Future<HttpResponse<ActivityResponseEntity>> getActivity(
+      activityRequestEntity) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(activityRequestEntity.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<HttpResponse<ActivityResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options, '/Account/AccountActivity',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = ActivityResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }
