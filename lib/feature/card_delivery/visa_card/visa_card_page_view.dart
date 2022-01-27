@@ -132,7 +132,7 @@ class VisaCardPageView extends BasePageViewWidget<VisaCardPageViewModel> {
                                                                 .cardNumber
                                                                 .isNotEmpty)
                                                         ? StringUtils
-                                                            .getFormattedCreditCardNumber(
+                                                            .getLastFourDigitOfCardNo(
                                                                 data.data!
                                                                     .cardNumber)
                                                         : "XXXX",

@@ -89,7 +89,7 @@ class DebitCardDeliveredPageView
                                         child: Text(
                                           model.debitCard.cardNumber!.isNotEmpty
                                               ? StringUtils
-                                                  .getFormattedCreditCardNumber(
+                                                  .getLastFourDigitOfCardNo(
                                                       model
                                                           .debitCard.cardNumber)
                                               : '-',
@@ -161,7 +161,7 @@ class DebitCardDeliveredPageView
                                       child: Text(
                                           model.debitCard.cardNumber!.isNotEmpty
                                               ? StringUtils
-                                                  .getFormattedCreditCardNumber(
+                                                  .getLastFourDigitOfCardNo(
                                                       model
                                                           .debitCard.cardNumber)
                                               : '-',

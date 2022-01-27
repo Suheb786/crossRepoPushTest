@@ -720,6 +720,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),
         "invalidAnnualIncome":
             MessageLookupByLibrary.simpleMessage("Enter Annual income"),
+        "invalidAnnualIncomeValue": MessageLookupByLibrary.simpleMessage(
+            "Annual Income should be greater than 0"),
         "invalidBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
             "We\'re sorry, you must be the beneficial owner of the account to proceed."),
         "invalidBeneficiary":
@@ -1202,6 +1204,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchYear": MessageLookupByLibrary.simpleMessage("Search year"),
         "seeAllContacts":
             MessageLookupByLibrary.simpleMessage("See all contacts"),
+        "selectAdditionalIncome":
+            MessageLookupByLibrary.simpleMessage("Select Additional Income"),
         "selectAnyOption":
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(

@@ -443,7 +443,8 @@ class AppRouter {
 
       case RoutePaths.AccountHold:
         return CupertinoPageRoute(
-            builder: (context) => AccountHoldPage(),
+            builder: (context) =>
+                AccountHoldPage(settings.arguments as AccountHoldArguments),
             settings: RouteSettings(name: RoutePaths.AccountHold));
 
       case RoutePaths.ForgotPassword:

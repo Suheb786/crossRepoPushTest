@@ -8189,6 +8189,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Annual Income should be greater than 0`
+  String get invalidAnnualIncomeValue {
+    return Intl.message(
+      'Annual Income should be greater than 0',
+      name: 'invalidAnnualIncomeValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Additional Income`
+  String get selectAdditionalIncome {
+    return Intl.message(
+      'Select Additional Income',
+      name: 'selectAdditionalIncome',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

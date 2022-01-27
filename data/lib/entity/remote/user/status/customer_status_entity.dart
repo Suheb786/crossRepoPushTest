@@ -12,8 +12,11 @@ class CustomerStatusEntity
   final String? nextScreen;
   @JsonKey(name: "secondNextScreen")
   final String? secondNextScreen;
+  @JsonKey(name: "applicationId")
+  final String? applicationId;
 
-  CustomerStatusEntity({this.nextScreen, this.secondNextScreen});
+  CustomerStatusEntity(
+      {this.nextScreen, this.secondNextScreen, this.applicationId});
 
   factory CustomerStatusEntity.fromJson(Map<String, dynamic> json) =>
       _$CustomerStatusEntityFromJson(json);
@@ -28,6 +31,7 @@ class CustomerStatusEntity
   @override
   CustomerStatus transform() {
     return CustomerStatus(
+        applicationId: this.applicationId,
         nextPage: (this.nextScreen ?? "").fromCustomerStatusValue(),
         secondNextPage:
             (this.secondNextScreen ?? "").fromCustomerStatusValue());

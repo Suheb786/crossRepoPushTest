@@ -108,8 +108,8 @@ class TaxationDetailsPageViewModel extends BasePageViewModel {
       PublishSubject();
 
   ///get fatca question response holder
-  PublishSubject<Resource<GetFatcaQuestionsResponse>>
-      _getFatcaQuestionsResponseSubject = PublishSubject();
+  BehaviorSubject<Resource<GetFatcaQuestionsResponse>>
+      _getFatcaQuestionsResponseSubject = BehaviorSubject();
 
   ///get fatca question stream
   Stream<Resource<GetFatcaQuestionsResponse>> get getFatcaQuestionsStream =>

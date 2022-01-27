@@ -10,6 +10,7 @@ import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/fatca_option_dialog/fatca_option_dialog_viewmodel.dart';
 import 'package:neo_bank/ui/molecules/dialog/register/step_four/fatca_option_dialog/fatca_option_item_widget.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
+import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
@@ -21,6 +22,7 @@ class FatcaOptionDialogView extends StatelessWidget {
   final Function(AdditionalDataDropDownData)? onSelected;
   final String? title;
   final List<AdditionalDataDropDownData> dropDownData;
+  bool _keyboardVisible = false;
 
   FatcaOptionDialogView(
       {this.onDismissed,
@@ -34,16 +36,24 @@ class FatcaOptionDialogView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _keyboardVisible = MediaQuery.of(context).viewInsets.bottom != 0;
     return BaseWidget<FatcaOptionDialogViewModel>(
       providerBase: providerBase(),
       onModelReady: (model) {
-        model.setOptionData(dropDownData);
+        if (model.allOptionalDataList == null ||
+            model.allOptionalDataList!.isEmpty) {
+          model.setOptionData(dropDownData);
+        }
       },
       builder: (context, model, child) {
         return Dialog(
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16.0)),
-            insetPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 36),
+            insetPadding: EdgeInsets.only(
+                left: 24,
+                right: 24,
+                bottom: 36,
+                top: _keyboardVisible ? 36 : 204),
             child: GestureDetector(
               onVerticalDragEnd: (details) {
                 if (details.primaryVelocity! > 0) {
@@ -73,8 +83,40 @@ class FatcaOptionDialogView extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
-                              height: MediaQuery.of(context).size.height / 2.5,
+                          Visibility(
+                            visible: title == 'TAX COUNTRY' ? true : false,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 32),
+                              child: AppTextField(
+                                labelText: '',
+                                controller: model.mobileNumberSearchController,
+                                textFieldBorderColor: AppColor.gray_1,
+                                hintTextColor: AppColor.gray_2,
+                                textColor: Theme.of(context).primaryColorDark,
+                                hintText: S.of(context).searchCountry,
+                                containerPadding: EdgeInsets.symmetric(
+                                    horizontal: 16, vertical: 10),
+                                onChanged: (value) {
+                                  print(value);
+                                  model.searchMobileNumber(value);
+                                },
+                                suffixIcon: (value, data) {
+                                  return InkWell(
+                                    onTap: () async {},
+                                    child: Container(
+                                        height: 16,
+                                        width: 16,
+                                        padding: EdgeInsets.all(6),
+                                        child: AppSvg.asset(AssetUtils.search,
+                                            color: Theme.of(context)
+                                                .primaryColorDark)),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
+                          Expanded(
                               child: data!.data!.length > 0
                                   ? Stack(
                                       alignment: Alignment.center,
@@ -148,50 +190,45 @@ class FatcaOptionDialogView extends StatelessWidget {
                                             color: AppColor.dark_violet_4),
                                       ),
                                     )),
-                          GestureDetector(
-                            onVerticalDragEnd: (details) {
-                              if (!details.primaryVelocity!.isNegative) {
-                                onDismissed?.call();
-                              }
-                            },
-                            child: Container(
-                              color: AppColor.white.withOpacity(0),
-                              child: Column(
-                                children: <Widget>[
-                                  InkWell(
-                                    onTap: () {
-                                      onSelected!
-                                          .call(model.selectedOptionData!);
-                                    },
-                                    child: Container(
-                                      padding: EdgeInsets.all(16),
-                                      height: 57,
-                                      width: 57,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: Theme.of(context)
-                                              .accentTextTheme
-                                              .bodyText1!
-                                              .color!),
-                                      child: AppSvg.asset(AssetUtils.tick,
-                                          color: Theme.of(context).accentColor),
+                          Container(
+                            color: AppColor.white.withOpacity(0),
+                            child: Column(
+                              children: <Widget>[
+                                InkWell(
+                                  onTap: () {
+                                    print(
+                                        'selectedData--->${model.selectedOptionData!.name}');
+                                    Navigator.pop(context);
+                                    onSelected!.call(model.selectedOptionData!);
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.all(16),
+                                    height: 57,
+                                    width: 57,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Theme.of(context)
+                                            .accentTextTheme
+                                            .bodyText1!
+                                            .color!),
+                                    child: AppSvg.asset(AssetUtils.tick,
+                                        color: Theme.of(context).accentColor),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 8.0, bottom: 16),
+                                  child: Center(
+                                    child: Text(
+                                      S.of(context).swipeDownToCancel,
+                                      style: TextStyle(
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w400,
+                                          color: AppColor.dark_gray_1),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 8.0, bottom: 16),
-                                    child: Center(
-                                      child: Text(
-                                        S.of(context).swipeDownToCancel,
-                                        style: TextStyle(
-                                            fontSize: 10,
-                                            fontWeight: FontWeight.w400,
-                                            color: AppColor.dark_gray_1),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ],

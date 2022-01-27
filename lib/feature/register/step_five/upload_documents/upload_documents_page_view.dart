@@ -12,6 +12,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
+import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/step_five/upload_documents/upload_documents_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -80,8 +81,13 @@ class UploadDocumentsPageView
                                         //             registerStepFiveViewModelProvider)
                                         //         .secondNextScreen =
                                         //     userStatus.data!.secondNextPage!;
-                                        getNextPage(
-                                            userStatus.data!, model, context);
+                                        model.isSecondNextPage
+                                            ? getSecondNextPage(
+                                                userStatus.data!,
+                                                model,
+                                                context)
+                                            : getNextPage(userStatus.data!,
+                                                model, context);
                                       }
                                     },
                                     dataBuilder: (context, userStatus) {
@@ -636,8 +642,11 @@ class UploadDocumentsPageView
                                                                               UploadDocumentLaterDialog.show(context, onSelected: () {
                                                                                 Navigator.pop(context);
                                                                                 model.isDocumentSkipped = true;
-                                                                                model.getAccount();
+                                                                                model.isSecondNextPage = true;
+                                                                                model.getCustomerStatus();
+                                                                                //model.getAccount();
                                                                                 //Navigator.pushReplacementNamed(context, RoutePaths.AccountReady);
+                                                                                getSecondNextPage(userStatus!.data!, model, context);
                                                                               });
                                                                             },
                                                                             child: Text(
@@ -686,9 +695,12 @@ class UploadDocumentsPageView
 
   void getNextPage(CustomerStatus customerStatus,
       UploadDocumentsPageViewModel model, BuildContext context) {
+    model.isSecondNextPage = false;
     switch (customerStatus.nextPage) {
       case CustomerStatusEnum.HOLD:
-        Navigator.pushReplacementNamed(context, RoutePaths.AccountHold);
+        Navigator.pushReplacementNamed(context, RoutePaths.AccountHold,
+            arguments: AccountHoldArguments(
+                applicationId: customerStatus.applicationId));
         break;
       case CustomerStatusEnum.ACCOUNT_PAGE:
         model.getAccount();
@@ -713,6 +725,29 @@ class UploadDocumentsPageView
         break;
       case CustomerStatusEnum.CARD_ISSUANCE:
         Navigator.pushReplacementNamed(context, RoutePaths.CardDelivery);
+        break;
+    }
+  }
+
+  void getSecondNextPage(CustomerStatus customerStatus,
+      UploadDocumentsPageViewModel model, BuildContext context) {
+    switch (customerStatus.secondNextPage) {
+      case CustomerStatusEnum.HOLD:
+        Navigator.pushReplacementNamed(context, RoutePaths.AccountHold,
+            arguments: AccountHoldArguments(
+                applicationId: customerStatus.applicationId));
+        break;
+      case CustomerStatusEnum.ACCOUNT_PAGE:
+        model.getAccount();
+        break;
+
+      case CustomerStatusEnum.VIDEO_CALL:
+        Future.delayed(Duration(milliseconds: 500), () {
+          ProviderScope.containerOf(context)
+              .read(registerStepFiveViewModelProvider)
+              .registrationStepFivePageController
+              .move(1, animation: false);
+        });
         break;
     }
   }

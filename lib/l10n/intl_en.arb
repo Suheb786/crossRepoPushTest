@@ -836,5 +836,7 @@
   "changeCardPinError": "Change Chard Pin Error",
   "errorWhileLinkingDebitCard": "Error while linking Debit Card",
   "confirmPasswordNotMatch": "Confirm password should be same as new password",
-  "passwordUpdate": "Password is successfully updated"
+  "passwordUpdate": "Password is successfully updated",
+  "invalidAnnualIncomeValue": "Annual Income should be greater than 0",
+  "selectAdditionalIncome": "Select Additional Income"
 }

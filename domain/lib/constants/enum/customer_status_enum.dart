@@ -44,7 +44,7 @@ extension CustomerStatusEnumExt on String {
       case "none":
         return CustomerStatusEnum.NONE;
       default:
-        return CustomerStatusEnum.HOLD;
+        return CustomerStatusEnum.NONE;
     }
   }
 }

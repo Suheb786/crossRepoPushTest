@@ -1,3 +1,6 @@
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/user/additional_income_type.dart';
 import 'package:domain/model/user/save_job_details_response.dart';
 import 'package:domain/usecase/register/student_job_income_usecase.dart';
@@ -79,8 +82,14 @@ class StudentJobIncomePageViewModel extends BasePageViewModel {
   }
 
   void jobIncomeDetails() {
-    _jobAndIncomeRequest.safeAdd(StudentJobIncomeUseCaseParams(
-        additionalIncomeList: additionalSourceIncome));
+    if (additionalSourceIncome.length > 0) {
+      _jobAndIncomeRequest.safeAdd(StudentJobIncomeUseCaseParams(
+          additionalIncomeList: additionalSourceIncome));
+    } else {
+      showToastWithError(AppError(cause: Exception(), error: ErrorInfo(
+          message: ''
+      ), type: ErrorType.SELECT_ADDITIONAL_INCOME));
+    }
   }
 
   @override
