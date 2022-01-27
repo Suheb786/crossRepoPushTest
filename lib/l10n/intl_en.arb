@@ -834,5 +834,7 @@
   "amountZero": "Invalid amount",
   "idCardNotFound": "Id Card Not Found",
   "changeCardPinError": "Change Chard Pin Error",
-  "errorWhileLinkingDebitCard": "Error while linking Debit Card"
+  "errorWhileLinkingDebitCard": "Error while linking Debit Card",
+  "confirmPasswordNotMatch": "Confirm password should be same as new password",
+  "passwordUpdate": "Password is successfully updated"
 }
