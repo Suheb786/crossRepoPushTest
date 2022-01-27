@@ -18,18 +18,13 @@ import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/string_utils.dart';
 
 class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
-  MyDebitCardPageView(ProviderBase model) : super(model);
+  // MyDebitCardPageView(ProviderBase model) : super(model);
+  final GetDashboardDataContent cardData;
+  MyDebitCardPageView(ProviderBase model, this.cardData) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
-    return Center(
-      child: AppStreamBuilder<GetDashboardDataContent>(
-        stream: ProviderScope.containerOf(context)
-            .read(appHomeViewModelProvider)
-            .getDashboardCardDataStream,
-        initialData: GetDashboardDataContent(),
-        dataBuilder: (context, cardData) {
-          return !(cardData!.debitCard!.length > 0)
+    return  !(cardData.creditCard! == [])
               ? Center(
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 15),
@@ -700,8 +695,6 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                     ),
                   ),
                 );
-        },
-      ),
-    );
+        }
   }
-}
+

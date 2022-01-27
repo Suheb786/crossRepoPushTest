@@ -4,8 +4,11 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_page_view.dart';
 import 'package:neo_bank/feature/dashboard_home/my_account/my_account_view_model.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 
 class MyAccountPage extends BasePage<MyAccountViewModel> {
+  final GetDashboardDataContent cardData;
+  MyAccountPage({required this.cardData});
   @override
   MyAccountPageState createState() => MyAccountPageState();
 }
@@ -27,7 +30,7 @@ class MyAccountPageState
 
   @override
   Widget buildView(BuildContext context, MyAccountViewModel model) {
-    return MyAccountPageView(provideBase());
+    return MyAccountPageView(provideBase(), widget.cardData);
   }
 
   @override
