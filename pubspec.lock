@@ -582,7 +582,7 @@ packages:
       name: infobip_mobilemessaging
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.1"
+    version: "0.5.2"
   infobip_plugin:
     dependency: transitive
     description:

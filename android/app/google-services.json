@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "660487917685",
+    "firebase_url": "https://neo-bank-a8d6c-default-rtdb.firebaseio.com",
     "project_id": "neo-bank-a8d6c",
     "storage_bucket": "neo-bank-a8d6c.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:660487917685:android:6897bc24773d9d96a8a83c",
+        "mobilesdk_app_id": "1:660487917685:android:364d94761cd44f01a8a83c",
         "android_client_info": {
           "package_name": "com.blink.cbt"
         }

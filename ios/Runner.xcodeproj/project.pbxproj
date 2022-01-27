@@ -269,7 +269,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n${PODS_ROOT}/FirebaseCrashlytics/run\n";
 		};
 		C57FABA2D1C31070A001EE87 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;

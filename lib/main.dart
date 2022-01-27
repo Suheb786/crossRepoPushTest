@@ -9,17 +9,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/main/app.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runZonedGuarded(() async {
+  await runZonedGuarded(() async {
     HttpOverrides.global = AppHttpOverrides();
     await Firebase.initializeApp();
 
     // Pass all uncaught errors from the framework to Crashlytics.
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+    await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
 
     runApp(ProviderScope(child: MyApp()));
-  }, (error, stackTrace) {
+  }, (error, stackTrace) async {
     FirebaseCrashlytics.instance.recordError(error, stackTrace);
   });
 }
