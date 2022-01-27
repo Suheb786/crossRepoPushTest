@@ -667,40 +667,43 @@ class ReviewApplicationPageView
                                                                     TextInputType
                                                                         .number,
                                                               ),
-                                                              ReviewApplicationEditableItem(
-                                                                title: S
-                                                                    .of(context)
-                                                                    .expectedAnnualAmount,
-                                                                controller: model
-                                                                    .expectedAnnualTransactionsController,
-                                                                prefixWidget:
-                                                                    Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .only(
-                                                                      left:
-                                                                          40.0,
-                                                                      bottom:
-                                                                          12),
-                                                                  child: Text(
-                                                                    S
-                                                                        .of(context)
-                                                                        .JOD,
-                                                                    textAlign:
-                                                                        TextAlign
-                                                                            .end,
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            12,
-                                                                        fontWeight:
-                                                                            FontWeight
-                                                                                .w600,
-                                                                        color: Theme.of(context)
-                                                                            .primaryColorDark),
+                                                              Visibility(
+                                                                visible: false,
+                                                                child:
+                                                                    ReviewApplicationEditableItem(
+                                                                  title: S
+                                                                      .of(context)
+                                                                      .expectedAnnualAmount,
+                                                                  controller: model
+                                                                      .expectedAnnualTransactionsController,
+                                                                  prefixWidget:
+                                                                      Padding(
+                                                                    padding: const EdgeInsets
+                                                                            .only(
+                                                                        left:
+                                                                            40.0,
+                                                                        bottom:
+                                                                            12),
+                                                                    child: Text(
+                                                                      S
+                                                                          .of(context)
+                                                                          .JOD,
+                                                                      textAlign:
+                                                                          TextAlign
+                                                                              .end,
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              12,
+                                                                          fontWeight: FontWeight
+                                                                              .w600,
+                                                                          color:
+                                                                              Theme.of(context).primaryColorDark),
+                                                                    ),
                                                                   ),
+                                                                  textInputType:
+                                                                      TextInputType
+                                                                          .number,
                                                                 ),
-                                                                textInputType:
-                                                                    TextInputType
-                                                                        .number,
                                                               ),
 
                                                               ///Tax and PEP questions

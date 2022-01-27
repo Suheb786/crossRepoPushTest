@@ -394,6 +394,12 @@ class ErrorParser {
         return localisedHelper.errorWhileGettingAccountCloseOtp;
       case ErrorType.SELECT_CREDIT_LIMIT_SETTINGS:
         return localisedHelper.selectCreditLimitSettings;
+      case ErrorType.ID_CARD_NOT_FOUND:
+        return localisedHelper.idCardNotFound;
+      case ErrorType.CHANGE_CARD_PIN_ERROR:
+        return localisedHelper.changeCardPinError;
+      case ErrorType.ERROR_WHILE_LINKING_DEBIT_CARD:
+        return localisedHelper.errorWhileLinkingDebitCard;
 
       default:
         return "";

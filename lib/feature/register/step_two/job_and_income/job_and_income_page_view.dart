@@ -256,7 +256,7 @@ class JobAndIncomePageView
                             key: model.employerCountryKey,
                             onPressed: () {
                               FocusScope.of(context).unfocus();
-                              Future.delayed(Duration(milliseconds: 200), () {
+                              Future.delayed(Duration(milliseconds: 500), () {
                                 CountryDialog.show(context,
                                     title: S.of(context).employerCountrySmall,
                                     onDismissed: () {

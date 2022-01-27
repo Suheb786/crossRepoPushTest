@@ -1938,19 +1938,20 @@ class _ApiService implements ApiService {
   }
 
   @override
-  Future<HttpResponse<ActivityResponseEntity>> getActivity(
-      activityRequestEntity) async {
+  Future<HttpResponse<ResponseEntity>> applyDebitSupplementaryCard(
+      applyDebitSupplementaryCardRequest) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(activityRequestEntity.toJson());
+    _data.addAll(applyDebitSupplementaryCardRequest.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<ActivityResponseEntity>>(
+        _setStreamType<HttpResponse<ResponseEntity>>(
             Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/Account/AccountActivity',
+                .compose(
+                    _dio.options, '/DebitCard/RequestSuplementaryDebitCard',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = ActivityResponseEntity.fromJson(_result.data!);
+    final value = ResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
   }

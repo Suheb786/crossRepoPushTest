@@ -1,3 +1,4 @@
+import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
@@ -82,15 +83,23 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                                   style: TextStyle(fontSize: 14, height: 1.7),
                                 ), onSelected: () {
                               Navigator.pop(context);
-                              model.unBlockPin(
-                                  pinCode: '',
-                                  tokenizedPan:
-                                      ProviderScope.containerOf(context)
-                                          .read(appHomeViewModelProvider)
-                                          .dashboardDataContent
-                                          .debitCard!
-                                          .first
-                                          .code!);
+                              if (ProviderScope.containerOf(context)
+                                      .read(appHomeViewModelProvider)
+                                      .dashboardDataContent
+                                      .debitCard!
+                                      .first
+                                      .cardStatus ==
+                                  FreezeCardStatusEnum.PRE) {
+                                model.unBlockPin(
+                                    pinCode: '',
+                                    tokenizedPan:
+                                        ProviderScope.containerOf(context)
+                                            .read(appHomeViewModelProvider)
+                                            .dashboardDataContent
+                                            .debitCard!
+                                            .first
+                                            .code!);
+                              }
                             }, onDismissed: () {
                               Navigator.pop(context);
                             });

@@ -8139,6 +8139,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Id Card Not Found`
+  String get idCardNotFound {
+    return Intl.message(
+      'Id Card Not Found',
+      name: 'idCardNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Chard Pin Error`
+  String get changeCardPinError {
+    return Intl.message(
+      'Change Chard Pin Error',
+      name: 'changeCardPinError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while linking Debit Card`
+  String get errorWhileLinkingDebitCard {
+    return Intl.message(
+      'Error while linking Debit Card',
+      name: 'errorWhileLinkingDebitCard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm password should be same as new password`
+  String get confirmPasswordNotMatch {
+    return Intl.message(
+      'Confirm password should be same as new password',
+      name: 'confirmPasswordNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is successfully updated`
+  String get passwordUpdate {
+    return Intl.message(
+      'Password is successfully updated',
+      name: 'passwordUpdate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

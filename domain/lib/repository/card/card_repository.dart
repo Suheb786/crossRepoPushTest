@@ -8,6 +8,7 @@ import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart'
 import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:domain/model/debit_card/debit_card_limit_response.dart';
+import 'package:domain/model/user/scanned_document_information.dart';
 
 abstract class CardRepository {
   Future<Either<NetworkError, CardIssuanceDetails>> getCardIssuanceDetails();
@@ -104,4 +105,9 @@ abstract class CardRepository {
       {required String cardId, required String accountNumber});
 
   Future<Either<NetworkError, bool>> changePinVerify();
+
+  Future<Either<NetworkError, bool>> applyDebitSupplementaryCard(
+      {required ScannedDocumentInformation scannedDocumentInformation,
+      required String relation,
+      required String nickName});
 }
