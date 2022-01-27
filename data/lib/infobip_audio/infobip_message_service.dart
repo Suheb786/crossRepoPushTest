@@ -34,13 +34,17 @@ class InfobipMessageService {
     InfobipMobilemessaging.on(
         LibraryEvent.MESSAGE_RECEIVED,
         (Message message) => {
-              print("Callback. MESSAGE_RECEIVED event, message title: " +
-                  message.title! +
-                  " body: " +
-                  message.body!),
-              addLibraryEvent("Message Received"),
-              print("defaultMessageStorage().findAll():"),
-              print(InfobipMobilemessaging.defaultMessageStorage()!.findAll())
+              if (message != null)
+                {
+                  print("Callback. MESSAGE_RECEIVED event, message title: " +
+                      message.title! +
+                      " body: " +
+                      message.body!),
+                  addLibraryEvent("Message Received"),
+                  print("defaultMessageStorage().findAll():"),
+                  print(
+                      InfobipMobilemessaging.defaultMessageStorage()!.findAll())
+                }
             });
     InfobipMobilemessaging.on(
         LibraryEvent.USER_UPDATED,

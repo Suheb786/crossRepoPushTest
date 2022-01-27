@@ -10,6 +10,7 @@ import 'package:domain/model/card/get_loan_values/get_loan_values_response.dart'
 import 'package:domain/model/card/process_loan_request/process_loan_request_response.dart';
 import 'package:domain/model/dashboard/transactions/get_transactions_response.dart';
 import 'package:domain/model/debit_card/debit_card_limit_response.dart';
+import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:domain/repository/card/card_repository.dart';
 
 class CardRepositoryImpl extends CardRepository {
@@ -251,7 +252,7 @@ class CardRepositoryImpl extends CardRepository {
   Future<Either<NetworkError, bool>> unblockDebitCardPin(
       {String? status, required String pin}) async {
     final result = await safeApiCall(
-      _remoteDs.unblockDebitCardPin(pin: pin),
+      _remoteDs.unblockDebitCardPin(pin: pin, status: status!),
     );
     return result!.fold(
       (l) => Left(l),
@@ -385,6 +386,23 @@ class CardRepositoryImpl extends CardRepository {
   Future<Either<NetworkError, bool>> changePinVerify() async {
     final result = await safeApiCall(
       _remoteDs.changePinVerify(),
+    );
+    return result!.fold(
+      (l) => Left(l),
+      (r) => Right(r.isSuccessful()),
+    );
+  }
+
+  @override
+  Future<Either<NetworkError, bool>> applyDebitSupplementaryCard(
+      {required ScannedDocumentInformation scannedDocumentInformation,
+      required String relation,
+      required String nickName}) async {
+    final result = await safeApiCall(
+      _remoteDs.applyDebitSupplementaryCard(
+          scannedDocumentInformation: scannedDocumentInformation,
+          relation: relation,
+          nickName: nickName),
     );
     return result!.fold(
       (l) => Left(l),

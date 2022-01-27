@@ -167,7 +167,8 @@ final supplementaryDebitIdScanInfoViewModelProvider = ChangeNotifierProvider
 final personalizeDebitViewModelProvider =
     ChangeNotifierProvider.autoDispose<PersonalizeDebitCardPageViewModel>(
   (ref) => PersonalizeDebitCardPageViewModel(
-      ref.read(personalizeDebitCardUseCaseProvider)),
+      ref.read(personalizeDebitCardUseCaseProvider),
+      ref.read(applySupplementaryDebitUseCaseProvider)),
 );
 
 ///supplementary card in review view model provider

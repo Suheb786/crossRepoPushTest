@@ -119,6 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("All Transactions"),
         "allowBiometric":
             MessageLookupByLibrary.simpleMessage("Allow biometric"),
+        "amountZero": MessageLookupByLibrary.simpleMessage("Invalid amount"),
         "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
         "annualIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Annual Income"),
@@ -238,6 +239,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "While frozen, your card can\'t be used for any transactions."),
         "changeCardPin":
             MessageLookupByLibrary.simpleMessage("Change card PIN"),
+        "changeCardPinError":
+            MessageLookupByLibrary.simpleMessage("Change Chard Pin Error"),
         "changeCountryRestriction":
             MessageLookupByLibrary.simpleMessage("Change country restriction"),
         "changeEmailAddress":
@@ -277,6 +280,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("CONFIRM new pin "),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("CONFIRM PASSWORD"),
+        "confirmPasswordNotMatch": MessageLookupByLibrary.simpleMessage(
+            "Confirm password should be same as new password"),
         "confirmTermsCondError": MessageLookupByLibrary.simpleMessage(
             "Confirm to the terms and conditions."),
         "confirmThatTaxResidency": MessageLookupByLibrary.simpleMessage(
@@ -453,7 +458,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyName":
             MessageLookupByLibrary.simpleMessage("Name field cannot be empty"),
         "emptyNationality": MessageLookupByLibrary.simpleMessage(
-            "Nationality field cannot be empty"),
+            "Place Of Birth field cannot be empty"),
         "emptyNationalityDocument": MessageLookupByLibrary.simpleMessage(
             "Upload valid nationality document."),
         "emptyNewPassword":
@@ -565,6 +570,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error has occurred While Getting Account DashBoard"),
         "errorWhileGettingFatcaCrs": MessageLookupByLibrary.simpleMessage(
             "Error While Getting FatcaCrs"),
+        "errorWhileLinkingDebitCard": MessageLookupByLibrary.simpleMessage(
+            "Error while linking Debit Card"),
         "errorWhileLogout":
             MessageLookupByLibrary.simpleMessage("Error While Logout"),
         "errorWhileProcessLoanRequest": MessageLookupByLibrary.simpleMessage(
@@ -686,6 +693,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Id card is expired, cannot proceed."),
         "idCardNotAllowed": MessageLookupByLibrary.simpleMessage(
             "ID card is not allowed for NeoBank."),
+        "idCardNotFound":
+            MessageLookupByLibrary.simpleMessage("Id Card Not Found"),
         "idExpiryDate": MessageLookupByLibrary.simpleMessage("ID EXPIRY DATE"),
         "idHint":
             MessageLookupByLibrary.simpleMessage("Please Enter ID Number"),
@@ -996,6 +1005,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "The passwords you entered do not match. Please try again."),
         "passwordNotMeetCriteria": MessageLookupByLibrary.simpleMessage(
             "Your password does not meet the minimum requirements. \nPlease try again."),
+        "passwordUpdate": MessageLookupByLibrary.simpleMessage(
+            "Password is successfully updated"),
         "passwordUpdatedSuccessfully": MessageLookupByLibrary.simpleMessage(
             "Your password has been updated successfully"),
         "payBack": MessageLookupByLibrary.simpleMessage("Pay back"),

@@ -169,7 +169,12 @@ class SendMoneyPageView extends BasePageViewWidget<SendMoneyViewModel> {
                   textColor: Colors.black,
                   rightButtonFn: () {
                     print("clicked");
-                    if (double.parse(model.currentPinValue) >
+                    if (double.parse(model.currentPinValue) <= 0) {
+                      model.showToastWithError(AppError(
+                          cause: Exception(),
+                          error: ErrorInfo(message: ""),
+                          type: ErrorType.ZERO_AMOUNT));
+                    } else if (double.parse(model.currentPinValue) >
                         double.parse(ProviderScope.containerOf(context)
                             .read(appHomeViewModelProvider)
                             .dashboardDataContent

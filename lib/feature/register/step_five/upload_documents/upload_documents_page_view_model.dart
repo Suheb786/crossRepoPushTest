@@ -248,7 +248,9 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        _uploadIncomePoofResponse.safeAdd(event.data!);
+        if (event.data != null) {
+          _uploadIncomePoofResponse.safeAdd(event.data!);
+        }
       });
     });
 
@@ -258,7 +260,9 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
           .asFlow()
           .listen((event) {
         updateLoader();
-        _uploadAddressPoofResponse.safeAdd(event.data!);
+        if (event.data != null) {
+          _uploadAddressPoofResponse.safeAdd(event.data!);
+        }
       });
     });
 
@@ -267,7 +271,9 @@ class UploadDocumentsPageViewModel extends BasePageViewModel {
               createCall: () => _uploadDocumentUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _additionalNationalityProofResponse.safeAdd(event.data!);
+        if (event.data != null) {
+          _additionalNationalityProofResponse.safeAdd(event.data!);
+        }
       });
     });
 

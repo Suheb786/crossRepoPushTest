@@ -28,8 +28,7 @@ class AccountSettingPageView
   Widget build(BuildContext context, model) {
     return GestureDetector(
       onVerticalDragEnd: (details) {
-        if (details.primaryVelocity!.isNegative) {
-        } else {
+        if (details.primaryVelocity! > 0) {
           Navigator.pop(context);
         }
       },
@@ -260,7 +259,7 @@ class AccountSettingPageView
                                                       RoutePaths
                                                           .ChangeEmailAddress);
                                               if (isSuccess != null) {
-                                                //model.getProfileDetails();
+                                                model.getProfileDetails();
                                               }
                                             },
                                           ),
@@ -461,42 +460,42 @@ class AccountSettingPageView
                                                   },
                                                 );
                                               }),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 16.0, bottom: 16),
-                                            child: Container(
-                                              height: 1,
-                                              color: Theme.of(context)
-                                                  .backgroundColor,
-                                            ),
-                                          ),
-                                          AccountSettingWidget(
-                                            image: AssetUtils.documents,
-                                            title: S.of(context).myDocuments,
-                                            onTap: () {
-                                              Navigator.pushNamed(context,
-                                                  RoutePaths.MyDocuments);
-                                            },
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 16.0, bottom: 16),
-                                            child: Container(
-                                              height: 1,
-                                              color: Theme.of(context)
-                                                  .backgroundColor,
-                                            ),
-                                          ),
-                                          AccountSettingWidget(
-                                            image: AssetUtils.termsCondition,
-                                            title: S
-                                                .of(context)
-                                                .termsAndConditionsSetting,
-                                            onTap: () {
-                                              Navigator.pushNamed(context,
-                                                  RoutePaths.TermsAndCondition);
-                                            },
-                                          ),
+                                          // Padding(
+                                          //   padding: const EdgeInsets.only(
+                                          //       top: 16.0, bottom: 16),
+                                          //   child: Container(
+                                          //     height: 1,
+                                          //     color: Theme.of(context)
+                                          //         .backgroundColor,
+                                          //   ),
+                                          // ),
+                                          // AccountSettingWidget(
+                                          //   image: AssetUtils.documents,
+                                          //   title: S.of(context).myDocuments,
+                                          //   onTap: () {
+                                          //     Navigator.pushNamed(context,
+                                          //         RoutePaths.MyDocuments);
+                                          //   },
+                                          // ),
+                                          // Padding(
+                                          //   padding: const EdgeInsets.only(
+                                          //       top: 16.0, bottom: 16),
+                                          //   child: Container(
+                                          //     height: 1,
+                                          //     color: Theme.of(context)
+                                          //         .backgroundColor,
+                                          //   ),
+                                          // ),
+                                          // AccountSettingWidget(
+                                          //   image: AssetUtils.termsCondition,
+                                          //   title: S
+                                          //       .of(context)
+                                          //       .termsAndConditionsSetting,
+                                          //   onTap: () {
+                                          //     Navigator.pushNamed(context,
+                                          //         RoutePaths.TermsAndCondition);
+                                          //   },
+                                          // ),
                                           SizedBox(
                                             height: 60,
                                           )

@@ -178,14 +178,18 @@ class DebitCardDeliveredPageView
                       ))
                 ],
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 36),
-                child: Text(
-                  S.of(context).deliveryIssue,
-                  style: TextStyle(
-                      color: Theme.of(context).accentTextTheme.bodyText1!.color,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600),
+              Visibility(
+                visible: false,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 36),
+                  child: Text(
+                    S.of(context).deliveryIssue,
+                    style: TextStyle(
+                        color:
+                            Theme.of(context).accentTextTheme.bodyText1!.color,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600),
+                  ),
                 ),
               )
             ],

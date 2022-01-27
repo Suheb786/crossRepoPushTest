@@ -288,6 +288,8 @@ class ErrorParser {
         return localisedHelper.pinDoesNotMatch;
       case ErrorType.ACCOUNT_INQUIRY_WENT_WRONG:
         return localisedHelper.accountInquiryWentWrong;
+      case ErrorType.ZERO_AMOUNT:
+        return localisedHelper.amountZero;
       case ErrorType.EMPTY_NEW_PASSWORD:
         return localisedHelper.emptyNewPassword;
       case ErrorType.INVALID_ID_CARD:
@@ -340,6 +342,8 @@ class ErrorParser {
         return localisedHelper.emptyIncome;
       case ErrorType.PASSWORD_NOT_MEET_CRITERIA:
         return localisedHelper.passwordNotMeetCriteria;
+      case ErrorType.CONFIRM_PASSWORD_NOT_MATCH_WITH_NEW_PASSWORD:
+        return localisedHelper.confirmPasswordNotMatch;
       case ErrorType.CURRENT_PASSWORD_INVALID:
         return localisedHelper.currentPasswordInvalid;
       case ErrorType.SELECT_EXPECTED_TRANSACTION:
@@ -390,6 +394,12 @@ class ErrorParser {
         return localisedHelper.errorWhileGettingAccountCloseOtp;
       case ErrorType.SELECT_CREDIT_LIMIT_SETTINGS:
         return localisedHelper.selectCreditLimitSettings;
+      case ErrorType.ID_CARD_NOT_FOUND:
+        return localisedHelper.idCardNotFound;
+      case ErrorType.CHANGE_CARD_PIN_ERROR:
+        return localisedHelper.changeCardPinError;
+      case ErrorType.ERROR_WHILE_LINKING_DEBIT_CARD:
+        return localisedHelper.errorWhileLinkingDebitCard;
 
       default:
         return "";

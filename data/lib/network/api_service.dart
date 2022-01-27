@@ -26,6 +26,8 @@ import 'package:data/entity/remote/accountsettings/profile_changed_success_respo
 import 'package:data/entity/remote/accountsettings/profile_details_response_entity.dart';
 import 'package:data/entity/remote/accountsettings/update_profile_image_request.dart';
 import 'package:data/entity/remote/accountsettings/verify_change_email_request.dart';
+import 'package:data/entity/remote/activity/activity_request_entity.dart';
+import 'package:data/entity/remote/activity/activity_response_entity.dart';
 import 'package:data/entity/remote/ahwal/ahwal_detail_response_entity.dart';
 import 'package:data/entity/remote/ahwal/get_ahwal_details_request.dart';
 import 'package:data/entity/remote/bank_smart/add_account_purpose_request.dart';
@@ -50,6 +52,7 @@ import 'package:data/entity/remote/card/credit_card_limits_update_request_entity
 import 'package:data/entity/remote/card/credit_card_statement_request.dart';
 import 'package:data/entity/remote/card/debit_card_limits_update_request_entity.dart';
 import 'package:data/entity/remote/card/debit_card_statement_request.dart';
+import 'package:data/entity/remote/card/debit_supplementary/apply_debit_supplementary_card_request.dart';
 import 'package:data/entity/remote/card/debit_years_response_entity.dart';
 import 'package:data/entity/remote/card/freeze_credit_card_request_entity.dart';
 import 'package:data/entity/remote/card/freeze_debit_card_request_entity.dart';
@@ -670,4 +673,14 @@ abstract class ApiService {
   @POST("/video/GetCallStatus")
   Future<HttpResponse<ResponseEntity>> getCallStatus(
       @Body() GetCallStatusRequest request);
+
+  @POST("/DebitCard/RequestSuplementaryDebitCard")
+  Future<HttpResponse<ResponseEntity>> applyDebitSupplementaryCard(
+      @Body()
+          ApplyDebitSupplementaryCardRequest
+              applyDebitSupplementaryCardRequest);
+
+  @POST("/Account/AccountActivity")
+  Future<HttpResponse<ActivityResponseEntity>> getActivity(
+      @Body() ActivityRequestEntity activityRequestEntity);
 }

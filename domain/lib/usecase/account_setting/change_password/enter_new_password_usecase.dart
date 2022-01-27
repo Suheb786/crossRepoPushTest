@@ -21,13 +21,14 @@ class EnterNewPasswordUseCase extends BaseUseCase<NetworkError,
     return _accountSettingsRepository.changePassword(
         oldPassword: params.currentPassword,
         newPassword: params.newPassword,
-        confirmNewPassword: params.newPassword);
+        confirmNewPassword: params.confirmNewPassword);
   }
 }
 
 class EnterNewPasswordUseCaseParams extends Params {
   final String currentPassword;
   final String newPassword;
+  final String confirmNewPassword;
   final bool minimumEightCharacters;
   final bool hasUpperCase;
   final bool hasSymbol;
@@ -37,6 +38,7 @@ class EnterNewPasswordUseCaseParams extends Params {
   EnterNewPasswordUseCaseParams(
       {required this.currentPassword,
       required this.newPassword,
+      required this.confirmNewPassword,
       required this.containsDigit,
       required this.hasSymbol,
       required this.hasUpperCase,
@@ -67,6 +69,11 @@ class EnterNewPasswordUseCaseParams extends Params {
       return Left(AppError(
           error: ErrorInfo(message: ''),
           type: ErrorType.PASSWORD_NOT_MEET_CRITERIA,
+          cause: Exception()));
+    } else if (confirmNewPassword != newPassword) {
+      return Left(AppError(
+          error: ErrorInfo(message: ''),
+          type: ErrorType.CONFIRM_PASSWORD_NOT_MATCH_WITH_NEW_PASSWORD,
           cause: Exception()));
     }
     return Right(true);

@@ -17,7 +17,9 @@ import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:share_plus/share_plus.dart';
 
 class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
-  MyAccountPageView(ProviderBase model) : super(model);
+  // MyAccountPageView(ProviderBase model) : super(model);
+  final GetDashboardDataContent cardData;
+  MyAccountPageView(ProviderBase model, this.cardData) : super(model);
 
   @override
   Widget build(BuildContext context, model) {
@@ -55,13 +57,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                         child: SingleChildScrollView(
                           child: Padding(
                             padding: EdgeInsets.only(left: 27.0, bottom: 29),
-                            child: AppStreamBuilder<GetDashboardDataContent>(
-                              stream: ProviderScope.containerOf(context)
-                                  .read(appHomeViewModelProvider)
-                                  .getDashboardCardDataStream,
-                              initialData: GetDashboardDataContent(),
-                              dataBuilder: (context, cardData) {
-                                return Column(
+                            child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     // Row(
@@ -186,7 +182,7 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                                         .width /
                                                     2),
                                             child: Text(
-                                              cardData!.account!.accountTitle !=
+                                              cardData.account!.accountTitle !=
                                                       null
                                                   ? cardData
                                                       .account!.accountTitle!
@@ -401,8 +397,6 @@ class MyAccountPageView extends BasePageViewWidget<MyAccountViewModel> {
                                     ),
                                     const SizedBox(height: 40),
                                   ],
-                                );
-                              },
                             ),
                           ),
                         ),

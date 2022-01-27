@@ -90,7 +90,6 @@ class ManageDebitCardLimitsPageView
                                         initialData: Resource.none(),
                                         onData: (data) {
                                           if (data.status == Status.SUCCESS) {
-                                            ///TODO: updated value from response
                                             model.getDebitCardLimit();
                                           }
                                         },
@@ -127,11 +126,12 @@ class ManageDebitCardLimitsPageView
                                                                   .currentLimit!));
                                                     }
                                                   },
-                                                  initialValue: debitCardLimitResponse
-                                                              .data!
-                                                              .debitCardLimitContent!
-                                                              .limits![0]
-                                                              .currentLimit ==
+                                                  initialValue: num.parse(
+                                                              debitCardLimitResponse
+                                                                  .data!
+                                                                  .debitCardLimitContent!
+                                                                  .limits![0]
+                                                                  .currentLimit!) ==
                                                           0
                                                       ? false
                                                       : true,
@@ -231,11 +231,12 @@ class ManageDebitCardLimitsPageView
                                                   title: S
                                                       .of(context)
                                                       .merchantPayments,
-                                                  initialValue: debitCardLimitResponse
-                                                              .data!
-                                                              .debitCardLimitContent!
-                                                              .limits![1]
-                                                              .currentLimit ==
+                                                  initialValue: num.parse(
+                                                              debitCardLimitResponse
+                                                                  .data!
+                                                                  .debitCardLimitContent!
+                                                                  .limits![1]
+                                                                  .currentLimit!) ==
                                                           0
                                                       ? false
                                                       : true,
@@ -331,11 +332,12 @@ class ManageDebitCardLimitsPageView
                                                   title: S
                                                       .of(context)
                                                       .onlinePurchase,
-                                                  initialValue: debitCardLimitResponse
-                                                              .data!
-                                                              .debitCardLimitContent!
-                                                              .limits![4]
-                                                              .currentLimit ==
+                                                  initialValue: num.parse(
+                                                              debitCardLimitResponse
+                                                                  .data!
+                                                                  .debitCardLimitContent!
+                                                                  .limits![4]
+                                                                  .currentLimit!) ==
                                                           0
                                                       ? false
                                                       : true,
@@ -453,7 +455,31 @@ class ManageDebitCardLimitsPageView
                                                                   .currentLimit!));
                                                     }
                                                   },
-                                                  initialValue: false,
+                                                  initialValue:
+                                                      // debitCardLimitResponse
+                                                      //                 .data!
+                                                      //                 .debitCardLimitContent!
+                                                      //                 .limits![5]
+                                                      //                 .currentLimit ==
+                                                      //             150 &&
+                                                      ((ProviderScope.containerOf(
+                                                                          context)
+                                                                      .read(
+                                                                          appHomeViewModelProvider)
+                                                                      .dashboardDataContent
+                                                                      .debitCard!
+                                                                      .first
+                                                                      .debitDeliveredDatetime !=
+                                                                  null) &&
+                                                              num.parse(debitCardLimitResponse
+                                                                      .data!
+                                                                      .debitCardLimitContent!
+                                                                      .limits![
+                                                                          5]
+                                                                      .currentLimit!) !=
+                                                                  0)
+                                                          ? true
+                                                          : false,
                                                   noToggle: !(ProviderScope
                                                               .containerOf(
                                                                   context)

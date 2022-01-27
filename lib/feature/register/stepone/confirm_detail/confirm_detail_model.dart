@@ -249,6 +249,7 @@ class ConfirmDetailViewModel extends BasePageViewModel {
   bool isIssuingPlaceReadOnly = false;
 
   void confirmDetail() {
+    print('selected Isuuing place-->${selectedIssuingPlace.isoCode3}');
     _confirmDetailRequest.safeAdd(ConfirmDetailUseCaseParams(
         name: nameController.text,
         idNumber: idNumberController.text,
@@ -265,7 +266,10 @@ class ConfirmDetailViewModel extends BasePageViewModel {
         issuingDate: scannedDocumentResult.issuingDate!.year == 0
             ? selectedIssuingDate
             : scannedDocumentResult.issuingDate.toString(),
-        issuingPlace: scannedDocumentResult.issuingPlaceISo3,
+        issuingPlace: (selectedIssuingPlace.isoCode3 != null &&
+                selectedIssuingPlace.isoCode3!.isNotEmpty)
+            ? selectedIssuingPlace.isoCode3
+            : scannedDocumentResult.issuingPlaceISo3,
         declarationSelected: _declarationSelectedSubject.value,
         scannedDocumentInformation: scannedDocumentResult));
   }

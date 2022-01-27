@@ -39,7 +39,7 @@ class EnterNewPasswordPageView
                     onData: (passwordData) {
                       if (passwordData.status == Status.SUCCESS) {
                         Navigator.pop(context);
-                        model.showSuccessToast(passwordData.data!.data!.data!);
+                        model.showSuccessToast(S.of(context).passwordUpdate);
                       } else if (passwordData.status == Status.ERROR) {
                         if (passwordData.appError!.type ==
                             ErrorType.EMPTY_PASSWORD) {
@@ -54,6 +54,11 @@ class EnterNewPasswordPageView
                         } else if (passwordData.appError!.type ==
                             ErrorType.CURRENT_PASSWORD_INVALID) {
                           model.currentPasswordKey.currentState!.isValid =
+                              false;
+                        } else if (passwordData.appError!.type ==
+                            ErrorType
+                                .CONFIRM_PASSWORD_NOT_MATCH_WITH_NEW_PASSWORD) {
+                          model.confirmNewPasswordKey.currentState!.isValid =
                               false;
                         }
 
@@ -224,6 +229,63 @@ class EnterNewPasswordPageView
                                                 ),
                                               ],
                                             ),
+                                          ),
+                                          SizedBox(
+                                            height: 16,
+                                          ),
+                                          AppTextField(
+                                            key: model.confirmNewPasswordKey,
+                                            labelText:
+                                                S.of(context).confirmPassword,
+                                            hintText: S.of(context).pleaseEnter,
+                                            inputType: TextInputType.text,
+                                            obscureText: true,
+                                            onChanged: (value) {
+                                              model.validatePassword();
+                                              model.validateAllFields();
+                                            },
+                                            controller: model
+                                                .confirmNewPasswordController,
+                                            suffixIcon: (isChecked, value) {
+                                              return InkWell(
+                                                onTap: () {
+                                                  model
+                                                          .confirmNewPasswordKey
+                                                          .currentState!
+                                                          .secureText =
+                                                      !model
+                                                          .confirmNewPasswordKey
+                                                          .currentState!
+                                                          .secureText;
+                                                },
+                                                child: model
+                                                        .confirmNewPasswordKey
+                                                        .currentState!
+                                                        .secureText
+                                                    ? Container(
+                                                        width: 16,
+                                                        height: 16,
+                                                        padding:
+                                                            EdgeInsets.all(4),
+                                                        child: AppSvg.asset(
+                                                            AssetUtils.eye,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .inputDecorationTheme
+                                                                .labelStyle!
+                                                                .color!
+                                                                .withOpacity(
+                                                                    0.3)),
+                                                      )
+                                                    : Icon(
+                                                        Icons.visibility_off,
+                                                        color: Theme.of(context)
+                                                            .inputDecorationTheme
+                                                            .labelStyle!
+                                                            .color,
+                                                      ),
+                                              );
+                                            },
                                           ),
                                           SizedBox(
                                             height: MediaQuery.of(context)
