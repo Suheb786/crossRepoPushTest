@@ -37,7 +37,8 @@ class ConfirmDetailUseCase extends BaseUseCase<NetworkError,
         backCardImage: params.scannedDocumentInformation!.backCardImage ?? '',
         personFaceImage:
             params.scannedDocumentInformation!.personFaceImage ?? '',
-        issuer: params.scannedDocumentInformation!.issuer ?? '',
+        //issuer: params.scannedDocumentInformation!.issuer ?? '',
+        issuer: params.issuingPlace ?? '',
         placeOfBirth: params.nationality ?? '',
         doi: params.issuingDate,
         scanPercentage:

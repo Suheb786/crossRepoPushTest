@@ -12,9 +12,7 @@ import 'package:neo_bank/ui/molecules/dashboard/add_money_selector_option_widget
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
-import 'package:neo_bank/utils/extension/string_casing_extension.dart';
 import 'package:neo_bank/utils/navgition_type.dart';
-import 'package:neo_bank/utils/string_utils.dart';
 import 'package:share_plus/share_plus.dart';
 
 class AddMoneyOptionSelectorPageView
@@ -104,6 +102,7 @@ class AddMoneyOptionSelectorPageView
                       onTap: () {
                         Navigator.pushNamed(context, RoutePaths.LocateATM);
                       },
+                      isVisible: false,
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 24),

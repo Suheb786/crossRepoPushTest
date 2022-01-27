@@ -1570,10 +1570,10 @@ class S {
     );
   }
 
-  /// `Nationality field cannot be empty`
+  /// `Place Of Birth field cannot be empty`
   String get emptyNationality {
     return Intl.message(
-      'Nationality field cannot be empty',
+      'Place Of Birth field cannot be empty',
       name: 'emptyNationality',
       desc: '',
       args: [],
@@ -8130,21 +8130,11 @@ class S {
     );
   }
 
-  /// `Confirm password should be same as new password`
-  String get confirmPasswordNotMatch {
+  /// `Invalid amount`
+  String get amountZero {
     return Intl.message(
-      'Confirm password should be same as new password',
-      name: 'confirmPasswordNotMatch',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Password is successfully updated`
-  String get passwordUpdate {
-    return Intl.message(
-      'Password is successfully updated',
-      name: 'passwordUpdate',
+      'Invalid amount',
+      name: 'amountZero',
       desc: '',
       args: [],
     );

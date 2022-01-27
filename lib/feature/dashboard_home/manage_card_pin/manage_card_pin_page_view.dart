@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/manage_card_pin/manage_card_pin_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -81,7 +82,15 @@ class ManageCardPinPageView extends BasePageViewWidget<ManageCardPinViewModel> {
                                   style: TextStyle(fontSize: 14, height: 1.7),
                                 ), onSelected: () {
                               Navigator.pop(context);
-                              model.unBlockPin();
+                              model.unBlockPin(
+                                  pinCode: '',
+                                  tokenizedPan:
+                                      ProviderScope.containerOf(context)
+                                          .read(appHomeViewModelProvider)
+                                          .dashboardDataContent
+                                          .debitCard!
+                                          .first
+                                          .code!);
                             }, onDismissed: () {
                               Navigator.pop(context);
                             });

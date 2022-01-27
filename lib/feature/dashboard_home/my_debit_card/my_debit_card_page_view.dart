@@ -1,4 +1,3 @@
-import 'package:backdrop/button.dart';
 import 'package:domain/constants/enum/freeze_card_status_enum.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:flip_card/flip_card.dart';
@@ -58,6 +57,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                           child: Container(
                             decoration: BoxDecoration(
                                 image: DecorationImage(
+                                    fit: BoxFit.cover,
                                     image: AssetImage(AssetUtils.zigzagDebit))),
                             child: SingleChildScrollView(
                               child: Column(
@@ -65,17 +65,11 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                     MainAxisAlignment.spaceBetween,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  InkWell(
-                                    onTap: () {
-                                      print("toggle button");
-                                      BackdropToggleButton();
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 23, right: 23, left: 23),
-                                      child: Image.asset(AssetUtils.blink,
-                                          height: 33.64, width: 72),
-                                    ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 23, right: 23, left: 23),
+                                    child: Image.asset(AssetUtils.blink,
+                                        height: 33.64, width: 72),
                                   ),
                                   Padding(
                                     padding: EdgeInsets.only(top: 78),
@@ -149,7 +143,10 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                 )
               : FlipCard(
                   key: model.cardKey,
-                  flipOnTouch: false,
+                  flipOnTouch: cardData.debitCard!.first.cardStatus ==
+                          FreezeCardStatusEnum.F
+                      ? false
+                      : true,
                   direction: FlipDirection.HORIZONTAL,
                   front: Container(
                     color: Theme.of(context).accentColor,
@@ -217,7 +214,7 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           children: [
                                             Row(
                                               crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                                  CrossAxisAlignment.center,
                                               mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
@@ -260,27 +257,20 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                         padding:
                                                             EdgeInsets.only(
                                                                 right: 23.0),
-                                                        child: InkWell(
-                                                          onTap: () {
-                                                            model.cardKey
-                                                                .currentState!
-                                                                .toggleCard();
-                                                          },
-                                                          child: Text(
-                                                            S
-                                                                .of(context)
-                                                                .flipCard,
-                                                            style: TextStyle(
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .accentTextTheme
-                                                                    .bodyText1!
-                                                                    .color!,
-                                                                fontSize: 14,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600),
-                                                          ),
+                                                        child: Text(
+                                                          S
+                                                              .of(context)
+                                                              .flipCard,
+                                                          style: TextStyle(
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .accentTextTheme
+                                                                  .bodyText1!
+                                                                  .color!,
+                                                              fontSize: 14,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600),
                                                         ),
                                                       )
                                               ],
@@ -493,7 +483,10 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                               return SingleChildScrollView(
                                 child: Padding(
                                   padding: EdgeInsets.only(
-                                      left: 29.0, top: 38, right: 25),
+                                      left: 29.0,
+                                      top: 38,
+                                      right: 25,
+                                      bottom: 6),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -525,21 +518,15 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           SizedBox(
                                             width: 8,
                                           ),
-                                          InkWell(
-                                            onTap: () {
-                                              model.cardKey.currentState!
-                                                  .toggleCard();
-                                            },
-                                            child: Text(
-                                              S.of(context).flipBack,
-                                              style: TextStyle(
-                                                  color: Theme.of(context)
-                                                      .accentTextTheme
-                                                      .bodyText1!
-                                                      .color,
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
+                                          Text(
+                                            S.of(context).flipBack,
+                                            style: TextStyle(
+                                                color: Theme.of(context)
+                                                    .accentTextTheme
+                                                    .bodyText1!
+                                                    .color,
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.w600),
                                           )
                                         ],
                                       ),

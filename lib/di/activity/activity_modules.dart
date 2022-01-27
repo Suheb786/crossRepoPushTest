@@ -13,8 +13,8 @@ final notificationViewModelProvider =
 final activityHomeViewModelProvider =
     ChangeNotifierProvider.autoDispose<ActivityHomeViewModel>(
   (ref) => ActivityHomeViewModel(
-      ref.read(paymentActivityTransactionUseCaseProvider)),
-);
+            ref.read(paymentActivityTransactionUseCaseProvider),
+            ref.read(notificationUseCaseProvider)));
 
 final paymentActivityViewModelProvider =
     ChangeNotifierProvider.autoDispose<PaymentActivityViewModel>(

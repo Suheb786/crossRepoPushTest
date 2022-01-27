@@ -65,7 +65,7 @@ abstract class CardRemoteDs {
       required String cardNumber});
 
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
-      {required String pin});
+      {required String pin,required String status});
 
   Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(
       {num? atmWithdrawal,
