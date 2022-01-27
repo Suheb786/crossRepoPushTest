@@ -97,31 +97,37 @@ class SupplementaryIdScanVerificationInfoDebitPageView
                                             title: S.of(context).idScanInfo),
                                       ],
                                     ),
-                                    Column(
-                                      children: [
-                                        InkWell(
-                                          onTap: () {},
-                                          child: Text(
-                                            S.of(context).uploadIdInstead,
-                                            style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                                letterSpacing: 1,
-                                                color: Theme.of(context)
-                                                    .accentTextTheme
-                                                    .bodyText1!
-                                                    .color),
+                                    Visibility(
+                                      visible: false,
+                                      child: Column(
+                                        children: [
+                                          InkWell(
+                                            onTap: () {},
+                                            child: Text(
+                                              S.of(context).uploadIdInstead,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  letterSpacing: 1,
+                                                  color: Theme.of(context)
+                                                      .accentTextTheme
+                                                      .bodyText1!
+                                                      .color),
+                                            ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: 56,
-                                        ),
-                                        AnimatedButton(
-                                          buttonText:
-                                              S.of(context).swipeToProceed,
-                                        ),
-                                      ],
-                                    )
+                                          SizedBox(
+                                            height: 56,
+                                          ),
+                                          AnimatedButton(
+                                            buttonText:
+                                                S.of(context).swipeToProceed,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    AnimatedButton(
+                                      buttonText: S.of(context).swipeToProceed,
+                                    ),
                                   ],
                                 )),
                           ),

@@ -1,9 +1,11 @@
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lottie/lottie.dart';
 import 'package:neo_bank/base/base_page.dart';
+import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/app_home/app_home_view_model.dart';
 import 'package:neo_bank/feature/dashboard_home/credit_card_delivered/credit_card_delivered_page.dart';
 import 'package:neo_bank/feature/dashboard_home/debit_card_delivered/debit_card_delivered_page.dart';
@@ -21,9 +23,6 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/time_utils.dart';
-import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
-
 
 class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
   AppHomePageView(ProviderBase model) : super(model);
@@ -148,48 +147,58 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                           //   },
                                           //   currentStep: currentStep,
                                           // ),
-                                          child: AppStreamBuilder<GetDashboardDataContent>(
-                                            stream: ProviderScope.containerOf(context)
-                                              .read(appHomeViewModelProvider)
-                                              .getDashboardCardDataStream,
-                                            initialData: GetDashboardDataContent(),
+                                          child: AppStreamBuilder<
+                                                  GetDashboardDataContent>(
+                                              stream: ProviderScope.containerOf(
+                                                      context)
+                                                  .read(
+                                                      appHomeViewModelProvider)
+                                                  .getDashboardCardDataStream,
+                                              initialData:
+                                                  GetDashboardDataContent(),
                                               dataBuilder: (context, cardData) {
-                                              if(cardData!.account!.accountNo == null) {
-                                                return SizedBox();
-                                              } return DashboardSwiper(
+                                                if (cardData!
+                                                        .account!.accountNo ==
+                                                    null) {
+                                                  return SizedBox();
+                                                }
+                                                return DashboardSwiper(
                                                   pages: [
                                                     MyAccountPage(
-                                                      cardData: cardData,),
+                                                      cardData: cardData,
+                                                    ),
                                                     GetCreditCardPage(
-                                                      cardData: cardData,),
+                                                      cardData: cardData,
+                                                    ),
                                                     MyDebitCardPage(
                                                         cardData: cardData),
                                                   ],
                                                   pageController:
-                                                  model.pageController,
+                                                      model.pageController,
                                                   onIndexChanged: (index) {
                                                     // _currentPage = index;
                                                     model.updatePage(index);
                                                     model
                                                         .updatePageControllerStream(
-                                                        index);
+                                                            index);
                                                   },
                                                   currentStep: currentStep,
                                                 );
-                                              }
-                                          ),
+                                              }),
                                         ),
                                       ),
                                       const SizedBox(height: 0.0),
-                                  SizedBox(
-                                    height: MediaQuery.of(context).size.height * 0.03,
-                                     child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: model
-                                            .buildPageIndicator(currentStep!),
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height *
+                                                0.03,
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: model
+                                              .buildPageIndicator(currentStep!),
+                                        ),
                                       ),
-                                  ),
                                       // SmoothPageIndicator(
                                       //     controller: model.controller,
                                       //     count: pages.length,
@@ -886,7 +895,8 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                               width: 281,
                                               height: 100,
                                               decoration: BoxDecoration(
-                                                  color: currentStep == 1 || currentStep == 3
+                                                  color: currentStep == 1 ||
+                                                          currentStep == 3
                                                       ? Theme.of(context)
                                                           .primaryColor
                                                       : Theme.of(context)

@@ -41,7 +41,9 @@ class RegisterRemoteDataSourceImpl extends RegisterRemoteDataSource {
   Future<List<AdditionalIncome>> getAdditionalIncomeSourceList() {
     return Future.value([
       AdditionalIncome(type: 'Additional Salary'),
-      AdditionalIncome(type: 'Bonus, Incentive & Commission'),
+      AdditionalIncome(type: 'Pension'),
+      AdditionalIncome(type: 'Freelance Income'),
+      AdditionalIncome(type: 'Bonus, Incentive, and Commission'),
       AdditionalIncome(type: 'Rental Income'),
       AdditionalIncome(type: 'Investments'),
       AdditionalIncome(type: 'Own Business'),

@@ -14,7 +14,7 @@ class EmploymentStatusDialogViewModel extends BasePageViewModel {
     "Retired",
     "Student",
     "Unemployed",
-    "Other"
+    //"Other"
   ];
 
   ///current selected index subject
