@@ -8169,6 +8169,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Confirm password should be same as new password`
+  String get confirmPasswordNotMatch {
+    return Intl.message(
+      'Confirm password should be same as new password',
+      name: 'confirmPasswordNotMatch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is successfully updated`
+  String get passwordUpdate {
+    return Intl.message(
+      'Password is successfully updated',
+      name: 'passwordUpdate',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
