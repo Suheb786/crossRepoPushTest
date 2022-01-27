@@ -111,8 +111,7 @@ class NotificationPageView extends BasePageViewWidget<NotificationViewModel> {
                                     );
                                   },
                                 )
-                              : Center(
-                                  child: Text("No Transaction to Display"));
+                              : Center(child: Text("No Activity to Display"));
                         }),
                   )
                 ],
