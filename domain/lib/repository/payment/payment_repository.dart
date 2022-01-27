@@ -41,7 +41,11 @@ abstract class PaymentRepository {
       String? image,
       String? nickName,
       String? detCustomerType,
-      String? type);
+      String? type,
+      String? alias,
+      String? dbtrSurname,
+      String? addressCity,
+      String? addressCountry);
 
   Future<Either<NetworkError, PurposeResponse>> getPurpose(String toAccount,
       String transferType, String detCustomerType, String type);
