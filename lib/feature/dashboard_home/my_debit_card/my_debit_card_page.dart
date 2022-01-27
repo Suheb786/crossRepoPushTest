@@ -4,8 +4,11 @@ import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_page_view.dart';
 import 'package:neo_bank/feature/dashboard_home/my_debit_card/my_debit_card_view_model.dart';
+import 'package:domain/model/dashboard/get_dashboard_data/get_dashboard_data_content.dart';
 
 class MyDebitCardPage extends BasePage<MyDebitCardViewModel> {
+  final GetDashboardDataContent cardData;
+  MyDebitCardPage({required this.cardData});
   @override
   MyDebitCardPageState createState() => MyDebitCardPageState();
 }
@@ -27,7 +30,7 @@ class MyDebitCardPageState
 
   @override
   Widget buildView(BuildContext context, MyDebitCardViewModel model) {
-    return MyDebitCardPageView(provideBase());
+    return MyDebitCardPageView(provideBase(), widget.cardData);
   }
 
   @override
