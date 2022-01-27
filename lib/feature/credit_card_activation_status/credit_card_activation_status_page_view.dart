@@ -31,6 +31,9 @@ class CreditCardActivationStatusPageView
             onData: (response) {
               if (response.status == Status.SUCCESS) {
                 model.getApplication();
+              } else if (response.status == Status.ERROR) {
+                Navigator.popUntil(
+                    context, ModalRoute.withName(RoutePaths.AppHome));
               }
             },
             dataBuilder: (context, linkCardStepResponse) {
@@ -40,6 +43,9 @@ class CreditCardActivationStatusPageView
                   onData: (response) {
                     if (response.status == Status.SUCCESS) {
                       model.getApplication();
+                    } else if (response.status == Status.ERROR) {
+                      Navigator.popUntil(
+                          context, ModalRoute.withName(RoutePaths.AppHome));
                     }
                   },
                   dataBuilder: (context, applicationResponse) {

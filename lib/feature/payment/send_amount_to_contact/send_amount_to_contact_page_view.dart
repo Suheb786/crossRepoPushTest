@@ -1,5 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:domain/constants/enum/transaction_type.dart';
+import 'package:domain/constants/error_types.dart';
+import 'package:domain/error/app_error.dart';
+import 'package:domain/model/base/error_info.dart';
 import 'package:domain/model/payment/check_send_money_response.dart';
 import 'package:domain/model/payment/transfer_success_response.dart';
 import 'package:flutter/material.dart';
@@ -327,7 +330,20 @@ class SendAmountToContactPageView
                               },
                               textColor: Colors.black,
                               rightButtonFn: () {
-                                model.checkSendMoney();
+                                if (double.parse(model.currentPinValue) <= 0) {
+                                  model.showToastWithError(AppError(
+                                      cause: Exception(),
+                                      error: ErrorInfo(message: ""),
+                                      type: ErrorType.ZERO_AMOUNT));
+                                } else if (model.beneficiary.purpose == null &&
+                                    model.purposeDetail == null) {
+                                  model.showToastWithError(AppError(
+                                      cause: Exception(),
+                                      error: ErrorInfo(message: ""),
+                                      type: ErrorType.EMPTY_PURPOSE_DETAIL));
+                                } else {
+                                  model.checkSendMoney();
+                                }
                               },
                               leftIcon: Icon(
                                 Icons.circle,

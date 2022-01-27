@@ -8,7 +8,6 @@
 // ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
 // ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
 // ignore_for_file:unused_import, file_names, avoid_escaping_inner_quotes
-// ignore_for_file:unnecessary_string_interpolations, unnecessary_string_escapes
 
 import 'package:intl/intl.dart';
 import 'package:intl/message_lookup_by_library.dart';
@@ -119,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("All Transactions"),
         "allowBiometric":
             MessageLookupByLibrary.simpleMessage("Allow biometric"),
+        "amountZero": MessageLookupByLibrary.simpleMessage("Invalid amount"),
         "annualIncome": MessageLookupByLibrary.simpleMessage("ANNUAL INCOME"),
         "annualIncomeSmall":
             MessageLookupByLibrary.simpleMessage("Annual Income"),
@@ -238,6 +238,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "While frozen, your card can\'t be used for any transactions."),
         "changeCardPin":
             MessageLookupByLibrary.simpleMessage("Change card PIN"),
+        "changeCardPinError":
+            MessageLookupByLibrary.simpleMessage("Change Chard Pin Error"),
         "changeCountryRestriction":
             MessageLookupByLibrary.simpleMessage("Change country restriction"),
         "changeEmailAddress":
@@ -455,7 +457,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "emptyName":
             MessageLookupByLibrary.simpleMessage("Name field cannot be empty"),
         "emptyNationality": MessageLookupByLibrary.simpleMessage(
-            "Nationality field cannot be empty"),
+            "Place Of Birth field cannot be empty"),
         "emptyNationalityDocument": MessageLookupByLibrary.simpleMessage(
             "Upload valid nationality document."),
         "emptyNewPassword":
@@ -567,6 +569,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "An error has occurred While Getting Account DashBoard"),
         "errorWhileGettingFatcaCrs": MessageLookupByLibrary.simpleMessage(
             "Error While Getting FatcaCrs"),
+        "errorWhileLinkingDebitCard": MessageLookupByLibrary.simpleMessage(
+            "Error while linking Debit Card"),
         "errorWhileLogout":
             MessageLookupByLibrary.simpleMessage("Error While Logout"),
         "errorWhileProcessLoanRequest": MessageLookupByLibrary.simpleMessage(
@@ -688,6 +692,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Id card is expired, cannot proceed."),
         "idCardNotAllowed": MessageLookupByLibrary.simpleMessage(
             "ID card is not allowed for NeoBank."),
+        "idCardNotFound":
+            MessageLookupByLibrary.simpleMessage("Id Card Not Found"),
         "idExpiryDate": MessageLookupByLibrary.simpleMessage("ID EXPIRY DATE"),
         "idHint":
             MessageLookupByLibrary.simpleMessage("Please Enter ID Number"),

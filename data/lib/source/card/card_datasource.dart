@@ -7,6 +7,7 @@ import 'package:data/entity/remote/card/get_loan_values/get_loan_values_response
 import 'package:data/entity/remote/card/process_loan_request/process_loan_response_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
 import 'package:data/entity/remote/user/response_entity.dart';
+import 'package:domain/model/user/scanned_document_information.dart';
 import 'package:retrofit/retrofit.dart';
 
 abstract class CardRemoteDs {
@@ -65,7 +66,7 @@ abstract class CardRemoteDs {
       required String cardNumber});
 
   Future<HttpResponse<ResponseEntity>> unblockDebitCardPin(
-      {required String pin});
+      {required String pin, required String status});
 
   Future<HttpResponse<ResponseEntity>> updateDebitCardLimits(
       {num? atmWithdrawal,
@@ -103,4 +104,9 @@ abstract class CardRemoteDs {
       {String cardId, String accountNumber});
 
   Future<HttpResponse<ResponseEntity>> changePinVerify();
+
+  Future<HttpResponse<ResponseEntity>> applyDebitSupplementaryCard(
+      {required ScannedDocumentInformation scannedDocumentInformation,
+      required String relation,
+      required String nickName});
 }

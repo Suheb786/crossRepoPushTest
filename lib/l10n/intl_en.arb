@@ -155,7 +155,7 @@
   "emptyName": "Name field cannot be empty",
   "emptyIdNumber": "Id Number field cannot be empty",
   "emptyDob": "Date of birth field cannot be empty",
-  "emptyNationality": "Nationality field cannot be empty",
+  "emptyNationality": "Place Of Birth field cannot be empty",
   "emptyExpiryDate": "Expiry date field cannot be empty",
   "emptyGender": "Gender field cannot be empty",
   "emptyMotherName": "Mother's name field cannot be empty",
@@ -831,6 +831,10 @@
   "toEnjoyCardLessPaymentDebit": "To enjoy cardless payments, you can get your free virtual debit card and we’ll deliver the physical card to your door step",
   "requestNewDebitcard": "Request new debit card",
   "ibanOrMobileOrAccount": "IBAN / Mobile No. / Account",
+  "amountZero": "Invalid amount",
+  "idCardNotFound": "Id Card Not Found",
+  "changeCardPinError": "Change Chard Pin Error",
+  "errorWhileLinkingDebitCard": "Error while linking Debit Card",
   "confirmPasswordNotMatch": "Confirm password should be same as new password",
   "passwordUpdate": "Password is successfully updated"
 }

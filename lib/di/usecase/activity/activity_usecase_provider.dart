@@ -5,8 +5,8 @@ import 'package:domain/usecase/activity/payment_activity_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 ///[NotificationUseCase] provider
-final notificationUseCaseProvider =
-    Provider.autoDispose<NotificationUseCase>((ref) => NotificationUseCase());
+final notificationUseCaseProvider = Provider.autoDispose<NotificationUseCase>(
+    (ref) => NotificationUseCase(ref.read(activityRepositoryProvider)));
 
 ///[PaymentActivityUseCase] provider
 final paymentActivityUseCaseProvider =

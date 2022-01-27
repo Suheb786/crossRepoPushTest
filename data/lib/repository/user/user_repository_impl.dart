@@ -390,6 +390,9 @@ class UserRepositoryImpl extends UserRepository {
                     ? DateTime(r.dateOfExpiry!.year! - 10,
                         r.dateOfExpiry!.month!, r.dateOfExpiry!.day!)
                     : DateTime(0),
+            currentIssuingPlace: r.mrzResult!.sanitizedIssuer!.isNotEmpty
+                ? r.mrzResult!.sanitizedIssuer
+                : '',
             nationalityIsoCode3: r.mrzResult?.nationality ?? "")));
   }
 

@@ -136,17 +136,17 @@ class IdVerificationInfoView
                                     onData: (scannedData) {
                                       if (scannedData.status ==
                                           Status.SUCCESS) {
-                                        model.getAhwalResponse(
-                                            scannedData.data!.idNumber!);
-                                        // if (scannedData.data!.issuer == 'JOR') {
-                                        //   model.getAhwalResponse(
-                                        //       scannedData.data!.idNumber!);
-                                        // } else {
-                                        //   model.showToastWithError(AppError(
-                                        //       cause: Exception(),
-                                        //       error: ErrorInfo(message: ''),
-                                        //       type: ErrorType.INVALID_ID_CARD));
-                                        // }
+                                        // model.getAhwalResponse(
+                                        //     scannedData.data!.idNumber!);
+                                        if (scannedData.data!.issuer == 'JOR') {
+                                          model.getAhwalResponse(
+                                              scannedData.data!.idNumber!);
+                                        } else {
+                                          model.showToastWithError(AppError(
+                                              cause: Exception(),
+                                              error: ErrorInfo(message: ''),
+                                              type: ErrorType.INVALID_ID_CARD));
+                                        }
                                       }
                                     },
                                     dataBuilder: (context, scannedData) {

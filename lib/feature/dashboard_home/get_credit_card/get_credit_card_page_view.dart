@@ -24,7 +24,7 @@ class GetCreditCardPageView extends BasePageViewWidget<GetCreditCardViewModel> {
 
   @override
   Widget build(BuildContext context, model) {
-    return !(cardData.creditCard! == [])
+    return !(cardData.creditCard!.length >0)
         ? Center(
       child: Padding(
         padding: const EdgeInsets.only(bottom: 15),

@@ -33,7 +33,7 @@ class PersonalizeDebitCardPageView
                     shakeAngle: Rotation.deg(z: 1),
                     curve: Curves.easeInOutSine,
                     child: AppStreamBuilder<Resource<bool>>(
-                        stream: model.personalizeDebitCardResponseStream,
+                        stream: model.applySupplementaryDebitCardResponseStream,
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
@@ -42,60 +42,83 @@ class PersonalizeDebitCardPageView
                           }
                         },
                         dataBuilder: (context, data) {
-                          return GestureDetector(
-                            onHorizontalDragEnd: (details) {
-                              if (details.primaryVelocity!.isNegative) {
-                                model.personalizeDebitCard();
-                              } else {}
-                              ProviderScope.containerOf(context)
-                                  .read(supplementaryDebitCardViewModelProvider)
-                                  .swiperController
-                                  .previous();
-                            },
-                            child: Card(
-                              child: Padding(
-                                padding: EdgeInsets.only(
-                                    bottom: MediaQuery.of(context)
-                                                    .viewInsets
-                                                    .bottom -
-                                                50 <=
-                                            0
-                                        ? 0
-                                        : MediaQuery.of(context)
-                                                .viewInsets
-                                                .bottom -
-                                            48),
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 32, horizontal: 24),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      AppTextField(
-                                        labelText: S
-                                            .of(context)
-                                            .nickName
-                                            .toUpperCase(),
-                                        hintText: S.of(context).optional,
-                                        controller: model.nicknameController,
-                                        key: model.nicknameKey,
-                                      ),
-                                      Center(
-                                        child: AnimatedButton(
-                                          buttonText:
-                                              S.of(context).swipeToProceed,
+                          return AppStreamBuilder<Resource<bool>>(
+                              stream: model.personalizeDebitCardResponseStream,
+                              initialData: Resource.none(),
+                              onData: (data) {
+                                if (data.status == Status.SUCCESS) {
+                                  model.applySupplementaryDebitCard(
+                                      ProviderScope.containerOf(context)
+                                          .read(
+                                              relationShipWithCardHolderDebitViewModelProvider)
+                                          .relationshipController
+                                          .text,
+                                      ProviderScope.containerOf(context)
+                                          .read(
+                                              supplementaryDebitIdScanInfoViewModelProvider)
+                                          .scannedDocumentInformation);
+                                }
+                              },
+                              dataBuilder: (context, data) {
+                                return GestureDetector(
+                                  onHorizontalDragEnd: (details) {
+                                    if (details.primaryVelocity!.isNegative) {
+                                      model.personalizeDebitCard();
+                                    } else {
+                                      ProviderScope.containerOf(context)
+                                          .read(
+                                              supplementaryDebitCardViewModelProvider)
+                                          .swiperController
+                                          .previous();
+                                    }
+                                  },
+                                  child: Card(
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          bottom: MediaQuery.of(context)
+                                                          .viewInsets
+                                                          .bottom -
+                                                      50 <=
+                                                  0
+                                              ? 0
+                                              : MediaQuery.of(context)
+                                                      .viewInsets
+                                                      .bottom -
+                                                  48),
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 32, horizontal: 24),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            AppTextField(
+                                              labelText: S
+                                                  .of(context)
+                                                  .nickName
+                                                  .toUpperCase(),
+                                              hintText: S.of(context).optional,
+                                              controller:
+                                                  model.nicknameController,
+                                              key: model.nicknameKey,
+                                            ),
+                                            Center(
+                                              child: AnimatedButton(
+                                                buttonText: S
+                                                    .of(context)
+                                                    .swipeToProceed,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                ),
-                              ),
-                            ),
-                          );
+                                );
+                              });
                         }),
                   );
                 }),

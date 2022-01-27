@@ -1570,10 +1570,10 @@ class S {
     );
   }
 
-  /// `Nationality field cannot be empty`
+  /// `Place Of Birth field cannot be empty`
   String get emptyNationality {
     return Intl.message(
-      'Nationality field cannot be empty',
+      'Place Of Birth field cannot be empty',
       name: 'emptyNationality',
       desc: '',
       args: [],
@@ -8125,6 +8125,46 @@ class S {
     return Intl.message(
       'IBAN / Mobile No. / Account',
       name: 'ibanOrMobileOrAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid amount`
+  String get amountZero {
+    return Intl.message(
+      'Invalid amount',
+      name: 'amountZero',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Id Card Not Found`
+  String get idCardNotFound {
+    return Intl.message(
+      'Id Card Not Found',
+      name: 'idCardNotFound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Chard Pin Error`
+  String get changeCardPinError {
+    return Intl.message(
+      'Change Chard Pin Error',
+      name: 'changeCardPinError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error while linking Debit Card`
+  String get errorWhileLinkingDebitCard {
+    return Intl.message(
+      'Error while linking Debit Card',
+      name: 'errorWhileLinkingDebitCard',
       desc: '',
       args: [],
     );

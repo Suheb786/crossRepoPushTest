@@ -57,11 +57,14 @@ class ManageCardPinViewModel extends BasePageViewModel {
     });
   }
 
-  void unBlockPin() {
+  void unBlockPin({
+    required String pinCode,
+    required String tokenizedPan,
+  }) {
     if (manageCardPinArguments!.cardType == CardType.CREDIT) {
       unBlockCreditCardPin();
     } else if (manageCardPinArguments!.cardType == CardType.DEBIT) {
-      unBlockDebitCardPin();
+      unBlockDebitCardPin(pinCode: pinCode, tokenizedPan: tokenizedPan);
     }
   }
 
@@ -70,9 +73,12 @@ class ManageCardPinViewModel extends BasePageViewModel {
         .safeAdd(CreditCardPinUnblockUseCaseParams());
   }
 
-  void unBlockDebitCardPin() {
-    _unblockDebitCardRequestSubject
-        .safeAdd(UnblockDebitCardPinUseCaseParams(pin: ''));
+  void unBlockDebitCardPin({
+    required String pinCode,
+    required String tokenizedPan,
+  }) {
+    _unblockDebitCardRequestSubject.safeAdd(
+        UnblockDebitCardPinUseCaseParams(pin: '', status: tokenizedPan));
   }
 
   @override
