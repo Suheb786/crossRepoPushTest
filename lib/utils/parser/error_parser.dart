@@ -340,6 +340,8 @@ class ErrorParser {
         return localisedHelper.emptyIncome;
       case ErrorType.PASSWORD_NOT_MEET_CRITERIA:
         return localisedHelper.passwordNotMeetCriteria;
+      case ErrorType.CONFIRM_PASSWORD_NOT_MATCH_WITH_NEW_PASSWORD:
+        return localisedHelper.confirmPasswordNotMatch;
       case ErrorType.CURRENT_PASSWORD_INVALID:
         return localisedHelper.currentPasswordInvalid;
       case ErrorType.SELECT_EXPECTED_TRANSACTION:

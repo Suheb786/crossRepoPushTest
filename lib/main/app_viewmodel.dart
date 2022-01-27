@@ -4,6 +4,7 @@ import 'dart:isolate';
 import 'package:domain/usecase/infobip_audio/init_infobip_message_usecase.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/user/get_token_usecase.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:neo_bank/base/base_view_model.dart';
@@ -251,7 +252,15 @@ class AppViewModel extends BaseViewModel {
         _saveuserResponseSubject.safeAdd(event);
       });
     });
-
+    //
+    // FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    //   print('Got a message whilst in the foreground!');
+    //   print('Message data: ${message.data}');
+    //
+    //   if (message.notification != null) {
+    //     print('Message also contained a notification: ${message.notification}');
+    //   }
+    // });
     initInfobipMessagePlugin();
   }
 

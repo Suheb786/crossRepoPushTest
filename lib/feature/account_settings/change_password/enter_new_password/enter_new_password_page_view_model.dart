@@ -16,12 +16,16 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
   final TextEditingController currentPasswordController =
       TextEditingController();
   TextEditingController newPasswordController = TextEditingController();
+  TextEditingController confirmNewPasswordController = TextEditingController();
 
   final GlobalKey<AppTextFieldState> currentPasswordKey =
       GlobalKey(debugLabel: "currentPassword");
 
   final GlobalKey<AppTextFieldState> newPasswordKey =
       GlobalKey(debugLabel: "newPassword");
+
+  final GlobalKey<AppTextFieldState> confirmNewPasswordKey =
+      GlobalKey(debugLabel: "confirmNewPassword");
 
   ///create password request subject holder
   PublishSubject<EnterNewPasswordUseCaseParams> _createPasswordRequest =
@@ -82,6 +86,7 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
     _createPasswordRequest.safeAdd(EnterNewPasswordUseCaseParams(
         currentPassword: currentPasswordController.text,
         newPassword: newPasswordController.text,
+        confirmNewPassword: confirmNewPasswordController.text,
         containsDigit: containsDigit,
         hasSymbol: hasSymbol,
         hasUpperCase: hasUpperCase,
@@ -91,7 +96,8 @@ class EnterNewPasswordPageViewModel extends BasePageViewModel {
 
   void validateAllFields() {
     if (currentPasswordController.text.isNotEmpty &&
-        newPasswordController.text.isNotEmpty) {
+        newPasswordController.text.isNotEmpty &&
+        newPasswordController.text == confirmNewPasswordController.text) {
       _showButtonSubject.safeAdd(true);
     } else {
       _showButtonSubject.safeAdd(false);
