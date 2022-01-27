@@ -2,6 +2,7 @@ import 'package:data/di/local_module.dart';
 import 'package:data/di/network_module.dart';
 import 'package:data/repository/account/account_repository_impl.dart';
 import 'package:data/repository/account_settings/account_settings_impl.dart';
+import 'package:data/repository/activity/activity_repository_impl.dart';
 import 'package:data/repository/bank_smart/bank_smart_repository_impl.dart';
 import 'package:data/repository/card/card_repository_impl.dart';
 import 'package:data/repository/card_processing/card_processing_repository_impl.dart';
@@ -24,6 +25,7 @@ import 'package:data/repository/user/user_repository_impl.dart';
 import 'package:data/repository/utility/utility_repository_impl.dart';
 import 'package:domain/repository/account/account_repository.dart';
 import 'package:domain/repository/account_settings/account_settings_repository.dart';
+import 'package:domain/repository/activity/activity_repository.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/repository/card_processing/card_processing_repository.dart';
@@ -146,3 +148,7 @@ var forgetPasswordRepositoryProvider = Provider<ForgetPasswordRepository>(
 /// inject [UtilityRepository] provider
 var utilityRepositoryProvider = Provider<UtilityRepository>(
     (ref) => UtilityRepositoryImpl(ref.read(utilityDataSourceProvider)));
+
+/// inject [ActivityRepository] provider
+var activityRepositoryProvider = Provider<ActivityRepository>(
+    (ref) => ActivityRepositoryImpl(ref.read(activityDataSourceProvider)));

@@ -59,19 +59,25 @@ class PaymentActivityPageView
                             .paymentActivityTransactionResponse,
                         initialData: Resource.none(),
                         dataBuilder: (context, transaction) {
-                          return ListView.builder(
-                            itemCount: transaction!
-                                .data!.paymentActivityContent!.length,
-                            shrinkWrap: true,
-                            itemBuilder: (mContext, ind) {
-                              return ListView.builder(
-                                shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                itemCount: transaction.data!
-                                    .paymentActivityContent![ind].data!.length,
-                                padding: EdgeInsets.only(top: 20),
-                                itemBuilder: (context, index) {
-                                  print(
+                          return transaction!
+                                      .data!.paymentActivityContent!.length >
+                                  0
+                              ? ListView.builder(
+                                  itemCount: transaction
+                                      .data!.paymentActivityContent!.length,
+                                  shrinkWrap: true,
+                                  itemBuilder: (mContext, ind) {
+                                    return ListView.builder(
+                                      shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
+                                      itemCount: transaction
+                                          .data!
+                                          .paymentActivityContent![ind]
+                                          .data!
+                                          .length,
+                                      padding: EdgeInsets.only(top: 20),
+                                      itemBuilder: (context, index) {
+                                        print(
                                       "got list: ${transaction.data!.paymentActivityContent![ind].data!.length}");
                                   return Padding(
                                     padding: EdgeInsets.only(
@@ -188,17 +194,23 @@ class PaymentActivityPageView
                                                           : Container())
                                                       : Container(),
                                                 )
-                                              ],
-                                            ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                            ],
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                },
-                              );
-                            },
-                          );
+                                        );
+                                      },
+                                    );
+                                  },
+                                )
+                              : Center(
+                                  child: Text(
+                                    "No Payment activity to display",
+                                    textAlign: TextAlign.center,
+                                  ),
+                                );
                         }),
                   )
                 ],
