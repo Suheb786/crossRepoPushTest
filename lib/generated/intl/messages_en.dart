@@ -500,7 +500,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
         "enterCode": MessageLookupByLibrary.simpleMessage(
-            "Enter the 6-digit code sent to  \n+962 79 322 8080"),
+            "Enter the 6-digit code sent to"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Confirm password field cannot be empty"),
         "enterIdNumberToResetPassword": MessageLookupByLibrary.simpleMessage(
