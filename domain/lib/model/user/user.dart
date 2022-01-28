@@ -31,4 +31,6 @@ class User {
       this.publicPEM,
       this.privatePEM,
       this.isBiometricEnabled: false});
+
+  String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";
 }

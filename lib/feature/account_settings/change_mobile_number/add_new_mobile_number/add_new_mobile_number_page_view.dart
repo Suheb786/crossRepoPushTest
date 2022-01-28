@@ -108,6 +108,8 @@ class AddNewMobileNumberPageView
                                                       title: S
                                                           .of(context)
                                                           .mobileNumber,
+                                                      selectedCountryData:
+                                                          model.countryData,
                                                       onSelected: (data) {
                                                     Navigator.pop(context);
                                                     model.countryData = data;

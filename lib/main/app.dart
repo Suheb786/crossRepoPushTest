@@ -38,17 +38,14 @@ class App extends ConsumerWidget {
                         ResponsiveBreakpoint.resize(1200, name: DESKTOP),
                         ResponsiveBreakpoint.autoScale(2460, name: "4K"),
                       ],
-                ),
+                    ),
                 localizationsDelegates: [
                   S.delegate,
                   GlobalMaterialLocalizations.delegate,
                   GlobalWidgetsLocalizations.delegate
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                onGenerateTitle: (context) =>
-                S
-                    .of(context)
-                    .appName,
+                onGenerateTitle: (context) => S.of(context).appName,
                 debugShowCheckedModeBanner: false,
                 initialRoute: RoutePaths.Splash,
                 theme: theme,
