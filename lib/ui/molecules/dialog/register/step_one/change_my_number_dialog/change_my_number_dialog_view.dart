@@ -86,7 +86,8 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                     onTap: () {
                                       MobileNumberDialog.show(context,
                                           title: S.of(context).mobileNumber,
-                                          onSelected: (data) {
+                                          selectedCountryData: model
+                                              .countryData, onSelected: (data) {
                                         Navigator.pop(context);
                                         model.countryData = data;
                                         model.setSelectedCountry(data);
