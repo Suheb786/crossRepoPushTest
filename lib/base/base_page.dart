@@ -117,6 +117,11 @@ abstract class BaseStatefulPage<VM extends BasePageViewModel,
     return null;
   }
 
+  /// bottom inset
+  bool? resizeToAvoidBottomInset() {
+    return false;
+  }
+
   /// Building a appbar of screen
   Color? scaffoldBackgroundColor() {
     return null;

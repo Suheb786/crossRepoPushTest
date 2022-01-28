@@ -252,7 +252,7 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
     nickNameController.text = Validator.isNotEmptyNull(beneficiary.nickName)
         ? beneficiary.nickName!
         : '';
-    ibanController.text = beneficiary.iban!;
+    ibanController.text = beneficiary.iban ?? "";
     accountHolderNameController.text = beneficiary.fullName!;
     bankNameController.text = beneficiary.bankName!;
     purposeController.text = Validator.isNotEmptyNull(beneficiary.purpose)

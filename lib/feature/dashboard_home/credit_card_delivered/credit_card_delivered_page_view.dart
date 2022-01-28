@@ -12,6 +12,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardDeliveredPageView
     extends BasePageViewWidget<CreditCardDeliveredViewModel> {
@@ -58,9 +59,12 @@ class CreditCardDeliveredPageView
                         child: GestureDetector(
                           onHorizontalDragEnd: (details) {
                             model.confirmCreditCardDelivery(
-                              cardId: model.creditCard.first.cardId!,
-                              cardDigit: model.creditCard.first.creditLimit!
-                            );
+                                cardId: model.creditCard.first.cardId!,
+                                cardDigit: model
+                                        .creditCard.first.cardNumber!.isNotEmpty
+                                    ? StringUtils.getLastFourDigitOfCardNo(
+                                        model.creditCard.first.cardNumber!)
+                                    : '');
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -90,8 +94,9 @@ class CreditCardDeliveredPageView
                                       padding: EdgeInsets.only(top: 9),
                                       child: Text(
                                         model.creditCard.isNotEmpty
-                                            ? model.creditCard[0].cardNumber ??
-                                                '-'
+                                            ? StringUtils
+                                                .getLastFourDigitOfCardNo(model
+                                                    .creditCard[0].cardNumber)
                                             : '-',
                                         style: TextStyle(
                                             fontSize: 30,
