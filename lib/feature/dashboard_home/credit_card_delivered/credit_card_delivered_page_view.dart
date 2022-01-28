@@ -105,7 +105,7 @@ class CreditCardDeliveredPageView
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          top: 78, left: 30, right: 24),
+                                          top: 32, left: 30, right: 24),
                                       child: Text(
                                         S.of(context).cardHasBeenDelivered,
                                         maxLines: 4,
@@ -143,7 +143,7 @@ class CreditCardDeliveredPageView
                         Container(
                             height: 186,
                             width: double.infinity,
-                            padding: EdgeInsets.only(top: 111, left: 20),
+                            padding: EdgeInsets.only(top: 116, left: 20),
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: AssetImage(
@@ -167,18 +167,29 @@ class CreditCardDeliveredPageView
                                     padding: EdgeInsets.only(top: 10),
                                     child: Text(
                                         model.creditCard.isNotEmpty
-                                            ? model.creditCard[0].cardNumber ??
-                                                '-'
+                                            ? StringUtils
+                                                .getLastFourDigitOfCardNo(model
+                                                    .creditCard
+                                                    .first
+                                                    .cardNumber!)
                                             : '-',
                                         style: TextStyle(
-                                            fontSize: 12,
+                                            fontSize: 10,
                                             fontWeight: FontWeight.w700)))
                               ],
                             )),
                         Positioned(
                             left: 7,
                             bottom: 19,
-                            child: Image.asset(AssetUtils.ellipseYellow))
+                            child: Container(
+                              height: 47,
+                              width: 47,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context)
+                                      .canvasColor
+                                      .withOpacity(0.45)),
+                            ))
                       ],
                     ))
               ],

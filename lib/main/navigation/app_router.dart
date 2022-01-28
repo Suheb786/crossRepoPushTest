@@ -122,7 +122,8 @@ class AppRouter {
 
       case RoutePaths.AccountRegistration:
         return CupertinoPageRoute(
-            builder: (context) => AccountRegistrationPage(),
+            builder: (context) => AccountRegistrationPage(
+                settings.arguments as AccountRegistrationParams),
             settings: RouteSettings(name: RoutePaths.AccountRegistration));
 
       case RoutePaths.ProductSelector:
