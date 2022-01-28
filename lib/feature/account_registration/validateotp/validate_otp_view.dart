@@ -60,10 +60,10 @@ class ValidateOtpPageView extends BasePageViewWidget<ValidateOtpViewModel> {
                           if (details.primaryVelocity!.isNegative) {
                             model.validateOtp();
                           } else {
-                            ProviderScope.containerOf(context)
-                                .read(accountRegistrationViewModelProvider)
-                                .pageController
-                                .previous();
+                            // ProviderScope.containerOf(context)
+                            //     .read(accountRegistrationViewModelProvider)
+                            //     .pageController
+                            //     .previous();
                           }
                         },
                         child: Card(

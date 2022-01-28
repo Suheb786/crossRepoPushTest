@@ -24,6 +24,7 @@ UserEntity _$UserEntityFromJson(Map<String, dynamic> json) {
     userId: json['userId'] as String?,
     existing: json['existing'] as bool?,
     nameOnCard: json['nameOnCard'] as String?,
+    mobileCode: json['mobileCode'] as String?,
   );
 }
 
@@ -34,6 +35,7 @@ Map<String, dynamic> _$UserEntityToJson(UserEntity instance) =>
       'emailId': instance.emailId,
       'mobileStatus': instance.mobileStatus,
       'mobileNumber': instance.mobileNumber,
+      'mobileCode': instance.mobileCode,
       'emailStatus': instance.emailStatus,
       'nationality': instance.nationality,
       'firstName': instance.firstName,

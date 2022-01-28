@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_widget.dart';
 import 'package:neo_bank/di/payment/payment_modules.dart';
 import 'package:neo_bank/generated/l10n.dart';
+import 'package:neo_bank/ui/molecules/app_progress.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/edit_transaction_purpose_dialog/edit_transaction_purpose_dialog_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog.dart';
@@ -14,6 +15,8 @@ import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dial
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
+import 'package:neo_bank/utils/parser/error_parser.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class EditTransactionPurposeDialogView extends StatelessWidget {
   final Function? onDismissed;
@@ -186,6 +189,75 @@ class EditTransactionPurposeDialogView extends StatelessWidget {
             ),
           );
         },
+        onModelReady: (model) {
+          model.loadingStream.listen((value) {
+            if (value) {
+              AppProgress(context);
+            } else {
+              Navigator.pop(context);
+            }
+          });
+
+          model.error.listen((event) {
+            _showTopError(
+                ErrorParser.getLocalisedStringError(
+                  error: event,
+                  localisedHelper: S.of(context),
+                ),
+                context);
+          });
+        },
         providerBase: providerBase());
+  }
+
+  _showTopError(String message, BuildContext context) {
+    showTopSnackBar(
+        context,
+        Material(
+          color: AppColor.white.withOpacity(0),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            child: Container(
+              padding: EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                  color: AppColor.dark_brown,
+                  borderRadius: BorderRadius.circular(16)),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          S.of(context).error,
+                          style: TextStyle(
+                              color: AppColor.light_grayish_violet,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 10),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(top: 4.0, right: 16),
+                          child: Text(message,
+                              style: TextStyle(
+                                  // fontFamily: "Montserrat",
+                                  color: AppColor.white,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12)),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Icon(
+                    Icons.close,
+                    size: 16,
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+        displayDuration: Duration(milliseconds: 1500),
+        hideOutAnimationDuration: Duration(milliseconds: 500),
+        showOutAnimationDuration: Duration(milliseconds: 700));
   }
 }

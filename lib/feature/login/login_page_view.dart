@@ -12,6 +12,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/app/app_modules.dart';
 import 'package:neo_bank/di/onboarding/onboarding_module.dart';
+import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
 import 'package:neo_bank/feature/login/login_page_model.dart';
 import 'package:neo_bank/feature/register/register_page.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -158,7 +159,7 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                       }
                                                     },
                                                     dataBuilder:
-                                                        (context, data) {
+                                                        (context, loginData) {
                                                       return AppStreamBuilder<
                                                           Resource<
                                                               CheckKycResponse>>(
@@ -184,14 +185,33 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                             if (kycData.type
                                                                     ?.isNotEmpty ??
                                                                 false) {
-                                                              Navigator.pushReplacementNamed(
-                                                                  context,
-                                                                  RoutePaths
-                                                                      .Registration,
-                                                                  arguments:
-                                                                      RegisterPageParams(
-                                                                          kycData:
-                                                                              kycData));
+                                                              if (kycData
+                                                                      .type ==
+                                                                  'MobileOTP') {
+                                                                Navigator.pushReplacementNamed(
+                                                                    context,
+                                                                    RoutePaths
+                                                                        .AccountRegistration,
+                                                                    arguments: AccountRegistrationParams(
+                                                                        kycData:
+                                                                            kycData,
+                                                                        mobileCode: loginData!
+                                                                            .data!
+                                                                            .mobileCode!,
+                                                                        mobileNumber: loginData
+                                                                            .data!
+                                                                            .mobile!));
+                                                              } else {
+                                                                Navigator.pushReplacementNamed(
+                                                                    context,
+                                                                    RoutePaths
+                                                                        .Registration,
+                                                                    arguments:
+                                                                        RegisterPageParams(
+                                                                      kycData:
+                                                                          kycData,
+                                                                    ));
+                                                              }
                                                             } else {
                                                               Navigator
                                                                   .pushReplacementNamed(
@@ -247,22 +267,46 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                     suffixIcon:
                                                                         (_, __) {
                                                                       return AppStreamBuilder<
-                                                                              bool>(
+                                                                              Resource<
+                                                                                  bool>>(
                                                                           stream: model
-                                                                              .fingerPrintShowStream,
-                                                                          initialData:
-                                                                              false,
+                                                                              .checkBioMetricStream,
+                                                                          initialData: Resource
+                                                                              .none(),
+                                                                          onData:
+                                                                              (data) {
+                                                                            if (data.status ==
+                                                                                Status.SUCCESS) {
+                                                                              model.authenticateBioMetric(title: S.of(context).biometricLogin, localisedReason: Platform.isAndroid ? S.of(context).enableBiometricLoginDescriptionAndroid : S.of(context).enableBiometricLoginDescriptionIos);
+                                                                            }
+                                                                          },
                                                                           dataBuilder:
-                                                                              (context, fingerPrintValue) {
-                                                                            return Visibility(
-                                                                              visible: fingerPrintValue!,
-                                                                              child: InkWell(
-                                                                                onTap: () {
-                                                                                  Platform.isAndroid ? model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!) : model.iphoneLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                              (context, checkBioMetric) {
+                                                                            return AppStreamBuilder<Resource<bool>>(
+                                                                                stream: model.authenticateBioMetricStream,
+                                                                                initialData: Resource.none(),
+                                                                                onData: (data) {
+                                                                                  if (data.status == Status.SUCCESS) {
+                                                                                    model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                                    //Platform.isAndroid ? model.androidLogin(cipher: cipher!.data!.getCipherContent!.cipher!) : model.iphoneLogin(cipher: cipher!.data!.getCipherContent!.cipher!);
+                                                                                  }
                                                                                 },
-                                                                                child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).accentTextTheme.bodyText1!.color),
-                                                                              ),
-                                                                            );
+                                                                                dataBuilder: (context, authenticBiometric) {
+                                                                                  return AppStreamBuilder<bool>(
+                                                                                      stream: model.fingerPrintShowStream,
+                                                                                      initialData: false,
+                                                                                      dataBuilder: (context, fingerPrintValue) {
+                                                                                        return Visibility(
+                                                                                          visible: fingerPrintValue!,
+                                                                                          child: InkWell(
+                                                                                            onTap: () {
+                                                                                              model.checkBiometric();
+                                                                                            },
+                                                                                            child: AppSvg.asset(AssetUtils.fingerPrint, color: Theme.of(context).accentTextTheme.bodyText1!.color),
+                                                                                          ),
+                                                                                        );
+                                                                                      });
+                                                                                });
                                                                           });
                                                                     },
                                                                     suffixIconSize:

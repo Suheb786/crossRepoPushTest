@@ -10,5 +10,7 @@ final loginViewModelProvider =
       ref.read(checkKycStatusUseCaseProvider),
       ref.read(getCipherUseCaseProvider),
       ref.read(androidLoginUseCaseProvider),
-      ref.read(iphoneLoginUseCaseProvider)),
+      ref.read(iphoneLoginUseCaseProvider),
+      ref.read(checkBioMetricSupportUseCaseProvider),
+      ref.read(authenticateBioMetricUseCaseProvider)),
 );

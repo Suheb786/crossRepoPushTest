@@ -46,7 +46,7 @@ class SendMoneyFailurePageView
                 ],
               ),
               Padding(
-                  padding: EdgeInsets.only(top: 47),
+                  padding: EdgeInsets.only(top: 47, left: 24, right: 24),
                   child: Text(
                     S.of(context).sendMoneyNotSuccessful,
                     textAlign: TextAlign.center,
@@ -57,7 +57,7 @@ class SendMoneyFailurePageView
                         color: Theme.of(context).accentColor),
                   )),
               Padding(
-                padding: EdgeInsets.only(top: 51),
+                padding: EdgeInsets.only(top: 51, left: 24, right: 24),
                 child: Text(
                   S.of(context).tryAgainLater,
                   textAlign: TextAlign.center,

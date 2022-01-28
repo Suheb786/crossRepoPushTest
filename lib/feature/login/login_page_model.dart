@@ -6,6 +6,8 @@ import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/kyc/check_kyc_status_usecase.dart';
 import 'package:domain/usecase/user/android_login_usecase.dart';
+import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
+import 'package:domain/usecase/user/check_bio_metric_support_use_case.dart';
 import 'package:domain/usecase/user/get_cipher_usecase.dart';
 import 'package:domain/usecase/user/iphone_login_usecase.dart';
 import 'package:domain/usecase/user/login_usecase.dart';
@@ -24,6 +26,8 @@ class LoginViewModel extends BasePageViewModel {
   final GetCipherUseCase _getCipherUseCase;
   final AndroidLoginUseCase _androidLoginUseCase;
   final IphoneLoginUseCase _iphoneLoginUseCase;
+  final CheckBioMetricSupportUseCase _checkBioMetricSupportUseCase;
+  final AuthenticateBioMetricUseCase _authenticateBioMetricUseCase;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -84,12 +88,37 @@ class LoginViewModel extends BasePageViewModel {
 
   Stream<Resource<User>> get iphoneLoginStream => _iphoneLoginResponse.stream;
 
+  /// check whether biometric is supported or not request
+  PublishSubject<CheckBioMetricSupportUseCaseParams> _checkBioMetricRequest =
+      PublishSubject();
+
+  /// check whether biometric is supported or not response
+  BehaviorSubject<Resource<bool>> _checkBioMetricResponse = BehaviorSubject();
+
+  /// check whether biometric is supported or not response stream
+  Stream<Resource<bool>> get checkBioMetricStream =>
+      _checkBioMetricResponse.stream;
+
+  /// authenticate using biometric request
+  PublishSubject<AuthenticateBioMetricUseCaseParams>
+      _authenticateBioMetricRequest = PublishSubject();
+
+  /// authenticate using biometric response
+  PublishSubject<Resource<bool>> _authenticateBioMetricResponse =
+      PublishSubject();
+
+  /// authenticate using biometric response stream
+  Stream<Resource<bool>> get authenticateBioMetricStream =>
+      _authenticateBioMetricResponse.stream;
+
   LoginViewModel(
       this._loginUseCase,
       this._kycStatusUseCase,
       this._getCipherUseCase,
       this._androidLoginUseCase,
-      this._iphoneLoginUseCase) {
+      this._iphoneLoginUseCase,
+      this._checkBioMetricSupportUseCase,
+      this._authenticateBioMetricUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value,
               createCall: () => _loginUseCase.execute(params: value))
@@ -162,8 +191,40 @@ class LoginViewModel extends BasePageViewModel {
       });
     });
 
+    _checkBioMetricRequest.listen((value) {
+      RequestManager<bool>(
+        value,
+        createCall: () => _checkBioMetricSupportUseCase.execute(params: value),
+      ).asFlow().listen((event) {
+        _checkBioMetricResponse.safeAdd(event);
+      });
+    });
+
+    _authenticateBioMetricRequest.listen((value) {
+      RequestManager<bool>(
+        value,
+        createCall: () => _authenticateBioMetricUseCase.execute(params: value),
+      ).asFlow().listen((event) {
+        _authenticateBioMetricResponse.safeAdd(event);
+      });
+    });
+
     //getCipher();
     //getCurrentUserStream();
+  }
+
+  void checkBiometric() {
+    _checkBioMetricRequest.add(
+      CheckBioMetricSupportUseCaseParams(),
+    );
+  }
+
+  /// Authenticate before set the biometric
+  void authenticateBioMetric({String title: "", String localisedReason: ""}) {
+    _authenticateBioMetricRequest.safeAdd(
+      AuthenticateBioMetricUseCaseParams(
+          title: title, localisedReason: localisedReason),
+    );
   }
 
   void fingerPrintShow(bool value) {

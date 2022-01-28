@@ -335,6 +335,12 @@ class NetworkError extends BaseError {
                 error: error,
                 type: ErrorType.ERROR_WHILE_LINKING_DEBIT_CARD);
 
+          case "ex-071":
+            return AppError(
+                cause: cause,
+                error: error,
+                type: ErrorType.ERROR_WHILE_GET_STATUS);
+
           default:
             return AppError(
                 cause: cause, error: error, type: ErrorType.NETWORK);

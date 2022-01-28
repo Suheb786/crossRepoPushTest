@@ -5,6 +5,7 @@ class User {
   String? lastName;
   String? email;
   String? mobile;
+  String? mobileCode;
   bool? isCurrent;
   String? refreshToken;
   String? tokenType;
@@ -21,6 +22,7 @@ class User {
       this.lastName,
       this.email,
       this.mobile,
+      this.mobileCode,
       this.isCurrent,
       this.refreshToken,
       this.tokenType,
