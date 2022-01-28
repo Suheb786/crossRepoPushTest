@@ -400,6 +400,10 @@ class ErrorParser {
         return localisedHelper.changeCardPinError;
       case ErrorType.ERROR_WHILE_LINKING_DEBIT_CARD:
         return localisedHelper.errorWhileLinkingDebitCard;
+      case ErrorType.INVALID_ANNUAL_INCOME_VALUE:
+        return localisedHelper.invalidAnnualIncomeValue;
+        case ErrorType.SELECT_ADDITIONAL_INCOME:
+        return localisedHelper.selectAdditionalIncome;
 
       default:
         return "";

@@ -124,6 +124,9 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
   String? dbtrName;
   String? type;
   String? detCustomerType;
+  String? dbtrSurname;
+  String? addressCity;
+  String? addressCountry;
 
   RequestFromNewRecipientViewModel(this._useCase, this._uploadDocumentUseCase,
       this._getAccountByAliasUseCase, this._getPurposeUseCase) {
@@ -168,6 +171,9 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
           detCustomerType =
               event.data!.getAccountByAliasContent!.detCustomerType;
           print("got value: ${event.data!.getAccountByAliasContent!.bic}");
+          dbtrSurname = event.data!.getAccountByAliasContent!.surname;
+          addressCity = event.data!.getAccountByAliasContent!.addressCity;
+          addressCountry = event.data!.getAccountByAliasContent!.addressCountry;
           _showAccountDetailSubject
               .safeAdd(event.data!.getAccountByAliasContent!.name);
           getPurpose(
@@ -238,7 +244,11 @@ class RequestFromNewRecipientViewModel extends BasePageViewModel {
                 ? ""
                 : addNickNameController.text,
             type: type,
-            detCustomerType: detCustomerType));
+            detCustomerType: detCustomerType,
+            alias: ibanOrMobileController.text,
+            dbtrSurname: dbtrSurname,
+            addressCity: addressCity,
+            addressCountry: addressCountry));
   }
 
   void updatePurpose(Purpose value) {

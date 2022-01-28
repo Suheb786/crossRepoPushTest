@@ -77,6 +77,10 @@ import 'package:data/entity/remote/dashboard/dashboard_data_request.dart';
 import 'package:data/entity/remote/dashboard/dashboard_data_response_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_request_entity.dart';
 import 'package:data/entity/remote/debit_card/debit_card_limit_response_entity.dart';
+import 'package:data/entity/remote/device_change/resend_otp_device_change_request_entity.dart';
+import 'package:data/entity/remote/device_change/send_otp_token_device_change_request_entity.dart';
+import 'package:data/entity/remote/device_change/send_otp_token_email_request_entity.dart';
+import 'package:data/entity/remote/device_change/verify_device_change_otp_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_request_entity.dart';
 import 'package:data/entity/remote/fatca_crs/get_fatca_questions_response_entity.dart';
 import 'package:data/entity/remote/fatca_crs/save_fatca_information_request_entity.dart';
@@ -520,7 +524,7 @@ abstract class ApiService {
   Future<HttpResponse<TransferSuccessResponseEntity>> transfer(
       @Body() TransferRequestEntity transferRequestEntity);
 
-  @POST("/transfer/RequestToPay")
+  @POST("/transfer/RequestToPayV1")
   Future<HttpResponse<RequestToPayContentResponseEntity>> requestToPay(
       @Body() RequestToPayRequestEntity requestToPayRequestEntity);
 
@@ -655,4 +659,26 @@ abstract class ApiService {
   @POST("/Account/AccountActivity")
   Future<HttpResponse<ActivityResponseEntity>> getActivity(
       @Body() ActivityRequestEntity activityRequestEntity);
+
+  @POST("/Auth/ResendOTP")
+  Future<HttpResponse<ResponseEntity>> resendOtpDeviceChange(
+      @Body()
+          ResendOtpDeviceChangeRequestEntity
+              resendOtpDeviceChangeRequestEntity);
+
+  @POST("/auth/Sendotptoken")
+  Future<HttpResponse<ResponseEntity>> sendOtpToken(
+      @Body()
+          SendOtpTokenDeviceChangeRequestEntity
+              sendOtpTokenDeviceChangeRequestEntity);
+
+  @POST("/Auth/SendotptokenEmail")
+  Future<HttpResponse<ResponseEntity>> sendOtpTokenEmail(
+      @Body() SendOtpTokenEmailRequestEntity sendOtpTokenEmailRequestEntity);
+
+  @POST("/Auth/verifyDeviceChangeOtp")
+  Future<HttpResponse<ResponseEntity>> verifyChangeDeviceOtp(
+      @Body()
+          VerifyDeviceChangeOtpRequestEntity
+              verifyDeviceChangeOtpRequestEntity);
 }

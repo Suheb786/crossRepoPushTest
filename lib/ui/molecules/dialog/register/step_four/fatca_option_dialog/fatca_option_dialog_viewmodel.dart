@@ -8,6 +8,9 @@ import 'package:rxdart/rxdart.dart';
 class FatcaOptionDialogViewModel extends BasePageViewModel {
   AdditionalDataDropDownData? selectedOptionData = AdditionalDataDropDownData();
 
+  final TextEditingController mobileNumberSearchController =
+      TextEditingController();
+
   final FixedExtentScrollController scrollController =
       FixedExtentScrollController();
 
@@ -29,6 +32,25 @@ class FatcaOptionDialogViewModel extends BasePageViewModel {
 
   void currentIndexUpdate(int index) {
     _currentSelectIndex.add(index);
+  }
+
+  List<AdditionalDataDropDownData>? searchResult = [];
+
+  void searchMobileNumber(String? searchText) {
+    searchResult!.clear();
+    List<AdditionalDataDropDownData>? countryList = allOptionalDataList;
+    if (searchText!.isNotEmpty) {
+      for (int i = 0; i < countryList!.length; i++) {
+        AdditionalDataDropDownData country = countryList[i];
+        if (country.name!.toLowerCase().contains(searchText.toLowerCase())) {
+          searchResult!.add(country);
+        }
+      }
+      _optionDataSubject.safeAdd(Resource.success(data: searchResult));
+      selectMobileNumber(0);
+    } else {
+      _optionDataSubject.safeAdd(Resource.success(data: allOptionalDataList));
+    }
   }
 
   void selectMobileNumber(int index) {

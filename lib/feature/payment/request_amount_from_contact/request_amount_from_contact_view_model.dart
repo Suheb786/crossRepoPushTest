@@ -47,6 +47,8 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
   Stream<Resource<GetAccountByAliasContentResponse>>
       get getAccountByAliasResponseStream => _getAccountByAliasResponse.stream;
 
+  GetAccountByAliasContentResponse? getAccountByAliasResult;
+
   Stream<Resource<RequestToPayContentResponse>>
       get requestFromContactResponseStream =>
           _requestFromContactResponse.stream;
@@ -78,6 +80,7 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
           showToastWithError(event.appError!);
         } else if (event.status == Status.SUCCESS) {
           print("got bic: ${event.data!.getAccountByAliasContent!.bic}");
+          getAccountByAliasResult = event.data!;
         }
       });
     });
@@ -153,7 +156,16 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
 
   void requestFromNewRecipient(BuildContext context) {
     _requestFromContactRequest.safeAdd(RequestAmountFromContactUseCaseParams(
-      purpose: purpose == null
+        alias: beneficiary!.iban,
+        addressCity:
+            getAccountByAliasResult!.getAccountByAliasContent!.addressCity ??
+                "",
+        addressCountry:
+            getAccountByAliasResult!.getAccountByAliasContent!.addressCountry ??
+                "",
+        dbtrSurname:
+            getAccountByAliasResult!.getAccountByAliasContent!.surname ?? "",
+        purpose: purpose == null
             ? (beneficiary!.purposeParent == null ||
                     beneficiary!.purposeParent!.isEmpty
                 ? ''
@@ -165,7 +177,9 @@ class RequestAmountFromContactViewModel extends BasePageViewModel {
                 : beneficiary!.purpose!)
             : purposeDetail!.strCode!,
         amount: double.parse(currentPinValue),
-        dbtrBic: beneficiary!.iban ?? "",
+        dbtrBic: getAccountByAliasResult != null
+            ? getAccountByAliasResult!.getAccountByAliasContent!.bic ?? ""
+            : "",
         dbtrAcct: beneficiary!.accountNo ?? "",
         dbtrName: beneficiary!.fullName ?? "",
         type: beneficiary!.purposeType ?? "",

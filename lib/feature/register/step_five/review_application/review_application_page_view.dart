@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/register/register_modules.dart';
+import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
 import 'package:neo_bank/feature/register/step_five/review_application/review_application_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
@@ -91,7 +92,10 @@ class ReviewApplicationPageView
                                       switch (userStatus.data!.nextPage) {
                                         case CustomerStatusEnum.HOLD:
                                           Navigator.pushReplacementNamed(
-                                              context, RoutePaths.AccountHold);
+                                              context, RoutePaths.AccountHold,
+                                              arguments: AccountHoldArguments(
+                                                  applicationId: userStatus
+                                                      .data!.applicationId));
                                           break;
                                         case CustomerStatusEnum.ACCOUNT_PAGE:
                                           model.getAccount();

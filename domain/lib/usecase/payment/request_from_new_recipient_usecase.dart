@@ -28,7 +28,11 @@ class RequestFromNewRecipientUseCase extends BaseUseCase<NetworkError,
         params.image!,
         params.nickName,
         params.detCustomerType!,
-        params.type!);
+        params.type!,
+        params.alias!,
+        params.dbtrSurname!,
+        params.addressCity!,
+        params.addressCountry!);
   }
 }
 
@@ -48,6 +52,10 @@ class RequestFromNewRecipientUseCaseParams extends Params {
   String? nickName;
   String? detCustomerType;
   String? type;
+  String? dbtrSurname;
+  String? alias;
+  String? addressCity;
+  String? addressCountry;
 
   RequestFromNewRecipientUseCaseParams(
       {this.ibanOrMobile,
@@ -64,7 +72,11 @@ class RequestFromNewRecipientUseCaseParams extends Params {
       this.purposeCode,
       this.purposeDetailCode,
       this.type,
-      this.detCustomerType});
+      this.detCustomerType,
+      this.alias: "",
+      this.addressCity: "",
+      this.addressCountry: "",
+      this.dbtrSurname: ""});
 
   @override
   Either<AppError, bool> verify() {

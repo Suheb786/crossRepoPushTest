@@ -17,6 +17,8 @@ import 'package:data/source/country/country_datasource.dart';
 import 'package:data/source/country/remote/country_remote_ds_impl.dart';
 import 'package:data/source/dashboard/dashboard_datasource.dart';
 import 'package:data/source/dashboard/remote/dashboard_remote_ds_impl.dart';
+import 'package:data/source/device_change/device_change_flow_datasource.dart';
+import 'package:data/source/device_change/remote/device_change_flow_ds_impl.dart';
 import 'package:data/source/fatca_crs/fatca_crs_datasource.dart';
 import 'package:data/source/fatca_crs/remote/fatca_crs_remote_ds_impl.dart';
 import 'package:data/source/forget_password/forget_password_datasource.dart';
@@ -162,4 +164,8 @@ var paymentDataSourceProvider = Provider<PaymentRemoteDs>((ref) =>
 
 var activityDataSourceProvider = Provider<ActivityRemoteDs>((ref) =>
     ActivityRemoteDsImpl(
+        ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));
+
+var deviceChangeSourceProvider = Provider<ChangeDeviceRemoteDS>((ref) =>
+    ChangeDeviceRemoteDSImpl(
         ref.read(apiServiceProvider), ref.read(deviceInfoHelperProvider)));

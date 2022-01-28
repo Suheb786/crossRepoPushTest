@@ -4600,10 +4600,10 @@ class S {
     );
   }
 
-  /// `Enter the 6-digit code sent to  \n+962 79 322 8080`
+  /// `Enter the 6-digit code sent to`
   String get enterCode {
     return Intl.message(
-      'Enter the 6-digit code sent to  \n+962 79 322 8080',
+      'Enter the 6-digit code sent to',
       name: 'enterCode',
       desc: '',
       args: [],
@@ -8185,6 +8185,26 @@ class S {
     return Intl.message(
       'Password is successfully updated',
       name: 'passwordUpdate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Annual Income should be greater than 0`
+  String get invalidAnnualIncomeValue {
+    return Intl.message(
+      'Annual Income should be greater than 0',
+      name: 'invalidAnnualIncomeValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Additional Income`
+  String get selectAdditionalIncome {
+    return Intl.message(
+      'Select Additional Income',
+      name: 'selectAdditionalIncome',
       desc: '',
       args: [],
     );

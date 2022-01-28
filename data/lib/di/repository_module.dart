@@ -8,6 +8,7 @@ import 'package:data/repository/card/card_repository_impl.dart';
 import 'package:data/repository/card_processing/card_processing_repository_impl.dart';
 import 'package:data/repository/country/country_repository_impl.dart';
 import 'package:data/repository/dashboard/dashboard_repository_impl.dart';
+import 'package:data/repository/device_change/device_change_repository_impl.dart';
 import 'package:data/repository/enter_address/home_address_dialog_repository_impl.dart';
 import 'package:data/repository/fatca_crs/fatca_crs_repository_impl.dart';
 import 'package:data/repository/forget_password/forget_password_repository_impl.dart';
@@ -29,6 +30,7 @@ import 'package:domain/repository/activity/activity_repository.dart';
 import 'package:domain/repository/bank_smart/bank_smart_repository.dart';
 import 'package:domain/repository/card/card_repository.dart';
 import 'package:domain/repository/card_processing/card_processing_repository.dart';
+import 'package:domain/repository/change_device/change_device_repository.dart';
 import 'package:domain/repository/country/country_repository.dart';
 import 'package:domain/repository/dashboard/dashboard_repository.dart';
 import 'package:domain/repository/enter_address/home_address_dialog_repository.dart';
@@ -152,3 +154,7 @@ var utilityRepositoryProvider = Provider<UtilityRepository>(
 /// inject [ActivityRepository] provider
 var activityRepositoryProvider = Provider<ActivityRepository>(
     (ref) => ActivityRepositoryImpl(ref.read(activityDataSourceProvider)));
+
+/// inject [ChangeDeviceRepository] provider
+var deviceChangeRepositoryProvider = Provider<ChangeDeviceRepository>(
+    (ref) => DeviceChangeRepositoryImpl(ref.read(deviceChangeSourceProvider)));
