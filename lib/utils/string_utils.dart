@@ -3,13 +3,21 @@ class StringUtils {
 
   /// first initials
   static String getFirstInitials(String? name) {
-    String fullName = name!;
-    List<String> separatedName = fullName.split(" ");
-    print(separatedName[0]);
-    print(separatedName[1]);
-    String initials =
-        separatedName[0][0].toUpperCase() + separatedName[1][0].toUpperCase();
-    return initials;
+    try {
+      if (name!.isEmpty) {
+        return name;
+      }
+      List<String> _flName = name.split(" ");
+      if (_flName.isEmpty) {
+        return name;
+      }
+      if (_flName.length > 1) {
+        return _flName.first[0] + _flName.last[0];
+      }
+      return _flName.first[0];
+    } catch (exception) {
+      return name![0];
+    }
   }
 
   ///get formatted credit card

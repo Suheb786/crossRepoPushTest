@@ -2,8 +2,6 @@ import 'dart:async';
 import 'dart:io';
 
 import 'package:data/network/utils/app_http_overrides.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 // import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +15,6 @@ void main() async {
     HttpOverrides.global = AppHttpOverrides();
     runApp(ProviderScope(child: MyApp()));
   });
-  runApp(ProviderScope(child: MyApp()));
   // await runZonedGuarded(() async {
   //   HttpOverrides.global = AppHttpOverrides();
   //   await Firebase.initializeApp();
