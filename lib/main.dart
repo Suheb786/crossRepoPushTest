@@ -15,14 +15,13 @@ void main() async {
     HttpOverrides.global = AppHttpOverrides();
     runApp(ProviderScope(child: MyApp()));
   });
-  //runApp(ProviderScope(child: MyApp()));
   // await runZonedGuarded(() async {
   //   HttpOverrides.global = AppHttpOverrides();
-  //   //await Firebase.initializeApp();
+  //   await Firebase.initializeApp();
   //
   //   // Pass all uncaught errors from the framework to Crashlytics.
-  //   // FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
-  //   // await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
+  //   FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+  //   await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(true);
   //
   //   runApp(ProviderScope(child: MyApp()));
   // }, (error, stackTrace) async {
