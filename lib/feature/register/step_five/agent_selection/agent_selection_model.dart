@@ -1,45 +1,46 @@
-import 'package:domain/model/agent/agent.dart';
-import 'package:domain/usecase/user/agent_selection_usecase.dart';
-import 'package:flutter/material.dart';
+import 'package:domain/model/account/agent_gender_status.dart';
+import 'package:domain/usecase/account/check_gender_status_usecase.dart';
 import 'package:flutter_countdown_timer/countdown_timer_controller.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
-import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/request_manager.dart';
+import 'package:neo_bank/utils/resource.dart';
+import 'package:rxdart/rxdart.dart';
 
 class AgentSelectionViewModel extends BasePageViewModel {
-  final AgentSelectionUseCase _agentSelectionUseCase;
+  final CheckGenderStatusUseCase _checkGenderStatusUseCase;
 
   ///countdown controller
   late CountdownTimerController countDownController;
 
   int endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 30;
 
+  PublishSubject<CheckGenderStatusUseCaseParams> _checkGenderStatusRequest =
+      PublishSubject();
+  PublishSubject<Resource<AgentGenderStatus>> _checkGenderStatusResponse =
+      PublishSubject();
+
+  Stream<Resource<AgentGenderStatus>> get getAgentAvailabilityStream =>
+      _checkGenderStatusResponse.stream;
+
+  AgentSelectionViewModel(this._checkGenderStatusUseCase) {
+    _checkGenderStatusRequest.listen((value) {
+      RequestManager(
+        value,
+        createCall: () => _checkGenderStatusUseCase.execute(params: value),
+      ).asFlow().listen((event) {
+        updateLoader();
+        _checkGenderStatusResponse.safeAdd(event);
+      });
+    });
+  }
+
   void updateTime() {
     endTime = DateTime.now().millisecondsSinceEpoch + 1000 * 30;
     notifyListeners();
   }
 
-  FixedExtentScrollController scrollController =
-      new FixedExtentScrollController();
-
-  AgentSelectionViewModel(this._agentSelectionUseCase) {
-    selectAgent(0);
-  }
-
-  Agent? selectedAgent = Agent();
-
-  List<Agent> agentList = [
-    Agent(icon: AssetUtils.anyAgent, agent: "Any Agent", isSelected: false),
-    Agent(icon: AssetUtils.maleAgent, agent: "Male Agent", isSelected: false),
-    Agent(icon: AssetUtils.female_agent, agent: "Female Agent", isSelected: false)
-  ];
-
-  void selectAgent(int index) {
-    List<Agent>? selectAgentList = agentList;
-    selectAgentList.forEach((element) {
-      element.isSelected = false;
-    });
-    selectAgentList.elementAt(index).isSelected = true;
-    selectedAgent =
-        selectAgentList.firstWhere((element) => element.isSelected!);
+  void checkAvailableAgent() {
+    _checkGenderStatusRequest.safeAdd(CheckGenderStatusUseCaseParams());
   }
 }

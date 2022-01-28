@@ -393,7 +393,7 @@ final videoCallInfoViewModelProvider =
 ///agent selection view model provider
 final agentSelectionViewModelProvider =
     ChangeNotifierProvider.autoDispose<AgentSelectionViewModel>(
-  (ref) => AgentSelectionViewModel(ref.read(agentSelectionUseCaseProvider)),
+  (ref) => AgentSelectionViewModel(ref.read(checkGenderStatusUsecaseProvider)),
 );
 
 ///student income page

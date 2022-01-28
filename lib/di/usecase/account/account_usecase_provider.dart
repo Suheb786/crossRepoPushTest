@@ -2,6 +2,7 @@ import 'package:data/di/repository_module.dart';
 import 'package:domain/usecase/account/check_agent_status_usecase.dart';
 import 'package:domain/usecase/account/check_doc_status_usecase.dart';
 import 'package:domain/usecase/account/check_existing_call_usecase.dart';
+import 'package:domain/usecase/account/check_gender_status_usecase.dart';
 import 'package:domain/usecase/account/check_other_nationality_status_usecase.dart';
 import 'package:domain/usecase/account/check_videocall_status_usecase.dart';
 import 'package:domain/usecase/account/get_call_time_slots_usecase.dart';
@@ -39,7 +40,12 @@ final getCallTimeSlotsUseCaseProvider =
     Provider.autoDispose<GetCallTimeSlotsUseCase>(
         (ref) => GetCallTimeSlotsUseCase(ref.read(accountRepositoryProvider)));
 
-///mobile number dialog view model provider
+///schedule call time dialog view model provider
 final scheduleCallTimeDialogViwModelProvider =
     ChangeNotifierProvider.autoDispose<ScheduleCallTimeViewModel>(
         (ref) => ScheduleCallTimeViewModel());
+
+///mobile number dialog view model provider
+final checkGenderStatusUsecaseProvider =
+    ChangeNotifierProvider.autoDispose<CheckGenderStatusUseCase>(
+        (ref) => CheckGenderStatusUseCase(ref.read(accountRepositoryProvider)));
