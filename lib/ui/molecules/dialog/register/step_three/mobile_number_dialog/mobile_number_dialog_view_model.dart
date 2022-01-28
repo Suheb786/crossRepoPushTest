@@ -9,8 +9,7 @@ class MobileNumberDialogViewModel extends BasePageViewModel {
   final TextEditingController mobileNumberSearchController =
       TextEditingController();
 
-  final FixedExtentScrollController scrollController =
-      FixedExtentScrollController();
+  late FixedExtentScrollController scrollController;
 
   CountryData? selectedCountryData = CountryData();
 
@@ -72,10 +71,12 @@ class MobileNumberDialogViewModel extends BasePageViewModel {
     }
   }
 
-  setResponse(List<CountryData> data) {
+  setResponse(List<CountryData> data, CountryData selectedData) {
     _getAllowedCountryCodeResponse.safeAdd(Resource.success(data: data));
     allCountryList = data;
-    selectMobileNumber(0);
+    scrollController =
+        FixedExtentScrollController(initialItem: data.indexOf(selectedData));
+    selectMobileNumber(data.indexOf(selectedData));
   }
 
   @override

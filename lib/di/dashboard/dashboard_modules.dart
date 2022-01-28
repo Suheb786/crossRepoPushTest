@@ -1,6 +1,7 @@
 import 'package:domain/model/dashboard/get_dashboard_data/credit_card.dart';
 import 'package:domain/model/dashboard/get_dashboard_data/debit_card.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:neo_bank/di/usecase/account_setting/account_setting_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/card_delivery/card_delivery_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/dashboard/dashboard_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/debit_card_settings/debit_card_settings_usecase_provider.dart';
@@ -139,7 +140,10 @@ final locatePinViewModelProvider =
 ///settings dialog view model
 final settingsDialogViewModelProvider =
     ChangeNotifierProvider.autoDispose<SettingsDialogViewModel>(
-  (ref) => SettingsDialogViewModel(ref.read(logoutUseCaseProvider)),
+  (ref) => SettingsDialogViewModel(
+    ref.read(logoutUseCaseProvider),
+    ref.read(getProfileInfoUseCaseProvider),
+  ),
 );
 
 final downloadTransactionDialogViewModelProvider =

@@ -10,12 +10,14 @@ class MobileNumberDialog {
       {Function? onDismissed,
       Function(CountryData)? onSelected,
       List<CountryData>? countryDataList,
+      required CountryData selectedCountryData,
       String? title}) {
     AppDialog.show(mContext,
         builder: (context) => MobileNumberDialogView(
             onDismissed: onDismissed,
             countryDataList: countryDataList!,
             onSelected: onSelected,
+            selectedCountryData: selectedCountryData,
             title: title));
   }
 }
