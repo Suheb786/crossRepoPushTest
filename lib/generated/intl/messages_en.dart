@@ -563,6 +563,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while Get Additional Documentation"),
         "errorWhileGetComboValues": MessageLookupByLibrary.simpleMessage(
             "Error While Get Combo Values"),
+        "errorWhileGetStatus":
+            MessageLookupByLibrary.simpleMessage("Error While Get Status"),
         "errorWhileGettingAccountCloseOtp":
             MessageLookupByLibrary.simpleMessage(
                 "Error While Getting Account Close Otp."),

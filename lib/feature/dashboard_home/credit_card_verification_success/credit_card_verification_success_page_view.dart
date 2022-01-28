@@ -20,79 +20,86 @@ class CreditCardVerificationSuccessPageView
         onHorizontalDragEnd: (details) {
           print("swiped");
           if (details.primaryVelocity!.isNegative) {
-            Navigator.of(context)..pop()..pop(true);
+            Navigator.of(context)
+              ..pop()
+              ..pop(true);
           }
         },
         child: Padding(
           padding: EdgeInsets.only(top: 92),
-          child: Column(
-            children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Image.asset(AssetUtils.line),
-                  Align(
-                    alignment: Alignment.center,
-                    child: Container(
-                      height: 111.37,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColor.vividYellow,
+          child: SingleChildScrollView(
+            physics: ClampingScrollPhysics(),
+            child: Column(
+              children: [
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Image.asset(AssetUtils.line),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Container(
+                        height: 111.37,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColor.vividYellow,
+                        ),
+                        child: Center(
+                            child: AppSvg.asset(AssetUtils.right,
+                                color: Theme.of(context).accentColor)),
                       ),
-                      child: Center(
-                          child: AppSvg.asset(AssetUtils.right,
-                              color: Theme.of(context).accentColor)),
                     ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 34.0),
-                child: Text(
-                  S.of(context).creditCardVerified,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontWeight: FontWeight.w800,
-                      fontSize: 24),
+                  ],
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 16.0),
-                child: Text(
-                  S.of(context).physicalCardUse,
-                  maxLines: 3,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 16),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 285),
-                child: AnimatedButton(
-                  buttonText: S.of(context).swipeToProceed,
-                  borderColor: Theme.of(context).accentColor,
-                  textColor: Theme.of(context).accentColor,
-                ),
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context)..pop()..pop();
-                },
-                child: Padding(
-                  padding: EdgeInsets.only(top: 9),
+                Padding(
+                  padding: EdgeInsets.only(top: 34.0),
                   child: Text(
-                    S.of(context).toDashboard,
+                    S.of(context).creditCardVerified,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Theme.of(context).accentColor,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w600),
+                        fontWeight: FontWeight.w800,
+                        fontSize: 24),
                   ),
                 ),
-              )
-            ],
+                Padding(
+                  padding: EdgeInsets.only(top: 16.0),
+                  child: Text(
+                    S.of(context).physicalCardUse,
+                    maxLines: 3,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        color: Theme.of(context).accentColor,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 16),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 285),
+                  child: AnimatedButton(
+                    buttonText: S.of(context).swipeToProceed,
+                    borderColor: Theme.of(context).accentColor,
+                    textColor: Theme.of(context).accentColor,
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context)
+                      ..pop()
+                      ..pop();
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 9),
+                    child: Text(
+                      S.of(context).toDashboard,
+                      style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

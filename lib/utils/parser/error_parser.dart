@@ -402,8 +402,10 @@ class ErrorParser {
         return localisedHelper.errorWhileLinkingDebitCard;
       case ErrorType.INVALID_ANNUAL_INCOME_VALUE:
         return localisedHelper.invalidAnnualIncomeValue;
-        case ErrorType.SELECT_ADDITIONAL_INCOME:
+      case ErrorType.SELECT_ADDITIONAL_INCOME:
         return localisedHelper.selectAdditionalIncome;
+      case ErrorType.ERROR_WHILE_GET_STATUS:
+        return localisedHelper.errorWhileGetStatus;
 
       default:
         return "";

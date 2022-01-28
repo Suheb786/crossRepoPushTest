@@ -646,7 +646,7 @@ class UploadDocumentsPageView
                                                                                 model.getCustomerStatus();
                                                                                 //model.getAccount();
                                                                                 //Navigator.pushReplacementNamed(context, RoutePaths.AccountReady);
-                                                                                getSecondNextPage(userStatus!.data!, model, context);
+                                                                                //getSecondNextPage(userStatus!.data!, model, context);
                                                                               });
                                                                             },
                                                                             child: Text(
@@ -695,7 +695,6 @@ class UploadDocumentsPageView
 
   void getNextPage(CustomerStatus customerStatus,
       UploadDocumentsPageViewModel model, BuildContext context) {
-    model.isSecondNextPage = false;
     switch (customerStatus.nextPage) {
       case CustomerStatusEnum.HOLD:
         Navigator.pushReplacementNamed(context, RoutePaths.AccountHold,
@@ -731,6 +730,7 @@ class UploadDocumentsPageView
 
   void getSecondNextPage(CustomerStatus customerStatus,
       UploadDocumentsPageViewModel model, BuildContext context) {
+    model.isSecondNextPage = false;
     switch (customerStatus.secondNextPage) {
       case CustomerStatusEnum.HOLD:
         Navigator.pushReplacementNamed(context, RoutePaths.AccountHold,
