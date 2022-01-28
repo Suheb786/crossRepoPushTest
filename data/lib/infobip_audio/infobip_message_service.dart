@@ -3,6 +3,7 @@ import 'package:infobip_mobilemessaging/infobip_mobilemessaging.dart';
 import 'package:infobip_mobilemessaging/models/Configuration.dart';
 import 'package:infobip_mobilemessaging/models/LibraryEvent.dart';
 import 'package:infobip_mobilemessaging/models/Message.dart';
+import 'package:infobip_mobilemessaging/models/PersonalizeContext.dart';
 import 'package:infobip_mobilemessaging/models/UserData.dart';
 
 class InfobipMessageService {
@@ -107,12 +108,16 @@ class InfobipMessageService {
   }
 
   Future<bool> saveUser({required UserData userData}) async {
-    // var installation = await InfobipMobilemessaging.fetchInstallation();
-    // userData.externalUserId = installation.pushRegistrationId.toString();
-    UserData user =
-        UserData(firstName: userData.firstName, lastName: userData.lastName);
-
+    var installation = await InfobipMobilemessaging.fetchInstallation();
+    userData.externalUserId = installation.pushRegistrationId.toString();
+    UserData user = UserData(
+        firstName: userData.firstName,
+        lastName: userData.lastName,
+        externalUserId: userData.externalUserId);
+    var userIdentity = UserIdentity(externalUserId: userData.externalUserId);
     InfobipMobilemessaging.saveUser(user);
+    InfobipMobilemessaging.personalize(PersonalizeContext(
+        forceDepersonalize: false, userIdentity: userIdentity));
     return true;
   }
 }
