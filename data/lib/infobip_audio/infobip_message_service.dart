@@ -113,8 +113,15 @@ class InfobipMessageService {
     UserData user = UserData(
         firstName: userData.firstName,
         lastName: userData.lastName,
+        emails: userData.emails,
+        phones: userData.phones,
+        gender: Gender.Male,
         externalUserId: userData.externalUserId);
-    var userIdentity = UserIdentity(externalUserId: userData.externalUserId);
+    var userIdentity = UserIdentity(
+      externalUserId: userData.externalUserId,
+      emails: userData.emails,
+      phones: userData.phones,
+    );
     InfobipMobilemessaging.saveUser(user);
     InfobipMobilemessaging.personalize(PersonalizeContext(
         forceDepersonalize: false, userIdentity: userIdentity));
