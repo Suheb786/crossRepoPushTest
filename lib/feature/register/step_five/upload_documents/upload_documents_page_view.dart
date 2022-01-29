@@ -716,7 +716,7 @@ class UploadDocumentsPageView
           ProviderScope.containerOf(context)
               .read(registerStepFiveViewModelProvider)
               .registrationStepFivePageController
-              .move(0, animation: false);
+              .move(1, animation: false);
         });
         break;
       case CustomerStatusEnum.REMOVE_DEBIT_LOCK:
