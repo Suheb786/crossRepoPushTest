@@ -223,8 +223,10 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
       _updateBeneficiaryRequest.safeAdd(UpdateBeneficiaryUseCaseParams(
           beneficiaryId: beneficiary.id!,
           nickName: nickNameController.text,
-          purposeDetails: purposeDetailsController.text,
-          purpose: purposeController.text));
+          purposeDetails: purposeDetail != null
+              ? purposeDetail!.strCode!
+              : purposeDetailsController.text,
+          purpose: purpose != null ? purpose!.code! : purposeController.text));
     } else {
       uploadBeneficiaryImageProfile();
     }
@@ -255,9 +257,10 @@ class ManageContactDetailsPageViewModel extends BasePageViewModel {
     ibanController.text = beneficiary.iban ?? "";
     accountHolderNameController.text = beneficiary.fullName!;
     bankNameController.text = beneficiary.bankName!;
-    purposeController.text = Validator.isNotEmptyNull(beneficiary.purpose)
-        ? beneficiary.purpose!
-        : '';
+    purposeController.text =
+        Validator.isNotEmptyNull(beneficiary.purposeParentDetails)
+            ? beneficiary.purposeParentDetails!
+            : '';
     purposeDetailsController.text =
         Validator.isNotEmptyNull(beneficiary.purposeDetails)
             ? beneficiary.purposeDetails!
