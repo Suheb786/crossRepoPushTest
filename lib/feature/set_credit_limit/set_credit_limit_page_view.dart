@@ -16,6 +16,8 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:syncfusion_flutter_core/theme.dart';
+import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class SetCreditLimitPageView
     extends BasePageViewWidget<SetCreditLimitViewModel> {
@@ -156,20 +158,32 @@ class SetCreditLimitPageView
                                             initialData:
                                                 sliderLimitValues.minValue!,
                                             dataBuilder: (context, val) {
-                                              return SliderTheme(
-                                                data: SliderThemeData(
-                                                    trackHeight: 0,
-                                                    thumbShape:
-                                                        RoundSliderThumbShape(
-                                                            enabledThumbRadius:
-                                                                20)),
-                                                child: Slider(
+                                              return SfTheme(
+                                                data: SfThemeData(
+                                                    sliderThemeData:
+                                                        SfSliderThemeData(
+                                                            activeTrackColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            activeTrackHeight:
+                                                                0,
+                                                            thumbRadius: 20,
+                                                            inactiveTrackColor:
+                                                                Colors
+                                                                    .transparent,
+                                                            thumbColor: Theme
+                                                                    .of(context)
+                                                                .accentTextTheme
+                                                                .bodyText1!
+                                                                .color)),
+                                                child: SfSlider(
                                                   min: sliderLimitValues
                                                       .minValue!,
                                                   max: sliderLimitValues
                                                       .maxValue!,
-                                                  divisions: sliderLimitValues
-                                                      .divisions!,
+                                                  stepSize: sliderLimitValues
+                                                      .divisions!
+                                                      .toDouble(),
                                                   value: val!,
                                                   onChanged: (value) {
                                                     print("got value : $value");
