@@ -12,6 +12,7 @@ import 'package:neo_bank/utils/asset_utils.dart';
 import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
+import 'package:neo_bank/utils/string_utils.dart';
 
 class CreditCardDeliveredPageView
     extends BasePageViewWidget<CreditCardDeliveredViewModel> {
@@ -58,9 +59,12 @@ class CreditCardDeliveredPageView
                         child: GestureDetector(
                           onHorizontalDragEnd: (details) {
                             model.confirmCreditCardDelivery(
-                              cardId: model.creditCard.first.cardId!,
-                              cardDigit: model.creditCard.first.creditLimit!
-                            );
+                                cardId: model.creditCard.first.cardId!,
+                                cardDigit: model
+                                        .creditCard.first.cardNumber!.isNotEmpty
+                                    ? StringUtils.getLastFourDigitOfCardNo(
+                                        model.creditCard.first.cardNumber!)
+                                    : '');
                           },
                           child: Card(
                             shape: RoundedRectangleBorder(
@@ -90,8 +94,9 @@ class CreditCardDeliveredPageView
                                       padding: EdgeInsets.only(top: 9),
                                       child: Text(
                                         model.creditCard.isNotEmpty
-                                            ? model.creditCard[0].cardNumber ??
-                                                '-'
+                                            ? StringUtils
+                                                .getLastFourDigitOfCardNo(model
+                                                    .creditCard[0].cardNumber)
                                             : '-',
                                         style: TextStyle(
                                             fontSize: 30,
@@ -100,7 +105,7 @@ class CreditCardDeliveredPageView
                                     ),
                                     Padding(
                                       padding: EdgeInsets.only(
-                                          top: 78, left: 30, right: 24),
+                                          top: 32, left: 30, right: 24),
                                       child: Text(
                                         S.of(context).cardHasBeenDelivered,
                                         maxLines: 4,
@@ -138,7 +143,7 @@ class CreditCardDeliveredPageView
                         Container(
                             height: 186,
                             width: double.infinity,
-                            padding: EdgeInsets.only(top: 111, left: 20),
+                            padding: EdgeInsets.only(top: 116, left: 20),
                             decoration: BoxDecoration(
                                 image: DecorationImage(
                                     image: AssetImage(
@@ -162,18 +167,29 @@ class CreditCardDeliveredPageView
                                     padding: EdgeInsets.only(top: 10),
                                     child: Text(
                                         model.creditCard.isNotEmpty
-                                            ? model.creditCard[0].cardNumber ??
-                                                '-'
+                                            ? StringUtils
+                                                .getLastFourDigitOfCardNo(model
+                                                    .creditCard
+                                                    .first
+                                                    .cardNumber!)
                                             : '-',
                                         style: TextStyle(
-                                            fontSize: 12,
+                                            fontSize: 10,
                                             fontWeight: FontWeight.w700)))
                               ],
                             )),
                         Positioned(
                             left: 7,
                             bottom: 19,
-                            child: Image.asset(AssetUtils.ellipseYellow))
+                            child: Container(
+                              height: 47,
+                              width: 47,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context)
+                                      .canvasColor
+                                      .withOpacity(0.45)),
+                            ))
                       ],
                     ))
               ],

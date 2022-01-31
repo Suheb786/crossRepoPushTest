@@ -9,6 +9,7 @@ import 'package:neo_bank/di/usecase/register/register_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/upload_document/upload_document_usecase_provider.dart';
 import 'package:neo_bank/di/usecase/user/user_usecase_provider.dart';
 import 'package:neo_bank/feature/register/register_page_model.dart';
+import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_page.dart';
 import 'package:neo_bank/feature/register/step_five/account_hold/account_hold_view_model.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_model.dart';
 import 'package:neo_bank/feature/register/step_five/account_ready/account_ready_page.dart';
@@ -448,9 +449,9 @@ final fatcaOptionsDialogViwModelProvider =
         (ref) => FatcaOptionDialogViewModel());
 
 ///account hold model provider
-final accountHoldViewModelProvider =
-    ChangeNotifierProvider.autoDispose<AccountHoldViewModel>(
-        (ref) => AccountHoldViewModel(ref.read(logoutUseCaseProvider)));
+final accountHoldViewModelProvider = ChangeNotifierProvider.autoDispose
+    .family<AccountHoldViewModel, AccountHoldArguments>((ref, args) =>
+        AccountHoldViewModel(ref.read(logoutUseCaseProvider), args));
 
 ///changeMy number dialog view model provider
 final changeMyNumberDialogViewModelProvider =

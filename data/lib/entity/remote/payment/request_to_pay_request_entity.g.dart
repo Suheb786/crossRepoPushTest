@@ -22,12 +22,20 @@ RequestToPayRequestEntity _$RequestToPayRequestEntityFromJson(
     baseData: json['baseClass'] as Map<String, dynamic>?,
     type: json['Type'] as String?,
     detCustomerType: json['DetCustomerType'] as String?,
+    dbtrSurname: json['DbtrSurname'] as String?,
+    addressCountry: json['AddressCountry'] as String?,
+    addressCity: json['AddressCity'] as String?,
+    alias: json['Alias'] as String?,
   );
 }
 
 Map<String, dynamic> _$RequestToPayRequestEntityToJson(
         RequestToPayRequestEntity instance) =>
     <String, dynamic>{
+      'DbtrSurname': instance.dbtrSurname,
+      'Alias': instance.alias,
+      'AddressCity': instance.addressCity,
+      'AddressCountry': instance.addressCountry,
       'CtgyPurp': instance.ctgyPurp,
       'Amount': instance.amount,
       'DbtrBic': instance.dbtrBic,

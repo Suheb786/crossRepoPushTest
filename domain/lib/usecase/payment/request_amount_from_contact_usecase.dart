@@ -28,7 +28,11 @@ class RequestAmountFromContactUseCase extends BaseUseCase<NetworkError,
         params.image!,
         params.nickName!,
         params.detCustomerType!,
-        params.type!);
+        params.type!,
+        params.alias!,
+        params.dbtrSurname!,
+        params.addressCity!,
+        params.addressCountry!);
   }
 }
 
@@ -45,21 +49,28 @@ class RequestAmountFromContactUseCaseParams extends Params {
   String? detCustomerType;
   String? type;
   num? limit;
+  String? dbtrSurname;
+  String? alias;
+  String? addressCity;
+  String? addressCountry;
 
-  RequestAmountFromContactUseCaseParams({
-    this.purpose,
-    this.purposeDetail,
-    this.amount,
-    this.dbtrBic,
-    this.dbtrName,
-    this.dbtrAcct,
-    this.isFriend: false,
-    this.image: "",
-    this.nickName: "",
-    this.type: "",
-    this.limit,
-    this.detCustomerType: "",
-  });
+  RequestAmountFromContactUseCaseParams(
+      {this.purpose,
+      this.purposeDetail,
+      this.amount,
+      this.dbtrBic,
+      this.dbtrName,
+      this.dbtrAcct,
+      this.isFriend: false,
+      this.image: "",
+      this.nickName: "",
+      this.type: "",
+      this.limit,
+      this.detCustomerType: "",
+      this.alias: "",
+      this.addressCity: "",
+      this.addressCountry: "",
+      this.dbtrSurname: ""});
 
   @override
   Either<AppError, bool> verify() {

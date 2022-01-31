@@ -1,6 +1,8 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:carousel_slider/carousel_controller.dart';
+import 'package:domain/model/profile_settings/get_profile_info/profile_info_response.dart';
 import 'package:domain/model/user/logout/logout_response.dart';
+import 'package:domain/usecase/account_setting/get_profile_info/get_profile_info_usecase.dart';
 import 'package:domain/usecase/user/logout_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/utils/extension/stream_extention.dart';
@@ -11,6 +13,7 @@ import 'package:rxdart/rxdart.dart';
 
 class SettingsDialogViewModel extends BasePageViewModel {
   final LogoutUseCase _logoutUseCase;
+  final GetProfileInfoUseCase _getProfileInfoUseCase;
 
   final SwiperController pageController = SwiperController();
 
@@ -19,6 +22,18 @@ class SettingsDialogViewModel extends BasePageViewModel {
   PublishSubject<int> _currentStep = PublishSubject();
 
   Stream<int> get currentStep => _currentStep.stream;
+
+  /// get profile info  request
+  PublishSubject<GetProfileInfoUseCaseParams> _getProfileInfoRequest =
+      PublishSubject();
+
+  /// get profile info response
+  PublishSubject<Resource<ProfileInfoResponse>> _getProfileInfoResponse =
+      PublishSubject();
+
+  /// get profile info response stream
+  Stream<Resource<ProfileInfoResponse>> get getProfileInfoStream =>
+      _getProfileInfoResponse.stream;
 
   /// logout request holder
   PublishSubject<LogoutUseCaseParams> _logoutRequest = PublishSubject();
@@ -29,7 +44,7 @@ class SettingsDialogViewModel extends BasePageViewModel {
   /// logout response stream
   Stream<Resource<LogoutResponse>> get logoutStream => _logoutResponse.stream;
 
-  SettingsDialogViewModel(this._logoutUseCase) {
+  SettingsDialogViewModel(this._logoutUseCase, this._getProfileInfoUseCase) {
     _logoutRequest.listen((value) {
       RequestManager(value,
               createCall: () => _logoutUseCase.execute(params: value))
@@ -43,10 +58,27 @@ class SettingsDialogViewModel extends BasePageViewModel {
         }
       });
     });
+
+    _getProfileInfoRequest.listen((value) {
+      RequestManager(
+        value,
+        createCall: () => _getProfileInfoUseCase.execute(params: value),
+      ).asFlow().listen((event) {
+        updateLoader();
+        _getProfileInfoResponse.safeAdd(event);
+      });
+    });
+    getProfileDetails();
+    getCurrentUserStream();
   }
 
   void updatePage(int index) {
     _currentStep.safeAdd(index);
+  }
+
+  ///get profile details
+  void getProfileDetails() {
+    _getProfileInfoRequest.safeAdd(GetProfileInfoUseCaseParams());
   }
 
   void logout() {

@@ -17,6 +17,8 @@ class DashboardDataEntity
   final List<DashboardCardEntity>? creditCard;
   @JsonKey(name: "debitCard")
   final List<DashboardDebitCardEntity>? debitCard;
+  @JsonKey(name: "mobileNumber")
+  final String? mobileNumber;
 
   // @JsonKey(name: "isApplied")
   // final bool? isApplied;
@@ -41,6 +43,7 @@ class DashboardDataEntity
   DashboardDataEntity({
     this.account,
     this.creditCard,
+    this.mobileNumber: "",
     this.blinkBornDate,
     this.blinkJoinedDate,
     // this.debitCardActivated,
@@ -70,6 +73,7 @@ class DashboardDataEntity
         creditCard: this.creditCard!.map((e) => e.transform()).toList(),
         debitCard: this.debitCard!.map((e) => e.transform()).toList(),
         blinkWasBorn: this.blinkBornDate,
-        youJoinedBlink: this.blinkJoinedDate);
+        youJoinedBlink: this.blinkJoinedDate,
+        mobileNumber: this.mobileNumber);
   }
 }

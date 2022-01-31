@@ -4,6 +4,14 @@ part "request_to_pay_request_entity.g.dart";
 
 @JsonSerializable()
 class RequestToPayRequestEntity {
+  @JsonKey(name: "DbtrSurname")
+  final String? dbtrSurname;
+  @JsonKey(name: "Alias")
+  final String? alias;
+  @JsonKey(name: "AddressCity")
+  final String? addressCity;
+  @JsonKey(name: "AddressCountry")
+  final String? addressCountry;
   @JsonKey(name: "CtgyPurp")
   final String? ctgyPurp;
   @JsonKey(name: "Amount")
@@ -44,7 +52,11 @@ class RequestToPayRequestEntity {
       this.getToken: true,
       this.baseData,
       this.type: "",
-      this.detCustomerType: ""});
+      this.detCustomerType: "",
+      this.dbtrSurname: "",
+      this.addressCountry: "",
+      this.addressCity: "",
+      this.alias: ""});
 
   factory RequestToPayRequestEntity.fromJson(Map<String, dynamic> json) =>
       _$RequestToPayRequestEntityFromJson(json);

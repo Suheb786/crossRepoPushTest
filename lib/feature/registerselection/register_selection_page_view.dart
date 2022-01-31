@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/di/onboarding/onboarding_module.dart';
+import 'package:neo_bank/feature/account_registration/account_registration_page.dart';
 import 'package:neo_bank/feature/registerselection/register_selection_page_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -82,7 +83,8 @@ class RegisterSelectionPageView
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(
-                                context, RoutePaths.AccountRegistration);
+                                context, RoutePaths.AccountRegistration,
+                                arguments: AccountRegistrationParams());
                           },
                           child: Container(
                             padding: EdgeInsets.all(18),

@@ -18,14 +18,14 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
   TextEditingController purposeController = TextEditingController();
   TextEditingController purposeDetailController = TextEditingController();
   final GlobalKey<AppTextFieldState> purposeKey =
-  GlobalKey(debugLabel: "purpose");
+      GlobalKey(debugLabel: "purpose");
   final GlobalKey<AppTextFieldState> purposeDetailKey =
-  GlobalKey(debugLabel: "purposeDetail");
+      GlobalKey(debugLabel: "purposeDetail");
 
   PublishSubject<GetPurposeUseCaseParams> _getPurposeRequest = PublishSubject();
 
   PublishSubject<Resource<PurposeResponse>> _getPurposeResponse =
-  PublishSubject();
+      PublishSubject();
 
   Stream<Resource<PurposeResponse>> get getPurposeResponseStream =>
       _getPurposeResponse.stream;
@@ -48,10 +48,9 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
     beneficiary = values![0];
     type = values![1];
     purposeController.text =
-        beneficiary!.purpose != null ? beneficiary!.purpose! : "Personal";
-    purposeDetailController.text = beneficiary!.purposeDetails != null
-        ? beneficiary!.purposeDetails!
-        : "Transfer to Friend or Family";
+        beneficiary!.purpose != null ? beneficiary!.purpose! : "";
+    purposeDetailController.text =
+        beneficiary!.purposeDetails != null ? beneficiary!.purposeDetails! : "";
     _getPurposeRequest.listen((value) {
       RequestManager(value,
               createCall: () => _getPurposeUseCase.execute(params: value))
@@ -59,12 +58,11 @@ class EditTransactionPurposeDialogViewModel extends BasePageViewModel {
           .listen((event) {
         updateLoader();
         _getPurposeResponse.safeAdd(event);
-        print(
-            "got the response : ${event.data!.content!.transferPurposeResponse!.purposes![0].labelEn}");
-        purposeList!.clear();
-        purposeList!
-            .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
-        if (event.status == Status.ERROR) {
+        if (event.status == Status.SUCCESS) {
+          purposeList!.clear();
+          purposeList!
+              .addAll(event.data!.content!.transferPurposeResponse!.purposes!);
+        } else if (event.status == Status.ERROR) {
           showErrorState();
           showToastWithError(event.appError!);
         }

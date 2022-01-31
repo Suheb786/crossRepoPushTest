@@ -14,15 +14,16 @@ class BioMetricService {
     return _localAuthentication.stopAuthentication();
   }
 
-  Future<bool> authenticateWithBiometrics({bool useErrorDialogs: true,
-    bool stickyAuth: false,
-    String title: "",
-    String localisedReason: ""}) async {
+  Future<bool> authenticateWithBiometrics(
+      {bool useErrorDialogs: true,
+      bool stickyAuth: false,
+      String title: "",
+      String localisedReason: ""}) async {
     return _localAuthentication.authenticate(
         localizedReason: localisedReason,
         biometricOnly: true,
         androidAuthStrings:
-        AndroidAuthMessages(biometricHint: "", signInTitle: title),
+            AndroidAuthMessages(biometricHint: "", signInTitle: title),
         useErrorDialogs: useErrorDialogs,
         stickyAuth: stickyAuth);
   }

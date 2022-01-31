@@ -123,7 +123,8 @@ class AppRouter {
 
       case RoutePaths.AccountRegistration:
         return CupertinoPageRoute(
-            builder: (context) => AccountRegistrationPage(),
+            builder: (context) => AccountRegistrationPage(
+                settings.arguments as AccountRegistrationParams),
             settings: RouteSettings(name: RoutePaths.AccountRegistration));
 
       case RoutePaths.ProductSelector:
@@ -449,7 +450,8 @@ class AppRouter {
 
       case RoutePaths.AccountHold:
         return CupertinoPageRoute(
-            builder: (context) => AccountHoldPage(),
+            builder: (context) =>
+                AccountHoldPage(settings.arguments as AccountHoldArguments),
             settings: RouteSettings(name: RoutePaths.AccountHold));
 
       case RoutePaths.ForgotPassword:

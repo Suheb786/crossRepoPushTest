@@ -164,8 +164,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "availableBalance":
             MessageLookupByLibrary.simpleMessage("AVAILABLE BALANCE"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
+        "backToCardSettings":
+            MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
         "backToDashboard":
             MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
+        "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
         "backToPayments":
             MessageLookupByLibrary.simpleMessage("Back to Payments"),
         "backToRegistration":
@@ -501,7 +504,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enterAddressHeader": MessageLookupByLibrary.simpleMessage(
             "Where do you\ncurrently live?"),
         "enterCode": MessageLookupByLibrary.simpleMessage(
-            "Enter the 6-digit code sent to  \n+962 79 322 8080"),
+            "Enter the 6-digit code sent to"),
         "enterConfirmPassword": MessageLookupByLibrary.simpleMessage(
             "Confirm password field cannot be empty"),
         "enterIdNumberToResetPassword": MessageLookupByLibrary.simpleMessage(
@@ -563,6 +566,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Error while Get Additional Documentation"),
         "errorWhileGetComboValues": MessageLookupByLibrary.simpleMessage(
             "Error While Get Combo Values"),
+        "errorWhileGetStatus":
+            MessageLookupByLibrary.simpleMessage("Error While Get Status"),
         "errorWhileGettingAccountCloseOtp":
             MessageLookupByLibrary.simpleMessage(
                 "Error While Getting Account Close Otp."),
@@ -721,6 +726,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidAddress": MessageLookupByLibrary.simpleMessage("Enter Address"),
         "invalidAnnualIncome":
             MessageLookupByLibrary.simpleMessage("Enter Annual income"),
+        "invalidAnnualIncomeValue": MessageLookupByLibrary.simpleMessage(
+            "Annual Income should be greater than 0"),
         "invalidBeneficialOwnerAccount": MessageLookupByLibrary.simpleMessage(
             "We\'re sorry, you must be the beneficial owner of the account to proceed."),
         "invalidBeneficiary":
@@ -1203,6 +1210,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "searchYear": MessageLookupByLibrary.simpleMessage("Search year"),
         "seeAllContacts":
             MessageLookupByLibrary.simpleMessage("See all contacts"),
+        "selectAdditionalIncome":
+            MessageLookupByLibrary.simpleMessage("Select Additional Income"),
         "selectAnyOption":
             MessageLookupByLibrary.simpleMessage("Select any Option"),
         "selectCountryHeader": MessageLookupByLibrary.simpleMessage(

@@ -24,11 +24,13 @@ class MobileNumberDialogView extends StatelessWidget {
   final String? title;
   final List<CountryData> countryDataList;
   bool _keyboardVisible = false;
+  final CountryData selectedCountryData;
 
   MobileNumberDialogView(
       {this.onDismissed,
       this.onSelected,
       this.title,
+      required this.selectedCountryData,
       required this.countryDataList});
 
   ProviderBase providerBase() {
@@ -245,7 +247,7 @@ class MobileNumberDialogView extends StatelessWidget {
         },
         onModelReady: (model) {
           if (model.allCountryList == null || model.allCountryList!.isEmpty) {
-            model.setResponse(countryDataList);
+            model.setResponse(countryDataList,selectedCountryData);
           }
         },
         providerBase: providerBase());

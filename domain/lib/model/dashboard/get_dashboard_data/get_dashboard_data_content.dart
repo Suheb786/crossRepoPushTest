@@ -8,6 +8,7 @@ class GetDashboardDataContent {
       this.creditCard,
       this.debitCard,
       this.youJoinedBlink,
+      this.mobileNumber,
       this.blinkWasBorn});
 
   final Account? account;
@@ -15,4 +16,5 @@ class GetDashboardDataContent {
   final List<DebitCard>? debitCard;
   final DateTime? youJoinedBlink;
   final DateTime? blinkWasBorn;
+  final String? mobileNumber;
 }

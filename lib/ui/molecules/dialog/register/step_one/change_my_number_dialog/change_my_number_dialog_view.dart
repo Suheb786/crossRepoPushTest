@@ -86,7 +86,8 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                     onTap: () {
                                       MobileNumberDialog.show(context,
                                           title: S.of(context).mobileNumber,
-                                          onSelected: (data) {
+                                          selectedCountryData: model
+                                              .countryData, onSelected: (data) {
                                         Navigator.pop(context);
                                         model.countryData = data;
                                         model.setSelectedCountry(data);
@@ -100,16 +101,19 @@ class ChangeMyNumberDialogView extends StatelessWidget {
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
                                           Container(
-                                              height: 16,
-                                              width: 16,
-                                              decoration: BoxDecoration(
-                                                  color: Theme.of(context)
-                                                      .primaryColorDark,
-                                                  shape: BoxShape.circle,
-                                                  image: DecorationImage(
-                                                      image: AssetImage(
-                                                          "${AssetUtils.flags}${selectedCountry!.isoCode3?.toLowerCase() ?? ""}.png"),
-                                                      fit: BoxFit.cover))),
+                                            height: 16,
+                                            width: 16,
+                                            decoration: BoxDecoration(
+                                              color: Theme.of(context)
+                                                  .primaryColorDark,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: AppSvg.asset(selectedCountry!
+                                                        .isoCode3 !=
+                                                    null
+                                                ? "${AssetUtils.flags}${selectedCountry.isoCode3?.toLowerCase()}.svg"
+                                                : "assets/flags/jor.svg"),
+                                          ),
                                           Padding(
                                             padding: EdgeInsets.symmetric(
                                                 horizontal: 8.0),

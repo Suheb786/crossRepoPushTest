@@ -187,19 +187,10 @@ class AccountSettingPageView
                                                                             : CircleAvatar(
                                                                                 radius: 48,
                                                                                 backgroundColor: Theme.of(context).primaryColor,
-                                                                                // child: Text(
-                                                                                //   StringUtils
-                                                                                //       .getFirstInitials(
-                                                                                //           'Santoshi Bisht'),
-                                                                                //   style: TextStyle(
-                                                                                //       fontWeight:
-                                                                                //           FontWeight
-                                                                                //               .w700,
-                                                                                //       fontSize: 14,
-                                                                                //       color: Theme.of(
-                                                                                //               context)
-                                                                                //           .accentColor),
-                                                                                // ),
+                                                                                child: Text(
+                                                                                  user!.profileName,
+                                                                                  style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18, color: Theme.of(context).accentColor),
+                                                                                ),
                                                                               ))
                                                                         : CircleAvatar(
                                                                             radius:
