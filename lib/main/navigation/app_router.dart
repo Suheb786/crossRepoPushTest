@@ -347,7 +347,8 @@ class AppRouter {
 
       case RoutePaths.VideoKyc:
         return CupertinoPageRoute(
-            builder: (context) => VideoKycPage(),
+            builder: (context) => VideoKycPage(
+                credentials: settings.arguments as VideKycCredentials),
             settings: RouteSettings(name: RoutePaths.VideoKyc));
 
       case RoutePaths.DebitCardSettings:

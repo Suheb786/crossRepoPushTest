@@ -22,7 +22,7 @@ class CheckGenderResponseEntity extends BaseLayerDataTransformer<
   @override
   AgentGenderStatus transform() {
     return CheckGenderStatusEntity.fromJson(
-            response!.content as Map<String, dynamic>)
+            response!.content['data'] as Map<String, dynamic>)
         .transform();
   }
 }

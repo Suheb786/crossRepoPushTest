@@ -46,9 +46,32 @@ class VideoKycPageView extends BasePageViewWidget<VideoKycViewModel> {
           Positioned(
             left: 0,
             right: 0,
+            bottom: 150,
+            child: InkWell(
+              onTap: () {
+                model.joinAgoraChannel();
+              },
+              child: Container(
+                width: 57,
+                height: 57,
+                padding: EdgeInsets.all(15),
+                decoration: BoxDecoration(
+                  color: AppColor.vivid_red,
+                  shape: BoxShape.circle,
+                ),
+                child: AppSvg.asset(AssetUtils.receiver),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 0,
+            right: 0,
             bottom: 50,
             child: InkWell(
-              onTap: model.leaveAgoraChannel(),
+              onTap: () {
+                model.leaveAgoraChannel();
+                Navigator.pop(context);
+              },
               child: Container(
                 width: 57,
                 height: 57,

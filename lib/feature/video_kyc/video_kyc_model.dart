@@ -2,24 +2,24 @@ import 'dart:io';
 
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
+import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class VideoKycViewModel extends BasePageViewModel {
   final String agoraAppId = "95c7a3ae0ee54a2bb6999d730d281e59";
-  final String channelId = "blinkTest";
-
-  /// TODO ::: DYNAMIC FROM API
-  final String tempToken = "";
-
-  /// TODO:: DYNAMIC FROM API
+  String channelId = "";
+  String tempToken = "";
   final int uid = 0;
   final String stringUid = "0";
+  final VideKycCredentials agoraCredentials;
 
   late final RtcEngine _engine;
   bool isJoined = false, switchCamera = true, switchRender = true;
   List<int> remoteUid = [];
 
-  VideoKycViewModel() {
+  VideoKycViewModel(this.agoraCredentials) {
+    channelId = agoraCredentials.channelName;
+    tempToken = agoraCredentials.token;
     _initEngine();
   }
 
