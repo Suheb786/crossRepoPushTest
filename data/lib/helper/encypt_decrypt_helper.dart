@@ -44,9 +44,9 @@ class EncryptDecryptHelper {
       Tuple2 dataPair = _finalDataEncrypt(jsonEncode(request));
       data['data'] = dataPair.item2;
       data['data1'] = dataPair.item1;
-      //  print("Request to encrypt " + jsonEncode(request));
-      // print('Encrypted key ' + dataPair.item1.toString());
-      // print('Encrypted request ' + dataPair.item2.toString());
+      print("Request to encrypt " + jsonEncode(request));
+      print('Encrypted key ' + dataPair.item1.toString());
+      print('Encrypted request ' + dataPair.item2.toString());
     } catch (e) {
       //print("Error in encryptRequest " + e.toString());
     }
@@ -86,8 +86,11 @@ class EncryptDecryptHelper {
 
   ///RSA encryption
   static String _encryptPublicKey(encrypt.Key key) {
-    ///TODO:: NEED TO GET IT FROM BACKEND PUBLIC KEY DE
-    String serverPublicKey = "KEY FROM BACKEND";
+    /// FROM BACKEND PUBLIC KEY
+
+    var serverPublicKey =
+        //"MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAiEHA5NjFmyC6dw84pzbpIzhXqH5VjD/fyFBko4z27iD8ZgQ5jzWs4wEC1XnCrYbKdmys+82P8oY38gEJxLcZsjuyYuy64s/gOD173sh054gYqhds9lNT/93KrEjhBUFpGUi+fq3PFCh2qrxd/9XaiMLcmg8y1UuCWKVW+JQCpwaLGK74xdmumnpfzvKHEzAIW3Bgn1wJZAPwMwcMz+uSY9afer4mCTfRRheisAlOMRgq7sN5J21Fxs7KlhSpvDlLbUsUuZ+nsbWjRStlahAHbumoZjiqJmvgY5iu+k6YJyciZYWv2IzL1IZ3plJ7O/SujdEIDL+oJfsVMn63veVZeAT6kxM9itsepINci4MlGlNhwzncpGkOQJeMBRVIbkF4D2Oa/oHRv+N+Olcdw+6Bw3C1bYXZOhB3jYZL6vhAgxcJIMpnGHWItWftm3Rll5nbxoKMHJPVg2ig3kf2Fkbe //7FK3WwiiAsB24rf2jIExx+oFPT8cz68cKBmMxlMzpOTDLvsdGewye6Gszefzvudwx+NQvvpepKoMrwSvDvW0WYEVFisrRKzrdcZ+a+iJRzfdBXubgvoLfBMl8tKf2lb2B+GzKVDH6pYnGpCieHKRxgU7ETadVkpXp8GifzKmbwqqSoZcr/Ebzy0dCM0sGVC00K7ZzmJhM5jBdC5Zj2/2MCAwEAAQ==";
+        "MIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAiEHA5NjFmyC6dw84pzbpIzhXqH5VjD/fyFBko4z27iD8ZgQ5jzWs4wEC1XnCrYbKdmys+82P8oY38gEJxLcZsjuyYuy64s/gOD173sh054gYqhds9lNT/93KrEjhBUFpGUi+fq3PFCh2qrxd/9XaiMLcmg8y1UuCWKVW+JQCpwaLGK74xdmumnpfzvKHEzAIW3Bgn1wJZAPwMwcMz+uSY9afer4mCTfRRheisAlOMRgq7sN5J21Fxs7KlhSpvDlLbUsUuZ+nsbWjRStlahAHbumoZjiqJmvgY5iu+k6YJyciZYWv2IzL1IZ3plJ7O/SujdEIDL+oJfsVMn63veVZeAT6kxM9itsepINci4MlGlNhwzncpGkOQJeMBRVIbkF4D2Oa/oHRv+N+Olcdw+6Bw3C1bYXZOhB3jYZL6vhAgxcJIMpnGHWItWftm3Rll5nbxoKMHJPVg2ig3kf2Fkbe//7FK3WwiiAsB24rf2jIExx+oFPT8cz68cKBmMxlMzpOTDLvsdGewye6Gszefzvudwx+NQvvpepKoMrwSvDvW0WYEVFisrRKzrdcZ+a+iJRzfdBXubgvoLfBMl8tKf2lb2B+GzKVDH6pYnGpCieHKRxgU7ETadVkpXp8GifzKmbwqqSoZcr/Ebzy0dCM0sGVC00K7ZzmJhM5jBdC5Zj2/2MCAwEAAQ==";
 
     ///RSA encrypt
     final encrypter = encrypt.Encrypter(encrypt.RSA(
