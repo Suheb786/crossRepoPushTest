@@ -27,7 +27,7 @@ class ApiInterceptor extends InterceptorsWrapper {
     print('authToken--->$authToken');
 
     /// TODO::: UNCOMMENT BELOW LINE FOR ENCRYPTION OF REQUEST DATA
-    // options.data = _encryptRequest(options.data);
+    options.data = _encryptRequest(options.data);
 
     ///TODO:: UNCOMMENT BELOW BLOCK FOR SSL PINNING
 /*

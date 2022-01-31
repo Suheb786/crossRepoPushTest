@@ -28,6 +28,18 @@ class ManageDebitCardLimitsPageView
       child: AppStreamBuilder<Resource<DebitCardLimitResponse>>(
           stream: model.debitCardLimitResponseStream,
           initialData: Resource.none(),
+          onData: (debitCardLimitResponse) {
+            if (debitCardLimitResponse.status == Status.SUCCESS) {
+              model.atmWithdrawalValue = num.parse(debitCardLimitResponse
+                  .data!.debitCardLimitContent!.limits![0].currentLimit!);
+              model.merchantPayment = num.parse(debitCardLimitResponse
+                  .data!.debitCardLimitContent!.limits![1].currentLimit!);
+              model.onlinePurchase = num.parse(debitCardLimitResponse
+                  .data!.debitCardLimitContent!.limits![4].currentLimit!);
+              model.contactlessPayments = num.parse(debitCardLimitResponse
+                  .data!.debitCardLimitContent!.limits![5].currentLimit!);
+            }
+          },
           dataBuilder: (context, debitCardLimitResponse) {
             return GestureDetector(
               onVerticalDragEnd: (details) {
@@ -154,6 +166,10 @@ class ManageDebitCardLimitsPageView
                                                           .toString(),
                                                   providerBase:
                                                       atmWithdrawalViewModelProvider,
+                                                  onChange:
+                                                      (atmWithdrawalValue) {
+                                                    print(atmWithdrawalValue);
+                                                  },
                                                   onDone: (atmWithdrawalValue) {
                                                     if (num.parse(
                                                             atmWithdrawalValue) >
@@ -256,6 +272,10 @@ class ManageDebitCardLimitsPageView
                                                           .toString(),
                                                   providerBase:
                                                       merchantPaymentViewModelProvider,
+                                                  onChange:
+                                                      (merchantPaymentValue) {
+                                                    print(merchantPaymentValue);
+                                                  },
                                                   onDone:
                                                       (merchantPaymentValue) {
                                                     if (num.parse(
@@ -357,6 +377,11 @@ class ManageDebitCardLimitsPageView
                                                           .toString(),
                                                   providerBase:
                                                       onlinePurchaseViewModelProvider,
+                                                  onChange:
+                                                      (onlinePurchaseLimitValue) {
+                                                    print(
+                                                        onlinePurchaseLimitValue);
+                                                  },
                                                   onDone:
                                                       (onlinePurchaseLimitValue) {
                                                     if (num.parse(
@@ -511,6 +536,11 @@ class ManageDebitCardLimitsPageView
                                                   readOnly: true,
                                                   providerBase:
                                                       contactLessPaymentViewModelProvider,
+                                                  onChange:
+                                                      (contactLessPaymentValue) {
+                                                    print(
+                                                        contactLessPaymentValue);
+                                                  },
                                                   onDone:
                                                       (contactLessPaymentValue) {
                                                     // model.updateCardLimits(

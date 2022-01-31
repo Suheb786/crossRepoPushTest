@@ -896,7 +896,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mainSourceOfIncome":
             MessageLookupByLibrary.simpleMessage("MAIN SOURCE OF INCOME"),
         "makeSureYourFaceFitsTheFrame": MessageLookupByLibrary.simpleMessage(
-            "Make sure your face fits into the frame"),
+            "Make sure your eyes are level\nand well-opened."),
         "maleAgent": MessageLookupByLibrary.simpleMessage("Male Agent"),
         "manageCardLimits":
             MessageLookupByLibrary.simpleMessage("Manage card limits"),
