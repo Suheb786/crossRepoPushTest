@@ -123,6 +123,23 @@ class RelationshipWithCardholderPageView
                                         },
                                         key: model.relationshipKey,
                                       ),
+                                      Expanded(child: Container()),
+                                      Center(
+                                        child: InkWell(
+                                          onTap: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text(
+                                            S.of(context).backToCardSettings,
+                                            style: TextStyle(
+                                              color: AppColor.brightBlue,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 20),
                                       Center(
                                         child: AppStreamBuilder<bool>(
                                             stream: model.showButtonStream,
