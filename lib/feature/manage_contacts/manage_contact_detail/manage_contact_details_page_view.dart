@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,14 +7,10 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/account_setting/choose_profile_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -212,6 +207,10 @@ class ManageContactDetailsPageView
                         inputType: TextInputType.text,
                         controller: model.purposeController,
                         readOnly: true,
+                        textColor: Theme.of(context)
+                            .inputDecorationTheme
+                            .hintStyle!
+                            .color,
                         // onPressed: () {
                         //   if (model.purposeList.length > 0) {
                         //     PurposeDialog.show(context,
@@ -245,6 +244,10 @@ class ManageContactDetailsPageView
                         inputType: TextInputType.text,
                         readOnly: true,
                         controller: model.purposeDetailsController,
+                        textColor: Theme.of(context)
+                            .inputDecorationTheme
+                            .hintStyle!
+                            .color,
                         /*onPressed: () {
                           if (model.purposeDetailList.isNotEmpty) {
                             PurposeDetailDialog.show(context,
