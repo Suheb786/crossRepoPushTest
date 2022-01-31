@@ -25,6 +25,9 @@ class RequestAmountFromContactSuccessPageView
             ProviderScope.containerOf(context)
                 .read(appHomeViewModelProvider)
                 .getDashboardData();
+            ProviderScope.containerOf(context)
+                .read(appHomeViewModelProvider)
+                .triggerRequestMoneyPopup();
           }
         },
         child: Padding(
@@ -36,10 +39,7 @@ class RequestAmountFromContactSuccessPageView
                   alignment: Alignment.center,
                   children: [
                     Image.asset(AssetUtils.line,
-                        color: Theme
-                            .of(context)
-                            .accentColor
-                            .withOpacity(0.4)),
+                        color: Theme.of(context).accentColor.withOpacity(0.4)),
                     Align(
                       alignment: Alignment.center,
                       child: Container(
@@ -105,7 +105,7 @@ class RequestAmountFromContactSuccessPageView
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color:
-                        Theme.of(context).primaryColorDark.withOpacity(0.5),
+                            Theme.of(context).primaryColorDark.withOpacity(0.5),
                         fontWeight: FontWeight.w600,
                         fontSize: 12),
                   ),
@@ -118,7 +118,7 @@ class RequestAmountFromContactSuccessPageView
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color:
-                        Theme.of(context).primaryColorDark.withOpacity(0.5),
+                            Theme.of(context).primaryColorDark.withOpacity(0.5),
                         fontWeight: FontWeight.w400,
                         fontSize: 14),
                   ),
@@ -128,9 +128,9 @@ class RequestAmountFromContactSuccessPageView
                   child: AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
                     borderColor:
-                    Theme.of(context).accentTextTheme.bodyText1!.color,
+                        Theme.of(context).accentTextTheme.bodyText1!.color,
                     textColor:
-                    Theme.of(context).accentTextTheme.bodyText1!.color,
+                        Theme.of(context).accentTextTheme.bodyText1!.color,
                   ),
                 ),
                 InkWell(

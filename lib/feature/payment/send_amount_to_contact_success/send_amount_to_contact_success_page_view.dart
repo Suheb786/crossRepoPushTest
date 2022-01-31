@@ -24,6 +24,9 @@ class SendAmountToContactSuccessPageView
           ProviderScope.containerOf(context)
               .read(appHomeViewModelProvider)
               .getDashboardData();
+          ProviderScope.containerOf(context)
+              .read(appHomeViewModelProvider)
+              .triggerSentMoneyPopup();
         }
       },
       child: Padding(
