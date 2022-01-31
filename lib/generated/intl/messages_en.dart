@@ -163,8 +163,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "availableBalance":
             MessageLookupByLibrary.simpleMessage("AVAILABLE BALANCE"),
         "awesome": MessageLookupByLibrary.simpleMessage("Awesome!"),
+        "backToCardSettings":
+            MessageLookupByLibrary.simpleMessage("Back to Card Settings"),
         "backToDashboard":
             MessageLookupByLibrary.simpleMessage("Back to Dashboard"),
+        "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
         "backToPayments":
             MessageLookupByLibrary.simpleMessage("Back to Payments"),
         "backToRegistration":

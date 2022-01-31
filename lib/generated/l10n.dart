@@ -3131,6 +3131,26 @@ class S {
     );
   }
 
+  /// `Back to Card Settings`
+  String get backToCardSettings {
+    return Intl.message(
+      'Back to Card Settings',
+      name: 'backToCardSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to Login`
+  String get backToLogin {
+    return Intl.message(
+      'Back to Login',
+      name: 'backToLogin',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `NOTIFY ME`
   String get notifyMe {
     return Intl.message(
