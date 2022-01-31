@@ -211,7 +211,8 @@ class PaymentToNewRecipientPageView
                               padding: EdgeInsets.only(top: 8),
                               child: Text(
                                 S.of(context).enterCode +
-                                    "\n+${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber}",
+                                    "\n+${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileCode}" +
+                                    " ${ProviderScope.containerOf(context).read(appHomeViewModelProvider).dashboardDataContent.mobileNumber!.substring(2)}",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,

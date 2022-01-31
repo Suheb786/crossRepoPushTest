@@ -9,6 +9,7 @@ class GetDashboardDataContent {
       this.debitCard,
       this.youJoinedBlink,
       this.mobileNumber,
+      this.mobileCode,
       this.blinkWasBorn});
 
   final Account? account;
@@ -17,4 +18,5 @@ class GetDashboardDataContent {
   final DateTime? youJoinedBlink;
   final DateTime? blinkWasBorn;
   final String? mobileNumber;
+  final String? mobileCode;
 }
