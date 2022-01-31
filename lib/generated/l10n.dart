@@ -7410,10 +7410,10 @@ class S {
     );
   }
 
-  /// `Make sure your face fits into the frame`
+  /// `Make sure your eyes are level\nand well-opened.`
   String get makeSureYourFaceFitsTheFrame {
     return Intl.message(
-      'Make sure your face fits into the frame',
+      'Make sure your eyes are level\nand well-opened.',
       name: 'makeSureYourFaceFitsTheFrame',
       desc: '',
       args: [],

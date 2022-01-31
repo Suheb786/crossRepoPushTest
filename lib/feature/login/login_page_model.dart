@@ -6,6 +6,7 @@ import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/user.dart';
 import 'package:domain/usecase/device_change/send_otp_token_device_change_usecase.dart';
 import 'package:domain/usecase/device_change/send_otp_token_email_usecase.dart';
+import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/kyc/check_kyc_status_usecase.dart';
 import 'package:domain/usecase/user/android_login_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
@@ -30,6 +31,7 @@ class LoginViewModel extends BasePageViewModel {
   final IphoneLoginUseCase _iphoneLoginUseCase;
   final CheckBioMetricSupportUseCase _checkBioMetricSupportUseCase;
   final AuthenticateBioMetricUseCase _authenticateBioMetricUseCase;
+  final SaveUserUseCase _saveUserUseCase;
   final SendOtpTokenEmailOtpUseCase _sendOtpTokenEmailOtpUseCase;
   final SendOtpTokeDeviceChangeOtpUseCase _sendOtpTokeDeviceChangeOtpUseCase;
 
@@ -44,6 +46,11 @@ class LoginViewModel extends BasePageViewModel {
   PublishSubject<LoginUseCaseParams> _loginRequest = PublishSubject();
 
   PublishSubject<Resource<User>> _loginResponse = PublishSubject();
+
+  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
 
   Stream<Resource<User>> get loginStream => _loginResponse.stream;
 
@@ -138,6 +145,7 @@ class LoginViewModel extends BasePageViewModel {
       this._iphoneLoginUseCase,
       this._checkBioMetricSupportUseCase,
       this._authenticateBioMetricUseCase,
+      this._saveUserUseCase,
       this._sendOtpTokenEmailOtpUseCase,
       this._sendOtpTokeDeviceChangeOtpUseCase) {
     _loginRequest.listen((value) {
@@ -230,6 +238,14 @@ class LoginViewModel extends BasePageViewModel {
       });
     });
 
+    _saveUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _saveUserUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        _saveuserResponseSubject.safeAdd(event);
+      });
+    });
+
     _sendOtpTokenEmailRequest.listen((value) {
       RequestManager(value,
               createCall: () =>
@@ -317,6 +333,10 @@ class LoginViewModel extends BasePageViewModel {
 
   void getCipher() {
     _getCipherRequest.safeAdd(GetCipherUseCaseParams());
+  }
+
+  void saveUserData() {
+    _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
   }
 
   @override

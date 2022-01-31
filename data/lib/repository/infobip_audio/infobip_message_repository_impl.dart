@@ -4,6 +4,7 @@ import 'package:data/infobip_audio/infobip_message_service.dart';
 import 'package:data/source/infobip_audio/infobip_message_datasource.dart';
 import 'package:data/source/infobip_audio/local/infobip_message_local_datasource_implementation.dart';
 import 'package:domain/error/network_error.dart';
+import 'package:domain/model/user/user.dart';
 import 'package:domain/repository/help_center/infobip_message_repository.dart';
 import 'package:domain/repository/user/user_repository.dart';
 import 'package:infobip_mobilemessaging/models/UserData.dart';
