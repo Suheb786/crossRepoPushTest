@@ -17,6 +17,8 @@ import 'package:neo_bank/feature/card_delivery/card_delivery_page.dart';
 import 'package:neo_bank/feature/card_ready_success/card_ready_success_page.dart';
 import 'package:neo_bank/feature/change_card_pin/change_card_pin_page.dart';
 import 'package:neo_bank/feature/change_card_pin_success/change_card_pin_success_page.dart';
+import 'package:neo_bank/feature/change_device_flow/change_device_success/change_device_success_page.dart';
+import 'package:neo_bank/feature/change_device_flow/otp_for_change_device/otp_for_change_device_confirmation_page.dart';
 import 'package:neo_bank/feature/credit_card_activation_status/credit_card_activation_status_page.dart';
 import 'package:neo_bank/feature/credit_card_application_failure/credit_card_application_failure_page.dart';
 import 'package:neo_bank/feature/credit_card_apply_success/credit_card_apply_success_page.dart';
@@ -77,6 +79,7 @@ import 'package:neo_bank/feature/supplementary_card_in_review/supplementary_card
 import 'package:neo_bank/feature/supplementary_credit_card/supplementary_credit_card_page.dart';
 import 'package:neo_bank/feature/supplementary_credit_card_ready/supplementary_credit_card_ready_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card/supplementary_debit_card_page.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_success/supplementary_debit_card_success_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -473,6 +476,22 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => UploadDocumentsLaterPage(),
             settings: RouteSettings(name: RoutePaths.UploadDocumentLater));
+
+      case RoutePaths.OTPForChangeDevice:
+        return CupertinoPageRoute(
+            builder: (context) => OtpForChangeDeviceConfirmationPage(),
+            settings: RouteSettings(name: RoutePaths.OTPForChangeDevice));
+
+      case RoutePaths.ChangeDeviceSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => ChangeDeviceSuccessPage(),
+            settings: RouteSettings(name: RoutePaths.ChangeDeviceSuccess));
+
+      case RoutePaths.SupplementaryDebitCardSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => SupplementaryDebitCardSuccessPage(),
+            settings:
+                RouteSettings(name: RoutePaths.SupplementaryDebitCardSuccess));
 
       default:
         return CupertinoPageRoute(

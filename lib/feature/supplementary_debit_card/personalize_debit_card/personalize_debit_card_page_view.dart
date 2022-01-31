@@ -37,8 +37,8 @@ class PersonalizeDebitCardPageView
                         initialData: Resource.none(),
                         onData: (data) {
                           if (data.status == Status.SUCCESS) {
-                            Navigator.pushNamed(
-                                context, RoutePaths.DebitCardReplacement);
+                            Navigator.pushNamed(context,
+                                RoutePaths.SupplementaryDebitCardSuccess);
                           }
                         },
                         dataBuilder: (context, data) {

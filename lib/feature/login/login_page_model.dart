@@ -4,6 +4,8 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:domain/usecase/device_change/send_otp_token_device_change_usecase.dart';
+import 'package:domain/usecase/device_change/send_otp_token_email_usecase.dart';
 import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/kyc/check_kyc_status_usecase.dart';
 import 'package:domain/usecase/user/android_login_usecase.dart';
@@ -30,6 +32,8 @@ class LoginViewModel extends BasePageViewModel {
   final CheckBioMetricSupportUseCase _checkBioMetricSupportUseCase;
   final AuthenticateBioMetricUseCase _authenticateBioMetricUseCase;
   final SaveUserUseCase _saveUserUseCase;
+  final SendOtpTokenEmailOtpUseCase _sendOtpTokenEmailOtpUseCase;
+  final SendOtpTokeDeviceChangeOtpUseCase _sendOtpTokeDeviceChangeOtpUseCase;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -118,6 +122,21 @@ class LoginViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get authenticateBioMetricStream =>
       _authenticateBioMetricResponse.stream;
 
+  /// send otp email request
+  PublishSubject<SendOtpTokenEmailOtpUseCaseParams> _sendOtpTokenEmailRequest =
+      PublishSubject();
+
+  /// send otp mobile request
+  PublishSubject<SendOtpTokeDeviceChangeOtpUseCaseParams>
+      _sendOtpTokenMobileRequest = PublishSubject();
+
+  /// send otp mobile response
+  PublishSubject<Resource<bool>> _sendOtpTokenMobileResponse = PublishSubject();
+
+  /// send otp mobile response stream
+  Stream<Resource<bool>> get sendOtpTokenMobileStream =>
+      _sendOtpTokenMobileResponse.stream;
+
   LoginViewModel(
       this._loginUseCase,
       this._kycStatusUseCase,
@@ -126,14 +145,16 @@ class LoginViewModel extends BasePageViewModel {
       this._iphoneLoginUseCase,
       this._checkBioMetricSupportUseCase,
       this._authenticateBioMetricUseCase,
-      this._saveUserUseCase) {
+      this._saveUserUseCase,
+      this._sendOtpTokenEmailOtpUseCase,
+      this._sendOtpTokeDeviceChangeOtpUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value,
               createCall: () => _loginUseCase.execute(params: value))
           .asFlow()
           .listen((event) {
-        _loginResponse.safeAdd(event);
         updateLoader();
+        _loginResponse.safeAdd(event);
         if (event.status == Status.ERROR) {
           if (event.appError!.type == ErrorType.EMPTY_EMAIL ||
               event.appError!.type == ErrorType.INVALID_EMAIL) {
@@ -225,6 +246,35 @@ class LoginViewModel extends BasePageViewModel {
       });
     });
 
+    _sendOtpTokenEmailRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _sendOtpTokenEmailOtpUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        } else if (event.status == Status.SUCCESS) {
+          sendOtpTokenMobile();
+        }
+      });
+    });
+
+    _sendOtpTokenMobileRequest.listen((value) {
+      RequestManager(value,
+              createCall: () =>
+                  _sendOtpTokeDeviceChangeOtpUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _sendOtpTokenMobileResponse.safeAdd(event);
+        if (event.status == Status.ERROR) {
+          showToastWithError(event.appError!);
+        }
+      });
+    });
+
     //getCipher();
     //getCurrentUserStream();
   }
@@ -270,6 +320,15 @@ class LoginViewModel extends BasePageViewModel {
     } else {
       _showButtonSubject.safeAdd(false);
     }
+  }
+
+  void sendOtpTokenEmail() {
+    _sendOtpTokenEmailRequest.safeAdd(SendOtpTokenEmailOtpUseCaseParams());
+  }
+
+  void sendOtpTokenMobile() {
+    _sendOtpTokenMobileRequest
+        .safeAdd(SendOtpTokeDeviceChangeOtpUseCaseParams());
   }
 
   void getCipher() {
