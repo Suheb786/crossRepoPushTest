@@ -287,6 +287,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "I confirm that my tax residency is accurate and agree to the "),
         "confirmYourInformation": MessageLookupByLibrary.simpleMessage(
             "Review and confirm\nyour details"),
+        "congratulations":
+            MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "connectToAgentToAssistYou": MessageLookupByLibrary.simpleMessage(
             "Connecting to our agent to assist you"),
         "consentForSignatureUpload": MessageLookupByLibrary.simpleMessage(
@@ -949,6 +951,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("NATURE OF SPECIAL NEEDS"),
         "natureSpecialNeeds":
             MessageLookupByLibrary.simpleMessage("Nature of Special Needs"),
+        "newDeviceDetected":
+            MessageLookupByLibrary.simpleMessage("New device detected"),
+        "newDeviceDetectedDesc": MessageLookupByLibrary.simpleMessage(
+            "You’re attempting to log in from a new device. Would you like to switch access to this device?\t"),
+        "newDeviceRegisteredSuccessfully": MessageLookupByLibrary.simpleMessage(
+            "Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard."),
         "newPassword": MessageLookupByLibrary.simpleMessage("NEW PASSWORD"),
         "newPin": MessageLookupByLibrary.simpleMessage("new pin "),
         "nickName": MessageLookupByLibrary.simpleMessage("Nickname"),
@@ -1294,6 +1302,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Swipe up to register"),
         "swipeUpToViewTransaction": MessageLookupByLibrary.simpleMessage(
             "Swipe up to view transactions"),
+        "switchDevice": MessageLookupByLibrary.simpleMessage("SWITCH DEVICE"),
         "takePhoto": MessageLookupByLibrary.simpleMessage("Take Photo"),
         "tapToEdit": MessageLookupByLibrary.simpleMessage("Tap to edit amount"),
         "tapToEditPhoto":

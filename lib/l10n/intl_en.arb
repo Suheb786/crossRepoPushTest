@@ -839,5 +839,10 @@
   "passwordUpdate": "Password is successfully updated",
   "invalidAnnualIncomeValue": "Annual Income should be greater than 0",
   "selectAdditionalIncome": "Select Additional Income",
-  "errorWhileGetStatus": "Error While Get Status"
+  "errorWhileGetStatus": "Error While Get Status",
+  "newDeviceDetected": "New device detected",
+  "newDeviceDetectedDesc": "You’re attempting to log in from a new device. Would you like to switch access to this device?\t",
+  "switchDevice": "SWITCH DEVICE",
+  "congratulations": "Congratulations!",
+  "newDeviceRegisteredSuccessfully": "Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard."
 }

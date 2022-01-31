@@ -84,4 +84,6 @@ class RoutePaths {
   static const String CreditCardApplySuccess = "/creditCardApplySuccess";
   static const String ResetPasswordSuccess = "/resetPasswordSuccess";
   static const String UploadDocumentLater = "/uploadDocumentLater";
+  static const String OTPForChangeDevice = "/OTPForChangeDevice";
+  static const String ChangeDeviceSuccess = "/changeDeviceSuccess";
 }
