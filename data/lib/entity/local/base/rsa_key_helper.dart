@@ -258,7 +258,7 @@ String decrypt(String ciphertext, RSAPrivateKey privateKey) {
 AsymmetricKeyPair<PublicKey, PrivateKey> getRsaKeyPair(
     SecureRandom secureRandom) {
   /// Set BitStrength to [1024, 2048 or 4096]
-  var rsapars = new RSAKeyGeneratorParameters(BigInt.from(65537), 2048, 5);
+  var rsapars = new RSAKeyGeneratorParameters(BigInt.from(65537), 4096, 5);
   var params = new ParametersWithRandom(rsapars, secureRandom);
   var keyGenerator = new RSAKeyGenerator();
   keyGenerator.init(params);

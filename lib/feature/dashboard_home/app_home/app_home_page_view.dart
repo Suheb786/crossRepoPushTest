@@ -856,29 +856,39 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                                   width: 50,
                                                 ),
                                                 Expanded(child: Container()),
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                      color: Theme.of(context)
-                                                          .accentTextTheme
-                                                          .bodyText1!
-                                                          .color,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              20)),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.symmetric(
-                                                            vertical: 8,
-                                                            horizontal: 15),
-                                                    child: Text(
-                                                      S.of(context).getCardNow,
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          fontSize: 14,
-                                                          color:
-                                                              Theme.of(context)
-                                                                  .accentColor),
+                                                InkWell(
+                                                  onTap: () {
+                                                    Navigator.pushNamed(
+                                                        context,
+                                                        RoutePaths
+                                                            .BlinkCreditCard);
+                                                  },
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        color: Theme.of(context)
+                                                            .accentTextTheme
+                                                            .bodyText1!
+                                                            .color,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20)),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 8,
+                                                              horizontal: 15),
+                                                      child: Text(
+                                                        S
+                                                            .of(context)
+                                                            .getCardNow,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontSize: 14,
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .accentColor),
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
