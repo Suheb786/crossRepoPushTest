@@ -86,4 +86,6 @@ class RoutePaths {
   static const String UploadDocumentLater = "/uploadDocumentLater";
   static const String OTPForChangeDevice = "/OTPForChangeDevice";
   static const String ChangeDeviceSuccess = "/changeDeviceSuccess";
+  static const String SupplementaryDebitCardSuccess =
+      "/supplementaryDebitCardSuccess";
 }

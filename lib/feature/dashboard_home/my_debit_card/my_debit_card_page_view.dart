@@ -134,12 +134,12 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
             ),
           )
         : Center(
-          child: FlipCard(
+            child: FlipCard(
               key: model.cardKey,
-              flipOnTouch:
-                  cardData.debitCard!.first.cardStatus == FreezeCardStatusEnum.F
-                      ? false
-                      : true,
+              flipOnTouch: false,
+              // cardData.debitCard!.first.cardStatus == FreezeCardStatusEnum.F
+              //     ? false
+              //     : true,
               direction: FlipDirection.HORIZONTAL,
               front: Container(
                 color: Theme.of(context).accentColor,
@@ -198,7 +198,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                     padding: EdgeInsets.only(
                                         left: 27.0, top: 30, bottom: 29),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -225,7 +226,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                     child: Text(
                                                       S.of(context).cardFrozen,
                                                       style: TextStyle(
-                                                          color: Theme.of(context)
+                                                          color: Theme.of(
+                                                                  context)
                                                               .textTheme
                                                               .bodyText1!
                                                               .color!
@@ -235,19 +237,28 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                               FontWeight.w600),
                                                     ),
                                                   )
-                                                : Padding(
-                                                    padding: EdgeInsets.only(
-                                                        right: 23.0),
-                                                    child: Text(
-                                                      S.of(context).flipCard,
-                                                      style: TextStyle(
-                                                          color: Theme.of(context)
-                                                              .accentTextTheme
-                                                              .bodyText1!
-                                                              .color!,
-                                                          fontSize: 14,
-                                                          fontWeight:
-                                                              FontWeight.w600),
+                                                : InkWell(
+                                                    onTap: () {
+                                                      model
+                                                          .cardKey.currentState!
+                                                          .toggleCard();
+                                                    },
+                                                    child: Padding(
+                                                      padding: EdgeInsets.only(
+                                                          right: 23.0),
+                                                      child: Text(
+                                                        S.of(context).flipCard,
+                                                        style: TextStyle(
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .accentTextTheme
+                                                                .bodyText1!
+                                                                .color!,
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600),
+                                                      ),
                                                     ),
                                                   )
                                           ],
@@ -258,7 +269,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                             Align(
                                               alignment: Alignment.centerLeft,
                                               child: Padding(
-                                                padding: EdgeInsets.only(top: 12),
+                                                padding:
+                                                    EdgeInsets.only(top: 12),
                                                 child: AppSvg.asset(
                                                     AssetUtils.blinkBlack),
                                               ),
@@ -266,7 +278,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                             Align(
                                               alignment: Alignment.centerLeft,
                                               child: Padding(
-                                                padding: EdgeInsets.only(top: 21),
+                                                padding:
+                                                    EdgeInsets.only(top: 21),
                                                 child: Text(
                                                   cardData.debitCard!.first
                                                           .accountTitle ??
@@ -319,8 +332,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                           fontWeight:
                                                               FontWeight.w600,
                                                           fontSize: 14,
-                                                          color: Theme.of(context)
-                                                              .accentColor),
+                                                          color:
+                                                              Theme.of(context)
+                                                                  .accentColor),
                                                     ),
                                                   ),
                                                 ),
@@ -370,9 +384,9 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
 
                     ///delivered button
                     Visibility(
-                      visible:
-                          !(cardData.debitCard!.first.isDebitDelivered != null &&
-                              cardData.debitCard!.first.isDebitDelivered!),
+                      visible: !(cardData.debitCard!.first.isDebitDelivered !=
+                              null &&
+                          cardData.debitCard!.first.isDebitDelivered!),
                       child: Positioned(
                         top: 0,
                         child: Container(
@@ -407,7 +421,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                             .read(appHomeViewModelProvider)
                             .pageController
                             .next();
-                        Future.delayed(Duration(milliseconds: 300)).then((value) {
+                        Future.delayed(Duration(milliseconds: 300))
+                            .then((value) {
                           if (!model.cardKey.currentState!.isFront) {
                             model.cardKey.currentState!.toggleCard();
                           }
@@ -417,7 +432,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                             .read(appHomeViewModelProvider)
                             .pageController
                             .previous();
-                        Future.delayed(Duration(milliseconds: 600)).then((value) {
+                        Future.delayed(Duration(milliseconds: 600))
+                            .then((value) {
                           if (!model.cardKey.currentState!.isFront) {
                             model.cardKey.currentState!.toggleCard();
                           }
@@ -446,7 +462,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
@@ -455,8 +472,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                           cardData.debitCard!.first
                                                       .accountTitle !=
                                                   null
-                                              ? cardData
-                                                  .debitCard!.first.accountTitle!
+                                              ? cardData.debitCard!.first
+                                                  .accountTitle!
                                                   .toTitleCase()
                                               : '',
                                           maxLines: 2,
@@ -470,15 +487,21 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                       SizedBox(
                                         width: 8,
                                       ),
-                                      Text(
-                                        S.of(context).flipBack,
-                                        style: TextStyle(
-                                            color: Theme.of(context)
-                                                .accentTextTheme
-                                                .bodyText1!
-                                                .color,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600),
+                                      InkWell(
+                                        onTap: () {
+                                          model.cardKey.currentState!
+                                              .toggleCard();
+                                        },
+                                        child: Text(
+                                          S.of(context).flipBack,
+                                          style: TextStyle(
+                                              color: Theme.of(context)
+                                                  .accentTextTheme
+                                                  .bodyText1!
+                                                  .color,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w600),
+                                        ),
                                       )
                                     ],
                                   ),
@@ -518,8 +541,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                             msg:
                                                                 'Card number Copied'));
                                               },
-                                              child:
-                                                  AppSvg.asset(AssetUtils.copy)),
+                                              child: AppSvg.asset(
+                                                  AssetUtils.copy)),
                                         )
                                       ],
                                     ),
@@ -560,7 +583,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                 style: TextStyle(
                                                     fontSize: 10,
                                                     color: AppColor.green,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             )
                                           ],
@@ -573,7 +597,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                               CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              cardData.debitCard!.first.cvv ?? '',
+                                              cardData.debitCard!.first.cvv ??
+                                                  '',
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 12,
@@ -586,7 +611,8 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                                 style: TextStyle(
                                                     fontSize: 10,
                                                     color: AppColor.green,
-                                                    fontWeight: FontWeight.w600),
+                                                    fontWeight:
+                                                        FontWeight.w600),
                                               ),
                                             )
                                           ],
@@ -606,13 +632,12 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                                     ),
                                   ),
                                   Text(
-                                    cardData.debitCard!.first.linkedAccountNumber!
-                                            .isNotEmpty
+                                    cardData.debitCard!.first
+                                            .linkedAccountNumber!.isNotEmpty
                                         ? StringUtils
-                                            .getFormattedCreditCardNumber(cardData
-                                                .debitCard!
-                                                .first
-                                                .linkedAccountNumber)
+                                            .getFormattedCreditCardNumber(
+                                                cardData.debitCard!.first
+                                                    .linkedAccountNumber)
                                         : '',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w700,
@@ -640,6 +665,6 @@ class MyDebitCardPageView extends BasePageViewWidget<MyDebitCardViewModel> {
                 ),
               ),
             ),
-        );
+          );
   }
 }

@@ -15,8 +15,8 @@ class ReplacementVisaCardPageViewModel extends BasePageViewModel {
   PublishSubject<CardIssuanceUseCaseParams> _cardIssuanceRequest =
       PublishSubject();
 
-  PublishSubject<Resource<CardIssuanceDetails>> _cardIssuanceResponse =
-      PublishSubject();
+  BehaviorSubject<Resource<CardIssuanceDetails>> _cardIssuanceResponse =
+      BehaviorSubject();
 
   String? cardNumber;
 

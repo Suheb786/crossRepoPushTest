@@ -79,6 +79,7 @@ import 'package:neo_bank/feature/supplementary_card_in_review/supplementary_card
 import 'package:neo_bank/feature/supplementary_credit_card/supplementary_credit_card_page.dart';
 import 'package:neo_bank/feature/supplementary_credit_card_ready/supplementary_credit_card_ready_page.dart';
 import 'package:neo_bank/feature/supplementary_debit_card/supplementary_debit_card_page.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_success/supplementary_debit_card_success_page.dart';
 import 'package:neo_bank/feature/terms_and_condition/terms_and_condition_page.dart';
 import 'package:neo_bank/main/navigation/cutom_route.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
@@ -485,6 +486,12 @@ class AppRouter {
         return CupertinoPageRoute(
             builder: (context) => ChangeDeviceSuccessPage(),
             settings: RouteSettings(name: RoutePaths.ChangeDeviceSuccess));
+
+      case RoutePaths.SupplementaryDebitCardSuccess:
+        return CupertinoPageRoute(
+            builder: (context) => SupplementaryDebitCardSuccessPage(),
+            settings:
+                RouteSettings(name: RoutePaths.SupplementaryDebitCardSuccess));
 
       default:
         return CupertinoPageRoute(

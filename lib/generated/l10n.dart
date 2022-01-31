@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -8286,6 +8285,16 @@ class S {
     return Intl.message(
       'Your new device has been\nsuccessfully registered.\nYou may proceed to your Dashboard.',
       name: 'newDeviceRegisteredSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Aramex will contact you soon to\ndeliver your physical card.\n\nIn the meantime, you can start using your\nvirtual card immediately.`
+  String get supplementaryDebitcardSuccessDesc {
+    return Intl.message(
+      'Aramex will contact you soon to\ndeliver your physical card.\n\nIn the meantime, you can start using your\nvirtual card immediately.',
+      name: 'supplementaryDebitcardSuccessDesc',
       desc: '',
       args: [],
     );
