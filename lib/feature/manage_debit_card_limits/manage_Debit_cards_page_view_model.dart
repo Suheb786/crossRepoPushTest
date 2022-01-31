@@ -48,6 +48,11 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
   Stream<Resource<DebitCardLimitResponse>> get debitCardLimitResponseStream =>
       _debitCardLimitResponseSubject.stream;
 
+  num atmWithdrawalValue = 0;
+  num merchantPayment = 0;
+  num onlinePurchase = 0;
+  num contactlessPayments = 0;
+
   bool isAtmWithdrawal = true;
   bool isMerchantPayments = true;
   bool isOnlinePurchase = true;

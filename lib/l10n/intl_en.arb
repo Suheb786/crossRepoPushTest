@@ -759,7 +759,7 @@
   "currentPasswordInvalid": "Current password is invalid. Password does not meet requirement.",
   "selectExpectedTransaction": "Select expected transaction",
   "selfieCheck": "Selfie Check!",
-  "makeSureYourFaceFitsTheFrame": "Make sure your face fits into the frame",
+  "makeSureYourFaceFitsTheFrame": "Make sure your eyes are level\nand well-opened.",
   "errorWhileGetComboValues": "Error While Get Combo Values",
   "userAlreadyExists": "User Already Exist. Try Using Different Email",
   "pleaseTryAgain": "Please Try Again",
