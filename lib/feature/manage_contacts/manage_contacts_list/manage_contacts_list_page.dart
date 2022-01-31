@@ -23,35 +23,41 @@ class ManageContactListPageState extends BaseStatefulPage<
   @override
   PreferredSizeWidget? buildAppbar() {
     return PreferredSize(
-        preferredSize: Size(double.maxFinite, 85),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(left: 24.0),
-                child: AppSvg.asset(AssetUtils.leftArrow,
+      preferredSize: Size(double.maxFinite, 85),
+      child: GestureDetector(
+          onVerticalDragEnd: (details) {
+            Navigator.pop(context);
+          },
+          behavior: HitTestBehavior.translucent,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 24.0),
+                  child: AppSvg.asset(AssetUtils.leftArrow,
+                      color: Theme.of(context).accentColor),
+                ),
+              ),
+              Text(
+                S.of(context).manageContacts,
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
                     color: Theme.of(context).accentColor),
               ),
-            ),
-            Text(
-              S.of(context).manageContacts,
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: Theme.of(context).accentColor),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 18.0),
-              child: Container(
-                width: 28,
-              ),
-            )
-          ],
-        ));
+              Padding(
+                padding: const EdgeInsets.only(right: 18.0),
+                child: Container(
+                  width: 28,
+                ),
+              )
+            ],
+          )),
+    );
   }
 
   @override
