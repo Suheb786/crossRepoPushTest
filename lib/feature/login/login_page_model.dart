@@ -4,6 +4,7 @@ import 'package:domain/constants/error_types.dart';
 import 'package:domain/model/kyc/check_kyc_response.dart';
 import 'package:domain/model/user/biometric_login/get_cipher_response.dart';
 import 'package:domain/model/user/user.dart';
+import 'package:domain/usecase/infobip_audio/save_user_usecase.dart';
 import 'package:domain/usecase/kyc/check_kyc_status_usecase.dart';
 import 'package:domain/usecase/user/android_login_usecase.dart';
 import 'package:domain/usecase/user/authenticate_bio_metric_usecase.dart';
@@ -28,6 +29,7 @@ class LoginViewModel extends BasePageViewModel {
   final IphoneLoginUseCase _iphoneLoginUseCase;
   final CheckBioMetricSupportUseCase _checkBioMetricSupportUseCase;
   final AuthenticateBioMetricUseCase _authenticateBioMetricUseCase;
+  final SaveUserUseCase _saveUserUseCase;
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -40,6 +42,11 @@ class LoginViewModel extends BasePageViewModel {
   PublishSubject<LoginUseCaseParams> _loginRequest = PublishSubject();
 
   PublishSubject<Resource<User>> _loginResponse = PublishSubject();
+
+  PublishSubject<SaveUserUseCaseParams> _saveUserRequestSubject =
+      PublishSubject();
+
+  PublishSubject<Resource<bool>> _saveuserResponseSubject = PublishSubject();
 
   Stream<Resource<User>> get loginStream => _loginResponse.stream;
 
@@ -118,7 +125,8 @@ class LoginViewModel extends BasePageViewModel {
       this._androidLoginUseCase,
       this._iphoneLoginUseCase,
       this._checkBioMetricSupportUseCase,
-      this._authenticateBioMetricUseCase) {
+      this._authenticateBioMetricUseCase,
+      this._saveUserUseCase) {
     _loginRequest.listen((value) {
       RequestManager(value,
               createCall: () => _loginUseCase.execute(params: value))
@@ -209,6 +217,14 @@ class LoginViewModel extends BasePageViewModel {
       });
     });
 
+    _saveUserRequestSubject.listen((value) {
+      RequestManager(value, createCall: () {
+        return _saveUserUseCase.execute(params: value);
+      }).asFlow().listen((event) {
+        _saveuserResponseSubject.safeAdd(event);
+      });
+    });
+
     //getCipher();
     //getCurrentUserStream();
   }
@@ -258,6 +274,10 @@ class LoginViewModel extends BasePageViewModel {
 
   void getCipher() {
     _getCipherRequest.safeAdd(GetCipherUseCaseParams());
+  }
+
+  void saveUserData() {
+    _saveUserRequestSubject.safeAdd(SaveUserUseCaseParams());
   }
 
   @override

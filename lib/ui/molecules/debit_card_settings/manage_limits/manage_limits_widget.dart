@@ -20,6 +20,7 @@ class ManageLimitsWidget extends StatelessWidget {
   final Function(bool)? onToggle;
   final ProviderBase providerBase;
   final Function(String value) onDone;
+  final Function(String value) onChange;
 
   const ManageLimitsWidget({
     Key? key,
@@ -33,6 +34,7 @@ class ManageLimitsWidget extends StatelessWidget {
     this.readOnly: false,
     required this.onToggle,
     required this.onDone,
+    required this.onChange,
   }) : super(key: key);
 
   @override
@@ -186,6 +188,13 @@ class ManageLimitsWidget extends StatelessWidget {
                                           ),
                                         ),
                                       )),
+                                  onChanged: (value) {
+                                    if (int.parse(maxAmount) >
+                                        int.parse(value)) {
+                                      model.showErrorToast();
+                                    }
+                                    onChange.call(value);
+                                  },
                                   onFieldSubmitted: (value) {
                                     if (int.parse(maxAmount) >
                                         int.parse(value)) {
