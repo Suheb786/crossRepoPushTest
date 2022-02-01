@@ -117,6 +117,7 @@ class InfobipMessageService {
       emails: userData.emails,
       phones: userData.phones,
       gender: Gender.Male,
+      customAttributes: userData.customAttributes,
       externalUserId: userData.externalUserId,
     );
     var userIdentity = UserIdentity(

@@ -50,6 +50,7 @@ class InfobipMessageRepositoryImpl extends InfobipMessageRepository {
           lastName: user.lastName!,
           externalUserId: user.cifNumber,
           emails: [user.email.toString()],
+          customAttributes: {"accountNumber": user.accountNumber},
           phones: [user.mobile.toString()]));
       if (!saveUserResult) {
         return Left(
