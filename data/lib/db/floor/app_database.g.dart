@@ -81,7 +81,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `user` (`email` TEXT, `id` TEXT, `firstName` TEXT, `lastName` TEXT, `mobile` TEXT, `isCurrent` INTEGER, `token` TEXT, `refreshToken` TEXT, `expiresIn` INTEGER, `tokenType` TEXT, `privatePEM` TEXT, `publicPEM` TEXT, `isBiometricEnabled` INTEGER, PRIMARY KEY (`email`))');
+            'CREATE TABLE IF NOT EXISTS `user` (`email` TEXT, `id` TEXT, `firstName` TEXT, `lastName` TEXT, `mobile` TEXT, `isCurrent` INTEGER, `token` TEXT, `refreshToken` TEXT, `expiresIn` INTEGER, `tokenType` TEXT, `privatePEM` TEXT, `publicPEM` TEXT, `isBiometricEnabled` INTEGER, `cifNumber` TEXT, PRIMARY KEY (`email`))');
         await database.execute(
             'CREATE UNIQUE INDEX `index_user_email` ON `user` (`email`)');
 
@@ -119,7 +119,8 @@ class _$UserDao extends UserDao {
                   'publicPEM': item.publicPEM,
                   'isBiometricEnabled': item.isBiometricEnabled == null
                       ? null
-                      : (item.isBiometricEnabled! ? 1 : 0)
+                      : (item.isBiometricEnabled! ? 1 : 0),
+                  'cifNumber': item.cifNumber
                 },
             changeListener),
         _userDBEntityUpdateAdapter = UpdateAdapter(
@@ -142,7 +143,8 @@ class _$UserDao extends UserDao {
                   'publicPEM': item.publicPEM,
                   'isBiometricEnabled': item.isBiometricEnabled == null
                       ? null
-                      : (item.isBiometricEnabled! ? 1 : 0)
+                      : (item.isBiometricEnabled! ? 1 : 0),
+                  'cifNumber': item.cifNumber
                 },
             changeListener),
         _userDBEntityDeletionAdapter = DeletionAdapter(
@@ -165,7 +167,8 @@ class _$UserDao extends UserDao {
                   'publicPEM': item.publicPEM,
                   'isBiometricEnabled': item.isBiometricEnabled == null
                       ? null
-                      : (item.isBiometricEnabled! ? 1 : 0)
+                      : (item.isBiometricEnabled! ? 1 : 0),
+                  'cifNumber': item.cifNumber
                 },
             changeListener);
 
@@ -201,6 +204,7 @@ class _$UserDao extends UserDao {
                 ? null
                 : (row['isBiometricEnabled'] as int) != 0,
             privatePEM: row['privatePEM'] as String?,
+            cifNumber: row['cifNumber'] as String?,
             publicPEM: row['publicPEM'] as String?),
         queryableName: 'user',
         isView: false);
@@ -226,6 +230,7 @@ class _$UserDao extends UserDao {
                 ? null
                 : (row['isBiometricEnabled'] as int) != 0,
             privatePEM: row['privatePEM'] as String?,
+            cifNumber: row['cifNumber'] as String?,
             publicPEM: row['publicPEM'] as String?));
   }
 
@@ -249,6 +254,7 @@ class _$UserDao extends UserDao {
                 ? null
                 : (row['isBiometricEnabled'] as int) != 0,
             privatePEM: row['privatePEM'] as String?,
+            cifNumber: row['cifNumber'] as String?,
             publicPEM: row['publicPEM'] as String?));
   }
 
@@ -272,6 +278,7 @@ class _$UserDao extends UserDao {
                 ? null
                 : (row['isBiometricEnabled'] as int) != 0,
             privatePEM: row['privatePEM'] as String?,
+            cifNumber: row['cifNumber'] as String?,
             publicPEM: row['publicPEM'] as String?),
         arguments: [email]);
   }
@@ -296,6 +303,7 @@ class _$UserDao extends UserDao {
                 ? null
                 : (row['isBiometricEnabled'] as int) != 0,
             privatePEM: row['privatePEM'] as String?,
+            cifNumber: row['cifNumber'] as String?,
             publicPEM: row['publicPEM'] as String?),
         queryableName: 'user',
         isView: false);

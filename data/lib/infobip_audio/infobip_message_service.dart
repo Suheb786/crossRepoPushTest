@@ -108,15 +108,17 @@ class InfobipMessageService {
   }
 
   Future<bool> saveUser({required UserData userData}) async {
-    var installation = await InfobipMobilemessaging.fetchInstallation();
-    userData.externalUserId = installation.pushRegistrationId.toString();
+    // var installation = await InfobipMobilemessaging.fetchInstallation();
+    // userData.externalUserId = installation.pushRegistrationId.toString();
+    print("USER EXTERNAL ID " + userData.externalUserId!);
     UserData user = UserData(
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        emails: userData.emails,
-        phones: userData.phones,
-        gender: Gender.Male,
-        externalUserId: userData.externalUserId);
+      firstName: userData.firstName,
+      lastName: userData.lastName,
+      emails: userData.emails,
+      phones: userData.phones,
+      gender: Gender.Male,
+      externalUserId: userData.externalUserId,
+    );
     var userIdentity = UserIdentity(
       externalUserId: userData.externalUserId,
       emails: userData.emails,

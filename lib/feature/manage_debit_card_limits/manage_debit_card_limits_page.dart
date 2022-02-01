@@ -31,6 +31,11 @@ class ManageDebitCardLimitsPageState extends BaseStatefulPage<
   }
 
   @override
+  Widget? buildFloatingActionButton() {
+    return super.buildFloatingActionButton();
+  }
+
+  @override
   Color? scaffoldBackgroundColor() {
     return getViewModel().cardLimitsArguments.cardType == CardType.CREDIT
         ? Theme.of(context).primaryColor

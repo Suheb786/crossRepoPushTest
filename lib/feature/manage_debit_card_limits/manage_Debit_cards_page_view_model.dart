@@ -49,9 +49,9 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
       _debitCardLimitResponseSubject.stream;
 
   num atmWithdrawalValue = 0;
-  num merchantPayment = 0;
-  num onlinePurchase = 0;
-  num contactlessPayments = 0;
+  num merchantPaymentValue = 0;
+  num onlinePurchaseValue = 0;
+  num contactlessPaymentsValue = 0;
 
   bool isAtmWithdrawal = true;
   bool isMerchantPayments = true;
@@ -110,6 +110,8 @@ class ManageDebitCardLimitsPageViewModel extends BasePageViewModel {
   void getDebitCardLimit() {
     _debitCardLimitRequest.safeAdd(DebitCardLimitUseCaseParams());
   }
+
+  validateAllFields() {}
 
   void updateCardLimits(
       {required num atmWithdrawalValue,
