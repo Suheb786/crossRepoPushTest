@@ -26,9 +26,9 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
     return AppStreamBuilder<Resource<RequestCallStatus>>(
       initialData: Resource.none(),
       stream: model.requestCallStream,
-      onData: (requestCall) {
+      onData: (requestCall) async {
         if (requestCall.status == Status.SUCCESS) {
-          Navigator.pushNamed(context, RoutePaths.VideoKyc,
+          final result = await Navigator.pushNamed(context, RoutePaths.VideoKyc,
               arguments: VideKycCredentials(
                   token: requestCall.data!.conferenceLink,
                   channelName: requestCall.data!.callId));
@@ -42,8 +42,6 @@ class AgentSelectionView extends BasePageViewWidget<AgentSelectionViewModel> {
           initialData: Resource.none(),
           onData: (availableAgent) {
             if (availableAgent.status == Status.SUCCESS) {
-              print(
-                  "availableAgent.data?.isExist  ${availableAgent.data?.isExist}");
               if (availableAgent.data?.isExist ?? false) {
                 model.getAgoraCredentials();
               }

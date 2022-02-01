@@ -5,6 +5,7 @@ import 'package:domain/usecase/account/check_existing_call_usecase.dart';
 import 'package:domain/usecase/account/check_gender_status_usecase.dart';
 import 'package:domain/usecase/account/check_other_nationality_status_usecase.dart';
 import 'package:domain/usecase/account/check_videocall_status_usecase.dart';
+import 'package:domain/usecase/account/get_call_status_usecase.dart';
 import 'package:domain/usecase/account/get_call_time_slots_usecase.dart';
 import 'package:domain/usecase/account/request_call_usecase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -49,6 +50,10 @@ final checkGenderStatusUsecaseProvider =
 ///request call view model provider
 final requestCallUsecaseProvider = Provider.autoDispose<RequestCallUseCase>(
     (ref) => RequestCallUseCase(ref.read(accountRepositoryProvider)));
+
+///request call view model provider
+final getCallStatusUsecaseProvider = Provider.autoDispose<GetCallStatusUseCase>(
+    (ref) => GetCallStatusUseCase(ref.read(accountRepositoryProvider)));
 
 ///schedule call time dialog view model provider
 final scheduleCallTimeDialogViwModelProvider =

@@ -1,11 +1,18 @@
 import 'dart:io';
 
 import 'package:agora_rtc_engine/rtc_engine.dart';
+import 'package:domain/model/account/video_kyc_status.dart';
+import 'package:domain/usecase/account/get_call_status_usecase.dart';
 import 'package:neo_bank/base/base_page_view_model.dart';
 import 'package:neo_bank/feature/video_kyc/video_kyc_page.dart';
+import 'package:neo_bank/utils/extension/stream_extention.dart';
+import 'package:neo_bank/utils/request_manager.dart';
+import 'package:neo_bank/utils/resource.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:rxdart/rxdart.dart';
 
 class VideoKycViewModel extends BasePageViewModel {
+  final GetCallStatusUseCase _getCallStatusUseCase;
   final String agoraAppId = "95c7a3ae0ee54a2bb6999d730d281e59";
   String channelId = "";
   String tempToken = "";
@@ -17,7 +24,25 @@ class VideoKycViewModel extends BasePageViewModel {
   bool isJoined = false, switchCamera = true, switchRender = true;
   List<int> remoteUid = [];
 
-  VideoKycViewModel(this.agoraCredentials) {
+  PublishSubject<GetCallStatusUseCaseParams> _getCallStatusRequest =
+      PublishSubject();
+  PublishSubject<Resource<VideoKycStatus>> _getCallStatusResponse =
+      PublishSubject();
+
+  Stream<Resource<VideoKycStatus>> get callStatusStream =>
+      _getCallStatusResponse.stream;
+
+  VideoKycViewModel(this._getCallStatusUseCase, this.agoraCredentials) {
+    _getCallStatusRequest.listen((value) {
+      RequestManager(value,
+              createCall: () => _getCallStatusUseCase.execute(params: value))
+          .asFlow()
+          .listen((event) {
+        updateLoader();
+        _getCallStatusResponse.safeAdd(event);
+      });
+    });
+
     channelId = agoraCredentials.channelName;
     tempToken = agoraCredentials.token;
     _initEngine();
@@ -72,6 +97,7 @@ class VideoKycViewModel extends BasePageViewModel {
   leaveAgoraChannel() async {
     await _engine.leaveChannel();
     notifyListeners();
+    getCallStatus();
   }
 
   switchAgoraCamera() {
@@ -89,9 +115,16 @@ class VideoKycViewModel extends BasePageViewModel {
     notifyListeners();
   }
 
+  void getCallStatus() {
+    _getCallStatusRequest
+        .safeAdd(GetCallStatusUseCaseParams(session: tempToken));
+  }
+
   @override
   void dispose() {
     _engine.destroy();
+    _getCallStatusRequest.close();
+    _getCallStatusResponse.close();
     super.dispose();
   }
 }
