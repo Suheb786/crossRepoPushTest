@@ -188,6 +188,13 @@ final enableBiometricUseCaseProvider =
   ),
 );
 
+///[UserDataUseCase] provider
+final userDataUseCaseProvider = Provider.autoDispose<UserDataUseCase>(
+  (ref) => UserDataUseCase(
+    ref.read(userRepoProvider),
+  ),
+);
+
 ///[GetComboValuesUseCase] provider
 final getComboValuesUseCaseProvider =
     Provider.autoDispose<GetComboValuesUseCase>(
