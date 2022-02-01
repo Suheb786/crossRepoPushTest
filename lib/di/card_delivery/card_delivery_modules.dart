@@ -26,6 +26,7 @@ import 'package:neo_bank/feature/supplementary_debit_card/id_scan_verification_i
 import 'package:neo_bank/feature/supplementary_debit_card/personalize_debit_card/personalize_debit_card_page_view_model.dart';
 import 'package:neo_bank/feature/supplementary_debit_card/relationship_with_cardholder_debit/relationship_with_cardholder_debit_page_view_model.dart';
 import 'package:neo_bank/feature/supplementary_debit_card/supplementary_debit_card_page_view_model.dart';
+import 'package:neo_bank/feature/supplementary_debit_card_success/supplementary_debit_card_success_page_view_model.dart';
 import 'package:neo_bank/ui/molecules/dialog/card_settings/relationship_with_cardholder/relationship_with_cardholder_dialog_view_model.dart';
 
 ///card delivery view model provider
@@ -183,4 +184,10 @@ final supplementaryCardInReviewViewModelProvider =
 final creditCardApplySuccessViewModelProvider =
     ChangeNotifierProvider.autoDispose<CreditCardApplySuccessPageViewModel>(
   (ref) => CreditCardApplySuccessPageViewModel(),
+);
+
+///debit card supplementary success view model provider
+final supplementaryDebitCardSuccessViewModelProvider = ChangeNotifierProvider
+    .autoDispose<SupplementaryDebitCardSuccessPageViewModel>(
+  (ref) => SupplementaryDebitCardSuccessPageViewModel(),
 );

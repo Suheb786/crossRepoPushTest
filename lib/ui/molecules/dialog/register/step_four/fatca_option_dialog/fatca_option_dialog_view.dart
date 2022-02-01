@@ -174,6 +174,8 @@ class FatcaOptionDialogView extends StatelessWidget {
                                                                   item: data
                                                                           .data![
                                                                       index],
+                                                                  showFlag: title ==
+                                                                      'TAX COUNTRY',
                                                                 );
                                                               })),
                                             ),

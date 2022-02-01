@@ -11,6 +11,7 @@ class User {
   String? tokenType;
   int? expiredIn;
   bool? isExisting;
+  bool? newDevice;
   String? privatePEM;
   String? publicPEM;
   bool? isBiometricEnabled;
@@ -30,6 +31,7 @@ class User {
       this.isExisting,
       this.publicPEM,
       this.privatePEM,
+      this.newDevice: false,
       this.isBiometricEnabled: false});
 
   String get profileName => "${firstName?[0] ?? ""} ${lastName?[0] ?? ""}";

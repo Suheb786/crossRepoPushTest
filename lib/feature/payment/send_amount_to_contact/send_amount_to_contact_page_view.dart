@@ -167,29 +167,32 @@ class SendAmountToContactPageView
                                       fontWeight: FontWeight.w600),
                                 );
                               }),
-                          InkWell(
-                            onTap: () {
-                              EditTransactionPurposeDialog.show(context,
-                                  onDismissed: () {
-                                Navigator.pop(context);
-                              }, onSelected: (value1, value2) {
-                                print("got value: $value1");
-                                model.updatePurpose(value1);
-                                model.updatePurposeDetail(value2);
-                                Navigator.pop(context);
+                          Visibility(
+                            visible: false,
+                            child: InkWell(
+                              onTap: () {
+                                EditTransactionPurposeDialog.show(context,
+                                    onDismissed: () {
+                                  Navigator.pop(context);
+                                }, onSelected: (value1, value2) {
+                                  print("got value: $value1");
+                                  model.updatePurpose(value1);
+                                  model.updatePurposeDetail(value2);
+                                  Navigator.pop(context);
+                                },
+                                    beneficiary: model.beneficiary,
+                                    type: TransactionType.SM);
                               },
-                                  beneficiary: model.beneficiary,
-                                  type: TransactionType.SM);
-                            },
-                            child: Text(
-                              S.of(context).edit,
-                              style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                  color: Theme.of(context)
-                                      .accentTextTheme
-                                      .bodyText1!
-                                      .color),
+                              child: Text(
+                                S.of(context).edit,
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                    color: Theme.of(context)
+                                        .accentTextTheme
+                                        .bodyText1!
+                                        .color),
+                              ),
                             ),
                           )
                         ],

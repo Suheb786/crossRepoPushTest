@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:domain/constants/enum/document_type_enum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,14 +7,10 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:neo_bank/base/base_page.dart';
 import 'package:neo_bank/feature/manage_contacts/manage_contact_detail/manage_contact_details_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
-import 'package:neo_bank/ui/molecules/account_setting/choose_profile_widget.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/purpose_detail_dialog/purpose_detail_dialog.dart';
-import 'package:neo_bank/ui/molecules/dialog/payment/purpose_dialog/purpose_dialog.dart';
 import 'package:neo_bank/ui/molecules/stream_builder/app_stream_builder.dart';
 import 'package:neo_bank/ui/molecules/textfield/app_textfield.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
-import 'package:neo_bank/utils/color_utils.dart';
 import 'package:neo_bank/utils/resource.dart';
 import 'package:neo_bank/utils/status.dart';
 import 'package:neo_bank/utils/string_utils.dart';
@@ -56,24 +51,24 @@ class ManageContactDetailsPageView
                             dataBuilder: (context, image) {
                               return InkWell(
                                   onTap: () {
-                                    ChooseProfileWidget.show(context,
-                                        onCameraTap: () {
-                                          Navigator.pop(context);
-                                          model.uploadProfilePhoto(
-                                              DocumentTypeEnum.CAMERA);
-                                        },
-                                        onGalleryTap: () {
-                                          Navigator.pop(context);
-                                          model.uploadProfilePhoto(
-                                              DocumentTypeEnum.PICK_IMAGE);
-                                        },
-                                        onRemoveTap: () {},
-                                        onCancelled: () {
-                                          Navigator.pop(context);
-                                        },
-                                        title: S
-                                            .of(context)
-                                            .pleaseSelectYourAction);
+                                    // ChooseProfileWidget.show(context,
+                                    //     onCameraTap: () {
+                                    //       Navigator.pop(context);
+                                    //       model.uploadProfilePhoto(
+                                    //           DocumentTypeEnum.CAMERA);
+                                    //     },
+                                    //     onGalleryTap: () {
+                                    //       Navigator.pop(context);
+                                    //       model.uploadProfilePhoto(
+                                    //           DocumentTypeEnum.PICK_IMAGE);
+                                    //     },
+                                    //     onRemoveTap: () {},
+                                    //     onCancelled: () {
+                                    //       Navigator.pop(context);
+                                    //     },
+                                    //     title: S
+                                    //         .of(context)
+                                    //         .pleaseSelectYourAction);
                                   },
                                   child: CircleAvatar(
                                     backgroundColor:
@@ -122,19 +117,26 @@ class ManageContactDetailsPageView
                           );
                         },
                       ),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Center(
-                        child: Text(
-                          S.of(context).tapToEditPhoto,
-                          style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context)
-                                  .inputDecorationTheme
-                                  .hintStyle!
-                                  .color),
+                      Visibility(
+                        visible: false,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 8,
+                            ),
+                            Center(
+                              child: Text(
+                                S.of(context).tapToEditPhoto,
+                                style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                    color: Theme.of(context)
+                                        .inputDecorationTheme
+                                        .hintStyle!
+                                        .color),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       SizedBox(
@@ -144,8 +146,13 @@ class ManageContactDetailsPageView
                         labelText: S.of(context).nickName.toUpperCase(),
                         hintText: S.of(context).pleaseEnter,
                         inputType: TextInputType.text,
+                        readOnly: true,
                         controller: model.nickNameController,
                         maxLength: 25,
+                        textColor: Theme.of(context)
+                            .inputDecorationTheme
+                            .hintStyle!
+                            .color,
                         onChanged: (text) {
                           model.showSaveButton();
                           model.updateType = UpdateType.details;
@@ -159,6 +166,7 @@ class ManageContactDetailsPageView
                         inputType: TextInputType.text,
                         controller: model.ibanController,
                         enabled: false,
+                        readOnly: true,
                         textColor: Theme.of(context)
                             .inputDecorationTheme
                             .hintStyle!
@@ -172,6 +180,7 @@ class ManageContactDetailsPageView
                         inputType: TextInputType.text,
                         controller: model.accountHolderNameController,
                         enabled: false,
+                        readOnly: true,
                         textColor: Theme.of(context)
                             .inputDecorationTheme
                             .hintStyle!
@@ -184,6 +193,7 @@ class ManageContactDetailsPageView
                         inputType: TextInputType.text,
                         controller: model.bankNameController,
                         enabled: false,
+                        readOnly: true,
                         textColor: Theme.of(context)
                             .inputDecorationTheme
                             .hintStyle!
@@ -192,43 +202,53 @@ class ManageContactDetailsPageView
                       SizedBox(height: 13),
                       AppTextField(
                         labelText: S.of(context).purpose,
-                        hintText: S.of(context).pleaseSelect,
+                        // hintText: S.of(context).pleaseSelect,
+                        hintText: "",
                         inputType: TextInputType.text,
                         controller: model.purposeController,
                         readOnly: true,
-                        onPressed: () {
-                          if (model.purposeList.length > 0) {
-                            PurposeDialog.show(context,
-                                purposeList: model.purposeList,
-                                onSelected: (value) {
-                              model.updatePurpose(value);
-                              model.updatePurposeDetailList(
-                                  value.purposeDetails!);
-                              model.showSaveButton();
-                              Navigator.pop(context);
-                              model.updateType = UpdateType.details;
-                            }, onDismissed: () {
-                              Navigator.pop(context);
-                            });
-                          }
-                        },
-                        suffixIcon: (value, data) {
-                          return Container(
-                              height: 16,
-                              width: 16,
-                              padding: EdgeInsets.only(right: 8),
-                              child: AppSvg.asset(AssetUtils.downArrow,
-                                  color: AppColor.dark_gray_1));
-                        },
+                        textColor: Theme.of(context)
+                            .inputDecorationTheme
+                            .hintStyle!
+                            .color,
+                        // onPressed: () {
+                        //   if (model.purposeList.length > 0) {
+                        //     PurposeDialog.show(context,
+                        //         purposeList: model.purposeList,
+                        //         onSelected: (value) {
+                        //       model.updatePurpose(value);
+                        //       model.updatePurposeDetailList(
+                        //           value.purposeDetails!);
+                        //       model.showSaveButton();
+                        //       Navigator.pop(context);
+                        //       model.updateType = UpdateType.details;
+                        //     }, onDismissed: () {
+                        //       Navigator.pop(context);
+                        //     });
+                        //   }
+                        // },
+                        // suffixIcon: (value, data) {
+                        //   return Container(
+                        //       height: 16,
+                        //       width: 16,
+                        //       padding: EdgeInsets.only(right: 8),
+                        //       child: AppSvg.asset(AssetUtils.downArrow,
+                        //           color: AppColor.dark_gray_1));
+                        // },
                       ),
                       SizedBox(height: 13),
                       AppTextField(
                         labelText: S.of(context).purposeDetail,
-                        hintText: S.of(context).pleaseSelect,
+                        // hintText: S.of(context).pleaseSelect,
+                        hintText: "",
                         inputType: TextInputType.text,
                         readOnly: true,
                         controller: model.purposeDetailsController,
-                        onPressed: () {
+                        textColor: Theme.of(context)
+                            .inputDecorationTheme
+                            .hintStyle!
+                            .color,
+                        /*onPressed: () {
                           if (model.purposeDetailList.isNotEmpty) {
                             PurposeDetailDialog.show(context,
                                 purposeDetailList: model.purposeDetailList,
@@ -249,7 +269,7 @@ class ManageContactDetailsPageView
                               padding: EdgeInsets.only(right: 8),
                               child: AppSvg.asset(AssetUtils.downArrow,
                                   color: AppColor.dark_gray_1));
-                        },
+                        },*/
                       ),
                       AppStreamBuilder<Resource<bool>>(
                         stream: model.deleteBeneficiaryStream,

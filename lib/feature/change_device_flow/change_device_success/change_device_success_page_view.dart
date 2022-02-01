@@ -1,34 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:neo_bank/base/base_page.dart';
-import 'package:neo_bank/di/dashboard/dashboard_modules.dart';
-import 'package:neo_bank/feature/debit_card_replacement_success/debit_card_replacement_success_page_view_model.dart';
+import 'package:neo_bank/feature/change_device_flow/change_device_success/change_device_success_page_view_model.dart';
 import 'package:neo_bank/generated/l10n.dart';
 import 'package:neo_bank/main/navigation/route_paths.dart';
 import 'package:neo_bank/ui/molecules/app_svg.dart';
 import 'package:neo_bank/ui/molecules/button/animated_button.dart';
 import 'package:neo_bank/utils/asset_utils.dart';
+import 'package:neo_bank/utils/color_utils.dart';
 
-class DebitCardReplacementSuccessPageView
-    extends BasePageViewWidget<DebitCardReplacementSuccessPageViewModel> {
-  DebitCardReplacementSuccessPageView(ProviderBase model) : super(model);
+class ChangeDeviceSuccessPageView
+    extends BasePageViewWidget<ChangeDeviceSuccessPageViewModel> {
+  ChangeDeviceSuccessPageView(ProviderBase model) : super(model);
 
   @override
-  Widget build(
-      BuildContext context, DebitCardReplacementSuccessPageViewModel model) {
+  Widget build(BuildContext context, ChangeDeviceSuccessPageViewModel model) {
     return GestureDetector(
       onHorizontalDragUpdate: (details) {
         if (details.primaryDelta!.isNegative) {
+          ///TODO: check whether call kyc status api?
           Navigator.pushReplacementNamed(context, RoutePaths.AppHome);
-          ProviderScope.containerOf(context)
-              .read(appHomeViewModelProvider)
-              .getDashboardData();
         }
       },
       child: Container(
           height: double.infinity,
           width: double.infinity,
-          color: Theme.of(context).canvasColor,
+          color: Theme.of(context).primaryColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -43,8 +40,7 @@ class DebitCardReplacementSuccessPageView
                         children: [
                           Image.asset(
                             AssetUtils.line,
-                            color:
-                                Theme.of(context).accentColor.withOpacity(0.4),
+                            color: AppColor.softRed,
                           ),
                           Align(
                             alignment: Alignment.center,
@@ -52,11 +48,12 @@ class DebitCardReplacementSuccessPageView
                               height: 111.37,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Theme.of(context).primaryColor,
+                                color: Theme.of(context).canvasColor,
                               ),
                               child: Center(
                                   child: AppSvg.asset(AssetUtils.right,
-                                      color: Theme.of(context).accentColor)),
+                                      color:
+                                          Theme.of(context).primaryColorDark)),
                             ),
                           ),
                         ],
@@ -70,11 +67,11 @@ class DebitCardReplacementSuccessPageView
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            S.of(context).yourCardReady,
+                            S.of(context).congratulations,
                             style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 24,
-                            ),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 24,
+                                color: Theme.of(context).accentColor),
                           ),
                           SizedBox(
                             height: 24,
@@ -83,12 +80,12 @@ class DebitCardReplacementSuccessPageView
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 48.0),
                             child: Text(
-                              S.of(context).yourCardReadyDesc,
+                              S.of(context).newDeviceRegisteredSuccessfully,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontWeight: FontWeight.w600,
+                                  fontWeight: FontWeight.w400,
                                   fontSize: 14,
-                                  color: Theme.of(context).primaryColorDark),
+                                  color: Theme.of(context).accentColor),
                             ),
                           ),
                         ],
@@ -102,10 +99,8 @@ class DebitCardReplacementSuccessPageView
                 children: [
                   AnimatedButton(
                     buttonText: S.of(context).swipeToProceed,
-                    textColor:
-                        Theme.of(context).accentTextTheme.bodyText1!.color,
-                    borderColor:
-                        Theme.of(context).accentTextTheme.bodyText1!.color,
+                    textColor: Theme.of(context).accentColor,
+                    borderColor: Theme.of(context).accentColor,
                   ),
                   SizedBox(
                     height: 5,
@@ -118,11 +113,8 @@ class DebitCardReplacementSuccessPageView
                       child: Text(
                         S.of(context).toDashboard,
                         style: TextStyle(
-                          color: Theme.of(context)
-                              .accentTextTheme
-                              .bodyText1!
-                              .color,
-                          fontWeight: FontWeight.w500,
+                          color: Theme.of(context).accentColor,
+                          fontWeight: FontWeight.w400,
                           fontSize: 12,
                         ),
                       ),

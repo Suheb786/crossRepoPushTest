@@ -614,12 +614,12 @@ class _ApiService implements ApiService {
     final _data = <String, dynamic>{};
     _data.addAll(getAllowedCountryRequestEntity.toJson());
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<HttpResponse<GetAllowedCountryResponseEntity>>(Options(
-                method: 'POST', headers: <String, dynamic>{}, extra: _extra)
-            .compose(_dio.options,
-                'http://192.168.181.2:2821/api/Country/GetAllowedCode',
-                queryParameters: queryParameters, data: _data)
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+        _setStreamType<HttpResponse<GetAllowedCountryResponseEntity>>(
+            Options(method: 'POST', headers: <String, dynamic>{}, extra: _extra)
+                .compose(_dio.options,
+                    'http://192.168.181.2:2821/api/Country/GetAllowedCode',
+                    queryParameters: queryParameters, data: _data)
+                .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
     final value = GetAllowedCountryResponseEntity.fromJson(_result.data!);
     final httpResponse = HttpResponse(value, _result);
     return httpResponse;
