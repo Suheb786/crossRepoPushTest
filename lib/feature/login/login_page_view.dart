@@ -153,6 +153,12 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                             if (data.status ==
                                                                 Status
                                                                     .SUCCESS) {
+                                                              model.mobileCode =
+                                                                  data.data!
+                                                                      .mobile!;
+                                                              model.mobileCode =
+                                                                  data.data!
+                                                                      .mobileCode!;
                                                               if (data.data!
                                                                   .newDevice!) {
                                                                 InformationDialog.show(
@@ -164,31 +170,31 @@ class LoginPageView extends BasePageViewWidget<LoginViewModel> {
                                                                             context)
                                                                         .newDeviceDetected,
                                                                     descriptionWidget:
-                                                                        Text(
+                                                                    Text(
                                                                       S
                                                                           .of(context)
                                                                           .newDeviceDetectedDesc,
                                                                       style: TextStyle(
                                                                           fontSize:
-                                                                              14,
+                                                                          14,
                                                                           fontWeight:
-                                                                              FontWeight.w400),
+                                                                          FontWeight.w400),
                                                                     ),
                                                                     onDismissed:
                                                                         () {
-                                                                  Navigator.pop(
-                                                                      context);
-                                                                }, onSelected:
-                                                                        () {
+                                                                      Navigator.pop(
+                                                                          context);
+                                                                    }, onSelected:
+                                                                    () {
                                                                   model
                                                                       .sendOtpTokenEmail();
                                                                 });
                                                               } else {
                                                                 ProviderScope
-                                                                        .containerOf(
-                                                                            context)
+                                                                    .containerOf(
+                                                                    context)
                                                                     .read(
-                                                                        appViewModel)
+                                                                    appViewModel)
                                                                     .getToken();
                                                                 model
                                                                     .checkKycStatus();

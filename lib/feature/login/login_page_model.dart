@@ -137,6 +137,9 @@ class LoginViewModel extends BasePageViewModel {
   Stream<Resource<bool>> get sendOtpTokenMobileStream =>
       _sendOtpTokenMobileResponse.stream;
 
+  String mobileNumber = '';
+  String mobileCode = '';
+
   LoginViewModel(
       this._loginUseCase,
       this._kycStatusUseCase,

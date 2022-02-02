@@ -64,20 +64,29 @@ class AppHomePageView extends BasePageViewWidget<AppHomeViewModel> {
                                   context, RoutePaths.CardTransaction);
                             }
                           } else if (currentStep == 0) {
-                            Navigator.pushNamed(
-                                context, RoutePaths.AccountTransaction);
+                            if (showTimeLine!) {
+                              print("dragged here");
+                              model.updateShowTimeLineStream(!showTimeLine);
+                              return;
+                            } else {
+                              Navigator.pushNamed(
+                                  context, RoutePaths.AccountTransaction);
+                            }
                           } else if (currentStep == 2) {
                             model.updateShowTimeLineStream(!showTimeLine!);
                           } else if (currentStep == 3) {
                             model.updateShowTimeLineStream(!showTimeLine!);
                           }
                         } else {
-                          if (currentStep == 1 ||
-                              currentStep == 2 ||
-                              currentStep == 3) {
-                            if (!showTimeLine!) {
-                              model.updateShowTimeLineStream(!showTimeLine);
-                            }
+                          // if (currentStep == 1 ||
+                          //     currentStep == 2 ||
+                          //     currentStep == 3) {
+                          //   if (!showTimeLine!) {
+                          //     model.updateShowTimeLineStream(!showTimeLine);
+                          //   }
+                          // }
+                          if (!showTimeLine!) {
+                            model.updateShowTimeLineStream(!showTimeLine);
                           }
                         }
                       },
